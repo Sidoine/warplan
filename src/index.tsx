@@ -18,7 +18,7 @@ ReactDOM.render(
     <Provider unitsStore={unitsStore}>
         <HashRouter>
             <>
-                <MyNavbar/>
+                <Route render={ x => <MyNavbar route={x} /> }/>
                 <Switch>
                     <Route exact path="/" component={OwnedModelsList}/>
                     <Route exact path="/warscroll" component={WarscrollBuilder} />

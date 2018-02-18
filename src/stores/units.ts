@@ -10,6 +10,11 @@ export interface Unit {
     model: Model;
     size: number;
     points: number;
+
+    isLeader?: (warscroll: Warscroll) => boolean;
+    isBattleline?: (warscroll: Warscroll) => boolean;
+    isBehemot?: (warscroll: Warscroll) => boolean;
+    isArtillery?: (warscroll: Warscroll) => boolean;
 }
 
 export interface OwnedModel {
@@ -31,10 +36,38 @@ export interface Box {
     name: string;
 }
 
-export interface WarscrollUnit {
+export class WarscrollUnit {
     id: number;
-    unit: Unit;
-    count: number;
+    
+    @observable
+    count: number = 1;
+
+    get isArtillery() {
+        return this.unit.isArtillery && this.unit.isArtillery(this.warscroll);
+    }
+
+    get isLeader() {
+        return this.unit.isLeader && this.unit.isLeader(this.warscroll);
+    }
+
+    get isBehemot() {
+        return this.unit.isBehemot && this.unit.isBehemot(this.warscroll);
+    }
+
+    get isBattleline() {
+        return this.unit.isBattleline && this.unit.isBattleline(this.warscroll);
+    }
+
+    get isGeneral() {
+        return this.warscroll.general === this;
+    }
+
+    constructor(protected warscroll: Warscroll, public unit: Unit, count?: number) {
+        this.id = warscroll.serial++;
+        if (count !== undefined) {
+            this.count = count;
+        }
+    }     
 }
 
 export interface WarscrollBattalion {
@@ -43,16 +76,16 @@ export interface WarscrollBattalion {
 }
 
 export class Warscroll {
+    serial = 0;
+
     @observable
     units: WarscrollUnit[] = [];
 
     @observable
     battalions: WarscrollBattalion[] = [];
 
-    constructor (units: WarscrollUnit[], battalions: WarscrollBattalion[]) {
-        this.units = units;
-        this.battalions = battalions;
-    }
+    @observable
+    general: WarscrollUnit | undefined = undefined;    
 
     @computed
     get unitsPoints() {
@@ -62,6 +95,79 @@ export class Warscroll {
     @computed
     get battalionsPoints() {
         return this.battalions.reduce((p, x) => x.battalion.points + p, 0);
+    }
+
+    @computed
+    get totalPoints() {
+        return this.unitsPoints + this.battalionsPoints;
+    }
+
+    @computed
+    get numberOfLeaders() {
+        return this.units.reduce((p, x) => x.isLeader ? p + 1 : p, 0);
+    }
+
+    @computed
+    get numberOfBattelines() {
+        return this.units.reduce((p, x) => x.isBattleline ? p + 1 : p, 0);
+    }
+    
+    @computed
+    get numberOfBehemots() {
+        return this.units.reduce((p, x) => x.isBehemot ? p + 1 : p, 0);
+    }
+    
+    @computed
+    get numberOfArtillery() {
+        return this.units.reduce((p, x) => x.isArtillery ? p + 1 : p, 0);
+    }
+
+    minLeaders = 1;
+    
+    @computed
+    get maxLeaders() {
+        return this.totalPoints <= 1000 ? 4 : (this.totalPoints <= 2000 ? 6 : 8);
+    } 
+
+    @computed
+    get minBattlelines() {
+        return this.totalPoints <= 1000 ? 2 : (this.totalPoints <= 20000 ? 3 : 4);
+    }
+
+    @computed
+    get maxBattlelines() {
+        return this.minBattlelines;
+    }
+
+    @computed
+    get maxBehemots()
+    {
+        return this.totalPoints <= 1000 ? 2 : (this.totalPoints <= 2000 ? 4 : 5);
+    }
+
+    @computed
+    get maxArtillery() {
+        return this.totalPoints <= 1000 ? 2 : (this.totalPoints <= 2000 ? 4 : 5);
+    }
+    
+    @computed
+    get isLeadersValid() {
+        return this.numberOfLeaders >= this.minLeaders && this.numberOfLeaders <= this.maxLeaders;
+    }
+
+    @computed
+    get isBattelinesValid() {
+        return this.numberOfBattelines === this.minBattlelines;
+    }
+
+    @computed
+    get isBehemotsValid() {
+        return this.numberOfBehemots <= this.maxBehemots;
+    }
+
+    @computed
+    get isArtilleryValid() {
+        return this.numberOfArtillery <= this.maxArtillery;
     }
 }
 
@@ -124,7 +230,8 @@ export class UnitsStore {
             id: this.serial++,
             model: this.models.lordAquilor,
             size: 1,
-            points: 200
+            points: 200,
+            isLeader: () => true
         },
         vanguardPalladors: {
             id: this.serial++,
@@ -142,7 +249,8 @@ export class UnitsStore {
             id: this.serial++,
             model: this.models.vanguardHunters,
             size: 10,
-            points: 140
+            points: 140,
+            isBattleline: (w: Warscroll) => (w.general && w.general.unit === this.units.lordAquilor) || false
         },
         gryphHounds: {
             id: this.serial++,
@@ -200,20 +308,7 @@ export class UnitsStore {
     ]
 
     @observable
-    warscroll = new Warscroll([
-            {
-                id: this.serial++,
-                count: 1,
-                unit: this.units.gryphHounds
-            },{
-                id: this.serial++,
-                count: 1,
-                unit: this.units.vanguardHunters
-            }
-        ],
-        [
-            { id: this.serial++ , battalion: this.battalions[0] }
-        ]);
+    warscroll = new Warscroll();
     
     @observable
     ownedModels: OwnedModel[] = [{
@@ -239,6 +334,10 @@ export class UnitsStore {
         for (const key in units) {
             this.unitList.push(units[key]);
         }
+
+        this.warscroll.units.push(new WarscrollUnit(this.warscroll, this.units.gryphHounds));
+        this.warscroll.units.push(new WarscrollUnit(this.warscroll, this.units.lordAquilor));
+        this.warscroll.battalions.push({ id: this.serial++, battalion: this.battalions[0] });
     }
 
     @computed

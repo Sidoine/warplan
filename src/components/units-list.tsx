@@ -1,5 +1,5 @@
 import * as React from "react";
-import { UnitsStore, Unit } from "../stores/units";
+import { UnitsStore, Unit, WarscrollUnit } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { DropdownButton, MenuItem } from "react-bootstrap";
 
@@ -20,10 +20,7 @@ export class UnitsList extends React.Component<UnitsListProps, {}> {
     }
 
     private addUnit(unit: Unit) {
-        this.props.unitsStore!.warscroll.units.push({
-            id: this.props.unitsStore!.serial++,
-            unit: unit,
-            count: 1
-        });
+        const warscroll = this.props.unitsStore!.warscroll;
+        warscroll.units.push(new WarscrollUnit(warscroll, unit));
     }
 }
