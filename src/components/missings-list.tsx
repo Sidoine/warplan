@@ -28,7 +28,7 @@ export class MissingsList extends React.Component<MissingsListProps, {}> {
                 </thead>
                 <tbody>
             {
-                neededModels.filter(x => x.count > 0).map(x => <tr key={x.id}><td>{x.model.name}</td><td>{x.count}</td><td>{x.inBasket}</td><td><BoxesList model={x.model} title="Buy" /></td></tr>)
+                neededModels.map(x => <tr key={x.id}><td>{x.model.name}</td><td>{x.count}</td><td>{x.inBasket}</td><td><BoxesList model={x.model} title="Buy" /></td></tr>)
             }
                 </tbody>
             </Table>

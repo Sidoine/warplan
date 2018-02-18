@@ -1,5 +1,5 @@
 import * as React from "react";
-import { UnitsStore, Model } from "../stores/units";
+import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { DropdownButton, MenuItem } from "react-bootstrap";
 
@@ -14,16 +14,9 @@ export class ModelsList extends React.Component<ModelsListProps, {}> {
     render() {
         return <DropdownButton title={this.props.title} id="units">
                 {
-                    this.props.unitsStore!.modelsList.map(x => <MenuItem key={x.id} onClick={() => this.addModel(x)}>{x.name}</MenuItem>)
+                    this.props.unitsStore!.modelsList.map(x => <MenuItem key={x.id} onClick={() => this.props.unitsStore!.addOwned(x)}>{x.name}</MenuItem>)
                 }
             </DropdownButton>;
     }
 
-    private addModel(model: Model) {
-        this.props.unitsStore!.ownedModels.push({
-            model: model,
-            count: 1,
-            id: this.props.unitsStore!.serial++
-        });
-    }
 }

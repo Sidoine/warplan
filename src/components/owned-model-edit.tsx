@@ -17,20 +17,12 @@ export class OwnedModelEdit extends React.Component<OwnedModelEditProps, {}> {
         return <tr>
             <td>{model.model.name}</td>
             <td>
-                <NumberControl value={model.count} min={0} onChange={this.onCountChange} />
+                <NumberControl value={model.count} min={0} onChange={x => this.props.unitsStore!.setOwnedCount(this.props.model, x)} />
             </td>
             <td>
-                <Button onClick={this.remove}><Glyphicon glyph="remove"/></Button>
+                <Button onClick={() => this.props.unitsStore!.removeOwned(this.props.model)}><Glyphicon glyph="remove"/></Button>
             </td>
         </tr>;
     }
 
-    private remove = () => {
-        const ownedModels = this.props.unitsStore!.ownedModels;
-        ownedModels.splice(ownedModels.indexOf(this.props.model), 1);
-    }
-
-    private onCountChange = (value: number) => {
-        this.props.model.count = value;
-    }
 }

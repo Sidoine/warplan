@@ -1,4 +1,4 @@
-import { observable, computed } from "mobx";
+import { observable, computed, action, toJS } from "mobx";
 
 export interface Model {
     name: string;
@@ -77,6 +77,9 @@ export interface WarscrollBattalion {
 
 export class Warscroll {
     serial = 0;
+
+    @observable
+    name = "New Warscroll";
 
     @observable
     units: WarscrollUnit[] = [];
@@ -195,6 +198,32 @@ interface Missing {
     count: number;
     inBasket: number;
     id: number;
+}
+
+interface SerializedWarscroll {
+    name: string;
+    units: {
+        unitId: number;
+        count: number;
+        isGeneral?:boolean;
+    }[];
+    battalions: {
+        battalionId: number;
+    }[];
+}
+
+interface SerializedOwned {
+    models: {
+        modelId: number;
+        count: number;
+    }[];
+}
+
+interface SerializedBasket {
+    boxes: {
+        boxId: number;
+        count: number;
+    }[];
 }
 
 export class UnitsStore {
@@ -324,6 +353,12 @@ export class UnitsStore {
     @observable
     basket: BasketElement[] = [];
 
+    @observable
+    warscrolls: string[] = [];
+
+    @observable
+    baskets: string[] = [];
+
     constructor() {      
         const models : {[key:string]: Model} = this.models;  
         for (const key in models) {
@@ -338,6 +373,135 @@ export class UnitsStore {
         this.warscroll.units.push(new WarscrollUnit(this.warscroll, this.units.gryphHounds));
         this.warscroll.units.push(new WarscrollUnit(this.warscroll, this.units.lordAquilor));
         this.warscroll.battalions.push({ id: this.serial++, battalion: this.battalions[0] });
+    
+        const warscrolls = localStorage.getItem("warscrolls");
+        if (warscrolls !== null) {
+            this.warscrolls = JSON.parse(warscrolls);
+        }
+
+        const baskets = localStorage.getItem("baskets");
+        if (baskets !== null) {
+            this.baskets = JSON.parse(baskets);
+        }
+
+        this.loadWarscroll();
+        this.loadOwned();
+        this.loadBasket();
+    }
+
+    getUnit(id: number) {
+        return this.unitList.find(x => x.id === id);
+    }
+
+    loadWarscroll(name: string = "warscroll") {
+        const serializedWarscroll = localStorage.getItem(name);
+        if (serializedWarscroll === null) return;
+        const warscroll: SerializedWarscroll = JSON.parse(serializedWarscroll);
+        this.warscroll.name = warscroll.name;
+        this.warscroll.general = undefined;
+        this.warscroll.units.splice(0);
+        this.warscroll.battalions.splice(0);
+
+
+        for (const wu of warscroll.units) {
+            const unit = this.getUnit(wu.unitId);
+            if (unit === undefined) continue;
+            const newUnit = new WarscrollUnit(this.warscroll, unit);
+            newUnit.count = wu.count;
+            if (wu.isGeneral) {
+                this.warscroll.general = newUnit;
+            }
+            this.warscroll.units.push(newUnit);
+        }
+
+        for (const ba of warscroll.battalions) {
+            const battalion = this.battalions.find(x => x.id === ba.battalionId);
+            if (battalion === undefined) continue;
+            this.warscroll.battalions.push({ id: this.warscroll.serial++, battalion: battalion });
+        }
+    }
+
+    saveWarscroll(name: string = "warscroll") {
+        const warscroll: SerializedWarscroll = {
+            name: this.warscroll.name,
+            units: this.warscroll.units.map(x => {return {
+                unitId: x.unit.id,
+                count: x.count,
+                isGeneral: x === this.warscroll.general
+            }}),
+            battalions: this.warscroll.battalions.map(x => {
+                return {
+                    battalionId: x.battalion.id
+                };
+            })
+        };
+        localStorage.setItem(name, JSON.stringify(warscroll));
+    }
+
+    @action
+    loadOwned() {
+        const serialized = localStorage.getItem("owned");
+        if (serialized === null) return;
+
+        this.ownedModels.splice(0);
+        const owned: SerializedOwned = JSON.parse(serialized);
+        for (const model of owned.models) {
+            const m = this.modelsList.find(x => x.id === model.modelId);
+            if (m === undefined) continue;
+            this.ownedModels.push({
+                id: this.serial++,
+                count: model.count,
+                model: m
+            });
+        }
+    }
+
+    saveBasket(name?: string) {
+        const serializedBasket: SerializedBasket = {
+            boxes: this.basket.map(x => {
+                return {
+                    boxId: x.box.id,
+                    count: x.count
+                };
+            })
+        };
+        localStorage.setItem(name || "basket", JSON.stringify(serializedBasket));
+
+        if (name !== undefined) {
+            if (this.baskets.indexOf(name) < 0) {
+                this.baskets.push(name);
+                localStorage.setItem("baskets", JSON.stringify(toJS(this.baskets)));
+            }
+        }
+    }
+
+    @action
+    loadBasket(name: string = "basket") {
+        const storage = localStorage.getItem(name);
+        if (storage === null) return;
+        const serializedBasket: SerializedBasket = JSON.parse(storage);
+        this.basket.splice(0);
+        for (const box of serializedBasket.boxes) {
+            const b = this.boxes.find(x => x.id === box.boxId);
+            if (b === undefined) continue;
+            this.basket.push({
+                count: box.count,
+                box: b,
+                id: this.serial++
+            });
+        }
+    }
+
+    saveOwned() {
+        const serialized: SerializedOwned = {
+            models: this.ownedModels.map(x => {
+                return {
+                    modelId: x.model.id,
+                    count: x.count
+                };
+            })
+        }
+        localStorage.setItem("owned", JSON.stringify(serialized));
     }
 
     @computed
@@ -346,8 +510,8 @@ export class UnitsStore {
         
         for (const unit of this.warscroll.units) {
             const count = unit.unit.size * unit.count;
-            const existings = neededModels.filter(x => x.model === unit.unit.model);
-            if (existings.length === 0) {
+            const existings = neededModels.find(x => x.model === unit.unit.model);
+            if (existings === undefined) {
                 neededModels.push({ 
                     model: unit.unit.model, 
                     count: count, 
@@ -355,16 +519,103 @@ export class UnitsStore {
                     inBasket: this.basket.reduce((c, x) => c + x.count * x.box.units.reduce((d, y) => y.models.reduce((e, z) => z.id === unit.unit.model.id ? e + 1: e, 0) * y.count + d, 0) , 0)
                 });
             } else {
-                existings[0].count += count;
+                existings.count += count;
             }
         }
 
         for (const model of this.ownedModels) {
-            const neededModel = neededModels.filter(x => x.model === model.model);
-            if (neededModel.length > 0) {
-                neededModel[0].count -= model.count;
+            const neededModel = neededModels.find(x => x.model === model.model);
+            if (neededModel !== undefined) {
+                neededModel.count -= model.count;
             }
         }
         return neededModels.filter(x => x.count > 0);
+    }
+
+    @action
+    addUnit(unit: Unit) {
+        const warscroll = this.warscroll;
+        warscroll.units.push(new WarscrollUnit(warscroll, unit));
+        this.saveWarscroll();
+    }
+
+    @action
+    setUnitCount(unit: WarscrollUnit, count: number) {
+        unit.count = count;
+        this.saveWarscroll();
+    }
+
+    @action
+    removeUnit(unit: WarscrollUnit) {
+        const units = this.warscroll.units;
+        units.splice(units.indexOf(unit), 1);
+    }
+
+    @action
+    addBattalion(battalion: Battalion) {
+        this.warscroll.battalions.push({
+            id: this.warscroll.serial++,
+            battalion: battalion
+        });
+        this.saveWarscroll();
+    }
+    
+    @action
+    removeBattalion(battalion: WarscrollBattalion) {
+        const battalions = this.warscroll.battalions;
+        battalions.splice(battalions.indexOf(battalion), 1);
+        this.saveWarscroll();
+    }
+
+    @action
+    setGeneral(unit: WarscrollUnit | undefined) {
+        this.warscroll.general = unit;
+        this.saveWarscroll();
+    }
+
+    @action
+    addOwned(model: Model) {
+        this.ownedModels.push({
+            model: model,
+            count: 1,
+            id: this.serial++
+        });
+        this.saveOwned();
+    }
+
+    @action
+    removeOwned(ownedModel: OwnedModel) {
+        const ownedModels = this.ownedModels;
+        ownedModels.splice(ownedModels.indexOf(ownedModel), 1);
+        this.saveOwned();
+    }
+
+    @action
+    setOwnedCount(ownedModel: OwnedModel, value: number) {
+        ownedModel.count = value;
+        this.saveOwned();
+    }
+
+    @action
+    addBasketElement(box: Box) {
+        this.basket.push({
+            box: box,
+            count: 1,
+            id: this.serial++
+        });
+        this.saveBasket();
+    }
+
+    @action
+    removeBasketElement(basketElement: BasketElement) {
+        const basketElements = this.basket;
+        basketElements.splice(basketElements.indexOf(basketElement), 1);
+        this.saveBasket();
+    }
+
+    @action
+    setBasketElementCount(basketElement: BasketElement, count: number) {
+        basketElement.count = count;
+        this.saveBasket();
     }
 }

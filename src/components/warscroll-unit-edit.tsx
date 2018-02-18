@@ -25,25 +25,15 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
             <td><NumberControl value={unit.count} onChange={this.onCountChange} /></td>
             <td>{unit.unit.points * unit.count}</td>
             <td>
-                <Button onClick={this.delete}><Glyphicon glyph="remove"/></Button>
+                <Button onClick={() => this.props.unitsStore!.removeUnit(this.props.unit)}><Glyphicon glyph="remove"/></Button>
             </td></tr>;
     }
 
     private toggleGeneral = (event: React.FormEvent<Checkbox>) => {
-        if ((event.target as any).value) {
-            this.props.unitsStore!.warscroll.general = this.props.unit;
-        }
-        else {
-            this.props.unitsStore!.warscroll.general = undefined;
-        }
-    }
-
-    private delete = () => {
-        const units = this.props.unitsStore!.warscroll.units;
-        units.splice(units.indexOf(this.props.unit), 1);
+        this.props.unitsStore!.setGeneral((event.target as any).checked ? this.props.unit : undefined);
     }
 
     private onCountChange = (value: number) => {
-        this.props.unit.count = value;
+        this.props.unitsStore!.setUnitCount(this.props.unit, value);
     }
 }

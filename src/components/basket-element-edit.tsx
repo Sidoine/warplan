@@ -1,7 +1,7 @@
 import * as React from "react";
 import { UnitsStore, BasketElement } from "../stores/units";
 import { observer, inject } from "mobx-react";
-import { Button } from "react-bootstrap";
+import { Button, Glyphicon } from "react-bootstrap";
 import { NumberControl } from "../atoms/number-control";
 
 export interface BasketElementEditProps {
@@ -19,16 +19,11 @@ export class BasketElementEdit extends React.Component<BasketElementEditProps, {
             <td><NumberControl value={basketElement.count} onChange={this.onCountChange} /></td>
             <td>{basketElement.box.price * basketElement.count}</td>
             <td>
-            <Button onClick={this.delete}>-</Button>
+            <Button onClick={() => this.props.unitsStore!.removeBasketElement(this.props.basketElement)}><Glyphicon glyph="remove"/></Button>
             </td></tr>;
     }
 
-    private delete = () => {
-        const basketElements = this.props.unitsStore!.basket;
-        basketElements.splice(basketElements.indexOf(this.props.basketElement), 1);
-    }
-
     private onCountChange = (value: number) => {
-        this.props.basketElement.count = value;
+        this.props.unitsStore!.setBasketElementCount(this.props.basketElement, value);
     }
 }

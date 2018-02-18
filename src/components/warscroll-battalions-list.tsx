@@ -1,9 +1,8 @@
 import * as React from "react";
-import { UnitsStore, WarscrollBattalion } from "../stores/units";
+import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { Panel, Table, Button, Glyphicon } from "react-bootstrap";
 import { BattalionsList } from "./battalions-list";
-import { action } from "mobx";
 
 export interface WarscrollBattalionsListProps {
     unitsStore?: UnitsStore;
@@ -51,7 +50,7 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
                     <td>{x.battalion.name}</td>
                     <td>{x.battalion.units.map(y => <span style={{ color:  requiredUnits.get(y.unit.id) ? 'red' : '' } } key={y.unit.id}>{ y.count} {y.unit.model.name} </span>)}</td>
                     <td>{x.battalion.points}</td>
-                    <td><Button onClick={() => this.remove(x)}><Glyphicon glyph="remove"/></Button></td>
+                    <td><Button onClick={() => this.props.unitsStore!.removeBattalion(x)}><Glyphicon glyph="remove"/></Button></td>
                 </tr>)
             }
                 </tbody>
@@ -61,11 +60,5 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
                 <BattalionsList title="Add"/>
             </Panel.Footer>
             </Panel>;
-    }
-
-    @action
-    private remove(battalion: WarscrollBattalion) {
-        const battalions = this.props.unitsStore!.warscroll.battalions;
-        battalions.splice(battalions.indexOf(battalion), 1);
     }
 }
