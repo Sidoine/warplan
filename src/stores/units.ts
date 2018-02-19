@@ -393,8 +393,8 @@ export class UnitsStore {
         return this.unitList.find(x => x.id === id);
     }
 
-    loadWarscroll(name: string = "warscroll") {
-        const serializedWarscroll = localStorage.getItem(name);
+    loadWarscroll(name?: string) {
+        const serializedWarscroll = localStorage.getItem(this.getWarscrollItem(name));
         if (serializedWarscroll === null) return;
         const warscroll: SerializedWarscroll = JSON.parse(serializedWarscroll);
         this.warscroll.name = warscroll.name;
@@ -421,7 +421,7 @@ export class UnitsStore {
         }
     }
 
-    saveWarscroll(name: string = "warscroll") {
+    saveWarscroll(name?: string) {
         const warscroll: SerializedWarscroll = {
             name: this.warscroll.name,
             units: this.warscroll.units.map(x => {return {
@@ -435,7 +435,11 @@ export class UnitsStore {
                 };
             })
         };
-        localStorage.setItem(name, JSON.stringify(warscroll));
+        localStorage.setItem(this.getWarscrollItem(name), JSON.stringify(warscroll));
+    }
+
+    private getWarscrollItem(name?: string) {
+        return name ? `warscroll/${name}` : 'warscroll';
     }
 
     @action
@@ -465,19 +469,27 @@ export class UnitsStore {
                 };
             })
         };
-        localStorage.setItem(name || "basket", JSON.stringify(serializedBasket));
+        localStorage.setItem(this.getBasketItem(name), JSON.stringify(serializedBasket));
 
         if (name !== undefined) {
             if (this.baskets.indexOf(name) < 0) {
                 this.baskets.push(name);
-                localStorage.setItem("baskets", JSON.stringify(toJS(this.baskets)));
+                this.saveBaskets();
             }
         }
     }
 
+    private getBasketItem(name?: string) {
+        return name ? `basket/${name}` : "basket";
+    }
+
+    private saveBaskets() {
+        localStorage.setItem("baskets", JSON.stringify(toJS(this.baskets)));
+    }
+
     @action
-    loadBasket(name: string = "basket") {
-        const storage = localStorage.getItem(name);
+    loadBasket(name?: string) {
+        const storage = localStorage.getItem(this.getBasketItem(name));
         if (storage === null) return;
         const serializedBasket: SerializedBasket = JSON.parse(storage);
         this.basket.splice(0);
@@ -491,6 +503,13 @@ export class UnitsStore {
             });
         }
     }
+
+    @action
+    removeBasket(name: string) {
+        localStorage.removeItem(this.getBasketItem(name));
+        this.baskets.splice(this.baskets.indexOf(name), 1);
+        this.saveBaskets();
+    }    
 
     saveOwned() {
         const serialized: SerializedOwned = {

@@ -1,14 +1,16 @@
 import * as React from "react";
 import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
-import { Panel, Table } from "react-bootstrap";
+import { Panel, Table, Button } from "react-bootstrap";
 import { BasketElementEdit } from "./basket-element-edit";
+import { UiStore } from "../stores/ui";
 
 export interface BasketProps {
     unitsStore?: UnitsStore;
+    uiStore?: UiStore;
 }
 
-@inject('unitsStore')
+@inject('unitsStore', "uiStore")
 @observer
 export class Basket extends React.Component<BasketProps, {}> {
     render() {
@@ -31,6 +33,7 @@ export class Basket extends React.Component<BasketProps, {}> {
             </Table>
             <Panel.Footer>
                 <span>{basket.reduce((p, x) => x.count * x.box.price + p, 0)} €</span>
+                <Button onClick={() => this.props.uiStore!.showBasketPopin()}>Manage baskets</Button>
             </Panel.Footer>
         </Panel>;
     }

@@ -9,15 +9,19 @@ import { Basket } from "./components/basket";
 import { HashRouter, Switch } from "react-router-dom";
 import { Route } from "react-router";
 import { MyNavbar } from "./components/my-navbar";
+import { UiStore } from "./stores/ui";
+import { Popins } from "./components/popins";
 
 const root = document.getElementById("root");
 
 const unitsStore = new UnitsStore();
+const uiStore = new UiStore();
 
 ReactDOM.render(
-    <Provider unitsStore={unitsStore}>
+    <Provider unitsStore={unitsStore} uiStore={uiStore}>
         <HashRouter>
             <>
+                <Popins/>    
                 <Route render={ x => <MyNavbar route={x} /> }/>
                 <Switch>
                     <Route exact path="/" component={OwnedModelsList}/>
