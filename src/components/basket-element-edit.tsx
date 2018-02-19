@@ -1,15 +1,17 @@
 import * as React from "react";
-import { UnitsStore, BasketElement } from "../stores/units";
+import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { Button, Glyphicon } from "react-bootstrap";
 import { NumberControl } from "../atoms/number-control";
+import { BasketStore, BasketElement } from "../stores/basket";
 
 export interface BasketElementEditProps {
     unitsStore?: UnitsStore;
     basketElement: BasketElement;
+    basketStore?: BasketStore;
 }
 
-@inject('unitsStore')
+@inject('unitsStore', "basketStore")
 @observer
 export class BasketElementEdit extends React.Component<BasketElementEditProps, {}> {
     render() {
@@ -19,11 +21,11 @@ export class BasketElementEdit extends React.Component<BasketElementEditProps, {
             <td><NumberControl value={basketElement.count} onChange={this.onCountChange} /></td>
             <td>{basketElement.box.price * basketElement.count}</td>
             <td>
-            <Button onClick={() => this.props.unitsStore!.removeBasketElement(this.props.basketElement)}><Glyphicon glyph="remove"/></Button>
+            <Button onClick={() => this.props.basketStore!.removeBasketElement(this.props.basketElement)}><Glyphicon glyph="remove"/></Button>
             </td></tr>;
     }
 
     private onCountChange = (value: number) => {
-        this.props.unitsStore!.setBasketElementCount(this.props.basketElement, value);
+        this.props.basketStore!.setBasketElementCount(this.props.basketElement, value);
     }
 }

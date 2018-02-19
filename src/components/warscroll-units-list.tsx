@@ -4,16 +4,18 @@ import { observer, inject } from "mobx-react";
 import { UnitsList } from "./units-list";
 import { WarscrollUnitEdit } from "./warscroll-unit-edit";
 import { Panel, Table } from "react-bootstrap";
+import { WarscrollStore } from "../stores/warscroll";
 
 export interface WarscrollUnitsListProps {
     unitsStore?: UnitsStore;
+    warscrollStore?: WarscrollStore;
 }
 
-@inject('unitsStore')
+@inject('unitsStore', "warscrollStore")
 @observer
 export class WarscrollUnitsList extends React.Component<WarscrollUnitsListProps, {}> {
     render() {
-        const warscroll = this.props.unitsStore!.warscroll;
+        const warscroll = this.props.warscrollStore!.warscroll;
         return <Panel>
             <Panel.Heading>Units</Panel.Heading>
             <Table>

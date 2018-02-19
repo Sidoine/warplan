@@ -11,14 +11,22 @@ import { Route } from "react-router";
 import { MyNavbar } from "./components/my-navbar";
 import { UiStore } from "./stores/ui";
 import { Popins } from "./components/popins";
+import { BasketStore } from "./stores/basket";
+import { WarscrollStore } from "./stores/warscroll";
+import { OwnedStore } from "./stores/owned";
+import { DataStoreImpl } from "./stores/data";
 
 const root = document.getElementById("root");
 
-const unitsStore = new UnitsStore();
+const dataStore = new DataStoreImpl();
+const unitsStore = new UnitsStore(dataStore);
 const uiStore = new UiStore();
+const warscrollStore = new WarscrollStore(unitsStore);
+const ownedStore = new OwnedStore(unitsStore);
+const basketStore = new BasketStore(unitsStore, warscrollStore, ownedStore);
 
 ReactDOM.render(
-    <Provider unitsStore={unitsStore} uiStore={uiStore}>
+    <Provider ownedStore={ownedStore} unitsStore={unitsStore} uiStore={uiStore} basketStore={basketStore} warscrollStore={warscrollStore}>
         <HashRouter>
             <>
                 <Popins/>    

@@ -4,17 +4,19 @@ import { observer, inject } from "mobx-react";
 import { Panel, Table, Button } from "react-bootstrap";
 import { BasketElementEdit } from "./basket-element-edit";
 import { UiStore } from "../stores/ui";
+import { BasketStore } from "../stores/basket";
 
 export interface BasketProps {
     unitsStore?: UnitsStore;
     uiStore?: UiStore;
+    basketStore?: BasketStore;
 }
 
-@inject('unitsStore', "uiStore")
+@inject('unitsStore', "uiStore", "basketStore")
 @observer
 export class Basket extends React.Component<BasketProps, {}> {
     render() {
-        const basket = this.props.unitsStore!.basket;
+        const basket = this.props.basketStore!.basket;
         return <Panel>
             <Panel.Heading>Basket</Panel.Heading>
             <Table>

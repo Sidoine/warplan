@@ -1,15 +1,15 @@
 import * as React from "react";
-import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { OwnedModelEdit } from "./owned-model-edit";
 import { Panel, Table } from "react-bootstrap";
 import { ModelsList } from "./models-list";
+import { OwnedStore } from "../stores/owned";
 
 export interface OwnedModelsListProps {
-    unitsStore?: UnitsStore;
+    ownedStore?: OwnedStore;
 }
 
-@inject('unitsStore')
+@inject("ownedStore")
 @observer
 export class OwnedModelsList extends React.Component<OwnedModelsListProps, {}> {
     render() {
@@ -25,7 +25,7 @@ export class OwnedModelsList extends React.Component<OwnedModelsListProps, {}> {
                 </thead>
                 <tbody>
                 {
-                    this.props.unitsStore!.ownedModels.map(x => <OwnedModelEdit key={x.id} model={x}/>)
+                    this.props.ownedStore!.ownedModels.map(x => <OwnedModelEdit key={x.id} model={x}/>)
                 }
                 </tbody>
             </Table>

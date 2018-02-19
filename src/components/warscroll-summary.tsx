@@ -1,17 +1,17 @@
 import React = require("react");
-import { UnitsStore } from "../stores/units";
 import { Well, Grid, Row, Col, Glyphicon } from "react-bootstrap";
 import { inject, observer } from "mobx-react";
+import { WarscrollStore } from "../stores/warscroll";
 
 interface WarscrollSummaryProps {
-    unitsStore?: UnitsStore;
+    warscrollStore?: WarscrollStore;
 }
 
-@inject("unitsStore")
+@inject("warscrollStore")
 @observer    
 export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}> {
     render() {
-        const warscroll = this.props.unitsStore!.warscroll;
+        const warscroll = this.props.warscrollStore!.warscroll;
         const totalPoints = warscroll.totalPoints;
 
         return <Well>

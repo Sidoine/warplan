@@ -1,18 +1,18 @@
 import * as React from "react";
-import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { Panel, Table, Button, Glyphicon } from "react-bootstrap";
 import { BattalionsList } from "./battalions-list";
+import { WarscrollStore } from "../stores/warscroll";
 
 export interface WarscrollBattalionsListProps {
-    unitsStore?: UnitsStore;
+    warscrollStore?: WarscrollStore;
 }
 
-@inject('unitsStore')
+@inject('warscrollStore')
 @observer
 export class WarscrollBattalionsList extends React.Component<WarscrollBattalionsListProps, {}> {
     render() {
-        const warscroll = this.props.unitsStore!.warscroll;
+        const warscroll = this.props.warscrollStore!.warscroll;
         const requiredUnits = new Map<number, number>();
 
         for (const battalion of warscroll.battalions) {
@@ -50,7 +50,7 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
                     <td>{x.battalion.name}</td>
                     <td>{x.battalion.units.map(y => <span style={{ color:  requiredUnits.get(y.unit.id) ? 'red' : '' } } key={y.unit.id}>{ y.count} {y.unit.model.name} </span>)}</td>
                     <td>{x.battalion.points}</td>
-                    <td><Button onClick={() => this.props.unitsStore!.removeBattalion(x)}><Glyphicon glyph="remove"/></Button></td>
+                    <td><Button onClick={() => this.props.warscrollStore!.removeBattalion(x)}><Glyphicon glyph="remove"/></Button></td>
                 </tr>)
             }
                 </tbody>

@@ -3,17 +3,19 @@ import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { Panel, Table } from "react-bootstrap";
 import { BoxesList } from "./boxes-list";
+import { BasketStore } from "../stores/basket";
 
 export interface MissingsListProps {
     unitsStore?: UnitsStore;
+    basketStore?: BasketStore;
 }
 
 
-@inject('unitsStore')
+@inject('unitsStore', "basketStore")
 @observer
 export class MissingsList extends React.Component<MissingsListProps, {}> {
     render() {
-        const neededModels = this.props.unitsStore!.missingModels;        
+        const neededModels = this.props.basketStore!.missingModels;        
 
         return <Panel>
             <Panel.Heading>Missings list</Panel.Heading>

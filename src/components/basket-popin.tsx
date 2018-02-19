@@ -4,13 +4,15 @@ import { inject, observer } from "mobx-react";
 import { Modal, Button, FormControl, FormGroup, Glyphicon } from "react-bootstrap";
 import { UnitsStore } from "../stores/units";
 import { observable } from "mobx";
+import { BasketStore } from "../stores/basket";
 
 export interface BasketPopinProps {
     uiStore?: UiStore;
     unitsStore?: UnitsStore;
+    basketStore?: BasketStore;
 }
 
-@inject("uiStore", "unitsStore")
+@inject("uiStore", "unitsStore", "basketStore")
 @observer    
 export class BasketPopin extends React.Component<BasketPopinProps, {}> {
     @observable
@@ -24,15 +26,15 @@ export class BasketPopin extends React.Component<BasketPopinProps, {}> {
 
             <Modal.Body>
                 {
-                    this.props.unitsStore!.baskets.map(x => <div>{x}
-                        <Button onClick={() => this.props.unitsStore!.saveBasket(x)}>Update</Button>
-                        <Button onClick={() => this.props.unitsStore!.loadBasket(x)}>Load</Button>
-                        <Button onClick={() => this.props.unitsStore!.removeBasket(x)}><Glyphicon glyph="remove"/></Button>
+                    this.props.basketStore!.baskets.map(x => <div>{x}
+                        <Button onClick={() => this.props.basketStore!.saveBasket(x)}>Update</Button>
+                        <Button onClick={() => this.props.basketStore!.loadBasket(x)}>Load</Button>
+                        <Button onClick={() => this.props.basketStore!.removeBasket(x)}><Glyphicon glyph="remove"/></Button>
                     </div>)
                 }
                 <FormGroup>
                     <FormControl type="text" value={this.basketName} onChange={x => this.basketName = (x.target as any).value } />
-                    <Button onClick={() => this.props.unitsStore!.saveBasket(this.basketName)}>Add</Button>
+                    <Button onClick={() => this.props.basketStore!.saveBasket(this.basketName)}>Add</Button>
                 </FormGroup>
             </Modal.Body>
 
