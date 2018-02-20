@@ -3,11 +3,13 @@ import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { DropdownButton, MenuItem } from "react-bootstrap";
 import { WarscrollStore } from "../stores/warscroll";
+import { UiStore } from "../stores/ui";
 
 export interface UnitsListProps {
     unitsStore?: UnitsStore;
     title: string;
     warscrollStore?: WarscrollStore;
+    uiStore?: UiStore;
 }
 
 @inject('unitsStore', "warscrollStore")

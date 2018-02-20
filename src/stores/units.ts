@@ -3,11 +3,25 @@ export interface Model {
     id: number;
 }
 
+export const enum GrandAlliance {
+    chaos,
+    order,
+    death,
+    destruction
+}
+
+export interface Faction {
+    id: string,
+    grandAlliance: GrandAlliance,
+    name: string
+}
+
 export interface Unit {
     id: number;
     model: Model;
     size: number;
     points: number;
+    factions: Faction[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => boolean;
@@ -41,6 +55,7 @@ export interface Battalion {
     units: BattalionUnit[];
     description?: string;
     points: number;
+    factions: Faction[];
 }
 
 
@@ -57,6 +72,7 @@ export interface DataStore {
     units: {[key:string]: Unit};
     battalions: Battalion[];
     boxes: Box[];
+    factions: Faction[];
 }
 
 export class UnitsStore {
@@ -66,6 +82,7 @@ export class UnitsStore {
     unitList:Unit[] = [];
     battalions: Battalion[];
     boxes: Box[];
+    factions: Faction[];
     
     constructor(data: DataStore) {      
         const models = data.models;  
@@ -80,6 +97,7 @@ export class UnitsStore {
 
         this.battalions = data.battalions;
         this.boxes = data.boxes;
+        this.factions = data.factions;
     }
 
     getUnit(id: number) {

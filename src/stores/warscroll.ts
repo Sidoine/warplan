@@ -1,5 +1,5 @@
 import { action, computed, observable } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance } from "./units";
 
 export interface WarscrollBattalion {
     id: number;
@@ -42,6 +42,9 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
 export class Warscroll implements WarscrollInterface {
     serial = 0;
+
+    @observable
+    grandAlliance: GrandAlliance = GrandAlliance.order;
 
     @observable
     name = "New Warscroll";

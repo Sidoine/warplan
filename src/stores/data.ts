@@ -76,32 +76,37 @@ export class DataStoreImpl implements DataStore {
             model: this.models.lordAquilor,
             size: 1,
             points: 200,
-            isLeader: () => true
+            isLeader: () => true,
+            factions: []
         },
         vanguardPalladors: {
             id: this.serial++,
             model: this.models.vanguardPalladors,
             size: 3,
-            points: 220
+            points: 220,
+            factions: []
         },
         vanguardRaports: {
             id: this.serial++,
             model: this.models.vanguardRaports,
             size: 3,
-            points: 160
+            points: 160,
+            factions: []
         },
         vanguardHunters: {
             id: this.serial++,
             model: this.models.vanguardHunters,
             size: 10,
             points: 140,
-            isBattleline: (w: WarscrollInterface) => (w.general && w.general.unit === this.units.lordAquilor) || false
+            isBattleline: (w: WarscrollInterface) => (w.general && w.general.unit === this.units.lordAquilor) || false,
+            factions: []
         },
         gryphHounds: {
             id: this.serial++,
             model: this.models.gryphHounds,
             size: 1,
-            points: 40
+            points: 40,
+            factions: []
         }
     }
     
@@ -121,7 +126,8 @@ export class DataStoreImpl implements DataStore {
                     count: 1
                 }
             ],
-            points: 120
+            points: 120,
+            factions: []
         },
     ]
     

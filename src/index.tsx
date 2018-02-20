@@ -14,7 +14,7 @@ import { Popins } from "./components/popins";
 import { BasketStore } from "./stores/basket";
 import { WarscrollStore } from "./stores/warscroll";
 import { OwnedStore } from "./stores/owned";
-import { DataStoreImpl } from "./stores/data";
+import { DataStoreImpl } from "./stores/imported-data";
 
 const root = document.getElementById("root");
 
