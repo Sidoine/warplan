@@ -25,6 +25,7 @@
   "scripts": {
     "prepare": "webpack",
     "watch": "webpack -w",
-    "debug": "webpack-dev-server --content-base wwwroot/"
+    "debug": "webpack-dev-server --content-base wwwroot/",
+    "gw": "tsc -p tsconfig.tools.json && node dist/stores/gw-data.js"
   }
 }

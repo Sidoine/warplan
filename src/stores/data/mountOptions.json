@@ -1,0 +1,181 @@
+{
+	"Master With Battle Standard": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Steed",
+			"cose": 0
+		},
+		{
+			"name": "Dragon",
+			"cose": 0
+		}],
+	"Archmage": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Steed",
+			"cose": 0
+		}],
+	"Herald Of Slaanesh": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Steed",
+			"cose": 0
+		}],
+	"Goblin Warboss": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Giant Wolf",
+			"cose": 0
+		}],
+	"Gitmob Grot Shaman": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Giant Wolf",
+			"cose": 0
+		}],
+	"Orc Great Shaman": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "War Boar",
+			"cose": 0
+		}],
+	"Orc Warboss": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "War Boar",
+			"cose": 0
+		}],
+	"Savage Orc Shaman": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "War Boar",
+			"cose": 0
+		}],
+	"Savage Orc Warboss": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "War Boar",
+			"cose": 0
+		}],
+	"Empire Battle Wizard": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Horse",
+			"cose": 0
+		}],
+	"Valten": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "War Horse",
+			"cose": 0
+		}],
+	"Tomb Herald": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Skeletal Steed",
+			"cose": 0
+		}],
+	"Liche Priest": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Skeletal Steed",
+			"cose": 0
+		}],
+	"Count Mannfred": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Barbed Nightmare",
+			"cose": 0
+		}],
+	"Vampire Lord": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Flying Horror",
+			"cose": 0
+		},
+		{
+			"name": "Nightmare",
+			"cose": 0
+		}],
+	"Wight King with Baleful Tomb Blade": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Steed",
+			"cose": 0
+		}],
+	"Chaos Sorcerer Lord": [
+		{
+			"name": "None",
+			"cose": 0
+		},
+		{
+			"name": "Steed",
+			"cose": 0
+		}],
+	"Damsel Of The Lady": [
+		{
+			"name": "Pegasi",
+			"cose": 0
+		},
+		{
+			"name": "Steed",
+			"cose": 0
+		}],
+	"Bretonnian Lord": [
+		{
+			"name": "Pegasi",
+			"cose": 0
+		},
+		{
+			"name": "Steed",
+			"cose": 0
+		}]
+}
