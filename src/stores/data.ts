@@ -161,4 +161,6 @@ export class DataStoreImpl implements DataStore {
             units: [ { models: [this.models.gryphHounds], count: 6 }]
         }
     ];
+
+    factions = {}
 }

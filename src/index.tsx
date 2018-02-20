@@ -20,7 +20,7 @@ const root = document.getElementById("root");
 
 const dataStore = new DataStoreImpl();
 const unitsStore = new UnitsStore(dataStore);
-const uiStore = new UiStore();
+const uiStore = new UiStore(unitsStore);
 const warscrollStore = new WarscrollStore(unitsStore);
 const ownedStore = new OwnedStore(unitsStore);
 const basketStore = new BasketStore(unitsStore, warscrollStore, ownedStore);

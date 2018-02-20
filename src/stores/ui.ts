@@ -12,7 +12,7 @@ export class UiStore {
     grandAlliance: GrandAlliance = GrandAlliance.order;
 
     @observable
-    faction = this.unitsStore.factions.find(x => x.id === "STORMCASTETERNALS")!;
+    faction = this.unitsStore.factions["STORMCASTETERNALS"];
 
     @action
     setFaction(factionId: string) {
@@ -21,7 +21,12 @@ export class UiStore {
 
     @computed
     get units() {
-        return this.unitsStore.unitList.filter(x => x.factions.indexOf(this.faction) >= 0);
+        return this.unitsStore.unitList.filter(x => x.factions.some(x => x.id === this.faction.id));
+    }
+
+    @computed
+    get battalions() {
+        return this.unitsStore.battalions.filter(x => x.factions.some(x => x.id === this.faction.id));
     }
 
     @action

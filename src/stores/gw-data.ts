@@ -5711,6 +5711,9 @@ for (const faction of factions) {
     if (factionData.heroes) {
         factionData.heroes.forEach(x => addExtraData(x.name, x, faction.id, "hero"));
     }
+    if (factionData.units) {
+        factionData.units.forEach(x => addExtraData(x.name, x, faction.id, "unit"));
+    }
     if (factionData.monsters) {
         factionData.monsters.forEach(x => addExtraData(x.name, x, faction.id, "monster"));
     }

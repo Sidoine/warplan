@@ -24,6 +24,26 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Great Bray Shaman"
         },
+        gors: {
+            id: this.serial++,
+            name: "Gors"
+        },
+        bestigors: {
+            id: this.serial++,
+            name: "Bestigors"
+        },
+        tuskgorChariots: {
+            id: this.serial++,
+            name: "Tuskgor Chariots"
+        },
+        ungors: {
+            id: this.serial++,
+            name: "Ungors"
+        },
+        ungorRaiders: {
+            id: this.serial++,
+            name: "Ungor Raiders"
+        },
         wildstalkerBrayherd: {
             id: this.serial++,
             name: "Wildstalker Brayherd"
@@ -44,9 +64,33 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Skaven Assassin"
         },
+        nightRunners: {
+            id: this.serial++,
+            name: "Night Runners"
+        },
+        gutterRunners: {
+            id: this.serial++,
+            name: "Gutter Runners"
+        },
         packmaster: {
             id: this.serial++,
             name: "Packmaster"
+        },
+        wolfRats: {
+            id: this.serial++,
+            name: "Wolf Rats"
+        },
+        giantRats: {
+            id: this.serial++,
+            name: "Giant Rats"
+        },
+        ratSwarms: {
+            id: this.serial++,
+            name: "Rat Swarms"
+        },
+        ratOgors: {
+            id: this.serial++,
+            name: "Rat Ogors"
         },
         broodHorror: {
             id: this.serial++,
@@ -71,6 +115,14 @@ export class DataStoreImpl implements DataStore {
         verminlordCorruptor: {
             id: this.serial++,
             name: "Verminlord Corruptor"
+        },
+        plagueMonks: {
+            id: this.serial++,
+            name: "Plague Monks"
+        },
+        plagueCenserBearers: {
+            id: this.serial++,
+            name: "Plague Censer Bearers"
         },
         plagueclaw: {
             id: this.serial++,
@@ -99,6 +151,38 @@ export class DataStoreImpl implements DataStore {
         archWarlock: {
             id: this.serial++,
             name: "Arch Warlock"
+        },
+        doomFlayerWeaponTeam: {
+            id: this.serial++,
+            name: "Doom Flayer Weapon Team"
+        },
+        ratlingGunWeaponTeam: {
+            id: this.serial++,
+            name: "Ratling Gun Weapon Team"
+        },
+        warpfireThrowerWeaponTeam: {
+            id: this.serial++,
+            name: "Warpfire Thrower Weapon Team"
+        },
+        warpGrinderWeaponTeam: {
+            id: this.serial++,
+            name: "Warp Grinder Weapon Team"
+        },
+        poisonedWindMortarWeaponTeam: {
+            id: this.serial++,
+            name: "Poisoned Wind Mortar Weapon Team"
+        },
+        skryreAcolytes: {
+            id: this.serial++,
+            name: "Skryre Acolytes"
+        },
+        warplockJezzails: {
+            id: this.serial++,
+            name: "Warplock Jezzails"
+        },
+        stormfiends: {
+            id: this.serial++,
+            name: "Stormfiends"
         },
         doomwheel: {
             id: this.serial++,
@@ -148,6 +232,18 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Skritch Spiteclaw"
         },
+        clanrats: {
+            id: this.serial++,
+            name: "Clanrats"
+        },
+        stormvermin: {
+            id: this.serial++,
+            name: "Stormvermin"
+        },
+        spiteclawSSwarm: {
+            id: this.serial++,
+            name: "Spiteclaw's Swarm"
+        },
         daemonPrince: {
             id: this.serial++,
             name: "Daemon Prince"
@@ -155,6 +251,10 @@ export class DataStoreImpl implements DataStore {
         beLakorChaosDaemonPrince: {
             id: this.serial++,
             name: "Be'Lakor, Chaos Daemon Prince"
+        },
+        furies: {
+            id: this.serial++,
+            name: "Furies"
         },
         soulGrinder: {
             id: this.serial++,
@@ -203,6 +303,22 @@ export class DataStoreImpl implements DataStore {
         exaltedGreaterDaemonOfKhorne: {
             id: this.serial++,
             name: "Exalted Greater Daemon of Khorne"
+        },
+        bloodletters: {
+            id: this.serial++,
+            name: "Bloodletters"
+        },
+        bloodcrushers: {
+            id: this.serial++,
+            name: "Bloodcrushers"
+        },
+        fleshHounds: {
+            id: this.serial++,
+            name: "Flesh Hounds"
+        },
+        skullCannons: {
+            id: this.serial++,
+            name: "Skull Cannons"
         },
         bloodHostOfKhorne: {
             id: this.serial++,
@@ -284,6 +400,22 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Horticulous Slimux"
         },
+        plaguebearers: {
+            id: this.serial++,
+            name: "Plaguebearers"
+        },
+        plagueDrones: {
+            id: this.serial++,
+            name: "Plague Drones"
+        },
+        nurglings: {
+            id: this.serial++,
+            name: "Nurglings"
+        },
+        beastsOfNurgle: {
+            id: this.serial++,
+            name: "Beasts Of Nurgle"
+        },
         tallybandOfNurgle: {
             id: this.serial++,
             name: "Tallyband of Nurgle"
@@ -340,6 +472,34 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Exalted Greater Daemon of Tzeentch"
         },
+        pinkHorrorsOfTzeentch: {
+            id: this.serial++,
+            name: "Pink Horrors Of Tzeentch"
+        },
+        blueHorrorsOfTzeentch: {
+            id: this.serial++,
+            name: "Blue Horrors Of Tzeentch"
+        },
+        brimstoneHorrorsOfTzeentch: {
+            id: this.serial++,
+            name: "Brimstone Horrors Of Tzeentch"
+        },
+        exaltedFlamersOfTzeentch: {
+            id: this.serial++,
+            name: "Exalted Flamers of Tzeentch"
+        },
+        flamersOfTzeentch: {
+            id: this.serial++,
+            name: "Flamers Of Tzeentch"
+        },
+        screamersOfTzeentch: {
+            id: this.serial++,
+            name: "Screamers Of Tzeentch"
+        },
+        burningChariotsOfTzeentch: {
+            id: this.serial++,
+            name: "Burning Chariots Of Tzeentch"
+        },
         aetherEaterHost: {
             id: this.serial++,
             name: "Aether-eater Host"
@@ -383,6 +543,10 @@ export class DataStoreImpl implements DataStore {
         gauntSummonerAndChaosFamiliars: {
             id: this.serial++,
             name: "Gaunt Summoner and Chaos Familiars"
+        },
+        varanguard: {
+            id: this.serial++,
+            name: "Varanguard"
         },
         overlordsOfChaos: {
             id: this.serial++,
@@ -443,6 +607,34 @@ export class DataStoreImpl implements DataStore {
         exaltedGreaterDaemonOfSlaanesh: {
             id: this.serial++,
             name: "Exalted Greater Daemon of Slaanesh"
+        },
+        daemonettesOfSlaanesh: {
+            id: this.serial++,
+            name: "Daemonettes Of Slaanesh"
+        },
+        seekersOfSlaanesh: {
+            id: this.serial++,
+            name: "Seekers Of Slaanesh"
+        },
+        fiendsOfSlaanesh: {
+            id: this.serial++,
+            name: "Fiends Of Slaanesh"
+        },
+        seekerChariotsOfSlaanesh: {
+            id: this.serial++,
+            name: "Seeker Chariots Of Slaanesh"
+        },
+        exaltedSeekerChariotsOfSlaanesh: {
+            id: this.serial++,
+            name: "Exalted Seeker Chariots Of Slaanesh"
+        },
+        hellflayersOfSlaanesh: {
+            id: this.serial++,
+            name: "Hellflayers Of Slaanesh"
+        },
+        hellstridersOfSlaanesh: {
+            id: this.serial++,
+            name: "Hellstriders Of Slaanesh"
         },
         mightyLordOfKhorne: {
             id: this.serial++,
@@ -507,6 +699,34 @@ export class DataStoreImpl implements DataStore {
         skaaracTheBloodborn: {
             id: this.serial++,
             name: "Skaarac the Bloodborn"
+        },
+        bloodWarriors: {
+            id: this.serial++,
+            name: "Blood Warriors"
+        },
+        wrathmongers: {
+            id: this.serial++,
+            name: "Wrathmongers"
+        },
+        bloodreavers: {
+            id: this.serial++,
+            name: "Bloodreavers"
+        },
+        khorgoraths: {
+            id: this.serial++,
+            name: "Khorgoraths"
+        },
+        skullreapers: {
+            id: this.serial++,
+            name: "Skullreapers"
+        },
+        mightySkullcrushers: {
+            id: this.serial++,
+            name: "Mighty Skullcrushers"
+        },
+        garrekSReavers: {
+            id: this.serial++,
+            name: "Garrek's Reavers"
         },
         bloodboundWarhorde: {
             id: this.serial++,
@@ -580,6 +800,22 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Shar'tor the Executioner"
         },
+        infernalGuardIronsworn: {
+            id: this.serial++,
+            name: "Infernal Guard Ironsworn"
+        },
+        infernalGuardFireglaives: {
+            id: this.serial++,
+            name: "Infernal Guard Fireglaives"
+        },
+        kDaaiFireborn: {
+            id: this.serial++,
+            name: "K'Daai Fireborn"
+        },
+        bullCentaurRenders: {
+            id: this.serial++,
+            name: "Bull Centaur Renders"
+        },
         chaosSiegeGargant: {
             id: this.serial++,
             name: "Chaos Siege Gargant"
@@ -635,6 +871,22 @@ export class DataStoreImpl implements DataStore {
         warpgnawVerminlord: {
             id: this.serial++,
             name: "Warpgnaw Verminlord"
+        },
+        chaosWarhounds: {
+            id: this.serial++,
+            name: "Chaos Warhounds"
+        },
+        centigors: {
+            id: this.serial++,
+            name: "Centigors"
+        },
+        razorgors: {
+            id: this.serial++,
+            name: "Razorgors"
+        },
+        harpies: {
+            id: this.serial++,
+            name: "Harpies"
         },
         cursDEttin: {
             id: this.serial++,
@@ -720,6 +972,14 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Lord of Blights"
         },
+        putridBlightkings: {
+            id: this.serial++,
+            name: "Putrid Blightkings"
+        },
+        pusgoyleBlightlords: {
+            id: this.serial++,
+            name: "Pusgoyle Blightlords"
+        },
         blightGuard: {
             id: this.serial++,
             name: "Blight Guard"
@@ -776,6 +1036,42 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Darkoath Warqueen"
         },
+        chaosWarriors: {
+            id: this.serial++,
+            name: "Chaos Warriors"
+        },
+        chaosMarauders: {
+            id: this.serial++,
+            name: "Chaos Marauders"
+        },
+        chaosChariots: {
+            id: this.serial++,
+            name: "Chaos Chariots"
+        },
+        chaosMarauderHorsemen: {
+            id: this.serial++,
+            name: "Chaos Marauder Horsemen"
+        },
+        chaosChosen: {
+            id: this.serial++,
+            name: "Chaos Chosen"
+        },
+        chaosKnights: {
+            id: this.serial++,
+            name: "Chaos Knights"
+        },
+        chaosGorebeastChariots: {
+            id: this.serial++,
+            name: "Chaos Gorebeast Chariots"
+        },
+        chaosWarshrine: {
+            id: this.serial++,
+            name: "Chaos Warshrine"
+        },
+        chaosSpawn: {
+            id: this.serial++,
+            name: "Chaos Spawn"
+        },
         godswornChampionsOfRuin: {
             id: this.serial++,
             name: "Godsworn Champions of Ruin"
@@ -792,6 +1088,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Skaven Chieftain With Battle Standard"
         },
+        skavenslaves: {
+            id: this.serial++,
+            name: "Skavenslaves"
+        },
         tamurkhanTheMaggotLord: {
             id: this.serial++,
             name: "Tamurkhan the Maggot Lord"
@@ -803,6 +1103,26 @@ export class DataStoreImpl implements DataStore {
         saylTheFaithless: {
             id: this.serial++,
             name: "Sayl The Faithless"
+        },
+        plagueOgors: {
+            id: this.serial++,
+            name: "Plague Ogors"
+        },
+        bileTroggoths: {
+            id: this.serial++,
+            name: "Bile Troggoths"
+        },
+        daemonPlagueToadsOfNurgle: {
+            id: this.serial++,
+            name: "Daemon Plague Toads of Nurgle"
+        },
+        daemonPoxRidersOfNurgle: {
+            id: this.serial++,
+            name: "Daemon Pox Riders of Nurgle"
+        },
+        nightmaw: {
+            id: this.serial++,
+            name: "Nightmaw"
         },
         giganticChaosSpawn: {
             id: this.serial++,
@@ -823,6 +1143,10 @@ export class DataStoreImpl implements DataStore {
         dragonOgorShaggoth: {
             id: this.serial++,
             name: "Dragon Ogor Shaggoth"
+        },
+        dragonOgors: {
+            id: this.serial++,
+            name: "Dragon Ogors"
         },
         curselingEyeOfTzeentch: {
             id: this.serial++,
@@ -847,6 +1171,26 @@ export class DataStoreImpl implements DataStore {
         tzaangorShaman: {
             id: this.serial++,
             name: "Tzaangor Shaman"
+        },
+        kairicAcolytes: {
+            id: this.serial++,
+            name: "Kairic Acolytes"
+        },
+        tzaangors: {
+            id: this.serial++,
+            name: "Tzaangors"
+        },
+        tzaangorEnlightened: {
+            id: this.serial++,
+            name: "Tzaangor Enlightened"
+        },
+        tzaangorEnlightenedOnDisc: {
+            id: this.serial++,
+            name: "Tzaangor Enlightened on Disc"
+        },
+        tzaangorSkyfires: {
+            id: this.serial++,
+            name: "Tzaangor Skyfires"
         },
         arcaniteCabal: {
             id: this.serial++,
@@ -884,6 +1228,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Doombull"
         },
+        bullgors: {
+            id: this.serial++,
+            name: "Bullgors"
+        },
         cygor: {
             id: this.serial++,
             name: "Cygor"
@@ -903,6 +1251,26 @@ export class DataStoreImpl implements DataStore {
         troggothKing: {
             id: this.serial++,
             name: "Troggoth King"
+        },
+        forsaken: {
+            id: this.serial++,
+            name: "Forsaken"
+        },
+        skinWolves: {
+            id: this.serial++,
+            name: "Skin Wolves"
+        },
+        chaosOgors: {
+            id: this.serial++,
+            name: "Chaos Ogors"
+        },
+        chaosTroggoths: {
+            id: this.serial++,
+            name: "Chaos Troggoths"
+        },
+        chaosFamiliars: {
+            id: this.serial++,
+            name: "Chaos Familiars"
         },
         hellcannon: {
             id: this.serial++,
@@ -943,6 +1311,42 @@ export class DataStoreImpl implements DataStore {
         damsel: {
             id: this.serial++,
             name: "Damsel"
+        },
+        knightsErrant: {
+            id: this.serial++,
+            name: "Knights Errant"
+        },
+        knightsOfTheRealm: {
+            id: this.serial++,
+            name: "Knights Of The Realm"
+        },
+        questingKnights: {
+            id: this.serial++,
+            name: "Questing Knights"
+        },
+        grailKnights: {
+            id: this.serial++,
+            name: "Grail Knights"
+        },
+        pegasusKnights: {
+            id: this.serial++,
+            name: "Pegasus Knights"
+        },
+        battlePilgrims: {
+            id: this.serial++,
+            name: "Battle Pilgrims"
+        },
+        menAtArms: {
+            id: this.serial++,
+            name: "Men At Arms"
+        },
+        peasantBowmen: {
+            id: this.serial++,
+            name: "Peasant Bowmen"
+        },
+        mountedYeomen: {
+            id: this.serial++,
+            name: "Mounted Yeomen"
         },
         fieldTrebuchet: {
             id: this.serial++,
@@ -1000,6 +1404,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Sorceress on Dark Pegasus"
         },
+        shades: {
+            id: this.serial++,
+            name: "Shades"
+        },
         reaperBoltThrower: {
             id: this.serial++,
             name: "Reaper Bolt Thrower"
@@ -1012,6 +1420,26 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Sorceress On Black Dragon"
         },
+        dreadspears: {
+            id: this.serial++,
+            name: "Dreadspears"
+        },
+        bleakswords: {
+            id: this.serial++,
+            name: "Bleakswords"
+        },
+        darkshards: {
+            id: this.serial++,
+            name: "Darkshards"
+        },
+        blackGuard: {
+            id: this.serial++,
+            name: "Black Guard"
+        },
+        executioners: {
+            id: this.serial++,
+            name: "Executioners"
+        },
         thrallWarhost: {
             id: this.serial++,
             name: "Thrall Warhost"
@@ -1023,6 +1451,26 @@ export class DataStoreImpl implements DataStore {
         cauldronOfBlood: {
             id: this.serial++,
             name: "Cauldron Of Blood"
+        },
+        doomfireWarlocks: {
+            id: this.serial++,
+            name: "Doomfire Warlocks"
+        },
+        sistersOfSlaughter: {
+            id: this.serial++,
+            name: "Sisters Of Slaughter"
+        },
+        bloodwrackMedusae: {
+            id: this.serial++,
+            name: "Bloodwrack Medusae"
+        },
+        bloodwrackShrine: {
+            id: this.serial++,
+            name: "Bloodwrack Shrine"
+        },
+        witchAelves: {
+            id: this.serial++,
+            name: "Witch Aelves"
         },
         bloodwrackSisterhood: {
             id: this.serial++,
@@ -1044,6 +1492,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "War Altar Of Sigmar"
         },
+        flagellants: {
+            id: this.serial++,
+            name: "Flagellants"
+        },
         pilgrimageOfWrath: {
             id: this.serial++,
             name: "Pilgrimage of Wrath"
@@ -1059,6 +1511,34 @@ export class DataStoreImpl implements DataStore {
         wardenKing: {
             id: this.serial++,
             name: "Warden King"
+        },
+        hammerers: {
+            id: this.serial++,
+            name: "Hammerers"
+        },
+        ironbreakers: {
+            id: this.serial++,
+            name: "Ironbreakers"
+        },
+        irondrakes: {
+            id: this.serial++,
+            name: "Irondrakes"
+        },
+        longbeards: {
+            id: this.serial++,
+            name: "Longbeards"
+        },
+        warriors: {
+            id: this.serial++,
+            name: "Warriors"
+        },
+        quarrellers: {
+            id: this.serial++,
+            name: "Quarrellers"
+        },
+        thunderers: {
+            id: this.serial++,
+            name: "Thunderers"
         },
         grudgeboundWarThrong: {
             id: this.serial++,
@@ -1083,6 +1563,14 @@ export class DataStoreImpl implements DataStore {
         thaneWithBattleStandard: {
             id: this.serial++,
             name: "Thane with Battle Standard"
+        },
+        miners: {
+            id: this.serial++,
+            name: "Miners"
+        },
+        slayers: {
+            id: this.serial++,
+            name: "Slayers"
         },
         duardinBoltThrower: {
             id: this.serial++,
@@ -1112,6 +1600,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Drakeseer"
         },
+        swordmasters: {
+            id: this.serial++,
+            name: "Swordmasters"
+        },
         freeguildGeneral: {
             id: this.serial++,
             name: "Freeguild General"
@@ -1119,6 +1611,38 @@ export class DataStoreImpl implements DataStore {
         freeguildGeneralOnGriffon: {
             id: this.serial++,
             name: "Freeguild General On Griffon"
+        },
+        demigryphKnights: {
+            id: this.serial++,
+            name: "Demigryph Knights"
+        },
+        freeguildCrossbowmen: {
+            id: this.serial++,
+            name: "Freeguild Crossbowmen"
+        },
+        freeguildHandgunners: {
+            id: this.serial++,
+            name: "Freeguild Handgunners"
+        },
+        freeguildArchers: {
+            id: this.serial++,
+            name: "Freeguild Archers"
+        },
+        freeguildGreatswords: {
+            id: this.serial++,
+            name: "Freeguild Greatswords"
+        },
+        freeguildPistoliers: {
+            id: this.serial++,
+            name: "Freeguild Pistoliers"
+        },
+        freeguildOutriders: {
+            id: this.serial++,
+            name: "Freeguild Outriders"
+        },
+        freeguildGuard: {
+            id: this.serial++,
+            name: "Freeguild Guard"
         },
         freeguildRegiment: {
             id: this.serial++,
@@ -1168,6 +1692,22 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Fjul-Grimnir"
         },
+        auricHearthguard: {
+            id: this.serial++,
+            name: "Auric Hearthguard"
+        },
+        hearthguardBerzerkers: {
+            id: this.serial++,
+            name: "Hearthguard Berzerkers"
+        },
+        vulkiteBerzerkers: {
+            id: this.serial++,
+            name: "Vulkite Berzerkers"
+        },
+        theChosenAxes: {
+            id: this.serial++,
+            name: "The Chosen Axes"
+        },
         lordsOfTheLodge: {
             id: this.serial++,
             name: "Lords of the Lodge"
@@ -1195,6 +1735,22 @@ export class DataStoreImpl implements DataStore {
         seawardenOnFoot: {
             id: this.serial++,
             name: "Seawarden on Foot"
+        },
+        highbornSpearmen: {
+            id: this.serial++,
+            name: "Highborn Spearmen"
+        },
+        highbornArchers: {
+            id: this.serial++,
+            name: "Highborn Archers"
+        },
+        highbornSilverHelms: {
+            id: this.serial++,
+            name: "Highborn Silver Helms"
+        },
+        greatEagles: {
+            id: this.serial++,
+            name: "Great Eagles"
         },
         highbornRepeaterBoltThrower: {
             id: this.serial++,
@@ -1260,6 +1816,22 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Endrinmaster"
         },
+        arkanautCompany: {
+            id: this.serial++,
+            name: "Arkanaut Company"
+        },
+        grundstokThunderers: {
+            id: this.serial++,
+            name: "Grundstok Thunderers"
+        },
+        endrinriggers: {
+            id: this.serial++,
+            name: "Endrinriggers"
+        },
+        skywardens: {
+            id: this.serial++,
+            name: "Skywardens"
+        },
         arkanautFrigate: {
             id: this.serial++,
             name: "Arkanaut Frigate"
@@ -1292,6 +1864,14 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Grand Armada"
         },
+        whiteLions: {
+            id: this.serial++,
+            name: "White Lions"
+        },
+        whiteLionChariots: {
+            id: this.serial++,
+            name: "White Lion Chariots"
+        },
         skinkProphet: {
             id: this.serial++,
             name: "Skink Prophet"
@@ -1303,6 +1883,10 @@ export class DataStoreImpl implements DataStore {
         skinkChief: {
             id: this.serial++,
             name: "Skink Chief"
+        },
+        celestialSwarms: {
+            id: this.serial++,
+            name: "Celestial Swarms"
         },
         carmineDragon: {
             id: this.serial++,
@@ -1316,6 +1900,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Dragonlord"
         },
+        dragonBlades: {
+            id: this.serial++,
+            name: "Dragon Blades"
+        },
         dragonlordHost: {
             id: this.serial++,
             name: "Dragonlord Host"
@@ -1323,6 +1911,14 @@ export class DataStoreImpl implements DataStore {
         dreadlordOnBlackDragon: {
             id: this.serial++,
             name: "Dreadlord On Black Dragon"
+        },
+        drakespawnKnights: {
+            id: this.serial++,
+            name: "Drakespawn Knights"
+        },
+        drakespawnChariots: {
+            id: this.serial++,
+            name: "Drakespawn Chariots"
         },
         warHydra: {
             id: this.serial++,
@@ -1344,6 +1940,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Anointed"
         },
+        phoenixGuard: {
+            id: this.serial++,
+            name: "Phoenix Guard"
+        },
         flamespyrePhoenix: {
             id: this.serial++,
             name: "Flamespyre Phoenix"
@@ -1359,6 +1959,14 @@ export class DataStoreImpl implements DataStore {
         blackArkFleetmaster: {
             id: this.serial++,
             name: "Black Ark Fleetmaster"
+        },
+        blackArkCorsairs: {
+            id: this.serial++,
+            name: "Black Ark Corsairs"
+        },
+        scourgerunnerChariots: {
+            id: this.serial++,
+            name: "Scourgerunner Chariots"
         },
         kharibdyss: {
             id: this.serial++,
@@ -1424,6 +2032,50 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Engine of the Gods"
         },
+        saurusWarriors: {
+            id: this.serial++,
+            name: "Saurus Warriors"
+        },
+        saurusGuard: {
+            id: this.serial++,
+            name: "Saurus Guard"
+        },
+        saurusKnights: {
+            id: this.serial++,
+            name: "Saurus Knights"
+        },
+        skinks: {
+            id: this.serial++,
+            name: "Skinks"
+        },
+        chameleonSkinks: {
+            id: this.serial++,
+            name: "Chameleon Skinks"
+        },
+        terradonRiders: {
+            id: this.serial++,
+            name: "Terradon Riders"
+        },
+        ripperdactylRiders: {
+            id: this.serial++,
+            name: "Ripperdactyl Riders"
+        },
+        skinkHandlers: {
+            id: this.serial++,
+            name: "Skink Handlers"
+        },
+        salamanders: {
+            id: this.serial++,
+            name: "Salamanders"
+        },
+        razordons: {
+            id: this.serial++,
+            name: "Razordons"
+        },
+        kroxigor: {
+            id: this.serial++,
+            name: "Kroxigor"
+        },
         stegadon: {
             id: this.serial++,
             name: "Stegadon"
@@ -1483,6 +2135,10 @@ export class DataStoreImpl implements DataStore {
         assassin: {
             id: this.serial++,
             name: "Assassin"
+        },
+        darkRiders: {
+            id: this.serial++,
+            name: "Dark Riders"
         },
         lordCelestant: {
             id: this.serial++,
@@ -1555,6 +2211,78 @@ export class DataStoreImpl implements DataStore {
         lordOrdinator: {
             id: this.serial++,
             name: "Lord-Ordinator"
+        },
+        gryphHound: {
+            id: this.serial++,
+            name: "Gryph-Hound"
+        },
+        prosecutorsWithStormcallJavelins: {
+            id: this.serial++,
+            name: "Prosecutors with Stormcall Javelins"
+        },
+        prosecutorsWithCelestialHammers: {
+            id: this.serial++,
+            name: "Prosecutors with Celestial Hammers"
+        },
+        paladinRetributors: {
+            id: this.serial++,
+            name: "Paladin Retributors"
+        },
+        liberators: {
+            id: this.serial++,
+            name: "Liberators"
+        },
+        steelheartSChampions: {
+            id: this.serial++,
+            name: "Steelheart's Champions"
+        },
+        judicators: {
+            id: this.serial++,
+            name: "Judicators"
+        },
+        paladinProtectors: {
+            id: this.serial++,
+            name: "Paladin Protectors"
+        },
+        paladinDecimators: {
+            id: this.serial++,
+            name: "Paladin Decimators"
+        },
+        concussors: {
+            id: this.serial++,
+            name: "Concussors"
+        },
+        desolators: {
+            id: this.serial++,
+            name: "Desolators"
+        },
+        tempestors: {
+            id: this.serial++,
+            name: "Tempestors"
+        },
+        fulminators: {
+            id: this.serial++,
+            name: "Fulminators"
+        },
+        aetherwings: {
+            id: this.serial++,
+            name: "Aetherwings"
+        },
+        vanguardHunters: {
+            id: this.serial++,
+            name: "Vanguard-Hunters"
+        },
+        vanguardPalladors: {
+            id: this.serial++,
+            name: "Vanguard-Palladors"
+        },
+        vanguardRaptorsWithHurricaneCrossbows: {
+            id: this.serial++,
+            name: "Vanguard-Raptors with Hurricane Crossbows"
+        },
+        vanguardRaptorsWithLongstrikeCrossbows: {
+            id: this.serial++,
+            name: "Vanguard-Raptors with Longstrike Crossbows"
         },
         exemplarChamber: {
             id: this.serial++,
@@ -1680,6 +2408,26 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Skywarden"
         },
+        reavers: {
+            id: this.serial++,
+            name: "Reavers"
+        },
+        spireguard: {
+            id: this.serial++,
+            name: "Spireguard"
+        },
+        skycutters: {
+            id: this.serial++,
+            name: "Skycutters"
+        },
+        shadowWarriors: {
+            id: this.serial++,
+            name: "Shadow Warriors"
+        },
+        chariots: {
+            id: this.serial++,
+            name: "Chariots"
+        },
         branchwraith: {
             id: this.serial++,
             name: "Branchwraith"
@@ -1703,6 +2451,22 @@ export class DataStoreImpl implements DataStore {
         treelordAncient: {
             id: this.serial++,
             name: "Treelord Ancient"
+        },
+        dryads: {
+            id: this.serial++,
+            name: "Dryads"
+        },
+        kurnothHunters: {
+            id: this.serial++,
+            name: "Kurnoth Hunters"
+        },
+        spiteRevenants: {
+            id: this.serial++,
+            name: "Spite-Revenants"
+        },
+        treeRevenants: {
+            id: this.serial++,
+            name: "Tree-Revenants"
         },
         treelord: {
             id: this.serial++,
@@ -1784,6 +2548,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Battlemage on Pegasus"
         },
+        knightsOfOrder: {
+            id: this.serial++,
+            name: "Knights of Order"
+        },
         greatcannon: {
             id: this.serial++,
             name: "Greatcannon"
@@ -1811,6 +2579,30 @@ export class DataStoreImpl implements DataStore {
         waystrider: {
             id: this.serial++,
             name: "Waystrider"
+        },
+        wildRiders: {
+            id: this.serial++,
+            name: "Wild Riders"
+        },
+        gladeGuard: {
+            id: this.serial++,
+            name: "Glade Guard"
+        },
+        sistersOfTheWatch: {
+            id: this.serial++,
+            name: "Sisters of the Watch"
+        },
+        eternalGuard: {
+            id: this.serial++,
+            name: "Eternal Guard"
+        },
+        wildwoodRangers: {
+            id: this.serial++,
+            name: "Wildwood Rangers"
+        },
+        sistersOfTheThorn: {
+            id: this.serial++,
+            name: "Sisters of the Thorn"
         },
         waystonePathfinders: {
             id: this.serial++,
@@ -1852,6 +2644,30 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Shadowdancer"
         },
+        huntingHounds: {
+            id: this.serial++,
+            name: "Hunting Hounds"
+        },
+        wardancers: {
+            id: this.serial++,
+            name: "Wardancers"
+        },
+        waywatchers: {
+            id: this.serial++,
+            name: "Waywatchers"
+        },
+        gladeRiders: {
+            id: this.serial++,
+            name: "Glade Riders"
+        },
+        warhawkRiders: {
+            id: this.serial++,
+            name: "Warhawk Riders"
+        },
+        treeKin: {
+            id: this.serial++,
+            name: "Tree Kin"
+        },
         aleguzzlerGargant: {
             id: this.serial++,
             name: "Aleguzzler Gargant"
@@ -1875,6 +2691,18 @@ export class DataStoreImpl implements DataStore {
         huskardOnThundertusk: {
             id: this.serial++,
             name: "Huskard on Thundertusk"
+        },
+        frostSabres: {
+            id: this.serial++,
+            name: "Frost Sabres"
+        },
+        mournfangPack: {
+            id: this.serial++,
+            name: "Mournfang Pack"
+        },
+        icefallYhetees: {
+            id: this.serial++,
+            name: "Icefall Yhetees"
         },
         stonehornBeastriders: {
             id: this.serial++,
@@ -1932,6 +2760,30 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Wurrgog Prophet"
         },
+        savageOrruks: {
+            id: this.serial++,
+            name: "Savage Orruks"
+        },
+        savageOrrukArrowboys: {
+            id: this.serial++,
+            name: "Savage Orruk Arrowboys"
+        },
+        savageOrrukMorboys: {
+            id: this.serial++,
+            name: "Savage Orruk Morboys"
+        },
+        savageBigStabbas: {
+            id: this.serial++,
+            name: "Savage Big Stabbas"
+        },
+        savageBoarboyz: {
+            id: this.serial++,
+            name: "Savage Boarboyz"
+        },
+        savageBoarboyManiaks: {
+            id: this.serial++,
+            name: "Savage Boarboy Maniaks"
+        },
         kopRukk: {
             id: this.serial++,
             name: "Kop Rukk"
@@ -1976,6 +2828,30 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Gitmob Grot Shaman"
         },
+        gitmobGrots: {
+            id: this.serial++,
+            name: "Gitmob Grots"
+        },
+        grotWolfRiders: {
+            id: this.serial++,
+            name: "Grot Wolf Riders"
+        },
+        grotWolfChariots: {
+            id: this.serial++,
+            name: "Grot Wolf Chariots"
+        },
+        nastySkulkers: {
+            id: this.serial++,
+            name: "Nasty Skulkers"
+        },
+        snotlings: {
+            id: this.serial++,
+            name: "Snotlings"
+        },
+        snotlingPumpWagons: {
+            id: this.serial++,
+            name: "Snotling Pump Wagons"
+        },
         grotSpearChukka: {
             id: this.serial++,
             name: "Grot Spear Chukka"
@@ -2000,6 +2876,18 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Orruk Great Shaman"
         },
+        orruks: {
+            id: this.serial++,
+            name: "Orruks"
+        },
+        orrukBoarboys: {
+            id: this.serial++,
+            name: "Orruk Boarboys"
+        },
+        orrukBoarChariots: {
+            id: this.serial++,
+            name: "Orruk Boar Chariots"
+        },
         tyrant: {
             id: this.serial++,
             name: "Tyrant"
@@ -2007,6 +2895,34 @@ export class DataStoreImpl implements DataStore {
         butcher: {
             id: this.serial++,
             name: "Butcher"
+        },
+        ogors: {
+            id: this.serial++,
+            name: "Ogors"
+        },
+        ironguts: {
+            id: this.serial++,
+            name: "Ironguts"
+        },
+        leadbelchers: {
+            id: this.serial++,
+            name: "Leadbelchers"
+        },
+        gorgers: {
+            id: this.serial++,
+            name: "Gorgers"
+        },
+        ironblaster: {
+            id: this.serial++,
+            name: "Ironblaster"
+        },
+        grotScraplauncher: {
+            id: this.serial++,
+            name: "Grot Scraplauncher"
+        },
+        grots: {
+            id: this.serial++,
+            name: "Grots"
         },
         gordrakkTheFistOfGork: {
             id: this.serial++,
@@ -2027,6 +2943,22 @@ export class DataStoreImpl implements DataStore {
         orrukWeirdnobShaman: {
             id: this.serial++,
             name: "Orruk Weirdnob Shaman"
+        },
+        orrukArdboys: {
+            id: this.serial++,
+            name: "Orruk Ardboys"
+        },
+        orrukBrutes: {
+            id: this.serial++,
+            name: "Orruk Brutes"
+        },
+        orrukGoreGruntas: {
+            id: this.serial++,
+            name: "Orruk Gore Gruntas"
+        },
+        ironskullSBoyz: {
+            id: this.serial++,
+            name: "Ironskull's Boyz"
         },
         ardfist: {
             id: this.serial++,
@@ -2059,6 +2991,14 @@ export class DataStoreImpl implements DataStore {
         ironsunz: {
             id: this.serial++,
             name: "Ironsunz"
+        },
+        maneaters: {
+            id: this.serial++,
+            name: "Maneaters"
+        },
+        fimirWarriors: {
+            id: this.serial++,
+            name: "Fimir Warriors"
         },
         basilisk: {
             id: this.serial++,
@@ -2116,6 +3056,26 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Fungoid Cave-Shaman"
         },
+        moonclanGrots: {
+            id: this.serial++,
+            name: "Moonclan Grots"
+        },
+        grotFanatics: {
+            id: this.serial++,
+            name: "Grot Fanatics"
+        },
+        grotSquigHoppers: {
+            id: this.serial++,
+            name: "Grot Squig Hoppers"
+        },
+        grotSquigHerders: {
+            id: this.serial++,
+            name: "Grot Squig Herders"
+        },
+        caveSquigs: {
+            id: this.serial++,
+            name: "Cave Squigs"
+        },
         manglerSquigs: {
             id: this.serial++,
             name: "Mangler Squigs"
@@ -2140,6 +3100,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Orruk Bully"
         },
+        mercenaryOrruks: {
+            id: this.serial++,
+            name: "Mercenary Orruks"
+        },
         arachnarokSpiderWithGrotShaman: {
             id: this.serial++,
             name: "Arachnarok Spider With Grot Shaman"
@@ -2148,6 +3112,10 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Grot Big Boss On Gigantic Spider"
         },
+        grotSpiderRiders: {
+            id: this.serial++,
+            name: "Grot Spider Riders"
+        },
         arachnarokSpider: {
             id: this.serial++,
             name: "Arachnarok Spider"
@@ -2155,6 +3123,30 @@ export class DataStoreImpl implements DataStore {
         troggothHag: {
             id: this.serial++,
             name: "Troggoth Hag"
+        },
+        fellwaterTroggoths: {
+            id: this.serial++,
+            name: "Fellwater Troggoths"
+        },
+        sourbreathTroggoths: {
+            id: this.serial++,
+            name: "Sourbreath Troggoths"
+        },
+        rockgutTroggoths: {
+            id: this.serial++,
+            name: "Rockgut Troggoths"
+        },
+        zombies: {
+            id: this.serial++,
+            name: "Zombies"
+        },
+        direWolves: {
+            id: this.serial++,
+            name: "Dire Wolves"
+        },
+        corpseCart: {
+            id: this.serial++,
+            name: "Corpse Cart"
         },
         nagashSupremeLordOfTheUndead: {
             id: this.serial++,
@@ -2172,6 +3164,14 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Neferata Mortarch Of Blood"
         },
+        morghastHarbingers: {
+            id: this.serial++,
+            name: "Morghast Harbingers"
+        },
+        morghastArchai: {
+            id: this.serial++,
+            name: "Morghast Archai"
+        },
         necromancer: {
             id: this.serial++,
             name: "Necromancer"
@@ -2187,6 +3187,22 @@ export class DataStoreImpl implements DataStore {
         wightKingWithBlackAxe: {
             id: this.serial++,
             name: "Wight King with Black Axe"
+        },
+        skeletonWarriors: {
+            id: this.serial++,
+            name: "Skeleton Warriors"
+        },
+        graveGuard: {
+            id: this.serial++,
+            name: "Grave Guard"
+        },
+        blackKnights: {
+            id: this.serial++,
+            name: "Black Knights"
+        },
+        theSepulchralGuard: {
+            id: this.serial++,
+            name: "The Sepulchral Guard"
         },
         legionOfDeath: {
             id: this.serial++,
@@ -2219,6 +3235,18 @@ export class DataStoreImpl implements DataStore {
         varghulfCourtier: {
             id: this.serial++,
             name: "Varghulf Courtier"
+        },
+        cryptGhouls: {
+            id: this.serial++,
+            name: "Crypt Ghouls"
+        },
+        cryptHorrors: {
+            id: this.serial++,
+            name: "Crypt Horrors"
+        },
+        cryptFlayers: {
+            id: this.serial++,
+            name: "Crypt Flayers"
         },
         terrorgheist: {
             id: this.serial++,
@@ -2292,6 +3320,34 @@ export class DataStoreImpl implements DataStore {
             id: this.serial++,
             name: "Bloodseeker Palanquin"
         },
+        spiritHosts: {
+            id: this.serial++,
+            name: "Spirit Hosts"
+        },
+        hexwraiths: {
+            id: this.serial++,
+            name: "Hexwraiths"
+        },
+        vargheists: {
+            id: this.serial++,
+            name: "Vargheists"
+        },
+        bloodKnights: {
+            id: this.serial++,
+            name: "Blood Knights"
+        },
+        fellBats: {
+            id: this.serial++,
+            name: "Fell Bats"
+        },
+        batSwarms: {
+            id: this.serial++,
+            name: "Bat Swarms"
+        },
+        blackCoach: {
+            id: this.serial++,
+            name: "Black Coach"
+        },
         castellansOfTheCrimsonKeep: {
             id: this.serial++,
             name: "Castellans of the Crimson Keep"
@@ -2363,6 +3419,54 @@ export class DataStoreImpl implements DataStore {
         royalWarsphinx: {
             id: this.serial++,
             name: "Royal Warsphinx"
+        },
+        skeletalLegionnaires: {
+            id: this.serial++,
+            name: "Skeletal Legionnaires"
+        },
+        skeletonArchers: {
+            id: this.serial++,
+            name: "Skeleton Archers"
+        },
+        skeletonHorsemen: {
+            id: this.serial++,
+            name: "Skeleton Horsemen"
+        },
+        skeletonHorseArchers: {
+            id: this.serial++,
+            name: "Skeleton Horse Archers"
+        },
+        skeletonChariots: {
+            id: this.serial++,
+            name: "Skeleton Chariots"
+        },
+        tombGuard: {
+            id: this.serial++,
+            name: "Tomb Guard"
+        },
+        tombScorpions: {
+            id: this.serial++,
+            name: "Tomb Scorpions"
+        },
+        necropolisKnights: {
+            id: this.serial++,
+            name: "Necropolis Knights"
+        },
+        ushabti: {
+            id: this.serial++,
+            name: "Ushabti"
+        },
+        sepulchralStalkers: {
+            id: this.serial++,
+            name: "Sepulchral Stalkers"
+        },
+        carrion: {
+            id: this.serial++,
+            name: "Carrion"
+        },
+        tombSwarm: {
+            id: this.serial++,
+            name: "Tomb Swarm"
         },
         boneGiant: {
             id: this.serial++,
@@ -2806,7 +3910,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -2818,7 +3922,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -2830,7 +3934,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -2842,10 +3946,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-beastlord-en.pdf",
             type: "hero",
             subType: "Brayherd"
+        },
+        bestigors: {
+            id: this.serial++,
+            model: this.models.bestigors,
+            factions: [this.factions.BRAYHERD],
+            size: 10,
+            maxSize: 30,
+            points: 140,
+            maxPoints: 360,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bestigors-en.pdf",
+            type: "unit",
+            subType: "Brayherd - Brayherd Battleline"
         },
         greatBrayShaman: {
             id: this.serial++,
@@ -2854,10 +3970,58 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 90,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-great-bray-shaman-en.pdf",
             type: "hero",
             subType: "Brayherd"
+        },
+        tuskgorChariots: {
+            id: this.serial++,
+            model: this.models.tuskgorChariots,
+            factions: [this.factions.BRAYHERD],
+            size: 1,
+            maxSize: 4,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tuskgor-chariot-en.pdf",
+            type: "unit",
+            subType: "Brayherd"
+        },
+        gors: {
+            id: this.serial++,
+            model: this.models.gors,
+            factions: [this.factions.BRAYHERD],
+            size: 10,
+            maxSize: 30,
+            points: 80,
+            maxPoints: 210,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-gors-en.pdf",
+            type: "unit",
+            subType: "Brayherd - Battleline"
+        },
+        ungors: {
+            id: this.serial++,
+            model: this.models.ungors,
+            factions: [this.factions.BRAYHERD],
+            size: 10,
+            maxSize: 40,
+            points: 60,
+            maxPoints: 200,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ungors-en.pdf",
+            type: "unit",
+            subType: "Brayherd - Battleline"
+        },
+        ungorRaiders: {
+            id: this.serial++,
+            model: this.models.ungorRaiders,
+            factions: [this.factions.BRAYHERD],
+            size: 10,
+            maxSize: 40,
+            points: 100,
+            maxPoints: 360,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Brayherd - Brayherd Battleline"
         },
         bloodThrone: {
             id: this.serial++,
@@ -2866,7 +4030,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-bloodthrone-en.pdf",
             type: "hero",
             subType: "Khorne Daemon"
@@ -2878,7 +4042,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodmaster-en.pdf",
             type: "hero",
             subType: "Khorne Daemon"
@@ -2890,7 +4054,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-karanak-en.pdf",
             type: "hero",
             subType: "Khorne Daemon"
@@ -2902,7 +4066,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullmaster-en.pdf",
             type: "hero",
             subType: "Khorne Daemon"
@@ -2914,10 +4078,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skulltaker-en.pdf",
             type: "hero",
             subType: "Khorne Daemon"
+        },
+        skullCannons: {
+            id: this.serial++,
+            model: this.models.skullCannons,
+            factions: [this.factions.KHORNEDAEMONS],
+            size: 1,
+            maxSize: undefined,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-skullcannon-en.pdf",
+            type: "unit",
+            subType: "Khorne Daemon - Artillery"
+        },
+        bloodletters: {
+            id: this.serial++,
+            model: this.models.bloodletters,
+            factions: [this.factions.KHORNEDAEMONS],
+            size: 10,
+            maxSize: 30,
+            points: 110,
+            maxPoints: 270,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-bloodletters-en.pdf",
+            type: "unit",
+            subType: "Khorne Daemon - Battleline"
         },
         bloodthirsterOfInsensateRage: {
             id: this.serial++,
@@ -2926,7 +4114,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Khorne Daemon - Behemoth"
@@ -2938,7 +4126,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-khorne-bloodthirster-en.pdf",
             type: "hero",
             subType: "Khorne Daemon - Behemoth"
@@ -2950,7 +4138,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-scarbrand-en.pdf",
             type: "hero",
             subType: "Khorne Daemon - Behemoth"
@@ -2962,10 +4150,70 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 330,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Khorne Daemon - Behemoth"
+        },
+        fleshHounds: {
+            id: this.serial++,
+            model: this.models.fleshHounds,
+            factions: [this.factions.KHORNEDAEMONS],
+            size: 5,
+            maxSize: 20,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-flesh-hounds-en.pdf",
+            type: "unit",
+            subType: "Khorne Daemon - Khorne Daemon Battleline (Karanak General)"
+        },
+        bloodcrushers: {
+            id: this.serial++,
+            model: this.models.bloodcrushers,
+            factions: [this.factions.KHORNEDAEMONS],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-bloodcrushers-en.pdf",
+            type: "unit",
+            subType: "Khorne Daemon - Khorne Daemon Battleline (Skullmaster Herald of Khorne General)"
+        },
+        screamersOfTzeentch: {
+            id: this.serial++,
+            model: this.models.screamersOfTzeentch,
+            factions: [this.factions.TZEENTCHDAEMONS],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-screamers-of-tzeentch-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Daemon"
+        },
+        pinkHorrorsOfTzeentch: {
+            id: this.serial++,
+            model: this.models.pinkHorrorsOfTzeentch,
+            factions: [this.factions.TZEENTCHDAEMONS],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: 300,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-pink-horrors-of-tzeentch-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Daemon - Battleline"
+        },
+        burningChariotsOfTzeentch: {
+            id: this.serial++,
+            model: this.models.burningChariotsOfTzeentch,
+            factions: [this.factions.TZEENTCHDAEMONS],
+            size: 1,
+            maxSize: 3,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-burning-chariot-of-tzeentch-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Daemon - Tzeentch Daemon Battleline (Herald on Chariot General)"
         },
         heraldOfTzeentch: {
             id: this.serial++,
@@ -2974,7 +4222,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Tzeentch Daemon Wizard"
@@ -2986,7 +4234,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-herald-tzeentch-burning-chariot-en.pdf",
             type: "hero",
             subType: "Tzeentch Daemon Wizard"
@@ -2998,7 +4246,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-herald-tzeentch-disc-en.pdf",
             type: "hero",
             subType: "Tzeentch Daemon Wizard"
@@ -3010,7 +4258,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-the-blue-scribes-en.pdf",
             type: "hero",
             subType: "Tzeentch Daemon Wizard - Unique "
@@ -3022,10 +4270,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-the-changeling-en.pdf",
             type: "hero",
             subType: "Tzeentch Daemon Wizard - Unique "
+        },
+        blueHorrorsOfTzeentch: {
+            id: this.serial++,
+            model: this.models.blueHorrorsOfTzeentch,
+            factions: [this.factions.TZEENTCHDAEMONS],
+            size: 10,
+            maxSize: 30,
+            points: 50,
+            maxPoints: 120,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-blue-horrors-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Daemons"
+        },
+        brimstoneHorrorsOfTzeentch: {
+            id: this.serial++,
+            model: this.models.brimstoneHorrorsOfTzeentch,
+            factions: [this.factions.TZEENTCHDAEMONS],
+            size: 10,
+            maxSize: 30,
+            points: 40,
+            maxPoints: 100,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-brimstone-horrors-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Daemons"
         },
         skaaracTheBloodborn: {
             id: this.serial++,
@@ -3034,10 +4306,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Khorne - Unique Behemoth"
+        },
+        khorgoraths: {
+            id: this.serial++,
+            model: this.models.khorgoraths,
+            factions: [this.factions.KHORNEBLOODBOUND],
+            size: 1,
+            maxSize: 6,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Khorne Bloodbound"
         },
         aspiringDeathbringer: {
             id: this.serial++,
@@ -3046,7 +4330,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-aspiringdeathbringer-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3058,7 +4342,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-aspiringdeathbringer-goreaxe-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3070,7 +4354,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads/Korghos_Bloodsecrator_CB_Web%20-%20cropped.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3082,7 +4366,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3094,7 +4378,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalteddeathbringer-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3106,7 +4390,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalteddeathbringer-impaling-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3118,7 +4402,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lordjuggernaught-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3130,7 +4414,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3142,7 +4426,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullgrinder-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3154,7 +4438,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-slaughterpriest-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
@@ -3166,10 +4450,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-slaughterpriest-hackblade-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal"
+        },
+        bloodWarriors: {
+            id: this.serial++,
+            model: this.models.bloodWarriors,
+            factions: [this.factions.KHORNEBLOODBOUND],
+            size: 5,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 520,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodwarriors-en.pdf",
+            type: "unit",
+            subType: "Khorne Bloodbound Mortal - Battleline"
+        },
+        bloodreavers: {
+            id: this.serial++,
+            model: this.models.bloodreavers,
+            factions: [this.factions.KHORNEBLOODBOUND],
+            size: 10,
+            maxSize: 40,
+            points: 70,
+            maxPoints: 240,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodreavers-en.pdf",
+            type: "unit",
+            subType: "Khorne Bloodbound Mortal - Battleline"
+        },
+        mightySkullcrushers: {
+            id: this.serial++,
+            model: this.models.mightySkullcrushers,
+            factions: [this.factions.KHORNEBLOODBOUND],
+            size: 3,
+            maxSize: 12,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullcrushers-en.pdf",
+            type: "unit",
+            subType: "Khorne Bloodbound Mortal - Khorne Bloodbound Battleline (Lord of Khorne on Juggernaut General)"
         },
         scylaAnfingrimm: {
             id: this.serial++,
@@ -3178,7 +4498,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-scylaanfingrimm-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal - Unique "
@@ -3190,7 +4510,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skarrbloodwrath-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal - Unique "
@@ -3202,10 +4522,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-valkiathebloody-en.pdf",
             type: "hero",
             subType: "Khorne Bloodbound Mortal - Unique "
+        },
+        skullreapers: {
+            id: this.serial++,
+            model: this.models.skullreapers,
+            factions: [this.factions.KHORNEBLOODBOUND],
+            size: 5,
+            maxSize: 20,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullreapers-en.pdf",
+            type: "unit",
+            subType: "Khorne Mortal Bloodbound"
+        },
+        wrathmongers: {
+            id: this.serial++,
+            model: this.models.wrathmongers,
+            factions: [this.factions.KHORNEBLOODBOUND],
+            size: 5,
+            maxSize: 20,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-wrathmongers-en.pdf",
+            type: "unit",
+            subType: "Khorne Mortal Bloodbound"
         },
         jabberslythe: {
             id: this.serial++,
@@ -3214,10 +4558,106 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-jabberslythe-en.pdf",
             type: "monster",
             subType: "Behemoth"
+        },
+        centigors: {
+            id: this.serial++,
+            model: this.models.centigors,
+            factions: [this.factions.MONSTERSOFCHAOS],
+            size: 5,
+            maxSize: 20,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-centigors-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        chaosWarhounds: {
+            id: this.serial++,
+            model: this.models.chaosWarhounds,
+            factions: [this.factions.MONSTERSOFCHAOS],
+            size: 10,
+            maxSize: 30,
+            points: 80,
+            maxPoints: 210,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-warhounds-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        harpies: {
+            id: this.serial++,
+            model: this.models.harpies,
+            factions: [this.factions.MONSTERSOFCHAOS],
+            size: 5,
+            maxSize: 20,
+            points: 70,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        razorgors: {
+            id: this.serial++,
+            model: this.models.razorgors,
+            factions: [this.factions.MONSTERSOFCHAOS],
+            size: 1,
+            maxSize: 6,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-razorgor-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        tzaangorEnlightened: {
+            id: this.serial++,
+            model: this.models.tzaangorEnlightened,
+            factions: [this.factions.TZEENTCHARCHANITES],
+            size: 3,
+            maxSize: 9,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Tzeentch Arcanites"
+        },
+        tzaangors: {
+            id: this.serial++,
+            model: this.models.tzaangors,
+            factions: [this.factions.TZEENTCHARCHANITES],
+            size: 10,
+            maxSize: 30,
+            points: 180,
+            maxPoints: 450,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangors-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Arcanites - Battleline"
+        },
+        tzaangorEnlightenedOnDisc: {
+            id: this.serial++,
+            model: this.models.tzaangorEnlightenedOnDisc,
+            factions: [this.factions.TZEENTCHARCHANITES],
+            size: 3,
+            maxSize: undefined,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangor-enlightened-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Arcanites Daemon"
+        },
+        tzaangorSkyfires: {
+            id: this.serial++,
+            model: this.models.tzaangorSkyfires,
+            factions: [this.factions.TZEENTCHARCHANITES],
+            size: 3,
+            maxSize: 9,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangor-skyfires-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Arcanites Daemon"
         },
         tzaangorShaman: {
             id: this.serial++,
@@ -3226,10 +4666,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangor-shaman-en.pdf",
             type: "hero",
             subType: "Tzeentch Arcanites Daemon Wizard"
+        },
+        kairicAcolytes: {
+            id: this.serial++,
+            model: this.models.kairicAcolytes,
+            factions: [this.factions.TZEENTCHARCHANITES],
+            size: 10,
+            maxSize: 40,
+            points: 100,
+            maxPoints: 360,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kairic-acolytes-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Arcanites Mortal - Battleline"
         },
         fatemaster: {
             id: this.serial++,
@@ -3238,7 +4690,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fatemaster-en.pdf",
             type: "hero",
             subType: "Tzeentch Arcanites Mortal Daemon"
@@ -3250,7 +4702,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-gaunt-summoner-2016-en.pdf",
             type: "hero",
             subType: "Tzeentch Arcanites Mortal Daemon Wizard"
@@ -3262,7 +4714,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-cursling-eye-of-tzeentch-en.pdf",
             type: "hero",
             subType: "Tzeentch Arcanites Mortal Wizard"
@@ -3274,7 +4726,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-arcanites-magister-en.pdf",
             type: "hero",
             subType: "Tzeentch Arcanites Mortal Wizard"
@@ -3286,7 +4738,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogroid-thaumaturge-en.pdf",
             type: "hero",
             subType: "Tzeentch Arcanites Mortal Wizard"
@@ -3298,7 +4750,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-doombull-en.pdf",
             type: "hero",
             subType: "Warherd"
@@ -3310,7 +4762,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-cygor-en.pdf",
             type: "monster",
             subType: "Warherd - Behemoth"
@@ -3322,10 +4774,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ghorgon-en.pdf",
             type: "monster",
             subType: "Warherd - Behemoth"
+        },
+        bullgors: {
+            id: this.serial++,
+            model: this.models.bullgors,
+            factions: [this.factions.WARHERD],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bullgors-en.pdf",
+            type: "unit",
+            subType: "Warherd - Warherd Battleline"
         },
         hellcannon: {
             id: this.serial++,
@@ -3334,10 +4798,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
+        },
+        daemonettesOfSlaanesh: {
+            id: this.serial++,
+            model: this.models.daemonettesOfSlaanesh,
+            factions: [this.factions.SLAANESHDAEMONS],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 270,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-daemonettes-of-slaanesh-en.pdf",
+            type: "unit",
+            subType: "Battleline"
         },
         mutalithVortexBeast: {
             id: this.serial++,
@@ -3346,7 +4822,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-mutalith-vortex-beast-en.pdf",
             type: "monster",
             subType: "Tzeentch - Behemoth"
@@ -3358,10 +4834,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-slaughterbrute-en.pdf",
             type: "monster",
             subType: "Khorne - Behemoth"
+        },
+        furies: {
+            id: this.serial++,
+            model: this.models.furies,
+            factions: [this.factions.DAEMONSOFCHAOS],
+            size: 5,
+            maxSize: 30,
+            points: 60,
+            maxPoints: 320,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Chaos Daemon"
         },
         daemonPrince: {
             id: this.serial++,
@@ -3370,7 +4858,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
             subType: "Chaos Daemon - Behemoth"
@@ -3382,7 +4870,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-soul-grinder-en.pdf",
             type: "monster",
             subType: "Chaos Daemon - Behemoth"
@@ -3394,10 +4882,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-belakor-en.pdf",
             type: "hero",
             subType: "Chaos Daemon - Unique Behemoth"
+        },
+        fiendsOfSlaanesh: {
+            id: this.serial++,
+            model: this.models.fiendsOfSlaanesh,
+            factions: [this.factions.SLAANESHDAEMONS],
+            size: 3,
+            maxSize: 9,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fiend-of-slaanesh-en.pdf",
+            type: "unit",
+            subType: "Slaanesh"
         },
         heraldOfSlaanesh: {
             id: this.serial++,
@@ -3406,7 +4906,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-herald-of-slaanesh-en.pdf",
             type: "hero",
             subType: "Slaanesh"
@@ -3418,7 +4918,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Slaanesh"
@@ -3430,9 +4930,33 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: "Slaanesh"
+        },
+        seekerChariotsOfSlaanesh: {
+            id: this.serial++,
+            model: this.models.seekerChariotsOfSlaanesh,
+            factions: [this.factions.SLAANESHDAEMONS],
+            size: 1,
+            maxSize: 3,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-seeker-chariot-of-slaanesh-en.pdf",
+            type: "unit",
+            subType: "Slaanesh - Slaanesh Battleline (Herald of Slaanesh on Exalted Seeker Chariot General)"
+        },
+        seekersOfSlaanesh: {
+            id: this.serial++,
+            model: this.models.seekersOfSlaanesh,
+            factions: [this.factions.SLAANESHDAEMONS],
+            size: 5,
+            maxSize: 20,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-seekers-of-slaanesh-en.pdf",
+            type: "unit",
             subType: "Slaanesh"
         },
         keeperOfSecrets: {
@@ -3442,7 +4966,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-keeper-of-secrets-en.pdf",
             type: "hero",
             subType: "Slaanesh - Behemoth"
@@ -3454,10 +4978,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-the-masque-of-slaanesh-en.pdf",
             type: "hero",
             subType: "Slaanesh - Unique "
+        },
+        beastsOfNurgle: {
+            id: this.serial++,
+            model: this.models.beastsOfNurgle,
+            factions: [this.factions.NURGLEDAEMONS],
+            size: 1,
+            maxSize: 6,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Beasts-of-nurgle.pdf",
+            type: "unit",
+            subType: "Nurgle Daemon"
         },
         poxbringerHeraldOfNurgle: {
             id: this.serial++,
@@ -3466,7 +5002,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nurgle Daemon Wizard"
@@ -3478,7 +5014,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nurgle Daemon"
@@ -3490,10 +5026,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Sloppity-bilepiper-herald-of-nurgle.pdf",
             type: "hero",
             subType: "Nurgle Daemon"
+        },
+        nurglings: {
+            id: this.serial++,
+            model: this.models.nurglings,
+            factions: [this.factions.NURGLEDAEMONS],
+            size: 3,
+            maxSize: 12,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Nurgle Daemon"
+        },
+        plagueDrones: {
+            id: this.serial++,
+            model: this.models.plagueDrones,
+            factions: [this.factions.NURGLEDAEMONS],
+            size: 3,
+            maxSize: 12,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Nurgle Daemon"
+        },
+        plaguebearers: {
+            id: this.serial++,
+            model: this.models.plaguebearers,
+            factions: [this.factions.NURGLEDAEMONS],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: 320,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Nurgle Daemon - Battleline"
         },
         daemonPrinceOfNurgle: {
             id: this.serial++,
@@ -3502,7 +5074,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
             subType: "Nurgle Daemon - Behemoth"
@@ -3514,7 +5086,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nurgle Daemon Wizard - Behemoth"
@@ -3526,7 +5098,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Rotigus.pdf",
             type: "hero",
             subType: "Nurgle Daemon Wizard - Unique Behemoth"
@@ -3538,7 +5110,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-epidemius-en.pdf",
             type: "hero",
             subType: "Nurgle Daemon - Unique "
@@ -3550,10 +5122,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
             subType: "Slaanesh Daemon - Behemoth"
+        },
+        exaltedFlamersOfTzeentch: {
+            id: this.serial++,
+            model: this.models.exaltedFlamersOfTzeentch,
+            factions: [this.factions.TZEENTCHDAEMONS],
+            size: 1,
+            maxSize: undefined,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalted-flamer-of-tzeentch-en.pdf",
+            type: "unit",
+            subType: "Tzeentch Daemon"
+        },
+        flamersOfTzeentch: {
+            id: this.serial++,
+            model: this.models.flamersOfTzeentch,
+            factions: [this.factions.TZEENTCHDAEMONS],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Tzeentch Daemon"
         },
         daemonPrinceOfTzeentch: {
             id: this.serial++,
@@ -3562,7 +5158,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
             subType: "Tzeentch Daemon Wizard - Behemoth"
@@ -3574,7 +5170,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kairos-fateweaver-en.pdf",
             type: "hero",
             subType: "Tzeentch Daemon Wizard - Unique Behemoth"
@@ -3586,7 +5182,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-festus-the-leechlord-en.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal Wizard - Unique "
@@ -3598,7 +5194,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-gutrot-spume-en.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal - Unique "
@@ -3610,10 +5206,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 420,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-theglottkin-en.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal Wizard - Unique Behemoth"
+        },
+        exaltedSeekerChariotsOfSlaanesh: {
+            id: this.serial++,
+            model: this.models.exaltedSeekerChariotsOfSlaanesh,
+            factions: [this.factions.SLAANESHDAEMONS],
+            size: 1,
+            maxSize: 3,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalted-seeker-chariot-en.pdf",
+            type: "unit",
+            subType: undefined
         },
         lordOfPlagues: {
             id: this.serial++,
@@ -3622,7 +5230,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lord-of-plagues-en.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal"
@@ -3634,7 +5242,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Lord-of-blights.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal"
@@ -3646,7 +5254,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lord-of-change-en.pdf",
             type: "hero",
             subType: "Tzeentch Daemon Wizard - Behemoth"
@@ -3658,10 +5266,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
+        },
+        blackGuard: {
+            id: this.serial++,
+            model: this.models.blackGuard,
+            factions: [this.factions.DARKLINGCOVENS],
+            size: 10,
+            maxSize: 30,
+            points: 160,
+            maxPoints: 430,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-guard-en.pdf",
+            type: "unit",
+            subType: "Darkling Covens - Darkling Covens Battleline"
+        },
+        executioners: {
+            id: this.serial++,
+            model: this.models.executioners,
+            factions: [this.factions.DARKLINGCOVENS],
+            size: 10,
+            maxSize: 30,
+            points: 180,
+            maxPoints: 480,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-executioners-en.pdf",
+            type: "unit",
+            subType: "Darkling Covens - Darkling Covens Battleline"
         },
         sorceress: {
             id: this.serial++,
@@ -3670,10 +5302,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sorceress-en.pdf",
             type: "hero",
             subType: "Darkling Covens"
+        },
+        bleakswords: {
+            id: this.serial++,
+            model: this.models.bleakswords,
+            factions: [this.factions.DARKLINGCOVENS],
+            size: 10,
+            maxSize: 40,
+            points: 100,
+            maxPoints: 360,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bleakswords-en.pdf",
+            type: "unit",
+            subType: "Darkling Covens - Battleline"
+        },
+        darkshards: {
+            id: this.serial++,
+            model: this.models.darkshards,
+            factions: [this.factions.DARKLINGCOVENS],
+            size: 10,
+            maxSize: 40,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-darkshards-en.pdf",
+            type: "unit",
+            subType: "Darkling Covens - Battleline"
+        },
+        dreadspears: {
+            id: this.serial++,
+            model: this.models.dreadspears,
+            factions: [this.factions.DARKLINGCOVENS],
+            size: 10,
+            maxSize: 40,
+            points: 100,
+            maxPoints: 360,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dreadspears-en.pdf",
+            type: "unit",
+            subType: "Darkling Covens - Battleline"
         },
         sorceressOnBlackDragon: {
             id: this.serial++,
@@ -3682,10 +5350,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sorceress-black-dragon-en.pdf",
             type: "hero",
             subType: "Darkling Covens - Behemoth"
+        },
+        bloodwrackMedusae: {
+            id: this.serial++,
+            model: this.models.bloodwrackMedusae,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 1,
+            maxSize: undefined,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Daughters of Khaine"
         },
         deathHag: {
             id: this.serial++,
@@ -3694,10 +5374,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Daughters of Khaine"
+        },
+        doomfireWarlocks: {
+            id: this.serial++,
+            model: this.models.doomfireWarlocks,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 5,
+            maxSize: 20,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-doomfire-warlocks-en.pdf",
+            type: "unit",
+            subType: "Daughters of Khaine - Daughters of Khaine Battleline"
+        },
+        sistersOfSlaughter: {
+            id: this.serial++,
+            model: this.models.sistersOfSlaughter,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 10,
+            maxSize: 30,
+            points: 140,
+            maxPoints: 360,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sisters-slaughter-en.pdf",
+            type: "unit",
+            subType: "Daughters of Khaine - Daughters of Khaine Battleline"
+        },
+        bloodwrackShrine: {
+            id: this.serial++,
+            model: this.models.bloodwrackShrine,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 1,
+            maxSize: undefined,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodwrack-shrine-en.pdf",
+            type: "unit",
+            subType: "Daughters of Khaine - Behemoth"
         },
         cauldronOfBlood: {
             id: this.serial++,
@@ -3706,10 +5422,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-caludron-blood-en.pdf",
             type: "hero",
             subType: "Daughters of Khaine - Behemoth"
+        },
+        witchAelves: {
+            id: this.serial++,
+            model: this.models.witchAelves,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 270,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-witch-aelves-en.pdf",
+            type: "unit",
+            subType: "Daughters of Khaine - Daughters of Khaine Battleline"
+        },
+        drakespawnChariots: {
+            id: this.serial++,
+            model: this.models.drakespawnChariots,
+            factions: [this.factions.ORDERSERPENTIS],
+            size: 1,
+            maxSize: 3,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-drakespawn-chariots-en.pdf",
+            type: "unit",
+            subType: "Order Serpentis - Order Serpentis Battleline"
         },
         warHydra: {
             id: this.serial++,
@@ -3718,7 +5458,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-war-hydra-en.pdf",
             type: "monster",
             subType: "Order Serpentis  - Behemoth"
@@ -3730,10 +5470,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Order Serpentis - Behemoth"
+        },
+        drakespawnKnights: {
+            id: this.serial++,
+            model: this.models.drakespawnKnights,
+            factions: [this.factions.ORDERSERPENTIS],
+            size: 5,
+            maxSize: 20,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-drakespawn-knights-en.pdf",
+            type: "unit",
+            subType: "Order Serpentis - Order Serpentis Battleline"
         },
         blackArkFleetmaster: {
             id: this.serial++,
@@ -3742,10 +5494,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 40,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-ark-fleetmaster-en.pdf",
             type: "hero",
             subType: "Scourge Privateers"
+        },
+        scourgerunnerChariots: {
+            id: this.serial++,
+            model: this.models.scourgerunnerChariots,
+            factions: [this.factions.SCOURGEPRIVATEERS],
+            size: 1,
+            maxSize: 3,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-scourgerunner-chariot-en.pdf",
+            type: "unit",
+            subType: "Scourge Privateers - Scourge Privateers Battleline"
         },
         kharibdyss: {
             id: this.serial++,
@@ -3754,10 +5518,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: NaN,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kharibdyss-en.pdf",
             type: "monster",
             subType: "Scourge Privateers - Behemoth"
+        },
+        blackArkCorsairs: {
+            id: this.serial++,
+            model: this.models.blackArkCorsairs,
+            factions: [this.factions.SCOURGEPRIVATEERS],
+            size: 10,
+            maxSize: 40,
+            points: 80,
+            maxPoints: 260,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-ark-corsairs-en.pdf",
+            type: "unit",
+            subType: "Scourge Privateers - Scourge Privateers Battleline"
         },
         assassin: {
             id: this.serial++,
@@ -3766,10 +5542,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-shadowblade-assassin-en.pdf",
             type: "hero",
             subType: "Shadowblades"
+        },
+        darkRiders: {
+            id: this.serial++,
+            model: this.models.darkRiders,
+            factions: [this.factions.SHADOWBLADES],
+            size: 5,
+            maxSize: 20,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dark-riders-en.pdf",
+            type: "unit",
+            subType: "Shadowblades - Shadowblades Battleline"
         },
         sorceressOnDarkPegasus: {
             id: this.serial++,
@@ -3778,7 +5566,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -3790,7 +5578,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -3802,7 +5590,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -3814,7 +5602,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -3826,7 +5614,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -3838,9 +5626,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-mistweaver-saih-en.pdf",
             type: "hero",
+            subType: undefined
+        },
+        shades: {
+            id: this.serial++,
+            model: this.models.shades,
+            factions: [this.factions.EXILES],
+            size: 5,
+            maxSize: 20,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         sorceressOnDrakespawn: {
@@ -3850,7 +5650,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -3862,10 +5662,70 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-tenebrael-shard-en.pdf",
             type: "hero",
             subType: undefined
+        },
+        corpseCart: {
+            id: this.serial++,
+            model: this.models.corpseCart,
+            factions: [this.factions.LEGIONSOFNAGASH],
+            size: 1,
+            maxSize: undefined,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-corpse-cart-en.pdf",
+            type: "unit",
+            subType: "Deadwalkers"
+        },
+        direWolves: {
+            id: this.serial++,
+            model: this.models.direWolves,
+            factions: [this.factions.LEGIONSOFNAGASH],
+            size: 5,
+            maxSize: 30,
+            points: 60,
+            maxPoints: 320,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dire-wolves-en.pdf",
+            type: "unit",
+            subType: "Deadwalkers Summonable - Battleline"
+        },
+        zombies: {
+            id: this.serial++,
+            model: this.models.zombies,
+            factions: [this.factions.LEGIONSOFNAGASH],
+            size: 10,
+            maxSize: 60,
+            points: 60,
+            maxPoints: 320,
+            warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Zombies.pdf",
+            type: "unit",
+            subType: "Deadwalkers Summonable - Battleline"
+        },
+        morghastArchai: {
+            id: this.serial++,
+            model: this.models.morghastArchai,
+            factions: [this.factions.LEGIONSOFNAGASH],
+            size: 2,
+            maxSize: 6,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Morghast%20Archai.pdf",
+            type: "unit",
+            subType: "Deathlords - Grand Host of Nagash Battleline (Nagash General)"
+        },
+        morghastHarbingers: {
+            id: this.serial++,
+            model: this.models.morghastHarbingers,
+            factions: [this.factions.LEGIONSOFNAGASH],
+            size: 2,
+            maxSize: 6,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Morghast%20Harbingers.pdf",
+            type: "unit",
+            subType: "Deathlords - Grand Host of Nagash Battleline (Nagash General)"
         },
         arkhanTheBlackMortarchOfSacrament: {
             id: this.serial++,
@@ -3874,7 +5734,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-deathlords-arkhan-en.pdf",
             type: "hero",
             subType: "Deathlords Mortarch Wizard - Unique Behemoth"
@@ -3886,7 +5746,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 420,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-deathlords-mannfred-en.pdf",
             type: "hero",
             subType: "Deathlords Soulblight Vampire Mortarch Wizard - Unique Behemoth"
@@ -3898,7 +5758,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 800,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-deathlords-nagash-en.pdf",
             type: "hero",
             subType: "Deathlords Wizard Priest - Unique Behemoth"
@@ -3910,7 +5770,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-deathlords-neferata-en.pdf",
             type: "hero",
             subType: "Deathlords Soulblight Vampire Mortarch Wizard - Unique Behemoth"
@@ -3922,7 +5782,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 110,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-necromancer-en.pdf",
             type: "hero",
             subType: "Deathmages Wizard"
@@ -3934,10 +5794,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-mortis-engine-en.pdf",
             type: "monster",
             subType: "Deathmages - Behemoth"
+        },
+        graveGuard: {
+            id: this.serial++,
+            model: this.models.graveGuard,
+            factions: [this.factions.LEGIONSOFNAGASH],
+            size: 5,
+            maxSize: 30,
+            points: 80,
+            maxPoints: 420,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-grave-guard-en.pdf",
+            type: "unit",
+            subType: "Deathrattle Summonable - Grand Host of Nagash Battleline"
         },
         wightKingWithBalefulTombBlade: {
             id: this.serial++,
@@ -3946,7 +5818,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Wight%20King%20with%20Baleful%20Tomb%20Blade.pdf",
             type: "hero",
             subType: "Deathrattle"
@@ -3958,10 +5830,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-wightking-blackaxe-en.pdf",
             type: "hero",
             subType: "Deathrattle"
+        },
+        skeletonWarriors: {
+            id: this.serial++,
+            model: this.models.skeletonWarriors,
+            factions: [this.factions.LEGIONSOFNAGASH],
+            size: 10,
+            maxSize: 40,
+            points: 80,
+            maxPoints: 280,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skeleton-warriors-en.pdf",
+            type: "unit",
+            subType: "Deathrattle Summonable - Battleline"
+        },
+        blackKnights: {
+            id: this.serial++,
+            model: this.models.blackKnights,
+            factions: [this.factions.LEGIONSOFNAGASH],
+            size: 5,
+            maxSize: 20,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-knights-en.pdf",
+            type: "unit",
+            subType: "Deathrattle Summonable"
+        },
+        cryptGhouls: {
+            id: this.serial++,
+            model: this.models.cryptGhouls,
+            factions: [this.factions.FLESHEATERCOURTS],
+            size: 10,
+            maxSize: 40,
+            points: 100,
+            maxPoints: 360,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-ghouls-en.pdf",
+            type: "unit",
+            subType: "Battleline"
         },
         abhorrantGhoulKingOnTerrorgheist: {
             id: this.serial++,
@@ -3970,7 +5878,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-abhorrant-ghoul-king-terrorgheist-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -3982,7 +5890,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-abhorrant-ghoul-king-zombie-dragon-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -3994,7 +5902,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-terrorgheist-en.pdf",
             type: "monster",
             subType: "Behemoth"
@@ -4006,10 +5914,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-zombie-dragon-en.pdf",
             type: "monster",
             subType: "Behemoth"
+        },
+        cryptHorrors: {
+            id: this.serial++,
+            model: this.models.cryptHorrors,
+            factions: [this.factions.FLESHEATERCOURTS],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-horrors-en.pdf",
+            type: "unit",
+            subType: "Flesh Eater Courts Battleline (Crypt Haunter Courtier General)"
+        },
+        cryptFlayers: {
+            id: this.serial++,
+            model: this.models.cryptFlayers,
+            factions: [this.factions.FLESHEATERCOURTS],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-flayers-en.pdf",
+            type: "unit",
+            subType: "Flesh Eater Courts Battleline (Crypt Infernal Courtier General)"
         },
         abhorrantGhoulKing: {
             id: this.serial++,
@@ -4018,7 +5950,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4030,7 +5962,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-ghouls-en.pdf",
             type: "hero",
             subType: undefined
@@ -4042,7 +5974,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-haunter-courtier-en.pdf",
             type: "hero",
             subType: undefined
@@ -4054,7 +5986,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-infernal-courtier-en.pdf",
             type: "hero",
             subType: undefined
@@ -4066,10 +5998,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-varghulf-courtier-en.pdf",
             type: "hero",
             subType: undefined
+        },
+        batSwarms: {
+            id: this.serial++,
+            model: this.models.batSwarms,
+            factions: [this.factions.SOULBLIGHT],
+            size: 2,
+            maxSize: 8,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bat-swarm-en.pdf",
+            type: "unit",
+            subType: "Soulblight Summonable"
+        },
+        fellBats: {
+            id: this.serial++,
+            model: this.models.fellBats,
+            factions: [this.factions.SOULBLIGHT],
+            size: 3,
+            maxSize: 12,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fell-bats-en.pdf",
+            type: "unit",
+            subType: "Soulblight Summonable"
         },
         vampireLord: {
             id: this.serial++,
@@ -4078,10 +6034,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vampire-lord-en.pdf",
             type: "hero",
             subType: "Soulblight Vampire Wizard"
+        },
+        vargheists: {
+            id: this.serial++,
+            model: this.models.vargheists,
+            factions: [this.factions.SOULBLIGHT],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vargheists-en.pdf",
+            type: "unit",
+            subType: "Soulblight"
         },
         covenThrone: {
             id: this.serial++,
@@ -4090,7 +6058,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-coven-throne-en.pdf",
             type: "hero",
             subType: "Soulblight Vampire Wizard - Behemoth"
@@ -4102,7 +6070,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Bloodseeker%20Palanquin.pdf",
             type: "hero",
             subType: "Soulblight Vampire Wizard - Behemoth"
@@ -4114,7 +6082,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vampire-lord-zombiedragon-en.pdf",
             type: "hero",
             subType: "Soulblight Vampire Wizard - Behemoth"
@@ -4126,10 +6094,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 480,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Prince%20Vhordrai.pdf",
             type: "hero",
             subType: "Soulblight Vampire Wizard - Unique Behemoth"
+        },
+        bloodKnights: {
+            id: this.serial++,
+            model: this.models.bloodKnights,
+            factions: [this.factions.SOULBLIGHT],
+            size: 5,
+            maxSize: 15,
+            points: 260,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-blood-knights-en.pdf",
+            type: "unit",
+            subType: "Soulblight - Soulblight Battleline"
+        },
+        blackCoach: {
+            id: this.serial++,
+            model: this.models.blackCoach,
+            factions: [this.factions.NIGHTHAUNT],
+            size: 1,
+            maxSize: undefined,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-coach-en.pdf",
+            type: "unit",
+            subType: "Nighthaunt"
         },
         cairnWraith: {
             id: this.serial++,
@@ -4138,10 +6130,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-cairn-wraith-en.pdf",
             type: "hero",
             subType: "Nighthaunt"
+        },
+        hexwraiths: {
+            id: this.serial++,
+            model: this.models.hexwraiths,
+            factions: [this.factions.NIGHTHAUNT],
+            size: 5,
+            maxSize: 20,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-hexwraiths-en.pdf",
+            type: "unit",
+            subType: "Nighthaunt Summonable - Nighthaunt Battleline"
         },
         tombBanshee: {
             id: this.serial++,
@@ -4150,10 +6154,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tomb-banshee-en.pdf",
             type: "hero",
             subType: "Nighthaunt"
+        },
+        spiritHosts: {
+            id: this.serial++,
+            model: this.models.spiritHosts,
+            factions: [this.factions.NIGHTHAUNT],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-nighthaunt-spirithosts-en.pdf",
+            type: "unit",
+            subType: "Nighthaunt Summonable - Nighthaunt Battleline"
         },
         cogsmith: {
             id: this.serial++,
@@ -4162,7 +6178,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-cogmsith-en.pdf",
             type: "hero",
             subType: undefined
@@ -4174,7 +6190,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-cannon-en.pdf",
             type: "warmachine",
             subType: "Artillery"
@@ -4186,7 +6202,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
@@ -4198,7 +6214,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
@@ -4210,7 +6226,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
@@ -4222,10 +6238,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-organ-gun-en.pdf",
             type: "warmachine",
             subType: "Artillery"
+        },
+        longbeards: {
+            id: this.serial++,
+            model: this.models.longbeards,
+            factions: [this.factions.DISPOSSESSED],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: 300,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-longbeards-en.pdf",
+            type: "unit",
+            subType: "Battleline"
+        },
+        vulkiteBerzerkers: {
+            id: this.serial++,
+            model: this.models.vulkiteBerzerkers,
+            factions: [this.factions.FYRESLAYERS],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: 330,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vulkite-berzerkers-en.pdf",
+            type: "unit",
+            subType: "Battleline"
         },
         auricRunefatherOnMagmadroth: {
             id: this.serial++,
@@ -4234,7 +6274,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runefather-magmadroth-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -4246,7 +6286,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runesmiter-magmadroth-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -4258,10 +6298,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runeson-magmadroth-en.pdf",
             type: "hero",
             subType: "Behemoth"
+        },
+        hearthguardBerzerkers: {
+            id: this.serial++,
+            model: this.models.hearthguardBerzerkers,
+            factions: [this.factions.FYRESLAYERS],
+            size: 5,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 480,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-hearthguard-berzerkers-en.pdf",
+            type: "unit",
+            subType: "Fyreslayer Battleline (Runefather General)"
+        },
+        auricHearthguard: {
+            id: this.serial++,
+            model: this.models.auricHearthguard,
+            factions: [this.factions.FYRESLAYERS],
+            size: 5,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 480,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-hearthguard-en.pdf",
+            type: "unit",
+            subType: "Fyreslayer Battleline (Runemaster General)"
         },
         wardenKingOnThroneOfPower: {
             id: this.serial++,
@@ -4270,7 +6334,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4282,7 +6346,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4294,7 +6358,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 70,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4306,7 +6370,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4318,7 +6382,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4330,7 +6394,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runemaster-en.pdf",
             type: "hero",
             subType: undefined
@@ -4342,7 +6406,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4354,7 +6418,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4366,7 +6430,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fyreslayers-battlesmith-en.pdf",
             type: "hero",
             subType: undefined
@@ -4378,7 +6442,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-doomseeker-en.pdf",
             type: "hero",
             subType: undefined
@@ -4390,7 +6454,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fyreslayers-grimwrath-berzerker-en.pdf",
             type: "hero",
             subType: undefined
@@ -4402,7 +6466,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads/Gyrobombers.pdf",
             type: "warmachine",
             subType: undefined
@@ -4414,9 +6478,69 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-gyropcopter-en.pdf",
             type: "warmachine",
+            subType: undefined
+        },
+        hammerers: {
+            id: this.serial++,
+            model: this.models.hammerers,
+            factions: [this.factions.DISPOSSESSED],
+            size: 10,
+            maxSize: 30,
+            points: 180,
+            maxPoints: 480,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-hammerers-en.pdf",
+            type: "unit",
+            subType: "Dispossessed Battleline"
+        },
+        ironbreakers: {
+            id: this.serial++,
+            model: this.models.ironbreakers,
+            factions: [this.factions.DISPOSSESSED],
+            size: 10,
+            maxSize: 30,
+            points: 160,
+            maxPoints: 400,
+            warcroll: "https://www.games-workshop.com/resources/PDF/Downloads/ironbreakers-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        irondrakes: {
+            id: this.serial++,
+            model: this.models.irondrakes,
+            factions: [this.factions.DISPOSSESSED],
+            size: 10,
+            maxSize: 30,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/Downloads/irondrakes-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        miners: {
+            id: this.serial++,
+            model: this.models.miners,
+            factions: [this.factions.DWARFS],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        quarrellers: {
+            id: this.serial++,
+            model: this.models.quarrellers,
+            factions: [this.factions.DISPOSSESSED],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-quarrellers-en.pdf",
+            type: "unit",
             subType: undefined
         },
         runelord: {
@@ -4426,9 +6550,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-runelord-en.pdf",
             type: "hero",
+            subType: undefined
+        },
+        slayers: {
+            id: this.serial++,
+            model: this.models.slayers,
+            factions: [this.factions.DWARFS],
+            size: 5,
+            maxSize: 30,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         thaneWithBattleStandard: {
@@ -4438,9 +6574,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        thunderers: {
+            id: this.serial++,
+            model: this.models.thunderers,
+            factions: [this.factions.DISPOSSESSED],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-thunderers-en.pdf",
+            type: "unit",
             subType: undefined
         },
         unforged: {
@@ -4450,7 +6598,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-unforged-en.pdf",
             type: "hero",
             subType: undefined
@@ -4462,7 +6610,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-warden-king-en.pdf",
             type: "hero",
             subType: undefined
@@ -4474,7 +6622,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
@@ -4486,7 +6634,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-helblaster-volley-gun-en.pdf",
             type: "warmachine",
             subType: "Artillery"
@@ -4498,7 +6646,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-helstorm-rocket-battery-en.pdf",
             type: "warmachine",
             subType: "Artillery"
@@ -4510,10 +6658,58 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
+        },
+        freeguildArchers: {
+            id: this.serial++,
+            model: this.models.freeguildArchers,
+            factions: [this.factions.FREEPEOPLES],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-archers-en.pdf",
+            type: "unit",
+            subType: "Battleline"
+        },
+        freeguildCrossbowmen: {
+            id: this.serial++,
+            model: this.models.freeguildCrossbowmen,
+            factions: [this.factions.FREEPEOPLES],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-crossbowmen-en.pdf",
+            type: "unit",
+            subType: "Battleline"
+        },
+        freeguildGuard: {
+            id: this.serial++,
+            model: this.models.freeguildGuard,
+            factions: [this.factions.FREEPEOPLES],
+            size: 10,
+            maxSize: 40,
+            points: 80,
+            maxPoints: 280,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-guard-en.pdf",
+            type: "unit",
+            subType: "Battleline"
+        },
+        freeguildHandgunners: {
+            id: this.serial++,
+            model: this.models.freeguildHandgunners,
+            factions: [this.factions.FREEPEOPLES],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-handgunners-en.pdf",
+            type: "unit",
+            subType: "Battleline"
         },
         battlemageOnGriffon: {
             id: this.serial++,
@@ -4522,7 +6718,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-battlemage-griffon-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -4534,7 +6730,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-celestial-hurricanum-en.pdf",
             type: "monster",
             subType: "Behemoth"
@@ -4546,7 +6742,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-celestial-hurricanum-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -4558,7 +6754,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-general-griffon-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -4570,7 +6766,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-luminark-hysh-en.pdf",
             type: "monster",
             subType: "Behemoth"
@@ -4582,7 +6778,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-luminark-hysh-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -4594,7 +6790,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-steam-tank-en.pdf",
             type: "warmachine",
             subType: "Behemoth"
@@ -4606,10 +6802,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 250,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-war-altar-sigmar-en.pdf",
             type: "hero",
             subType: "Behemoth"
+        },
+        flagellants: {
+            id: this.serial++,
+            model: this.models.flagellants,
+            factions: [this.factions.DEVOTEDOFSIGMAR],
+            size: 10,
+            maxSize: 40,
+            points: 80,
+            maxPoints: 260,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-flagellants-en.pdf",
+            type: "unit",
+            subType: "Devoted of Sigmar Battleline"
         },
         battlemageOnPegasus: {
             id: this.serial++,
@@ -4618,7 +6826,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4630,9 +6838,33 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-battlemage-en.pdf",
             type: "hero",
+            subType: undefined
+        },
+        demigryphKnights: {
+            id: this.serial++,
+            model: this.models.demigryphKnights,
+            factions: [this.factions.FREEPEOPLES],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-demigryph-knights-en.pdf",
+            type: "unit",
+            subType: "Free Peoples Battleline"
+        },
+        knightsOfOrder: {
+            id: this.serial++,
+            model: this.models.knightsOfOrder,
+            factions: [this.factions.EMPIRE],
+            size: 5,
+            maxSize: 30,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         excelsiorWarpriest: {
@@ -4642,7 +6874,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4654,9 +6886,45 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        freeguildGreatswords: {
+            id: this.serial++,
+            model: this.models.freeguildGreatswords,
+            factions: [this.factions.FREEPEOPLES],
+            size: 10,
+            maxSize: 30,
+            points: 150,
+            maxPoints: 420,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Free Peoples Battleline"
+        },
+        freeguildOutriders: {
+            id: this.serial++,
+            model: this.models.freeguildOutriders,
+            factions: [this.factions.FREEPEOPLES],
+            size: 5,
+            maxSize: 20,
+            points: 130,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        freeguildPistoliers: {
+            id: this.serial++,
+            model: this.models.freeguildPistoliers,
+            factions: [this.factions.FREEPEOPLES],
+            size: 5,
+            maxSize: 20,
+            points: 130,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         gunmaster: {
@@ -4666,7 +6934,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4678,7 +6946,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4690,7 +6958,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4702,7 +6970,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4714,7 +6982,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4726,10 +6994,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
+        },
+        highbornSpearmen: {
+            id: this.serial++,
+            model: this.models.highbornSpearmen,
+            factions: [this.factions.HIGHELVES],
+            size: 10,
+            maxSize: 40,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
+        },
+        highbornSilverHelms: {
+            id: this.serial++,
+            model: this.models.highbornSilverHelms,
+            factions: [this.factions.HIGHELVES],
+            size: 5,
+            maxSize: 20,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
         },
         anointedOfAsuryanOnFlamespyrePhoenix: {
             id: this.serial++,
@@ -4738,7 +7030,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -4750,7 +7042,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -4762,7 +7054,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -4774,7 +7066,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: undefined
@@ -4786,7 +7078,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth "
@@ -4798,7 +7090,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: undefined
@@ -4810,7 +7102,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Eldritch Council"
@@ -4822,7 +7114,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Eldritch Council"
@@ -4834,10 +7126,70 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Eldritch Council - Behemoth"
+        },
+        swordmasters: {
+            id: this.serial++,
+            model: this.models.swordmasters,
+            factions: [this.factions.ELDRITCHCOUNCIL],
+            size: 10,
+            maxSize: 30,
+            points: 180,
+            maxPoints: 480,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Eldritch Council Battleline"
+        },
+        dragonBlades: {
+            id: this.serial++,
+            model: this.models.dragonBlades,
+            factions: [this.factions.ORDERDRACONIS],
+            size: 5,
+            maxSize: 20,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Order Draconis Battleline"
+        },
+        phoenixGuard: {
+            id: this.serial++,
+            model: this.models.phoenixGuard,
+            factions: [this.factions.PHOENIXTEMPLE],
+            size: 10,
+            maxSize: 30,
+            points: 160,
+            maxPoints: 420,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Phoenix Temple Battleline"
+        },
+        chariots: {
+            id: this.serial++,
+            model: this.models.chariots,
+            factions: [this.factions.SWIFTHAWKAGENTS],
+            size: 1,
+            maxSize: 3,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Swifthawk Agents"
+        },
+        skycutters: {
+            id: this.serial++,
+            model: this.models.skycutters,
+            factions: [this.factions.SWIFTHAWKAGENTS],
+            size: 1,
+            maxSize: 3,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Swifthawk Agents"
         },
         skywarden: {
             id: this.serial++,
@@ -4846,10 +7198,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Swifthawk Agents"
+        },
+        reavers: {
+            id: this.serial++,
+            model: this.models.reavers,
+            factions: [this.factions.SWIFTHAWKAGENTS],
+            size: 5,
+            maxSize: 20,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Swifthawk Agents - Battleline"
         },
         highWarden: {
             id: this.serial++,
@@ -4858,10 +7222,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Swifthawk Agents - Behemoth"
+        },
+        shadowWarriors: {
+            id: this.serial++,
+            model: this.models.shadowWarriors,
+            factions: [this.factions.SWIFTHAWKAGENTS],
+            size: 10,
+            maxSize: 30,
+            points: 200,
+            maxPoints: 500,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Swifthawk Agents Battleline"
+        },
+        spireguard: {
+            id: this.serial++,
+            model: this.models.spireguard,
+            factions: [this.factions.SWIFTHAWKAGENTS],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: 300,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Swifthawk Agents Battleline"
         },
         anointed: {
             id: this.serial++,
@@ -4870,7 +7258,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -4882,9 +7270,33 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        greatEagles: {
+            id: this.serial++,
+            model: this.models.greatEagles,
+            factions: [this.factions.WOODELVES],
+            size: 1,
+            maxSize: 3,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        highbornArchers: {
+            id: this.serial++,
+            model: this.models.highbornArchers,
+            factions: [this.factions.HIGHELVES],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         seawardenOnFoot: {
@@ -4894,9 +7306,33 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        whiteLionChariots: {
+            id: this.serial++,
+            model: this.models.whiteLionChariots,
+            factions: [this.factions.LIONRANGERS],
+            size: 1,
+            maxSize: 3,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        whiteLions: {
+            id: this.serial++,
+            model: this.models.whiteLions,
+            factions: [this.factions.LIONRANGERS],
+            size: 10,
+            maxSize: 30,
+            points: 140,
+            maxPoints: 360,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         deathshriekerRocketLauncher: {
@@ -4906,7 +7342,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
@@ -4918,7 +7354,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
@@ -4930,10 +7366,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
+        },
+        bullCentaurRenders: {
+            id: this.serial++,
+            model: this.models.bullCentaurRenders,
+            factions: [this.factions.LEGIONOFAZGORH],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: 640,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Legion of Azgorh Battleline (Shar'tor General)"
+        },
+        infernalGuardFireglaives: {
+            id: this.serial++,
+            model: this.models.infernalGuardFireglaives,
+            factions: [this.factions.LEGIONOFAZGORH],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Legion of Azgorh Battleline"
+        },
+        infernalGuardIronsworn: {
+            id: this.serial++,
+            model: this.models.infernalGuardIronsworn,
+            factions: [this.factions.LEGIONOFAZGORH],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 240,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
         },
         chaosSiegeGargant: {
             id: this.serial++,
@@ -4942,7 +7414,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -4954,7 +7426,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Behemoth"
@@ -4966,7 +7438,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Behemoth"
@@ -4978,7 +7450,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Unique "
@@ -4990,7 +7462,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Unique Behemoth"
@@ -5002,7 +7474,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -5014,7 +7486,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -5026,7 +7498,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -5038,10 +7510,70 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
+        },
+        kDaaiFireborn: {
+            id: this.serial++,
+            model: this.models.kDaaiFireborn,
+            factions: [this.factions.LEGIONOFAZGORH],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: 560,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        razordons: {
+            id: this.serial++,
+            model: this.models.razordons,
+            factions: [this.factions.SERAPHON],
+            size: 1,
+            maxSize: 4,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-razordon-en.pdf",
+            type: "unit",
+            subType: "Artillery"
+        },
+        salamanders: {
+            id: this.serial++,
+            model: this.models.salamanders,
+            factions: [this.factions.SERAPHON],
+            size: 1,
+            maxSize: 4,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-salamander-en.pdf",
+            type: "unit",
+            subType: "Artillery"
+        },
+        saurusWarriors: {
+            id: this.serial++,
+            model: this.models.saurusWarriors,
+            factions: [this.factions.SERAPHON],
+            size: 10,
+            maxSize: 40,
+            points: 100,
+            maxPoints: 360,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sauruswarriors-en.pdf",
+            type: "unit",
+            subType: "Battleline"
+        },
+        skinks: {
+            id: this.serial++,
+            model: this.models.skinks,
+            factions: [this.factions.SERAPHON],
+            size: 10,
+            maxSize: 40,
+            points: 60,
+            maxPoints: 200,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinks-en.pdf",
+            type: "unit",
+            subType: "Battleline"
         },
         bastiladon: {
             id: this.serial++,
@@ -5050,7 +7582,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bastiladon-en.pdf",
             type: "monster",
             subType: "Behemoth"
@@ -5062,7 +7594,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-oldbloodcarnosaur-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -5074,7 +7606,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-veterancarnosaur-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -5086,7 +7618,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-stegadon-en.pdf",
             type: "monster",
             subType: "Behemoth"
@@ -5098,7 +7630,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-troglodon-en.pdf",
             type: "monster",
             subType: "Behemoth"
@@ -5110,7 +7642,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinkpriest-en.pdf",
             type: "hero",
             subType: "Priest"
@@ -5122,7 +7654,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinkstarpriest-en.pdf",
             type: "hero",
             subType: "Priest"
@@ -5134,10 +7666,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-engineofthegods-en.pdf",
             type: "hero",
             subType: "Priest - Behemoth"
+        },
+        saurusGuard: {
+            id: this.serial++,
+            model: this.models.saurusGuard,
+            factions: [this.factions.SERAPHON],
+            size: 5,
+            maxSize: 20,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusguard-en.pdf",
+            type: "unit",
+            subType: "Seraphon Battleline"
+        },
+        saurusKnights: {
+            id: this.serial++,
+            model: this.models.saurusKnights,
+            factions: [this.factions.SERAPHON],
+            size: 5,
+            maxSize: 20,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusknights-en.pdf",
+            type: "unit",
+            subType: "Seraphon Battleline"
         },
         saurusAstrolithBearer: {
             id: this.serial++,
@@ -5146,7 +7702,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-astrolithbearer-en.pdf",
             type: "hero",
             subType: "Totem"
@@ -5158,7 +7714,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 450,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lordkroak-en.pdf",
             type: "hero",
             subType: "Unique "
@@ -5170,7 +7726,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -5182,9 +7738,57 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        chameleonSkinks: {
+            id: this.serial++,
+            model: this.models.chameleonSkinks,
+            factions: [this.factions.SERAPHON],
+            size: 5,
+            maxSize: 20,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chameleonskinks-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        celestialSwarms: {
+            id: this.serial++,
+            model: this.models.celestialSwarms,
+            factions: [this.factions.LIZARDMEN],
+            size: 2,
+            maxSize: 8,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        kroxigor: {
+            id: this.serial++,
+            model: this.models.kroxigor,
+            factions: [this.factions.SERAPHON],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kroxigor-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        ripperdactylRiders: {
+            id: this.serial++,
+            model: this.models.ripperdactylRiders,
+            factions: [this.factions.SERAPHON],
+            size: 3,
+            maxSize: 12,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ripperdactylriders-en.pdf",
+            type: "unit",
             subType: undefined
         },
         saurusEternityWarden: {
@@ -5194,7 +7798,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-eternitywarden-en.pdf",
             type: "hero",
             subType: undefined
@@ -5206,7 +7810,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusoldblood-en.pdf",
             type: "hero",
             subType: undefined
@@ -5218,7 +7822,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-veterancoldone-en.pdf",
             type: "hero",
             subType: undefined
@@ -5230,7 +7834,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurussunblood-en.pdf",
             type: "hero",
             subType: undefined
@@ -5242,9 +7846,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 60,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        skinkHandlers: {
+            id: this.serial++,
+            model: this.models.skinkHandlers,
+            factions: [this.factions.SERAPHON],
+            size: 3,
+            maxSize: 12,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         skinkStarseer: {
@@ -5254,7 +7870,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinkstarseer-en.pdf",
             type: "hero",
             subType: undefined
@@ -5266,9 +7882,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-slannstarmaster-en.pdf",
             type: "hero",
+            subType: undefined
+        },
+        terradonRiders: {
+            id: this.serial++,
+            model: this.models.terradonRiders,
+            factions: [this.factions.SERAPHON],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-terradonriders-en.pdf",
+            type: "unit",
             subType: undefined
         },
         squigGobba: {
@@ -5278,10 +7906,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
+        },
+        fimirWarriors: {
+            id: this.serial++,
+            model: this.models.fimirWarriors,
+            factions: [this.factions.MONSTROUSARCANUM],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline (Fimir Dirach Balefield General)"
         },
         basilisk: {
             id: this.serial++,
@@ -5290,7 +7930,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5302,7 +7942,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 420,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5314,7 +7954,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5326,7 +7966,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5338,7 +7978,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5350,7 +7990,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5362,7 +8002,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5374,7 +8014,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5386,7 +8026,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 520,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5398,7 +8038,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5410,7 +8050,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5422,7 +8062,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5434,7 +8074,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -5446,7 +8086,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 360,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -5458,7 +8098,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -5470,10 +8110,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 350,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Nighthaunt - Behemoth"
+        },
+        skinWolves: {
+            id: this.serial++,
+            model: this.models.skinWolves,
+            factions: [this.factions.WARRIORSOFCHAOS],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        wolfRats: {
+            id: this.serial++,
+            model: this.models.wolfRats,
+            factions: [this.factions.SKAVENMOULDER],
+            size: 5,
+            maxSize: 20,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
         },
         icebrowHunter: {
             id: this.serial++,
@@ -5482,7 +8146,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-icebrow-hunter-en.pdf",
             type: "hero",
             subType: "Beastclaw Raiders"
@@ -5494,7 +8158,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 460,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Beastclaw Raiders - Behemoth"
@@ -5506,7 +8170,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 460,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Beastclaw Raiders - Behemoth"
@@ -5518,7 +8182,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-huskard-on-stonehorn-en.pdf",
             type: "hero",
             subType: "Beastclaw Raiders - Behemoth"
@@ -5530,10 +8194,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Beastclaw Raiders - Behemoth"
+        },
+        mournfangPack: {
+            id: this.serial++,
+            model: this.models.mournfangPack,
+            factions: [this.factions.BEASTCLAWRAIDERS],
+            size: 2,
+            maxSize: 12,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-mournfang-pack-en.pdf",
+            type: "unit",
+            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline"
+        },
+        icefallYhetees: {
+            id: this.serial++,
+            model: this.models.icefallYhetees,
+            factions: [this.factions.BEASTCLAWRAIDERS],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline (Frostlord on Thundertusk General)"
+        },
+        frostSabres: {
+            id: this.serial++,
+            model: this.models.frostSabres,
+            factions: [this.factions.BEASTCLAWRAIDERS],
+            size: 2,
+            maxSize: 12,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline (Icetooth Hunter General)"
         },
         stonehornBeastriders: {
             id: this.serial++,
@@ -5542,7 +8242,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 360,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-stonehorn-beastriders-en.pdf",
             type: "monster",
             subType: "Beastclaw Raiders - Behemoth - Beastclaw Raiders Battleline"
@@ -5554,7 +8254,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 360,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-thundertusk-beastriders-en.pdf",
             type: "monster",
             subType: "Beastclaw Raiders - Behemoth - Beastclaw Raiders Battleline"
@@ -5566,7 +8266,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Firebellies"
@@ -5578,10 +8278,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Gutbusters"
+        },
+        gorgers: {
+            id: this.serial++,
+            model: this.models.gorgers,
+            factions: [this.factions.GUTBUSTERS],
+            size: 1,
+            maxSize: undefined,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gutbusters"
+        },
+        grots: {
+            id: this.serial++,
+            model: this.models.grots,
+            factions: [this.factions.GUTBUSTERS],
+            size: 20,
+            maxSize: 60,
+            points: 100,
+            maxPoints: 270,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gutbusters"
+        },
+        ironguts: {
+            id: this.serial++,
+            model: this.models.ironguts,
+            factions: [this.factions.GUTBUSTERS],
+            size: 3,
+            maxSize: 12,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gutbusters - Gutbusters Battleline"
         },
         tyrant: {
             id: this.serial++,
@@ -5590,10 +8326,70 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogor-tyrant-en.pdf",
             type: "hero",
             subType: "Gutbusters"
+        },
+        grotScraplauncher: {
+            id: this.serial++,
+            model: this.models.grotScraplauncher,
+            factions: [this.factions.GUTBUSTERS],
+            size: 1,
+            maxSize: undefined,
+            points: 130,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gutbusters - Artillery"
+        },
+        ironblaster: {
+            id: this.serial++,
+            model: this.models.ironblaster,
+            factions: [this.factions.GUTBUSTERS],
+            size: 1,
+            maxSize: undefined,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gutbusters - Artillery"
+        },
+        ogors: {
+            id: this.serial++,
+            model: this.models.ogors,
+            factions: [this.factions.GUTBUSTERS],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: 400,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogors-en.pdf",
+            type: "unit",
+            subType: "Gutbusters - Battleline"
+        },
+        leadbelchers: {
+            id: this.serial++,
+            model: this.models.leadbelchers,
+            factions: [this.factions.GUTBUSTERS],
+            size: 3,
+            maxSize: 12,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gutbusters - Gutbusters Battleline"
+        },
+        maneaters: {
+            id: this.serial++,
+            model: this.models.maneaters,
+            factions: [this.factions.MANEATERS],
+            size: 3,
+            maxSize: 12,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogor-maneaters-en.pdf",
+            type: "unit",
+            subType: "Maneaters"
         },
         bruiserStandardBearer: {
             id: this.serial++,
@@ -5602,7 +8398,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Ogre Kingdoms"
@@ -5614,7 +8410,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Ogre Kingdoms"
@@ -5626,7 +8422,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 170,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Aleguzzler Gargants - Behemoth"
@@ -5638,7 +8434,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Bonesplitterz"
@@ -5650,10 +8446,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Bonesplitterz"
+        },
+        savageBigStabbas: {
+            id: this.serial++,
+            model: this.models.savageBigStabbas,
+            factions: [this.factions.BONESPLITTERZ],
+            size: 2,
+            maxSize: 8,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-savage-orruks-en-2016.pdf",
+            type: "unit",
+            subType: "Bonesplitterz"
+        },
+        savageOrrukArrowboys: {
+            id: this.serial++,
+            model: this.models.savageOrrukArrowboys,
+            factions: [this.factions.BONESPLITTERZ],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Bonesplitterz - Bonesplitterz Battleline"
+        },
+        savageOrrukMorboys: {
+            id: this.serial++,
+            model: this.models.savageOrrukMorboys,
+            factions: [this.factions.BONESPLITTERZ],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: 300,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Bonesplitterz - Bonesplitterz Battleline"
         },
         wardokk: {
             id: this.serial++,
@@ -5662,7 +8494,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-wardokk-en.pdf",
             type: "hero",
             subType: "Bonesplitterz Wizard"
@@ -5674,10 +8506,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-wurrgog-prophet-en.pdf",
             type: "hero",
             subType: "Bonesplitterz Wizard"
+        },
+        savageOrruks: {
+            id: this.serial++,
+            model: this.models.savageOrruks,
+            factions: [this.factions.BONESPLITTERZ],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: 300,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Bonesplitterz - Battleline"
+        },
+        savageBoarboyManiaks: {
+            id: this.serial++,
+            model: this.models.savageBoarboyManiaks,
+            factions: [this.factions.BONESPLITTERZ],
+            size: 5,
+            maxSize: 20,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Bonesplitterz - Bonesplitterz Battleline"
+        },
+        savageBoarboyz: {
+            id: this.serial++,
+            model: this.models.savageBoarboyz,
+            factions: [this.factions.BONESPLITTERZ],
+            size: 5,
+            maxSize: 20,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Bonesplitterz - Bonesplitterz Battleline"
         },
         gitmobGrotShaman: {
             id: this.serial++,
@@ -5686,9 +8554,57 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: "Gitmob Grots"
+        },
+        grotWolfChariots: {
+            id: this.serial++,
+            model: this.models.grotWolfChariots,
+            factions: [this.factions.GROTS],
+            size: 1,
+            maxSize: 6,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gitmob Grots - Gitmob Grots Battleline"
+        },
+        nastySkulkers: {
+            id: this.serial++,
+            model: this.models.nastySkulkers,
+            factions: [this.factions.GROTS],
+            size: 3,
+            maxSize: 9,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gitmob Grots"
+        },
+        snotlingPumpWagons: {
+            id: this.serial++,
+            model: this.models.snotlingPumpWagons,
+            factions: [this.factions.GROTS],
+            size: 1,
+            maxSize: 3,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gitmob Grots"
+        },
+        snotlings: {
+            id: this.serial++,
+            model: this.models.snotlings,
+            factions: [this.factions.GROTS],
+            size: 2,
+            maxSize: 10,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: "Gitmob Grots"
         },
         doomDiverCatapult: {
@@ -5698,7 +8614,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Gitmob Grots - Artillery"
@@ -5710,7 +8626,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Gitmob Grots - Artillery"
@@ -5722,10 +8638,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Gitmob Grots - Artillery"
+        },
+        gitmobGrots: {
+            id: this.serial++,
+            model: this.models.gitmobGrots,
+            factions: [this.factions.GROTS],
+            size: 20,
+            maxSize: 60,
+            points: 100,
+            maxPoints: 270,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gitmob Grots - Battleline"
+        },
+        grotWolfRiders: {
+            id: this.serial++,
+            model: this.models.grotWolfRiders,
+            factions: [this.factions.GROTS],
+            size: 5,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 500,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Gitmob Grots - Gitmob Grots Battleline"
+        },
+        orrukBoarChariots: {
+            id: this.serial++,
+            model: this.models.orrukBoarChariots,
+            factions: [this.factions.ORRUKS],
+            size: 1,
+            maxSize: 3,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Greenskinz - Greenskinz Battleline"
         },
         orrukGreatShaman: {
             id: this.serial++,
@@ -5734,7 +8686,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Greenskinz"
@@ -5746,10 +8698,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Greenskinz"
+        },
+        orruks: {
+            id: this.serial++,
+            model: this.models.orruks,
+            factions: [this.factions.ORRUKS],
+            size: 10,
+            maxSize: 40,
+            points: 90,
+            maxPoints: 320,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Greenskinz - Battleline"
+        },
+        orrukBoarboys: {
+            id: this.serial++,
+            model: this.models.orrukBoarboys,
+            factions: [this.factions.ORRUKS],
+            size: 5,
+            maxSize: 20,
+            points: 100,
+            maxPoints: 360,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Greenskinz - Greenskinz Battleline"
         },
         orrukWarbossOnWyvern: {
             id: this.serial++,
@@ -5758,7 +8734,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Greenskinz Behemoth"
@@ -5770,7 +8746,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-megaboss-en.pdf",
             type: "hero",
             subType: "Ironjawz"
@@ -5782,7 +8758,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-warchanter-en.pdf",
             type: "hero",
             subType: "Ironjawz"
@@ -5794,10 +8770,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-weirdnob-shaman-en.pdf",
             type: "hero",
             subType: "Ironjawz"
+        },
+        orrukArdboys: {
+            id: this.serial++,
+            model: this.models.orrukArdboys,
+            factions: [this.factions.IRONJAWZ],
+            size: 10,
+            maxSize: 30,
+            points: 180,
+            maxPoints: 450,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-ardboyz-en.pdf",
+            type: "unit",
+            subType: "Ironjawz - Ironjawz Battleline"
+        },
+        orrukBrutes: {
+            id: this.serial++,
+            model: this.models.orrukBrutes,
+            factions: [this.factions.IRONJAWZ],
+            size: 5,
+            maxSize: 20,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-brutes-en.pdf",
+            type: "unit",
+            subType: "Ironjawz - Ironjawz Battleline"
+        },
+        orrukGoreGruntas: {
+            id: this.serial++,
+            model: this.models.orrukGoreGruntas,
+            factions: [this.factions.IRONJAWZ],
+            size: 3,
+            maxSize: 12,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-goregruntas-en.pdf",
+            type: "unit",
+            subType: "Ironjawz - Ironjawz Battleline"
         },
         gordrakkTheFistOfGork: {
             id: this.serial++,
@@ -5806,7 +8818,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 620,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-gordrak-bigteef-en.pdf",
             type: "hero",
             subType: "Ironjawz - Unique Behemoth"
@@ -5818,10 +8830,58 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 460,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-mawkrusha-en.pdf",
             type: "hero",
             subType: "Ironjawz Behemoth"
+        },
+        caveSquigs: {
+            id: this.serial++,
+            model: this.models.caveSquigs,
+            factions: [this.factions.MOONCLANGROTS],
+            size: 5,
+            maxSize: 20,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Moonclan Grots - Moonclan Battleline"
+        },
+        grotFanatics: {
+            id: this.serial++,
+            model: this.models.grotFanatics,
+            factions: [this.factions.MOONCLANGROTS],
+            size: 3,
+            maxSize: 6,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Moonclan Grots"
+        },
+        grotSquigHerders: {
+            id: this.serial++,
+            model: this.models.grotSquigHerders,
+            factions: [this.factions.MOONCLANGROTS],
+            size: 2,
+            maxSize: 10,
+            points: 20,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Moonclan Grots"
+        },
+        grotSquigHoppers: {
+            id: this.serial++,
+            model: this.models.grotSquigHoppers,
+            factions: [this.factions.MOONCLANGROTS],
+            size: 5,
+            maxSize: 20,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Moonclan Grots - Moonclan Battleline"
         },
         grotWarboss: {
             id: this.serial++,
@@ -5830,7 +8890,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Moonclan Grots"
@@ -5842,7 +8902,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Moonclan Grots"
@@ -5854,10 +8914,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Moonclan Grots"
+        },
+        moonclanGrots: {
+            id: this.serial++,
+            model: this.models.moonclanGrots,
+            factions: [this.factions.MOONCLANGROTS],
+            size: 20,
+            maxSize: 60,
+            points: 130,
+            maxPoints: 360,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Moonclan Grots - Battleline"
         },
         manglerSquigs: {
             id: this.serial++,
@@ -5866,7 +8938,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Moonclan Grots - Behemoth"
@@ -5878,7 +8950,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Orcs & Goblins"
@@ -5890,10 +8962,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 40,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Orcs & Goblins"
+        },
+        mercenaryOrruks: {
+            id: this.serial++,
+            model: this.models.mercenaryOrruks,
+            factions: [this.factions.ORCSANDGOBLINS],
+            size: 5,
+            maxSize: 30,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Orcs & Goblins "
         },
         gitbossOnWolfChariot: {
             id: this.serial++,
@@ -5902,7 +8986,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Orcs & Goblins"
@@ -5914,7 +8998,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Spiderfang Grots"
@@ -5926,7 +9010,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Spiderfang Grots"
@@ -5938,10 +9022,58 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Spiderfang Grots - Behemoth"
+        },
+        grotSpiderRiders: {
+            id: this.serial++,
+            model: this.models.grotSpiderRiders,
+            factions: [this.factions.SPIDERFANGGROTS],
+            size: 5,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 540,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Spiderfang Grots - Spiderfang Battleline"
+        },
+        fellwaterTroggoths: {
+            id: this.serial++,
+            model: this.models.fellwaterTroggoths,
+            factions: [this.factions.TROGGOTHS],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Troggoths"
+        },
+        rockgutTroggoths: {
+            id: this.serial++,
+            model: this.models.rockgutTroggoths,
+            factions: [this.factions.TROGGOTHS],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Troggoths"
+        },
+        sourbreathTroggoths: {
+            id: this.serial++,
+            model: this.models.sourbreathTroggoths,
+            factions: [this.factions.TROGGOTHS],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Troggoths"
         },
         enchantress: {
             id: this.serial++,
@@ -5950,7 +9082,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -5962,9 +9094,57 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        mountedYeomen: {
+            id: this.serial++,
+            model: this.models.mountedYeomen,
+            factions: [this.factions.BRETONNIA],
+            size: 5,
+            maxSize: 20,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        peasantBowmen: {
+            id: this.serial++,
+            model: this.models.peasantBowmen,
+            factions: [this.factions.BRETONNIA],
+            size: 16,
+            maxSize: 48,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        pegasusKnights: {
+            id: this.serial++,
+            model: this.models.pegasusKnights,
+            factions: [this.factions.BRETONNIA],
+            size: 3,
+            maxSize: 12,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        questingKnights: {
+            id: this.serial++,
+            model: this.models.questingKnights,
+            factions: [this.factions.BRETONNIA],
+            size: 5,
+            maxSize: 20,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         fieldTrebuchet: {
@@ -5974,10 +9154,58 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
+        },
+        knightsErrant: {
+            id: this.serial++,
+            model: this.models.knightsErrant,
+            factions: [this.factions.BRETONNIA],
+            size: 8,
+            maxSize: 24,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
+        },
+        knightsOfTheRealm: {
+            id: this.serial++,
+            model: this.models.knightsOfTheRealm,
+            factions: [this.factions.BRETONNIA],
+            size: 8,
+            maxSize: 24,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
+        },
+        menAtArms: {
+            id: this.serial++,
+            model: this.models.menAtArms,
+            factions: [this.factions.BRETONNIA],
+            size: 16,
+            maxSize: 48,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
+        },
+        battlePilgrims: {
+            id: this.serial++,
+            model: this.models.battlePilgrims,
+            factions: [this.factions.BRETONNIA],
+            size: 6,
+            maxSize: 30,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
         },
         bretonnianLord: {
             id: this.serial++,
@@ -5986,7 +9214,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -5998,9 +9226,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        grailKnights: {
+            id: this.serial++,
+            model: this.models.grailKnights,
+            factions: [this.factions.BRETONNIA],
+            size: 5,
+            maxSize: 20,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         nobleChampion: {
@@ -6010,7 +9250,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6022,10 +9262,58 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
+        },
+        gladeGuard: {
+            id: this.serial++,
+            model: this.models.gladeGuard,
+            factions: [this.factions.WANDERERS],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
+        },
+        wildwoodRangers: {
+            id: this.serial++,
+            model: this.models.wildwoodRangers,
+            factions: [this.factions.WANDERERS],
+            size: 10,
+            maxSize: 30,
+            points: 180,
+            maxPoints: 480,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Wanderers Battleline (Wayfinder General)"
+        },
+        sistersOfTheWatch: {
+            id: this.serial++,
+            model: this.models.sistersOfTheWatch,
+            factions: [this.factions.WANDERERS],
+            size: 10,
+            maxSize: 20,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Wanderers Battleline (Waywatcher General)"
+        },
+        eternalGuard: {
+            id: this.serial++,
+            model: this.models.eternalGuard,
+            factions: [this.factions.WANDERERS],
+            size: 10,
+            maxSize: 30,
+            points: 80,
+            maxPoints: 210,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Wanderers Battleline"
         },
         nomadPrince: {
             id: this.serial++,
@@ -6034,9 +9322,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        sistersOfTheThorn: {
+            id: this.serial++,
+            model: this.models.sistersOfTheThorn,
+            factions: [this.factions.WANDERERS],
+            size: 5,
+            maxSize: 20,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         spellweaver: {
@@ -6046,7 +9346,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6058,7 +9358,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6070,9 +9370,45 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        wildRiders: {
+            id: this.serial++,
+            model: this.models.wildRiders,
+            factions: [this.factions.WANDERERS],
+            size: 5,
+            maxSize: 20,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        gladeRiders: {
+            id: this.serial++,
+            model: this.models.gladeRiders,
+            factions: [this.factions.WOODELVES],
+            size: 8,
+            maxSize: 24,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
+        },
+        waywatchers: {
+            id: this.serial++,
+            model: this.models.waywatchers,
+            factions: [this.factions.WOODELVES],
+            size: 5,
+            maxSize: 15,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         gladeLordOnForestDragon: {
@@ -6082,7 +9418,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -6094,7 +9430,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -6106,7 +9442,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 420,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -6118,7 +9454,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6130,7 +9466,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6142,7 +9478,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6154,9 +9490,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        huntingHounds: {
+            id: this.serial++,
+            model: this.models.huntingHounds,
+            factions: [this.factions.WOODELVES],
+            size: 1,
+            maxSize: 5,
+            points: 20,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         gladeLordOnPurebredSteed: {
@@ -6166,7 +9514,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6178,10 +9526,58 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
+        },
+        treeKin: {
+            id: this.serial++,
+            model: this.models.treeKin,
+            factions: [this.factions.WOODELVES],
+            size: 3,
+            maxSize: 12,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        wardancers: {
+            id: this.serial++,
+            model: this.models.wardancers,
+            factions: [this.factions.WOODELVES],
+            size: 5,
+            maxSize: 30,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        warhawkRiders: {
+            id: this.serial++,
+            model: this.models.warhawkRiders,
+            factions: [this.factions.WOODELVES],
+            size: 1,
+            maxSize: 6,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        gutterRunners: {
+            id: this.serial++,
+            model: this.models.gutterRunners,
+            factions: [this.factions.SKAVENESHIN],
+            size: 5,
+            maxSize: 20,
+            points: 60,
+            maxPoints: 200,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Eshin - Eshin Battleline"
         },
         skavenAssassin: {
             id: this.serial++,
@@ -6190,10 +9586,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Eshin"
+        },
+        nightRunners: {
+            id: this.serial++,
+            model: this.models.nightRunners,
+            factions: [this.factions.SKAVENESHIN],
+            size: 10,
+            maxSize: 40,
+            points: 100,
+            maxPoints: 360,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Eshin - Eshin Battleline"
         },
         verminlordDeceiver: {
             id: this.serial++,
@@ -6202,7 +9610,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Eshin Behemoth"
@@ -6214,7 +9622,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Masterclan"
@@ -6226,7 +9634,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Masterclan - Behemoth"
@@ -6238,7 +9646,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Masterclan - Behemoth"
@@ -6250,7 +9658,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Masterclan - Unique Behemoth"
@@ -6262,10 +9670,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 450,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Masterclan - Unique Behemoth"
+        },
+        giantRats: {
+            id: this.serial++,
+            model: this.models.giantRats,
+            factions: [this.factions.SKAVENMOULDER],
+            size: 10,
+            maxSize: 40,
+            points: 60,
+            maxPoints: 200,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Moulder - Moulder Battleline"
         },
         packmaster: {
             id: this.serial++,
@@ -6274,9 +9694,33 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: "Moulder"
+        },
+        ratOgors: {
+            id: this.serial++,
+            model: this.models.ratOgors,
+            factions: [this.factions.SKAVENMOULDER],
+            size: 2,
+            maxSize: 8,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Moulder - Moulder Battleline"
+        },
+        ratSwarms: {
+            id: this.serial++,
+            model: this.models.ratSwarms,
+            factions: [this.factions.SKAVENMOULDER],
+            size: 2,
+            maxSize: 8,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: "Moulder"
         },
         hellPitAbomination: {
@@ -6286,7 +9730,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Moulder - Behemoth"
@@ -6298,7 +9742,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nurgle Pestilens "
@@ -6310,7 +9754,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nurgle Pestilens"
@@ -6322,10 +9766,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Nurgle Pestilens  - Artillery"
+        },
+        plagueCenserBearers: {
+            id: this.serial++,
+            model: this.models.plagueCenserBearers,
+            factions: [this.factions.SKAVENPESTILENS],
+            size: 5,
+            maxSize: 20,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Nurgle Pestilens  - Pestilens Battleline"
+        },
+        plagueMonks: {
+            id: this.serial++,
+            model: this.models.plagueMonks,
+            factions: [this.factions.SKAVENPESTILENS],
+            size: 10,
+            maxSize: 40,
+            points: 70,
+            maxPoints: 240,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Nurgle Pestilens  - Pestilens Battleline"
         },
         plagueFurnace: {
             id: this.serial++,
@@ -6334,7 +9802,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nurgle Pestilens - Behemoth"
@@ -6346,7 +9814,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nurgle Pestilens Daemon Wizard - Behemoth"
@@ -6358,9 +9826,33 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: "Skryre"
+        },
+        poisonedWindMortarWeaponTeam: {
+            id: this.serial++,
+            model: this.models.poisonedWindMortarWeaponTeam,
+            factions: [this.factions.SKAVENSKRYRE],
+            size: 1,
+            maxSize: undefined,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Skryre"
+        },
+        ratlingGunWeaponTeam: {
+            id: this.serial++,
+            model: this.models.ratlingGunWeaponTeam,
+            factions: [this.factions.SKAVENSKRYRE],
+            size: 1,
+            maxSize: undefined,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: "Skryre"
         },
         warlockEngineer: {
@@ -6370,9 +9862,33 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: "Skryre"
+        },
+        warpGrinderWeaponTeam: {
+            id: this.serial++,
+            model: this.models.warpGrinderWeaponTeam,
+            factions: [this.factions.SKAVENSKRYRE],
+            size: 1,
+            maxSize: undefined,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Skryre"
+        },
+        warpfireThrowerWeaponTeam: {
+            id: this.serial++,
+            model: this.models.warpfireThrowerWeaponTeam,
+            factions: [this.factions.SKAVENSKRYRE],
+            size: 1,
+            maxSize: undefined,
+            points: 70,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: "Skryre"
         },
         warpLightningCannon: {
@@ -6382,9 +9898,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
+            subType: "Skryre - Artillery"
+        },
+        warplockJezzails: {
+            id: this.serial++,
+            model: this.models.warplockJezzails,
+            factions: [this.factions.SKAVENSKRYRE],
+            size: 3,
+            maxSize: 12,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: "Skryre - Artillery"
         },
         doomwheel: {
@@ -6394,10 +9922,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 130,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Skryre - Behemoth"
+        },
+        skryreAcolytes: {
+            id: this.serial++,
+            model: this.models.skryreAcolytes,
+            factions: [this.factions.SKAVENSKRYRE],
+            size: 5,
+            maxSize: 30,
+            points: 60,
+            maxPoints: 320,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Skryre - Skryre Battleline"
+        },
+        stormfiends: {
+            id: this.serial++,
+            model: this.models.stormfiends,
+            factions: [this.factions.SKAVENSKRYRE],
+            size: 3,
+            maxSize: 9,
+            points: 300,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Skryre - Skryre Battleline"
         },
         skavenChieftainWithBattleStandard: {
             id: this.serial++,
@@ -6406,7 +9958,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Verminus"
@@ -6418,10 +9970,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Verminus"
+        },
+        stormvermin: {
+            id: this.serial++,
+            model: this.models.stormvermin,
+            factions: [this.factions.SKAVENVERMINUS],
+            size: 10,
+            maxSize: 40,
+            points: 140,
+            maxPoints: 500,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Verminus - Verminus Battleline"
+        },
+        clanrats: {
+            id: this.serial++,
+            model: this.models.clanrats,
+            factions: [this.factions.SKAVENVERMINUS],
+            size: 20,
+            maxSize: 40,
+            points: 120,
+            maxPoints: 200,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Verminus - Battleline"
         },
         verminlordWarbringer: {
             id: this.serial++,
@@ -6430,10 +10006,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Verminus - Behemoth"
+        },
+        skavenslaves: {
+            id: this.serial++,
+            model: this.models.skavenslaves,
+            factions: [this.factions.SKAVEN],
+            size: 20,
+            maxSize: undefined,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
         },
         deathrunner: {
             id: this.serial++,
@@ -6442,10 +10030,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Eshin"
+        },
+        liberators: {
+            id: this.serial++,
+            model: this.models.liberators,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 5,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 520,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-liberators-en.pdf",
+            type: "unit",
+            subType: "Battleline"
         },
         drakeswornTemplar: {
             id: this.serial++,
@@ -6454,7 +10054,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -6466,10 +10066,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 560,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-stormcast-stardrake-en.pdf",
             type: "hero",
             subType: "Behemoth"
+        },
+        judicators: {
+            id: this.serial++,
+            model: this.models.judicators,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 5,
+            maxSize: 20,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-judicators-en.pdf",
+            type: "unit",
+            subType: "Stormcast Eternals Battleline"
+        },
+        vanguardHunters: {
+            id: this.serial++,
+            model: this.models.vanguardHunters,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 5,
+            maxSize: 15,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Stormcast Eternals Battleline (Lord Aquilor General)"
         },
         knightVexillor: {
             id: this.serial++,
@@ -6478,7 +10102,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-knightvexillor-en.pdf",
             type: "hero",
             subType: "Totem"
@@ -6490,10 +10114,70 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-celestantprime-en.pdf",
             type: "hero",
             subType: "Unique "
+        },
+        aetherwings: {
+            id: this.serial++,
+            model: this.models.aetherwings,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 3,
+            maxSize: 12,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        concussors: {
+            id: this.serial++,
+            model: this.models.concussors,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 2,
+            maxSize: 12,
+            points: 280,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        desolators: {
+            id: this.serial++,
+            model: this.models.desolators,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 2,
+            maxSize: 12,
+            points: 240,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        fulminators: {
+            id: this.serial++,
+            model: this.models.fulminators,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 2,
+            maxSize: 12,
+            points: 240,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        gryphHound: {
+            id: this.serial++,
+            model: this.models.gryphHound,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 1,
+            maxSize: 12,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-lordcastellant-en.pdf",
+            type: "unit",
+            subType: undefined
         },
         knightQuestor: {
             id: this.serial++,
@@ -6502,7 +10186,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-knight-questor-en.pdf",
             type: "hero",
             subType: undefined
@@ -6514,7 +10198,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-knightazyros-en.pdf",
             type: "hero",
             subType: undefined
@@ -6526,7 +10210,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-knightheraldor-en.pdf",
             type: "hero",
             subType: undefined
@@ -6538,7 +10222,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-knightvenator-en.pdf",
             type: "hero",
             subType: undefined
@@ -6550,7 +10234,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-Lord-Veritant-ENG.pdf",
             type: "hero",
             subType: undefined
@@ -6562,7 +10246,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6574,7 +10258,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Unique"
@@ -6586,7 +10270,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-lordcastellant-en.pdf",
             type: "hero",
             subType: undefined
@@ -6598,7 +10282,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-lordcelestant-en.pdf",
             type: "hero",
             subType: undefined
@@ -6610,7 +10294,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lord-celestant-dracoth-en.pdf",
             type: "hero",
             subType: undefined
@@ -6622,10 +10306,130 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
+        },
+        paladinDecimators: {
+            id: this.serial++,
+            model: this.models.paladinDecimators,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 5,
+            maxSize: 20,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-decimators-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        paladinProtectors: {
+            id: this.serial++,
+            model: this.models.paladinProtectors,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 5,
+            maxSize: 20,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-protectors-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        paladinRetributors: {
+            id: this.serial++,
+            model: this.models.paladinRetributors,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 5,
+            maxSize: 20,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-retributors-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        prosecutorsWithCelestialHammers: {
+            id: this.serial++,
+            model: this.models.prosecutorsWithCelestialHammers,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 3,
+            maxSize: 12,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-prostecutorhammers-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        prosecutorsWithStormcallJavelins: {
+            id: this.serial++,
+            model: this.models.prosecutorsWithStormcallJavelins,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 3,
+            maxSize: 12,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-prostecutorjavelins-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        tempestors: {
+            id: this.serial++,
+            model: this.models.tempestors,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 2,
+            maxSize: 12,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        vanguardPalladors: {
+            id: this.serial++,
+            model: this.models.vanguardPalladors,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 3,
+            maxSize: 12,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        vanguardRaptorsWithHurricaneCrossbows: {
+            id: this.serial++,
+            model: this.models.vanguardRaptorsWithHurricaneCrossbows,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        vanguardRaptorsWithLongstrikeCrossbows: {
+            id: this.serial++,
+            model: this.models.vanguardRaptorsWithLongstrikeCrossbows,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        dryads: {
+            id: this.serial++,
+            model: this.models.dryads,
+            factions: [this.factions.SYLVANETH],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 270,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dryads-en.pdf",
+            type: "unit",
+            subType: "Battleline"
         },
         spiritOfDurthu: {
             id: this.serial++,
@@ -6634,7 +10438,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-spirit-of-durthu-en.pdf",
             type: "hero",
             subType: "Behemoth"
@@ -6646,10 +10450,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-treelord-en.pdf",
             type: "monster",
             subType: "Behemoth"
+        },
+        treeRevenants: {
+            id: this.serial++,
+            model: this.models.treeRevenants,
+            factions: [this.factions.SYLVANETH],
+            size: 5,
+            maxSize: 30,
+            points: 80,
+            maxPoints: 420,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-tree-revenants-en.pdf",
+            type: "unit",
+            subType: "Sylvaneth Battleline"
         },
         branchwraith: {
             id: this.serial++,
@@ -6658,7 +10474,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-branchwraith-en.pdf",
             type: "hero",
             subType: "Wizard"
@@ -6670,7 +10486,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-branchwych-en.pdf",
             type: "hero",
             subType: "Wizard"
@@ -6682,7 +10498,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-treelordancient-en.pdf",
             type: "hero",
             subType: "Wizard - Behemoth"
@@ -6694,7 +10510,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 600,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-alarielle-everqueen-en.pdf",
             type: "hero",
             subType: "Wizard - Unique Behemoth"
@@ -6706,10 +10522,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-drycha-hamadreth-en.pdf",
             type: "hero",
             subType: "Wizard - Unique Behemoth"
+        },
+        kurnothHunters: {
+            id: this.serial++,
+            model: this.models.kurnothHunters,
+            factions: [this.factions.SYLVANETH],
+            size: 3,
+            maxSize: 12,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-kurnoth-hunters-en.pdf",
+            type: "unit",
+            subType: undefined
+        },
+        spiteRevenants: {
+            id: this.serial++,
+            model: this.models.spiteRevenants,
+            factions: [this.factions.SYLVANETH],
+            size: 5,
+            maxSize: 30,
+            points: 80,
+            maxPoints: 420,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-spite-revenants-en.pdf",
+            type: "unit",
+            subType: "Sylvaneth Battleline"
         },
         chaosWarMammoth: {
             id: this.serial++,
@@ -6718,7 +10558,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -6730,10 +10570,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
+        },
+        nightmaw: {
+            id: this.serial++,
+            model: this.models.nightmaw,
+            factions: [this.factions.TAMURKHANSHORDE],
+            size: 1,
+            maxSize: undefined,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Unique"
+        },
+        daemonPlagueToadsOfNurgle: {
+            id: this.serial++,
+            model: this.models.daemonPlagueToadsOfNurgle,
+            factions: [this.factions.TAMURKHANSHORDE],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: 400,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Tamurkhan's Horde Battleline"
+        },
+        plagueOgors: {
+            id: this.serial++,
+            model: this.models.plagueOgors,
+            factions: [this.factions.TAMURKHANSHORDE],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: 560,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Tamurkhan's Horde Battleline"
         },
         kayzkTheBefouled: {
             id: this.serial++,
@@ -6742,7 +10618,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Unique "
@@ -6754,7 +10630,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Unique "
@@ -6766,10 +10642,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Unique Behemoth"
+        },
+        bileTroggoths: {
+            id: this.serial++,
+            model: this.models.bileTroggoths,
+            factions: [this.factions.TAMURKHANSHORDE],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: 640,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        daemonPoxRidersOfNurgle: {
+            id: this.serial++,
+            model: this.models.daemonPoxRidersOfNurgle,
+            factions: [this.factions.TAMURKHANSHORDE],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: 640,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
         },
         screamingSkullCatapult: {
             id: this.serial++,
@@ -6778,10 +10678,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
+        },
+        skeletonChariots: {
+            id: this.serial++,
+            model: this.models.skeletonChariots,
+            factions: [this.factions.TOMBKINGS],
+            size: 3,
+            maxSize: 12,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
+        },
+        skeletonHorsemen: {
+            id: this.serial++,
+            model: this.models.skeletonHorsemen,
+            factions: [this.factions.TOMBKINGS],
+            size: 5,
+            maxSize: 30,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
+        },
+        skeletalLegionnaires: {
+            id: this.serial++,
+            model: this.models.skeletalLegionnaires,
+            factions: [this.factions.TOMBKINGS],
+            size: 10,
+            maxSize: 40,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
         },
         boneGiant: {
             id: this.serial++,
@@ -6790,7 +10726,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -6802,7 +10738,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -6814,7 +10750,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -6826,7 +10762,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -6838,10 +10774,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
+        },
+        skeletonArchers: {
+            id: this.serial++,
+            model: this.models.skeletonArchers,
+            factions: [this.factions.TOMBKINGS],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Tomb Kings Battleline (Tomb Queen General)"
         },
         tombQueen: {
             id: this.serial++,
@@ -6850,7 +10798,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6862,7 +10810,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6874,9 +10822,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 460,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        carrion: {
+            id: this.serial++,
+            model: this.models.carrion,
+            factions: [this.factions.TOMBKINGS],
+            size: 3,
+            maxSize: 12,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         lichePriest: {
@@ -6886,9 +10846,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        necropolisKnights: {
+            id: this.serial++,
+            model: this.models.necropolisKnights,
+            factions: [this.factions.TOMBKINGS],
+            size: 3,
+            maxSize: 12,
+            points: 240,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         necrotect: {
@@ -6898,9 +10870,45 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        sepulchralStalkers: {
+            id: this.serial++,
+            model: this.models.sepulchralStalkers,
+            factions: [this.factions.TOMBKINGS],
+            size: 3,
+            maxSize: 12,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        skeletonHorseArchers: {
+            id: this.serial++,
+            model: this.models.skeletonHorseArchers,
+            factions: [this.factions.TOMBKINGS],
+            size: 5,
+            maxSize: 20,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        tombGuard: {
+            id: this.serial++,
+            model: this.models.tombGuard,
+            factions: [this.factions.TOMBKINGS],
+            size: 5,
+            maxSize: 30,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         tombHerald: {
@@ -6910,7 +10918,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6922,7 +10930,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6934,9 +10942,45 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        tombScorpions: {
+            id: this.serial++,
+            model: this.models.tombScorpions,
+            factions: [this.factions.TOMBKINGS],
+            size: 1,
+            maxSize: 3,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        tombSwarm: {
+            id: this.serial++,
+            model: this.models.tombSwarm,
+            factions: [this.factions.TOMBKINGS],
+            size: 2,
+            maxSize: 8,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        ushabti: {
+            id: this.serial++,
+            model: this.models.ushabti,
+            factions: [this.factions.TOMBKINGS],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         necromancerOnNightmare: {
@@ -6946,7 +10990,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -6958,10 +11002,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
+        },
+        chaosChariots: {
+            id: this.serial++,
+            model: this.models.chaosChariots,
+            factions: [this.factions.SLAVESTODARKNESS],
+            size: 1,
+            maxSize: 3,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Mortal - Slaves to Darkness Battleline"
+        },
+        chaosChosen: {
+            id: this.serial++,
+            model: this.models.chaosChosen,
+            factions: [this.factions.SLAVESTODARKNESS],
+            size: 5,
+            maxSize: 20,
+            points: 140,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Mortal"
+        },
+        chaosGorebeastChariots: {
+            id: this.serial++,
+            model: this.models.chaosGorebeastChariots,
+            factions: [this.factions.SLAVESTODARKNESS],
+            size: 1,
+            maxSize: undefined,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Mortal"
         },
         darkoathChieftain: {
             id: this.serial++,
@@ -6970,7 +11050,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Mortal"
@@ -6982,7 +11062,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Mortal"
@@ -6994,9 +11074,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: "Mortal"
+        },
+        forsaken: {
+            id: this.serial++,
+            model: this.models.forsaken,
+            factions: [this.factions.WARRIORSOFCHAOS],
+            size: 10,
+            maxSize: 30,
+            points: 200,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: "Mortal"
         },
         lordOfChaos: {
@@ -7006,10 +11098,58 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Mortal"
+        },
+        chaosMarauders: {
+            id: this.serial++,
+            model: this.models.chaosMarauders,
+            factions: [this.factions.SLAVESTODARKNESS],
+            size: 10,
+            maxSize: 40,
+            points: 60,
+            maxPoints: 200,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Mortal - Battleline"
+        },
+        chaosWarriors: {
+            id: this.serial++,
+            model: this.models.chaosWarriors,
+            factions: [this.factions.SLAVESTODARKNESS],
+            size: 5,
+            maxSize: 30,
+            points: 90,
+            maxPoints: 480,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Mortal - Battleline"
+        },
+        chaosKnights: {
+            id: this.serial++,
+            model: this.models.chaosKnights,
+            factions: [this.factions.SLAVESTODARKNESS],
+            size: 5,
+            maxSize: 20,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-knights-en.pdf",
+            type: "unit",
+            subType: "Mortal - Slaves to Darkness Battleline"
+        },
+        chaosMarauderHorsemen: {
+            id: this.serial++,
+            model: this.models.chaosMarauderHorsemen,
+            factions: [this.factions.SLAVESTODARKNESS],
+            size: 5,
+            maxSize: 30,
+            points: 90,
+            maxPoints: 480,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Mortal - Slaves to Darkness Battleline"
         },
         chaosLordOnManticore: {
             id: this.serial++,
@@ -7018,9 +11158,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 250,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: "Mortal Behemoth"
+        },
+        chaosWarshrine: {
+            id: this.serial++,
+            model: this.models.chaosWarshrine,
+            factions: [this.factions.SLAVESTODARKNESS],
+            size: 1,
+            maxSize: 1,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-warshrine-en.pdf",
+            type: "unit",
             subType: "Mortal Behemoth"
         },
         chaosLordOnDaemonicMount: {
@@ -7030,10 +11182,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Mortal Daemon"
+        },
+        chaosSpawn: {
+            id: this.serial++,
+            model: this.models.chaosSpawn,
+            factions: [this.factions.SLAVESTODARKNESS],
+            size: 1,
+            maxSize: 6,
+            points: 50,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Mortal Tzeentch"
         },
         chaosSorcererLord: {
             id: this.serial++,
@@ -7042,7 +11206,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Mortal Wizard"
@@ -7054,7 +11218,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Mortal Wizard - Behemoth"
@@ -7066,7 +11230,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -7078,7 +11242,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -7090,7 +11254,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -7102,7 +11266,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Behemoth"
@@ -7114,7 +11278,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 170,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "monster",
             subType: "Chaos Gargants - Behemoth"
@@ -7126,10 +11290,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 700,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Daemon Mortal Khorne Nurgle Slaanesh Tzeentch Everchosen Wizard - Unique Behemoth"
+        },
+        dragonOgors: {
+            id: this.serial++,
+            model: this.models.dragonOgors,
+            factions: [this.factions.THUNDERSCORN],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Thunderscorn Battleline"
+        },
+        varanguard: {
+            id: this.serial++,
+            model: this.models.varanguard,
+            factions: [this.factions.EVERCHOSEN],
+            size: 3,
+            maxSize: 12,
+            points: 300,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Everchosen - Everchosen Battleline"
         },
         chaosLordOfSlaanesh: {
             id: this.serial++,
@@ -7138,10 +11326,58 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Slaanesh"
+        },
+        hellflayersOfSlaanesh: {
+            id: this.serial++,
+            model: this.models.hellflayersOfSlaanesh,
+            factions: [this.factions.SLAANESHDAEMONS],
+            size: 1,
+            maxSize: 3,
+            points: 80,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Slaanesh"
+        },
+        hellstridersOfSlaanesh: {
+            id: this.serial++,
+            model: this.models.hellstridersOfSlaanesh,
+            factions: [this.factions.SLAANESHDAEMONS],
+            size: 5,
+            maxSize: 20,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Slaanesh - Slaanesh Battleline"
+        },
+        putridBlightkings: {
+            id: this.serial++,
+            model: this.models.putridBlightkings,
+            factions: [this.factions.NURGLEROTBRINGERS],
+            size: 5,
+            maxSize: 20,
+            points: 160,
+            maxPoints: 580,
+            warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-putridblightkings-en.pdf",
+            type: "unit",
+            subType: "Nurgle Battleline"
+        },
+        pusgoyleBlightlords: {
+            id: this.serial++,
+            model: this.models.pusgoyleBlightlords,
+            factions: [this.factions.NURGLEROTBRINGERS],
+            size: 2,
+            maxSize: 12,
+            points: 220,
+            maxPoints: NaN,
+            warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Pusgoyle-blightlords.pdf",
+            type: "unit",
+            subType: "Nurgle Battleline (Lord of Afflictions General)"
         },
         gauntSummonerAndChaosFamiliars: {
             id: this.serial++,
@@ -7150,7 +11386,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Tzeentch Everchosen Arcanites Mortal Daemon Wizard"
@@ -7162,7 +11398,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Tzeentch Everchosen Mortal Daemon Wizard"
@@ -7174,7 +11410,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/AoS_Slambo_Warscroll_EN.pdf",
             type: "hero",
             subType: "Unique"
@@ -7186,7 +11422,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -7198,7 +11434,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Blob-rotspawned.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal Wizard - Unique Behemoth"
@@ -7210,7 +11446,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -7222,7 +11458,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-morbidextwiceborn-en.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal - Unique Behemoth"
@@ -7234,10 +11470,46 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Orghotts_daemonspew.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal - Unique Behemoth"
+        },
+        chaosFamiliars: {
+            id: this.serial++,
+            model: this.models.chaosFamiliars,
+            factions: [this.factions.WARRIORSOFCHAOS],
+            size: 2,
+            maxSize: 8,
+            points: 40,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        chaosOgors: {
+            id: this.serial++,
+            model: this.models.chaosOgors,
+            factions: [this.factions.WARRIORSOFCHAOS],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        chaosTroggoths: {
+            id: this.serial++,
+            model: this.models.chaosTroggoths,
+            factions: [this.factions.WARRIORSOFCHAOS],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
         },
         dragonOgorShaggoth: {
             id: this.serial++,
@@ -7246,7 +11518,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -7258,7 +11530,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -7270,7 +11542,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Sorcerer.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal Wizard"
@@ -7282,7 +11554,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Harbinger-of-decay.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal Daemon"
@@ -7294,7 +11566,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Lord-of-afflictions.pdf",
             type: "hero",
             subType: "Nurgle Rotbringer Mortal Daemon"
@@ -7306,7 +11578,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
             subType: "Khorne Daemon - Behemoth"
@@ -7318,7 +11590,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -7330,7 +11602,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -7342,10 +11614,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
+        },
+        arkanautCompany: {
+            id: this.serial++,
+            model: this.models.arkanautCompany,
+            factions: [this.factions.KHARADRONOVERLORDS],
+            size: 10,
+            maxSize: undefined,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "Battleline"
         },
         arkanautFrigate: {
             id: this.serial++,
@@ -7354,7 +11638,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Behemoth"
@@ -7366,7 +11650,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Behemoth"
@@ -7378,7 +11662,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Unique"
@@ -7390,9 +11674,21 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
+            subType: undefined
+        },
+        endrinriggers: {
+            id: this.serial++,
+            model: this.models.endrinriggers,
+            factions: [this.factions.KHARADRONOVERLORDS],
+            size: 3,
+            maxSize: undefined,
+            points: 120,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
             subType: undefined
         },
         grundstokGunhauler: {
@@ -7402,10 +11698,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "warmachine",
             subType: "Artillery"
+        },
+        grundstokThunderers: {
+            id: this.serial++,
+            model: this.models.grundstokThunderers,
+            factions: [this.factions.KHARADRONOVERLORDS],
+            size: 5,
+            maxSize: undefined,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
+        },
+        skywardens: {
+            id: this.serial++,
+            model: this.models.skywardens,
+            factions: [this.factions.KHARADRONOVERLORDS],
+            size: 3,
+            maxSize: undefined,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: undefined
         },
         khorgosKhul: {
             id: this.serial++,
@@ -7414,7 +11734,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Unique"
@@ -7426,7 +11746,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 640,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Khorne Daemon - Behemoth"
@@ -7438,7 +11758,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nurgle Daemon - Behemoth"
@@ -7450,7 +11770,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Slaanesh Daemon - Behemoth"
@@ -7462,7 +11782,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 580,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Tzeentch Daemon - Behemoth"
@@ -7474,7 +11794,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Behemoth"
@@ -7486,7 +11806,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Unique"
@@ -7498,10 +11818,34 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nurgle Daemon - Unique"
+        },
+        steelheartSChampions: {
+            id: this.serial++,
+            model: this.models.steelheartSChampions,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 3,
+            maxSize: undefined,
+            points: 100,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "One per army"
+        },
+        garrekSReavers: {
+            id: this.serial++,
+            model: this.models.garrekSReavers,
+            factions: [this.factions.KHORNEBLOODBOUND],
+            size: 5,
+            maxSize: undefined,
+            points: 60,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "One per army"
         },
         lordOrdinator: {
             id: this.serial++,
@@ -7510,7 +11854,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: undefined
@@ -7522,7 +11866,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Mortal"
@@ -7534,7 +11878,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Moonclan Wizard"
@@ -7546,7 +11890,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "Nighthaunt"
@@ -7558,10 +11902,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "One per army - Must include Spiteclaw's Swarm"
+        },
+        spiteclawSSwarm: {
+            id: this.serial++,
+            model: this.models.spiteclawSSwarm,
+            factions: [this.factions.SKAVENVERMINUS],
+            size: 4,
+            maxSize: undefined,
+            points: 30,
+            maxPoints: NaN,
+            warcroll: undefined,
+            type: "unit",
+            subType: "One per army - Must include Skritch Spiteclaw"
         },
         fjulGrimnir: {
             id: this.serial++,
@@ -7570,10 +11926,22 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: undefined,
+            maxPoints: NaN,
             warcroll: undefined,
             type: "hero",
             subType: "One per army - Must include The Chosen Axes"
+        },
+        theChosenAxes: {
+            id: this.serial++,
+            model: this.models.theChosenAxes,
+            factions: [this.factions.FYRESLAYERS],
+            size: 3,
+            maxSize: undefined,
+            points: 40,
+            maxPoints: undefined,
+            warcroll: undefined,
+            type: "unit",
+            subType: "One per army - Must include Fjul Grimnir"
         },
     };
     

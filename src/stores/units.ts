@@ -72,7 +72,7 @@ export interface DataStore {
     units: {[key:string]: Unit};
     battalions: Battalion[];
     boxes: Box[];
-    factions: Faction[];
+    factions: {[key:string]: Faction};
 }
 
 export class UnitsStore {
@@ -82,7 +82,7 @@ export class UnitsStore {
     unitList:Unit[] = [];
     battalions: Battalion[];
     boxes: Box[];
-    factions: Faction[];
+    factions: {[key:string]: Faction};
     
     constructor(data: DataStore) {      
         const models = data.models;  

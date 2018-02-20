@@ -35,7 +35,7 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
         }
 
         return <Panel>
-            <Panel.Heading>Units</Panel.Heading>
+            <Panel.Heading>Battalions</Panel.Heading>
             <Table>
                 <thead>
                     <tr>

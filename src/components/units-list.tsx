@@ -12,13 +12,13 @@ export interface UnitsListProps {
     uiStore?: UiStore;
 }
 
-@inject('unitsStore', "warscrollStore")
+@inject('unitsStore', "warscrollStore", "uiStore")
 @observer
 export class UnitsList extends React.Component<UnitsListProps, {}> {
     render() {
         return <DropdownButton title={this.props.title} id="units">
                 {
-                    this.props.unitsStore!.unitList.map(x => <MenuItem key={x.id} onClick={() => this.props.warscrollStore!.addUnit(x)}><span>{x.model.name}</span> <span>{x.size}</span> <span>{x.points}</span></MenuItem>)
+                    this.props.uiStore!.units.map(x => <MenuItem key={x.id} onClick={() => this.props.warscrollStore!.addUnit(x)}><span>{x.model.name}</span> <span>{x.size}</span> <span>{x.points}</span></MenuItem>)
                 }
             </DropdownButton>;
     }    
