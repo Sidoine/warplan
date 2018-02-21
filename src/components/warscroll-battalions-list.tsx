@@ -1,8 +1,8 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
-import { Panel, Table, Button, Glyphicon } from "react-bootstrap";
 import { BattalionsList } from "./battalions-list";
 import { WarscrollStore } from "../stores/warscroll";
+import { Header, Table, Button, Icon } from "semantic-ui-react";
 
 export interface WarscrollBattalionsListProps {
     warscrollStore?: WarscrollStore;
@@ -34,31 +34,32 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
             }
         }
 
-        return <Panel>
-            <Panel.Heading>Battalions</Panel.Heading>
+        return <div>
+            <Header>Battalions</Header>
             <Table>
-                <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Units</th>
-                    <th>Points</th>
-                    </tr>
-                </thead>
+                <Table.Header>
+                    <Table.Row>
+                    <Table.HeaderCell>Name</Table.HeaderCell>
+                    <Table.HeaderCell>Units</Table.HeaderCell>
+                    <Table.HeaderCell>Points</Table.HeaderCell>
+                    <Table.HeaderCell></Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
                 <tbody>
             {
                 warscroll.battalions.map(x => <tr key={x.id}>
                     <td>{x.battalion.name}</td>
                     <td>{x.battalion.units.map(y => <span style={{ color:  requiredUnits.get(y.unit.id) ? 'red' : '' } } key={y.unit.id}>{ y.count} {y.unit.model.name} </span>)}</td>
                     <td>{x.battalion.points}</td>
-                    <td><Button onClick={() => this.props.warscrollStore!.removeBattalion(x)}><Glyphicon glyph="remove"/></Button></td>
+                    <td><Button onClick={() => this.props.warscrollStore!.removeBattalion(x)}><Icon name="remove"/></Button></td>
                 </tr>)
             }
                 </tbody>
             </Table>
-            <Panel.Footer>
+
                 <span>{warscroll.battalionsPoints} points</span>
-                <BattalionsList title="Add"/>
-            </Panel.Footer>
-            </Panel>;
+                <BattalionsList title="Add..."/>
+
+            </div>;
     }
 }

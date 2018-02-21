@@ -1,8 +1,8 @@
 import * as React from "react";
 import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
-import { DropdownButton, MenuItem } from "react-bootstrap";
 import { OwnedStore } from "../stores/owned";
+import { Dropdown, DropdownProps } from "semantic-ui-react";
 
 export interface ModelsListProps {
     unitsStore?: UnitsStore;
@@ -14,11 +14,13 @@ export interface ModelsListProps {
 @observer
 export class ModelsList extends React.Component<ModelsListProps, {}> {
     render() {
-        return <DropdownButton title={this.props.title} id="units">
-                {
-                    this.props.unitsStore!.modelsList.map(x => <MenuItem key={x.id} onClick={() => this.props.ownedStore!.addOwned(x)}>{x.name}</MenuItem>)
-                }
-            </DropdownButton>;
+        const options = this.props.unitsStore!.modelsList.map(x => { return { key: x.id, text: x.name, value: x.id } });
+        return <Dropdown text={this.props.title} search selection options={options} onChange={this.onChange}>
+          </Dropdown>;    
     }
 
+    private onChange = (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
+        const model  = this.props.unitsStore!.modelsList.find(x => x.id === props.value);
+        if (model) this.props.ownedStore!.addOwned(model);
+    }
 }

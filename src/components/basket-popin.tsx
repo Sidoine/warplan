@@ -1,10 +1,10 @@
 import * as React from "react";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
-import { Modal, Button, FormControl, FormGroup, Glyphicon } from "react-bootstrap";
 import { UnitsStore } from "../stores/units";
 import { observable } from "mobx";
 import { BasketStore } from "../stores/basket";
+import { Modal, Button, Input, Icon } from "semantic-ui-react";
 
 export interface BasketPopinProps {
     uiStore?: UiStore;
@@ -19,28 +19,24 @@ export class BasketPopin extends React.Component<BasketPopinProps, {}> {
     basketName: string = "New basket";
 
     render() {
-        return <Modal onHide={this.handleClose} show={true}>
-            <Modal.Header closeButton>
-                <Modal.Title>Baskets</Modal.Title>
-            </Modal.Header>
+        return <Modal onClose={this.handleClose} open={true}>
+            <Modal.Header closeButton>Baskets</Modal.Header>
 
-            <Modal.Body>
+            <Modal.Content>
                 {
                     this.props.basketStore!.baskets.map(x => <div>{x}
                         <Button onClick={() => this.props.basketStore!.saveBasket(x)}>Update</Button>
                         <Button onClick={() => this.props.basketStore!.loadBasket(x)}>Load</Button>
-                        <Button onClick={() => this.props.basketStore!.removeBasket(x)}><Glyphicon glyph="remove"/></Button>
+                        <Button onClick={() => this.props.basketStore!.removeBasket(x)}><Icon glyph="remove"/></Button>
                     </div>)
                 }
-                <FormGroup>
-                    <FormControl type="text" value={this.basketName} onChange={x => this.basketName = (x.target as any).value } />
+                    <Input type="text" value={this.basketName} onChange={(x,d) => this.basketName = d.value } />
                     <Button onClick={() => this.props.basketStore!.saveBasket(this.basketName)}>Add</Button>
-                </FormGroup>
-            </Modal.Body>
+            </Modal.Content>
 
-            <Modal.Footer>
+            <Modal.Actions>
                 <Button onClick={this.handleClose}>Close</Button>
-            </Modal.Footer>
+            </Modal.Actions>
         </Modal>
     }
 

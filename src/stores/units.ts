@@ -89,11 +89,13 @@ export class UnitsStore {
         for (const key in models) {
             this.modelsList.push(models[key]);
         }
+        this.modelsList = this.modelsList.sort((a, b) => a.name > b.name ? 1 : -1);
 
         const units = data.units;
         for (const key in units) {
             this.unitList.push(units[key]);
         }
+        this.unitList = this.unitList.sort((a, b) => a.model.name > b.model.name ? 1: -1);
 
         this.battalions = data.battalions;
         this.boxes = data.boxes;

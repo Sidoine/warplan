@@ -16,11 +16,11 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
 
         return <Segment>
             <Grid>
-                    <Grid.Column md={2} >{totalPoints} points</Grid.Column>
-                    <Grid.Column md={2}>{ !warscroll.isLeadersValid && <Icon name="warning" /> } {warscroll.numberOfLeaders} leaders ({warscroll.minLeaders} - {warscroll.maxLeaders})</Grid.Column>
-                    <Grid.Column md={2}>{ !warscroll.isBattelinesValid && <Icon name="warning" /> }{warscroll.numberOfBattelines} battlelines ({warscroll.minBattlelines} - {warscroll.maxBattlelines})</Grid.Column>
-                    <Grid.Column md={2}>{ !warscroll.isBehemotsValid && <Icon name="warning" /> }{warscroll.numberOfBehemots} behemots (0 - {warscroll.maxBehemots})</Grid.Column>
-                    <Grid.Column md={2}>{ !warscroll.isArtilleryValid && <Icon name="warning" /> }{warscroll.numberOfArtillery} artillery (0 - {warscroll.maxArtillery})</Grid.Column>
+                    <Grid.Column width={3} >{totalPoints} points</Grid.Column>
+                    <Grid.Column width={3}>{ !warscroll.isLeadersValid && <Icon name="warning" /> } {warscroll.numberOfLeaders} leaders ({warscroll.minLeaders} - {warscroll.maxLeaders})</Grid.Column>
+                    <Grid.Column width={3}>{ !warscroll.isBattelinesValid && <Icon name="warning" /> }{warscroll.numberOfBattelines} battlelines ({warscroll.minBattlelines} - {warscroll.maxBattlelines})</Grid.Column>
+                    <Grid.Column width={3}>{ !warscroll.isBehemotsValid && <Icon name="warning" /> }{warscroll.numberOfBehemots} behemots (0 - {warscroll.maxBehemots})</Grid.Column>
+                    <Grid.Column width={3}>{ !warscroll.isArtilleryValid && <Icon name="warning" /> }{warscroll.numberOfArtillery} artillery (0 - {warscroll.maxArtillery})</Grid.Column>
             </Grid>
             </Segment>;
     }

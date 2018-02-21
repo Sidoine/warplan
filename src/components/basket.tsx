@@ -1,10 +1,10 @@
 import * as React from "react";
 import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
-import { Panel, Table, Button } from "react-bootstrap";
 import { BasketElementEdit } from "./basket-element-edit";
 import { UiStore } from "../stores/ui";
 import { BasketStore } from "../stores/basket";
+import { Table, Button, Header } from "semantic-ui-react";
 
 export interface BasketProps {
     unitsStore?: UnitsStore;
@@ -17,26 +17,24 @@ export interface BasketProps {
 export class Basket extends React.Component<BasketProps, {}> {
     render() {
         const basket = this.props.basketStore!.basket;
-        return <Panel>
-            <Panel.Heading>Basket</Panel.Heading>
+        return <div>
+            <Header>Basket</Header>
             <Table>
-                <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Count</th>
-                    <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <Table.Header>
+                    <Table.HeaderCell>Name</Table.HeaderCell>
+                    <Table.HeaderCell>Count</Table.HeaderCell>
+                    <Table.HeaderCell>Price</Table.HeaderCell>
+                </Table.Header>
+                <Table.Body>
             {
                 basket.map(x => <BasketElementEdit key={x.id} basketElement={x}/>)
             }
-                </tbody>
-            </Table>
-            <Panel.Footer>
+                </Table.Body>
+                <Table.Footer>
                 <span>{basket.reduce((p, x) => x.count * x.box.price + p, 0)} €</span>
                 <Button onClick={() => this.props.uiStore!.showBasketPopin()}>Manage baskets</Button>
-            </Panel.Footer>
-        </Panel>;
+            </Table.Footer>
+            </Table>
+        </div>;
     }
 }

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { OwnedModelEdit } from "./owned-model-edit";
-import { Panel, Table } from "react-bootstrap";
 import { ModelsList } from "./models-list";
 import { OwnedStore } from "../stores/owned";
+import { Header, Table } from "semantic-ui-react";
 
 export interface OwnedModelsListProps {
     ownedStore?: OwnedStore;
@@ -13,25 +13,23 @@ export interface OwnedModelsListProps {
 @observer
 export class OwnedModelsList extends React.Component<OwnedModelsListProps, {}> {
     render() {
-        return <Panel>
-            <Panel.Heading>Possessions</Panel.Heading>
+        return <div>
+            <Header>Possessions</Header>
             <Table>
-                <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Count</th>
-                    <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+                <Table.Header>
+                    <Table.Row>
+                    <Table.HeaderCell>Name</Table.HeaderCell>
+                    <Table.HeaderCell>Count</Table.HeaderCell>
+                    <Table.HeaderCell></Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
                 {
                     this.props.ownedStore!.ownedModels.map(x => <OwnedModelEdit key={x.id} model={x}/>)
                 }
-                </tbody>
+                </Table.Body>
             </Table>
-            <Panel.Footer>
-                <ModelsList title="Add"/>
-            </Panel.Footer>
-        </Panel>;
+            <ModelsList title="Add..."/>
+        </div>;
     }
 }

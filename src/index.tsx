@@ -15,6 +15,7 @@ import { BasketStore } from "./stores/basket";
 import { WarscrollStore } from "./stores/warscroll";
 import { OwnedStore } from "./stores/owned";
 import { DataStoreImpl } from "./stores/imported-data";
+import { Container } from "semantic-ui-react";
 
 const root = document.getElementById("root");
 
@@ -28,7 +29,7 @@ const basketStore = new BasketStore(unitsStore, warscrollStore, ownedStore);
 ReactDOM.render(
     <Provider ownedStore={ownedStore} unitsStore={unitsStore} uiStore={uiStore} basketStore={basketStore} warscrollStore={warscrollStore}>
         <HashRouter>
-            <>
+            <Container>
                 <Popins/>    
                 <Route render={ x => <MyNavbar route={x} /> }/>
                 <Switch>
@@ -37,7 +38,7 @@ ReactDOM.render(
                     <Route exact path="/missing" component={MissingsList}/>
                     <Route exact path="/basket" component={Basket}/>
                 </Switch>
-            </>
+            </Container>
         </HashRouter>
     </Provider>    
     ,

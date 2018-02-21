@@ -1,9 +1,9 @@
 import * as React from "react";
 import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
-import { DropdownButton, MenuItem } from "react-bootstrap";
 import { WarscrollStore } from "../stores/warscroll";
 import { UiStore } from "../stores/ui";
+import { Dropdown, DropdownProps } from "semantic-ui-react";
 
 export interface UnitsListProps {
     unitsStore?: UnitsStore;
@@ -16,10 +16,12 @@ export interface UnitsListProps {
 @observer
 export class UnitsList extends React.Component<UnitsListProps, {}> {
     render() {
-        return <DropdownButton title={this.props.title} id="units">
-                {
-                    this.props.uiStore!.units.map(x => <MenuItem key={x.id} onClick={() => this.props.warscrollStore!.addUnit(x)}><span>{x.model.name}</span> <span>{x.size}</span> <span>{x.points}</span></MenuItem>)
-                }
-            </DropdownButton>;
+        const options = this.props.uiStore!.units.map(x => { return { key: x.id, value: x.id, text: x.model.name, description: x.points }});
+        return <Dropdown search selection placeholder={this.props.title} options={options} onChange={this.onChange}></Dropdown>;
     }    
+
+    private onChange = (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
+        const unit  = this.props.unitsStore!.unitList.find(x => x.id === props.value);
+        if (unit) this.props.warscrollStore!.addUnit(unit);
+    }
 }

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
-import { Panel, Table } from "react-bootstrap";
 import { BoxesList } from "./boxes-list";
 import { BasketStore } from "../stores/basket";
+import { Header, Table } from "semantic-ui-react";
 
 export interface MissingsListProps {
     unitsStore?: UnitsStore;
@@ -17,23 +17,28 @@ export class MissingsList extends React.Component<MissingsListProps, {}> {
     render() {
         const neededModels = this.props.basketStore!.missingModels;        
 
-        return <Panel>
-            <Panel.Heading>Missings list</Panel.Heading>
+        return <div>
+            <Header>Missings list</Header>
             <Table>
-                <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Count</th>
-                    <th>In basket</th>
-                    <th>Buy</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <Table.Header>
+                    <Table.Row>
+                    <Table.HeaderCell>Name</Table.HeaderCell>
+                    <Table.HeaderCell>Count</Table.HeaderCell>
+                    <Table.HeaderCell>In basket</Table.HeaderCell>
+                    <Table.HeaderCell>Buy</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
             {
-                neededModels.map(x => <tr key={x.id}><td>{x.model.name}</td><td>{x.count}</td><td>{x.inBasket}</td><td><BoxesList model={x.model} title="Buy" /></td></tr>)
+                neededModels.map(x => <Table.Row key={x.id}>
+                    <Table.Cell>{x.model.name}</Table.Cell>
+                    <Table.Cell>{x.count}</Table.Cell>
+                    <Table.Cell>{x.inBasket}</Table.Cell>
+                    <Table.Cell><BoxesList model={x.model} title="Buy" /></Table.Cell>
+                </Table.Row>)
             }
-                </tbody>
+                </Table.Body>
             </Table>
-            </Panel>;
+            </div>;
     }
 }

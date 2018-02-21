@@ -5,6 +5,7 @@ import { UnitsList } from "./units-list";
 import { WarscrollUnitEdit } from "./warscroll-unit-edit";
 import { WarscrollStore } from "../stores/warscroll";
 import { Table } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 
 export interface WarscrollUnitsListProps {
     unitsStore?: UnitsStore;
@@ -17,7 +18,7 @@ export class WarscrollUnitsList extends React.Component<WarscrollUnitsListProps,
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;
         return <div>
-            <h1>Units</h1>
+            <Header>Units</Header>
             <Table>
                 <Table.Header>
                     <Table.Row>
@@ -35,7 +36,7 @@ export class WarscrollUnitsList extends React.Component<WarscrollUnitsListProps,
             </Table>
             <div>
                 <span>{warscroll.unitsPoints} points</span>
-                <UnitsList title="Add"/>
+                <UnitsList title="Add..."/>
             </div>
             </div>;
     }
