@@ -1,8 +1,9 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
-import { Button, Glyphicon, Checkbox } from "react-bootstrap";
+import { Checkbox } from "react-bootstrap";
 import { NumberControl } from "../atoms/number-control";
 import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
+import { Button, Table, Icon } from "semantic-ui-react";
 
 export interface WarscrollUnitEditProps {
     unit: WarscrollUnit;
@@ -14,19 +15,19 @@ export interface WarscrollUnitEditProps {
 export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {}> {
     render() {
         const unit = this.props.unit;
-        return <tr>
-            <td>
+        return <Table.Row>
+            <Table.Cell>
                 <div>{unit.unit.model.name}</div>
                 <div>
                     {unit.isLeader && "Leader"}
                     {unit.isLeader && <Checkbox checked={unit === this.props.warscrollStore!.warscroll.general} onChange={this.toggleGeneral} >General</Checkbox>}
                 </div>
-            </td>
-            <td><NumberControl value={unit.count} onChange={this.onCountChange} /></td>
-            <td>{unit.unit.points * unit.count}</td>
-            <td>
-                <Button onClick={() => this.props.warscrollStore!.removeUnit(this.props.unit)}><Glyphicon glyph="remove"/></Button>
-            </td></tr>;
+            </Table.Cell>
+            <Table.Cell><NumberControl value={unit.count} onChange={this.onCountChange} /></Table.Cell>
+            <Table.Cell>{unit.unit.points * unit.count}</Table.Cell>
+            <Table.Cell>
+                <Button onClick={() => this.props.warscrollStore!.removeUnit(this.props.unit)}><Icon name="remove"/></Button>
+            </Table.Cell></Table.Row>;
     }
 
     private toggleGeneral = (event: React.FormEvent<Checkbox>) => {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, FormControl, InputGroup, Glyphicon } from "react-bootstrap";
+import { Input, Button, Icon, InputOnChangeData } from "semantic-ui-react";
 
 export interface NumberControlProps {
     value: number;
@@ -9,17 +9,15 @@ export interface NumberControlProps {
 
 export class NumberControl extends React.Component<NumberControlProps, {}> {
     render() {
-        return <InputGroup>
-                    <FormControl type="text" value={this.props.value} onChange={this.onCountChange} />
-                    <InputGroup.Button>
-                        <Button onClick={this.plus}><Glyphicon glyph="plus"/></Button>
-                        <Button onClick={this.minus}><Glyphicon glyph="minus"/></Button>
-                    </InputGroup.Button>
-                </InputGroup>;
+        return <Input type="text" action onChange={this.onCountChange} value={this.props.value}>
+                    <input/>    
+                    <Button onClick={this.plus}><Icon name="plus"/></Button>
+                    <Button onClick={this.minus}><Icon name="minus"/></Button>
+                </Input>;
     }
 
-    private onCountChange = (event: React.FormEvent<FormControl>) => {
-        const value = parseInt((event.target as any).value);
+    private onCountChange = (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => {
+        const value = parseInt(data.value);
         if (this.props.min === undefined || value >= this.props.min) this.props.onChange(value);
     }
 

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
-import { Button, Glyphicon } from "react-bootstrap";
 import { NumberControl } from "../atoms/number-control";
 import { BasketStore, BasketElement } from "../stores/basket";
+import { Button, Icon } from "semantic-ui-react";
 
 export interface BasketElementEditProps {
     unitsStore?: UnitsStore;
@@ -21,7 +21,7 @@ export class BasketElementEdit extends React.Component<BasketElementEditProps, {
             <td><NumberControl value={basketElement.count} onChange={this.onCountChange} /></td>
             <td>{basketElement.box.price * basketElement.count}</td>
             <td>
-            <Button onClick={() => this.props.basketStore!.removeBasketElement(this.props.basketElement)}><Glyphicon glyph="remove"/></Button>
+            <Button onClick={() => this.props.basketStore!.removeBasketElement(this.props.basketElement)}><Icon name="remove"/></Button>
             </td></tr>;
     }
 

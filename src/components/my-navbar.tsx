@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Navbar, Nav, NavItem, Badge } from "react-bootstrap";
 import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { RouteComponentProps } from "react-router";
 import { BasketStore } from "../stores/basket";
 import { WarscrollStore } from "../stores/warscroll";
+import { Label, Menu } from 'semantic-ui-react';
 
 export interface MyNavbarProps {
     unitsStore?: UnitsStore;
@@ -17,19 +17,12 @@ export interface MyNavbarProps {
 @observer
 export class MyNavbar extends React.Component<MyNavbarProps, {}> {
     render() {
-        return <Navbar inverse collapseOnSelect>
-                    <Navbar.Header>
-                        <Navbar.Brand>Warhammer</Navbar.Brand>
-                    </Navbar.Header>
-                    <Navbar.Toggle/>
-                    <Navbar.Collapse>
-                        <Nav activeHref={`#${this.props.route.location.pathname}`} >
-                            <NavItem href="#/">Owned</NavItem>
-                            <NavItem href="#/warscroll">Warscroll <Badge>{ this.props.warscrollStore!.warscroll.totalPoints }</Badge></NavItem>
-                            <NavItem href="#/missing">Missing <Badge>{ this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length }</Badge></NavItem>
-                            <NavItem href="#/basket">Basket { this.props.basketStore!.basket.length > 0 && <Badge>{ this.props.basketStore!.basket.length }</Badge> }</NavItem>
-                        </Nav>
-                    </Navbar.Collapse>
-        </Navbar>
+        const pathname = this.props.route.location.pathname;
+        return <Menu>
+            <Menu.Item active={pathname === "#/"} href="#/">Owned</Menu.Item>
+            <Menu.Item href="#/warscroll">Warscroll <Label>{ this.props.warscrollStore!.warscroll.totalPoints }</Label></Menu.Item>
+            <Menu.Item href="#/missing">Missing <Label>{ this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length }</Label></Menu.Item>
+            <Menu.Item href="#/basket">Basket { this.props.basketStore!.basket.length > 0 && <Label>{ this.props.basketStore!.basket.length }</Label> }</Menu.Item>
+        </Menu>
     }
 }

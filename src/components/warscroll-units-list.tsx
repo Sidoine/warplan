@@ -3,8 +3,8 @@ import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { UnitsList } from "./units-list";
 import { WarscrollUnitEdit } from "./warscroll-unit-edit";
-import { Panel, Table } from "react-bootstrap";
 import { WarscrollStore } from "../stores/warscroll";
+import { Table } from "semantic-ui-react";
 
 export interface WarscrollUnitsListProps {
     unitsStore?: UnitsStore;
@@ -16,26 +16,27 @@ export interface WarscrollUnitsListProps {
 export class WarscrollUnitsList extends React.Component<WarscrollUnitsListProps, {}> {
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;
-        return <Panel>
-            <Panel.Heading>Units</Panel.Heading>
+        return <div>
+            <h1>Units</h1>
             <Table>
-                <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Count</th>
-                    <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Name</Table.HeaderCell>
+                        <Table.HeaderCell>Count</Table.HeaderCell>
+                        <Table.HeaderCell>Points</Table.HeaderCell>
+                        <Table.HeaderCell></Table.HeaderCell>    
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
             {
                 warscroll.units.map(x => <WarscrollUnitEdit key={x.id} unit={x}/>)
             }
-                </tbody>
+                </Table.Body>
             </Table>
-            <Panel.Footer>
+            <div>
                 <span>{warscroll.unitsPoints} points</span>
                 <UnitsList title="Add"/>
-            </Panel.Footer>
-            </Panel>;
+            </div>
+            </div>;
     }
 }
