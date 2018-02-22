@@ -3910,10 +3910,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         beastlordOnChariot: {
             id: this.serial++,
@@ -3922,10 +3923,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         wargorStandardBearer: {
             id: this.serial++,
@@ -3934,10 +3936,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         beastlord: {
             id: this.serial++,
@@ -3946,10 +3949,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-beastlord-en.pdf",
             type: "hero",
-            subType: "Brayherd"
+            subType: "Brayherd",
+            isLeader: () => true,
         },
         bestigors: {
             id: this.serial++,
@@ -3961,7 +3965,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bestigors-en.pdf",
             type: "unit",
-            subType: "Brayherd - Brayherd Battleline"
+            subType: "Brayherd - Brayherd Battleline",
+            isBatteline: () => true,
         },
         greatBrayShaman: {
             id: this.serial++,
@@ -3970,10 +3975,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 90,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-great-bray-shaman-en.pdf",
             type: "hero",
-            subType: "Brayherd"
+            subType: "Brayherd",
+            isLeader: () => true,
         },
         tuskgorChariots: {
             id: this.serial++,
@@ -3982,10 +3988,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 4,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tuskgor-chariot-en.pdf",
             type: "unit",
-            subType: "Brayherd"
+            subType: "Brayherd",
         },
         gors: {
             id: this.serial++,
@@ -3997,7 +4003,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 210,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-gors-en.pdf",
             type: "unit",
-            subType: "Brayherd - Battleline"
+            subType: "Brayherd - Battleline",
+            isBatteline: () => true,
         },
         ungors: {
             id: this.serial++,
@@ -4009,7 +4016,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 200,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ungors-en.pdf",
             type: "unit",
-            subType: "Brayherd - Battleline"
+            subType: "Brayherd - Battleline",
+            isBatteline: () => true,
         },
         ungorRaiders: {
             id: this.serial++,
@@ -4021,7 +4029,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: undefined,
             type: "unit",
-            subType: "Brayherd - Brayherd Battleline"
+            subType: "Brayherd - Brayherd Battleline",
+            isBatteline: () => true,
         },
         bloodThrone: {
             id: this.serial++,
@@ -4030,10 +4039,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-bloodthrone-en.pdf",
             type: "hero",
-            subType: "Khorne Daemon"
+            subType: "Khorne Daemon",
+            isLeader: () => true,
         },
         bloodmasterHeraldOfKhorne: {
             id: this.serial++,
@@ -4042,10 +4052,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodmaster-en.pdf",
             type: "hero",
-            subType: "Khorne Daemon"
+            subType: "Khorne Daemon",
+            isLeader: () => true,
         },
         karanak: {
             id: this.serial++,
@@ -4054,10 +4065,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-karanak-en.pdf",
             type: "hero",
-            subType: "Khorne Daemon"
+            subType: "Khorne Daemon",
+            isLeader: () => true,
         },
         skullmasterHeraldOfKhorne: {
             id: this.serial++,
@@ -4066,10 +4078,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullmaster-en.pdf",
             type: "hero",
-            subType: "Khorne Daemon"
+            subType: "Khorne Daemon",
+            isLeader: () => true,
         },
         skulltaker: {
             id: this.serial++,
@@ -4078,10 +4091,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skulltaker-en.pdf",
             type: "hero",
-            subType: "Khorne Daemon"
+            subType: "Khorne Daemon",
+            isLeader: () => true,
         },
         skullCannons: {
             id: this.serial++,
@@ -4090,10 +4104,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-skullcannon-en.pdf",
             type: "unit",
-            subType: "Khorne Daemon - Artillery"
+            subType: "Khorne Daemon - Artillery",
+            isArtillery: () => true,
         },
         bloodletters: {
             id: this.serial++,
@@ -4105,7 +4120,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 270,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-bloodletters-en.pdf",
             type: "unit",
-            subType: "Khorne Daemon - Battleline"
+            subType: "Khorne Daemon - Battleline",
+            isBatteline: () => true,
         },
         bloodthirsterOfInsensateRage: {
             id: this.serial++,
@@ -4114,10 +4130,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Khorne Daemon - Behemoth"
+            subType: "Khorne Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         bloodthirsterOfUnfetteredFury: {
             id: this.serial++,
@@ -4126,10 +4144,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-khorne-bloodthirster-en.pdf",
             type: "hero",
-            subType: "Khorne Daemon - Behemoth"
+            subType: "Khorne Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         skarbrand: {
             id: this.serial++,
@@ -4138,10 +4158,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-scarbrand-en.pdf",
             type: "hero",
-            subType: "Khorne Daemon - Behemoth"
+            subType: "Khorne Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         wrathOfKhorneBloodthirster: {
             id: this.serial++,
@@ -4150,10 +4172,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 330,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Khorne Daemon - Behemoth"
+            subType: "Khorne Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         fleshHounds: {
             id: this.serial++,
@@ -4162,10 +4186,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-flesh-hounds-en.pdf",
             type: "unit",
-            subType: "Khorne Daemon - Khorne Daemon Battleline (Karanak General)"
+            subType: "Khorne Daemon - Khorne Daemon Battleline (Karanak General)",
+            isBatteline: () => true,
         },
         bloodcrushers: {
             id: this.serial++,
@@ -4174,10 +4199,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-bloodcrushers-en.pdf",
             type: "unit",
-            subType: "Khorne Daemon - Khorne Daemon Battleline (Skullmaster Herald of Khorne General)"
+            subType: "Khorne Daemon - Khorne Daemon Battleline (Skullmaster Herald of Khorne General)",
+            isBatteline: () => true,
         },
         screamersOfTzeentch: {
             id: this.serial++,
@@ -4186,10 +4212,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-screamers-of-tzeentch-en.pdf",
             type: "unit",
-            subType: "Tzeentch Daemon"
+            subType: "Tzeentch Daemon",
         },
         pinkHorrorsOfTzeentch: {
             id: this.serial++,
@@ -4201,7 +4227,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 300,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-pink-horrors-of-tzeentch-en.pdf",
             type: "unit",
-            subType: "Tzeentch Daemon - Battleline"
+            subType: "Tzeentch Daemon - Battleline",
+            isBatteline: () => true,
         },
         burningChariotsOfTzeentch: {
             id: this.serial++,
@@ -4210,10 +4237,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-burning-chariot-of-tzeentch-en.pdf",
             type: "unit",
-            subType: "Tzeentch Daemon - Tzeentch Daemon Battleline (Herald on Chariot General)"
+            subType: "Tzeentch Daemon - Tzeentch Daemon Battleline (Herald on Chariot General)",
+            isBatteline: () => true,
         },
         heraldOfTzeentch: {
             id: this.serial++,
@@ -4222,10 +4250,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Tzeentch Daemon Wizard"
+            subType: "Tzeentch Daemon Wizard",
+            isLeader: () => true,
         },
         heraldOfTzeentchOnBurningChariot: {
             id: this.serial++,
@@ -4234,10 +4263,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-herald-tzeentch-burning-chariot-en.pdf",
             type: "hero",
-            subType: "Tzeentch Daemon Wizard"
+            subType: "Tzeentch Daemon Wizard",
+            isLeader: () => true,
         },
         heraldOfTzeentchOnDisc: {
             id: this.serial++,
@@ -4246,10 +4276,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-herald-tzeentch-disc-en.pdf",
             type: "hero",
-            subType: "Tzeentch Daemon Wizard"
+            subType: "Tzeentch Daemon Wizard",
+            isLeader: () => true,
         },
         theBlueScribes: {
             id: this.serial++,
@@ -4258,10 +4289,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-the-blue-scribes-en.pdf",
             type: "hero",
-            subType: "Tzeentch Daemon Wizard - Unique "
+            subType: "Tzeentch Daemon Wizard - Unique ",
+            isLeader: () => true,
         },
         theChangeling: {
             id: this.serial++,
@@ -4270,10 +4302,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-the-changeling-en.pdf",
             type: "hero",
-            subType: "Tzeentch Daemon Wizard - Unique "
+            subType: "Tzeentch Daemon Wizard - Unique ",
+            isLeader: () => true,
         },
         blueHorrorsOfTzeentch: {
             id: this.serial++,
@@ -4285,7 +4318,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 120,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-blue-horrors-en.pdf",
             type: "unit",
-            subType: "Tzeentch Daemons"
+            subType: "Tzeentch Daemons",
         },
         brimstoneHorrorsOfTzeentch: {
             id: this.serial++,
@@ -4297,7 +4330,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 100,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-brimstone-horrors-en.pdf",
             type: "unit",
-            subType: "Tzeentch Daemons"
+            subType: "Tzeentch Daemons",
         },
         skaaracTheBloodborn: {
             id: this.serial++,
@@ -4306,10 +4339,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Khorne - Unique Behemoth"
+            subType: "Khorne - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         khorgoraths: {
             id: this.serial++,
@@ -4318,10 +4353,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 6,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Khorne Bloodbound"
+            subType: "Khorne Bloodbound",
         },
         aspiringDeathbringer: {
             id: this.serial++,
@@ -4330,10 +4365,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-aspiringdeathbringer-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         aspiringDeathbringerWithGoreaxeAndSkullhammer: {
             id: this.serial++,
@@ -4342,10 +4378,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-aspiringdeathbringer-goreaxe-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         bloodsecrator: {
             id: this.serial++,
@@ -4354,10 +4391,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads/Korghos_Bloodsecrator_CB_Web%20-%20cropped.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         bloodstoker: {
             id: this.serial++,
@@ -4366,10 +4404,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         exaltedDeathbringer: {
             id: this.serial++,
@@ -4378,10 +4417,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalteddeathbringer-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         exaltedDeathbringerWithImpalingSpear: {
             id: this.serial++,
@@ -4390,10 +4430,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalteddeathbringer-impaling-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         lordOfKhorneOnJuggernaut: {
             id: this.serial++,
@@ -4402,10 +4443,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lordjuggernaught-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         mightyLordOfKhorne: {
             id: this.serial++,
@@ -4414,10 +4456,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         skullgrinder: {
             id: this.serial++,
@@ -4426,10 +4469,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullgrinder-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         slaughterpriest: {
             id: this.serial++,
@@ -4438,10 +4482,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-slaughterpriest-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         slaughterpriestWithHackbladeAndWrathhammer: {
             id: this.serial++,
@@ -4450,10 +4495,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-slaughterpriest-hackblade-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal"
+            subType: "Khorne Bloodbound Mortal",
+            isLeader: () => true,
         },
         bloodWarriors: {
             id: this.serial++,
@@ -4465,7 +4511,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 520,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodwarriors-en.pdf",
             type: "unit",
-            subType: "Khorne Bloodbound Mortal - Battleline"
+            subType: "Khorne Bloodbound Mortal - Battleline",
+            isBatteline: () => true,
         },
         bloodreavers: {
             id: this.serial++,
@@ -4477,7 +4524,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 240,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodreavers-en.pdf",
             type: "unit",
-            subType: "Khorne Bloodbound Mortal - Battleline"
+            subType: "Khorne Bloodbound Mortal - Battleline",
+            isBatteline: () => true,
         },
         mightySkullcrushers: {
             id: this.serial++,
@@ -4486,10 +4534,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullcrushers-en.pdf",
             type: "unit",
-            subType: "Khorne Bloodbound Mortal - Khorne Bloodbound Battleline (Lord of Khorne on Juggernaut General)"
+            subType: "Khorne Bloodbound Mortal - Khorne Bloodbound Battleline (Lord of Khorne on Juggernaut General)",
+            isBatteline: () => true,
         },
         scylaAnfingrimm: {
             id: this.serial++,
@@ -4498,10 +4547,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-scylaanfingrimm-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal - Unique "
+            subType: "Khorne Bloodbound Mortal - Unique ",
+            isLeader: () => true,
         },
         skarrBloodwrath: {
             id: this.serial++,
@@ -4510,10 +4560,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skarrbloodwrath-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal - Unique "
+            subType: "Khorne Bloodbound Mortal - Unique ",
+            isLeader: () => true,
         },
         valkiaTheBloody: {
             id: this.serial++,
@@ -4522,10 +4573,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-valkiathebloody-en.pdf",
             type: "hero",
-            subType: "Khorne Bloodbound Mortal - Unique "
+            subType: "Khorne Bloodbound Mortal - Unique ",
+            isLeader: () => true,
         },
         skullreapers: {
             id: this.serial++,
@@ -4534,10 +4586,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullreapers-en.pdf",
             type: "unit",
-            subType: "Khorne Mortal Bloodbound"
+            subType: "Khorne Mortal Bloodbound",
         },
         wrathmongers: {
             id: this.serial++,
@@ -4546,10 +4598,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-wrathmongers-en.pdf",
             type: "unit",
-            subType: "Khorne Mortal Bloodbound"
+            subType: "Khorne Mortal Bloodbound",
         },
         jabberslythe: {
             id: this.serial++,
@@ -4558,10 +4610,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-jabberslythe-en.pdf",
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         centigors: {
             id: this.serial++,
@@ -4570,10 +4622,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-centigors-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         chaosWarhounds: {
             id: this.serial++,
@@ -4585,7 +4637,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 210,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-warhounds-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         harpies: {
             id: this.serial++,
@@ -4594,10 +4646,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 70,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         razorgors: {
             id: this.serial++,
@@ -4606,10 +4658,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 6,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-razorgor-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         tzaangorEnlightened: {
             id: this.serial++,
@@ -4618,10 +4670,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 9,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Tzeentch Arcanites"
+            subType: "Tzeentch Arcanites",
         },
         tzaangors: {
             id: this.serial++,
@@ -4633,7 +4685,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 450,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangors-en.pdf",
             type: "unit",
-            subType: "Tzeentch Arcanites - Battleline"
+            subType: "Tzeentch Arcanites - Battleline",
+            isBatteline: () => true,
         },
         tzaangorEnlightenedOnDisc: {
             id: this.serial++,
@@ -4642,10 +4695,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangor-enlightened-en.pdf",
             type: "unit",
-            subType: "Tzeentch Arcanites Daemon"
+            subType: "Tzeentch Arcanites Daemon",
         },
         tzaangorSkyfires: {
             id: this.serial++,
@@ -4654,10 +4707,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 9,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangor-skyfires-en.pdf",
             type: "unit",
-            subType: "Tzeentch Arcanites Daemon"
+            subType: "Tzeentch Arcanites Daemon",
         },
         tzaangorShaman: {
             id: this.serial++,
@@ -4666,10 +4719,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangor-shaman-en.pdf",
             type: "hero",
-            subType: "Tzeentch Arcanites Daemon Wizard"
+            subType: "Tzeentch Arcanites Daemon Wizard",
+            isLeader: () => true,
         },
         kairicAcolytes: {
             id: this.serial++,
@@ -4681,7 +4735,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kairic-acolytes-en.pdf",
             type: "unit",
-            subType: "Tzeentch Arcanites Mortal - Battleline"
+            subType: "Tzeentch Arcanites Mortal - Battleline",
+            isBatteline: () => true,
         },
         fatemaster: {
             id: this.serial++,
@@ -4690,10 +4745,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fatemaster-en.pdf",
             type: "hero",
-            subType: "Tzeentch Arcanites Mortal Daemon"
+            subType: "Tzeentch Arcanites Mortal Daemon",
+            isLeader: () => true,
         },
         gauntSummoner: {
             id: this.serial++,
@@ -4702,10 +4758,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-gaunt-summoner-2016-en.pdf",
             type: "hero",
-            subType: "Tzeentch Arcanites Mortal Daemon Wizard"
+            subType: "Tzeentch Arcanites Mortal Daemon Wizard",
+            isLeader: () => true,
         },
         curselingEyeOfTzeentch: {
             id: this.serial++,
@@ -4714,10 +4771,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-cursling-eye-of-tzeentch-en.pdf",
             type: "hero",
-            subType: "Tzeentch Arcanites Mortal Wizard"
+            subType: "Tzeentch Arcanites Mortal Wizard",
+            isLeader: () => true,
         },
         magister: {
             id: this.serial++,
@@ -4726,10 +4784,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-arcanites-magister-en.pdf",
             type: "hero",
-            subType: "Tzeentch Arcanites Mortal Wizard"
+            subType: "Tzeentch Arcanites Mortal Wizard",
+            isLeader: () => true,
         },
         ogroidThaumaturge: {
             id: this.serial++,
@@ -4738,10 +4797,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogroid-thaumaturge-en.pdf",
             type: "hero",
-            subType: "Tzeentch Arcanites Mortal Wizard"
+            subType: "Tzeentch Arcanites Mortal Wizard",
+            isLeader: () => true,
         },
         doombull: {
             id: this.serial++,
@@ -4750,10 +4810,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-doombull-en.pdf",
             type: "hero",
-            subType: "Warherd"
+            subType: "Warherd",
+            isLeader: () => true,
         },
         cygor: {
             id: this.serial++,
@@ -4762,10 +4823,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-cygor-en.pdf",
             type: "monster",
-            subType: "Warherd - Behemoth"
+            subType: "Warherd - Behemoth",
+            isBehemot: () => true,
         },
         ghorgon: {
             id: this.serial++,
@@ -4774,10 +4836,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ghorgon-en.pdf",
             type: "monster",
-            subType: "Warherd - Behemoth"
+            subType: "Warherd - Behemoth",
+            isBehemot: () => true,
         },
         bullgors: {
             id: this.serial++,
@@ -4786,10 +4849,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bullgors-en.pdf",
             type: "unit",
-            subType: "Warherd - Warherd Battleline"
+            subType: "Warherd - Warherd Battleline",
+            isBatteline: () => true,
         },
         hellcannon: {
             id: this.serial++,
@@ -4798,10 +4862,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         daemonettesOfSlaanesh: {
             id: this.serial++,
@@ -4813,7 +4877,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 270,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-daemonettes-of-slaanesh-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         mutalithVortexBeast: {
             id: this.serial++,
@@ -4822,10 +4886,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-mutalith-vortex-beast-en.pdf",
             type: "monster",
-            subType: "Tzeentch - Behemoth"
+            subType: "Tzeentch - Behemoth",
+            isBehemot: () => true,
         },
         slaughterbrute: {
             id: this.serial++,
@@ -4834,10 +4899,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-slaughterbrute-en.pdf",
             type: "monster",
-            subType: "Khorne - Behemoth"
+            subType: "Khorne - Behemoth",
+            isBehemot: () => true,
         },
         furies: {
             id: this.serial++,
@@ -4849,7 +4915,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 320,
             warcroll: undefined,
             type: "unit",
-            subType: "Chaos Daemon"
+            subType: "Chaos Daemon",
         },
         daemonPrince: {
             id: this.serial++,
@@ -4858,10 +4924,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
-            subType: "Chaos Daemon - Behemoth"
+            subType: "Chaos Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         soulGrinder: {
             id: this.serial++,
@@ -4870,10 +4938,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-soul-grinder-en.pdf",
             type: "monster",
-            subType: "Chaos Daemon - Behemoth"
+            subType: "Chaos Daemon - Behemoth",
+            isBehemot: () => true,
         },
         beLakorChaosDaemonPrince: {
             id: this.serial++,
@@ -4882,10 +4951,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-belakor-en.pdf",
             type: "hero",
-            subType: "Chaos Daemon - Unique Behemoth"
+            subType: "Chaos Daemon - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         fiendsOfSlaanesh: {
             id: this.serial++,
@@ -4894,10 +4965,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 9,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fiend-of-slaanesh-en.pdf",
             type: "unit",
-            subType: "Slaanesh"
+            subType: "Slaanesh",
         },
         heraldOfSlaanesh: {
             id: this.serial++,
@@ -4906,10 +4977,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-herald-of-slaanesh-en.pdf",
             type: "hero",
-            subType: "Slaanesh"
+            subType: "Slaanesh",
+            isLeader: () => true,
         },
         heraldOfSlaaneshOnExaltedSeekerChariot: {
             id: this.serial++,
@@ -4918,10 +4990,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Slaanesh"
+            subType: "Slaanesh",
+            isLeader: () => true,
         },
         heraldOfSlaaneshOnSeekerChariot: {
             id: this.serial++,
@@ -4930,10 +5003,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Slaanesh"
+            subType: "Slaanesh",
+            isLeader: () => true,
         },
         seekerChariotsOfSlaanesh: {
             id: this.serial++,
@@ -4942,10 +5016,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-seeker-chariot-of-slaanesh-en.pdf",
             type: "unit",
-            subType: "Slaanesh - Slaanesh Battleline (Herald of Slaanesh on Exalted Seeker Chariot General)"
+            subType: "Slaanesh - Slaanesh Battleline (Herald of Slaanesh on Exalted Seeker Chariot General)",
+            isBatteline: () => true,
         },
         seekersOfSlaanesh: {
             id: this.serial++,
@@ -4954,10 +5029,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-seekers-of-slaanesh-en.pdf",
             type: "unit",
-            subType: "Slaanesh"
+            subType: "Slaanesh",
         },
         keeperOfSecrets: {
             id: this.serial++,
@@ -4966,10 +5041,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-keeper-of-secrets-en.pdf",
             type: "hero",
-            subType: "Slaanesh - Behemoth"
+            subType: "Slaanesh - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         theMasqueOfSlaanesh: {
             id: this.serial++,
@@ -4978,10 +5055,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-the-masque-of-slaanesh-en.pdf",
             type: "hero",
-            subType: "Slaanesh - Unique "
+            subType: "Slaanesh - Unique ",
+            isLeader: () => true,
         },
         beastsOfNurgle: {
             id: this.serial++,
@@ -4990,10 +5068,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 6,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Beasts-of-nurgle.pdf",
             type: "unit",
-            subType: "Nurgle Daemon"
+            subType: "Nurgle Daemon",
         },
         poxbringerHeraldOfNurgle: {
             id: this.serial++,
@@ -5002,10 +5080,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nurgle Daemon Wizard"
+            subType: "Nurgle Daemon Wizard",
+            isLeader: () => true,
         },
         spoilpoxScrivenerHeraldOfNurgle: {
             id: this.serial++,
@@ -5014,10 +5093,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nurgle Daemon"
+            subType: "Nurgle Daemon",
+            isLeader: () => true,
         },
         sloppityBilepiperHeraldOfNurgle: {
             id: this.serial++,
@@ -5026,10 +5106,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Sloppity-bilepiper-herald-of-nurgle.pdf",
             type: "hero",
-            subType: "Nurgle Daemon"
+            subType: "Nurgle Daemon",
+            isLeader: () => true,
         },
         nurglings: {
             id: this.serial++,
@@ -5038,10 +5119,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Nurgle Daemon"
+            subType: "Nurgle Daemon",
         },
         plagueDrones: {
             id: this.serial++,
@@ -5050,10 +5131,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Nurgle Daemon"
+            subType: "Nurgle Daemon",
         },
         plaguebearers: {
             id: this.serial++,
@@ -5065,7 +5146,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 320,
             warcroll: undefined,
             type: "unit",
-            subType: "Nurgle Daemon - Battleline"
+            subType: "Nurgle Daemon - Battleline",
+            isBatteline: () => true,
         },
         daemonPrinceOfNurgle: {
             id: this.serial++,
@@ -5074,10 +5156,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
-            subType: "Nurgle Daemon - Behemoth"
+            subType: "Nurgle Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         greatUncleanOne: {
             id: this.serial++,
@@ -5086,10 +5170,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nurgle Daemon Wizard - Behemoth"
+            subType: "Nurgle Daemon Wizard - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         rotigus: {
             id: this.serial++,
@@ -5098,10 +5184,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Rotigus.pdf",
             type: "hero",
-            subType: "Nurgle Daemon Wizard - Unique Behemoth"
+            subType: "Nurgle Daemon Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         epidemiusTallymanOfNurgle: {
             id: this.serial++,
@@ -5110,10 +5198,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-epidemius-en.pdf",
             type: "hero",
-            subType: "Nurgle Daemon - Unique "
+            subType: "Nurgle Daemon - Unique ",
+            isLeader: () => true,
         },
         daemonPrinceOfSlaanesh: {
             id: this.serial++,
@@ -5122,10 +5211,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
-            subType: "Slaanesh Daemon - Behemoth"
+            subType: "Slaanesh Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         exaltedFlamersOfTzeentch: {
             id: this.serial++,
@@ -5134,10 +5225,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalted-flamer-of-tzeentch-en.pdf",
             type: "unit",
-            subType: "Tzeentch Daemon"
+            subType: "Tzeentch Daemon",
         },
         flamersOfTzeentch: {
             id: this.serial++,
@@ -5146,10 +5237,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Tzeentch Daemon"
+            subType: "Tzeentch Daemon",
         },
         daemonPrinceOfTzeentch: {
             id: this.serial++,
@@ -5158,10 +5249,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
-            subType: "Tzeentch Daemon Wizard - Behemoth"
+            subType: "Tzeentch Daemon Wizard - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         kairosFateweaver: {
             id: this.serial++,
@@ -5170,10 +5263,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kairos-fateweaver-en.pdf",
             type: "hero",
-            subType: "Tzeentch Daemon Wizard - Unique Behemoth"
+            subType: "Tzeentch Daemon Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         festusTheLeechlord: {
             id: this.serial++,
@@ -5182,10 +5277,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-festus-the-leechlord-en.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal Wizard - Unique "
+            subType: "Nurgle Rotbringer Mortal Wizard - Unique ",
+            isLeader: () => true,
         },
         gutrotSpume: {
             id: this.serial++,
@@ -5194,10 +5290,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-gutrot-spume-en.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal - Unique "
+            subType: "Nurgle Rotbringer Mortal - Unique ",
+            isLeader: () => true,
         },
         theGlottkin: {
             id: this.serial++,
@@ -5206,10 +5303,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 420,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-theglottkin-en.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal Wizard - Unique Behemoth"
+            subType: "Nurgle Rotbringer Mortal Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         exaltedSeekerChariotsOfSlaanesh: {
             id: this.serial++,
@@ -5218,10 +5317,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalted-seeker-chariot-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         lordOfPlagues: {
             id: this.serial++,
@@ -5230,10 +5329,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lord-of-plagues-en.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal"
+            subType: "Nurgle Rotbringer Mortal",
+            isLeader: () => true,
         },
         lordOfBlights: {
             id: this.serial++,
@@ -5242,10 +5342,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Lord-of-blights.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal"
+            subType: "Nurgle Rotbringer Mortal",
+            isLeader: () => true,
         },
         lordOfChange: {
             id: this.serial++,
@@ -5254,10 +5355,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lord-of-change-en.pdf",
             type: "hero",
-            subType: "Tzeentch Daemon Wizard - Behemoth"
+            subType: "Tzeentch Daemon Wizard - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         reaperBoltThrower: {
             id: this.serial++,
@@ -5266,10 +5369,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         blackGuard: {
             id: this.serial++,
@@ -5281,7 +5384,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 430,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-guard-en.pdf",
             type: "unit",
-            subType: "Darkling Covens - Darkling Covens Battleline"
+            subType: "Darkling Covens - Darkling Covens Battleline",
+            isBatteline: () => true,
         },
         executioners: {
             id: this.serial++,
@@ -5293,7 +5397,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 480,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-executioners-en.pdf",
             type: "unit",
-            subType: "Darkling Covens - Darkling Covens Battleline"
+            subType: "Darkling Covens - Darkling Covens Battleline",
+            isBatteline: () => true,
         },
         sorceress: {
             id: this.serial++,
@@ -5302,10 +5407,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sorceress-en.pdf",
             type: "hero",
-            subType: "Darkling Covens"
+            subType: "Darkling Covens",
+            isLeader: () => true,
         },
         bleakswords: {
             id: this.serial++,
@@ -5317,7 +5423,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bleakswords-en.pdf",
             type: "unit",
-            subType: "Darkling Covens - Battleline"
+            subType: "Darkling Covens - Battleline",
+            isBatteline: () => true,
         },
         darkshards: {
             id: this.serial++,
@@ -5326,10 +5433,11 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 40,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-darkshards-en.pdf",
             type: "unit",
-            subType: "Darkling Covens - Battleline"
+            subType: "Darkling Covens - Battleline",
+            isBatteline: () => true,
         },
         dreadspears: {
             id: this.serial++,
@@ -5341,7 +5449,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dreadspears-en.pdf",
             type: "unit",
-            subType: "Darkling Covens - Battleline"
+            subType: "Darkling Covens - Battleline",
+            isBatteline: () => true,
         },
         sorceressOnBlackDragon: {
             id: this.serial++,
@@ -5350,10 +5459,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sorceress-black-dragon-en.pdf",
             type: "hero",
-            subType: "Darkling Covens - Behemoth"
+            subType: "Darkling Covens - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         bloodwrackMedusae: {
             id: this.serial++,
@@ -5362,10 +5473,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Daughters of Khaine"
+            subType: "Daughters of Khaine",
         },
         deathHag: {
             id: this.serial++,
@@ -5374,10 +5485,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Daughters of Khaine"
+            subType: "Daughters of Khaine",
+            isLeader: () => true,
         },
         doomfireWarlocks: {
             id: this.serial++,
@@ -5386,10 +5498,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-doomfire-warlocks-en.pdf",
             type: "unit",
-            subType: "Daughters of Khaine - Daughters of Khaine Battleline"
+            subType: "Daughters of Khaine - Daughters of Khaine Battleline",
+            isBatteline: () => true,
         },
         sistersOfSlaughter: {
             id: this.serial++,
@@ -5401,7 +5514,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sisters-slaughter-en.pdf",
             type: "unit",
-            subType: "Daughters of Khaine - Daughters of Khaine Battleline"
+            subType: "Daughters of Khaine - Daughters of Khaine Battleline",
+            isBatteline: () => true,
         },
         bloodwrackShrine: {
             id: this.serial++,
@@ -5410,10 +5524,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodwrack-shrine-en.pdf",
             type: "unit",
-            subType: "Daughters of Khaine - Behemoth"
+            subType: "Daughters of Khaine - Behemoth",
+            isBehemot: () => true,
         },
         cauldronOfBlood: {
             id: this.serial++,
@@ -5422,10 +5537,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-caludron-blood-en.pdf",
             type: "hero",
-            subType: "Daughters of Khaine - Behemoth"
+            subType: "Daughters of Khaine - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         witchAelves: {
             id: this.serial++,
@@ -5437,7 +5554,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 270,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-witch-aelves-en.pdf",
             type: "unit",
-            subType: "Daughters of Khaine - Daughters of Khaine Battleline"
+            subType: "Daughters of Khaine - Daughters of Khaine Battleline",
+            isBatteline: () => true,
         },
         drakespawnChariots: {
             id: this.serial++,
@@ -5446,10 +5564,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-drakespawn-chariots-en.pdf",
             type: "unit",
-            subType: "Order Serpentis - Order Serpentis Battleline"
+            subType: "Order Serpentis - Order Serpentis Battleline",
+            isBatteline: () => true,
         },
         warHydra: {
             id: this.serial++,
@@ -5458,10 +5577,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-war-hydra-en.pdf",
             type: "monster",
-            subType: "Order Serpentis  - Behemoth"
+            subType: "Order Serpentis  - Behemoth",
+            isBehemot: () => true,
         },
         dreadlordOnBlackDragon: {
             id: this.serial++,
@@ -5470,10 +5590,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Order Serpentis - Behemoth"
+            subType: "Order Serpentis - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         drakespawnKnights: {
             id: this.serial++,
@@ -5482,10 +5604,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-drakespawn-knights-en.pdf",
             type: "unit",
-            subType: "Order Serpentis - Order Serpentis Battleline"
+            subType: "Order Serpentis - Order Serpentis Battleline",
+            isBatteline: () => true,
         },
         blackArkFleetmaster: {
             id: this.serial++,
@@ -5494,10 +5617,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-ark-fleetmaster-en.pdf",
             type: "hero",
-            subType: "Scourge Privateers"
+            subType: "Scourge Privateers",
+            isLeader: () => true,
         },
         scourgerunnerChariots: {
             id: this.serial++,
@@ -5506,10 +5630,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-scourgerunner-chariot-en.pdf",
             type: "unit",
-            subType: "Scourge Privateers - Scourge Privateers Battleline"
+            subType: "Scourge Privateers - Scourge Privateers Battleline",
+            isBatteline: () => true,
         },
         kharibdyss: {
             id: this.serial++,
@@ -5518,10 +5643,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: NaN,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kharibdyss-en.pdf",
             type: "monster",
-            subType: "Scourge Privateers - Behemoth"
+            subType: "Scourge Privateers - Behemoth",
+            isBehemot: () => true,
         },
         blackArkCorsairs: {
             id: this.serial++,
@@ -5533,7 +5659,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 260,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-ark-corsairs-en.pdf",
             type: "unit",
-            subType: "Scourge Privateers - Scourge Privateers Battleline"
+            subType: "Scourge Privateers - Scourge Privateers Battleline",
+            isBatteline: () => true,
         },
         assassin: {
             id: this.serial++,
@@ -5542,10 +5669,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-shadowblade-assassin-en.pdf",
             type: "hero",
-            subType: "Shadowblades"
+            subType: "Shadowblades",
+            isLeader: () => true,
         },
         darkRiders: {
             id: this.serial++,
@@ -5554,10 +5682,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dark-riders-en.pdf",
             type: "unit",
-            subType: "Shadowblades - Shadowblades Battleline"
+            subType: "Shadowblades - Shadowblades Battleline",
+            isBatteline: () => true,
         },
         sorceressOnDarkPegasus: {
             id: this.serial++,
@@ -5566,10 +5695,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         beastmasterOnManticore: {
             id: this.serial++,
@@ -5578,10 +5708,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         dreadlord: {
             id: this.serial++,
@@ -5590,10 +5721,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         dreadlordOnDrakespawn: {
             id: this.serial++,
@@ -5602,10 +5734,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         masterWithBattleStandard: {
             id: this.serial++,
@@ -5614,10 +5747,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         mistweaverSaih: {
             id: this.serial++,
@@ -5626,10 +5760,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-mistweaver-saih-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         shades: {
             id: this.serial++,
@@ -5638,10 +5773,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         sorceressOnDrakespawn: {
             id: this.serial++,
@@ -5650,10 +5785,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         tenebraelShard: {
             id: this.serial++,
@@ -5662,10 +5798,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-tenebrael-shard-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         corpseCart: {
             id: this.serial++,
@@ -5674,10 +5811,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-corpse-cart-en.pdf",
             type: "unit",
-            subType: "Deadwalkers"
+            subType: "Deadwalkers",
         },
         direWolves: {
             id: this.serial++,
@@ -5689,7 +5826,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 320,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dire-wolves-en.pdf",
             type: "unit",
-            subType: "Deadwalkers Summonable - Battleline"
+            subType: "Deadwalkers Summonable - Battleline",
+            isBatteline: () => true,
         },
         zombies: {
             id: this.serial++,
@@ -5701,7 +5839,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 320,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Zombies.pdf",
             type: "unit",
-            subType: "Deadwalkers Summonable - Battleline"
+            subType: "Deadwalkers Summonable - Battleline",
+            isBatteline: () => true,
         },
         morghastArchai: {
             id: this.serial++,
@@ -5710,10 +5849,11 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 6,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Morghast%20Archai.pdf",
             type: "unit",
-            subType: "Deathlords - Grand Host of Nagash Battleline (Nagash General)"
+            subType: "Deathlords - Grand Host of Nagash Battleline (Nagash General)",
+            isBatteline: () => true,
         },
         morghastHarbingers: {
             id: this.serial++,
@@ -5722,10 +5862,11 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 6,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Morghast%20Harbingers.pdf",
             type: "unit",
-            subType: "Deathlords - Grand Host of Nagash Battleline (Nagash General)"
+            subType: "Deathlords - Grand Host of Nagash Battleline (Nagash General)",
+            isBatteline: () => true,
         },
         arkhanTheBlackMortarchOfSacrament: {
             id: this.serial++,
@@ -5734,10 +5875,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-deathlords-arkhan-en.pdf",
             type: "hero",
-            subType: "Deathlords Mortarch Wizard - Unique Behemoth"
+            subType: "Deathlords Mortarch Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         mannfredMortarchOfNight: {
             id: this.serial++,
@@ -5746,10 +5889,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 420,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-deathlords-mannfred-en.pdf",
             type: "hero",
-            subType: "Deathlords Soulblight Vampire Mortarch Wizard - Unique Behemoth"
+            subType: "Deathlords Soulblight Vampire Mortarch Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         nagashSupremeLordOfTheUndead: {
             id: this.serial++,
@@ -5758,10 +5903,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 800,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-deathlords-nagash-en.pdf",
             type: "hero",
-            subType: "Deathlords Wizard Priest - Unique Behemoth"
+            subType: "Deathlords Wizard Priest - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         neferataMortarchOfBlood: {
             id: this.serial++,
@@ -5770,10 +5917,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-deathlords-neferata-en.pdf",
             type: "hero",
-            subType: "Deathlords Soulblight Vampire Mortarch Wizard - Unique Behemoth"
+            subType: "Deathlords Soulblight Vampire Mortarch Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         necromancer: {
             id: this.serial++,
@@ -5782,10 +5931,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 110,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-necromancer-en.pdf",
             type: "hero",
-            subType: "Deathmages Wizard"
+            subType: "Deathmages Wizard",
+            isLeader: () => true,
         },
         mortisEngine: {
             id: this.serial++,
@@ -5794,10 +5944,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-mortis-engine-en.pdf",
             type: "monster",
-            subType: "Deathmages - Behemoth"
+            subType: "Deathmages - Behemoth",
+            isBehemot: () => true,
         },
         graveGuard: {
             id: this.serial++,
@@ -5809,7 +5960,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 420,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-grave-guard-en.pdf",
             type: "unit",
-            subType: "Deathrattle Summonable - Grand Host of Nagash Battleline"
+            subType: "Deathrattle Summonable - Grand Host of Nagash Battleline",
+            isBatteline: () => true,
         },
         wightKingWithBalefulTombBlade: {
             id: this.serial++,
@@ -5818,10 +5970,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Wight%20King%20with%20Baleful%20Tomb%20Blade.pdf",
             type: "hero",
-            subType: "Deathrattle"
+            subType: "Deathrattle",
+            isLeader: () => true,
         },
         wightKingWithBlackAxe: {
             id: this.serial++,
@@ -5830,10 +5983,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-wightking-blackaxe-en.pdf",
             type: "hero",
-            subType: "Deathrattle"
+            subType: "Deathrattle",
+            isLeader: () => true,
         },
         skeletonWarriors: {
             id: this.serial++,
@@ -5845,7 +5999,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 280,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skeleton-warriors-en.pdf",
             type: "unit",
-            subType: "Deathrattle Summonable - Battleline"
+            subType: "Deathrattle Summonable - Battleline",
+            isBatteline: () => true,
         },
         blackKnights: {
             id: this.serial++,
@@ -5854,10 +6009,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-knights-en.pdf",
             type: "unit",
-            subType: "Deathrattle Summonable"
+            subType: "Deathrattle Summonable",
         },
         cryptGhouls: {
             id: this.serial++,
@@ -5869,7 +6024,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-ghouls-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         abhorrantGhoulKingOnTerrorgheist: {
             id: this.serial++,
@@ -5878,10 +6033,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-abhorrant-ghoul-king-terrorgheist-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         abhorrantGhoulKingOnZombieDragon: {
             id: this.serial++,
@@ -5890,10 +6046,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-abhorrant-ghoul-king-zombie-dragon-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         terrorgheist: {
             id: this.serial++,
@@ -5902,10 +6059,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-terrorgheist-en.pdf",
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         zombieDragon: {
             id: this.serial++,
@@ -5914,10 +6071,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-zombie-dragon-en.pdf",
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         cryptHorrors: {
             id: this.serial++,
@@ -5926,10 +6083,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-horrors-en.pdf",
             type: "unit",
-            subType: "Flesh Eater Courts Battleline (Crypt Haunter Courtier General)"
+            subType: "Flesh Eater Courts Battleline (Crypt Haunter Courtier General)",
         },
         cryptFlayers: {
             id: this.serial++,
@@ -5938,10 +6095,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-flayers-en.pdf",
             type: "unit",
-            subType: "Flesh Eater Courts Battleline (Crypt Infernal Courtier General)"
+            subType: "Flesh Eater Courts Battleline (Crypt Infernal Courtier General)",
         },
         abhorrantGhoulKing: {
             id: this.serial++,
@@ -5950,10 +6107,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         cryptGhastCourtier: {
             id: this.serial++,
@@ -5962,10 +6120,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-ghouls-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         cryptHaunterCourtier: {
             id: this.serial++,
@@ -5974,10 +6133,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-haunter-courtier-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         cryptInfernalCourtier: {
             id: this.serial++,
@@ -5986,10 +6146,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-infernal-courtier-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         varghulfCourtier: {
             id: this.serial++,
@@ -5998,10 +6159,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-varghulf-courtier-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         batSwarms: {
             id: this.serial++,
@@ -6010,10 +6172,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 8,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bat-swarm-en.pdf",
             type: "unit",
-            subType: "Soulblight Summonable"
+            subType: "Soulblight Summonable",
         },
         fellBats: {
             id: this.serial++,
@@ -6022,10 +6184,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fell-bats-en.pdf",
             type: "unit",
-            subType: "Soulblight Summonable"
+            subType: "Soulblight Summonable",
         },
         vampireLord: {
             id: this.serial++,
@@ -6034,10 +6196,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vampire-lord-en.pdf",
             type: "hero",
-            subType: "Soulblight Vampire Wizard"
+            subType: "Soulblight Vampire Wizard",
+            isLeader: () => true,
         },
         vargheists: {
             id: this.serial++,
@@ -6046,10 +6209,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vargheists-en.pdf",
             type: "unit",
-            subType: "Soulblight"
+            subType: "Soulblight",
         },
         covenThrone: {
             id: this.serial++,
@@ -6058,10 +6221,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-coven-throne-en.pdf",
             type: "hero",
-            subType: "Soulblight Vampire Wizard - Behemoth"
+            subType: "Soulblight Vampire Wizard - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         bloodseekerPalanquin: {
             id: this.serial++,
@@ -6070,10 +6235,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Bloodseeker%20Palanquin.pdf",
             type: "hero",
-            subType: "Soulblight Vampire Wizard - Behemoth"
+            subType: "Soulblight Vampire Wizard - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         vampireLordOnZombieDragon: {
             id: this.serial++,
@@ -6082,10 +6249,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vampire-lord-zombiedragon-en.pdf",
             type: "hero",
-            subType: "Soulblight Vampire Wizard - Behemoth"
+            subType: "Soulblight Vampire Wizard - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         princeVhordrai: {
             id: this.serial++,
@@ -6094,10 +6263,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 480,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Prince%20Vhordrai.pdf",
             type: "hero",
-            subType: "Soulblight Vampire Wizard - Unique Behemoth"
+            subType: "Soulblight Vampire Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         bloodKnights: {
             id: this.serial++,
@@ -6106,10 +6277,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 15,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-blood-knights-en.pdf",
             type: "unit",
-            subType: "Soulblight - Soulblight Battleline"
+            subType: "Soulblight - Soulblight Battleline",
+            isBatteline: () => true,
         },
         blackCoach: {
             id: this.serial++,
@@ -6118,10 +6290,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-coach-en.pdf",
             type: "unit",
-            subType: "Nighthaunt"
+            subType: "Nighthaunt",
         },
         cairnWraith: {
             id: this.serial++,
@@ -6130,10 +6302,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-cairn-wraith-en.pdf",
             type: "hero",
-            subType: "Nighthaunt"
+            subType: "Nighthaunt",
+            isLeader: () => true,
         },
         hexwraiths: {
             id: this.serial++,
@@ -6142,10 +6315,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-hexwraiths-en.pdf",
             type: "unit",
-            subType: "Nighthaunt Summonable - Nighthaunt Battleline"
+            subType: "Nighthaunt Summonable - Nighthaunt Battleline",
+            isBatteline: () => true,
         },
         tombBanshee: {
             id: this.serial++,
@@ -6154,10 +6328,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tomb-banshee-en.pdf",
             type: "hero",
-            subType: "Nighthaunt"
+            subType: "Nighthaunt",
+            isLeader: () => true,
         },
         spiritHosts: {
             id: this.serial++,
@@ -6166,10 +6341,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-nighthaunt-spirithosts-en.pdf",
             type: "unit",
-            subType: "Nighthaunt Summonable - Nighthaunt Battleline"
+            subType: "Nighthaunt Summonable - Nighthaunt Battleline",
+            isBatteline: () => true,
         },
         cogsmith: {
             id: this.serial++,
@@ -6178,10 +6354,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-cogmsith-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         cannon: {
             id: this.serial++,
@@ -6190,10 +6367,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-cannon-en.pdf",
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         duardinBoltThrower: {
             id: this.serial++,
@@ -6202,10 +6379,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         flameCannon: {
             id: this.serial++,
@@ -6214,10 +6391,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         grudgeThrower: {
             id: this.serial++,
@@ -6226,10 +6403,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         organGun: {
             id: this.serial++,
@@ -6238,10 +6415,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-organ-gun-en.pdf",
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         longbeards: {
             id: this.serial++,
@@ -6253,7 +6430,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 300,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-longbeards-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         vulkiteBerzerkers: {
             id: this.serial++,
@@ -6265,7 +6442,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 330,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vulkite-berzerkers-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         auricRunefatherOnMagmadroth: {
             id: this.serial++,
@@ -6274,10 +6451,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runefather-magmadroth-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         auricRunesmiterOnMagmadroth: {
             id: this.serial++,
@@ -6286,10 +6464,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runesmiter-magmadroth-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         auricRunesonOnMagmadroth: {
             id: this.serial++,
@@ -6298,10 +6477,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runeson-magmadroth-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         hearthguardBerzerkers: {
             id: this.serial++,
@@ -6313,7 +6493,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 480,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-hearthguard-berzerkers-en.pdf",
             type: "unit",
-            subType: "Fyreslayer Battleline (Runefather General)"
+            subType: "Fyreslayer Battleline (Runefather General)",
         },
         auricHearthguard: {
             id: this.serial++,
@@ -6325,7 +6505,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 480,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-hearthguard-en.pdf",
             type: "unit",
-            subType: "Fyreslayer Battleline (Runemaster General)"
+            subType: "Fyreslayer Battleline (Runemaster General)",
         },
         wardenKingOnThroneOfPower: {
             id: this.serial++,
@@ -6334,10 +6514,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         farRanger: {
             id: this.serial++,
@@ -6346,10 +6527,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         apprenticeRunesmith: {
             id: this.serial++,
@@ -6358,10 +6540,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 70,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         runelordOnAnvilOfDoom: {
             id: this.serial++,
@@ -6370,10 +6553,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         auricRunefather: {
             id: this.serial++,
@@ -6382,10 +6566,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         auricRunemaster: {
             id: this.serial++,
@@ -6394,10 +6579,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runemaster-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         auricRunesmiter: {
             id: this.serial++,
@@ -6406,10 +6592,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         auricRuneson: {
             id: this.serial++,
@@ -6418,10 +6605,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         battlesmith: {
             id: this.serial++,
@@ -6430,10 +6618,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fyreslayers-battlesmith-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         doomseeker: {
             id: this.serial++,
@@ -6442,10 +6631,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-doomseeker-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         grimwrathBerzerker: {
             id: this.serial++,
@@ -6454,10 +6644,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fyreslayers-grimwrath-berzerker-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         gyrobombers: {
             id: this.serial++,
@@ -6466,10 +6657,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads/Gyrobombers.pdf",
             type: "warmachine",
-            subType: undefined
+            subType: undefined,
         },
         gyrocopters: {
             id: this.serial++,
@@ -6478,10 +6669,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-gyropcopter-en.pdf",
             type: "warmachine",
-            subType: undefined
+            subType: undefined,
         },
         hammerers: {
             id: this.serial++,
@@ -6493,7 +6684,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 480,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-hammerers-en.pdf",
             type: "unit",
-            subType: "Dispossessed Battleline"
+            subType: "Dispossessed Battleline",
         },
         ironbreakers: {
             id: this.serial++,
@@ -6505,7 +6696,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 400,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads/ironbreakers-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         irondrakes: {
             id: this.serial++,
@@ -6514,10 +6705,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads/irondrakes-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         miners: {
             id: this.serial++,
@@ -6526,10 +6717,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         quarrellers: {
             id: this.serial++,
@@ -6538,10 +6729,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-quarrellers-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         runelord: {
             id: this.serial++,
@@ -6550,10 +6741,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-runelord-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         slayers: {
             id: this.serial++,
@@ -6562,10 +6754,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 30,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         thaneWithBattleStandard: {
             id: this.serial++,
@@ -6574,10 +6766,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         thunderers: {
             id: this.serial++,
@@ -6586,10 +6779,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-thunderers-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         unforged: {
             id: this.serial++,
@@ -6598,10 +6791,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-unforged-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         wardenKing: {
             id: this.serial++,
@@ -6610,10 +6804,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-warden-king-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         greatcannon: {
             id: this.serial++,
@@ -6622,10 +6817,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         helblasterVolleyGun: {
             id: this.serial++,
@@ -6634,10 +6829,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-helblaster-volley-gun-en.pdf",
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         helstormRocketBattery: {
             id: this.serial++,
@@ -6646,10 +6841,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-helstorm-rocket-battery-en.pdf",
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         fieldMortar: {
             id: this.serial++,
@@ -6658,10 +6853,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         freeguildArchers: {
             id: this.serial++,
@@ -6670,10 +6865,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-archers-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         freeguildCrossbowmen: {
             id: this.serial++,
@@ -6682,10 +6877,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-crossbowmen-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         freeguildGuard: {
             id: this.serial++,
@@ -6697,7 +6892,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 280,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-guard-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         freeguildHandgunners: {
             id: this.serial++,
@@ -6706,10 +6901,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-handgunners-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         battlemageOnGriffon: {
             id: this.serial++,
@@ -6718,10 +6913,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-battlemage-griffon-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         celestialHurricanum: {
             id: this.serial++,
@@ -6730,10 +6926,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-celestial-hurricanum-en.pdf",
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         celestialHurricanumWithCelestialBattlemage: {
             id: this.serial++,
@@ -6742,10 +6938,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-celestial-hurricanum-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         freeguildGeneralOnGriffon: {
             id: this.serial++,
@@ -6754,10 +6951,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-general-griffon-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         luminarkOfHysh: {
             id: this.serial++,
@@ -6766,10 +6964,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-luminark-hysh-en.pdf",
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         luminarkOfHyshWithWhiteBattlemage: {
             id: this.serial++,
@@ -6778,10 +6976,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-luminark-hysh-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         steamTank: {
             id: this.serial++,
@@ -6790,10 +6989,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-steam-tank-en.pdf",
             type: "warmachine",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         warAltarOfSigmar: {
             id: this.serial++,
@@ -6802,10 +7001,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 250,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-war-altar-sigmar-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         flagellants: {
             id: this.serial++,
@@ -6817,7 +7017,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 260,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-flagellants-en.pdf",
             type: "unit",
-            subType: "Devoted of Sigmar Battleline"
+            subType: "Devoted of Sigmar Battleline",
         },
         battlemageOnPegasus: {
             id: this.serial++,
@@ -6826,10 +7026,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         battlemage: {
             id: this.serial++,
@@ -6838,10 +7039,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-battlemage-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         demigryphKnights: {
             id: this.serial++,
@@ -6850,10 +7052,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-demigryph-knights-en.pdf",
             type: "unit",
-            subType: "Free Peoples Battleline"
+            subType: "Free Peoples Battleline",
         },
         knightsOfOrder: {
             id: this.serial++,
@@ -6862,10 +7064,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 30,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         excelsiorWarpriest: {
             id: this.serial++,
@@ -6874,10 +7076,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         freeguildGeneral: {
             id: this.serial++,
@@ -6886,10 +7089,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         freeguildGreatswords: {
             id: this.serial++,
@@ -6901,7 +7105,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 420,
             warcroll: undefined,
             type: "unit",
-            subType: "Free Peoples Battleline"
+            subType: "Free Peoples Battleline",
         },
         freeguildOutriders: {
             id: this.serial++,
@@ -6910,10 +7114,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 130,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         freeguildPistoliers: {
             id: this.serial++,
@@ -6922,10 +7126,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 130,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         gunmaster: {
             id: this.serial++,
@@ -6934,10 +7138,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         huntmarshal: {
             id: this.serial++,
@@ -6946,10 +7151,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         engineerOnMechanicalSteed: {
             id: this.serial++,
@@ -6958,10 +7164,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         warriorPriest: {
             id: this.serial++,
@@ -6970,10 +7177,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         witchHunter: {
             id: this.serial++,
@@ -6982,10 +7190,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         highbornRepeaterBoltThrower: {
             id: this.serial++,
@@ -6994,10 +7203,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         highbornSpearmen: {
             id: this.serial++,
@@ -7006,10 +7215,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 40,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         highbornSilverHelms: {
             id: this.serial++,
@@ -7018,10 +7227,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         anointedOfAsuryanOnFlamespyrePhoenix: {
             id: this.serial++,
@@ -7030,10 +7239,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         dragonlord: {
             id: this.serial++,
@@ -7042,10 +7252,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         drakeseer: {
             id: this.serial++,
@@ -7054,10 +7265,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         flamespyrePhoenix: {
             id: this.serial++,
@@ -7066,10 +7278,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: undefined
+            subType: undefined,
         },
         anointedOfAsuryanOnFrostheartPhoenix: {
             id: this.serial++,
@@ -7078,10 +7290,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth "
+            subType: "Behemoth ",
+            isLeader: () => true,
         },
         frostheartPhoenix: {
             id: this.serial++,
@@ -7090,10 +7303,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: undefined
+            subType: undefined,
         },
         archmage: {
             id: this.serial++,
@@ -7102,10 +7315,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Eldritch Council"
+            subType: "Eldritch Council",
+            isLeader: () => true,
         },
         loremaster: {
             id: this.serial++,
@@ -7114,10 +7328,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Eldritch Council"
+            subType: "Eldritch Council",
+            isLeader: () => true,
         },
         archmageOnDragon: {
             id: this.serial++,
@@ -7126,10 +7341,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Eldritch Council - Behemoth"
+            subType: "Eldritch Council - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         swordmasters: {
             id: this.serial++,
@@ -7141,7 +7358,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 480,
             warcroll: undefined,
             type: "unit",
-            subType: "Eldritch Council Battleline"
+            subType: "Eldritch Council Battleline",
         },
         dragonBlades: {
             id: this.serial++,
@@ -7150,10 +7367,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Order Draconis Battleline"
+            subType: "Order Draconis Battleline",
         },
         phoenixGuard: {
             id: this.serial++,
@@ -7165,7 +7382,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 420,
             warcroll: undefined,
             type: "unit",
-            subType: "Phoenix Temple Battleline"
+            subType: "Phoenix Temple Battleline",
         },
         chariots: {
             id: this.serial++,
@@ -7174,10 +7391,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Swifthawk Agents"
+            subType: "Swifthawk Agents",
         },
         skycutters: {
             id: this.serial++,
@@ -7186,10 +7403,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Swifthawk Agents"
+            subType: "Swifthawk Agents",
         },
         skywarden: {
             id: this.serial++,
@@ -7198,10 +7415,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Swifthawk Agents"
+            subType: "Swifthawk Agents",
+            isLeader: () => true,
         },
         reavers: {
             id: this.serial++,
@@ -7210,10 +7428,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Swifthawk Agents - Battleline"
+            subType: "Swifthawk Agents - Battleline",
+            isBatteline: () => true,
         },
         highWarden: {
             id: this.serial++,
@@ -7222,10 +7441,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Swifthawk Agents - Behemoth"
+            subType: "Swifthawk Agents - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         shadowWarriors: {
             id: this.serial++,
@@ -7237,7 +7458,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 500,
             warcroll: undefined,
             type: "unit",
-            subType: "Swifthawk Agents Battleline"
+            subType: "Swifthawk Agents Battleline",
         },
         spireguard: {
             id: this.serial++,
@@ -7249,7 +7470,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 300,
             warcroll: undefined,
             type: "unit",
-            subType: "Swifthawk Agents Battleline"
+            subType: "Swifthawk Agents Battleline",
         },
         anointed: {
             id: this.serial++,
@@ -7258,10 +7479,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         dragonNoble: {
             id: this.serial++,
@@ -7270,10 +7492,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         greatEagles: {
             id: this.serial++,
@@ -7282,10 +7505,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         highbornArchers: {
             id: this.serial++,
@@ -7294,10 +7517,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         seawardenOnFoot: {
             id: this.serial++,
@@ -7306,10 +7529,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         whiteLionChariots: {
             id: this.serial++,
@@ -7318,10 +7542,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         whiteLions: {
             id: this.serial++,
@@ -7333,7 +7557,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         deathshriekerRocketLauncher: {
             id: this.serial++,
@@ -7342,10 +7566,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         dreadquakeMortar: {
             id: this.serial++,
@@ -7354,10 +7578,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         magmaCannon: {
             id: this.serial++,
@@ -7366,10 +7590,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         bullCentaurRenders: {
             id: this.serial++,
@@ -7381,7 +7605,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 640,
             warcroll: undefined,
             type: "unit",
-            subType: "Legion of Azgorh Battleline (Shar'tor General)"
+            subType: "Legion of Azgorh Battleline (Shar'tor General)",
         },
         infernalGuardFireglaives: {
             id: this.serial++,
@@ -7390,10 +7614,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Legion of Azgorh Battleline"
+            subType: "Legion of Azgorh Battleline",
         },
         infernalGuardIronsworn: {
             id: this.serial++,
@@ -7405,7 +7629,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 240,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         chaosSiegeGargant: {
             id: this.serial++,
@@ -7414,10 +7638,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         ironDaemonWarEngine: {
             id: this.serial++,
@@ -7426,10 +7650,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         skullcrackerWarEngine: {
             id: this.serial++,
@@ -7438,10 +7662,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         sharTorTheExecutioner: {
             id: this.serial++,
@@ -7450,10 +7674,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Unique "
+            subType: "Unique ",
+            isLeader: () => true,
         },
         drazhoathTheAshen: {
             id: this.serial++,
@@ -7462,10 +7687,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Unique Behemoth"
+            subType: "Unique Behemoth",
+            isLeader: () => true,
         },
         bullCentaurTaurRuk: {
             id: this.serial++,
@@ -7474,10 +7700,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         daemonsmith: {
             id: this.serial++,
@@ -7486,10 +7713,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         infernalGuardBattleStandardBearer: {
             id: this.serial++,
@@ -7498,10 +7726,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         infernalGuardCastellan: {
             id: this.serial++,
@@ -7510,10 +7739,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         kDaaiFireborn: {
             id: this.serial++,
@@ -7525,7 +7755,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 560,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         razordons: {
             id: this.serial++,
@@ -7534,10 +7764,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 4,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-razordon-en.pdf",
             type: "unit",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         salamanders: {
             id: this.serial++,
@@ -7546,10 +7776,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 4,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-salamander-en.pdf",
             type: "unit",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         saurusWarriors: {
             id: this.serial++,
@@ -7561,7 +7791,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sauruswarriors-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         skinks: {
             id: this.serial++,
@@ -7573,7 +7803,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 200,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinks-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         bastiladon: {
             id: this.serial++,
@@ -7582,10 +7812,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bastiladon-en.pdf",
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         saurusOldbloodOnCarnosaur: {
             id: this.serial++,
@@ -7594,10 +7824,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-oldbloodcarnosaur-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         saurusScarVeteranOnCarnosaur: {
             id: this.serial++,
@@ -7606,10 +7837,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-veterancarnosaur-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         stegadon: {
             id: this.serial++,
@@ -7618,10 +7850,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-stegadon-en.pdf",
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         troglodon: {
             id: this.serial++,
@@ -7630,10 +7862,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-troglodon-en.pdf",
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         skinkPriest: {
             id: this.serial++,
@@ -7642,10 +7874,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinkpriest-en.pdf",
             type: "hero",
-            subType: "Priest"
+            subType: "Priest",
+            isLeader: () => true,
         },
         skinkStarpriest: {
             id: this.serial++,
@@ -7654,10 +7887,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinkstarpriest-en.pdf",
             type: "hero",
-            subType: "Priest"
+            subType: "Priest",
+            isLeader: () => true,
         },
         engineOfTheGods: {
             id: this.serial++,
@@ -7666,10 +7900,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-engineofthegods-en.pdf",
             type: "hero",
-            subType: "Priest - Behemoth"
+            subType: "Priest - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         saurusGuard: {
             id: this.serial++,
@@ -7678,10 +7914,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusguard-en.pdf",
             type: "unit",
-            subType: "Seraphon Battleline"
+            subType: "Seraphon Battleline",
         },
         saurusKnights: {
             id: this.serial++,
@@ -7690,10 +7926,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusknights-en.pdf",
             type: "unit",
-            subType: "Seraphon Battleline"
+            subType: "Seraphon Battleline",
         },
         saurusAstrolithBearer: {
             id: this.serial++,
@@ -7702,10 +7938,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-astrolithbearer-en.pdf",
             type: "hero",
-            subType: "Totem"
+            subType: "Totem",
+            isLeader: () => true,
         },
         lordKroak: {
             id: this.serial++,
@@ -7714,10 +7951,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 450,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lordkroak-en.pdf",
             type: "hero",
-            subType: "Unique "
+            subType: "Unique ",
+            isLeader: () => true,
         },
         chameleonSkinkStalker: {
             id: this.serial++,
@@ -7726,10 +7964,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         skinkProphet: {
             id: this.serial++,
@@ -7738,10 +7977,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         chameleonSkinks: {
             id: this.serial++,
@@ -7750,10 +7990,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chameleonskinks-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         celestialSwarms: {
             id: this.serial++,
@@ -7762,10 +8002,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 8,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         kroxigor: {
             id: this.serial++,
@@ -7774,10 +8014,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kroxigor-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         ripperdactylRiders: {
             id: this.serial++,
@@ -7786,10 +8026,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ripperdactylriders-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         saurusEternityWarden: {
             id: this.serial++,
@@ -7798,10 +8038,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-eternitywarden-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         saurusOldblood: {
             id: this.serial++,
@@ -7810,10 +8051,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusoldblood-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         saurusScarVeteranOnColdOne: {
             id: this.serial++,
@@ -7822,10 +8064,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-veterancoldone-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         saurusSunblood: {
             id: this.serial++,
@@ -7834,10 +8077,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurussunblood-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         skinkChief: {
             id: this.serial++,
@@ -7846,10 +8090,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         skinkHandlers: {
             id: this.serial++,
@@ -7858,10 +8103,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         skinkStarseer: {
             id: this.serial++,
@@ -7870,10 +8115,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinkstarseer-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         slannStarmaster: {
             id: this.serial++,
@@ -7882,10 +8128,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-slannstarmaster-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         terradonRiders: {
             id: this.serial++,
@@ -7894,10 +8141,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-terradonriders-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         squigGobba: {
             id: this.serial++,
@@ -7906,10 +8153,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         fimirWarriors: {
             id: this.serial++,
@@ -7918,10 +8165,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline (Fimir Dirach Balefield General)"
+            subType: "Battleline (Fimir Dirach Balefield General)",
         },
         basilisk: {
             id: this.serial++,
@@ -7930,10 +8177,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         bonegrinderGargant: {
             id: this.serial++,
@@ -7942,10 +8189,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 420,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         broodHorror: {
             id: this.serial++,
@@ -7954,10 +8201,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         carmineDragon: {
             id: this.serial++,
@@ -7966,10 +8213,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         colossalSquig: {
             id: this.serial++,
@@ -7978,10 +8225,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         cursDEttin: {
             id: this.serial++,
@@ -7990,10 +8237,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         dreadSaurian: {
             id: this.serial++,
@@ -8002,10 +8249,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         incarnateElementalOfBeasts: {
             id: this.serial++,
@@ -8014,10 +8261,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         magmaDragon: {
             id: this.serial++,
@@ -8026,10 +8273,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 520,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         merwyrm: {
             id: this.serial++,
@@ -8038,10 +8285,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         preyton: {
             id: this.serial++,
@@ -8050,10 +8297,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         rogueIdol: {
             id: this.serial++,
@@ -8062,10 +8309,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         skavenWarlordOnBroodHorror: {
             id: this.serial++,
@@ -8074,10 +8321,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         troggothHag: {
             id: this.serial++,
@@ -8086,10 +8334,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 360,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         warpfireDragon: {
             id: this.serial++,
@@ -8098,10 +8347,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         mourngul: {
             id: this.serial++,
@@ -8110,10 +8359,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 350,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Nighthaunt - Behemoth"
+            subType: "Nighthaunt - Behemoth",
+            isBehemot: () => true,
         },
         skinWolves: {
             id: this.serial++,
@@ -8122,10 +8372,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         wolfRats: {
             id: this.serial++,
@@ -8134,10 +8384,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         icebrowHunter: {
             id: this.serial++,
@@ -8146,10 +8396,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-icebrow-hunter-en.pdf",
             type: "hero",
-            subType: "Beastclaw Raiders"
+            subType: "Beastclaw Raiders",
+            isLeader: () => true,
         },
         frostlordOnStonehorn: {
             id: this.serial++,
@@ -8158,10 +8409,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 460,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Beastclaw Raiders - Behemoth"
+            subType: "Beastclaw Raiders - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         frostlordOnThundertusk: {
             id: this.serial++,
@@ -8170,10 +8423,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 460,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Beastclaw Raiders - Behemoth"
+            subType: "Beastclaw Raiders - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         huskardOnStonehorn: {
             id: this.serial++,
@@ -8182,10 +8437,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-huskard-on-stonehorn-en.pdf",
             type: "hero",
-            subType: "Beastclaw Raiders - Behemoth"
+            subType: "Beastclaw Raiders - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         huskardOnThundertusk: {
             id: this.serial++,
@@ -8194,10 +8451,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Beastclaw Raiders - Behemoth"
+            subType: "Beastclaw Raiders - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         mournfangPack: {
             id: this.serial++,
@@ -8206,10 +8465,11 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 12,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-mournfang-pack-en.pdf",
             type: "unit",
-            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline"
+            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline",
+            isBatteline: () => true,
         },
         icefallYhetees: {
             id: this.serial++,
@@ -8218,10 +8478,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline (Frostlord on Thundertusk General)"
+            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline (Frostlord on Thundertusk General)",
+            isBatteline: () => true,
         },
         frostSabres: {
             id: this.serial++,
@@ -8230,10 +8491,11 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 12,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline (Icetooth Hunter General)"
+            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline (Icetooth Hunter General)",
+            isBatteline: () => true,
         },
         stonehornBeastriders: {
             id: this.serial++,
@@ -8242,10 +8504,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 360,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-stonehorn-beastriders-en.pdf",
             type: "monster",
-            subType: "Beastclaw Raiders - Behemoth - Beastclaw Raiders Battleline"
+            subType: "Beastclaw Raiders - Behemoth - Beastclaw Raiders Battleline",
+            isBehemot: () => true,
         },
         thundertuskBeastriders: {
             id: this.serial++,
@@ -8254,10 +8517,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 360,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-thundertusk-beastriders-en.pdf",
             type: "monster",
-            subType: "Beastclaw Raiders - Behemoth - Beastclaw Raiders Battleline"
+            subType: "Beastclaw Raiders - Behemoth - Beastclaw Raiders Battleline",
+            isBehemot: () => true,
         },
         firebelly: {
             id: this.serial++,
@@ -8266,10 +8530,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Firebellies"
+            subType: "Firebellies",
+            isLeader: () => true,
         },
         butcher: {
             id: this.serial++,
@@ -8278,10 +8543,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Gutbusters"
+            subType: "Gutbusters",
+            isLeader: () => true,
         },
         gorgers: {
             id: this.serial++,
@@ -8290,10 +8556,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Gutbusters"
+            subType: "Gutbusters",
         },
         grots: {
             id: this.serial++,
@@ -8305,7 +8571,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 270,
             warcroll: undefined,
             type: "unit",
-            subType: "Gutbusters"
+            subType: "Gutbusters",
         },
         ironguts: {
             id: this.serial++,
@@ -8314,10 +8580,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Gutbusters - Gutbusters Battleline"
+            subType: "Gutbusters - Gutbusters Battleline",
+            isBatteline: () => true,
         },
         tyrant: {
             id: this.serial++,
@@ -8326,10 +8593,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogor-tyrant-en.pdf",
             type: "hero",
-            subType: "Gutbusters"
+            subType: "Gutbusters",
+            isLeader: () => true,
         },
         grotScraplauncher: {
             id: this.serial++,
@@ -8338,10 +8606,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 130,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Gutbusters - Artillery"
+            subType: "Gutbusters - Artillery",
+            isArtillery: () => true,
         },
         ironblaster: {
             id: this.serial++,
@@ -8350,10 +8619,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Gutbusters - Artillery"
+            subType: "Gutbusters - Artillery",
+            isArtillery: () => true,
         },
         ogors: {
             id: this.serial++,
@@ -8365,7 +8635,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 400,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogors-en.pdf",
             type: "unit",
-            subType: "Gutbusters - Battleline"
+            subType: "Gutbusters - Battleline",
+            isBatteline: () => true,
         },
         leadbelchers: {
             id: this.serial++,
@@ -8374,10 +8645,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Gutbusters - Gutbusters Battleline"
+            subType: "Gutbusters - Gutbusters Battleline",
+            isBatteline: () => true,
         },
         maneaters: {
             id: this.serial++,
@@ -8386,10 +8658,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogor-maneaters-en.pdf",
             type: "unit",
-            subType: "Maneaters"
+            subType: "Maneaters",
         },
         bruiserStandardBearer: {
             id: this.serial++,
@@ -8398,10 +8670,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Ogre Kingdoms"
+            subType: "Ogre Kingdoms",
+            isLeader: () => true,
         },
         overtyrant: {
             id: this.serial++,
@@ -8410,10 +8683,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Ogre Kingdoms"
+            subType: "Ogre Kingdoms",
+            isLeader: () => true,
         },
         aleguzzlerGargant: {
             id: this.serial++,
@@ -8422,10 +8696,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 170,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Aleguzzler Gargants - Behemoth"
+            subType: "Aleguzzler Gargants - Behemoth",
+            isBehemot: () => true,
         },
         maniakWeirdnob: {
             id: this.serial++,
@@ -8434,10 +8709,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Bonesplitterz"
+            subType: "Bonesplitterz",
+            isLeader: () => true,
         },
         savageBigBoss: {
             id: this.serial++,
@@ -8446,10 +8722,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Bonesplitterz"
+            subType: "Bonesplitterz",
+            isLeader: () => true,
         },
         savageBigStabbas: {
             id: this.serial++,
@@ -8458,10 +8735,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 8,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-savage-orruks-en-2016.pdf",
             type: "unit",
-            subType: "Bonesplitterz"
+            subType: "Bonesplitterz",
         },
         savageOrrukArrowboys: {
             id: this.serial++,
@@ -8470,10 +8747,11 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Bonesplitterz - Bonesplitterz Battleline"
+            subType: "Bonesplitterz - Bonesplitterz Battleline",
+            isBatteline: () => true,
         },
         savageOrrukMorboys: {
             id: this.serial++,
@@ -8485,7 +8763,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 300,
             warcroll: undefined,
             type: "unit",
-            subType: "Bonesplitterz - Bonesplitterz Battleline"
+            subType: "Bonesplitterz - Bonesplitterz Battleline",
+            isBatteline: () => true,
         },
         wardokk: {
             id: this.serial++,
@@ -8494,10 +8773,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-wardokk-en.pdf",
             type: "hero",
-            subType: "Bonesplitterz Wizard"
+            subType: "Bonesplitterz Wizard",
+            isLeader: () => true,
         },
         wurrgogProphet: {
             id: this.serial++,
@@ -8506,10 +8786,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-wurrgog-prophet-en.pdf",
             type: "hero",
-            subType: "Bonesplitterz Wizard"
+            subType: "Bonesplitterz Wizard",
+            isLeader: () => true,
         },
         savageOrruks: {
             id: this.serial++,
@@ -8521,7 +8802,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 300,
             warcroll: undefined,
             type: "unit",
-            subType: "Bonesplitterz - Battleline"
+            subType: "Bonesplitterz - Battleline",
+            isBatteline: () => true,
         },
         savageBoarboyManiaks: {
             id: this.serial++,
@@ -8530,10 +8812,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Bonesplitterz - Bonesplitterz Battleline"
+            subType: "Bonesplitterz - Bonesplitterz Battleline",
+            isBatteline: () => true,
         },
         savageBoarboyz: {
             id: this.serial++,
@@ -8542,10 +8825,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Bonesplitterz - Bonesplitterz Battleline"
+            subType: "Bonesplitterz - Bonesplitterz Battleline",
+            isBatteline: () => true,
         },
         gitmobGrotShaman: {
             id: this.serial++,
@@ -8554,10 +8838,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Gitmob Grots"
+            subType: "Gitmob Grots",
+            isLeader: () => true,
         },
         grotWolfChariots: {
             id: this.serial++,
@@ -8566,10 +8851,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 6,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Gitmob Grots - Gitmob Grots Battleline"
+            subType: "Gitmob Grots - Gitmob Grots Battleline",
+            isBatteline: () => true,
         },
         nastySkulkers: {
             id: this.serial++,
@@ -8578,10 +8864,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 9,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Gitmob Grots"
+            subType: "Gitmob Grots",
         },
         snotlingPumpWagons: {
             id: this.serial++,
@@ -8590,10 +8876,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Gitmob Grots"
+            subType: "Gitmob Grots",
         },
         snotlings: {
             id: this.serial++,
@@ -8602,10 +8888,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 10,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Gitmob Grots"
+            subType: "Gitmob Grots",
         },
         doomDiverCatapult: {
             id: this.serial++,
@@ -8614,10 +8900,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Gitmob Grots - Artillery"
+            subType: "Gitmob Grots - Artillery",
+            isArtillery: () => true,
         },
         grotRockLobber: {
             id: this.serial++,
@@ -8626,10 +8913,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Gitmob Grots - Artillery"
+            subType: "Gitmob Grots - Artillery",
+            isArtillery: () => true,
         },
         grotSpearChukka: {
             id: this.serial++,
@@ -8638,10 +8926,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Gitmob Grots - Artillery"
+            subType: "Gitmob Grots - Artillery",
+            isArtillery: () => true,
         },
         gitmobGrots: {
             id: this.serial++,
@@ -8653,7 +8942,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 270,
             warcroll: undefined,
             type: "unit",
-            subType: "Gitmob Grots - Battleline"
+            subType: "Gitmob Grots - Battleline",
+            isBatteline: () => true,
         },
         grotWolfRiders: {
             id: this.serial++,
@@ -8665,7 +8955,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 500,
             warcroll: undefined,
             type: "unit",
-            subType: "Gitmob Grots - Gitmob Grots Battleline"
+            subType: "Gitmob Grots - Gitmob Grots Battleline",
+            isBatteline: () => true,
         },
         orrukBoarChariots: {
             id: this.serial++,
@@ -8674,10 +8965,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Greenskinz - Greenskinz Battleline"
+            subType: "Greenskinz - Greenskinz Battleline",
+            isBatteline: () => true,
         },
         orrukGreatShaman: {
             id: this.serial++,
@@ -8686,10 +8978,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Greenskinz"
+            subType: "Greenskinz",
+            isLeader: () => true,
         },
         orrukWarboss: {
             id: this.serial++,
@@ -8698,10 +8991,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Greenskinz"
+            subType: "Greenskinz",
+            isLeader: () => true,
         },
         orruks: {
             id: this.serial++,
@@ -8713,7 +9007,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 320,
             warcroll: undefined,
             type: "unit",
-            subType: "Greenskinz - Battleline"
+            subType: "Greenskinz - Battleline",
+            isBatteline: () => true,
         },
         orrukBoarboys: {
             id: this.serial++,
@@ -8725,7 +9020,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: undefined,
             type: "unit",
-            subType: "Greenskinz - Greenskinz Battleline"
+            subType: "Greenskinz - Greenskinz Battleline",
+            isBatteline: () => true,
         },
         orrukWarbossOnWyvern: {
             id: this.serial++,
@@ -8734,10 +9030,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Greenskinz Behemoth"
+            subType: "Greenskinz Behemoth",
+            isLeader: () => true,
         },
         orrukMegaboss: {
             id: this.serial++,
@@ -8746,10 +9043,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-megaboss-en.pdf",
             type: "hero",
-            subType: "Ironjawz"
+            subType: "Ironjawz",
+            isLeader: () => true,
         },
         orrukWarchanter: {
             id: this.serial++,
@@ -8758,10 +9056,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-warchanter-en.pdf",
             type: "hero",
-            subType: "Ironjawz"
+            subType: "Ironjawz",
+            isLeader: () => true,
         },
         orrukWeirdnobShaman: {
             id: this.serial++,
@@ -8770,10 +9069,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-weirdnob-shaman-en.pdf",
             type: "hero",
-            subType: "Ironjawz"
+            subType: "Ironjawz",
+            isLeader: () => true,
         },
         orrukArdboys: {
             id: this.serial++,
@@ -8785,7 +9085,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 450,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-ardboyz-en.pdf",
             type: "unit",
-            subType: "Ironjawz - Ironjawz Battleline"
+            subType: "Ironjawz - Ironjawz Battleline",
+            isBatteline: () => true,
         },
         orrukBrutes: {
             id: this.serial++,
@@ -8794,10 +9095,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-brutes-en.pdf",
             type: "unit",
-            subType: "Ironjawz - Ironjawz Battleline"
+            subType: "Ironjawz - Ironjawz Battleline",
+            isBatteline: () => true,
         },
         orrukGoreGruntas: {
             id: this.serial++,
@@ -8806,10 +9108,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-goregruntas-en.pdf",
             type: "unit",
-            subType: "Ironjawz - Ironjawz Battleline"
+            subType: "Ironjawz - Ironjawz Battleline",
+            isBatteline: () => true,
         },
         gordrakkTheFistOfGork: {
             id: this.serial++,
@@ -8818,10 +9121,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 620,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-gordrak-bigteef-en.pdf",
             type: "hero",
-            subType: "Ironjawz - Unique Behemoth"
+            subType: "Ironjawz - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         megabossOnMawKrusha: {
             id: this.serial++,
@@ -8830,10 +9135,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 460,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-mawkrusha-en.pdf",
             type: "hero",
-            subType: "Ironjawz Behemoth"
+            subType: "Ironjawz Behemoth",
+            isLeader: () => true,
         },
         caveSquigs: {
             id: this.serial++,
@@ -8842,10 +9148,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Moonclan Grots - Moonclan Battleline"
+            subType: "Moonclan Grots - Moonclan Battleline",
+            isBatteline: () => true,
         },
         grotFanatics: {
             id: this.serial++,
@@ -8854,10 +9161,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 6,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Moonclan Grots"
+            subType: "Moonclan Grots",
         },
         grotSquigHerders: {
             id: this.serial++,
@@ -8866,10 +9173,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 10,
             points: 20,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Moonclan Grots"
+            subType: "Moonclan Grots",
         },
         grotSquigHoppers: {
             id: this.serial++,
@@ -8878,10 +9185,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Moonclan Grots - Moonclan Battleline"
+            subType: "Moonclan Grots - Moonclan Battleline",
+            isBatteline: () => true,
         },
         grotWarboss: {
             id: this.serial++,
@@ -8890,10 +9198,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Moonclan Grots"
+            subType: "Moonclan Grots",
+            isLeader: () => true,
         },
         grotWarbossOnGreatCaveSquig: {
             id: this.serial++,
@@ -8902,10 +9211,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Moonclan Grots"
+            subType: "Moonclan Grots",
+            isLeader: () => true,
         },
         moonclanGrotShaman: {
             id: this.serial++,
@@ -8914,10 +9224,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Moonclan Grots"
+            subType: "Moonclan Grots",
+            isLeader: () => true,
         },
         moonclanGrots: {
             id: this.serial++,
@@ -8929,7 +9240,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: undefined,
             type: "unit",
-            subType: "Moonclan Grots - Battleline"
+            subType: "Moonclan Grots - Battleline",
+            isBatteline: () => true,
         },
         manglerSquigs: {
             id: this.serial++,
@@ -8938,10 +9250,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Moonclan Grots - Behemoth"
+            subType: "Moonclan Grots - Behemoth",
+            isBehemot: () => true,
         },
         gitboss: {
             id: this.serial++,
@@ -8950,10 +9263,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Orcs & Goblins"
+            subType: "Orcs & Goblins",
+            isLeader: () => true,
         },
         orrukBully: {
             id: this.serial++,
@@ -8962,10 +9276,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Orcs & Goblins"
+            subType: "Orcs & Goblins",
+            isLeader: () => true,
         },
         mercenaryOrruks: {
             id: this.serial++,
@@ -8974,10 +9289,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 30,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Orcs & Goblins "
+            subType: "Orcs & Goblins ",
         },
         gitbossOnWolfChariot: {
             id: this.serial++,
@@ -8986,10 +9301,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Orcs & Goblins"
+            subType: "Orcs & Goblins",
+            isLeader: () => true,
         },
         grotBigBossOnGiganticSpider: {
             id: this.serial++,
@@ -8998,10 +9314,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Spiderfang Grots"
+            subType: "Spiderfang Grots",
+            isLeader: () => true,
         },
         arachnarokSpider: {
             id: this.serial++,
@@ -9010,10 +9327,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Spiderfang Grots"
+            subType: "Spiderfang Grots",
         },
         arachnarokSpiderWithGrotShaman: {
             id: this.serial++,
@@ -9022,10 +9339,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Spiderfang Grots - Behemoth"
+            subType: "Spiderfang Grots - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         grotSpiderRiders: {
             id: this.serial++,
@@ -9037,7 +9356,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 540,
             warcroll: undefined,
             type: "unit",
-            subType: "Spiderfang Grots - Spiderfang Battleline"
+            subType: "Spiderfang Grots - Spiderfang Battleline",
+            isBatteline: () => true,
         },
         fellwaterTroggoths: {
             id: this.serial++,
@@ -9046,10 +9366,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Troggoths"
+            subType: "Troggoths",
         },
         rockgutTroggoths: {
             id: this.serial++,
@@ -9058,10 +9378,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Troggoths"
+            subType: "Troggoths",
         },
         sourbreathTroggoths: {
             id: this.serial++,
@@ -9070,10 +9390,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Troggoths"
+            subType: "Troggoths",
         },
         enchantress: {
             id: this.serial++,
@@ -9082,10 +9402,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         sacredProtector: {
             id: this.serial++,
@@ -9094,10 +9415,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         mountedYeomen: {
             id: this.serial++,
@@ -9106,10 +9428,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         peasantBowmen: {
             id: this.serial++,
@@ -9118,10 +9440,10 @@ export class DataStoreImpl implements DataStore {
             size: 16,
             maxSize: 48,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         pegasusKnights: {
             id: this.serial++,
@@ -9130,10 +9452,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         questingKnights: {
             id: this.serial++,
@@ -9142,10 +9464,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         fieldTrebuchet: {
             id: this.serial++,
@@ -9154,10 +9476,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         knightsErrant: {
             id: this.serial++,
@@ -9166,10 +9488,10 @@ export class DataStoreImpl implements DataStore {
             size: 8,
             maxSize: 24,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         knightsOfTheRealm: {
             id: this.serial++,
@@ -9178,10 +9500,10 @@ export class DataStoreImpl implements DataStore {
             size: 8,
             maxSize: 24,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         menAtArms: {
             id: this.serial++,
@@ -9190,10 +9512,10 @@ export class DataStoreImpl implements DataStore {
             size: 16,
             maxSize: 48,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         battlePilgrims: {
             id: this.serial++,
@@ -9202,10 +9524,10 @@ export class DataStoreImpl implements DataStore {
             size: 6,
             maxSize: 30,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         bretonnianLord: {
             id: this.serial++,
@@ -9214,10 +9536,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         damsel: {
             id: this.serial++,
@@ -9226,10 +9549,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         grailKnights: {
             id: this.serial++,
@@ -9238,10 +9562,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         nobleChampion: {
             id: this.serial++,
@@ -9250,10 +9574,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         nobleStandardBearer: {
             id: this.serial++,
@@ -9262,10 +9587,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         gladeGuard: {
             id: this.serial++,
@@ -9274,10 +9600,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         wildwoodRangers: {
             id: this.serial++,
@@ -9289,7 +9615,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 480,
             warcroll: undefined,
             type: "unit",
-            subType: "Wanderers Battleline (Wayfinder General)"
+            subType: "Wanderers Battleline (Wayfinder General)",
         },
         sistersOfTheWatch: {
             id: this.serial++,
@@ -9298,10 +9624,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 20,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Wanderers Battleline (Waywatcher General)"
+            subType: "Wanderers Battleline (Waywatcher General)",
         },
         eternalGuard: {
             id: this.serial++,
@@ -9313,7 +9639,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 210,
             warcroll: undefined,
             type: "unit",
-            subType: "Wanderers Battleline"
+            subType: "Wanderers Battleline",
         },
         nomadPrince: {
             id: this.serial++,
@@ -9322,10 +9648,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         sistersOfTheThorn: {
             id: this.serial++,
@@ -9334,10 +9661,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         spellweaver: {
             id: this.serial++,
@@ -9346,10 +9673,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         wayfinder: {
             id: this.serial++,
@@ -9358,10 +9686,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         waystrider: {
             id: this.serial++,
@@ -9370,10 +9699,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         wildRiders: {
             id: this.serial++,
@@ -9382,10 +9712,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         gladeRiders: {
             id: this.serial++,
@@ -9394,10 +9724,10 @@ export class DataStoreImpl implements DataStore {
             size: 8,
             maxSize: 24,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         waywatchers: {
             id: this.serial++,
@@ -9406,10 +9736,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 15,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         gladeLordOnForestDragon: {
             id: this.serial++,
@@ -9418,10 +9748,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         avatarOfTheHunt: {
             id: this.serial++,
@@ -9430,10 +9761,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 380,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         twilightSistersOnForestDragon: {
             id: this.serial++,
@@ -9442,10 +9774,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 420,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         gladeCaptainBattleStandardBearer: {
             id: this.serial++,
@@ -9454,10 +9787,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         gladeLord: {
             id: this.serial++,
@@ -9466,10 +9800,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         gladeLordOnGreatEagle: {
             id: this.serial++,
@@ -9478,10 +9813,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         gladeLordOnGreatStag: {
             id: this.serial++,
@@ -9490,10 +9826,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         huntingHounds: {
             id: this.serial++,
@@ -9502,10 +9839,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 5,
             points: 20,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         gladeLordOnPurebredSteed: {
             id: this.serial++,
@@ -9514,10 +9851,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         shadowdancer: {
             id: this.serial++,
@@ -9526,10 +9864,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         treeKin: {
             id: this.serial++,
@@ -9538,10 +9877,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         wardancers: {
             id: this.serial++,
@@ -9550,10 +9889,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 30,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         warhawkRiders: {
             id: this.serial++,
@@ -9562,10 +9901,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 6,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         gutterRunners: {
             id: this.serial++,
@@ -9577,7 +9916,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 200,
             warcroll: undefined,
             type: "unit",
-            subType: "Eshin - Eshin Battleline"
+            subType: "Eshin - Eshin Battleline",
+            isBatteline: () => true,
         },
         skavenAssassin: {
             id: this.serial++,
@@ -9586,10 +9926,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Eshin"
+            subType: "Eshin",
+            isLeader: () => true,
         },
         nightRunners: {
             id: this.serial++,
@@ -9601,7 +9942,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
             warcroll: undefined,
             type: "unit",
-            subType: "Eshin - Eshin Battleline"
+            subType: "Eshin - Eshin Battleline",
+            isBatteline: () => true,
         },
         verminlordDeceiver: {
             id: this.serial++,
@@ -9610,10 +9952,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Eshin Behemoth"
+            subType: "Eshin Behemoth",
+            isLeader: () => true,
         },
         greySeer: {
             id: this.serial++,
@@ -9622,10 +9965,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Masterclan"
+            subType: "Masterclan",
+            isLeader: () => true,
         },
         screamingBell: {
             id: this.serial++,
@@ -9634,10 +9978,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Masterclan - Behemoth"
+            subType: "Masterclan - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         verminlordWarpseer: {
             id: this.serial++,
@@ -9646,10 +9992,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Masterclan - Behemoth"
+            subType: "Masterclan - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         lordSkreechVerminkin: {
             id: this.serial++,
@@ -9658,10 +10006,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Masterclan - Unique Behemoth"
+            subType: "Masterclan - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         thanquolAndBoneripper: {
             id: this.serial++,
@@ -9670,10 +10020,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 450,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Masterclan - Unique Behemoth"
+            subType: "Masterclan - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         giantRats: {
             id: this.serial++,
@@ -9685,7 +10037,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 200,
             warcroll: undefined,
             type: "unit",
-            subType: "Moulder - Moulder Battleline"
+            subType: "Moulder - Moulder Battleline",
+            isBatteline: () => true,
         },
         packmaster: {
             id: this.serial++,
@@ -9694,10 +10047,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Moulder"
+            subType: "Moulder",
+            isLeader: () => true,
         },
         ratOgors: {
             id: this.serial++,
@@ -9706,10 +10060,11 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 8,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Moulder - Moulder Battleline"
+            subType: "Moulder - Moulder Battleline",
+            isBatteline: () => true,
         },
         ratSwarms: {
             id: this.serial++,
@@ -9718,10 +10073,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 8,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Moulder"
+            subType: "Moulder",
         },
         hellPitAbomination: {
             id: this.serial++,
@@ -9730,10 +10085,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Moulder - Behemoth"
+            subType: "Moulder - Behemoth",
+            isBehemot: () => true,
         },
         plaguePriestWithPlagueCenser: {
             id: this.serial++,
@@ -9742,10 +10098,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nurgle Pestilens "
+            subType: "Nurgle Pestilens ",
+            isLeader: () => true,
         },
         plaguePriestWithWarpstoneTippedStaff: {
             id: this.serial++,
@@ -9754,10 +10111,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nurgle Pestilens"
+            subType: "Nurgle Pestilens",
+            isLeader: () => true,
         },
         plagueclaw: {
             id: this.serial++,
@@ -9766,10 +10124,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Nurgle Pestilens  - Artillery"
+            subType: "Nurgle Pestilens  - Artillery",
+            isArtillery: () => true,
         },
         plagueCenserBearers: {
             id: this.serial++,
@@ -9778,10 +10137,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Nurgle Pestilens  - Pestilens Battleline"
+            subType: "Nurgle Pestilens  - Pestilens Battleline",
+            isBatteline: () => true,
         },
         plagueMonks: {
             id: this.serial++,
@@ -9793,7 +10153,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 240,
             warcroll: undefined,
             type: "unit",
-            subType: "Nurgle Pestilens  - Pestilens Battleline"
+            subType: "Nurgle Pestilens  - Pestilens Battleline",
+            isBatteline: () => true,
         },
         plagueFurnace: {
             id: this.serial++,
@@ -9802,10 +10163,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nurgle Pestilens - Behemoth"
+            subType: "Nurgle Pestilens - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         verminlordCorruptor: {
             id: this.serial++,
@@ -9814,10 +10177,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nurgle Pestilens Daemon Wizard - Behemoth"
+            subType: "Nurgle Pestilens Daemon Wizard - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         archWarlock: {
             id: this.serial++,
@@ -9826,10 +10191,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Skryre"
+            subType: "Skryre",
+            isLeader: () => true,
         },
         poisonedWindMortarWeaponTeam: {
             id: this.serial++,
@@ -9838,10 +10204,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Skryre"
+            subType: "Skryre",
         },
         ratlingGunWeaponTeam: {
             id: this.serial++,
@@ -9850,10 +10216,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Skryre"
+            subType: "Skryre",
         },
         warlockEngineer: {
             id: this.serial++,
@@ -9862,10 +10228,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Skryre"
+            subType: "Skryre",
+            isLeader: () => true,
         },
         warpGrinderWeaponTeam: {
             id: this.serial++,
@@ -9874,10 +10241,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Skryre"
+            subType: "Skryre",
         },
         warpfireThrowerWeaponTeam: {
             id: this.serial++,
@@ -9886,10 +10253,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 70,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Skryre"
+            subType: "Skryre",
         },
         warpLightningCannon: {
             id: this.serial++,
@@ -9898,10 +10265,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Skryre - Artillery"
+            subType: "Skryre - Artillery",
+            isArtillery: () => true,
         },
         warplockJezzails: {
             id: this.serial++,
@@ -9910,10 +10278,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Skryre - Artillery"
+            subType: "Skryre - Artillery",
+            isArtillery: () => true,
         },
         doomwheel: {
             id: this.serial++,
@@ -9922,10 +10291,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 130,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Skryre - Behemoth"
+            subType: "Skryre - Behemoth",
+            isBehemot: () => true,
         },
         skryreAcolytes: {
             id: this.serial++,
@@ -9937,7 +10307,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 320,
             warcroll: undefined,
             type: "unit",
-            subType: "Skryre - Skryre Battleline"
+            subType: "Skryre - Skryre Battleline",
+            isBatteline: () => true,
         },
         stormfiends: {
             id: this.serial++,
@@ -9946,10 +10317,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 9,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Skryre - Skryre Battleline"
+            subType: "Skryre - Skryre Battleline",
+            isBatteline: () => true,
         },
         skavenChieftainWithBattleStandard: {
             id: this.serial++,
@@ -9958,10 +10330,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Verminus"
+            subType: "Verminus",
+            isLeader: () => true,
         },
         skavenWarlord: {
             id: this.serial++,
@@ -9970,10 +10343,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Verminus"
+            subType: "Verminus",
+            isLeader: () => true,
         },
         stormvermin: {
             id: this.serial++,
@@ -9985,7 +10359,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 500,
             warcroll: undefined,
             type: "unit",
-            subType: "Verminus - Verminus Battleline"
+            subType: "Verminus - Verminus Battleline",
+            isBatteline: () => true,
         },
         clanrats: {
             id: this.serial++,
@@ -9997,7 +10372,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 200,
             warcroll: undefined,
             type: "unit",
-            subType: "Verminus - Battleline"
+            subType: "Verminus - Battleline",
+            isBatteline: () => true,
         },
         verminlordWarbringer: {
             id: this.serial++,
@@ -10006,10 +10382,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Verminus - Behemoth"
+            subType: "Verminus - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         skavenslaves: {
             id: this.serial++,
@@ -10018,10 +10396,10 @@ export class DataStoreImpl implements DataStore {
             size: 20,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         deathrunner: {
             id: this.serial++,
@@ -10030,10 +10408,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Eshin"
+            subType: "Eshin",
+            isLeader: () => true,
         },
         liberators: {
             id: this.serial++,
@@ -10045,7 +10424,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 520,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-liberators-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         drakeswornTemplar: {
             id: this.serial++,
@@ -10054,10 +10433,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         lordCelestantOnStardrake: {
             id: this.serial++,
@@ -10066,10 +10446,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 560,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-stormcast-stardrake-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         judicators: {
             id: this.serial++,
@@ -10078,10 +10459,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-judicators-en.pdf",
             type: "unit",
-            subType: "Stormcast Eternals Battleline"
+            subType: "Stormcast Eternals Battleline",
         },
         vanguardHunters: {
             id: this.serial++,
@@ -10090,10 +10471,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 15,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Stormcast Eternals Battleline (Lord Aquilor General)"
+            subType: "Stormcast Eternals Battleline (Lord Aquilor General)",
         },
         knightVexillor: {
             id: this.serial++,
@@ -10102,10 +10483,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-knightvexillor-en.pdf",
             type: "hero",
-            subType: "Totem"
+            subType: "Totem",
+            isLeader: () => true,
         },
         celestantPrime: {
             id: this.serial++,
@@ -10114,10 +10496,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-celestantprime-en.pdf",
             type: "hero",
-            subType: "Unique "
+            subType: "Unique ",
+            isLeader: () => true,
         },
         aetherwings: {
             id: this.serial++,
@@ -10126,10 +10509,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         concussors: {
             id: this.serial++,
@@ -10138,10 +10521,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 12,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         desolators: {
             id: this.serial++,
@@ -10150,10 +10533,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 12,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         fulminators: {
             id: this.serial++,
@@ -10162,10 +10545,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 12,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         gryphHound: {
             id: this.serial++,
@@ -10174,10 +10557,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 12,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-lordcastellant-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         knightQuestor: {
             id: this.serial++,
@@ -10186,10 +10569,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-knight-questor-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         knightAzyros: {
             id: this.serial++,
@@ -10198,10 +10582,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-knightazyros-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         knightHeraldor: {
             id: this.serial++,
@@ -10210,10 +10595,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-knightheraldor-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         knightVenator: {
             id: this.serial++,
@@ -10222,10 +10608,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-knightvenator-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         lordVeritant: {
             id: this.serial++,
@@ -10234,10 +10621,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-Lord-Veritant-ENG.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         lordAquilor: {
             id: this.serial++,
@@ -10246,10 +10634,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         vandusHammerhand: {
             id: this.serial++,
@@ -10258,10 +10647,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Unique"
+            subType: "Unique",
+            isLeader: () => true,
         },
         lordCastellant: {
             id: this.serial++,
@@ -10270,10 +10660,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-lordcastellant-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         lordCelestant: {
             id: this.serial++,
@@ -10282,10 +10673,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-lordcelestant-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         lordCelestantOnDracoth: {
             id: this.serial++,
@@ -10294,10 +10686,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lord-celestant-dracoth-en.pdf",
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         lordRelictor: {
             id: this.serial++,
@@ -10306,10 +10699,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         paladinDecimators: {
             id: this.serial++,
@@ -10318,10 +10712,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-decimators-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         paladinProtectors: {
             id: this.serial++,
@@ -10330,10 +10724,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-protectors-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         paladinRetributors: {
             id: this.serial++,
@@ -10342,10 +10736,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-retributors-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         prosecutorsWithCelestialHammers: {
             id: this.serial++,
@@ -10354,10 +10748,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-prostecutorhammers-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         prosecutorsWithStormcallJavelins: {
             id: this.serial++,
@@ -10366,10 +10760,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-prostecutorjavelins-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         tempestors: {
             id: this.serial++,
@@ -10378,10 +10772,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 12,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         vanguardPalladors: {
             id: this.serial++,
@@ -10390,10 +10784,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         vanguardRaptorsWithHurricaneCrossbows: {
             id: this.serial++,
@@ -10402,10 +10796,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         vanguardRaptorsWithLongstrikeCrossbows: {
             id: this.serial++,
@@ -10414,10 +10808,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         dryads: {
             id: this.serial++,
@@ -10429,7 +10823,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 270,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dryads-en.pdf",
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         spiritOfDurthu: {
             id: this.serial++,
@@ -10438,10 +10832,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 400,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-spirit-of-durthu-en.pdf",
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         treelord: {
             id: this.serial++,
@@ -10450,10 +10845,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-treelord-en.pdf",
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         treeRevenants: {
             id: this.serial++,
@@ -10465,7 +10860,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 420,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-tree-revenants-en.pdf",
             type: "unit",
-            subType: "Sylvaneth Battleline"
+            subType: "Sylvaneth Battleline",
         },
         branchwraith: {
             id: this.serial++,
@@ -10474,10 +10869,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-branchwraith-en.pdf",
             type: "hero",
-            subType: "Wizard"
+            subType: "Wizard",
+            isLeader: () => true,
         },
         branchwych: {
             id: this.serial++,
@@ -10486,10 +10882,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-branchwych-en.pdf",
             type: "hero",
-            subType: "Wizard"
+            subType: "Wizard",
+            isLeader: () => true,
         },
         treelordAncient: {
             id: this.serial++,
@@ -10498,10 +10895,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-treelordancient-en.pdf",
             type: "hero",
-            subType: "Wizard - Behemoth"
+            subType: "Wizard - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         alarielleTheEverqueen: {
             id: this.serial++,
@@ -10510,10 +10909,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 600,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-alarielle-everqueen-en.pdf",
             type: "hero",
-            subType: "Wizard - Unique Behemoth"
+            subType: "Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         drychaHamadreth: {
             id: this.serial++,
@@ -10522,10 +10923,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-drycha-hamadreth-en.pdf",
             type: "hero",
-            subType: "Wizard - Unique Behemoth"
+            subType: "Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         kurnothHunters: {
             id: this.serial++,
@@ -10534,10 +10937,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-kurnoth-hunters-en.pdf",
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         spiteRevenants: {
             id: this.serial++,
@@ -10549,7 +10952,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 420,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-spite-revenants-en.pdf",
             type: "unit",
-            subType: "Sylvaneth Battleline"
+            subType: "Sylvaneth Battleline",
         },
         chaosWarMammoth: {
             id: this.serial++,
@@ -10558,10 +10961,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 320,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         giganticChaosSpawn: {
             id: this.serial++,
@@ -10570,10 +10973,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         nightmaw: {
             id: this.serial++,
@@ -10582,10 +10985,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Unique"
+            subType: "Unique",
         },
         daemonPlagueToadsOfNurgle: {
             id: this.serial++,
@@ -10597,7 +11000,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 400,
             warcroll: undefined,
             type: "unit",
-            subType: "Tamurkhan's Horde Battleline"
+            subType: "Tamurkhan's Horde Battleline",
         },
         plagueOgors: {
             id: this.serial++,
@@ -10609,7 +11012,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 560,
             warcroll: undefined,
             type: "unit",
-            subType: "Tamurkhan's Horde Battleline"
+            subType: "Tamurkhan's Horde Battleline",
         },
         kayzkTheBefouled: {
             id: this.serial++,
@@ -10618,10 +11021,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Unique "
+            subType: "Unique ",
+            isLeader: () => true,
         },
         saylTheFaithless: {
             id: this.serial++,
@@ -10630,10 +11034,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Unique "
+            subType: "Unique ",
+            isLeader: () => true,
         },
         tamurkhanTheMaggotLord: {
             id: this.serial++,
@@ -10642,10 +11047,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Unique Behemoth"
+            subType: "Unique Behemoth",
+            isLeader: () => true,
         },
         bileTroggoths: {
             id: this.serial++,
@@ -10657,7 +11063,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 640,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         daemonPoxRidersOfNurgle: {
             id: this.serial++,
@@ -10669,7 +11075,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 640,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         screamingSkullCatapult: {
             id: this.serial++,
@@ -10678,10 +11084,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         skeletonChariots: {
             id: this.serial++,
@@ -10690,10 +11096,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         skeletonHorsemen: {
             id: this.serial++,
@@ -10702,10 +11108,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 30,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         skeletalLegionnaires: {
             id: this.serial++,
@@ -10714,10 +11120,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 40,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         boneGiant: {
             id: this.serial++,
@@ -10726,10 +11132,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         casketOfSouls: {
             id: this.serial++,
@@ -10738,10 +11144,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         warsphinx: {
             id: this.serial++,
@@ -10750,10 +11157,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         necrosphinx: {
             id: this.serial++,
@@ -10762,10 +11169,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         royalWarsphinx: {
             id: this.serial++,
@@ -10774,10 +11181,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         skeletonArchers: {
             id: this.serial++,
@@ -10786,10 +11194,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Tomb Kings Battleline (Tomb Queen General)"
+            subType: "Tomb Kings Battleline (Tomb Queen General)",
         },
         tombQueen: {
             id: this.serial++,
@@ -10798,10 +11206,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         scarabPrince: {
             id: this.serial++,
@@ -10810,10 +11219,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         tombKingOnExaltedChariot: {
             id: this.serial++,
@@ -10822,10 +11232,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 460,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         carrion: {
             id: this.serial++,
@@ -10834,10 +11245,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         lichePriest: {
             id: this.serial++,
@@ -10846,10 +11257,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         necropolisKnights: {
             id: this.serial++,
@@ -10858,10 +11270,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 240,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         necrotect: {
             id: this.serial++,
@@ -10870,10 +11282,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         sepulchralStalkers: {
             id: this.serial++,
@@ -10882,10 +11295,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         skeletonHorseArchers: {
             id: this.serial++,
@@ -10894,10 +11307,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         tombGuard: {
             id: this.serial++,
@@ -10906,10 +11319,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 30,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         tombHerald: {
             id: this.serial++,
@@ -10918,10 +11331,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         tombKing: {
             id: this.serial++,
@@ -10930,10 +11344,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         tombKingInRoyalChariot: {
             id: this.serial++,
@@ -10942,10 +11357,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         tombScorpions: {
             id: this.serial++,
@@ -10954,10 +11370,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         tombSwarm: {
             id: this.serial++,
@@ -10966,10 +11382,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 8,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         ushabti: {
             id: this.serial++,
@@ -10978,10 +11394,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         necromancerOnNightmare: {
             id: this.serial++,
@@ -10990,10 +11406,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         vampireLordOnAbyssalTerror: {
             id: this.serial++,
@@ -11002,10 +11419,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         chaosChariots: {
             id: this.serial++,
@@ -11014,10 +11432,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Mortal - Slaves to Darkness Battleline"
+            subType: "Mortal - Slaves to Darkness Battleline",
+            isBatteline: () => true,
         },
         chaosChosen: {
             id: this.serial++,
@@ -11026,10 +11445,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Mortal"
+            subType: "Mortal",
         },
         chaosGorebeastChariots: {
             id: this.serial++,
@@ -11038,10 +11457,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Mortal"
+            subType: "Mortal",
         },
         darkoathChieftain: {
             id: this.serial++,
@@ -11050,10 +11469,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Mortal"
+            subType: "Mortal",
+            isLeader: () => true,
         },
         exaltedHeroOfChaos: {
             id: this.serial++,
@@ -11062,10 +11482,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Mortal"
+            subType: "Mortal",
+            isLeader: () => true,
         },
         exaltedHeroWithBattleStandard: {
             id: this.serial++,
@@ -11074,10 +11495,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Mortal"
+            subType: "Mortal",
+            isLeader: () => true,
         },
         forsaken: {
             id: this.serial++,
@@ -11086,10 +11508,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: 30,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Mortal"
+            subType: "Mortal",
         },
         lordOfChaos: {
             id: this.serial++,
@@ -11098,10 +11520,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Mortal"
+            subType: "Mortal",
+            isLeader: () => true,
         },
         chaosMarauders: {
             id: this.serial++,
@@ -11113,7 +11536,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 200,
             warcroll: undefined,
             type: "unit",
-            subType: "Mortal - Battleline"
+            subType: "Mortal - Battleline",
+            isBatteline: () => true,
         },
         chaosWarriors: {
             id: this.serial++,
@@ -11125,7 +11549,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 480,
             warcroll: undefined,
             type: "unit",
-            subType: "Mortal - Battleline"
+            subType: "Mortal - Battleline",
+            isBatteline: () => true,
         },
         chaosKnights: {
             id: this.serial++,
@@ -11134,10 +11559,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-knights-en.pdf",
             type: "unit",
-            subType: "Mortal - Slaves to Darkness Battleline"
+            subType: "Mortal - Slaves to Darkness Battleline",
+            isBatteline: () => true,
         },
         chaosMarauderHorsemen: {
             id: this.serial++,
@@ -11149,7 +11575,8 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 480,
             warcroll: undefined,
             type: "unit",
-            subType: "Mortal - Slaves to Darkness Battleline"
+            subType: "Mortal - Slaves to Darkness Battleline",
+            isBatteline: () => true,
         },
         chaosLordOnManticore: {
             id: this.serial++,
@@ -11158,10 +11585,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 250,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Mortal Behemoth"
+            subType: "Mortal Behemoth",
+            isLeader: () => true,
         },
         chaosWarshrine: {
             id: this.serial++,
@@ -11170,10 +11598,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 1,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-warshrine-en.pdf",
             type: "unit",
-            subType: "Mortal Behemoth"
+            subType: "Mortal Behemoth",
         },
         chaosLordOnDaemonicMount: {
             id: this.serial++,
@@ -11182,10 +11610,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Mortal Daemon"
+            subType: "Mortal Daemon",
+            isLeader: () => true,
         },
         chaosSpawn: {
             id: this.serial++,
@@ -11194,10 +11623,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 6,
             points: 50,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Mortal Tzeentch"
+            subType: "Mortal Tzeentch",
         },
         chaosSorcererLord: {
             id: this.serial++,
@@ -11206,10 +11635,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Mortal Wizard"
+            subType: "Mortal Wizard",
+            isLeader: () => true,
         },
         chaosSorcererLordOnManticore: {
             id: this.serial++,
@@ -11218,10 +11648,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Mortal Wizard - Behemoth"
+            subType: "Mortal Wizard - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         chimera: {
             id: this.serial++,
@@ -11230,10 +11662,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         cockatrice: {
             id: this.serial++,
@@ -11242,10 +11674,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         greatTaurus: {
             id: this.serial++,
@@ -11254,10 +11686,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         lammasu: {
             id: this.serial++,
@@ -11266,10 +11698,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         chaosGargant: {
             id: this.serial++,
@@ -11278,10 +11710,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 170,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "monster",
-            subType: "Chaos Gargants - Behemoth"
+            subType: "Chaos Gargants - Behemoth",
+            isBehemot: () => true,
         },
         archaon: {
             id: this.serial++,
@@ -11290,10 +11723,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 700,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Daemon Mortal Khorne Nurgle Slaanesh Tzeentch Everchosen Wizard - Unique Behemoth"
+            subType: "Daemon Mortal Khorne Nurgle Slaanesh Tzeentch Everchosen Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         dragonOgors: {
             id: this.serial++,
@@ -11302,10 +11737,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Thunderscorn Battleline"
+            subType: "Thunderscorn Battleline",
         },
         varanguard: {
             id: this.serial++,
@@ -11314,10 +11749,11 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Everchosen - Everchosen Battleline"
+            subType: "Everchosen - Everchosen Battleline",
+            isBatteline: () => true,
         },
         chaosLordOfSlaanesh: {
             id: this.serial++,
@@ -11326,10 +11762,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Slaanesh"
+            subType: "Slaanesh",
+            isLeader: () => true,
         },
         hellflayersOfSlaanesh: {
             id: this.serial++,
@@ -11338,10 +11775,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: 3,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Slaanesh"
+            subType: "Slaanesh",
         },
         hellstridersOfSlaanesh: {
             id: this.serial++,
@@ -11350,10 +11787,11 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: 20,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Slaanesh - Slaanesh Battleline"
+            subType: "Slaanesh - Slaanesh Battleline",
+            isBatteline: () => true,
         },
         putridBlightkings: {
             id: this.serial++,
@@ -11365,7 +11803,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 580,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-putridblightkings-en.pdf",
             type: "unit",
-            subType: "Nurgle Battleline"
+            subType: "Nurgle Battleline",
         },
         pusgoyleBlightlords: {
             id: this.serial++,
@@ -11374,10 +11812,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 12,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Pusgoyle-blightlords.pdf",
             type: "unit",
-            subType: "Nurgle Battleline (Lord of Afflictions General)"
+            subType: "Nurgle Battleline (Lord of Afflictions General)",
         },
         gauntSummonerAndChaosFamiliars: {
             id: this.serial++,
@@ -11386,10 +11824,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Tzeentch Everchosen Arcanites Mortal Daemon Wizard"
+            subType: "Tzeentch Everchosen Arcanites Mortal Daemon Wizard",
+            isLeader: () => true,
         },
         gauntSummonerOfTzeentch: {
             id: this.serial++,
@@ -11398,10 +11837,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Tzeentch Everchosen Mortal Daemon Wizard"
+            subType: "Tzeentch Everchosen Mortal Daemon Wizard",
+            isLeader: () => true,
         },
         slambo: {
             id: this.serial++,
@@ -11410,10 +11850,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/AoS_Slambo_Warscroll_EN.pdf",
             type: "hero",
-            subType: "Unique"
+            subType: "Unique",
+            isLeader: () => true,
         },
         troggothKing: {
             id: this.serial++,
@@ -11422,10 +11863,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         bloabRotspawned: {
             id: this.serial++,
@@ -11434,10 +11876,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Blob-rotspawned.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal Wizard - Unique Behemoth"
+            subType: "Nurgle Rotbringer Mortal Wizard - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         chaosDragon: {
             id: this.serial++,
@@ -11446,10 +11890,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         morbidexTwiceborn: {
             id: this.serial++,
@@ -11458,10 +11903,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-morbidextwiceborn-en.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal - Unique Behemoth"
+            subType: "Nurgle Rotbringer Mortal - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         orghottsDaemonspew: {
             id: this.serial++,
@@ -11470,10 +11917,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 260,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Orghotts_daemonspew.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal - Unique Behemoth"
+            subType: "Nurgle Rotbringer Mortal - Unique Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         chaosFamiliars: {
             id: this.serial++,
@@ -11482,10 +11931,10 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             maxSize: 8,
             points: 40,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         chaosOgors: {
             id: this.serial++,
@@ -11494,10 +11943,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         chaosTroggoths: {
             id: this.serial++,
@@ -11506,10 +11955,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: 12,
             points: 180,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         dragonOgorShaggoth: {
             id: this.serial++,
@@ -11518,10 +11967,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         lordOfSlaaneshOnDaemonicMount: {
             id: this.serial++,
@@ -11530,10 +11980,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         sorcerer: {
             id: this.serial++,
@@ -11542,10 +11993,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Sorcerer.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal Wizard"
+            subType: "Nurgle Rotbringer Mortal Wizard",
+            isLeader: () => true,
         },
         harbingerOfDecay: {
             id: this.serial++,
@@ -11554,10 +12006,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Harbinger-of-decay.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal Daemon"
+            subType: "Nurgle Rotbringer Mortal Daemon",
+            isLeader: () => true,
         },
         lordOfAfflictions: {
             id: this.serial++,
@@ -11566,10 +12019,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Lord-of-afflictions.pdf",
             type: "hero",
-            subType: "Nurgle Rotbringer Mortal Daemon"
+            subType: "Nurgle Rotbringer Mortal Daemon",
+            isLeader: () => true,
         },
         daemonPrinceOfKhorne: {
             id: this.serial++,
@@ -11578,10 +12032,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 160,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
             type: "hero",
-            subType: "Khorne Daemon - Behemoth"
+            subType: "Khorne Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         aetherKhemist: {
             id: this.serial++,
@@ -11590,10 +12046,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         aethericNavigator: {
             id: this.serial++,
@@ -11602,10 +12059,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         arkanautAdmiral: {
             id: this.serial++,
@@ -11614,10 +12072,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         arkanautCompany: {
             id: this.serial++,
@@ -11626,10 +12085,10 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "Battleline"
+            subType: "Battleline",
         },
         arkanautFrigate: {
             id: this.serial++,
@@ -11638,10 +12097,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 280,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         arkanautIronclad: {
             id: this.serial++,
@@ -11650,10 +12109,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 440,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Behemoth"
+            subType: "Behemoth",
         },
         brokkGrungsson: {
             id: this.serial++,
@@ -11662,10 +12121,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 300,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Unique"
+            subType: "Unique",
+            isLeader: () => true,
         },
         endrinmaster: {
             id: this.serial++,
@@ -11674,10 +12134,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 140,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         endrinriggers: {
             id: this.serial++,
@@ -11686,10 +12147,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         grundstokGunhauler: {
             id: this.serial++,
@@ -11698,10 +12159,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "warmachine",
-            subType: "Artillery"
+            subType: "Artillery",
         },
         grundstokThunderers: {
             id: this.serial++,
@@ -11710,10 +12171,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         skywardens: {
             id: this.serial++,
@@ -11722,10 +12183,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: undefined
+            subType: undefined,
         },
         khorgosKhul: {
             id: this.serial++,
@@ -11734,10 +12195,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 200,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Unique"
+            subType: "Unique",
+            isLeader: () => true,
         },
         exaltedGreaterDaemonOfKhorne: {
             id: this.serial++,
@@ -11746,10 +12208,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 640,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Khorne Daemon - Behemoth"
+            subType: "Khorne Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         exaltedGreaterDaemonOfNurgle: {
             id: this.serial++,
@@ -11758,10 +12222,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nurgle Daemon - Behemoth"
+            subType: "Nurgle Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         exaltedGreaterDaemonOfSlaanesh: {
             id: this.serial++,
@@ -11770,10 +12236,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 500,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Slaanesh Daemon - Behemoth"
+            subType: "Slaanesh Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         exaltedGreaterDaemonOfTzeentch: {
             id: this.serial++,
@@ -11782,10 +12250,12 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 580,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Tzeentch Daemon - Behemoth"
+            subType: "Tzeentch Daemon - Behemoth",
+            isLeader: () => true,
+            isBehemot: () => true,
         },
         warpgnawVerminlord: {
             id: this.serial++,
@@ -11794,10 +12264,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 340,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Behemoth"
+            subType: "Behemoth",
+            isLeader: () => true,
         },
         neaveBlacktalon: {
             id: this.serial++,
@@ -11806,10 +12277,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Unique"
+            subType: "Unique",
+            isLeader: () => true,
         },
         horticulousSlimux: {
             id: this.serial++,
@@ -11818,10 +12290,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 220,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nurgle Daemon - Unique"
+            subType: "Nurgle Daemon - Unique",
+            isLeader: () => true,
         },
         steelheartSChampions: {
             id: this.serial++,
@@ -11830,10 +12303,10 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "One per army"
+            subType: "One per army",
         },
         garrekSReavers: {
             id: this.serial++,
@@ -11842,10 +12315,10 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             maxSize: undefined,
             points: 60,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "One per army"
+            subType: "One per army",
         },
         lordOrdinator: {
             id: this.serial++,
@@ -11854,10 +12327,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: undefined
+            subType: undefined,
+            isLeader: () => true,
         },
         darkoathWarqueen: {
             id: this.serial++,
@@ -11866,10 +12340,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Mortal"
+            subType: "Mortal",
+            isLeader: () => true,
         },
         fungoidCaveShaman: {
             id: this.serial++,
@@ -11878,10 +12353,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 80,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Moonclan Wizard"
+            subType: "Moonclan Wizard",
+            isLeader: () => true,
         },
         knightOfShrouds: {
             id: this.serial++,
@@ -11890,10 +12366,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "Nighthaunt"
+            subType: "Nighthaunt",
+            isLeader: () => true,
         },
         skritchSpiteclaw: {
             id: this.serial++,
@@ -11902,10 +12379,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 120,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "One per army - Must include Spiteclaw's Swarm"
+            subType: "One per army - Must include Spiteclaw's Swarm",
+            isLeader: () => true,
         },
         spiteclawSSwarm: {
             id: this.serial++,
@@ -11914,10 +12392,10 @@ export class DataStoreImpl implements DataStore {
             size: 4,
             maxSize: undefined,
             points: 30,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "One per army - Must include Skritch Spiteclaw"
+            subType: "One per army - Must include Skritch Spiteclaw",
         },
         fjulGrimnir: {
             id: this.serial++,
@@ -11926,10 +12404,11 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             maxSize: undefined,
             points: 100,
-            maxPoints: NaN,
+            maxPoints: undefined,
             warcroll: undefined,
             type: "hero",
-            subType: "One per army - Must include The Chosen Axes"
+            subType: "One per army - Must include The Chosen Axes",
+            isLeader: () => true,
         },
         theChosenAxes: {
             id: this.serial++,
@@ -11941,7 +12420,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: undefined,
             warcroll: undefined,
             type: "unit",
-            subType: "One per army - Must include Fjul Grimnir"
+            subType: "One per army - Must include Fjul Grimnir",
         },
     };
     

@@ -36,6 +36,8 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
             }];
         
         const factionOptions = this.props.unitsStore!.factionsList.filter(x => x.grandAlliance === this.props.uiStore!.grandAlliance).map(x => { return { key: x.id, text: x.name, value: x.id } });
+        const allegianceOptions = this.props.unitsStore!.allegianceList.filter(x => x.grandAlliance === this.props.uiStore!.grandAlliance)
+            .map(x => { return { key: x.id, value: x.id, text: x.name }});;
 
         return <Segment>
             <Grid>
@@ -48,14 +50,14 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
                         </Menu>
                     </Grid.Column>
                     <Grid.Column width={8}>
-                        {/* <DropDown selection options={} />     */}
+                        <Dropdown selection options={allegianceOptions} value={this.props.warscrollStore!.warscroll.allegiance.id} onChange={this.setAllegiance} />    
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={3} >{totalPoints} points</Grid.Column>
                     <Grid.Column width={3}>{ !warscroll.isLeadersValid && <Icon name="warning" /> } {warscroll.numberOfLeaders} leaders ({warscroll.minLeaders} - {warscroll.maxLeaders})</Grid.Column>
                     <Grid.Column width={3}>{ !warscroll.isBattelinesValid && <Icon name="warning" /> }{warscroll.numberOfBattelines} battlelines ({warscroll.minBattlelines} - {warscroll.maxBattlelines})</Grid.Column>
-                    <Grid.Column width={3}>{ !warscroll.isBehemotsValid && <Icon name="warning" /> }{warscroll.numberOfBehemots} behemots (0 - {warscroll.maxBehemots})</Grid.Column>
+                    <Grid.Column width={3}>{ !warscroll.isBehemotsValid && <Icon name="warning" /> }{warscroll.numberOfBehemots} behemoths (0 - {warscroll.maxBehemots})</Grid.Column>
                     <Grid.Column width={3}>{!warscroll.isArtilleryValid && <Icon name="warning" />}{warscroll.numberOfArtillery} artillery (0 - {warscroll.maxArtillery})</Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -64,6 +66,16 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
 
     private setGrandAlliance = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
         this.props.uiStore!.grandAlliance = data.value as GrandAlliance;
+        this.props.warscrollStore!.warscroll.grandAlliance = this.props.uiStore!.grandAlliance;
+        this.props.warscrollStore!.saveWarscroll();
+    }
+
+    private setAllegiance = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+        const allegiance = this.props.unitsStore!.allegianceList.find(x => x.id === data.value);
+        if (allegiance) {
+            this.props.warscrollStore!.warscroll.allegiance = allegiance;
+            this.props.warscrollStore!.saveWarscroll();
+        }
     }
 
     private setFaction = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {

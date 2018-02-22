@@ -22,6 +22,7 @@ export interface Unit {
     size: number;
     points: number;
     factions: Faction[];
+    subType?: string;
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => boolean;
@@ -131,7 +132,7 @@ export class UnitsStore {
         { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Legion of Blood" },
         { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Legion of Night" },
         { id: this.serial++, grandAlliance: GrandAlliance.death, name: "The Wraith Fleet" },
-    ];
+    ].sort((a, b) => a.name > b.name ? 1 : -1);
     
     constructor(data: DataStore) {      
         const models = data.models;  

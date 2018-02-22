@@ -1,5 +1,5 @@
 import { action, computed, observable } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance, Allegiance } from "./units";
 
 export interface WarscrollBattalion {
     id: number;
@@ -43,8 +43,14 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 export class Warscroll implements WarscrollInterface {
     serial = 0;
 
+    constructor(private unitsStore: UnitsStore) {
+    }
+
     @observable
     grandAlliance: GrandAlliance = GrandAlliance.order;
+
+    @observable
+    allegiance: Allegiance = this.unitsStore.allegianceList[0];
 
     @observable
     name = "New Warscroll";
@@ -152,12 +158,11 @@ interface SerializedWarscroll {
     battalions: {
         battalionId: number;
     }[];
+    grandAlliance: number;
+    allegiance: number;
 }
 
 export class WarscrollStore {
-    @observable
-    warscroll = new Warscroll();
-
     @observable
     warscrolls: string[] = [];
 
@@ -210,7 +215,8 @@ export class WarscrollStore {
         this.warscroll.general = undefined;
         this.warscroll.units.splice(0);
         this.warscroll.battalions.splice(0);
-
+        this.warscroll.grandAlliance = warscroll.grandAlliance;
+        this.warscroll.allegiance = this.unitsStore.allegianceList.find(x => x.id === warscroll.allegiance) || this.unitsStore.allegianceList[0];
 
         for (const wu of warscroll.units) {
             const unit = this.unitsStore.getUnit(wu.unitId);
@@ -242,7 +248,9 @@ export class WarscrollStore {
                 return {
                     battalionId: x.battalion.id
                 };
-            })
+            }),
+            grandAlliance: this.warscroll.grandAlliance,
+            allegiance: this.warscroll.allegiance.id
         };
         localStorage.setItem(this.getWarscrollItem(name), JSON.stringify(warscroll));
     }
@@ -255,6 +263,9 @@ export class WarscrollStore {
 
         this.loadWarscroll();
     }
+
+    @observable
+    warscroll = new Warscroll(this.unitsStore);
 
     private getWarscrollItem(name?: string) {
         return name ? `warscroll/${name}` : 'warscroll';

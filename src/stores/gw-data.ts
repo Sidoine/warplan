@@ -5781,8 +5781,26 @@ for (const [key, unit] of gwPointsMap) {
             maxPoints: ${unit.maxPoints !== undefined ? unit.maxPoints: "undefined"},
             warcroll: ${unit.warscroll !== undefined ? `"${unit.warscroll}"` : "undefined"},
             type: "${extras.type}",
-            subType: ${unit.type !== undefined ? `"${unit.type}"` : "undefined"}
-        },
+            subType: ${unit.type !== undefined ? `"${unit.type}"` : "undefined"},
+`;
+    if (extras.type === "hero") {
+        output += "            isLeader: () => true,\n";
+    } 
+    if (unit.type) {
+        const [, type] = unit.type.split(" - ");
+        if (type) {
+            if (type.indexOf("Behemot") >= 0) {
+                output += "            isBehemot: () => true,\n";
+            }
+            if (type.indexOf("Artillery") >= 0) {
+                output += "            isArtillery: () => true,\n";
+            }
+            if (type.indexOf("Battleline") >= 0) {
+                output += "            isBatteline: () => true,\n";
+            }
+        }
+    }
+    output +=`        },
 `;
 }
 
