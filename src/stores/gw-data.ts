@@ -5810,6 +5810,3 @@ for (const [key, unit] of gwPointsMap) {
 output += "    ]\n}\n";
 
 fs.writeFileSync("src/stores/imported-data.ts", output);
-
-
-    

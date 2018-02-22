@@ -19,10 +19,10 @@ export class MyNavbar extends React.Component<MyNavbarProps, {}> {
     render() {
         const pathname = this.props.route.location.pathname;
         return <Menu>
-            <Menu.Item active={pathname === "#/"} href="#/">Owned</Menu.Item>
-            <Menu.Item href="#/warscroll">Warscroll <Label>{ this.props.warscrollStore!.warscroll.totalPoints }</Label></Menu.Item>
-            <Menu.Item href="#/missing">Missing <Label>{ this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length }</Label></Menu.Item>
-            <Menu.Item href="#/basket">Basket { this.props.basketStore!.basket.length > 0 && <Label>{ this.props.basketStore!.basket.length }</Label> }</Menu.Item>
+            <Menu.Item active={pathname === "/"} href="#/">Owned</Menu.Item>
+            <Menu.Item active={pathname === "/warscroll"}  href="#/warscroll">Warscroll <Label>{ this.props.warscrollStore!.warscroll.totalPoints }</Label></Menu.Item>
+            <Menu.Item active={pathname === "/missing"}  href="#/missing">Missing <Label>{ this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length }</Label></Menu.Item>
+            <Menu.Item active={pathname === "/basket"}  href="#/basket">Basket { this.props.basketStore!.basket.length > 0 && <Label>{ this.props.basketStore!.basket.length }</Label> }</Menu.Item>
         </Menu>
     }
 }

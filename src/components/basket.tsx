@@ -21,9 +21,11 @@ export class Basket extends React.Component<BasketProps, {}> {
             <Header>Basket</Header>
             <Table>
                 <Table.Header>
-                    <Table.HeaderCell>Name</Table.HeaderCell>
-                    <Table.HeaderCell>Count</Table.HeaderCell>
-                    <Table.HeaderCell>Price</Table.HeaderCell>
+                    <Table.Row>
+                        <Table.HeaderCell>Name</Table.HeaderCell>
+                        <Table.HeaderCell>Count</Table.HeaderCell>
+                        <Table.HeaderCell>Price</Table.HeaderCell>
+                    </Table.Row>    
                 </Table.Header>
                 <Table.Body>
             {
@@ -31,10 +33,10 @@ export class Basket extends React.Component<BasketProps, {}> {
             }
                 </Table.Body>
                 <Table.Footer>
-                <span>{basket.reduce((p, x) => x.count * x.box.price + p, 0)} €</span>
-                <Button onClick={() => this.props.uiStore!.showBasketPopin()}>Manage baskets</Button>
             </Table.Footer>
             </Table>
+            <span>{basket.reduce((p, x) => x.count * x.box.price + p, 0)} €</span>
+            <Button onClick={() => this.props.uiStore!.showBasketPopin()}>Manage baskets</Button>
         </div>;
     }
 }
