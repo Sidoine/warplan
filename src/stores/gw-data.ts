@@ -5677,7 +5677,7 @@ const factions:Faction[] = [
 ];
 
 const data = loadAllArmiesFaster();
-let output = `import { Battalion, Box, DataStore, GrandAlliance } from "./units";
+let output = `import { Box, DataStore, GrandAlliance } from "./units";
 
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
@@ -5787,17 +5787,15 @@ for (const [key, unit] of gwPointsMap) {
         output += "            isLeader: () => true,\n";
     } 
     if (unit.type) {
-        const [, type] = unit.type.split(" - ");
-        if (type) {
-            if (type.indexOf("Behemot") >= 0) {
-                output += "            isBehemot: () => true,\n";
-            }
-            if (type.indexOf("Artillery") >= 0) {
-                output += "            isArtillery: () => true,\n";
-            }
-            if (type.indexOf("Battleline") >= 0) {
-                output += "            isBatteline: () => true,\n";
-            }
+        const type = unit.type;
+        if (type.indexOf("Behemot") >= 0) {
+            output += "            isBehemot: () => true,\n";
+        }
+        if (type.indexOf("Artillery") >= 0) {
+            output += "            isArtillery: () => true,\n";
+        }
+        if (type.indexOf("Battleline") >= 0) {
+            output += "            isBattleline: () => true,\n";
         }
     }
     output +=`        },
