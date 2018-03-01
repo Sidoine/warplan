@@ -5779,7 +5779,7 @@ for (const [key, unit] of gwPointsMap) {
             maxSize: ${unit.maxCount !== undefined ? unit.maxCount : "undefined"},
             points: ${unit.points},
             maxPoints: ${unit.maxPoints !== undefined ? unit.maxPoints: "undefined"},
-            warcroll: ${unit.warscroll !== undefined ? `"${unit.warscroll}"` : "undefined"},
+            warscroll: ${unit.warscroll !== undefined ? `"${unit.warscroll}"` : "undefined"},
             type: "${extras.type}",
             subType: ${unit.type !== undefined ? `"${unit.type}"` : "undefined"},
 `;

@@ -22,9 +22,12 @@ export interface Unit {
     id: number;
     model: Model;
     size: number;
+    maxSize?: number;
+    maxPoints?: number;
     points: number;
     factions: Faction[];
     subType?: string;
+    warscroll? : string;
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => boolean;

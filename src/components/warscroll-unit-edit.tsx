@@ -17,7 +17,9 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
         return <Table.Row>
             <Table.Cell>
                 <div>{unit.unit.model.name}</div>
-                <div>{ unit.unit.size } <Icon name="user"/> </div>
+                <div>{ unit.unit.size } <Icon name="user"/>
+                { unit.unit.warscroll && <a target="_blank" href={unit.unit.warscroll}><Icon name="help circle outline"/></a>}
+                 </div>
                 <div>
                     <div><em>{unit.unit.subType}</em></div>
                     <div>{unit.isLeader && <><Checkbox toggle checked={unit === this.props.warscrollStore!.warscroll.general} onChange={this.toggleGeneral} ></Checkbox>General</> } </div>
