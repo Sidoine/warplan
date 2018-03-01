@@ -111,23 +111,52 @@ export class BasketStore {
     get missingModels() {
         const neededModels:Missing[] = [];
         
+        const modelsInBasket = new Map<number, { count: number }[]>();
+
+        for (const element of this.basket) {
+            for (const unit of element.box.units) {
+                const count = { count: unit.count * element.count };
+
+                for (const model of unit.models) {
+                    const m = modelsInBasket.get(model.id);
+                    if (m) {
+                        m.push(count);
+                    }
+                    else {
+                        modelsInBasket.set(model.id, [count]);
+                    }
+                }
+            }
+        }
+
         for (const unit of this.warscrollStore.warscroll.units) {
             const count = unit.unit.size * unit.count;
+            const basket = modelsInBasket.get(unit.unit.model.id);
+            let basketCount = 0;
+            if (basket) {
+                for (const models of basket) {
+                    const used = Math.min(models.count, count - basketCount);
+                    basketCount += used;
+                    models.count -= used;
+                }
+            }
+
             const existings = neededModels.find(x => x.model === unit.unit.model);
             if (existings === undefined) {
                 neededModels.push({ 
                     model: unit.unit.model, 
                     count: count, 
                     id: unit.unit.model.id, 
-                    inBasket: this.basket.reduce((c, x) => c + x.count * x.box.units.reduce((d, y) => y.models.reduce((e, z) => z.id === unit.unit.model.id ? e + 1: e, 0) * y.count + d, 0) , 0)
+                    inBasket: basketCount
                 });
             } else {
                 existings.count += count;
+                existings.inBasket += basketCount;
             }
         }
 
         for (const model of this.ownedStore.ownedModels) {
-            const neededModel = neededModels.find(x => x.model === model.model);
+            const neededModel = neededModels.find(x => x.model.id === model.model.id);
             if (neededModel !== undefined) {
                 neededModel.count -= model.count;
             }

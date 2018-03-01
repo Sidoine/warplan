@@ -1,4 +1,4 @@
-import { Battalion, Box, DataStore, GrandAlliance } from "./units";
+import { Box, DataStore, GrandAlliance } from "./units";
 
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
@@ -12426,1329 +12426,1329 @@ export class DataStoreImpl implements DataStore {
     
     boxes: Box[] = [];
 
-    battalions: Battalion[] = [
-        {
+    battalions = {
+        bloodHostOfKhorne: {
             id: this.serial++,
             name: "Blood Host of Khorne",
             factions: [this.factions.KHORNEDAEMONS],
             points: 220,
             units: []             
         },
-        {
+        bloodHunt: {
             id: this.serial++,
             name: "Blood Hunt",
             factions: [this.factions.KHORNEDAEMONS],
             points: 130,
             units: []             
         },
-        {
+        theBloodlords: {
             id: this.serial++,
             name: "The Bloodlords",
             factions: [this.factions.KHORNEDAEMONS],
             points: 140,
             units: []             
         },
-        {
+        bloodthunderStampede: {
             id: this.serial++,
             name: "Bloodthunder Stampede",
             factions: [this.factions.KHORNEDAEMONS],
             points: 180,
             units: []             
         },
-        {
+        charnelHost: {
             id: this.serial++,
             name: "Charnel Host",
             factions: [this.factions.KHORNEDAEMONS],
             points: 140,
             units: []             
         },
-        {
+        councilOfBlood: {
             id: this.serial++,
             name: "Council of Blood",
             factions: [this.factions.KHORNEDAEMONS],
             points: 110,
             units: []             
         },
-        {
+        daemonLegionOfKhorne: {
             id: this.serial++,
             name: "Daemon Legion of Khorne",
             factions: [this.factions.KHORNEDAEMONS],
             points: 160,
             units: []             
         },
-        {
+        gorethunderCohort: {
             id: this.serial++,
             name: "Gorethunder Cohort",
             factions: [this.factions.KHORNEDAEMONS],
             points: 110,
             units: []             
         },
-        {
+        murderhost: {
             id: this.serial++,
             name: "Murderhost",
             factions: [this.factions.KHORNEDAEMONS],
             points: 120,
             units: []             
         },
-        {
+        theReapersOfVengeance: {
             id: this.serial++,
             name: "The Reapers of Vengeance",
             factions: [this.factions.KHORNEDAEMONS],
             points: 140,
             units: []             
         },
-        {
+        skullseekerHost: {
             id: this.serial++,
             name: "Skullseeker Host",
             factions: [this.factions.KHORNEDAEMONS],
             points: 140,
             units: []             
         },
-        {
+        aetherEaterHost: {
             id: this.serial++,
             name: "Aether-eater Host",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 140,
             units: []             
         },
-        {
+        changehost: {
             id: this.serial++,
             name: "Changehost",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 160,
             units: []             
         },
-        {
+        multitudinousHost: {
             id: this.serial++,
             name: "Multitudinous Host",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 200,
             units: []             
         },
-        {
+        omniscientOracles: {
             id: this.serial++,
             name: "Omniscient Oracles",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 110,
             units: []             
         },
-        {
+        overseerSFateTwisters: {
             id: this.serial++,
             name: "Overseer's Fate-twisters",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 110,
             units: []             
         },
-        {
+        theEternalConflagration: {
             id: this.serial++,
             name: "The Eternal Conflagration",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 140,
             units: []             
         },
-        {
+        theHostsDuplicitous: {
             id: this.serial++,
             name: "The Hosts Duplicitous",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 150,
             units: []             
         },
-        {
+        warpflameHost: {
             id: this.serial++,
             name: "Warpflame Host",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 80,
             units: []             
         },
-        {
+        bloodboundWarband: {
             id: this.serial++,
             name: "Bloodbound Warband",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 220,
             units: []             
         },
-        {
+        bloodboundWarhorde: {
             id: this.serial++,
             name: "Bloodbound Warhorde",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 220,
             units: []             
         },
-        {
+        bloodforged: {
             id: this.serial++,
             name: "Bloodforged",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 140,
             units: []             
         },
-        {
+        brassStampede: {
             id: this.serial++,
             name: "Brass Stampede",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 180,
             units: []             
         },
-        {
+        darkFeast: {
             id: this.serial++,
             name: "Dark Feast",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 200,
             units: []             
         },
-        {
+        gorePilgrims: {
             id: this.serial++,
             name: "Gore Pilgrims",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 180,
             units: []             
         },
-        {
+        redHeadsmen: {
             id: this.serial++,
             name: "Red Headsmen",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 160,
             units: []             
         },
-        {
+        skulltake: {
             id: this.serial++,
             name: "Skulltake",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 200,
             units: []             
         },
-        {
+        slaughterborn: {
             id: this.serial++,
             name: "Slaughterborn",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 180,
             units: []             
         },
-        {
+        theGorechosen: {
             id: this.serial++,
             name: "The Gorechosen",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 150,
             units: []             
         },
-        {
+        theGoretide: {
             id: this.serial++,
             name: "The Goretide",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 140,
             units: []             
         },
-        {
+        theSkullfiendTribe: {
             id: this.serial++,
             name: "The Skullfiend Tribe",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 120,
             units: []             
         },
-        {
+        alterKinCoven: {
             id: this.serial++,
             name: "Alter-kin Coven",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 70,
             units: []             
         },
-        {
+        arcaniteCabal: {
             id: this.serial++,
             name: "Arcanite Cabal",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 100,
             units: []             
         },
-        {
+        arcaniteCult: {
             id: this.serial++,
             name: "Arcanite Cult",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 160,
             units: []             
         },
-        {
+        cultOfTheTransientForm: {
             id: this.serial++,
             name: "Cult of the Transient Form",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 160,
             units: []             
         },
-        {
+        skyshoalCoven: {
             id: this.serial++,
             name: "Skyshoal Coven",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 130,
             units: []             
         },
-        {
+        thePyrofaneCult: {
             id: this.serial++,
             name: "The Pyrofane Cult",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 180,
             units: []             
         },
-        {
+        tzaangorCoven: {
             id: this.serial++,
             name: "Tzaangor Coven",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 90,
             units: []             
         },
-        {
+        witchfyreCoven: {
             id: this.serial++,
             name: "Witchfyre Coven",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 110,
             units: []             
         },
-        {
+        wildstalkerBrayherd: {
             id: this.serial++,
             name: "Wildstalker Brayherd",
             factions: [this.factions.BRAYHERD],
             points: 240,
             units: []             
         },
-        {
+        tallybandOfNurgle: {
             id: this.serial++,
             name: "Tallyband of Nurgle",
             factions: [this.factions.NURGLEDAEMONS],
             points: 220,
             units: []             
         },
-        {
+        theMunificentWanderers: {
             id: this.serial++,
             name: "The Munificent Wanderers",
             factions: [this.factions.NURGLEDAEMONS],
             points: 180,
             units: []             
         },
-        {
+        nurgleSMenagerie: {
             id: this.serial++,
             name: "Nurgle's Menagerie",
             factions: [this.factions.NURGLEDAEMONS],
             points: 240,
             units: []             
         },
-        {
+        thricefoldBefoulment: {
             id: this.serial++,
             name: "Thricefold Befoulment",
             factions: [this.factions.NURGLEDAEMONS],
             points: 160,
             units: []             
         },
-        {
+        afflictionCyst: {
             id: this.serial++,
             name: "Affliction Cyst",
             factions: [this.factions.NURGLEROTBRINGERS],
             points: 220,
             units: []             
         },
-        {
+        theBlessedSons: {
             id: this.serial++,
             name: "The Blessed Sons",
             factions: [this.factions.NURGLEROTBRINGERS],
             points: 200,
             units: []             
         },
-        {
+        blightCyst: {
             id: this.serial++,
             name: "Blight Cyst",
             factions: [this.factions.NURGLEROTBRINGERS],
             points: 220,
             units: []             
         },
-        {
+        plagueCyst: {
             id: this.serial++,
             name: "Plague Cyst",
             factions: [this.factions.NURGLEROTBRINGERS],
             points: 220,
             units: []             
         },
-        {
+        thrallWarhost: {
             id: this.serial++,
             name: "Thrall Warhost",
             factions: [this.factions.DARKLINGCOVENS],
             points: 180,
             units: []             
         },
-        {
+        bloodwrackSisterhood: {
             id: this.serial++,
             name: "Bloodwrack Sisterhood",
             factions: [this.factions.DAUGHTERSOFKHAINE],
             points: 140,
             units: []             
         },
-        {
+        ebondrakeWarhost: {
             id: this.serial++,
             name: "Ebondrake Warhost",
             factions: [this.factions.ORDERSERPENTIS],
             points: 160,
             units: []             
         },
-        {
+        realmReavers: {
             id: this.serial++,
             name: "Realm Reavers",
             factions: [this.factions.SCOURGEPRIVATEERS],
             points: 180,
             units: []             
         },
-        {
+        legionOfDeath: {
             id: this.serial++,
             name: "Legion of Death",
             factions: [this.factions.DEATHRATTLE],
             points: 110,
             units: []             
         },
-        {
+        castellansOfTheCrimsonKeep: {
             id: this.serial++,
             name: "Castellans of the Crimson Keep",
             factions: [this.factions.SOULBLIGHT],
             points: 90,
             units: []             
         },
-        {
+        courtOfNulahmia: {
             id: this.serial++,
             name: "Court of Nulahmia",
             factions: [this.factions.SOULBLIGHT],
             points: 70,
             units: []             
         },
-        {
+        deathmarch: {
             id: this.serial++,
             name: "Deathmarch",
             factions: [this.factions.LEGIONSOFNAGASH],
             points: 110,
             units: []             
         },
-        {
+        lordsOfSacrament: {
             id: this.serial++,
             name: "Lords of Sacrament",
             factions: [this.factions.LEGIONSOFNAGASH],
             points: 70,
             units: []             
         },
-        {
+        nightfallPack: {
             id: this.serial++,
             name: "Nightfall Pack",
             factions: [this.factions.LEGIONSOFNAGASH],
             points: 140,
             units: []             
         },
-        {
+        theFirstCohort: {
             id: this.serial++,
             name: "The First Cohort",
             factions: [this.factions.LEGIONSOFNAGASH],
             points: 160,
             units: []             
         },
-        {
+        abattoir: {
             id: this.serial++,
             name: "Abattoir",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 110,
             units: []             
         },
-        {
+        attendantsAtCourt: {
             id: this.serial++,
             name: "Attendants at Court",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 150,
             units: []             
         },
-        {
+        deadwatch: {
             id: this.serial++,
             name: "Deadwatch",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 210,
             units: []             
         },
-        {
+        fleshEaterCourt: {
             id: this.serial++,
             name: "Flesh-eater Court",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 120,
             units: []             
         },
-        {
+        ghoulPatrol: {
             id: this.serial++,
             name: "Ghoul Patrol",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 150,
             units: []             
         },
-        {
+        kingSGhouls: {
             id: this.serial++,
             name: "King's Ghouls",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 90,
             units: []             
         },
-        {
+        royalFamily: {
             id: this.serial++,
             name: "Royal Family",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 110,
             units: []             
         },
-        {
+        royalMenagerie: {
             id: this.serial++,
             name: "Royal Menagerie",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 110,
             units: []             
         },
-        {
+        royalMordants: {
             id: this.serial++,
             name: "Royal Mordants",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 70,
             units: []             
         },
-        {
+        artilleryDetachment: {
             id: this.serial++,
             name: "Artillery Detachment",
             factions: [this.factions.IRONWELDARSONAL],
             points: 140,
             units: []             
         },
-        {
+        forgeBrethren: {
             id: this.serial++,
             name: "Forge Brethren",
             factions: [this.factions.FYRESLAYERS],
             points: 130,
             units: []             
         },
-        {
+        grandFyrd: {
             id: this.serial++,
             name: "Grand Fyrd",
             factions: [this.factions.FYRESLAYERS],
             points: 180,
             units: []             
         },
-        {
+        greyfyrdLodge: {
             id: this.serial++,
             name: "Greyfyrd Lodge",
             factions: [this.factions.FYRESLAYERS],
             points: 100,
             units: []             
         },
-        {
+        vostargLodge: {
             id: this.serial++,
             name: "Vostarg Lodge",
             factions: [this.factions.FYRESLAYERS],
             points: 120,
             units: []             
         },
-        {
+        grudgeboundWarThrong: {
             id: this.serial++,
             name: "Grudgebound War Throng",
             factions: [this.factions.DISPOSSESSED],
             points: 160,
             units: []             
         },
-        {
+        lordsOfTheLodge: {
             id: this.serial++,
             name: "Lords of the Lodge",
             factions: [this.factions.FYRESLAYERS],
             points: 90,
             units: []             
         },
-        {
+        warriorKinband: {
             id: this.serial++,
             name: "Warrior Kinband",
             factions: [this.factions.FYRESLAYERS],
             points: 90,
             units: []             
         },
-        {
+        freeguildRegiment: {
             id: this.serial++,
             name: "Freeguild Regiment",
             factions: [this.factions.FREEPEOPLES],
             points: 200,
             units: []             
         },
-        {
+        pilgrimageOfWrath: {
             id: this.serial++,
             name: "Pilgrimage of Wrath",
             factions: [this.factions.DEVOTEDOFSIGMAR],
             points: 160,
             units: []             
         },
-        {
+        warCouncil: {
             id: this.serial++,
             name: "War Council",
             factions: [this.factions.COLLEGIATEARCANE],
             points: 250,
             units: []             
         },
-        {
+        dragonlordHost: {
             id: this.serial++,
             name: "Dragonlord Host",
             factions: [this.factions.ORDERDRACONIS],
             points: 180,
             units: []             
         },
-        {
+        spyreheartWarhost: {
             id: this.serial++,
             name: "Spyreheart Warhost",
             factions: [this.factions.PHOENIXTEMPLE],
             points: 200,
             units: []             
         },
-        {
+        blackshardWarhost: {
             id: this.serial++,
             name: "Blackshard Warhost",
             factions: [this.factions.LEGIONOFAZGORH],
             points: 180,
             units: []             
         },
-        {
+        hashutSWrathArtilleryTrain: {
             id: this.serial++,
             name: "Hashut's Wrath Artillery Train",
             factions: [this.factions.LEGIONOFAZGORH],
             points: 200,
             units: []             
         },
-        {
+        bloodclawStarhost: {
             id: this.serial++,
             name: "Bloodclaw Starhost",
             factions: [this.factions.SERAPHON],
             points: 200,
             units: []             
         },
-        {
+        eternalStarhost: {
             id: this.serial++,
             name: "Eternal Starhost",
             factions: [this.factions.SERAPHON],
             points: 130,
             units: []             
         },
-        {
+        dracothionSTail: {
             id: this.serial++,
             name: "Dracothion's Tail",
             factions: [this.factions.SERAPHON],
             points: 60,
             units: []             
         },
-        {
+        fangsOfSotek: {
             id: this.serial++,
             name: "Fangs of Sotek",
             factions: [this.factions.SERAPHON],
             points: 100,
             units: []             
         },
-        {
+        firelanceStarhost: {
             id: this.serial++,
             name: "Firelance Starhost",
             factions: [this.factions.SERAPHON],
             points: 110,
             units: []             
         },
-        {
+        heavenswatchStarhost: {
             id: this.serial++,
             name: "Heavenswatch Starhost",
             factions: [this.factions.SERAPHON],
             points: 200,
             units: []             
         },
-        {
+        shadowstrikeStarhost: {
             id: this.serial++,
             name: "Shadowstrike Starhost",
             factions: [this.factions.SERAPHON],
             points: 170,
             units: []             
         },
-        {
+        starbeastConstellation: {
             id: this.serial++,
             name: "Starbeast Constellation",
             factions: [this.factions.SERAPHON],
             points: 220,
             units: []             
         },
-        {
+        sunclawStarhost: {
             id: this.serial++,
             name: "Sunclaw Starhost",
             factions: [this.factions.SERAPHON],
             points: 130,
             units: []             
         },
-        {
+        thunderquakeStarhost: {
             id: this.serial++,
             name: "Thunderquake Starhost",
             factions: [this.factions.SERAPHON],
             points: 170,
             units: []             
         },
-        {
+        alfrostun: {
             id: this.serial++,
             name: "Alfrostun",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 140,
             units: []             
         },
-        {
+        braggothSBeastHammer: {
             id: this.serial++,
             name: "Braggoth's Beast Hammer",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 260,
             units: []             
         },
-        {
+        eurlbad: {
             id: this.serial++,
             name: "Eurlbad",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 160,
             units: []             
         },
-        {
+        jorlbad: {
             id: this.serial++,
             name: "Jorlbad",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 120,
             units: []             
         },
-        {
+        olwyrAlfrostun: {
             id: this.serial++,
             name: "Olwyr Alfrostun",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 220,
             units: []             
         },
-        {
+        skal: {
             id: this.serial++,
             name: "Skal",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 110,
             units: []             
         },
-        {
+        svardAlfrostun: {
             id: this.serial++,
             name: "Svard Alfrostun",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 180,
             units: []             
         },
-        {
+        torrbad: {
             id: this.serial++,
             name: "Torrbad",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 160,
             units: []             
         },
-        {
+        bonegrinzWarclan: {
             id: this.serial++,
             name: "Bonegrinz Warclan",
             factions: [this.factions.BONESPLITTERZ],
             points: 140,
             units: []             
         },
-        {
+        brutalRukk: {
             id: this.serial++,
             name: "Brutal Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 140,
             units: []             
         },
-        {
+        drakkfootWarclan: {
             id: this.serial++,
             name: "Drakkfoot Warclan",
             factions: [this.factions.BONESPLITTERZ],
             points: 160,
             units: []             
         },
-        {
+        iceboneWarclan: {
             id: this.serial++,
             name: "Icebone Warclan",
             factions: [this.factions.BONESPLITTERZ],
             points: 200,
             units: []             
         },
-        {
+        kopRukk: {
             id: this.serial++,
             name: "Kop Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 200,
             units: []             
         },
-        {
+        kunninRukk: {
             id: this.serial++,
             name: "Kunnin' Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 160,
             units: []             
         },
-        {
+        savageWarclan: {
             id: this.serial++,
             name: "Savage Warclan",
             factions: [this.factions.BONESPLITTERZ],
             points: 60,
             units: []             
         },
-        {
+        snagaRukk: {
             id: this.serial++,
             name: "Snaga Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 140,
             units: []             
         },
-        {
+        teefRukk: {
             id: this.serial++,
             name: "Teef Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 90,
             units: []             
         },
-        {
+        ardfist: {
             id: this.serial++,
             name: "Ardfist",
             factions: [this.factions.IRONJAWZ],
             points: 140,
             units: []             
         },
-        {
+        bloodtoofs: {
             id: this.serial++,
             name: "Bloodtoofs",
             factions: [this.factions.IRONJAWZ],
             points: 140,
             units: []             
         },
-        {
+        brawl: {
             id: this.serial++,
             name: "Brawl",
             factions: [this.factions.IRONJAWZ],
             points: 200,
             units: []             
         },
-        {
+        gorefist: {
             id: this.serial++,
             name: "Gorefist",
             factions: [this.factions.IRONJAWZ],
             points: 220,
             units: []             
         },
-        {
+        ironfist: {
             id: this.serial++,
             name: "Ironfist",
             factions: [this.factions.IRONJAWZ],
             points: 160,
             units: []             
         },
-        {
+        ironsunz: {
             id: this.serial++,
             name: "Ironsunz",
             factions: [this.factions.IRONJAWZ],
             points: 120,
             units: []             
         },
-        {
+        weirdfist: {
             id: this.serial++,
             name: "Weirdfist",
             factions: [this.factions.IRONJAWZ],
             points: 200,
             units: []             
         },
-        {
+        waystonePathfinders: {
             id: this.serial++,
             name: "Waystone Pathfinders",
             factions: [this.factions.WANDERERS],
             points: 240,
             units: []             
         },
-        {
+        clanSkryre: {
             id: this.serial++,
             name: "Clan Skryre",
             factions: [this.factions.SKAVENSKRYRE],
             points: 100,
             units: []             
         },
-        {
+        congregationOfFilth: {
             id: this.serial++,
             name: "Congregation of Filth",
             factions: [this.factions.SKAVENPESTILENS],
             points: 140,
             units: []             
         },
-        {
+        foulrainCongregation: {
             id: this.serial++,
             name: "Foulrain Congregation",
             factions: [this.factions.SKAVENPESTILENS],
             points: 200,
             units: []             
         },
-        {
+        plaguesmogCongregation: {
             id: this.serial++,
             name: "Plaguesmog Congregation",
             factions: [this.factions.SKAVENPESTILENS],
             points: 160,
             units: []             
         },
-        {
+        virulentProcession: {
             id: this.serial++,
             name: "Virulent Procession",
             factions: [this.factions.SKAVENPESTILENS],
             points: 180,
             units: []             
         },
-        {
+        aetherstrikeForce: {
             id: this.serial++,
             name: "Aetherstrike Force",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
-        {
+        anvilsOfTheHeldenhammerWarriorChamber: {
             id: this.serial++,
             name: "Anvils of the Heldenhammer Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
-        {
+        astralTemplarsExemplarChamber: {
             id: this.serial++,
             name: "Astral Templars Exemplar Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
-        {
+        celestialHuntingPack: {
             id: this.serial++,
             name: "Celestial Hunting Pack",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
-        {
+        celestialVindicatorsWarriorChamber: {
             id: this.serial++,
             name: "Celestial Vindicators Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
-        {
+        celestialWarbringersHarbingerChamber: {
             id: this.serial++,
             name: "Celestial Warbringers Harbinger Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 160,
             units: []             
         },
-        {
+        devastationBrotherhood: {
             id: this.serial++,
             name: "Devastation Brotherhood",
             factions: [this.factions.STORMCASTETERNALS],
             points: 160,
             units: []             
         },
-        {
+        drakeswornTemple: {
             id: this.serial++,
             name: "Drakesworn Temple",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
-        {
+        exemplarChamber: {
             id: this.serial++,
             name: "Exemplar Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
-        {
+        extremisChamber: {
             id: this.serial++,
             name: "Extremis Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 260,
             units: []             
         },
-        {
+        hallowedKnightsWarriorChamber: {
             id: this.serial++,
             name: "Hallowed Knights Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
-        {
+        hammersOfSigmarWarriorChamber: {
             id: this.serial++,
             name: "Hammers of Sigmar Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 220,
             units: []             
         },
-        {
+        hammerstrikeForce: {
             id: this.serial++,
             name: "Hammerstrike Force",
             factions: [this.factions.STORMCASTETERNALS],
             points: 220,
             units: []             
         },
-        {
+        harbingerChamber: {
             id: this.serial++,
             name: "Harbinger Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
-        {
+        knightsExcelsiorExemplarChamber: {
             id: this.serial++,
             name: "Knights Excelsior Exemplar Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
-        {
+        lightningEchelon: {
             id: this.serial++,
             name: "Lightning Echelon",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
-        {
+        lordsOfTheStorm: {
             id: this.serial++,
             name: "Lords of the Storm",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
-        {
+        stormHeralds: {
             id: this.serial++,
             name: "Storm Heralds",
             factions: [this.factions.STORMCASTETERNALS],
             points: 260,
             units: []             
         },
-        {
+        stormVortexGarrison: {
             id: this.serial++,
             name: "Storm Vortex Garrison",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
-        {
+        tempestLordsHarbingerChamber: {
             id: this.serial++,
             name: "Tempest Lords Harbinger Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
-        {
+        theSkyborneSlayers: {
             id: this.serial++,
             name: "The Skyborne Slayers",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
-        {
+        thunderheadBrotherhood: {
             id: this.serial++,
             name: "Thunderhead Brotherhood",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
-        {
+        thunderwaveEchelon: {
             id: this.serial++,
             name: "Thunderwave Echelon",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
-        {
+        vanguardAngelosConclave: {
             id: this.serial++,
             name: "Vanguard Angelos Conclave",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
-        {
+        vanguardAuxiliaryChamber: {
             id: this.serial++,
             name: "Vanguard Auxiliary Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
-        {
+        vanguardJusticarConclave: {
             id: this.serial++,
             name: "Vanguard Justicar Conclave",
             factions: [this.factions.STORMCASTETERNALS],
             points: 110,
             units: []             
         },
-        {
+        vanguardWing: {
             id: this.serial++,
             name: "Vanguard Wing",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
-        {
+        warriorBrotherhood: {
             id: this.serial++,
             name: "Warrior Brotherhood",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
-        {
+        warriorChamber: {
             id: this.serial++,
             name: "Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
-        {
+        dreadwoodWargrove: {
             id: this.serial++,
             name: "Dreadwood Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 200,
             units: []             
         },
-        {
+        forestFolk: {
             id: this.serial++,
             name: "Forest Folk",
             factions: [this.factions.SYLVANETH],
             points: 110,
             units: []             
         },
-        {
+        forestSpiritWargrove: {
             id: this.serial++,
             name: "Forest Spirit Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 160,
             units: []             
         },
-        {
+        freeSpirits: {
             id: this.serial++,
             name: "Free Spirits",
             factions: [this.factions.SYLVANETH],
             points: 90,
             units: []             
         },
-        {
+        gnarlrootWargrove: {
             id: this.serial++,
             name: "Gnarlroot Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 180,
             units: []             
         },
-        {
+        harvestboonWargrove: {
             id: this.serial++,
             name: "Harvestboon Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 200,
             units: []             
         },
-        {
+        heartwoodWargrove: {
             id: this.serial++,
             name: "Heartwood Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 160,
             units: []             
         },
-        {
+        household: {
             id: this.serial++,
             name: "Household",
             factions: [this.factions.SYLVANETH],
             points: 70,
             units: []             
         },
-        {
+        ironbarkWargrove: {
             id: this.serial++,
             name: "Ironbark Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 160,
             units: []             
         },
-        {
+        lordsOfTheClan: {
             id: this.serial++,
             name: "Lords of the Clan",
             factions: [this.factions.SYLVANETH],
             points: 110,
             units: []             
         },
-        {
+        oakenbrowWargrove: {
             id: this.serial++,
             name: "Oakenbrow Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 180,
             units: []             
         },
-        {
+        outcasts: {
             id: this.serial++,
             name: "Outcasts",
             factions: [this.factions.SYLVANETH],
             points: 90,
             units: []             
         },
-        {
+        sylvanethWargrove: {
             id: this.serial++,
             name: "Sylvaneth Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 200,
             units: []             
         },
-        {
+        theGuardiansOfAlarielle: {
             id: this.serial++,
             name: "The Guardians of Alarielle",
             factions: [this.factions.SYLVANETH],
             points: 220,
             units: []             
         },
-        {
+        winterleafWargrove: {
             id: this.serial++,
             name: "Winterleaf Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 200,
             units: []             
         },
-        {
+        sonsOfTheMaggotLord: {
             id: this.serial++,
             name: "Sons of the Maggot Lord",
             factions: [this.factions.TAMURKHANSHORDE],
             points: 120,
             units: []             
         },
-        {
+        theLeapingPox: {
             id: this.serial++,
             name: "The Leaping Pox",
             factions: [this.factions.TAMURKHANSHORDE],
             points: 80,
             units: []             
         },
-        {
+        archaonSGrandHost: {
             id: this.serial++,
             name: "Archaon's Grand Host",
             factions: [this.factions.EVERCHOSEN],
             points: 100,
             units: []             
         },
-        {
+        bloodmarkedWarband: {
             id: this.serial++,
             name: "Bloodmarked Warband",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 100,
             units: []             
         },
-        {
+        fateswornWarband: {
             id: this.serial++,
             name: "Fatesworn Warband",
             factions: [this.factions.EVERCHOSEN],
             points: 100,
             units: []             
         },
-        {
+        godswornChampionsOfRuin: {
             id: this.serial++,
             name: "Godsworn Champions of Ruin",
             factions: [this.factions.SLAVESTODARKNESS],
             points: 160,
             units: []             
         },
-        {
+        godswrathWarband: {
             id: this.serial++,
             name: "Godswrath Warband",
             factions: [this.factions.SLAVESTODARKNESS],
             points: 140,
             units: []             
         },
-        {
+        overlordsOfChaos: {
             id: this.serial++,
             name: "Overlords of Chaos",
             factions: [this.factions.EVERCHOSEN],
             points: 220,
             units: []             
         },
-        {
+        plaguetouchedWarband: {
             id: this.serial++,
             name: "Plaguetouched Warband",
             factions: [this.factions.EVERCHOSEN],
             points: 100,
             units: []             
         },
-        {
+        pleasureboundWarband: {
             id: this.serial++,
             name: "Pleasurebound Warband",
             factions: [this.factions.EVERCHOSEN],
             points: 100,
             units: []             
         },
-        {
+        ruinbringerWarband: {
             id: this.serial++,
             name: "Ruinbringer Warband",
             factions: [this.factions.SLAVESTODARKNESS],
             points: 180,
             units: []             
         },
-        {
+        ironSkySquadron: {
             id: this.serial++,
             name: "Iron Sky Squadron",
             factions: [this.factions.KHARADRONOVERLORDS],
             points: 180,
             units: []             
         },
-        {
+        ironSkyCommand: {
             id: this.serial++,
             name: "Iron Sky Command",
             factions: [this.factions.KHARADRONOVERLORDS],
             points: 140,
             units: []             
         },
-        {
+        grundstokEscortWing: {
             id: this.serial++,
             name: "Grundstok Escort Wing",
             factions: [this.factions.KHARADRONOVERLORDS],
             points: 200,
             units: []             
         },
-        {
+        grandArmada: {
             id: this.serial++,
             name: "Grand Armada",
             factions: [this.factions.KHARADRONOVERLORDS],
             points: 160,
             units: []             
         },
-        {
+        arkhsparkVoltik: {
             id: this.serial++,
             name: "Arkhspark Voltik",
             factions: [this.factions.SKAVENSKRYRE],
             points: 50,
             units: []             
         },
-        {
+        gascloudChokelung: {
             id: this.serial++,
             name: "Gascloud Chokelung",
             factions: [this.factions.SKAVENSKRYRE],
             points: 50,
             units: []             
         },
-        {
+        gautfyreSkorch: {
             id: this.serial++,
             name: "Gautfyre Skorch",
             factions: [this.factions.SKAVENSKRYRE],
             points: 150,
             units: []             
         },
-        {
+        rattlegaugeWarplock: {
             id: this.serial++,
             name: "Rattlegauge Warplock",
             factions: [this.factions.SKAVENSKRYRE],
             points: 50,
             units: []             
         },
-        {
+        whyrlbladeThreshik: {
             id: this.serial++,
             name: "Whyrlblade Threshik",
             factions: [this.factions.SKAVENSKRYRE],
             points: 50,
             units: []             
         },
-        {
+        blacktalonSShadowhammers: {
             id: this.serial++,
             name: "Blacktalon's Shadowhammers",
             factions: [this.factions.STORMCASTETERNALS],
             points: 160,
             units: []             
         },
-        {
+        fecundRituculturalists: {
             id: this.serial++,
             name: "Fecund Rituculturalists",
             factions: [this.factions.NURGLEDAEMONS],
             points: 180,
             units: []             
         },
-    ]
+    }
 }

@@ -5808,13 +5808,13 @@ output += `    };
     
     boxes: Box[] = [];
 
-    battalions: Battalion[] = [
+    battalions = {
 `;
 
 for (const [key, unit] of gwPointsMap) {
     const extras = extraData.get(key);
     if (!extras || extras.type !== "formation") continue;
-    output += `        {
+    output += `        ${key}: {
             id: this.serial++,
             name: "${extras.army.name}",
             factions: [${ extras.factionId.map( x => `this.factions.${x}`).join(", ")}],
@@ -5825,6 +5825,6 @@ for (const [key, unit] of gwPointsMap) {
 }
 
 
-output += "    ]\n}\n";
+output += "    }\n}\n";
 
 fs.writeFileSync("src/stores/imported-data.ts", output);

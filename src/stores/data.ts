@@ -1,4 +1,4 @@
-import { WarscrollInterface, Battalion, Box, DataStore } from "./units";
+import { WarscrollInterface, Box, DataStore } from "./units";
 
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
@@ -110,26 +110,7 @@ export class DataStoreImpl implements DataStore {
         }
     }
     
-    battalions: Battalion[] = [
-        // ORDER
-        // Stormcast Eternals
-        {
-            id: this.serial++,
-            name: "Test Battalion",
-            units: [ 
-                { 
-                    unit: this.units.vanguardPalladors, 
-                    count: 2
-                },
-                {
-                    unit: this.units.lordAquilor,
-                    count: 1
-                }
-            ],
-            points: 120,
-            factions: []
-        },
-    ]
+    battalions = {};
     
     boxes: Box[] = [ 
         // ORDER
