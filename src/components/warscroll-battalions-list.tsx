@@ -3,6 +3,8 @@ import { observer, inject } from "mobx-react";
 import { BattalionsList } from "./battalions-list";
 import { WarscrollStore } from "../stores/warscroll";
 import { Header, Table, Button, Icon } from "semantic-ui-react";
+import { BattalionUnit, Unit } from "../stores/units";
+import { join } from "../helpers/react";
 
 export interface WarscrollBattalionsListProps {
     warscrollStore?: WarscrollStore;
@@ -57,7 +59,7 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
             {
                 warscroll.battalions.map(x => <tr key={x.id}>
                     <td>{x.battalion.name}</td>
-                    <td>{x.battalion.units.map(y => <span style={{ color:  counts.get(y.id)!.count ? 'red' : '' } } key={y.id}>{ y.count} { y.unit.map(x => x.model.name).join("/") } </span>, )}</td>
+                    <td>{join(x.battalion.units.map(y => this.renderUnit(y, counts)), ", ")}</td>
                     <td>{x.battalion.points}</td>
                     <td><Button onClick={() => this.props.warscrollStore!.removeBattalion(x)}><Icon name="remove"/></Button></td>
                 </tr>)
@@ -69,5 +71,21 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
                 <BattalionsList title="Add..."/>
 
             </div>;
+    }
+
+    private renderUnit(bu: BattalionUnit, counts: Map<number, { count: number }>) {
+        const count = counts.get(bu.id)!.count;
+        if (count > 0) {
+            return <span style={{ color:  'red' } } key={bu.id}>{ bu.count} { join(bu.unit.map(x => <a href="" onClick={e => this.addUnit(x, e, count)}>{x.model.name}</a>), "/") } </span>;
+        }
+
+        return <span key={bu.id}>{ bu.count} { bu.unit.map(x => x.model.name).join("/") } </span>;
+    }
+
+    private addUnit(unit: Unit, e: React.MouseEvent<HTMLAnchorElement>, count: number) {
+        e.preventDefault();
+        for (let i = 0; i< count; i++) {
+            this.props.warscrollStore!.addUnit(unit);   
+        }
     }
 }

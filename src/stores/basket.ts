@@ -141,7 +141,7 @@ export class BasketStore {
                 }
             }
 
-            const existings = neededModels.find(x => x.model === unit.unit.model);
+            const existings = neededModels.find(x => x.model.id === unit.unit.model.id);
             if (existings === undefined) {
                 neededModels.push({ 
                     model: unit.unit.model, 
