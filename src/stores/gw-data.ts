@@ -5776,13 +5776,39 @@ for (const [key, unit] of gwPointsMap) {
             model: this.models.${key},
             factions: [${ extras.factionId.map( x => `this.factions.${x}`).join(", ")}],
             size: ${unit.count},
-            maxSize: ${unit.maxCount !== undefined ? unit.maxCount : "undefined"},
             points: ${unit.points},
-            maxPoints: ${unit.maxPoints !== undefined ? unit.maxPoints: "undefined"},
-            warscroll: ${unit.warscroll !== undefined ? `"${unit.warscroll}"` : "undefined"},
             type: "${extras.type}",
             subType: ${unit.type !== undefined ? `"${unit.type}"` : "undefined"},
 `;
+
+    if (extras.army.wounds) {
+        output+= `            wounds: ${parseInt(extras.army.wounds) / unit.count},\n`;
+    }
+
+    if (extras.army.bravery) {
+        output+= `            bravery: ${extras.army.bravery},\n`;
+    }
+
+    if (extras.army.move) {
+        output+= `            move: ${extras.army.move},\n`;
+    }
+
+    if (extras.army.save) {
+        output+= `            save: "${extras.army.save}",\n`;
+    }
+
+    if (unit.maxCount) {
+        output+= `            maxSize: ${unit.maxCount},\n`;
+    }
+
+    if (unit.maxPoints) {
+        output+= `            maxPoints: ${unit.maxPoints},\n`;
+    }
+
+    if (unit.warscroll) {
+            output+= `            warscroll: "${unit.warscroll}",\n`;
+    }
+
     if (extras.type === "hero") {
         output += "            isLeader: () => true,\n";
     } 
@@ -5826,3 +5852,17 @@ for (const [key, unit] of gwPointsMap) {
 output += "    }\n}\n";
 
 fs.writeFileSync("src/stores/imported-data.ts", output);
+
+
+/**
+ * import { Box, Faction } from "./units";
+
+export class DataStoreImpl {
+    factions: { [key: string]: Faction; } = {};
+    boxes: Box[] = [];
+    battalions: any;
+    units: any;
+    models: any;
+}
+ * 
+ */
