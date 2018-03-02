@@ -1,4 +1,5 @@
 import { DataStoreImpl } from "./imported-data";
+import { overrideStormcast } from "./overrides/stormcast";
 
 export interface Model {
     name: string;
@@ -24,6 +25,7 @@ export interface Ability {
 }
 
 export interface WeaponOption {
+    id: string;
     name: string;
     abilities?: Ability[];
 }
@@ -158,7 +160,9 @@ export class UnitsStore {
         { id: this.serial++, grandAlliance: GrandAlliance.death, name: "The Wraith Fleet" },
     ].sort((a, b) => a.name > b.name ? 1 : -1);
     
-    constructor(data: DataStoreImpl) {      
+    constructor(data: DataStoreImpl) {   
+        overrideStormcast(data);   
+
         const models: {[key: string]: Model} = data.models;  
         for (const key in models) {
             this.modelsList.push(models[key]);
@@ -171,69 +175,12 @@ export class UnitsStore {
         }
         this.unitList = this.unitList.sort((a, b) => a.model.name > b.model.name ? 1: -1);
 
-        const aetherstrike: Battalion = data.battalions.aetherstrikeForce;
-        aetherstrike.units.push({ unit: [data.units.knightVenator], count: 1, id: this.serial++ });
-        aetherstrike.units.push({ unit: [data.units.knightAzyros], count: 1, id: this.serial++ });
-        aetherstrike.units.push({ unit: [data.units.judicators], count: 2, id: this.serial++ });
-        aetherstrike.units.push({ unit: [data.units.vanguardRaptorsWithLongstrikeCrossbows, data.units.vanguardRaptorsWithHurricaneCrossbows], count: 2, id: this.serial++ });
-        aetherstrike.units.push({ unit: [data.units.aetherwings], count: 2, id: this.serial++ });
         const battalions: { [key: string]: Battalion } = data.battalions;
         for (const key in battalions) {
             this.battalions.push(battalions[key]);
         }
 
-        const liberator: Unit = data.units.liberators;
-        liberator.move = 5;
-        liberator.save = "4+";
-        liberator.bravery = 6;
-
         this.boxes = data.boxes;
-        this.boxes.push({
-            id: this.serial++,
-            name: "Start Collecting! Stormcast Vanguard",
-            units: [
-                { count: 1, models: [data.models.lordAquilor] },
-                { count: 5, models: [data.models.vanguardHunters]},
-                { count: 3, models: [data.models.vanguardPalladors]},
-                { count: 3, models: [data.models.gryphHound]}
-            ],
-            price: 65
-        });
-        this.boxes.push({
-            id: this.serial++,
-            name: "Judicators",
-            units: [
-                { count: 10, models: [data.models.judicators] }
-            ],
-            price: 49
-        });
-        this.boxes.push({
-            id: this.serial++,
-            name: "Kinght-Venator/Azyros",
-            units: [
-                { count: 1, models: [data.models.knightAzyros, data.models.knightVenator] }
-            ],
-            price: 33
-        });
-        this.boxes.push({
-            id: this.serial++,
-            name: "Vanguard-Raptors",
-            units: [
-                { count: 3, models: [data.models.vanguardRaptorsWithHurricaneCrossbows, data.models.vanguardRaptorsWithLongstrikeCrossbows] },
-                { count: 3, models: [data.models.aetherwings] }
-            ],
-            price: 30
-        });
-        this.boxes.push({
-            id: this.serial++,
-            name: "Lord-Aquilor",
-            units: [
-                { count: 1, models: [data.models.lordAquilor] }
-            ],
-            price: 32.50
-        });
-
-
         this.factions = data.factions;
 
         for (const key in this.factions) {

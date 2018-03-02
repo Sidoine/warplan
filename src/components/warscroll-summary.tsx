@@ -1,7 +1,7 @@
 import React = require("react");
 import { inject, observer } from "mobx-react";
 import { WarscrollStore } from "../stores/warscroll";
-import { Dropdown, Segment, Grid, Icon, DropdownProps, Menu } from "semantic-ui-react";
+import { Dropdown, Segment, Grid, Icon, DropdownProps } from "semantic-ui-react";
 import { GrandAlliance, UnitsStore } from "../stores/units";
 import { UiStore } from "../stores/ui";
 
@@ -44,12 +44,11 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
                 <Grid.Row>
                     <Grid.Column width={8}>
                         Filter: 
-                        <Menu>
                         <Dropdown selection options={grandAllianceOptions} value={this.props.uiStore!.grandAlliance} onChange={this.setGrandAlliance}/>
                         <Dropdown selection options={factionOptions} value={this.props.uiStore!.faction.id} onChange={this.setFaction}/>
-                        </Menu>
                     </Grid.Column>
                     <Grid.Column width={8}>
+                        Allegiance:
                         <Dropdown selection options={allegianceOptions} value={this.props.warscrollStore!.warscroll.allegiance.id} onChange={this.setAllegiance} />    
                     </Grid.Column>
                 </Grid.Row>

@@ -16,6 +16,7 @@ import { WarscrollStore } from "./stores/warscroll";
 import { OwnedStore } from "./stores/owned";
 import { DataStoreImpl } from "./stores/imported-data";
 import { Container } from "semantic-ui-react";
+import { Warscroll } from "./components/warscroll";
 
 const root = document.getElementById("root");
 
@@ -34,9 +35,10 @@ ReactDOM.render(
                 <Route render={ x => <MyNavbar route={x} /> }/>
                 <Switch>
                     <Route exact path="/" component={OwnedModelsList}/>
-                    <Route exact path="/warscroll" component={WarscrollBuilder} />
+                    <Route exact path="/wb" component={WarscrollBuilder} />
                     <Route exact path="/missing" component={MissingsList}/>
                     <Route exact path="/basket" component={Basket}/>
+                    <Route exact path="/warscroll" component={Warscroll}/>
                 </Switch>
             </Container>
         </HashRouter>

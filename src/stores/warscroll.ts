@@ -1,5 +1,5 @@
 import { action, computed, observable } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance, Allegiance } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance, Allegiance, WeaponOption } from "./units";
 
 export interface WarscrollBattalion {
     id: number;
@@ -11,6 +11,9 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     
     @observable
     count: number = 1;
+
+    @observable
+    weaponOption: WeaponOption | null = null;
 
     get isArtillery() {
         return this.unit.isArtillery && this.unit.isArtillery(this.warscroll);
@@ -154,6 +157,7 @@ interface SerializedWarscroll {
         unitId: number;
         count: number;
         isGeneral?:boolean;
+        weaponOption?:string;
     }[];
     battalions: {
         battalionId: number;
@@ -206,6 +210,12 @@ export class WarscrollStore {
         this.warscroll.general = unit;
         this.saveWarscroll();
     }
+
+    @action
+    setWeaponOption(unit: WarscrollUnit, weaponOption: WeaponOption) {
+        unit.weaponOption = weaponOption;
+        this.saveWarscroll();
+    }
     
     loadWarscroll(name?: string) {
         const serializedWarscroll = localStorage.getItem(this.getWarscrollItem(name));
@@ -226,6 +236,9 @@ export class WarscrollStore {
             if (wu.isGeneral) {
                 this.warscroll.general = newUnit;
             }
+            if (wu.weaponOption && unit.weaponOptions) {
+                newUnit.weaponOption = unit.weaponOptions.find(x => x.id === wu.weaponOption) || null;
+            }
             this.warscroll.units.push(newUnit);
         }
 
@@ -242,7 +255,8 @@ export class WarscrollStore {
             units: this.warscroll.units.map(x => {return {
                 unitId: x.unit.id,
                 count: x.count,
-                isGeneral: x === this.warscroll.general
+                isGeneral: x === this.warscroll.general,
+                weaponOption: x.weaponOption ? x.weaponOption.id : undefined
             }}),
             battalions: this.warscroll.battalions.map(x => {
                 return {

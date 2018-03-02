@@ -5794,7 +5794,7 @@ for (const [key, unit] of gwPointsMap) {
 `;
 
     if (extras.army.wounds) {
-        output+= `            wounds: ${parseInt(extras.army.wounds) / unit.count},\n`;
+        output+= `            wounds: ${parseInt(extras.army.wounds) / parseInt(extras.army.models || "1")},\n`;
     }
 
     if (extras.army.bravery) {
@@ -5823,7 +5823,7 @@ for (const [key, unit] of gwPointsMap) {
 
     const weapons = extraWeaponsMap.get(key);
     if (weapons) {
-        output+= `            weaponOptions: [${weapons.map(x => `{ name: "${x.name}" }`).join(",")}],\n`
+        output+= `            weaponOptions: [${weapons.map(x => `{ name: "${x.name}", id: "${toCamelCase(x.name)}" }`).join(",")}],\n`
     }
 
     if (extras.type === "hero") {
