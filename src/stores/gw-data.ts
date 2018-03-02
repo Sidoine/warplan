@@ -5768,6 +5768,18 @@ for (const points of gwPoints) {
     gwPointsMap.set(toCamelCase(name), t);
 }
 
+const extraWeapons = fs.readFileSync("src/stores/data/allWeaponOptions.csv", { encoding: "utf8" }).split("\n").map(x => x.split(","));
+const extraWeaponsMap = new Map<string, { name: string }[]>();
+for (const e of extraWeapons) {
+    const name = toCamelCase(e[0]);
+    const w = extraWeaponsMap.get(name);
+    if (w) {
+        w.push({ name: e[1] });
+    } else {
+        extraWeaponsMap.set(name, [{ name: e[1] }]);
+    }   
+}
+
 for (const [key, unit] of gwPointsMap) {
     const extras = extraData.get(key);
     if (!extras || extras.type === "formation") continue;
@@ -5806,7 +5818,12 @@ for (const [key, unit] of gwPointsMap) {
     }
 
     if (unit.warscroll) {
-            output+= `            warscroll: "${unit.warscroll}",\n`;
+        output+= `            warscroll: "${unit.warscroll}",\n`;
+    }
+
+    const weapons = extraWeaponsMap.get(key);
+    if (weapons) {
+        output+= `            weaponOptions: [${weapons.map(x => `{ name: "${x.name}" }`).join(",")}],\n`
     }
 
     if (extras.type === "hero") {

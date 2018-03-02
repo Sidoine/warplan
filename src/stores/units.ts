@@ -18,6 +18,16 @@ export interface Faction {
     name: string
 }
 
+export interface Ability {
+    name: string;
+    description: string;
+}
+
+export interface WeaponOption {
+    name: string;
+    abilities?: Ability[];
+}
+
 export interface Unit {
     id: number;
     model: Model;
@@ -27,7 +37,15 @@ export interface Unit {
     points: number;
     factions: Faction[];
     subType?: string;
-    warscroll? : string;
+    warscroll?: string;
+    move?: number;
+    save?: string;
+    wounds?: number;
+    bravery?: number;
+    keywords?: string[];
+    weaponOptions?: WeaponOption[];
+    abilities?: Ability[];
+    commandAbilities?: Ability[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => boolean;
@@ -163,6 +181,11 @@ export class UnitsStore {
         for (const key in battalions) {
             this.battalions.push(battalions[key]);
         }
+
+        const liberator: Unit = data.units.liberators;
+        liberator.move = 5;
+        liberator.save = "4+";
+        liberator.bravery = 6;
 
         this.boxes = data.boxes;
         this.boxes.push({
