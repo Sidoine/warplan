@@ -5823,7 +5823,7 @@ for (const [key, unit] of gwPointsMap) {
 
     const weapons = extraWeaponsMap.get(key);
     if (weapons) {
-        output+= `            weaponOptions: [${weapons.map(x => `{ name: "${x.name}", id: "${toCamelCase(x.name)}" }`).join(",")}],\n`
+        output+= `            weaponOptions: [{ options: [${weapons.map(x => `{ name: "${x.name}", id: "${toCamelCase(x.name)}" }`).join(",")}] }],\n`
     }
 
     if (extras.type === "hero") {

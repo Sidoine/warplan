@@ -3,6 +3,7 @@ import { observer, inject } from "mobx-react";
 import { NumberControl } from "../atoms/number-control";
 import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
 import { Dropdown, Button, Table, Icon, Checkbox, CheckboxProps, DropdownProps } from "semantic-ui-react";
+import { WeaponOption } from "../stores/units";
 
 export interface WarscrollUnitEditProps {
     unit: WarscrollUnit;
@@ -14,10 +15,7 @@ export interface WarscrollUnitEditProps {
 export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {}> {
     render() {
         const unit = this.props.unit;
-        const weaponOptions = unit.unit.weaponOptions ?
-            unit.unit.weaponOptions.map(x => { return { key: x.id, text: x.name, value: x.id } }) : undefined;
-
-        return <Table.Row>
+                return <Table.Row>
             <Table.Cell>
                 <div>{unit.unit.model.name}</div>
                 <div>{ unit.unit.size } <Icon name="user"/>
@@ -29,17 +27,27 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
                 </div>
             </Table.Cell>
             <Table.Cell><NumberControl value={unit.count} onChange={this.onCountChange} /></Table.Cell>
-            <Table.Cell>{ weaponOptions && <Dropdown selection value={unit.weaponOption ? unit.weaponOption.id : undefined} options={weaponOptions} onChange={this.onWeaponOptionChange}  ></Dropdown> } </Table.Cell>
+                    <Table.Cell> {unit.unit.weaponOptions && unit.unit.weaponOptions.map((x, index) => this.renderWeaponOption(x.options, index) ) } </Table.Cell>
             <Table.Cell>{unit.unit.points * unit.count}</Table.Cell>
             <Table.Cell>
                 <Button onClick={() => this.props.warscrollStore!.removeUnit(this.props.unit)}><Icon name="remove"/></Button>
             </Table.Cell></Table.Row>;
     }
 
-    private onWeaponOptionChange = (vent: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
-        const unit = this.props.unit;
-        const weaponOption = unit.unit.weaponOptions ? unit.unit.weaponOptions.find(x => x.id === props.value) : undefined;
-        if (weaponOption) this.props.warscrollStore!.setWeaponOption(unit, weaponOption);
+    private renderWeaponOption(weaponList: WeaponOption[], index: number) {
+        const weaponOptions = weaponList ?
+            weaponList.map(x => { return { key: x.id, text: x.name, value: x.id } }) : undefined;
+        const selected = this.props.unit.weaponOption[index];
+        return weaponOptions && <Dropdown key={index} selection value={ selected.weaponOption && selected.weaponOption.id } options={weaponOptions} onChange={this.onWeaponOptionChange(index)}  ></Dropdown>;
+    }
+
+    private onWeaponOptionChange(index: number) {
+        return (vent: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
+            const unit = this.props.unit;
+            const category = unit.unit.weaponOptions ? unit.unit.weaponOptions[index] : undefined;
+            const weaponOption = category ? category.options.find(x => x.id === props.value) : undefined;
+            if (category && weaponOption) this.props.warscrollStore!.setWeaponOption(unit, index, weaponOption, category.maxCount);
+        }
     }
 
     private toggleGeneral = (event: React.SyntheticEvent<HTMLElement>, props: CheckboxProps) => {

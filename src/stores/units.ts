@@ -24,10 +24,27 @@ export interface Ability {
     description: string;
 }
 
+export interface Attack {
+    melee: boolean;
+    name: string;
+    range: string;
+    attacks?: string;
+    toHit?: string;
+    toWound?: string;
+    rend?: string;
+    damage?: string;
+}
+
 export interface WeaponOption {
     id: string;
     name: string;
     abilities?: Ability[];
+    attacks?: Attack[];
+}
+
+export interface WeaponOptionCategory {
+    options: WeaponOption[];
+    maxCount?: number;
 }
 
 export interface Unit {
@@ -45,9 +62,10 @@ export interface Unit {
     wounds?: number;
     bravery?: number;
     keywords?: string[];
-    weaponOptions?: WeaponOption[];
+    weaponOptions?: WeaponOptionCategory[];
     abilities?: Ability[];
     commandAbilities?: Ability[];
+    attacks?: Attack[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => boolean;

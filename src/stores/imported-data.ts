@@ -3946,7 +3946,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Brayherd",
             wounds: 5,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-beastlord-en.pdf",
-            weaponOptions: [{ name: "Man-ripper Axe & Brayshield", id: "manRipperAxeBrayshield" },{ name: "Pair of Man-ripper Axes", id: "pairOfManRipperAxes" },{ name: "Man-render Great Axe", id: "manRenderGreatAxe" }],
+            weaponOptions: [{ options: [{ name: "Man-ripper Axe & Brayshield", id: "manRipperAxeBrayshield" },{ name: "Pair of Man-ripper Axes", id: "pairOfManRipperAxes" },{ name: "Man-render Great Axe", id: "manRenderGreatAxe" }] }],
             isLeader: () => true,
         },
         bestigors: {
@@ -3999,7 +3999,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 210,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-gors-en.pdf",
-            weaponOptions: [{ name: "Gor-Blades & Beastshields", id: "gorBladesBeastshields" },{ name: "Two Gor-Blades", id: "twoGorBlades" }],
+            weaponOptions: [{ options: [{ name: "Gor-Blades & Beastshields", id: "gorBladesBeastshields" },{ name: "Two Gor-Blades", id: "twoGorBlades" }] }],
             isBattleline: () => true,
         },
         ungors: {
@@ -4014,7 +4014,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 200,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ungors-en.pdf",
-            weaponOptions: [{ name: "Mauls & Half-Shields", id: "maulsHalfShields" },{ name: "Shortspears & Half-Shields", id: "shortspearsHalfShields" }],
+            weaponOptions: [{ options: [{ name: "Mauls & Half-Shields", id: "maulsHalfShields" },{ name: "Shortspears & Half-Shields", id: "shortspearsHalfShields" }] }],
             isBattleline: () => true,
         },
         ungorRaiders: {
@@ -4240,7 +4240,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Tzeentch Daemon Wizard",
             wounds: 5,
-            weaponOptions: [{ name: "Staff of Change", id: "staffOfChange" },{ name: "Ritual Dagger", id: "ritualDagger" }],
+            weaponOptions: [{ options: [{ name: "Staff of Change", id: "staffOfChange" },{ name: "Ritual Dagger", id: "ritualDagger" }] }],
             isLeader: () => true,
         },
         heraldOfTzeentchOnBurningChariot: {
@@ -4253,7 +4253,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Tzeentch Daemon Wizard",
             wounds: 8,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-herald-tzeentch-burning-chariot-en.pdf",
-            weaponOptions: [{ name: "Staff of Change", id: "staffOfChange" },{ name: "Ritual Dagger", id: "ritualDagger" }],
+            weaponOptions: [{ options: [{ name: "Staff of Change", id: "staffOfChange" },{ name: "Ritual Dagger", id: "ritualDagger" }] }],
             isLeader: () => true,
         },
         heraldOfTzeentchOnDisc: {
@@ -4266,7 +4266,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Tzeentch Daemon Wizard",
             wounds: 5,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-herald-tzeentch-disc-en.pdf",
-            weaponOptions: [{ name: "Staff of Change", id: "staffOfChange" },{ name: "Ritual Dagger", id: "ritualDagger" }],
+            weaponOptions: [{ options: [{ name: "Staff of Change", id: "staffOfChange" },{ name: "Ritual Dagger", id: "ritualDagger" }] }],
             isLeader: () => true,
         },
         theBlueScribes: {
@@ -4352,7 +4352,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Khorne Bloodbound Mortal",
             wounds: 5,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-aspiringdeathbringer-en.pdf",
-            weaponOptions: [{ name: "Bloodaxe and Wrath Hammer", id: "bloodaxeAndWrathHammer" },{ name: "Goreaxe and Skullhammer", id: "goreaxeAndSkullhammer" }],
+            weaponOptions: [{ options: [{ name: "Bloodaxe and Wrath Hammer", id: "bloodaxeAndWrathHammer" },{ name: "Goreaxe and Skullhammer", id: "goreaxeAndSkullhammer" }] }],
             isLeader: () => true,
         },
         aspiringDeathbringerWithGoreaxeAndSkullhammer: {
@@ -4400,7 +4400,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Khorne Bloodbound Mortal",
             wounds: 5,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalteddeathbringer-en.pdf",
-            weaponOptions: [{ name: "Ruinous Axe & Skullgouger", id: "ruinousAxeSkullgouger" },{ name: "Bloodbite Axe & Shield", id: "bloodbiteAxeShield" }],
+            weaponOptions: [{ options: [{ name: "Ruinous Axe & Skullgouger", id: "ruinousAxeSkullgouger" },{ name: "Bloodbite Axe & Shield", id: "bloodbiteAxeShield" }] }],
             isLeader: () => true,
         },
         exaltedDeathbringerWithImpalingSpear: {
@@ -4486,7 +4486,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 520,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodwarriors-en.pdf",
-            weaponOptions: [{ name: "Goreaxes", id: "goreaxes" },{ name: "Goreaxe & Gorefist", id: "goreaxeGorefist" }],
+            weaponOptions: [{ options: [{ name: "Goreaxes", id: "goreaxes" },{ name: "Goreaxe & Gorefist", id: "goreaxeGorefist" }] }],
             isBattleline: () => true,
         },
         bloodreavers: {
@@ -4501,7 +4501,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 240,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodreavers-en.pdf",
-            weaponOptions: [{ name: "Reaver Blades", id: "reaverBlades" },{ name: "Meatripper Axes", id: "meatripperAxes" }],
+            weaponOptions: [{ options: [{ name: "Reaver Blades", id: "reaverBlades" },{ name: "Meatripper Axes", id: "meatripperAxes" }] }],
             isBattleline: () => true,
         },
         mightySkullcrushers: {
@@ -4515,7 +4515,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 5,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullcrushers-en.pdf",
-            weaponOptions: [{ name: "Ensorcelled Axes", id: "ensorcelledAxes" },{ name: "Bloodglaives", id: "bloodglaives" },{ name: "Axes", id: "axes" },{ name: "Glaives", id: "glaives" }],
+            weaponOptions: [{ options: [{ name: "Ensorcelled Axes", id: "ensorcelledAxes" },{ name: "Bloodglaives", id: "bloodglaives" },{ name: "Axes", id: "axes" },{ name: "Glaives", id: "glaives" }] }],
             isBattleline: () => true,
         },
         scylaAnfingrimm: {
@@ -4565,7 +4565,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullreapers-en.pdf",
-            weaponOptions: [{ name: "Goreslick Blades", id: "goreslickBlades" },{ name: "Daemonblades", id: "daemonblades" }],
+            weaponOptions: [{ options: [{ name: "Goreslick Blades", id: "goreslickBlades" },{ name: "Daemonblades", id: "daemonblades" }] }],
         },
         wrathmongers: {
             id: this.serial++,
@@ -4783,7 +4783,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Warherd",
             wounds: 8,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-doombull-en.pdf",
-            weaponOptions: [{ name: "Pair of Axes", id: "pairOfAxes" },{ name: "Axe & Shield", id: "axeShield" },{ name: "Great Axe", id: "greatAxe" }],
+            weaponOptions: [{ options: [{ name: "Pair of Axes", id: "pairOfAxes" },{ name: "Axe & Shield", id: "axeShield" },{ name: "Great Axe", id: "greatAxe" }] }],
             isLeader: () => true,
         },
         cygor: {
@@ -4821,7 +4821,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 4,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bullgors-en.pdf",
-            weaponOptions: [{ name: "Pairs of Axes", id: "pairsOfAxes" },{ name: "Axes & Bullshields", id: "axesBullshields" },{ name: "Great Axes", id: "greatAxes" }],
+            weaponOptions: [{ options: [{ name: "Pairs of Axes", id: "pairsOfAxes" },{ name: "Axes & Bullshields", id: "axesBullshields" },{ name: "Great Axes", id: "greatAxes" }] }],
             isBattleline: () => true,
         },
         hellcannon: {
@@ -4895,7 +4895,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Chaos Daemon - Behemoth",
             wounds: 8,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-daemonprince-en.pdf",
-            weaponOptions: [{ name: "Axe", id: "axe" },{ name: "Sword", id: "sword" }],
+            weaponOptions: [{ options: [{ name: "Axe", id: "axe" },{ name: "Sword", id: "sword" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -5400,7 +5400,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Darkling Covens - Behemoth",
             wounds: 14,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sorceress-black-dragon-en.pdf",
-            weaponOptions: [{ name: "Witch Rod", id: "witchRod" },{ name: "Sword of Ghrond", id: "swordOfGhrond" },{ name: "Witch Rod", id: "witchRod" },{ name: "Darkling Sword", id: "darklingSword" }],
+            weaponOptions: [{ options: [{ name: "Witch Rod", id: "witchRod" },{ name: "Sword of Ghrond", id: "swordOfGhrond" },{ name: "Witch Rod", id: "witchRod" },{ name: "Darkling Sword", id: "darklingSword" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -5423,7 +5423,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Daughters of Khaine",
             wounds: 5,
-            weaponOptions: [{ name: "Deathsword", id: "deathsword" },{ name: "Witch Brew", id: "witchBrew" }],
+            weaponOptions: [{ options: [{ name: "Deathsword", id: "deathsword" },{ name: "Witch Brew", id: "witchBrew" }] }],
             isLeader: () => true,
         },
         doomfireWarlocks: {
@@ -5475,7 +5475,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Daughters of Khaine - Behemoth",
             wounds: 13,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-caludron-blood-en.pdf",
-            weaponOptions: [{ name: "Deathsword", id: "deathsword" },{ name: "Witch Brew", id: "witchBrew" }],
+            weaponOptions: [{ options: [{ name: "Deathsword", id: "deathsword" },{ name: "Witch Brew", id: "witchBrew" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -5527,7 +5527,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Order Serpentis - Behemoth",
             wounds: 14,
-            weaponOptions: [{ name: "Exile Blade & Shield", id: "exileBladeShield" },{ name: "Exile Blade & Repeater Crossbow", id: "exileBladeRepeaterCrossbow" },{ name: "Lance of Spite & Shield", id: "lanceOfSpiteShield" },{ name: "Lance of Spite & Repeater Crossbow", id: "lanceOfSpiteRepeaterCrossbow" },{ name: "Exile Blades", id: "exileBlades" },{ name: "Exile Blade & Tyrant Shield", id: "exileBladeTyrantShield" },{ name: "Exile Blade & Repeater Crossbow", id: "exileBladeRepeaterCrossbow" },{ name: "Lance of Spite & Tyrant Shield", id: "lanceOfSpiteTyrantShield" },{ name: "Lance of Spite & Repeater Crossbow", id: "lanceOfSpiteRepeaterCrossbow" },{ name: "Exile Blades", id: "exileBlades" }],
+            weaponOptions: [{ options: [{ name: "Exile Blade & Shield", id: "exileBladeShield" },{ name: "Exile Blade & Repeater Crossbow", id: "exileBladeRepeaterCrossbow" },{ name: "Lance of Spite & Shield", id: "lanceOfSpiteShield" },{ name: "Lance of Spite & Repeater Crossbow", id: "lanceOfSpiteRepeaterCrossbow" },{ name: "Exile Blades", id: "exileBlades" },{ name: "Exile Blade & Tyrant Shield", id: "exileBladeTyrantShield" },{ name: "Exile Blade & Repeater Crossbow", id: "exileBladeRepeaterCrossbow" },{ name: "Lance of Spite & Tyrant Shield", id: "lanceOfSpiteTyrantShield" },{ name: "Lance of Spite & Repeater Crossbow", id: "lanceOfSpiteRepeaterCrossbow" },{ name: "Exile Blades", id: "exileBlades" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -5593,7 +5593,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 260,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-ark-corsairs-en.pdf",
-            weaponOptions: [{ name: "Vicious Blade & Repeater Handbow", id: "viciousBladeRepeaterHandbow" },{ name: "Vicious Blade & Wicked Cutlass", id: "viciousBladeWickedCutlass" },{ name: "Vicious Blades & Repeater Handbows", id: "viciousBladesRepeaterHandbows" },{ name: "Vicious Blades & Wicked Cutlasses", id: "viciousBladesWickedCutlasses" }],
+            weaponOptions: [{ options: [{ name: "Vicious Blade & Repeater Handbow", id: "viciousBladeRepeaterHandbow" },{ name: "Vicious Blade & Wicked Cutlass", id: "viciousBladeWickedCutlass" },{ name: "Vicious Blades & Repeater Handbows", id: "viciousBladesRepeaterHandbows" },{ name: "Vicious Blades & Wicked Cutlasses", id: "viciousBladesWickedCutlasses" }] }],
             isBattleline: () => true,
         },
         assassin: {
@@ -5652,7 +5652,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Exile Blades", id: "exileBlades" },{ name: "Exile Blade & Tyrant Shield", id: "exileBladeTyrantShield" },{ name: "Chillblade", id: "chillblade" },{ name: "Exile Blades", id: "exileBlades" },{ name: "Exile Blade & Tyrant Shield", id: "exileBladeTyrantShield" },{ name: "Chillblade", id: "chillblade" }],
+            weaponOptions: [{ options: [{ name: "Exile Blades", id: "exileBlades" },{ name: "Exile Blade & Tyrant Shield", id: "exileBladeTyrantShield" },{ name: "Chillblade", id: "chillblade" },{ name: "Exile Blades", id: "exileBlades" },{ name: "Exile Blade & Tyrant Shield", id: "exileBladeTyrantShield" },{ name: "Chillblade", id: "chillblade" }] }],
             isLeader: () => true,
         },
         dreadlordOnDrakespawn: {
@@ -5773,7 +5773,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 6,
             maxSize: 6,
             warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Morghast%20Archai.pdf",
-            weaponOptions: [{ name: "Spirit Swords", id: "spiritSwords" },{ name: "Spirit Halberds", id: "spiritHalberds" }],
+            weaponOptions: [{ options: [{ name: "Spirit Swords", id: "spiritSwords" },{ name: "Spirit Halberds", id: "spiritHalberds" }] }],
             isBattleline: () => true,
         },
         morghastHarbingers: {
@@ -5787,7 +5787,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 6,
             maxSize: 6,
             warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG%20Morghast%20Harbingers.pdf",
-            weaponOptions: [{ name: "Spirit Swords", id: "spiritSwords" },{ name: "Spirit Halberds", id: "spiritHalberds" }],
+            weaponOptions: [{ options: [{ name: "Spirit Swords", id: "spiritSwords" },{ name: "Spirit Halberds", id: "spiritHalberds" }] }],
             isBattleline: () => true,
         },
         arkhanTheBlackMortarchOfSacrament: {
@@ -5878,7 +5878,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 420,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-grave-guard-en.pdf",
-            weaponOptions: [{ name: "Wight Blades & Crypt Shields", id: "wightBladesCryptShields" },{ name: "Great Wight Blades", id: "greatWightBlades" }],
+            weaponOptions: [{ options: [{ name: "Wight Blades & Crypt Shields", id: "wightBladesCryptShields" },{ name: "Great Wight Blades", id: "greatWightBlades" }] }],
             isBattleline: () => true,
         },
         wightKingWithBalefulTombBlade: {
@@ -5917,7 +5917,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 280,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skeleton-warriors-en.pdf",
-            weaponOptions: [{ name: "Ancient Blades", id: "ancientBlades" },{ name: "Ancient Spears", id: "ancientSpears" }],
+            weaponOptions: [{ options: [{ name: "Ancient Blades", id: "ancientBlades" },{ name: "Ancient Spears", id: "ancientSpears" }] }],
             isBattleline: () => true,
         },
         blackKnights: {
@@ -6165,7 +6165,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Soulblight Vampire Wizard - Behemoth",
             wounds: 14,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vampire-lord-zombiedragon-en.pdf",
-            weaponOptions: [{ name: "Deathlance", id: "deathlance" },{ name: "Deathlance & Chalice", id: "deathlanceChalice" },{ name: "Deathlance & Shield", id: "deathlanceShield" },{ name: "Deathlance & Shield & Chalice", id: "deathlanceShieldChalice" },{ name: "Vampiric Sword", id: "vampiricSword" },{ name: "Vampiric Sword & Chalice", id: "vampiricSwordChalice" },{ name: "Vampiric Sword & Shield", id: "vampiricSwordShield" },{ name: "Vampiric Sword & Shield & Chalice", id: "vampiricSwordShieldChalice" }],
+            weaponOptions: [{ options: [{ name: "Deathlance", id: "deathlance" },{ name: "Deathlance & Chalice", id: "deathlanceChalice" },{ name: "Deathlance & Shield", id: "deathlanceShield" },{ name: "Deathlance & Shield & Chalice", id: "deathlanceShieldChalice" },{ name: "Vampiric Sword", id: "vampiricSword" },{ name: "Vampiric Sword & Chalice", id: "vampiricSwordChalice" },{ name: "Vampiric Sword & Shield", id: "vampiricSwordShield" },{ name: "Vampiric Sword & Shield & Chalice", id: "vampiricSwordShieldChalice" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -6337,7 +6337,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 300,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-longbeards-en.pdf",
-            weaponOptions: [{ name: "Axes or Hammers", id: "axesOrHammers" },{ name: "Axes or Hammers & Shields", id: "axesOrHammersShields" },{ name: "Great Axes", id: "greatAxes" },{ name: "Great Axes & Shields", id: "greatAxesShields" }],
+            weaponOptions: [{ options: [{ name: "Axes or Hammers", id: "axesOrHammers" },{ name: "Axes or Hammers & Shields", id: "axesOrHammersShields" },{ name: "Great Axes", id: "greatAxes" },{ name: "Great Axes & Shields", id: "greatAxesShields" }] }],
             isBattleline: () => true,
         },
         vulkiteBerzerkers: {
@@ -6352,7 +6352,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 330,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vulkite-berzerkers-en.pdf",
-            weaponOptions: [{ name: "Handaxes & Slingshields", id: "handaxesSlingshields" },{ name: "War-Picks & Slingshields", id: "warPicksSlingshields" },{ name: "Pairs of Handaxes", id: "pairsOfHandaxes" }],
+            weaponOptions: [{ options: [{ name: "Handaxes & Slingshields", id: "handaxesSlingshields" },{ name: "War-Picks & Slingshields", id: "warPicksSlingshields" },{ name: "Pairs of Handaxes", id: "pairsOfHandaxes" }] }],
             isBattleline: () => true,
         },
         auricRunefatherOnMagmadroth: {
@@ -6378,7 +6378,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Behemoth",
             wounds: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runesmiter-magmadroth-en.pdf",
-            weaponOptions: [{ name: "Runic Iron", id: "runicIron" },{ name: "Forge Key", id: "forgeKey" }],
+            weaponOptions: [{ options: [{ name: "Runic Iron", id: "runicIron" },{ name: "Forge Key", id: "forgeKey" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -6392,7 +6392,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Behemoth",
             wounds: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-auric-runeson-magmadroth-en.pdf",
-            weaponOptions: [{ name: "Ancestral War-axe", id: "ancestralWarAxe" },{ name: "Wyrmslayer Javelins", id: "wyrmslayerJavelins" }],
+            weaponOptions: [{ options: [{ name: "Ancestral War-axe", id: "ancestralWarAxe" },{ name: "Wyrmslayer Javelins", id: "wyrmslayerJavelins" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -6408,7 +6408,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 480,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-hearthguard-berzerkers-en.pdf",
-            weaponOptions: [{ name: "Broadaxes", id: "broadaxes" },{ name: "Poleaxes", id: "poleaxes" }],
+            weaponOptions: [{ options: [{ name: "Broadaxes", id: "broadaxes" },{ name: "Poleaxes", id: "poleaxes" }] }],
             isBattleline: () => true,
         },
         auricHearthguard: {
@@ -6501,7 +6501,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Runic Iron", id: "runicIron" },{ name: "Forge Key", id: "forgeKey" }],
+            weaponOptions: [{ options: [{ name: "Runic Iron", id: "runicIron" },{ name: "Forge Key", id: "forgeKey" }] }],
             isLeader: () => true,
         },
         auricRuneson: {
@@ -6513,7 +6513,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Ancestral War-axe", id: "ancestralWarAxe" },{ name: "Wyrmslayer Javelins", id: "wyrmslayerJavelins" }],
+            weaponOptions: [{ options: [{ name: "Ancestral War-axe", id: "ancestralWarAxe" },{ name: "Wyrmslayer Javelins", id: "wyrmslayerJavelins" }] }],
             isLeader: () => true,
         },
         battlesmith: {
@@ -6853,7 +6853,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Behemoth",
             wounds: 13,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-general-griffon-en.pdf",
-            weaponOptions: [{ name: "Lance", id: "lance" },{ name: "Runesword", id: "runesword" },{ name: "Greathammer", id: "greathammer" },{ name: "Shield & Lance", id: "shieldLance" },{ name: "Shield & Runesword", id: "shieldRunesword" },{ name: "Shield & Greathammer", id: "shieldGreathammer" }],
+            weaponOptions: [{ options: [{ name: "Lance", id: "lance" },{ name: "Runesword", id: "runesword" },{ name: "Greathammer", id: "greathammer" },{ name: "Shield & Lance", id: "shieldLance" },{ name: "Shield & Runesword", id: "shieldRunesword" },{ name: "Shield & Greathammer", id: "shieldGreathammer" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -6955,7 +6955,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 4,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-demigryph-knights-en.pdf",
-            weaponOptions: [{ name: "Lance and Sword", id: "lanceAndSword" },{ name: "Cavalry Halberd", id: "cavalryHalberd" }],
+            weaponOptions: [{ options: [{ name: "Lance and Sword", id: "lanceAndSword" },{ name: "Cavalry Halberd", id: "cavalryHalberd" }] }],
             isBattleline: () => true,
         },
         knightsOfOrder: {
@@ -6989,7 +6989,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Stately War Banner", id: "statelyWarBanner" },{ name: "Great Weapon", id: "greatWeapon" },{ name: "Pistol & Sigmarite Weapon", id: "pistolSigmariteWeapon" },{ name: "Shield & Sigmarite Weapon", id: "shieldSigmariteWeapon" },{ name: "Shield & Lance", id: "shieldLance" }],
+            weaponOptions: [{ options: [{ name: "Stately War Banner", id: "statelyWarBanner" },{ name: "Great Weapon", id: "greatWeapon" },{ name: "Pistol & Sigmarite Weapon", id: "pistolSigmariteWeapon" },{ name: "Shield & Sigmarite Weapon", id: "shieldSigmariteWeapon" },{ name: "Shield & Lance", id: "shieldLance" }] }],
             isLeader: () => true,
         },
         freeguildGreatswords: {
@@ -7058,7 +7058,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Handgun", id: "handgun" },{ name: "Grenade Launching Blunderbuss", id: "grenadeLaunchingBlunderbuss" },{ name: "Repeater Handgun", id: "repeaterHandgun" },{ name: "Long Rifle", id: "longRifle" }],
+            weaponOptions: [{ options: [{ name: "Handgun", id: "handgun" },{ name: "Grenade Launching Blunderbuss", id: "grenadeLaunchingBlunderbuss" },{ name: "Repeater Handgun", id: "repeaterHandgun" },{ name: "Long Rifle", id: "longRifle" }] }],
             isLeader: () => true,
         },
         warriorPriest: {
@@ -7070,7 +7070,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Sigmarite Warhammers", id: "sigmariteWarhammers" },{ name: "Sigmarite Warhammer & Shield", id: "sigmariteWarhammerShield" },{ name: "Sigmarite Greathammer", id: "sigmariteGreathammer" }],
+            weaponOptions: [{ options: [{ name: "Sigmarite Warhammers", id: "sigmariteWarhammers" },{ name: "Sigmarite Warhammer & Shield", id: "sigmariteWarhammerShield" },{ name: "Sigmarite Greathammer", id: "sigmariteGreathammer" }] }],
             isLeader: () => true,
         },
         witchHunter: {
@@ -7082,7 +7082,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Pistols & Blessed Rapier", id: "pistolsBlessedRapier" },{ name: "Pistol & Silver Greatsword", id: "pistolSilverGreatsword" }],
+            weaponOptions: [{ options: [{ name: "Pistols & Blessed Rapier", id: "pistolsBlessedRapier" },{ name: "Pistol & Silver Greatsword", id: "pistolSilverGreatsword" }] }],
             isLeader: () => true,
         },
         highbornRepeaterBoltThrower: {
@@ -7141,7 +7141,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Behemoth",
             wounds: 14,
-            weaponOptions: [{ name: "Shield & Dragon Blade", id: "shieldDragonBlade" },{ name: "Shield & Dragon Lance", id: "shieldDragonLance" },{ name: "Reaver Bow & Dragon Blade", id: "reaverBowDragonBlade" },{ name: "Reaver Bow & Dragon Lance", id: "reaverBowDragonLance" },{ name: "War Horn & Dragon Blade", id: "warHornDragonBlade" },{ name: "War Horn & Dragon Lance", id: "warHornDragonLance" }],
+            weaponOptions: [{ options: [{ name: "Shield & Dragon Blade", id: "shieldDragonBlade" },{ name: "Shield & Dragon Lance", id: "shieldDragonLance" },{ name: "Reaver Bow & Dragon Blade", id: "reaverBowDragonBlade" },{ name: "Reaver Bow & Dragon Lance", id: "reaverBowDragonLance" },{ name: "War Horn & Dragon Blade", id: "warHornDragonBlade" },{ name: "War Horn & Dragon Lance", id: "warHornDragonLance" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -7220,7 +7220,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Eldritch Council - Behemoth",
             wounds: 14,
-            weaponOptions: [{ name: "Magestaff", id: "magestaff" },{ name: "Magestaff & Book of Hoeth", id: "magestaffBookOfHoeth" },{ name: "Magestaff & Sword of Saphery", id: "magestaffSwordOfSaphery" }],
+            weaponOptions: [{ options: [{ name: "Magestaff", id: "magestaff" },{ name: "Magestaff & Book of Hoeth", id: "magestaffBookOfHoeth" },{ name: "Magestaff & Sword of Saphery", id: "magestaffSwordOfSaphery" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -7283,7 +7283,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Swifthawk Agents",
             wounds: 8,
             maxSize: 3,
-            weaponOptions: [{ name: "Swifthawk Bows", id: "swifthawkBows" },{ name: "Eagle Eye Bolt Thrower", id: "eagleEyeBoltThrower" }],
+            weaponOptions: [{ options: [{ name: "Swifthawk Bows", id: "swifthawkBows" },{ name: "Eagle Eye Bolt Thrower", id: "eagleEyeBoltThrower" }] }],
         },
         skywarden: {
             id: this.serial++,
@@ -7294,7 +7294,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Swifthawk Agents",
             wounds: 8,
-            weaponOptions: [{ name: "Zephyr Trident", id: "zephyrTrident" },{ name: "Swifthawk Pennant", id: "swifthawkPennant" }],
+            weaponOptions: [{ options: [{ name: "Zephyr Trident", id: "zephyrTrident" },{ name: "Swifthawk Pennant", id: "swifthawkPennant" }] }],
             isLeader: () => true,
         },
         reavers: {
@@ -7367,7 +7367,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Phoenix Banner", id: "phoenixBanner" },{ name: "Starblade", id: "starblade" },{ name: "Enchanted Polearm", id: "enchantedPolearm" },{ name: "Shield & Starblade", id: "shieldStarblade" },{ name: "Shield & Enchanted Polearm", id: "shieldEnchantedPolearm" },{ name: "Reaver Bow & Starblade", id: "reaverBowStarblade" },{ name: "Reaver Bow & Enchanted Polearm", id: "reaverBowEnchantedPolearm" }],
+            weaponOptions: [{ options: [{ name: "Phoenix Banner", id: "phoenixBanner" },{ name: "Starblade", id: "starblade" },{ name: "Enchanted Polearm", id: "enchantedPolearm" },{ name: "Shield & Starblade", id: "shieldStarblade" },{ name: "Shield & Enchanted Polearm", id: "shieldEnchantedPolearm" },{ name: "Reaver Bow & Starblade", id: "reaverBowStarblade" },{ name: "Reaver Bow & Enchanted Polearm", id: "reaverBowEnchantedPolearm" }] }],
             isLeader: () => true,
         },
         greatEagles: {
@@ -7470,7 +7470,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 5,
             maxSize: 12,
             maxPoints: 640,
-            weaponOptions: [{ name: "Scalding Hand Weapons", id: "scaldingHandWeapons" },{ name: "Scalding Hand Weapon & Spiteshield", id: "scaldingHandWeaponSpiteshield" },{ name: "Scalding Great Weapon", id: "scaldingGreatWeapon" }],
+            weaponOptions: [{ options: [{ name: "Scalding Hand Weapons", id: "scaldingHandWeapons" },{ name: "Scalding Hand Weapon & Spiteshield", id: "scaldingHandWeaponSpiteshield" },{ name: "Scalding Great Weapon", id: "scaldingGreatWeapon" }] }],
             isBattleline: () => true,
         },
         infernalGuardFireglaives: {
@@ -7574,7 +7574,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Darkforged Weapon", id: "darkforgedWeapon" },{ name: "Pyre Rune Staff", id: "pyreRuneStaff" }],
+            weaponOptions: [{ options: [{ name: "Darkforged Weapon", id: "darkforgedWeapon" },{ name: "Pyre Rune Staff", id: "pyreRuneStaff" }] }],
             isLeader: () => true,
         },
         infernalGuardBattleStandardBearer: {
@@ -7597,7 +7597,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Darkforged Weapon & Spiteshield", id: "darkforgedWeaponSpiteshield" },{ name: "Darkforged Weapon & Pyrelock Pistol", id: "darkforgedWeaponPyrelockPistol" },{ name: "Darkforged Great Weapon", id: "darkforgedGreatWeapon" }],
+            weaponOptions: [{ options: [{ name: "Darkforged Weapon & Spiteshield", id: "darkforgedWeaponSpiteshield" },{ name: "Darkforged Weapon & Pyrelock Pistol", id: "darkforgedWeaponPyrelockPistol" },{ name: "Darkforged Great Weapon", id: "darkforgedGreatWeapon" }] }],
             isLeader: () => true,
         },
         kDaaiFireborn: {
@@ -7650,7 +7650,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 360,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sauruswarriors-en.pdf",
-            weaponOptions: [{ name: "Clubs", id: "clubs" },{ name: "Spears", id: "spears" }],
+            weaponOptions: [{ options: [{ name: "Clubs", id: "clubs" },{ name: "Spears", id: "spears" }] }],
             isBattleline: () => true,
         },
         skinks: {
@@ -7665,7 +7665,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 200,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinks-en.pdf",
-            weaponOptions: [{ name: "Meteoric Javelins & Star Bucklers", id: "meteoricJavelinsStarBucklers" },{ name: "Boltspitters & Star Bucklers", id: "boltspittersStarBucklers" },{ name: "Boltspitters & Moonstone Clubs", id: "boltspittersMoonstoneClubs" },{ name: "Moonstone Clubs & Star bucklers", id: "moonstoneClubsStarBucklers" }],
+            weaponOptions: [{ options: [{ name: "Meteoric Javelins & Star Bucklers", id: "meteoricJavelinsStarBucklers" },{ name: "Boltspitters & Star Bucklers", id: "boltspittersStarBucklers" },{ name: "Boltspitters & Moonstone Clubs", id: "boltspittersMoonstoneClubs" },{ name: "Moonstone Clubs & Star bucklers", id: "moonstoneClubsStarBucklers" }] }],
             isBattleline: () => true,
         },
         bastiladon: {
@@ -7706,7 +7706,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 12,
             maxSize: 1,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-veterancarnosaur-en.pdf",
-            weaponOptions: [{ name: "Warblade", id: "warblade" },{ name: "War Spear", id: "warSpear" },{ name: "Greatblade", id: "greatblade" }],
+            weaponOptions: [{ options: [{ name: "Warblade", id: "warblade" },{ name: "War Spear", id: "warSpear" },{ name: "Greatblade", id: "greatblade" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -7747,7 +7747,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 4,
             maxSize: 1,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skinkpriest-en.pdf",
-            weaponOptions: [{ name: "Priestly Trappings", id: "priestlyTrappings" },{ name: "Cloak of Feathers", id: "cloakOfFeathers" }],
+            weaponOptions: [{ options: [{ name: "Priestly Trappings", id: "priestlyTrappings" },{ name: "Cloak of Feathers", id: "cloakOfFeathers" }] }],
             isLeader: () => true,
         },
         skinkStarpriest: {
@@ -7801,7 +7801,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusknights-en.pdf",
-            weaponOptions: [{ name: "Blades", id: "blades" },{ name: "Lances", id: "lances" }],
+            weaponOptions: [{ options: [{ name: "Blades", id: "blades" },{ name: "Lances", id: "lances" }] }],
             isBattleline: () => true,
         },
         saurusAstrolithBearer: {
@@ -7925,7 +7925,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 7,
             maxSize: 1,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusoldblood-en.pdf",
-            weaponOptions: [{ name: "Suntooth Maul", id: "suntoothMaul" },{ name: "Warblade", id: "warblade" },{ name: "War Spear", id: "warSpear" },{ name: "Greatblade", id: "greatblade" }],
+            weaponOptions: [{ options: [{ name: "Suntooth Maul", id: "suntoothMaul" },{ name: "Warblade", id: "warblade" },{ name: "War Spear", id: "warSpear" },{ name: "Greatblade", id: "greatblade" }] }],
             isLeader: () => true,
         },
         saurusScarVeteranOnColdOne: {
@@ -7964,7 +7964,7 @@ export class DataStoreImpl implements DataStore {
             subType: undefined,
             wounds: 4,
             maxSize: 1,
-            weaponOptions: [{ name: "Golden Sickle", id: "goldenSickle" },{ name: "Ornate Club", id: "ornateClub" },{ name: "Golden Sickle & Blowpipe", id: "goldenSickleBlowpipe" },{ name: "Ornate Club & Blowpipe", id: "ornateClubBlowpipe" }],
+            weaponOptions: [{ options: [{ name: "Golden Sickle", id: "goldenSickle" },{ name: "Ornate Club", id: "ornateClub" },{ name: "Golden Sickle & Blowpipe", id: "goldenSickleBlowpipe" },{ name: "Ornate Club & Blowpipe", id: "ornateClubBlowpipe" }] }],
             isLeader: () => true,
         },
         skinkHandlers: {
@@ -8015,7 +8015,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-terradonriders-en.pdf",
-            weaponOptions: [{ name: "Starstrike Javelins", id: "starstrikeJavelins" },{ name: "Sunleech Bolas", id: "sunleechBolas" }],
+            weaponOptions: [{ options: [{ name: "Starstrike Javelins", id: "starstrikeJavelins" },{ name: "Sunleech Bolas", id: "sunleechBolas" }] }],
         },
         squigGobba: {
             id: this.serial++,
@@ -8286,7 +8286,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Beastclaw Raiders - Behemoth",
             wounds: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-huskard-on-stonehorn-en.pdf",
-            weaponOptions: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Harpoon Launcher", id: "harpoonLauncher" },{ name: "Blood Vulture", id: "bloodVulture" }],
+            weaponOptions: [{ options: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Harpoon Launcher", id: "harpoonLauncher" },{ name: "Blood Vulture", id: "bloodVulture" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -8299,7 +8299,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Beastclaw Raiders - Behemoth",
             wounds: 12,
-            weaponOptions: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Harpoon Launcher", id: "harpoonLauncher" },{ name: "Blood Vulture", id: "bloodVulture" }],
+            weaponOptions: [{ options: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Harpoon Launcher", id: "harpoonLauncher" },{ name: "Blood Vulture", id: "bloodVulture" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -8314,7 +8314,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 6,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-mournfang-pack-en.pdf",
-            weaponOptions: [{ name: "Gargant Hackers", id: "gargantHackers" },{ name: "Culling Clubs or Prey Hackers with Iron Fists", id: "cullingClubsOrPreyHackersWithIronFists" }],
+            weaponOptions: [{ options: [{ name: "Gargant Hackers", id: "gargantHackers" },{ name: "Culling Clubs or Prey Hackers with Iron Fists", id: "cullingClubsOrPreyHackersWithIronFists" }] }],
             isBattleline: () => true,
         },
         icefallYhetees: {
@@ -8352,7 +8352,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 12,
             maxSize: 1,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-stonehorn-beastriders-en.pdf",
-            weaponOptions: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Blood Vulture", id: "bloodVulture" }],
+            weaponOptions: [{ options: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Blood Vulture", id: "bloodVulture" }] }],
             isBehemot: () => true,
             isBattleline: () => true,
         },
@@ -8367,7 +8367,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 12,
             maxSize: 1,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-thundertusk-beastriders-en.pdf",
-            weaponOptions: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Blood Vulture", id: "bloodVulture" }],
+            weaponOptions: [{ options: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Blood Vulture", id: "bloodVulture" }] }],
             isBehemot: () => true,
             isBattleline: () => true,
         },
@@ -8437,7 +8437,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Gutbusters",
             wounds: 8,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogor-tyrant-en.pdf",
-            weaponOptions: [{ name: "Massive Ogor Club", id: "massiveOgorClub" },{ name: "Great Gutgouger", id: "greatGutgouger" },{ name: "Pair of Clubs; Bashers or Slicers", id: "pairOfClubsBashersOrSlicers" }],
+            weaponOptions: [{ options: [{ name: "Massive Ogor Club", id: "massiveOgorClub" },{ name: "Great Gutgouger", id: "greatGutgouger" },{ name: "Pair of Clubs; Bashers or Slicers", id: "pairOfClubsBashersOrSlicers" }] }],
             isLeader: () => true,
         },
         grotScraplauncher: {
@@ -8474,7 +8474,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
             maxPoints: 400,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogors-en.pdf",
-            weaponOptions: [{ name: "Ogor Clubs or Blades with Iron Fists", id: "ogorClubsOrBladesWithIronFists" },{ name: "Pairs of Ogor Clubs or Blades", id: "pairsOfOgorClubsOrBlades" }],
+            weaponOptions: [{ options: [{ name: "Ogor Clubs or Blades with Iron Fists", id: "ogorClubsOrBladesWithIronFists" },{ name: "Pairs of Ogor Clubs or Blades", id: "pairsOfOgorClubsOrBlades" }] }],
             isBattleline: () => true,
         },
         leadbelchers: {
@@ -8554,7 +8554,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Bonesplitterz",
             wounds: 6,
-            weaponOptions: [{ name: "Granite Choppas", id: "graniteChoppas" },{ name: "Granite Choppa & Shield", id: "graniteChoppaShield" },{ name: "Stonecleava", id: "stonecleava" }],
+            weaponOptions: [{ options: [{ name: "Granite Choppas", id: "graniteChoppas" },{ name: "Granite Choppa & Shield", id: "graniteChoppaShield" },{ name: "Stonecleava", id: "stonecleava" }] }],
             isLeader: () => true,
         },
         savageBigStabbas: {
@@ -8755,7 +8755,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 60,
             maxPoints: 270,
-            weaponOptions: [{ name: "Spears & Shields", id: "spearsShields" },{ name: "Bows & Slashas", id: "bowsSlashas" }],
+            weaponOptions: [{ options: [{ name: "Spears & Shields", id: "spearsShields" },{ name: "Bows & Slashas", id: "bowsSlashas" }] }],
             isBattleline: () => true,
         },
         grotWolfRiders: {
@@ -8769,7 +8769,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 30,
             maxPoints: 500,
-            weaponOptions: [{ name: "Slittas & Wolf Bows", id: "slittasWolfBows" },{ name: "Shields & Slittas & Wolf Bows", id: "shieldsSlittasWolfBows" },{ name: "Pokin Spears", id: "pokinSpears" },{ name: "Shields & Pokin Spears", id: "shieldsPokinSpears" }],
+            weaponOptions: [{ options: [{ name: "Slittas & Wolf Bows", id: "slittasWolfBows" },{ name: "Shields & Slittas & Wolf Bows", id: "shieldsSlittasWolfBows" },{ name: "Pokin Spears", id: "pokinSpears" },{ name: "Shields & Pokin Spears", id: "shieldsPokinSpears" }] }],
             isBattleline: () => true,
         },
         orrukBoarChariots: {
@@ -8804,7 +8804,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Greenskinz",
             wounds: 6,
-            weaponOptions: [{ name: "Boss Choppas", id: "bossChoppas" },{ name: "Boss Choppa & Shield", id: "bossChoppaShield" },{ name: "Massive Choppa", id: "massiveChoppa" },{ name: "Great Waaagh Banner", id: "greatWaaaghBanner" }],
+            weaponOptions: [{ options: [{ name: "Boss Choppas", id: "bossChoppas" },{ name: "Boss Choppa & Shield", id: "bossChoppaShield" },{ name: "Massive Choppa", id: "massiveChoppa" },{ name: "Great Waaagh Banner", id: "greatWaaaghBanner" }] }],
             isLeader: () => true,
         },
         orruks: {
@@ -8818,7 +8818,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 40,
             maxPoints: 320,
-            weaponOptions: [{ name: "Pair of Choppas", id: "pairOfChoppas" },{ name: "Choppas & Shields", id: "choppasShields" },{ name: "Pigstikka Spears & Shields", id: "pigstikkaSpearsShields" },{ name: "Bows & Cuttas", id: "bowsCuttas" }],
+            weaponOptions: [{ options: [{ name: "Pair of Choppas", id: "pairOfChoppas" },{ name: "Choppas & Shields", id: "choppasShields" },{ name: "Pigstikka Spears & Shields", id: "pigstikkaSpearsShields" },{ name: "Bows & Cuttas", id: "bowsCuttas" }] }],
             isBattleline: () => true,
         },
         orrukBoarboys: {
@@ -9003,7 +9003,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Moonclan Grots",
             wounds: 4,
-            weaponOptions: [{ name: "Git Cuttas", id: "gitCuttas" },{ name: "Git Cutta & Git Shield", id: "gitCuttaGitShield" },{ name: "Git Slicer", id: "gitSlicer" },{ name: "Pair of Moon Cuttas", id: "pairOfMoonCuttas" },{ name: "Moon Cutta & Git Shield", id: "moonCuttaGitShield" },{ name: "Moon Slicer", id: "moonSlicer" },{ name: "Moon Prodder & Giant Cave Squig", id: "moonProdderGiantCaveSquig" }],
+            weaponOptions: [{ options: [{ name: "Git Cuttas", id: "gitCuttas" },{ name: "Git Cutta & Git Shield", id: "gitCuttaGitShield" },{ name: "Git Slicer", id: "gitSlicer" },{ name: "Pair of Moon Cuttas", id: "pairOfMoonCuttas" },{ name: "Moon Cutta & Git Shield", id: "moonCuttaGitShield" },{ name: "Moon Slicer", id: "moonSlicer" },{ name: "Moon Prodder & Giant Cave Squig", id: "moonProdderGiantCaveSquig" }] }],
             isLeader: () => true,
         },
         grotWarbossOnGreatCaveSquig: {
@@ -9015,7 +9015,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Moonclan Grots",
             wounds: 6,
-            weaponOptions: [{ name: "Moon Cutta & Git Shield", id: "moonCuttaGitShield" },{ name: "Night Stabba & Git Shield", id: "nightStabbaGitShield" }],
+            weaponOptions: [{ options: [{ name: "Moon Cutta & Git Shield", id: "moonCuttaGitShield" },{ name: "Night Stabba & Git Shield", id: "nightStabbaGitShield" }] }],
             isLeader: () => true,
         },
         moonclanGrotShaman: {
@@ -9040,7 +9040,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 60,
             maxPoints: 360,
-            weaponOptions: [{ name: "Pokin Spears & Moon Shields", id: "pokinSpearsMoonShields" },{ name: "Stabbas & Moon Shields", id: "stabbasMoonShields" },{ name: "Bows & Slittas", id: "bowsSlittas" }],
+            weaponOptions: [{ options: [{ name: "Pokin Spears & Moon Shields", id: "pokinSpearsMoonShields" },{ name: "Stabbas & Moon Shields", id: "stabbasMoonShields" },{ name: "Bows & Slittas", id: "bowsSlittas" }] }],
             isBattleline: () => true,
         },
         manglerSquigs: {
@@ -9437,7 +9437,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Heartwood Staff", id: "heartwoodStaff" },{ name: "Blows of Mystic Power", id: "blowsOfMysticPower" }],
+            weaponOptions: [{ options: [{ name: "Heartwood Staff", id: "heartwoodStaff" },{ name: "Blows of Mystic Power", id: "blowsOfMysticPower" }] }],
             isLeader: () => true,
         },
         wayfinder: {
@@ -9552,7 +9552,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 5,
-            weaponOptions: [{ name: "Kindred Blade & Starlight Spear", id: "kindredBladeStarlightSpear" },{ name: "Bow of Loren & Starlight Greatblade", id: "bowOfLorenStarlightGreatblade" },{ name: "Bow of Loren & Hunting Falcon", id: "bowOfLorenHuntingFalcon" }],
+            weaponOptions: [{ options: [{ name: "Kindred Blade & Starlight Spear", id: "kindredBladeStarlightSpear" },{ name: "Bow of Loren & Starlight Greatblade", id: "bowOfLorenStarlightGreatblade" },{ name: "Bow of Loren & Hunting Falcon", id: "bowOfLorenHuntingFalcon" }] }],
             isLeader: () => true,
         },
         gladeLordOnGreatEagle: {
@@ -9564,7 +9564,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 7,
-            weaponOptions: [{ name: "Bow of Loren", id: "bowOfLoren" },{ name: "Spirit Blade", id: "spiritBlade" }],
+            weaponOptions: [{ options: [{ name: "Bow of Loren", id: "bowOfLoren" },{ name: "Spirit Blade", id: "spiritBlade" }] }],
             isLeader: () => true,
         },
         gladeLordOnGreatStag: {
@@ -9576,7 +9576,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 7,
-            weaponOptions: [{ name: "Normal", id: "normal" },{ name: "Bow of Loren", id: "bowOfLoren" }],
+            weaponOptions: [{ options: [{ name: "Normal", id: "normal" },{ name: "Bow of Loren", id: "bowOfLoren" }] }],
             isLeader: () => true,
         },
         huntingHounds: {
@@ -9667,7 +9667,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Eshin",
             wounds: 5,
-            weaponOptions: [{ name: "Weeping Blades", id: "weepingBlades" },{ name: "Fighting Claws", id: "fightingClaws" }],
+            weaponOptions: [{ options: [{ name: "Weeping Blades", id: "weepingBlades" },{ name: "Fighting Claws", id: "fightingClaws" }] }],
             isLeader: () => true,
         },
         nightRunners: {
@@ -9751,7 +9751,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Masterclan - Unique Behemoth",
             wounds: 13,
-            weaponOptions: [{ name: "Warpfire Projectors", id: "warpfireProjectors" },{ name: "Warpfire Braziers", id: "warpfireBraziers" }],
+            weaponOptions: [{ options: [{ name: "Warpfire Projectors", id: "warpfireProjectors" },{ name: "Warpfire Braziers", id: "warpfireBraziers" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -9777,7 +9777,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Moulder",
             wounds: 3,
-            weaponOptions: [{ name: "Herding Whip & Blade", id: "herdingWhipBlade" },{ name: "Herding Whip & Thing Catcher", id: "herdingWhipThingCatcher" },{ name: "Shock-Prod", id: "shockProd" }],
+            weaponOptions: [{ options: [{ name: "Herding Whip & Blade", id: "herdingWhipBlade" },{ name: "Herding Whip & Thing Catcher", id: "herdingWhipThingCatcher" },{ name: "Shock-Prod", id: "shockProd" }] }],
             isLeader: () => true,
         },
         ratOgors: {
@@ -9870,7 +9870,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 40,
             maxPoints: 240,
-            weaponOptions: [{ name: "Foetid Blades", id: "foetidBlades" },{ name: "Woe-stave", id: "woeStave" }],
+            weaponOptions: [{ options: [{ name: "Foetid Blades", id: "foetidBlades" },{ name: "Woe-stave", id: "woeStave" }] }],
             isBattleline: () => true,
         },
         plagueFurnace: {
@@ -10038,7 +10038,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Verminus",
             wounds: 5,
-            weaponOptions: [{ name: "Warpforged Blade", id: "warpforgedBlade" },{ name: "War Halberd", id: "warHalberd" },{ name: "Pair of Barbed Blades", id: "pairOfBarbedBlades" },{ name: "Barbed Blade", id: "barbedBlade" },{ name: "Shield & Warpforged Blade", id: "shieldWarpforgedBlade" },{ name: "Shield & War Halberd", id: "shieldWarHalberd" },{ name: "Shield & Pair of Barbed Blades", id: "shieldPairOfBarbedBlades" },{ name: "Shield & Barbed Blade", id: "shieldBarbedBlade" }],
+            weaponOptions: [{ options: [{ name: "Warpforged Blade", id: "warpforgedBlade" },{ name: "War Halberd", id: "warHalberd" },{ name: "Pair of Barbed Blades", id: "pairOfBarbedBlades" },{ name: "Barbed Blade", id: "barbedBlade" },{ name: "Shield & Warpforged Blade", id: "shieldWarpforgedBlade" },{ name: "Shield & War Halberd", id: "shieldWarHalberd" },{ name: "Shield & Pair of Barbed Blades", id: "shieldPairOfBarbedBlades" },{ name: "Shield & Barbed Blade", id: "shieldBarbedBlade" }] }],
             isLeader: () => true,
         },
         stormvermin: {
@@ -10052,7 +10052,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 40,
             maxPoints: 500,
-            weaponOptions: [{ name: "Halberd", id: "halberd" },{ name: "Halberd & Shield", id: "halberdShield" }],
+            weaponOptions: [{ options: [{ name: "Halberd", id: "halberd" },{ name: "Halberd & Shield", id: "halberdShield" }] }],
             isBattleline: () => true,
         },
         clanrats: {
@@ -10066,7 +10066,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 40,
             maxPoints: 200,
-            weaponOptions: [{ name: "Rusty Spear", id: "rustySpear" },{ name: "Rusty Blade", id: "rustyBlade" }],
+            weaponOptions: [{ options: [{ name: "Rusty Spear", id: "rustySpear" },{ name: "Rusty Blade", id: "rustyBlade" }] }],
             isBattleline: () => true,
         },
         verminlordWarbringer: {
@@ -10090,7 +10090,7 @@ export class DataStoreImpl implements DataStore {
             type: "unit",
             subType: undefined,
             wounds: 1,
-            weaponOptions: [{ name: "Sling", id: "sling" },{ name: "Rusty Spear", id: "rustySpear" },{ name: "Rusty Blade", id: "rustyBlade" },{ name: "Shield & Rusty Spear", id: "shieldRustySpear" },{ name: "Shield & Rusty Blade", id: "shieldRustyBlade" }],
+            weaponOptions: [{ options: [{ name: "Sling", id: "sling" },{ name: "Rusty Spear", id: "rustySpear" },{ name: "Rusty Blade", id: "rustyBlade" },{ name: "Shield & Rusty Spear", id: "shieldRustySpear" },{ name: "Shield & Rusty Blade", id: "shieldRustyBlade" }] }],
         },
         deathrunner: {
             id: this.serial++,
@@ -10115,7 +10115,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 520,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-liberators-en.pdf",
-            weaponOptions: [{ name: "Warhammers", id: "warhammers" },{ name: "Warblades", id: "warblades" },{ name: "Warhammer & Shield", id: "warhammerShield" },{ name: "Warblade & Shield", id: "warbladeShield" }],
+            weaponOptions: [{ options: [{ name: "Warhammers", id: "warhammers" },{ name: "Warblades", id: "warblades" },{ name: "Warhammer & Shield", id: "warhammerShield" },{ name: "Warblade & Shield", id: "warbladeShield" }] }],
             isBattleline: () => true,
         },
         drakeswornTemplar: {
@@ -10127,7 +10127,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Behemoth",
             wounds: 16,
-            weaponOptions: [{ name: "Tempest Axe", id: "tempestAxe" },{ name: "Arc Hammer", id: "arcHammer" },{ name: "Storm Lance", id: "stormLance" }],
+            weaponOptions: [{ options: [{ name: "Tempest Axe", id: "tempestAxe" },{ name: "Arc Hammer", id: "arcHammer" },{ name: "Storm Lance", id: "stormLance" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -10141,7 +10141,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Behemoth",
             wounds: 16,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-stormcast-stardrake-en.pdf",
-            weaponOptions: [{ name: "Celestine Hammer", id: "celestineHammer" },{ name: "Stormbound Blade", id: "stormboundBlade" }],
+            weaponOptions: [{ options: [{ name: "Celestine Hammer", id: "celestineHammer" },{ name: "Stormbound Blade", id: "stormboundBlade" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -10156,7 +10156,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-judicators-en.pdf",
-            weaponOptions: [{ name: "Skybolt Bows", id: "skyboltBows" },{ name: "Boltstorm Crossbows", id: "boltstormCrossbows" }],
+            weaponOptions: [{ options: [{ name: "Skybolt Bows", id: "skyboltBows" },{ name: "Boltstorm Crossbows", id: "boltstormCrossbows" }] }],
             isBattleline: () => true,
         },
         vanguardHunters: {
@@ -10181,7 +10181,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Totem",
             wounds: 5,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-knightvexillor-en.pdf",
-            weaponOptions: [{ name: "Meteoric Standard", id: "meteoricStandard" },{ name: "Pennant of the Stormbringer", id: "pennantOfTheStormbringer" }],
+            weaponOptions: [{ options: [{ name: "Meteoric Standard", id: "meteoricStandard" },{ name: "Pennant of the Stormbringer", id: "pennantOfTheStormbringer" }] }],
             isLeader: () => true,
         },
         celestantPrime: {
@@ -10371,7 +10371,7 @@ export class DataStoreImpl implements DataStore {
             subType: undefined,
             wounds: 7,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-lord-celestant-dracoth-en.pdf",
-            weaponOptions: [{ name: "Tempestos Hammer & Thundershield", id: "tempestosHammerThundershield" },{ name: "Lightning Hammer", id: "lightningHammer" },{ name: "Lightning Hammer & Thundershield", id: "lightningHammerThundershield" },{ name: "Stormstrike Glaive", id: "stormstrikeGlaive" },{ name: "Stormstrike Glaive & Thundershield", id: "stormstrikeGlaiveThundershield" },{ name: "Thunderaxe", id: "thunderaxe" },{ name: "Thunderaxe & Thundershield", id: "thunderaxeThundershield" }],
+            weaponOptions: [{ options: [{ name: "Tempestos Hammer & Thundershield", id: "tempestosHammerThundershield" },{ name: "Lightning Hammer", id: "lightningHammer" },{ name: "Lightning Hammer & Thundershield", id: "lightningHammerThundershield" },{ name: "Stormstrike Glaive", id: "stormstrikeGlaive" },{ name: "Stormstrike Glaive & Thundershield", id: "stormstrikeGlaiveThundershield" },{ name: "Thunderaxe", id: "thunderaxe" },{ name: "Thunderaxe & Thundershield", id: "thunderaxeThundershield" }] }],
             isLeader: () => true,
         },
         lordRelictor: {
@@ -10617,7 +10617,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 5,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-kurnoth-hunters-en.pdf",
-            weaponOptions: [{ name: "Scythes", id: "scythes" },{ name: "Greatswords", id: "greatswords" },{ name: "Greatbows", id: "greatbows" }],
+            weaponOptions: [{ options: [{ name: "Scythes", id: "scythes" },{ name: "Greatswords", id: "greatswords" },{ name: "Greatbows", id: "greatbows" }] }],
         },
         spiteRevenants: {
             id: this.serial++,
@@ -10850,7 +10850,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Behemoth",
             wounds: 12,
-            weaponOptions: [{ name: "Venom Spike Tail", id: "venomSpikeTail" },{ name: "Bladed Tail", id: "bladedTail" }],
+            weaponOptions: [{ options: [{ name: "Venom Spike Tail", id: "venomSpikeTail" },{ name: "Bladed Tail", id: "bladedTail" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -10975,7 +10975,7 @@ export class DataStoreImpl implements DataStore {
             subType: undefined,
             wounds: 1,
             maxSize: 30,
-            weaponOptions: [{ name: "Tomb Blade", id: "tombBlade" },{ name: "Bronze Halberd", id: "bronzeHalberd" }],
+            weaponOptions: [{ options: [{ name: "Tomb Blade", id: "tombBlade" },{ name: "Bronze Halberd", id: "bronzeHalberd" }] }],
         },
         tombHerald: {
             id: this.serial++,
@@ -10997,7 +10997,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 6,
-            weaponOptions: [{ name: "Dynastic Blade & Shield", id: "dynasticBladeShield" },{ name: "Monarch's Great Blade", id: "monarchSGreatBlade" }],
+            weaponOptions: [{ options: [{ name: "Dynastic Blade & Shield", id: "dynasticBladeShield" },{ name: "Monarch's Great Blade", id: "monarchSGreatBlade" }] }],
             isLeader: () => true,
         },
         tombKingInRoyalChariot: {
@@ -11043,7 +11043,7 @@ export class DataStoreImpl implements DataStore {
             subType: undefined,
             wounds: 4,
             maxSize: 12,
-            weaponOptions: [{ name: "Ritual Blade Stave", id: "ritualBladeStave" },{ name: "Great Bow", id: "greatBow" }],
+            weaponOptions: [{ options: [{ name: "Ritual Blade Stave", id: "ritualBladeStave" },{ name: "Great Bow", id: "greatBow" }] }],
         },
         necromancerOnNightmare: {
             id: this.serial++,
@@ -11065,7 +11065,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: undefined,
             wounds: 8,
-            weaponOptions: [{ name: "Deathlance", id: "deathlance" },{ name: "Vampiric Sword", id: "vampiricSword" },{ name: "Deathlance & Shield", id: "deathlanceShield" },{ name: "Vampiric Sword & Shield", id: "vampiricSwordShield" }],
+            weaponOptions: [{ options: [{ name: "Deathlance", id: "deathlance" },{ name: "Vampiric Sword", id: "vampiricSword" },{ name: "Deathlance & Shield", id: "deathlanceShield" },{ name: "Vampiric Sword & Shield", id: "vampiricSwordShield" }] }],
             isLeader: () => true,
         },
         chaosChariots: {
@@ -11078,7 +11078,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Mortal - Slaves to Darkness Battleline",
             wounds: 7,
             maxSize: 3,
-            weaponOptions: [{ name: "Greatblades", id: "greatblades" },{ name: "War flails", id: "warFlails" }],
+            weaponOptions: [{ options: [{ name: "Greatblades", id: "greatblades" },{ name: "War flails", id: "warFlails" }] }],
             isBattleline: () => true,
         },
         chaosChosen: {
@@ -11101,7 +11101,7 @@ export class DataStoreImpl implements DataStore {
             type: "unit",
             subType: "Mortal",
             wounds: 8,
-            weaponOptions: [{ name: "War Flail", id: "warFlail" },{ name: "Greatblade", id: "greatblade" }],
+            weaponOptions: [{ options: [{ name: "War Flail", id: "warFlail" },{ name: "Greatblade", id: "greatblade" }] }],
         },
         darkoathChieftain: {
             id: this.serial++,
@@ -11169,7 +11169,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 40,
             maxPoints: 200,
-            weaponOptions: [{ name: "Axes", id: "axes" },{ name: "Flails", id: "flails" },{ name: "Axes & Shields", id: "axesShields" },{ name: "Flails & Shields", id: "flailsShields" }],
+            weaponOptions: [{ options: [{ name: "Axes", id: "axes" },{ name: "Flails", id: "flails" },{ name: "Axes & Shields", id: "axesShields" },{ name: "Flails & Shields", id: "flailsShields" }] }],
             isBattleline: () => true,
         },
         chaosWarriors: {
@@ -11183,7 +11183,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 30,
             maxPoints: 480,
-            weaponOptions: [{ name: "Hand Weapon & Shield", id: "handWeaponShield" },{ name: "Halberd & Shield", id: "halberdShield" },{ name: "Hand Weapons", id: "handWeapons" },{ name: "Greatblade", id: "greatblade" }],
+            weaponOptions: [{ options: [{ name: "Hand Weapon & Shield", id: "handWeaponShield" },{ name: "Halberd & Shield", id: "halberdShield" },{ name: "Hand Weapons", id: "handWeapons" },{ name: "Greatblade", id: "greatblade" }] }],
             isBattleline: () => true,
         },
         chaosKnights: {
@@ -11197,7 +11197,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-knights-en.pdf",
-            weaponOptions: [{ name: "Ensorcelled Weapons", id: "ensorcelledWeapons" },{ name: "Chaos Glaives", id: "chaosGlaives" }],
+            weaponOptions: [{ options: [{ name: "Ensorcelled Weapons", id: "ensorcelledWeapons" },{ name: "Chaos Glaives", id: "chaosGlaives" }] }],
             isBattleline: () => true,
         },
         chaosMarauderHorsemen: {
@@ -11211,7 +11211,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 30,
             maxPoints: 480,
-            weaponOptions: [{ name: "Axes & Shield", id: "axesShield" },{ name: "Flails & Shield", id: "flailsShield" },{ name: "Javelin & Shield", id: "javelinShield" }],
+            weaponOptions: [{ options: [{ name: "Axes & Shield", id: "axesShield" },{ name: "Flails & Shield", id: "flailsShield" },{ name: "Javelin & Shield", id: "javelinShield" }] }],
             isBattleline: () => true,
         },
         chaosLordOnManticore: {
@@ -11223,7 +11223,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Mortal Behemoth",
             wounds: 12,
-            weaponOptions: [{ name: "Blade & Lance", id: "bladeLance" },{ name: "Flail & Lance", id: "flailLance" },{ name: "Blade & Runeshield", id: "bladeRuneshield" },{ name: "Flail & Runeshield", id: "flailRuneshield" },{ name: "Blade & Daggerfist", id: "bladeDaggerfist" },{ name: "Flail & Daggerfist", id: "flailDaggerfist" }],
+            weaponOptions: [{ options: [{ name: "Blade & Lance", id: "bladeLance" },{ name: "Flail & Lance", id: "flailLance" },{ name: "Blade & Runeshield", id: "bladeRuneshield" },{ name: "Flail & Runeshield", id: "flailRuneshield" },{ name: "Blade & Daggerfist", id: "bladeDaggerfist" },{ name: "Flail & Daggerfist", id: "flailDaggerfist" }] }],
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -11271,7 +11271,7 @@ export class DataStoreImpl implements DataStore {
             type: "hero",
             subType: "Mortal Wizard",
             wounds: 5,
-            weaponOptions: [{ name: "Runestaff", id: "runestaff" },{ name: "Runesword", id: "runesword" }],
+            weaponOptions: [{ options: [{ name: "Runestaff", id: "runestaff" },{ name: "Runesword", id: "runesword" }] }],
             isLeader: () => true,
         },
         chaosSorcererLordOnManticore: {
@@ -11363,7 +11363,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Thunderscorn Battleline",
             wounds: 5,
             maxSize: 12,
-            weaponOptions: [{ name: "Ancient Weapons", id: "ancientWeapons" },{ name: "Draconic War-glaives", id: "draconicWarGlaives" },{ name: "Draconic Crushers", id: "draconicCrushers" }],
+            weaponOptions: [{ options: [{ name: "Ancient Weapons", id: "ancientWeapons" },{ name: "Draconic War-glaives", id: "draconicWarGlaives" },{ name: "Draconic Crushers", id: "draconicCrushers" }] }],
             isBattleline: () => true,
         },
         varanguard: {
@@ -11376,7 +11376,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Everchosen - Everchosen Battleline",
             wounds: 5,
             maxSize: 12,
-            weaponOptions: [{ name: "Ensorcelled Weapon", id: "ensorcelledWeapon" },{ name: "Fellspear", id: "fellspear" },{ name: "Daemonforged Blade", id: "daemonforgedBlade" }],
+            weaponOptions: [{ options: [{ name: "Ensorcelled Weapon", id: "ensorcelledWeapon" },{ name: "Fellspear", id: "fellspear" },{ name: "Daemonforged Blade", id: "daemonforgedBlade" }] }],
             isBattleline: () => true,
         },
         chaosLordOfSlaanesh: {
@@ -11411,7 +11411,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Slaanesh - Slaanesh Battleline",
             wounds: 2,
             maxSize: 20,
-            weaponOptions: [{ name: "Claw spear", id: "clawSpear" },{ name: "Hellscourge", id: "hellscourge" },{ name: "Claw spear & Shield", id: "clawSpearShield" },{ name: "Hellscourge & Shield", id: "hellscourgeShield" }],
+            weaponOptions: [{ options: [{ name: "Claw spear", id: "clawSpear" },{ name: "Hellscourge", id: "hellscourge" },{ name: "Claw spear & Shield", id: "clawSpearShield" },{ name: "Hellscourge & Shield", id: "hellscourgeShield" }] }],
             isBattleline: () => true,
         },
         putridBlightkings: {
