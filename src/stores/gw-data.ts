@@ -5676,8 +5676,51 @@ const factions:Faction[] = [
 { name: "Vampire Counts", grandAlliance: "death", id: "VAMPIRECOUNTS" },
 ];
 
+const allegiances = [
+    { grandAlliance: "chaos", name: "Chaos" },
+    { grandAlliance: "chaos", name: "Brayherd" },
+    { grandAlliance: "chaos", name: "Khorne" },
+    { grandAlliance: "chaos", name: "Nurgle" },
+    { grandAlliance: "chaos", name: "Skaven Pestilens" },
+    { grandAlliance: "chaos", name: "Skaven Skryre" },
+    { grandAlliance: "chaos", name: "Slaanesh" },
+    { grandAlliance: "chaos", name: "Slaves To Darkness" },
+    { grandAlliance: "chaos", name: "Tzeentch" },
+    { grandAlliance: "chaos", name: "Fist of the Everchosen" },
+    { grandAlliance: "order", name: "Order" },
+    { grandAlliance: "order", name: "Darkling Covens" },
+    { grandAlliance: "order", name: "Dispossessed" },
+    { grandAlliance: "order", name: "Free Peoples" },
+    { grandAlliance: "order", name: "Fyreslayers" },
+    { grandAlliance: "order", name: "Kharadron Overlords" },
+    { grandAlliance: "order", name: "Seraphon" },
+    { grandAlliance: "order", name: "Stormcast Eternals" },
+    { grandAlliance: "order", name: "Sylvaneth" },
+    { grandAlliance: "order", name: "Wanderers" },
+    { grandAlliance: "order", name: "Hammerhal" },
+    { grandAlliance: "order", name: "Anvilgard" },
+    { grandAlliance: "order", name: "Tempest's Eye" },
+    { grandAlliance: "order", name: "Hallowheart" },
+    { grandAlliance: "order", name: "The Living City" },
+    { grandAlliance: "order", name: "Greywater Fastness" },
+    { grandAlliance: "destruction", name: "Destruction" },
+    { grandAlliance: "destruction", name: "Bonesplitterz" },
+    { grandAlliance: "destruction", name: "Beastclaw Raiders" },
+    { grandAlliance: "destruction", name: "Ironjawz" },
+    { grandAlliance: "destruction", name: "Stoneklaw's Gutstompas" },
+    { grandAlliance: "death", name: "Death" },
+    { grandAlliance: "death", name: "Flesh Eater Courts" },
+    { grandAlliance: "death", name: "Nighthaunt" },
+    { grandAlliance: "death", name: "Soulblight" },
+    { grandAlliance: "death", name: "Grand Host of Nagash" },
+    { grandAlliance: "death", name: "Legion of Sacrament" },
+    { grandAlliance: "death", name: "Legion of Blood" },
+    { grandAlliance: "death", name: "Legion of Night" },
+    { grandAlliance: "death", name: "The Wraith Fleet" },
+];
+
 const data = loadAllArmiesFaster();
-let output = `import { Box, DataStore, GrandAlliance } from "./units";
+let output = `import { Box, DataStore, GrandAlliance, ExtraAbility } from "./units";
 
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
@@ -5744,6 +5787,20 @@ for (const faction of factions) {
             id: "${faction.id}",
             grandAlliance: GrandAlliance.${faction.grandAlliance},
             name: "${faction.name}"
+        },
+`;
+}
+
+output += `    };
+    
+    allegiances = {
+`;
+
+for (const allegiance of allegiances) {
+    output += `        ${toCamelCase(allegiance.name)}: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.${allegiance.grandAlliance},
+            name: "${allegiance.name}"
         },
 `;
 }
@@ -5848,6 +5905,7 @@ for (const [key, unit] of gwPointsMap) {
 output += `    };
     
     boxes: Box[] = [];
+    extraAbilities:ExtraAbility[] = [];
 
     battalions = {
 `;

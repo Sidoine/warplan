@@ -1,10 +1,5 @@
 import { action, computed, observable } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance, Allegiance, WeaponOption } from "./units";
-
-export interface WarscrollBattalion {
-    id: number;
-    battalion: Battalion; 
-}
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion } from "./units";
 
 export interface WarscrollWeaponOption {
     weaponOption?: WeaponOption;
@@ -19,6 +14,9 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @observable
     weaponOption: WarscrollWeaponOption[] = [];
+
+    @observable
+    extraAbilities: ExtraAbility[] = [];
 
     get isArtillery() {
         return this.unit.isArtillery && this.unit.isArtillery(this.warscroll);
@@ -40,6 +38,12 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         return this.warscroll.general === this;
     }
 
+    @computed
+    get availableExtraAbilities() {
+        return this.warscroll.unitsStore.extraAbilities.filter(x => x.allegiance === this.warscroll.allegiance
+            && x.isAvailable(this, this.warscroll));
+    }
+
     constructor(protected warscroll: Warscroll, public unit: Unit, count?: number) {
         this.id = warscroll.serial++;
         if (count !== undefined) {
@@ -56,8 +60,11 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 export class Warscroll implements WarscrollInterface {
     serial = 0;
 
-    constructor(private unitsStore: UnitsStore) {
+    constructor(public unitsStore: UnitsStore) {
     }
+
+    @observable
+    extraAbilities: ExtraAbility[] = [];
 
     @observable
     grandAlliance: GrandAlliance = GrandAlliance.order;
@@ -224,6 +231,20 @@ export class WarscrollStore {
     @action
     setWeaponOption(unit: WarscrollUnit, index: number, weaponOption: WeaponOption, count?: number) {
         unit.weaponOption[index] = { weaponOption, count: count };
+        this.saveWarscroll();
+    }
+
+    @action
+    addExtraAbility(unit: WarscrollUnit, ability: ExtraAbility) {
+        unit.extraAbilities.push(ability);
+        this.warscroll.extraAbilities.push(ability);
+        this.saveWarscroll();
+    }
+
+    @action
+    removeExtraAbility(unit: WarscrollUnit, ability: ExtraAbility) {
+        unit.extraAbilities.splice(unit.extraAbilities.indexOf(ability), 1);
+        this.warscroll.extraAbilities.splice(unit.extraAbilities.indexOf(ability), 1);
         this.saveWarscroll();
     }
     

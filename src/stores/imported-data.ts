@@ -1,4 +1,4 @@
-import { Box, DataStore, GrandAlliance } from "./units";
+import { Box, DataStore, GrandAlliance, ExtraAbility } from "./units";
 
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
@@ -3899,6 +3899,209 @@ export class DataStoreImpl implements DataStore {
             id: "VAMPIRECOUNTS",
             grandAlliance: GrandAlliance.death,
             name: "Vampire Counts"
+        },
+    };
+    
+    allegiances = {
+        chaos: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Chaos"
+        },
+        brayherd: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Brayherd"
+        },
+        khorne: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Khorne"
+        },
+        nurgle: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Nurgle"
+        },
+        skavenPestilens: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Skaven Pestilens"
+        },
+        skavenSkryre: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Skaven Skryre"
+        },
+        slaanesh: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Slaanesh"
+        },
+        slavesToDarkness: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Slaves To Darkness"
+        },
+        tzeentch: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Tzeentch"
+        },
+        fistOfTheEverchosen: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.chaos,
+            name: "Fist of the Everchosen"
+        },
+        order: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Order"
+        },
+        darklingCovens: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Darkling Covens"
+        },
+        dispossessed: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Dispossessed"
+        },
+        freePeoples: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Free Peoples"
+        },
+        fyreslayers: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Fyreslayers"
+        },
+        kharadronOverlords: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Kharadron Overlords"
+        },
+        seraphon: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Seraphon"
+        },
+        stormcastEternals: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Stormcast Eternals"
+        },
+        sylvaneth: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Sylvaneth"
+        },
+        wanderers: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Wanderers"
+        },
+        hammerhal: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Hammerhal"
+        },
+        anvilgard: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Anvilgard"
+        },
+        tempestSEye: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Tempest's Eye"
+        },
+        hallowheart: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Hallowheart"
+        },
+        theLivingCity: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "The Living City"
+        },
+        greywaterFastness: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.order,
+            name: "Greywater Fastness"
+        },
+        destruction: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.destruction,
+            name: "Destruction"
+        },
+        bonesplitterz: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.destruction,
+            name: "Bonesplitterz"
+        },
+        beastclawRaiders: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.destruction,
+            name: "Beastclaw Raiders"
+        },
+        ironjawz: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.destruction,
+            name: "Ironjawz"
+        },
+        stoneklawSGutstompas: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.destruction,
+            name: "Stoneklaw's Gutstompas"
+        },
+        death: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.death,
+            name: "Death"
+        },
+        fleshEaterCourts: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.death,
+            name: "Flesh Eater Courts"
+        },
+        nighthaunt: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.death,
+            name: "Nighthaunt"
+        },
+        soulblight: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.death,
+            name: "Soulblight"
+        },
+        grandHostOfNagash: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.death,
+            name: "Grand Host of Nagash"
+        },
+        legionOfSacrament: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.death,
+            name: "Legion of Sacrament"
+        },
+        legionOfBlood: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.death,
+            name: "Legion of Blood"
+        },
+        legionOfNight: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.death,
+            name: "Legion of Night"
+        },
+        theWraithFleet: {
+            id: this.serial++,
+            grandAlliance: GrandAlliance.death,
+            name: "The Wraith Fleet"
         },
     };
     
@@ -11987,6 +12190,7 @@ export class DataStoreImpl implements DataStore {
     };
     
     boxes: Box[] = [];
+    extraAbilities:ExtraAbility[] = [];
 
     battalions = {
         bloodHostOfKhorne: {

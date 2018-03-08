@@ -103,13 +103,21 @@ export interface Battalion {
     factions: Faction[];
 }
 
+export interface WarscrollBattalion {
+    id: number;
+    battalion: Battalion; 
+}
 
 export interface WarscrollUnitInterface {
     unit: Unit;
+    isGeneral: boolean;
+    extraAbilities: ExtraAbility[];
 }
 
 export interface WarscrollInterface {
+    battalions: WarscrollBattalion[];
     general: WarscrollUnitInterface | undefined;
+    extraAbilities: ExtraAbility[];
 }
 
 export interface DataStore {
@@ -118,6 +126,7 @@ export interface DataStore {
     battalions: { [key: string]: Battalion };
     boxes: Box[];
     factions: {[key:string]: Faction};
+    extraAbilities: ExtraAbility[];
 }
 
 export interface Allegiance {
@@ -126,57 +135,26 @@ export interface Allegiance {
     name: string;
 }
 
+export type ExtraAbilityTest = (unit: WarscrollUnitInterface, warscroll: WarscrollInterface) => boolean;
+
+export interface ExtraAbility {
+    ability: Ability;
+    allegiance: Allegiance;
+    category: string;
+    isAvailable: ExtraAbilityTest;
+}
+
 export class UnitsStore {
     serial = 100;
 
+    extraAbilities: ExtraAbility[] = [];
     modelsList: Model[] = [];
     unitList: Unit[] = [];
     battalions: Battalion[] = [];
     boxes: Box[];
     factions: { [key: string]: Faction };
     factionsList: Faction[] = [];
-    allegianceList: Allegiance[] = [
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Chaos" },
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Brayherd" },
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Khorne" },
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Nurgle" },
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Skaven Pestilens" },
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Skaven Skryre" },
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Slaanesh" },
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Slaves To Darkness" },
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Tzeentch" },
-        { id: this.serial++, grandAlliance: GrandAlliance.chaos, name: "Fist of the Everchosen" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Order" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Darkling Covens" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Dispossessed" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Free Peoples" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Fyreslayers" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Kharadron Overlords" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Seraphon" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Stormcast Eternals" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Sylvaneth" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Wanderers" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Hammerhal" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Anvilgard" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Tempest's Eye" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Hallowheart" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "The Living City" },
-        { id: this.serial++, grandAlliance: GrandAlliance.order, name: "Greywater Fastness" },
-        { id: this.serial++, grandAlliance: GrandAlliance.destruction, name: "Destruction" },
-        { id: this.serial++, grandAlliance: GrandAlliance.destruction, name: "Bonesplitterz" },
-        { id: this.serial++, grandAlliance: GrandAlliance.destruction, name: "Beastclaw Raiders" },
-        { id: this.serial++, grandAlliance: GrandAlliance.destruction, name: "Ironjawz" },
-        { id: this.serial++, grandAlliance: GrandAlliance.destruction, name: "Stoneklaw's Gutstompas" },
-        { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Death" },
-        { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Flesh Eater Courts" },
-        { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Nighthaunt" },
-        { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Soulblight" },
-        { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Grand Host of Nagash" },
-        { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Legion of Sacrament" },
-        { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Legion of Blood" },
-        { id: this.serial++, grandAlliance: GrandAlliance.death, name: "Legion of Night" },
-        { id: this.serial++, grandAlliance: GrandAlliance.death, name: "The Wraith Fleet" },
-    ].sort((a, b) => a.name > b.name ? 1 : -1);
+    allegianceList: Allegiance[] = [];
     
     constructor(data: DataStoreImpl) {   
         overrideStormcast(data);   
@@ -204,6 +182,12 @@ export class UnitsStore {
         for (const key in this.factions) {
             this.factionsList.push(this.factions[key]);
         }
+
+        const allegiances: {[key: string]: Allegiance} = data.allegiances;
+        for (const key in allegiances) {
+            this.allegianceList.push(allegiances[key]);
+        }
+        this.allegianceList = this.allegianceList.sort((a, b) => a.name > b.name ? 1 : -1);
     }
 
     getUnit(id: number) {
