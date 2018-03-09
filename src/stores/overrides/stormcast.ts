@@ -143,6 +143,7 @@ function addExtraAbilities(data: DataStoreImpl): void {
     // Command traits
     const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
     data.extraAbilities.push({
+        id: "shieldedByFaith",
         ability: { name: "Shielded by Faith", description: "When your general suffers a mortal wound, roll a dice. On a roll of 5 or more, that mortal wound is ignored." },
         isAvailable: commandTraitAvailable,
         category: "command",
@@ -150,6 +151,7 @@ function addExtraAbilities(data: DataStoreImpl): void {
     });
 
     data.extraAbilities.push({
+        id: "consummateCommander",
         ability: { name: "Consummate Commander", description: "Choose one other HERO in your army. While your general is alive, the model you chose can also use any command abilities it may have, as if it were your general." },
         isAvailable: commandTraitAvailable,
         category: "command",
@@ -157,6 +159,7 @@ function addExtraAbilities(data: DataStoreImpl): void {
     });
 
     data.extraAbilities.push({
+        id: "Cunning Strategist",
         ability: { name: "Cunning Strategist", description: "Once both armies are set up, but before the first battle round begins, select D3 friendly STORMCAST ETERNALS units. They can each make a move of up to 5\"." },
         isAvailable: commandTraitAvailable,
         category: "command",
@@ -164,6 +167,7 @@ function addExtraAbilities(data: DataStoreImpl): void {
     });
 
     data.extraAbilities.push({
+        id: "Zealous Crusader",
         ability: { name: "Zealous Crusader", description: "Your general can re-roll their charge distance." },
         isAvailable: commandTraitAvailable,
         category: "command",
@@ -171,6 +175,7 @@ function addExtraAbilities(data: DataStoreImpl): void {
     });
 
     data.extraAbilities.push({
+        id: "Staunch Defender",
         ability: { name: "Staunch Defender", description: "Your general and all friendly STORMCAST ETERNALS units within 6\" add 1 to their save rolls if they have not charged this turn. This modifier does not stack with the save roll modifier for being within or on a terrain feature." },
         isAvailable: commandTraitAvailable,
         category: "command",
@@ -178,6 +183,7 @@ function addExtraAbilities(data: DataStoreImpl): void {
     });
     
     data.extraAbilities.push({
+        id: "Champion of the Realms",
         ability: { name: "Champion of the Realms", description: "Choose one of your general’s weapon profiles (it cannot be a weapon used by a mount if they have one) and increase its Attacks characteristic by 1." },
         isAvailable: commandTraitAvailable,
         category: "command",
@@ -188,6 +194,7 @@ function addExtraAbilities(data: DataStoreImpl): void {
     const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
         && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
     data.extraAbilities.push({
+        id: "Strife-ender",
         ability: { name: "Strife-ender", description: "This sigmarite weapon has been energised with runes of emancipation and liberation from evil. Pick one of this HERO’s melee weapons to be a Strife-ender. Add 1 to the Attacks characteristic of this weapon. Add 2 instead if all of the weapon’s attacks are directed against a CHAOS unit." },
         isAvailable: artifactAvailable,
         category: "artifact",

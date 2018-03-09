@@ -2,8 +2,9 @@ import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { NumberControl } from "../atoms/number-control";
 import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
-import { Dropdown, Button, Table, Icon, Checkbox, CheckboxProps, DropdownProps } from "semantic-ui-react";
+import { Dropdown, Button, Table, Icon, Checkbox, CheckboxProps, DropdownProps, Popup } from "semantic-ui-react";
 import { WeaponOption } from "../stores/units";
+import { join } from "../helpers/react";
 
 export interface WarscrollUnitEditProps {
     unit: WarscrollUnit;
@@ -27,11 +28,26 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
                 </div>
             </Table.Cell>
             <Table.Cell><NumberControl value={unit.count} onChange={this.onCountChange} /></Table.Cell>
-                    <Table.Cell> {unit.unit.weaponOptions && unit.unit.weaponOptions.map((x, index) => this.renderWeaponOption(x.options, index) ) } </Table.Cell>
+                    <Table.Cell> {unit.unit.weaponOptions && unit.unit.weaponOptions.map((x, index) => this.renderWeaponOption(x.options, index) ) } 
+                    { join(unit.extraAbilities.map(x => <><Popup content={<>{x.ability.description}</>} trigger={<span>{x.ability.name}</span>}/><Button onClick={() => this.props.warscrollStore!.removeExtraAbility(unit, x)} ><Icon name="remove"/> </Button></>), ", ") }
+                        { this.renderExtraAbilities(unit)}
+                    </Table.Cell>
             <Table.Cell>{unit.unit.points * unit.count}</Table.Cell>
             <Table.Cell>
                 <Button onClick={() => this.props.warscrollStore!.removeUnit(this.props.unit)}><Icon name="remove"/></Button>
             </Table.Cell></Table.Row>;
+    }
+
+    private renderExtraAbilities(unit: WarscrollUnit) {
+        const options = unit.availableExtraAbilities.map(x => { return { key: x.id, text: x.ability.name, value: x.id }});
+        return unit.availableExtraAbilities.length > 0 && <Dropdown className="icon" icon="plus" button options={options} onChange={this.handleExtraAbilityChange(unit)} />;
+    }
+
+    private handleExtraAbilityChange(unit: WarscrollUnit) {
+        return (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
+            const extraAbility = unit.availableExtraAbilities.find(x => x.id === props.value);
+            if (extraAbility) this.props.warscrollStore!.addExtraAbility(unit, extraAbility);
+        }
     }
 
     private renderWeaponOption(weaponList: WeaponOption[], index: number) {

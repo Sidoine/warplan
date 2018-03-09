@@ -138,6 +138,7 @@ export interface Allegiance {
 export type ExtraAbilityTest = (unit: WarscrollUnitInterface, warscroll: WarscrollInterface) => boolean;
 
 export interface ExtraAbility {
+    id: string;
     ability: Ability;
     allegiance: Allegiance;
     category: string;
@@ -188,6 +189,8 @@ export class UnitsStore {
             this.allegianceList.push(allegiances[key]);
         }
         this.allegianceList = this.allegianceList.sort((a, b) => a.name > b.name ? 1 : -1);
+
+        this.extraAbilities = data.extraAbilities;
     }
 
     getUnit(id: number) {
