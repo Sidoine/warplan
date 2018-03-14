@@ -80,6 +80,10 @@ export class Warscroll extends React.Component<WarscrollProps, {}>{
             } 
         }
 
+        for (const ability of unit.extraAbilities) {
+            abilities.push(ability.ability);
+        }
+
         // for (const a of attacks) {
         //     if (a.count === 0) a.count = totalWeapons;
         // }

@@ -20,7 +20,7 @@ interface Missing {
     model: Model;
     count: number;
     inBasket: number;
-    id: number;
+    id: string;
 }
 
 export class BasketStore {
@@ -111,7 +111,7 @@ export class BasketStore {
     get missingModels() {
         const neededModels:Missing[] = [];
         
-        const modelsInBasket = new Map<number, { count: number }[]>();
+        const modelsInBasket = new Map<string, { count: number }[]>();
 
         for (const element of this.basket) {
             for (const unit of element.box.units) {

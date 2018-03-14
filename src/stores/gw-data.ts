@@ -5770,7 +5770,7 @@ for (const faction of factions) {
 
 for (const [key, value] of extraData) {
     output += `        ${key}: {
-            id: this.serial++,
+            id: "${key}",
             name: "${value.army.name}"
         },
 `;
@@ -5797,8 +5797,9 @@ output += `    };
 `;
 
 for (const allegiance of allegiances) {
-    output += `        ${toCamelCase(allegiance.name)}: {
-            id: this.serial++,
+    const key = toCamelCase(allegiance.name);
+    output += `        ${key}: {
+            id: "${key}",
             grandAlliance: GrandAlliance.${allegiance.grandAlliance},
             name: "${allegiance.name}"
         },
@@ -5841,7 +5842,7 @@ for (const [key, unit] of gwPointsMap) {
     const extras = extraData.get(key);
     if (!extras || extras.type === "formation") continue;
     output += `        ${key}: {
-            id: this.serial++,
+            id: "${key}",
             model: this.models.${key},
             factions: [${ extras.factionId.map( x => `this.factions.${x}`).join(", ")}],
             size: ${unit.count},
@@ -5914,7 +5915,7 @@ for (const [key, unit] of gwPointsMap) {
     const extras = extraData.get(key);
     if (!extras || extras.type !== "formation") continue;
     output += `        ${key}: {
-            id: this.serial++,
+            id: "${key}",
             name: "${extras.army.name}",
             factions: [${ extras.factionId.map( x => `this.factions.${x}`).join(", ")}],
             points: ${unit.points},

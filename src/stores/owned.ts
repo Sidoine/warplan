@@ -3,7 +3,7 @@ import { Model, UnitsStore } from "./units";
 
 interface SerializedOwned {
     models: {
-        modelId: number;
+        modelId: string;
         count: number;
     }[];
 }

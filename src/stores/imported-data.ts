@@ -5,3491 +5,3491 @@ export class DataStoreImpl implements DataStore {
 
     models = {
         beastlordOnChariot: {
-            id: this.serial++,
+            id: "beastlordOnChariot",
             name: "Beastlord on Chariot"
         },
         wargorStandardBearer: {
-            id: this.serial++,
+            id: "wargorStandardBearer",
             name: "Wargor Standard Bearer"
         },
         centigorWarhoof: {
-            id: this.serial++,
+            id: "centigorWarhoof",
             name: "Centigor Warhoof"
         },
         beastlord: {
-            id: this.serial++,
+            id: "beastlord",
             name: "Beastlord"
         },
         greatBrayShaman: {
-            id: this.serial++,
+            id: "greatBrayShaman",
             name: "Great Bray Shaman"
         },
         gors: {
-            id: this.serial++,
+            id: "gors",
             name: "Gors"
         },
         bestigors: {
-            id: this.serial++,
+            id: "bestigors",
             name: "Bestigors"
         },
         tuskgorChariots: {
-            id: this.serial++,
+            id: "tuskgorChariots",
             name: "Tuskgor Chariots"
         },
         ungors: {
-            id: this.serial++,
+            id: "ungors",
             name: "Ungors"
         },
         ungorRaiders: {
-            id: this.serial++,
+            id: "ungorRaiders",
             name: "Ungor Raiders"
         },
         wildstalkerBrayherd: {
-            id: this.serial++,
+            id: "wildstalkerBrayherd",
             name: "Wildstalker Brayherd"
         },
         chaosGargant: {
-            id: this.serial++,
+            id: "chaosGargant",
             name: "Chaos Gargant"
         },
         deathrunner: {
-            id: this.serial++,
+            id: "deathrunner",
             name: "Deathrunner"
         },
         verminlordDeceiver: {
-            id: this.serial++,
+            id: "verminlordDeceiver",
             name: "Verminlord Deceiver"
         },
         skavenAssassin: {
-            id: this.serial++,
+            id: "skavenAssassin",
             name: "Skaven Assassin"
         },
         nightRunners: {
-            id: this.serial++,
+            id: "nightRunners",
             name: "Night Runners"
         },
         gutterRunners: {
-            id: this.serial++,
+            id: "gutterRunners",
             name: "Gutter Runners"
         },
         packmaster: {
-            id: this.serial++,
+            id: "packmaster",
             name: "Packmaster"
         },
         wolfRats: {
-            id: this.serial++,
+            id: "wolfRats",
             name: "Wolf Rats"
         },
         giantRats: {
-            id: this.serial++,
+            id: "giantRats",
             name: "Giant Rats"
         },
         ratSwarms: {
-            id: this.serial++,
+            id: "ratSwarms",
             name: "Rat Swarms"
         },
         ratOgors: {
-            id: this.serial++,
+            id: "ratOgors",
             name: "Rat Ogors"
         },
         broodHorror: {
-            id: this.serial++,
+            id: "broodHorror",
             name: "Brood Horror"
         },
         hellPitAbomination: {
-            id: this.serial++,
+            id: "hellPitAbomination",
             name: "Hell Pit Abomination"
         },
         plaguePriestWithPlagueCenser: {
-            id: this.serial++,
+            id: "plaguePriestWithPlagueCenser",
             name: "Plague Priest with Plague Censer"
         },
         plaguePriestWithWarpstoneTippedStaff: {
-            id: this.serial++,
+            id: "plaguePriestWithWarpstoneTippedStaff",
             name: "Plague Priest with Warpstone-tipped Staff"
         },
         plagueFurnace: {
-            id: this.serial++,
+            id: "plagueFurnace",
             name: "Plague Furnace"
         },
         verminlordCorruptor: {
-            id: this.serial++,
+            id: "verminlordCorruptor",
             name: "Verminlord Corruptor"
         },
         plagueMonks: {
-            id: this.serial++,
+            id: "plagueMonks",
             name: "Plague Monks"
         },
         plagueCenserBearers: {
-            id: this.serial++,
+            id: "plagueCenserBearers",
             name: "Plague Censer Bearers"
         },
         plagueclaw: {
-            id: this.serial++,
+            id: "plagueclaw",
             name: "Plagueclaw"
         },
         congregationOfFilth: {
-            id: this.serial++,
+            id: "congregationOfFilth",
             name: "Congregation of Filth"
         },
         foulrainCongregation: {
-            id: this.serial++,
+            id: "foulrainCongregation",
             name: "Foulrain Congregation"
         },
         plaguesmogCongregation: {
-            id: this.serial++,
+            id: "plaguesmogCongregation",
             name: "Plaguesmog Congregation"
         },
         virulentProcession: {
-            id: this.serial++,
+            id: "virulentProcession",
             name: "Virulent Procession"
         },
         warlockEngineer: {
-            id: this.serial++,
+            id: "warlockEngineer",
             name: "Warlock Engineer"
         },
         archWarlock: {
-            id: this.serial++,
+            id: "archWarlock",
             name: "Arch Warlock"
         },
         doomFlayerWeaponTeam: {
-            id: this.serial++,
+            id: "doomFlayerWeaponTeam",
             name: "Doom Flayer Weapon Team"
         },
         ratlingGunWeaponTeam: {
-            id: this.serial++,
+            id: "ratlingGunWeaponTeam",
             name: "Ratling Gun Weapon Team"
         },
         warpfireThrowerWeaponTeam: {
-            id: this.serial++,
+            id: "warpfireThrowerWeaponTeam",
             name: "Warpfire Thrower Weapon Team"
         },
         warpGrinderWeaponTeam: {
-            id: this.serial++,
+            id: "warpGrinderWeaponTeam",
             name: "Warp Grinder Weapon Team"
         },
         poisonedWindMortarWeaponTeam: {
-            id: this.serial++,
+            id: "poisonedWindMortarWeaponTeam",
             name: "Poisoned Wind Mortar Weapon Team"
         },
         skryreAcolytes: {
-            id: this.serial++,
+            id: "skryreAcolytes",
             name: "Skryre Acolytes"
         },
         warplockJezzails: {
-            id: this.serial++,
+            id: "warplockJezzails",
             name: "Warplock Jezzails"
         },
         stormfiends: {
-            id: this.serial++,
+            id: "stormfiends",
             name: "Stormfiends"
         },
         doomwheel: {
-            id: this.serial++,
+            id: "doomwheel",
             name: "Doomwheel"
         },
         warpLightningCannon: {
-            id: this.serial++,
+            id: "warpLightningCannon",
             name: "Warp Lightning Cannon"
         },
         clanSkryre: {
-            id: this.serial++,
+            id: "clanSkryre",
             name: "Clan Skryre"
         },
         arkhsparkVoltik: {
-            id: this.serial++,
+            id: "arkhsparkVoltik",
             name: "Arkhspark Voltik"
         },
         gascloudChokelung: {
-            id: this.serial++,
+            id: "gascloudChokelung",
             name: "Gascloud Chokelung"
         },
         gautfyreSkorch: {
-            id: this.serial++,
+            id: "gautfyreSkorch",
             name: "Gautfyre Skorch"
         },
         rattlegaugeWarplock: {
-            id: this.serial++,
+            id: "rattlegaugeWarplock",
             name: "Rattlegauge Warplock"
         },
         whyrlbladeThreshik: {
-            id: this.serial++,
+            id: "whyrlbladeThreshik",
             name: "Whyrlblade Threshik"
         },
         verminlordWarbringer: {
-            id: this.serial++,
+            id: "verminlordWarbringer",
             name: "Verminlord Warbringer"
         },
         skavenWarlord: {
-            id: this.serial++,
+            id: "skavenWarlord",
             name: "Skaven Warlord"
         },
         skavenWarlordOnBroodHorror: {
-            id: this.serial++,
+            id: "skavenWarlordOnBroodHorror",
             name: "Skaven Warlord on Brood Horror"
         },
         skritchSpiteclaw: {
-            id: this.serial++,
+            id: "skritchSpiteclaw",
             name: "Skritch Spiteclaw"
         },
         clanrats: {
-            id: this.serial++,
+            id: "clanrats",
             name: "Clanrats"
         },
         stormvermin: {
-            id: this.serial++,
+            id: "stormvermin",
             name: "Stormvermin"
         },
         spiteclawSSwarm: {
-            id: this.serial++,
+            id: "spiteclawSSwarm",
             name: "Spiteclaw's Swarm"
         },
         daemonPrince: {
-            id: this.serial++,
+            id: "daemonPrince",
             name: "Daemon Prince"
         },
         beLakorChaosDaemonPrince: {
-            id: this.serial++,
+            id: "beLakorChaosDaemonPrince",
             name: "Be'Lakor, Chaos Daemon Prince"
         },
         furies: {
-            id: this.serial++,
+            id: "furies",
             name: "Furies"
         },
         soulGrinder: {
-            id: this.serial++,
+            id: "soulGrinder",
             name: "Soul Grinder"
         },
         bloodthirsterOfInsensateRage: {
-            id: this.serial++,
+            id: "bloodthirsterOfInsensateRage",
             name: "Bloodthirster Of Insensate Rage"
         },
         bloodthirsterOfUnfetteredFury: {
-            id: this.serial++,
+            id: "bloodthirsterOfUnfetteredFury",
             name: "Bloodthirster Of Unfettered Fury"
         },
         wrathOfKhorneBloodthirster: {
-            id: this.serial++,
+            id: "wrathOfKhorneBloodthirster",
             name: "Wrath Of Khorne Bloodthirster"
         },
         skarbrand: {
-            id: this.serial++,
+            id: "skarbrand",
             name: "Skarbrand"
         },
         skulltaker: {
-            id: this.serial++,
+            id: "skulltaker",
             name: "Skulltaker"
         },
         bloodmasterHeraldOfKhorne: {
-            id: this.serial++,
+            id: "bloodmasterHeraldOfKhorne",
             name: "Bloodmaster, Herald of Khorne"
         },
         skullmasterHeraldOfKhorne: {
-            id: this.serial++,
+            id: "skullmasterHeraldOfKhorne",
             name: "Skullmaster, Herald of Khorne"
         },
         bloodThrone: {
-            id: this.serial++,
+            id: "bloodThrone",
             name: "Blood Throne"
         },
         karanak: {
-            id: this.serial++,
+            id: "karanak",
             name: "Karanak"
         },
         daemonPrinceOfKhorne: {
-            id: this.serial++,
+            id: "daemonPrinceOfKhorne",
             name: "Daemon Prince of Khorne"
         },
         exaltedGreaterDaemonOfKhorne: {
-            id: this.serial++,
+            id: "exaltedGreaterDaemonOfKhorne",
             name: "Exalted Greater Daemon of Khorne"
         },
         bloodletters: {
-            id: this.serial++,
+            id: "bloodletters",
             name: "Bloodletters"
         },
         bloodcrushers: {
-            id: this.serial++,
+            id: "bloodcrushers",
             name: "Bloodcrushers"
         },
         fleshHounds: {
-            id: this.serial++,
+            id: "fleshHounds",
             name: "Flesh Hounds"
         },
         skullCannons: {
-            id: this.serial++,
+            id: "skullCannons",
             name: "Skull Cannons"
         },
         bloodHostOfKhorne: {
-            id: this.serial++,
+            id: "bloodHostOfKhorne",
             name: "Blood Host of Khorne"
         },
         bloodHunt: {
-            id: this.serial++,
+            id: "bloodHunt",
             name: "Blood Hunt"
         },
         theBloodlords: {
-            id: this.serial++,
+            id: "theBloodlords",
             name: "The Bloodlords"
         },
         bloodthunderStampede: {
-            id: this.serial++,
+            id: "bloodthunderStampede",
             name: "Bloodthunder Stampede"
         },
         charnelHost: {
-            id: this.serial++,
+            id: "charnelHost",
             name: "Charnel Host"
         },
         councilOfBlood: {
-            id: this.serial++,
+            id: "councilOfBlood",
             name: "Council of Blood"
         },
         daemonLegionOfKhorne: {
-            id: this.serial++,
+            id: "daemonLegionOfKhorne",
             name: "Daemon Legion of Khorne"
         },
         gorethunderCohort: {
-            id: this.serial++,
+            id: "gorethunderCohort",
             name: "Gorethunder Cohort"
         },
         murderhost: {
-            id: this.serial++,
+            id: "murderhost",
             name: "Murderhost"
         },
         theReapersOfVengeance: {
-            id: this.serial++,
+            id: "theReapersOfVengeance",
             name: "The Reapers of Vengeance"
         },
         skullseekerHost: {
-            id: this.serial++,
+            id: "skullseekerHost",
             name: "Skullseeker Host"
         },
         greatUncleanOne: {
-            id: this.serial++,
+            id: "greatUncleanOne",
             name: "Great Unclean One"
         },
         rotigus: {
-            id: this.serial++,
+            id: "rotigus",
             name: "Rotigus"
         },
         epidemiusTallymanOfNurgle: {
-            id: this.serial++,
+            id: "epidemiusTallymanOfNurgle",
             name: "Epidemius Tallyman of Nurgle"
         },
         poxbringerHeraldOfNurgle: {
-            id: this.serial++,
+            id: "poxbringerHeraldOfNurgle",
             name: "Poxbringer Herald of Nurgle"
         },
         spoilpoxScrivenerHeraldOfNurgle: {
-            id: this.serial++,
+            id: "spoilpoxScrivenerHeraldOfNurgle",
             name: "Spoilpox Scrivener Herald of Nurgle"
         },
         sloppityBilepiperHeraldOfNurgle: {
-            id: this.serial++,
+            id: "sloppityBilepiperHeraldOfNurgle",
             name: "Sloppity Bilepiper Herald of Nurgle"
         },
         daemonPrinceOfNurgle: {
-            id: this.serial++,
+            id: "daemonPrinceOfNurgle",
             name: "Daemon Prince of Nurgle"
         },
         exaltedGreaterDaemonOfNurgle: {
-            id: this.serial++,
+            id: "exaltedGreaterDaemonOfNurgle",
             name: "Exalted Greater Daemon of Nurgle"
         },
         horticulousSlimux: {
-            id: this.serial++,
+            id: "horticulousSlimux",
             name: "Horticulous Slimux"
         },
         plaguebearers: {
-            id: this.serial++,
+            id: "plaguebearers",
             name: "Plaguebearers"
         },
         plagueDrones: {
-            id: this.serial++,
+            id: "plagueDrones",
             name: "Plague Drones"
         },
         nurglings: {
-            id: this.serial++,
+            id: "nurglings",
             name: "Nurglings"
         },
         beastsOfNurgle: {
-            id: this.serial++,
+            id: "beastsOfNurgle",
             name: "Beasts Of Nurgle"
         },
         tallybandOfNurgle: {
-            id: this.serial++,
+            id: "tallybandOfNurgle",
             name: "Tallyband of Nurgle"
         },
         fecundRituculturalists: {
-            id: this.serial++,
+            id: "fecundRituculturalists",
             name: "Fecund Rituculturalists"
         },
         theMunificentWanderers: {
-            id: this.serial++,
+            id: "theMunificentWanderers",
             name: "The Munificent Wanderers"
         },
         nurgleSMenagerie: {
-            id: this.serial++,
+            id: "nurgleSMenagerie",
             name: "Nurgle's Menagerie"
         },
         thricefoldBefoulment: {
-            id: this.serial++,
+            id: "thricefoldBefoulment",
             name: "Thricefold Befoulment"
         },
         kairosFateweaver: {
-            id: this.serial++,
+            id: "kairosFateweaver",
             name: "Kairos Fateweaver"
         },
         lordOfChange: {
-            id: this.serial++,
+            id: "lordOfChange",
             name: "Lord Of Change"
         },
         theChangeling: {
-            id: this.serial++,
+            id: "theChangeling",
             name: "The Changeling"
         },
         heraldOfTzeentch: {
-            id: this.serial++,
+            id: "heraldOfTzeentch",
             name: "Herald Of Tzeentch"
         },
         heraldOfTzeentchOnDisc: {
-            id: this.serial++,
+            id: "heraldOfTzeentchOnDisc",
             name: "Herald Of Tzeentch On Disc"
         },
         heraldOfTzeentchOnBurningChariot: {
-            id: this.serial++,
+            id: "heraldOfTzeentchOnBurningChariot",
             name: "Herald Of Tzeentch On Burning Chariot"
         },
         theBlueScribes: {
-            id: this.serial++,
+            id: "theBlueScribes",
             name: "The Blue Scribes"
         },
         daemonPrinceOfTzeentch: {
-            id: this.serial++,
+            id: "daemonPrinceOfTzeentch",
             name: "Daemon Prince Of Tzeentch"
         },
         exaltedGreaterDaemonOfTzeentch: {
-            id: this.serial++,
+            id: "exaltedGreaterDaemonOfTzeentch",
             name: "Exalted Greater Daemon of Tzeentch"
         },
         pinkHorrorsOfTzeentch: {
-            id: this.serial++,
+            id: "pinkHorrorsOfTzeentch",
             name: "Pink Horrors Of Tzeentch"
         },
         blueHorrorsOfTzeentch: {
-            id: this.serial++,
+            id: "blueHorrorsOfTzeentch",
             name: "Blue Horrors Of Tzeentch"
         },
         brimstoneHorrorsOfTzeentch: {
-            id: this.serial++,
+            id: "brimstoneHorrorsOfTzeentch",
             name: "Brimstone Horrors Of Tzeentch"
         },
         exaltedFlamersOfTzeentch: {
-            id: this.serial++,
+            id: "exaltedFlamersOfTzeentch",
             name: "Exalted Flamers of Tzeentch"
         },
         flamersOfTzeentch: {
-            id: this.serial++,
+            id: "flamersOfTzeentch",
             name: "Flamers Of Tzeentch"
         },
         screamersOfTzeentch: {
-            id: this.serial++,
+            id: "screamersOfTzeentch",
             name: "Screamers Of Tzeentch"
         },
         burningChariotsOfTzeentch: {
-            id: this.serial++,
+            id: "burningChariotsOfTzeentch",
             name: "Burning Chariots Of Tzeentch"
         },
         aetherEaterHost: {
-            id: this.serial++,
+            id: "aetherEaterHost",
             name: "Aether-eater Host"
         },
         changehost: {
-            id: this.serial++,
+            id: "changehost",
             name: "Changehost"
         },
         multitudinousHost: {
-            id: this.serial++,
+            id: "multitudinousHost",
             name: "Multitudinous Host"
         },
         omniscientOracles: {
-            id: this.serial++,
+            id: "omniscientOracles",
             name: "Omniscient Oracles"
         },
         overseerSFateTwisters: {
-            id: this.serial++,
+            id: "overseerSFateTwisters",
             name: "Overseer's Fate-twisters"
         },
         theEternalConflagration: {
-            id: this.serial++,
+            id: "theEternalConflagration",
             name: "The Eternal Conflagration"
         },
         theHostsDuplicitous: {
-            id: this.serial++,
+            id: "theHostsDuplicitous",
             name: "The Hosts Duplicitous"
         },
         warpflameHost: {
-            id: this.serial++,
+            id: "warpflameHost",
             name: "Warpflame Host"
         },
         archaon: {
-            id: this.serial++,
+            id: "archaon",
             name: "Archaon"
         },
         gauntSummonerOfTzeentch: {
-            id: this.serial++,
+            id: "gauntSummonerOfTzeentch",
             name: "Gaunt Summoner of Tzeentch"
         },
         gauntSummonerAndChaosFamiliars: {
-            id: this.serial++,
+            id: "gauntSummonerAndChaosFamiliars",
             name: "Gaunt Summoner and Chaos Familiars"
         },
         varanguard: {
-            id: this.serial++,
+            id: "varanguard",
             name: "Varanguard"
         },
         overlordsOfChaos: {
-            id: this.serial++,
+            id: "overlordsOfChaos",
             name: "Overlords of Chaos"
         },
         bloodmarkedWarband: {
-            id: this.serial++,
+            id: "bloodmarkedWarband",
             name: "Bloodmarked Warband"
         },
         plaguetouchedWarband: {
-            id: this.serial++,
+            id: "plaguetouchedWarband",
             name: "Plaguetouched Warband"
         },
         fateswornWarband: {
-            id: this.serial++,
+            id: "fateswornWarband",
             name: "Fatesworn Warband"
         },
         pleasureboundWarband: {
-            id: this.serial++,
+            id: "pleasureboundWarband",
             name: "Pleasurebound Warband"
         },
         archaonSGrandHost: {
-            id: this.serial++,
+            id: "archaonSGrandHost",
             name: "Archaon's Grand Host"
         },
         keeperOfSecrets: {
-            id: this.serial++,
+            id: "keeperOfSecrets",
             name: "Keeper Of Secrets"
         },
         theMasqueOfSlaanesh: {
-            id: this.serial++,
+            id: "theMasqueOfSlaanesh",
             name: "The Masque Of Slaanesh"
         },
         heraldOfSlaanesh: {
-            id: this.serial++,
+            id: "heraldOfSlaanesh",
             name: "Herald Of Slaanesh"
         },
         heraldOfSlaaneshOnSeekerChariot: {
-            id: this.serial++,
+            id: "heraldOfSlaaneshOnSeekerChariot",
             name: "Herald Of Slaanesh on Seeker Chariot"
         },
         heraldOfSlaaneshOnExaltedSeekerChariot: {
-            id: this.serial++,
+            id: "heraldOfSlaaneshOnExaltedSeekerChariot",
             name: "Herald Of Slaanesh on Exalted Seeker Chariot"
         },
         daemonPrinceOfSlaanesh: {
-            id: this.serial++,
+            id: "daemonPrinceOfSlaanesh",
             name: "Daemon Prince Of Slaanesh"
         },
         chaosLordOfSlaanesh: {
-            id: this.serial++,
+            id: "chaosLordOfSlaanesh",
             name: "Chaos Lord Of Slaanesh"
         },
         lordOfSlaaneshOnDaemonicMount: {
-            id: this.serial++,
+            id: "lordOfSlaaneshOnDaemonicMount",
             name: "Lord Of Slaanesh On Daemonic Mount"
         },
         exaltedGreaterDaemonOfSlaanesh: {
-            id: this.serial++,
+            id: "exaltedGreaterDaemonOfSlaanesh",
             name: "Exalted Greater Daemon of Slaanesh"
         },
         daemonettesOfSlaanesh: {
-            id: this.serial++,
+            id: "daemonettesOfSlaanesh",
             name: "Daemonettes Of Slaanesh"
         },
         seekersOfSlaanesh: {
-            id: this.serial++,
+            id: "seekersOfSlaanesh",
             name: "Seekers Of Slaanesh"
         },
         fiendsOfSlaanesh: {
-            id: this.serial++,
+            id: "fiendsOfSlaanesh",
             name: "Fiends Of Slaanesh"
         },
         seekerChariotsOfSlaanesh: {
-            id: this.serial++,
+            id: "seekerChariotsOfSlaanesh",
             name: "Seeker Chariots Of Slaanesh"
         },
         exaltedSeekerChariotsOfSlaanesh: {
-            id: this.serial++,
+            id: "exaltedSeekerChariotsOfSlaanesh",
             name: "Exalted Seeker Chariots Of Slaanesh"
         },
         hellflayersOfSlaanesh: {
-            id: this.serial++,
+            id: "hellflayersOfSlaanesh",
             name: "Hellflayers Of Slaanesh"
         },
         hellstridersOfSlaanesh: {
-            id: this.serial++,
+            id: "hellstridersOfSlaanesh",
             name: "Hellstriders Of Slaanesh"
         },
         mightyLordOfKhorne: {
-            id: this.serial++,
+            id: "mightyLordOfKhorne",
             name: "Mighty Lord Of Khorne"
         },
         khorgosKhul: {
-            id: this.serial++,
+            id: "khorgosKhul",
             name: "Khorgos Khul"
         },
         bloodsecrator: {
-            id: this.serial++,
+            id: "bloodsecrator",
             name: "Bloodsecrator"
         },
         bloodstoker: {
-            id: this.serial++,
+            id: "bloodstoker",
             name: "Bloodstoker"
         },
         skullgrinder: {
-            id: this.serial++,
+            id: "skullgrinder",
             name: "Skullgrinder"
         },
         skarrBloodwrath: {
-            id: this.serial++,
+            id: "skarrBloodwrath",
             name: "Skarr Bloodwrath"
         },
         valkiaTheBloody: {
-            id: this.serial++,
+            id: "valkiaTheBloody",
             name: "Valkia The Bloody"
         },
         scylaAnfingrimm: {
-            id: this.serial++,
+            id: "scylaAnfingrimm",
             name: "Scyla Anfingrimm"
         },
         lordOfKhorneOnJuggernaut: {
-            id: this.serial++,
+            id: "lordOfKhorneOnJuggernaut",
             name: "Lord Of Khorne On Juggernaut"
         },
         slaughterpriest: {
-            id: this.serial++,
+            id: "slaughterpriest",
             name: "Slaughterpriest"
         },
         slaughterpriestWithHackbladeAndWrathhammer: {
-            id: this.serial++,
+            id: "slaughterpriestWithHackbladeAndWrathhammer",
             name: "Slaughterpriest with Hackblade and Wrathhammer"
         },
         exaltedDeathbringer: {
-            id: this.serial++,
+            id: "exaltedDeathbringer",
             name: "Exalted Deathbringer"
         },
         exaltedDeathbringerWithImpalingSpear: {
-            id: this.serial++,
+            id: "exaltedDeathbringerWithImpalingSpear",
             name: "Exalted Deathbringer with Impaling Spear"
         },
         aspiringDeathbringer: {
-            id: this.serial++,
+            id: "aspiringDeathbringer",
             name: "Aspiring Deathbringer"
         },
         aspiringDeathbringerWithGoreaxeAndSkullhammer: {
-            id: this.serial++,
+            id: "aspiringDeathbringerWithGoreaxeAndSkullhammer",
             name: "Aspiring Deathbringer with Goreaxe and Skullhammer"
         },
         skaaracTheBloodborn: {
-            id: this.serial++,
+            id: "skaaracTheBloodborn",
             name: "Skaarac the Bloodborn"
         },
         bloodWarriors: {
-            id: this.serial++,
+            id: "bloodWarriors",
             name: "Blood Warriors"
         },
         wrathmongers: {
-            id: this.serial++,
+            id: "wrathmongers",
             name: "Wrathmongers"
         },
         bloodreavers: {
-            id: this.serial++,
+            id: "bloodreavers",
             name: "Bloodreavers"
         },
         khorgoraths: {
-            id: this.serial++,
+            id: "khorgoraths",
             name: "Khorgoraths"
         },
         skullreapers: {
-            id: this.serial++,
+            id: "skullreapers",
             name: "Skullreapers"
         },
         mightySkullcrushers: {
-            id: this.serial++,
+            id: "mightySkullcrushers",
             name: "Mighty Skullcrushers"
         },
         garrekSReavers: {
-            id: this.serial++,
+            id: "garrekSReavers",
             name: "Garrek's Reavers"
         },
         bloodboundWarhorde: {
-            id: this.serial++,
+            id: "bloodboundWarhorde",
             name: "Bloodbound Warhorde"
         },
         brassStampede: {
-            id: this.serial++,
+            id: "brassStampede",
             name: "Brass Stampede"
         },
         darkFeast: {
-            id: this.serial++,
+            id: "darkFeast",
             name: "Dark Feast"
         },
         redHeadsmen: {
-            id: this.serial++,
+            id: "redHeadsmen",
             name: "Red Headsmen"
         },
         skulltake: {
-            id: this.serial++,
+            id: "skulltake",
             name: "Skulltake"
         },
         theGorechosen: {
-            id: this.serial++,
+            id: "theGorechosen",
             name: "The Gorechosen"
         },
         bloodboundWarband: {
-            id: this.serial++,
+            id: "bloodboundWarband",
             name: "Bloodbound Warband"
         },
         bloodforged: {
-            id: this.serial++,
+            id: "bloodforged",
             name: "Bloodforged"
         },
         theGoretide: {
-            id: this.serial++,
+            id: "theGoretide",
             name: "The Goretide"
         },
         theSkullfiendTribe: {
-            id: this.serial++,
+            id: "theSkullfiendTribe",
             name: "The Skullfiend Tribe"
         },
         slaughterborn: {
-            id: this.serial++,
+            id: "slaughterborn",
             name: "Slaughterborn"
         },
         gorePilgrims: {
-            id: this.serial++,
+            id: "gorePilgrims",
             name: "Gore Pilgrims"
         },
         drazhoathTheAshen: {
-            id: this.serial++,
+            id: "drazhoathTheAshen",
             name: "Drazhoath The Ashen"
         },
         infernalGuardCastellan: {
-            id: this.serial++,
+            id: "infernalGuardCastellan",
             name: "Infernal Guard Castellan"
         },
         infernalGuardBattleStandardBearer: {
-            id: this.serial++,
+            id: "infernalGuardBattleStandardBearer",
             name: "Infernal Guard Battle Standard Bearer"
         },
         daemonsmith: {
-            id: this.serial++,
+            id: "daemonsmith",
             name: "Daemonsmith"
         },
         bullCentaurTaurRuk: {
-            id: this.serial++,
+            id: "bullCentaurTaurRuk",
             name: "Bull Centaur Taur'ruk"
         },
         sharTorTheExecutioner: {
-            id: this.serial++,
+            id: "sharTorTheExecutioner",
             name: "Shar'tor the Executioner"
         },
         infernalGuardIronsworn: {
-            id: this.serial++,
+            id: "infernalGuardIronsworn",
             name: "Infernal Guard Ironsworn"
         },
         infernalGuardFireglaives: {
-            id: this.serial++,
+            id: "infernalGuardFireglaives",
             name: "Infernal Guard Fireglaives"
         },
         kDaaiFireborn: {
-            id: this.serial++,
+            id: "kDaaiFireborn",
             name: "K'Daai Fireborn"
         },
         bullCentaurRenders: {
-            id: this.serial++,
+            id: "bullCentaurRenders",
             name: "Bull Centaur Renders"
         },
         chaosSiegeGargant: {
-            id: this.serial++,
+            id: "chaosSiegeGargant",
             name: "Chaos Siege Gargant"
         },
         ironDaemonWarEngine: {
-            id: this.serial++,
+            id: "ironDaemonWarEngine",
             name: "Iron Daemon War Engine"
         },
         skullcrackerWarEngine: {
-            id: this.serial++,
+            id: "skullcrackerWarEngine",
             name: "Skullcracker War Engine"
         },
         deathshriekerRocketLauncher: {
-            id: this.serial++,
+            id: "deathshriekerRocketLauncher",
             name: "Deathshrieker Rocket Launcher"
         },
         dreadquakeMortar: {
-            id: this.serial++,
+            id: "dreadquakeMortar",
             name: "Dreadquake Mortar"
         },
         magmaCannon: {
-            id: this.serial++,
+            id: "magmaCannon",
             name: "Magma Cannon"
         },
         blackshardWarhost: {
-            id: this.serial++,
+            id: "blackshardWarhost",
             name: "Blackshard Warhost"
         },
         hashutSWrathArtilleryTrain: {
-            id: this.serial++,
+            id: "hashutSWrathArtilleryTrain",
             name: "Hashut's Wrath Artillery Train"
         },
         thanquolAndBoneripper: {
-            id: this.serial++,
+            id: "thanquolAndBoneripper",
             name: "Thanquol and Boneripper"
         },
         greySeer: {
-            id: this.serial++,
+            id: "greySeer",
             name: "Grey Seer"
         },
         screamingBell: {
-            id: this.serial++,
+            id: "screamingBell",
             name: "Screaming Bell"
         },
         lordSkreechVerminkin: {
-            id: this.serial++,
+            id: "lordSkreechVerminkin",
             name: "Lord Skreech Verminkin"
         },
         verminlordWarpseer: {
-            id: this.serial++,
+            id: "verminlordWarpseer",
             name: "Verminlord Warpseer"
         },
         warpgnawVerminlord: {
-            id: this.serial++,
+            id: "warpgnawVerminlord",
             name: "Warpgnaw Verminlord"
         },
         chaosWarhounds: {
-            id: this.serial++,
+            id: "chaosWarhounds",
             name: "Chaos Warhounds"
         },
         centigors: {
-            id: this.serial++,
+            id: "centigors",
             name: "Centigors"
         },
         razorgors: {
-            id: this.serial++,
+            id: "razorgors",
             name: "Razorgors"
         },
         harpies: {
-            id: this.serial++,
+            id: "harpies",
             name: "Harpies"
         },
         cursDEttin: {
-            id: this.serial++,
+            id: "cursDEttin",
             name: "Curs'd Ettin"
         },
         chimera: {
-            id: this.serial++,
+            id: "chimera",
             name: "Chimera"
         },
         mutalithVortexBeast: {
-            id: this.serial++,
+            id: "mutalithVortexBeast",
             name: "Mutalith Vortex Beast"
         },
         slaughterbrute: {
-            id: this.serial++,
+            id: "slaughterbrute",
             name: "Slaughterbrute"
         },
         cockatrice: {
-            id: this.serial++,
+            id: "cockatrice",
             name: "Cockatrice"
         },
         greatTaurus: {
-            id: this.serial++,
+            id: "greatTaurus",
             name: "Great Taurus"
         },
         lammasu: {
-            id: this.serial++,
+            id: "lammasu",
             name: "Lammasu"
         },
         jabberslythe: {
-            id: this.serial++,
+            id: "jabberslythe",
             name: "Jabberslythe"
         },
         preyton: {
-            id: this.serial++,
+            id: "preyton",
             name: "Preyton"
         },
         warpfireDragon: {
-            id: this.serial++,
+            id: "warpfireDragon",
             name: "Warpfire Dragon"
         },
         theGlottkin: {
-            id: this.serial++,
+            id: "theGlottkin",
             name: "The Glottkin"
         },
         bloabRotspawned: {
-            id: this.serial++,
+            id: "bloabRotspawned",
             name: "Bloab Rotspawned"
         },
         morbidexTwiceborn: {
-            id: this.serial++,
+            id: "morbidexTwiceborn",
             name: "Morbidex Twiceborn"
         },
         orghottsDaemonspew: {
-            id: this.serial++,
+            id: "orghottsDaemonspew",
             name: "Orghotts Daemonspew"
         },
         gutrotSpume: {
-            id: this.serial++,
+            id: "gutrotSpume",
             name: "Gutrot Spume"
         },
         festusTheLeechlord: {
-            id: this.serial++,
+            id: "festusTheLeechlord",
             name: "Festus The Leechlord"
         },
         harbingerOfDecay: {
-            id: this.serial++,
+            id: "harbingerOfDecay",
             name: "Harbinger of Decay"
         },
         sorcerer: {
-            id: this.serial++,
+            id: "sorcerer",
             name: "Sorcerer"
         },
         lordOfPlagues: {
-            id: this.serial++,
+            id: "lordOfPlagues",
             name: "Lord of Plagues"
         },
         lordOfAfflictions: {
-            id: this.serial++,
+            id: "lordOfAfflictions",
             name: "Lord of Afflictions"
         },
         lordOfBlights: {
-            id: this.serial++,
+            id: "lordOfBlights",
             name: "Lord of Blights"
         },
         putridBlightkings: {
-            id: this.serial++,
+            id: "putridBlightkings",
             name: "Putrid Blightkings"
         },
         pusgoyleBlightlords: {
-            id: this.serial++,
+            id: "pusgoyleBlightlords",
             name: "Pusgoyle Blightlords"
         },
         blightGuard: {
-            id: this.serial++,
+            id: "blightGuard",
             name: "Blight Guard"
         },
         afflictionCyst: {
-            id: this.serial++,
+            id: "afflictionCyst",
             name: "Affliction Cyst"
         },
         theBlessedSons: {
-            id: this.serial++,
+            id: "theBlessedSons",
             name: "The Blessed Sons"
         },
         blightCyst: {
-            id: this.serial++,
+            id: "blightCyst",
             name: "Blight Cyst"
         },
         plagueCyst: {
-            id: this.serial++,
+            id: "plagueCyst",
             name: "Plague Cyst"
         },
         darkoathChieftain: {
-            id: this.serial++,
+            id: "darkoathChieftain",
             name: "Darkoath Chieftain"
         },
         lordOfChaos: {
-            id: this.serial++,
+            id: "lordOfChaos",
             name: "Lord Of Chaos"
         },
         chaosLordOnDaemonicMount: {
-            id: this.serial++,
+            id: "chaosLordOnDaemonicMount",
             name: "Chaos Lord On Daemonic Mount"
         },
         chaosLordOnManticore: {
-            id: this.serial++,
+            id: "chaosLordOnManticore",
             name: "Chaos Lord On Manticore"
         },
         chaosSorcererLord: {
-            id: this.serial++,
+            id: "chaosSorcererLord",
             name: "Chaos Sorcerer Lord"
         },
         chaosSorcererLordOnManticore: {
-            id: this.serial++,
+            id: "chaosSorcererLordOnManticore",
             name: "Chaos Sorcerer Lord On Manticore"
         },
         exaltedHeroOfChaos: {
-            id: this.serial++,
+            id: "exaltedHeroOfChaos",
             name: "Exalted Hero Of Chaos"
         },
         slambo: {
-            id: this.serial++,
+            id: "slambo",
             name: "Slambo"
         },
         darkoathWarqueen: {
-            id: this.serial++,
+            id: "darkoathWarqueen",
             name: "Darkoath Warqueen"
         },
         chaosWarriors: {
-            id: this.serial++,
+            id: "chaosWarriors",
             name: "Chaos Warriors"
         },
         chaosMarauders: {
-            id: this.serial++,
+            id: "chaosMarauders",
             name: "Chaos Marauders"
         },
         chaosChariots: {
-            id: this.serial++,
+            id: "chaosChariots",
             name: "Chaos Chariots"
         },
         chaosMarauderHorsemen: {
-            id: this.serial++,
+            id: "chaosMarauderHorsemen",
             name: "Chaos Marauder Horsemen"
         },
         chaosChosen: {
-            id: this.serial++,
+            id: "chaosChosen",
             name: "Chaos Chosen"
         },
         chaosKnights: {
-            id: this.serial++,
+            id: "chaosKnights",
             name: "Chaos Knights"
         },
         chaosGorebeastChariots: {
-            id: this.serial++,
+            id: "chaosGorebeastChariots",
             name: "Chaos Gorebeast Chariots"
         },
         chaosWarshrine: {
-            id: this.serial++,
+            id: "chaosWarshrine",
             name: "Chaos Warshrine"
         },
         chaosSpawn: {
-            id: this.serial++,
+            id: "chaosSpawn",
             name: "Chaos Spawn"
         },
         godswornChampionsOfRuin: {
-            id: this.serial++,
+            id: "godswornChampionsOfRuin",
             name: "Godsworn Champions of Ruin"
         },
         godswrathWarband: {
-            id: this.serial++,
+            id: "godswrathWarband",
             name: "Godswrath Warband"
         },
         ruinbringerWarband: {
-            id: this.serial++,
+            id: "ruinbringerWarband",
             name: "Ruinbringer Warband"
         },
         skavenChieftainWithBattleStandard: {
-            id: this.serial++,
+            id: "skavenChieftainWithBattleStandard",
             name: "Skaven Chieftain With Battle Standard"
         },
         skavenslaves: {
-            id: this.serial++,
+            id: "skavenslaves",
             name: "Skavenslaves"
         },
         tamurkhanTheMaggotLord: {
-            id: this.serial++,
+            id: "tamurkhanTheMaggotLord",
             name: "Tamurkhan the Maggot Lord"
         },
         kayzkTheBefouled: {
-            id: this.serial++,
+            id: "kayzkTheBefouled",
             name: "Kayzk the Befouled"
         },
         saylTheFaithless: {
-            id: this.serial++,
+            id: "saylTheFaithless",
             name: "Sayl The Faithless"
         },
         plagueOgors: {
-            id: this.serial++,
+            id: "plagueOgors",
             name: "Plague Ogors"
         },
         bileTroggoths: {
-            id: this.serial++,
+            id: "bileTroggoths",
             name: "Bile Troggoths"
         },
         daemonPlagueToadsOfNurgle: {
-            id: this.serial++,
+            id: "daemonPlagueToadsOfNurgle",
             name: "Daemon Plague Toads of Nurgle"
         },
         daemonPoxRidersOfNurgle: {
-            id: this.serial++,
+            id: "daemonPoxRidersOfNurgle",
             name: "Daemon Pox Riders of Nurgle"
         },
         nightmaw: {
-            id: this.serial++,
+            id: "nightmaw",
             name: "Nightmaw"
         },
         giganticChaosSpawn: {
-            id: this.serial++,
+            id: "giganticChaosSpawn",
             name: "Gigantic Chaos Spawn"
         },
         chaosWarMammoth: {
-            id: this.serial++,
+            id: "chaosWarMammoth",
             name: "Chaos War Mammoth"
         },
         sonsOfTheMaggotLord: {
-            id: this.serial++,
+            id: "sonsOfTheMaggotLord",
             name: "Sons of the Maggot Lord"
         },
         theLeapingPox: {
-            id: this.serial++,
+            id: "theLeapingPox",
             name: "The Leaping Pox"
         },
         dragonOgorShaggoth: {
-            id: this.serial++,
+            id: "dragonOgorShaggoth",
             name: "Dragon Ogor Shaggoth"
         },
         dragonOgors: {
-            id: this.serial++,
+            id: "dragonOgors",
             name: "Dragon Ogors"
         },
         curselingEyeOfTzeentch: {
-            id: this.serial++,
+            id: "curselingEyeOfTzeentch",
             name: "Curseling, Eye of Tzeentch"
         },
         fatemaster: {
-            id: this.serial++,
+            id: "fatemaster",
             name: "Fatemaster"
         },
         ogroidThaumaturge: {
-            id: this.serial++,
+            id: "ogroidThaumaturge",
             name: "Ogroid Thaumaturge"
         },
         gauntSummoner: {
-            id: this.serial++,
+            id: "gauntSummoner",
             name: "Gaunt Summoner"
         },
         magister: {
-            id: this.serial++,
+            id: "magister",
             name: "Magister"
         },
         tzaangorShaman: {
-            id: this.serial++,
+            id: "tzaangorShaman",
             name: "Tzaangor Shaman"
         },
         kairicAcolytes: {
-            id: this.serial++,
+            id: "kairicAcolytes",
             name: "Kairic Acolytes"
         },
         tzaangors: {
-            id: this.serial++,
+            id: "tzaangors",
             name: "Tzaangors"
         },
         tzaangorEnlightened: {
-            id: this.serial++,
+            id: "tzaangorEnlightened",
             name: "Tzaangor Enlightened"
         },
         tzaangorEnlightenedOnDisc: {
-            id: this.serial++,
+            id: "tzaangorEnlightenedOnDisc",
             name: "Tzaangor Enlightened on Disc"
         },
         tzaangorSkyfires: {
-            id: this.serial++,
+            id: "tzaangorSkyfires",
             name: "Tzaangor Skyfires"
         },
         arcaniteCabal: {
-            id: this.serial++,
+            id: "arcaniteCabal",
             name: "Arcanite Cabal"
         },
         arcaniteCult: {
-            id: this.serial++,
+            id: "arcaniteCult",
             name: "Arcanite Cult"
         },
         alterKinCoven: {
-            id: this.serial++,
+            id: "alterKinCoven",
             name: "Alter-kin Coven"
         },
         cultOfTheTransientForm: {
-            id: this.serial++,
+            id: "cultOfTheTransientForm",
             name: "Cult of the Transient Form"
         },
         skyshoalCoven: {
-            id: this.serial++,
+            id: "skyshoalCoven",
             name: "Skyshoal Coven"
         },
         thePyrofaneCult: {
-            id: this.serial++,
+            id: "thePyrofaneCult",
             name: "The Pyrofane Cult"
         },
         tzaangorCoven: {
-            id: this.serial++,
+            id: "tzaangorCoven",
             name: "Tzaangor Coven"
         },
         witchfyreCoven: {
-            id: this.serial++,
+            id: "witchfyreCoven",
             name: "Witchfyre Coven"
         },
         doombull: {
-            id: this.serial++,
+            id: "doombull",
             name: "Doombull"
         },
         bullgors: {
-            id: this.serial++,
+            id: "bullgors",
             name: "Bullgors"
         },
         cygor: {
-            id: this.serial++,
+            id: "cygor",
             name: "Cygor"
         },
         ghorgon: {
-            id: this.serial++,
+            id: "ghorgon",
             name: "Ghorgon"
         },
         exaltedHeroWithBattleStandard: {
-            id: this.serial++,
+            id: "exaltedHeroWithBattleStandard",
             name: "Exalted Hero With Battle Standard"
         },
         chaosDragon: {
-            id: this.serial++,
+            id: "chaosDragon",
             name: "Chaos Dragon"
         },
         troggothKing: {
-            id: this.serial++,
+            id: "troggothKing",
             name: "Troggoth King"
         },
         forsaken: {
-            id: this.serial++,
+            id: "forsaken",
             name: "Forsaken"
         },
         skinWolves: {
-            id: this.serial++,
+            id: "skinWolves",
             name: "Skin Wolves"
         },
         chaosOgors: {
-            id: this.serial++,
+            id: "chaosOgors",
             name: "Chaos Ogors"
         },
         chaosTroggoths: {
-            id: this.serial++,
+            id: "chaosTroggoths",
             name: "Chaos Troggoths"
         },
         chaosFamiliars: {
-            id: this.serial++,
+            id: "chaosFamiliars",
             name: "Chaos Familiars"
         },
         hellcannon: {
-            id: this.serial++,
+            id: "hellcannon",
             name: "Hellcannon"
         },
         mistweaverSaih: {
-            id: this.serial++,
+            id: "mistweaverSaih",
             name: "Mistweaver Saih"
         },
         tenebraelShard: {
-            id: this.serial++,
+            id: "tenebraelShard",
             name: "Tenebrael Shard"
         },
         kingOnHippogryph: {
-            id: this.serial++,
+            id: "kingOnHippogryph",
             name: "King on Hippogryph"
         },
         enchantress: {
-            id: this.serial++,
+            id: "enchantress",
             name: "Enchantress"
         },
         sacredProtector: {
-            id: this.serial++,
+            id: "sacredProtector",
             name: "Sacred Protector"
         },
         bretonnianLord: {
-            id: this.serial++,
+            id: "bretonnianLord",
             name: "Bretonnian Lord"
         },
         nobleChampion: {
-            id: this.serial++,
+            id: "nobleChampion",
             name: "Noble Champion"
         },
         nobleStandardBearer: {
-            id: this.serial++,
+            id: "nobleStandardBearer",
             name: "Noble Standard Bearer"
         },
         damsel: {
-            id: this.serial++,
+            id: "damsel",
             name: "Damsel"
         },
         knightsErrant: {
-            id: this.serial++,
+            id: "knightsErrant",
             name: "Knights Errant"
         },
         knightsOfTheRealm: {
-            id: this.serial++,
+            id: "knightsOfTheRealm",
             name: "Knights Of The Realm"
         },
         questingKnights: {
-            id: this.serial++,
+            id: "questingKnights",
             name: "Questing Knights"
         },
         grailKnights: {
-            id: this.serial++,
+            id: "grailKnights",
             name: "Grail Knights"
         },
         pegasusKnights: {
-            id: this.serial++,
+            id: "pegasusKnights",
             name: "Pegasus Knights"
         },
         battlePilgrims: {
-            id: this.serial++,
+            id: "battlePilgrims",
             name: "Battle Pilgrims"
         },
         menAtArms: {
-            id: this.serial++,
+            id: "menAtArms",
             name: "Men At Arms"
         },
         peasantBowmen: {
-            id: this.serial++,
+            id: "peasantBowmen",
             name: "Peasant Bowmen"
         },
         mountedYeomen: {
-            id: this.serial++,
+            id: "mountedYeomen",
             name: "Mounted Yeomen"
         },
         fieldTrebuchet: {
-            id: this.serial++,
+            id: "fieldTrebuchet",
             name: "Field Trebuchet"
         },
         battlemage: {
-            id: this.serial++,
+            id: "battlemage",
             name: "Battlemage"
         },
         battlemageOnGriffon: {
-            id: this.serial++,
+            id: "battlemageOnGriffon",
             name: "Battlemage On Griffon"
         },
         celestialHurricanumWithCelestialBattlemage: {
-            id: this.serial++,
+            id: "celestialHurricanumWithCelestialBattlemage",
             name: "Celestial Hurricanum With Celestial Battlemage"
         },
         luminarkOfHyshWithWhiteBattlemage: {
-            id: this.serial++,
+            id: "luminarkOfHyshWithWhiteBattlemage",
             name: "Luminark Of Hysh With White Battlemage"
         },
         celestialHurricanum: {
-            id: this.serial++,
+            id: "celestialHurricanum",
             name: "Celestial Hurricanum"
         },
         luminarkOfHysh: {
-            id: this.serial++,
+            id: "luminarkOfHysh",
             name: "Luminark Of Hysh"
         },
         warCouncil: {
-            id: this.serial++,
+            id: "warCouncil",
             name: "War Council"
         },
         dreadlord: {
-            id: this.serial++,
+            id: "dreadlord",
             name: "Dreadlord"
         },
         dreadlordOnDrakespawn: {
-            id: this.serial++,
+            id: "dreadlordOnDrakespawn",
             name: "Dreadlord On Drakespawn"
         },
         sorceressOnDrakespawn: {
-            id: this.serial++,
+            id: "sorceressOnDrakespawn",
             name: "Sorceress On Drakespawn"
         },
         beastmasterOnManticore: {
-            id: this.serial++,
+            id: "beastmasterOnManticore",
             name: "Beastmaster On Manticore"
         },
         masterWithBattleStandard: {
-            id: this.serial++,
+            id: "masterWithBattleStandard",
             name: "Master With Battle Standard"
         },
         sorceressOnDarkPegasus: {
-            id: this.serial++,
+            id: "sorceressOnDarkPegasus",
             name: "Sorceress on Dark Pegasus"
         },
         shades: {
-            id: this.serial++,
+            id: "shades",
             name: "Shades"
         },
         reaperBoltThrower: {
-            id: this.serial++,
+            id: "reaperBoltThrower",
             name: "Reaper Bolt Thrower"
         },
         sorceress: {
-            id: this.serial++,
+            id: "sorceress",
             name: "Sorceress"
         },
         sorceressOnBlackDragon: {
-            id: this.serial++,
+            id: "sorceressOnBlackDragon",
             name: "Sorceress On Black Dragon"
         },
         dreadspears: {
-            id: this.serial++,
+            id: "dreadspears",
             name: "Dreadspears"
         },
         bleakswords: {
-            id: this.serial++,
+            id: "bleakswords",
             name: "Bleakswords"
         },
         darkshards: {
-            id: this.serial++,
+            id: "darkshards",
             name: "Darkshards"
         },
         blackGuard: {
-            id: this.serial++,
+            id: "blackGuard",
             name: "Black Guard"
         },
         executioners: {
-            id: this.serial++,
+            id: "executioners",
             name: "Executioners"
         },
         thrallWarhost: {
-            id: this.serial++,
+            id: "thrallWarhost",
             name: "Thrall Warhost"
         },
         deathHag: {
-            id: this.serial++,
+            id: "deathHag",
             name: "Death Hag"
         },
         cauldronOfBlood: {
-            id: this.serial++,
+            id: "cauldronOfBlood",
             name: "Cauldron Of Blood"
         },
         doomfireWarlocks: {
-            id: this.serial++,
+            id: "doomfireWarlocks",
             name: "Doomfire Warlocks"
         },
         sistersOfSlaughter: {
-            id: this.serial++,
+            id: "sistersOfSlaughter",
             name: "Sisters Of Slaughter"
         },
         bloodwrackMedusae: {
-            id: this.serial++,
+            id: "bloodwrackMedusae",
             name: "Bloodwrack Medusae"
         },
         bloodwrackShrine: {
-            id: this.serial++,
+            id: "bloodwrackShrine",
             name: "Bloodwrack Shrine"
         },
         witchAelves: {
-            id: this.serial++,
+            id: "witchAelves",
             name: "Witch Aelves"
         },
         bloodwrackSisterhood: {
-            id: this.serial++,
+            id: "bloodwrackSisterhood",
             name: "Bloodwrack Sisterhood"
         },
         warriorPriest: {
-            id: this.serial++,
+            id: "warriorPriest",
             name: "Warrior Priest"
         },
         excelsiorWarpriest: {
-            id: this.serial++,
+            id: "excelsiorWarpriest",
             name: "Excelsior Warpriest"
         },
         witchHunter: {
-            id: this.serial++,
+            id: "witchHunter",
             name: "Witch Hunter"
         },
         warAltarOfSigmar: {
-            id: this.serial++,
+            id: "warAltarOfSigmar",
             name: "War Altar Of Sigmar"
         },
         flagellants: {
-            id: this.serial++,
+            id: "flagellants",
             name: "Flagellants"
         },
         pilgrimageOfWrath: {
-            id: this.serial++,
+            id: "pilgrimageOfWrath",
             name: "Pilgrimage of Wrath"
         },
         runelord: {
-            id: this.serial++,
+            id: "runelord",
             name: "Runelord"
         },
         unforged: {
-            id: this.serial++,
+            id: "unforged",
             name: "Unforged"
         },
         wardenKing: {
-            id: this.serial++,
+            id: "wardenKing",
             name: "Warden King"
         },
         hammerers: {
-            id: this.serial++,
+            id: "hammerers",
             name: "Hammerers"
         },
         ironbreakers: {
-            id: this.serial++,
+            id: "ironbreakers",
             name: "Ironbreakers"
         },
         irondrakes: {
-            id: this.serial++,
+            id: "irondrakes",
             name: "Irondrakes"
         },
         longbeards: {
-            id: this.serial++,
+            id: "longbeards",
             name: "Longbeards"
         },
         warriors: {
-            id: this.serial++,
+            id: "warriors",
             name: "Warriors"
         },
         quarrellers: {
-            id: this.serial++,
+            id: "quarrellers",
             name: "Quarrellers"
         },
         thunderers: {
-            id: this.serial++,
+            id: "thunderers",
             name: "Thunderers"
         },
         grudgeboundWarThrong: {
-            id: this.serial++,
+            id: "grudgeboundWarThrong",
             name: "Grudgebound War Throng"
         },
         wardenKingOnThroneOfPower: {
-            id: this.serial++,
+            id: "wardenKingOnThroneOfPower",
             name: "Warden King on Throne of Power"
         },
         runelordOnAnvilOfDoom: {
-            id: this.serial++,
+            id: "runelordOnAnvilOfDoom",
             name: "Runelord on Anvil of Doom"
         },
         apprenticeRunesmith: {
-            id: this.serial++,
+            id: "apprenticeRunesmith",
             name: "Apprentice Runesmith"
         },
         farRanger: {
-            id: this.serial++,
+            id: "farRanger",
             name: "Far-Ranger"
         },
         thaneWithBattleStandard: {
-            id: this.serial++,
+            id: "thaneWithBattleStandard",
             name: "Thane with Battle Standard"
         },
         miners: {
-            id: this.serial++,
+            id: "miners",
             name: "Miners"
         },
         slayers: {
-            id: this.serial++,
+            id: "slayers",
             name: "Slayers"
         },
         duardinBoltThrower: {
-            id: this.serial++,
+            id: "duardinBoltThrower",
             name: "Duardin Bolt Thrower"
         },
         flameCannon: {
-            id: this.serial++,
+            id: "flameCannon",
             name: "Flame Cannon"
         },
         grudgeThrower: {
-            id: this.serial++,
+            id: "grudgeThrower",
             name: "Grudge Thrower"
         },
         archmageOnDragon: {
-            id: this.serial++,
+            id: "archmageOnDragon",
             name: "Archmage On Dragon"
         },
         archmage: {
-            id: this.serial++,
+            id: "archmage",
             name: "Archmage"
         },
         loremaster: {
-            id: this.serial++,
+            id: "loremaster",
             name: "Loremaster"
         },
         drakeseer: {
-            id: this.serial++,
+            id: "drakeseer",
             name: "Drakeseer"
         },
         swordmasters: {
-            id: this.serial++,
+            id: "swordmasters",
             name: "Swordmasters"
         },
         freeguildGeneral: {
-            id: this.serial++,
+            id: "freeguildGeneral",
             name: "Freeguild General"
         },
         freeguildGeneralOnGriffon: {
-            id: this.serial++,
+            id: "freeguildGeneralOnGriffon",
             name: "Freeguild General On Griffon"
         },
         demigryphKnights: {
-            id: this.serial++,
+            id: "demigryphKnights",
             name: "Demigryph Knights"
         },
         freeguildCrossbowmen: {
-            id: this.serial++,
+            id: "freeguildCrossbowmen",
             name: "Freeguild Crossbowmen"
         },
         freeguildHandgunners: {
-            id: this.serial++,
+            id: "freeguildHandgunners",
             name: "Freeguild Handgunners"
         },
         freeguildArchers: {
-            id: this.serial++,
+            id: "freeguildArchers",
             name: "Freeguild Archers"
         },
         freeguildGreatswords: {
-            id: this.serial++,
+            id: "freeguildGreatswords",
             name: "Freeguild Greatswords"
         },
         freeguildPistoliers: {
-            id: this.serial++,
+            id: "freeguildPistoliers",
             name: "Freeguild Pistoliers"
         },
         freeguildOutriders: {
-            id: this.serial++,
+            id: "freeguildOutriders",
             name: "Freeguild Outriders"
         },
         freeguildGuard: {
-            id: this.serial++,
+            id: "freeguildGuard",
             name: "Freeguild Guard"
         },
         freeguildRegiment: {
-            id: this.serial++,
+            id: "freeguildRegiment",
             name: "Freeguild Regiment"
         },
         auricRunemaster: {
-            id: this.serial++,
+            id: "auricRunemaster",
             name: "Auric Runemaster"
         },
         battlesmith: {
-            id: this.serial++,
+            id: "battlesmith",
             name: "Battlesmith"
         },
         grimwrathBerzerker: {
-            id: this.serial++,
+            id: "grimwrathBerzerker",
             name: "Grimwrath Berzerker"
         },
         auricRunesmiter: {
-            id: this.serial++,
+            id: "auricRunesmiter",
             name: "Auric Runesmiter"
         },
         auricRunesmiterOnMagmadroth: {
-            id: this.serial++,
+            id: "auricRunesmiterOnMagmadroth",
             name: "Auric Runesmiter on Magmadroth"
         },
         auricRuneson: {
-            id: this.serial++,
+            id: "auricRuneson",
             name: "Auric Runeson"
         },
         auricRunesonOnMagmadroth: {
-            id: this.serial++,
+            id: "auricRunesonOnMagmadroth",
             name: "Auric Runeson on Magmadroth"
         },
         auricRunefather: {
-            id: this.serial++,
+            id: "auricRunefather",
             name: "Auric Runefather"
         },
         auricRunefatherOnMagmadroth: {
-            id: this.serial++,
+            id: "auricRunefatherOnMagmadroth",
             name: "Auric Runefather on Magmadroth"
         },
         doomseeker: {
-            id: this.serial++,
+            id: "doomseeker",
             name: "Doomseeker"
         },
         fjulGrimnir: {
-            id: this.serial++,
+            id: "fjulGrimnir",
             name: "Fjul-Grimnir"
         },
         auricHearthguard: {
-            id: this.serial++,
+            id: "auricHearthguard",
             name: "Auric Hearthguard"
         },
         hearthguardBerzerkers: {
-            id: this.serial++,
+            id: "hearthguardBerzerkers",
             name: "Hearthguard Berzerkers"
         },
         vulkiteBerzerkers: {
-            id: this.serial++,
+            id: "vulkiteBerzerkers",
             name: "Vulkite Berzerkers"
         },
         theChosenAxes: {
-            id: this.serial++,
+            id: "theChosenAxes",
             name: "The Chosen Axes"
         },
         lordsOfTheLodge: {
-            id: this.serial++,
+            id: "lordsOfTheLodge",
             name: "Lords of the Lodge"
         },
         warriorKinband: {
-            id: this.serial++,
+            id: "warriorKinband",
             name: "Warrior Kinband"
         },
         forgeBrethren: {
-            id: this.serial++,
+            id: "forgeBrethren",
             name: "Forge Brethren"
         },
         grandFyrd: {
-            id: this.serial++,
+            id: "grandFyrd",
             name: "Grand Fyrd"
         },
         vostargLodge: {
-            id: this.serial++,
+            id: "vostargLodge",
             name: "Vostarg Lodge"
         },
         greyfyrdLodge: {
-            id: this.serial++,
+            id: "greyfyrdLodge",
             name: "Greyfyrd Lodge"
         },
         seawardenOnFoot: {
-            id: this.serial++,
+            id: "seawardenOnFoot",
             name: "Seawarden on Foot"
         },
         highbornSpearmen: {
-            id: this.serial++,
+            id: "highbornSpearmen",
             name: "Highborn Spearmen"
         },
         highbornArchers: {
-            id: this.serial++,
+            id: "highbornArchers",
             name: "Highborn Archers"
         },
         highbornSilverHelms: {
-            id: this.serial++,
+            id: "highbornSilverHelms",
             name: "Highborn Silver Helms"
         },
         greatEagles: {
-            id: this.serial++,
+            id: "greatEagles",
             name: "Great Eagles"
         },
         highbornRepeaterBoltThrower: {
-            id: this.serial++,
+            id: "highbornRepeaterBoltThrower",
             name: "Highborn Repeater Bolt Thrower"
         },
         gunmaster: {
-            id: this.serial++,
+            id: "gunmaster",
             name: "Gunmaster"
         },
         cogsmith: {
-            id: this.serial++,
+            id: "cogsmith",
             name: "Cogsmith"
         },
         gyrocopters: {
-            id: this.serial++,
+            id: "gyrocopters",
             name: "Gyrocopters"
         },
         gyrobombers: {
-            id: this.serial++,
+            id: "gyrobombers",
             name: "Gyrobombers"
         },
         steamTank: {
-            id: this.serial++,
+            id: "steamTank",
             name: "Steam Tank"
         },
         cannon: {
-            id: this.serial++,
+            id: "cannon",
             name: "Cannon"
         },
         organGun: {
-            id: this.serial++,
+            id: "organGun",
             name: "Organ Gun"
         },
         helblasterVolleyGun: {
-            id: this.serial++,
+            id: "helblasterVolleyGun",
             name: "Helblaster Volley Gun"
         },
         helstormRocketBattery: {
-            id: this.serial++,
+            id: "helstormRocketBattery",
             name: "Helstorm Rocket Battery"
         },
         artilleryDetachment: {
-            id: this.serial++,
+            id: "artilleryDetachment",
             name: "Artillery Detachment"
         },
         aetherKhemist: {
-            id: this.serial++,
+            id: "aetherKhemist",
             name: "Aether-Khemist"
         },
         aethericNavigator: {
-            id: this.serial++,
+            id: "aethericNavigator",
             name: "Aetheric Navigator"
         },
         arkanautAdmiral: {
-            id: this.serial++,
+            id: "arkanautAdmiral",
             name: "Arkanaut Admiral"
         },
         brokkGrungsson: {
-            id: this.serial++,
+            id: "brokkGrungsson",
             name: "Brokk Grungsson"
         },
         endrinmaster: {
-            id: this.serial++,
+            id: "endrinmaster",
             name: "Endrinmaster"
         },
         arkanautCompany: {
-            id: this.serial++,
+            id: "arkanautCompany",
             name: "Arkanaut Company"
         },
         grundstokThunderers: {
-            id: this.serial++,
+            id: "grundstokThunderers",
             name: "Grundstok Thunderers"
         },
         endrinriggers: {
-            id: this.serial++,
+            id: "endrinriggers",
             name: "Endrinriggers"
         },
         skywardens: {
-            id: this.serial++,
+            id: "skywardens",
             name: "Skywardens"
         },
         arkanautFrigate: {
-            id: this.serial++,
+            id: "arkanautFrigate",
             name: "Arkanaut Frigate"
         },
         arkanautIronclad: {
-            id: this.serial++,
+            id: "arkanautIronclad",
             name: "Arkanaut Ironclad"
         },
         grundstokGunhauler: {
-            id: this.serial++,
+            id: "grundstokGunhauler",
             name: "Grundstok Gunhauler"
         },
         aetherstrikeForce: {
-            id: this.serial++,
+            id: "aetherstrikeForce",
             name: "Aetherstrike Force"
         },
         ironSkySquadron: {
-            id: this.serial++,
+            id: "ironSkySquadron",
             name: "Iron Sky Squadron"
         },
         ironSkyCommand: {
-            id: this.serial++,
+            id: "ironSkyCommand",
             name: "Iron Sky Command"
         },
         grundstokEscortWing: {
-            id: this.serial++,
+            id: "grundstokEscortWing",
             name: "Grundstok Escort Wing"
         },
         grandArmada: {
-            id: this.serial++,
+            id: "grandArmada",
             name: "Grand Armada"
         },
         whiteLions: {
-            id: this.serial++,
+            id: "whiteLions",
             name: "White Lions"
         },
         whiteLionChariots: {
-            id: this.serial++,
+            id: "whiteLionChariots",
             name: "White Lion Chariots"
         },
         skinkProphet: {
-            id: this.serial++,
+            id: "skinkProphet",
             name: "Skink Prophet"
         },
         chameleonSkinkStalker: {
-            id: this.serial++,
+            id: "chameleonSkinkStalker",
             name: "Chameleon Skink Stalker"
         },
         skinkChief: {
-            id: this.serial++,
+            id: "skinkChief",
             name: "Skink Chief"
         },
         celestialSwarms: {
-            id: this.serial++,
+            id: "celestialSwarms",
             name: "Celestial Swarms"
         },
         carmineDragon: {
-            id: this.serial++,
+            id: "carmineDragon",
             name: "Carmine Dragon"
         },
         dragonNoble: {
-            id: this.serial++,
+            id: "dragonNoble",
             name: "Dragon Noble"
         },
         dragonlord: {
-            id: this.serial++,
+            id: "dragonlord",
             name: "Dragonlord"
         },
         dragonBlades: {
-            id: this.serial++,
+            id: "dragonBlades",
             name: "Dragon Blades"
         },
         dragonlordHost: {
-            id: this.serial++,
+            id: "dragonlordHost",
             name: "Dragonlord Host"
         },
         dreadlordOnBlackDragon: {
-            id: this.serial++,
+            id: "dreadlordOnBlackDragon",
             name: "Dreadlord On Black Dragon"
         },
         drakespawnKnights: {
-            id: this.serial++,
+            id: "drakespawnKnights",
             name: "Drakespawn Knights"
         },
         drakespawnChariots: {
-            id: this.serial++,
+            id: "drakespawnChariots",
             name: "Drakespawn Chariots"
         },
         warHydra: {
-            id: this.serial++,
+            id: "warHydra",
             name: "War Hydra"
         },
         ebondrakeWarhost: {
-            id: this.serial++,
+            id: "ebondrakeWarhost",
             name: "Ebondrake Warhost"
         },
         anointedOfAsuryanOnFlamespyrePhoenix: {
-            id: this.serial++,
+            id: "anointedOfAsuryanOnFlamespyrePhoenix",
             name: "Anointed Of Asuryan On Flamespyre Phoenix"
         },
         anointedOfAsuryanOnFrostheartPhoenix: {
-            id: this.serial++,
+            id: "anointedOfAsuryanOnFrostheartPhoenix",
             name: "Anointed Of Asuryan On Frostheart Phoenix"
         },
         anointed: {
-            id: this.serial++,
+            id: "anointed",
             name: "Anointed"
         },
         phoenixGuard: {
-            id: this.serial++,
+            id: "phoenixGuard",
             name: "Phoenix Guard"
         },
         flamespyrePhoenix: {
-            id: this.serial++,
+            id: "flamespyrePhoenix",
             name: "Flamespyre Phoenix"
         },
         frostheartPhoenix: {
-            id: this.serial++,
+            id: "frostheartPhoenix",
             name: "Frostheart Phoenix"
         },
         spyreheartWarhost: {
-            id: this.serial++,
+            id: "spyreheartWarhost",
             name: "Spyreheart Warhost"
         },
         blackArkFleetmaster: {
-            id: this.serial++,
+            id: "blackArkFleetmaster",
             name: "Black Ark Fleetmaster"
         },
         blackArkCorsairs: {
-            id: this.serial++,
+            id: "blackArkCorsairs",
             name: "Black Ark Corsairs"
         },
         scourgerunnerChariots: {
-            id: this.serial++,
+            id: "scourgerunnerChariots",
             name: "Scourgerunner Chariots"
         },
         kharibdyss: {
-            id: this.serial++,
+            id: "kharibdyss",
             name: "Kharibdyss"
         },
         realmReavers: {
-            id: this.serial++,
+            id: "realmReavers",
             name: "Realm Reavers"
         },
         lordKroak: {
-            id: this.serial++,
+            id: "lordKroak",
             name: "Lord Kroak"
         },
         slannStarmaster: {
-            id: this.serial++,
+            id: "slannStarmaster",
             name: "Slann Starmaster"
         },
         saurusOldbloodOnCarnosaur: {
-            id: this.serial++,
+            id: "saurusOldbloodOnCarnosaur",
             name: "Saurus Oldblood on Carnosaur"
         },
         saurusOldblood: {
-            id: this.serial++,
+            id: "saurusOldblood",
             name: "Saurus Oldblood"
         },
         saurusScarVeteranOnColdOne: {
-            id: this.serial++,
+            id: "saurusScarVeteranOnColdOne",
             name: "Saurus Scar-Veteran on Cold One"
         },
         saurusEternityWarden: {
-            id: this.serial++,
+            id: "saurusEternityWarden",
             name: "Saurus Eternity Warden"
         },
         saurusSunblood: {
-            id: this.serial++,
+            id: "saurusSunblood",
             name: "Saurus Sunblood"
         },
         scarVeteranWithBattleStandard: {
-            id: this.serial++,
+            id: "scarVeteranWithBattleStandard",
             name: "Scar-Veteran with Battle Standard"
         },
         saurusAstrolithBearer: {
-            id: this.serial++,
+            id: "saurusAstrolithBearer",
             name: "Saurus Astrolith Bearer"
         },
         saurusScarVeteranOnCarnosaur: {
-            id: this.serial++,
+            id: "saurusScarVeteranOnCarnosaur",
             name: "Saurus Scar-Veteran on Carnosaur"
         },
         skinkPriest: {
-            id: this.serial++,
+            id: "skinkPriest",
             name: "Skink Priest"
         },
         skinkStarseer: {
-            id: this.serial++,
+            id: "skinkStarseer",
             name: "Skink Starseer"
         },
         skinkStarpriest: {
-            id: this.serial++,
+            id: "skinkStarpriest",
             name: "Skink Starpriest"
         },
         engineOfTheGods: {
-            id: this.serial++,
+            id: "engineOfTheGods",
             name: "Engine of the Gods"
         },
         saurusWarriors: {
-            id: this.serial++,
+            id: "saurusWarriors",
             name: "Saurus Warriors"
         },
         saurusGuard: {
-            id: this.serial++,
+            id: "saurusGuard",
             name: "Saurus Guard"
         },
         saurusKnights: {
-            id: this.serial++,
+            id: "saurusKnights",
             name: "Saurus Knights"
         },
         skinks: {
-            id: this.serial++,
+            id: "skinks",
             name: "Skinks"
         },
         chameleonSkinks: {
-            id: this.serial++,
+            id: "chameleonSkinks",
             name: "Chameleon Skinks"
         },
         terradonRiders: {
-            id: this.serial++,
+            id: "terradonRiders",
             name: "Terradon Riders"
         },
         ripperdactylRiders: {
-            id: this.serial++,
+            id: "ripperdactylRiders",
             name: "Ripperdactyl Riders"
         },
         skinkHandlers: {
-            id: this.serial++,
+            id: "skinkHandlers",
             name: "Skink Handlers"
         },
         salamanders: {
-            id: this.serial++,
+            id: "salamanders",
             name: "Salamanders"
         },
         razordons: {
-            id: this.serial++,
+            id: "razordons",
             name: "Razordons"
         },
         kroxigor: {
-            id: this.serial++,
+            id: "kroxigor",
             name: "Kroxigor"
         },
         stegadon: {
-            id: this.serial++,
+            id: "stegadon",
             name: "Stegadon"
         },
         bastiladon: {
-            id: this.serial++,
+            id: "bastiladon",
             name: "Bastiladon"
         },
         troglodon: {
-            id: this.serial++,
+            id: "troglodon",
             name: "Troglodon"
         },
         dreadSaurian: {
-            id: this.serial++,
+            id: "dreadSaurian",
             name: "Dread Saurian"
         },
         bloodclawStarhost: {
-            id: this.serial++,
+            id: "bloodclawStarhost",
             name: "Bloodclaw Starhost"
         },
         eternalStarhost: {
-            id: this.serial++,
+            id: "eternalStarhost",
             name: "Eternal Starhost"
         },
         firelanceStarhost: {
-            id: this.serial++,
+            id: "firelanceStarhost",
             name: "Firelance Starhost"
         },
         heavenswatchStarhost: {
-            id: this.serial++,
+            id: "heavenswatchStarhost",
             name: "Heavenswatch Starhost"
         },
         shadowstrikeStarhost: {
-            id: this.serial++,
+            id: "shadowstrikeStarhost",
             name: "Shadowstrike Starhost"
         },
         starbeastConstellation: {
-            id: this.serial++,
+            id: "starbeastConstellation",
             name: "Starbeast Constellation"
         },
         sunclawStarhost: {
-            id: this.serial++,
+            id: "sunclawStarhost",
             name: "Sunclaw Starhost"
         },
         thunderquakeStarhost: {
-            id: this.serial++,
+            id: "thunderquakeStarhost",
             name: "Thunderquake Starhost"
         },
         fangsOfSotek: {
-            id: this.serial++,
+            id: "fangsOfSotek",
             name: "Fangs of Sotek"
         },
         dracothionSTail: {
-            id: this.serial++,
+            id: "dracothionSTail",
             name: "Dracothion's Tail"
         },
         assassin: {
-            id: this.serial++,
+            id: "assassin",
             name: "Assassin"
         },
         darkRiders: {
-            id: this.serial++,
+            id: "darkRiders",
             name: "Dark Riders"
         },
         lordCelestant: {
-            id: this.serial++,
+            id: "lordCelestant",
             name: "Lord-Celestant"
         },
         lordRelictor: {
-            id: this.serial++,
+            id: "lordRelictor",
             name: "Lord-Relictor"
         },
         lordCastellant: {
-            id: this.serial++,
+            id: "lordCastellant",
             name: "Lord-Castellant"
         },
         celestantPrime: {
-            id: this.serial++,
+            id: "celestantPrime",
             name: "Celestant-Prime"
         },
         knightVexillor: {
-            id: this.serial++,
+            id: "knightVexillor",
             name: "Knight-Vexillor"
         },
         gavrielSureheart: {
-            id: this.serial++,
+            id: "gavrielSureheart",
             name: "Gavriel Sureheart"
         },
         knightHeraldor: {
-            id: this.serial++,
+            id: "knightHeraldor",
             name: "Knight-Heraldor"
         },
         knightAzyros: {
-            id: this.serial++,
+            id: "knightAzyros",
             name: "Knight-Azyros"
         },
         knightVenator: {
-            id: this.serial++,
+            id: "knightVenator",
             name: "Knight-Venator"
         },
         knightQuestor: {
-            id: this.serial++,
+            id: "knightQuestor",
             name: "Knight-Questor"
         },
         lordVeritant: {
-            id: this.serial++,
+            id: "lordVeritant",
             name: "Lord-Veritant"
         },
         lordCelestantOnDracoth: {
-            id: this.serial++,
+            id: "lordCelestantOnDracoth",
             name: "Lord-Celestant On Dracoth"
         },
         vandusHammerhand: {
-            id: this.serial++,
+            id: "vandusHammerhand",
             name: "Vandus Hammerhand"
         },
         lordCelestantOnStardrake: {
-            id: this.serial++,
+            id: "lordCelestantOnStardrake",
             name: "Lord-Celestant On Stardrake"
         },
         drakeswornTemplar: {
-            id: this.serial++,
+            id: "drakeswornTemplar",
             name: "Drakesworn Templar"
         },
         lordAquilor: {
-            id: this.serial++,
+            id: "lordAquilor",
             name: "Lord-Aquilor"
         },
         neaveBlacktalon: {
-            id: this.serial++,
+            id: "neaveBlacktalon",
             name: "Neave Blacktalon"
         },
         lordOrdinator: {
-            id: this.serial++,
+            id: "lordOrdinator",
             name: "Lord-Ordinator"
         },
         gryphHound: {
-            id: this.serial++,
+            id: "gryphHound",
             name: "Gryph-Hound"
         },
         prosecutorsWithStormcallJavelins: {
-            id: this.serial++,
+            id: "prosecutorsWithStormcallJavelins",
             name: "Prosecutors with Stormcall Javelins"
         },
         prosecutorsWithCelestialHammers: {
-            id: this.serial++,
+            id: "prosecutorsWithCelestialHammers",
             name: "Prosecutors with Celestial Hammers"
         },
         paladinRetributors: {
-            id: this.serial++,
+            id: "paladinRetributors",
             name: "Paladin Retributors"
         },
         liberators: {
-            id: this.serial++,
+            id: "liberators",
             name: "Liberators"
         },
         steelheartSChampions: {
-            id: this.serial++,
+            id: "steelheartSChampions",
             name: "Steelheart's Champions"
         },
         judicators: {
-            id: this.serial++,
+            id: "judicators",
             name: "Judicators"
         },
         paladinProtectors: {
-            id: this.serial++,
+            id: "paladinProtectors",
             name: "Paladin Protectors"
         },
         paladinDecimators: {
-            id: this.serial++,
+            id: "paladinDecimators",
             name: "Paladin Decimators"
         },
         concussors: {
-            id: this.serial++,
+            id: "concussors",
             name: "Concussors"
         },
         desolators: {
-            id: this.serial++,
+            id: "desolators",
             name: "Desolators"
         },
         tempestors: {
-            id: this.serial++,
+            id: "tempestors",
             name: "Tempestors"
         },
         fulminators: {
-            id: this.serial++,
+            id: "fulminators",
             name: "Fulminators"
         },
         aetherwings: {
-            id: this.serial++,
+            id: "aetherwings",
             name: "Aetherwings"
         },
         vanguardHunters: {
-            id: this.serial++,
+            id: "vanguardHunters",
             name: "Vanguard-Hunters"
         },
         vanguardPalladors: {
-            id: this.serial++,
+            id: "vanguardPalladors",
             name: "Vanguard-Palladors"
         },
         vanguardRaptorsWithHurricaneCrossbows: {
-            id: this.serial++,
+            id: "vanguardRaptorsWithHurricaneCrossbows",
             name: "Vanguard-Raptors with Hurricane Crossbows"
         },
         vanguardRaptorsWithLongstrikeCrossbows: {
-            id: this.serial++,
+            id: "vanguardRaptorsWithLongstrikeCrossbows",
             name: "Vanguard-Raptors with Longstrike Crossbows"
         },
         exemplarChamber: {
-            id: this.serial++,
+            id: "exemplarChamber",
             name: "Exemplar Chamber"
         },
         devastationBrotherhood: {
-            id: this.serial++,
+            id: "devastationBrotherhood",
             name: "Devastation Brotherhood"
         },
         hammerstrikeForce: {
-            id: this.serial++,
+            id: "hammerstrikeForce",
             name: "Hammerstrike Force"
         },
         lordsOfTheStorm: {
-            id: this.serial++,
+            id: "lordsOfTheStorm",
             name: "Lords of the Storm"
         },
         theSkyborneSlayers: {
-            id: this.serial++,
+            id: "theSkyborneSlayers",
             name: "The Skyborne Slayers"
         },
         thunderheadBrotherhood: {
-            id: this.serial++,
+            id: "thunderheadBrotherhood",
             name: "Thunderhead Brotherhood"
         },
         vanguardWing: {
-            id: this.serial++,
+            id: "vanguardWing",
             name: "Vanguard Wing"
         },
         harbingerChamber: {
-            id: this.serial++,
+            id: "harbingerChamber",
             name: "Harbinger Chamber"
         },
         warriorBrotherhood: {
-            id: this.serial++,
+            id: "warriorBrotherhood",
             name: "Warrior Brotherhood"
         },
         warriorChamber: {
-            id: this.serial++,
+            id: "warriorChamber",
             name: "Warrior Chamber"
         },
         drakeswornTemple: {
-            id: this.serial++,
+            id: "drakeswornTemple",
             name: "Drakesworn Temple"
         },
         extremisChamber: {
-            id: this.serial++,
+            id: "extremisChamber",
             name: "Extremis Chamber"
         },
         lightningEchelon: {
-            id: this.serial++,
+            id: "lightningEchelon",
             name: "Lightning Echelon"
         },
         thunderwaveEchelon: {
-            id: this.serial++,
+            id: "thunderwaveEchelon",
             name: "Thunderwave Echelon"
         },
         anvilsOfTheHeldenhammerWarriorChamber: {
-            id: this.serial++,
+            id: "anvilsOfTheHeldenhammerWarriorChamber",
             name: "Anvils of the Heldenhammer Warrior Chamber"
         },
         astralTemplarsExemplarChamber: {
-            id: this.serial++,
+            id: "astralTemplarsExemplarChamber",
             name: "Astral Templars Exemplar Chamber"
         },
         celestialHuntingPack: {
-            id: this.serial++,
+            id: "celestialHuntingPack",
             name: "Celestial Hunting Pack"
         },
         celestialVindicatorsWarriorChamber: {
-            id: this.serial++,
+            id: "celestialVindicatorsWarriorChamber",
             name: "Celestial Vindicators Warrior Chamber"
         },
         celestialWarbringersHarbingerChamber: {
-            id: this.serial++,
+            id: "celestialWarbringersHarbingerChamber",
             name: "Celestial Warbringers Harbinger Chamber"
         },
         hallowedKnightsWarriorChamber: {
-            id: this.serial++,
+            id: "hallowedKnightsWarriorChamber",
             name: "Hallowed Knights Warrior Chamber"
         },
         hammersOfSigmarWarriorChamber: {
-            id: this.serial++,
+            id: "hammersOfSigmarWarriorChamber",
             name: "Hammers of Sigmar Warrior Chamber"
         },
         knightsExcelsiorExemplarChamber: {
-            id: this.serial++,
+            id: "knightsExcelsiorExemplarChamber",
             name: "Knights Excelsior Exemplar Chamber"
         },
         stormHeralds: {
-            id: this.serial++,
+            id: "stormHeralds",
             name: "Storm Heralds"
         },
         stormVortexGarrison: {
-            id: this.serial++,
+            id: "stormVortexGarrison",
             name: "Storm Vortex Garrison"
         },
         tempestLordsHarbingerChamber: {
-            id: this.serial++,
+            id: "tempestLordsHarbingerChamber",
             name: "Tempest Lords Harbinger Chamber"
         },
         vanguardAngelosConclave: {
-            id: this.serial++,
+            id: "vanguardAngelosConclave",
             name: "Vanguard Angelos Conclave"
         },
         vanguardAuxiliaryChamber: {
-            id: this.serial++,
+            id: "vanguardAuxiliaryChamber",
             name: "Vanguard Auxiliary Chamber"
         },
         vanguardJusticarConclave: {
-            id: this.serial++,
+            id: "vanguardJusticarConclave",
             name: "Vanguard Justicar Conclave"
         },
         blacktalonSShadowhammers: {
-            id: this.serial++,
+            id: "blacktalonSShadowhammers",
             name: "Blacktalon's Shadowhammers"
         },
         highWarden: {
-            id: this.serial++,
+            id: "highWarden",
             name: "High Warden"
         },
         skywarden: {
-            id: this.serial++,
+            id: "skywarden",
             name: "Skywarden"
         },
         reavers: {
-            id: this.serial++,
+            id: "reavers",
             name: "Reavers"
         },
         spireguard: {
-            id: this.serial++,
+            id: "spireguard",
             name: "Spireguard"
         },
         skycutters: {
-            id: this.serial++,
+            id: "skycutters",
             name: "Skycutters"
         },
         shadowWarriors: {
-            id: this.serial++,
+            id: "shadowWarriors",
             name: "Shadow Warriors"
         },
         chariots: {
-            id: this.serial++,
+            id: "chariots",
             name: "Chariots"
         },
         branchwraith: {
-            id: this.serial++,
+            id: "branchwraith",
             name: "Branchwraith"
         },
         branchwych: {
-            id: this.serial++,
+            id: "branchwych",
             name: "Branchwych"
         },
         spiritOfDurthu: {
-            id: this.serial++,
+            id: "spiritOfDurthu",
             name: "Spirit of Durthu"
         },
         drychaHamadreth: {
-            id: this.serial++,
+            id: "drychaHamadreth",
             name: "Drycha Hamadreth"
         },
         alarielleTheEverqueen: {
-            id: this.serial++,
+            id: "alarielleTheEverqueen",
             name: "Alarielle the Everqueen"
         },
         treelordAncient: {
-            id: this.serial++,
+            id: "treelordAncient",
             name: "Treelord Ancient"
         },
         dryads: {
-            id: this.serial++,
+            id: "dryads",
             name: "Dryads"
         },
         kurnothHunters: {
-            id: this.serial++,
+            id: "kurnothHunters",
             name: "Kurnoth Hunters"
         },
         spiteRevenants: {
-            id: this.serial++,
+            id: "spiteRevenants",
             name: "Spite-Revenants"
         },
         treeRevenants: {
-            id: this.serial++,
+            id: "treeRevenants",
             name: "Tree-Revenants"
         },
         treelord: {
-            id: this.serial++,
+            id: "treelord",
             name: "Treelord"
         },
         alarielleSHeartwoodGuard: {
-            id: this.serial++,
+            id: "alarielleSHeartwoodGuard",
             name: "Alarielle's Heartwood Guard"
         },
         sylvanethWargrove: {
-            id: this.serial++,
+            id: "sylvanethWargrove",
             name: "Sylvaneth Wargrove"
         },
         winterleafWargrove: {
-            id: this.serial++,
+            id: "winterleafWargrove",
             name: "Winterleaf Wargrove"
         },
         ironbarkWargrove: {
-            id: this.serial++,
+            id: "ironbarkWargrove",
             name: "Ironbark Wargrove"
         },
         dreadwoodWargrove: {
-            id: this.serial++,
+            id: "dreadwoodWargrove",
             name: "Dreadwood Wargrove"
         },
         heartwoodWargrove: {
-            id: this.serial++,
+            id: "heartwoodWargrove",
             name: "Heartwood Wargrove"
         },
         gnarlrootWargrove: {
-            id: this.serial++,
+            id: "gnarlrootWargrove",
             name: "Gnarlroot Wargrove"
         },
         oakenbrowWargrove: {
-            id: this.serial++,
+            id: "oakenbrowWargrove",
             name: "Oakenbrow Wargrove"
         },
         harvestboonWargrove: {
-            id: this.serial++,
+            id: "harvestboonWargrove",
             name: "Harvestboon Wargrove"
         },
         forestSpiritWargrove: {
-            id: this.serial++,
+            id: "forestSpiritWargrove",
             name: "Forest Spirit Wargrove"
         },
         outcasts: {
-            id: this.serial++,
+            id: "outcasts",
             name: "Outcasts"
         },
         freeSpirits: {
-            id: this.serial++,
+            id: "freeSpirits",
             name: "Free Spirits"
         },
         forestFolk: {
-            id: this.serial++,
+            id: "forestFolk",
             name: "Forest Folk"
         },
         household: {
-            id: this.serial++,
+            id: "household",
             name: "Household"
         },
         lordsOfTheClan: {
-            id: this.serial++,
+            id: "lordsOfTheClan",
             name: "Lords of the Clan"
         },
         theGuardiansOfAlarielle: {
-            id: this.serial++,
+            id: "theGuardiansOfAlarielle",
             name: "The Guardians of Alarielle"
         },
         huntmarshal: {
-            id: this.serial++,
+            id: "huntmarshal",
             name: "Huntmarshal"
         },
         engineerOnMechanicalSteed: {
-            id: this.serial++,
+            id: "engineerOnMechanicalSteed",
             name: "Engineer On Mechanical Steed"
         },
         battlemageOnPegasus: {
-            id: this.serial++,
+            id: "battlemageOnPegasus",
             name: "Battlemage on Pegasus"
         },
         knightsOfOrder: {
-            id: this.serial++,
+            id: "knightsOfOrder",
             name: "Knights of Order"
         },
         greatcannon: {
-            id: this.serial++,
+            id: "greatcannon",
             name: "Greatcannon"
         },
         fieldMortar: {
-            id: this.serial++,
+            id: "fieldMortar",
             name: "Field Mortar"
         },
         nomadPrince: {
-            id: this.serial++,
+            id: "nomadPrince",
             name: "Nomad Prince"
         },
         spellweaver: {
-            id: this.serial++,
+            id: "spellweaver",
             name: "Spellweaver"
         },
         waywatcher: {
-            id: this.serial++,
+            id: "waywatcher",
             name: "Waywatcher"
         },
         wayfinder: {
-            id: this.serial++,
+            id: "wayfinder",
             name: "Wayfinder"
         },
         waystrider: {
-            id: this.serial++,
+            id: "waystrider",
             name: "Waystrider"
         },
         wildRiders: {
-            id: this.serial++,
+            id: "wildRiders",
             name: "Wild Riders"
         },
         gladeGuard: {
-            id: this.serial++,
+            id: "gladeGuard",
             name: "Glade Guard"
         },
         sistersOfTheWatch: {
-            id: this.serial++,
+            id: "sistersOfTheWatch",
             name: "Sisters of the Watch"
         },
         eternalGuard: {
-            id: this.serial++,
+            id: "eternalGuard",
             name: "Eternal Guard"
         },
         wildwoodRangers: {
-            id: this.serial++,
+            id: "wildwoodRangers",
             name: "Wildwood Rangers"
         },
         sistersOfTheThorn: {
-            id: this.serial++,
+            id: "sistersOfTheThorn",
             name: "Sisters of the Thorn"
         },
         waystonePathfinders: {
-            id: this.serial++,
+            id: "waystonePathfinders",
             name: "Waystone Pathfinders"
         },
         gladeCaptainBattleStandardBearer: {
-            id: this.serial++,
+            id: "gladeCaptainBattleStandardBearer",
             name: "Glade Captain Battle Standard Bearer"
         },
         gladeLordOnGreatEagle: {
-            id: this.serial++,
+            id: "gladeLordOnGreatEagle",
             name: "Glade Lord on Great Eagle"
         },
         gladeLordOnGreatStag: {
-            id: this.serial++,
+            id: "gladeLordOnGreatStag",
             name: "Glade Lord on Great Stag"
         },
         gladeLordOnForestDragon: {
-            id: this.serial++,
+            id: "gladeLordOnForestDragon",
             name: "Glade Lord on Forest Dragon"
         },
         gladeLordOnPurebredSteed: {
-            id: this.serial++,
+            id: "gladeLordOnPurebredSteed",
             name: "Glade Lord on Purebred Steed"
         },
         gladeLord: {
-            id: this.serial++,
+            id: "gladeLord",
             name: "Glade Lord"
         },
         avatarOfTheHunt: {
-            id: this.serial++,
+            id: "avatarOfTheHunt",
             name: "Avatar of the Hunt"
         },
         twilightSistersOnForestDragon: {
-            id: this.serial++,
+            id: "twilightSistersOnForestDragon",
             name: "Twilight Sisters on Forest Dragon"
         },
         shadowdancer: {
-            id: this.serial++,
+            id: "shadowdancer",
             name: "Shadowdancer"
         },
         huntingHounds: {
-            id: this.serial++,
+            id: "huntingHounds",
             name: "Hunting Hounds"
         },
         wardancers: {
-            id: this.serial++,
+            id: "wardancers",
             name: "Wardancers"
         },
         waywatchers: {
-            id: this.serial++,
+            id: "waywatchers",
             name: "Waywatchers"
         },
         gladeRiders: {
-            id: this.serial++,
+            id: "gladeRiders",
             name: "Glade Riders"
         },
         warhawkRiders: {
-            id: this.serial++,
+            id: "warhawkRiders",
             name: "Warhawk Riders"
         },
         treeKin: {
-            id: this.serial++,
+            id: "treeKin",
             name: "Tree Kin"
         },
         aleguzzlerGargant: {
-            id: this.serial++,
+            id: "aleguzzlerGargant",
             name: "Aleguzzler Gargant"
         },
         icebrowHunter: {
-            id: this.serial++,
+            id: "icebrowHunter",
             name: "Icebrow Hunter"
         },
         frostlordOnStonehorn: {
-            id: this.serial++,
+            id: "frostlordOnStonehorn",
             name: "Frostlord on Stonehorn"
         },
         frostlordOnThundertusk: {
-            id: this.serial++,
+            id: "frostlordOnThundertusk",
             name: "Frostlord on Thundertusk"
         },
         huskardOnStonehorn: {
-            id: this.serial++,
+            id: "huskardOnStonehorn",
             name: "Huskard on Stonehorn"
         },
         huskardOnThundertusk: {
-            id: this.serial++,
+            id: "huskardOnThundertusk",
             name: "Huskard on Thundertusk"
         },
         frostSabres: {
-            id: this.serial++,
+            id: "frostSabres",
             name: "Frost Sabres"
         },
         mournfangPack: {
-            id: this.serial++,
+            id: "mournfangPack",
             name: "Mournfang Pack"
         },
         icefallYhetees: {
-            id: this.serial++,
+            id: "icefallYhetees",
             name: "Icefall Yhetees"
         },
         stonehornBeastriders: {
-            id: this.serial++,
+            id: "stonehornBeastriders",
             name: "Stonehorn Beastriders"
         },
         thundertuskBeastriders: {
-            id: this.serial++,
+            id: "thundertuskBeastriders",
             name: "Thundertusk Beastriders"
         },
         braggothSBeastHammer: {
-            id: this.serial++,
+            id: "braggothSBeastHammer",
             name: "Braggoth's Beast Hammer"
         },
         olwyrAlfrostun: {
-            id: this.serial++,
+            id: "olwyrAlfrostun",
             name: "Olwyr Alfrostun"
         },
         svardAlfrostun: {
-            id: this.serial++,
+            id: "svardAlfrostun",
             name: "Svard Alfrostun"
         },
         eurlbad: {
-            id: this.serial++,
+            id: "eurlbad",
             name: "Eurlbad"
         },
         torrbad: {
-            id: this.serial++,
+            id: "torrbad",
             name: "Torrbad"
         },
         skal: {
-            id: this.serial++,
+            id: "skal",
             name: "Skal"
         },
         alfrostun: {
-            id: this.serial++,
+            id: "alfrostun",
             name: "Alfrostun"
         },
         jorlbad: {
-            id: this.serial++,
+            id: "jorlbad",
             name: "Jorlbad"
         },
         savageBigBoss: {
-            id: this.serial++,
+            id: "savageBigBoss",
             name: "Savage Big Boss"
         },
         maniakWeirdnob: {
-            id: this.serial++,
+            id: "maniakWeirdnob",
             name: "Maniak Weirdnob"
         },
         wardokk: {
-            id: this.serial++,
+            id: "wardokk",
             name: "Wardokk"
         },
         wurrgogProphet: {
-            id: this.serial++,
+            id: "wurrgogProphet",
             name: "Wurrgog Prophet"
         },
         savageOrruks: {
-            id: this.serial++,
+            id: "savageOrruks",
             name: "Savage Orruks"
         },
         savageOrrukArrowboys: {
-            id: this.serial++,
+            id: "savageOrrukArrowboys",
             name: "Savage Orruk Arrowboys"
         },
         savageOrrukMorboys: {
-            id: this.serial++,
+            id: "savageOrrukMorboys",
             name: "Savage Orruk Morboys"
         },
         savageBigStabbas: {
-            id: this.serial++,
+            id: "savageBigStabbas",
             name: "Savage Big Stabbas"
         },
         savageBoarboyz: {
-            id: this.serial++,
+            id: "savageBoarboyz",
             name: "Savage Boarboyz"
         },
         savageBoarboyManiaks: {
-            id: this.serial++,
+            id: "savageBoarboyManiaks",
             name: "Savage Boarboy Maniaks"
         },
         kopRukk: {
-            id: this.serial++,
+            id: "kopRukk",
             name: "Kop Rukk"
         },
         iceboneWarclan: {
-            id: this.serial++,
+            id: "iceboneWarclan",
             name: "Icebone Warclan"
         },
         savageWarclan: {
-            id: this.serial++,
+            id: "savageWarclan",
             name: "Savage Warclan"
         },
         kunninRukk: {
-            id: this.serial++,
+            id: "kunninRukk",
             name: "Kunnin' Rukk"
         },
         drakkfootWarclan: {
-            id: this.serial++,
+            id: "drakkfootWarclan",
             name: "Drakkfoot Warclan"
         },
         snagaRukk: {
-            id: this.serial++,
+            id: "snagaRukk",
             name: "Snaga Rukk"
         },
         brutalRukk: {
-            id: this.serial++,
+            id: "brutalRukk",
             name: "Brutal Rukk"
         },
         teefRukk: {
-            id: this.serial++,
+            id: "teefRukk",
             name: "Teef Rukk"
         },
         bonegrinzWarclan: {
-            id: this.serial++,
+            id: "bonegrinzWarclan",
             name: "Bonegrinz Warclan"
         },
         firebelly: {
-            id: this.serial++,
+            id: "firebelly",
             name: "Firebelly"
         },
         gitmobGrotShaman: {
-            id: this.serial++,
+            id: "gitmobGrotShaman",
             name: "Gitmob Grot Shaman"
         },
         gitmobGrots: {
-            id: this.serial++,
+            id: "gitmobGrots",
             name: "Gitmob Grots"
         },
         grotWolfRiders: {
-            id: this.serial++,
+            id: "grotWolfRiders",
             name: "Grot Wolf Riders"
         },
         grotWolfChariots: {
-            id: this.serial++,
+            id: "grotWolfChariots",
             name: "Grot Wolf Chariots"
         },
         nastySkulkers: {
-            id: this.serial++,
+            id: "nastySkulkers",
             name: "Nasty Skulkers"
         },
         snotlings: {
-            id: this.serial++,
+            id: "snotlings",
             name: "Snotlings"
         },
         snotlingPumpWagons: {
-            id: this.serial++,
+            id: "snotlingPumpWagons",
             name: "Snotling Pump Wagons"
         },
         grotSpearChukka: {
-            id: this.serial++,
+            id: "grotSpearChukka",
             name: "Grot Spear Chukka"
         },
         grotRockLobber: {
-            id: this.serial++,
+            id: "grotRockLobber",
             name: "Grot Rock Lobber"
         },
         doomDiverCatapult: {
-            id: this.serial++,
+            id: "doomDiverCatapult",
             name: "Doom Diver Catapult"
         },
         orrukWarboss: {
-            id: this.serial++,
+            id: "orrukWarboss",
             name: "Orruk Warboss"
         },
         orrukWarbossOnWyvern: {
-            id: this.serial++,
+            id: "orrukWarbossOnWyvern",
             name: "Orruk Warboss On Wyvern"
         },
         orrukGreatShaman: {
-            id: this.serial++,
+            id: "orrukGreatShaman",
             name: "Orruk Great Shaman"
         },
         orruks: {
-            id: this.serial++,
+            id: "orruks",
             name: "Orruks"
         },
         orrukBoarboys: {
-            id: this.serial++,
+            id: "orrukBoarboys",
             name: "Orruk Boarboys"
         },
         orrukBoarChariots: {
-            id: this.serial++,
+            id: "orrukBoarChariots",
             name: "Orruk Boar Chariots"
         },
         tyrant: {
-            id: this.serial++,
+            id: "tyrant",
             name: "Tyrant"
         },
         butcher: {
-            id: this.serial++,
+            id: "butcher",
             name: "Butcher"
         },
         ogors: {
-            id: this.serial++,
+            id: "ogors",
             name: "Ogors"
         },
         ironguts: {
-            id: this.serial++,
+            id: "ironguts",
             name: "Ironguts"
         },
         leadbelchers: {
-            id: this.serial++,
+            id: "leadbelchers",
             name: "Leadbelchers"
         },
         gorgers: {
-            id: this.serial++,
+            id: "gorgers",
             name: "Gorgers"
         },
         ironblaster: {
-            id: this.serial++,
+            id: "ironblaster",
             name: "Ironblaster"
         },
         grotScraplauncher: {
-            id: this.serial++,
+            id: "grotScraplauncher",
             name: "Grot Scraplauncher"
         },
         grots: {
-            id: this.serial++,
+            id: "grots",
             name: "Grots"
         },
         gordrakkTheFistOfGork: {
-            id: this.serial++,
+            id: "gordrakkTheFistOfGork",
             name: "Gordrakk The Fist of Gork"
         },
         megabossOnMawKrusha: {
-            id: this.serial++,
+            id: "megabossOnMawKrusha",
             name: "Megaboss on Maw-Krusha"
         },
         orrukMegaboss: {
-            id: this.serial++,
+            id: "orrukMegaboss",
             name: "Orruk Megaboss"
         },
         orrukWarchanter: {
-            id: this.serial++,
+            id: "orrukWarchanter",
             name: "Orruk Warchanter"
         },
         orrukWeirdnobShaman: {
-            id: this.serial++,
+            id: "orrukWeirdnobShaman",
             name: "Orruk Weirdnob Shaman"
         },
         orrukArdboys: {
-            id: this.serial++,
+            id: "orrukArdboys",
             name: "Orruk Ardboys"
         },
         orrukBrutes: {
-            id: this.serial++,
+            id: "orrukBrutes",
             name: "Orruk Brutes"
         },
         orrukGoreGruntas: {
-            id: this.serial++,
+            id: "orrukGoreGruntas",
             name: "Orruk Gore Gruntas"
         },
         ironskullSBoyz: {
-            id: this.serial++,
+            id: "ironskullSBoyz",
             name: "Ironskull's Boyz"
         },
         ardfist: {
-            id: this.serial++,
+            id: "ardfist",
             name: "Ardfist"
         },
         brawl: {
-            id: this.serial++,
+            id: "brawl",
             name: "Brawl"
         },
         bruteFist: {
-            id: this.serial++,
+            id: "bruteFist",
             name: "Brute Fist"
         },
         gorefist: {
-            id: this.serial++,
+            id: "gorefist",
             name: "Gorefist"
         },
         ironfist: {
-            id: this.serial++,
+            id: "ironfist",
             name: "Ironfist"
         },
         weirdfist: {
-            id: this.serial++,
+            id: "weirdfist",
             name: "Weirdfist"
         },
         bloodtoofs: {
-            id: this.serial++,
+            id: "bloodtoofs",
             name: "Bloodtoofs"
         },
         ironsunz: {
-            id: this.serial++,
+            id: "ironsunz",
             name: "Ironsunz"
         },
         maneaters: {
-            id: this.serial++,
+            id: "maneaters",
             name: "Maneaters"
         },
         fimirWarriors: {
-            id: this.serial++,
+            id: "fimirWarriors",
             name: "Fimir Warriors"
         },
         basilisk: {
-            id: this.serial++,
+            id: "basilisk",
             name: "Basilisk"
         },
         bonegrinderGargant: {
-            id: this.serial++,
+            id: "bonegrinderGargant",
             name: "Bonegrinder Gargant"
         },
         colossalSquig: {
-            id: this.serial++,
+            id: "colossalSquig",
             name: "Colossal Squig"
         },
         dreadMaw: {
-            id: this.serial++,
+            id: "dreadMaw",
             name: "Dread Maw"
         },
         incarnateElementalOfBeasts: {
-            id: this.serial++,
+            id: "incarnateElementalOfBeasts",
             name: "Incarnate Elemental of Beasts"
         },
         incarnateElementalOfFire: {
-            id: this.serial++,
+            id: "incarnateElementalOfFire",
             name: "Incarnate Elemental of Fire"
         },
         magmaDragon: {
-            id: this.serial++,
+            id: "magmaDragon",
             name: "Magma Dragon"
         },
         merwyrm: {
-            id: this.serial++,
+            id: "merwyrm",
             name: "Merwyrm"
         },
         rogueIdol: {
-            id: this.serial++,
+            id: "rogueIdol",
             name: "Rogue Idol"
         },
         squigGobba: {
-            id: this.serial++,
+            id: "squigGobba",
             name: "Squig Gobba"
         },
         grotWarboss: {
-            id: this.serial++,
+            id: "grotWarboss",
             name: "Grot Warboss"
         },
         grotWarbossOnGreatCaveSquig: {
-            id: this.serial++,
+            id: "grotWarbossOnGreatCaveSquig",
             name: "Grot Warboss On Great Cave Squig"
         },
         moonclanGrotShaman: {
-            id: this.serial++,
+            id: "moonclanGrotShaman",
             name: "Moonclan Grot Shaman"
         },
         fungoidCaveShaman: {
-            id: this.serial++,
+            id: "fungoidCaveShaman",
             name: "Fungoid Cave-Shaman"
         },
         moonclanGrots: {
-            id: this.serial++,
+            id: "moonclanGrots",
             name: "Moonclan Grots"
         },
         grotFanatics: {
-            id: this.serial++,
+            id: "grotFanatics",
             name: "Grot Fanatics"
         },
         grotSquigHoppers: {
-            id: this.serial++,
+            id: "grotSquigHoppers",
             name: "Grot Squig Hoppers"
         },
         grotSquigHerders: {
-            id: this.serial++,
+            id: "grotSquigHerders",
             name: "Grot Squig Herders"
         },
         caveSquigs: {
-            id: this.serial++,
+            id: "caveSquigs",
             name: "Cave Squigs"
         },
         manglerSquigs: {
-            id: this.serial++,
+            id: "manglerSquigs",
             name: "Mangler Squigs"
         },
         overtyrant: {
-            id: this.serial++,
+            id: "overtyrant",
             name: "Overtyrant"
         },
         bruiserStandardBearer: {
-            id: this.serial++,
+            id: "bruiserStandardBearer",
             name: "Bruiser Standard Bearer"
         },
         gitbossOnWolfChariot: {
-            id: this.serial++,
+            id: "gitbossOnWolfChariot",
             name: "Gitboss on Wolf Chariot"
         },
         gitboss: {
-            id: this.serial++,
+            id: "gitboss",
             name: "Gitboss"
         },
         orrukBully: {
-            id: this.serial++,
+            id: "orrukBully",
             name: "Orruk Bully"
         },
         mercenaryOrruks: {
-            id: this.serial++,
+            id: "mercenaryOrruks",
             name: "Mercenary Orruks"
         },
         arachnarokSpiderWithGrotShaman: {
-            id: this.serial++,
+            id: "arachnarokSpiderWithGrotShaman",
             name: "Arachnarok Spider With Grot Shaman"
         },
         grotBigBossOnGiganticSpider: {
-            id: this.serial++,
+            id: "grotBigBossOnGiganticSpider",
             name: "Grot Big Boss On Gigantic Spider"
         },
         grotSpiderRiders: {
-            id: this.serial++,
+            id: "grotSpiderRiders",
             name: "Grot Spider Riders"
         },
         arachnarokSpider: {
-            id: this.serial++,
+            id: "arachnarokSpider",
             name: "Arachnarok Spider"
         },
         troggothHag: {
-            id: this.serial++,
+            id: "troggothHag",
             name: "Troggoth Hag"
         },
         fellwaterTroggoths: {
-            id: this.serial++,
+            id: "fellwaterTroggoths",
             name: "Fellwater Troggoths"
         },
         sourbreathTroggoths: {
-            id: this.serial++,
+            id: "sourbreathTroggoths",
             name: "Sourbreath Troggoths"
         },
         rockgutTroggoths: {
-            id: this.serial++,
+            id: "rockgutTroggoths",
             name: "Rockgut Troggoths"
         },
         zombies: {
-            id: this.serial++,
+            id: "zombies",
             name: "Zombies"
         },
         direWolves: {
-            id: this.serial++,
+            id: "direWolves",
             name: "Dire Wolves"
         },
         corpseCart: {
-            id: this.serial++,
+            id: "corpseCart",
             name: "Corpse Cart"
         },
         nagashSupremeLordOfTheUndead: {
-            id: this.serial++,
+            id: "nagashSupremeLordOfTheUndead",
             name: "Nagash Supreme Lord Of The Undead"
         },
         arkhanTheBlackMortarchOfSacrament: {
-            id: this.serial++,
+            id: "arkhanTheBlackMortarchOfSacrament",
             name: "Arkhan The Black Mortarch of Sacrament"
         },
         mannfredMortarchOfNight: {
-            id: this.serial++,
+            id: "mannfredMortarchOfNight",
             name: "Mannfred Mortarch Of Night"
         },
         neferataMortarchOfBlood: {
-            id: this.serial++,
+            id: "neferataMortarchOfBlood",
             name: "Neferata Mortarch Of Blood"
         },
         morghastHarbingers: {
-            id: this.serial++,
+            id: "morghastHarbingers",
             name: "Morghast Harbingers"
         },
         morghastArchai: {
-            id: this.serial++,
+            id: "morghastArchai",
             name: "Morghast Archai"
         },
         necromancer: {
-            id: this.serial++,
+            id: "necromancer",
             name: "Necromancer"
         },
         mortisEngine: {
-            id: this.serial++,
+            id: "mortisEngine",
             name: "Mortis Engine"
         },
         wightKingWithBalefulTombBlade: {
-            id: this.serial++,
+            id: "wightKingWithBalefulTombBlade",
             name: "Wight King with Baleful Tomb Blade"
         },
         wightKingWithBlackAxe: {
-            id: this.serial++,
+            id: "wightKingWithBlackAxe",
             name: "Wight King with Black Axe"
         },
         skeletonWarriors: {
-            id: this.serial++,
+            id: "skeletonWarriors",
             name: "Skeleton Warriors"
         },
         graveGuard: {
-            id: this.serial++,
+            id: "graveGuard",
             name: "Grave Guard"
         },
         blackKnights: {
-            id: this.serial++,
+            id: "blackKnights",
             name: "Black Knights"
         },
         theSepulchralGuard: {
-            id: this.serial++,
+            id: "theSepulchralGuard",
             name: "The Sepulchral Guard"
         },
         legionOfDeath: {
-            id: this.serial++,
+            id: "legionOfDeath",
             name: "Legion of Death"
         },
         abhorrantGhoulKing: {
-            id: this.serial++,
+            id: "abhorrantGhoulKing",
             name: "Abhorrant Ghoul King"
         },
         abhorrantGhoulKingOnTerrorgheist: {
-            id: this.serial++,
+            id: "abhorrantGhoulKingOnTerrorgheist",
             name: "Abhorrant Ghoul King on Terrorgheist"
         },
         abhorrantGhoulKingOnZombieDragon: {
-            id: this.serial++,
+            id: "abhorrantGhoulKingOnZombieDragon",
             name: "Abhorrant Ghoul King on Zombie Dragon"
         },
         cryptGhastCourtier: {
-            id: this.serial++,
+            id: "cryptGhastCourtier",
             name: "Crypt Ghast Courtier"
         },
         cryptHaunterCourtier: {
-            id: this.serial++,
+            id: "cryptHaunterCourtier",
             name: "Crypt Haunter Courtier"
         },
         cryptInfernalCourtier: {
-            id: this.serial++,
+            id: "cryptInfernalCourtier",
             name: "Crypt Infernal Courtier"
         },
         varghulfCourtier: {
-            id: this.serial++,
+            id: "varghulfCourtier",
             name: "Varghulf Courtier"
         },
         cryptGhouls: {
-            id: this.serial++,
+            id: "cryptGhouls",
             name: "Crypt Ghouls"
         },
         cryptHorrors: {
-            id: this.serial++,
+            id: "cryptHorrors",
             name: "Crypt Horrors"
         },
         cryptFlayers: {
-            id: this.serial++,
+            id: "cryptFlayers",
             name: "Crypt Flayers"
         },
         terrorgheist: {
-            id: this.serial++,
+            id: "terrorgheist",
             name: "Terrorgheist"
         },
         zombieDragon: {
-            id: this.serial++,
+            id: "zombieDragon",
             name: "Zombie Dragon"
         },
         abattoir: {
-            id: this.serial++,
+            id: "abattoir",
             name: "Abattoir"
         },
         attendantsAtCourt: {
-            id: this.serial++,
+            id: "attendantsAtCourt",
             name: "Attendants at Court"
         },
         deadwatch: {
-            id: this.serial++,
+            id: "deadwatch",
             name: "Deadwatch"
         },
         fleshEaterCourt: {
-            id: this.serial++,
+            id: "fleshEaterCourt",
             name: "Flesh-eater Court"
         },
         ghoulPatrol: {
-            id: this.serial++,
+            id: "ghoulPatrol",
             name: "Ghoul Patrol"
         },
         kingSGhouls: {
-            id: this.serial++,
+            id: "kingSGhouls",
             name: "King's Ghouls"
         },
         royalFamily: {
-            id: this.serial++,
+            id: "royalFamily",
             name: "Royal Family"
         },
         royalMenagerie: {
-            id: this.serial++,
+            id: "royalMenagerie",
             name: "Royal Menagerie"
         },
         royalMordants: {
-            id: this.serial++,
+            id: "royalMordants",
             name: "Royal Mordants"
         },
         cairnWraith: {
-            id: this.serial++,
+            id: "cairnWraith",
             name: "Cairn Wraith"
         },
         tombBanshee: {
-            id: this.serial++,
+            id: "tombBanshee",
             name: "Tomb Banshee"
         },
         vampireLord: {
-            id: this.serial++,
+            id: "vampireLord",
             name: "Vampire Lord"
         },
         vampireLordOnZombieDragon: {
-            id: this.serial++,
+            id: "vampireLordOnZombieDragon",
             name: "Vampire Lord On Zombie Dragon"
         },
         princeVhordrai: {
-            id: this.serial++,
+            id: "princeVhordrai",
             name: "Prince Vhordrai"
         },
         covenThrone: {
-            id: this.serial++,
+            id: "covenThrone",
             name: "Coven Throne"
         },
         bloodseekerPalanquin: {
-            id: this.serial++,
+            id: "bloodseekerPalanquin",
             name: "Bloodseeker Palanquin"
         },
         spiritHosts: {
-            id: this.serial++,
+            id: "spiritHosts",
             name: "Spirit Hosts"
         },
         hexwraiths: {
-            id: this.serial++,
+            id: "hexwraiths",
             name: "Hexwraiths"
         },
         vargheists: {
-            id: this.serial++,
+            id: "vargheists",
             name: "Vargheists"
         },
         bloodKnights: {
-            id: this.serial++,
+            id: "bloodKnights",
             name: "Blood Knights"
         },
         fellBats: {
-            id: this.serial++,
+            id: "fellBats",
             name: "Fell Bats"
         },
         batSwarms: {
-            id: this.serial++,
+            id: "batSwarms",
             name: "Bat Swarms"
         },
         blackCoach: {
-            id: this.serial++,
+            id: "blackCoach",
             name: "Black Coach"
         },
         castellansOfTheCrimsonKeep: {
-            id: this.serial++,
+            id: "castellansOfTheCrimsonKeep",
             name: "Castellans of the Crimson Keep"
         },
         courtOfNulahmia: {
-            id: this.serial++,
+            id: "courtOfNulahmia",
             name: "Court of Nulahmia"
         },
         deathmarch: {
-            id: this.serial++,
+            id: "deathmarch",
             name: "Deathmarch"
         },
         lordsOfSacrament: {
-            id: this.serial++,
+            id: "lordsOfSacrament",
             name: "Lords of Sacrament"
         },
         nightfallPack: {
-            id: this.serial++,
+            id: "nightfallPack",
             name: "Nightfall Pack"
         },
         theFirstCohort: {
-            id: this.serial++,
+            id: "theFirstCohort",
             name: "The First Cohort"
         },
         knightOfShrouds: {
-            id: this.serial++,
+            id: "knightOfShrouds",
             name: "Knight of Shrouds"
         },
         mourngul: {
-            id: this.serial++,
+            id: "mourngul",
             name: "Mourngul"
         },
         tombKingInRoyalChariot: {
-            id: this.serial++,
+            id: "tombKingInRoyalChariot",
             name: "Tomb King in Royal Chariot"
         },
         tombQueen: {
-            id: this.serial++,
+            id: "tombQueen",
             name: "Tomb Queen"
         },
         tombKing: {
-            id: this.serial++,
+            id: "tombKing",
             name: "Tomb King"
         },
         tombKingOnExaltedChariot: {
-            id: this.serial++,
+            id: "tombKingOnExaltedChariot",
             name: "Tomb King on Exalted Chariot"
         },
         scarabPrince: {
-            id: this.serial++,
+            id: "scarabPrince",
             name: "Scarab Prince"
         },
         tombHerald: {
-            id: this.serial++,
+            id: "tombHerald",
             name: "Tomb Herald"
         },
         lichePriest: {
-            id: this.serial++,
+            id: "lichePriest",
             name: "Liche Priest"
         },
         casketOfSouls: {
-            id: this.serial++,
+            id: "casketOfSouls",
             name: "Casket Of Souls"
         },
         necrotect: {
-            id: this.serial++,
+            id: "necrotect",
             name: "Necrotect"
         },
         royalWarsphinx: {
-            id: this.serial++,
+            id: "royalWarsphinx",
             name: "Royal Warsphinx"
         },
         skeletalLegionnaires: {
-            id: this.serial++,
+            id: "skeletalLegionnaires",
             name: "Skeletal Legionnaires"
         },
         skeletonArchers: {
-            id: this.serial++,
+            id: "skeletonArchers",
             name: "Skeleton Archers"
         },
         skeletonHorsemen: {
-            id: this.serial++,
+            id: "skeletonHorsemen",
             name: "Skeleton Horsemen"
         },
         skeletonHorseArchers: {
-            id: this.serial++,
+            id: "skeletonHorseArchers",
             name: "Skeleton Horse Archers"
         },
         skeletonChariots: {
-            id: this.serial++,
+            id: "skeletonChariots",
             name: "Skeleton Chariots"
         },
         tombGuard: {
-            id: this.serial++,
+            id: "tombGuard",
             name: "Tomb Guard"
         },
         tombScorpions: {
-            id: this.serial++,
+            id: "tombScorpions",
             name: "Tomb Scorpions"
         },
         necropolisKnights: {
-            id: this.serial++,
+            id: "necropolisKnights",
             name: "Necropolis Knights"
         },
         ushabti: {
-            id: this.serial++,
+            id: "ushabti",
             name: "Ushabti"
         },
         sepulchralStalkers: {
-            id: this.serial++,
+            id: "sepulchralStalkers",
             name: "Sepulchral Stalkers"
         },
         carrion: {
-            id: this.serial++,
+            id: "carrion",
             name: "Carrion"
         },
         tombSwarm: {
-            id: this.serial++,
+            id: "tombSwarm",
             name: "Tomb Swarm"
         },
         boneGiant: {
-            id: this.serial++,
+            id: "boneGiant",
             name: "Bone Giant"
         },
         warsphinx: {
-            id: this.serial++,
+            id: "warsphinx",
             name: "Warsphinx"
         },
         necrosphinx: {
-            id: this.serial++,
+            id: "necrosphinx",
             name: "Necrosphinx"
         },
         screamingSkullCatapult: {
-            id: this.serial++,
+            id: "screamingSkullCatapult",
             name: "Screaming Skull Catapult"
         },
         vampireLordOnAbyssalTerror: {
-            id: this.serial++,
+            id: "vampireLordOnAbyssalTerror",
             name: "Vampire Lord On Abyssal Terror"
         },
         necromancerOnNightmare: {
-            id: this.serial++,
+            id: "necromancerOnNightmare",
             name: "Necromancer on Nightmare"
         },
     };
@@ -3904,202 +3904,202 @@ export class DataStoreImpl implements DataStore {
     
     allegiances = {
         chaos: {
-            id: this.serial++,
+            id: "chaos",
             grandAlliance: GrandAlliance.chaos,
             name: "Chaos"
         },
         brayherd: {
-            id: this.serial++,
+            id: "brayherd",
             grandAlliance: GrandAlliance.chaos,
             name: "Brayherd"
         },
         khorne: {
-            id: this.serial++,
+            id: "khorne",
             grandAlliance: GrandAlliance.chaos,
             name: "Khorne"
         },
         nurgle: {
-            id: this.serial++,
+            id: "nurgle",
             grandAlliance: GrandAlliance.chaos,
             name: "Nurgle"
         },
         skavenPestilens: {
-            id: this.serial++,
+            id: "skavenPestilens",
             grandAlliance: GrandAlliance.chaos,
             name: "Skaven Pestilens"
         },
         skavenSkryre: {
-            id: this.serial++,
+            id: "skavenSkryre",
             grandAlliance: GrandAlliance.chaos,
             name: "Skaven Skryre"
         },
         slaanesh: {
-            id: this.serial++,
+            id: "slaanesh",
             grandAlliance: GrandAlliance.chaos,
             name: "Slaanesh"
         },
         slavesToDarkness: {
-            id: this.serial++,
+            id: "slavesToDarkness",
             grandAlliance: GrandAlliance.chaos,
             name: "Slaves To Darkness"
         },
         tzeentch: {
-            id: this.serial++,
+            id: "tzeentch",
             grandAlliance: GrandAlliance.chaos,
             name: "Tzeentch"
         },
         fistOfTheEverchosen: {
-            id: this.serial++,
+            id: "fistOfTheEverchosen",
             grandAlliance: GrandAlliance.chaos,
             name: "Fist of the Everchosen"
         },
         order: {
-            id: this.serial++,
+            id: "order",
             grandAlliance: GrandAlliance.order,
             name: "Order"
         },
         darklingCovens: {
-            id: this.serial++,
+            id: "darklingCovens",
             grandAlliance: GrandAlliance.order,
             name: "Darkling Covens"
         },
         dispossessed: {
-            id: this.serial++,
+            id: "dispossessed",
             grandAlliance: GrandAlliance.order,
             name: "Dispossessed"
         },
         freePeoples: {
-            id: this.serial++,
+            id: "freePeoples",
             grandAlliance: GrandAlliance.order,
             name: "Free Peoples"
         },
         fyreslayers: {
-            id: this.serial++,
+            id: "fyreslayers",
             grandAlliance: GrandAlliance.order,
             name: "Fyreslayers"
         },
         kharadronOverlords: {
-            id: this.serial++,
+            id: "kharadronOverlords",
             grandAlliance: GrandAlliance.order,
             name: "Kharadron Overlords"
         },
         seraphon: {
-            id: this.serial++,
+            id: "seraphon",
             grandAlliance: GrandAlliance.order,
             name: "Seraphon"
         },
         stormcastEternals: {
-            id: this.serial++,
+            id: "stormcastEternals",
             grandAlliance: GrandAlliance.order,
             name: "Stormcast Eternals"
         },
         sylvaneth: {
-            id: this.serial++,
+            id: "sylvaneth",
             grandAlliance: GrandAlliance.order,
             name: "Sylvaneth"
         },
         wanderers: {
-            id: this.serial++,
+            id: "wanderers",
             grandAlliance: GrandAlliance.order,
             name: "Wanderers"
         },
         hammerhal: {
-            id: this.serial++,
+            id: "hammerhal",
             grandAlliance: GrandAlliance.order,
             name: "Hammerhal"
         },
         anvilgard: {
-            id: this.serial++,
+            id: "anvilgard",
             grandAlliance: GrandAlliance.order,
             name: "Anvilgard"
         },
         tempestSEye: {
-            id: this.serial++,
+            id: "tempestSEye",
             grandAlliance: GrandAlliance.order,
             name: "Tempest's Eye"
         },
         hallowheart: {
-            id: this.serial++,
+            id: "hallowheart",
             grandAlliance: GrandAlliance.order,
             name: "Hallowheart"
         },
         theLivingCity: {
-            id: this.serial++,
+            id: "theLivingCity",
             grandAlliance: GrandAlliance.order,
             name: "The Living City"
         },
         greywaterFastness: {
-            id: this.serial++,
+            id: "greywaterFastness",
             grandAlliance: GrandAlliance.order,
             name: "Greywater Fastness"
         },
         destruction: {
-            id: this.serial++,
+            id: "destruction",
             grandAlliance: GrandAlliance.destruction,
             name: "Destruction"
         },
         bonesplitterz: {
-            id: this.serial++,
+            id: "bonesplitterz",
             grandAlliance: GrandAlliance.destruction,
             name: "Bonesplitterz"
         },
         beastclawRaiders: {
-            id: this.serial++,
+            id: "beastclawRaiders",
             grandAlliance: GrandAlliance.destruction,
             name: "Beastclaw Raiders"
         },
         ironjawz: {
-            id: this.serial++,
+            id: "ironjawz",
             grandAlliance: GrandAlliance.destruction,
             name: "Ironjawz"
         },
         stoneklawSGutstompas: {
-            id: this.serial++,
+            id: "stoneklawSGutstompas",
             grandAlliance: GrandAlliance.destruction,
             name: "Stoneklaw's Gutstompas"
         },
         death: {
-            id: this.serial++,
+            id: "death",
             grandAlliance: GrandAlliance.death,
             name: "Death"
         },
         fleshEaterCourts: {
-            id: this.serial++,
+            id: "fleshEaterCourts",
             grandAlliance: GrandAlliance.death,
             name: "Flesh Eater Courts"
         },
         nighthaunt: {
-            id: this.serial++,
+            id: "nighthaunt",
             grandAlliance: GrandAlliance.death,
             name: "Nighthaunt"
         },
         soulblight: {
-            id: this.serial++,
+            id: "soulblight",
             grandAlliance: GrandAlliance.death,
             name: "Soulblight"
         },
         grandHostOfNagash: {
-            id: this.serial++,
+            id: "grandHostOfNagash",
             grandAlliance: GrandAlliance.death,
             name: "Grand Host of Nagash"
         },
         legionOfSacrament: {
-            id: this.serial++,
+            id: "legionOfSacrament",
             grandAlliance: GrandAlliance.death,
             name: "Legion of Sacrament"
         },
         legionOfBlood: {
-            id: this.serial++,
+            id: "legionOfBlood",
             grandAlliance: GrandAlliance.death,
             name: "Legion of Blood"
         },
         legionOfNight: {
-            id: this.serial++,
+            id: "legionOfNight",
             grandAlliance: GrandAlliance.death,
             name: "Legion of Night"
         },
         theWraithFleet: {
-            id: this.serial++,
+            id: "theWraithFleet",
             grandAlliance: GrandAlliance.death,
             name: "The Wraith Fleet"
         },
@@ -4107,7 +4107,7 @@ export class DataStoreImpl implements DataStore {
     
     units = {
         centigorWarhoof: {
-            id: this.serial++,
+            id: "centigorWarhoof",
             model: this.models.centigorWarhoof,
             factions: [this.factions.BEASTMEN],
             size: 1,
@@ -4118,7 +4118,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         beastlordOnChariot: {
-            id: this.serial++,
+            id: "beastlordOnChariot",
             model: this.models.beastlordOnChariot,
             factions: [this.factions.BEASTMEN],
             size: 1,
@@ -4129,7 +4129,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         wargorStandardBearer: {
-            id: this.serial++,
+            id: "wargorStandardBearer",
             model: this.models.wargorStandardBearer,
             factions: [this.factions.BEASTMEN],
             size: 1,
@@ -4140,7 +4140,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         beastlord: {
-            id: this.serial++,
+            id: "beastlord",
             model: this.models.beastlord,
             factions: [this.factions.BRAYHERD],
             size: 1,
@@ -4153,7 +4153,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         bestigors: {
-            id: this.serial++,
+            id: "bestigors",
             model: this.models.bestigors,
             factions: [this.factions.BRAYHERD],
             size: 10,
@@ -4167,7 +4167,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         greatBrayShaman: {
-            id: this.serial++,
+            id: "greatBrayShaman",
             model: this.models.greatBrayShaman,
             factions: [this.factions.BRAYHERD],
             size: 1,
@@ -4179,7 +4179,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         tuskgorChariots: {
-            id: this.serial++,
+            id: "tuskgorChariots",
             model: this.models.tuskgorChariots,
             factions: [this.factions.BRAYHERD],
             size: 1,
@@ -4191,7 +4191,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tuskgor-chariot-en.pdf",
         },
         gors: {
-            id: this.serial++,
+            id: "gors",
             model: this.models.gors,
             factions: [this.factions.BRAYHERD],
             size: 10,
@@ -4206,7 +4206,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         ungors: {
-            id: this.serial++,
+            id: "ungors",
             model: this.models.ungors,
             factions: [this.factions.BRAYHERD],
             size: 10,
@@ -4221,7 +4221,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         ungorRaiders: {
-            id: this.serial++,
+            id: "ungorRaiders",
             model: this.models.ungorRaiders,
             factions: [this.factions.BRAYHERD],
             size: 10,
@@ -4234,7 +4234,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         bloodThrone: {
-            id: this.serial++,
+            id: "bloodThrone",
             model: this.models.bloodThrone,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4246,7 +4246,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         bloodmasterHeraldOfKhorne: {
-            id: this.serial++,
+            id: "bloodmasterHeraldOfKhorne",
             model: this.models.bloodmasterHeraldOfKhorne,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4258,7 +4258,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         karanak: {
-            id: this.serial++,
+            id: "karanak",
             model: this.models.karanak,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4270,7 +4270,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skullmasterHeraldOfKhorne: {
-            id: this.serial++,
+            id: "skullmasterHeraldOfKhorne",
             model: this.models.skullmasterHeraldOfKhorne,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4282,7 +4282,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skulltaker: {
-            id: this.serial++,
+            id: "skulltaker",
             model: this.models.skulltaker,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4294,7 +4294,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skullCannons: {
-            id: this.serial++,
+            id: "skullCannons",
             model: this.models.skullCannons,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4306,7 +4306,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         bloodletters: {
-            id: this.serial++,
+            id: "bloodletters",
             model: this.models.bloodletters,
             factions: [this.factions.KHORNEDAEMONS],
             size: 10,
@@ -4320,7 +4320,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         bloodthirsterOfInsensateRage: {
-            id: this.serial++,
+            id: "bloodthirsterOfInsensateRage",
             model: this.models.bloodthirsterOfInsensateRage,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4332,7 +4332,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         bloodthirsterOfUnfetteredFury: {
-            id: this.serial++,
+            id: "bloodthirsterOfUnfetteredFury",
             model: this.models.bloodthirsterOfUnfetteredFury,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4345,7 +4345,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         skarbrand: {
-            id: this.serial++,
+            id: "skarbrand",
             model: this.models.skarbrand,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4358,7 +4358,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         wrathOfKhorneBloodthirster: {
-            id: this.serial++,
+            id: "wrathOfKhorneBloodthirster",
             model: this.models.wrathOfKhorneBloodthirster,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -4370,7 +4370,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         fleshHounds: {
-            id: this.serial++,
+            id: "fleshHounds",
             model: this.models.fleshHounds,
             factions: [this.factions.KHORNEDAEMONS],
             size: 5,
@@ -4383,7 +4383,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         bloodcrushers: {
-            id: this.serial++,
+            id: "bloodcrushers",
             model: this.models.bloodcrushers,
             factions: [this.factions.KHORNEDAEMONS],
             size: 3,
@@ -4396,7 +4396,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         screamersOfTzeentch: {
-            id: this.serial++,
+            id: "screamersOfTzeentch",
             model: this.models.screamersOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 3,
@@ -4408,7 +4408,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-screamers-of-tzeentch-en.pdf",
         },
         pinkHorrorsOfTzeentch: {
-            id: this.serial++,
+            id: "pinkHorrorsOfTzeentch",
             model: this.models.pinkHorrorsOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 10,
@@ -4422,7 +4422,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         burningChariotsOfTzeentch: {
-            id: this.serial++,
+            id: "burningChariotsOfTzeentch",
             model: this.models.burningChariotsOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -4435,7 +4435,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         heraldOfTzeentch: {
-            id: this.serial++,
+            id: "heraldOfTzeentch",
             model: this.models.heraldOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -4447,7 +4447,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         heraldOfTzeentchOnBurningChariot: {
-            id: this.serial++,
+            id: "heraldOfTzeentchOnBurningChariot",
             model: this.models.heraldOfTzeentchOnBurningChariot,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -4460,7 +4460,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         heraldOfTzeentchOnDisc: {
-            id: this.serial++,
+            id: "heraldOfTzeentchOnDisc",
             model: this.models.heraldOfTzeentchOnDisc,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -4473,7 +4473,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         theBlueScribes: {
-            id: this.serial++,
+            id: "theBlueScribes",
             model: this.models.theBlueScribes,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -4485,7 +4485,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         theChangeling: {
-            id: this.serial++,
+            id: "theChangeling",
             model: this.models.theChangeling,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -4497,7 +4497,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         blueHorrorsOfTzeentch: {
-            id: this.serial++,
+            id: "blueHorrorsOfTzeentch",
             model: this.models.blueHorrorsOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 10,
@@ -4510,7 +4510,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-blue-horrors-en.pdf",
         },
         brimstoneHorrorsOfTzeentch: {
-            id: this.serial++,
+            id: "brimstoneHorrorsOfTzeentch",
             model: this.models.brimstoneHorrorsOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 10,
@@ -4523,7 +4523,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-brimstone-horrors-en.pdf",
         },
         skaaracTheBloodborn: {
-            id: this.serial++,
+            id: "skaaracTheBloodborn",
             model: this.models.skaaracTheBloodborn,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4535,7 +4535,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         khorgoraths: {
-            id: this.serial++,
+            id: "khorgoraths",
             model: this.models.khorgoraths,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4546,7 +4546,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 6,
         },
         aspiringDeathbringer: {
-            id: this.serial++,
+            id: "aspiringDeathbringer",
             model: this.models.aspiringDeathbringer,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4559,7 +4559,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         aspiringDeathbringerWithGoreaxeAndSkullhammer: {
-            id: this.serial++,
+            id: "aspiringDeathbringerWithGoreaxeAndSkullhammer",
             model: this.models.aspiringDeathbringerWithGoreaxeAndSkullhammer,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4571,7 +4571,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         bloodsecrator: {
-            id: this.serial++,
+            id: "bloodsecrator",
             model: this.models.bloodsecrator,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4583,7 +4583,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         bloodstoker: {
-            id: this.serial++,
+            id: "bloodstoker",
             model: this.models.bloodstoker,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4594,7 +4594,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         exaltedDeathbringer: {
-            id: this.serial++,
+            id: "exaltedDeathbringer",
             model: this.models.exaltedDeathbringer,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4607,7 +4607,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         exaltedDeathbringerWithImpalingSpear: {
-            id: this.serial++,
+            id: "exaltedDeathbringerWithImpalingSpear",
             model: this.models.exaltedDeathbringerWithImpalingSpear,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4619,7 +4619,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordOfKhorneOnJuggernaut: {
-            id: this.serial++,
+            id: "lordOfKhorneOnJuggernaut",
             model: this.models.lordOfKhorneOnJuggernaut,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4631,7 +4631,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         mightyLordOfKhorne: {
-            id: this.serial++,
+            id: "mightyLordOfKhorne",
             model: this.models.mightyLordOfKhorne,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4642,7 +4642,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skullgrinder: {
-            id: this.serial++,
+            id: "skullgrinder",
             model: this.models.skullgrinder,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4654,7 +4654,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         slaughterpriest: {
-            id: this.serial++,
+            id: "slaughterpriest",
             model: this.models.slaughterpriest,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4666,7 +4666,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         slaughterpriestWithHackbladeAndWrathhammer: {
-            id: this.serial++,
+            id: "slaughterpriestWithHackbladeAndWrathhammer",
             model: this.models.slaughterpriestWithHackbladeAndWrathhammer,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4678,7 +4678,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         bloodWarriors: {
-            id: this.serial++,
+            id: "bloodWarriors",
             model: this.models.bloodWarriors,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 5,
@@ -4693,7 +4693,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         bloodreavers: {
-            id: this.serial++,
+            id: "bloodreavers",
             model: this.models.bloodreavers,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 10,
@@ -4708,7 +4708,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         mightySkullcrushers: {
-            id: this.serial++,
+            id: "mightySkullcrushers",
             model: this.models.mightySkullcrushers,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 3,
@@ -4722,7 +4722,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         scylaAnfingrimm: {
-            id: this.serial++,
+            id: "scylaAnfingrimm",
             model: this.models.scylaAnfingrimm,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4734,7 +4734,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skarrBloodwrath: {
-            id: this.serial++,
+            id: "skarrBloodwrath",
             model: this.models.skarrBloodwrath,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4746,7 +4746,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         valkiaTheBloody: {
-            id: this.serial++,
+            id: "valkiaTheBloody",
             model: this.models.valkiaTheBloody,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -4758,7 +4758,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skullreapers: {
-            id: this.serial++,
+            id: "skullreapers",
             model: this.models.skullreapers,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 5,
@@ -4771,7 +4771,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptions: [{ options: [{ name: "Goreslick Blades", id: "goreslickBlades" },{ name: "Daemonblades", id: "daemonblades" }] }],
         },
         wrathmongers: {
-            id: this.serial++,
+            id: "wrathmongers",
             model: this.models.wrathmongers,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 5,
@@ -4783,7 +4783,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-wrathmongers-en.pdf",
         },
         jabberslythe: {
-            id: this.serial++,
+            id: "jabberslythe",
             model: this.models.jabberslythe,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -4795,7 +4795,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         centigors: {
-            id: this.serial++,
+            id: "centigors",
             model: this.models.centigors,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 5,
@@ -4807,7 +4807,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-centigors-en.pdf",
         },
         chaosWarhounds: {
-            id: this.serial++,
+            id: "chaosWarhounds",
             model: this.models.chaosWarhounds,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 10,
@@ -4820,7 +4820,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-warhounds-en.pdf",
         },
         harpies: {
-            id: this.serial++,
+            id: "harpies",
             model: this.models.harpies,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 5,
@@ -4831,7 +4831,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         razorgors: {
-            id: this.serial++,
+            id: "razorgors",
             model: this.models.razorgors,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -4843,7 +4843,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-razorgor-en.pdf",
         },
         tzaangorEnlightened: {
-            id: this.serial++,
+            id: "tzaangorEnlightened",
             model: this.models.tzaangorEnlightened,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 3,
@@ -4854,7 +4854,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 9,
         },
         tzaangors: {
-            id: this.serial++,
+            id: "tzaangors",
             model: this.models.tzaangors,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 10,
@@ -4868,7 +4868,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         tzaangorEnlightenedOnDisc: {
-            id: this.serial++,
+            id: "tzaangorEnlightenedOnDisc",
             model: this.models.tzaangorEnlightenedOnDisc,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 3,
@@ -4879,7 +4879,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangor-enlightened-en.pdf",
         },
         tzaangorSkyfires: {
-            id: this.serial++,
+            id: "tzaangorSkyfires",
             model: this.models.tzaangorSkyfires,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 3,
@@ -4891,7 +4891,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangor-skyfires-en.pdf",
         },
         tzaangorShaman: {
-            id: this.serial++,
+            id: "tzaangorShaman",
             model: this.models.tzaangorShaman,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 1,
@@ -4903,7 +4903,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         kairicAcolytes: {
-            id: this.serial++,
+            id: "kairicAcolytes",
             model: this.models.kairicAcolytes,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 10,
@@ -4917,7 +4917,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         fatemaster: {
-            id: this.serial++,
+            id: "fatemaster",
             model: this.models.fatemaster,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 1,
@@ -4929,7 +4929,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         gauntSummoner: {
-            id: this.serial++,
+            id: "gauntSummoner",
             model: this.models.gauntSummoner,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 1,
@@ -4941,7 +4941,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         curselingEyeOfTzeentch: {
-            id: this.serial++,
+            id: "curselingEyeOfTzeentch",
             model: this.models.curselingEyeOfTzeentch,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 1,
@@ -4953,7 +4953,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         magister: {
-            id: this.serial++,
+            id: "magister",
             model: this.models.magister,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 1,
@@ -4965,7 +4965,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         ogroidThaumaturge: {
-            id: this.serial++,
+            id: "ogroidThaumaturge",
             model: this.models.ogroidThaumaturge,
             factions: [this.factions.TZEENTCHARCHANITES],
             size: 1,
@@ -4977,7 +4977,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         doombull: {
-            id: this.serial++,
+            id: "doombull",
             model: this.models.doombull,
             factions: [this.factions.WARHERD],
             size: 1,
@@ -4990,7 +4990,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         cygor: {
-            id: this.serial++,
+            id: "cygor",
             model: this.models.cygor,
             factions: [this.factions.WARHERD],
             size: 1,
@@ -5002,7 +5002,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         ghorgon: {
-            id: this.serial++,
+            id: "ghorgon",
             model: this.models.ghorgon,
             factions: [this.factions.WARHERD],
             size: 1,
@@ -5014,7 +5014,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         bullgors: {
-            id: this.serial++,
+            id: "bullgors",
             model: this.models.bullgors,
             factions: [this.factions.WARHERD],
             size: 3,
@@ -5028,7 +5028,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         hellcannon: {
-            id: this.serial++,
+            id: "hellcannon",
             model: this.models.hellcannon,
             factions: [this.factions.WARRIORSOFCHAOS],
             size: 1,
@@ -5039,7 +5039,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         daemonettesOfSlaanesh: {
-            id: this.serial++,
+            id: "daemonettesOfSlaanesh",
             model: this.models.daemonettesOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 10,
@@ -5053,7 +5053,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         mutalithVortexBeast: {
-            id: this.serial++,
+            id: "mutalithVortexBeast",
             model: this.models.mutalithVortexBeast,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -5065,7 +5065,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         slaughterbrute: {
-            id: this.serial++,
+            id: "slaughterbrute",
             model: this.models.slaughterbrute,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -5077,7 +5077,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         furies: {
-            id: this.serial++,
+            id: "furies",
             model: this.models.furies,
             factions: [this.factions.DAEMONSOFCHAOS],
             size: 5,
@@ -5089,7 +5089,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 320,
         },
         daemonPrince: {
-            id: this.serial++,
+            id: "daemonPrince",
             model: this.models.daemonPrince,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -5103,7 +5103,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         soulGrinder: {
-            id: this.serial++,
+            id: "soulGrinder",
             model: this.models.soulGrinder,
             factions: [this.factions.DAEMONSOFCHAOS],
             size: 1,
@@ -5115,7 +5115,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         beLakorChaosDaemonPrince: {
-            id: this.serial++,
+            id: "beLakorChaosDaemonPrince",
             model: this.models.beLakorChaosDaemonPrince,
             factions: [this.factions.DAEMONSOFCHAOS],
             size: 1,
@@ -5128,7 +5128,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         fiendsOfSlaanesh: {
-            id: this.serial++,
+            id: "fiendsOfSlaanesh",
             model: this.models.fiendsOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 3,
@@ -5140,7 +5140,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fiend-of-slaanesh-en.pdf",
         },
         heraldOfSlaanesh: {
-            id: this.serial++,
+            id: "heraldOfSlaanesh",
             model: this.models.heraldOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -5152,7 +5152,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         heraldOfSlaaneshOnExaltedSeekerChariot: {
-            id: this.serial++,
+            id: "heraldOfSlaaneshOnExaltedSeekerChariot",
             model: this.models.heraldOfSlaaneshOnExaltedSeekerChariot,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -5163,7 +5163,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         heraldOfSlaaneshOnSeekerChariot: {
-            id: this.serial++,
+            id: "heraldOfSlaaneshOnSeekerChariot",
             model: this.models.heraldOfSlaaneshOnSeekerChariot,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -5174,7 +5174,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         seekerChariotsOfSlaanesh: {
-            id: this.serial++,
+            id: "seekerChariotsOfSlaanesh",
             model: this.models.seekerChariotsOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -5187,7 +5187,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         seekersOfSlaanesh: {
-            id: this.serial++,
+            id: "seekersOfSlaanesh",
             model: this.models.seekersOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 5,
@@ -5199,7 +5199,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-seekers-of-slaanesh-en.pdf",
         },
         keeperOfSecrets: {
-            id: this.serial++,
+            id: "keeperOfSecrets",
             model: this.models.keeperOfSecrets,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -5212,7 +5212,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         theMasqueOfSlaanesh: {
-            id: this.serial++,
+            id: "theMasqueOfSlaanesh",
             model: this.models.theMasqueOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -5224,7 +5224,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         beastsOfNurgle: {
-            id: this.serial++,
+            id: "beastsOfNurgle",
             model: this.models.beastsOfNurgle,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -5236,7 +5236,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Beasts-of-nurgle.pdf",
         },
         poxbringerHeraldOfNurgle: {
-            id: this.serial++,
+            id: "poxbringerHeraldOfNurgle",
             model: this.models.poxbringerHeraldOfNurgle,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -5247,7 +5247,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         spoilpoxScrivenerHeraldOfNurgle: {
-            id: this.serial++,
+            id: "spoilpoxScrivenerHeraldOfNurgle",
             model: this.models.spoilpoxScrivenerHeraldOfNurgle,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -5258,7 +5258,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         sloppityBilepiperHeraldOfNurgle: {
-            id: this.serial++,
+            id: "sloppityBilepiperHeraldOfNurgle",
             model: this.models.sloppityBilepiperHeraldOfNurgle,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -5270,7 +5270,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         nurglings: {
-            id: this.serial++,
+            id: "nurglings",
             model: this.models.nurglings,
             factions: [this.factions.NURGLEDAEMONS],
             size: 3,
@@ -5281,7 +5281,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         plagueDrones: {
-            id: this.serial++,
+            id: "plagueDrones",
             model: this.models.plagueDrones,
             factions: [this.factions.NURGLEDAEMONS],
             size: 3,
@@ -5292,7 +5292,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         plaguebearers: {
-            id: this.serial++,
+            id: "plaguebearers",
             model: this.models.plaguebearers,
             factions: [this.factions.NURGLEDAEMONS],
             size: 10,
@@ -5305,7 +5305,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         daemonPrinceOfNurgle: {
-            id: this.serial++,
+            id: "daemonPrinceOfNurgle",
             model: this.models.daemonPrinceOfNurgle,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -5318,7 +5318,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         greatUncleanOne: {
-            id: this.serial++,
+            id: "greatUncleanOne",
             model: this.models.greatUncleanOne,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -5330,7 +5330,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         rotigus: {
-            id: this.serial++,
+            id: "rotigus",
             model: this.models.rotigus,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -5343,7 +5343,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         epidemiusTallymanOfNurgle: {
-            id: this.serial++,
+            id: "epidemiusTallymanOfNurgle",
             model: this.models.epidemiusTallymanOfNurgle,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -5355,7 +5355,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         daemonPrinceOfSlaanesh: {
-            id: this.serial++,
+            id: "daemonPrinceOfSlaanesh",
             model: this.models.daemonPrinceOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -5368,7 +5368,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         exaltedFlamersOfTzeentch: {
-            id: this.serial++,
+            id: "exaltedFlamersOfTzeentch",
             model: this.models.exaltedFlamersOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -5379,7 +5379,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalted-flamer-of-tzeentch-en.pdf",
         },
         flamersOfTzeentch: {
-            id: this.serial++,
+            id: "flamersOfTzeentch",
             model: this.models.flamersOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 3,
@@ -5390,7 +5390,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         daemonPrinceOfTzeentch: {
-            id: this.serial++,
+            id: "daemonPrinceOfTzeentch",
             model: this.models.daemonPrinceOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -5403,7 +5403,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         kairosFateweaver: {
-            id: this.serial++,
+            id: "kairosFateweaver",
             model: this.models.kairosFateweaver,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -5416,7 +5416,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         festusTheLeechlord: {
-            id: this.serial++,
+            id: "festusTheLeechlord",
             model: this.models.festusTheLeechlord,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -5428,7 +5428,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         gutrotSpume: {
-            id: this.serial++,
+            id: "gutrotSpume",
             model: this.models.gutrotSpume,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -5440,7 +5440,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         theGlottkin: {
-            id: this.serial++,
+            id: "theGlottkin",
             model: this.models.theGlottkin,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -5453,7 +5453,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         exaltedSeekerChariotsOfSlaanesh: {
-            id: this.serial++,
+            id: "exaltedSeekerChariotsOfSlaanesh",
             model: this.models.exaltedSeekerChariotsOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -5465,7 +5465,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-exalted-seeker-chariot-en.pdf",
         },
         lordOfPlagues: {
-            id: this.serial++,
+            id: "lordOfPlagues",
             model: this.models.lordOfPlagues,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -5477,7 +5477,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordOfBlights: {
-            id: this.serial++,
+            id: "lordOfBlights",
             model: this.models.lordOfBlights,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -5489,7 +5489,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordOfChange: {
-            id: this.serial++,
+            id: "lordOfChange",
             model: this.models.lordOfChange,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -5502,7 +5502,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         reaperBoltThrower: {
-            id: this.serial++,
+            id: "reaperBoltThrower",
             model: this.models.reaperBoltThrower,
             factions: [this.factions.EXILES],
             size: 1,
@@ -5513,7 +5513,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         blackGuard: {
-            id: this.serial++,
+            id: "blackGuard",
             model: this.models.blackGuard,
             factions: [this.factions.DARKLINGCOVENS],
             size: 10,
@@ -5527,7 +5527,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         executioners: {
-            id: this.serial++,
+            id: "executioners",
             model: this.models.executioners,
             factions: [this.factions.DARKLINGCOVENS],
             size: 10,
@@ -5541,7 +5541,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         sorceress: {
-            id: this.serial++,
+            id: "sorceress",
             model: this.models.sorceress,
             factions: [this.factions.DARKLINGCOVENS],
             size: 1,
@@ -5553,7 +5553,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         bleakswords: {
-            id: this.serial++,
+            id: "bleakswords",
             model: this.models.bleakswords,
             factions: [this.factions.DARKLINGCOVENS],
             size: 10,
@@ -5567,7 +5567,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         darkshards: {
-            id: this.serial++,
+            id: "darkshards",
             model: this.models.darkshards,
             factions: [this.factions.DARKLINGCOVENS],
             size: 10,
@@ -5580,7 +5580,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         dreadspears: {
-            id: this.serial++,
+            id: "dreadspears",
             model: this.models.dreadspears,
             factions: [this.factions.DARKLINGCOVENS],
             size: 10,
@@ -5594,7 +5594,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         sorceressOnBlackDragon: {
-            id: this.serial++,
+            id: "sorceressOnBlackDragon",
             model: this.models.sorceressOnBlackDragon,
             factions: [this.factions.DARKLINGCOVENS],
             size: 1,
@@ -5608,7 +5608,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         bloodwrackMedusae: {
-            id: this.serial++,
+            id: "bloodwrackMedusae",
             model: this.models.bloodwrackMedusae,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 1,
@@ -5618,7 +5618,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 5,
         },
         deathHag: {
-            id: this.serial++,
+            id: "deathHag",
             model: this.models.deathHag,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 1,
@@ -5630,7 +5630,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         doomfireWarlocks: {
-            id: this.serial++,
+            id: "doomfireWarlocks",
             model: this.models.doomfireWarlocks,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 5,
@@ -5643,7 +5643,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         sistersOfSlaughter: {
-            id: this.serial++,
+            id: "sistersOfSlaughter",
             model: this.models.sistersOfSlaughter,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 10,
@@ -5657,7 +5657,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         bloodwrackShrine: {
-            id: this.serial++,
+            id: "bloodwrackShrine",
             model: this.models.bloodwrackShrine,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 1,
@@ -5669,7 +5669,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         cauldronOfBlood: {
-            id: this.serial++,
+            id: "cauldronOfBlood",
             model: this.models.cauldronOfBlood,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 1,
@@ -5683,7 +5683,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         witchAelves: {
-            id: this.serial++,
+            id: "witchAelves",
             model: this.models.witchAelves,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 10,
@@ -5697,7 +5697,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         drakespawnChariots: {
-            id: this.serial++,
+            id: "drakespawnChariots",
             model: this.models.drakespawnChariots,
             factions: [this.factions.ORDERSERPENTIS],
             size: 1,
@@ -5710,7 +5710,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         warHydra: {
-            id: this.serial++,
+            id: "warHydra",
             model: this.models.warHydra,
             factions: [this.factions.ORDERSERPENTIS],
             size: 1,
@@ -5722,7 +5722,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         dreadlordOnBlackDragon: {
-            id: this.serial++,
+            id: "dreadlordOnBlackDragon",
             model: this.models.dreadlordOnBlackDragon,
             factions: [this.factions.ORDERSERPENTIS],
             size: 1,
@@ -5735,7 +5735,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         drakespawnKnights: {
-            id: this.serial++,
+            id: "drakespawnKnights",
             model: this.models.drakespawnKnights,
             factions: [this.factions.ORDERSERPENTIS],
             size: 5,
@@ -5748,7 +5748,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         blackArkFleetmaster: {
-            id: this.serial++,
+            id: "blackArkFleetmaster",
             model: this.models.blackArkFleetmaster,
             factions: [this.factions.SCOURGEPRIVATEERS],
             size: 1,
@@ -5760,7 +5760,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         scourgerunnerChariots: {
-            id: this.serial++,
+            id: "scourgerunnerChariots",
             model: this.models.scourgerunnerChariots,
             factions: [this.factions.SCOURGEPRIVATEERS],
             size: 1,
@@ -5773,7 +5773,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         kharibdyss: {
-            id: this.serial++,
+            id: "kharibdyss",
             model: this.models.kharibdyss,
             factions: [this.factions.SCOURGEPRIVATEERS],
             size: 1,
@@ -5785,7 +5785,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         blackArkCorsairs: {
-            id: this.serial++,
+            id: "blackArkCorsairs",
             model: this.models.blackArkCorsairs,
             factions: [this.factions.SCOURGEPRIVATEERS],
             size: 10,
@@ -5800,7 +5800,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         assassin: {
-            id: this.serial++,
+            id: "assassin",
             model: this.models.assassin,
             factions: [this.factions.SHADOWBLADES],
             size: 1,
@@ -5812,7 +5812,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         darkRiders: {
-            id: this.serial++,
+            id: "darkRiders",
             model: this.models.darkRiders,
             factions: [this.factions.SHADOWBLADES],
             size: 5,
@@ -5825,7 +5825,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         sorceressOnDarkPegasus: {
-            id: this.serial++,
+            id: "sorceressOnDarkPegasus",
             model: this.models.sorceressOnDarkPegasus,
             factions: [this.factions.EXILES],
             size: 1,
@@ -5836,7 +5836,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         beastmasterOnManticore: {
-            id: this.serial++,
+            id: "beastmasterOnManticore",
             model: this.models.beastmasterOnManticore,
             factions: [this.factions.EXILES],
             size: 1,
@@ -5847,7 +5847,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         dreadlord: {
-            id: this.serial++,
+            id: "dreadlord",
             model: this.models.dreadlord,
             factions: [this.factions.EXILES],
             size: 1,
@@ -5859,7 +5859,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         dreadlordOnDrakespawn: {
-            id: this.serial++,
+            id: "dreadlordOnDrakespawn",
             model: this.models.dreadlordOnDrakespawn,
             factions: [this.factions.EXILES],
             size: 1,
@@ -5870,7 +5870,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         masterWithBattleStandard: {
-            id: this.serial++,
+            id: "masterWithBattleStandard",
             model: this.models.masterWithBattleStandard,
             factions: [this.factions.EXILES],
             size: 1,
@@ -5881,7 +5881,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         mistweaverSaih: {
-            id: this.serial++,
+            id: "mistweaverSaih",
             model: this.models.mistweaverSaih,
             factions: [this.factions.AELVES],
             size: 1,
@@ -5893,7 +5893,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         shades: {
-            id: this.serial++,
+            id: "shades",
             model: this.models.shades,
             factions: [this.factions.EXILES],
             size: 5,
@@ -5904,7 +5904,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         sorceressOnDrakespawn: {
-            id: this.serial++,
+            id: "sorceressOnDrakespawn",
             model: this.models.sorceressOnDrakespawn,
             factions: [this.factions.EXILES],
             size: 1,
@@ -5915,7 +5915,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         tenebraelShard: {
-            id: this.serial++,
+            id: "tenebraelShard",
             model: this.models.tenebraelShard,
             factions: [this.factions.AELVES],
             size: 1,
@@ -5927,7 +5927,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         corpseCart: {
-            id: this.serial++,
+            id: "corpseCart",
             model: this.models.corpseCart,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 1,
@@ -5938,7 +5938,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-corpse-cart-en.pdf",
         },
         direWolves: {
-            id: this.serial++,
+            id: "direWolves",
             model: this.models.direWolves,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 5,
@@ -5952,7 +5952,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         zombies: {
-            id: this.serial++,
+            id: "zombies",
             model: this.models.zombies,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 10,
@@ -5966,7 +5966,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         morghastArchai: {
-            id: this.serial++,
+            id: "morghastArchai",
             model: this.models.morghastArchai,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 2,
@@ -5980,7 +5980,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         morghastHarbingers: {
-            id: this.serial++,
+            id: "morghastHarbingers",
             model: this.models.morghastHarbingers,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 2,
@@ -5994,7 +5994,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         arkhanTheBlackMortarchOfSacrament: {
-            id: this.serial++,
+            id: "arkhanTheBlackMortarchOfSacrament",
             model: this.models.arkhanTheBlackMortarchOfSacrament,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 1,
@@ -6007,7 +6007,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         mannfredMortarchOfNight: {
-            id: this.serial++,
+            id: "mannfredMortarchOfNight",
             model: this.models.mannfredMortarchOfNight,
             factions: [this.factions.SOULBLIGHT],
             size: 1,
@@ -6020,7 +6020,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         nagashSupremeLordOfTheUndead: {
-            id: this.serial++,
+            id: "nagashSupremeLordOfTheUndead",
             model: this.models.nagashSupremeLordOfTheUndead,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 1,
@@ -6033,7 +6033,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         neferataMortarchOfBlood: {
-            id: this.serial++,
+            id: "neferataMortarchOfBlood",
             model: this.models.neferataMortarchOfBlood,
             factions: [this.factions.SOULBLIGHT],
             size: 1,
@@ -6046,7 +6046,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         necromancer: {
-            id: this.serial++,
+            id: "necromancer",
             model: this.models.necromancer,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 1,
@@ -6058,7 +6058,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         mortisEngine: {
-            id: this.serial++,
+            id: "mortisEngine",
             model: this.models.mortisEngine,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 1,
@@ -6070,7 +6070,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         graveGuard: {
-            id: this.serial++,
+            id: "graveGuard",
             model: this.models.graveGuard,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 5,
@@ -6085,7 +6085,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         wightKingWithBalefulTombBlade: {
-            id: this.serial++,
+            id: "wightKingWithBalefulTombBlade",
             model: this.models.wightKingWithBalefulTombBlade,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 1,
@@ -6097,7 +6097,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         wightKingWithBlackAxe: {
-            id: this.serial++,
+            id: "wightKingWithBlackAxe",
             model: this.models.wightKingWithBlackAxe,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 1,
@@ -6109,7 +6109,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skeletonWarriors: {
-            id: this.serial++,
+            id: "skeletonWarriors",
             model: this.models.skeletonWarriors,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 10,
@@ -6124,7 +6124,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         blackKnights: {
-            id: this.serial++,
+            id: "blackKnights",
             model: this.models.blackKnights,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 5,
@@ -6136,7 +6136,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-knights-en.pdf",
         },
         cryptGhouls: {
-            id: this.serial++,
+            id: "cryptGhouls",
             model: this.models.cryptGhouls,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 10,
@@ -6150,7 +6150,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         abhorrantGhoulKingOnTerrorgheist: {
-            id: this.serial++,
+            id: "abhorrantGhoulKingOnTerrorgheist",
             model: this.models.abhorrantGhoulKingOnTerrorgheist,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 1,
@@ -6163,7 +6163,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         abhorrantGhoulKingOnZombieDragon: {
-            id: this.serial++,
+            id: "abhorrantGhoulKingOnZombieDragon",
             model: this.models.abhorrantGhoulKingOnZombieDragon,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 1,
@@ -6176,7 +6176,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         terrorgheist: {
-            id: this.serial++,
+            id: "terrorgheist",
             model: this.models.terrorgheist,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 1,
@@ -6188,7 +6188,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         zombieDragon: {
-            id: this.serial++,
+            id: "zombieDragon",
             model: this.models.zombieDragon,
             factions: [this.factions.LEGIONSOFNAGASH],
             size: 1,
@@ -6200,7 +6200,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         cryptHorrors: {
-            id: this.serial++,
+            id: "cryptHorrors",
             model: this.models.cryptHorrors,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 3,
@@ -6213,7 +6213,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         cryptFlayers: {
-            id: this.serial++,
+            id: "cryptFlayers",
             model: this.models.cryptFlayers,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 3,
@@ -6226,7 +6226,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         abhorrantGhoulKing: {
-            id: this.serial++,
+            id: "abhorrantGhoulKing",
             model: this.models.abhorrantGhoulKing,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 1,
@@ -6237,7 +6237,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         cryptGhastCourtier: {
-            id: this.serial++,
+            id: "cryptGhastCourtier",
             model: this.models.cryptGhastCourtier,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 1,
@@ -6249,7 +6249,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         cryptHaunterCourtier: {
-            id: this.serial++,
+            id: "cryptHaunterCourtier",
             model: this.models.cryptHaunterCourtier,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 1,
@@ -6261,7 +6261,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         cryptInfernalCourtier: {
-            id: this.serial++,
+            id: "cryptInfernalCourtier",
             model: this.models.cryptInfernalCourtier,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 1,
@@ -6273,7 +6273,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         varghulfCourtier: {
-            id: this.serial++,
+            id: "varghulfCourtier",
             model: this.models.varghulfCourtier,
             factions: [this.factions.FLESHEATERCOURTS],
             size: 1,
@@ -6285,7 +6285,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         batSwarms: {
-            id: this.serial++,
+            id: "batSwarms",
             model: this.models.batSwarms,
             factions: [this.factions.SOULBLIGHT],
             size: 2,
@@ -6297,7 +6297,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bat-swarm-en.pdf",
         },
         fellBats: {
-            id: this.serial++,
+            id: "fellBats",
             model: this.models.fellBats,
             factions: [this.factions.SOULBLIGHT],
             size: 3,
@@ -6309,7 +6309,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-fell-bats-en.pdf",
         },
         vampireLord: {
-            id: this.serial++,
+            id: "vampireLord",
             model: this.models.vampireLord,
             factions: [this.factions.SOULBLIGHT],
             size: 1,
@@ -6321,7 +6321,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         vargheists: {
-            id: this.serial++,
+            id: "vargheists",
             model: this.models.vargheists,
             factions: [this.factions.SOULBLIGHT],
             size: 3,
@@ -6333,7 +6333,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vargheists-en.pdf",
         },
         covenThrone: {
-            id: this.serial++,
+            id: "covenThrone",
             model: this.models.covenThrone,
             factions: [this.factions.SOULBLIGHT],
             size: 1,
@@ -6346,7 +6346,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         bloodseekerPalanquin: {
-            id: this.serial++,
+            id: "bloodseekerPalanquin",
             model: this.models.bloodseekerPalanquin,
             factions: [this.factions.SOULBLIGHT],
             size: 1,
@@ -6359,7 +6359,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         vampireLordOnZombieDragon: {
-            id: this.serial++,
+            id: "vampireLordOnZombieDragon",
             model: this.models.vampireLordOnZombieDragon,
             factions: [this.factions.SOULBLIGHT],
             size: 1,
@@ -6373,7 +6373,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         princeVhordrai: {
-            id: this.serial++,
+            id: "princeVhordrai",
             model: this.models.princeVhordrai,
             factions: [this.factions.SOULBLIGHT],
             size: 1,
@@ -6386,7 +6386,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         bloodKnights: {
-            id: this.serial++,
+            id: "bloodKnights",
             model: this.models.bloodKnights,
             factions: [this.factions.SOULBLIGHT],
             size: 5,
@@ -6399,7 +6399,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         blackCoach: {
-            id: this.serial++,
+            id: "blackCoach",
             model: this.models.blackCoach,
             factions: [this.factions.NIGHTHAUNT],
             size: 1,
@@ -6410,7 +6410,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-coach-en.pdf",
         },
         cairnWraith: {
-            id: this.serial++,
+            id: "cairnWraith",
             model: this.models.cairnWraith,
             factions: [this.factions.NIGHTHAUNT],
             size: 1,
@@ -6422,7 +6422,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         hexwraiths: {
-            id: this.serial++,
+            id: "hexwraiths",
             model: this.models.hexwraiths,
             factions: [this.factions.NIGHTHAUNT],
             size: 5,
@@ -6435,7 +6435,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         tombBanshee: {
-            id: this.serial++,
+            id: "tombBanshee",
             model: this.models.tombBanshee,
             factions: [this.factions.NIGHTHAUNT],
             size: 1,
@@ -6447,7 +6447,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         spiritHosts: {
-            id: this.serial++,
+            id: "spiritHosts",
             model: this.models.spiritHosts,
             factions: [this.factions.NIGHTHAUNT],
             size: 3,
@@ -6460,7 +6460,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         cogsmith: {
-            id: this.serial++,
+            id: "cogsmith",
             model: this.models.cogsmith,
             factions: [this.factions.IRONWELDARSONAL],
             size: 1,
@@ -6472,7 +6472,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         cannon: {
-            id: this.serial++,
+            id: "cannon",
             model: this.models.cannon,
             factions: [this.factions.IRONWELDARSONAL],
             size: 1,
@@ -6484,7 +6484,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         duardinBoltThrower: {
-            id: this.serial++,
+            id: "duardinBoltThrower",
             model: this.models.duardinBoltThrower,
             factions: [this.factions.DWARFS],
             size: 1,
@@ -6495,7 +6495,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         flameCannon: {
-            id: this.serial++,
+            id: "flameCannon",
             model: this.models.flameCannon,
             factions: [this.factions.DWARFS],
             size: 1,
@@ -6506,7 +6506,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         grudgeThrower: {
-            id: this.serial++,
+            id: "grudgeThrower",
             model: this.models.grudgeThrower,
             factions: [this.factions.DWARFS],
             size: 1,
@@ -6517,7 +6517,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         organGun: {
-            id: this.serial++,
+            id: "organGun",
             model: this.models.organGun,
             factions: [this.factions.IRONWELDARSONAL],
             size: 1,
@@ -6529,7 +6529,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         longbeards: {
-            id: this.serial++,
+            id: "longbeards",
             model: this.models.longbeards,
             factions: [this.factions.DISPOSSESSED],
             size: 10,
@@ -6544,7 +6544,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         vulkiteBerzerkers: {
-            id: this.serial++,
+            id: "vulkiteBerzerkers",
             model: this.models.vulkiteBerzerkers,
             factions: [this.factions.FYRESLAYERS],
             size: 10,
@@ -6559,7 +6559,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         auricRunefatherOnMagmadroth: {
-            id: this.serial++,
+            id: "auricRunefatherOnMagmadroth",
             model: this.models.auricRunefatherOnMagmadroth,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6572,7 +6572,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         auricRunesmiterOnMagmadroth: {
-            id: this.serial++,
+            id: "auricRunesmiterOnMagmadroth",
             model: this.models.auricRunesmiterOnMagmadroth,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6586,7 +6586,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         auricRunesonOnMagmadroth: {
-            id: this.serial++,
+            id: "auricRunesonOnMagmadroth",
             model: this.models.auricRunesonOnMagmadroth,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6600,7 +6600,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         hearthguardBerzerkers: {
-            id: this.serial++,
+            id: "hearthguardBerzerkers",
             model: this.models.hearthguardBerzerkers,
             factions: [this.factions.FYRESLAYERS],
             size: 5,
@@ -6615,7 +6615,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         auricHearthguard: {
-            id: this.serial++,
+            id: "auricHearthguard",
             model: this.models.auricHearthguard,
             factions: [this.factions.FYRESLAYERS],
             size: 5,
@@ -6629,7 +6629,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         wardenKingOnThroneOfPower: {
-            id: this.serial++,
+            id: "wardenKingOnThroneOfPower",
             model: this.models.wardenKingOnThroneOfPower,
             factions: [this.factions.DWARFS],
             size: 1,
@@ -6640,7 +6640,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         farRanger: {
-            id: this.serial++,
+            id: "farRanger",
             model: this.models.farRanger,
             factions: [this.factions.DWARFS],
             size: 1,
@@ -6651,7 +6651,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         apprenticeRunesmith: {
-            id: this.serial++,
+            id: "apprenticeRunesmith",
             model: this.models.apprenticeRunesmith,
             factions: [this.factions.DWARFS],
             size: 1,
@@ -6662,7 +6662,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         runelordOnAnvilOfDoom: {
-            id: this.serial++,
+            id: "runelordOnAnvilOfDoom",
             model: this.models.runelordOnAnvilOfDoom,
             factions: [this.factions.DWARFS],
             size: 1,
@@ -6673,7 +6673,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         auricRunefather: {
-            id: this.serial++,
+            id: "auricRunefather",
             model: this.models.auricRunefather,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6684,7 +6684,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         auricRunemaster: {
-            id: this.serial++,
+            id: "auricRunemaster",
             model: this.models.auricRunemaster,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6696,7 +6696,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         auricRunesmiter: {
-            id: this.serial++,
+            id: "auricRunesmiter",
             model: this.models.auricRunesmiter,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6708,7 +6708,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         auricRuneson: {
-            id: this.serial++,
+            id: "auricRuneson",
             model: this.models.auricRuneson,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6720,7 +6720,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         battlesmith: {
-            id: this.serial++,
+            id: "battlesmith",
             model: this.models.battlesmith,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6732,7 +6732,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         doomseeker: {
-            id: this.serial++,
+            id: "doomseeker",
             model: this.models.doomseeker,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6744,7 +6744,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         grimwrathBerzerker: {
-            id: this.serial++,
+            id: "grimwrathBerzerker",
             model: this.models.grimwrathBerzerker,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -6756,7 +6756,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         gyrobombers: {
-            id: this.serial++,
+            id: "gyrobombers",
             model: this.models.gyrobombers,
             factions: [this.factions.IRONWELDARSONAL],
             size: 1,
@@ -6767,7 +6767,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/Downloads/Gyrobombers.pdf",
         },
         gyrocopters: {
-            id: this.serial++,
+            id: "gyrocopters",
             model: this.models.gyrocopters,
             factions: [this.factions.IRONWELDARSONAL],
             size: 1,
@@ -6778,7 +6778,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-gyropcopter-en.pdf",
         },
         hammerers: {
-            id: this.serial++,
+            id: "hammerers",
             model: this.models.hammerers,
             factions: [this.factions.DISPOSSESSED],
             size: 10,
@@ -6792,7 +6792,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         ironbreakers: {
-            id: this.serial++,
+            id: "ironbreakers",
             model: this.models.ironbreakers,
             factions: [this.factions.DISPOSSESSED],
             size: 10,
@@ -6805,7 +6805,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/Downloads/ironbreakers-en.pdf",
         },
         irondrakes: {
-            id: this.serial++,
+            id: "irondrakes",
             model: this.models.irondrakes,
             factions: [this.factions.DISPOSSESSED],
             size: 10,
@@ -6817,7 +6817,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/Downloads/irondrakes-en.pdf",
         },
         miners: {
-            id: this.serial++,
+            id: "miners",
             model: this.models.miners,
             factions: [this.factions.DWARFS],
             size: 10,
@@ -6828,7 +6828,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
         },
         quarrellers: {
-            id: this.serial++,
+            id: "quarrellers",
             model: this.models.quarrellers,
             factions: [this.factions.DISPOSSESSED],
             size: 10,
@@ -6840,7 +6840,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-quarrellers-en.pdf",
         },
         runelord: {
-            id: this.serial++,
+            id: "runelord",
             model: this.models.runelord,
             factions: [this.factions.DISPOSSESSED],
             size: 1,
@@ -6852,7 +6852,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         slayers: {
-            id: this.serial++,
+            id: "slayers",
             model: this.models.slayers,
             factions: [this.factions.DWARFS],
             size: 5,
@@ -6863,7 +6863,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
         },
         thaneWithBattleStandard: {
-            id: this.serial++,
+            id: "thaneWithBattleStandard",
             model: this.models.thaneWithBattleStandard,
             factions: [this.factions.DWARFS],
             size: 1,
@@ -6874,7 +6874,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         thunderers: {
-            id: this.serial++,
+            id: "thunderers",
             model: this.models.thunderers,
             factions: [this.factions.DISPOSSESSED],
             size: 10,
@@ -6886,7 +6886,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-thunderers-en.pdf",
         },
         unforged: {
-            id: this.serial++,
+            id: "unforged",
             model: this.models.unforged,
             factions: [this.factions.DISPOSSESSED],
             size: 1,
@@ -6898,7 +6898,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         wardenKing: {
-            id: this.serial++,
+            id: "wardenKing",
             model: this.models.wardenKing,
             factions: [this.factions.DISPOSSESSED],
             size: 1,
@@ -6910,7 +6910,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         greatcannon: {
-            id: this.serial++,
+            id: "greatcannon",
             model: this.models.greatcannon,
             factions: [this.factions.EMPIRE],
             size: 1,
@@ -6921,7 +6921,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         helblasterVolleyGun: {
-            id: this.serial++,
+            id: "helblasterVolleyGun",
             model: this.models.helblasterVolleyGun,
             factions: [this.factions.IRONWELDARSONAL],
             size: 1,
@@ -6933,7 +6933,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         helstormRocketBattery: {
-            id: this.serial++,
+            id: "helstormRocketBattery",
             model: this.models.helstormRocketBattery,
             factions: [this.factions.IRONWELDARSONAL],
             size: 1,
@@ -6945,7 +6945,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         fieldMortar: {
-            id: this.serial++,
+            id: "fieldMortar",
             model: this.models.fieldMortar,
             factions: [this.factions.EMPIRE],
             size: 1,
@@ -6956,7 +6956,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         freeguildArchers: {
-            id: this.serial++,
+            id: "freeguildArchers",
             model: this.models.freeguildArchers,
             factions: [this.factions.FREEPEOPLES],
             size: 10,
@@ -6969,7 +6969,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         freeguildCrossbowmen: {
-            id: this.serial++,
+            id: "freeguildCrossbowmen",
             model: this.models.freeguildCrossbowmen,
             factions: [this.factions.FREEPEOPLES],
             size: 10,
@@ -6982,7 +6982,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         freeguildGuard: {
-            id: this.serial++,
+            id: "freeguildGuard",
             model: this.models.freeguildGuard,
             factions: [this.factions.FREEPEOPLES],
             size: 10,
@@ -6996,7 +6996,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         freeguildHandgunners: {
-            id: this.serial++,
+            id: "freeguildHandgunners",
             model: this.models.freeguildHandgunners,
             factions: [this.factions.FREEPEOPLES],
             size: 10,
@@ -7009,7 +7009,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         battlemageOnGriffon: {
-            id: this.serial++,
+            id: "battlemageOnGriffon",
             model: this.models.battlemageOnGriffon,
             factions: [this.factions.COLLEGIATEARCANE],
             size: 1,
@@ -7022,7 +7022,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         celestialHurricanum: {
-            id: this.serial++,
+            id: "celestialHurricanum",
             model: this.models.celestialHurricanum,
             factions: [this.factions.COLLEGIATEARCANE],
             size: 1,
@@ -7034,7 +7034,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         celestialHurricanumWithCelestialBattlemage: {
-            id: this.serial++,
+            id: "celestialHurricanumWithCelestialBattlemage",
             model: this.models.celestialHurricanumWithCelestialBattlemage,
             factions: [this.factions.COLLEGIATEARCANE],
             size: 1,
@@ -7047,7 +7047,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         freeguildGeneralOnGriffon: {
-            id: this.serial++,
+            id: "freeguildGeneralOnGriffon",
             model: this.models.freeguildGeneralOnGriffon,
             factions: [this.factions.FREEPEOPLES],
             size: 1,
@@ -7061,7 +7061,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         luminarkOfHysh: {
-            id: this.serial++,
+            id: "luminarkOfHysh",
             model: this.models.luminarkOfHysh,
             factions: [this.factions.COLLEGIATEARCANE],
             size: 1,
@@ -7073,7 +7073,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         luminarkOfHyshWithWhiteBattlemage: {
-            id: this.serial++,
+            id: "luminarkOfHyshWithWhiteBattlemage",
             model: this.models.luminarkOfHyshWithWhiteBattlemage,
             factions: [this.factions.COLLEGIATEARCANE],
             size: 1,
@@ -7086,7 +7086,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         steamTank: {
-            id: this.serial++,
+            id: "steamTank",
             model: this.models.steamTank,
             factions: [this.factions.IRONWELDARSONAL],
             size: 1,
@@ -7098,7 +7098,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         warAltarOfSigmar: {
-            id: this.serial++,
+            id: "warAltarOfSigmar",
             model: this.models.warAltarOfSigmar,
             factions: [this.factions.DEVOTEDOFSIGMAR],
             size: 1,
@@ -7111,7 +7111,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         flagellants: {
-            id: this.serial++,
+            id: "flagellants",
             model: this.models.flagellants,
             factions: [this.factions.DEVOTEDOFSIGMAR],
             size: 10,
@@ -7125,7 +7125,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         battlemageOnPegasus: {
-            id: this.serial++,
+            id: "battlemageOnPegasus",
             model: this.models.battlemageOnPegasus,
             factions: [this.factions.EMPIRE],
             size: 1,
@@ -7136,7 +7136,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         battlemage: {
-            id: this.serial++,
+            id: "battlemage",
             model: this.models.battlemage,
             factions: [this.factions.COLLEGIATEARCANE],
             size: 1,
@@ -7148,7 +7148,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         demigryphKnights: {
-            id: this.serial++,
+            id: "demigryphKnights",
             model: this.models.demigryphKnights,
             factions: [this.factions.FREEPEOPLES],
             size: 3,
@@ -7162,7 +7162,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         knightsOfOrder: {
-            id: this.serial++,
+            id: "knightsOfOrder",
             model: this.models.knightsOfOrder,
             factions: [this.factions.EMPIRE],
             size: 5,
@@ -7173,7 +7173,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
         },
         excelsiorWarpriest: {
-            id: this.serial++,
+            id: "excelsiorWarpriest",
             model: this.models.excelsiorWarpriest,
             factions: [this.factions.DEVOTEDOFSIGMAR],
             size: 1,
@@ -7184,7 +7184,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         freeguildGeneral: {
-            id: this.serial++,
+            id: "freeguildGeneral",
             model: this.models.freeguildGeneral,
             factions: [this.factions.FREEPEOPLES],
             size: 1,
@@ -7196,7 +7196,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         freeguildGreatswords: {
-            id: this.serial++,
+            id: "freeguildGreatswords",
             model: this.models.freeguildGreatswords,
             factions: [this.factions.FREEPEOPLES],
             size: 10,
@@ -7209,7 +7209,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         freeguildOutriders: {
-            id: this.serial++,
+            id: "freeguildOutriders",
             model: this.models.freeguildOutriders,
             factions: [this.factions.FREEPEOPLES],
             size: 5,
@@ -7220,7 +7220,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         freeguildPistoliers: {
-            id: this.serial++,
+            id: "freeguildPistoliers",
             model: this.models.freeguildPistoliers,
             factions: [this.factions.FREEPEOPLES],
             size: 5,
@@ -7231,7 +7231,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         gunmaster: {
-            id: this.serial++,
+            id: "gunmaster",
             model: this.models.gunmaster,
             factions: [this.factions.IRONWELDARSONAL],
             size: 1,
@@ -7242,7 +7242,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         huntmarshal: {
-            id: this.serial++,
+            id: "huntmarshal",
             model: this.models.huntmarshal,
             factions: [this.factions.EMPIRE],
             size: 1,
@@ -7253,7 +7253,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         engineerOnMechanicalSteed: {
-            id: this.serial++,
+            id: "engineerOnMechanicalSteed",
             model: this.models.engineerOnMechanicalSteed,
             factions: [this.factions.EMPIRE],
             size: 1,
@@ -7265,7 +7265,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         warriorPriest: {
-            id: this.serial++,
+            id: "warriorPriest",
             model: this.models.warriorPriest,
             factions: [this.factions.DEVOTEDOFSIGMAR],
             size: 1,
@@ -7277,7 +7277,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         witchHunter: {
-            id: this.serial++,
+            id: "witchHunter",
             model: this.models.witchHunter,
             factions: [this.factions.DEVOTEDOFSIGMAR],
             size: 1,
@@ -7289,7 +7289,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         highbornRepeaterBoltThrower: {
-            id: this.serial++,
+            id: "highbornRepeaterBoltThrower",
             model: this.models.highbornRepeaterBoltThrower,
             factions: [this.factions.HIGHELVES],
             size: 1,
@@ -7300,7 +7300,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         highbornSpearmen: {
-            id: this.serial++,
+            id: "highbornSpearmen",
             model: this.models.highbornSpearmen,
             factions: [this.factions.HIGHELVES],
             size: 10,
@@ -7312,7 +7312,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         highbornSilverHelms: {
-            id: this.serial++,
+            id: "highbornSilverHelms",
             model: this.models.highbornSilverHelms,
             factions: [this.factions.HIGHELVES],
             size: 5,
@@ -7324,7 +7324,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         anointedOfAsuryanOnFlamespyrePhoenix: {
-            id: this.serial++,
+            id: "anointedOfAsuryanOnFlamespyrePhoenix",
             model: this.models.anointedOfAsuryanOnFlamespyrePhoenix,
             factions: [this.factions.PHOENIXTEMPLE],
             size: 1,
@@ -7336,7 +7336,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         dragonlord: {
-            id: this.serial++,
+            id: "dragonlord",
             model: this.models.dragonlord,
             factions: [this.factions.ORDERDRACONIS],
             size: 1,
@@ -7349,7 +7349,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         drakeseer: {
-            id: this.serial++,
+            id: "drakeseer",
             model: this.models.drakeseer,
             factions: [this.factions.ELDRITCHCOUNCIL],
             size: 1,
@@ -7361,7 +7361,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         flamespyrePhoenix: {
-            id: this.serial++,
+            id: "flamespyrePhoenix",
             model: this.models.flamespyrePhoenix,
             factions: [this.factions.PHOENIXTEMPLE],
             size: 1,
@@ -7371,7 +7371,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 12,
         },
         anointedOfAsuryanOnFrostheartPhoenix: {
-            id: this.serial++,
+            id: "anointedOfAsuryanOnFrostheartPhoenix",
             model: this.models.anointedOfAsuryanOnFrostheartPhoenix,
             factions: [this.factions.PHOENIXTEMPLE],
             size: 1,
@@ -7383,7 +7383,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         frostheartPhoenix: {
-            id: this.serial++,
+            id: "frostheartPhoenix",
             model: this.models.frostheartPhoenix,
             factions: [this.factions.PHOENIXTEMPLE],
             size: 1,
@@ -7393,7 +7393,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 12,
         },
         archmage: {
-            id: this.serial++,
+            id: "archmage",
             model: this.models.archmage,
             factions: [this.factions.ELDRITCHCOUNCIL],
             size: 1,
@@ -7404,7 +7404,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         loremaster: {
-            id: this.serial++,
+            id: "loremaster",
             model: this.models.loremaster,
             factions: [this.factions.ELDRITCHCOUNCIL],
             size: 1,
@@ -7415,7 +7415,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         archmageOnDragon: {
-            id: this.serial++,
+            id: "archmageOnDragon",
             model: this.models.archmageOnDragon,
             factions: [this.factions.ELDRITCHCOUNCIL],
             size: 1,
@@ -7428,7 +7428,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         swordmasters: {
-            id: this.serial++,
+            id: "swordmasters",
             model: this.models.swordmasters,
             factions: [this.factions.ELDRITCHCOUNCIL],
             size: 10,
@@ -7441,7 +7441,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         dragonBlades: {
-            id: this.serial++,
+            id: "dragonBlades",
             model: this.models.dragonBlades,
             factions: [this.factions.ORDERDRACONIS],
             size: 5,
@@ -7453,7 +7453,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         phoenixGuard: {
-            id: this.serial++,
+            id: "phoenixGuard",
             model: this.models.phoenixGuard,
             factions: [this.factions.PHOENIXTEMPLE],
             size: 10,
@@ -7466,7 +7466,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         chariots: {
-            id: this.serial++,
+            id: "chariots",
             model: this.models.chariots,
             factions: [this.factions.SWIFTHAWKAGENTS],
             size: 1,
@@ -7477,7 +7477,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 3,
         },
         skycutters: {
-            id: this.serial++,
+            id: "skycutters",
             model: this.models.skycutters,
             factions: [this.factions.SWIFTHAWKAGENTS],
             size: 1,
@@ -7489,7 +7489,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptions: [{ options: [{ name: "Swifthawk Bows", id: "swifthawkBows" },{ name: "Eagle Eye Bolt Thrower", id: "eagleEyeBoltThrower" }] }],
         },
         skywarden: {
-            id: this.serial++,
+            id: "skywarden",
             model: this.models.skywarden,
             factions: [this.factions.SWIFTHAWKAGENTS],
             size: 1,
@@ -7501,7 +7501,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         reavers: {
-            id: this.serial++,
+            id: "reavers",
             model: this.models.reavers,
             factions: [this.factions.SWIFTHAWKAGENTS],
             size: 5,
@@ -7513,7 +7513,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         highWarden: {
-            id: this.serial++,
+            id: "highWarden",
             model: this.models.highWarden,
             factions: [this.factions.SWIFTHAWKAGENTS],
             size: 1,
@@ -7525,7 +7525,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         shadowWarriors: {
-            id: this.serial++,
+            id: "shadowWarriors",
             model: this.models.shadowWarriors,
             factions: [this.factions.SWIFTHAWKAGENTS],
             size: 10,
@@ -7538,7 +7538,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         spireguard: {
-            id: this.serial++,
+            id: "spireguard",
             model: this.models.spireguard,
             factions: [this.factions.SWIFTHAWKAGENTS],
             size: 10,
@@ -7551,7 +7551,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         anointed: {
-            id: this.serial++,
+            id: "anointed",
             model: this.models.anointed,
             factions: [this.factions.PHOENIXTEMPLE],
             size: 1,
@@ -7562,7 +7562,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         dragonNoble: {
-            id: this.serial++,
+            id: "dragonNoble",
             model: this.models.dragonNoble,
             factions: [this.factions.ORDERDRACONIS],
             size: 1,
@@ -7574,7 +7574,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         greatEagles: {
-            id: this.serial++,
+            id: "greatEagles",
             model: this.models.greatEagles,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -7585,7 +7585,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 3,
         },
         highbornArchers: {
-            id: this.serial++,
+            id: "highbornArchers",
             model: this.models.highbornArchers,
             factions: [this.factions.HIGHELVES],
             size: 10,
@@ -7596,7 +7596,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
         },
         seawardenOnFoot: {
-            id: this.serial++,
+            id: "seawardenOnFoot",
             model: this.models.seawardenOnFoot,
             factions: [this.factions.HIGHELVES],
             size: 1,
@@ -7607,7 +7607,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         whiteLionChariots: {
-            id: this.serial++,
+            id: "whiteLionChariots",
             model: this.models.whiteLionChariots,
             factions: [this.factions.LIONRANGERS],
             size: 1,
@@ -7618,7 +7618,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 3,
         },
         whiteLions: {
-            id: this.serial++,
+            id: "whiteLions",
             model: this.models.whiteLions,
             factions: [this.factions.LIONRANGERS],
             size: 10,
@@ -7630,7 +7630,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 360,
         },
         deathshriekerRocketLauncher: {
-            id: this.serial++,
+            id: "deathshriekerRocketLauncher",
             model: this.models.deathshriekerRocketLauncher,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7641,7 +7641,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         dreadquakeMortar: {
-            id: this.serial++,
+            id: "dreadquakeMortar",
             model: this.models.dreadquakeMortar,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7652,7 +7652,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         magmaCannon: {
-            id: this.serial++,
+            id: "magmaCannon",
             model: this.models.magmaCannon,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7663,7 +7663,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         bullCentaurRenders: {
-            id: this.serial++,
+            id: "bullCentaurRenders",
             model: this.models.bullCentaurRenders,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 3,
@@ -7677,7 +7677,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         infernalGuardFireglaives: {
-            id: this.serial++,
+            id: "infernalGuardFireglaives",
             model: this.models.infernalGuardFireglaives,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 10,
@@ -7689,7 +7689,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         infernalGuardIronsworn: {
-            id: this.serial++,
+            id: "infernalGuardIronsworn",
             model: this.models.infernalGuardIronsworn,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 10,
@@ -7702,7 +7702,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         chaosSiegeGargant: {
-            id: this.serial++,
+            id: "chaosSiegeGargant",
             model: this.models.chaosSiegeGargant,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7713,7 +7713,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         ironDaemonWarEngine: {
-            id: this.serial++,
+            id: "ironDaemonWarEngine",
             model: this.models.ironDaemonWarEngine,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7724,7 +7724,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         skullcrackerWarEngine: {
-            id: this.serial++,
+            id: "skullcrackerWarEngine",
             model: this.models.skullcrackerWarEngine,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7735,7 +7735,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         sharTorTheExecutioner: {
-            id: this.serial++,
+            id: "sharTorTheExecutioner",
             model: this.models.sharTorTheExecutioner,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7746,7 +7746,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         drazhoathTheAshen: {
-            id: this.serial++,
+            id: "drazhoathTheAshen",
             model: this.models.drazhoathTheAshen,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7758,7 +7758,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         bullCentaurTaurRuk: {
-            id: this.serial++,
+            id: "bullCentaurTaurRuk",
             model: this.models.bullCentaurTaurRuk,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7769,7 +7769,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         daemonsmith: {
-            id: this.serial++,
+            id: "daemonsmith",
             model: this.models.daemonsmith,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7781,7 +7781,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         infernalGuardBattleStandardBearer: {
-            id: this.serial++,
+            id: "infernalGuardBattleStandardBearer",
             model: this.models.infernalGuardBattleStandardBearer,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7792,7 +7792,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         infernalGuardCastellan: {
-            id: this.serial++,
+            id: "infernalGuardCastellan",
             model: this.models.infernalGuardCastellan,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 1,
@@ -7804,7 +7804,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         kDaaiFireborn: {
-            id: this.serial++,
+            id: "kDaaiFireborn",
             model: this.models.kDaaiFireborn,
             factions: [this.factions.LEGIONOFAZGORH],
             size: 3,
@@ -7816,7 +7816,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 560,
         },
         razordons: {
-            id: this.serial++,
+            id: "razordons",
             model: this.models.razordons,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7829,7 +7829,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         salamanders: {
-            id: this.serial++,
+            id: "salamanders",
             model: this.models.salamanders,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7842,7 +7842,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         saurusWarriors: {
-            id: this.serial++,
+            id: "saurusWarriors",
             model: this.models.saurusWarriors,
             factions: [this.factions.SERAPHON],
             size: 10,
@@ -7857,7 +7857,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         skinks: {
-            id: this.serial++,
+            id: "skinks",
             model: this.models.skinks,
             factions: [this.factions.SERAPHON],
             size: 10,
@@ -7872,7 +7872,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         bastiladon: {
-            id: this.serial++,
+            id: "bastiladon",
             model: this.models.bastiladon,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7885,7 +7885,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         saurusOldbloodOnCarnosaur: {
-            id: this.serial++,
+            id: "saurusOldbloodOnCarnosaur",
             model: this.models.saurusOldbloodOnCarnosaur,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7899,7 +7899,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         saurusScarVeteranOnCarnosaur: {
-            id: this.serial++,
+            id: "saurusScarVeteranOnCarnosaur",
             model: this.models.saurusScarVeteranOnCarnosaur,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7914,7 +7914,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         stegadon: {
-            id: this.serial++,
+            id: "stegadon",
             model: this.models.stegadon,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7927,7 +7927,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         troglodon: {
-            id: this.serial++,
+            id: "troglodon",
             model: this.models.troglodon,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7940,7 +7940,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         skinkPriest: {
-            id: this.serial++,
+            id: "skinkPriest",
             model: this.models.skinkPriest,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7954,7 +7954,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skinkStarpriest: {
-            id: this.serial++,
+            id: "skinkStarpriest",
             model: this.models.skinkStarpriest,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7967,7 +7967,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         engineOfTheGods: {
-            id: this.serial++,
+            id: "engineOfTheGods",
             model: this.models.engineOfTheGods,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -7981,7 +7981,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         saurusGuard: {
-            id: this.serial++,
+            id: "saurusGuard",
             model: this.models.saurusGuard,
             factions: [this.factions.SERAPHON],
             size: 5,
@@ -7994,7 +7994,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         saurusKnights: {
-            id: this.serial++,
+            id: "saurusKnights",
             model: this.models.saurusKnights,
             factions: [this.factions.SERAPHON],
             size: 5,
@@ -8008,7 +8008,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         saurusAstrolithBearer: {
-            id: this.serial++,
+            id: "saurusAstrolithBearer",
             model: this.models.saurusAstrolithBearer,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -8021,7 +8021,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordKroak: {
-            id: this.serial++,
+            id: "lordKroak",
             model: this.models.lordKroak,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -8034,7 +8034,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         chameleonSkinkStalker: {
-            id: this.serial++,
+            id: "chameleonSkinkStalker",
             model: this.models.chameleonSkinkStalker,
             factions: [this.factions.LIZARDMEN],
             size: 1,
@@ -8046,7 +8046,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skinkProphet: {
-            id: this.serial++,
+            id: "skinkProphet",
             model: this.models.skinkProphet,
             factions: [this.factions.LIZARDMEN],
             size: 1,
@@ -8058,7 +8058,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         chameleonSkinks: {
-            id: this.serial++,
+            id: "chameleonSkinks",
             model: this.models.chameleonSkinks,
             factions: [this.factions.SERAPHON],
             size: 5,
@@ -8070,7 +8070,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chameleonskinks-en.pdf",
         },
         celestialSwarms: {
-            id: this.serial++,
+            id: "celestialSwarms",
             model: this.models.celestialSwarms,
             factions: [this.factions.LIZARDMEN],
             size: 2,
@@ -8081,7 +8081,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 8,
         },
         kroxigor: {
-            id: this.serial++,
+            id: "kroxigor",
             model: this.models.kroxigor,
             factions: [this.factions.SERAPHON],
             size: 3,
@@ -8093,7 +8093,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kroxigor-en.pdf",
         },
         ripperdactylRiders: {
-            id: this.serial++,
+            id: "ripperdactylRiders",
             model: this.models.ripperdactylRiders,
             factions: [this.factions.SERAPHON],
             size: 3,
@@ -8105,7 +8105,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ripperdactylriders-en.pdf",
         },
         saurusEternityWarden: {
-            id: this.serial++,
+            id: "saurusEternityWarden",
             model: this.models.saurusEternityWarden,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -8118,7 +8118,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         saurusOldblood: {
-            id: this.serial++,
+            id: "saurusOldblood",
             model: this.models.saurusOldblood,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -8132,7 +8132,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         saurusScarVeteranOnColdOne: {
-            id: this.serial++,
+            id: "saurusScarVeteranOnColdOne",
             model: this.models.saurusScarVeteranOnColdOne,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -8145,7 +8145,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         saurusSunblood: {
-            id: this.serial++,
+            id: "saurusSunblood",
             model: this.models.saurusSunblood,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -8158,7 +8158,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skinkChief: {
-            id: this.serial++,
+            id: "skinkChief",
             model: this.models.skinkChief,
             factions: [this.factions.LIZARDMEN],
             size: 1,
@@ -8171,7 +8171,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skinkHandlers: {
-            id: this.serial++,
+            id: "skinkHandlers",
             model: this.models.skinkHandlers,
             factions: [this.factions.SERAPHON],
             size: 3,
@@ -8182,7 +8182,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         skinkStarseer: {
-            id: this.serial++,
+            id: "skinkStarseer",
             model: this.models.skinkStarseer,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -8195,7 +8195,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         slannStarmaster: {
-            id: this.serial++,
+            id: "slannStarmaster",
             model: this.models.slannStarmaster,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -8208,7 +8208,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         terradonRiders: {
-            id: this.serial++,
+            id: "terradonRiders",
             model: this.models.terradonRiders,
             factions: [this.factions.SERAPHON],
             size: 3,
@@ -8221,7 +8221,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptions: [{ options: [{ name: "Starstrike Javelins", id: "starstrikeJavelins" },{ name: "Sunleech Bolas", id: "sunleechBolas" }] }],
         },
         squigGobba: {
-            id: this.serial++,
+            id: "squigGobba",
             model: this.models.squigGobba,
             factions: [this.factions.MONSTROUSARCANUM],
             size: 1,
@@ -8232,7 +8232,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         fimirWarriors: {
-            id: this.serial++,
+            id: "fimirWarriors",
             model: this.models.fimirWarriors,
             factions: [this.factions.MONSTROUSARCANUM],
             size: 3,
@@ -8244,7 +8244,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         basilisk: {
-            id: this.serial++,
+            id: "basilisk",
             model: this.models.basilisk,
             factions: [this.factions.MONSTROUSARCANUM],
             size: 1,
@@ -8255,7 +8255,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         bonegrinderGargant: {
-            id: this.serial++,
+            id: "bonegrinderGargant",
             model: this.models.bonegrinderGargant,
             factions: [this.factions.MONSTROUSARCANUM],
             size: 1,
@@ -8266,7 +8266,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         broodHorror: {
-            id: this.serial++,
+            id: "broodHorror",
             model: this.models.broodHorror,
             factions: [this.factions.SKAVENMOULDER],
             size: 1,
@@ -8277,7 +8277,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         carmineDragon: {
-            id: this.serial++,
+            id: "carmineDragon",
             model: this.models.carmineDragon,
             factions: [this.factions.MONSTERSOFORDER],
             size: 1,
@@ -8288,7 +8288,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         colossalSquig: {
-            id: this.serial++,
+            id: "colossalSquig",
             model: this.models.colossalSquig,
             factions: [this.factions.MONSTROUSARCANUM],
             size: 1,
@@ -8299,7 +8299,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         cursDEttin: {
-            id: this.serial++,
+            id: "cursDEttin",
             model: this.models.cursDEttin,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -8310,7 +8310,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         dreadSaurian: {
-            id: this.serial++,
+            id: "dreadSaurian",
             model: this.models.dreadSaurian,
             factions: [this.factions.SERAPHON],
             size: 1,
@@ -8321,7 +8321,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         incarnateElementalOfBeasts: {
-            id: this.serial++,
+            id: "incarnateElementalOfBeasts",
             model: this.models.incarnateElementalOfBeasts,
             factions: [this.factions.MONSTROUSARCANUM],
             size: 1,
@@ -8332,7 +8332,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         magmaDragon: {
-            id: this.serial++,
+            id: "magmaDragon",
             model: this.models.magmaDragon,
             factions: [this.factions.MONSTROUSARCANUM],
             size: 1,
@@ -8343,7 +8343,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         merwyrm: {
-            id: this.serial++,
+            id: "merwyrm",
             model: this.models.merwyrm,
             factions: [this.factions.MONSTROUSARCANUM],
             size: 1,
@@ -8354,7 +8354,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         preyton: {
-            id: this.serial++,
+            id: "preyton",
             model: this.models.preyton,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -8365,7 +8365,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         rogueIdol: {
-            id: this.serial++,
+            id: "rogueIdol",
             model: this.models.rogueIdol,
             factions: [this.factions.MONSTROUSARCANUM],
             size: 1,
@@ -8376,7 +8376,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         skavenWarlordOnBroodHorror: {
-            id: this.serial++,
+            id: "skavenWarlordOnBroodHorror",
             model: this.models.skavenWarlordOnBroodHorror,
             factions: [this.factions.SKAVENVERMINUS],
             size: 1,
@@ -8388,7 +8388,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         troggothHag: {
-            id: this.serial++,
+            id: "troggothHag",
             model: this.models.troggothHag,
             factions: [this.factions.TROGGOTHS],
             size: 1,
@@ -8400,7 +8400,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         warpfireDragon: {
-            id: this.serial++,
+            id: "warpfireDragon",
             model: this.models.warpfireDragon,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -8411,7 +8411,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         mourngul: {
-            id: this.serial++,
+            id: "mourngul",
             model: this.models.mourngul,
             factions: [this.factions.NIGHTHAUNT],
             size: 1,
@@ -8422,7 +8422,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         skinWolves: {
-            id: this.serial++,
+            id: "skinWolves",
             model: this.models.skinWolves,
             factions: [this.factions.WARRIORSOFCHAOS],
             size: 3,
@@ -8433,7 +8433,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         wolfRats: {
-            id: this.serial++,
+            id: "wolfRats",
             model: this.models.wolfRats,
             factions: [this.factions.SKAVENMOULDER],
             size: 5,
@@ -8444,7 +8444,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         icebrowHunter: {
-            id: this.serial++,
+            id: "icebrowHunter",
             model: this.models.icebrowHunter,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 1,
@@ -8456,7 +8456,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         frostlordOnStonehorn: {
-            id: this.serial++,
+            id: "frostlordOnStonehorn",
             model: this.models.frostlordOnStonehorn,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 1,
@@ -8468,7 +8468,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         frostlordOnThundertusk: {
-            id: this.serial++,
+            id: "frostlordOnThundertusk",
             model: this.models.frostlordOnThundertusk,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 1,
@@ -8480,7 +8480,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         huskardOnStonehorn: {
-            id: this.serial++,
+            id: "huskardOnStonehorn",
             model: this.models.huskardOnStonehorn,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 1,
@@ -8494,7 +8494,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         huskardOnThundertusk: {
-            id: this.serial++,
+            id: "huskardOnThundertusk",
             model: this.models.huskardOnThundertusk,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 1,
@@ -8507,7 +8507,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         mournfangPack: {
-            id: this.serial++,
+            id: "mournfangPack",
             model: this.models.mournfangPack,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 2,
@@ -8521,7 +8521,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         icefallYhetees: {
-            id: this.serial++,
+            id: "icefallYhetees",
             model: this.models.icefallYhetees,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 3,
@@ -8533,7 +8533,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         frostSabres: {
-            id: this.serial++,
+            id: "frostSabres",
             model: this.models.frostSabres,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 2,
@@ -8545,7 +8545,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         stonehornBeastriders: {
-            id: this.serial++,
+            id: "stonehornBeastriders",
             model: this.models.stonehornBeastriders,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 1,
@@ -8560,7 +8560,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         thundertuskBeastriders: {
-            id: this.serial++,
+            id: "thundertuskBeastriders",
             model: this.models.thundertuskBeastriders,
             factions: [this.factions.BEASTCLAWRAIDERS],
             size: 1,
@@ -8575,7 +8575,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         firebelly: {
-            id: this.serial++,
+            id: "firebelly",
             model: this.models.firebelly,
             factions: [this.factions.FIREBELLIES],
             size: 1,
@@ -8586,7 +8586,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         butcher: {
-            id: this.serial++,
+            id: "butcher",
             model: this.models.butcher,
             factions: [this.factions.GUTBUSTERS],
             size: 1,
@@ -8597,7 +8597,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         gorgers: {
-            id: this.serial++,
+            id: "gorgers",
             model: this.models.gorgers,
             factions: [this.factions.GUTBUSTERS],
             size: 1,
@@ -8607,7 +8607,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 5,
         },
         grots: {
-            id: this.serial++,
+            id: "grots",
             model: this.models.grots,
             factions: [this.factions.GUTBUSTERS],
             size: 20,
@@ -8619,7 +8619,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 270,
         },
         ironguts: {
-            id: this.serial++,
+            id: "ironguts",
             model: this.models.ironguts,
             factions: [this.factions.GUTBUSTERS],
             size: 3,
@@ -8631,7 +8631,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         tyrant: {
-            id: this.serial++,
+            id: "tyrant",
             model: this.models.tyrant,
             factions: [this.factions.GUTBUSTERS],
             size: 1,
@@ -8644,7 +8644,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         grotScraplauncher: {
-            id: this.serial++,
+            id: "grotScraplauncher",
             model: this.models.grotScraplauncher,
             factions: [this.factions.GUTBUSTERS],
             size: 1,
@@ -8655,7 +8655,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         ironblaster: {
-            id: this.serial++,
+            id: "ironblaster",
             model: this.models.ironblaster,
             factions: [this.factions.GUTBUSTERS],
             size: 1,
@@ -8666,7 +8666,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         ogors: {
-            id: this.serial++,
+            id: "ogors",
             model: this.models.ogors,
             factions: [this.factions.GUTBUSTERS],
             size: 3,
@@ -8681,7 +8681,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         leadbelchers: {
-            id: this.serial++,
+            id: "leadbelchers",
             model: this.models.leadbelchers,
             factions: [this.factions.GUTBUSTERS],
             size: 3,
@@ -8693,7 +8693,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         maneaters: {
-            id: this.serial++,
+            id: "maneaters",
             model: this.models.maneaters,
             factions: [this.factions.MANEATERS],
             size: 3,
@@ -8705,7 +8705,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogor-maneaters-en.pdf",
         },
         bruiserStandardBearer: {
-            id: this.serial++,
+            id: "bruiserStandardBearer",
             model: this.models.bruiserStandardBearer,
             factions: [this.factions.OGREKINGDOMS],
             size: 1,
@@ -8716,7 +8716,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         overtyrant: {
-            id: this.serial++,
+            id: "overtyrant",
             model: this.models.overtyrant,
             factions: [this.factions.OGREKINGDOMS],
             size: 1,
@@ -8727,7 +8727,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         aleguzzlerGargant: {
-            id: this.serial++,
+            id: "aleguzzlerGargant",
             model: this.models.aleguzzlerGargant,
             factions: [this.factions.ALEGUZZLERGARGANTS],
             size: 1,
@@ -8738,7 +8738,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         maniakWeirdnob: {
-            id: this.serial++,
+            id: "maniakWeirdnob",
             model: this.models.maniakWeirdnob,
             factions: [this.factions.BONESPLITTERZ],
             size: 1,
@@ -8749,7 +8749,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         savageBigBoss: {
-            id: this.serial++,
+            id: "savageBigBoss",
             model: this.models.savageBigBoss,
             factions: [this.factions.BONESPLITTERZ],
             size: 1,
@@ -8761,7 +8761,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         savageBigStabbas: {
-            id: this.serial++,
+            id: "savageBigStabbas",
             model: this.models.savageBigStabbas,
             factions: [this.factions.BONESPLITTERZ],
             size: 2,
@@ -8773,7 +8773,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-savage-orruks-en-2016.pdf",
         },
         savageOrrukArrowboys: {
-            id: this.serial++,
+            id: "savageOrrukArrowboys",
             model: this.models.savageOrrukArrowboys,
             factions: [this.factions.BONESPLITTERZ],
             size: 10,
@@ -8785,7 +8785,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         savageOrrukMorboys: {
-            id: this.serial++,
+            id: "savageOrrukMorboys",
             model: this.models.savageOrrukMorboys,
             factions: [this.factions.BONESPLITTERZ],
             size: 10,
@@ -8798,7 +8798,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         wardokk: {
-            id: this.serial++,
+            id: "wardokk",
             model: this.models.wardokk,
             factions: [this.factions.BONESPLITTERZ],
             size: 1,
@@ -8810,7 +8810,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         wurrgogProphet: {
-            id: this.serial++,
+            id: "wurrgogProphet",
             model: this.models.wurrgogProphet,
             factions: [this.factions.BONESPLITTERZ],
             size: 1,
@@ -8822,7 +8822,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         savageOrruks: {
-            id: this.serial++,
+            id: "savageOrruks",
             model: this.models.savageOrruks,
             factions: [this.factions.BONESPLITTERZ],
             size: 10,
@@ -8835,7 +8835,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         savageBoarboyManiaks: {
-            id: this.serial++,
+            id: "savageBoarboyManiaks",
             model: this.models.savageBoarboyManiaks,
             factions: [this.factions.BONESPLITTERZ],
             size: 5,
@@ -8847,7 +8847,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         savageBoarboyz: {
-            id: this.serial++,
+            id: "savageBoarboyz",
             model: this.models.savageBoarboyz,
             factions: [this.factions.BONESPLITTERZ],
             size: 5,
@@ -8859,7 +8859,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         gitmobGrotShaman: {
-            id: this.serial++,
+            id: "gitmobGrotShaman",
             model: this.models.gitmobGrotShaman,
             factions: [this.factions.GROTS],
             size: 1,
@@ -8870,7 +8870,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         grotWolfChariots: {
-            id: this.serial++,
+            id: "grotWolfChariots",
             model: this.models.grotWolfChariots,
             factions: [this.factions.GROTS],
             size: 1,
@@ -8882,7 +8882,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         nastySkulkers: {
-            id: this.serial++,
+            id: "nastySkulkers",
             model: this.models.nastySkulkers,
             factions: [this.factions.GROTS],
             size: 3,
@@ -8893,7 +8893,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 9,
         },
         snotlingPumpWagons: {
-            id: this.serial++,
+            id: "snotlingPumpWagons",
             model: this.models.snotlingPumpWagons,
             factions: [this.factions.GROTS],
             size: 1,
@@ -8904,7 +8904,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 3,
         },
         snotlings: {
-            id: this.serial++,
+            id: "snotlings",
             model: this.models.snotlings,
             factions: [this.factions.GROTS],
             size: 2,
@@ -8915,7 +8915,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 10,
         },
         doomDiverCatapult: {
-            id: this.serial++,
+            id: "doomDiverCatapult",
             model: this.models.doomDiverCatapult,
             factions: [this.factions.GROTS],
             size: 1,
@@ -8926,7 +8926,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         grotRockLobber: {
-            id: this.serial++,
+            id: "grotRockLobber",
             model: this.models.grotRockLobber,
             factions: [this.factions.GROTS],
             size: 1,
@@ -8937,7 +8937,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         grotSpearChukka: {
-            id: this.serial++,
+            id: "grotSpearChukka",
             model: this.models.grotSpearChukka,
             factions: [this.factions.GROTS],
             size: 1,
@@ -8948,7 +8948,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         gitmobGrots: {
-            id: this.serial++,
+            id: "gitmobGrots",
             model: this.models.gitmobGrots,
             factions: [this.factions.GROTS],
             size: 20,
@@ -8962,7 +8962,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         grotWolfRiders: {
-            id: this.serial++,
+            id: "grotWolfRiders",
             model: this.models.grotWolfRiders,
             factions: [this.factions.GROTS],
             size: 5,
@@ -8976,7 +8976,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         orrukBoarChariots: {
-            id: this.serial++,
+            id: "orrukBoarChariots",
             model: this.models.orrukBoarChariots,
             factions: [this.factions.ORRUKS],
             size: 1,
@@ -8988,7 +8988,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         orrukGreatShaman: {
-            id: this.serial++,
+            id: "orrukGreatShaman",
             model: this.models.orrukGreatShaman,
             factions: [this.factions.ORRUKS],
             size: 1,
@@ -8999,7 +8999,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         orrukWarboss: {
-            id: this.serial++,
+            id: "orrukWarboss",
             model: this.models.orrukWarboss,
             factions: [this.factions.ORRUKS],
             size: 1,
@@ -9011,7 +9011,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         orruks: {
-            id: this.serial++,
+            id: "orruks",
             model: this.models.orruks,
             factions: [this.factions.ORRUKS],
             size: 10,
@@ -9025,7 +9025,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         orrukBoarboys: {
-            id: this.serial++,
+            id: "orrukBoarboys",
             model: this.models.orrukBoarboys,
             factions: [this.factions.ORRUKS],
             size: 5,
@@ -9038,7 +9038,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         orrukWarbossOnWyvern: {
-            id: this.serial++,
+            id: "orrukWarbossOnWyvern",
             model: this.models.orrukWarbossOnWyvern,
             factions: [this.factions.ORRUKS],
             size: 1,
@@ -9050,7 +9050,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         orrukMegaboss: {
-            id: this.serial++,
+            id: "orrukMegaboss",
             model: this.models.orrukMegaboss,
             factions: [this.factions.IRONJAWZ],
             size: 1,
@@ -9062,7 +9062,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         orrukWarchanter: {
-            id: this.serial++,
+            id: "orrukWarchanter",
             model: this.models.orrukWarchanter,
             factions: [this.factions.IRONJAWZ],
             size: 1,
@@ -9074,7 +9074,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         orrukWeirdnobShaman: {
-            id: this.serial++,
+            id: "orrukWeirdnobShaman",
             model: this.models.orrukWeirdnobShaman,
             factions: [this.factions.IRONJAWZ],
             size: 1,
@@ -9086,7 +9086,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         orrukArdboys: {
-            id: this.serial++,
+            id: "orrukArdboys",
             model: this.models.orrukArdboys,
             factions: [this.factions.IRONJAWZ],
             size: 10,
@@ -9100,7 +9100,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         orrukBrutes: {
-            id: this.serial++,
+            id: "orrukBrutes",
             model: this.models.orrukBrutes,
             factions: [this.factions.IRONJAWZ],
             size: 5,
@@ -9113,7 +9113,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         orrukGoreGruntas: {
-            id: this.serial++,
+            id: "orrukGoreGruntas",
             model: this.models.orrukGoreGruntas,
             factions: [this.factions.IRONJAWZ],
             size: 3,
@@ -9126,7 +9126,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         gordrakkTheFistOfGork: {
-            id: this.serial++,
+            id: "gordrakkTheFistOfGork",
             model: this.models.gordrakkTheFistOfGork,
             factions: [this.factions.IRONJAWZ],
             size: 1,
@@ -9139,7 +9139,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         megabossOnMawKrusha: {
-            id: this.serial++,
+            id: "megabossOnMawKrusha",
             model: this.models.megabossOnMawKrusha,
             factions: [this.factions.IRONJAWZ],
             size: 1,
@@ -9152,7 +9152,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         caveSquigs: {
-            id: this.serial++,
+            id: "caveSquigs",
             model: this.models.caveSquigs,
             factions: [this.factions.MOONCLANGROTS],
             size: 5,
@@ -9164,7 +9164,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         grotFanatics: {
-            id: this.serial++,
+            id: "grotFanatics",
             model: this.models.grotFanatics,
             factions: [this.factions.MOONCLANGROTS],
             size: 3,
@@ -9175,7 +9175,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 6,
         },
         grotSquigHerders: {
-            id: this.serial++,
+            id: "grotSquigHerders",
             model: this.models.grotSquigHerders,
             factions: [this.factions.MOONCLANGROTS],
             size: 2,
@@ -9186,7 +9186,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 10,
         },
         grotSquigHoppers: {
-            id: this.serial++,
+            id: "grotSquigHoppers",
             model: this.models.grotSquigHoppers,
             factions: [this.factions.MOONCLANGROTS],
             size: 5,
@@ -9198,7 +9198,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         grotWarboss: {
-            id: this.serial++,
+            id: "grotWarboss",
             model: this.models.grotWarboss,
             factions: [this.factions.MOONCLANGROTS],
             size: 1,
@@ -9210,7 +9210,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         grotWarbossOnGreatCaveSquig: {
-            id: this.serial++,
+            id: "grotWarbossOnGreatCaveSquig",
             model: this.models.grotWarbossOnGreatCaveSquig,
             factions: [this.factions.MOONCLANGROTS],
             size: 1,
@@ -9222,7 +9222,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         moonclanGrotShaman: {
-            id: this.serial++,
+            id: "moonclanGrotShaman",
             model: this.models.moonclanGrotShaman,
             factions: [this.factions.MOONCLANGROTS],
             size: 1,
@@ -9233,7 +9233,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         moonclanGrots: {
-            id: this.serial++,
+            id: "moonclanGrots",
             model: this.models.moonclanGrots,
             factions: [this.factions.MOONCLANGROTS],
             size: 20,
@@ -9247,7 +9247,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         manglerSquigs: {
-            id: this.serial++,
+            id: "manglerSquigs",
             model: this.models.manglerSquigs,
             factions: [this.factions.MOONCLANGROTS],
             size: 1,
@@ -9258,7 +9258,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         gitboss: {
-            id: this.serial++,
+            id: "gitboss",
             model: this.models.gitboss,
             factions: [this.factions.ORCSANDGOBLINS],
             size: 1,
@@ -9269,7 +9269,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         orrukBully: {
-            id: this.serial++,
+            id: "orrukBully",
             model: this.models.orrukBully,
             factions: [this.factions.ORCSANDGOBLINS],
             size: 1,
@@ -9280,7 +9280,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         mercenaryOrruks: {
-            id: this.serial++,
+            id: "mercenaryOrruks",
             model: this.models.mercenaryOrruks,
             factions: [this.factions.ORCSANDGOBLINS],
             size: 5,
@@ -9291,7 +9291,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
         },
         gitbossOnWolfChariot: {
-            id: this.serial++,
+            id: "gitbossOnWolfChariot",
             model: this.models.gitbossOnWolfChariot,
             factions: [this.factions.ORCSANDGOBLINS],
             size: 1,
@@ -9302,7 +9302,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         grotBigBossOnGiganticSpider: {
-            id: this.serial++,
+            id: "grotBigBossOnGiganticSpider",
             model: this.models.grotBigBossOnGiganticSpider,
             factions: [this.factions.SPIDERFANGGROTS],
             size: 1,
@@ -9313,7 +9313,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         arachnarokSpider: {
-            id: this.serial++,
+            id: "arachnarokSpider",
             model: this.models.arachnarokSpider,
             factions: [this.factions.SPIDERFANGGROTS],
             size: 1,
@@ -9323,7 +9323,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 14,
         },
         arachnarokSpiderWithGrotShaman: {
-            id: this.serial++,
+            id: "arachnarokSpiderWithGrotShaman",
             model: this.models.arachnarokSpiderWithGrotShaman,
             factions: [this.factions.SPIDERFANGGROTS],
             size: 1,
@@ -9335,7 +9335,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         grotSpiderRiders: {
-            id: this.serial++,
+            id: "grotSpiderRiders",
             model: this.models.grotSpiderRiders,
             factions: [this.factions.SPIDERFANGGROTS],
             size: 5,
@@ -9348,7 +9348,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         fellwaterTroggoths: {
-            id: this.serial++,
+            id: "fellwaterTroggoths",
             model: this.models.fellwaterTroggoths,
             factions: [this.factions.TROGGOTHS],
             size: 3,
@@ -9359,7 +9359,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         rockgutTroggoths: {
-            id: this.serial++,
+            id: "rockgutTroggoths",
             model: this.models.rockgutTroggoths,
             factions: [this.factions.TROGGOTHS],
             size: 3,
@@ -9370,7 +9370,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         sourbreathTroggoths: {
-            id: this.serial++,
+            id: "sourbreathTroggoths",
             model: this.models.sourbreathTroggoths,
             factions: [this.factions.TROGGOTHS],
             size: 3,
@@ -9381,7 +9381,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         enchantress: {
-            id: this.serial++,
+            id: "enchantress",
             model: this.models.enchantress,
             factions: [this.factions.BRETONNIA],
             size: 1,
@@ -9392,7 +9392,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         sacredProtector: {
-            id: this.serial++,
+            id: "sacredProtector",
             model: this.models.sacredProtector,
             factions: [this.factions.BRETONNIA],
             size: 1,
@@ -9403,7 +9403,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         mountedYeomen: {
-            id: this.serial++,
+            id: "mountedYeomen",
             model: this.models.mountedYeomen,
             factions: [this.factions.BRETONNIA],
             size: 5,
@@ -9414,7 +9414,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         peasantBowmen: {
-            id: this.serial++,
+            id: "peasantBowmen",
             model: this.models.peasantBowmen,
             factions: [this.factions.BRETONNIA],
             size: 16,
@@ -9425,7 +9425,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 48,
         },
         pegasusKnights: {
-            id: this.serial++,
+            id: "pegasusKnights",
             model: this.models.pegasusKnights,
             factions: [this.factions.BRETONNIA],
             size: 3,
@@ -9436,7 +9436,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         questingKnights: {
-            id: this.serial++,
+            id: "questingKnights",
             model: this.models.questingKnights,
             factions: [this.factions.BRETONNIA],
             size: 5,
@@ -9447,7 +9447,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         fieldTrebuchet: {
-            id: this.serial++,
+            id: "fieldTrebuchet",
             model: this.models.fieldTrebuchet,
             factions: [this.factions.BRETONNIA],
             size: 1,
@@ -9458,7 +9458,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         knightsErrant: {
-            id: this.serial++,
+            id: "knightsErrant",
             model: this.models.knightsErrant,
             factions: [this.factions.BRETONNIA],
             size: 8,
@@ -9470,7 +9470,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         knightsOfTheRealm: {
-            id: this.serial++,
+            id: "knightsOfTheRealm",
             model: this.models.knightsOfTheRealm,
             factions: [this.factions.BRETONNIA],
             size: 8,
@@ -9482,7 +9482,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         menAtArms: {
-            id: this.serial++,
+            id: "menAtArms",
             model: this.models.menAtArms,
             factions: [this.factions.BRETONNIA],
             size: 16,
@@ -9494,7 +9494,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         battlePilgrims: {
-            id: this.serial++,
+            id: "battlePilgrims",
             model: this.models.battlePilgrims,
             factions: [this.factions.BRETONNIA],
             size: 6,
@@ -9505,7 +9505,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
         },
         bretonnianLord: {
-            id: this.serial++,
+            id: "bretonnianLord",
             model: this.models.bretonnianLord,
             factions: [this.factions.BRETONNIA],
             size: 1,
@@ -9516,7 +9516,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         damsel: {
-            id: this.serial++,
+            id: "damsel",
             model: this.models.damsel,
             factions: [this.factions.BRETONNIA],
             size: 1,
@@ -9527,7 +9527,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         grailKnights: {
-            id: this.serial++,
+            id: "grailKnights",
             model: this.models.grailKnights,
             factions: [this.factions.BRETONNIA],
             size: 5,
@@ -9538,7 +9538,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         nobleChampion: {
-            id: this.serial++,
+            id: "nobleChampion",
             model: this.models.nobleChampion,
             factions: [this.factions.BRETONNIA],
             size: 1,
@@ -9549,7 +9549,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         nobleStandardBearer: {
-            id: this.serial++,
+            id: "nobleStandardBearer",
             model: this.models.nobleStandardBearer,
             factions: [this.factions.BRETONNIA],
             size: 1,
@@ -9560,7 +9560,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         gladeGuard: {
-            id: this.serial++,
+            id: "gladeGuard",
             model: this.models.gladeGuard,
             factions: [this.factions.WANDERERS],
             size: 10,
@@ -9572,7 +9572,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         wildwoodRangers: {
-            id: this.serial++,
+            id: "wildwoodRangers",
             model: this.models.wildwoodRangers,
             factions: [this.factions.WANDERERS],
             size: 10,
@@ -9585,7 +9585,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         sistersOfTheWatch: {
-            id: this.serial++,
+            id: "sistersOfTheWatch",
             model: this.models.sistersOfTheWatch,
             factions: [this.factions.WANDERERS],
             size: 10,
@@ -9597,7 +9597,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         eternalGuard: {
-            id: this.serial++,
+            id: "eternalGuard",
             model: this.models.eternalGuard,
             factions: [this.factions.WANDERERS],
             size: 10,
@@ -9610,7 +9610,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         nomadPrince: {
-            id: this.serial++,
+            id: "nomadPrince",
             model: this.models.nomadPrince,
             factions: [this.factions.WANDERERS],
             size: 1,
@@ -9621,7 +9621,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         sistersOfTheThorn: {
-            id: this.serial++,
+            id: "sistersOfTheThorn",
             model: this.models.sistersOfTheThorn,
             factions: [this.factions.WANDERERS],
             size: 5,
@@ -9632,7 +9632,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         spellweaver: {
-            id: this.serial++,
+            id: "spellweaver",
             model: this.models.spellweaver,
             factions: [this.factions.WANDERERS],
             size: 1,
@@ -9644,7 +9644,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         wayfinder: {
-            id: this.serial++,
+            id: "wayfinder",
             model: this.models.wayfinder,
             factions: [this.factions.WANDERERS],
             size: 1,
@@ -9655,7 +9655,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         waystrider: {
-            id: this.serial++,
+            id: "waystrider",
             model: this.models.waystrider,
             factions: [this.factions.WANDERERS],
             size: 1,
@@ -9666,7 +9666,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         wildRiders: {
-            id: this.serial++,
+            id: "wildRiders",
             model: this.models.wildRiders,
             factions: [this.factions.WANDERERS],
             size: 5,
@@ -9677,7 +9677,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         gladeRiders: {
-            id: this.serial++,
+            id: "gladeRiders",
             model: this.models.gladeRiders,
             factions: [this.factions.WOODELVES],
             size: 8,
@@ -9689,7 +9689,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         waywatchers: {
-            id: this.serial++,
+            id: "waywatchers",
             model: this.models.waywatchers,
             factions: [this.factions.WOODELVES],
             size: 5,
@@ -9700,7 +9700,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 15,
         },
         gladeLordOnForestDragon: {
-            id: this.serial++,
+            id: "gladeLordOnForestDragon",
             model: this.models.gladeLordOnForestDragon,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9712,7 +9712,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         avatarOfTheHunt: {
-            id: this.serial++,
+            id: "avatarOfTheHunt",
             model: this.models.avatarOfTheHunt,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9724,7 +9724,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         twilightSistersOnForestDragon: {
-            id: this.serial++,
+            id: "twilightSistersOnForestDragon",
             model: this.models.twilightSistersOnForestDragon,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9736,7 +9736,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         gladeCaptainBattleStandardBearer: {
-            id: this.serial++,
+            id: "gladeCaptainBattleStandardBearer",
             model: this.models.gladeCaptainBattleStandardBearer,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9747,7 +9747,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         gladeLord: {
-            id: this.serial++,
+            id: "gladeLord",
             model: this.models.gladeLord,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9759,7 +9759,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         gladeLordOnGreatEagle: {
-            id: this.serial++,
+            id: "gladeLordOnGreatEagle",
             model: this.models.gladeLordOnGreatEagle,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9771,7 +9771,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         gladeLordOnGreatStag: {
-            id: this.serial++,
+            id: "gladeLordOnGreatStag",
             model: this.models.gladeLordOnGreatStag,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9783,7 +9783,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         huntingHounds: {
-            id: this.serial++,
+            id: "huntingHounds",
             model: this.models.huntingHounds,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9794,7 +9794,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 5,
         },
         gladeLordOnPurebredSteed: {
-            id: this.serial++,
+            id: "gladeLordOnPurebredSteed",
             model: this.models.gladeLordOnPurebredSteed,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9805,7 +9805,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         shadowdancer: {
-            id: this.serial++,
+            id: "shadowdancer",
             model: this.models.shadowdancer,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9816,7 +9816,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         treeKin: {
-            id: this.serial++,
+            id: "treeKin",
             model: this.models.treeKin,
             factions: [this.factions.WOODELVES],
             size: 3,
@@ -9827,7 +9827,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         wardancers: {
-            id: this.serial++,
+            id: "wardancers",
             model: this.models.wardancers,
             factions: [this.factions.WOODELVES],
             size: 5,
@@ -9838,7 +9838,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
         },
         warhawkRiders: {
-            id: this.serial++,
+            id: "warhawkRiders",
             model: this.models.warhawkRiders,
             factions: [this.factions.WOODELVES],
             size: 1,
@@ -9849,7 +9849,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 6,
         },
         gutterRunners: {
-            id: this.serial++,
+            id: "gutterRunners",
             model: this.models.gutterRunners,
             factions: [this.factions.SKAVENESHIN],
             size: 5,
@@ -9862,7 +9862,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         skavenAssassin: {
-            id: this.serial++,
+            id: "skavenAssassin",
             model: this.models.skavenAssassin,
             factions: [this.factions.SKAVENESHIN],
             size: 1,
@@ -9874,7 +9874,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         nightRunners: {
-            id: this.serial++,
+            id: "nightRunners",
             model: this.models.nightRunners,
             factions: [this.factions.SKAVENESHIN],
             size: 10,
@@ -9887,7 +9887,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         verminlordDeceiver: {
-            id: this.serial++,
+            id: "verminlordDeceiver",
             model: this.models.verminlordDeceiver,
             factions: [this.factions.SKAVENESHIN],
             size: 1,
@@ -9899,7 +9899,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         greySeer: {
-            id: this.serial++,
+            id: "greySeer",
             model: this.models.greySeer,
             factions: [this.factions.MASTERCLAN],
             size: 1,
@@ -9910,7 +9910,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         screamingBell: {
-            id: this.serial++,
+            id: "screamingBell",
             model: this.models.screamingBell,
             factions: [this.factions.MASTERCLAN],
             size: 1,
@@ -9922,7 +9922,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         verminlordWarpseer: {
-            id: this.serial++,
+            id: "verminlordWarpseer",
             model: this.models.verminlordWarpseer,
             factions: [this.factions.MASTERCLAN],
             size: 1,
@@ -9934,7 +9934,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         lordSkreechVerminkin: {
-            id: this.serial++,
+            id: "lordSkreechVerminkin",
             model: this.models.lordSkreechVerminkin,
             factions: [this.factions.MASTERCLAN],
             size: 1,
@@ -9946,7 +9946,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         thanquolAndBoneripper: {
-            id: this.serial++,
+            id: "thanquolAndBoneripper",
             model: this.models.thanquolAndBoneripper,
             factions: [this.factions.MASTERCLAN],
             size: 1,
@@ -9959,7 +9959,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         giantRats: {
-            id: this.serial++,
+            id: "giantRats",
             model: this.models.giantRats,
             factions: [this.factions.SKAVENMOULDER],
             size: 10,
@@ -9972,7 +9972,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         packmaster: {
-            id: this.serial++,
+            id: "packmaster",
             model: this.models.packmaster,
             factions: [this.factions.SKAVENMOULDER],
             size: 1,
@@ -9984,7 +9984,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         ratOgors: {
-            id: this.serial++,
+            id: "ratOgors",
             model: this.models.ratOgors,
             factions: [this.factions.SKAVENMOULDER],
             size: 2,
@@ -9996,7 +9996,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         ratSwarms: {
-            id: this.serial++,
+            id: "ratSwarms",
             model: this.models.ratSwarms,
             factions: [this.factions.SKAVENMOULDER],
             size: 2,
@@ -10007,7 +10007,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 8,
         },
         hellPitAbomination: {
-            id: this.serial++,
+            id: "hellPitAbomination",
             model: this.models.hellPitAbomination,
             factions: [this.factions.SKAVENMOULDER],
             size: 1,
@@ -10018,7 +10018,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         plaguePriestWithPlagueCenser: {
-            id: this.serial++,
+            id: "plaguePriestWithPlagueCenser",
             model: this.models.plaguePriestWithPlagueCenser,
             factions: [this.factions.SKAVENPESTILENS],
             size: 1,
@@ -10029,7 +10029,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         plaguePriestWithWarpstoneTippedStaff: {
-            id: this.serial++,
+            id: "plaguePriestWithWarpstoneTippedStaff",
             model: this.models.plaguePriestWithWarpstoneTippedStaff,
             factions: [this.factions.SKAVENPESTILENS],
             size: 1,
@@ -10040,7 +10040,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         plagueclaw: {
-            id: this.serial++,
+            id: "plagueclaw",
             model: this.models.plagueclaw,
             factions: [this.factions.SKAVENPESTILENS],
             size: 1,
@@ -10051,7 +10051,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         plagueCenserBearers: {
-            id: this.serial++,
+            id: "plagueCenserBearers",
             model: this.models.plagueCenserBearers,
             factions: [this.factions.SKAVENPESTILENS],
             size: 5,
@@ -10063,7 +10063,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         plagueMonks: {
-            id: this.serial++,
+            id: "plagueMonks",
             model: this.models.plagueMonks,
             factions: [this.factions.SKAVENPESTILENS],
             size: 10,
@@ -10077,7 +10077,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         plagueFurnace: {
-            id: this.serial++,
+            id: "plagueFurnace",
             model: this.models.plagueFurnace,
             factions: [this.factions.SKAVENPESTILENS],
             size: 1,
@@ -10089,7 +10089,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         verminlordCorruptor: {
-            id: this.serial++,
+            id: "verminlordCorruptor",
             model: this.models.verminlordCorruptor,
             factions: [this.factions.SKAVENPESTILENS],
             size: 1,
@@ -10101,7 +10101,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         archWarlock: {
-            id: this.serial++,
+            id: "archWarlock",
             model: this.models.archWarlock,
             factions: [this.factions.SKAVENSKRYRE],
             size: 1,
@@ -10112,7 +10112,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         poisonedWindMortarWeaponTeam: {
-            id: this.serial++,
+            id: "poisonedWindMortarWeaponTeam",
             model: this.models.poisonedWindMortarWeaponTeam,
             factions: [this.factions.SKAVENSKRYRE],
             size: 1,
@@ -10122,7 +10122,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
         },
         ratlingGunWeaponTeam: {
-            id: this.serial++,
+            id: "ratlingGunWeaponTeam",
             model: this.models.ratlingGunWeaponTeam,
             factions: [this.factions.SKAVENSKRYRE],
             size: 1,
@@ -10132,7 +10132,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
         },
         warlockEngineer: {
-            id: this.serial++,
+            id: "warlockEngineer",
             model: this.models.warlockEngineer,
             factions: [this.factions.SKAVENSKRYRE],
             size: 1,
@@ -10143,7 +10143,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         warpGrinderWeaponTeam: {
-            id: this.serial++,
+            id: "warpGrinderWeaponTeam",
             model: this.models.warpGrinderWeaponTeam,
             factions: [this.factions.SKAVENSKRYRE],
             size: 1,
@@ -10153,7 +10153,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
         },
         warpfireThrowerWeaponTeam: {
-            id: this.serial++,
+            id: "warpfireThrowerWeaponTeam",
             model: this.models.warpfireThrowerWeaponTeam,
             factions: [this.factions.SKAVENSKRYRE],
             size: 1,
@@ -10163,7 +10163,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
         },
         warpLightningCannon: {
-            id: this.serial++,
+            id: "warpLightningCannon",
             model: this.models.warpLightningCannon,
             factions: [this.factions.SKAVENSKRYRE],
             size: 1,
@@ -10174,7 +10174,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         warplockJezzails: {
-            id: this.serial++,
+            id: "warplockJezzails",
             model: this.models.warplockJezzails,
             factions: [this.factions.SKAVENSKRYRE],
             size: 3,
@@ -10186,7 +10186,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         doomwheel: {
-            id: this.serial++,
+            id: "doomwheel",
             model: this.models.doomwheel,
             factions: [this.factions.SKAVENSKRYRE],
             size: 1,
@@ -10197,7 +10197,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         skryreAcolytes: {
-            id: this.serial++,
+            id: "skryreAcolytes",
             model: this.models.skryreAcolytes,
             factions: [this.factions.SKAVENSKRYRE],
             size: 5,
@@ -10210,7 +10210,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         stormfiends: {
-            id: this.serial++,
+            id: "stormfiends",
             model: this.models.stormfiends,
             factions: [this.factions.SKAVENSKRYRE],
             size: 3,
@@ -10222,7 +10222,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         skavenChieftainWithBattleStandard: {
-            id: this.serial++,
+            id: "skavenChieftainWithBattleStandard",
             model: this.models.skavenChieftainWithBattleStandard,
             factions: [this.factions.SKAVEN],
             size: 1,
@@ -10233,7 +10233,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skavenWarlord: {
-            id: this.serial++,
+            id: "skavenWarlord",
             model: this.models.skavenWarlord,
             factions: [this.factions.SKAVENVERMINUS],
             size: 1,
@@ -10245,7 +10245,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         stormvermin: {
-            id: this.serial++,
+            id: "stormvermin",
             model: this.models.stormvermin,
             factions: [this.factions.SKAVENVERMINUS],
             size: 10,
@@ -10259,7 +10259,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         clanrats: {
-            id: this.serial++,
+            id: "clanrats",
             model: this.models.clanrats,
             factions: [this.factions.SKAVENVERMINUS],
             size: 20,
@@ -10273,7 +10273,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         verminlordWarbringer: {
-            id: this.serial++,
+            id: "verminlordWarbringer",
             model: this.models.verminlordWarbringer,
             factions: [this.factions.SKAVENVERMINUS],
             size: 1,
@@ -10285,7 +10285,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         skavenslaves: {
-            id: this.serial++,
+            id: "skavenslaves",
             model: this.models.skavenslaves,
             factions: [this.factions.SKAVEN],
             size: 20,
@@ -10296,7 +10296,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptions: [{ options: [{ name: "Sling", id: "sling" },{ name: "Rusty Spear", id: "rustySpear" },{ name: "Rusty Blade", id: "rustyBlade" },{ name: "Shield & Rusty Spear", id: "shieldRustySpear" },{ name: "Shield & Rusty Blade", id: "shieldRustyBlade" }] }],
         },
         deathrunner: {
-            id: this.serial++,
+            id: "deathrunner",
             model: this.models.deathrunner,
             factions: [this.factions.SKAVENESHIN],
             size: 1,
@@ -10307,7 +10307,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         liberators: {
-            id: this.serial++,
+            id: "liberators",
             model: this.models.liberators,
             factions: [this.factions.STORMCASTETERNALS],
             size: 5,
@@ -10322,7 +10322,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         drakeswornTemplar: {
-            id: this.serial++,
+            id: "drakeswornTemplar",
             model: this.models.drakeswornTemplar,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10335,7 +10335,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         lordCelestantOnStardrake: {
-            id: this.serial++,
+            id: "lordCelestantOnStardrake",
             model: this.models.lordCelestantOnStardrake,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10349,7 +10349,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         judicators: {
-            id: this.serial++,
+            id: "judicators",
             model: this.models.judicators,
             factions: [this.factions.STORMCASTETERNALS],
             size: 5,
@@ -10363,7 +10363,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         vanguardHunters: {
-            id: this.serial++,
+            id: "vanguardHunters",
             model: this.models.vanguardHunters,
             factions: [this.factions.STORMCASTETERNALS],
             size: 5,
@@ -10375,7 +10375,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         knightVexillor: {
-            id: this.serial++,
+            id: "knightVexillor",
             model: this.models.knightVexillor,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10388,7 +10388,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         celestantPrime: {
-            id: this.serial++,
+            id: "celestantPrime",
             model: this.models.celestantPrime,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10400,7 +10400,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         aetherwings: {
-            id: this.serial++,
+            id: "aetherwings",
             model: this.models.aetherwings,
             factions: [this.factions.STORMCASTETERNALS],
             size: 3,
@@ -10411,7 +10411,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         concussors: {
-            id: this.serial++,
+            id: "concussors",
             model: this.models.concussors,
             factions: [this.factions.STORMCASTETERNALS],
             size: 2,
@@ -10423,7 +10423,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
         },
         desolators: {
-            id: this.serial++,
+            id: "desolators",
             model: this.models.desolators,
             factions: [this.factions.STORMCASTETERNALS],
             size: 2,
@@ -10435,7 +10435,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
         },
         fulminators: {
-            id: this.serial++,
+            id: "fulminators",
             model: this.models.fulminators,
             factions: [this.factions.STORMCASTETERNALS],
             size: 2,
@@ -10447,7 +10447,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
         },
         gryphHound: {
-            id: this.serial++,
+            id: "gryphHound",
             model: this.models.gryphHound,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10459,7 +10459,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-lordcastellant-en.pdf",
         },
         knightQuestor: {
-            id: this.serial++,
+            id: "knightQuestor",
             model: this.models.knightQuestor,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10471,7 +10471,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         knightAzyros: {
-            id: this.serial++,
+            id: "knightAzyros",
             model: this.models.knightAzyros,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10483,7 +10483,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         knightHeraldor: {
-            id: this.serial++,
+            id: "knightHeraldor",
             model: this.models.knightHeraldor,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10495,7 +10495,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         knightVenator: {
-            id: this.serial++,
+            id: "knightVenator",
             model: this.models.knightVenator,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10507,7 +10507,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordVeritant: {
-            id: this.serial++,
+            id: "lordVeritant",
             model: this.models.lordVeritant,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10519,7 +10519,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordAquilor: {
-            id: this.serial++,
+            id: "lordAquilor",
             model: this.models.lordAquilor,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10530,7 +10530,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         vandusHammerhand: {
-            id: this.serial++,
+            id: "vandusHammerhand",
             model: this.models.vandusHammerhand,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10541,7 +10541,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordCastellant: {
-            id: this.serial++,
+            id: "lordCastellant",
             model: this.models.lordCastellant,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10553,7 +10553,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordCelestant: {
-            id: this.serial++,
+            id: "lordCelestant",
             model: this.models.lordCelestant,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10565,7 +10565,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordCelestantOnDracoth: {
-            id: this.serial++,
+            id: "lordCelestantOnDracoth",
             model: this.models.lordCelestantOnDracoth,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10578,7 +10578,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordRelictor: {
-            id: this.serial++,
+            id: "lordRelictor",
             model: this.models.lordRelictor,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -10589,7 +10589,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         paladinDecimators: {
-            id: this.serial++,
+            id: "paladinDecimators",
             model: this.models.paladinDecimators,
             factions: [this.factions.STORMCASTETERNALS],
             size: 5,
@@ -10601,7 +10601,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-decimators-en.pdf",
         },
         paladinProtectors: {
-            id: this.serial++,
+            id: "paladinProtectors",
             model: this.models.paladinProtectors,
             factions: [this.factions.STORMCASTETERNALS],
             size: 5,
@@ -10613,7 +10613,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-protectors-en.pdf",
         },
         paladinRetributors: {
-            id: this.serial++,
+            id: "paladinRetributors",
             model: this.models.paladinRetributors,
             factions: [this.factions.STORMCASTETERNALS],
             size: 5,
@@ -10625,7 +10625,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-retributors-en.pdf",
         },
         prosecutorsWithCelestialHammers: {
-            id: this.serial++,
+            id: "prosecutorsWithCelestialHammers",
             model: this.models.prosecutorsWithCelestialHammers,
             factions: [this.factions.STORMCASTETERNALS],
             size: 3,
@@ -10637,7 +10637,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-prostecutorhammers-en.pdf",
         },
         prosecutorsWithStormcallJavelins: {
-            id: this.serial++,
+            id: "prosecutorsWithStormcallJavelins",
             model: this.models.prosecutorsWithStormcallJavelins,
             factions: [this.factions.STORMCASTETERNALS],
             size: 3,
@@ -10649,7 +10649,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-prostecutorjavelins-en.pdf",
         },
         tempestors: {
-            id: this.serial++,
+            id: "tempestors",
             model: this.models.tempestors,
             factions: [this.factions.STORMCASTETERNALS],
             size: 2,
@@ -10661,7 +10661,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dracothian-guard-en.pdf",
         },
         vanguardPalladors: {
-            id: this.serial++,
+            id: "vanguardPalladors",
             model: this.models.vanguardPalladors,
             factions: [this.factions.STORMCASTETERNALS],
             size: 3,
@@ -10672,7 +10672,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         vanguardRaptorsWithHurricaneCrossbows: {
-            id: this.serial++,
+            id: "vanguardRaptorsWithHurricaneCrossbows",
             model: this.models.vanguardRaptorsWithHurricaneCrossbows,
             factions: [this.factions.STORMCASTETERNALS],
             size: 3,
@@ -10683,7 +10683,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         vanguardRaptorsWithLongstrikeCrossbows: {
-            id: this.serial++,
+            id: "vanguardRaptorsWithLongstrikeCrossbows",
             model: this.models.vanguardRaptorsWithLongstrikeCrossbows,
             factions: [this.factions.STORMCASTETERNALS],
             size: 3,
@@ -10694,7 +10694,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         dryads: {
-            id: this.serial++,
+            id: "dryads",
             model: this.models.dryads,
             factions: [this.factions.SYLVANETH],
             size: 10,
@@ -10708,7 +10708,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         spiritOfDurthu: {
-            id: this.serial++,
+            id: "spiritOfDurthu",
             model: this.models.spiritOfDurthu,
             factions: [this.factions.SYLVANETH],
             size: 1,
@@ -10721,7 +10721,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         treelord: {
-            id: this.serial++,
+            id: "treelord",
             model: this.models.treelord,
             factions: [this.factions.SYLVANETH],
             size: 1,
@@ -10733,7 +10733,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         treeRevenants: {
-            id: this.serial++,
+            id: "treeRevenants",
             model: this.models.treeRevenants,
             factions: [this.factions.SYLVANETH],
             size: 5,
@@ -10747,7 +10747,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         branchwraith: {
-            id: this.serial++,
+            id: "branchwraith",
             model: this.models.branchwraith,
             factions: [this.factions.SYLVANETH],
             size: 1,
@@ -10759,7 +10759,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         branchwych: {
-            id: this.serial++,
+            id: "branchwych",
             model: this.models.branchwych,
             factions: [this.factions.SYLVANETH],
             size: 1,
@@ -10771,7 +10771,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         treelordAncient: {
-            id: this.serial++,
+            id: "treelordAncient",
             model: this.models.treelordAncient,
             factions: [this.factions.SYLVANETH],
             size: 1,
@@ -10784,7 +10784,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         alarielleTheEverqueen: {
-            id: this.serial++,
+            id: "alarielleTheEverqueen",
             model: this.models.alarielleTheEverqueen,
             factions: [this.factions.SYLVANETH],
             size: 1,
@@ -10797,7 +10797,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         drychaHamadreth: {
-            id: this.serial++,
+            id: "drychaHamadreth",
             model: this.models.drychaHamadreth,
             factions: [this.factions.SYLVANETH],
             size: 1,
@@ -10810,7 +10810,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         kurnothHunters: {
-            id: this.serial++,
+            id: "kurnothHunters",
             model: this.models.kurnothHunters,
             factions: [this.factions.SYLVANETH],
             size: 3,
@@ -10823,7 +10823,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptions: [{ options: [{ name: "Scythes", id: "scythes" },{ name: "Greatswords", id: "greatswords" },{ name: "Greatbows", id: "greatbows" }] }],
         },
         spiteRevenants: {
-            id: this.serial++,
+            id: "spiteRevenants",
             model: this.models.spiteRevenants,
             factions: [this.factions.SYLVANETH],
             size: 5,
@@ -10837,7 +10837,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         chaosWarMammoth: {
-            id: this.serial++,
+            id: "chaosWarMammoth",
             model: this.models.chaosWarMammoth,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 1,
@@ -10848,7 +10848,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         giganticChaosSpawn: {
-            id: this.serial++,
+            id: "giganticChaosSpawn",
             model: this.models.giganticChaosSpawn,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 1,
@@ -10859,7 +10859,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         nightmaw: {
-            id: this.serial++,
+            id: "nightmaw",
             model: this.models.nightmaw,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 1,
@@ -10869,7 +10869,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 6,
         },
         daemonPlagueToadsOfNurgle: {
-            id: this.serial++,
+            id: "daemonPlagueToadsOfNurgle",
             model: this.models.daemonPlagueToadsOfNurgle,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 3,
@@ -10882,7 +10882,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         plagueOgors: {
-            id: this.serial++,
+            id: "plagueOgors",
             model: this.models.plagueOgors,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 3,
@@ -10895,7 +10895,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         kayzkTheBefouled: {
-            id: this.serial++,
+            id: "kayzkTheBefouled",
             model: this.models.kayzkTheBefouled,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 1,
@@ -10906,7 +10906,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         saylTheFaithless: {
-            id: this.serial++,
+            id: "saylTheFaithless",
             model: this.models.saylTheFaithless,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 1,
@@ -10917,7 +10917,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         tamurkhanTheMaggotLord: {
-            id: this.serial++,
+            id: "tamurkhanTheMaggotLord",
             model: this.models.tamurkhanTheMaggotLord,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 1,
@@ -10929,7 +10929,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         bileTroggoths: {
-            id: this.serial++,
+            id: "bileTroggoths",
             model: this.models.bileTroggoths,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 3,
@@ -10941,7 +10941,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 640,
         },
         daemonPoxRidersOfNurgle: {
-            id: this.serial++,
+            id: "daemonPoxRidersOfNurgle",
             model: this.models.daemonPoxRidersOfNurgle,
             factions: [this.factions.TAMURKHANSHORDE],
             size: 3,
@@ -10953,7 +10953,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 640,
         },
         screamingSkullCatapult: {
-            id: this.serial++,
+            id: "screamingSkullCatapult",
             model: this.models.screamingSkullCatapult,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -10964,7 +10964,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         skeletonChariots: {
-            id: this.serial++,
+            id: "skeletonChariots",
             model: this.models.skeletonChariots,
             factions: [this.factions.TOMBKINGS],
             size: 3,
@@ -10976,7 +10976,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         skeletonHorsemen: {
-            id: this.serial++,
+            id: "skeletonHorsemen",
             model: this.models.skeletonHorsemen,
             factions: [this.factions.TOMBKINGS],
             size: 5,
@@ -10988,7 +10988,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         skeletalLegionnaires: {
-            id: this.serial++,
+            id: "skeletalLegionnaires",
             model: this.models.skeletalLegionnaires,
             factions: [this.factions.TOMBKINGS],
             size: 10,
@@ -11000,7 +11000,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         boneGiant: {
-            id: this.serial++,
+            id: "boneGiant",
             model: this.models.boneGiant,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11011,7 +11011,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         casketOfSouls: {
-            id: this.serial++,
+            id: "casketOfSouls",
             model: this.models.casketOfSouls,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11023,7 +11023,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         warsphinx: {
-            id: this.serial++,
+            id: "warsphinx",
             model: this.models.warsphinx,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11034,7 +11034,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         necrosphinx: {
-            id: this.serial++,
+            id: "necrosphinx",
             model: this.models.necrosphinx,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11045,7 +11045,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         royalWarsphinx: {
-            id: this.serial++,
+            id: "royalWarsphinx",
             model: this.models.royalWarsphinx,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11058,7 +11058,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         skeletonArchers: {
-            id: this.serial++,
+            id: "skeletonArchers",
             model: this.models.skeletonArchers,
             factions: [this.factions.TOMBKINGS],
             size: 10,
@@ -11070,7 +11070,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         tombQueen: {
-            id: this.serial++,
+            id: "tombQueen",
             model: this.models.tombQueen,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11081,7 +11081,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         scarabPrince: {
-            id: this.serial++,
+            id: "scarabPrince",
             model: this.models.scarabPrince,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11092,7 +11092,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         tombKingOnExaltedChariot: {
-            id: this.serial++,
+            id: "tombKingOnExaltedChariot",
             model: this.models.tombKingOnExaltedChariot,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11103,7 +11103,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         carrion: {
-            id: this.serial++,
+            id: "carrion",
             model: this.models.carrion,
             factions: [this.factions.TOMBKINGS],
             size: 3,
@@ -11114,7 +11114,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         lichePriest: {
-            id: this.serial++,
+            id: "lichePriest",
             model: this.models.lichePriest,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11125,7 +11125,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         necropolisKnights: {
-            id: this.serial++,
+            id: "necropolisKnights",
             model: this.models.necropolisKnights,
             factions: [this.factions.TOMBKINGS],
             size: 3,
@@ -11136,7 +11136,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         necrotect: {
-            id: this.serial++,
+            id: "necrotect",
             model: this.models.necrotect,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11147,7 +11147,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         sepulchralStalkers: {
-            id: this.serial++,
+            id: "sepulchralStalkers",
             model: this.models.sepulchralStalkers,
             factions: [this.factions.TOMBKINGS],
             size: 3,
@@ -11158,7 +11158,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         skeletonHorseArchers: {
-            id: this.serial++,
+            id: "skeletonHorseArchers",
             model: this.models.skeletonHorseArchers,
             factions: [this.factions.TOMBKINGS],
             size: 5,
@@ -11169,7 +11169,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         tombGuard: {
-            id: this.serial++,
+            id: "tombGuard",
             model: this.models.tombGuard,
             factions: [this.factions.TOMBKINGS],
             size: 5,
@@ -11181,7 +11181,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptions: [{ options: [{ name: "Tomb Blade", id: "tombBlade" },{ name: "Bronze Halberd", id: "bronzeHalberd" }] }],
         },
         tombHerald: {
-            id: this.serial++,
+            id: "tombHerald",
             model: this.models.tombHerald,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11192,7 +11192,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         tombKing: {
-            id: this.serial++,
+            id: "tombKing",
             model: this.models.tombKing,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11204,7 +11204,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         tombKingInRoyalChariot: {
-            id: this.serial++,
+            id: "tombKingInRoyalChariot",
             model: this.models.tombKingInRoyalChariot,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11215,7 +11215,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         tombScorpions: {
-            id: this.serial++,
+            id: "tombScorpions",
             model: this.models.tombScorpions,
             factions: [this.factions.TOMBKINGS],
             size: 1,
@@ -11226,7 +11226,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 3,
         },
         tombSwarm: {
-            id: this.serial++,
+            id: "tombSwarm",
             model: this.models.tombSwarm,
             factions: [this.factions.TOMBKINGS],
             size: 2,
@@ -11237,7 +11237,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 8,
         },
         ushabti: {
-            id: this.serial++,
+            id: "ushabti",
             model: this.models.ushabti,
             factions: [this.factions.TOMBKINGS],
             size: 3,
@@ -11249,7 +11249,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptions: [{ options: [{ name: "Ritual Blade Stave", id: "ritualBladeStave" },{ name: "Great Bow", id: "greatBow" }] }],
         },
         necromancerOnNightmare: {
-            id: this.serial++,
+            id: "necromancerOnNightmare",
             model: this.models.necromancerOnNightmare,
             factions: [this.factions.VAMPIRECOUNTS],
             size: 1,
@@ -11260,7 +11260,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         vampireLordOnAbyssalTerror: {
-            id: this.serial++,
+            id: "vampireLordOnAbyssalTerror",
             model: this.models.vampireLordOnAbyssalTerror,
             factions: [this.factions.VAMPIRECOUNTS],
             size: 1,
@@ -11272,7 +11272,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         chaosChariots: {
-            id: this.serial++,
+            id: "chaosChariots",
             model: this.models.chaosChariots,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11285,7 +11285,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         chaosChosen: {
-            id: this.serial++,
+            id: "chaosChosen",
             model: this.models.chaosChosen,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 5,
@@ -11296,7 +11296,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
         },
         chaosGorebeastChariots: {
-            id: this.serial++,
+            id: "chaosGorebeastChariots",
             model: this.models.chaosGorebeastChariots,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11307,7 +11307,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptions: [{ options: [{ name: "War Flail", id: "warFlail" },{ name: "Greatblade", id: "greatblade" }] }],
         },
         darkoathChieftain: {
-            id: this.serial++,
+            id: "darkoathChieftain",
             model: this.models.darkoathChieftain,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11318,7 +11318,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         exaltedHeroOfChaos: {
-            id: this.serial++,
+            id: "exaltedHeroOfChaos",
             model: this.models.exaltedHeroOfChaos,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11329,7 +11329,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         exaltedHeroWithBattleStandard: {
-            id: this.serial++,
+            id: "exaltedHeroWithBattleStandard",
             model: this.models.exaltedHeroWithBattleStandard,
             factions: [this.factions.WARRIORSOFCHAOS],
             size: 1,
@@ -11340,7 +11340,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         forsaken: {
-            id: this.serial++,
+            id: "forsaken",
             model: this.models.forsaken,
             factions: [this.factions.WARRIORSOFCHAOS],
             size: 10,
@@ -11351,7 +11351,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
         },
         lordOfChaos: {
-            id: this.serial++,
+            id: "lordOfChaos",
             model: this.models.lordOfChaos,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11362,7 +11362,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         chaosMarauders: {
-            id: this.serial++,
+            id: "chaosMarauders",
             model: this.models.chaosMarauders,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 10,
@@ -11376,7 +11376,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         chaosWarriors: {
-            id: this.serial++,
+            id: "chaosWarriors",
             model: this.models.chaosWarriors,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 5,
@@ -11390,7 +11390,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         chaosKnights: {
-            id: this.serial++,
+            id: "chaosKnights",
             model: this.models.chaosKnights,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 5,
@@ -11404,7 +11404,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         chaosMarauderHorsemen: {
-            id: this.serial++,
+            id: "chaosMarauderHorsemen",
             model: this.models.chaosMarauderHorsemen,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 5,
@@ -11418,7 +11418,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         chaosLordOnManticore: {
-            id: this.serial++,
+            id: "chaosLordOnManticore",
             model: this.models.chaosLordOnManticore,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11431,7 +11431,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         chaosWarshrine: {
-            id: this.serial++,
+            id: "chaosWarshrine",
             model: this.models.chaosWarshrine,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11444,7 +11444,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         chaosLordOnDaemonicMount: {
-            id: this.serial++,
+            id: "chaosLordOnDaemonicMount",
             model: this.models.chaosLordOnDaemonicMount,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11455,7 +11455,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         chaosSpawn: {
-            id: this.serial++,
+            id: "chaosSpawn",
             model: this.models.chaosSpawn,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11466,7 +11466,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 6,
         },
         chaosSorcererLord: {
-            id: this.serial++,
+            id: "chaosSorcererLord",
             model: this.models.chaosSorcererLord,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11478,7 +11478,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         chaosSorcererLordOnManticore: {
-            id: this.serial++,
+            id: "chaosSorcererLordOnManticore",
             model: this.models.chaosSorcererLordOnManticore,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11490,7 +11490,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         chimera: {
-            id: this.serial++,
+            id: "chimera",
             model: this.models.chimera,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -11501,7 +11501,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         cockatrice: {
-            id: this.serial++,
+            id: "cockatrice",
             model: this.models.cockatrice,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -11512,7 +11512,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         greatTaurus: {
-            id: this.serial++,
+            id: "greatTaurus",
             model: this.models.greatTaurus,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -11523,7 +11523,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         lammasu: {
-            id: this.serial++,
+            id: "lammasu",
             model: this.models.lammasu,
             factions: [this.factions.MONSTERSOFCHAOS],
             size: 1,
@@ -11534,7 +11534,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         chaosGargant: {
-            id: this.serial++,
+            id: "chaosGargant",
             model: this.models.chaosGargant,
             factions: [this.factions.CHAOSGARGANTS],
             size: 1,
@@ -11545,7 +11545,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         archaon: {
-            id: this.serial++,
+            id: "archaon",
             model: this.models.archaon,
             factions: [this.factions.EVERCHOSEN],
             size: 1,
@@ -11557,7 +11557,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         dragonOgors: {
-            id: this.serial++,
+            id: "dragonOgors",
             model: this.models.dragonOgors,
             factions: [this.factions.THUNDERSCORN],
             size: 3,
@@ -11570,7 +11570,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         varanguard: {
-            id: this.serial++,
+            id: "varanguard",
             model: this.models.varanguard,
             factions: [this.factions.EVERCHOSEN],
             size: 3,
@@ -11583,7 +11583,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         chaosLordOfSlaanesh: {
-            id: this.serial++,
+            id: "chaosLordOfSlaanesh",
             model: this.models.chaosLordOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -11594,7 +11594,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         hellflayersOfSlaanesh: {
-            id: this.serial++,
+            id: "hellflayersOfSlaanesh",
             model: this.models.hellflayersOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -11605,7 +11605,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 3,
         },
         hellstridersOfSlaanesh: {
-            id: this.serial++,
+            id: "hellstridersOfSlaanesh",
             model: this.models.hellstridersOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 5,
@@ -11618,7 +11618,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         putridBlightkings: {
-            id: this.serial++,
+            id: "putridBlightkings",
             model: this.models.putridBlightkings,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 5,
@@ -11632,7 +11632,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         pusgoyleBlightlords: {
-            id: this.serial++,
+            id: "pusgoyleBlightlords",
             model: this.models.pusgoyleBlightlords,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 2,
@@ -11645,7 +11645,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         gauntSummonerAndChaosFamiliars: {
-            id: this.serial++,
+            id: "gauntSummonerAndChaosFamiliars",
             model: this.models.gauntSummonerAndChaosFamiliars,
             factions: [this.factions.EVERCHOSEN],
             size: 1,
@@ -11656,7 +11656,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         gauntSummonerOfTzeentch: {
-            id: this.serial++,
+            id: "gauntSummonerOfTzeentch",
             model: this.models.gauntSummonerOfTzeentch,
             factions: [this.factions.EVERCHOSEN],
             size: 1,
@@ -11667,7 +11667,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         slambo: {
-            id: this.serial++,
+            id: "slambo",
             model: this.models.slambo,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -11679,7 +11679,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         troggothKing: {
-            id: this.serial++,
+            id: "troggothKing",
             model: this.models.troggothKing,
             factions: [this.factions.WARRIORSOFCHAOS],
             size: 1,
@@ -11690,7 +11690,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         bloabRotspawned: {
-            id: this.serial++,
+            id: "bloabRotspawned",
             model: this.models.bloabRotspawned,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -11703,7 +11703,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         chaosDragon: {
-            id: this.serial++,
+            id: "chaosDragon",
             model: this.models.chaosDragon,
             factions: [this.factions.WARRIORSOFCHAOS],
             size: 1,
@@ -11715,7 +11715,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         morbidexTwiceborn: {
-            id: this.serial++,
+            id: "morbidexTwiceborn",
             model: this.models.morbidexTwiceborn,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -11728,7 +11728,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         orghottsDaemonspew: {
-            id: this.serial++,
+            id: "orghottsDaemonspew",
             model: this.models.orghottsDaemonspew,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -11741,7 +11741,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         chaosFamiliars: {
-            id: this.serial++,
+            id: "chaosFamiliars",
             model: this.models.chaosFamiliars,
             factions: [this.factions.WARRIORSOFCHAOS],
             size: 2,
@@ -11752,7 +11752,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 8,
         },
         chaosOgors: {
-            id: this.serial++,
+            id: "chaosOgors",
             model: this.models.chaosOgors,
             factions: [this.factions.WARRIORSOFCHAOS],
             size: 3,
@@ -11763,7 +11763,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         chaosTroggoths: {
-            id: this.serial++,
+            id: "chaosTroggoths",
             model: this.models.chaosTroggoths,
             factions: [this.factions.WARRIORSOFCHAOS],
             size: 3,
@@ -11774,7 +11774,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 12,
         },
         dragonOgorShaggoth: {
-            id: this.serial++,
+            id: "dragonOgorShaggoth",
             model: this.models.dragonOgorShaggoth,
             factions: [this.factions.THUNDERSCORN],
             size: 1,
@@ -11785,7 +11785,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordOfSlaaneshOnDaemonicMount: {
-            id: this.serial++,
+            id: "lordOfSlaaneshOnDaemonicMount",
             model: this.models.lordOfSlaaneshOnDaemonicMount,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -11796,7 +11796,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         sorcerer: {
-            id: this.serial++,
+            id: "sorcerer",
             model: this.models.sorcerer,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -11808,7 +11808,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         harbingerOfDecay: {
-            id: this.serial++,
+            id: "harbingerOfDecay",
             model: this.models.harbingerOfDecay,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -11820,7 +11820,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         lordOfAfflictions: {
-            id: this.serial++,
+            id: "lordOfAfflictions",
             model: this.models.lordOfAfflictions,
             factions: [this.factions.NURGLEROTBRINGERS],
             size: 1,
@@ -11832,7 +11832,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         daemonPrinceOfKhorne: {
-            id: this.serial++,
+            id: "daemonPrinceOfKhorne",
             model: this.models.daemonPrinceOfKhorne,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -11845,7 +11845,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         aetherKhemist: {
-            id: this.serial++,
+            id: "aetherKhemist",
             model: this.models.aetherKhemist,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 1,
@@ -11859,7 +11859,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         aethericNavigator: {
-            id: this.serial++,
+            id: "aethericNavigator",
             model: this.models.aethericNavigator,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 1,
@@ -11873,7 +11873,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         arkanautAdmiral: {
-            id: this.serial++,
+            id: "arkanautAdmiral",
             model: this.models.arkanautAdmiral,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 1,
@@ -11887,7 +11887,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         arkanautCompany: {
-            id: this.serial++,
+            id: "arkanautCompany",
             model: this.models.arkanautCompany,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 10,
@@ -11898,7 +11898,7 @@ export class DataStoreImpl implements DataStore {
             isBattleline: () => true,
         },
         arkanautFrigate: {
-            id: this.serial++,
+            id: "arkanautFrigate",
             model: this.models.arkanautFrigate,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 1,
@@ -11909,7 +11909,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         arkanautIronclad: {
-            id: this.serial++,
+            id: "arkanautIronclad",
             model: this.models.arkanautIronclad,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 1,
@@ -11920,7 +11920,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         brokkGrungsson: {
-            id: this.serial++,
+            id: "brokkGrungsson",
             model: this.models.brokkGrungsson,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 1,
@@ -11934,7 +11934,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         endrinmaster: {
-            id: this.serial++,
+            id: "endrinmaster",
             model: this.models.endrinmaster,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 1,
@@ -11948,7 +11948,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         endrinriggers: {
-            id: this.serial++,
+            id: "endrinriggers",
             model: this.models.endrinriggers,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 3,
@@ -11958,7 +11958,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
         },
         grundstokGunhauler: {
-            id: this.serial++,
+            id: "grundstokGunhauler",
             model: this.models.grundstokGunhauler,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 1,
@@ -11969,7 +11969,7 @@ export class DataStoreImpl implements DataStore {
             isArtillery: () => true,
         },
         grundstokThunderers: {
-            id: this.serial++,
+            id: "grundstokThunderers",
             model: this.models.grundstokThunderers,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 5,
@@ -11979,7 +11979,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
         },
         skywardens: {
-            id: this.serial++,
+            id: "skywardens",
             model: this.models.skywardens,
             factions: [this.factions.KHARADRONOVERLORDS],
             size: 3,
@@ -11989,7 +11989,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
         },
         khorgosKhul: {
-            id: this.serial++,
+            id: "khorgosKhul",
             model: this.models.khorgosKhul,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 1,
@@ -12000,7 +12000,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         exaltedGreaterDaemonOfKhorne: {
-            id: this.serial++,
+            id: "exaltedGreaterDaemonOfKhorne",
             model: this.models.exaltedGreaterDaemonOfKhorne,
             factions: [this.factions.KHORNEDAEMONS],
             size: 1,
@@ -12012,7 +12012,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         exaltedGreaterDaemonOfNurgle: {
-            id: this.serial++,
+            id: "exaltedGreaterDaemonOfNurgle",
             model: this.models.exaltedGreaterDaemonOfNurgle,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -12024,7 +12024,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         exaltedGreaterDaemonOfSlaanesh: {
-            id: this.serial++,
+            id: "exaltedGreaterDaemonOfSlaanesh",
             model: this.models.exaltedGreaterDaemonOfSlaanesh,
             factions: [this.factions.SLAANESHDAEMONS],
             size: 1,
@@ -12036,7 +12036,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         exaltedGreaterDaemonOfTzeentch: {
-            id: this.serial++,
+            id: "exaltedGreaterDaemonOfTzeentch",
             model: this.models.exaltedGreaterDaemonOfTzeentch,
             factions: [this.factions.TZEENTCHDAEMONS],
             size: 1,
@@ -12048,7 +12048,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         warpgnawVerminlord: {
-            id: this.serial++,
+            id: "warpgnawVerminlord",
             model: this.models.warpgnawVerminlord,
             factions: [this.factions.MASTERCLAN],
             size: 1,
@@ -12060,7 +12060,7 @@ export class DataStoreImpl implements DataStore {
             isBehemot: () => true,
         },
         neaveBlacktalon: {
-            id: this.serial++,
+            id: "neaveBlacktalon",
             model: this.models.neaveBlacktalon,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -12071,7 +12071,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         horticulousSlimux: {
-            id: this.serial++,
+            id: "horticulousSlimux",
             model: this.models.horticulousSlimux,
             factions: [this.factions.NURGLEDAEMONS],
             size: 1,
@@ -12082,7 +12082,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         steelheartSChampions: {
-            id: this.serial++,
+            id: "steelheartSChampions",
             model: this.models.steelheartSChampions,
             factions: [this.factions.STORMCASTETERNALS],
             size: 3,
@@ -12092,7 +12092,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
         },
         garrekSReavers: {
-            id: this.serial++,
+            id: "garrekSReavers",
             model: this.models.garrekSReavers,
             factions: [this.factions.KHORNEBLOODBOUND],
             size: 5,
@@ -12102,7 +12102,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
         },
         lordOrdinator: {
-            id: this.serial++,
+            id: "lordOrdinator",
             model: this.models.lordOrdinator,
             factions: [this.factions.STORMCASTETERNALS],
             size: 1,
@@ -12113,7 +12113,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         darkoathWarqueen: {
-            id: this.serial++,
+            id: "darkoathWarqueen",
             model: this.models.darkoathWarqueen,
             factions: [this.factions.SLAVESTODARKNESS],
             size: 1,
@@ -12124,7 +12124,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         fungoidCaveShaman: {
-            id: this.serial++,
+            id: "fungoidCaveShaman",
             model: this.models.fungoidCaveShaman,
             factions: [this.factions.MOONCLANGROTS],
             size: 1,
@@ -12135,7 +12135,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         knightOfShrouds: {
-            id: this.serial++,
+            id: "knightOfShrouds",
             model: this.models.knightOfShrouds,
             factions: [this.factions.NIGHTHAUNT],
             size: 1,
@@ -12146,7 +12146,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         skritchSpiteclaw: {
-            id: this.serial++,
+            id: "skritchSpiteclaw",
             model: this.models.skritchSpiteclaw,
             factions: [this.factions.SKAVENVERMINUS],
             size: 1,
@@ -12157,7 +12157,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         spiteclawSSwarm: {
-            id: this.serial++,
+            id: "spiteclawSSwarm",
             model: this.models.spiteclawSSwarm,
             factions: [this.factions.SKAVENVERMINUS],
             size: 4,
@@ -12167,7 +12167,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
         },
         fjulGrimnir: {
-            id: this.serial++,
+            id: "fjulGrimnir",
             model: this.models.fjulGrimnir,
             factions: [this.factions.FYRESLAYERS],
             size: 1,
@@ -12178,7 +12178,7 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
         },
         theChosenAxes: {
-            id: this.serial++,
+            id: "theChosenAxes",
             model: this.models.theChosenAxes,
             factions: [this.factions.FYRESLAYERS],
             size: 3,
@@ -12194,1323 +12194,1323 @@ export class DataStoreImpl implements DataStore {
 
     battalions = {
         bloodHostOfKhorne: {
-            id: this.serial++,
+            id: "bloodHostOfKhorne",
             name: "Blood Host of Khorne",
             factions: [this.factions.KHORNEDAEMONS],
             points: 220,
             units: []             
         },
         bloodHunt: {
-            id: this.serial++,
+            id: "bloodHunt",
             name: "Blood Hunt",
             factions: [this.factions.KHORNEDAEMONS],
             points: 130,
             units: []             
         },
         theBloodlords: {
-            id: this.serial++,
+            id: "theBloodlords",
             name: "The Bloodlords",
             factions: [this.factions.KHORNEDAEMONS],
             points: 140,
             units: []             
         },
         bloodthunderStampede: {
-            id: this.serial++,
+            id: "bloodthunderStampede",
             name: "Bloodthunder Stampede",
             factions: [this.factions.KHORNEDAEMONS],
             points: 180,
             units: []             
         },
         charnelHost: {
-            id: this.serial++,
+            id: "charnelHost",
             name: "Charnel Host",
             factions: [this.factions.KHORNEDAEMONS],
             points: 140,
             units: []             
         },
         councilOfBlood: {
-            id: this.serial++,
+            id: "councilOfBlood",
             name: "Council of Blood",
             factions: [this.factions.KHORNEDAEMONS],
             points: 110,
             units: []             
         },
         daemonLegionOfKhorne: {
-            id: this.serial++,
+            id: "daemonLegionOfKhorne",
             name: "Daemon Legion of Khorne",
             factions: [this.factions.KHORNEDAEMONS],
             points: 160,
             units: []             
         },
         gorethunderCohort: {
-            id: this.serial++,
+            id: "gorethunderCohort",
             name: "Gorethunder Cohort",
             factions: [this.factions.KHORNEDAEMONS],
             points: 110,
             units: []             
         },
         murderhost: {
-            id: this.serial++,
+            id: "murderhost",
             name: "Murderhost",
             factions: [this.factions.KHORNEDAEMONS],
             points: 120,
             units: []             
         },
         theReapersOfVengeance: {
-            id: this.serial++,
+            id: "theReapersOfVengeance",
             name: "The Reapers of Vengeance",
             factions: [this.factions.KHORNEDAEMONS],
             points: 140,
             units: []             
         },
         skullseekerHost: {
-            id: this.serial++,
+            id: "skullseekerHost",
             name: "Skullseeker Host",
             factions: [this.factions.KHORNEDAEMONS],
             points: 140,
             units: []             
         },
         aetherEaterHost: {
-            id: this.serial++,
+            id: "aetherEaterHost",
             name: "Aether-eater Host",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 140,
             units: []             
         },
         changehost: {
-            id: this.serial++,
+            id: "changehost",
             name: "Changehost",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 160,
             units: []             
         },
         multitudinousHost: {
-            id: this.serial++,
+            id: "multitudinousHost",
             name: "Multitudinous Host",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 200,
             units: []             
         },
         omniscientOracles: {
-            id: this.serial++,
+            id: "omniscientOracles",
             name: "Omniscient Oracles",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 110,
             units: []             
         },
         overseerSFateTwisters: {
-            id: this.serial++,
+            id: "overseerSFateTwisters",
             name: "Overseer's Fate-twisters",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 110,
             units: []             
         },
         theEternalConflagration: {
-            id: this.serial++,
+            id: "theEternalConflagration",
             name: "The Eternal Conflagration",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 140,
             units: []             
         },
         theHostsDuplicitous: {
-            id: this.serial++,
+            id: "theHostsDuplicitous",
             name: "The Hosts Duplicitous",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 150,
             units: []             
         },
         warpflameHost: {
-            id: this.serial++,
+            id: "warpflameHost",
             name: "Warpflame Host",
             factions: [this.factions.TZEENTCHDAEMONS],
             points: 80,
             units: []             
         },
         bloodboundWarband: {
-            id: this.serial++,
+            id: "bloodboundWarband",
             name: "Bloodbound Warband",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 220,
             units: []             
         },
         bloodboundWarhorde: {
-            id: this.serial++,
+            id: "bloodboundWarhorde",
             name: "Bloodbound Warhorde",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 220,
             units: []             
         },
         bloodforged: {
-            id: this.serial++,
+            id: "bloodforged",
             name: "Bloodforged",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 140,
             units: []             
         },
         brassStampede: {
-            id: this.serial++,
+            id: "brassStampede",
             name: "Brass Stampede",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 180,
             units: []             
         },
         darkFeast: {
-            id: this.serial++,
+            id: "darkFeast",
             name: "Dark Feast",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 200,
             units: []             
         },
         gorePilgrims: {
-            id: this.serial++,
+            id: "gorePilgrims",
             name: "Gore Pilgrims",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 180,
             units: []             
         },
         redHeadsmen: {
-            id: this.serial++,
+            id: "redHeadsmen",
             name: "Red Headsmen",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 160,
             units: []             
         },
         skulltake: {
-            id: this.serial++,
+            id: "skulltake",
             name: "Skulltake",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 200,
             units: []             
         },
         slaughterborn: {
-            id: this.serial++,
+            id: "slaughterborn",
             name: "Slaughterborn",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 180,
             units: []             
         },
         theGorechosen: {
-            id: this.serial++,
+            id: "theGorechosen",
             name: "The Gorechosen",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 150,
             units: []             
         },
         theGoretide: {
-            id: this.serial++,
+            id: "theGoretide",
             name: "The Goretide",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 140,
             units: []             
         },
         theSkullfiendTribe: {
-            id: this.serial++,
+            id: "theSkullfiendTribe",
             name: "The Skullfiend Tribe",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 120,
             units: []             
         },
         alterKinCoven: {
-            id: this.serial++,
+            id: "alterKinCoven",
             name: "Alter-kin Coven",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 70,
             units: []             
         },
         arcaniteCabal: {
-            id: this.serial++,
+            id: "arcaniteCabal",
             name: "Arcanite Cabal",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 100,
             units: []             
         },
         arcaniteCult: {
-            id: this.serial++,
+            id: "arcaniteCult",
             name: "Arcanite Cult",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 160,
             units: []             
         },
         cultOfTheTransientForm: {
-            id: this.serial++,
+            id: "cultOfTheTransientForm",
             name: "Cult of the Transient Form",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 160,
             units: []             
         },
         skyshoalCoven: {
-            id: this.serial++,
+            id: "skyshoalCoven",
             name: "Skyshoal Coven",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 130,
             units: []             
         },
         thePyrofaneCult: {
-            id: this.serial++,
+            id: "thePyrofaneCult",
             name: "The Pyrofane Cult",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 180,
             units: []             
         },
         tzaangorCoven: {
-            id: this.serial++,
+            id: "tzaangorCoven",
             name: "Tzaangor Coven",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 90,
             units: []             
         },
         witchfyreCoven: {
-            id: this.serial++,
+            id: "witchfyreCoven",
             name: "Witchfyre Coven",
             factions: [this.factions.TZEENTCHARCHANITES],
             points: 110,
             units: []             
         },
         wildstalkerBrayherd: {
-            id: this.serial++,
+            id: "wildstalkerBrayherd",
             name: "Wildstalker Brayherd",
             factions: [this.factions.BRAYHERD],
             points: 240,
             units: []             
         },
         tallybandOfNurgle: {
-            id: this.serial++,
+            id: "tallybandOfNurgle",
             name: "Tallyband of Nurgle",
             factions: [this.factions.NURGLEDAEMONS],
             points: 220,
             units: []             
         },
         theMunificentWanderers: {
-            id: this.serial++,
+            id: "theMunificentWanderers",
             name: "The Munificent Wanderers",
             factions: [this.factions.NURGLEDAEMONS],
             points: 180,
             units: []             
         },
         nurgleSMenagerie: {
-            id: this.serial++,
+            id: "nurgleSMenagerie",
             name: "Nurgle's Menagerie",
             factions: [this.factions.NURGLEDAEMONS],
             points: 240,
             units: []             
         },
         thricefoldBefoulment: {
-            id: this.serial++,
+            id: "thricefoldBefoulment",
             name: "Thricefold Befoulment",
             factions: [this.factions.NURGLEDAEMONS],
             points: 160,
             units: []             
         },
         afflictionCyst: {
-            id: this.serial++,
+            id: "afflictionCyst",
             name: "Affliction Cyst",
             factions: [this.factions.NURGLEROTBRINGERS],
             points: 220,
             units: []             
         },
         theBlessedSons: {
-            id: this.serial++,
+            id: "theBlessedSons",
             name: "The Blessed Sons",
             factions: [this.factions.NURGLEROTBRINGERS],
             points: 200,
             units: []             
         },
         blightCyst: {
-            id: this.serial++,
+            id: "blightCyst",
             name: "Blight Cyst",
             factions: [this.factions.NURGLEROTBRINGERS],
             points: 220,
             units: []             
         },
         plagueCyst: {
-            id: this.serial++,
+            id: "plagueCyst",
             name: "Plague Cyst",
             factions: [this.factions.NURGLEROTBRINGERS],
             points: 220,
             units: []             
         },
         thrallWarhost: {
-            id: this.serial++,
+            id: "thrallWarhost",
             name: "Thrall Warhost",
             factions: [this.factions.DARKLINGCOVENS],
             points: 180,
             units: []             
         },
         bloodwrackSisterhood: {
-            id: this.serial++,
+            id: "bloodwrackSisterhood",
             name: "Bloodwrack Sisterhood",
             factions: [this.factions.DAUGHTERSOFKHAINE],
             points: 140,
             units: []             
         },
         ebondrakeWarhost: {
-            id: this.serial++,
+            id: "ebondrakeWarhost",
             name: "Ebondrake Warhost",
             factions: [this.factions.ORDERSERPENTIS],
             points: 160,
             units: []             
         },
         realmReavers: {
-            id: this.serial++,
+            id: "realmReavers",
             name: "Realm Reavers",
             factions: [this.factions.SCOURGEPRIVATEERS],
             points: 180,
             units: []             
         },
         legionOfDeath: {
-            id: this.serial++,
+            id: "legionOfDeath",
             name: "Legion of Death",
             factions: [this.factions.DEATHRATTLE],
             points: 110,
             units: []             
         },
         castellansOfTheCrimsonKeep: {
-            id: this.serial++,
+            id: "castellansOfTheCrimsonKeep",
             name: "Castellans of the Crimson Keep",
             factions: [this.factions.SOULBLIGHT],
             points: 90,
             units: []             
         },
         courtOfNulahmia: {
-            id: this.serial++,
+            id: "courtOfNulahmia",
             name: "Court of Nulahmia",
             factions: [this.factions.SOULBLIGHT],
             points: 70,
             units: []             
         },
         deathmarch: {
-            id: this.serial++,
+            id: "deathmarch",
             name: "Deathmarch",
             factions: [this.factions.LEGIONSOFNAGASH],
             points: 110,
             units: []             
         },
         lordsOfSacrament: {
-            id: this.serial++,
+            id: "lordsOfSacrament",
             name: "Lords of Sacrament",
             factions: [this.factions.LEGIONSOFNAGASH],
             points: 70,
             units: []             
         },
         nightfallPack: {
-            id: this.serial++,
+            id: "nightfallPack",
             name: "Nightfall Pack",
             factions: [this.factions.LEGIONSOFNAGASH],
             points: 140,
             units: []             
         },
         theFirstCohort: {
-            id: this.serial++,
+            id: "theFirstCohort",
             name: "The First Cohort",
             factions: [this.factions.LEGIONSOFNAGASH],
             points: 160,
             units: []             
         },
         abattoir: {
-            id: this.serial++,
+            id: "abattoir",
             name: "Abattoir",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 110,
             units: []             
         },
         attendantsAtCourt: {
-            id: this.serial++,
+            id: "attendantsAtCourt",
             name: "Attendants at Court",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 150,
             units: []             
         },
         deadwatch: {
-            id: this.serial++,
+            id: "deadwatch",
             name: "Deadwatch",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 210,
             units: []             
         },
         fleshEaterCourt: {
-            id: this.serial++,
+            id: "fleshEaterCourt",
             name: "Flesh-eater Court",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 120,
             units: []             
         },
         ghoulPatrol: {
-            id: this.serial++,
+            id: "ghoulPatrol",
             name: "Ghoul Patrol",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 150,
             units: []             
         },
         kingSGhouls: {
-            id: this.serial++,
+            id: "kingSGhouls",
             name: "King's Ghouls",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 90,
             units: []             
         },
         royalFamily: {
-            id: this.serial++,
+            id: "royalFamily",
             name: "Royal Family",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 110,
             units: []             
         },
         royalMenagerie: {
-            id: this.serial++,
+            id: "royalMenagerie",
             name: "Royal Menagerie",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 110,
             units: []             
         },
         royalMordants: {
-            id: this.serial++,
+            id: "royalMordants",
             name: "Royal Mordants",
             factions: [this.factions.FLESHEATERCOURTS],
             points: 70,
             units: []             
         },
         artilleryDetachment: {
-            id: this.serial++,
+            id: "artilleryDetachment",
             name: "Artillery Detachment",
             factions: [this.factions.IRONWELDARSONAL],
             points: 140,
             units: []             
         },
         forgeBrethren: {
-            id: this.serial++,
+            id: "forgeBrethren",
             name: "Forge Brethren",
             factions: [this.factions.FYRESLAYERS],
             points: 130,
             units: []             
         },
         grandFyrd: {
-            id: this.serial++,
+            id: "grandFyrd",
             name: "Grand Fyrd",
             factions: [this.factions.FYRESLAYERS],
             points: 180,
             units: []             
         },
         greyfyrdLodge: {
-            id: this.serial++,
+            id: "greyfyrdLodge",
             name: "Greyfyrd Lodge",
             factions: [this.factions.FYRESLAYERS],
             points: 100,
             units: []             
         },
         vostargLodge: {
-            id: this.serial++,
+            id: "vostargLodge",
             name: "Vostarg Lodge",
             factions: [this.factions.FYRESLAYERS],
             points: 120,
             units: []             
         },
         grudgeboundWarThrong: {
-            id: this.serial++,
+            id: "grudgeboundWarThrong",
             name: "Grudgebound War Throng",
             factions: [this.factions.DISPOSSESSED],
             points: 160,
             units: []             
         },
         lordsOfTheLodge: {
-            id: this.serial++,
+            id: "lordsOfTheLodge",
             name: "Lords of the Lodge",
             factions: [this.factions.FYRESLAYERS],
             points: 90,
             units: []             
         },
         warriorKinband: {
-            id: this.serial++,
+            id: "warriorKinband",
             name: "Warrior Kinband",
             factions: [this.factions.FYRESLAYERS],
             points: 90,
             units: []             
         },
         freeguildRegiment: {
-            id: this.serial++,
+            id: "freeguildRegiment",
             name: "Freeguild Regiment",
             factions: [this.factions.FREEPEOPLES],
             points: 200,
             units: []             
         },
         pilgrimageOfWrath: {
-            id: this.serial++,
+            id: "pilgrimageOfWrath",
             name: "Pilgrimage of Wrath",
             factions: [this.factions.DEVOTEDOFSIGMAR],
             points: 160,
             units: []             
         },
         warCouncil: {
-            id: this.serial++,
+            id: "warCouncil",
             name: "War Council",
             factions: [this.factions.COLLEGIATEARCANE],
             points: 250,
             units: []             
         },
         dragonlordHost: {
-            id: this.serial++,
+            id: "dragonlordHost",
             name: "Dragonlord Host",
             factions: [this.factions.ORDERDRACONIS],
             points: 180,
             units: []             
         },
         spyreheartWarhost: {
-            id: this.serial++,
+            id: "spyreheartWarhost",
             name: "Spyreheart Warhost",
             factions: [this.factions.PHOENIXTEMPLE],
             points: 200,
             units: []             
         },
         blackshardWarhost: {
-            id: this.serial++,
+            id: "blackshardWarhost",
             name: "Blackshard Warhost",
             factions: [this.factions.LEGIONOFAZGORH],
             points: 180,
             units: []             
         },
         hashutSWrathArtilleryTrain: {
-            id: this.serial++,
+            id: "hashutSWrathArtilleryTrain",
             name: "Hashut's Wrath Artillery Train",
             factions: [this.factions.LEGIONOFAZGORH],
             points: 200,
             units: []             
         },
         bloodclawStarhost: {
-            id: this.serial++,
+            id: "bloodclawStarhost",
             name: "Bloodclaw Starhost",
             factions: [this.factions.SERAPHON],
             points: 200,
             units: []             
         },
         eternalStarhost: {
-            id: this.serial++,
+            id: "eternalStarhost",
             name: "Eternal Starhost",
             factions: [this.factions.SERAPHON],
             points: 130,
             units: []             
         },
         dracothionSTail: {
-            id: this.serial++,
+            id: "dracothionSTail",
             name: "Dracothion's Tail",
             factions: [this.factions.SERAPHON],
             points: 60,
             units: []             
         },
         fangsOfSotek: {
-            id: this.serial++,
+            id: "fangsOfSotek",
             name: "Fangs of Sotek",
             factions: [this.factions.SERAPHON],
             points: 100,
             units: []             
         },
         firelanceStarhost: {
-            id: this.serial++,
+            id: "firelanceStarhost",
             name: "Firelance Starhost",
             factions: [this.factions.SERAPHON],
             points: 110,
             units: []             
         },
         heavenswatchStarhost: {
-            id: this.serial++,
+            id: "heavenswatchStarhost",
             name: "Heavenswatch Starhost",
             factions: [this.factions.SERAPHON],
             points: 200,
             units: []             
         },
         shadowstrikeStarhost: {
-            id: this.serial++,
+            id: "shadowstrikeStarhost",
             name: "Shadowstrike Starhost",
             factions: [this.factions.SERAPHON],
             points: 170,
             units: []             
         },
         starbeastConstellation: {
-            id: this.serial++,
+            id: "starbeastConstellation",
             name: "Starbeast Constellation",
             factions: [this.factions.SERAPHON],
             points: 220,
             units: []             
         },
         sunclawStarhost: {
-            id: this.serial++,
+            id: "sunclawStarhost",
             name: "Sunclaw Starhost",
             factions: [this.factions.SERAPHON],
             points: 130,
             units: []             
         },
         thunderquakeStarhost: {
-            id: this.serial++,
+            id: "thunderquakeStarhost",
             name: "Thunderquake Starhost",
             factions: [this.factions.SERAPHON],
             points: 170,
             units: []             
         },
         alfrostun: {
-            id: this.serial++,
+            id: "alfrostun",
             name: "Alfrostun",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 140,
             units: []             
         },
         braggothSBeastHammer: {
-            id: this.serial++,
+            id: "braggothSBeastHammer",
             name: "Braggoth's Beast Hammer",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 260,
             units: []             
         },
         eurlbad: {
-            id: this.serial++,
+            id: "eurlbad",
             name: "Eurlbad",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 160,
             units: []             
         },
         jorlbad: {
-            id: this.serial++,
+            id: "jorlbad",
             name: "Jorlbad",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 120,
             units: []             
         },
         olwyrAlfrostun: {
-            id: this.serial++,
+            id: "olwyrAlfrostun",
             name: "Olwyr Alfrostun",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 220,
             units: []             
         },
         skal: {
-            id: this.serial++,
+            id: "skal",
             name: "Skal",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 110,
             units: []             
         },
         svardAlfrostun: {
-            id: this.serial++,
+            id: "svardAlfrostun",
             name: "Svard Alfrostun",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 180,
             units: []             
         },
         torrbad: {
-            id: this.serial++,
+            id: "torrbad",
             name: "Torrbad",
             factions: [this.factions.BEASTCLAWRAIDERS],
             points: 160,
             units: []             
         },
         bonegrinzWarclan: {
-            id: this.serial++,
+            id: "bonegrinzWarclan",
             name: "Bonegrinz Warclan",
             factions: [this.factions.BONESPLITTERZ],
             points: 140,
             units: []             
         },
         brutalRukk: {
-            id: this.serial++,
+            id: "brutalRukk",
             name: "Brutal Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 140,
             units: []             
         },
         drakkfootWarclan: {
-            id: this.serial++,
+            id: "drakkfootWarclan",
             name: "Drakkfoot Warclan",
             factions: [this.factions.BONESPLITTERZ],
             points: 160,
             units: []             
         },
         iceboneWarclan: {
-            id: this.serial++,
+            id: "iceboneWarclan",
             name: "Icebone Warclan",
             factions: [this.factions.BONESPLITTERZ],
             points: 200,
             units: []             
         },
         kopRukk: {
-            id: this.serial++,
+            id: "kopRukk",
             name: "Kop Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 200,
             units: []             
         },
         kunninRukk: {
-            id: this.serial++,
+            id: "kunninRukk",
             name: "Kunnin' Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 160,
             units: []             
         },
         savageWarclan: {
-            id: this.serial++,
+            id: "savageWarclan",
             name: "Savage Warclan",
             factions: [this.factions.BONESPLITTERZ],
             points: 60,
             units: []             
         },
         snagaRukk: {
-            id: this.serial++,
+            id: "snagaRukk",
             name: "Snaga Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 140,
             units: []             
         },
         teefRukk: {
-            id: this.serial++,
+            id: "teefRukk",
             name: "Teef Rukk",
             factions: [this.factions.BONESPLITTERZ],
             points: 90,
             units: []             
         },
         ardfist: {
-            id: this.serial++,
+            id: "ardfist",
             name: "Ardfist",
             factions: [this.factions.IRONJAWZ],
             points: 140,
             units: []             
         },
         bloodtoofs: {
-            id: this.serial++,
+            id: "bloodtoofs",
             name: "Bloodtoofs",
             factions: [this.factions.IRONJAWZ],
             points: 140,
             units: []             
         },
         brawl: {
-            id: this.serial++,
+            id: "brawl",
             name: "Brawl",
             factions: [this.factions.IRONJAWZ],
             points: 200,
             units: []             
         },
         gorefist: {
-            id: this.serial++,
+            id: "gorefist",
             name: "Gorefist",
             factions: [this.factions.IRONJAWZ],
             points: 220,
             units: []             
         },
         ironfist: {
-            id: this.serial++,
+            id: "ironfist",
             name: "Ironfist",
             factions: [this.factions.IRONJAWZ],
             points: 160,
             units: []             
         },
         ironsunz: {
-            id: this.serial++,
+            id: "ironsunz",
             name: "Ironsunz",
             factions: [this.factions.IRONJAWZ],
             points: 120,
             units: []             
         },
         weirdfist: {
-            id: this.serial++,
+            id: "weirdfist",
             name: "Weirdfist",
             factions: [this.factions.IRONJAWZ],
             points: 200,
             units: []             
         },
         waystonePathfinders: {
-            id: this.serial++,
+            id: "waystonePathfinders",
             name: "Waystone Pathfinders",
             factions: [this.factions.WANDERERS],
             points: 240,
             units: []             
         },
         clanSkryre: {
-            id: this.serial++,
+            id: "clanSkryre",
             name: "Clan Skryre",
             factions: [this.factions.SKAVENSKRYRE],
             points: 100,
             units: []             
         },
         congregationOfFilth: {
-            id: this.serial++,
+            id: "congregationOfFilth",
             name: "Congregation of Filth",
             factions: [this.factions.SKAVENPESTILENS],
             points: 140,
             units: []             
         },
         foulrainCongregation: {
-            id: this.serial++,
+            id: "foulrainCongregation",
             name: "Foulrain Congregation",
             factions: [this.factions.SKAVENPESTILENS],
             points: 200,
             units: []             
         },
         plaguesmogCongregation: {
-            id: this.serial++,
+            id: "plaguesmogCongregation",
             name: "Plaguesmog Congregation",
             factions: [this.factions.SKAVENPESTILENS],
             points: 160,
             units: []             
         },
         virulentProcession: {
-            id: this.serial++,
+            id: "virulentProcession",
             name: "Virulent Procession",
             factions: [this.factions.SKAVENPESTILENS],
             points: 180,
             units: []             
         },
         aetherstrikeForce: {
-            id: this.serial++,
+            id: "aetherstrikeForce",
             name: "Aetherstrike Force",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
         anvilsOfTheHeldenhammerWarriorChamber: {
-            id: this.serial++,
+            id: "anvilsOfTheHeldenhammerWarriorChamber",
             name: "Anvils of the Heldenhammer Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
         astralTemplarsExemplarChamber: {
-            id: this.serial++,
+            id: "astralTemplarsExemplarChamber",
             name: "Astral Templars Exemplar Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
         celestialHuntingPack: {
-            id: this.serial++,
+            id: "celestialHuntingPack",
             name: "Celestial Hunting Pack",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
         celestialVindicatorsWarriorChamber: {
-            id: this.serial++,
+            id: "celestialVindicatorsWarriorChamber",
             name: "Celestial Vindicators Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
         celestialWarbringersHarbingerChamber: {
-            id: this.serial++,
+            id: "celestialWarbringersHarbingerChamber",
             name: "Celestial Warbringers Harbinger Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 160,
             units: []             
         },
         devastationBrotherhood: {
-            id: this.serial++,
+            id: "devastationBrotherhood",
             name: "Devastation Brotherhood",
             factions: [this.factions.STORMCASTETERNALS],
             points: 160,
             units: []             
         },
         drakeswornTemple: {
-            id: this.serial++,
+            id: "drakeswornTemple",
             name: "Drakesworn Temple",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
         exemplarChamber: {
-            id: this.serial++,
+            id: "exemplarChamber",
             name: "Exemplar Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
         extremisChamber: {
-            id: this.serial++,
+            id: "extremisChamber",
             name: "Extremis Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 260,
             units: []             
         },
         hallowedKnightsWarriorChamber: {
-            id: this.serial++,
+            id: "hallowedKnightsWarriorChamber",
             name: "Hallowed Knights Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
         hammersOfSigmarWarriorChamber: {
-            id: this.serial++,
+            id: "hammersOfSigmarWarriorChamber",
             name: "Hammers of Sigmar Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 220,
             units: []             
         },
         hammerstrikeForce: {
-            id: this.serial++,
+            id: "hammerstrikeForce",
             name: "Hammerstrike Force",
             factions: [this.factions.STORMCASTETERNALS],
             points: 220,
             units: []             
         },
         harbingerChamber: {
-            id: this.serial++,
+            id: "harbingerChamber",
             name: "Harbinger Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
         knightsExcelsiorExemplarChamber: {
-            id: this.serial++,
+            id: "knightsExcelsiorExemplarChamber",
             name: "Knights Excelsior Exemplar Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
         lightningEchelon: {
-            id: this.serial++,
+            id: "lightningEchelon",
             name: "Lightning Echelon",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
         lordsOfTheStorm: {
-            id: this.serial++,
+            id: "lordsOfTheStorm",
             name: "Lords of the Storm",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
         stormHeralds: {
-            id: this.serial++,
+            id: "stormHeralds",
             name: "Storm Heralds",
             factions: [this.factions.STORMCASTETERNALS],
             points: 260,
             units: []             
         },
         stormVortexGarrison: {
-            id: this.serial++,
+            id: "stormVortexGarrison",
             name: "Storm Vortex Garrison",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
         tempestLordsHarbingerChamber: {
-            id: this.serial++,
+            id: "tempestLordsHarbingerChamber",
             name: "Tempest Lords Harbinger Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
         theSkyborneSlayers: {
-            id: this.serial++,
+            id: "theSkyborneSlayers",
             name: "The Skyborne Slayers",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
         thunderheadBrotherhood: {
-            id: this.serial++,
+            id: "thunderheadBrotherhood",
             name: "Thunderhead Brotherhood",
             factions: [this.factions.STORMCASTETERNALS],
             points: 180,
             units: []             
         },
         thunderwaveEchelon: {
-            id: this.serial++,
+            id: "thunderwaveEchelon",
             name: "Thunderwave Echelon",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
         vanguardAngelosConclave: {
-            id: this.serial++,
+            id: "vanguardAngelosConclave",
             name: "Vanguard Angelos Conclave",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
         vanguardAuxiliaryChamber: {
-            id: this.serial++,
+            id: "vanguardAuxiliaryChamber",
             name: "Vanguard Auxiliary Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
         vanguardJusticarConclave: {
-            id: this.serial++,
+            id: "vanguardJusticarConclave",
             name: "Vanguard Justicar Conclave",
             factions: [this.factions.STORMCASTETERNALS],
             points: 110,
             units: []             
         },
         vanguardWing: {
-            id: this.serial++,
+            id: "vanguardWing",
             name: "Vanguard Wing",
             factions: [this.factions.STORMCASTETERNALS],
             points: 200,
             units: []             
         },
         warriorBrotherhood: {
-            id: this.serial++,
+            id: "warriorBrotherhood",
             name: "Warrior Brotherhood",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
         warriorChamber: {
-            id: this.serial++,
+            id: "warriorChamber",
             name: "Warrior Chamber",
             factions: [this.factions.STORMCASTETERNALS],
             points: 240,
             units: []             
         },
         dreadwoodWargrove: {
-            id: this.serial++,
+            id: "dreadwoodWargrove",
             name: "Dreadwood Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 200,
             units: []             
         },
         forestFolk: {
-            id: this.serial++,
+            id: "forestFolk",
             name: "Forest Folk",
             factions: [this.factions.SYLVANETH],
             points: 110,
             units: []             
         },
         forestSpiritWargrove: {
-            id: this.serial++,
+            id: "forestSpiritWargrove",
             name: "Forest Spirit Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 160,
             units: []             
         },
         freeSpirits: {
-            id: this.serial++,
+            id: "freeSpirits",
             name: "Free Spirits",
             factions: [this.factions.SYLVANETH],
             points: 90,
             units: []             
         },
         gnarlrootWargrove: {
-            id: this.serial++,
+            id: "gnarlrootWargrove",
             name: "Gnarlroot Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 180,
             units: []             
         },
         harvestboonWargrove: {
-            id: this.serial++,
+            id: "harvestboonWargrove",
             name: "Harvestboon Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 200,
             units: []             
         },
         heartwoodWargrove: {
-            id: this.serial++,
+            id: "heartwoodWargrove",
             name: "Heartwood Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 160,
             units: []             
         },
         household: {
-            id: this.serial++,
+            id: "household",
             name: "Household",
             factions: [this.factions.SYLVANETH],
             points: 70,
             units: []             
         },
         ironbarkWargrove: {
-            id: this.serial++,
+            id: "ironbarkWargrove",
             name: "Ironbark Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 160,
             units: []             
         },
         lordsOfTheClan: {
-            id: this.serial++,
+            id: "lordsOfTheClan",
             name: "Lords of the Clan",
             factions: [this.factions.SYLVANETH],
             points: 110,
             units: []             
         },
         oakenbrowWargrove: {
-            id: this.serial++,
+            id: "oakenbrowWargrove",
             name: "Oakenbrow Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 180,
             units: []             
         },
         outcasts: {
-            id: this.serial++,
+            id: "outcasts",
             name: "Outcasts",
             factions: [this.factions.SYLVANETH],
             points: 90,
             units: []             
         },
         sylvanethWargrove: {
-            id: this.serial++,
+            id: "sylvanethWargrove",
             name: "Sylvaneth Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 200,
             units: []             
         },
         theGuardiansOfAlarielle: {
-            id: this.serial++,
+            id: "theGuardiansOfAlarielle",
             name: "The Guardians of Alarielle",
             factions: [this.factions.SYLVANETH],
             points: 220,
             units: []             
         },
         winterleafWargrove: {
-            id: this.serial++,
+            id: "winterleafWargrove",
             name: "Winterleaf Wargrove",
             factions: [this.factions.SYLVANETH],
             points: 200,
             units: []             
         },
         sonsOfTheMaggotLord: {
-            id: this.serial++,
+            id: "sonsOfTheMaggotLord",
             name: "Sons of the Maggot Lord",
             factions: [this.factions.TAMURKHANSHORDE],
             points: 120,
             units: []             
         },
         theLeapingPox: {
-            id: this.serial++,
+            id: "theLeapingPox",
             name: "The Leaping Pox",
             factions: [this.factions.TAMURKHANSHORDE],
             points: 80,
             units: []             
         },
         archaonSGrandHost: {
-            id: this.serial++,
+            id: "archaonSGrandHost",
             name: "Archaon's Grand Host",
             factions: [this.factions.EVERCHOSEN],
             points: 100,
             units: []             
         },
         bloodmarkedWarband: {
-            id: this.serial++,
+            id: "bloodmarkedWarband",
             name: "Bloodmarked Warband",
             factions: [this.factions.KHORNEBLOODBOUND],
             points: 100,
             units: []             
         },
         fateswornWarband: {
-            id: this.serial++,
+            id: "fateswornWarband",
             name: "Fatesworn Warband",
             factions: [this.factions.EVERCHOSEN],
             points: 100,
             units: []             
         },
         godswornChampionsOfRuin: {
-            id: this.serial++,
+            id: "godswornChampionsOfRuin",
             name: "Godsworn Champions of Ruin",
             factions: [this.factions.SLAVESTODARKNESS],
             points: 160,
             units: []             
         },
         godswrathWarband: {
-            id: this.serial++,
+            id: "godswrathWarband",
             name: "Godswrath Warband",
             factions: [this.factions.SLAVESTODARKNESS],
             points: 140,
             units: []             
         },
         overlordsOfChaos: {
-            id: this.serial++,
+            id: "overlordsOfChaos",
             name: "Overlords of Chaos",
             factions: [this.factions.EVERCHOSEN],
             points: 220,
             units: []             
         },
         plaguetouchedWarband: {
-            id: this.serial++,
+            id: "plaguetouchedWarband",
             name: "Plaguetouched Warband",
             factions: [this.factions.EVERCHOSEN],
             points: 100,
             units: []             
         },
         pleasureboundWarband: {
-            id: this.serial++,
+            id: "pleasureboundWarband",
             name: "Pleasurebound Warband",
             factions: [this.factions.EVERCHOSEN],
             points: 100,
             units: []             
         },
         ruinbringerWarband: {
-            id: this.serial++,
+            id: "ruinbringerWarband",
             name: "Ruinbringer Warband",
             factions: [this.factions.SLAVESTODARKNESS],
             points: 180,
             units: []             
         },
         ironSkySquadron: {
-            id: this.serial++,
+            id: "ironSkySquadron",
             name: "Iron Sky Squadron",
             factions: [this.factions.KHARADRONOVERLORDS],
             points: 180,
             units: []             
         },
         ironSkyCommand: {
-            id: this.serial++,
+            id: "ironSkyCommand",
             name: "Iron Sky Command",
             factions: [this.factions.KHARADRONOVERLORDS],
             points: 140,
             units: []             
         },
         grundstokEscortWing: {
-            id: this.serial++,
+            id: "grundstokEscortWing",
             name: "Grundstok Escort Wing",
             factions: [this.factions.KHARADRONOVERLORDS],
             points: 200,
             units: []             
         },
         grandArmada: {
-            id: this.serial++,
+            id: "grandArmada",
             name: "Grand Armada",
             factions: [this.factions.KHARADRONOVERLORDS],
             points: 160,
             units: []             
         },
         arkhsparkVoltik: {
-            id: this.serial++,
+            id: "arkhsparkVoltik",
             name: "Arkhspark Voltik",
             factions: [this.factions.SKAVENSKRYRE],
             points: 50,
             units: []             
         },
         gascloudChokelung: {
-            id: this.serial++,
+            id: "gascloudChokelung",
             name: "Gascloud Chokelung",
             factions: [this.factions.SKAVENSKRYRE],
             points: 50,
             units: []             
         },
         gautfyreSkorch: {
-            id: this.serial++,
+            id: "gautfyreSkorch",
             name: "Gautfyre Skorch",
             factions: [this.factions.SKAVENSKRYRE],
             points: 150,
             units: []             
         },
         rattlegaugeWarplock: {
-            id: this.serial++,
+            id: "rattlegaugeWarplock",
             name: "Rattlegauge Warplock",
             factions: [this.factions.SKAVENSKRYRE],
             points: 50,
             units: []             
         },
         whyrlbladeThreshik: {
-            id: this.serial++,
+            id: "whyrlbladeThreshik",
             name: "Whyrlblade Threshik",
             factions: [this.factions.SKAVENSKRYRE],
             points: 50,
             units: []             
         },
         blacktalonSShadowhammers: {
-            id: this.serial++,
+            id: "blacktalonSShadowhammers",
             name: "Blacktalon's Shadowhammers",
             factions: [this.factions.STORMCASTETERNALS],
             points: 160,
             units: []             
         },
         fecundRituculturalists: {
-            id: this.serial++,
+            id: "fecundRituculturalists",
             name: "Fecund Rituculturalists",
             factions: [this.factions.NURGLEDAEMONS],
             points: 180,

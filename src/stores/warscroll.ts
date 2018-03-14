@@ -171,16 +171,17 @@ export class Warscroll implements WarscrollInterface {
 interface SerializedWarscroll {
     name: string;
     units: {
-        unitId: number;
+        unitId: string;
         count: number;
         isGeneral?:boolean;
-        weaponOptions?:{ option: string|undefined, count?: number }[];
+        weaponOptions?: { option: string | undefined, count?: number }[];
+        extraAbilities?: string[];
     }[];
     battalions: {
-        battalionId: number;
+        battalionId: string;
     }[];
     grandAlliance: number;
-    allegiance: number;
+    allegiance: string;
 }
 
 export class WarscrollStore {
@@ -277,6 +278,12 @@ export class WarscrollStore {
                     newUnit.weaponOption[i].count = woId.count;
                 }
             }
+            if (wu.extraAbilities) {
+                for (const e of wu.extraAbilities) {
+                    const ability = this.unitsStore.getExtraAbility(e);
+                    if (ability) newUnit.extraAbilities.push(ability);
+                } 
+            }
             this.warscroll.units.push(newUnit);
         }
 
@@ -294,7 +301,8 @@ export class WarscrollStore {
                 unitId: x.unit.id,
                 count: x.count,
                 isGeneral: x === this.warscroll.general,
-                weaponOptions: x.weaponOption ? x.weaponOption.map(y => { return { option: y.weaponOption && y.weaponOption.id, count: y.count } }) : undefined
+                weaponOptions: x.weaponOption ? x.weaponOption.map(y => { return { option: y.weaponOption && y.weaponOption.id, count: y.count } }) : undefined,
+                extraAbilities: x.extraAbilities.map(x => x.id)
             }}),
             battalions: this.warscroll.battalions.map(x => {
                 return {

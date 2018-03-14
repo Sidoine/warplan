@@ -3,7 +3,7 @@ import { overrideStormcast } from "./overrides/stormcast";
 
 export interface Model {
     name: string;
-    id: number;
+    id: string;
 }
 
 export const enum GrandAlliance {
@@ -48,7 +48,7 @@ export interface WeaponOptionCategory {
 }
 
 export interface Unit {
-    id: number;
+    id: string;
     model: Model;
     size: number;
     maxSize?: number;
@@ -95,7 +95,7 @@ export interface BattalionUnit {
 }
 
 export interface Battalion {
-    id: number;
+    id: string;
     name: string;
     units: BattalionUnit[];
     description?: string;
@@ -130,7 +130,7 @@ export interface DataStore {
 }
 
 export interface Allegiance {
-    id: number;
+    id: string;
     grandAlliance: GrandAlliance;
     name: string;
 }
@@ -193,7 +193,11 @@ export class UnitsStore {
         this.extraAbilities = data.extraAbilities;
     }
 
-    getUnit(id: number) {
+    getUnit(id: string) {
         return this.unitList.find(x => x.id === id);
+    }
+
+    getExtraAbility(id: string) {
+        return this.extraAbilities.find(x => x.id === id);
     }
 }

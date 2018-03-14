@@ -15,7 +15,7 @@ export interface WarscrollBattalionsListProps {
 export class WarscrollBattalionsList extends React.Component<WarscrollBattalionsListProps, {}> {
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;
-        const requiredUnits = new Map<number, { count: number }[]>();
+        const requiredUnits = new Map<string, { count: number }[]>();
         const counts = new Map<number, { count: number }>();
 
         for (const battalion of warscroll.battalions) {
