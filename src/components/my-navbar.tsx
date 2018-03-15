@@ -5,6 +5,7 @@ import { RouteComponentProps } from "react-router";
 import { BasketStore } from "../stores/basket";
 import { WarscrollStore } from "../stores/warscroll";
 import { Label, Menu } from 'semantic-ui-react';
+import "./my-navbar.less";
 
 export interface MyNavbarProps {
     unitsStore?: UnitsStore;
@@ -18,7 +19,7 @@ export interface MyNavbarProps {
 export class MyNavbar extends React.Component<MyNavbarProps, {}> {
     render() {
         const pathname = this.props.route.location.pathname;
-        return <Menu>
+        return <Menu className="my-navbar">
             <Menu.Item active={pathname === "/"} href="#/">Owned</Menu.Item>
             <Menu.Item active={pathname === "/wb"}  href="#/wb">Warscroll Builder <Label>{ this.props.warscrollStore!.warscroll.totalPoints }</Label></Menu.Item>
             <Menu.Item active={pathname === "/missing"}  href="#/missing">Missing <Label>{ this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length }</Label></Menu.Item>

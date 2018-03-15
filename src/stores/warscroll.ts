@@ -259,6 +259,7 @@ export class WarscrollStore {
         this.warscroll.battalions.splice(0);
         this.warscroll.grandAlliance = warscroll.grandAlliance;
         this.warscroll.allegiance = this.unitsStore.allegianceList.find(x => x.id === warscroll.allegiance) || this.unitsStore.allegianceList[0];
+        this.warscroll.extraAbilities.splice(0);
 
         for (const wu of warscroll.units) {
             const unit = this.unitsStore.getUnit(wu.unitId);
@@ -281,7 +282,10 @@ export class WarscrollStore {
             if (wu.extraAbilities) {
                 for (const e of wu.extraAbilities) {
                     const ability = this.unitsStore.getExtraAbility(e);
-                    if (ability) newUnit.extraAbilities.push(ability);
+                    if (ability) {
+                        newUnit.extraAbilities.push(ability);
+                        this.warscroll.extraAbilities.push(ability);
+                    }
                 } 
             }
             this.warscroll.units.push(newUnit);
