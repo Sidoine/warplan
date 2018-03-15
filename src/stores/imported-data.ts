@@ -1444,13 +1444,33 @@ export class DataStoreImpl implements DataStore {
             id: "thrallWarhost",
             name: "Thrall Warhost"
         },
-        deathHag: {
-            id: "deathHag",
-            name: "Death Hag"
+        hagQueen: {
+            id: "hagQueen",
+            name: "Hag Queen"
         },
-        cauldronOfBlood: {
-            id: "cauldronOfBlood",
-            name: "Cauldron Of Blood"
+        hagQueenOnCauldronOfBlood: {
+            id: "hagQueenOnCauldronOfBlood",
+            name: "Hag Queen on Cauldron Of Blood"
+        },
+        slaughterQueenOnCauldronOfBlood: {
+            id: "slaughterQueenOnCauldronOfBlood",
+            name: "Slaughter Queen on Cauldron Of Blood"
+        },
+        bloodwrackMedusa: {
+            id: "bloodwrackMedusa",
+            name: "Bloodwrack Medusa"
+        },
+        slaughterQueen: {
+            id: "slaughterQueen",
+            name: "Slaughter Queen"
+        },
+        bloodwrackShrine: {
+            id: "bloodwrackShrine",
+            name: "Bloodwrack Shrine"
+        },
+        morathiHighOracleOfKhaine: {
+            id: "morathiHighOracleOfKhaine",
+            name: "Morathi High Oracle of Khaine"
         },
         doomfireWarlocks: {
             id: "doomfireWarlocks",
@@ -1460,21 +1480,57 @@ export class DataStoreImpl implements DataStore {
             id: "sistersOfSlaughter",
             name: "Sisters Of Slaughter"
         },
-        bloodwrackMedusae: {
-            id: "bloodwrackMedusae",
-            name: "Bloodwrack Medusae"
-        },
-        bloodwrackShrine: {
-            id: "bloodwrackShrine",
-            name: "Bloodwrack Shrine"
-        },
         witchAelves: {
             id: "witchAelves",
             name: "Witch Aelves"
         },
+        bloodSisters: {
+            id: "bloodSisters",
+            name: "Blood Sisters"
+        },
+        bloodStalkers: {
+            id: "bloodStalkers",
+            name: "Blood Stalkers"
+        },
+        khineraiHeartrenders: {
+            id: "khineraiHeartrenders",
+            name: "Khinerai Heartrenders"
+        },
+        khineraiLifetakers: {
+            id: "khineraiLifetakers",
+            name: "Khinerai Lifetakers"
+        },
+        avatarOfKhaine: {
+            id: "avatarOfKhaine",
+            name: "Avatar of Khaine"
+        },
         bloodwrackSisterhood: {
             id: "bloodwrackSisterhood",
             name: "Bloodwrack Sisterhood"
+        },
+        cauldronGuard: {
+            id: "cauldronGuard",
+            name: "Cauldron Guard"
+        },
+        templeNest: {
+            id: "templeNest",
+            name: "Temple Nest"
+        },
+        shadowPatrol: {
+            id: "shadowPatrol",
+            name: "Shadow Patrol"
+        },
+        shadowhammerCompact: {
+            id: "shadowhammerCompact",
+            name: "Shadowhammer Compact"
+        },
+        slaughterTroupe: {
+            id: "slaughterTroupe",
+            name: "Slaughter Troupe"
+        },
+        warCovenOfMorathi: {
+            id: "warCovenOfMorathi",
+            name: "War Coven of Morathi"
         },
         warriorPriest: {
             id: "warriorPriest",
@@ -5607,26 +5663,37 @@ export class DataStoreImpl implements DataStore {
             isLeader: () => true,
             isBehemot: () => true,
         },
-        bloodwrackMedusae: {
-            id: "bloodwrackMedusae",
-            model: this.models.bloodwrackMedusae,
+        bloodwrackMedusa: {
+            id: "bloodwrackMedusa",
+            model: this.models.bloodwrackMedusa,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 1,
-            points: 120,
-            type: "unit",
-            subType: "Daughters of Khaine",
-            wounds: 5,
+            points: 140,
+            type: "hero",
+            subType: "Daughters of Khaine Wizard",
+            wounds: 6,
+            isLeader: () => true,
         },
-        deathHag: {
-            id: "deathHag",
-            model: this.models.deathHag,
+        hagQueen: {
+            id: "hagQueen",
+            model: this.models.hagQueen,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 1,
             points: 60,
             type: "hero",
-            subType: "Daughters of Khaine",
+            subType: "Daughters of Khaine Priest",
             wounds: 5,
-            weaponOptions: [{ options: [{ name: "Deathsword", id: "deathsword" },{ name: "Witch Brew", id: "witchBrew" }] }],
+            isLeader: () => true,
+        },
+        slaughterQueen: {
+            id: "slaughterQueen",
+            model: this.models.slaughterQueen,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 1,
+            points: 100,
+            type: "hero",
+            subType: "Daughters of Khaine Priest",
+            wounds: 5,
             isLeader: () => true,
         },
         doomfireWarlocks: {
@@ -5636,24 +5703,24 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             points: 160,
             type: "unit",
-            subType: "Daughters of Khaine - Daughters of Khaine Battleline",
+            subType: "Daughters of Khaine Wizard",
             wounds: 2,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-doomfire-warlocks-en.pdf",
-            isBattleline: () => true,
         },
         sistersOfSlaughter: {
             id: "sistersOfSlaughter",
             model: this.models.sistersOfSlaughter,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 10,
-            points: 140,
+            points: 120,
             type: "unit",
-            subType: "Daughters of Khaine - Daughters of Khaine Battleline",
+            subType: "Daughters of Khaine - Battleline",
             wounds: 1,
             maxSize: 30,
-            maxPoints: 360,
+            maxPoints: 300,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sisters-slaughter-en.pdf",
+            weaponOptions: [{ options: [{ name: "Pairs of Sacrificial Knives", id: "pairsOfSacrificialKnives" },{ name: "Sacrificial Knives and Blade Bucklers", id: "sacrificialKnivesAndBladeBucklers" }] }],
             isBattleline: () => true,
         },
         bloodwrackShrine: {
@@ -5661,24 +5728,37 @@ export class DataStoreImpl implements DataStore {
             model: this.models.bloodwrackShrine,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 1,
-            points: 140,
-            type: "unit",
-            subType: "Daughters of Khaine - Behemoth",
+            points: 220,
+            type: "hero",
+            subType: "Daughters of Khaine Wizard - Behemoth",
             wounds: 13,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodwrack-shrine-en.pdf",
+            isLeader: () => true,
             isBehemot: () => true,
         },
-        cauldronOfBlood: {
-            id: "cauldronOfBlood",
-            model: this.models.cauldronOfBlood,
+        hagQueenOnCauldronOfBlood: {
+            id: "hagQueenOnCauldronOfBlood",
+            model: this.models.hagQueenOnCauldronOfBlood,
             factions: [this.factions.DAUGHTERSOFKHAINE],
             size: 1,
-            points: 200,
+            points: 300,
             type: "hero",
-            subType: "Daughters of Khaine - Behemoth",
+            subType: "Daughters of Khaine Priest Totem - Behemoth",
             wounds: 13,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-caludron-blood-en.pdf",
-            weaponOptions: [{ options: [{ name: "Deathsword", id: "deathsword" },{ name: "Witch Brew", id: "witchBrew" }] }],
+            isLeader: () => true,
+            isBehemot: () => true,
+        },
+        slaughterQueenOnCauldronOfBlood: {
+            id: "slaughterQueenOnCauldronOfBlood",
+            model: this.models.slaughterQueenOnCauldronOfBlood,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 1,
+            points: 330,
+            type: "hero",
+            subType: "Daughters of Khaine Priest Totem - Behemoth",
+            wounds: 13,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-caludron-blood-en.pdf",
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -5689,12 +5769,82 @@ export class DataStoreImpl implements DataStore {
             size: 10,
             points: 100,
             type: "unit",
-            subType: "Daughters of Khaine - Daughters of Khaine Battleline",
+            subType: "Daughters of Khaine - Battleline",
             wounds: 1,
             maxSize: 30,
             maxPoints: 270,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-witch-aelves-en.pdf",
+            weaponOptions: [{ options: [{ name: "Pairs of Sacrificial Knives", id: "pairsOfSacrificialKnives" },{ name: "Sacrificial Knives and Blade Bucklers", id: "sacrificialKnivesAndBladeBucklers" }] }],
             isBattleline: () => true,
+        },
+        bloodStalkers: {
+            id: "bloodStalkers",
+            model: this.models.bloodStalkers,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 5,
+            points: 160,
+            type: "unit",
+            subType: "Daughters of Khaine",
+            wounds: 2,
+            maxSize: 20,
+        },
+        bloodSisters: {
+            id: "bloodSisters",
+            model: this.models.bloodSisters,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 5,
+            points: 140,
+            type: "unit",
+            subType: "Daughters of Khaine - Daughters of Khaine Battleline (Bloodwrack Medusa General)",
+            wounds: 2,
+            maxSize: 20,
+            maxPoints: 480,
+            isBattleline: () => true,
+        },
+        khineraiHeartrenders: {
+            id: "khineraiHeartrenders",
+            model: this.models.khineraiHeartrenders,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 5,
+            points: 80,
+            type: "unit",
+            subType: "Daughters of Khaine",
+            wounds: 1,
+            maxSize: 20,
+        },
+        khineraiLifetakers: {
+            id: "khineraiLifetakers",
+            model: this.models.khineraiLifetakers,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 5,
+            points: 80,
+            type: "unit",
+            subType: "Daughters of Khaine",
+            wounds: 1,
+            maxSize: 20,
+            maxPoints: 280,
+        },
+        avatarOfKhaine: {
+            id: "avatarOfKhaine",
+            model: this.models.avatarOfKhaine,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 1,
+            points: 180,
+            type: "monster",
+            subType: "Daughters of Khaine Totem - Behemoth",
+            wounds: 9,
+            isBehemot: () => true,
+        },
+        morathiHighOracleOfKhaine: {
+            id: "morathiHighOracleOfKhaine",
+            model: this.models.morathiHighOracleOfKhaine,
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            size: 1,
+            points: 480,
+            type: "hero",
+            subType: "Daughters of Khaine Wizard - Unique",
+            wounds: 6,
+            isLeader: () => true,
         },
         drakespawnChariots: {
             id: "drakespawnChariots",
@@ -8744,7 +8894,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             points: 120,
             type: "hero",
-            subType: "Bonesplitterz",
+            subType: "Bonesplitterz Wizard",
             wounds: 6,
             isLeader: () => true,
         },
@@ -12187,6 +12337,17 @@ export class DataStoreImpl implements DataStore {
             subType: "One per army - Must include Fjul Grimnir",
             wounds: 1,
         },
+        gavrielSureheart: {
+            id: "gavrielSureheart",
+            model: this.models.gavrielSureheart,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 1,
+            points: 100,
+            type: "hero",
+            subType: "Unique",
+            wounds: 5,
+            isLeader: () => true,
+        },
     };
     
     boxes: Box[] = [];
@@ -12541,6 +12702,48 @@ export class DataStoreImpl implements DataStore {
             name: "Bloodwrack Sisterhood",
             factions: [this.factions.DAUGHTERSOFKHAINE],
             points: 140,
+            units: []             
+        },
+        cauldronGuard: {
+            id: "cauldronGuard",
+            name: "Cauldron Guard",
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            points: 100,
+            units: []             
+        },
+        templeNest: {
+            id: "templeNest",
+            name: "Temple Nest",
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            points: 80,
+            units: []             
+        },
+        shadowPatrol: {
+            id: "shadowPatrol",
+            name: "Shadow Patrol",
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            points: 120,
+            units: []             
+        },
+        shadowhammerCompact: {
+            id: "shadowhammerCompact",
+            name: "Shadowhammer Compact",
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            points: 80,
+            units: []             
+        },
+        slaughterTroupe: {
+            id: "slaughterTroupe",
+            name: "Slaughter Troupe",
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            points: 80,
+            units: []             
+        },
+        warCovenOfMorathi: {
+            id: "warCovenOfMorathi",
+            name: "War Coven of Morathi",
+            factions: [this.factions.DAUGHTERSOFKHAINE],
+            points: 100,
             units: []             
         },
         ebondrakeWarhost: {
