@@ -24,7 +24,8 @@ export class MyNavbar extends React.Component<MyNavbarProps, {}> {
             <Menu.Item active={pathname === "/wb"}  href="#/wb">Warscroll Builder <Label>{ this.props.warscrollStore!.warscroll.totalPoints }</Label></Menu.Item>
             <Menu.Item active={pathname === "/missing"}  href="#/missing">Missing <Label>{ this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length }</Label></Menu.Item>
             <Menu.Item active={pathname === "/basket"}  href="#/basket">Basket { this.props.basketStore!.basket.length > 0 && <Label>{ this.props.basketStore!.basket.length }</Label> }</Menu.Item>
-            <Menu.Item active={pathname === "/warscroll"}  href="#/warscroll">Warscroll</Menu.Item>
+            <Menu.Item active={pathname === "/warscroll"} href="#/warscroll">Warscroll</Menu.Item>
+            <Menu.Item active={pathname === "/markers"}  href="#/markers">Markers</Menu.Item>
         </Menu>
     }
 }

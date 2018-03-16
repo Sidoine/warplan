@@ -1,0 +1,28 @@
+.markers {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+
+    .marker {
+        font-family: "droid_serifregular";
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        border: 2px solid #EEE;
+        box-shadow: 0px 0px 5px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        background-image: url("../assets/texture.png");
+        
+        span {
+            display: flex;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 16px;
+            text-shadow: 0px 0px 8px white, 0px 0px 8px white, 0px 0px 8px white, 0px 0px 8px white, 0px 0px 20px white;
+        }
+    }
+}

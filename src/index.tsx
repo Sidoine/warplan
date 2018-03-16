@@ -17,6 +17,9 @@ import { OwnedStore } from "./stores/owned";
 import { DataStoreImpl } from "./stores/imported-data";
 import { Container } from "semantic-ui-react";
 import { Warscroll } from "./components/warscroll";
+import { Markers } from "./components/markers";
+import "./index.less";
+import { MarkersStore } from "./stores/markers";
 
 const root = document.getElementById("root");
 
@@ -26,9 +29,10 @@ const uiStore = new UiStore(unitsStore);
 const warscrollStore = new WarscrollStore(unitsStore);
 const ownedStore = new OwnedStore(unitsStore);
 const basketStore = new BasketStore(unitsStore, warscrollStore, ownedStore);
+const markersStore = new MarkersStore();
 
 ReactDOM.render(
-    <Provider ownedStore={ownedStore} unitsStore={unitsStore} uiStore={uiStore} basketStore={basketStore} warscrollStore={warscrollStore}>
+    <Provider ownedStore={ownedStore} unitsStore={unitsStore} uiStore={uiStore} basketStore={basketStore} warscrollStore={warscrollStore} markersStore={markersStore}>
         <HashRouter>
             <Container>
                 <Popins/>    
@@ -38,7 +42,8 @@ ReactDOM.render(
                     <Route exact path="/wb" component={WarscrollBuilder} />
                     <Route exact path="/missing" component={MissingsList}/>
                     <Route exact path="/basket" component={Basket}/>
-                    <Route exact path="/warscroll" component={Warscroll}/>
+                    <Route exact path="/warscroll" component={Warscroll} />
+                    <Route exact path="/markers" component={Markers}/>
                 </Switch>
             </Container>
         </HashRouter>

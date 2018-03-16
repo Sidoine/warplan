@@ -1,8 +1,5 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
-const extractLess = new ExtractTextPlugin({
-    filename: "[name].css"
-});
+const extractLess = new ExtractTextPlugin({ filename: "[name].css" });
 
 module.exports = {
     entry: "./src/index.tsx",
@@ -26,8 +23,9 @@ module.exports = {
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-            { test: /\.less$/, use:extractLess.extract({ use: [{ loader: "css-loader" }, { loader: "less-loader"  }]}) },
-            { test: /\.(woff|woff2|ttf|eot|svg|gif)(\?.*)?$/, loader: 'file-loader', options: { name: "files/[name].[hash].[ext]" } }
+
+            { test: /\.less$/, use:extractLess.extract({ use: [{ loader: "css-loader" }, { loader: "less-loader" }]}) },
+            { test: /\.(woff|woff2|ttf|eot|svg|gif|png|jpg)(\?.*)?$/, loader: 'file-loader', options: { name: "files/[name].[hash].[ext]" } }
         ]
     },
     plugins: [
