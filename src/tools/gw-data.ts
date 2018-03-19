@@ -163,8 +163,10 @@ const allegiances = [
     { grandAlliance: "death", name: "The Wraith Fleet" },
 ];
 
-let output = `import { Box, DataStore, GrandAlliance, ExtraAbility } from "./units";
+let output = `import { Box, DataStore, GrandAlliance, ExtraAbility, ExtraAbilityTest } from "./units";
 
+const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
+    
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
 
@@ -172,7 +174,7 @@ export class DataStoreImpl implements DataStore {
 `;
 
 function toCamelCase(name: string) {
-    return name.replace(/[^\w]+(\w)/g, (p,x) => x.toUpperCase()).replace(/^(.)/, (p,x) => x.toLowerCase());
+    return name.replace(/[^\w]+(\w)/g, (p,x) => x.toUpperCase()).replace(/^(.)/, (p,x) => x.toLowerCase()).replace(/[^\w]/, '');
 }
 
 const extraData = new Map<string, { factionId: string[], type: string,  army: Army }>();
@@ -346,11 +348,35 @@ for (const [key, unit] of gwPointsMap) {
 `;
 }
 
+
+const commandTraits = fs.readFileSync("src/stores/data/commandTraits.csv", { encoding: "utf8" }).split("\n").map(x => x.split(","));
+
+output += `    };
+    
+    extraAbilities = {
+`;
+
+for (const commandTrait of commandTraits) {
+    const allegiance = commandTrait[0];
+    const m = commandTrait[1].match(/(.*) \((.*\))/);
+    if (m === null) continue;
+    const name = m[1];
+    // const criteria = m[2];
+    const key = toCamelCase(name);
+    output += `        ${key}: {
+        id: "${key}",
+        ability: { name: "${name}", description: "" },
+        allegiance: this.allegiances.${toCamelCase(allegiance)},
+        category: "command",
+        isAvailable: commandTraitAvailable
+    },`
+}
+
+
 output += `    };
     
     boxes: Box[] = [];
-    extraAbilities:ExtraAbility[] = [];
-
+    
     battalions = {
 `;
 
