@@ -123,8 +123,6 @@ export interface WarscrollInterface {
 export interface DataStore {
     models: {[key:string]: Model};
     units: {[key:string]: Unit};
-    battalions: { [key: string]: Battalion };
-    boxes: Box[];
     factions: {[key:string]: Faction};
     extraAbilities: ExtraAbility[];
 }

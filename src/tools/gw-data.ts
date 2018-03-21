@@ -160,10 +160,10 @@ const allegiances = [
     { grandAlliance: "death", name: "Legion of Sacrament" },
     { grandAlliance: "death", name: "Legion of Blood" },
     { grandAlliance: "death", name: "Legion of Night" },
-    { grandAlliance: "death", name: "The Wraith Fleet" },
+    { grandAlliance: "death", name: "The Wraith Fleet" }
 ];
 
-let output = `import { Box, DataStore, GrandAlliance, ExtraAbility, ExtraAbilityTest } from "./units";
+let output = `import { Box, DataStore, GrandAlliance, ExtraAbilityTest } from "./units";
 
 const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
     
@@ -357,19 +357,22 @@ output += `    };
 `;
 
 for (const commandTrait of commandTraits) {
-    const allegiance = commandTrait[0];
+    let allegiance = commandTrait[0];
+    if (allegiance === "Nurgle Rotbringers") allegiance = "Nurgle";
+    if (allegiances.every(x => x.name !== allegiance)) continue;
     const m = commandTrait[1].match(/(.*) \((.*\))/);
     if (m === null) continue;
     const name = m[1];
     // const criteria = m[2];
-    const key = toCamelCase(name);
+    const key = toCamelCase(allegiance + name);
     output += `        ${key}: {
-        id: "${key}",
-        ability: { name: "${name}", description: "" },
-        allegiance: this.allegiances.${toCamelCase(allegiance)},
-        category: "command",
-        isAvailable: commandTraitAvailable
-    },`
+            id: "${key}",
+            ability: { name: "${name}", description: "" },
+            allegiance: this.allegiances.${toCamelCase(allegiance)},
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+`
 }
 
 
