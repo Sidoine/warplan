@@ -124,7 +124,6 @@ export interface DataStore {
     models: {[key:string]: Model};
     units: {[key:string]: Unit};
     factions: {[key:string]: Faction};
-    extraAbilities: ExtraAbility[];
 }
 
 export interface Allegiance {
@@ -188,7 +187,10 @@ export class UnitsStore {
         }
         this.allegianceList = this.allegianceList.sort((a, b) => a.name > b.name ? 1 : -1);
 
-        this.extraAbilities = data.extraAbilities;
+        const extraAbilities: {[key: string]: ExtraAbility} = data.extraAbilities;
+        for (const key in extraAbilities) {
+            this.extraAbilities.push(extraAbilities[key]);
+        }
     }
 
     getUnit(id: string) {

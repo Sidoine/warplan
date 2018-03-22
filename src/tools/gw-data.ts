@@ -34,33 +34,36 @@ interface Faction {
     name: string;
     grandAlliance: "chaos" | "order" | "death" | "destruction";
     id: string;
+    // Used because commandTraits and artefacts are wrongly associated to factions instead of allegiances. 
+    // If undefined, assume it's the same name
+    allegiance?: string;
 }
 
 const factions:Faction[] = [
 { name: "Beastmen", grandAlliance: "chaos", id: "BEASTMEN" },
-{ name: "Brayherd", grandAlliance: "chaos", id: "BRAYHERD" },
+{ name: "Brayherd", grandAlliance: "chaos", id: "BRAYHERD", allegiance: "Brayherd" },
 { name: "Chaos Gargants", grandAlliance: "chaos", id: "CHAOSGARGANTS" },
 { name: "Clan Eshin", grandAlliance: "chaos", id: "SKAVENESHIN" },
 { name: "Clan Moulder", grandAlliance: "chaos", id: "SKAVENMOULDER" },
-{ name: "Clan Pestilens", grandAlliance: "chaos", id: "SKAVENPESTILENS" },
-{ name: "Clan Skryre", grandAlliance: "chaos", id: "SKAVENSKRYRE" },
+{ name: "Clan Pestilens", grandAlliance: "chaos", id: "SKAVENPESTILENS", allegiance: "Skaven Pestilens" },
+{ name: "Clan Skryre", grandAlliance: "chaos", id: "SKAVENSKRYRE", allegiance: "Skaven Skryre" },
 { name: "Clan Verminus", grandAlliance: "chaos", id: "SKAVENVERMINUS" },
-{ name: "Daemons Of Chaos", grandAlliance: "chaos", id: "DAEMONSOFCHAOS" },
-{ name: "Daemons Of Khorne", grandAlliance: "chaos", id: "KHORNEDAEMONS" },
-{ name: "Daemons Of Nurgle", grandAlliance: "chaos", id: "NURGLEDAEMONS" },
-{ name: "Daemons Of Tzeentch", grandAlliance: "chaos", id: "TZEENTCHDAEMONS" },
-{ name: "Everchosen", grandAlliance: "chaos", id: "EVERCHOSEN" },
-{ name: "Hosts Of Slaanesh", grandAlliance: "chaos", id: "SLAANESHDAEMONS" },
-{ name: "Khorne Bloodbound", grandAlliance: "chaos", id: "KHORNEBLOODBOUND" },
+{ name: "Daemons of Chaos", grandAlliance: "chaos", id: "DAEMONSOFCHAOS" },
+{ name: "Daemons of Khorne", grandAlliance: "chaos", id: "KHORNEDAEMONS", allegiance: "Khorne" },
+{ name: "Daemons of Nurgle", grandAlliance: "chaos", id: "NURGLEDAEMONS", allegiance: "Nurgle" },
+{ name: "Daemons of Tzeentch", grandAlliance: "chaos", id: "TZEENTCHDAEMONS", allegiance: "Tzeentch" },
+{ name: "Everchosen", grandAlliance: "chaos", id: "EVERCHOSEN", allegiance: "Fist of the Everchosen" },
+{ name: "Hosts Of Slaanesh", grandAlliance: "chaos", id: "SLAANESHDAEMONS", allegiance: "Slaanesh" },
+{ name: "Khorne Bloodbound", grandAlliance: "chaos", id: "KHORNEBLOODBOUND", allegiance: "Khorne" },
 { name: "Legion Of Azgorh", grandAlliance: "chaos", id: "LEGIONOFAZGORH" },
 { name: "Masterclan", grandAlliance: "chaos", id: "MASTERCLAN" },
 { name: "Monsters Of Chaos", grandAlliance: "chaos", id: "MONSTERSOFCHAOS" },
-{ name: "Nurgle Rotbringers", grandAlliance: "chaos", id: "NURGLEROTBRINGERS" },
-{ name: "Slaves To Darkness", grandAlliance: "chaos", id: "SLAVESTODARKNESS" },
+{ name: "Nurgle Rotbringers", grandAlliance: "chaos", id: "NURGLEROTBRINGERS", allegiance: "Nurgle" },
+{ name: "Slaves to Darkness", grandAlliance: "chaos", id: "SLAVESTODARKNESS" },
 { name: "Skaven", grandAlliance: "chaos", id: "SKAVEN" },
 { name: "Tamurkhan's Horde", grandAlliance: "chaos", id: "TAMURKHANSHORDE" },
 { name: "Thunderscorn", grandAlliance: "chaos", id: "THUNDERSCORN" },
-{ name: "Tzeentch Arcanites", grandAlliance: "chaos", id: "TZEENTCHARCHANITES" },
+{ name: "Tzeentch Arcanites", grandAlliance: "chaos", id: "TZEENTCHARCHANITES", allegiance: "Tzeentch" },
 { name: "Warherd", grandAlliance: "chaos", id: "WARHERD" },
 { name: "Warriors of Chaos", grandAlliance: "chaos", id: "WARRIORSOFCHAOS" },
 { name: "Aelves", grandAlliance: "order", id: "AELVES" },
@@ -85,11 +88,11 @@ const factions:Faction[] = [
 { name: "Order Serpentis", grandAlliance: "order", id: "ORDERSERPENTIS" },
 { name: "Phoenix Temple", grandAlliance: "order", id: "PHOENIXTEMPLE" },
 { name: "Scourge Privateers", grandAlliance: "order", id: "SCOURGEPRIVATEERS" },
-{ name: "Seraphon", grandAlliance: "order", id: "SERAPHON" },
+{ name: "Seraphon", grandAlliance: "order", id: "SERAPHON", allegiance: "Seraphon" },
 { name: "Shadowblades", grandAlliance: "order", id: "SHADOWBLADES" },
 { name: "Stormcast Eternals", grandAlliance: "order", id: "STORMCASTETERNALS" },
 { name: "Swifthawk Agents", grandAlliance: "order", id: "SWIFTHAWKAGENTS" },
-{ name: "Sylvaneth", grandAlliance: "order", id: "SYLVANETH" },
+{ name: "Sylvaneth", grandAlliance: "order", id: "SYLVANETH", allegiance: "Sylvaneth" },
 { name: "The Empire", grandAlliance: "order", id: "EMPIRE" },
 { name: "Wanderers", grandAlliance: "order", id: "WANDERERS" },
 { name: "Wood Elves", grandAlliance: "order", id: "WOODELVES" },
@@ -128,7 +131,7 @@ const allegiances = [
     { grandAlliance: "chaos", name: "Skaven Pestilens" },
     { grandAlliance: "chaos", name: "Skaven Skryre" },
     { grandAlliance: "chaos", name: "Slaanesh" },
-    { grandAlliance: "chaos", name: "Slaves To Darkness" },
+    { grandAlliance: "chaos", name: "Slaves to Darkness" },
     { grandAlliance: "chaos", name: "Tzeentch" },
     { grandAlliance: "chaos", name: "Fist of the Everchosen" },
     { grandAlliance: "order", name: "Order" },
@@ -147,6 +150,7 @@ const allegiances = [
     { grandAlliance: "order", name: "Hallowheart" },
     { grandAlliance: "order", name: "The Living City" },
     { grandAlliance: "order", name: "Greywater Fastness" },
+    { grandAlliance: "order", name: "Daughters Of Khaine" },
     { grandAlliance: "destruction", name: "Destruction" },
     { grandAlliance: "destruction", name: "Bonesplitterz" },
     { grandAlliance: "destruction", name: "Beastclaw Raiders" },
@@ -160,7 +164,8 @@ const allegiances = [
     { grandAlliance: "death", name: "Legion of Sacrament" },
     { grandAlliance: "death", name: "Legion of Blood" },
     { grandAlliance: "death", name: "Legion of Night" },
-    { grandAlliance: "death", name: "The Wraith Fleet" }
+    { grandAlliance: "death", name: "The Wraith Fleet" },
+    { grandAlliance: "death", name: "Legions of Nagash" }
 ];
 
 let output = `import { Box, DataStore, GrandAlliance, ExtraAbilityTest } from "./units";
@@ -356,19 +361,37 @@ output += `    };
     extraAbilities = {
 `;
 
+const usedCommandTraits = new Map<string, boolean>();
+
 for (const commandTrait of commandTraits) {
-    let allegiance = commandTrait[0];
-    if (allegiance === "Nurgle Rotbringers") allegiance = "Nurgle";
-    if (allegiances.every(x => x.name !== allegiance)) continue;
+    const factionName = commandTrait[0].toLowerCase();
+    if (factionName === "skirmish") continue;
+    let allegiance = allegiances.find(x => x.name.toLowerCase() === factionName);
+    if (!allegiance) {
+        const faction = factions.find(x => x.name.toLowerCase() === factionName);
+        if (faction && faction.allegiance) {
+            allegiance = allegiances.find(x => x.name === faction.allegiance);
+            if (!allegiance) {
+                console.error(`Unable to find allegiance ${faction.allegiance} for faction ${faction.name}`);
+                continue;
+            }
+        }
+    }
+    if (allegiance === undefined) {
+        console.error(`Unable to find allegiance or faction "${factionName}"`);
+        continue;
+    }
     const m = commandTrait[1].match(/(.*) \((.*\))/);
     if (m === null) continue;
     const name = m[1];
     // const criteria = m[2];
-    const key = toCamelCase(allegiance + name);
+    const key = toCamelCase(allegiance.name + name);
+    if (usedCommandTraits.get(key)) continue;
+    usedCommandTraits.set(key, true);
     output += `        ${key}: {
             id: "${key}",
             ability: { name: "${name}", description: "" },
-            allegiance: this.allegiances.${toCamelCase(allegiance)},
+            allegiance: this.allegiances.${toCamelCase(allegiance.name)},
             category: "command",
             isAvailable: commandTraitAvailable
         },

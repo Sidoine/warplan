@@ -1,5 +1,7 @@
-import { Box, DataStore, GrandAlliance, ExtraAbility } from "./units";
+import { Box, DataStore, GrandAlliance, ExtraAbilityTest } from "./units";
 
+const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
+    
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
 
@@ -3594,22 +3596,22 @@ export class DataStoreImpl implements DataStore {
         DAEMONSOFCHAOS: {
             id: "DAEMONSOFCHAOS",
             grandAlliance: GrandAlliance.chaos,
-            name: "Daemons Of Chaos"
+            name: "Daemons of Chaos"
         },
         KHORNEDAEMONS: {
             id: "KHORNEDAEMONS",
             grandAlliance: GrandAlliance.chaos,
-            name: "Daemons Of Khorne"
+            name: "Daemons of Khorne"
         },
         NURGLEDAEMONS: {
             id: "NURGLEDAEMONS",
             grandAlliance: GrandAlliance.chaos,
-            name: "Daemons Of Nurgle"
+            name: "Daemons of Nurgle"
         },
         TZEENTCHDAEMONS: {
             id: "TZEENTCHDAEMONS",
             grandAlliance: GrandAlliance.chaos,
-            name: "Daemons Of Tzeentch"
+            name: "Daemons of Tzeentch"
         },
         EVERCHOSEN: {
             id: "EVERCHOSEN",
@@ -3649,7 +3651,7 @@ export class DataStoreImpl implements DataStore {
         SLAVESTODARKNESS: {
             id: "SLAVESTODARKNESS",
             grandAlliance: GrandAlliance.chaos,
-            name: "Slaves To Darkness"
+            name: "Slaves to Darkness"
         },
         SKAVEN: {
             id: "SKAVEN",
@@ -3997,7 +3999,7 @@ export class DataStoreImpl implements DataStore {
         slavesToDarkness: {
             id: "slavesToDarkness",
             grandAlliance: GrandAlliance.chaos,
-            name: "Slaves To Darkness"
+            name: "Slaves to Darkness"
         },
         tzeentch: {
             id: "tzeentch",
@@ -4089,6 +4091,11 @@ export class DataStoreImpl implements DataStore {
             grandAlliance: GrandAlliance.order,
             name: "Greywater Fastness"
         },
+        daughtersOfKhaine: {
+            id: "daughtersOfKhaine",
+            grandAlliance: GrandAlliance.order,
+            name: "Daughters Of Khaine"
+        },
         destruction: {
             id: "destruction",
             grandAlliance: GrandAlliance.destruction,
@@ -4158,6 +4165,11 @@ export class DataStoreImpl implements DataStore {
             id: "theWraithFleet",
             grandAlliance: GrandAlliance.death,
             name: "The Wraith Fleet"
+        },
+        legionsOfNagash: {
+            id: "legionsOfNagash",
+            grandAlliance: GrandAlliance.death,
+            name: "Legions of Nagash"
         },
     };
     
@@ -6706,6 +6718,21 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 330,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-vulkite-berzerkers-en.pdf",
             weaponOptions: [{ options: [{ name: "Handaxes & Slingshields", id: "handaxesSlingshields" },{ name: "War-Picks & Slingshields", id: "warPicksSlingshields" },{ name: "Pairs of Handaxes", id: "pairsOfHandaxes" }] }],
+            isBattleline: () => true,
+        },
+        warriors: {
+            id: "warriors",
+            model: this.models.warriors,
+            factions: [this.factions.DISPOSSESSED],
+            size: 10,
+            points: 80,
+            type: "unit",
+            subType: "Battleline",
+            wounds: 1,
+            maxSize: 40,
+            maxPoints: 280,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-duardin-warriors-en.pdf",
+            weaponOptions: [{ options: [{ name: "Axes or Hammers", id: "axesOrHammers" },{ name: "Axes or Hammers & Shields", id: "axesOrHammersShields" },{ name: "Double-handed Duardin Axes", id: "doubleHandedDuardinAxes" },{ name: "Double-handed Duardin Axes & Shields", id: "doubleHandedDuardinAxesShields" }] }],
             isBattleline: () => true,
         },
         auricRunefatherOnMagmadroth: {
@@ -12350,9 +12377,1768 @@ export class DataStoreImpl implements DataStore {
         },
     };
     
+    extraAbilities = {
+        bonesplitterzSquirmyWarpaint: {
+            id: "bonesplitterzSquirmyWarpaint",
+            ability: { name: "Squirmy Warpaint", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        bonesplitterzProphetOfDaWaaagh: {
+            id: "bonesplitterzProphetOfDaWaaagh",
+            ability: { name: "Prophet of da Waaagh!", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        bonesplitterzGreatHunter: {
+            id: "bonesplitterzGreatHunter",
+            ability: { name: "Great Hunter", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        bonesplitterzKillaInstincts: {
+            id: "bonesplitterzKillaInstincts",
+            ability: { name: "Killa Instincts", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        bonesplitterzWaaaghMonger: {
+            id: "bonesplitterzWaaaghMonger",
+            ability: { name: "Waaagh Monger", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        bonesplitterzMonsterKilla: {
+            id: "bonesplitterzMonsterKilla",
+            ability: { name: "Monster Killa", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        sylvanethRealmWalker: {
+            id: "sylvanethRealmWalker",
+            ability: { name: "Realm Walker", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        sylvanethGnarledWarrior: {
+            id: "sylvanethGnarledWarrior",
+            ability: { name: "Gnarled Warrior", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        sylvanethGiftOfGhyran: {
+            id: "sylvanethGiftOfGhyran",
+            ability: { name: "Gift of Ghyran", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        sylvanethLordOfSpites: {
+            id: "sylvanethLordOfSpites",
+            ability: { name: "Lord of Spites", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        sylvanethWarsinger: {
+            id: "sylvanethWarsinger",
+            ability: { name: "Warsinger", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        sylvanethWisdomOfTheAncients: {
+            id: "sylvanethWisdomOfTheAncients",
+            ability: { name: "Wisdom of the Ancients", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        sylvanethAncientNobility: {
+            id: "sylvanethAncientNobility",
+            ability: { name: "Ancient Nobility", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        beastclawRaidersMassiveBulk: {
+            id: "beastclawRaidersMassiveBulk",
+            ability: { name: "Massive Bulk", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        beastclawRaidersEverwinterSMaster: {
+            id: "beastclawRaidersEverwinterSMaster",
+            ability: { name: "Everwinter's Master", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        beastclawRaidersAvalancheVoice: {
+            id: "beastclawRaidersAvalancheVoice",
+            ability: { name: "Avalanche Voice", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        beastclawRaidersFamedHunter: {
+            id: "beastclawRaidersFamedHunter",
+            ability: { name: "Famed Hunter", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        beastclawRaidersBeastEater: {
+            id: "beastclawRaidersBeastEater",
+            ability: { name: "Beast Eater", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        beastclawRaidersFearsomeLeader: {
+            id: "beastclawRaidersFearsomeLeader",
+            ability: { name: "Fearsome Leader", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchArchSorcerer: {
+            id: "tzeentchArchSorcerer",
+            ability: { name: "Arch Sorcerer", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchNexusOfFate: {
+            id: "tzeentchNexusOfFate",
+            ability: { name: "Nexus of Fate", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchMagicalSupremacy: {
+            id: "tzeentchMagicalSupremacy",
+            ability: { name: "Magical Supremacy", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchDaemonspark: {
+            id: "tzeentchDaemonspark",
+            ability: { name: "Daemonspark", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchIncorporealForm: {
+            id: "tzeentchIncorporealForm",
+            ability: { name: "Incorporeal Form", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchAetherTether: {
+            id: "tzeentchAetherTether",
+            ability: { name: "Aether Tether", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchBoundlessMutation: {
+            id: "tzeentchBoundlessMutation",
+            ability: { name: "Boundless Mutation", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchCultDemagogue: {
+            id: "tzeentchCultDemagogue",
+            ability: { name: "Cult Demagogue", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchArcaneSacrifice: {
+            id: "tzeentchArcaneSacrifice",
+            ability: { name: "Arcane Sacrifice", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchBlessingOfTzeentch: {
+            id: "tzeentchBlessingOfTzeentch",
+            ability: { name: "Blessing of Tzeentch", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchSoulBurn: {
+            id: "tzeentchSoulBurn",
+            ability: { name: "Soul Burn", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        tzeentchIllusionist: {
+            id: "tzeentchIllusionist",
+            ability: { name: "Illusionist", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessArchSorcerer: {
+            id: "slavesToDarknessArchSorcerer",
+            ability: { name: "Arch Sorcerer", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessNexusOfFate: {
+            id: "slavesToDarknessNexusOfFate",
+            ability: { name: "Nexus of Fate", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessMagicalSupremacy: {
+            id: "slavesToDarknessMagicalSupremacy",
+            ability: { name: "Magical Supremacy", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessDaemonspark: {
+            id: "slavesToDarknessDaemonspark",
+            ability: { name: "Daemonspark", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessIncorporealForm: {
+            id: "slavesToDarknessIncorporealForm",
+            ability: { name: "Incorporeal Form", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessAetherTether: {
+            id: "slavesToDarknessAetherTether",
+            ability: { name: "Aether Tether", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessBlessingOfTzeentch: {
+            id: "slavesToDarknessBlessingOfTzeentch",
+            ability: { name: "Blessing of Tzeentch", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessSoulBurn: {
+            id: "slavesToDarknessSoulBurn",
+            ability: { name: "Soul Burn", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessIllusionist: {
+            id: "slavesToDarknessIllusionist",
+            ability: { name: "Illusionist", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        stormcastEternalsShieldedByFaith: {
+            id: "stormcastEternalsShieldedByFaith",
+            ability: { name: "Shielded by Faith", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        stormcastEternalsConsummateCommander: {
+            id: "stormcastEternalsConsummateCommander",
+            ability: { name: "Consummate Commander", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        stormcastEternalsCunningStrategist: {
+            id: "stormcastEternalsCunningStrategist",
+            ability: { name: "Cunning Strategist", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        stormcastEternalsZealousCrusader: {
+            id: "stormcastEternalsZealousCrusader",
+            ability: { name: "Zealous Crusader", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        stormcastEternalsStaunchDefender: {
+            id: "stormcastEternalsStaunchDefender",
+            ability: { name: "Staunch Defender", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        stormcastEternalsChampionOfTheRealms: {
+            id: "stormcastEternalsChampionOfTheRealms",
+            ability: { name: "Champion of the Realms", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        stormcastEternalsWeCannotFail: {
+            id: "stormcastEternalsWeCannotFail",
+            ability: { name: "We Cannot Fail", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        stormcastEternalsTheStrikeInspired: {
+            id: "stormcastEternalsTheStrikeInspired",
+            ability: { name: "The Strike Inspired", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        stormcastEternalsVeteranOnTheGnarlwood: {
+            id: "stormcastEternalsVeteranOnTheGnarlwood",
+            ability: { name: "Veteran on the Gnarlwood", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenArchSorcerer: {
+            id: "fistOfTheEverchosenArchSorcerer",
+            ability: { name: "Arch Sorcerer", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenNexusOfFate: {
+            id: "fistOfTheEverchosenNexusOfFate",
+            ability: { name: "Nexus of Fate", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenMagicalSupremacy: {
+            id: "fistOfTheEverchosenMagicalSupremacy",
+            ability: { name: "Magical Supremacy", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenDaemonspark: {
+            id: "fistOfTheEverchosenDaemonspark",
+            ability: { name: "Daemonspark", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenIncorporealForm: {
+            id: "fistOfTheEverchosenIncorporealForm",
+            ability: { name: "Incorporeal Form", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenAetherTether: {
+            id: "fistOfTheEverchosenAetherTether",
+            ability: { name: "Aether Tether", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenBoundlessMutation: {
+            id: "fistOfTheEverchosenBoundlessMutation",
+            ability: { name: "Boundless Mutation", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenCultDemagogue: {
+            id: "fistOfTheEverchosenCultDemagogue",
+            ability: { name: "Cult Demagogue", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenArcaneSacrifice: {
+            id: "fistOfTheEverchosenArcaneSacrifice",
+            ability: { name: "Arcane Sacrifice", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenBlessingOfTzeentch: {
+            id: "fistOfTheEverchosenBlessingOfTzeentch",
+            ability: { name: "Blessing of Tzeentch", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenSoulBurn: {
+            id: "fistOfTheEverchosenSoulBurn",
+            ability: { name: "Soul Burn", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fistOfTheEverchosenIllusionist: {
+            id: "fistOfTheEverchosenIllusionist",
+            ability: { name: "Illusionist", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneArchSlaughterer: {
+            id: "khorneArchSlaughterer",
+            ability: { name: "Arch-slaughterer", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneUnrivalledBattelust: {
+            id: "khorneUnrivalledBattelust",
+            ability: { name: "Unrivalled Battelust", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneSlaughterborn: {
+            id: "khorneSlaughterborn",
+            ability: { name: "Slaughterborn", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneMarkOfTheCannibal: {
+            id: "khorneMarkOfTheCannibal",
+            ability: { name: "Mark of the Cannibal", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneBloodsworn: {
+            id: "khorneBloodsworn",
+            ability: { name: "Bloodsworn", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneDiscipleOfKhorne: {
+            id: "khorneDiscipleOfKhorne",
+            ability: { name: "Disciple of Khorne", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneHungryForGlory: {
+            id: "khorneHungryForGlory",
+            ability: { name: "Hungry for Glory", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneBerzerkerLord: {
+            id: "khorneBerzerkerLord",
+            ability: { name: "Berzerker Lord", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneViolentUrgency: {
+            id: "khorneViolentUrgency",
+            ability: { name: "Violent Urgency", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneImmensePower: {
+            id: "khorneImmensePower",
+            ability: { name: "Immense Power", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneAspectOfDeath: {
+            id: "khorneAspectOfDeath",
+            ability: { name: "Aspect of Death", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        khorneDevastatingBlow: {
+            id: "khorneDevastatingBlow",
+            ability: { name: "Devastating Blow", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessArchSlaughterer: {
+            id: "slavesToDarknessArchSlaughterer",
+            ability: { name: "Arch-slaughterer", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessUnrivalledBattelust: {
+            id: "slavesToDarknessUnrivalledBattelust",
+            ability: { name: "Unrivalled Battelust", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessSlaughterborn: {
+            id: "slavesToDarknessSlaughterborn",
+            ability: { name: "Slaughterborn", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessHungryForGlory: {
+            id: "slavesToDarknessHungryForGlory",
+            ability: { name: "Hungry for Glory", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessBerzerkerLord: {
+            id: "slavesToDarknessBerzerkerLord",
+            ability: { name: "Berzerker Lord", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessViolentUrgency: {
+            id: "slavesToDarknessViolentUrgency",
+            ability: { name: "Violent Urgency", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsDoughtyChampion: {
+            id: "kharadronOverlordsDoughtyChampion",
+            ability: { name: "Doughty Champion", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsFleetmaster: {
+            id: "kharadronOverlordsFleetmaster",
+            ability: { name: "Fleetmaster", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsGrudgebearer: {
+            id: "kharadronOverlordsGrudgebearer",
+            ability: { name: "Grudgebearer", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsSticklerForTheCode: {
+            id: "kharadronOverlordsSticklerForTheCode",
+            ability: { name: "Stickler for the Code", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsSticklerForTheCodeSurrenderIsRarelyProfitable: {
+            id: "kharadronOverlordsSticklerForTheCodeSurrenderIsRarelyProfitable",
+            ability: { name: "Stickler for the Code:Surrender Is Rarely Profitable", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsSticklerForTheCodeThereSNoRewardWithoutRisk: {
+            id: "kharadronOverlordsSticklerForTheCodeThereSNoRewardWithoutRisk",
+            ability: { name: "Stickler for the Code:There's No Reward Without Risk", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsSticklerForTheCodeThereSNoTradingWithSomePeople: {
+            id: "kharadronOverlordsSticklerForTheCodeThereSNoTradingWithSomePeople",
+            ability: { name: "Stickler for the Code:There's No Trading With Some People", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsSticklerForTheCodeTodaySFoesAreTomorrowSCustomers: {
+            id: "kharadronOverlordsSticklerForTheCodeTodaySFoesAreTomorrowSCustomers",
+            ability: { name: "Stickler for the Code:Today's Foes Are Tomorrow's Customers", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsSticklerForTheCodeWithoutOurShipsWeAreNaught: {
+            id: "kharadronOverlordsSticklerForTheCodeWithoutOurShipsWeAreNaught",
+            ability: { name: "Stickler for the Code:Without Our Ships We Are Naught", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsSticklerForTheCodeTheseAreJustGuidelines: {
+            id: "kharadronOverlordsSticklerForTheCodeTheseAreJustGuidelines",
+            ability: { name: "Stickler for the Code:These are Just Guidelines", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsProspector: {
+            id: "kharadronOverlordsProspector",
+            ability: { name: "Prospector", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsRisingStar: {
+            id: "kharadronOverlordsRisingStar",
+            ability: { name: "Rising Star", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsChampionOfProgress: {
+            id: "kharadronOverlordsChampionOfProgress",
+            ability: { name: "Champion of Progress", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        kharadronOverlordsOpportunisticPrivateers: {
+            id: "kharadronOverlordsOpportunisticPrivateers",
+            ability: { name: "Opportunistic Privateers", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        darklingCovensMerciless: {
+            id: "darklingCovensMerciless",
+            ability: { name: "Merciless", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        darklingCovensArrogantProwess: {
+            id: "darklingCovensArrogantProwess",
+            ability: { name: "Arrogant Prowess", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        darklingCovensSustainedByMisery: {
+            id: "darklingCovensSustainedByMisery",
+            ability: { name: "Sustained by Misery", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        darklingCovensMasterOfTheSorcerousArts: {
+            id: "darklingCovensMasterOfTheSorcerousArts",
+            ability: { name: "Master of the Sorcerous Arts", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        darklingCovensEffortlessGrace: {
+            id: "darklingCovensEffortlessGrace",
+            ability: { name: "Effortless Grace", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        darklingCovensImpossiblySwift: {
+            id: "darklingCovensImpossiblySwift",
+            ability: { name: "Impossibly Swift", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        dispossessedResolute: {
+            id: "dispossessedResolute",
+            ability: { name: "Resolute", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        dispossessedResilient: {
+            id: "dispossessedResilient",
+            ability: { name: "Resilient", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        dispossessedUnforgiving: {
+            id: "dispossessedUnforgiving",
+            ability: { name: "Unforgiving", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        dispossessedSiegemaster: {
+            id: "dispossessedSiegemaster",
+            ability: { name: "Siegemaster", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        dispossessedBattleFury: {
+            id: "dispossessedBattleFury",
+            ability: { name: "Battle Fury", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        dispossessedGrudgebearer: {
+            id: "dispossessedGrudgebearer",
+            ability: { name: "Grudgebearer", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        freePeoplesInspiring: {
+            id: "freePeoplesInspiring",
+            ability: { name: "Inspiring", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        freePeoplesBattleTestedVeteran: {
+            id: "freePeoplesBattleTestedVeteran",
+            ability: { name: "Battle-tested Veteran", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        freePeoplesShrewdCommander: {
+            id: "freePeoplesShrewdCommander",
+            ability: { name: "Shrewd Commander", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        freePeoplesIndomitable: {
+            id: "freePeoplesIndomitable",
+            ability: { name: "Indomitable", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        freePeoplesRighteousFury: {
+            id: "freePeoplesRighteousFury",
+            ability: { name: "Righteous Fury", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        freePeoplesGrimResolve: {
+            id: "freePeoplesGrimResolve",
+            ability: { name: "Grim Resolve", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fyreslayersFuryOfTheFyreslayers: {
+            id: "fyreslayersFuryOfTheFyreslayers",
+            ability: { name: "Fury of the Fyreslayers", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fyreslayersExemplarOfTheAncestor: {
+            id: "fyreslayersExemplarOfTheAncestor",
+            ability: { name: "Exemplar of the Ancestor", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fyreslayersBloodOfTheBerserker: {
+            id: "fyreslayersBloodOfTheBerserker",
+            ability: { name: "Blood of the Berserker", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fyreslayersIronOfTheGuardian: {
+            id: "fyreslayersIronOfTheGuardian",
+            ability: { name: "Iron of the Guardian", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fyreslayersDestroyerOfFoes: {
+            id: "fyreslayersDestroyerOfFoes",
+            ability: { name: "Destroyer of Foes", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fyreslayersSpiritOfGrimnir: {
+            id: "fyreslayersSpiritOfGrimnir",
+            ability: { name: "Spirit of Grimnir", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        seraphonArcaneMight: {
+            id: "seraphonArcaneMight",
+            ability: { name: "Arcane Might", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        seraphonVastIntellect: {
+            id: "seraphonVastIntellect",
+            ability: { name: "Vast Intellect", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        seraphonGreatRememberer: {
+            id: "seraphonGreatRememberer",
+            ability: { name: "Great Rememberer", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        seraphonDisciplinedFury: {
+            id: "seraphonDisciplinedFury",
+            ability: { name: "Disciplined Fury", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        seraphonThicklyScaledHide: {
+            id: "seraphonThicklyScaledHide",
+            ability: { name: "Thickly Scaled Hide", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        seraphonMightyWarLeader: {
+            id: "seraphonMightyWarLeader",
+            ability: { name: "Mighty War Leader", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        seraphonMasterOfStarRituals: {
+            id: "seraphonMasterOfStarRituals",
+            ability: { name: "Master of Star Rituals", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        seraphonNimble: {
+            id: "seraphonNimble",
+            ability: { name: "Nimble", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        seraphonCunning: {
+            id: "seraphonCunning",
+            ability: { name: "Cunning", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        wanderersStalkerOfTheHiddenPaths: {
+            id: "wanderersStalkerOfTheHiddenPaths",
+            ability: { name: "Stalker of the Hidden Paths", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        wanderersMystWalker: {
+            id: "wanderersMystWalker",
+            ability: { name: "Myst Walker", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        wanderersMasterfulHunter: {
+            id: "wanderersMasterfulHunter",
+            ability: { name: "Masterful Hunter", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        wanderersEagleEyed: {
+            id: "wanderersEagleEyed",
+            ability: { name: "Eagle-eyed", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        wanderersLordOfBlades: {
+            id: "wanderersLordOfBlades",
+            ability: { name: "Lord of Blades", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        wanderersSingerOfSpells: {
+            id: "wanderersSingerOfSpells",
+            ability: { name: "Singer of Spells", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        brayherdUnreasoningAndDeadly: {
+            id: "brayherdUnreasoningAndDeadly",
+            ability: { name: "Unreasoning and Deadly", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        brayherdCrownOfHorns: {
+            id: "brayherdCrownOfHorns",
+            ability: { name: "Crown of Horns", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        brayherdMalevolentDespoiler: {
+            id: "brayherdMalevolentDespoiler",
+            ability: { name: "Malevolent Despoiler", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        brayherdMassiveBeastlord: {
+            id: "brayherdMassiveBeastlord",
+            ability: { name: "Massive Beastlord", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        brayherdScionOfTheDarkGods: {
+            id: "brayherdScionOfTheDarkGods",
+            ability: { name: "Scion of the Dark Gods", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        brayherdBestialCunning: {
+            id: "brayherdBestialCunning",
+            ability: { name: "Bestial Cunning", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slaaneshLordsOfExcess: {
+            id: "slaaneshLordsOfExcess",
+            ability: { name: "Lords of Excess", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slaaneshDevoteeOfTorment: {
+            id: "slaaneshDevoteeOfTorment",
+            ability: { name: "Devotee of Torment", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slaaneshInvigoratedByPain: {
+            id: "slaaneshInvigoratedByPain",
+            ability: { name: "Invigorated by Pain", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slaaneshSupremelyVain: {
+            id: "slaaneshSupremelyVain",
+            ability: { name: "Supremely Vain", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slaaneshAllureOfSlaanesh: {
+            id: "slaaneshAllureOfSlaanesh",
+            ability: { name: "Allure of Slaanesh", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slaaneshCruelAndSadistic: {
+            id: "slaaneshCruelAndSadistic",
+            ability: { name: "Cruel and Sadistic", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessLordsOfExcess: {
+            id: "slavesToDarknessLordsOfExcess",
+            ability: { name: "Lords of Excess", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessDevoteeOfTorment: {
+            id: "slavesToDarknessDevoteeOfTorment",
+            ability: { name: "Devotee of Torment", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessInvigoratedByPain: {
+            id: "slavesToDarknessInvigoratedByPain",
+            ability: { name: "Invigorated by Pain", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessSupremelyVain: {
+            id: "slavesToDarknessSupremelyVain",
+            ability: { name: "Supremely Vain", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessAllureOfSlaanesh: {
+            id: "slavesToDarknessAllureOfSlaanesh",
+            ability: { name: "Allure of Slaanesh", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessCruelAndSadistic: {
+            id: "slavesToDarknessCruelAndSadistic",
+            ability: { name: "Cruel and Sadistic", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessEternalVendetta: {
+            id: "slavesToDarknessEternalVendetta",
+            ability: { name: "Eternal Vendetta", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessFlamesOfSpite: {
+            id: "slavesToDarknessFlamesOfSpite",
+            ability: { name: "Flames of Spite", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessMasterOfDeception: {
+            id: "slavesToDarknessMasterOfDeception",
+            ability: { name: "Master of Deception", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessHatredIncarnate: {
+            id: "slavesToDarknessHatredIncarnate",
+            ability: { name: "Hatred Incarnate", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessLordOfTerror: {
+            id: "slavesToDarknessLordOfTerror",
+            ability: { name: "Lord of Terror", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessExaltedChampion: {
+            id: "slavesToDarknessExaltedChampion",
+            ability: { name: "Exalted Champion", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensMalevolent: {
+            id: "skavenPestilensMalevolent",
+            ability: { name: "Malevolent", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensDiseased: {
+            id: "skavenPestilensDiseased",
+            ability: { name: "Diseased", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensMasterOfRotAndRuin: {
+            id: "skavenPestilensMasterOfRotAndRuin",
+            ability: { name: "Master of Rot and Ruin", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensFanaticalLeader: {
+            id: "skavenPestilensFanaticalLeader",
+            ability: { name: "Fanatical Leader", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensVerminousValour: {
+            id: "skavenPestilensVerminousValour",
+            ability: { name: "Verminous Valour", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensArchitectOfDeath: {
+            id: "skavenPestilensArchitectOfDeath",
+            ability: { name: "Architect of Death", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenSkryreMalevolent: {
+            id: "skavenSkryreMalevolent",
+            ability: { name: "Malevolent", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenSkryreCunningCreature: {
+            id: "skavenSkryreCunningCreature",
+            ability: { name: "Cunning Creature", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenSkryreDerangedInventor: {
+            id: "skavenSkryreDerangedInventor",
+            ability: { name: "Deranged Inventor", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenSkryreMasterfulScavenger: {
+            id: "skavenSkryreMasterfulScavenger",
+            ability: { name: "Masterful Scavenger", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenSkryreVerminousValour: {
+            id: "skavenSkryreVerminousValour",
+            ability: { name: "Verminous Valour", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenSkryreOverseerOfDestruction: {
+            id: "skavenSkryreOverseerOfDestruction",
+            ability: { name: "Overseer of Destruction", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fleshEaterCourtsBringerOfDeath: {
+            id: "fleshEaterCourtsBringerOfDeath",
+            ability: { name: "Bringer of Death", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fleshEaterCourtsFrenziedFleshEater: {
+            id: "fleshEaterCourtsFrenziedFleshEater",
+            ability: { name: "Frenzied Flesh-eater", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fleshEaterCourtsMagesticHorror: {
+            id: "fleshEaterCourtsMagesticHorror",
+            ability: { name: "Magestic Horror", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fleshEaterCourtsSavageBeyondReason: {
+            id: "fleshEaterCourtsSavageBeyondReason",
+            ability: { name: "Savage Beyond Reason", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fleshEaterCourtsDarkWizardry: {
+            id: "fleshEaterCourtsDarkWizardry",
+            ability: { name: "Dark Wizardry", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        fleshEaterCourtsCompletelyDelusional: {
+            id: "fleshEaterCourtsCompletelyDelusional",
+            ability: { name: "Completely Delusional", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nighthauntHatredOfTheLiving: {
+            id: "nighthauntHatredOfTheLiving",
+            ability: { name: "Hatred of the Living", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nighthauntTerrifyingEntity: {
+            id: "nighthauntTerrifyingEntity",
+            ability: { name: "Terrifying Entity", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nighthauntLingeringSpirit: {
+            id: "nighthauntLingeringSpirit",
+            ability: { name: "Lingering Spirit", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nighthauntPitilessExecutioner: {
+            id: "nighthauntPitilessExecutioner",
+            ability: { name: "Pitiless Executioner", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nighthauntCloakedInShadow: {
+            id: "nighthauntCloakedInShadow",
+            ability: { name: "Cloaked in Shadow", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nighthauntRulerOfTheSpiritHosts: {
+            id: "nighthauntRulerOfTheSpiritHosts",
+            ability: { name: "Ruler of the Spirit Hosts", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        soulblightCurseOfTheRevenant: {
+            id: "soulblightCurseOfTheRevenant",
+            ability: { name: "Curse of the Revenant", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        soulblightDreadKnight: {
+            id: "soulblightDreadKnight",
+            ability: { name: "Dread Knight", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        soulblightTransfix: {
+            id: "soulblightTransfix",
+            ability: { name: "Transfix", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        soulblightMistForm: {
+            id: "soulblightMistForm",
+            ability: { name: "Mist Form", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        soulblightKillingBlow: {
+            id: "soulblightKillingBlow",
+            ability: { name: "Killing Blow", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        soulblightBloodFury: {
+            id: "soulblightBloodFury",
+            ability: { name: "Blood Fury", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        ironjawzHulkingMuscleBoundBrute: {
+            id: "ironjawzHulkingMuscleBoundBrute",
+            ability: { name: "Hulking Muscle-bound Brute", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        ironjawzLiveToFight: {
+            id: "ironjawzLiveToFight",
+            ability: { name: "Live to Fight", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        ironjawzBrutishCunning: {
+            id: "ironjawzBrutishCunning",
+            ability: { name: "Brutish Cunning", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        ironjawzBestialCharisma: {
+            id: "ironjawzBestialCharisma",
+            ability: { name: "Bestial Charisma", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        ironjawzProphetOfTheWaaagh: {
+            id: "ironjawzProphetOfTheWaaagh",
+            ability: { name: "Prophet of the Waaagh!", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        ironjawzIronclad: {
+            id: "ironjawzIronclad",
+            ability: { name: "Ironclad", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleGrandfatherSBlessing: {
+            id: "nurgleGrandfatherSBlessing",
+            ability: { name: "Grandfather's Blessing", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleLivingPlague: {
+            id: "nurgleLivingPlague",
+            ability: { name: "Living Plague", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleHulkingPhysique: {
+            id: "nurgleHulkingPhysique",
+            ability: { name: "Hulking Physique", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleBloatedWithCorruption: {
+            id: "nurgleBloatedWithCorruption",
+            ability: { name: "Bloated with Corruption", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleAvalancheOfRottenFlesh: {
+            id: "nurgleAvalancheOfRottenFlesh",
+            ability: { name: "Avalanche of Rotten Flesh", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleResilient: {
+            id: "nurgleResilient",
+            ability: { name: "Resilient", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleHideousVisage: {
+            id: "nurgleHideousVisage",
+            ability: { name: "Hideous Visage", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleOverpoweringStench: {
+            id: "nurgleOverpoweringStench",
+            ability: { name: "Overpowering Stench", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleVirulentContagion: {
+            id: "nurgleVirulentContagion",
+            ability: { name: "Virulent Contagion", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleTaintedCorruptor: {
+            id: "nurgleTaintedCorruptor",
+            ability: { name: "Tainted Corruptor", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurgleNurglingInfestation: {
+            id: "nurgleNurglingInfestation",
+            ability: { name: "Nurgling Infestation", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        nurglePestilentBreath: {
+            id: "nurglePestilentBreath",
+            ability: { name: "Pestilent Breath", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessGrandfatherSBlessing: {
+            id: "slavesToDarknessGrandfatherSBlessing",
+            ability: { name: "Grandfather's Blessing", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessLivingPlague: {
+            id: "slavesToDarknessLivingPlague",
+            ability: { name: "Living Plague", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessHulkingPhysique: {
+            id: "slavesToDarknessHulkingPhysique",
+            ability: { name: "Hulking Physique", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessHideousVisage: {
+            id: "slavesToDarknessHideousVisage",
+            ability: { name: "Hideous Visage", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessOverpoweringStench: {
+            id: "slavesToDarknessOverpoweringStench",
+            ability: { name: "Overpowering Stench", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessVirulentContagion: {
+            id: "slavesToDarknessVirulentContagion",
+            ability: { name: "Virulent Contagion", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessTaintedCorruptor: {
+            id: "slavesToDarknessTaintedCorruptor",
+            ability: { name: "Tainted Corruptor", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessNurglingInfestation: {
+            id: "slavesToDarknessNurglingInfestation",
+            ability: { name: "Nurgling Infestation", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        slavesToDarknessPestilentBreath: {
+            id: "slavesToDarknessPestilentBreath",
+            ability: { name: "Pestilent Breath", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensGrandfatherSBlessing: {
+            id: "skavenPestilensGrandfatherSBlessing",
+            ability: { name: "Grandfather's Blessing", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensLivingPlague: {
+            id: "skavenPestilensLivingPlague",
+            ability: { name: "Living Plague", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensHulkingPhysique: {
+            id: "skavenPestilensHulkingPhysique",
+            ability: { name: "Hulking Physique", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensTaintedCorruptor: {
+            id: "skavenPestilensTaintedCorruptor",
+            ability: { name: "Tainted Corruptor", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensNurglingInfestation: {
+            id: "skavenPestilensNurglingInfestation",
+            ability: { name: "Nurgling Infestation", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        skavenPestilensPestilentBreath: {
+            id: "skavenPestilensPestilentBreath",
+            ability: { name: "Pestilent Breath", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashMasterOfDeath: {
+            id: "legionsOfNagashMasterOfDeath",
+            ability: { name: "Master of Death", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashChosenChampion: {
+            id: "legionsOfNagashChosenChampion",
+            ability: { name: "Chosen Champion", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashBaneOfTheLiving: {
+            id: "legionsOfNagashBaneOfTheLiving",
+            ability: { name: "Bane of the Living", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashAuraOfAges: {
+            id: "legionsOfNagashAuraOfAges",
+            ability: { name: "Aura of Ages", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashAncientStrategist: {
+            id: "legionsOfNagashAncientStrategist",
+            ability: { name: "Ancient Strategist", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashLordOfNagashizzar: {
+            id: "legionsOfNagashLordOfNagashizzar",
+            ability: { name: "Lord of Nagashizzar", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashEmissaryOfTheMaster: {
+            id: "legionsOfNagashEmissaryOfTheMaster",
+            ability: { name: "Emissary of the Master", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashMarkOfTheFavoured: {
+            id: "legionsOfNagashMarkOfTheFavoured",
+            ability: { name: "Mark of the Favoured", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashDarkAcolyte: {
+            id: "legionsOfNagashDarkAcolyte",
+            ability: { name: "Dark Acolyte", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashMasteryOfDeath: {
+            id: "legionsOfNagashMasteryOfDeath",
+            ability: { name: "Mastery of Death", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashPeerlessCommander: {
+            id: "legionsOfNagashPeerlessCommander",
+            ability: { name: "Peerless Commander", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashBoundToTheMaster: {
+            id: "legionsOfNagashBoundToTheMaster",
+            ability: { name: "Bound to the Master", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashSwiftStrikes: {
+            id: "legionsOfNagashSwiftStrikes",
+            ability: { name: "Swift Strikes", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashSoulCrushingContempt: {
+            id: "legionsOfNagashSoulCrushingContempt",
+            ability: { name: "Soul-Crushing Contempt", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashAristocracyOfBlood: {
+            id: "legionsOfNagashAristocracyOfBlood",
+            ability: { name: "Aristocracy of Blood", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashAuraOfDarkMajesty: {
+            id: "legionsOfNagashAuraOfDarkMajesty",
+            ability: { name: "Aura of Dark Majesty", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashWalkingDeath: {
+            id: "legionsOfNagashWalkingDeath",
+            ability: { name: "Walking Death", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashSanguineBlur: {
+            id: "legionsOfNagashSanguineBlur",
+            ability: { name: "Sanguine Blur", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashAboveSuspicion: {
+            id: "legionsOfNagashAboveSuspicion",
+            ability: { name: "Above Suspicion", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashSwiftForm: {
+            id: "legionsOfNagashSwiftForm",
+            ability: { name: "Swift Form", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashUnbendingWill: {
+            id: "legionsOfNagashUnbendingWill",
+            ability: { name: "Unbending Will", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashMercilessHunter: {
+            id: "legionsOfNagashMercilessHunter",
+            ability: { name: "Merciless Hunter", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashUnholyImpetus: {
+            id: "legionsOfNagashUnholyImpetus",
+            ability: { name: "Unholy Impetus", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        legionsOfNagashTerrifyingVisage: {
+            id: "legionsOfNagashTerrifyingVisage",
+            ability: { name: "Terrifying Visage", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        daughtersOfKhaineBathedInBlood: {
+            id: "daughtersOfKhaineBathedInBlood",
+            ability: { name: "Bathed in Blood", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        daughtersOfKhaineZealousOrator: {
+            id: "daughtersOfKhaineZealousOrator",
+            ability: { name: "Zealous Orator", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        daughtersOfKhaineBloodySacrificer: {
+            id: "daughtersOfKhaineBloodySacrificer",
+            ability: { name: "Bloody Sacrificer", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        daughtersOfKhaineTerrifyingBeauty: {
+            id: "daughtersOfKhaineTerrifyingBeauty",
+            ability: { name: "Terrifying Beauty", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        daughtersOfKhaineMistressOfPoisons: {
+            id: "daughtersOfKhaineMistressOfPoisons",
+            ability: { name: "Mistress of Poisons", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        daughtersOfKhaineTrueBeliever: {
+            id: "daughtersOfKhaineTrueBeliever",
+            ability: { name: "True Believer", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        daughtersOfKhaineDevotedDesciples: {
+            id: "daughtersOfKhaineDevotedDesciples",
+            ability: { name: "Devoted Desciples", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        daughtersOfKhaineMistressOfIllusion: {
+            id: "daughtersOfKhaineMistressOfIllusion",
+            ability: { name: "Mistress of Illusion", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+    };
+    
     boxes: Box[] = [];
-    extraAbilities:ExtraAbility[] = [];
-
+    
     battalions = {
         bloodHostOfKhorne: {
             id: "bloodHostOfKhorne",
