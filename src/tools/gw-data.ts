@@ -171,7 +171,8 @@ const allegiances = [
 let output = `import { Box, DataStore, GrandAlliance, ExtraAbilityTest } from "./units";
 
 const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
-    
+const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
+         && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
 
@@ -261,7 +262,11 @@ output += `    };
     units = {
 `;
 
-const gwPoints = fs.readFileSync("src/stores/data/gwPoints.csv", { encoding: "utf8"}).split("\n").map(x => x.split(","));
+function readCsv(path: string) {
+    return fs.readFileSync(path, { encoding: "utf8"}).split("\n").map(x => x.split(","));
+}
+
+const gwPoints = readCsv("src/stores/data/gwPoints.csv");
 const gwPointsMap = new Map<string, { warscroll?: string, type?: string, count: number, maxCount?: number, points: number, maxPoints?: number }>();
 for (const points of gwPoints) {
     const name = points[0];
@@ -276,7 +281,7 @@ for (const points of gwPoints) {
     gwPointsMap.set(toCamelCase(name), t);
 }
 
-const extraWeapons = fs.readFileSync("src/stores/data/allWeaponOptions.csv", { encoding: "utf8" }).split("\n").map(x => x.split(","));
+const extraWeapons = readCsv("src/stores/data/allWeaponOptions.csv");
 const extraWeaponsMap = new Map<string, { name: string }[]>();
 for (const e of extraWeapons) {
     const name = toCamelCase(e[0]);
@@ -354,18 +359,16 @@ for (const [key, unit] of gwPointsMap) {
 }
 
 
-const commandTraits = fs.readFileSync("src/stores/data/commandTraits.csv", { encoding: "utf8" }).split("\n").map(x => x.split(","));
+const commandTraits = readCsv("src/stores/data/commandTraits.csv");
 
 output += `    };
     
     extraAbilities = {
 `;
 
-const usedCommandTraits = new Map<string, boolean>();
-
-for (const commandTrait of commandTraits) {
-    const factionName = commandTrait[0].toLowerCase();
-    if (factionName === "skirmish") continue;
+function getAllegiance(factionName: string) {
+    factionName = factionName.toLowerCase();
+    if (factionName === "skirmish") return undefined;
     let allegiance = allegiances.find(x => x.name.toLowerCase() === factionName);
     if (!allegiance) {
         const faction = factions.find(x => x.name.toLowerCase() === factionName);
@@ -373,12 +376,22 @@ for (const commandTrait of commandTraits) {
             allegiance = allegiances.find(x => x.name === faction.allegiance);
             if (!allegiance) {
                 console.error(`Unable to find allegiance ${faction.allegiance} for faction ${faction.name}`);
-                continue;
+                return undefined;
             }
         }
     }
+
     if (allegiance === undefined) {
         console.error(`Unable to find allegiance or faction "${factionName}"`);
+    }
+    return allegiance;
+}
+
+const usedCommandTraits = new Map<string, boolean>();
+
+for (const commandTrait of commandTraits) {
+    const allegiance = getAllegiance(commandTrait[0]);
+    if (allegiance === undefined) {
         continue;
     }
     const m = commandTrait[1].match(/(.*) \((.*\))/);
@@ -398,6 +411,31 @@ for (const commandTrait of commandTraits) {
 `
 }
 
+const artefacts = readCsv("src/stores/data/artefacts.csv");
+
+for (const artefact of artefacts) {
+    const allegiance = getAllegiance(artefact[0]);
+    if (allegiance === undefined) {
+        continue;
+    }
+    const category = artefact[1];
+    const m = artefact[2].match(/(.*) \((.*\))/);
+    if (m === null) continue;
+    const name = m[1];
+    // const criteria = m[2];
+    const key = toCamelCase(allegiance.name + name);
+    if (usedCommandTraits.get(key)) continue;
+    usedCommandTraits.set(key, true);
+    output += `        ${key}: {
+            id: "${key}",
+            ability: { name: "${name}", description: "" },
+            allegiance: this.allegiances.${toCamelCase(allegiance.name)},
+            category: "artifact",
+            subCategory: "${category}",
+            isAvailable: artifactAvailable
+        },
+`
+}
 
 output += `    };
     
@@ -419,8 +457,26 @@ for (const [key, unit] of gwPointsMap) {
 `;
 }
 
+const armyOptions = readCsv("src/stores/data/armyOptions.csv");
 
-output += "    }\n}\n";
+output += `    };
+    
+    armyOptions = new Map([
+`;
+
+
+for (const armyOption of armyOptions) {
+    const match = armyOption[0].match(/^Allegiance: (.*)/);
+    if (match === null) continue;
+    const allegiance = match[1];
+    const key = toCamelCase(allegiance);
+    const name = armyOption[1];
+    const options = armyOption.slice(2);
+    output += `        ["${key}", { name: "${name}", values: ["${options.join('", "')}"]}],
+`;
+}
+
+output += "    ]);\n}\n";
 
 fs.writeFileSync("src/stores/imported-data.ts", output);
 

@@ -73,6 +73,9 @@ export class Warscroll implements WarscrollInterface {
     allegiance: Allegiance = this.unitsStore.allegianceList[0];
 
     @observable
+    armyOption: string = "";
+
+    @observable
     name = "New Warscroll";
 
     @observable
@@ -182,6 +185,7 @@ interface SerializedWarscroll {
     }[];
     grandAlliance: number;
     allegiance: string;
+    armyOption: string;
 }
 
 export class WarscrollStore {
@@ -248,6 +252,17 @@ export class WarscrollStore {
         this.warscroll.extraAbilities.splice(unit.extraAbilities.indexOf(ability), 1);
         this.saveWarscroll();
     }
+
+    @computed
+    get armyOptions() {
+        return this.unitsStore.armyOptions.get(this.warscroll.allegiance.id);
+    }
+
+    @action
+    setArmyOption(option: string){
+        this.warscroll.armyOption = option;
+        this.saveWarscroll();
+    }
     
     loadWarscroll(name?: string) {
         const serializedWarscroll = localStorage.getItem(this.getWarscrollItem(name));
@@ -260,7 +275,8 @@ export class WarscrollStore {
         this.warscroll.grandAlliance = warscroll.grandAlliance;
         this.warscroll.allegiance = this.unitsStore.allegianceList.find(x => x.id === warscroll.allegiance) || this.unitsStore.allegianceList[0];
         this.warscroll.extraAbilities.splice(0);
-
+        this.warscroll.armyOption = warscroll.armyOption;
+        
         for (const wu of warscroll.units) {
             const unit = this.unitsStore.getUnit(wu.unitId);
             if (unit === undefined) continue;
@@ -314,7 +330,8 @@ export class WarscrollStore {
                 };
             }),
             grandAlliance: this.warscroll.grandAlliance,
-            allegiance: this.warscroll.allegiance.id
+            allegiance: this.warscroll.allegiance.id,
+            armyOption: this.warscroll.armyOption
         };
         localStorage.setItem(this.getWarscrollItem(name), JSON.stringify(warscroll));
     }

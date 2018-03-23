@@ -142,6 +142,11 @@ export interface ExtraAbility {
     isAvailable: ExtraAbilityTest;
 }
 
+export interface ArmyOptions {
+    name: string;
+    values: string[];
+}
+
 export class UnitsStore {
     serial = 100;
 
@@ -153,6 +158,7 @@ export class UnitsStore {
     factions: { [key: string]: Faction };
     factionsList: Faction[] = [];
     allegianceList: Allegiance[] = [];
+    armyOptions: Map<string, ArmyOptions>;
     
     constructor(data: DataStoreImpl) {   
         overrideStormcast(data);   
@@ -191,6 +197,8 @@ export class UnitsStore {
         for (const key in extraAbilities) {
             this.extraAbilities.push(extraAbilities[key]);
         }
+
+        this.armyOptions = data.armyOptions;
     }
 
     getUnit(id: string) {

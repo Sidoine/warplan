@@ -37,20 +37,28 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
         
         const factionOptions = this.props.unitsStore!.factionsList.filter(x => x.grandAlliance === this.props.uiStore!.grandAlliance).map(x => { return { key: x.id, text: x.name, value: x.id } });
         const allegianceOptions = this.props.unitsStore!.allegianceList.filter(x => x.grandAlliance === this.props.uiStore!.grandAlliance)
-            .map(x => { return { key: x.id, value: x.id, text: x.name }});;
+            .map(x => { return { key: x.id, value: x.id, text: x.name }});
+        const armyOptions = this.props.warscrollStore!.armyOptions;
+        const armyOptionsValues = armyOptions && armyOptions.values.map(x => { return { key: x, value: x, text: x} });
 
         return <Segment>
             <Grid>
                 <Grid.Row>
-                    <Grid.Column width={8}>
+                    <Grid.Column width={6}>
                         Filter: 
                         <Dropdown selection options={grandAllianceOptions} value={this.props.uiStore!.grandAlliance} onChange={this.setGrandAlliance}/>
                         <Dropdown selection options={factionOptions} value={this.props.uiStore!.faction.id} onChange={this.setFaction}/>
                     </Grid.Column>
-                    <Grid.Column width={8}>
+                    <Grid.Column width={5}>
                         Allegiance:
                         <Dropdown selection options={allegianceOptions} value={this.props.warscrollStore!.warscroll.allegiance.id} onChange={this.setAllegiance} />    
                     </Grid.Column>
+                    { armyOptions && 
+                        <Grid.Column width={5}>
+                            {armyOptions.name}:
+                            <Dropdown selection options={armyOptionsValues} value={this.props.warscrollStore!.warscroll.armyOption} onChange={this.setArmyOption} />    
+                        </Grid.Column>
+                    }
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={3} >{totalPoints} points</Grid.Column>
@@ -75,6 +83,10 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
             this.props.warscrollStore!.warscroll.allegiance = allegiance;
             this.props.warscrollStore!.saveWarscroll();
         }
+    }
+
+    private setArmyOption = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+        this.props.warscrollStore!.setArmyOption(data.value as string);
     }
 
     private setFaction = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {

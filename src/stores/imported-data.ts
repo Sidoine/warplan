@@ -1,7 +1,8 @@
 import { Box, DataStore, GrandAlliance, ExtraAbilityTest } from "./units";
 
 const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
-    
+const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
+         && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
 
@@ -14135,6 +14136,2742 @@ export class DataStoreImpl implements DataStore {
             category: "command",
             isAvailable: commandTraitAvailable
         },
+        bonesplitterzGlowinTattooz: {
+            id: "bonesplitterzGlowinTattooz",
+            ability: { name: "Glowin Tattooz", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Artefacts of Power",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzDragonToof: {
+            id: "bonesplitterzDragonToof",
+            ability: { name: "Dragon Toof", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Artefacts of Power",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzWeepwoodBigShiv: {
+            id: "bonesplitterzWeepwoodBigShiv",
+            ability: { name: "Weepwood Big Shiv", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Artefacts of Power",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzDokkJuice: {
+            id: "bonesplitterzDokkJuice",
+            ability: { name: "Dokk Juice", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Artefacts of Power",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzSavageTrophy: {
+            id: "bonesplitterzSavageTrophy",
+            ability: { name: "Savage Trophy", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Artefacts of Power",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzLuckyBone: {
+            id: "bonesplitterzLuckyBone",
+            ability: { name: "Lucky Bone", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Artefacts of Power",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzJuJuWotnotz: {
+            id: "bonesplitterzJuJuWotnotz",
+            ability: { name: "Ju-ju Wotnotz", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzBigSpiritStikk: {
+            id: "bonesplitterzBigSpiritStikk",
+            ability: { name: "Big Spirit Stikk", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzMorkSBoneyBitz: {
+            id: "bonesplitterzMorkSBoneyBitz",
+            ability: { name: "Mork's Boney Bitz", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzDaGreatZappaSquiq: {
+            id: "bonesplitterzDaGreatZappaSquiq",
+            ability: { name: "Da Great Zappa Squiq", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzBigWurrgogMask: {
+            id: "bonesplitterzBigWurrgogMask",
+            ability: { name: "Big Wurrgog Mask", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        bonesplitterzMysticWaaaghPaint: {
+            id: "bonesplitterzMysticWaaaghPaint",
+            ability: { name: "Mystic Waaagh! Paint", description: "" },
+            allegiance: this.allegiances.bonesplitterz,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        sylvanethDaithSReaper: {
+            id: "sylvanethDaithSReaper",
+            ability: { name: "Daith's Reaper", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        sylvanethTheOakenArmour: {
+            id: "sylvanethTheOakenArmour",
+            ability: { name: "The Oaken Armour", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        sylvanethBriarsheath: {
+            id: "sylvanethBriarsheath",
+            ability: { name: "Briarsheath", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        sylvanethSeedOfRebirth: {
+            id: "sylvanethSeedOfRebirth",
+            ability: { name: "Seed of Rebirth", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        sylvanethWraithstone: {
+            id: "sylvanethWraithstone",
+            ability: { name: "Wraithstone", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        sylvanethGlamourweave: {
+            id: "sylvanethGlamourweave",
+            ability: { name: "Glamourweave", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        sylvanethIronbarkTalisman: {
+            id: "sylvanethIronbarkTalisman",
+            ability: { name: "Ironbark Talisman", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        sylvanethAcornOfTheAges: {
+            id: "sylvanethAcornOfTheAges",
+            ability: { name: "Acorn of the Ages", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        sylvanethWarsongStave: {
+            id: "sylvanethWarsongStave",
+            ability: { name: "Warsong Stave", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        sylvanethMoonstoneOfTheHiddenWays: {
+            id: "sylvanethMoonstoneOfTheHiddenWays",
+            ability: { name: "Moonstone of the Hidden Ways", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        sylvanethRanuSLamentiri: {
+            id: "sylvanethRanuSLamentiri",
+            ability: { name: "Ranu's Lamentiri", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        sylvanethHagbaneSpite: {
+            id: "sylvanethHagbaneSpite",
+            ability: { name: "Hagbane Spite", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        sylvanethTheSilverwoodCirclet: {
+            id: "sylvanethTheSilverwoodCirclet",
+            ability: { name: "The Silverwood Circlet", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        sylvanethTearOfGrace: {
+            id: "sylvanethTearOfGrace",
+            ability: { name: "Tear of Grace", description: "" },
+            allegiance: this.allegiances.sylvaneth,
+            category: "artifact",
+            subCategory: "Arcane Treasures",
+            isAvailable: artifactAvailable
+        },
+        beastclawRaidersElixirOfFrostwyrm: {
+            id: "beastclawRaidersElixirOfFrostwyrm",
+            ability: { name: "Elixir of Frostwyrm", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        beastclawRaidersTheBleedingSkullOfDragaar: {
+            id: "beastclawRaidersTheBleedingSkullOfDragaar",
+            ability: { name: "The Bleeding Skull of Dragaar", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        beastclawRaidersThePeltOfCharngar: {
+            id: "beastclawRaidersThePeltOfCharngar",
+            ability: { name: "The Pelt of Charngar", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        beastclawRaidersBladeOfAllFrost: {
+            id: "beastclawRaidersBladeOfAllFrost",
+            ability: { name: "Blade of All Frost", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        beastclawRaidersTokensOfTheEverwinter: {
+            id: "beastclawRaidersTokensOfTheEverwinter",
+            ability: { name: "Tokens of the Everwinter", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        beastclawRaidersIceMammothSkullPlate: {
+            id: "beastclawRaidersIceMammothSkullPlate",
+            ability: { name: "Ice Mammoth Skull Plate", description: "" },
+            allegiance: this.allegiances.beastclawRaiders,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        tzeentchLordOfFlux: {
+            id: "tzeentchLordOfFlux",
+            ability: { name: " Lord of Flux", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        tzeentchAuraOfMutability: {
+            id: "tzeentchAuraOfMutability",
+            ability: { name: " Aura of Mutability", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        tzeentchCursedIchor: {
+            id: "tzeentchCursedIchor",
+            ability: { name: " Cursed Ichor", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        tzeentchWellspringOfArcaneMight: {
+            id: "tzeentchWellspringOfArcaneMight",
+            ability: { name: " Wellspring of Arcane Might", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        tzeentchAspectOfTzeentch: {
+            id: "tzeentchAspectOfTzeentch",
+            ability: { name: " Aspect of Tzeentch", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        tzeentchMarkOfTheConjurer: {
+            id: "tzeentchMarkOfTheConjurer",
+            ability: { name: " Mark of the Conjurer", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        tzeentchWickedShard: {
+            id: "tzeentchWickedShard",
+            ability: { name: " Wicked Shard", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        tzeentchChangeblade: {
+            id: "tzeentchChangeblade",
+            ability: { name: " Changeblade", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        tzeentchNexusStaff: {
+            id: "tzeentchNexusStaff",
+            ability: { name: " Nexus Staff", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        tzeentchTimeslipPendant: {
+            id: "tzeentchTimeslipPendant",
+            ability: { name: " Timeslip Pendant", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        tzeentchDaemonheart: {
+            id: "tzeentchDaemonheart",
+            ability: { name: " Daemonheart", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        tzeentchParadoxicalShield: {
+            id: "tzeentchParadoxicalShield",
+            ability: { name: " Paradoxical Shield", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessWickedShard: {
+            id: "slavesToDarknessWickedShard",
+            ability: { name: " Wicked Shard", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessChangeblade: {
+            id: "slavesToDarknessChangeblade",
+            ability: { name: " Changeblade", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessNexusStaff: {
+            id: "slavesToDarknessNexusStaff",
+            ability: { name: " Nexus Staff", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTimeslipPendant: {
+            id: "slavesToDarknessTimeslipPendant",
+            ability: { name: " Timeslip Pendant", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessDaemonheart: {
+            id: "slavesToDarknessDaemonheart",
+            ability: { name: " Daemonheart", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessParadoxicalShield: {
+            id: "slavesToDarknessParadoxicalShield",
+            ability: { name: " Paradoxical Shield", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessLordOfFlux: {
+            id: "slavesToDarknessLordOfFlux",
+            ability: { name: " Lord of Flux", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessAuraOfMutability: {
+            id: "slavesToDarknessAuraOfMutability",
+            ability: { name: " Aura of Mutability", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessCursedIchor: {
+            id: "slavesToDarknessCursedIchor",
+            ability: { name: " Cursed Ichor", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessWellspringOfArcaneMight: {
+            id: "slavesToDarknessWellspringOfArcaneMight",
+            ability: { name: " Wellspring of Arcane Might", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessAspectOfTzeentch: {
+            id: "slavesToDarknessAspectOfTzeentch",
+            ability: { name: " Aspect of Tzeentch", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessMarkOfTheConjurer: {
+            id: "slavesToDarknessMarkOfTheConjurer",
+            ability: { name: " Mark of the Conjurer", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        tzeentchAmbitionSEnd: {
+            id: "tzeentchAmbitionSEnd",
+            ability: { name: " Ambition's End", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        tzeentchSecretEater: {
+            id: "tzeentchSecretEater",
+            ability: { name: " Secret Eater", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        tzeentchSpitefulShield: {
+            id: "tzeentchSpitefulShield",
+            ability: { name: " Spiteful Shield", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        tzeentchSouldraught: {
+            id: "tzeentchSouldraught",
+            ability: { name: " Souldraught", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        tzeentchGlamourFetish: {
+            id: "tzeentchGlamourFetish",
+            ability: { name: " Glamour Fetish", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        tzeentchWindshiefCharm: {
+            id: "tzeentchWindshiefCharm",
+            ability: { name: " Windshief Charm", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessAmbitionSEnd: {
+            id: "slavesToDarknessAmbitionSEnd",
+            ability: { name: " Ambition's End", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessSecretEater: {
+            id: "slavesToDarknessSecretEater",
+            ability: { name: " Secret Eater", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessSpitefulShield: {
+            id: "slavesToDarknessSpitefulShield",
+            ability: { name: " Spiteful Shield", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessSouldraught: {
+            id: "slavesToDarknessSouldraught",
+            ability: { name: " Souldraught", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessGlamourFetish: {
+            id: "slavesToDarknessGlamourFetish",
+            ability: { name: " Glamour Fetish", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessWindshiefCharm: {
+            id: "slavesToDarknessWindshiefCharm",
+            ability: { name: " Windshief Charm", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessWarpfireBlade: {
+            id: "slavesToDarknessWarpfireBlade",
+            ability: { name: " Warpfire Blade", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessSentientWeapons: {
+            id: "slavesToDarknessSentientWeapons",
+            ability: { name: " Sentient Weapons", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessBladeOfFate: {
+            id: "slavesToDarknessBladeOfFate",
+            ability: { name: " Blade of Fate", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessSouleater: {
+            id: "slavesToDarknessSouleater",
+            ability: { name: " Souleater", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessPhantasmalWeapons: {
+            id: "slavesToDarknessPhantasmalWeapons",
+            ability: { name: " Phantasmal Weapons", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessPyrofyreStave: {
+            id: "slavesToDarknessPyrofyreStave",
+            ability: { name: " Pyrofyre Stave", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        tzeentchWarpfireBlade: {
+            id: "tzeentchWarpfireBlade",
+            ability: { name: " Warpfire Blade", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        tzeentchSentientWeapons: {
+            id: "tzeentchSentientWeapons",
+            ability: { name: " Sentient Weapons", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        tzeentchBladeOfFate: {
+            id: "tzeentchBladeOfFate",
+            ability: { name: " Blade of Fate", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        tzeentchSouleater: {
+            id: "tzeentchSouleater",
+            ability: { name: " Souleater", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        tzeentchPhantasmalWeapons: {
+            id: "tzeentchPhantasmalWeapons",
+            ability: { name: " Phantasmal Weapons", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        tzeentchPyrofyreStave: {
+            id: "tzeentchPyrofyreStave",
+            ability: { name: " Pyrofyre Stave", description: "" },
+            allegiance: this.allegiances.tzeentch,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsStrifeEnder: {
+            id: "stormcastEternalsStrifeEnder",
+            ability: { name: "Strife-ender", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Blessed Weapons",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsBladeOfHeroes: {
+            id: "stormcastEternalsBladeOfHeroes",
+            ability: { name: "Blade of Heroes", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Blessed Weapons",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsHammerOfMight: {
+            id: "stormcastEternalsHammerOfMight",
+            ability: { name: "Hammer of Might", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Blessed Weapons",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsFangOfDracothion: {
+            id: "stormcastEternalsFangOfDracothion",
+            ability: { name: "Fang of Dracothion", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Blessed Weapons",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsObsidianBlade: {
+            id: "stormcastEternalsObsidianBlade",
+            ability: { name: "Obsidian Blade", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Blessed Weapons",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsGiftOfTheSixSmiths: {
+            id: "stormcastEternalsGiftOfTheSixSmiths",
+            ability: { name: "Gift of the Six Smiths", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Blessed Weapons",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsSoulthief: {
+            id: "stormcastEternalsSoulthief",
+            ability: { name: "Soulthief", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Blessed Weapons",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsArmourOfDestiny: {
+            id: "stormcastEternalsArmourOfDestiny",
+            ability: { name: "Armour of Destiny", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Enchanted Armour",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsArmorOfSilveredSigmarite: {
+            id: "stormcastEternalsArmorOfSilveredSigmarite",
+            ability: { name: "Armor of Silvered Sigmarite", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Enchanted Armour",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsDrakescaleArmour: {
+            id: "stormcastEternalsDrakescaleArmour",
+            ability: { name: "Drakescale Armour", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Enchanted Armour",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsMirrorshield: {
+            id: "stormcastEternalsMirrorshield",
+            ability: { name: "Mirrorshield", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Enchanted Armour",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsSpellshield: {
+            id: "stormcastEternalsSpellshield",
+            ability: { name: "Spellshield", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Enchanted Armour",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsTalismanOfEndurance: {
+            id: "stormcastEternalsTalismanOfEndurance",
+            ability: { name: "Talisman of Endurance", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsObsidianAmulet: {
+            id: "stormcastEternalsObsidianAmulet",
+            ability: { name: "Obsidian Amulet", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsLuckstone: {
+            id: "stormcastEternalsLuckstone",
+            ability: { name: "Luckstone", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsSeedOfRebirth: {
+            id: "stormcastEternalsSeedOfRebirth",
+            ability: { name: "Seed of Rebirth", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsSigmaritePendant: {
+            id: "stormcastEternalsSigmaritePendant",
+            ability: { name: "Sigmarite Pendant", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsQuicksilverDraught: {
+            id: "stormcastEternalsQuicksilverDraught",
+            ability: { name: "Quicksilver Draught", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        stormcastEternalsChainsOfCelestialLightning: {
+            id: "stormcastEternalsChainsOfCelestialLightning",
+            ability: { name: "Chains of Celestial Lightning", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Magical Artefacts",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenLordOfFlux: {
+            id: "fistOfTheEverchosenLordOfFlux",
+            ability: { name: "Lord of Flux", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenAuraOfMutability: {
+            id: "fistOfTheEverchosenAuraOfMutability",
+            ability: { name: "Aura of Mutability", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenCursedIchor: {
+            id: "fistOfTheEverchosenCursedIchor",
+            ability: { name: "Cursed Ichor", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenWellspringOfArcaneMight: {
+            id: "fistOfTheEverchosenWellspringOfArcaneMight",
+            ability: { name: "Wellspring of Arcane Might", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenAspectOfTzeentch: {
+            id: "fistOfTheEverchosenAspectOfTzeentch",
+            ability: { name: "Aspect of Tzeentch", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenMarkOfTheConjurer: {
+            id: "fistOfTheEverchosenMarkOfTheConjurer",
+            ability: { name: "Mark of the Conjurer", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Powers",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenAmbitionSEnd: {
+            id: "fistOfTheEverchosenAmbitionSEnd",
+            ability: { name: " Ambition's End", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenSecretEater: {
+            id: "fistOfTheEverchosenSecretEater",
+            ability: { name: " Secret Eater", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenSpitefulShield: {
+            id: "fistOfTheEverchosenSpitefulShield",
+            ability: { name: " Spiteful Shield", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenSouldraught: {
+            id: "fistOfTheEverchosenSouldraught",
+            ability: { name: " Souldraught", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenGlamourFetish: {
+            id: "fistOfTheEverchosenGlamourFetish",
+            ability: { name: " Glamour Fetish", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenWindshiefCharm: {
+            id: "fistOfTheEverchosenWindshiefCharm",
+            ability: { name: " Windshief Charm", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Treasures of the Cults",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenWarpfireBlade: {
+            id: "fistOfTheEverchosenWarpfireBlade",
+            ability: { name: " Warpfire Blade", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenSentientWeapons: {
+            id: "fistOfTheEverchosenSentientWeapons",
+            ability: { name: " Sentient Weapons", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenBladeOfFate: {
+            id: "fistOfTheEverchosenBladeOfFate",
+            ability: { name: " Blade of Fate", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenSouleater: {
+            id: "fistOfTheEverchosenSouleater",
+            ability: { name: " Souleater", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenPhantasmalWeapons: {
+            id: "fistOfTheEverchosenPhantasmalWeapons",
+            ability: { name: " Phantasmal Weapons", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenPyrofyreStave: {
+            id: "fistOfTheEverchosenPyrofyreStave",
+            ability: { name: " Pyrofyre Stave", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenWickedShard: {
+            id: "fistOfTheEverchosenWickedShard",
+            ability: { name: " Wicked Shard", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenChangeblade: {
+            id: "fistOfTheEverchosenChangeblade",
+            ability: { name: " Changeblade", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenNexusStaff: {
+            id: "fistOfTheEverchosenNexusStaff",
+            ability: { name: " Nexus Staff", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenTimeslipPendant: {
+            id: "fistOfTheEverchosenTimeslipPendant",
+            ability: { name: " Timeslip Pendant", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenDaemonheart: {
+            id: "fistOfTheEverchosenDaemonheart",
+            ability: { name: " Daemonheart", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        fistOfTheEverchosenParadoxicalShield: {
+            id: "fistOfTheEverchosenParadoxicalShield",
+            ability: { name: " Paradoxical Shield", description: "" },
+            allegiance: this.allegiances.fistOfTheEverchosen,
+            category: "artifact",
+            subCategory: "Fated Artefacts",
+            isAvailable: artifactAvailable
+        },
+        khorneTheSkullHelmOfKhorne: {
+            id: "khorneTheSkullHelmOfKhorne",
+            ability: { name: "The Skull-helm of Khorne", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Trophies of War",
+            isAvailable: artifactAvailable
+        },
+        khorneTheBloodForgedArmour: {
+            id: "khorneTheBloodForgedArmour",
+            ability: { name: "The Blood-forged Armour", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Trophies of War",
+            isAvailable: artifactAvailable
+        },
+        khorneTheBrazenRune: {
+            id: "khorneTheBrazenRune",
+            ability: { name: "The Brazen Rune", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Trophies of War",
+            isAvailable: artifactAvailable
+        },
+        khorneTheBladeOfEndlessBloodshed: {
+            id: "khorneTheBladeOfEndlessBloodshed",
+            ability: { name: "The Blade of Endless Bloodshed", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Trophies of War",
+            isAvailable: artifactAvailable
+        },
+        khorneMarkOfTheDestroyer: {
+            id: "khorneMarkOfTheDestroyer",
+            ability: { name: "Mark of the Destroyer", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Trophies of War",
+            isAvailable: artifactAvailable
+        },
+        khorneTalismanOfBurningBlood: {
+            id: "khorneTalismanOfBurningBlood",
+            ability: { name: "Talisman of Burning Blood", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Trophies of War",
+            isAvailable: artifactAvailable
+        },
+        khorneHeartSeeker: {
+            id: "khorneHeartSeeker",
+            ability: { name: "Heart Seeker", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        khorneCollarOfKhorne: {
+            id: "khorneCollarOfKhorne",
+            ability: { name: "Collar of Khorne", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        khorneBloodDrinker: {
+            id: "khorneBloodDrinker",
+            ability: { name: "Blood Drinker", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        khorneGorecleaver: {
+            id: "khorneGorecleaver",
+            ability: { name: "Gorecleaver", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        khorneTheCrimsonPlate: {
+            id: "khorneTheCrimsonPlate",
+            ability: { name: "The Crimson Plate", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        khorneBloodRune: {
+            id: "khorneBloodRune",
+            ability: { name: "Blood Rune", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessHeartSeeker: {
+            id: "slavesToDarknessHeartSeeker",
+            ability: { name: "Heart Seeker", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessCollarOfKhorne: {
+            id: "slavesToDarknessCollarOfKhorne",
+            ability: { name: "Collar of Khorne", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessBloodDrinker: {
+            id: "slavesToDarknessBloodDrinker",
+            ability: { name: "Blood Drinker", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessGorecleaver: {
+            id: "slavesToDarknessGorecleaver",
+            ability: { name: "Gorecleaver", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTheCrimsonPlate: {
+            id: "slavesToDarknessTheCrimsonPlate",
+            ability: { name: "The Crimson Plate", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessBloodRune: {
+            id: "slavesToDarknessBloodRune",
+            ability: { name: "Blood Rune", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Murderous Artefacts",
+            isAvailable: artifactAvailable
+        },
+        khorneARgathTheKingOfBlades: {
+            id: "khorneARgathTheKingOfBlades",
+            ability: { name: "A'rgath the King of Blades", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        khorneDeathdealer: {
+            id: "khorneDeathdealer",
+            ability: { name: "Deathdealer", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        khorneKhartothTheBloodhunger: {
+            id: "khorneKhartothTheBloodhunger",
+            ability: { name: "Khartoth the Bloodhunger", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        khorneHellfireBlade: {
+            id: "khorneHellfireBlade",
+            ability: { name: "Hellfire Blade", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        khorneHarvesterOfSkulls: {
+            id: "khorneHarvesterOfSkulls",
+            ability: { name: "Harvester of Skulls", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        khorneBehemothSBane: {
+            id: "khorneBehemothSBane",
+            ability: { name: "Behemoth's Bane", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Weapons",
+            isAvailable: artifactAvailable
+        },
+        khorneTheCrimsonCrown: {
+            id: "khorneTheCrimsonCrown",
+            ability: { name: "The Crimson Crown", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Ardornments",
+            isAvailable: artifactAvailable
+        },
+        khorneArmourOfScorn: {
+            id: "khorneArmourOfScorn",
+            ability: { name: "Armour of Scorn", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Ardornments",
+            isAvailable: artifactAvailable
+        },
+        khorneMarkOfTheBloodreaper: {
+            id: "khorneMarkOfTheBloodreaper",
+            ability: { name: "Mark of the Bloodreaper", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Ardornments",
+            isAvailable: artifactAvailable
+        },
+        khorneCrimsonSoulstone: {
+            id: "khorneCrimsonSoulstone",
+            ability: { name: "Crimson Soulstone", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Ardornments",
+            isAvailable: artifactAvailable
+        },
+        khorneMarkOfTheSlayer: {
+            id: "khorneMarkOfTheSlayer",
+            ability: { name: "Mark of the slayer", description: "" },
+            allegiance: this.allegiances.khorne,
+            category: "artifact",
+            subCategory: "Daemonic Ardornments",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsHammerOfAethermaticMight: {
+            id: "kharadronOverlordsHammerOfAethermaticMight",
+            ability: { name: "Hammer of Aethermatic Might", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Aethermatic Weapons",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsSledgeshockHammer: {
+            id: "kharadronOverlordsSledgeshockHammer",
+            ability: { name: "Sledgeshock Hammer", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Aethermatic Weapons",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsAetherschokBludgeon: {
+            id: "kharadronOverlordsAetherschokBludgeon",
+            ability: { name: "Aetherschok Bludgeon", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Aethermatic Weapons",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsGattlessonSEndlessRepeater: {
+            id: "kharadronOverlordsGattlessonSEndlessRepeater",
+            ability: { name: "Gattlesson's Endless Repeater", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Aethermatic Weapons",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsAethershockEarbuster: {
+            id: "kharadronOverlordsAethershockEarbuster",
+            ability: { name: "Aethershock Earbuster", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Aethermatic Weapons",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsStaffOfOcularOptimisation: {
+            id: "kharadronOverlordsStaffOfOcularOptimisation",
+            ability: { name: "Staff of Ocular Optimisation", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Aethermatic Weapons",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsAetherspedHammer: {
+            id: "kharadronOverlordsAetherspedHammer",
+            ability: { name: "Aethersped Hammer", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Barak-Zon",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsGrudgehammer: {
+            id: "kharadronOverlordsGrudgehammer",
+            ability: { name: "Grudgehammer", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Barak-Thryng",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsMasterwroughtArmour: {
+            id: "kharadronOverlordsMasterwroughtArmour",
+            ability: { name: "Masterwrought Armour", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Treasures",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsBalebreathMask: {
+            id: "kharadronOverlordsBalebreathMask",
+            ability: { name: "Balebreath Mask", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Treasures",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsAutotinkerer: {
+            id: "kharadronOverlordsAutotinkerer",
+            ability: { name: "Autotinkerer", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Treasures",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsAethersightLoupe: {
+            id: "kharadronOverlordsAethersightLoupe",
+            ability: { name: "Aethersight Loupe", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Treasures",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsGimletLens: {
+            id: "kharadronOverlordsGimletLens",
+            ability: { name: "Gimlet Lens", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Treasures",
+            isAvailable: artifactAvailable
+        },
+        kharadronOverlordsAetherchargedRune: {
+            id: "kharadronOverlordsAetherchargedRune",
+            ability: { name: "Aethercharged Rune", description: "" },
+            allegiance: this.allegiances.kharadronOverlords,
+            category: "artifact",
+            subCategory: "Treasures",
+            isAvailable: artifactAvailable
+        },
+        darklingCovensShadowshroudRing: {
+            id: "darklingCovensShadowshroudRing",
+            ability: { name: "Shadowshroud Ring", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "artifact",
+            subCategory: "Darkling Covens",
+            isAvailable: artifactAvailable
+        },
+        darklingCovensIncorporealRetainer: {
+            id: "darklingCovensIncorporealRetainer",
+            ability: { name: "Incorporeal Retainer", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "artifact",
+            subCategory: "Darkling Covens",
+            isAvailable: artifactAvailable
+        },
+        darklingCovensAnkletOfEpiphany: {
+            id: "darklingCovensAnkletOfEpiphany",
+            ability: { name: "Anklet of Epiphany", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "artifact",
+            subCategory: "Darkling Covens",
+            isAvailable: artifactAvailable
+        },
+        darklingCovensDecanterOfEgos: {
+            id: "darklingCovensDecanterOfEgos",
+            ability: { name: "Decanter of Egos", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "artifact",
+            subCategory: "Darkling Covens",
+            isAvailable: artifactAvailable
+        },
+        darklingCovensHeartOfWoe: {
+            id: "darklingCovensHeartOfWoe",
+            ability: { name: "Heart of Woe", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "artifact",
+            subCategory: "Darkling Covens",
+            isAvailable: artifactAvailable
+        },
+        darklingCovensShadesliver: {
+            id: "darklingCovensShadesliver",
+            ability: { name: "Shadesliver", description: "" },
+            allegiance: this.allegiances.darklingCovens,
+            category: "artifact",
+            subCategory: "Darkling Covens",
+            isAvailable: artifactAvailable
+        },
+        dispossessedHeavyMetalIngot: {
+            id: "dispossessedHeavyMetalIngot",
+            ability: { name: "Heavy Metal Ingot", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "artifact",
+            subCategory: "Dispossessed",
+            isAvailable: artifactAvailable
+        },
+        dispossessedAncestralPickaxe: {
+            id: "dispossessedAncestralPickaxe",
+            ability: { name: "Ancestral Pickaxe", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "artifact",
+            subCategory: "Dispossessed",
+            isAvailable: artifactAvailable
+        },
+        dispossessedTeardropOfGrugni: {
+            id: "dispossessedTeardropOfGrugni",
+            ability: { name: "Teardrop of Grugni", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "artifact",
+            subCategory: "Dispossessed",
+            isAvailable: artifactAvailable
+        },
+        dispossessedGrudgeRune: {
+            id: "dispossessedGrudgeRune",
+            ability: { name: "Grudge Rune", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "artifact",
+            subCategory: "Dispossessed",
+            isAvailable: artifactAvailable
+        },
+        dispossessedPiledriverGauntlets: {
+            id: "dispossessedPiledriverGauntlets",
+            ability: { name: "Piledriver Gauntlets", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "artifact",
+            subCategory: "Dispossessed",
+            isAvailable: artifactAvailable
+        },
+        dispossessedResoundingGromrilhorn: {
+            id: "dispossessedResoundingGromrilhorn",
+            ability: { name: "Resounding Gromrilhorn", description: "" },
+            allegiance: this.allegiances.dispossessed,
+            category: "artifact",
+            subCategory: "Dispossessed",
+            isAvailable: artifactAvailable
+        },
+        freePeoplesArmourOfMeteoricIron: {
+            id: "freePeoplesArmourOfMeteoricIron",
+            ability: { name: "Armour of Meteoric Iron", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "artifact",
+            subCategory: "Free Peoples",
+            isAvailable: artifactAvailable
+        },
+        freePeoplesBladeOfTheRealms: {
+            id: "freePeoplesBladeOfTheRealms",
+            ability: { name: "Blade of the Realms", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "artifact",
+            subCategory: "Free Peoples",
+            isAvailable: artifactAvailable
+        },
+        freePeoplesLuckstone: {
+            id: "freePeoplesLuckstone",
+            ability: { name: "Luckstone", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "artifact",
+            subCategory: "Free Peoples",
+            isAvailable: artifactAvailable
+        },
+        freePeoplesTheBrokenShackle: {
+            id: "freePeoplesTheBrokenShackle",
+            ability: { name: "The Broken Shackle", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "artifact",
+            subCategory: "Free Peoples",
+            isAvailable: artifactAvailable
+        },
+        freePeoplesWritOfDominion: {
+            id: "freePeoplesWritOfDominion",
+            ability: { name: "Writ of Dominion", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "artifact",
+            subCategory: "Free Peoples",
+            isAvailable: artifactAvailable
+        },
+        freePeoplesFlagOfTheConquerors: {
+            id: "freePeoplesFlagOfTheConquerors",
+            ability: { name: "Flag of the Conquerors", description: "" },
+            allegiance: this.allegiances.freePeoples,
+            category: "artifact",
+            subCategory: "Free Peoples",
+            isAvailable: artifactAvailable
+        },
+        fyreslayersIgneousPlate: {
+            id: "fyreslayersIgneousPlate",
+            ability: { name: "Igneous Plate", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "artifact",
+            subCategory: "Fyreslayers",
+            isAvailable: artifactAvailable
+        },
+        fyreslayersAncestorRune: {
+            id: "fyreslayersAncestorRune",
+            ability: { name: "Ancestor Rune", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "artifact",
+            subCategory: "Fyreslayers",
+            isAvailable: artifactAvailable
+        },
+        fyreslayersObsidianCoronet: {
+            id: "fyreslayersObsidianCoronet",
+            ability: { name: "Obsidian Coronet", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "artifact",
+            subCategory: "Fyreslayers",
+            isAvailable: artifactAvailable
+        },
+        fyreslayersVolcanicRune: {
+            id: "fyreslayersVolcanicRune",
+            ability: { name: "Volcanic Rune", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "artifact",
+            subCategory: "Fyreslayers",
+            isAvailable: artifactAvailable
+        },
+        fyreslayersAshPlumeSigil: {
+            id: "fyreslayersAshPlumeSigil",
+            ability: { name: "Ash-plume Sigil", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "artifact",
+            subCategory: "Fyreslayers",
+            isAvailable: artifactAvailable
+        },
+        fyreslayersMeteoricAxe: {
+            id: "fyreslayersMeteoricAxe",
+            ability: { name: "Meteoric Axe", description: "" },
+            allegiance: this.allegiances.fyreslayers,
+            category: "artifact",
+            subCategory: "Fyreslayers",
+            isAvailable: artifactAvailable
+        },
+        seraphonZoeticDial: {
+            id: "seraphonZoeticDial",
+            ability: { name: "Zoetic Dial", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "artifact",
+            subCategory: "Seraphon",
+            isAvailable: artifactAvailable
+        },
+        seraphonIncandescentRectrices: {
+            id: "seraphonIncandescentRectrices",
+            ability: { name: "Incandescent Rectrices", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "artifact",
+            subCategory: "Seraphon",
+            isAvailable: artifactAvailable
+        },
+        seraphonBladeOfRealities: {
+            id: "seraphonBladeOfRealities",
+            ability: { name: "Blade of Realities", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "artifact",
+            subCategory: "Seraphon",
+            isAvailable: artifactAvailable
+        },
+        seraphonLightOfDracothion: {
+            id: "seraphonLightOfDracothion",
+            ability: { name: "Light of Dracothion", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "artifact",
+            subCategory: "Seraphon",
+            isAvailable: artifactAvailable
+        },
+        seraphonCoronalShield: {
+            id: "seraphonCoronalShield",
+            ability: { name: "Coronal Shield", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "artifact",
+            subCategory: "Seraphon",
+            isAvailable: artifactAvailable
+        },
+        seraphonPrismOfAmyntok: {
+            id: "seraphonPrismOfAmyntok",
+            ability: { name: "Prism of Amyntok", description: "" },
+            allegiance: this.allegiances.seraphon,
+            category: "artifact",
+            subCategory: "Seraphon",
+            isAvailable: artifactAvailable
+        },
+        wanderersFalconOfHolthaven: {
+            id: "wanderersFalconOfHolthaven",
+            ability: { name: "Falcon of Holthaven", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "artifact",
+            subCategory: "Wanderers",
+            isAvailable: artifactAvailable
+        },
+        wanderersStarcasterLongbow: {
+            id: "wanderersStarcasterLongbow",
+            ability: { name: "Starcaster Longbow", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "artifact",
+            subCategory: "Wanderers",
+            isAvailable: artifactAvailable
+        },
+        wanderersSplinterbirchBlade: {
+            id: "wanderersSplinterbirchBlade",
+            ability: { name: "Splinterbirch Blade", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "artifact",
+            subCategory: "Wanderers",
+            isAvailable: artifactAvailable
+        },
+        wanderersWendingWand: {
+            id: "wanderersWendingWand",
+            ability: { name: "Wending Wand", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "artifact",
+            subCategory: "Wanderers",
+            isAvailable: artifactAvailable
+        },
+        wanderersViridescentShawl: {
+            id: "wanderersViridescentShawl",
+            ability: { name: "Viridescent Shawl", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "artifact",
+            subCategory: "Wanderers",
+            isAvailable: artifactAvailable
+        },
+        wanderersForgetMeKnot: {
+            id: "wanderersForgetMeKnot",
+            ability: { name: "Forget-me-knot", description: "" },
+            allegiance: this.allegiances.wanderers,
+            category: "artifact",
+            subCategory: "Wanderers",
+            isAvailable: artifactAvailable
+        },
+        brayherdRamhornHelm: {
+            id: "brayherdRamhornHelm",
+            ability: { name: "Ramhorn Helm", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "artifact",
+            subCategory: "Brayerd",
+            isAvailable: artifactAvailable
+        },
+        brayherdBrayblastTrumpet: {
+            id: "brayherdBrayblastTrumpet",
+            ability: { name: "Brayblast Trumpet", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "artifact",
+            subCategory: "Brayerd",
+            isAvailable: artifactAvailable
+        },
+        brayherdHerdstoneAxe: {
+            id: "brayherdHerdstoneAxe",
+            ability: { name: "Herdstone Axe", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "artifact",
+            subCategory: "Brayerd",
+            isAvailable: artifactAvailable
+        },
+        brayherdBleatingGnarlstaff: {
+            id: "brayherdBleatingGnarlstaff",
+            ability: { name: "Bleating Gnarlstaff", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "artifact",
+            subCategory: "Brayerd",
+            isAvailable: artifactAvailable
+        },
+        brayherdTheFesterpelt: {
+            id: "brayherdTheFesterpelt",
+            ability: { name: "The Festerpelt", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "artifact",
+            subCategory: "Brayerd",
+            isAvailable: artifactAvailable
+        },
+        brayherdRuneOfTheInsatiableBeast: {
+            id: "brayherdRuneOfTheInsatiableBeast",
+            ability: { name: "Rune of the Insatiable Beast", description: "" },
+            allegiance: this.allegiances.brayherd,
+            category: "artifact",
+            subCategory: "Brayerd",
+            isAvailable: artifactAvailable
+        },
+        slaaneshLashOfDespair: {
+            id: "slaaneshLashOfDespair",
+            ability: { name: "Lash of Despair", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slaaneshBreathtaker: {
+            id: "slaaneshBreathtaker",
+            ability: { name: "Breathtaker", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slaaneshMaskOfSpitefulBeauty: {
+            id: "slaaneshMaskOfSpitefulBeauty",
+            ability: { name: "Mask of Spiteful Beauty", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slaaneshEnrapturingCirclet: {
+            id: "slaaneshEnrapturingCirclet",
+            ability: { name: "Enrapturing Circlet", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slaaneshIconOfInfiniteExcess: {
+            id: "slaaneshIconOfInfiniteExcess",
+            ability: { name: "Icon of Infinite Excess", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slaaneshFallaciousGift: {
+            id: "slaaneshFallaciousGift",
+            ability: { name: "Fallacious Gift", description: "" },
+            allegiance: this.allegiances.slaanesh,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessLashOfDespair: {
+            id: "slavesToDarknessLashOfDespair",
+            ability: { name: "Lash of Despair", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessBreathtaker: {
+            id: "slavesToDarknessBreathtaker",
+            ability: { name: "Breathtaker", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessMaskOfSpitefulBeauty: {
+            id: "slavesToDarknessMaskOfSpitefulBeauty",
+            ability: { name: "Mask of Spiteful Beauty", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessEnrapturingCirclet: {
+            id: "slavesToDarknessEnrapturingCirclet",
+            ability: { name: "Enrapturing Circlet", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessIconOfInfiniteExcess: {
+            id: "slavesToDarknessIconOfInfiniteExcess",
+            ability: { name: "Icon of Infinite Excess", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessFallaciousGift: {
+            id: "slavesToDarknessFallaciousGift",
+            ability: { name: "Fallacious Gift", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Hosts Of Slaanesh",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessHellfireSword: {
+            id: "slavesToDarknessHellfireSword",
+            ability: { name: "Hellfire Sword", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Slaves To Darkness",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessIdolatrousPlackart: {
+            id: "slavesToDarknessIdolatrousPlackart",
+            ability: { name: "Idolatrous Plackart", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Slaves To Darkness",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessHelmOfTheOppressor: {
+            id: "slavesToDarknessHelmOfTheOppressor",
+            ability: { name: "Helm of the Oppressor", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Slaves To Darkness",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessBannerOfTheDemagogue: {
+            id: "slavesToDarknessBannerOfTheDemagogue",
+            ability: { name: "Banner of the Demagogue", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Slaves To Darkness",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessMarkOfTheAllFavoured: {
+            id: "slavesToDarknessMarkOfTheAllFavoured",
+            ability: { name: "Mark of the All-favoured", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Slaves To Darkness",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessDesecratorGauntlets: {
+            id: "slavesToDarknessDesecratorGauntlets",
+            ability: { name: "Desecrator Gauntlets", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Slaves To Darkness",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensTheFumigatous: {
+            id: "skavenPestilensTheFumigatous",
+            ability: { name: "The Fumigatous", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Skaven Pestilens",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensBroodingBlade: {
+            id: "skavenPestilensBroodingBlade",
+            ability: { name: "Brooding Blade", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Skaven Pestilens",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensBiliousBell: {
+            id: "skavenPestilensBiliousBell",
+            ability: { name: "Bilious Bell", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Skaven Pestilens",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensBlistrevousTheLivingCyst: {
+            id: "skavenPestilensBlistrevousTheLivingCyst",
+            ability: { name: "Blistrevous the Living Cyst", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Skaven Pestilens",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensLiberBubonicus: {
+            id: "skavenPestilensLiberBubonicus",
+            ability: { name: "Liber Bubonicus", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Skaven Pestilens",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensVexlerSShroud: {
+            id: "skavenPestilensVexlerSShroud",
+            ability: { name: "Vexler's Shroud", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Skaven Pestilens",
+            isAvailable: artifactAvailable
+        },
+        skavenSkryreAssassinsBaneRigging: {
+            id: "skavenSkryreAssassinsBaneRigging",
+            ability: { name: "Assassins-bane Rigging", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "artifact",
+            subCategory: "Skaven Skryre",
+            isAvailable: artifactAvailable
+        },
+        skavenSkryreEsotericWarpResonator: {
+            id: "skavenSkryreEsotericWarpResonator",
+            ability: { name: "Esoteric Warp Resonator", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "artifact",
+            subCategory: "Skaven Skryre",
+            isAvailable: artifactAvailable
+        },
+        skavenSkryreSkryreSBreathBellows: {
+            id: "skavenSkryreSkryreSBreathBellows",
+            ability: { name: "Skryre's-breath Bellows", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "artifact",
+            subCategory: "Skaven Skryre",
+            isAvailable: artifactAvailable
+        },
+        skavenSkryreVialOfTheFulminator: {
+            id: "skavenSkryreVialOfTheFulminator",
+            ability: { name: "Vial of the Fulminator", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "artifact",
+            subCategory: "Skaven Skryre",
+            isAvailable: artifactAvailable
+        },
+        skavenSkryreVigordustInjector: {
+            id: "skavenSkryreVigordustInjector",
+            ability: { name: "Vigordust Injector", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "artifact",
+            subCategory: "Skaven Skryre",
+            isAvailable: artifactAvailable
+        },
+        skavenSkryreBrassOrb: {
+            id: "skavenSkryreBrassOrb",
+            ability: { name: "Brass Orb", description: "" },
+            allegiance: this.allegiances.skavenSkryre,
+            category: "artifact",
+            subCategory: "Skaven Skryre",
+            isAvailable: artifactAvailable
+        },
+        fleshEaterCourtsSplintervaneBroach: {
+            id: "fleshEaterCourtsSplintervaneBroach",
+            ability: { name: "Splintervane Broach", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "artifact",
+            subCategory: "Flesh Eater Courts",
+            isAvailable: artifactAvailable
+        },
+        fleshEaterCourtsTheGrimGarland: {
+            id: "fleshEaterCourtsTheGrimGarland",
+            ability: { name: "The Grim Garland", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "artifact",
+            subCategory: "Flesh Eater Courts",
+            isAvailable: artifactAvailable
+        },
+        fleshEaterCourtsKeeningBone: {
+            id: "fleshEaterCourtsKeeningBone",
+            ability: { name: "Keening Bone", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "artifact",
+            subCategory: "Flesh Eater Courts",
+            isAvailable: artifactAvailable
+        },
+        fleshEaterCourtsTheFlayedPennant: {
+            id: "fleshEaterCourtsTheFlayedPennant",
+            ability: { name: "The Flayed Pennant", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "artifact",
+            subCategory: "Flesh Eater Courts",
+            isAvailable: artifactAvailable
+        },
+        fleshEaterCourtsBloodRiverChalice: {
+            id: "fleshEaterCourtsBloodRiverChalice",
+            ability: { name: "Blood River Chalice", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "artifact",
+            subCategory: "Flesh Eater Courts",
+            isAvailable: artifactAvailable
+        },
+        fleshEaterCourtsHeartOfTheGargantFeast: {
+            id: "fleshEaterCourtsHeartOfTheGargantFeast",
+            ability: { name: "Heart of the Gargant Feast", description: "" },
+            allegiance: this.allegiances.fleshEaterCourts,
+            category: "artifact",
+            subCategory: "Flesh Eater Courts",
+            isAvailable: artifactAvailable
+        },
+        nighthauntCloakOfTheWaxingMoon: {
+            id: "nighthauntCloakOfTheWaxingMoon",
+            ability: { name: "Cloak of the Waxing Moon", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "artifact",
+            subCategory: "Nighthaunt",
+            isAvailable: artifactAvailable
+        },
+        nighthauntPendantOfTheFellWind: {
+            id: "nighthauntPendantOfTheFellWind",
+            ability: { name: "Pendant of the Fell Wind", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "artifact",
+            subCategory: "Nighthaunt",
+            isAvailable: artifactAvailable
+        },
+        nighthauntDreadboltRing: {
+            id: "nighthauntDreadboltRing",
+            ability: { name: "Dreadbolt Ring", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "artifact",
+            subCategory: "Nighthaunt",
+            isAvailable: artifactAvailable
+        },
+        nighthauntLightshardOfTheHarventMoon: {
+            id: "nighthauntLightshardOfTheHarventMoon",
+            ability: { name: "Lightshard of the Harvent Moon", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "artifact",
+            subCategory: "Nighthaunt",
+            isAvailable: artifactAvailable
+        },
+        nighthauntMidnightTome: {
+            id: "nighthauntMidnightTome",
+            ability: { name: "Midnight Tome", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "artifact",
+            subCategory: "Nighthaunt",
+            isAvailable: artifactAvailable
+        },
+        nighthauntCovetousFamiliar: {
+            id: "nighthauntCovetousFamiliar",
+            ability: { name: "Covetous Familiar", description: "" },
+            allegiance: this.allegiances.nighthaunt,
+            category: "artifact",
+            subCategory: "Nighthaunt",
+            isAvailable: artifactAvailable
+        },
+        soulblightTheSlakingBlade: {
+            id: "soulblightTheSlakingBlade",
+            ability: { name: "The Slaking Blade", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "artifact",
+            subCategory: "Soulblight",
+            isAvailable: artifactAvailable
+        },
+        soulblightTheScabbingPlate: {
+            id: "soulblightTheScabbingPlate",
+            ability: { name: "The Scabbing Plate", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "artifact",
+            subCategory: "Soulblight",
+            isAvailable: artifactAvailable
+        },
+        soulblightCrimsonWing: {
+            id: "soulblightCrimsonWing",
+            ability: { name: "Crimson Wing", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "artifact",
+            subCategory: "Soulblight",
+            isAvailable: artifactAvailable
+        },
+        soulblightSigilOfTheSanguineThrone: {
+            id: "soulblightSigilOfTheSanguineThrone",
+            ability: { name: "Sigil of the Sanguine Throne", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "artifact",
+            subCategory: "Soulblight",
+            isAvailable: artifactAvailable
+        },
+        soulblightTheSaccharineGoblet: {
+            id: "soulblightTheSaccharineGoblet",
+            ability: { name: "The Saccharine Goblet", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "artifact",
+            subCategory: "Soulblight",
+            isAvailable: artifactAvailable
+        },
+        soulblightRubyVial: {
+            id: "soulblightRubyVial",
+            ability: { name: "Ruby Vial", description: "" },
+            allegiance: this.allegiances.soulblight,
+            category: "artifact",
+            subCategory: "Soulblight",
+            isAvailable: artifactAvailable
+        },
+        ironjawzArmourOfGork: {
+            id: "ironjawzArmourOfGork",
+            ability: { name: "Armour of Gork", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "artifact",
+            subCategory: "Ironjawz",
+            isAvailable: artifactAvailable
+        },
+        ironjawzDestroyer: {
+            id: "ironjawzDestroyer",
+            ability: { name: "Destroyer", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "artifact",
+            subCategory: "Ironjawz",
+            isAvailable: artifactAvailable
+        },
+        ironjawzDaubingOfMork: {
+            id: "ironjawzDaubingOfMork",
+            ability: { name: "Daubing of Mork", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "artifact",
+            subCategory: "Ironjawz",
+            isAvailable: artifactAvailable
+        },
+        ironjawzTheGoldenToof: {
+            id: "ironjawzTheGoldenToof",
+            ability: { name: "The Golden Toof", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "artifact",
+            subCategory: "Ironjawz",
+            isAvailable: artifactAvailable
+        },
+        ironjawzMetalrippaSKlaw: {
+            id: "ironjawzMetalrippaSKlaw",
+            ability: { name: "Metalrippa's Klaw", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "artifact",
+            subCategory: "Ironjawz",
+            isAvailable: artifactAvailable
+        },
+        ironjawzTheBossSkewer: {
+            id: "ironjawzTheBossSkewer",
+            ability: { name: "The Boss Skewer", description: "" },
+            allegiance: this.allegiances.ironjawz,
+            category: "artifact",
+            subCategory: "Ironjawz",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheSplithornHelm: {
+            id: "nurgleTheSplithornHelm",
+            ability: { name: "The Splithorn Helm", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Artefacts of Contagion",
+            isAvailable: artifactAvailable
+        },
+        nurgleMuttergrub: {
+            id: "nurgleMuttergrub",
+            ability: { name: "Muttergrub", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Artefacts of Contagion",
+            isAvailable: artifactAvailable
+        },
+        nurgleRustfang: {
+            id: "nurgleRustfang",
+            ability: { name: "Rustfang", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Artefacts of Contagion",
+            isAvailable: artifactAvailable
+        },
+        nurgleFleshPealer: {
+            id: "nurgleFleshPealer",
+            ability: { name: "Flesh Pealer", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Artefacts of Contagion",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheBileheart: {
+            id: "nurgleTheBileheart",
+            ability: { name: "The Bileheart", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Artefacts of Contagion",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheFecundFlask: {
+            id: "nurgleTheFecundFlask",
+            ability: { name: "The Fecund Flask", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Artefacts of Contagion",
+            isAvailable: artifactAvailable
+        },
+        nurgleNoxiousNexus: {
+            id: "nurgleNoxiousNexus",
+            ability: { name: "Noxious Nexus", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        nurgleNurgleSNail: {
+            id: "nurgleNurgleSNail",
+            ability: { name: "Nurgle's Nail", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheBountifulSwarm: {
+            id: "nurgleTheBountifulSwarm",
+            ability: { name: "The Bountiful Swarm", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheWitherstave: {
+            id: "nurgleTheWitherstave",
+            ability: { name: "The Witherstave", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        nurgleTomeOfAThousandPoxes: {
+            id: "nurgleTomeOfAThousandPoxes",
+            ability: { name: "Tome of a Thousand Poxes", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheEndlessGift: {
+            id: "nurgleTheEndlessGift",
+            ability: { name: "The Endless Gift", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheVirulentBlade: {
+            id: "nurgleTheVirulentBlade",
+            ability: { name: "The Virulent Blade", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheFoetidShroud: {
+            id: "nurgleTheFoetidShroud",
+            ability: { name: "The Foetid Shroud", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        nurgleSublucusStenchplate: {
+            id: "nurgleSublucusStenchplate",
+            ability: { name: "Sublucus' Stenchplate", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheEyeOfNurgle: {
+            id: "nurgleTheEyeOfNurgle",
+            ability: { name: "The Eye of Nurgle", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheCarrionDirge: {
+            id: "nurgleTheCarrionDirge",
+            ability: { name: "The Carrion Dirge", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        nurgleTheShieldOfGrowths: {
+            id: "nurgleTheShieldOfGrowths",
+            ability: { name: "The Shield of Growths", description: "" },
+            allegiance: this.allegiances.nurgle,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessNoxiousNexus: {
+            id: "slavesToDarknessNoxiousNexus",
+            ability: { name: "Noxious Nexus", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessNurgleSNail: {
+            id: "slavesToDarknessNurgleSNail",
+            ability: { name: "Nurgle's Nail", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTheBountifulSwarm: {
+            id: "slavesToDarknessTheBountifulSwarm",
+            ability: { name: "The Bountiful Swarm", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTheWitherstave: {
+            id: "slavesToDarknessTheWitherstave",
+            ability: { name: "The Witherstave", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTomeOfAThousandPoxes: {
+            id: "slavesToDarknessTomeOfAThousandPoxes",
+            ability: { name: "Tome of a Thousand Poxes", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTheEndlessGift: {
+            id: "slavesToDarknessTheEndlessGift",
+            ability: { name: "The Endless Gift", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTheVirulentBlade: {
+            id: "slavesToDarknessTheVirulentBlade",
+            ability: { name: "The Virulent Blade", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTheFoetidShroud: {
+            id: "slavesToDarknessTheFoetidShroud",
+            ability: { name: "The Foetid Shroud", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessSublucusStenchplate: {
+            id: "slavesToDarknessSublucusStenchplate",
+            ability: { name: "Sublucus' Stenchplate", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTheEyeOfNurgle: {
+            id: "slavesToDarknessTheEyeOfNurgle",
+            ability: { name: "The Eye of Nurgle", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTheCarrionDirge: {
+            id: "slavesToDarknessTheCarrionDirge",
+            ability: { name: "The Carrion Dirge", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        slavesToDarknessTheShieldOfGrowths: {
+            id: "slavesToDarknessTheShieldOfGrowths",
+            ability: { name: "The Shield of Growths", description: "" },
+            allegiance: this.allegiances.slavesToDarkness,
+            category: "artifact",
+            subCategory: "Plagueridden Gifts",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensNoxiousNexus: {
+            id: "skavenPestilensNoxiousNexus",
+            ability: { name: "Noxious Nexus", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensNurgleSNail: {
+            id: "skavenPestilensNurgleSNail",
+            ability: { name: "Nurgle's Nail", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensTheBountifulSwarm: {
+            id: "skavenPestilensTheBountifulSwarm",
+            ability: { name: "The Bountiful Swarm", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensTheWitherstave: {
+            id: "skavenPestilensTheWitherstave",
+            ability: { name: "The Witherstave", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensTomeOfAThousandPoxes: {
+            id: "skavenPestilensTomeOfAThousandPoxes",
+            ability: { name: "Tome of a Thousand Poxes", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        skavenPestilensTheEndlessGift: {
+            id: "skavenPestilensTheEndlessGift",
+            ability: { name: "The Endless Gift", description: "" },
+            allegiance: this.allegiances.skavenPestilens,
+            category: "artifact",
+            subCategory: "Daemonic Boons",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashDeathforgedChain: {
+            id: "legionsOfNagashDeathforgedChain",
+            ability: { name: "Deathforged Chain", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Nagash",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashBalefireLantern: {
+            id: "legionsOfNagashBalefireLantern",
+            ability: { name: "Balefire Lantern", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Nagash",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashGraveSandTimeglass: {
+            id: "legionsOfNagashGraveSandTimeglass",
+            ability: { name: "Grave-sand Timeglass", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Nagash",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashOssificDiadem: {
+            id: "legionsOfNagashOssificDiadem",
+            ability: { name: "Ossific Diadem", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Nagash",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashAmethystShard: {
+            id: "legionsOfNagashAmethystShard",
+            ability: { name: "Amethyst Shard", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Nagash",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashTerrorghiestMantle: {
+            id: "legionsOfNagashTerrorghiestMantle",
+            ability: { name: "Terrorghiest Mantle", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Nagash",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashSpiritCage: {
+            id: "legionsOfNagashSpiritCage",
+            ability: { name: "Spirit Cage", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Sacrament",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashShroudOfDarkness: {
+            id: "legionsOfNagashShroudOfDarkness",
+            ability: { name: "Shroud of Darkness", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Sacrament",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashAsylumaticae: {
+            id: "legionsOfNagashAsylumaticae",
+            ability: { name: "Asylumaticae", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Sacrament",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashWristbandsOfBlackGold: {
+            id: "legionsOfNagashWristbandsOfBlackGold",
+            ability: { name: "Wristbands of Black Gold", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Sacrament",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashAzyrbaneStandard: {
+            id: "legionsOfNagashAzyrbaneStandard",
+            ability: { name: "Azyrbane Standard", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Sacrament",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashBlackGem: {
+            id: "legionsOfNagashBlackGem",
+            ability: { name: "Black Gem", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Sacrament",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashRingOfDominion: {
+            id: "legionsOfNagashRingOfDominion",
+            ability: { name: "Ring of Dominion", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Blood",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashShadeglassDecanter: {
+            id: "legionsOfNagashShadeglassDecanter",
+            ability: { name: "Shadeglass Decanter", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Blood",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashOrbOfEnchantment: {
+            id: "legionsOfNagashOrbOfEnchantment",
+            ability: { name: "Orb of Enchantment", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Blood",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashSoulboundGarments: {
+            id: "legionsOfNagashSoulboundGarments",
+            ability: { name: "Soulbound Garments", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Blood",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashOublietteArcana: {
+            id: "legionsOfNagashOublietteArcana",
+            ability: { name: "Oubliette Arcana", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Blood",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashAmuletOfScreams: {
+            id: "legionsOfNagashAmuletOfScreams",
+            ability: { name: "Amulet of Screams", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Blood",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashVialOfThePureBlood: {
+            id: "legionsOfNagashVialOfThePureBlood",
+            ability: { name: "Vial of the Pure Blood", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Night",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashShardOfNight: {
+            id: "legionsOfNagashShardOfNight",
+            ability: { name: "Shard of Night", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Night",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashGemOfExsanguination: {
+            id: "legionsOfNagashGemOfExsanguination",
+            ability: { name: "Gem of Exsanguination", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Night",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashChiroptericCloak: {
+            id: "legionsOfNagashChiroptericCloak",
+            ability: { name: "Chiropteric Cloak", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Night",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashMorbhegSClaw: {
+            id: "legionsOfNagashMorbhegSClaw",
+            ability: { name: "Morbheg's Claw", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Night",
+            isAvailable: artifactAvailable
+        },
+        legionsOfNagashCurseblade: {
+            id: "legionsOfNagashCurseblade",
+            ability: { name: "Curseblade", description: "" },
+            allegiance: this.allegiances.legionsOfNagash,
+            category: "artifact",
+            subCategory: "Artefacts of Night",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineCrownOfWoe: {
+            id: "daughtersOfKhaineCrownOfWoe",
+            ability: { name: "Crown of Woe", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Gifts of Morathi",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineCursedBlade: {
+            id: "daughtersOfKhaineCursedBlade",
+            ability: { name: "Cursed Blade", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Gifts of Morathi",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineAmuletOfDarkFire: {
+            id: "daughtersOfKhaineAmuletOfDarkFire",
+            ability: { name: "Amulet of Dark Fire", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Gifts of Morathi",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineCroneBlade: {
+            id: "daughtersOfKhaineCroneBlade",
+            ability: { name: "Crone Blade", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Gifts of Morathi",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineThousandAndOneDarkBlessings: {
+            id: "daughtersOfKhaineThousandAndOneDarkBlessings",
+            ability: { name: "Thousand and One Dark Blessings", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Gifts of Morathi",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineBloodbaneVenom: {
+            id: "daughtersOfKhaineBloodbaneVenom",
+            ability: { name: "Bloodbane Venom", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Gifts of Morathi",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineShadowStone: {
+            id: "daughtersOfKhaineShadowStone",
+            ability: { name: "Shadow Stone", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineRuneOfUlgu: {
+            id: "daughtersOfKhaineRuneOfUlgu",
+            ability: { name: "Rune of Ulgu", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineTheMirrorGlaive: {
+            id: "daughtersOfKhaineTheMirrorGlaive",
+            ability: { name: "The Mirror Glaive", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineSevenFoldShadow: {
+            id: "daughtersOfKhaineSevenFoldShadow",
+            ability: { name: "Seven-fold Shadow", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineCrystalHeart: {
+            id: "daughtersOfKhaineCrystalHeart",
+            ability: { name: "Crystal Heart", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineShadeClaw: {
+            id: "daughtersOfKhaineShadeClaw",
+            ability: { name: "Shade Claw", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineBloodSigil: {
+            id: "daughtersOfKhaineBloodSigil",
+            ability: { name: "Blood Sigil", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineIronCirclet: {
+            id: "daughtersOfKhaineIronCirclet",
+            ability: { name: "Iron Circlet", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineRuneOfKhaine: {
+            id: "daughtersOfKhaineRuneOfKhaine",
+            ability: { name: "Rune of Khaine", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineCrimsonShard: {
+            id: "daughtersOfKhaineCrimsonShard",
+            ability: { name: "Crimson Shard", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineKhainitePendant: {
+            id: "daughtersOfKhaineKhainitePendant",
+            ability: { name: "Khainite Pendant", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineHagbrew: {
+            id: "daughtersOfKhaineHagbrew",
+            ability: { name: "Hagbrew", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineTheDarksword: {
+            id: "daughtersOfKhaineTheDarksword",
+            ability: { name: "The Darksword", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Draichi Ganeth",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineVenomOfNagendra: {
+            id: "daughtersOfKhaineVenomOfNagendra",
+            ability: { name: "Venom of Nagendra", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "The Kraith",
+            isAvailable: artifactAvailable
+        },
     };
     
     boxes: Box[] = [];
@@ -15505,5 +18242,13 @@ export class DataStoreImpl implements DataStore {
             points: 180,
             units: []             
         },
-    }
+    };
+    
+    armyOptions = new Map([
+        ["dispossessed", { name: "Grudge", values: ["Stuck-up", "Speed Merchants", "Monstrous Cheaters", "Cowardly Hordes", "Shoddy Craftsmanship", "Sneaky Ambushers"]}],
+        ["slaanesh", { name: "Host", values: ["Pretenders", "Seekers", "Invaders"]}],
+        ["fleshEaterCourts", { name: "Delusion", values: ["Crusading Army", "The Royal Hunt", "The Feast Day", "A Matter of Honour", "The Grand Tournament", "Defenders of the Realm"]}],
+        ["soulblight", { name: "Bloodline", values: ["Dragon Warriors", "Lords of the Night", "Necromantic", "Swift Death"]}],
+        ["daughtersOfKhaine", { name: "Temple", values: ["Hagg Nar", "Draichi Ganeth", "The Kraith", "Khailebron"]}],
+    ]);
 }
