@@ -137,7 +137,7 @@ export type ExtraAbilityTest = (unit: WarscrollUnitInterface, warscroll: Warscro
 export interface ExtraAbility {
     id: string;
     ability: Ability;
-    allegiance: Allegiance;
+    allegiance?: Allegiance;
     category: string;
     isAvailable: ExtraAbilityTest;
 }

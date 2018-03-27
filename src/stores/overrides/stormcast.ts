@@ -1,6 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, ExtraAbilityTest } from "../units";
-import { override } from "./tools";
+import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory } from "../units";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({

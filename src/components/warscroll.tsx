@@ -2,8 +2,9 @@ import * as React from "react";
 import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
 import { observer, inject } from "mobx-react";
 import { Header, Table, Icon } from "semantic-ui-react";
-import { Attack, Ability } from "../stores/units";
+import { Attack, Ability, WarscrollBattalion } from "../stores/units";
 import { toJS } from "mobx";
+import { join } from "../helpers/react";
 
 export interface WarscrollProps {
     warscrollStore?: WarscrollStore;
@@ -17,11 +18,14 @@ interface AttackWithCount {
 
 @inject("warscrollStore")
 @observer
-export class Warscroll extends React.Component<WarscrollProps, {}>{
+export class Warscroll extends React.Component<WarscrollProps>{
     render() {
+        const store = this.props.warscrollStore!;
         const w = this.props.warscrollStore!.warscroll;
         return <div>
             <div>Allegiance: {w.allegiance.name}</div>
+            {store.armyOptions && w.armyOption && <div>{store.armyOptions.name}: {w.armyOption}</div>}
+            <div>{w.totalPoints} points</div>
             <Header>Leaders</Header>
             <Table>
                 <Table.Body>
@@ -48,7 +52,26 @@ export class Warscroll extends React.Component<WarscrollProps, {}>{
                 }
                 </Table.Body>        
             </Table>
+
+        {w.battalions.length > 0 &&
+           <> 
+                <Header>Battalions</Header>
+                <Table>
+                    <Table.Body>
+                        {
+                            w.battalions.map(x => this.renderBattalion(x))
+                        }
+                    </Table.Body>
+                </Table>
+            </>}    
         </div>;
+    }
+
+    renderBattalion(battalion: WarscrollBattalion) {
+        return <Table.Row key={battalion.id}>
+            <Table.Cell>{battalion.battalion.name}</Table.Cell>    
+            <Table.Cell>{battalion.battalion.description}</Table.Cell>
+        </Table.Row>    
     }
 
     renderUnit(unit: WarscrollUnit) {
@@ -89,12 +112,12 @@ export class Warscroll extends React.Component<WarscrollProps, {}>{
         // }
         
         return <Table.Row key={unit.id}>
-            <Table.Cell>{u.model.name}</Table.Cell>
+            <Table.Cell> { unit.isGeneral && <Icon name="star"/> } {u.model.name} {wo.length > 0 && <div> {join(wo.map(x => <i>{x.weaponOption && x.weaponOption.name}</i>), ',')}</div>}</Table.Cell>
             <Table.Cell>{unit.count * u.size} <Icon name="user"/></Table.Cell>
             <Table.Cell>{u.move && <>{u.move}" <Icon name="location arrow" /></>} {u.wounds} <Icon name="heart" /> {u.save && <> {u.save} <Icon name="shield" /></>} {u.bravery && <> {u.bravery} <Icon name="hand victory" /></>} </Table.Cell>
             <Table.Cell>
-                {attacks && this.renderAllAttacks(attacks)}
-                {abilities && this.renderAllAbilities(abilities)}
+                {attacks.length > 0 && this.renderAllAttacks(attacks)}
+                {abilities.length > 0 && this.renderAllAbilities(abilities)}
                 <div>{u.keywords && u.keywords.join(", ")}</div></Table.Cell>        
         </Table.Row>;
     }

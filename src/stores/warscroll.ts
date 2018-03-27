@@ -40,7 +40,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed
     get availableExtraAbilities() {
-        return this.warscroll.unitsStore.extraAbilities.filter(x => x.allegiance.id === this.warscroll.allegiance.id
+        return this.warscroll.unitsStore.extraAbilities.filter(x => (x.allegiance === undefined || x.allegiance.id === this.warscroll.allegiance.id)
             && x.isAvailable(this, this.warscroll));
     }
 

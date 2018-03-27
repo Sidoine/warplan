@@ -171,6 +171,10 @@ const allegiances = [
 let output = `import { Box, DataStore, GrandAlliance, ExtraAbilityTest } from "./units";
 
 const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
+function bannerAvailable(id: string): ExtraAbilityTest {
+    return (unit, ws) => unit.unit.id === name && unit.extraAbilities.every(x => x.category !== "banner");
+}
+
 const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
          && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
 export class DataStoreImpl implements DataStore {
@@ -263,7 +267,7 @@ output += `    };
 `;
 
 function readCsv(path: string) {
-    return fs.readFileSync(path, { encoding: "utf8"}).split("\n").map(x => x.split(","));
+    return fs.readFileSync(path, { encoding: "utf8"}).split("\n").map(x => x.trimRight().split(","));
 }
 
 const gwPoints = readCsv("src/stores/data/gwPoints.csv");
@@ -293,6 +297,13 @@ for (const e of extraWeapons) {
     }   
 }
 
+const keywordRegex: { r: RegExp, n: string }[] = [
+    { r: /\bDAEMONS?\b/, n: "DAEMON" },
+    { r: /\bWIZARD\b/, n: "WIZARD" },
+    { r: /\bMORTAL\b/, n: "MORTAL" },
+    { r: /\bBLOODBOUND\b/, n: "BLOODBOUND" }
+];
+
 for (const [key, unit] of gwPointsMap) {
     const extras = extraData.get(key);
     if (!extras || extras.type === "formation") continue;
@@ -305,6 +316,35 @@ for (const [key, unit] of gwPointsMap) {
             type: "${extras.type}",
             subType: ${unit.type !== undefined ? `"${unit.type}"` : "undefined"},
 `;
+
+    const keyWords: string[] = [];
+    for (const factionId of extras.factionId) {
+        const faction = factions.find(x => x.id === factionId);
+        if (faction) {
+            keyWords.push(faction.grandAlliance.toUpperCase());
+            const allegiance = faction.allegiance ? allegiances.find(x => x.name === faction.allegiance) : allegiances.find(x => x.name === faction.name);
+            if (allegiance) {
+                keyWords.push(allegiance.name.toUpperCase());
+            }
+        }
+    }
+
+    if (extras.type === "hero") {
+        keyWords.push("HERO");
+    }
+
+    if (unit.type) {
+        const unitType = unit.type.toUpperCase();
+        for (const regex of keywordRegex) {
+            if (regex.r.test(unitType)) {
+                keyWords.push(regex.n);
+            }
+        }
+    }
+
+    if (keyWords.length) {
+        output += `            keywords: ["${keyWords.join('", "')}"],\n`;
+    }
 
     if (extras.army.wounds) {
         output+= `            wounds: ${parseInt(extras.army.wounds) / parseInt(extras.army.models || "1")},\n`;
@@ -436,6 +476,25 @@ for (const artefact of artefacts) {
         },
 `
 }
+
+const banners = readCsv("src/stores/data/bannerOptions.csv");
+
+for (const banner of banners) {
+    const m = banner[0].match(/(.*) - (.*)/);
+    if (m === null) continue;
+    const unit = m[1];
+    const name = m[2];
+    // const criteria = m[2];
+    const key = toCamelCase(unit + name);
+    output += `        ${key}: {
+            id: "${key}",
+            ability: { name: "${name}", description: "" },
+            category: "banner",
+            isAvailable: bannerAvailable("${toCamelCase(unit)}")
+        },
+`
+}
+
 
 output += `    };
     
