@@ -17,6 +17,7 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;
         const totalPoints = warscroll.totalPoints;
+        const alliedPoints = warscroll.alliedPoints;
         const grandAllianceOptions = [{
             key: GrandAlliance.chaos,
             text: "Chaos",
@@ -61,7 +62,7 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
                     }
                 </Grid.Row>
                 <Grid.Row>
-                    <Grid.Column width={3} >{totalPoints} points</Grid.Column>
+                    <Grid.Column width={3} >{totalPoints} points { alliedPoints > 0 && <>({ !warscroll.isAlliedValid && <Icon name="warning"/> } { alliedPoints} allied)</> } </Grid.Column>
                     <Grid.Column width={3}>{ !warscroll.isLeadersValid && <Icon name="warning" /> } {warscroll.numberOfLeaders} leaders ({warscroll.minLeaders} - {warscroll.maxLeaders})</Grid.Column>
                     <Grid.Column width={3}>{ !warscroll.isBattelinesValid && <Icon name="warning" /> }{warscroll.numberOfBattelines} battlelines ({warscroll.minBattlelines} - {warscroll.maxBattlelines})</Grid.Column>
                     <Grid.Column width={3}>{ !warscroll.isBehemotsValid && <Icon name="warning" /> }{warscroll.numberOfBehemots} behemoths (0 - {warscroll.maxBehemots})</Grid.Column>

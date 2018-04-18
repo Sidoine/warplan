@@ -7,6 +7,10 @@ function bannerAvailable(id: string): ExtraAbilityTest {
 
 const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
          && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
+function keywordAvailable(category: string, keyword: string, alts: string[]): ExtraAbilityTest {
+    return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(keyword) >= 0 && alts.some(x => x === "ALL" || unit.unit.model.name.toUpperCase() === x || unit.unit.keywords.indexOf(x) >= 0);
+}
+
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
 
@@ -3969,212 +3973,254 @@ export class DataStoreImpl implements DataStore {
         chaos: {
             id: "chaos",
             grandAlliance: GrandAlliance.chaos,
-            name: "Chaos"
+            name: "Chaos",
+            keyword: "CHAOS"
         },
         brayherd: {
             id: "brayherd",
             grandAlliance: GrandAlliance.chaos,
-            name: "Brayherd"
+            name: "Brayherd",
+            keyword: "BRAYHERD"
         },
         khorne: {
             id: "khorne",
             grandAlliance: GrandAlliance.chaos,
-            name: "Khorne"
+            name: "Khorne",
+            keyword: "KHORNE"
         },
         nurgle: {
             id: "nurgle",
             grandAlliance: GrandAlliance.chaos,
-            name: "Nurgle"
+            name: "Nurgle",
+            keyword: "NURGLE"
         },
         skavenPestilens: {
             id: "skavenPestilens",
             grandAlliance: GrandAlliance.chaos,
-            name: "Skaven Pestilens"
+            name: "Skaven Pestilens",
+            keyword: "SKAVEN PESTILENS"
         },
         skavenSkryre: {
             id: "skavenSkryre",
             grandAlliance: GrandAlliance.chaos,
-            name: "Skaven Skryre"
+            name: "Skaven Skryre",
+            keyword: "SKAVEN SKRYRE"
         },
         slaanesh: {
             id: "slaanesh",
             grandAlliance: GrandAlliance.chaos,
-            name: "Slaanesh"
+            name: "Slaanesh",
+            keyword: "SLAANESH"
         },
         slavesToDarkness: {
             id: "slavesToDarkness",
             grandAlliance: GrandAlliance.chaos,
-            name: "Slaves to Darkness"
+            name: "Slaves to Darkness",
+            keyword: "SLAVES TO DARKNESS"
         },
         tzeentch: {
             id: "tzeentch",
             grandAlliance: GrandAlliance.chaos,
-            name: "Tzeentch"
+            name: "Tzeentch",
+            keyword: "TZEENTCH"
         },
         fistOfTheEverchosen: {
             id: "fistOfTheEverchosen",
             grandAlliance: GrandAlliance.chaos,
-            name: "Fist of the Everchosen"
+            name: "Fist of the Everchosen",
+            keyword: "FIST OF THE EVERCHOSEN"
         },
         order: {
             id: "order",
             grandAlliance: GrandAlliance.order,
-            name: "Order"
+            name: "Order",
+            keyword: "ORDER"
         },
         darklingCovens: {
             id: "darklingCovens",
             grandAlliance: GrandAlliance.order,
-            name: "Darkling Covens"
+            name: "Darkling Covens",
+            keyword: "DARKLING COVENS"
         },
         dispossessed: {
             id: "dispossessed",
             grandAlliance: GrandAlliance.order,
-            name: "Dispossessed"
+            name: "Dispossessed",
+            keyword: "DISPOSSESSED"
         },
         freePeoples: {
             id: "freePeoples",
             grandAlliance: GrandAlliance.order,
-            name: "Free Peoples"
+            name: "Free Peoples",
+            keyword: "FREE PEOPLES"
         },
         fyreslayers: {
             id: "fyreslayers",
             grandAlliance: GrandAlliance.order,
-            name: "Fyreslayers"
+            name: "Fyreslayers",
+            keyword: "FYRESLAYERS"
         },
         kharadronOverlords: {
             id: "kharadronOverlords",
             grandAlliance: GrandAlliance.order,
-            name: "Kharadron Overlords"
+            name: "Kharadron Overlords",
+            keyword: "KHARADRON OVERLORDS"
         },
         seraphon: {
             id: "seraphon",
             grandAlliance: GrandAlliance.order,
-            name: "Seraphon"
+            name: "Seraphon",
+            keyword: "SERAPHON"
         },
         stormcastEternals: {
             id: "stormcastEternals",
             grandAlliance: GrandAlliance.order,
-            name: "Stormcast Eternals"
+            name: "Stormcast Eternals",
+            keyword: "STORMCAST ETERNALS"
         },
         sylvaneth: {
             id: "sylvaneth",
             grandAlliance: GrandAlliance.order,
-            name: "Sylvaneth"
+            name: "Sylvaneth",
+            keyword: "SYLVANETH"
         },
         wanderers: {
             id: "wanderers",
             grandAlliance: GrandAlliance.order,
-            name: "Wanderers"
+            name: "Wanderers",
+            keyword: "WANDERERS"
         },
         hammerhal: {
             id: "hammerhal",
             grandAlliance: GrandAlliance.order,
-            name: "Hammerhal"
+            name: "Hammerhal",
+            keyword: "HAMMERHAL"
         },
         anvilgard: {
             id: "anvilgard",
             grandAlliance: GrandAlliance.order,
-            name: "Anvilgard"
+            name: "Anvilgard",
+            keyword: "ANVILGARD"
         },
         tempestSEye: {
             id: "tempestSEye",
             grandAlliance: GrandAlliance.order,
-            name: "Tempest's Eye"
+            name: "Tempest's Eye",
+            keyword: "TEMPEST'S EYE"
         },
         hallowheart: {
             id: "hallowheart",
             grandAlliance: GrandAlliance.order,
-            name: "Hallowheart"
+            name: "Hallowheart",
+            keyword: "HALLOWHEART"
         },
         theLivingCity: {
             id: "theLivingCity",
             grandAlliance: GrandAlliance.order,
-            name: "The Living City"
+            name: "The Living City",
+            keyword: "THE LIVING CITY"
         },
         greywaterFastness: {
             id: "greywaterFastness",
             grandAlliance: GrandAlliance.order,
-            name: "Greywater Fastness"
+            name: "Greywater Fastness",
+            keyword: "GREYWATER FASTNESS"
         },
         daughtersOfKhaine: {
             id: "daughtersOfKhaine",
             grandAlliance: GrandAlliance.order,
-            name: "Daughters Of Khaine"
+            name: "Daughters Of Khaine",
+            keyword: "DAUGHTERS OF KHAINE"
         },
         destruction: {
             id: "destruction",
             grandAlliance: GrandAlliance.destruction,
-            name: "Destruction"
+            name: "Destruction",
+            keyword: "DESTRUCTION"
         },
         bonesplitterz: {
             id: "bonesplitterz",
             grandAlliance: GrandAlliance.destruction,
-            name: "Bonesplitterz"
+            name: "Bonesplitterz",
+            keyword: "BONESPLITTERZ"
         },
         beastclawRaiders: {
             id: "beastclawRaiders",
             grandAlliance: GrandAlliance.destruction,
-            name: "Beastclaw Raiders"
+            name: "Beastclaw Raiders",
+            keyword: "BEASTCLAW RAIDERS"
         },
         ironjawz: {
             id: "ironjawz",
             grandAlliance: GrandAlliance.destruction,
-            name: "Ironjawz"
+            name: "Ironjawz",
+            keyword: "IRONJAWZ"
         },
         stoneklawSGutstompas: {
             id: "stoneklawSGutstompas",
             grandAlliance: GrandAlliance.destruction,
-            name: "Stoneklaw's Gutstompas"
+            name: "Stoneklaw's Gutstompas",
+            keyword: "STONEKLAW'S GUTSTOMPAS"
         },
         death: {
             id: "death",
             grandAlliance: GrandAlliance.death,
-            name: "Death"
+            name: "Death",
+            keyword: "DEATH"
         },
         fleshEaterCourts: {
             id: "fleshEaterCourts",
             grandAlliance: GrandAlliance.death,
-            name: "Flesh Eater Courts"
+            name: "Flesh Eater Courts",
+            keyword: "FLESH EATER COURTS"
         },
         nighthaunt: {
             id: "nighthaunt",
             grandAlliance: GrandAlliance.death,
-            name: "Nighthaunt"
+            name: "Nighthaunt",
+            keyword: "NIGHTHAUNT"
         },
         soulblight: {
             id: "soulblight",
             grandAlliance: GrandAlliance.death,
-            name: "Soulblight"
+            name: "Soulblight",
+            keyword: "SOULBLIGHT"
         },
         grandHostOfNagash: {
             id: "grandHostOfNagash",
             grandAlliance: GrandAlliance.death,
-            name: "Grand Host of Nagash"
+            name: "Grand Host of Nagash",
+            keyword: "GRAND HOST OF NAGASH"
         },
         legionOfSacrament: {
             id: "legionOfSacrament",
             grandAlliance: GrandAlliance.death,
-            name: "Legion of Sacrament"
+            name: "Legion of Sacrament",
+            keyword: "LEGION OF SACRAMENT"
         },
         legionOfBlood: {
             id: "legionOfBlood",
             grandAlliance: GrandAlliance.death,
-            name: "Legion of Blood"
+            name: "Legion of Blood",
+            keyword: "LEGION OF BLOOD"
         },
         legionOfNight: {
             id: "legionOfNight",
             grandAlliance: GrandAlliance.death,
-            name: "Legion of Night"
+            name: "Legion of Night",
+            keyword: "LEGION OF NIGHT"
         },
         theWraithFleet: {
             id: "theWraithFleet",
             grandAlliance: GrandAlliance.death,
-            name: "The Wraith Fleet"
+            name: "The Wraith Fleet",
+            keyword: "THE WRAITH FLEET"
         },
         legionsOfNagash: {
             id: "legionsOfNagash",
             grandAlliance: GrandAlliance.death,
-            name: "Legions of Nagash"
+            name: "Legions of Nagash",
+            keyword: "LEGIONS OF NAGASH"
         },
     };
     
@@ -17699,6 +17745,1680 @@ export class DataStoreImpl implements DataStore {
             ability: { name: "Unholy Lodestone", description: "" },
             category: "banner",
             isAvailable: bannerAvailable("corpseCart")
+        },
+        slavesToDarknessMarkOfChaosNone: {
+            id: "slavesToDarknessMarkOfChaosNone",
+            ability: { name: "None", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "SLAVES TO DARKNESS", ["ALL", "WIZARD"])
+        },
+        slavesToDarknessMarkOfChaosKhorne: {
+            id: "slavesToDarknessMarkOfChaosKhorne",
+            ability: { name: "Khorne", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "SLAVES TO DARKNESS", ["ALL", "WIZARD"])
+        },
+        slavesToDarknessMarkOfChaosNurgle: {
+            id: "slavesToDarknessMarkOfChaosNurgle",
+            ability: { name: "Nurgle", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "SLAVES TO DARKNESS", ["ALL", "WIZARD"])
+        },
+        slavesToDarknessMarkOfChaosSlaanesh: {
+            id: "slavesToDarknessMarkOfChaosSlaanesh",
+            ability: { name: "Slaanesh", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "SLAVES TO DARKNESS", ["ALL", "WIZARD"])
+        },
+        slavesToDarknessMarkOfChaosTzeentch: {
+            id: "slavesToDarknessMarkOfChaosTzeentch",
+            ability: { name: "Tzeentch", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "SLAVES TO DARKNESS", ["ALL", "WIZARD"])
+        },
+        daemonsOfChaosMarkOfChaosNone: {
+            id: "daemonsOfChaosMarkOfChaosNone",
+            ability: { name: "None", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "DAEMONS OF CHAOS", ["SOUL GRINDER", "FURIES"])
+        },
+        daemonsOfChaosMarkOfChaosKhorne: {
+            id: "daemonsOfChaosMarkOfChaosKhorne",
+            ability: { name: "Khorne", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "DAEMONS OF CHAOS", ["SOUL GRINDER", "FURIES"])
+        },
+        daemonsOfChaosMarkOfChaosNurgle: {
+            id: "daemonsOfChaosMarkOfChaosNurgle",
+            ability: { name: "Nurgle", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "DAEMONS OF CHAOS", ["SOUL GRINDER", "FURIES"])
+        },
+        daemonsOfChaosMarkOfChaosSlaanesh: {
+            id: "daemonsOfChaosMarkOfChaosSlaanesh",
+            ability: { name: "Slaanesh", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "DAEMONS OF CHAOS", ["SOUL GRINDER", "FURIES"])
+        },
+        daemonsOfChaosMarkOfChaosTzeentch: {
+            id: "daemonsOfChaosMarkOfChaosTzeentch",
+            ability: { name: "Tzeentch", description: "" },
+            category: "Mark of Chaos",
+            isAvailable: keywordAvailable("Mark of Chaos", "DAEMONS OF CHAOS", ["SOUL GRINDER", "FURIES"])
+        },
+        sylvanethDeepwoodSpellThroneOfVines: {
+            id: "sylvanethDeepwoodSpellThroneOfVines",
+            ability: { name: "Throne of Vines", description: "" },
+            category: "Deepwood Spell",
+            isAvailable: keywordAvailable("Deepwood Spell", "SYLVANETH", ["WIZARD"])
+        },
+        sylvanethDeepwoodSpellRegrowth: {
+            id: "sylvanethDeepwoodSpellRegrowth",
+            ability: { name: "Regrowth", description: "" },
+            category: "Deepwood Spell",
+            isAvailable: keywordAvailable("Deepwood Spell", "SYLVANETH", ["WIZARD"])
+        },
+        sylvanethDeepwoodSpellVerdantBlessing: {
+            id: "sylvanethDeepwoodSpellVerdantBlessing",
+            ability: { name: "Verdant Blessing", description: "" },
+            category: "Deepwood Spell",
+            isAvailable: keywordAvailable("Deepwood Spell", "SYLVANETH", ["WIZARD"])
+        },
+        sylvanethDeepwoodSpellTheDwellersBelow: {
+            id: "sylvanethDeepwoodSpellTheDwellersBelow",
+            ability: { name: "The Dwellers Below", description: "" },
+            category: "Deepwood Spell",
+            isAvailable: keywordAvailable("Deepwood Spell", "SYLVANETH", ["WIZARD"])
+        },
+        sylvanethDeepwoodSpellTheReaping: {
+            id: "sylvanethDeepwoodSpellTheReaping",
+            ability: { name: "The Reaping", description: "" },
+            category: "Deepwood Spell",
+            isAvailable: keywordAvailable("Deepwood Spell", "SYLVANETH", ["WIZARD"])
+        },
+        sylvanethDeepwoodSpellTreesong: {
+            id: "sylvanethDeepwoodSpellTreesong",
+            ability: { name: "Treesong", description: "" },
+            category: "Deepwood Spell",
+            isAvailable: keywordAvailable("Deepwood Spell", "SYLVANETH", ["WIZARD"])
+        },
+        stormcastEternalsTreasuredStandardHurricaneBanner: {
+            id: "stormcastEternalsTreasuredStandardHurricaneBanner",
+            ability: { name: "Hurricane Banner", description: "" },
+            category: "Treasured Standard",
+            isAvailable: keywordAvailable("Treasured Standard", "STORMCAST ETERNALS", ["KNIGHT-VEXILLOR"])
+        },
+        stormcastEternalsTreasuredStandardLicheboneStandard: {
+            id: "stormcastEternalsTreasuredStandardLicheboneStandard",
+            ability: { name: "Lichebone Standard", description: "" },
+            category: "Treasured Standard",
+            isAvailable: keywordAvailable("Treasured Standard", "STORMCAST ETERNALS", ["KNIGHT-VEXILLOR"])
+        },
+        stormcastEternalsTreasuredStandardPennantOfSigmaron: {
+            id: "stormcastEternalsTreasuredStandardPennantOfSigmaron",
+            ability: { name: "Pennant of Sigmaron", description: "" },
+            category: "Treasured Standard",
+            isAvailable: keywordAvailable("Treasured Standard", "STORMCAST ETERNALS", ["KNIGHT-VEXILLOR"])
+        },
+        stormcastEternalsDracothTraitLithLimbed: {
+            id: "stormcastEternalsDracothTraitLithLimbed",
+            ability: { name: "Lith-limbed", description: "" },
+            category: "Dracoth Trait",
+            isAvailable: keywordAvailable("Dracoth Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON DRACOTH"])
+        },
+        stormcastEternalsDracothTraitSavageLoyalty: {
+            id: "stormcastEternalsDracothTraitSavageLoyalty",
+            ability: { name: "Savage Loyalty", description: "" },
+            category: "Dracoth Trait",
+            isAvailable: keywordAvailable("Dracoth Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON DRACOTH"])
+        },
+        stormcastEternalsDracothTraitKeenClawed: {
+            id: "stormcastEternalsDracothTraitKeenClawed",
+            ability: { name: "Keen-clawed", description: "" },
+            category: "Dracoth Trait",
+            isAvailable: keywordAvailable("Dracoth Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON DRACOTH"])
+        },
+        stormcastEternalsDracothTraitDrakeKin: {
+            id: "stormcastEternalsDracothTraitDrakeKin",
+            ability: { name: "Drake-kin", description: "" },
+            category: "Dracoth Trait",
+            isAvailable: keywordAvailable("Dracoth Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON DRACOTH"])
+        },
+        stormcastEternalsDracothTraitThunderCaller: {
+            id: "stormcastEternalsDracothTraitThunderCaller",
+            ability: { name: "Thunder Caller", description: "" },
+            category: "Dracoth Trait",
+            isAvailable: keywordAvailable("Dracoth Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON DRACOTH"])
+        },
+        stormcastEternalsDracothTraitPackHunter: {
+            id: "stormcastEternalsDracothTraitPackHunter",
+            ability: { name: "Pack Hunter", description: "" },
+            category: "Dracoth Trait",
+            isAvailable: keywordAvailable("Dracoth Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON DRACOTH"])
+        },
+        stormcastEternalsStardrakeTraitLitheLimbed: {
+            id: "stormcastEternalsStardrakeTraitLitheLimbed",
+            ability: { name: "Lithe-limbed", description: "" },
+            category: "Stardrake Trait",
+            isAvailable: keywordAvailable("Stardrake Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON STARDRAKE", "DRAKESWORN TEMPLAR"])
+        },
+        stormcastEternalsStardrakeTraitSavageLoyalty: {
+            id: "stormcastEternalsStardrakeTraitSavageLoyalty",
+            ability: { name: "Savage Loyalty", description: "" },
+            category: "Stardrake Trait",
+            isAvailable: keywordAvailable("Stardrake Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON STARDRAKE", "DRAKESWORN TEMPLAR"])
+        },
+        stormcastEternalsStardrakeTraitKeenClawed: {
+            id: "stormcastEternalsStardrakeTraitKeenClawed",
+            ability: { name: "Keen-clawed", description: "" },
+            category: "Stardrake Trait",
+            isAvailable: keywordAvailable("Stardrake Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON STARDRAKE", "DRAKESWORN TEMPLAR"])
+        },
+        stormcastEternalsStardrakeTraitStormWinged: {
+            id: "stormcastEternalsStardrakeTraitStormWinged",
+            ability: { name: "Storm-winged", description: "" },
+            category: "Stardrake Trait",
+            isAvailable: keywordAvailable("Stardrake Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON STARDRAKE", "DRAKESWORN TEMPLAR"])
+        },
+        stormcastEternalsStardrakeTraitThunderlord: {
+            id: "stormcastEternalsStardrakeTraitThunderlord",
+            ability: { name: "Thunderlord", description: "" },
+            category: "Stardrake Trait",
+            isAvailable: keywordAvailable("Stardrake Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON STARDRAKE", "DRAKESWORN TEMPLAR"])
+        },
+        stormcastEternalsStardrakeTraitStarBranded: {
+            id: "stormcastEternalsStardrakeTraitStarBranded",
+            ability: { name: "Star-branded", description: "" },
+            category: "Stardrake Trait",
+            isAvailable: keywordAvailable("Stardrake Trait", "STORMCAST ETERNALS", ["LORD-CELESTANT ON STARDRAKE", "DRAKESWORN TEMPLAR"])
+        },
+        stormcastEternalsGryphChargerTraitLitheLimbed: {
+            id: "stormcastEternalsGryphChargerTraitLitheLimbed",
+            ability: { name: "Lithe-limbed", description: "" },
+            category: "Gryph-Charger Trait",
+            isAvailable: keywordAvailable("Gryph-Charger Trait", "STORMCAST ETERNALS", ["LORD-AQUILOR"])
+        },
+        stormcastEternalsGryphChargerTraitSavageLoyalty: {
+            id: "stormcastEternalsGryphChargerTraitSavageLoyalty",
+            ability: { name: "Savage Loyalty", description: "" },
+            category: "Gryph-Charger Trait",
+            isAvailable: keywordAvailable("Gryph-Charger Trait", "STORMCAST ETERNALS", ["LORD-AQUILOR"])
+        },
+        stormcastEternalsGryphChargerTraitKeenClawed: {
+            id: "stormcastEternalsGryphChargerTraitKeenClawed",
+            ability: { name: "Keen-clawed", description: "" },
+            category: "Gryph-Charger Trait",
+            isAvailable: keywordAvailable("Gryph-Charger Trait", "STORMCAST ETERNALS", ["LORD-AQUILOR"])
+        },
+        stormcastEternalsGryphChargerTraitWindRunner: {
+            id: "stormcastEternalsGryphChargerTraitWindRunner",
+            ability: { name: "Wind Runner", description: "" },
+            category: "Gryph-Charger Trait",
+            isAvailable: keywordAvailable("Gryph-Charger Trait", "STORMCAST ETERNALS", ["LORD-AQUILOR"])
+        },
+        stormcastEternalsGryphChargerTraitAetherealStalker: {
+            id: "stormcastEternalsGryphChargerTraitAetherealStalker",
+            ability: { name: "Aethereal Stalker", description: "" },
+            category: "Gryph-Charger Trait",
+            isAvailable: keywordAvailable("Gryph-Charger Trait", "STORMCAST ETERNALS", ["LORD-AQUILOR"])
+        },
+        stormcastEternalsGryphChargerTraitIndefatigable: {
+            id: "stormcastEternalsGryphChargerTraitIndefatigable",
+            ability: { name: "Indefatigable", description: "" },
+            category: "Gryph-Charger Trait",
+            isAvailable: keywordAvailable("Gryph-Charger Trait", "STORMCAST ETERNALS", ["LORD-AQUILOR"])
+        },
+        stormcastEternalsMysticLightShrivingLight: {
+            id: "stormcastEternalsMysticLightShrivingLight",
+            ability: { name: "Shriving Light", description: "" },
+            category: "Mystic Light",
+            isAvailable: keywordAvailable("Mystic Light", "STORMCAST ETERNALS", ["LORD-CASTELLANT", "LORD-VERITANT", "KNIGHT-AZYROS"])
+        },
+        stormcastEternalsMysticLightFuryBrand: {
+            id: "stormcastEternalsMysticLightFuryBrand",
+            ability: { name: "Fury Brand", description: "" },
+            category: "Mystic Light",
+            isAvailable: keywordAvailable("Mystic Light", "STORMCAST ETERNALS", ["LORD-CASTELLANT", "LORD-VERITANT", "KNIGHT-AZYROS"])
+        },
+        stormcastEternalsMysticLightLanternOfTheTempest: {
+            id: "stormcastEternalsMysticLightLanternOfTheTempest",
+            ability: { name: "Lantern of the Tempest", description: "" },
+            category: "Mystic Light",
+            isAvailable: keywordAvailable("Mystic Light", "STORMCAST ETERNALS", ["LORD-CASTELLANT", "LORD-VERITANT", "KNIGHT-AZYROS"])
+        },
+        stormcastEternalsPrayerNone: {
+            id: "stormcastEternalsPrayerNone",
+            ability: { name: "None", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "STORMCAST ETERNALS", ["LORD-VERITANT", "LORD-RELICTOR"])
+        },
+        stormcastEternalsPrayerDivineLight: {
+            id: "stormcastEternalsPrayerDivineLight",
+            ability: { name: "Divine Light", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "STORMCAST ETERNALS", ["LORD-VERITANT", "LORD-RELICTOR"])
+        },
+        stormcastEternalsPrayerBlessWeapons: {
+            id: "stormcastEternalsPrayerBlessWeapons",
+            ability: { name: "Bless Weapons", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "STORMCAST ETERNALS", ["LORD-VERITANT", "LORD-RELICTOR"])
+        },
+        stormcastEternalsPrayerBolsterFaith: {
+            id: "stormcastEternalsPrayerBolsterFaith",
+            ability: { name: "Bolster Faith", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "STORMCAST ETERNALS", ["LORD-VERITANT", "LORD-RELICTOR"])
+        },
+        stormcastEternalsPrayerLightningChariot: {
+            id: "stormcastEternalsPrayerLightningChariot",
+            ability: { name: "Lightning Chariot", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "STORMCAST ETERNALS", ["LORD-VERITANT", "LORD-RELICTOR"])
+        },
+        stormcastEternalsPrayerAbjuration: {
+            id: "stormcastEternalsPrayerAbjuration",
+            ability: { name: "Abjuration", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "STORMCAST ETERNALS", ["LORD-VERITANT", "LORD-RELICTOR"])
+        },
+        stormcastEternalsPrayerGodKingSAspect: {
+            id: "stormcastEternalsPrayerGodKingSAspect",
+            ability: { name: "God King's Aspect", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "STORMCAST ETERNALS", ["LORD-VERITANT", "LORD-RELICTOR"])
+        },
+        slavesToDarknessLoreOfFateBoltOfTzeentch: {
+            id: "slavesToDarknessLoreOfFateBoltOfTzeentch",
+            ability: { name: "Bolt of Tzeentch", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        slavesToDarknessLoreOfFateArcaneSuggestion: {
+            id: "slavesToDarknessLoreOfFateArcaneSuggestion",
+            ability: { name: "Arcane Suggestion", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        slavesToDarknessLoreOfFateGlimpseTheFuture: {
+            id: "slavesToDarknessLoreOfFateGlimpseTheFuture",
+            ability: { name: "Glimpse the Future", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        slavesToDarknessLoreOfFateShieldOfFate: {
+            id: "slavesToDarknessLoreOfFateShieldOfFate",
+            ability: { name: "Shield of Fate", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        slavesToDarknessLoreOfFateInfusionArcanum: {
+            id: "slavesToDarknessLoreOfFateInfusionArcanum",
+            ability: { name: "Infusion Arcanum", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        slavesToDarknessLoreOfFateTreacherousBond: {
+            id: "slavesToDarknessLoreOfFateTreacherousBond",
+            ability: { name: "Treacherous Bond", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        tzeentchArcanitesLoreOfFateBoltOfTzeentch: {
+            id: "tzeentchArcanitesLoreOfFateBoltOfTzeentch",
+            ability: { name: "Bolt of Tzeentch", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "TZEENTCH ARCANITES", ["WIZARD"])
+        },
+        tzeentchArcanitesLoreOfFateArcaneSuggestion: {
+            id: "tzeentchArcanitesLoreOfFateArcaneSuggestion",
+            ability: { name: "Arcane Suggestion", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "TZEENTCH ARCANITES", ["WIZARD"])
+        },
+        tzeentchArcanitesLoreOfFateGlimpseTheFuture: {
+            id: "tzeentchArcanitesLoreOfFateGlimpseTheFuture",
+            ability: { name: "Glimpse the Future", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "TZEENTCH ARCANITES", ["WIZARD"])
+        },
+        tzeentchArcanitesLoreOfFateShieldOfFate: {
+            id: "tzeentchArcanitesLoreOfFateShieldOfFate",
+            ability: { name: "Shield of Fate", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "TZEENTCH ARCANITES", ["WIZARD"])
+        },
+        tzeentchArcanitesLoreOfFateInfusionArcanum: {
+            id: "tzeentchArcanitesLoreOfFateInfusionArcanum",
+            ability: { name: "Infusion Arcanum", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "TZEENTCH ARCANITES", ["WIZARD"])
+        },
+        tzeentchArcanitesLoreOfFateTreacherousBond: {
+            id: "tzeentchArcanitesLoreOfFateTreacherousBond",
+            ability: { name: "Treacherous Bond", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "TZEENTCH ARCANITES", ["WIZARD"])
+        },
+        everchosenLoreOfFateBoltOfTzeentch: {
+            id: "everchosenLoreOfFateBoltOfTzeentch",
+            ability: { name: "Bolt of Tzeentch", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfFateArcaneSuggestion: {
+            id: "everchosenLoreOfFateArcaneSuggestion",
+            ability: { name: "Arcane Suggestion", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfFateGlimpseTheFuture: {
+            id: "everchosenLoreOfFateGlimpseTheFuture",
+            ability: { name: "Glimpse the Future", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfFateShieldOfFate: {
+            id: "everchosenLoreOfFateShieldOfFate",
+            ability: { name: "Shield of Fate", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfFateInfusionArcanum: {
+            id: "everchosenLoreOfFateInfusionArcanum",
+            ability: { name: "Infusion Arcanum", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfFateTreacherousBond: {
+            id: "everchosenLoreOfFateTreacherousBond",
+            ability: { name: "Treacherous Bond", description: "" },
+            category: "Lore of Fate",
+            isAvailable: keywordAvailable("Lore of Fate", "EVERCHOSEN", ["WIZARD"])
+        },
+        daemonsOfTzeentchLoreOfChangeBoltOfTzeentch: {
+            id: "daemonsOfTzeentchLoreOfChangeBoltOfTzeentch",
+            ability: { name: "Bolt of Tzeentch", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "DAEMONS OF TZEENTCH", ["WIZARD", "PINK HORRORS OF TZEENTCH", "PINK HORRORS OF TZEENTCH"])
+        },
+        daemonsOfTzeentchLoreOfChangeTreasonOfTzeentch: {
+            id: "daemonsOfTzeentchLoreOfChangeTreasonOfTzeentch",
+            ability: { name: "Treason of Tzeentch", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "DAEMONS OF TZEENTCH", ["WIZARD", "PINK HORRORS OF TZEENTCH", "PINK HORRORS OF TZEENTCH"])
+        },
+        daemonsOfTzeentchLoreOfChangeArcaneTransformation: {
+            id: "daemonsOfTzeentchLoreOfChangeArcaneTransformation",
+            ability: { name: "Arcane Transformation", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "DAEMONS OF TZEENTCH", ["WIZARD", "PINK HORRORS OF TZEENTCH", "PINK HORRORS OF TZEENTCH"])
+        },
+        daemonsOfTzeentchLoreOfChangeUncheckedMutation: {
+            id: "daemonsOfTzeentchLoreOfChangeUncheckedMutation",
+            ability: { name: "Unchecked Mutation", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "DAEMONS OF TZEENTCH", ["WIZARD", "PINK HORRORS OF TZEENTCH", "PINK HORRORS OF TZEENTCH"])
+        },
+        daemonsOfTzeentchLoreOfChangeFoldReality: {
+            id: "daemonsOfTzeentchLoreOfChangeFoldReality",
+            ability: { name: "Fold Reality", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "DAEMONS OF TZEENTCH", ["WIZARD", "PINK HORRORS OF TZEENTCH", "PINK HORRORS OF TZEENTCH"])
+        },
+        daemonsOfTzeentchLoreOfChangeTzeentchSFirestorm: {
+            id: "daemonsOfTzeentchLoreOfChangeTzeentchSFirestorm",
+            ability: { name: "Tzeentch's Firestorm", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "DAEMONS OF TZEENTCH", ["WIZARD", "PINK HORRORS OF TZEENTCH", "PINK HORRORS OF TZEENTCH"])
+        },
+        everchosenLoreOfChangeBoltOfTzeentch: {
+            id: "everchosenLoreOfChangeBoltOfTzeentch",
+            ability: { name: "Bolt of Tzeentch", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfChangeTreasonOfTzeentch: {
+            id: "everchosenLoreOfChangeTreasonOfTzeentch",
+            ability: { name: "Treason of Tzeentch", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfChangeArcaneTransformation: {
+            id: "everchosenLoreOfChangeArcaneTransformation",
+            ability: { name: "Arcane Transformation", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfChangeUncheckedMutation: {
+            id: "everchosenLoreOfChangeUncheckedMutation",
+            ability: { name: "Unchecked Mutation", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfChangeFoldReality: {
+            id: "everchosenLoreOfChangeFoldReality",
+            ability: { name: "Fold Reality", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "EVERCHOSEN", ["WIZARD"])
+        },
+        everchosenLoreOfChangeTzeentchSFirestorm: {
+            id: "everchosenLoreOfChangeTzeentchSFirestorm",
+            ability: { name: "Tzeentch's Firestorm", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "EVERCHOSEN", ["WIZARD"])
+        },
+        tzeentchArcanitesLoreOfChangeBoltOfTzeentch: {
+            id: "tzeentchArcanitesLoreOfChangeBoltOfTzeentch",
+            ability: { name: "Bolt of Tzeentch", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "TZEENTCH ARCANITES", ["GAUNT SUMMONER", "TZAANGOR SHAMAN"])
+        },
+        tzeentchArcanitesLoreOfChangeTreasonOfTzeentch: {
+            id: "tzeentchArcanitesLoreOfChangeTreasonOfTzeentch",
+            ability: { name: "Treason of Tzeentch", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "TZEENTCH ARCANITES", ["GAUNT SUMMONER", "TZAANGOR SHAMAN"])
+        },
+        tzeentchArcanitesLoreOfChangeArcaneTransformation: {
+            id: "tzeentchArcanitesLoreOfChangeArcaneTransformation",
+            ability: { name: "Arcane Transformation", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "TZEENTCH ARCANITES", ["GAUNT SUMMONER", "TZAANGOR SHAMAN"])
+        },
+        tzeentchArcanitesLoreOfChangeUncheckedMutation: {
+            id: "tzeentchArcanitesLoreOfChangeUncheckedMutation",
+            ability: { name: "Unchecked Mutation", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "TZEENTCH ARCANITES", ["GAUNT SUMMONER", "TZAANGOR SHAMAN"])
+        },
+        tzeentchArcanitesLoreOfChangeFoldReality: {
+            id: "tzeentchArcanitesLoreOfChangeFoldReality",
+            ability: { name: "Fold Reality", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "TZEENTCH ARCANITES", ["GAUNT SUMMONER", "TZAANGOR SHAMAN"])
+        },
+        tzeentchArcanitesLoreOfChangeTzeentchSFirestorm: {
+            id: "tzeentchArcanitesLoreOfChangeTzeentchSFirestorm",
+            ability: { name: "Tzeentch's Firestorm", description: "" },
+            category: "Lore of Change",
+            isAvailable: keywordAvailable("Lore of Change", "TZEENTCH ARCANITES", ["GAUNT SUMMONER", "TZAANGOR SHAMAN"])
+        },
+        ironweldArsenalGunSteamGun: {
+            id: "ironweldArsenalGunSteamGun",
+            ability: { name: "Steam Gun", description: "" },
+            category: "Gun",
+            isAvailable: keywordAvailable("Gun", "IRONWELD ARSENAL", ["GYROCOPTERS"])
+        },
+        ironweldArsenalGunBrimstoneGun: {
+            id: "ironweldArsenalGunBrimstoneGun",
+            ability: { name: "Brimstone Gun", description: "" },
+            category: "Gun",
+            isAvailable: keywordAvailable("Gun", "IRONWELD ARSENAL", ["GYROCOPTERS"])
+        },
+        khorneBloodboundBannerOfKhorneNone: {
+            id: "khorneBloodboundBannerOfKhorneNone",
+            ability: { name: "None", description: "" },
+            category: "Banner of Khorne",
+            isAvailable: keywordAvailable("Banner of Khorne", "KHORNE BLOODBOUND", ["BLOODSECRATOR"])
+        },
+        khorneBloodboundBannerOfKhorneBannerOfRage: {
+            id: "khorneBloodboundBannerOfKhorneBannerOfRage",
+            ability: { name: "Banner of Rage", description: "" },
+            category: "Banner of Khorne",
+            isAvailable: keywordAvailable("Banner of Khorne", "KHORNE BLOODBOUND", ["BLOODSECRATOR"])
+        },
+        khorneBloodboundBannerOfKhorneBannerOfWrath: {
+            id: "khorneBloodboundBannerOfKhorneBannerOfWrath",
+            ability: { name: "Banner of Wrath", description: "" },
+            category: "Banner of Khorne",
+            isAvailable: keywordAvailable("Banner of Khorne", "KHORNE BLOODBOUND", ["BLOODSECRATOR"])
+        },
+        khorneBloodboundBannerOfKhorneBannerOfBlood: {
+            id: "khorneBloodboundBannerOfKhorneBannerOfBlood",
+            ability: { name: "Banner of Blood", description: "" },
+            category: "Banner of Khorne",
+            isAvailable: keywordAvailable("Banner of Khorne", "KHORNE BLOODBOUND", ["BLOODSECRATOR"])
+        },
+        khorneBloodboundBloodBlessingBronzedFlesh: {
+            id: "khorneBloodboundBloodBlessingBronzedFlesh",
+            ability: { name: "Bronzed Flesh", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "KHORNE BLOODBOUND", ["SLAUGHTERPRIEST", "SLAUGHTERPRIEST WITH HACKBLADE AND WRATHHAMMER"])
+        },
+        khorneBloodboundBloodBlessingBloodSacrifice: {
+            id: "khorneBloodboundBloodBlessingBloodSacrifice",
+            ability: { name: "Blood Sacrifice", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "KHORNE BLOODBOUND", ["SLAUGHTERPRIEST", "SLAUGHTERPRIEST WITH HACKBLADE AND WRATHHAMMER"])
+        },
+        khorneBloodboundBloodBlessingResanguination: {
+            id: "khorneBloodboundBloodBlessingResanguination",
+            ability: { name: "Resanguination", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "KHORNE BLOODBOUND", ["SLAUGHTERPRIEST", "SLAUGHTERPRIEST WITH HACKBLADE AND WRATHHAMMER"])
+        },
+        khorneBloodboundBloodBlessingBrazenFury: {
+            id: "khorneBloodboundBloodBlessingBrazenFury",
+            ability: { name: "Brazen Fury", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "KHORNE BLOODBOUND", ["SLAUGHTERPRIEST", "SLAUGHTERPRIEST WITH HACKBLADE AND WRATHHAMMER"])
+        },
+        khorneBloodboundBloodBlessingKillingFrenzy: {
+            id: "khorneBloodboundBloodBlessingKillingFrenzy",
+            ability: { name: "Killing Frenzy", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "KHORNE BLOODBOUND", ["SLAUGHTERPRIEST", "SLAUGHTERPRIEST WITH HACKBLADE AND WRATHHAMMER"])
+        },
+        khorneBloodboundBloodBlessingMagebaneHex: {
+            id: "khorneBloodboundBloodBlessingMagebaneHex",
+            ability: { name: "Magebane Hex", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "KHORNE BLOODBOUND", ["SLAUGHTERPRIEST", "SLAUGHTERPRIEST WITH HACKBLADE AND WRATHHAMMER"])
+        },
+        kharadronOverlordsAdditionalFootnoteSurrenderIsRarelyProfitable: {
+            id: "kharadronOverlordsAdditionalFootnoteSurrenderIsRarelyProfitable",
+            ability: { name: "Surrender Is Rarely Profitable", description: "" },
+            category: "Additional Footnote",
+            isAvailable: keywordAvailable("Additional Footnote", "KHARADRON OVERLORDS", ["SKY PORT", "BARAK-MHORNAR"])
+        },
+        kharadronOverlordsAdditionalFootnoteThereSNoRewardWithoutRisk: {
+            id: "kharadronOverlordsAdditionalFootnoteThereSNoRewardWithoutRisk",
+            ability: { name: "There's No Reward Without Risk", description: "" },
+            category: "Additional Footnote",
+            isAvailable: keywordAvailable("Additional Footnote", "KHARADRON OVERLORDS", ["SKY PORT", "BARAK-MHORNAR"])
+        },
+        kharadronOverlordsAdditionalFootnoteThereSNoTradingWithSomePeople: {
+            id: "kharadronOverlordsAdditionalFootnoteThereSNoTradingWithSomePeople",
+            ability: { name: "There's No Trading With Some People", description: "" },
+            category: "Additional Footnote",
+            isAvailable: keywordAvailable("Additional Footnote", "KHARADRON OVERLORDS", ["SKY PORT", "BARAK-MHORNAR"])
+        },
+        kharadronOverlordsAdditionalFootnoteTodaySFoesAreTomorrowSCustomers: {
+            id: "kharadronOverlordsAdditionalFootnoteTodaySFoesAreTomorrowSCustomers",
+            ability: { name: "Today's Foes Are Tomorrow's Customers", description: "" },
+            category: "Additional Footnote",
+            isAvailable: keywordAvailable("Additional Footnote", "KHARADRON OVERLORDS", ["SKY PORT", "BARAK-MHORNAR"])
+        },
+        kharadronOverlordsAdditionalFootnoteWithoutOurShipsWeAreNaught: {
+            id: "kharadronOverlordsAdditionalFootnoteWithoutOurShipsWeAreNaught",
+            ability: { name: "Without Our Ships We Are Naught", description: "" },
+            category: "Additional Footnote",
+            isAvailable: keywordAvailable("Additional Footnote", "KHARADRON OVERLORDS", ["SKY PORT", "BARAK-MHORNAR"])
+        },
+        kharadronOverlordsArtycleDefendYourTerritory: {
+            id: "kharadronOverlordsArtycleDefendYourTerritory",
+            ability: { name: "Defend Your Territory", description: "" },
+            category: "Artycle",
+            isAvailable: keywordAvailable("Artycle", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsArtycleHonourIsEverything: {
+            id: "kharadronOverlordsArtycleHonourIsEverything",
+            ability: { name: "Honour Is Everything", description: "" },
+            category: "Artycle",
+            isAvailable: keywordAvailable("Artycle", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsArtycleMasterTheSkies: {
+            id: "kharadronOverlordsArtycleMasterTheSkies",
+            ability: { name: "Master The Skies", description: "" },
+            category: "Artycle",
+            isAvailable: keywordAvailable("Artycle", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsArtycleRespectYourCommanders: {
+            id: "kharadronOverlordsArtycleRespectYourCommanders",
+            ability: { name: "Respect Your Commanders", description: "" },
+            category: "Artycle",
+            isAvailable: keywordAvailable("Artycle", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsArtycleSeekNewProspects: {
+            id: "kharadronOverlordsArtycleSeekNewProspects",
+            ability: { name: "Seek New Prospects", description: "" },
+            category: "Artycle",
+            isAvailable: keywordAvailable("Artycle", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsArtycleSettleTheGrudges: {
+            id: "kharadronOverlordsArtycleSettleTheGrudges",
+            ability: { name: "Settle The Grudges", description: "" },
+            category: "Artycle",
+            isAvailable: keywordAvailable("Artycle", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsAmendmentAlwaysTakeWhatYouAreOwed: {
+            id: "kharadronOverlordsAmendmentAlwaysTakeWhatYouAreOwed",
+            ability: { name: "Always Take What You Are Owed", description: "" },
+            category: "Amendment",
+            isAvailable: keywordAvailable("Amendment", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsAmendmentDonTArgueWithTheWind: {
+            id: "kharadronOverlordsAmendmentDonTArgueWithTheWind",
+            ability: { name: "Don't Argue With The Wind", description: "" },
+            category: "Amendment",
+            isAvailable: keywordAvailable("Amendment", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsAmendmentLeaveNoDuardinBehind: {
+            id: "kharadronOverlordsAmendmentLeaveNoDuardinBehind",
+            ability: { name: "Leave No Duardin Behind", description: "" },
+            category: "Amendment",
+            isAvailable: keywordAvailable("Amendment", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsAmendmentProsecuteWarsWithAllHaste: {
+            id: "kharadronOverlordsAmendmentProsecuteWarsWithAllHaste",
+            ability: { name: "Prosecute Wars With All Haste", description: "" },
+            category: "Amendment",
+            isAvailable: keywordAvailable("Amendment", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsAmendmentTrustAethermatcsNotSuperstition: {
+            id: "kharadronOverlordsAmendmentTrustAethermatcsNotSuperstition",
+            ability: { name: "Trust Aethermatcs Not Superstition", description: "" },
+            category: "Amendment",
+            isAvailable: keywordAvailable("Amendment", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsAmendmentTrustToYourGuns: {
+            id: "kharadronOverlordsAmendmentTrustToYourGuns",
+            ability: { name: "Trust To Your Guns", description: "" },
+            category: "Amendment",
+            isAvailable: keywordAvailable("Amendment", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsFootnoteSurrenderIsRarelyProfitable: {
+            id: "kharadronOverlordsFootnoteSurrenderIsRarelyProfitable",
+            ability: { name: "Surrender Is Rarely Profitable", description: "" },
+            category: "Footnote",
+            isAvailable: keywordAvailable("Footnote", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsFootnoteThereSNoRewardWithoutRisk: {
+            id: "kharadronOverlordsFootnoteThereSNoRewardWithoutRisk",
+            ability: { name: "There's No Reward Without Risk", description: "" },
+            category: "Footnote",
+            isAvailable: keywordAvailable("Footnote", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsFootnoteThereSNoTradingWithSomePeople: {
+            id: "kharadronOverlordsFootnoteThereSNoTradingWithSomePeople",
+            ability: { name: "There's No Trading With Some People", description: "" },
+            category: "Footnote",
+            isAvailable: keywordAvailable("Footnote", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsFootnoteTodaySFoesAreTomorrowSCustomers: {
+            id: "kharadronOverlordsFootnoteTodaySFoesAreTomorrowSCustomers",
+            ability: { name: "Today's Foes Are Tomorrow's Customers", description: "" },
+            category: "Footnote",
+            isAvailable: keywordAvailable("Footnote", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsFootnoteWithoutOurShipsWeAreNaught: {
+            id: "kharadronOverlordsFootnoteWithoutOurShipsWeAreNaught",
+            ability: { name: "Without Our Ships We Are Naught", description: "" },
+            category: "Footnote",
+            isAvailable: keywordAvailable("Footnote", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsFootnoteTheseAreJustGuidelines: {
+            id: "kharadronOverlordsFootnoteTheseAreJustGuidelines",
+            ability: { name: "These are Just Guidelines", description: "" },
+            category: "Footnote",
+            isAvailable: keywordAvailable("Footnote", "KHARADRON OVERLORDS", ["CUSTOM SKYPORT"])
+        },
+        kharadronOverlordsMainGunGreatSkyCannon: {
+            id: "kharadronOverlordsMainGunGreatSkyCannon",
+            ability: { name: "Great Sky Cannon", description: "" },
+            category: "Main Gun",
+            isAvailable: keywordAvailable("Main Gun", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsMainGunGreatSkyhook: {
+            id: "kharadronOverlordsMainGunGreatSkyhook",
+            ability: { name: "Great Skyhook", description: "" },
+            category: "Main Gun",
+            isAvailable: keywordAvailable("Main Gun", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsMainGunAethermaticVolleyCannon: {
+            id: "kharadronOverlordsMainGunAethermaticVolleyCannon",
+            ability: { name: "Aethermatic Volley Cannon", description: "" },
+            category: "Main Gun",
+            isAvailable: keywordAvailable("Main Gun", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsGreatEndrinworksNone: {
+            id: "kharadronOverlordsGreatEndrinworksNone",
+            ability: { name: "None", description: "" },
+            category: "Great Endrinworks",
+            isAvailable: keywordAvailable("Great Endrinworks", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsGreatEndrinworksTheLastWord: {
+            id: "kharadronOverlordsGreatEndrinworksTheLastWord",
+            ability: { name: "The Last Word", description: "" },
+            category: "Great Endrinworks",
+            isAvailable: keywordAvailable("Great Endrinworks", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsGreatEndrinworksIncredibleSelfHealingHull: {
+            id: "kharadronOverlordsGreatEndrinworksIncredibleSelfHealingHull",
+            ability: { name: "Incredible Self-healing Hull", description: "" },
+            category: "Great Endrinworks",
+            isAvailable: keywordAvailable("Great Endrinworks", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsGreatEndrinworksMaleficSkymines: {
+            id: "kharadronOverlordsGreatEndrinworksMaleficSkymines",
+            ability: { name: "Malefic Skymines", description: "" },
+            category: "Great Endrinworks",
+            isAvailable: keywordAvailable("Great Endrinworks", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsGreatEndrinworksEbullientBuoyancyAid: {
+            id: "kharadronOverlordsGreatEndrinworksEbullientBuoyancyAid",
+            ability: { name: "Ebullient Buoyancy Aid", description: "" },
+            category: "Great Endrinworks",
+            isAvailable: keywordAvailable("Great Endrinworks", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsGreatEndrinworksPrudencyChutes: {
+            id: "kharadronOverlordsGreatEndrinworksPrudencyChutes",
+            ability: { name: "Prudency Chutes", description: "" },
+            category: "Great Endrinworks",
+            isAvailable: keywordAvailable("Great Endrinworks", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsGreatEndrinworksMagnificentOmniscope: {
+            id: "kharadronOverlordsGreatEndrinworksMagnificentOmniscope",
+            ability: { name: "Magnificent Omniscope", description: "" },
+            category: "Great Endrinworks",
+            isAvailable: keywordAvailable("Great Endrinworks", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsGreatEndrinworksAethersphericEndrindsBarakZilfinSkyvessel: {
+            id: "kharadronOverlordsGreatEndrinworksAethersphericEndrindsBarakZilfinSkyvessel",
+            ability: { name: "Aetherspheric Endrinds (Barak-Zilfin Skyvessel)", description: "" },
+            category: "Great Endrinworks",
+            isAvailable: keywordAvailable("Great Endrinworks", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        kharadronOverlordsGreatEndrinworksBreathOfMorgrimBarakUrbaz: {
+            id: "kharadronOverlordsGreatEndrinworksBreathOfMorgrimBarakUrbaz",
+            ability: { name: "Breath of Morgrim (Barak-Urbaz)", description: "" },
+            category: "Great Endrinworks",
+            isAvailable: keywordAvailable("Great Endrinworks", "KHARADRON OVERLORDS", ["ARKANAUT IRONCLAD", "ARKANAUT FRIGATE", "GRUNDSTOK GUNHAULER"])
+        },
+        hostsOfSlaaneshSlaaneshAllegianceOptionNone: {
+            id: "hostsOfSlaaneshSlaaneshAllegianceOptionNone",
+            ability: { name: "None", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "HOSTS OF SLAANESH", ["LEADER"])
+        },
+        hostsOfSlaaneshSlaaneshAllegianceOptionGeneral: {
+            id: "hostsOfSlaaneshSlaaneshAllegianceOptionGeneral",
+            ability: { name: "General", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "HOSTS OF SLAANESH", ["LEADER"])
+        },
+        hostsOfSlaaneshSlaaneshAllegianceOptionLordOfExcessSecondCommandTrait: {
+            id: "hostsOfSlaaneshSlaaneshAllegianceOptionLordOfExcessSecondCommandTrait",
+            ability: { name: "Lord of Excess (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "HOSTS OF SLAANESH", ["LEADER"])
+        },
+        hostsOfSlaaneshSlaaneshAllegianceOptionDevoteeOfTormentSecondCommandTrait: {
+            id: "hostsOfSlaaneshSlaaneshAllegianceOptionDevoteeOfTormentSecondCommandTrait",
+            ability: { name: "Devotee of Torment (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "HOSTS OF SLAANESH", ["LEADER"])
+        },
+        hostsOfSlaaneshSlaaneshAllegianceOptionInvigoratedByPainSecondCommandTrait: {
+            id: "hostsOfSlaaneshSlaaneshAllegianceOptionInvigoratedByPainSecondCommandTrait",
+            ability: { name: "Invigorated by Pain (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "HOSTS OF SLAANESH", ["LEADER"])
+        },
+        hostsOfSlaaneshSlaaneshAllegianceOptionSupremelyVainSecondCommandTrait: {
+            id: "hostsOfSlaaneshSlaaneshAllegianceOptionSupremelyVainSecondCommandTrait",
+            ability: { name: "Supremely Vain (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "HOSTS OF SLAANESH", ["LEADER"])
+        },
+        hostsOfSlaaneshSlaaneshAllegianceOptionAllureOfSlaaneshSecondCommandTrait: {
+            id: "hostsOfSlaaneshSlaaneshAllegianceOptionAllureOfSlaaneshSecondCommandTrait",
+            ability: { name: "Allure of Slaanesh (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "HOSTS OF SLAANESH", ["LEADER"])
+        },
+        hostsOfSlaaneshSlaaneshAllegianceOptionCruelAndSadisticSecondCommandTrait: {
+            id: "hostsOfSlaaneshSlaaneshAllegianceOptionCruelAndSadisticSecondCommandTrait",
+            ability: { name: "Cruel and Sadistic (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "HOSTS OF SLAANESH", ["LEADER"])
+        },
+        slavesToDarknessSlaaneshAllegianceOptionNone: {
+            id: "slavesToDarknessSlaaneshAllegianceOptionNone",
+            ability: { name: "None", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "SLAVES TO DARKNESS", ["LEADER"])
+        },
+        slavesToDarknessSlaaneshAllegianceOptionGeneral: {
+            id: "slavesToDarknessSlaaneshAllegianceOptionGeneral",
+            ability: { name: "General", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "SLAVES TO DARKNESS", ["LEADER"])
+        },
+        slavesToDarknessSlaaneshAllegianceOptionLordOfExcessSecondCommandTrait: {
+            id: "slavesToDarknessSlaaneshAllegianceOptionLordOfExcessSecondCommandTrait",
+            ability: { name: "Lord of Excess (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "SLAVES TO DARKNESS", ["LEADER"])
+        },
+        slavesToDarknessSlaaneshAllegianceOptionDevoteeOfTormentSecondCommandTrait: {
+            id: "slavesToDarknessSlaaneshAllegianceOptionDevoteeOfTormentSecondCommandTrait",
+            ability: { name: "Devotee of Torment (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "SLAVES TO DARKNESS", ["LEADER"])
+        },
+        slavesToDarknessSlaaneshAllegianceOptionInvigoratedByPainSecondCommandTrait: {
+            id: "slavesToDarknessSlaaneshAllegianceOptionInvigoratedByPainSecondCommandTrait",
+            ability: { name: "Invigorated by Pain (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "SLAVES TO DARKNESS", ["LEADER"])
+        },
+        slavesToDarknessSlaaneshAllegianceOptionSupremelyVainSecondCommandTrait: {
+            id: "slavesToDarknessSlaaneshAllegianceOptionSupremelyVainSecondCommandTrait",
+            ability: { name: "Supremely Vain (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "SLAVES TO DARKNESS", ["LEADER"])
+        },
+        slavesToDarknessSlaaneshAllegianceOptionAllureOfSlaaneshSecondCommandTrait: {
+            id: "slavesToDarknessSlaaneshAllegianceOptionAllureOfSlaaneshSecondCommandTrait",
+            ability: { name: "Allure of Slaanesh (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "SLAVES TO DARKNESS", ["LEADER"])
+        },
+        slavesToDarknessSlaaneshAllegianceOptionCruelAndSadisticSecondCommandTrait: {
+            id: "slavesToDarknessSlaaneshAllegianceOptionCruelAndSadisticSecondCommandTrait",
+            ability: { name: "Cruel and Sadistic (Second Command Trait)", description: "" },
+            category: "Slaanesh Allegiance Option",
+            isAvailable: keywordAvailable("Slaanesh Allegiance Option", "SLAVES TO DARKNESS", ["LEADER"])
+        },
+        slavesToDarknessBloodBlessingBronzedFlesh: {
+            id: "slavesToDarknessBloodBlessingBronzedFlesh",
+            ability: { name: "Bronzed Flesh", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "SLAVES TO DARKNESS", ["CHAOS WARSHRINE"])
+        },
+        slavesToDarknessBloodBlessingBloodSacrifice: {
+            id: "slavesToDarknessBloodBlessingBloodSacrifice",
+            ability: { name: "Blood Sacrifice", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "SLAVES TO DARKNESS", ["CHAOS WARSHRINE"])
+        },
+        slavesToDarknessBloodBlessingResanguination: {
+            id: "slavesToDarknessBloodBlessingResanguination",
+            ability: { name: "Resanguination", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "SLAVES TO DARKNESS", ["CHAOS WARSHRINE"])
+        },
+        slavesToDarknessBloodBlessingBrazenFury: {
+            id: "slavesToDarknessBloodBlessingBrazenFury",
+            ability: { name: "Brazen Fury", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "SLAVES TO DARKNESS", ["CHAOS WARSHRINE"])
+        },
+        slavesToDarknessBloodBlessingKillingFrenzy: {
+            id: "slavesToDarknessBloodBlessingKillingFrenzy",
+            ability: { name: "Killing Frenzy", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "SLAVES TO DARKNESS", ["CHAOS WARSHRINE"])
+        },
+        slavesToDarknessBloodBlessingMagebaneHex: {
+            id: "slavesToDarknessBloodBlessingMagebaneHex",
+            ability: { name: "Magebane Hex", description: "" },
+            category: "Blood Blessing",
+            isAvailable: keywordAvailable("Blood Blessing", "SLAVES TO DARKNESS", ["CHAOS WARSHRINE"])
+        },
+        nurgleRotbringersLoreOfMalignanceNone: {
+            id: "nurgleRotbringersLoreOfMalignanceNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of Malignance",
+            isAvailable: keywordAvailable("Lore of Malignance", "NURGLE ROTBRINGERS", ["WIZARD"])
+        },
+        nurgleRotbringersLoreOfMalignanceBladesOfPutrefaction: {
+            id: "nurgleRotbringersLoreOfMalignanceBladesOfPutrefaction",
+            ability: { name: "Blades of Putrefaction", description: "" },
+            category: "Lore of Malignance",
+            isAvailable: keywordAvailable("Lore of Malignance", "NURGLE ROTBRINGERS", ["WIZARD"])
+        },
+        nurgleRotbringersLoreOfMalignanceRancidVisitations: {
+            id: "nurgleRotbringersLoreOfMalignanceRancidVisitations",
+            ability: { name: "Rancid Visitations", description: "" },
+            category: "Lore of Malignance",
+            isAvailable: keywordAvailable("Lore of Malignance", "NURGLE ROTBRINGERS", ["WIZARD"])
+        },
+        nurgleRotbringersLoreOfMalignanceGiftOfContagion: {
+            id: "nurgleRotbringersLoreOfMalignanceGiftOfContagion",
+            ability: { name: "Gift of Contagion", description: "" },
+            category: "Lore of Malignance",
+            isAvailable: keywordAvailable("Lore of Malignance", "NURGLE ROTBRINGERS", ["WIZARD"])
+        },
+        nurgleRotbringersLoreOfFoulnessNone: {
+            id: "nurgleRotbringersLoreOfFoulnessNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "NURGLE ROTBRINGERS", ["WIZARD"])
+        },
+        nurgleRotbringersLoreOfFoulnessMagnificentBuboes: {
+            id: "nurgleRotbringersLoreOfFoulnessMagnificentBuboes",
+            ability: { name: "Magnificent Buboes", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "NURGLE ROTBRINGERS", ["WIZARD"])
+        },
+        nurgleRotbringersLoreOfFoulnessPlagueSquall: {
+            id: "nurgleRotbringersLoreOfFoulnessPlagueSquall",
+            ability: { name: "Plague Squall", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "NURGLE ROTBRINGERS", ["WIZARD"])
+        },
+        nurgleRotbringersLoreOfFoulnessCloyingQuagmire: {
+            id: "nurgleRotbringersLoreOfFoulnessCloyingQuagmire",
+            ability: { name: "Cloying Quagmire", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "NURGLE ROTBRINGERS", ["WIZARD"])
+        },
+        daemonsOfNurgleLoreOfVirulenceNone: {
+            id: "daemonsOfNurgleLoreOfVirulenceNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of Virulence",
+            isAvailable: keywordAvailable("Lore of Virulence", "DAEMONS OF NURGLE", ["WIZARD"])
+        },
+        daemonsOfNurgleLoreOfVirulenceFavouredPoxes: {
+            id: "daemonsOfNurgleLoreOfVirulenceFavouredPoxes",
+            ability: { name: "Favoured Poxes", description: "" },
+            category: "Lore of Virulence",
+            isAvailable: keywordAvailable("Lore of Virulence", "DAEMONS OF NURGLE", ["WIZARD"])
+        },
+        daemonsOfNurgleLoreOfVirulenceGloriousAfflictions: {
+            id: "daemonsOfNurgleLoreOfVirulenceGloriousAfflictions",
+            ability: { name: "Glorious Afflictions", description: "" },
+            category: "Lore of Virulence",
+            isAvailable: keywordAvailable("Lore of Virulence", "DAEMONS OF NURGLE", ["WIZARD"])
+        },
+        daemonsOfNurgleLoreOfVirulenceSumptuousPestilence: {
+            id: "daemonsOfNurgleLoreOfVirulenceSumptuousPestilence",
+            ability: { name: "Sumptuous Pestilence", description: "" },
+            category: "Lore of Virulence",
+            isAvailable: keywordAvailable("Lore of Virulence", "DAEMONS OF NURGLE", ["WIZARD"])
+        },
+        slavesToDarknessLoreOfFoulnessNone: {
+            id: "slavesToDarknessLoreOfFoulnessNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        slavesToDarknessLoreOfFoulnessMagnificentBuboes: {
+            id: "slavesToDarknessLoreOfFoulnessMagnificentBuboes",
+            ability: { name: "Magnificent Buboes", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        slavesToDarknessLoreOfFoulnessPlagueSquall: {
+            id: "slavesToDarknessLoreOfFoulnessPlagueSquall",
+            ability: { name: "Plague Squall", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        slavesToDarknessLoreOfFoulnessCloyingQuagmire: {
+            id: "slavesToDarknessLoreOfFoulnessCloyingQuagmire",
+            ability: { name: "Cloying Quagmire", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "SLAVES TO DARKNESS", ["WIZARD"])
+        },
+        everchosenLoreOfVirulenceNone: {
+            id: "everchosenLoreOfVirulenceNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of Virulence",
+            isAvailable: keywordAvailable("Lore of Virulence", "EVERCHOSEN", ["ARCHAON"])
+        },
+        everchosenLoreOfVirulenceFavouredPoxes: {
+            id: "everchosenLoreOfVirulenceFavouredPoxes",
+            ability: { name: "Favoured Poxes", description: "" },
+            category: "Lore of Virulence",
+            isAvailable: keywordAvailable("Lore of Virulence", "EVERCHOSEN", ["ARCHAON"])
+        },
+        everchosenLoreOfVirulenceGloriousAfflictions: {
+            id: "everchosenLoreOfVirulenceGloriousAfflictions",
+            ability: { name: "Glorious Afflictions", description: "" },
+            category: "Lore of Virulence",
+            isAvailable: keywordAvailable("Lore of Virulence", "EVERCHOSEN", ["ARCHAON"])
+        },
+        everchosenLoreOfVirulenceSumptuousPestilence: {
+            id: "everchosenLoreOfVirulenceSumptuousPestilence",
+            ability: { name: "Sumptuous Pestilence", description: "" },
+            category: "Lore of Virulence",
+            isAvailable: keywordAvailable("Lore of Virulence", "EVERCHOSEN", ["ARCHAON"])
+        },
+        everchosenLoreOfFoulnessNone: {
+            id: "everchosenLoreOfFoulnessNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "EVERCHOSEN", ["ARCHAON"])
+        },
+        everchosenLoreOfFoulnessMagnificentBuboes: {
+            id: "everchosenLoreOfFoulnessMagnificentBuboes",
+            ability: { name: "Magnificent Buboes", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "EVERCHOSEN", ["ARCHAON"])
+        },
+        everchosenLoreOfFoulnessPlagueSquall: {
+            id: "everchosenLoreOfFoulnessPlagueSquall",
+            ability: { name: "Plague Squall", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "EVERCHOSEN", ["ARCHAON"])
+        },
+        everchosenLoreOfFoulnessCloyingQuagmire: {
+            id: "everchosenLoreOfFoulnessCloyingQuagmire",
+            ability: { name: "Cloying Quagmire", description: "" },
+            category: "Lore of Foulness",
+            isAvailable: keywordAvailable("Lore of Foulness", "EVERCHOSEN", ["ARCHAON"])
+        },
+        soulblightLoreOfTheVampiresNone: {
+            id: "soulblightLoreOfTheVampiresNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "SOULBLIGHT", ["VAMPIRE"])
+        },
+        soulblightLoreOfTheVampiresBladesOfShyish: {
+            id: "soulblightLoreOfTheVampiresBladesOfShyish",
+            ability: { name: "Blades of Shyish", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "SOULBLIGHT", ["VAMPIRE"])
+        },
+        soulblightLoreOfTheVampiresSpiritGale: {
+            id: "soulblightLoreOfTheVampiresSpiritGale",
+            ability: { name: "Spirit Gale", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "SOULBLIGHT", ["VAMPIRE"])
+        },
+        soulblightLoreOfTheVampiresVileTransference: {
+            id: "soulblightLoreOfTheVampiresVileTransference",
+            ability: { name: "Vile Transference", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "SOULBLIGHT", ["VAMPIRE"])
+        },
+        soulblightLoreOfTheVampiresAmethystinePinions: {
+            id: "soulblightLoreOfTheVampiresAmethystinePinions",
+            ability: { name: "Amethystine Pinions", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "SOULBLIGHT", ["VAMPIRE"])
+        },
+        soulblightLoreOfTheVampiresSoulpike: {
+            id: "soulblightLoreOfTheVampiresSoulpike",
+            ability: { name: "Soulpike", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "SOULBLIGHT", ["VAMPIRE"])
+        },
+        soulblightLoreOfTheVampiresAmaranthineOrb: {
+            id: "soulblightLoreOfTheVampiresAmaranthineOrb",
+            ability: { name: "Amaranthine Orb", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "SOULBLIGHT", ["VAMPIRE"])
+        },
+        legionsOfNagashLoreOfTheVampiresNone: {
+            id: "legionsOfNagashLoreOfTheVampiresNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "LEGIONS OF NAGASH", ["VAMPIRE"])
+        },
+        legionsOfNagashLoreOfTheVampiresBladesOfShyish: {
+            id: "legionsOfNagashLoreOfTheVampiresBladesOfShyish",
+            ability: { name: "Blades of Shyish", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "LEGIONS OF NAGASH", ["VAMPIRE"])
+        },
+        legionsOfNagashLoreOfTheVampiresSpiritGale: {
+            id: "legionsOfNagashLoreOfTheVampiresSpiritGale",
+            ability: { name: "Spirit Gale", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "LEGIONS OF NAGASH", ["VAMPIRE"])
+        },
+        legionsOfNagashLoreOfTheVampiresVileTransference: {
+            id: "legionsOfNagashLoreOfTheVampiresVileTransference",
+            ability: { name: "Vile Transference", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "LEGIONS OF NAGASH", ["VAMPIRE"])
+        },
+        legionsOfNagashLoreOfTheVampiresAmethystinePinions: {
+            id: "legionsOfNagashLoreOfTheVampiresAmethystinePinions",
+            ability: { name: "Amethystine Pinions", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "LEGIONS OF NAGASH", ["VAMPIRE"])
+        },
+        legionsOfNagashLoreOfTheVampiresSoulpike: {
+            id: "legionsOfNagashLoreOfTheVampiresSoulpike",
+            ability: { name: "Soulpike", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "LEGIONS OF NAGASH", ["VAMPIRE"])
+        },
+        legionsOfNagashLoreOfTheVampiresAmaranthineOrb: {
+            id: "legionsOfNagashLoreOfTheVampiresAmaranthineOrb",
+            ability: { name: "Amaranthine Orb", description: "" },
+            category: "Lore of the Vampires",
+            isAvailable: keywordAvailable("Lore of the Vampires", "LEGIONS OF NAGASH", ["VAMPIRE"])
+        },
+        legionsOfNagashLoreOfTheDeadNone: {
+            id: "legionsOfNagashLoreOfTheDeadNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadOverwhelmingDreadDeathmages: {
+            id: "legionsOfNagashLoreOfTheDeadOverwhelmingDreadDeathmages",
+            ability: { name: "Overwhelming Dread (Deathmages)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadFadingVigourDeathmages: {
+            id: "legionsOfNagashLoreOfTheDeadFadingVigourDeathmages",
+            ability: { name: "Fading Vigour (Deathmages)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadSpectralGraspDeathmages: {
+            id: "legionsOfNagashLoreOfTheDeadSpectralGraspDeathmages",
+            ability: { name: "Spectral Grasp (Deathmages)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadPrisonOfGriefDeathmages: {
+            id: "legionsOfNagashLoreOfTheDeadPrisonOfGriefDeathmages",
+            ability: { name: "Prison of Grief (Deathmages)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadDecrepifyDeathmages: {
+            id: "legionsOfNagashLoreOfTheDeadDecrepifyDeathmages",
+            ability: { name: "Decrepify (Deathmages)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadSoulHarvestDeathmages: {
+            id: "legionsOfNagashLoreOfTheDeadSoulHarvestDeathmages",
+            ability: { name: "Soul Harvest (Deathmages)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadBladesOfShyishVampires: {
+            id: "legionsOfNagashLoreOfTheDeadBladesOfShyishVampires",
+            ability: { name: "Blades of Shyish (Vampires)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadSpiritGaleVampires: {
+            id: "legionsOfNagashLoreOfTheDeadSpiritGaleVampires",
+            ability: { name: "Spirit Gale (Vampires)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadVileTransferenceVampires: {
+            id: "legionsOfNagashLoreOfTheDeadVileTransferenceVampires",
+            ability: { name: "Vile Transference (Vampires)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadAmethystinePinionsVampires: {
+            id: "legionsOfNagashLoreOfTheDeadAmethystinePinionsVampires",
+            ability: { name: "Amethystine Pinions (Vampires)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadSoulpikeVampires: {
+            id: "legionsOfNagashLoreOfTheDeadSoulpikeVampires",
+            ability: { name: "Soulpike (Vampires)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeadAmaranthineOrbVampires: {
+            id: "legionsOfNagashLoreOfTheDeadAmaranthineOrbVampires",
+            ability: { name: "Amaranthine Orb (Vampires)", description: "" },
+            category: "Lore of the Dead",
+            isAvailable: keywordAvailable("Lore of the Dead", "LEGIONS OF NAGASH", ["DEATHLORDS"])
+        },
+        legionsOfNagashLoreOfTheDeathmagesNone: {
+            id: "legionsOfNagashLoreOfTheDeathmagesNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of the Deathmages",
+            isAvailable: keywordAvailable("Lore of the Deathmages", "LEGIONS OF NAGASH", ["DEATHMAGES"])
+        },
+        legionsOfNagashLoreOfTheDeathmagesOverwhelmingDread: {
+            id: "legionsOfNagashLoreOfTheDeathmagesOverwhelmingDread",
+            ability: { name: "Overwhelming Dread", description: "" },
+            category: "Lore of the Deathmages",
+            isAvailable: keywordAvailable("Lore of the Deathmages", "LEGIONS OF NAGASH", ["DEATHMAGES"])
+        },
+        legionsOfNagashLoreOfTheDeathmagesFadingVigour: {
+            id: "legionsOfNagashLoreOfTheDeathmagesFadingVigour",
+            ability: { name: "Fading Vigour", description: "" },
+            category: "Lore of the Deathmages",
+            isAvailable: keywordAvailable("Lore of the Deathmages", "LEGIONS OF NAGASH", ["DEATHMAGES"])
+        },
+        legionsOfNagashLoreOfTheDeathmagesSpectralGrasp: {
+            id: "legionsOfNagashLoreOfTheDeathmagesSpectralGrasp",
+            ability: { name: "Spectral Grasp", description: "" },
+            category: "Lore of the Deathmages",
+            isAvailable: keywordAvailable("Lore of the Deathmages", "LEGIONS OF NAGASH", ["DEATHMAGES"])
+        },
+        legionsOfNagashLoreOfTheDeathmagesPrisonOfGrief: {
+            id: "legionsOfNagashLoreOfTheDeathmagesPrisonOfGrief",
+            ability: { name: "Prison of Grief", description: "" },
+            category: "Lore of the Deathmages",
+            isAvailable: keywordAvailable("Lore of the Deathmages", "LEGIONS OF NAGASH", ["DEATHMAGES"])
+        },
+        legionsOfNagashLoreOfTheDeathmagesDecrepify: {
+            id: "legionsOfNagashLoreOfTheDeathmagesDecrepify",
+            ability: { name: "Decrepify", description: "" },
+            category: "Lore of the Deathmages",
+            isAvailable: keywordAvailable("Lore of the Deathmages", "LEGIONS OF NAGASH", ["DEATHMAGES"])
+        },
+        legionsOfNagashLoreOfTheDeathmagesSoulHarvest: {
+            id: "legionsOfNagashLoreOfTheDeathmagesSoulHarvest",
+            ability: { name: "Soul Harvest", description: "" },
+            category: "Lore of the Deathmages",
+            isAvailable: keywordAvailable("Lore of the Deathmages", "LEGIONS OF NAGASH", ["DEATHMAGES"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1None: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1None",
+            ability: { name: "None", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1OverwhelmingDreadDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1OverwhelmingDreadDeathmages",
+            ability: { name: "Overwhelming Dread (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1FadingVigourDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1FadingVigourDeathmages",
+            ability: { name: "Fading Vigour (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1SpectralGraspDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1SpectralGraspDeathmages",
+            ability: { name: "Spectral Grasp (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1PrisonOfGriefDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1PrisonOfGriefDeathmages",
+            ability: { name: "Prison of Grief (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1DecrepifyDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1DecrepifyDeathmages",
+            ability: { name: "Decrepify (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1SoulHarvestDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1SoulHarvestDeathmages",
+            ability: { name: "Soul Harvest (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1BladesOfShyishVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1BladesOfShyishVampires",
+            ability: { name: "Blades of Shyish (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1SpiritGaleVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1SpiritGaleVampires",
+            ability: { name: "Spirit Gale (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1VileTransferenceVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1VileTransferenceVampires",
+            ability: { name: "Vile Transference (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1AmethystinePinionsVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1AmethystinePinionsVampires",
+            ability: { name: "Amethystine Pinions (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1SoulpikeVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1SoulpikeVampires",
+            ability: { name: "Soulpike (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell1AmaranthineOrbVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell1AmaranthineOrbVampires",
+            ability: { name: "Amaranthine Orb (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 1",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 1", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2None: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2None",
+            ability: { name: "None", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2OverwhelmingDreadDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2OverwhelmingDreadDeathmages",
+            ability: { name: "Overwhelming Dread (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2FadingVigourDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2FadingVigourDeathmages",
+            ability: { name: "Fading Vigour (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2SpectralGraspDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2SpectralGraspDeathmages",
+            ability: { name: "Spectral Grasp (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2PrisonOfGriefDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2PrisonOfGriefDeathmages",
+            ability: { name: "Prison of Grief (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2DecrepifyDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2DecrepifyDeathmages",
+            ability: { name: "Decrepify (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2SoulHarvestDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2SoulHarvestDeathmages",
+            ability: { name: "Soul Harvest (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2BladesOfShyishVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2BladesOfShyishVampires",
+            ability: { name: "Blades of Shyish (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2SpiritGaleVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2SpiritGaleVampires",
+            ability: { name: "Spirit Gale (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2VileTransferenceVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2VileTransferenceVampires",
+            ability: { name: "Vile Transference (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2AmethystinePinionsVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2AmethystinePinionsVampires",
+            ability: { name: "Amethystine Pinions (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2SoulpikeVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2SoulpikeVampires",
+            ability: { name: "Soulpike (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell2AmaranthineOrbVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell2AmaranthineOrbVampires",
+            ability: { name: "Amaranthine Orb (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 2",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 2", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3None: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3None",
+            ability: { name: "None", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3OverwhelmingDreadDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3OverwhelmingDreadDeathmages",
+            ability: { name: "Overwhelming Dread (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3FadingVigourDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3FadingVigourDeathmages",
+            ability: { name: "Fading Vigour (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3SpectralGraspDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3SpectralGraspDeathmages",
+            ability: { name: "Spectral Grasp (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3PrisonOfGriefDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3PrisonOfGriefDeathmages",
+            ability: { name: "Prison of Grief (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3DecrepifyDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3DecrepifyDeathmages",
+            ability: { name: "Decrepify (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3SoulHarvestDeathmages: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3SoulHarvestDeathmages",
+            ability: { name: "Soul Harvest (Deathmages)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3BladesOfShyishVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3BladesOfShyishVampires",
+            ability: { name: "Blades of Shyish (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3SpiritGaleVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3SpiritGaleVampires",
+            ability: { name: "Spirit Gale (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3VileTransferenceVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3VileTransferenceVampires",
+            ability: { name: "Vile Transference (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3AmethystinePinionsVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3AmethystinePinionsVampires",
+            ability: { name: "Amethystine Pinions (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3SoulpikeVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3SoulpikeVampires",
+            ability: { name: "Soulpike (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        legionsOfNagashLoresOfTheDeadSpell3AmaranthineOrbVampires: {
+            id: "legionsOfNagashLoresOfTheDeadSpell3AmaranthineOrbVampires",
+            ability: { name: "Amaranthine Orb (Vampires)", description: "" },
+            category: "Lores of the Dead Spell 3",
+            isAvailable: keywordAvailable("Lores of the Dead Spell 3", "LEGIONS OF NAGASH", ["NAGASH SUPREME LORD OF THE UNDEAD"])
+        },
+        collegiateArcaneSpecialisationNone: {
+            id: "collegiateArcaneSpecialisationNone",
+            ability: { name: "None", description: "" },
+            category: "Specialisation",
+            isAvailable: keywordAvailable("Specialisation", "COLLEGIATE ARCANE", ["BATTLEMAGE"])
+        },
+        collegiateArcaneSpecialisationHeavens: {
+            id: "collegiateArcaneSpecialisationHeavens",
+            ability: { name: "Heavens", description: "" },
+            category: "Specialisation",
+            isAvailable: keywordAvailable("Specialisation", "COLLEGIATE ARCANE", ["BATTLEMAGE"])
+        },
+        collegiateArcaneSpecialisationBright: {
+            id: "collegiateArcaneSpecialisationBright",
+            ability: { name: "Bright", description: "" },
+            category: "Specialisation",
+            isAvailable: keywordAvailable("Specialisation", "COLLEGIATE ARCANE", ["BATTLEMAGE"])
+        },
+        collegiateArcaneSpecialisationAmethyst: {
+            id: "collegiateArcaneSpecialisationAmethyst",
+            ability: { name: "Amethyst", description: "" },
+            category: "Specialisation",
+            isAvailable: keywordAvailable("Specialisation", "COLLEGIATE ARCANE", ["BATTLEMAGE"])
+        },
+        collegiateArcaneSpecialisationWhite: {
+            id: "collegiateArcaneSpecialisationWhite",
+            ability: { name: "White", description: "" },
+            category: "Specialisation",
+            isAvailable: keywordAvailable("Specialisation", "COLLEGIATE ARCANE", ["BATTLEMAGE"])
+        },
+        collegiateArcaneSpecialisationGold: {
+            id: "collegiateArcaneSpecialisationGold",
+            ability: { name: "Gold", description: "" },
+            category: "Specialisation",
+            isAvailable: keywordAvailable("Specialisation", "COLLEGIATE ARCANE", ["BATTLEMAGE"])
+        },
+        collegiateArcaneSpecialisationGrey: {
+            id: "collegiateArcaneSpecialisationGrey",
+            ability: { name: "Grey", description: "" },
+            category: "Specialisation",
+            isAvailable: keywordAvailable("Specialisation", "COLLEGIATE ARCANE", ["BATTLEMAGE"])
+        },
+        collegiateArcaneSpecialisationAmber: {
+            id: "collegiateArcaneSpecialisationAmber",
+            ability: { name: "Amber", description: "" },
+            category: "Specialisation",
+            isAvailable: keywordAvailable("Specialisation", "COLLEGIATE ARCANE", ["BATTLEMAGE"])
+        },
+        collegiateArcaneSpecialisationJade: {
+            id: "collegiateArcaneSpecialisationJade",
+            ability: { name: "Jade", description: "" },
+            category: "Specialisation",
+            isAvailable: keywordAvailable("Specialisation", "COLLEGIATE ARCANE", ["BATTLEMAGE"])
+        },
+        bonesplitterzLoreOfTheSavageWaaaghNone: {
+            id: "bonesplitterzLoreOfTheSavageWaaaghNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of the Savage Waaagh",
+            isAvailable: keywordAvailable("Lore of the Savage Waaagh", "BONESPLITTERZ", ["WIZARD"])
+        },
+        bonesplitterzLoreOfTheSavageWaaaghSquigglyCurse: {
+            id: "bonesplitterzLoreOfTheSavageWaaaghSquigglyCurse",
+            ability: { name: "Squiggly Curse", description: "" },
+            category: "Lore of the Savage Waaagh",
+            isAvailable: keywordAvailable("Lore of the Savage Waaagh", "BONESPLITTERZ", ["WIZARD"])
+        },
+        bonesplitterzLoreOfTheSavageWaaaghHandOfGorkOrMork: {
+            id: "bonesplitterzLoreOfTheSavageWaaaghHandOfGorkOrMork",
+            ability: { name: "Hand of Gork or Mork", description: "" },
+            category: "Lore of the Savage Waaagh",
+            isAvailable: keywordAvailable("Lore of the Savage Waaagh", "BONESPLITTERZ", ["WIZARD"])
+        },
+        bonesplitterzLoreOfTheSavageWaaaghBrutalBeastSpirits: {
+            id: "bonesplitterzLoreOfTheSavageWaaaghBrutalBeastSpirits",
+            ability: { name: "Brutal Beast Spirits", description: "" },
+            category: "Lore of the Savage Waaagh",
+            isAvailable: keywordAvailable("Lore of the Savage Waaagh", "BONESPLITTERZ", ["WIZARD"])
+        },
+        bonesplitterzLoreOfTheSavageWaaaghBoneKrusha: {
+            id: "bonesplitterzLoreOfTheSavageWaaaghBoneKrusha",
+            ability: { name: "Bone Krusha", description: "" },
+            category: "Lore of the Savage Waaagh",
+            isAvailable: keywordAvailable("Lore of the Savage Waaagh", "BONESPLITTERZ", ["WIZARD"])
+        },
+        bonesplitterzLoreOfTheSavageWaaaghKunninBeastSpirits: {
+            id: "bonesplitterzLoreOfTheSavageWaaaghKunninBeastSpirits",
+            ability: { name: "Kunnin' Beast Spirits", description: "" },
+            category: "Lore of the Savage Waaagh",
+            isAvailable: keywordAvailable("Lore of the Savage Waaagh", "BONESPLITTERZ", ["WIZARD"])
+        },
+        bonesplitterzLoreOfTheSavageWaaaghGorkamorkaSWarCry: {
+            id: "bonesplitterzLoreOfTheSavageWaaaghGorkamorkaSWarCry",
+            ability: { name: "Gorkamorka's War Cry", description: "" },
+            category: "Lore of the Savage Waaagh",
+            isAvailable: keywordAvailable("Lore of the Savage Waaagh", "BONESPLITTERZ", ["WIZARD"])
+        },
+        daughtersOfKhaineLoreOfShadowsNone: {
+            id: "daughtersOfKhaineLoreOfShadowsNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of Shadows",
+            isAvailable: keywordAvailable("Lore of Shadows", "DAUGHTERS OF KHAINE", ["WIZARD"])
+        },
+        daughtersOfKhaineLoreOfShadowsSteedOfShadows: {
+            id: "daughtersOfKhaineLoreOfShadowsSteedOfShadows",
+            ability: { name: "Steed of Shadows", description: "" },
+            category: "Lore of Shadows",
+            isAvailable: keywordAvailable("Lore of Shadows", "DAUGHTERS OF KHAINE", ["WIZARD"])
+        },
+        daughtersOfKhaineLoreOfShadowsPitOfShades: {
+            id: "daughtersOfKhaineLoreOfShadowsPitOfShades",
+            ability: { name: "Pit of Shades", description: "" },
+            category: "Lore of Shadows",
+            isAvailable: keywordAvailable("Lore of Shadows", "DAUGHTERS OF KHAINE", ["WIZARD"])
+        },
+        daughtersOfKhaineLoreOfShadowsMirrorDance: {
+            id: "daughtersOfKhaineLoreOfShadowsMirrorDance",
+            ability: { name: "Mirror Dance", description: "" },
+            category: "Lore of Shadows",
+            isAvailable: keywordAvailable("Lore of Shadows", "DAUGHTERS OF KHAINE", ["WIZARD"])
+        },
+        daughtersOfKhaineLoreOfShadowsTheWithering: {
+            id: "daughtersOfKhaineLoreOfShadowsTheWithering",
+            ability: { name: "The Withering", description: "" },
+            category: "Lore of Shadows",
+            isAvailable: keywordAvailable("Lore of Shadows", "DAUGHTERS OF KHAINE", ["WIZARD"])
+        },
+        daughtersOfKhaineLoreOfShadowsMindrazor: {
+            id: "daughtersOfKhaineLoreOfShadowsMindrazor",
+            ability: { name: "Mindrazor", description: "" },
+            category: "Lore of Shadows",
+            isAvailable: keywordAvailable("Lore of Shadows", "DAUGHTERS OF KHAINE", ["WIZARD"])
+        },
+        daughtersOfKhaineLoreOfShadowsShroudOfDespair: {
+            id: "daughtersOfKhaineLoreOfShadowsShroudOfDespair",
+            ability: { name: "Shroud of Despair", description: "" },
+            category: "Lore of Shadows",
+            isAvailable: keywordAvailable("Lore of Shadows", "DAUGHTERS OF KHAINE", ["WIZARD"])
+        },
+        daughtersOfKhainePrayerNone: {
+            id: "daughtersOfKhainePrayerNone",
+            ability: { name: "None", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
+        },
+        daughtersOfKhainePrayerCatechsimOfMurder: {
+            id: "daughtersOfKhainePrayerCatechsimOfMurder",
+            ability: { name: "Catechsim of Murder", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
+        },
+        daughtersOfKhainePrayerBlessingOfKhaine: {
+            id: "daughtersOfKhainePrayerBlessingOfKhaine",
+            ability: { name: "Blessing of Khaine", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
+        },
+        daughtersOfKhainePrayerMartyrSSacrifice: {
+            id: "daughtersOfKhainePrayerMartyrSSacrifice",
+            ability: { name: "Martyr's Sacrifice", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
+        },
+        daughtersOfKhainePrayerCrimsonRejuvenation: {
+            id: "daughtersOfKhainePrayerCrimsonRejuvenation",
+            ability: { name: "Crimson Rejuvenation", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
+        },
+        daughtersOfKhainePrayerCovenantOfTheIronHeart: {
+            id: "daughtersOfKhainePrayerCovenantOfTheIronHeart",
+            ability: { name: "Covenant of the Iron Heart", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
+        },
+        daughtersOfKhainePrayerSacramentOfBlood: {
+            id: "daughtersOfKhainePrayerSacramentOfBlood",
+            ability: { name: "Sacrament of Blood", description: "" },
+            category: "Prayer",
+            isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
         },
     };
     

@@ -24,7 +24,8 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
                  </div>
                 <div>
                     <div><em>{unit.unit.subType}</em></div>
-                    <div>{unit.isLeader && <><Checkbox toggle checked={unit === this.props.warscrollStore!.warscroll.general} onChange={this.toggleGeneral} ></Checkbox>General</> } </div>
+                    <div>{(!unit.isAllied && unit.isLeader) && <><Checkbox toggle checked={unit === this.props.warscrollStore!.warscroll.general} onChange={this.toggleGeneral} ></Checkbox>General</> } 
+                    {unit.isAllied && <>Allied</> }</div>
                 </div>
             </Table.Cell>
             <Table.Cell><NumberControl value={unit.count} onChange={this.onCountChange} /></Table.Cell>

@@ -61,7 +61,7 @@ export interface Unit {
     save?: string;
     wounds?: number;
     bravery?: number;
-    keywords?: string[];
+    keywords: string[];
     weaponOptions?: WeaponOptionCategory[];
     abilities?: Ability[];
     commandAbilities?: Ability[];
@@ -130,6 +130,7 @@ export interface Allegiance {
     id: string;
     grandAlliance: GrandAlliance;
     name: string;
+    keyword: string;
 }
 
 export type ExtraAbilityTest = (unit: WarscrollUnitInterface, warscroll: WarscrollInterface) => boolean;

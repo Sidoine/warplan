@@ -18,6 +18,11 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     @observable
     extraAbilities: ExtraAbility[] = [];
 
+    @computed
+    get isAllied() {
+        return !this.unit.keywords || this.unit.keywords.indexOf(this.warscroll.allegiance.keyword) < 0;
+    }
+
     get isArtillery() {
         return this.unit.isArtillery && this.unit.isArtillery(this.warscroll);
     }
@@ -103,6 +108,11 @@ export class Warscroll implements WarscrollInterface {
     }
 
     @computed
+    get alliedPoints() {
+        return this.units.filter(x => x.isAllied).reduce((p, x) => x.count * x.unit.points + p, 0)
+    }
+
+    @computed
     get numberOfLeaders() {
         return this.units.reduce((p, x) => x.isLeader ? p + 1 : p, 0);
     }
@@ -150,6 +160,16 @@ export class Warscroll implements WarscrollInterface {
         return this.totalPoints <= 1000 ? 2 : (this.totalPoints <= 2000 ? 4 : 5);
     }
     
+    @computed
+    get maxAlliedPoints() {
+        return this.totalPoints <= 1000 ? 200 : (this.totalPoints <= 2000 ? 400 : 500);
+    }
+
+    @computed
+    get isAlliedValid() {
+        return this.alliedPoints < this.maxAlliedPoints;
+    }
+
     @computed
     get isLeadersValid() {
         return this.numberOfLeaders >= this.minLeaders && this.numberOfLeaders <= this.maxLeaders;

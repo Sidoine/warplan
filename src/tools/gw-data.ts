@@ -177,6 +177,10 @@ function bannerAvailable(id: string): ExtraAbilityTest {
 
 const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
          && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
+function keywordAvailable(category: string, keyword: string, alts: string[]): ExtraAbilityTest {
+    return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(keyword) >= 0 && alts.some(x => x === "ALL" || unit.unit.model.name.toUpperCase() === x || unit.unit.keywords.indexOf(x) >= 0);
+}
+
 export class DataStoreImpl implements DataStore {
     serial: number = 0;
 
@@ -256,7 +260,8 @@ for (const allegiance of allegiances) {
     output += `        ${key}: {
             id: "${key}",
             grandAlliance: GrandAlliance.${allegiance.grandAlliance},
-            name: "${allegiance.name}"
+            name: "${allegiance.name}",
+            keyword: "${allegiance.name.toUpperCase()}"
         },
 `;
 }
@@ -495,6 +500,50 @@ for (const banner of banners) {
 `
 }
 
+const genericAttributeLines = readCsv("src/stores/data/genericAttributes.csv");
+
+interface GenericAttribute {
+    units: string[];
+    options: string[];
+    name: string;
+    allegiance: string;
+}
+
+const genericAttributes = new Map<string, GenericAttribute>();
+
+for (const genericAttribute of genericAttributeLines) {
+    const allegiance = genericAttribute[0];
+    const unit = genericAttribute[1];
+    const name = genericAttribute[4];
+    const key = toCamelCase(allegiance + name);
+    const attribute = genericAttributes.get(key);
+    if (attribute) {
+        attribute.units.push(unit);
+    }
+    else {
+        const newAttribute: GenericAttribute = {
+            units: [unit],
+            name: name,
+            options: genericAttribute.slice(5),
+            allegiance: allegiance
+        };
+        genericAttributes.set(key, newAttribute);
+    }
+}
+
+for (const [key, genericAttribute] of genericAttributes) {
+    for (const option of genericAttribute.options) {
+        const subKey = toCamelCase(key + option);
+        output += `        ${subKey}: {
+            id: "${subKey}",
+            ability: { name: "${option}", description: "" },
+            category: "${genericAttribute.name}",
+            isAvailable: keywordAvailable("${genericAttribute.name}", "${genericAttribute.allegiance.toUpperCase()}", ["${genericAttribute.units.map(x => x.toUpperCase()).join('", "')}"])
+        },
+`
+    }
+}
+
 
 output += `    };
     
@@ -539,6 +588,23 @@ output += "    ]);\n}\n";
 
 fs.writeFileSync("src/stores/imported-data.ts", output);
 
+
+/*
+ROADMAP
+
+allWeaponOptions: done
+armyOptions: done
+artefacts: done
+bannerOptions: done
+commandTraits: done
+genericAttributes: done
+gwPoints: done
+mountOptions: TODO
+musicianOptions: TODO
+optionalLoadoutOptions: TODO
+scenery: TODO
+
+*/
 
 /**
  * import { Box, Faction } from "./units";
