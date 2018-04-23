@@ -121,6 +121,7 @@ const factions:Faction[] = [
 { name: "Soulblight", grandAlliance: "death", id: "SOULBLIGHT" },
 { name: "Tomb Kings", grandAlliance: "death", id: "TOMBKINGS" },
 { name: "Vampire Counts", grandAlliance: "death", id: "VAMPIRECOUNTS" },
+{ name: "Idoneth Deepkin", grandAlliance: "order", id: "IDONETHDEEPKIN" }
 ];
 
 const allegiances = [
@@ -165,7 +166,8 @@ const allegiances = [
     { grandAlliance: "death", name: "Legion of Blood" },
     { grandAlliance: "death", name: "Legion of Night" },
     { grandAlliance: "death", name: "The Wraith Fleet" },
-    { grandAlliance: "death", name: "Legions of Nagash" }
+    { grandAlliance: "death", name: "Legions of Nagash" },
+    { grandAlliance: "order", name: "Idoneth Deepkin" }
 ];
 
 let output = `import { Box, DataStore, GrandAlliance, ExtraAbilityTest } from "./units";

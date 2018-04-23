@@ -739,6 +739,14 @@ export class DataStoreImpl implements DataStore {
             id: "garrekSReavers",
             name: "Garrek's Reavers"
         },
+        magoreSFiends: {
+            id: "magoreSFiends",
+            name: "Magore's Fiends"
+        },
+        riptooth: {
+            id: "riptooth",
+            name: "Riptooth"
+        },
         bloodboundWarhorde: {
             id: "bloodboundWarhorde",
             name: "Bloodbound Warhorde"
@@ -2351,6 +2359,10 @@ export class DataStoreImpl implements DataStore {
             id: "vanguardRaptorsWithLongstrikeCrossbows",
             name: "Vanguard-Raptors with Longstrike Crossbows"
         },
+        theFarstriders: {
+            id: "theFarstriders",
+            name: "The Farstriders"
+        },
         exemplarChamber: {
             id: "exemplarChamber",
             name: "Exemplar Chamber"
@@ -3559,6 +3571,82 @@ export class DataStoreImpl implements DataStore {
             id: "necromancerOnNightmare",
             name: "Necromancer on Nightmare"
         },
+        eidolonOfMathlannAspectOfTheStorm: {
+            id: "eidolonOfMathlannAspectOfTheStorm",
+            name: "Eidolon of Mathlann, Aspect of the Storm"
+        },
+        eidolonOfMathlannAspectOfTheSea: {
+            id: "eidolonOfMathlannAspectOfTheSea",
+            name: "Eidolon of Mathlann, Aspect of the Sea"
+        },
+        vulturnosHighKingOfTheDeep: {
+            id: "vulturnosHighKingOfTheDeep",
+            name: "Vulturnos, High King of the Deep"
+        },
+        akhelianKing: {
+            id: "akhelianKing",
+            name: "Akhelian King"
+        },
+        isharannTidecaster: {
+            id: "isharannTidecaster",
+            name: "Isharann Tidecaster"
+        },
+        isharannSoulscryer: {
+            id: "isharannSoulscryer",
+            name: "Isharann Soulscryer"
+        },
+        isharannSoulrender: {
+            id: "isharannSoulrender",
+            name: "Isharann Soulrender"
+        },
+        lotannWardenOfTheSoulLedgers: {
+            id: "lotannWardenOfTheSoulLedgers",
+            name: "Lotann, Warden of the Soul Ledgers"
+        },
+        akhelianAllopexes: {
+            id: "akhelianAllopexes",
+            name: "Akhelian Allopexes"
+        },
+        akhelianMorrsarrGuard: {
+            id: "akhelianMorrsarrGuard",
+            name: "Akhelian Morrsarr Guard"
+        },
+        akhelianIshlaenGuard: {
+            id: "akhelianIshlaenGuard",
+            name: "Akhelian Ishlaen Guard"
+        },
+        namartiThralls: {
+            id: "namartiThralls",
+            name: "Namarti Thralls"
+        },
+        namartiReavers: {
+            id: "namartiReavers",
+            name: "Namarti Reavers"
+        },
+        akhelianLeviadon: {
+            id: "akhelianLeviadon",
+            name: "Akhelian Leviadon"
+        },
+        allianceOfWoodAndSea: {
+            id: "allianceOfWoodAndSea",
+            name: "Alliance of Wood and Sea"
+        },
+        akhelianCorps: {
+            id: "akhelianCorps",
+            name: "Akhelian Corps"
+        },
+        namartiCorps: {
+            id: "namartiCorps",
+            name: "Namarti Corps"
+        },
+        phalanx: {
+            id: "phalanx",
+            name: "Phalanx"
+        },
+        royalCouncil: {
+            id: "royalCouncil",
+            name: "Royal Council"
+        },
     };
     
     factions = {
@@ -3967,6 +4055,11 @@ export class DataStoreImpl implements DataStore {
             grandAlliance: GrandAlliance.death,
             name: "Vampire Counts"
         },
+        IDONETHDEEPKIN: {
+            id: "IDONETHDEEPKIN",
+            grandAlliance: GrandAlliance.order,
+            name: "Idoneth Deepkin"
+        },
     };
     
     allegiances = {
@@ -4221,6 +4314,12 @@ export class DataStoreImpl implements DataStore {
             grandAlliance: GrandAlliance.death,
             name: "Legions of Nagash",
             keyword: "LEGIONS OF NAGASH"
+        },
+        idonethDeepkin: {
+            id: "idonethDeepkin",
+            grandAlliance: GrandAlliance.order,
+            name: "Idoneth Deepkin",
+            keyword: "IDONETH DEEPKIN"
         },
     };
     
@@ -4516,7 +4615,7 @@ export class DataStoreImpl implements DataStore {
             size: 5,
             points: 100,
             type: "unit",
-            subType: "Khorne Daemon - Khorne Daemon Battleline (Karanak General)",
+            subType: "Khorne Daemon - Khorne Battleline (Karanak General)",
             keywords: ["CHAOS", "KHORNE", "DAEMON"],
             wounds: 2,
             maxSize: 20,
@@ -4530,7 +4629,7 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             points: 160,
             type: "unit",
-            subType: "Khorne Daemon - Khorne Daemon Battleline (Skullmaster Herald of Khorne General)",
+            subType: "Khorne Daemon - Khorne Battleline (Skullmaster Herald of Khorne General)",
             keywords: ["CHAOS", "KHORNE", "DAEMON"],
             wounds: 4,
             maxSize: 12,
@@ -4572,7 +4671,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             points: 160,
             type: "unit",
-            subType: "Tzeentch Daemon - Tzeentch Daemon Battleline (Herald on Chariot General)",
+            subType: "Tzeentch Daemon - Tzeentch Battleline (Herald of Tzeentch on Burning Chariot General)",
             keywords: ["CHAOS", "TZEENTCH", "DAEMON"],
             wounds: 6,
             maxSize: 3,
@@ -4881,7 +4980,7 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             points: 140,
             type: "unit",
-            subType: "Khorne Bloodbound Mortal - Khorne Bloodbound Battleline (Lord of Khorne on Juggernaut General)",
+            subType: "Khorne Bloodbound Mortal - Khorne Battleline (Lord of Khorne on Juggernaut General)",
             keywords: ["CHAOS", "KHORNE", "MORTAL", "BLOODBOUND"],
             wounds: 5,
             maxSize: 12,
@@ -5854,7 +5953,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             points: 140,
             type: "hero",
-            subType: "Daughters of Khaine Wizard",
+            subType: "Daughters of Khaine Bloodwrack Medusa Wizard",
             keywords: ["ORDER", "DAUGHTERS OF KHAINE", "HERO", "WIZARD"],
             wounds: 6,
             isLeader: () => true,
@@ -5909,7 +6008,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 300,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sisters-slaughter-en.pdf",
-            weaponOptions: [{ options: [{ name: "Pairs of Sacrificial Knives", id: "pairsOfSacrificialKnives" },{ name: "Sacrificial Knives and Blade Bucklers", id: "sacrificialKnivesAndBladeBucklers" }] }],
+            weaponOptions: [{ options: [{ name: "Barbed Whips and Sacrificial Knives", id: "barbedWhipsAndSacrificialKnives" },{ name: "Barbed Whips and Blade Bucklers", id: "barbedWhipsAndBladeBucklers" }] }],
             isBattleline: () => true,
         },
         bloodwrackShrine: {
@@ -5919,7 +6018,7 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             points: 220,
             type: "hero",
-            subType: "Daughters of Khaine Wizard - Behemoth",
+            subType: "Daughters of Khaine Bloodwrack Medusa Wizard - Behemoth",
             keywords: ["ORDER", "DAUGHTERS OF KHAINE", "HERO", "WIZARD"],
             wounds: 13,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodwrack-shrine-en.pdf",
@@ -7463,6 +7562,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 280,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-freeguild-guard-en.pdf",
+            weaponOptions: [{ options: [{ name: "Halberds and Shields", id: "halberdsAndShields" },{ name: "Spears and Shields", id: "spearsAndShields" },{ name: "Swords and Shields", id: "swordsAndShields" },{ name: "Militia Weapons", id: "militiaWeapons" }] }],
             isBattleline: () => true,
         },
         freeguildHandgunners: {
@@ -8195,7 +8295,7 @@ export class DataStoreImpl implements DataStore {
             size: 3,
             points: 180,
             type: "unit",
-            subType: "Legion of Azgorh Battleline (Shar'tor General)",
+            subType: "Legion of Azgorh Battleline (Shar'tor the Executioner General)",
             keywords: ["CHAOS"],
             wounds: 5,
             maxSize: 12,
@@ -9136,7 +9236,7 @@ export class DataStoreImpl implements DataStore {
             size: 2,
             points: 40,
             type: "unit",
-            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline (Icetooth Hunter General)",
+            subType: "Beastclaw Raiders - Beastclaw Raiders Battleline (Icebrow Hunter General)",
             keywords: ["DESTRUCTION", "BEASTCLAW RAIDERS"],
             wounds: 2,
             maxSize: 12,
@@ -9246,7 +9346,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["DESTRUCTION", "HERO"],
             wounds: 8,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ogor-tyrant-en.pdf",
-            weaponOptions: [{ options: [{ name: "Massive Ogor Club", id: "massiveOgorClub" },{ name: "Great Gutgouger", id: "greatGutgouger" },{ name: "Pair of Clubs; Bashers or Slicers", id: "pairOfClubsBashersOrSlicers" }] }],
+            weaponOptions: [{ options: [{ name: "Massive Ogor Club", id: "massiveOgorClub" },{ name: "Great Gutgouger", id: "greatGutgouger" },{ name: "Pair of Clubs", id: "pairOfClubs" }] }],
             isLeader: () => true,
         },
         grotScraplauncher: {
@@ -13106,6 +13206,212 @@ export class DataStoreImpl implements DataStore {
             wounds: 5,
             isLeader: () => true,
         },
+        magoreSFiends: {
+            id: "magoreSFiends",
+            model: this.models.magoreSFiends,
+            factions: [this.factions.KHORNEBLOODBOUND],
+            size: 3,
+            points: 80,
+            type: "unit",
+            subType: "One per army - Must include Riptooth",
+            keywords: ["CHAOS", "KHORNE"],
+            wounds: 2,
+        },
+        riptooth: {
+            id: "riptooth",
+            model: this.models.riptooth,
+            factions: [this.factions.KHORNEBLOODBOUND],
+            size: 1,
+            points: 40,
+            type: "unit",
+            subType: "One per army - Must include Magore's Fiends",
+            keywords: ["CHAOS", "KHORNE"],
+            wounds: 2,
+        },
+        theFarstriders: {
+            id: "theFarstriders",
+            model: this.models.theFarstriders,
+            factions: [this.factions.STORMCASTETERNALS],
+            size: 3,
+            points: 100,
+            type: "unit",
+            subType: "One per army",
+            keywords: ["ORDER", "STORMCAST ETERNALS"],
+            wounds: 1,
+        },
+        namartiThralls: {
+            id: "namartiThralls",
+            model: this.models.namartiThralls,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 10,
+            points: 140,
+            type: "unit",
+            subType: "Battleline",
+            keywords: ["ORDER", "IDONETH DEEPKIN"],
+            wounds: 1,
+            maxSize: 30,
+            maxPoints: 360,
+            isBattleline: () => true,
+        },
+        akhelianLeviadon: {
+            id: "akhelianLeviadon",
+            model: this.models.akhelianLeviadon,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 380,
+            type: "monster",
+            subType: "Behemoth",
+            keywords: ["ORDER", "IDONETH DEEPKIN"],
+            wounds: 16,
+            isBehemot: () => true,
+        },
+        vulturnosHighKingOfTheDeep: {
+            id: "vulturnosHighKingOfTheDeep",
+            model: this.models.vulturnosHighKingOfTheDeep,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 280,
+            type: "hero",
+            subType: "Akhelian - Unique",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
+            wounds: 8,
+            isLeader: () => true,
+        },
+        eidolonOfMathlannAspectOfTheStorm: {
+            id: "eidolonOfMathlannAspectOfTheStorm",
+            model: this.models.eidolonOfMathlannAspectOfTheStorm,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 400,
+            type: "hero",
+            subType: "Eidolon",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
+            wounds: 12,
+            isLeader: () => true,
+        },
+        eidolonOfMathlannAspectOfTheSea: {
+            id: "eidolonOfMathlannAspectOfTheSea",
+            model: this.models.eidolonOfMathlannAspectOfTheSea,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 440,
+            type: "hero",
+            subType: "Eidolon Wizard",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO", "WIZARD"],
+            wounds: 12,
+            isLeader: () => true,
+        },
+        akhelianKing: {
+            id: "akhelianKing",
+            model: this.models.akhelianKing,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 240,
+            type: "hero",
+            subType: "Akhelian",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
+            wounds: 7,
+            isLeader: () => true,
+        },
+        isharannTidecaster: {
+            id: "isharannTidecaster",
+            model: this.models.isharannTidecaster,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 100,
+            type: "hero",
+            subType: "Isharann Wizard",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO", "WIZARD"],
+            wounds: 5,
+            isLeader: () => true,
+        },
+        isharannSoulrender: {
+            id: "isharannSoulrender",
+            model: this.models.isharannSoulrender,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 100,
+            type: "hero",
+            subType: "Isharann Priest",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
+            wounds: 5,
+            isLeader: () => true,
+        },
+        isharannSoulscryer: {
+            id: "isharannSoulscryer",
+            model: this.models.isharannSoulscryer,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 100,
+            type: "hero",
+            subType: "Isharann ",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
+            wounds: 5,
+            isLeader: () => true,
+        },
+        lotannWardenOfTheSoulLedgers: {
+            id: "lotannWardenOfTheSoulLedgers",
+            model: this.models.lotannWardenOfTheSoulLedgers,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 100,
+            type: "hero",
+            subType: "Isharann - Unique",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
+            wounds: 5,
+            isLeader: () => true,
+        },
+        akhelianAllopexes: {
+            id: "akhelianAllopexes",
+            model: this.models.akhelianAllopexes,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 1,
+            points: 140,
+            type: "unit",
+            subType: undefined,
+            keywords: ["ORDER", "IDONETH DEEPKIN"],
+            wounds: 8,
+            maxSize: 4,
+        },
+        akhelianIshlaenGuard: {
+            id: "akhelianIshlaenGuard",
+            model: this.models.akhelianIshlaenGuard,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 3,
+            points: 140,
+            type: "unit",
+            subType: "Idoneth Deepkin Battleline (Akhelian General)",
+            keywords: ["ORDER", "IDONETH DEEPKIN"],
+            wounds: 4,
+            maxSize: 12,
+            isBattleline: () => true,
+        },
+        akhelianMorrsarrGuard: {
+            id: "akhelianMorrsarrGuard",
+            model: this.models.akhelianMorrsarrGuard,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 3,
+            points: 160,
+            type: "unit",
+            subType: "Idoneth Deepkin Battleline (Akhelian General)",
+            keywords: ["ORDER", "IDONETH DEEPKIN"],
+            wounds: 4,
+            maxSize: 12,
+            isBattleline: () => true,
+        },
+        namartiReavers: {
+            id: "namartiReavers",
+            model: this.models.namartiReavers,
+            factions: [this.factions.IDONETHDEEPKIN],
+            size: 10,
+            points: 140,
+            type: "unit",
+            subType: "Idoneth Deepkin Battleline (Isharann General)",
+            keywords: ["ORDER", "IDONETH DEEPKIN"],
+            wounds: 1,
+            maxSize: 20,
+            isBattleline: () => true,
+        },
     };
     
     extraAbilities = {
@@ -14863,6 +15169,55 @@ export class DataStoreImpl implements DataStore {
             id: "daughtersOfKhaineMistressOfIllusion",
             ability: { name: "Mistress of Illusion", description: "" },
             allegiance: this.allegiances.daughtersOfKhaine,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        idonethDeepkinMercilessRaider: {
+            id: "idonethDeepkinMercilessRaider",
+            ability: { name: "Merciless Raider", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        idonethDeepkinHunterOfSouls: {
+            id: "idonethDeepkinHunterOfSouls",
+            ability: { name: "Hunter of Souls", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        idonethDeepkinUnstoppableFury: {
+            id: "idonethDeepkinUnstoppableFury",
+            ability: { name: "Unstoppable Fury", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        idonethDeepkinBornFromAgony: {
+            id: "idonethDeepkinBornFromAgony",
+            ability: { name: "Born From Agony", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        idonethDeepkinNightmareLegacy: {
+            id: "idonethDeepkinNightmareLegacy",
+            ability: { name: "Nightmare Legacy", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        idonethDeepkinLordOfStormAndSea: {
+            id: "idonethDeepkinLordOfStormAndSea",
+            ability: { name: "Lord of Storm and Sea", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "command",
+            isAvailable: commandTraitAvailable
+        },
+        idonethDeepkinEmissaryOfTheDeepPlaces: {
+            id: "idonethDeepkinEmissaryOfTheDeepPlaces",
+            ability: { name: "Emissary of the Deep Places", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
             category: "command",
             isAvailable: commandTraitAvailable
         },
@@ -17498,9 +17853,41 @@ export class DataStoreImpl implements DataStore {
             subCategory: "Artefacts of Shadow",
             isAvailable: artifactAvailable
         },
-        daughtersOfKhaineRuneOfUlgu: {
-            id: "daughtersOfKhaineRuneOfUlgu",
-            ability: { name: "Rune of Ulgu", description: "" },
+        daughtersOfKhaineRuneOfUlguSteedOfShadows: {
+            id: "daughtersOfKhaineRuneOfUlguSteedOfShadows",
+            ability: { name: "Rune of Ulgu - Steed of Shadows", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineRuneOfUlguPitOfShades: {
+            id: "daughtersOfKhaineRuneOfUlguPitOfShades",
+            ability: { name: "Rune of Ulgu - Pit of Shades", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineRuneOfUlguMirrorDance: {
+            id: "daughtersOfKhaineRuneOfUlguMirrorDance",
+            ability: { name: "Rune of Ulgu - Mirror Dance", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineRuneOfUlguTheWithering: {
+            id: "daughtersOfKhaineRuneOfUlguTheWithering",
+            ability: { name: "Rune of Ulgu - The Withering", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineRuneOfUlguMindrazor: {
+            id: "daughtersOfKhaineRuneOfUlguMindrazor",
+            ability: { name: "Rune of Ulgu - Mindrazor", description: "" },
             allegiance: this.allegiances.daughtersOfKhaine,
             category: "artifact",
             subCategory: "Artefacts of Shadow",
@@ -17538,9 +17925,49 @@ export class DataStoreImpl implements DataStore {
             subCategory: "Artefacts of Shadow",
             isAvailable: artifactAvailable
         },
-        daughtersOfKhaineBloodSigil: {
-            id: "daughtersOfKhaineBloodSigil",
-            ability: { name: "Blood Sigil", description: "" },
+        daughtersOfKhaineBloodSigilCatechismOfMurder: {
+            id: "daughtersOfKhaineBloodSigilCatechismOfMurder",
+            ability: { name: "Blood Sigil - Catechism of Murder", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineBloodSigilBlessingOfKhaine: {
+            id: "daughtersOfKhaineBloodSigilBlessingOfKhaine",
+            ability: { name: "Blood Sigil - Blessing of Khaine", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineBloodSigilMartyrSSacrifice: {
+            id: "daughtersOfKhaineBloodSigilMartyrSSacrifice",
+            ability: { name: "Blood Sigil - Martyr's Sacrifice", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineBloodSigilCrimsonRejuvenation: {
+            id: "daughtersOfKhaineBloodSigilCrimsonRejuvenation",
+            ability: { name: "Blood Sigil - Crimson Rejuvenation", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineBloodSigilCovenantOfTheIronHeart: {
+            id: "daughtersOfKhaineBloodSigilCovenantOfTheIronHeart",
+            ability: { name: "Blood Sigil - Covenant of the Iron Heart", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Relics of Khaine",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineBloodSigilSacramentOfBlood: {
+            id: "daughtersOfKhaineBloodSigilSacramentOfBlood",
+            ability: { name: "Blood Sigil - Sacrament of Blood", description: "" },
             allegiance: this.allegiances.daughtersOfKhaine,
             category: "artifact",
             subCategory: "Relics of Khaine",
@@ -17600,6 +18027,198 @@ export class DataStoreImpl implements DataStore {
             allegiance: this.allegiances.daughtersOfKhaine,
             category: "artifact",
             subCategory: "The Kraith",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinSanguinePearl: {
+            id: "idonethDeepkinSanguinePearl",
+            ability: { name: "Sanguine Pearl", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Akhelian Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinPotionOfHatefulFrenzy: {
+            id: "idonethDeepkinPotionOfHatefulFrenzy",
+            ability: { name: "Potion of Hateful Frenzy", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Akhelian Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinAnkushaSpur: {
+            id: "idonethDeepkinAnkushaSpur",
+            ability: { name: "Ankusha Spur", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Akhelian Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinArmourOfTheCythai: {
+            id: "idonethDeepkinArmourOfTheCythai",
+            ability: { name: "Armour of the Cythai", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Akhelian Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinBioShockShell: {
+            id: "idonethDeepkinBioShockShell",
+            ability: { name: "Bio-shock Shell", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Akhelian Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinAbyssalBlade: {
+            id: "idonethDeepkinAbyssalBlade",
+            ability: { name: "Abyssal Blade", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Akhelian Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinRuneOfTheSurgingTide: {
+            id: "idonethDeepkinRuneOfTheSurgingTide",
+            ability: { name: "Rune of the Surging Tide", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Idoneth Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinBlackPearl: {
+            id: "idonethDeepkinBlackPearl",
+            ability: { name: "Black Pearl", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Idoneth Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinLliandraSLastLament: {
+            id: "idonethDeepkinLliandraSLastLament",
+            ability: { name: "Lliandra's Last Lament", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Idoneth Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinTerrornightVenom: {
+            id: "idonethDeepkinTerrornightVenom",
+            ability: { name: "Terrornight Venom", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Idoneth Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinCloudOfMidnight: {
+            id: "idonethDeepkinCloudOfMidnight",
+            ability: { name: "Cloud of Midnight", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Idoneth Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinWhorlshell: {
+            id: "idonethDeepkinWhorlshell",
+            ability: { name: "Whorlshell", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Idoneth Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinSteelshellPearl: {
+            id: "idonethDeepkinSteelshellPearl",
+            ability: { name: "Steelshell Pearl", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Isharann Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinMindFlare: {
+            id: "idonethDeepkinMindFlare",
+            ability: { name: "Mind Flare", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Isharann Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinDritchleech: {
+            id: "idonethDeepkinDritchleech",
+            ability: { name: "Dritchleech", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Isharann Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinAuricLantern: {
+            id: "idonethDeepkinAuricLantern",
+            ability: { name: "Auric Lantern", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Isharann Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinDisharmonyStones: {
+            id: "idonethDeepkinDisharmonyStones",
+            ability: { name: "Disharmony Stones", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Isharann Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinBrainBarnacles: {
+            id: "idonethDeepkinBrainBarnacles",
+            ability: { name: "Brain Barnacles", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Isharann Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinArcanePearl: {
+            id: "idonethDeepkinArcanePearl",
+            ability: { name: "Arcane Pearl", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Arcane Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinSandsOfInfinity: {
+            id: "idonethDeepkinSandsOfInfinity",
+            ability: { name: "Sands of Infinity", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Arcane Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinCoralRing: {
+            id: "idonethDeepkinCoralRing",
+            ability: { name: "Coral Ring", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Arcane Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinBaubleOfBuoyancy: {
+            id: "idonethDeepkinBaubleOfBuoyancy",
+            ability: { name: "Bauble of Buoyancy", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Arcane Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinKrakenTooth: {
+            id: "idonethDeepkinKrakenTooth",
+            ability: { name: "Kraken Tooth", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Arcane Artefacts",
+            isAvailable: artifactAvailable
+        },
+        idonethDeepkinAuguryShells: {
+            id: "idonethDeepkinAuguryShells",
+            ability: { name: "Augury Shells", description: "" },
+            allegiance: this.allegiances.idonethDeepkin,
+            category: "artifact",
+            subCategory: "Arcane Artefacts",
             isAvailable: artifactAvailable
         },
         hellstridersOfSlaaneshIconOfExcess: {
@@ -19384,9 +20003,9 @@ export class DataStoreImpl implements DataStore {
             category: "Prayer",
             isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
         },
-        daughtersOfKhainePrayerCatechsimOfMurder: {
-            id: "daughtersOfKhainePrayerCatechsimOfMurder",
-            ability: { name: "Catechsim of Murder", description: "" },
+        daughtersOfKhainePrayerCatechismOfMurder: {
+            id: "daughtersOfKhainePrayerCatechismOfMurder",
+            ability: { name: "Catechism of Murder", description: "" },
             category: "Prayer",
             isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
         },
@@ -19419,6 +20038,60 @@ export class DataStoreImpl implements DataStore {
             ability: { name: "Sacrament of Blood", description: "" },
             category: "Prayer",
             isAvailable: keywordAvailable("Prayer", "DAUGHTERS OF KHAINE", ["PRIEST"])
+        },
+        idonethDeepkinLoreOfTheDeepsNone: {
+            id: "idonethDeepkinLoreOfTheDeepsNone",
+            ability: { name: "None", description: "" },
+            category: "Lore of the Deeps",
+            isAvailable: keywordAvailable("Lore of the Deeps", "IDONETH DEEPKIN", ["WIZARD"])
+        },
+        idonethDeepkinLoreOfTheDeepsSteedOfTides: {
+            id: "idonethDeepkinLoreOfTheDeepsSteedOfTides",
+            ability: { name: "Steed of Tides", description: "" },
+            category: "Lore of the Deeps",
+            isAvailable: keywordAvailable("Lore of the Deeps", "IDONETH DEEPKIN", ["WIZARD"])
+        },
+        idonethDeepkinLoreOfTheDeepsAbyssalDarkness: {
+            id: "idonethDeepkinLoreOfTheDeepsAbyssalDarkness",
+            ability: { name: "Abyssal Darkness", description: "" },
+            category: "Lore of the Deeps",
+            isAvailable: keywordAvailable("Lore of the Deeps", "IDONETH DEEPKIN", ["WIZARD"])
+        },
+        idonethDeepkinLoreOfTheDeepsVorpalMaelstrom: {
+            id: "idonethDeepkinLoreOfTheDeepsVorpalMaelstrom",
+            ability: { name: "Vorpal Maelstrom", description: "" },
+            category: "Lore of the Deeps",
+            isAvailable: keywordAvailable("Lore of the Deeps", "IDONETH DEEPKIN", ["WIZARD"])
+        },
+        idonethDeepkinLoreOfTheDeepsPressureOfTheDeep: {
+            id: "idonethDeepkinLoreOfTheDeepsPressureOfTheDeep",
+            ability: { name: "Pressure of the Deep", description: "" },
+            category: "Lore of the Deeps",
+            isAvailable: keywordAvailable("Lore of the Deeps", "IDONETH DEEPKIN", ["WIZARD"])
+        },
+        idonethDeepkinLoreOfTheDeepsTideOfFear: {
+            id: "idonethDeepkinLoreOfTheDeepsTideOfFear",
+            ability: { name: "Tide of Fear", description: "" },
+            category: "Lore of the Deeps",
+            isAvailable: keywordAvailable("Lore of the Deeps", "IDONETH DEEPKIN", ["WIZARD"])
+        },
+        idonethDeepkinLoreOfTheDeepsArcaneCorrasion: {
+            id: "idonethDeepkinLoreOfTheDeepsArcaneCorrasion",
+            ability: { name: "Arcane Corrasion", description: "" },
+            category: "Lore of the Deeps",
+            isAvailable: keywordAvailable("Lore of the Deeps", "IDONETH DEEPKIN", ["WIZARD"])
+        },
+        idonethDeepkinLoreOfTheDeepsFreezingMistsMorPhannTidecasters: {
+            id: "idonethDeepkinLoreOfTheDeepsFreezingMistsMorPhannTidecasters",
+            ability: { name: "Freezing Mists (Mor'Phann Tidecasters)", description: "" },
+            category: "Lore of the Deeps",
+            isAvailable: keywordAvailable("Lore of the Deeps", "IDONETH DEEPKIN", ["WIZARD"])
+        },
+        idonethDeepkinLoreOfTheDeepsProtectiveBarrierNautilarTidecasters: {
+            id: "idonethDeepkinLoreOfTheDeepsProtectiveBarrierNautilarTidecasters",
+            ability: { name: " Protective Barrier (Nautilar Tidecasters)", description: "" },
+            category: "Lore of the Deeps",
+            isAvailable: keywordAvailable("Lore of the Deeps", "IDONETH DEEPKIN", ["WIZARD"])
         },
     };
     
@@ -20790,6 +21463,41 @@ export class DataStoreImpl implements DataStore {
             points: 180,
             units: []             
         },
+        allianceOfWoodAndSea: {
+            id: "allianceOfWoodAndSea",
+            name: "Alliance of Wood and Sea",
+            factions: [this.factions.IDONETHDEEPKIN],
+            points: 140,
+            units: []             
+        },
+        akhelianCorps: {
+            id: "akhelianCorps",
+            name: "Akhelian Corps",
+            factions: [this.factions.IDONETHDEEPKIN],
+            points: 100,
+            units: []             
+        },
+        namartiCorps: {
+            id: "namartiCorps",
+            name: "Namarti Corps",
+            factions: [this.factions.IDONETHDEEPKIN],
+            points: 100,
+            units: []             
+        },
+        phalanx: {
+            id: "phalanx",
+            name: "Phalanx",
+            factions: [this.factions.IDONETHDEEPKIN],
+            points: 120,
+            units: []             
+        },
+        royalCouncil: {
+            id: "royalCouncil",
+            name: "Royal Council",
+            factions: [this.factions.IDONETHDEEPKIN],
+            points: 140,
+            units: []             
+        },
     };
     
     armyOptions = new Map([
@@ -20798,5 +21506,6 @@ export class DataStoreImpl implements DataStore {
         ["fleshEaterCourts", { name: "Delusion", values: ["Crusading Army", "The Royal Hunt", "The Feast Day", "A Matter of Honour", "The Grand Tournament", "Defenders of the Realm"]}],
         ["soulblight", { name: "Bloodline", values: ["Dragon Warriors", "Lords of the Night", "Necromantic", "Swift Death"]}],
         ["daughtersOfKhaine", { name: "Temple", values: ["Hagg Nar", "Draichi Ganeth", "The Kraith", "Khailebron"]}],
+        ["idonethDeepkin", { name: "Enclave", values: ["Ionrach", "Dhom-Hain", "Fuethan", "Mor'Phann", "Nautilar", "Briomdar"]}],
     ]);
 }

@@ -43,12 +43,25 @@ let token: string = "";
 
 async function load(name: string) {
     const singleName = path.basename(name); //?temp=13.0_DOK
-    curl(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/data/${name}?temp=${token}`, `src/stores/data/${singleName}`);
+    try {
+        await curl(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/data/${name}?temp=${token}`, `src/stores/data/${singleName}`);
+        console.log(`${name} loaded`);
+    }
+    catch(e){
+        console.error(`${e} while loading ${name}`);
+    }
 }
 
 async function main() {
-    curl("https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/src/allData.v2.min.js", "src/stores/data/allData.ts", "export function load(availablePoolArmies:any) {\n", "\nloadAllArmiesFaster();\n}\n");
-    const data = await getData("https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/main.v2.min.js");
+    const version = "4";
+    try {
+        await curl(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/src/allData.v${version}.min.js`, "src/stores/data/allData.ts", "export function load(availablePoolArmies:any) {\n", "\nloadAllArmiesFaster();\n}\n");
+    }
+    catch(error) {
+        console.error(`${error} while loading main`);
+        return;
+    }
+    const data = await getData(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/main.v${version}.min.js`);
 
     const tokenMatch = data.match(/VERSION="(.*?)"/);
     if (tokenMatch === null) {
@@ -58,17 +71,17 @@ async function main() {
     }
     token = tokenMatch[0];
 
-    load("weaponOptions/allWeaponOptions.csv");
-    load("bannerOptions.csv");
-    load("optionalLoadoutOptions.csv");
-    load("mountOptions.json");
-    load("musicianOptions.json");
-    load("gwPoints.csv");
-    load("artefacts.csv");
-    load("commandTraits.csv");
-    load("scenery.csv");
-    load("armyOptions.csv");
-    load("genericAttributes.csv");
+    await load("weaponOptions/allWeaponOptions.csv");
+    await load("bannerOptions.csv");
+    await load("optionalLoadoutOptions.csv");
+    await load("mountOptions.json");
+    await load("musicianOptions.json");
+    await load("gwPoints.csv");
+    await load("artefacts.csv");
+    await load("commandTraits.csv");
+    await load("scenery.csv");
+    await load("armyOptions.csv");
+    await load("genericAttributes.csv");
 }
 
 main();
