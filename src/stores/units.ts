@@ -101,6 +101,7 @@ export interface Battalion {
     description?: string;
     points: number;
     factions: Faction[];
+    abilities?: Ability[];
 }
 
 export interface WarscrollBattalion {

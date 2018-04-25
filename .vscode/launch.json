@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Lancer le programme",
-            "program": "${workspaceFolder}\\dist\\tools\\import.js",
+            "program": "${workspaceFolder}\\dist\\tools\\gw-data.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

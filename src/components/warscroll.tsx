@@ -71,6 +71,9 @@ export class Warscroll extends React.Component<WarscrollProps>{
         return <Table.Row key={battalion.id}>
             <Table.Cell>{battalion.battalion.name}</Table.Cell>    
             <Table.Cell>{battalion.battalion.description}</Table.Cell>
+            <Table.Cell>
+                { battalion.battalion.abilities && this.renderAllAbilities(battalion.battalion.abilities)}
+            </Table.Cell>
         </Table.Row>    
     }
 
@@ -112,12 +115,13 @@ export class Warscroll extends React.Component<WarscrollProps>{
         // }
         
         return <Table.Row key={unit.id}>
-            <Table.Cell> { unit.isGeneral && <Icon name="star"/> } {u.model.name} {wo.length > 0 && <div> {join(wo.map(x => <i>{x.weaponOption && x.weaponOption.name}</i>), ',')}</div>}</Table.Cell>
+            <Table.Cell> { unit.isGeneral && <Icon name="star"/> } {u.model.name} {wo.length > 0 && <div> {join(wo.map((x, index) => <i key={index}>{x.weaponOption && x.weaponOption.name}</i>), ',')}</div>}</Table.Cell>
             <Table.Cell>{unit.count * u.size} <Icon name="user"/></Table.Cell>
-            <Table.Cell>{u.move && <>{u.move}" <Icon name="location arrow" /></>} {u.wounds} <Icon name="heart" /> {u.save && <> {u.save} <Icon name="shield" /></>} {u.bravery && <> {u.bravery} <Icon name="hand victory" /></>} </Table.Cell>
+            <Table.Cell><span className="wounds">{u.move && <>{u.move}" <Icon name="location arrow" /></>} {u.wounds} <Icon name="heart" /></span><br/><span className="wounds">{u.save && <> {u.save} <Icon name="shield" /></>} {u.bravery && <> {u.bravery} <Icon name="hand victory" /></>}</span></Table.Cell>
             <Table.Cell>
                 {attacks.length > 0 && this.renderAllAttacks(attacks)}
                 {abilities.length > 0 && this.renderAllAbilities(abilities)}
+                {u.commandAbilities && unit.isGeneral && this.renderAllAbilities(u.commandAbilities)}
                 <div>{u.keywords && u.keywords.join(", ")}</div></Table.Cell>        
         </Table.Row>;
     }

@@ -229,6 +229,7 @@ export class WarscrollStore {
     removeUnit(unit: WarscrollUnit) {
         const units = this.warscroll.units;
         units.splice(units.indexOf(unit), 1);
+        this.saveWarscroll();
     }
 
     @action

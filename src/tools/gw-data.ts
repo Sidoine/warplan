@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { load } from "../stores/data/allData";
+import csv = require("csv-parse/lib/sync");
 
 interface Army {
     name: string,
@@ -273,8 +274,9 @@ output += `    };
     units = {
 `;
 
-function readCsv(path: string) {
-    return fs.readFileSync(path, { encoding: "utf8"}).split("\n").map(x => x.trimRight().split(","));
+function readCsv(path: string):string[][] {
+    const data = fs.readFileSync(path, { encoding: "utf8"});
+    return csv(data, { relax_column_count: true, trim: true });
 }
 
 const gwPoints = readCsv("src/stores/data/gwPoints.csv");
@@ -383,7 +385,9 @@ for (const [key, unit] of gwPointsMap) {
 
     const weapons = extraWeaponsMap.get(key);
     if (weapons) {
-        output+= `            weaponOptions: [{ options: [${weapons.map(x => `{ name: "${x.name}", id: "${toCamelCase(x.name)}" }`).join(",")}] }],\n`
+        const distinctWeapons = weapons.filter((x, index) => weapons.findIndex(y => y.name === x.name) === index);
+        output+= `            weaponOptions: [{ options: [${distinctWeapons.map(x => `{ name: "${x.name}", id: "${toCamelCase(x.name)}" }`).join(",")}] }],
+            baseWeaponOptions: { ${distinctWeapons.map(x => `${toCamelCase(x.name)}: "${toCamelCase(x.name)}"`).join(", ")} },\n`
     }
 
     if (extras.type === "hero") {
