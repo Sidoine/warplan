@@ -9,6 +9,9 @@ export class UiStore {
     basketPopin: boolean = false;
 
     @observable
+    warscrollPopin: boolean = false;
+
+    @observable
     grandAlliance: GrandAlliance = GrandAlliance.order;
 
     @observable
@@ -27,6 +30,16 @@ export class UiStore {
     @computed
     get battalions() {
         return this.unitsStore.battalions.filter(x => x.factions.some(x => x.id === this.faction.id));
+    }
+
+    @action
+    showWarscrollPopin() {
+        this.warscrollPopin = true;
+    }
+
+    @action
+    closeWarscrollPopin() {
+        this.warscrollPopin = false;
     }
 
     @action

@@ -1,4 +1,4 @@
-import { action, computed, observable } from "mobx";
+import { action, computed, observable, toJS } from "mobx";
 import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion } from "./units";
 
 export interface WarscrollWeaponOption {
@@ -335,7 +335,9 @@ export class WarscrollStore {
         }
     }
 
+    @action
     saveWarscroll(name?: string) {
+        if (name && this.warscrolls.indexOf(name) < 0) this.warscrolls.push(name);
         const warscroll: SerializedWarscroll = {
             name: this.warscroll.name,
             units: this.warscroll.units.map(x => {return {
@@ -355,6 +357,14 @@ export class WarscrollStore {
             armyOption: this.warscroll.armyOption
         };
         localStorage.setItem(this.getWarscrollItem(name), JSON.stringify(warscroll));
+        this.saveWarscrolls();
+    }
+
+    @action
+    removeWarscroll(name: string){
+        localStorage.removeItem(this.getWarscrollItem(name));
+        this.warscrolls.splice(this.warscrolls.indexOf(name), 1);
+        this.saveWarscrolls();
     }
 
     constructor(private unitsStore: UnitsStore) {
@@ -364,6 +374,11 @@ export class WarscrollStore {
         }
 
         this.loadWarscroll();
+    }
+
+
+    private saveWarscrolls() {
+        localStorage.setItem("warscrolls", JSON.stringify(toJS(this.warscrolls)));
     }
 
     @observable

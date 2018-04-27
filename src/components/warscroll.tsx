@@ -1,7 +1,7 @@
 import * as React from "react";
 import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
 import { observer, inject } from "mobx-react";
-import { Header, Table, Icon } from "semantic-ui-react";
+import { Header, Table, Icon, Segment } from "semantic-ui-react";
 import { Attack, Ability, WarscrollBattalion } from "../stores/units";
 import { toJS } from "mobx";
 import { join } from "../helpers/react";
@@ -26,35 +26,26 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <div>Allegiance: {w.allegiance.name}</div>
             {store.armyOptions && w.armyOption && <div>{store.armyOptions.name}: {w.armyOption}</div>}
             <div>{w.totalPoints} points</div>
-            <Header>Leaders</Header>
-            <Table>
-                <Table.Body>
+            <Segment><Header as="h1">Leaders</Header>
                 {
                     w.units.filter(x => x.isLeader).sort((a, b) => (a.isGeneral ? 1 : 0) - (b.isGeneral ? 1: 0)).map(x => this.renderUnit(x))
                 }
-                </Table.Body>        
-            </Table>
+            </Segment>
 
-            <Header>Battelines</Header>
-            <Table>
-                <Table.Body>
+            <Segment>
+            <Header as="h1">Battelines</Header>
                 {
                     w.units.filter(x => x.isBattleline).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => this.renderUnit(x))
                 }
-                </Table.Body>        
-            </Table>
+            </Segment>
 
-            <Header>Units</Header>
-            <Table>
-                <Table.Body>
-                {
+            <Segment><Header as="h1">Units</Header>
+               {
                     w.units.filter(x => !x.isBattleline && !x.isLeader).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => this.renderUnit(x))
-                }
-                </Table.Body>        
-            </Table>
-
+                }</Segment>
+            
         {w.battalions.length > 0 &&
-           <> 
+           <Segment> 
                 <Header>Battalions</Header>
                 <Table>
                     <Table.Body>
@@ -63,7 +54,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
                         }
                     </Table.Body>
                 </Table>
-            </>}    
+            </Segment>}    
         </div>;
     }
 
@@ -114,16 +105,17 @@ export class Warscroll extends React.Component<WarscrollProps>{
         //     if (a.count === 0) a.count = totalWeapons;
         // }
         
-        return <Table.Row key={unit.id}>
-            <Table.Cell> { unit.isGeneral && <Icon name="star"/> } {u.model.name} {wo.length > 0 && <div> {join(wo.map((x, index) => <i key={index}>{x.weaponOption && x.weaponOption.name}</i>), ',')}</div>}</Table.Cell>
-            <Table.Cell>{unit.count * u.size} <Icon name="user"/></Table.Cell>
-            <Table.Cell><span className="wounds">{u.move && <>{u.move}" <Icon name="location arrow" /></>} {u.wounds} <Icon name="heart" /></span><br/><span className="wounds">{u.save && <> {u.save} <Icon name="shield" /></>} {u.bravery && <> {u.bravery} <Icon name="hand victory" /></>}</span></Table.Cell>
-            <Table.Cell>
+        return <Segment key={unit.id} className="unit"><Header as="h2">
+            <div>{ unit.isGeneral && <Icon name="star"/> } {u.model.name}</div> {wo.length > 0 && <div> {join(wo.map((x, index) => <i key={index}>{x.weaponOption && x.weaponOption.name}</i>), ',')}</div>}
+            </Header>
+            <div>{unit.count * u.size} <Icon name="user"/>
+            <span className="wounds">{u.move && <>{u.move}" <Icon name="location arrow" /></>} {u.wounds} <Icon name="heart" /></span><br/><span className="wounds">{u.save && <> {u.save} <Icon name="shield" /></>} {u.bravery && <> {u.bravery} <Icon name="hand victory" /></>}</span></div>
+
                 {attacks.length > 0 && this.renderAllAttacks(attacks)}
                 {abilities.length > 0 && this.renderAllAbilities(abilities)}
                 {u.commandAbilities && unit.isGeneral && this.renderAllAbilities(u.commandAbilities)}
-                <div>{u.keywords && u.keywords.join(", ")}</div></Table.Cell>        
-        </Table.Row>;
+                <div>{u.keywords && u.keywords.join(", ")}</div>
+        </Segment>;
     }
 
     renderAllAbilities(abilities: Ability[]) {
