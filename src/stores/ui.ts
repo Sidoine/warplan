@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { GrandAlliance, UnitsStore } from "./units";
+import { GrandAlliance, UnitsStore, getUnitStats } from "./units";
 
 export class UiStore {
     constructor(private unitsStore: UnitsStore) {
@@ -25,6 +25,11 @@ export class UiStore {
     @computed
     get units() {
         return this.unitsStore.unitList.filter(x => x.factions.some(x => x.id === this.faction.id));
+    }
+
+    @computed
+    get unitStats() {
+        return this.units.map(x => getUnitStats(x));
     }
 
     @computed

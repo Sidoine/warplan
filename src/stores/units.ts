@@ -47,6 +47,31 @@ export interface WeaponOptionCategory {
     maxCount?: number;
 }
 
+function getValue(formula: string | undefined) {
+    if (!formula) return 0;
+    const number = formula.match(/^(\d+)\+?$/);
+    if (number) return parseInt(number[1]);
+    const dices = formula.match(/^(\d?)D(\d?)$/);
+    if (dices) {
+        const numberOfDices = dices[1] ? parseInt(dices[1]) : 1;
+        const numberOfSides = dices[2] ? parseInt(dices[2]) : 6;
+        return ((numberOfSides + 1) / 2) * numberOfDices;
+    }
+    throw Error(`Unable to parse ${formula}`)
+}
+
+function getAttackDamage(attack: Attack) {
+    return (7 - getValue(attack.toHit))/6 * (7 - getValue(attack.toWound))/6 * getValue(attack.damage) * getValue(attack.attacks);
+}
+
+export function getUnitStats(unit: Unit) {
+    return {
+        unit: unit,
+        save: unit.save && getValue(unit.save),
+        meleeDamage: unit.attacks && unit.size * unit.attacks.filter(x => x.melee).reduce((x, c) => x + getAttackDamage(c), 0)
+    }
+}
+
 export interface Unit {
     id: string;
     model: Model;

@@ -20,6 +20,7 @@ import { Warscroll } from "./components/warscroll";
 import { Markers } from "./components/markers";
 import "./index.less";
 import { MarkersStore } from "./stores/markers";
+import { Stats } from "./components/stats";
 
 const root = document.getElementById("root");
 
@@ -44,6 +45,7 @@ ReactDOM.render(
                     <Route exact path="/basket" component={Basket}/>
                     <Route exact path="/warscroll" component={Warscroll} />
                     <Route exact path="/markers" component={Markers}/>
+                    <Route exact path="/stats" component={Stats}/>
                 </Switch>
             </Container>
         </HashRouter>
