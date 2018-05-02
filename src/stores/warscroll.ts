@@ -49,6 +49,13 @@ export class WarscrollUnit implements WarscrollUnitInterface {
             && x.isAvailable(this, this.warscroll));
     }
 
+    @computed
+    get points(): number {
+        if(this.count * this.unit.size === this.unit.maxSize && this.unit.maxPoints) return this.unit.maxPoints;
+
+        return this.count * this.unit.points;
+    }
+
     constructor(protected warscroll: Warscroll, public unit: Unit, count?: number) {
         this.id = warscroll.serial++;
         if (count !== undefined) {
@@ -94,7 +101,7 @@ export class Warscroll implements WarscrollInterface {
 
     @computed
     get unitsPoints() {
-        return this.units.reduce((p, x) => x.count * x.unit.points + p, 0);
+        return this.units.reduce((p, x) => x.points + p, 0);
     }
 
     @computed

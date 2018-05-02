@@ -87,7 +87,20 @@ function fixUnits(data: DataStoreImpl):void {
         const prehensileProboscis: Attack = { name: "Prehensile Proboscis", melee: true, range: "1", attacks: "3", toHit: "3+", toWound: "4+", damage: "1" };
         const foulMouthparts: Attack = { name: "Foul Mouthparts", melee: true, range: "1", attacks: "2", toHit: "3+", toWound: "3+", damage: "1" };
         
-        plagueDrones.attacks = [deathsHead, plaguesword, venomousSting, prehensileProboscis, foulMouthparts];
+        plagueDrones.attacks = [deathsHead, plaguesword, venomousSting];
+
+        plagueDrones.weaponOptions = [{
+            options: [{
+                name: "Prehensile Proboscis",
+                id: "prehensileProboscis",
+                attacks: [prehensileProboscis]
+            },
+            {
+                name: "Foul Mouthparts",
+                id: "foulMouthparts",
+                attacks: [foulMouthparts]
+            }]
+        }];
     }
 
     { 

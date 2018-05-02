@@ -33,7 +33,7 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
                     { join(unit.extraAbilities.map(x => <span key={x.id}><Popup content={<>{x.ability.description}</>} trigger={<span>{x.ability.name}</span>}/><Button onClick={() => this.props.warscrollStore!.removeExtraAbility(unit, x)} ><Icon name="remove"/> </Button></span>), ", ") }
                         { this.renderExtraAbilities(unit)}
                     </Table.Cell>
-            <Table.Cell>{unit.unit.points * unit.count}</Table.Cell>
+            <Table.Cell>{unit.points}</Table.Cell>
             <Table.Cell>
                 <Button onClick={() => this.props.warscrollStore!.removeUnit(this.props.unit)}><Icon name="remove"/></Button>
             </Table.Cell></Table.Row>;
