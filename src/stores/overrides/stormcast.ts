@@ -1,6 +1,7 @@
 import { DataStoreImpl } from "../imported-data";
 import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory } from "../units";
 import { setBaseWeaponOption } from "./tools";
+import { getAttackDamageEx } from "../combat";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -196,9 +197,20 @@ function fixUnits(data: DataStoreImpl):void {
             
             const lightningHammer: Attack = { melee: true, name: "Lightning Hammer", range: "1", attacks: "2", toHit: "3+", toWound: "3+", rend: "-1", damage: "2"};
             const starsoulMace: Attack = { melee: true, name: "Starsoul Mace", range: "1" };
-            const starsoulMaceAbility: Ability = { name: "Starsoul Mace", description: "A model armed with a Starsoul Mace can make a starblast attack in each combat phase. Pick an enemy unit that is within 1\" of the model with the Starsoul Mace. That unit suffers D3 mortal wounds."};
-            const blastToAshes: Ability = { name: "Blast to Ashes", description: "If the hit roll for a model attacking with a Lightning Hammer is 6 or more, that blow strikes with a thunderous blast that inflicts 2 mortal wounds instead of its normal damage. Do not make a wound or save roll for the attack."};
-            const retributorPrime: Ability = { name: "Retributor-Prime", description: "The leader of this unit is the Retributor-Prime. A Retributor-Prime makes 3 attacks rather than 2 with a Lightning Hammer."};
+            const starsoulMaceAbility: Ability = { 
+                name: "Starsoul Mace",
+                description: "A model armed with a Starsoul Mace can make a starblast attack in each combat phase. Pick an enemy unit that is within 1\" of the model with the Starsoul Mace. That unit suffers D3 mortal wounds.",
+                getWounds: (models, melee, attack) => melee && attack === undefined ? 3.5 * models : 0
+            };
+            const blastToAshes: Ability = { 
+                name: "Blast to Ashes", 
+                description: "If the hit roll for a model attacking with a Lightning Hammer is 6 or more, that blow strikes with a thunderous blast that inflicts 2 mortal wounds instead of its normal damage. Do not make a wound or save roll for the attack."
+            };
+            const retributorPrime: Ability = { 
+                name: "Retributor-Prime", 
+                description: "The leader of this unit is the Retributor-Prime. A Retributor-Prime makes 3 attacks rather than 2 with a Lightning Hammer.",
+                getWounds: (models, melee, attack) => attack && attack.name === lightningHammer.name ? getAttackDamageEx(attack, { attacks: "1" }) : 0
+            };
             paladinRetributors.abilities = [retributorPrime];
             const starsoulMaceOption: WeaponOption = { attacks: [starsoulMace], abilities: [starsoulMaceAbility], name: "Starsoul Mace", id: "starsoulMace" };
             const lightningHammerOption: WeaponOption = { attacks: [lightningHammer], abilities: [blastToAshes], name: "Lightning Hammer", id: "lightningHammer" };

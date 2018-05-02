@@ -1,5 +1,6 @@
 import { DataStoreImpl } from "./imported-data";
 import { overrideStormcast } from "./overrides/stormcast";
+import { getAttackDamage, getValue } from "./combat";
 
 export interface Model {
     name: string;
@@ -22,6 +23,7 @@ export interface Faction {
 export interface Ability {
     name: string;
     description: string;
+    getWounds?: (models: number, melee: boolean, attack?: Attack) => number;
 }
 
 export interface Attack {
@@ -94,26 +96,6 @@ export interface Unit {
     isArtillery?: (warscroll: WarscrollInterface) => boolean;
 }
 
-
-function getValue(formula: string | undefined) {
-    if (!formula) return 0;
-    const number = formula.match(/^(-?\d+)\+?$/);
-    if (number) return parseInt(number[1]);
-    const dices = formula.match(/^(\d?)D(\d?)$/);
-    if (dices) {
-        const numberOfDices = dices[1] ? parseInt(dices[1]) : 1;
-        const numberOfSides = dices[2] ? parseInt(dices[2]) : 6;
-        return ((numberOfSides + 1) / 2) * numberOfDices;
-    }
-    throw Error(`Unable to parse ${formula}`)
-}
-
-const enemySave = 5;
-
-function getAttackDamage(attack: Attack) {
-    return (7 - getValue(attack.toHit))/6 * (7 - getValue(attack.toWound))/6 * getValue(attack.damage) * getValue(attack.attacks) * (enemySave + getValue(attack.rend) - 1) / 6;
-}
-
 function everyWeaponOptionCombinations(index: number, categories: WeaponOptionCategory[], options: WeaponOptionCombination[], result: WeaponOptionCombination[][], remaining: number) {
     const count = categories[index].maxCount;
     for (const weaponOption of categories[index].options) {
@@ -125,14 +107,6 @@ function everyWeaponOptionCombinations(index: number, categories: WeaponOptionCa
             result.push(newOptions);
         }
     }
-}
-
-function getMeleeDamage(option: WeaponOption) {
-    return option.attacks ? option.attacks.filter(x => x.melee).reduce((p, c) => p + getAttackDamage(c), 0) : 0;
-}
-
-function getRangedDamage(option: WeaponOption) {
-    return option.attacks ? option.attacks.filter(x => !x.melee).reduce((p, c) => p + getAttackDamage(c), 0) : 0;
 }
 
 export interface WeaponOptionCombinationStats {
@@ -149,10 +123,52 @@ export interface UnitStats {
     base: WeaponOptionCombinationStats;
 }
 
+function addAttacksAndAbilitiesToStats(stats: WeaponOptionCombinationStats, attacks: Attack[] | undefined, size: number, abilities: Ability[] | undefined, baseAbilities?: Ability[]) {
+    let meleeDamage = attacks ? size * attacks.filter(x => x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
+    let rangedDamage = attacks ? size * attacks.filter(x => !x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
+    if (abilities) {
+        for (const ability of abilities) {
+            if (ability.getWounds) {
+                meleeDamage  += ability.getWounds(size, true);
+                rangedDamage += ability.getWounds(size, false);
+                if (attacks) {
+                    for (const attack of attacks) {
+                        if (attack.melee) {
+                            meleeDamage += ability.getWounds(size, true, attack);
+                        } else {
+                            rangedDamage += ability.getWounds(size, false, attack);
+                        }
+                    }    
+                }
+            } 
+        }
+    } 
+
+    if (baseAbilities) {
+        for (const ability of baseAbilities) {
+            if (ability.getWounds) {
+                if (attacks) {
+                    for (const attack of attacks) {
+                        if (attack.melee) {
+                            meleeDamage += ability.getWounds(size, true, attack);
+                        } else {
+                            rangedDamage += ability.getWounds(size, false, attack);
+                        }
+                    }    
+                }
+            } 
+        }
+    }
+
+    stats.meleeDamage += meleeDamage;
+    stats.rangedDamage += rangedDamage;
+}
+
 export function getUnitStats(unit: Unit): UnitStats {
-    const baseMeleeDamage = unit.attacks ? unit.size * unit.attacks.filter(x => x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
-    const baseRangedDamage = unit.attacks ? unit.size * unit.attacks.filter(x => !x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
-    
+    const baseStats: WeaponOptionCombinationStats = { rangedDamage: 0, meleeDamage: 0 };
+    addAttacksAndAbilitiesToStats(baseStats, unit.attacks, unit.size, unit.abilities);
+   
+
     let combinationStats: WeaponOptionCombinationStats[] | undefined;
     if (unit.weaponOptions) {
         const combinations: WeaponOptionCombination[][] = [];
@@ -161,11 +177,15 @@ export function getUnitStats(unit: Unit): UnitStats {
         everyWeaponOptionCombinations(0, unit.weaponOptions, [], combinations, remaining);
         
         combinationStats = combinations.map(x => {
-            return {
+            const result: WeaponOptionCombinationStats = {
                 name: x.map(x => x.weaponOption.name).join("/"),
-                meleeDamage: baseMeleeDamage + x.reduce((s, x) => s + x.count * getMeleeDamage(x.weaponOption), 0),
-                rangedDamage: baseRangedDamage + x.reduce((s, x) => s + x.count * getRangedDamage(x.weaponOption), 0),
+                meleeDamage: baseStats.meleeDamage,
+                rangedDamage: baseStats.rangedDamage,
+            };
+            for (const woc of x) {
+                addAttacksAndAbilitiesToStats(result, woc.weaponOption.attacks, woc.count, woc.weaponOption.abilities, unit.abilities);
             }
+            return result;
         });
     }
 
@@ -174,7 +194,7 @@ export function getUnitStats(unit: Unit): UnitStats {
         unit: unit,
         save: unit.save !== undefined ? save : undefined,
         combinations: combinationStats,
-        base: { meleeDamage: baseMeleeDamage, rangedDamage: baseRangedDamage },
+        base: baseStats,
         savedWounds: (unit.wounds || 0) / ((7 - save) / 6)
     }
 }
