@@ -200,7 +200,7 @@ function fixUnits(data: DataStoreImpl):void {
             const starsoulMaceAbility: Ability = { 
                 name: "Starsoul Mace",
                 description: "A model armed with a Starsoul Mace can make a starblast attack in each combat phase. Pick an enemy unit that is within 1\" of the model with the Starsoul Mace. That unit suffers D3 mortal wounds.",
-                getWounds: (models, melee, attack) => melee && attack === undefined ? 3.5 * models : 0
+                getWounds: (models, melee, attack) => melee && attack === undefined ? 2 * models : 0
             };
             const blastToAshes: Ability = { 
                 name: "Blast to Ashes", 
