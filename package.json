@@ -17,7 +17,7 @@
     "csv-parse": "^2.2.0"
   },
   "devDependencies": {
-    "typescript": "^2.7.1",
+    "typescript": "^2.8.3",
     "webpack": "^3.10.0",
     "awesome-typescript-loader": "^3.4.1",
     "source-map-loader": "^0.2.3",

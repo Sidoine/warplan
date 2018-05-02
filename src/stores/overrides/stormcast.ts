@@ -81,7 +81,7 @@ function fixUnits(data: DataStoreImpl):void {
         liberator.bravery = 6;
         liberator.keywords.push("CELESTIAL", "HUMAN", "REDEEMER", "LIBERATORS");
         const warhammer: Attack = { name: "Warhammer", range: "1", attacks: "2", toHit: "4+", toWound: "3+", damage: "1", melee: true };
-        const warblade: Attack = { name: "Warblade", range: "1", attacks: "2", toHit: "3+", toWound: "4+", damage: "2", melee: true };
+        const warblade: Attack = { name: "Warblade", range: "1", attacks: "2", toHit: "3+", toWound: "4+", damage: "1", melee: true };
         const grandhammer: Attack = { name: "Grandhammer", range: "1", attacks: "2", toHit: "4+", toWound: "3+", rend: "-1", damage: "2", melee: true };
         const grandblade: Attack = { name: "Grandblade", range: "1", attacks: "2", toHit: "3+", toWound: "4+", rend: "-1", damage: "2", melee: true };
         const pairedWeapons: Ability = { name: "Paired Weapons", description: "An extra weapon allows a Liberator to feint and parry, creating openings in their opponent’s guard. You can re-roll hit rolls of 1 for models armed with more than one Warhammer or Warblade." };
@@ -161,7 +161,7 @@ function fixUnits(data: DataStoreImpl):void {
             lordCelestantOnDracoth.keywords.push("CELESTIAL", "HUMAN", "LORD-CELESTANT");
             const stormstrikeGlaive: Attack = { melee: true, name: "Stormstrike Glaive", range: "2", attacks: "4", toHit: "3+", toWound: "4+", rend: "-1", damage: "1" };
             const lightningHammer: Attack = { melee: true,name: "Lightning Hammer", range: "1", attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "2" };
-            const thunderAxe: Attack = { melee: true,name: "Thunderaxe", range: "2", toHit: "3+", toWound: "3+", rend: "-1", damage: "2"};
+            const thunderAxe: Attack = { melee: true,name: "Thunderaxe", range: "2", attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "2"};
             const tempestosHammer: Attack = { melee: true,name: "Tempestos Hammer", range: "2", attacks: "3", toHit: "3+", toWound: "2+", rend: "-1", damage: "D3"};
             const dracothsClawsAndFangs: Attack = {melee: true, name: "Dracoth's Claws and Fangs", range: "1", attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "1"};
             const tempestosHammerAbility: Ability = { name: "Tempestos Hammer", description: "With the momentum of a charge behind it, few can stand against the impact of a Tempestos Hammer. If this model has made a charge move this turn, it can make D3 extra attacks with its Tempestos Hammer."};
@@ -199,10 +199,10 @@ function fixUnits(data: DataStoreImpl):void {
             const starsoulMaceAbility: Ability = { name: "Starsoul Mace", description: "A model armed with a Starsoul Mace can make a starblast attack in each combat phase. Pick an enemy unit that is within 1\" of the model with the Starsoul Mace. That unit suffers D3 mortal wounds."};
             const blastToAshes: Ability = { name: "Blast to Ashes", description: "If the hit roll for a model attacking with a Lightning Hammer is 6 or more, that blow strikes with a thunderous blast that inflicts 2 mortal wounds instead of its normal damage. Do not make a wound or save roll for the attack."};
             const retributorPrime: Ability = { name: "Retributor-Prime", description: "The leader of this unit is the Retributor-Prime. A Retributor-Prime makes 3 attacks rather than 2 with a Lightning Hammer."};
-            paladinRetributors.attacks = [lightningHammer];
-            paladinRetributors.abilities = [blastToAshes, retributorPrime];
+            paladinRetributors.abilities = [retributorPrime];
             const starsoulMaceOption: WeaponOption = { attacks: [starsoulMace], abilities: [starsoulMaceAbility], name: "Starsoul Mace", id: "starsoulMace" };
-            paladinRetributors.weaponOptions = [{ options: [ starsoulMaceOption], maxCount: 1 }];
+            const lightningHammerOption: WeaponOption = { attacks: [lightningHammer], abilities: [blastToAshes], name: "Lightning Hammer", id: "lightningHammer" };
+            paladinRetributors.weaponOptions = [{ options: [lightningHammerOption] }, { options: [ starsoulMaceOption], maxCount: 1 }];
         }
 
         {
