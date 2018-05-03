@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { GrandAlliance, UnitsStore, getUnitStats } from "./units";
+import { GrandAlliance, UnitsStore, getUnitStats, UnitStats } from "./units";
 
 export class UiStore {
     constructor(private unitsStore: UnitsStore) {
@@ -29,7 +29,14 @@ export class UiStore {
 
     @computed
     get unitStats() {
-        return this.units.map(x => getUnitStats(x));
+        const result: UnitStats[] = [];
+        for (const unit of this.units) {
+            const stats = getUnitStats(unit);
+            for (const stat of stats) {
+                result.push(stat);
+            }
+        }
+        return result;
     }
 
     @computed

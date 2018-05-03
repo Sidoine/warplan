@@ -22,3 +22,4 @@ export function getAttackDamageEx(attack: Attack, override: Partial<Attack>) {
 export function getAttackDamage(attack: Attack) {
     return (7 - getValue(attack.toHit))/6 * (7 - getValue(attack.toWound))/6 * getValue(attack.damage) * getValue(attack.attacks) * (enemySave + getValue(attack.rend) - 1) / 6;
 }
+

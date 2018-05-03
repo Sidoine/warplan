@@ -116,12 +116,11 @@ export interface WeaponOptionCombinationStats {
     rangedDamage: number;
 }
 
-export interface UnitStats {
+export interface UnitStats extends WeaponOptionCombinationStats {
     unit: Unit;
     save: number | undefined;
     savedWounds: number;
-    combinations?: WeaponOptionCombinationStats[];
-    base: WeaponOptionCombinationStats;
+    totalDamage: number;
 }
 
 function addAttacksAndAbilitiesToStats(stats: WeaponOptionCombinationStats, attacks: Attack[] | undefined, size: number, abilities: Ability[] | undefined, baseAbilities?: Ability[]) {
@@ -165,39 +164,51 @@ function addAttacksAndAbilitiesToStats(stats: WeaponOptionCombinationStats, atta
     stats.rangedDamage += rangedDamage;
 }
 
-export function getUnitStats(unit: Unit): UnitStats {
-    const baseStats: WeaponOptionCombinationStats = { rangedDamage: 0, meleeDamage: 0 };
-    addAttacksAndAbilitiesToStats(baseStats, unit.attacks, unit.size, unit.abilities);
-   
+function updateTotalDamage(stats: UnitStats) {
+    stats.totalDamage = stats.meleeDamage * 1.5 + stats.rangedDamage;
+}
 
-    let combinationStats: WeaponOptionCombinationStats[] | undefined;
+export function getUnitStats(unit: Unit): UnitStats[] {
+    const save = getValue(unit.save);
+    const savedWounds = (unit.wounds || 0) / ((7 - save) / 6);
+    const baseStats: UnitStats = {
+        rangedDamage: 0,
+        meleeDamage: 0,
+        save: save,
+        savedWounds: savedWounds,
+        unit: unit,
+        totalDamage: 0   
+    };
+    addAttacksAndAbilitiesToStats(baseStats, unit.attacks, unit.size, unit.abilities);
+    
     if (unit.weaponOptions) {
         const combinations: WeaponOptionCombination[][] = [];
         const sum = unit.weaponOptions.reduce((sum, category) => sum + (category.maxCount !== undefined ? category.maxCount : 0), 0);
         const remaining = unit.size - sum;
         everyWeaponOptionCombinations(0, unit.weaponOptions, [], combinations, remaining);
         
-        combinationStats = combinations.map(x => {
-            const result: WeaponOptionCombinationStats = {
+        let combinationStats = combinations.map(x => {
+            const result: UnitStats = {
                 name: x.map(x => x.weaponOption.name).join("/"),
                 meleeDamage: baseStats.meleeDamage,
                 rangedDamage: baseStats.rangedDamage,
+                save: baseStats.save,
+                savedWounds: baseStats.savedWounds,
+                unit: baseStats.unit,
+                totalDamage: 0
             };
             for (const woc of x) {
                 addAttacksAndAbilitiesToStats(result, woc.weaponOption.attacks, woc.count, woc.weaponOption.abilities, unit.abilities);
             }
+            updateTotalDamage(result);
+
             return result;
         });
+        return combinationStats;
     }
+    updateTotalDamage(baseStats);
 
-    const save = getValue(unit.save);
-    return {
-        unit: unit,
-        save: unit.save !== undefined ? save : undefined,
-        combinations: combinationStats,
-        base: baseStats,
-        savedWounds: (unit.wounds || 0) / ((7 - save) / 6)
-    }
+    return [baseStats];
 }
             
 export interface BoxedModel {

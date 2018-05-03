@@ -1,7 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
 import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory } from "../units";
-import { setBaseWeaponOption } from "./tools";
-import { getAttackDamageEx } from "../combat";
+import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForUnitLeaderHasOneExtraAttack } from "./tools";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -85,9 +84,18 @@ function fixUnits(data: DataStoreImpl):void {
         const warblade: Attack = { name: "Warblade", range: "1", attacks: "2", toHit: "3+", toWound: "4+", damage: "1", melee: true };
         const grandhammer: Attack = { name: "Grandhammer", range: "1", attacks: "2", toHit: "4+", toWound: "3+", rend: "-1", damage: "2", melee: true };
         const grandblade: Attack = { name: "Grandblade", range: "1", attacks: "2", toHit: "3+", toWound: "4+", rend: "-1", damage: "2", melee: true };
-        const pairedWeapons: Ability = { name: "Paired Weapons", description: "An extra weapon allows a Liberator to feint and parry, creating openings in their opponent’s guard. You can re-roll hit rolls of 1 for models armed with more than one Warhammer or Warblade." };
-        const layLowTheTyrants: Ability = { name: "Lay Low the Tyrants", description: "If any model from this unit selects an enemy unit with a Wounds characteristic of 5 or more as the target for all of its attacks in a combat phase, add 1 to all of that model’s hit rolls in that combat phase." };
-        const sigmariteShields: Ability = { name: "Sigmarite Shields", description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields." };
+        const pairedWeapons: Ability = { 
+            name: "Paired Weapons", 
+            description: "An extra weapon allows a Liberator to feint and parry, creating openings in their opponent’s guard. You can re-roll hit rolls of 1 for models armed with more than one Warhammer or Warblade." 
+        };
+        const layLowTheTyrants: Ability = { 
+            name: "Lay Low the Tyrants", 
+            description: "If any model from this unit selects an enemy unit with a Wounds characteristic of 5 or more as the target for all of its attacks in a combat phase, add 1 to all of that model’s hit rolls in that combat phase."
+        };
+        const sigmariteShields: Ability = { 
+            name: "Sigmarite Shields", 
+            description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields."
+        };
         const wc = liberator.weaponOptions![0];
         const wh = wc.options.find(x => x.id === "warhammers")!;
         wh.attacks = [warhammer];
@@ -118,7 +126,11 @@ function fixUnits(data: DataStoreImpl):void {
             maxCount: 1
         };
         liberator.weaponOptions!.push(gwc);
-        liberator.abilities = [{ name: "Liberator-Prime", description: "The leader of this unit is the Liberator-Prime. A Liberator-Prime makes 3 attacks rather than 2." }];    
+        liberator.abilities = [{ 
+            name: "Liberator-Prime",
+            description: "The leader of this unit is the Liberator-Prime. A Liberator-Prime makes 3 attacks rather than 2.",
+            getWounds: (models, melee, attack) => attack && models === 1 && melee ? getWoundsForUnitLeaderHasOneExtraAttack(attack) : 0
+        }];    
     }
 
     {
@@ -204,12 +216,13 @@ function fixUnits(data: DataStoreImpl):void {
             };
             const blastToAshes: Ability = { 
                 name: "Blast to Ashes", 
-                description: "If the hit roll for a model attacking with a Lightning Hammer is 6 or more, that blow strikes with a thunderous blast that inflicts 2 mortal wounds instead of its normal damage. Do not make a wound or save roll for the attack."
+                description: "If the hit roll for a model attacking with a Lightning Hammer is 6 or more, that blow strikes with a thunderous blast that inflicts 2 mortal wounds instead of its normal damage. Do not make a wound or save roll for the attack.",
+                getWounds: (models, melee, attack) => attack && attack.name === lightningHammer.name ? getWoundsForAbility6OnHitIsMortalWound(models, attack, 2) : 0
             };
             const retributorPrime: Ability = { 
                 name: "Retributor-Prime", 
                 description: "The leader of this unit is the Retributor-Prime. A Retributor-Prime makes 3 attacks rather than 2 with a Lightning Hammer.",
-                getWounds: (models, melee, attack) => attack && attack.name === lightningHammer.name ? getAttackDamageEx(attack, { attacks: "1" }) : 0
+                getWounds: (models, melee, attack) => attack && attack.name === lightningHammer.name ? getWoundsForUnitLeaderHasOneExtraAttack(attack) : 0
             };
             paladinRetributors.abilities = [retributorPrime];
             const starsoulMaceOption: WeaponOption = { attacks: [starsoulMace], abilities: [starsoulMaceAbility], name: "Starsoul Mace", id: "starsoulMace" };
@@ -226,7 +239,10 @@ function fixUnits(data: DataStoreImpl):void {
             lordRelictor.keywords.push("CELESTIAL", "HUMAN", "PRIEST", "LORD-RELICTOR");
 
             const relicHammer: Attack = { melee: true, name: "Relic Hammer", range: "1", attacks: "4", toHit: "3+", toWound: "3+", rend: "-1", damage: "1"};
-            const lightningStorm: Ability = { name: "Lighning Storm", description: "In your hero phase, you can declare that the Lord-Relictor will pray for a lightning storm. If you do so, pick an enemy unit that is within 12\" of this model and roll a dice. On a roll of 3 or more, the unit you picked suffers D3 mortal wounds, and your opponent must subtract 1 from all hit rolls for the unit until your next hero phase. A Lord-Relictor cannot pray for a lightning storm and a healing storm in the same turn."};
+            const lightningStorm: Ability = {
+                name: "Lighning Storm",
+                description: "In your hero phase, you can declare that the Lord-Relictor will pray for a lightning storm. If you do so, pick an enemy unit that is within 12\" of this model and roll a dice. On a roll of 3 or more, the unit you picked suffers D3 mortal wounds, and your opponent must subtract 1 from all hit rolls for the unit until your next hero phase. A Lord-Relictor cannot pray for a lightning storm and a healing storm in the same turn."
+            };
             const healingStorm: Ability = { name: "Healing Storm", description: "In your hero phase, you can declare that this model is praying for a healing storm. If you do so, pick a friendly model with the STORMCAST ETERNAL keyword that is within 12\" of this model and roll a dice. On a roll of 3 or more you can heal up to D3 wounds that have been suffered by the model that you picked. A Lord-Relictor cannot pray for a healing storm and a lightning storm in the same turn."};
             lordRelictor.abilities= [lightningStorm, healingStorm];
             lordRelictor.attacks = [relicHammer];
@@ -266,10 +282,18 @@ function fixUnits(data: DataStoreImpl):void {
             const beakAndClaws: Attack = {melee: true, name: "Aetherwing’s Beak and Claws", range: "1", attacks: "2", toHit: "4+", toWound: "3+", damage: "1"};
             const raptorPrime: Ability = { name: "Raptor-Prime", description: "The leader of this unit is the Raptor-Prime. A Raptor-Prime is accompanied by an Aetherwing, which aids them in battle and savages enemies with its Beak and Claws."};
             const longshot: Ability = {name: "Longshot", description: "If a unit of Vanguard-Raptors does not move in the movement phase, then you can add 6\" to the Range characteristic of any Longstrike Crossbows the unit uses in the shooting phase of the same turn."};
-            const headshot: Ability = {name: "Headshot", description: "If the hit roll for a Longstrike Crossbow is a 6 or more, it causes 2 mortal wounds instead of its normal damage."};
+            const headshot: Ability = {
+                name: "Headshot", 
+                description: "If the hit roll for a Longstrike Crossbow is a 6 or more, it causes 2 mortal wounds instead of its normal damage.",
+                getWounds: (models, melee, attack) => attack && attack.name === longstrikeCrossbow.name ? getWoundsForAbility6OnHitIsMortalWound(models, attack, 2) : 0
+            };
             const warningCry: Ability = {name: "Warning Cry", description: "If an enemy unit makes a charge move that ends within 1\" of a unit that includes a Raptor-Prime with an Aetherwing, roll a dice for each Vanguard-Raptor in the unit. Any rolls of 6 inflict 2 mortal wounds on the charging unit."}
-            unit.attacks = [longstrikeCrossbow, heavyStock, beakAndClaws];
-            unit.abilities = [raptorPrime, longshot, headshot, warningCry];
+            unit.attacks = [longstrikeCrossbow, heavyStock];
+            unit.abilities = [raptorPrime, longshot, headshot];
+            unit.weaponOptions = [{
+                maxCount: 1,
+                options: [{ id: "aetherwing", name: "Aetherwing", abilities: [warningCry], attacks: [beakAndClaws] }]
+            }];
         }
     }
 }
