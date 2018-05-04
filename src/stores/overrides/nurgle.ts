@@ -21,6 +21,174 @@ function addBoxes(data: DataStoreImpl):void {
         ],
         price: 45
     });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Lord of Blights",
+        units: [
+            { count: 1, models: [data.models.lordOfBlights] }
+        ],
+        price: 20
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Great Unclean One",
+        units: [
+            { count: 1, models: [data.models.greatUncleanOne] }
+        ],
+        price: 110
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Beast of Nurgle",
+        units: [
+            { count: 1, models: [data.models.beastsOfNurgle] }
+        ],
+        price: 32
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Sloppity Bilepiper",
+        units: [
+            { count: 1, models: [data.models.sloppityBilepiperHeraldOfNurgle] }
+        ],
+        price: 20
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Pusgoyle Blightlords",
+        units: [
+            { count: 2, models: [data.models.pusgoyleBlightlords] }
+        ],
+        price: 55
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Spoilpox Scrivener",
+        units: [
+            { count: 1, models: [data.models.spoilpoxScrivenerHeraldOfNurgle] }
+        ],
+        price: 20
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Poxbringer",
+        units: [
+            { count: 1, models: [data.models.poxbringerHeraldOfNurgle] }
+        ],
+        price: 20
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Plaguebearers of Nurgle",
+        units: [
+            { count: 10, models: [data.models.plaguebearers] }
+        ],
+        price: 23
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Plague Drones of Nurgle",
+        units: [
+            { count: 3, models: [data.models.plagueDrones] }
+        ],
+        price: 45
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Rotigus",
+        units: [
+            { count: 1, models: [data.models.rotigus] }
+        ],
+        price: 110
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Glottkin",
+        units: [
+            { count: 1, models: [data.models.theGlottkin] }
+        ],
+        price: 86
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Orghotts Daemonspew",
+        units: [
+            { count: 1, models: [data.models.orghottsDaemonspew] }
+        ],
+        price: 60
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Morbidex Twiceborn",
+        units: [
+            { count: 1, models: [data.models.morbidexTwiceborn] }
+        ],
+        price: 60
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Bloab Rotspawned",
+        units: [
+            { count: 1, models: [data.models.bloabRotspawned] }
+        ],
+        price: 60
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Lord of Afflictions",
+        units: [
+            { count: 1, models: [data.models.lordOfAfflictions, data.models.pusgoyleBlightlords] },
+        ],
+        price: 55
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Horticulous Slimux",
+        units: [
+            { count: 1, models: [data.models.horticulousSlimux] }
+        ],
+        price: 43
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Epidemius",
+        units: [
+            { count: 1, models: [data.models.epidemiusTallymanOfNurgle] }
+        ],
+        price: 39
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Harbinger of Decay",
+        units: [
+            { count: 1, models: [data.models.harbingerOfDecay] }
+        ],
+        price: 31
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Gutrot Sprume",
+        units: [
+            { count: 1, models: [data.models.gutrotSpume] }
+        ],
+        price: 21
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Festus The Leechlord",
+        units: [
+            { count: 1, models: [data.models.festusTheLeechlord] }
+        ],
+        price: 16
+    });
+    data.boxes.push({
+        id: data.serial++,
+        name: "Lord of Plagues",
+        units: [
+            { count: 1, models: [data.models.lordOfPlagues] }
+        ],
+        price: 12
+    });
 }
 
 function fixUnits(data: DataStoreImpl):void {
@@ -165,6 +333,28 @@ function fixUnits(data: DataStoreImpl):void {
         const blightedWeaponsAttack: Attack = { name: "Blighted Weapon", range: "1", melee: true, attacks: "3", toHit: "3+", toWound: "3+", damage: "1" };
 
         blightkings.attacks = [blightedWeaponsAttack];
+    }
+
+    {
+        const lordOfBlight: Unit = data.units.lordOfBlights;
+
+        lordOfBlight.wounds = 7;
+        lordOfBlight.move = 4;
+        lordOfBlight.bravery = 9;
+        lordOfBlight.save = "4+";
+
+        const munificentBounty: Ability = { name: "Munificent Bounty", description: "At the start of you shooting phase, you can pick 1 friendly Putrid Blightkings unit that is within 3\" of this model. That unit can shoot in that shooting phase using the Munificent Boutny Death's Head missile weapon shown above." };
+        const verminShield: Ability = { name: "Vermid Shield", description: "In the combat phase, re-roll save rolls of 1 for this model." };
+        const plagueOfFlies: Ability = { name: "Plague of Flies", description: "You can use this command ability in your hero phase. If you do, pick a friendly NURGLE unit within 21\" of it. Until your next hero phase, subtract 1 from the hit rolls of attacks that target that unit in the shooting phase. If the unit contains 20 or more models, subtract 2 from the hit rolls of attacks that target that unit in the shooting phase, and 1 from the hit rolls of attacks that target that unit in the combat phase instead." };
+
+        lordOfBlight.commandAbilities = [plagueOfFlies];
+        lordOfBlight.abilities = [munificentBounty, verminShield];
+
+        const buboticHammer: Attack = { name: "Bubotic Hammer", range: "1", melee: true, attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "2" };
+        const thriceRipenedDeathHead: Attack = { name: "Thrice-ripened Death's Head", range: "14", melee: false, attacks: "1", toHit: "3+", toWound: "3+", rend: "-3", damage: "D3" };        
+        const munificientDeathHead: Attack = { name: "Munificent Bounty Death's Head", range: "14", melee: false, attacks: "1", toHit: "4+", toWound: "3+", damage: "1" };
+        
+        lordOfBlight.attacks = [buboticHammer, thriceRipenedDeathHead, munificientDeathHead];
     }
 }
 
