@@ -2,55 +2,136 @@ import * as React from "react";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
 import { Table } from "semantic-ui-react";
-import { UnitStats, WeaponOptionCombinationStats } from "../stores/units";
+import { UnitStats } from "../stores/units";
+import { observable, action, computed } from "mobx";
 
 export interface StatsProps {
     uiStore?: UiStore;
 }
 
+const enum Columns {
+    Name,
+    Points,
+    Move,
+    Bravery,
+    Wounds,
+    Save,
+    SavedWounds,
+    MeleeDamage,
+    RangedDamage,
+    TotalDamage
+}
+
 @inject("uiStore")
 @observer
 export class Stats extends React.Component<StatsProps> {
+    @observable
+    sorted = Columns.Name;
+
+    @observable
+    direction: "ascending" | "descending" = "ascending";
+
+    @action
+    handleSort(column: Columns) {
+        return () => {
+            this.setColumn(column);
+        }
+    }
+
+    @action
+    setColumn(column: Columns) {
+        if (column !== this.sorted) {
+            this.sorted = column;
+            this.direction = "ascending";
+        } else {
+            this.direction = (this.direction === "ascending" ? "descending" : "ascending");
+        }   
+    }
+
+    @computed
+    get sortedData() {
+        let data = this.props.uiStore!.unitStats;
+        const one = this.direction === "ascending" ? 1 : -1;
+        const min = this.direction === "ascending" ? -1 : 1;
+        switch (this.sorted) {
+            case Columns.Name:
+                data = data.sort((a, b) => a.unit.model.name > b.unit.model.name ? one : min);
+                break;
+            case Columns.Points:
+                data = data.sort((a, b) => a.unit.points > b.unit.points ? one : min);
+                break;
+            case Columns.Move:
+                data = data.sort((a, b) => (a.unit.move || 0) > (b.unit.move || 0) ? one : min);
+                break;
+            case Columns.Bravery:
+                data = data.sort((a, b) => (a.unit.bravery || 0) > (b.unit.bravery || 0) ? one : min);
+                break;
+            case Columns.Wounds:
+                data = data.sort((a, b) => (a.unit.wounds || 0) > (b.unit.wounds || 0) ? one : min);
+                break;
+            case Columns.Save:
+                data = data.sort((a, b) => (a.save || 0) > (b.save || 0) ? one : min);
+                break;
+            case Columns.SavedWounds:
+                data = data.sort((a, b) => a.savedWounds > b.savedWounds ? one : min);
+                break;
+            case Columns.MeleeDamage:
+                data = data.sort((a, b) => a.meleeDamage > b.meleeDamage ? one : min);
+                break;
+            case Columns.RangedDamage:
+                data = data.sort((a, b) => a.rangedDamage > b.rangedDamage ? one : min);
+                break;
+            case Columns.TotalDamage:
+                data = data.sort((a, b) => a.totalDamage > b.totalDamage ? one : min);
+                break;
+        }
+        return data;
+    }
+
     render() {
-        return <Table>
+
+        return <Table sortable>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>Name</Table.HeaderCell>
-                    <Table.HeaderCell>Points</Table.HeaderCell>
-                    <Table.HeaderCell>Move</Table.HeaderCell>
-                    <Table.HeaderCell>Bravery</Table.HeaderCell>
-                    <Table.HeaderCell>Wounds</Table.HeaderCell>
-                    <Table.HeaderCell>Save</Table.HeaderCell>
-                    <Table.HeaderCell>Saved wounds</Table.HeaderCell>
-                    <Table.HeaderCell>Melee Damage</Table.HeaderCell>
-                    <Table.HeaderCell>Ranged Damage</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.Name)} sorted={this.sorted === Columns.Name ? this.direction : undefined}>Name</Table.HeaderCell>
+                    <Table.HeaderCell>Option</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.Points)} sorted={this.sorted === Columns.Points ? this.direction : undefined}>Points</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.Move)} sorted={this.sorted === Columns.Move ? this.direction : undefined}>Move</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.Bravery)} sorted={this.sorted === Columns.Bravery ? this.direction : undefined}>Bravery</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.Wounds)} sorted={this.sorted === Columns.Wounds ? this.direction : undefined}>Wounds</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.Save)} sorted={this.sorted === Columns.Save ? this.direction : undefined}>Save</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.SavedWounds)} sorted={this.sorted === Columns.SavedWounds ? this.direction : undefined}>Saved wounds</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.MeleeDamage)} sorted={this.sorted === Columns.MeleeDamage ? this.direction : undefined}>Melee Damage</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.RangedDamage)} sorted={this.sorted === Columns.RangedDamage ? this.direction : undefined}>Ranged Damage</Table.HeaderCell>
+                    <Table.HeaderCell onClick={this.handleSort(Columns.TotalDamage)} sorted={this.sorted === Columns.TotalDamage ? this.direction : undefined}>Melee x 1.5 + Ranged</Table.HeaderCell>
+                    <Table.HeaderCell>Other abilities</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
                 {
-                    this.props.uiStore!.unitStats.map(x => x.combinations ? 
-                            x.combinations.map(y => this.renderCombination(x, y))
-                        : this.renderCombination(x, x.base))
+                    this.sortedData.map(x => this.renderCombination(x))
                 }
             </Table.Body>
         </Table>;
     }
 
-    renderCombination(unitStats: UnitStats, combination: WeaponOptionCombinationStats) {
+    renderCombination(unitStats: UnitStats) {
         const unit = unitStats.unit;
         const wounds = (unit.wounds || 0) * unit.size;
-        const savedWounds = unitStats.savedWounds * unit.size;
         const points = unit.points / 100;
-        return <Table.Row id={unit.id + combination.name}>
-            <Table.HeaderCell>{unit.model.name} <i>{combination.name}</i></Table.HeaderCell>
+        return <Table.Row key={unit.id + unitStats.name}>
+            <Table.HeaderCell>{unit.model.name}</Table.HeaderCell>
+            <Table.Cell>{unitStats.name}</Table.Cell>
             <Table.Cell>{unit.points}</Table.Cell>
             <Table.Cell>{unit.move}</Table.Cell>
             <Table.Cell>{unit.bravery}</Table.Cell>
             <Table.Cell>{wounds} ({(wounds / points).toFixed(2)}) </Table.Cell>
             <Table.Cell>{unitStats.save}</Table.Cell>
-            <Table.Cell>{savedWounds.toFixed()} ({(savedWounds / points).toFixed(2)})</Table.Cell>
-            <Table.Cell>{combination.meleeDamage.toFixed(2)} ({(combination.meleeDamage / points).toFixed(2)}) </Table.Cell>
-            <Table.Cell>{combination.rangedDamage.toFixed(2)} ({(combination.rangedDamage / points).toFixed(2)}) </Table.Cell>
+            <Table.Cell>{unitStats.savedWounds.toFixed()} ({(unitStats.savedWounds / points).toFixed(2)})</Table.Cell>
+            <Table.Cell>{unitStats.meleeDamage.toFixed(2)} ({(unitStats.meleeDamage / points).toFixed(2)}) </Table.Cell>
+            <Table.Cell>{unitStats.rangedDamage.toFixed(2)} ({(unitStats.rangedDamage / points).toFixed(2)}) </Table.Cell>
+            <Table.Cell>{unitStats.totalDamage.toFixed(2)} ({(unitStats.totalDamage / points).toFixed(2)}) </Table.Cell>
+            <Table.Cell>{ unitStats.ignoredAbilities.map(x => x.name).join(", ") }</Table.Cell>
         </Table.Row>;
     }
 }

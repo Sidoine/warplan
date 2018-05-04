@@ -2,7 +2,7 @@ import { Attack } from "./units";
 
 export function getValue(formula: string | undefined) {
     if (!formula) return 0;
-    const number = formula.match(/^(-?\d+)\+?$/);
+    const number = formula.match(/^(-?\d+\.?\d*)\+?$/);
     if (number) return parseInt(number[1]);
     const dices = formula.match(/^(\d?)D(\d?)$/);
     if (dices) {
@@ -20,5 +20,6 @@ export function getAttackDamageEx(attack: Attack, override: Partial<Attack>) {
 }
 
 export function getAttackDamage(attack: Attack) {
-    return (7 - getValue(attack.toHit))/6 * (7 - getValue(attack.toWound))/6 * getValue(attack.damage) * getValue(attack.attacks) * (enemySave + getValue(attack.rend) - 1) / 6;
+    return (7 - getValue(attack.toHit))/6 * (7 - getValue(attack.toWound))/6 * getValue(attack.damage) * getValue(attack.attacks) * (enemySave - getValue(attack.rend) - 1) / 6;
 }
+
