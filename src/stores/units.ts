@@ -25,6 +25,7 @@ export interface Ability {
     name: string;
     description: string;
     getWounds?: (models: number, melee: boolean, attack?: Attack) => number;
+    getSavedWounds?: () => number;
 }
 
 export interface Attack {
@@ -110,20 +111,18 @@ function everyWeaponOptionCombinations(index: number, categories: WeaponOptionCa
     }
 }
 
-export interface WeaponOptionCombinationStats {
+export interface UnitStats {
     name?: string;
     meleeDamage: number;
     rangedDamage: number;
-}
-
-export interface UnitStats extends WeaponOptionCombinationStats {
     unit: Unit;
     save: number | undefined;
     savedWounds: number;
     totalDamage: number;
+    ignoredAbilities: Ability[];
 }
 
-function addAttacksAndAbilitiesToStats(stats: WeaponOptionCombinationStats, attacks: Attack[] | undefined, size: number, abilities: Ability[] | undefined, baseAbilities?: Ability[]) {
+function addAttacksAndAbilitiesToStats(stats: UnitStats, attacks: Attack[] | undefined, size: number, abilities: Ability[] | undefined, baseAbilities?: Ability[]) {
     let meleeDamage = attacks ? size * attacks.filter(x => x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
     let rangedDamage = attacks ? size * attacks.filter(x => !x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
     if (abilities) {
@@ -141,6 +140,14 @@ function addAttacksAndAbilitiesToStats(stats: WeaponOptionCombinationStats, atta
                     }    
                 }
             } 
+
+            if (ability.getSavedWounds) {
+                stats.savedWounds += ability.getSavedWounds() * size * (stats.unit.wounds || 0);
+            }
+
+            if (!ability.getWounds && !ability.getSavedWounds && stats.ignoredAbilities.indexOf(ability) < 0) {
+                stats.ignoredAbilities.push(ability);
+            }
         }
     } 
 
@@ -170,14 +177,15 @@ function updateTotalDamage(stats: UnitStats) {
 
 export function getUnitStats(unit: Unit): UnitStats[] {
     const save = getValue(unit.save);
-    const savedWounds = (unit.wounds || 0) / ((7 - save) / 6);
+    const savedWounds = (unit.wounds || 0) * unit.size * ((7 - save) / 6);
     const baseStats: UnitStats = {
         rangedDamage: 0,
         meleeDamage: 0,
         save: save,
         savedWounds: savedWounds,
         unit: unit,
-        totalDamage: 0   
+        totalDamage: 0,
+        ignoredAbilities: unit.abilities ? unit.abilities.filter(x => !x.getSavedWounds && !x.getWounds) : []
     };
     addAttacksAndAbilitiesToStats(baseStats, unit.attacks, unit.size, unit.abilities);
     
@@ -195,7 +203,8 @@ export function getUnitStats(unit: Unit): UnitStats[] {
                 save: baseStats.save,
                 savedWounds: baseStats.savedWounds,
                 unit: baseStats.unit,
-                totalDamage: 0
+                totalDamage: 0,
+                ignoredAbilities: baseStats.ignoredAbilities.concat()
             };
             for (const woc of x) {
                 addAttacksAndAbilitiesToStats(result, woc.weaponOption.attacks, woc.count, woc.weaponOption.abilities, unit.abilities);

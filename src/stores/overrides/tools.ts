@@ -16,7 +16,11 @@ export function setBaseWeaponOption(unit: Unit, id: string, attacks: Attack[], a
 }
 
 export function getWoundsForAbility6OnHitIsMortalWound(models: number, attack: Attack, mortalWounds: number) {
-    return models * (2/6 - getAttackDamageEx(attack, { toHit: "6"}));
+    return models * (mortalWounds/6 - getAttackDamageEx(attack, { toHit: "6"}));
+}
+
+export function getWoundsForAbilityReroll1OnHit(models: number, attack: Attack) {
+    return models * 1/6 * getAttackDamageEx(attack, {});
 }
 
 export function getWoundsForUnitLeaderHasOneExtraAttack(attack: Attack) {

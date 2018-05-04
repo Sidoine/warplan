@@ -32,6 +32,7 @@
     "prepare": "webpack",
     "watch": "webpack -w",
     "debug": "webpack-dev-server --content-base wwwroot/",
+    "watch-tools": "tsc -w -p tsconfig.tools.json",
     "gw": "tsc -p tsconfig.tools.json && node dist/tools/gw-data.js",
     "imp": "tsc -p tsconfig.tools.json && node dist/tools/import.js"
   }

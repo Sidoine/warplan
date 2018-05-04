@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
 import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory } from "../units";
-import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForUnitLeaderHasOneExtraAttack } from "./tools";
+import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForUnitLeaderHasOneExtraAttack, getWoundsForAbilityReroll1OnHit } from "./tools";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -86,7 +86,8 @@ function fixUnits(data: DataStoreImpl):void {
         const grandblade: Attack = { name: "Grandblade", range: "1", attacks: "2", toHit: "3+", toWound: "4+", rend: "-1", damage: "2", melee: true };
         const pairedWeapons: Ability = { 
             name: "Paired Weapons", 
-            description: "An extra weapon allows a Liberator to feint and parry, creating openings in their opponent’s guard. You can re-roll hit rolls of 1 for models armed with more than one Warhammer or Warblade." 
+            description: "An extra weapon allows a Liberator to feint and parry, creating openings in their opponent’s guard. You can re-roll hit rolls of 1 for models armed with more than one Warhammer or Warblade.",
+            getWounds: (models, melee, attack) => attack ? getWoundsForAbilityReroll1OnHit(models, attack) : 0
         };
         const layLowTheTyrants: Ability = { 
             name: "Lay Low the Tyrants", 
@@ -94,7 +95,8 @@ function fixUnits(data: DataStoreImpl):void {
         };
         const sigmariteShields: Ability = { 
             name: "Sigmarite Shields", 
-            description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields."
+            description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields.",
+            getSavedWounds: () => 1/6 * 3/6
         };
         const wc = liberator.weaponOptions![0];
         const wh = wc.options.find(x => x.id === "warhammers")!;

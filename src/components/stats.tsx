@@ -104,6 +104,7 @@ export class Stats extends React.Component<StatsProps> {
                     <Table.HeaderCell onClick={this.handleSort(Columns.MeleeDamage)} sorted={this.sorted === Columns.MeleeDamage ? this.direction : undefined}>Melee Damage</Table.HeaderCell>
                     <Table.HeaderCell onClick={this.handleSort(Columns.RangedDamage)} sorted={this.sorted === Columns.RangedDamage ? this.direction : undefined}>Ranged Damage</Table.HeaderCell>
                     <Table.HeaderCell onClick={this.handleSort(Columns.TotalDamage)} sorted={this.sorted === Columns.TotalDamage ? this.direction : undefined}>Melee x 1.5 + Ranged</Table.HeaderCell>
+                    <Table.HeaderCell>Other abilities</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -117,7 +118,6 @@ export class Stats extends React.Component<StatsProps> {
     renderCombination(unitStats: UnitStats) {
         const unit = unitStats.unit;
         const wounds = (unit.wounds || 0) * unit.size;
-        const savedWounds = unitStats.savedWounds * unit.size;
         const points = unit.points / 100;
         return <Table.Row key={unit.id + unitStats.name}>
             <Table.HeaderCell>{unit.model.name}</Table.HeaderCell>
@@ -127,10 +127,11 @@ export class Stats extends React.Component<StatsProps> {
             <Table.Cell>{unit.bravery}</Table.Cell>
             <Table.Cell>{wounds} ({(wounds / points).toFixed(2)}) </Table.Cell>
             <Table.Cell>{unitStats.save}</Table.Cell>
-            <Table.Cell>{savedWounds.toFixed()} ({(savedWounds / points).toFixed(2)})</Table.Cell>
+            <Table.Cell>{unitStats.savedWounds.toFixed()} ({(unitStats.savedWounds / points).toFixed(2)})</Table.Cell>
             <Table.Cell>{unitStats.meleeDamage.toFixed(2)} ({(unitStats.meleeDamage / points).toFixed(2)}) </Table.Cell>
             <Table.Cell>{unitStats.rangedDamage.toFixed(2)} ({(unitStats.rangedDamage / points).toFixed(2)}) </Table.Cell>
             <Table.Cell>{unitStats.totalDamage.toFixed(2)} ({(unitStats.totalDamage / points).toFixed(2)}) </Table.Cell>
+            <Table.Cell>{ unitStats.ignoredAbilities.map(x => x.name).join(", ") }</Table.Cell>
         </Table.Row>;
     }
 }
