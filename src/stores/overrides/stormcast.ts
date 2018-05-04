@@ -31,7 +31,13 @@ function addBoxes(data: DataStoreImpl):void {
             {count: 20, models: [data.models.bloodreavers]}
         ],
         price: 126
-    })
+    });
+    data.boxes.push({
+        id: "easyToBuildLiberators",
+        name: "Easy to Build: Liberators",
+        units: [{count: 3, models: [data.models.liberators]}],
+        price: 12
+    });
     data.boxes.push({
         id: "judicators",
         name: "Judicators",

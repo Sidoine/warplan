@@ -22,7 +22,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 45
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "lordOfBlights",
         name: "Lord of Blights",
         units: [
             { count: 1, models: [data.models.lordOfBlights] }
@@ -30,7 +30,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 20
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "greatUncleanOne",
         name: "Great Unclean One",
         units: [
             { count: 1, models: [data.models.greatUncleanOne] }
@@ -38,7 +38,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 110
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "beastOfNurgle",
         name: "Beast of Nurgle",
         units: [
             { count: 1, models: [data.models.beastsOfNurgle] }
@@ -46,7 +46,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 32
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "sloppityBilepiper",
         name: "Sloppity Bilepiper",
         units: [
             { count: 1, models: [data.models.sloppityBilepiperHeraldOfNurgle] }
@@ -54,7 +54,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 20
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "pusgoyleBlightlords",
         name: "Pusgoyle Blightlords",
         units: [
             { count: 2, models: [data.models.pusgoyleBlightlords] }
@@ -62,7 +62,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 55
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "spoilpoxScrivener",
         name: "Spoilpox Scrivener",
         units: [
             { count: 1, models: [data.models.spoilpoxScrivenerHeraldOfNurgle] }
@@ -70,7 +70,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 20
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "poxbringer",
         name: "Poxbringer",
         units: [
             { count: 1, models: [data.models.poxbringerHeraldOfNurgle] }
@@ -78,7 +78,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 20
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "plaguebearersOfNurgle",
         name: "Plaguebearers of Nurgle",
         units: [
             { count: 10, models: [data.models.plaguebearers] }
@@ -86,7 +86,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 23
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "plagueDronesOfNurgle",
         name: "Plague Drones of Nurgle",
         units: [
             { count: 3, models: [data.models.plagueDrones] }
@@ -94,7 +94,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 45
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "rotigus",
         name: "Rotigus",
         units: [
             { count: 1, models: [data.models.rotigus] }
@@ -102,7 +102,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 110
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "glottkin",
         name: "Glottkin",
         units: [
             { count: 1, models: [data.models.theGlottkin] }
@@ -110,7 +110,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 86
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "orghottsDaemonspew",
         name: "Orghotts Daemonspew",
         units: [
             { count: 1, models: [data.models.orghottsDaemonspew] }
@@ -118,7 +118,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 60
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "morbidexTwiceborn",
         name: "Morbidex Twiceborn",
         units: [
             { count: 1, models: [data.models.morbidexTwiceborn] }
@@ -126,7 +126,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 60
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "bloabRotspawned",
         name: "Bloab Rotspawned",
         units: [
             { count: 1, models: [data.models.bloabRotspawned] }
@@ -134,7 +134,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 60
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "lordOfAfflictions",
         name: "Lord of Afflictions",
         units: [
             { count: 1, models: [data.models.lordOfAfflictions, data.models.pusgoyleBlightlords] },
@@ -142,7 +142,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 55
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "horticulousSlimux",
         name: "Horticulous Slimux",
         units: [
             { count: 1, models: [data.models.horticulousSlimux] }
@@ -150,7 +150,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 43
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "epidemius",
         name: "Epidemius",
         units: [
             { count: 1, models: [data.models.epidemiusTallymanOfNurgle] }
@@ -158,7 +158,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 39
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "harbingerOfDecay",
         name: "Harbinger of Decay",
         units: [
             { count: 1, models: [data.models.harbingerOfDecay] }
@@ -166,7 +166,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 31
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "gutrotSprume",
         name: "Gutrot Sprume",
         units: [
             { count: 1, models: [data.models.gutrotSpume] }
@@ -174,7 +174,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 21
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "festus",
         name: "Festus The Leechlord",
         units: [
             { count: 1, models: [data.models.festusTheLeechlord] }
@@ -182,7 +182,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 16
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "lordOfPlagues",
         name: "Lord of Plagues",
         units: [
             { count: 1, models: [data.models.lordOfPlagues] }
