@@ -25,7 +25,7 @@ export interface Ability {
     name: string;
     description: string;
     getWounds?: (models: number, melee: boolean, attack?: Attack) => number;
-    getSavedWounds?: () => number;
+    getSavedWounds?: (save?: number) => number;
 }
 
 export interface Attack {
@@ -142,7 +142,7 @@ function addAttacksAndAbilitiesToStats(stats: UnitStats, attacks: Attack[] | und
             } 
 
             if (ability.getSavedWounds) {
-                stats.savedWounds += ability.getSavedWounds() * size * (stats.unit.wounds || 0);
+                stats.savedWounds += ability.getSavedWounds(stats.save) * size * (stats.unit.wounds || 0);
             }
 
             if (!ability.getWounds && !ability.getSavedWounds && stats.ignoredAbilities.indexOf(ability) < 0) {
@@ -177,7 +177,7 @@ function updateTotalDamage(stats: UnitStats) {
 
 export function getUnitStats(unit: Unit): UnitStats[] {
     const save = getValue(unit.save);
-    const savedWounds = (unit.wounds || 0) * unit.size * ((7 - save) / 6);
+    const savedWounds = (unit.wounds || 0) * unit.size * (unit.save ? 6 / (7 - save) : 1);
     const baseStats: UnitStats = {
         rangedDamage: 0,
         meleeDamage: 0,

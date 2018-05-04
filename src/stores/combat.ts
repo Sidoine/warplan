@@ -2,7 +2,7 @@ import { Attack } from "./units";
 
 export function getValue(formula: string | undefined) {
     if (!formula) return 0;
-    const number = formula.match(/^(-?\d+)\+?$/);
+    const number = formula.match(/^(-?\d+\.?\d*)\+?$/);
     if (number) return parseInt(number[1]);
     const dices = formula.match(/^(\d?)D(\d?)$/);
     if (dices) {

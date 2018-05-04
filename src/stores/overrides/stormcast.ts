@@ -1,6 +1,7 @@
 import { DataStoreImpl } from "../imported-data";
 import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory } from "../units";
-import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForUnitLeaderHasOneExtraAttack, getWoundsForAbilityReroll1OnHit } from "./tools";
+import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForBonusDamageIf6OnWound, getSavedWoundReroll1 } from "./tools";
+import { getAttackDamage, getAttackDamageEx } from "../combat";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -71,6 +72,14 @@ function fixBattalions(data: DataStoreImpl):void {
         { name: "Swift as the wind", description: "In your hero phase, all STORMCAST ETERNAL units from this battalion that are within 6\" of Neave Blacktalon may move 5\" as if it were the movement phase, but may not run." },
         { name: "Coordinated Attacks", description: "If a unit from Blacktalon's Shadowhammers makes a successful charge against an enemy unit that was the target of a shooting attack by another unit in this battalion this turn, you may add 1 to its hit rolls in the subsequent combat phase."}
     ]
+
+    const hammerStrikeForce: Battalion = data.battalions.hammerstrikeForce;
+    hammerStrikeForce.units.push({ unit: [data.units.paladinRetributors, data.units.paladinDecimators, data.units.paladinProtectors], count: 2, id: data.serial++ });
+    hammerStrikeForce.units.push({ unit: [data.units.prosecutorsWithCelestialHammers, data.units.prosecutorsWithStormcallJavelins], count: 1, id: data.serial++});
+    hammerStrikeForce.abilities=  [
+        { name: "Hammerstrike", description: "Instead of setting up the PALADINS on the battlefield, you can place either or both units to one side and say that they are set up in the Celestial Realm. In any of your movement phases, you can transport either or both units to the battlefield. When you do so, set them up on the battlefield within 6\" of the Hammerstrike Force’s Prosecutors. If the Prosecutors have been slain, set up the PALADINS more than 9\" from any enemy models. In either case, this is their move for that movement phase."},
+        { name: "Celestial Supercharge", description: "When a unit of PALADINS from the Hammerstrike Force is set up within \" of its Prosecutors, they are supercharged with celestial energy until the end of your turn. Add 1 to the result of any wound rolls you make for this unit."}
+    ];
 }
 
 function fixUnits(data: DataStoreImpl):void {
@@ -96,7 +105,7 @@ function fixUnits(data: DataStoreImpl):void {
         const sigmariteShields: Ability = { 
             name: "Sigmarite Shields", 
             description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields.",
-            getSavedWounds: () => 1/6 * 3/6
+            getSavedWounds: getSavedWoundReroll1
         };
         const wc = liberator.weaponOptions![0];
         const wh = wc.options.find(x => x.id === "warhammers")!;
@@ -131,7 +140,7 @@ function fixUnits(data: DataStoreImpl):void {
         liberator.abilities = [{ 
             name: "Liberator-Prime",
             description: "The leader of this unit is the Liberator-Prime. A Liberator-Prime makes 3 attacks rather than 2.",
-            getWounds: (models, melee, attack) => attack && models === 1 && melee ? getWoundsForUnitLeaderHasOneExtraAttack(attack) : 0
+            getWounds: (models, melee, attack) => attack && models === 1 && melee ? getWoundsForExtraAttack(attack) : 0
         }];    
     }
 
@@ -146,11 +155,30 @@ function fixUnits(data: DataStoreImpl):void {
         const shockboltBow: Attack = { name: "Shockbolt Bow", range: "24", attacks: "1", toHit: "3+", toWound: "3+", rend: "-1", damage: "1", melee: false };
         const thunderboltCrossbow: Attack = { name: "Thunderbolt Crossbow", range: "18", melee: false };
         const stormGladius: Attack = { name: "Storm Gladius", range: "1", attacks: "1", toHit: "3+", toWound: "4+", damage: "1", melee: true };
-        const judicatorPrime: Ability = { name: "Judicator-Prime", description: "A Judicator-Prime leads this unit. Add 1 to the hit rolls for a Judicator-Prime." };
-        const rapidFire: Ability = { name: "Rapid Fire", description: "If a unit of Judicators does not move in the movement phase, then you can add 1 to the Attacks characteristic of any Boltstorm Crossbows the unit uses in the shooting phase of the same turn." }
-        const chainedLightning: Ability = { name: "Chained Lightning", description: "If a Judicator attacking with a Shockbolt Bow scores a hit then the bolt explodes into a storm of lightning. Instead of making a single wound roll, roll a dice and make a number of wound rolls equal to the number scored." }
-        const eternalJudgment: Ability = { name: "Eternal Judgment", description: "You may re-roll any hit rolls of 1 when a Judicator attacks a CHAOS unit in the shooting phase." };
-        const thunderboltCrossbowAbility: Ability = { name: "Thunderbolt Crossbow", description: "When a model attacks with a Thunderbolt Crossbow the target is struck by a mighty blast of Celestial energy; pick an enemy unit within 18\" and roll a dice. Subtract 1 from the roll if the target is a MONSTER. If the result is equal to or less than the number of models in the unit, the unit suffers D3 mortal wounds." };
+        const judicatorPrime: Ability = { 
+            name: "Judicator-Prime", 
+            description: "A Judicator-Prime leads this unit. Add 1 to the hit rolls for a Judicator-Prime.",
+            getWounds: (models, melee, attack) => attack === skyboltBow || attack === shockboltBow ? getWoundsForAbilityBonus1OnHit(1, attack) : 0
+        };
+        const rapidFire: Ability = { 
+            name: "Rapid Fire", 
+            description: "If a unit of Judicators does not move in the movement phase, then you can add 1 to the Attacks characteristic of any Boltstorm Crossbows the unit uses in the shooting phase of the same turn.",
+            getWounds: (models, melee, attack) => attack === boltstormCrossbow ? getWoundsForExtraAttack(attack) * models * mediumRate : 0
+        };
+        const chainedLightning: Ability = { 
+            name: "Chained Lightning", 
+            description: "If a Judicator attacking with a Shockbolt Bow scores a hit then the bolt explodes into a storm of lightning. Instead of making a single wound roll, roll a dice and make a number of wound rolls equal to the number scored.",
+            getWounds: (models, melee, attack) => attack === shockboltBow ? getAttackDamage(attack) * 2.5 : 0
+        };
+        const eternalJudgment: Ability = { 
+            name: "Eternal Judgment",
+            description: "You may re-roll any hit rolls of 1 when a Judicator attacks a CHAOS unit in the shooting phase."
+        };
+        const thunderboltCrossbowAbility: Ability = { 
+            name: "Thunderbolt Crossbow", 
+            description: "When a model attacks with a Thunderbolt Crossbow the target is struck by a mighty blast of Celestial energy; pick an enemy unit within 18\" and roll a dice. Subtract 1 from the roll if the target is a MONSTER. If the result is equal to or less than the number of models in the unit, the unit suffers D3 mortal wounds.",
+            getWounds: (models, melee, attack) => attack === thunderboltCrossbow ? 2 * frequentRate : 0 
+        };
         
         const base = judicator.weaponOptions![0];
         let wo = base.options.find(x => x.id === "skyboltBows")!;
@@ -179,13 +207,41 @@ function fixUnits(data: DataStoreImpl):void {
             const thunderAxe: Attack = { melee: true,name: "Thunderaxe", range: "2", attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "2"};
             const tempestosHammer: Attack = { melee: true,name: "Tempestos Hammer", range: "2", attacks: "3", toHit: "3+", toWound: "2+", rend: "-1", damage: "D3"};
             const dracothsClawsAndFangs: Attack = {melee: true, name: "Dracoth's Claws and Fangs", range: "1", attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "1"};
-            const tempestosHammerAbility: Ability = { name: "Tempestos Hammer", description: "With the momentum of a charge behind it, few can stand against the impact of a Tempestos Hammer. If this model has made a charge move this turn, it can make D3 extra attacks with its Tempestos Hammer."};
-            const thunderaxeAbility: Ability = { name: "Thunderaxe", description: "In the capable hands of a Lord-Celestant, a Thunderaxe draws on the celestial energies of those around them until it is crackling with barely contained power. Add 1 to the Attacks of this model’s Thunderaxe for each other STORMCAST ETERNAL unit from your army within 5\"."};
-            const lightningHammerAbility: Ability = { name: "Lightning Hammer", description: "If the result of a hit roll for this model’s Lightning Hammer is 6 or more, the target unit immediately suffers two mortal wounds as warriors are blasted to ash, before the wound roll is made. If a unit suffers any mortal wounds in this way, it is stunned for the rest of the combat phase and cannot pile in before it attacks."};
-            const stormstrikeGlaiveAbility: Ability = { name: "Stormstrike Glaive", description: "Lowering their Stormstrike Glaive and wielding it as a lance, a Lord-Celestant can bring down the mightiest foes. If this model has made a charge move this turn, its Stormstrike Glaive causes 3 Damage rather than 1, and has a Rend of -2 rather than -1."}
-            const sigmariteThundershield: Ability = { name: "Sigmarite Thundershield", description: "You can re-roll save rolls of 1 for this model. If the re-rolled save is successful, the shield unleashes a deafening peal and each enemy unit within 3\" suffers a mortal wound."};
-            const intolerableDamage: Ability = {name: "Intolerable Damage", description: "If the wound roll for the Dracoth’s Claws and Fangs attack is 6 or more, then that attack causes D6 Damage rather than 1."};
-            const stormBreath: Ability = {name: "Storm Breath", description: "You can make a storm breath attack with this model in your shooting phase. To do so, pick a point on the battlefield that is within 12\" of this model. Roll a dice for each unit (friend or foe) that is within 2\" of the point that you picked. On a roll of 4 or more, the unit being rolled for suffers D3 mortal wounds."};
+            const tempestosHammerAbility: Ability = { 
+                name: "Tempestos Hammer", 
+                description: "With the momentum of a charge behind it, few can stand against the impact of a Tempestos Hammer. If this model has made a charge move this turn, it can make D3 extra attacks with its Tempestos Hammer.",
+                getWounds: (models, melee, attack) => attack === tempestosHammer ? getWoundsForExtraAttack(attack, 2) * rareRate : 0
+            };
+            const thunderaxeAbility: Ability = { 
+                name: "Thunderaxe", 
+                description: "In the capable hands of a Lord-Celestant, a Thunderaxe draws on the celestial energies of those around them until it is crackling with barely contained power. Add 1 to the Attacks of this model’s Thunderaxe for each other STORMCAST ETERNAL unit from your army within 5\".",
+                getWounds: (models, melee, attack) => attack === thunderAxe ? getWoundsForExtraAttack(attack, numberOfNeighborUnits) : 0
+            };
+            const lightningHammerAbility: Ability = { 
+                name: "Lightning Hammer", 
+                description: "If the result of a hit roll for this model’s Lightning Hammer is 6 or more, the target unit immediately suffers two mortal wounds as warriors are blasted to ash, before the wound roll is made. If a unit suffers any mortal wounds in this way, it is stunned for the rest of the combat phase and cannot pile in before it attacks.",
+                getWounds: (models, melee, attack) => attack === lightningHammer ? getWoundsForAbility6OnHitIsMortalWound(models, attack, 2) : 0
+            };
+            const stormstrikeGlaiveAbility: Ability = { 
+                name: "Stormstrike Glaive", 
+                description: "Lowering their Stormstrike Glaive and wielding it as a lance, a Lord-Celestant can bring down the mightiest foes. If this model has made a charge move this turn, its Stormstrike Glaive causes 3 Damage rather than 1, and has a Rend of -2 rather than -1.",
+                getWounds: (models, melee, attack) => attack === stormstrikeGlaive ? rareRate * (getAttackDamageEx(attack, { rend: "-2", damage: "3"}) - getAttackDamage(attack)) : 0
+            }
+            const sigmariteThundershield: Ability = { 
+                name: "Sigmarite Thundershield", 
+                description: "You can re-roll save rolls of 1 for this model. If the re-rolled save is successful, the shield unleashes a deafening peal and each enemy unit within 3\" suffers a mortal wound.",
+                getSavedWounds: getSavedWoundReroll1                
+            };
+            const intolerableDamage: Ability = {
+                name: "Intolerable Damage", 
+                description: "If the wound roll for the Dracoth’s Claws and Fangs attack is 6 or more, then that attack causes D6 Damage rather than 1.",
+                getWounds: (models, melee, attack) => attack === dracothsClawsAndFangs ? getWoundsForBonusDamageIf6OnWound(attack, 3.5) : 0
+            };
+            const stormBreath: Ability = {
+                name: "Storm Breath", 
+                description: "You can make a storm breath attack with this model in your shooting phase. To do so, pick a point on the battlefield that is within 12\" of this model. Roll a dice for each unit (friend or foe) that is within 2\" of the point that you picked. On a roll of 4 or more, the unit being rolled for suffers D3 mortal wounds.",
+                getWounds: (models, melee, attack) => !attack && !melee ? numberOfNeighborUnits * 0.5 * 2 : 0
+            };
             const lordOfTheHost: Ability = {name: "Lord of the Host", description: "If a Lord-Celestant uses this ability, until your next hero phase you do not have to take battleshock tests for this model or any friendly STORMCAST ETERNALS that are within 24\" of it at the start of the battleshock phase."};
 
             lordCelestantOnDracoth.abilities = [intolerableDamage, stormBreath];
@@ -219,12 +275,12 @@ function fixUnits(data: DataStoreImpl):void {
             const blastToAshes: Ability = { 
                 name: "Blast to Ashes", 
                 description: "If the hit roll for a model attacking with a Lightning Hammer is 6 or more, that blow strikes with a thunderous blast that inflicts 2 mortal wounds instead of its normal damage. Do not make a wound or save roll for the attack.",
-                getWounds: (models, melee, attack) => attack && attack.name === lightningHammer.name ? getWoundsForAbility6OnHitIsMortalWound(models, attack, 2) : 0
+                getWounds: (models, melee, attack) => attack && attack === lightningHammer ? getWoundsForAbility6OnHitIsMortalWound(models, attack, 2) : 0
             };
             const retributorPrime: Ability = { 
                 name: "Retributor-Prime", 
                 description: "The leader of this unit is the Retributor-Prime. A Retributor-Prime makes 3 attacks rather than 2 with a Lightning Hammer.",
-                getWounds: (models, melee, attack) => attack && attack.name === lightningHammer.name ? getWoundsForUnitLeaderHasOneExtraAttack(attack) : 0
+                getWounds: (models, melee, attack) => attack && attack === lightningHammer ? getWoundsForExtraAttack(attack) : 0
             };
             paladinRetributors.abilities = [retributorPrime];
             const starsoulMaceOption: WeaponOption = { attacks: [starsoulMace], abilities: [starsoulMaceAbility], name: "Starsoul Mace", id: "starsoulMace" };
@@ -263,10 +319,22 @@ function fixUnits(data: DataStoreImpl):void {
             const stormcallJavelinMelee: Attack = {melee: true, name: "Stormcall Javelin", range: "2", attacks: "1", toHit: "4+", toWound: "4+", damage: "1"};
             const stormsurgeTridentMelee: Attack = {melee: true, name: "Stormsurge Trident", range: "2", attacks: "1", toHit: "4+", toWound: "4+", rend: "-1", damage: "2"};
             const fly: Ability = { name: "Fly", description: "Prosecutors can fly."};
-            const prosecutorPrime: Ability = { name: "Prosecutor-Prime", description: "The leader of this unit is the Prosecutor-Prime. Raining death from afar, this model makes 2 attacks rather than 1 in the shooting phase."};
-            const stormcallJavelinAbility: Ability = { name: "Stormcall Javelin", description: "If a Prosecutor throws a Stormcall Javelin at a unit over 9\" away, the javelin calls down a bolt of lightning; that attack has Damage 2 instead of 1."};
+            const prosecutorPrime: Ability = { 
+                name: "Prosecutor-Prime", 
+                description: "The leader of this unit is the Prosecutor-Prime. Raining death from afar, this model makes 2 attacks rather than 1 in the shooting phase.",
+                getWounds: (models, melee, attack) => !melee && attack ? getWoundsForExtraAttack(attack) : 0
+            };
+            const stormcallJavelinAbility: Ability = { 
+                name: "Stormcall Javelin", 
+                description: "If a Prosecutor throws a Stormcall Javelin at a unit over 9\" away, the javelin calls down a bolt of lightning; that attack has Damage 2 instead of 1.",
+                getWounds: (models, melee, attack) => attack === stormcallJavelin ? frequentRate * getAttackDamage(attack) : 0
+            };
             const heraldsOfRightouness: Ability=  {name: "Heralds of Righteousness", description: "Roll 3 dice instead of 2 dice when determining the charge move for this unit. In addition, you can declare a charge with this unit if it is within 18\" of the enemy rather than 12\"."};
-            const sigmariteShield: Ability = {name: "Sigmarite Shields", description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields."};
+            const sigmariteShield: Ability = {
+                name: "Sigmarite Shields", 
+                description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields.",
+                getSavedWounds: getSavedWoundReroll1
+            };
             prosecutorsWithStormcallJavelins.attacks = [stormcallJavelin, stormsurgeTrident, stormcallJavelinMelee, stormsurgeTridentMelee];
             prosecutorsWithStormcallJavelins.abilities= [fly, prosecutorPrime, stormcallJavelinAbility, heraldsOfRightouness, sigmariteShield];
         }
@@ -287,7 +355,7 @@ function fixUnits(data: DataStoreImpl):void {
             const headshot: Ability = {
                 name: "Headshot", 
                 description: "If the hit roll for a Longstrike Crossbow is a 6 or more, it causes 2 mortal wounds instead of its normal damage.",
-                getWounds: (models, melee, attack) => attack && attack.name === longstrikeCrossbow.name ? getWoundsForAbility6OnHitIsMortalWound(models, attack, 2) : 0
+                getWounds: (models, melee, attack) => attack && attack === longstrikeCrossbow ? getWoundsForAbility6OnHitIsMortalWound(models, attack, 2) : 0
             };
             const warningCry: Ability = {name: "Warning Cry", description: "If an enemy unit makes a charge move that ends within 1\" of a unit that includes a Raptor-Prime with an Aetherwing, roll a dice for each Vanguard-Raptor in the unit. Any rolls of 6 inflict 2 mortal wounds on the charging unit."}
             unit.attacks = [longstrikeCrossbow, heavyStock];
@@ -296,6 +364,20 @@ function fixUnits(data: DataStoreImpl):void {
                 maxCount: 1,
                 options: [{ id: "aetherwing", name: "Aetherwing", abilities: [warningCry], attacks: [beakAndClaws] }]
             }];
+        }
+
+        {
+            const unit: Unit = data.units.aetherwings;
+            unit.move = 12;
+            unit.bravery = 6;
+            unit.wounds = 2;
+
+            const beakAndClaws: Attack = { melee: true, name: "Beak and Claws", range: "1", attacks: "2", toHit: "4+", toWound: "3+", damage: "1"};
+            const fly: Ability = { name: "Fly", description: "Aetherwings can fly."};
+            const watchfulGuardians: Ability = { name: "Watchful Guardians", description: "Aetherwings form close bonds with Vanguard-Raptors, and defend them from their enemies even as the Vanguard-Raptors destroy threats from afar. At the beginning of your opponent’s charge phase, any friendly unit of Aetherwings within 12\" of a friendly unit of Vanguard-Raptors can immediately move. Roll two dice – the Aetherwings can move up to this distance in inches. They can retreat with this move, but cannot run, and this move cannot take them further than 12\" from the Vanguard-Raptors."}
+            const swoopingHunters: Ability = { name: "Swooping Hunters", description: "Units of Aetherwings can retreat and charge in the same turn."};
+            unit.attacks = [beakAndClaws];
+            unit.abilities = [fly, watchfulGuardians, swoopingHunters];
         }
     }
 }
