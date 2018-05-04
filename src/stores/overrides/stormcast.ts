@@ -5,7 +5,7 @@ import { getAttackDamage, getAttackDamageEx } from "../combat";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
-        id: data.serial++,
+        id: "startCollectingStormcastVanguard",
         name: "Start Collecting! Stormcast Vanguard",
         units: [
             { count: 1, models: [data.models.lordAquilor] },
@@ -16,7 +16,24 @@ function addBoxes(data: DataStoreImpl):void {
         price: 65
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "warhammerAgeOfSigmarStarterSet",
+        name: "Warhammer Age of Sigmar Starter Set",
+        units: [
+            { count: 1, models: [data.models.lordCelestantOnDracoth]},
+            {count: 1, models: [data.models.lordRelictor]},
+            {count: 3, models: [data.models.paladinRetributors]},
+            {count: 10, models: [data.models.liberators]},
+            {count: 3, models: [data.models.prosecutorsWithCelestialHammers]},
+            {count: 1, models: [data.models.mightyLordOfKhorne]},
+            {count: 1, models: [data.models.bloodsecrator]},
+            {count: 1, models: [data.models.khorgoraths]},
+            {count: 5, models: [data.models.bloodWarriors]},
+            {count: 20, models: [data.models.bloodreavers]}
+        ],
+        price: 126
+    })
+    data.boxes.push({
+        id: "judicators",
         name: "Judicators",
         units: [
             { count: 10, models: [data.models.judicators] }
@@ -24,7 +41,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 49
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "knightVenator",
         name: "Kinght-Venator/Azyros",
         units: [
             { count: 1, models: [data.models.knightAzyros, data.models.knightVenator] }
@@ -32,7 +49,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 33
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "vanguardRaptors",
         name: "Vanguard-Raptors",
         units: [
             { count: 3, models: [data.models.vanguardRaptorsWithHurricaneCrossbows, data.models.vanguardRaptorsWithLongstrikeCrossbows] },
@@ -41,12 +58,114 @@ function addBoxes(data: DataStoreImpl):void {
         price: 30
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "lordAquilor",
         name: "Lord-Aquilor",
         units: [
             { count: 1, models: [data.models.lordAquilor] }
         ],
         price: 32.50
+    });
+    data.boxes.push({
+        id: "stardrake",
+        name: "Lord-Celestant on Stardrake/Drakesworn Templar",
+        units: [{ count: 1, models: [data.models.lordCelestantOnStardrake, data.models.drakeswornTemplar]}],
+        price: 120
+    });
+    data.boxes.push({
+        id: "celestantPrime",
+        name: "Celestant-Prime",
+        units: [{count:1, models: [data.models.celestantPrime]}],
+        price: 62
+    });
+    data.boxes.push({
+        id: "dracothianGuard",
+        name: "Dracothian Guard",
+        units: [{count: 2, models: [data.models.fulminators, data.models.tempestors, data.models.concussors, data.models.desolators]}],
+        price: 55
+    });
+    data.boxes.push({
+        id: "paladins",
+        name: "Paladins",
+        units: [{count: 5, models: [data.models.paladinDecimators, data.models.paladinProtectors, data.models.paladinRetributors]}],
+        price: 46
+    });
+    data.boxes.push({
+        id: "easyToBuildRetributors",
+        name: "Easy to Build: Retributors",
+        units: [{count: 2, models: [data.models.paladinRetributors]}],
+        price: 12
+    });
+    data.boxes.push({
+        id: "prosecutors",
+        name: "Prosecutors",
+        units: [{count: 6, models: [data.models.prosecutorsWithCelestialHammers, data.models.prosecutorsWithStormcallJavelins]}],
+        price: 59
+    });
+    data.boxes.push({
+        id: "vanguardHunters",
+        name: "Vanguard-Hunters",
+        units: [{count: 10, models: [data.models.vanguardHunters]}],
+        price: 50
+    });
+    data.boxes.push({
+        id: "liberators",
+        name: "Liberators",
+        units: [{count: 10, models: [data.models.liberators]}],
+        price: 49
+    });
+    data.boxes.push({
+        id: "vanguardPalladors",
+        name: "Vanguard-Palladors",
+        units: [{count: 3, models: [data.models.vanguardPalladors]}],
+        price: 45
+    });
+    data.boxes.push({
+        id: "vandusHammerhand",
+        name: "Vandus Hammerhand",
+        units: [{count: 1, models: [data.models.vandusHammerhand]}],
+        price: 32.50
+    });
+    data.boxes.push({
+        id: "lordCastellant",
+        name: "Lord-Castellant/Lord-Veritant",
+        units: [{count:1, models: [data.models.lordCastellant, data.models.lordVeritant]}, {count:1, models: [data.models.gryphHound]}],
+        price: 30
+    });
+    data.boxes.push({
+        id: "lordCelestant",
+        name: "Lord-Celestant",
+        units: [{count: 1, models: [data.models.lordCelestant]}],
+        price: 26
+    });
+    data.boxes.push({
+        id: "lordCelestantGavrielSureheart",
+        name: "Lord-Celestant Gavriel Sureheart",
+        units: [{count: 1, models: [data.models.lordCelestant]}],
+        price: 25
+    });
+    data.boxes.push({
+        id: "lordOrdinatorVorrusStarstrike",
+        name: "Lord-Ordinator Vorrus Starstrike",
+        units: [{count: 1, models: [data.models.lordOrdinator]}],
+        price: 25
+    });
+    data.boxes.push({
+        id: "knightVexillor",
+        name: "Knight-Vexillor",
+        units: [{count: 1, models: [data.models.knightVexillor]}],
+        price: 23
+    });
+    data.boxes.push({
+        id: "gryphHounds",
+        name: "Gryph-hounds",
+        units: [{count: 6, models: [data.models.gryphHound]}],
+        price: 20
+    });
+    data.boxes.push({
+        id: "knightHeraldor",
+        name: "Knight-Heraldor",
+        units: [{count:1, models: [data.models.knightHeraldor]}],
+        price: 19.5
     });
 }
 

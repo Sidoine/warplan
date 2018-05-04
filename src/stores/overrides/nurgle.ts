@@ -3,7 +3,7 @@ import { Unit, Ability, Attack } from "../units";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
-        id: data.serial++,
+        id: "startCollectingNurgleDaemons",
         name: "Start Collecting! Nurgle Daemons",
         units: [
             { count: 3, models: [data.models.nurglings] },
@@ -14,7 +14,7 @@ function addBoxes(data: DataStoreImpl):void {
         price: 65
     });
     data.boxes.push({
-        id: data.serial++,
+        id: "putridBlightkings",
         name: "Putrid Blightkings",
         units: [
             { count: 5, models: [data.models.putridBlightkings] }

@@ -11,7 +11,7 @@ export interface BasketElement {
 
 interface SerializedBasket {
     boxes: {
-        boxId: number;
+        boxId: string;
         count: number;
     }[];
 }

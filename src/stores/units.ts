@@ -227,7 +227,7 @@ export interface BoxedModel {
 }
 
 export interface Box {
-    id: number;
+    id: string;
     units: BoxedModel[];
     price: number;
     name: string;
