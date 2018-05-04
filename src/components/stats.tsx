@@ -120,7 +120,7 @@ export class Stats extends React.Component<StatsProps> {
         const wounds = (unit.wounds || 0) * unit.size;
         const points = unit.points / 100;
         return <Table.Row key={unit.id + unitStats.name}>
-            <Table.HeaderCell>{unit.model.name}</Table.HeaderCell>
+            <Table.HeaderCell>{ !unit.warscroll && unit.model.name} { unit.warscroll && <a href={unit.warscroll}>{unit.model.name}</a> }</Table.HeaderCell>
             <Table.Cell>{unitStats.name}</Table.Cell>
             <Table.Cell>{unit.points}</Table.Cell>
             <Table.Cell>{unit.move}</Table.Cell>

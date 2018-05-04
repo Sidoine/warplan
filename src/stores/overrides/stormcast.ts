@@ -146,7 +146,7 @@ function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
         id: "lordCelestantGavrielSureheart",
         name: "Lord-Celestant Gavriel Sureheart",
-        units: [{count: 1, models: [data.models.lordCelestant]}],
+        units: [{count: 1, models: [data.models.gavrielSureheart]}],
         price: 25
     });
     data.boxes.push({
@@ -503,6 +503,61 @@ function fixUnits(data: DataStoreImpl):void {
             const swoopingHunters: Ability = { name: "Swooping Hunters", description: "Units of Aetherwings can retreat and charge in the same turn."};
             unit.attacks = [beakAndClaws];
             unit.abilities = [fly, watchfulGuardians, swoopingHunters];
+        }
+
+        {
+            const unit: Unit = data.units.prosecutorsWithCelestialHammers;
+            unit.move = 12;
+            unit.bravery = 6;
+            unit.save = "4+";
+            const celestialHammers: Attack = { melee: false, name: "Celestial Hammers", range: "18", attacks: "2", toHit: "4+", toWound: "4+", damage: "1"};
+            const celestialHammersMelee: Attack = { melee: true, name: "Celestial Hammers", range: "1", attacks: "2", toHit: "3+", toWound: "3+", damage: "1" };
+            const grandaxe: Attack = { melee: true, name: "Grandaxe", range: "1", toHit: "3+", toWound: "3+", rend: "-1", damage: "1"};
+            const grandblade: Attack = {melee: true, name: "Grandblade", range: "1", attacks: "2", toHit: "3+", toWound: "4+", rend: "-1", damage: "2"};
+            const grandhammer: Attack = { melee: true, name: "Grandhammer", range: "1", attacks: "2", toHit: "4+", toWound: "3+", rend: "-1", damage: "2"};
+            const fly: Ability = { name: "Fly", description: "Prosecutors can fly."};
+            const prosecutorPrime: Ability = { name: "Prosecutor-Prime", description: "The leader of this unit is the Prosecutor-Prime. Trained for brutal melee, this model makes 3 attacks rather than 2 in the combat phase."};
+            const heraldsOfRightouness: Ability = { name: "Heralds of Righteousness", description: "Roll 3 dice instead of 2 when determining the charge move for this unit. In addition, you can declare a charge with this unit if it is within 18\" of the enemy rather than 12\"."};
+            const cleavingBlow: Ability = {name: "Cleaving Blow", description: "When a model attacks with a Grandaxe, select a target unit and make one attack against it for each model it has within range."};
+            const pairedCelestialHammers: Ability = {name: "Paired Celestial Hammers", description: "You can re-roll hit rolls of 1 for models armed with more than one Celestial Hammer."};
+            const sigmariteShield: Ability = {name: "Sigmarite Shields", description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields."};
+            unit.abilities = [sigmariteShield, fly, prosecutorPrime, heraldsOfRightouness];
+            unit.attacks = [celestialHammers];
+            const pairOfCelestialHammers: WeaponOption = {
+                id: "celestialHammerDual",
+                abilities: [pairedCelestialHammers],
+                attacks: [celestialHammers, celestialHammersMelee],
+                name: "Pair of Celestial Hammers"
+            }
+            const celestialHammerAndShield: WeaponOption = {
+                id: "celestialHammerAndShield",
+                name: "Celestial Hammer and Sigmarite Shield",
+                abilities: [sigmariteShield],
+                attacks: [celestialHammers, celestialHammersMelee]
+            }
+            const grandaxeOption: WeaponOption = {
+                id: "grandaxe",
+                name: "Grandaxe",
+                abilities: [cleavingBlow],
+                attacks: [grandaxe]
+            }
+            const grandbladeOption: WeaponOption = {
+                id: "grandblade",
+                name: "Grandblade",
+                attacks: [grandblade]
+            }
+            const grandhammerOption: WeaponOption = {
+                id: "grandhammer",
+                name: "Grandhammer",
+                attacks: [grandhammer]
+            }
+            unit.weaponOptions = [{
+                options: [pairOfCelestialHammers, celestialHammerAndShield]
+            }, {
+                maxCount: 1,
+                options: [grandbladeOption, grandhammerOption, grandaxeOption]
+            }];
+
         }
     }
 }
