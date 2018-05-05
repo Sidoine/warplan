@@ -16,9 +16,10 @@ export const enum GrandAlliance {
 }
 
 export interface Faction {
-    id: string,
-    grandAlliance: GrandAlliance,
-    name: string
+    id: string;
+    grandAlliance: GrandAlliance;
+    name: string;
+    allied?: string[];
 }
 
 export interface Ability {
@@ -348,6 +349,8 @@ export class UnitsStore {
         }
 
         this.armyOptions = data.armyOptions;
+
+        this.addAlliances(data);
     }
 
     getUnit(id: string) {
@@ -356,5 +359,92 @@ export class UnitsStore {
 
     getExtraAbility(id: string) {
         return this.extraAbilities.find(x => x.id === id);
+    }
+
+    private addAlliance(faction1: Faction, ...factions: Faction[]) {
+        if (!faction1.allied) faction1.allied = [];
+        for (let j = 0; j < factions.length; j++) {
+            const faction2 = factions[j];
+            if (!faction2.allied) faction2.allied = [];
+            if (faction1.allied.indexOf(faction2.id) < 0) {
+                faction1.allied.push(faction2.id);
+                faction2.allied.push(faction1.id);
+            }
+        }
+    }
+
+    private addAlliances(data: DataStoreImpl) {
+        const factions = data.factions;
+
+        // Chaos
+        this.addAlliance(factions.BRAYHERD, factions.CHAOSGARGANTS, factions.MONSTERSOFCHAOS, factions.THUNDERSCORN, factions.WANDERERS);
+        this.addAlliance(factions.KHORNEBLOODBOUND, factions.BRAYHERD, factions.CHAOSGARGANTS, factions.EVERCHOSEN, factions.MONSTERSOFCHAOS, factions.NURGLEROTBRINGERS, factions.SLAVESTODARKNESS, factions.WARHERD);
+        // factions.CHAOSGARGANTS
+        this.addAlliance(factions.SKAVENESHIN, factions.SKAVENESHIN, factions.SKAVENMOULDER, factions.SKAVENPESTILENS, factions.SKAVENVERMINUS, factions.MASTERCLAN);
+        this.addAlliance(factions.SKAVENMOULDER, factions.SKAVENESHIN, factions.SKAVENSKRYRE, factions.SKAVENPESTILENS, factions.SKAVENVERMINUS, factions.MASTERCLAN);
+        this.addAlliance(factions.SKAVENPESTILENS, factions.SKAVENESHIN, factions.SKAVENMOULDER, factions.SKAVENSKRYRE, factions.SKAVENVERMINUS, factions.NURGLEDAEMONS, factions.MASTERCLAN);
+        this.addAlliance(factions.SKAVENSKRYRE, factions.SKAVENESHIN, factions.SKAVENMOULDER, factions.SKAVENPESTILENS, factions.SKAVENVERMINUS, factions.MASTERCLAN);
+        this.addAlliance(factions.SKAVENVERMINUS, factions.SKAVENESHIN, factions.SKAVENMOULDER, factions.SKAVENPESTILENS, factions.SKAVENSKRYRE, factions.MASTERCLAN);
+        // this.addAlliance(factions.DAEMONSOFCHAOS)
+        // factions.NURGLEDAEMONS
+        // TODO Faction name?
+        this.addAlliance(factions.TZEENTCHDAEMONS, factions.CHAOSGARGANTS, factions.EVERCHOSEN, factions.MONSTERSOFCHAOS, factions.SLAVESTODARKNESS, factions.THUNDERSCORN);
+        this.addAlliance(factions.EVERCHOSEN, ...this.factionsList.filter(x => x.grandAlliance === GrandAlliance.chaos));
+        this.addAlliance(factions.SLAANESHDAEMONS, factions.BRAYHERD, factions.CHAOSGARGANTS, factions.EVERCHOSEN, factions.MONSTERSOFCHAOS, factions.NURGLEROTBRINGERS, factions.SLAVESTODARKNESS, factions.WARHERD);
+        // factions.MASTERCLAN
+        // factions.MONSTERSOFCHAOS
+        this.addAlliance(factions.NURGLEROTBRINGERS, factions.BRAYHERD, factions.CHAOSGARGANTS, factions.EVERCHOSEN, factions.MONSTERSOFCHAOS, factions.SLAANESHDAEMONS, factions.SLAVESTODARKNESS, factions.WARHERD);
+        this.addAlliance(factions.SLAVESTODARKNESS, factions.KHORNEBLOODBOUND, factions.BRAYHERD, factions.CHAOSGARGANTS, factions.NURGLEDAEMONS, factions.TZEENTCHDAEMONS, factions.EVERCHOSEN, factions.SLAANESHDAEMONS, factions.NURGLEROTBRINGERS, factions.WARHERD);
+        this.addAlliance(factions.THUNDERSCORN, factions.CHAOSGARGANTS, factions.MONSTERSOFCHAOS, factions.BRAYHERD, factions.WARHERD);
+        this.addAlliance(factions.WARHERD, factions.CHAOSGARGANTS, factions.MONSTERSOFCHAOS, factions.THUNDERSCORN, factions.BRAYHERD);
+
+        // Death
+        this.addAlliance(factions.DEADWALKERS, factions.FLESHEATERCOURTS, factions.DEATHRATTLE, factions.DEATHMAGES, factions.NIGHTHAUNT, factions.SOULBLIGHT);
+        this.addAlliance(factions.DEATHLORDS, factions.DEADWALKERS, factions.FLESHEATERCOURTS, factions.DEATHRATTLE, factions.DEATHMAGES, factions.NIGHTHAUNT, factions.SOULBLIGHT);
+        //this.addAlliance(factions.DEATHMAGES);
+        this.addAlliance(factions.DEATHRATTLE, factions.DEADWALKERS, factions.DEATHLORDS, factions.DEATHMAGES, factions.SOULBLIGHT);
+        this.addAlliance(factions.FLESHEATERCOURTS, factions.DEADWALKERS, factions.DEATHLORDS, factions.DEATHMAGES);
+        this.addAlliance(factions.NIGHTHAUNT, factions.DEATHLORDS, factions.SOULBLIGHT);
+        this.addAlliance(factions.SOULBLIGHT, factions.DEADWALKERS, factions.DEATHLORDS, factions.DEATHMAGES, factions.NIGHTHAUNT);
+
+        // Destruction
+        //this.addAlliance(factions.ALEGUZZLERGARGANTS);
+        this.addAlliance(factions.BEASTCLAWRAIDERS, factions.ALEGUZZLERGARGANTS, factions.FIREBELLIES, factions.GUTBUSTERS, factions.MANEATERS, factions.TROGGOTHS);
+        this.addAlliance(factions.BONESPLITTERZ, factions.ALEGUZZLERGARGANTS, factions.ORRUKS, factions.IRONJAWZ, factions.MOONCLANGROTS, factions.SPIDERFANGGROTS, factions.TROGGOTHS);
+        // this.addAlliance(factions.FIREBELLIES);
+        // TODO Is this the same as Gitmob Grot?
+        this.addAlliance(factions.GROTS, factions.ALEGUZZLERGARGANTS, factions.ORRUKS, factions.MOONCLANGROTS, factions.SPIDERFANGGROTS, factions.TROGGOTHS);
+        // Same as Greenskinz
+        this.addAlliance(factions.ORRUKS, factions.ALEGUZZLERGARGANTS, factions.BONESPLITTERZ, factions.GROTS, factions.IRONJAWZ, factions.MOONCLANGROTS, factions.SPIDERFANGGROTS, factions.TROGGOTHS);
+        this.addAlliance(factions.GUTBUSTERS, factions.ALEGUZZLERGARGANTS, factions.FIREBELLIES, factions.BEASTCLAWRAIDERS, factions.MANEATERS, factions.TROGGOTHS);
+        this.addAlliance(factions.IRONJAWZ, factions.ALEGUZZLERGARGANTS, factions.BONESPLITTERZ, factions.GROTS, factions.ORRUKS, factions.MOONCLANGROTS, factions.TROGGOTHS);
+        //this.addAlliance(factions.MANEATERS);
+        this.addAlliance(factions.MOONCLANGROTS, factions.ALEGUZZLERGARGANTS, factions.ORRUKS, factions.GROTS, factions.SPIDERFANGGROTS, factions.TROGGOTHS);
+        this.addAlliance(factions.SPIDERFANGGROTS, factions.ALEGUZZLERGARGANTS, factions.ORCSANDGOBLINS, factions.MOONCLANGROTS, factions.GROTS, factions.TROGGOTHS);
+        //this.addAlliance(factions.TROGGOTHS);
+
+        // Order
+        //this.addAlliance(factions.AELVES);
+        //this.addAlliance(factions.COLLEGIATEARCANE);
+        this.addAlliance(factions.DARKLINGCOVENS, factions.DAUGHTERSOFKHAINE, factions.ORDERSERPENTIS, factions.SCOURGEPRIVATEERS, factions.SHADOWBLADES, factions.STORMCASTETERNALS);
+        this.addAlliance(factions.DAUGHTERSOFKHAINE, factions.DARKLINGCOVENS, factions.ORDERSERPENTIS, factions.SCOURGEPRIVATEERS, factions.SHADOWBLADES, factions.STORMCASTETERNALS);
+        this.addAlliance(factions.DEVOTEDOFSIGMAR, factions.COLLEGIATEARCANE, factions.FREEPEOPLES, factions.IRONWELDARSONAL, factions.STORMCASTETERNALS);
+        this.addAlliance(factions.DISPOSSESSED, factions.FYRESLAYERS, factions.IRONWELDARSONAL, factions.KHARADRONOVERLORDS, factions.STORMCASTETERNALS);
+        this.addAlliance(factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.ORDERDRACONIS, factions.PHOENIXTEMPLE, factions.STORMCASTETERNALS, factions.SWIFTHAWKAGENTS, factions.SYLVANETH, factions.WANDERERS);
+        this.addAlliance(factions.FREEPEOPLES, factions.COLLEGIATEARCANE, factions.DEVOTEDOFSIGMAR, factions.IRONWELDARSONAL, factions.STORMCASTETERNALS);
+        this.addAlliance(factions.FYRESLAYERS, factions.DISPOSSESSED, factions.IRONWELDARSONAL, factions.KHARADRONOVERLORDS, factions.STORMCASTETERNALS);
+        //this.addAlliance(factions.IRONWELDARSONAL);
+        this.addAlliance(factions.KHARADRONOVERLORDS, factions.DISPOSSESSED, factions.FYRESLAYERS, factions.IRONWELDARSONAL, factions.STORMCASTETERNALS);
+        //this.addAlliance(factions.LIONRANGERS);
+        this.addAlliance(factions.ORDERDRACONIS, factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.PHOENIXTEMPLE, factions.STORMCASTETERNALS, factions.SWIFTHAWKAGENTS, factions.SYLVANETH, factions.WANDERERS);
+        this.addAlliance(factions.ORDERSERPENTIS, factions.DARKLINGCOVENS, factions.DAUGHTERSOFKHAINE, factions.SCOURGEPRIVATEERS, factions.SHADOWBLADES, factions.STORMCASTETERNALS);
+        this.addAlliance(factions.PHOENIXTEMPLE, factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.ORDERDRACONIS, factions.STORMCASTETERNALS, factions.SWIFTHAWKAGENTS, factions.WANDERERS);
+        this.addAlliance(factions.SCOURGEPRIVATEERS, factions.DARKLINGCOVENS, factions.DAUGHTERSOFKHAINE, factions.ORDERSERPENTIS, factions.SHADOWBLADES, factions.STORMCASTETERNALS);
+        this.addAlliance(factions.SERAPHON, factions.STORMCASTETERNALS);
+        this.addAlliance(factions.SHADOWBLADES, factions.DARKLINGCOVENS, factions.DAUGHTERSOFKHAINE, factions.ORDERSERPENTIS, factions.SCOURGEPRIVATEERS, factions.STORMCASTETERNALS);
+        this.addAlliance(factions.STORMCASTETERNALS, ...this.factionsList.filter(x => x.grandAlliance === GrandAlliance.order));
+        this.addAlliance(factions.SWIFTHAWKAGENTS, factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.ORDERDRACONIS, factions.PHOENIXTEMPLE, factions.STORMCASTETERNALS, factions.SYLVANETH, factions.WANDERERS);
+        this.addAlliance(factions.SYLVANETH, factions.STORMCASTETERNALS, factions.WANDERERS);
+        this.addAlliance(factions.WANDERERS, factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.ORDERDRACONIS, factions.PHOENIXTEMPLE, factions.STORMCASTETERNALS, factions.SWIFTHAWKAGENTS, factions.SYLVANETH);
     }
 }

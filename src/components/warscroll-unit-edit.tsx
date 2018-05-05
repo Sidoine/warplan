@@ -20,7 +20,8 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
             <Table.Cell>
                 <div>{unit.unit.model.name}</div>
                 <div>{ unit.unit.size } <Icon name="user"/>
-                { unit.unit.warscroll && <a target="_blank" href={unit.unit.warscroll}><Icon name="help circle outline"/></a>}
+                    {unit.unit.warscroll && <a target="_blank" href={unit.unit.warscroll}><Icon name="help circle outline" /></a>}
+                    {unit.nonAlliedUnits.length > 0 && <Icon name="warning" title={`Can't be allied with ${unit.nonAlliedUnits.map(x => x.unit.model.name).join(', ')}`}/>}            
                  </div>
                 <div>
                     <div><em>{unit.unit.subType}</em></div>

@@ -73,9 +73,7 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
     }
 
     private setGrandAlliance = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-        this.props.uiStore!.grandAlliance = data.value as GrandAlliance;
-        this.props.warscrollStore!.warscroll.grandAlliance = this.props.uiStore!.grandAlliance;
-        this.props.warscrollStore!.saveWarscroll();
+        this.props.uiStore!.setGrandAlliance(data.value as GrandAlliance);
     }
 
     private setAllegiance = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
@@ -91,7 +89,6 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
     }
 
     private setFaction = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-        const faction = this.props.unitsStore!.factionsList.find(x => x.id === data.value);
-        if (faction) this.props.uiStore!.faction = faction;
+        if (typeof(data.value) === "string") this.props.uiStore!.setFaction(data.value);
     }
 }

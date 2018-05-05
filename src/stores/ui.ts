@@ -1,9 +1,12 @@
 import { observable, action, computed } from "mobx";
 import { GrandAlliance, UnitsStore, getUnitStats, UnitStats } from "./units";
 
+interface SerializedUi {
+    grandAlliance: GrandAlliance;
+    faction: string;
+}
+
 export class UiStore {
-    constructor(private unitsStore: UnitsStore) {
-    }
 
     @observable
     basketPopin: boolean = false;
@@ -16,11 +19,6 @@ export class UiStore {
 
     @observable
     faction = this.unitsStore.factions["STORMCASTETERNALS"];
-
-    @action
-    setFaction(factionId: string) {
-        this.faction = this.faction;
-    }
 
     @computed
     get units() {
@@ -44,6 +42,18 @@ export class UiStore {
         return this.unitsStore.battalions.filter(x => x.factions.some(x => x.id === this.faction.id));
     }
 
+    constructor(private unitsStore: UnitsStore) {
+        const ui: string | null = localStorage.getItem('ui');
+        if (ui) {
+            const serialized: SerializedUi = JSON.parse(ui);
+            this.grandAlliance = serialized.grandAlliance;
+            const faction = this.unitsStore.factions[serialized.faction];
+            if (faction) {
+                this.faction = faction;
+            }
+        }
+    }
+    
     @action
     showWarscrollPopin() {
         this.warscrollPopin = true;
@@ -62,5 +72,28 @@ export class UiStore {
     @action
     closeBasketPopin() {
         this.basketPopin = false;
+    }
+    
+    @action
+    setFaction(factionId: string) {
+        const faction = this.unitsStore!.factions[factionId]
+        if (faction) {
+            this.faction = faction;
+            this.saveUi();
+        }
+    }
+    
+    @action
+    setGrandAlliance(grandAlliance: GrandAlliance) {
+        this.grandAlliance = grandAlliance;
+        this.saveUi();
+    }
+
+    private saveUi() {
+        const serialized: SerializedUi = {
+            faction: this.faction.id,
+            grandAlliance: this.grandAlliance
+        }
+        localStorage.setItem('ui', JSON.stringify(serialized));
     }
 }

@@ -1,9 +1,19 @@
 import { action, computed, observable, toJS } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion } from "./units";
 
 export interface WarscrollWeaponOption {
     weaponOption?: WeaponOption;
     count?: number;
+}
+
+function areAllied(unit1: Unit, unit2: Unit) {
+    for (const faction1 of unit1.factions) {
+        for (const faction2 of unit2.factions) {
+            if (faction1 === faction2) return true;
+            if (faction1.allied && faction1.allied.indexOf(faction2.id) >= 0) return true;
+        }
+    }
+    return false;
 }
 
 export class WarscrollUnit implements WarscrollUnitInterface {
@@ -56,6 +66,11 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         return this.count * this.unit.points;
     }
 
+    @computed
+    get nonAlliedUnits() {
+        return this.warscroll.units.filter(x => !areAllied(this.unit, x.unit));
+    }
+
     constructor(protected warscroll: Warscroll, public unit: Unit, count?: number) {
         this.id = warscroll.serial++;
         if (count !== undefined) {
@@ -77,9 +92,6 @@ export class Warscroll implements WarscrollInterface {
 
     @observable
     extraAbilities: ExtraAbility[] = [];
-
-    @observable
-    grandAlliance: GrandAlliance = GrandAlliance.order;
 
     @observable
     allegiance: Allegiance = this.unitsStore.allegianceList[0];
@@ -210,7 +222,6 @@ interface SerializedWarscroll {
     battalions: {
         battalionId: string;
     }[];
-    grandAlliance: number;
     allegiance: string;
     armyOption: string;
 }
@@ -300,7 +311,6 @@ export class WarscrollStore {
         this.warscroll.general = undefined;
         this.warscroll.units.splice(0);
         this.warscroll.battalions.splice(0);
-        this.warscroll.grandAlliance = warscroll.grandAlliance;
         this.warscroll.allegiance = this.unitsStore.allegianceList.find(x => x.id === warscroll.allegiance) || this.unitsStore.allegianceList[0];
         this.warscroll.extraAbilities.splice(0);
         this.warscroll.armyOption = warscroll.armyOption;
@@ -359,7 +369,6 @@ export class WarscrollStore {
                     battalionId: x.battalion.id
                 };
             }),
-            grandAlliance: this.warscroll.grandAlliance,
             allegiance: this.warscroll.allegiance.id,
             armyOption: this.warscroll.armyOption
         };
