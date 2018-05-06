@@ -31,7 +31,7 @@ export function getWoundsForExtraAttack(attack: Attack, count: number = 1) {
     return getAttackDamageEx(attack, { attacks: count.toString() });
 }
 
-export function getWoundsForBonusDamageIf6OnWound(attack: Attack, wounds: number) {
+export function getWoundsForSpecialDamageIf6OnWound(attack: Attack, wounds: number) {
     return getAttackDamageEx(attack, { toWound: "6", damage: (wounds - getValue(attack.damage)).toString() });
 }
 
@@ -43,3 +43,4 @@ export const frequentRate = 0.75;
 export const mediumRate = 0.5;
 export const rareRate = 0.2;
 export const numberOfNeighborUnits = 2;
+export const enemyModelsInRange = 4;

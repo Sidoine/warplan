@@ -73,16 +73,16 @@ export class Stats extends React.Component<StatsProps> {
                 data = data.sort((a, b) => (a.save || 0) > (b.save || 0) ? one : min);
                 break;
             case Columns.SavedWounds:
-                data = data.sort((a, b) => a.savedWounds > b.savedWounds ? one : min);
+                data = data.sort((a, b) => a.savedWounds / a.unit.points > b.savedWounds / b.unit.points ? one : min);
                 break;
             case Columns.MeleeDamage:
-                data = data.sort((a, b) => a.meleeDamage > b.meleeDamage ? one : min);
+                data = data.sort((a, b) => a.meleeDamage / a.unit.points > b.meleeDamage / b.unit.points ? one : min);
                 break;
             case Columns.RangedDamage:
-                data = data.sort((a, b) => a.rangedDamage > b.rangedDamage ? one : min);
+                data = data.sort((a, b) => a.rangedDamage / a.unit.points > b.rangedDamage / b.unit.points ? one : min);
                 break;
             case Columns.TotalDamage:
-                data = data.sort((a, b) => a.totalDamage > b.totalDamage ? one : min);
+                data = data.sort((a, b) => a.totalDamage / a.unit.points > b.totalDamage / b.unit.points ? one : min);
                 break;
         }
         return data;
