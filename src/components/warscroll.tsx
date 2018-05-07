@@ -72,7 +72,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
         const u = unit.unit;
         const wo = unit.weaponOption;
         let attacks:AttackWithCount[] = (u.attacks && u.attacks.map(x => { return { count: 0, attack: x }} )) ||[];
-        let abilities = toJS(u.abilities || []);
+        let abilities = toJS(u.abilities || []).concat();
         // let totalWeapons = unit.count * u.size;
 
         for (const o of wo) {

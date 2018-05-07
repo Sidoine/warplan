@@ -999,6 +999,32 @@ function fixUnits(data: DataStoreImpl):void {
             unit.attacks = [bow, talons, talonsMelee];
             unit.abilities= [fly, celestialsTalon, starFatedArrow];
         }
+
+        {
+            const unit: Unit = data.units.gryphHound;
+            unit.move = 9;
+            unit.bravery = 6;
+            unit.keywords.push('CELESTIAL', 'GRYPH-HOUNDS');
+            const beak: Attack = { melee: true, name: "Beak and Claws", range: 1, attacks: 2, toHit: "3+", toWound: "4+", damage: 1};
+            const loyalCompanion: Ability = {
+                name: "Loyal Companion",
+                description: "Once a Gryph-hound has bonded with a companion, it will defend it to the death. A Gryph-hound makes 4 attacks with its Beak and Claws rather than 2 if the target unit is within 3\" of a Lord-Castellant."
+            };
+            const dartingAttacks: Ability = {
+                name: "Darting Attacks",
+                description: "Gryph-hounds attack in a series of darting strikes. Immediately after this unit attacks in the combat phase, roll a dice and move each model in the unit up to that many inches.",
+            };
+            const warningCry: Ability = {
+                name: "Warning Cry",
+                description: "It is said that it is impossible to sneak up on a Gryph-hound. If an enemy unit is set up within 10\" of this unit, roll two dice. Any unit within that many inches of the Gryph-hounds is alerted to the enemy unit’s presence, and can attack it with one of its weapons as though it were your shooting phase."
+            }
+            const alpha: Ability = {
+                name: "Gryph-Hound alpha",
+                description: "If a unit of Gryph-hounds has 3 or more models, one Gryph-hound can be a Gryph-hound Alpha. A Gryph-hound Alpha makes 3 attacks rather than 2."
+            }
+            unit.abilities = [loyalCompanion, dartingAttacks, warningCry, alpha];
+            unit.attacks = [beak];
+        }
     }
 }
 
