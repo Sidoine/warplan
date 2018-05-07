@@ -884,6 +884,27 @@ function fixUnits(data: DataStoreImpl):void {
             unit.abilities = [disruptiveFire, intolerableDamage, sigmariteShields, lightningSurgeAbility];
         }
         
+        {
+            const unit: Unit = data.units.knightAzyros;
+            unit.move = 12;
+            unit.wounds = 5;
+            unit.save = "3+";
+            unit.bravery = 9;
+            unit.keywords.push("CELESTIAL", "HUMAN", "KNIGHT-AZYROS");
+
+            const starblade: Attack = { melee: true, name: "Starblade", range: "1", attacks: "4", toHit: "3+", toWound: "3+", rend: "-1", damage: "1"};
+            const fly: Ability = { name: "Fly", description: "A Knight-Azyros can fly"};
+            const illuminatorOfTheLost: Ability = { 
+                name: "Illuminator of the Lost", 
+                description: "In the shooting phase, you can re-roll hit rolls of 1 for attacks made against enemy units that are within 10\" of a Knight-Azyros."
+            };
+            const theLightOfSigmar: Ability = { 
+                name: "The Light of Sigmar",
+                description: "Once per battle, in your hero phase, you can declare that this model will unleash the searing light of its Celestial Beacon. If you do so, it cannot move, charge or pile in during your turn. However, each enemy unit within 8\" of the Knight-Azyros when the searing light is unleashed suffers D3 mortal wounds as they are blinded and driven from the battlefield. The light is anathema to Chao  units, so they suffer D6 mortal wounds instead. "
+            }
+            unit.attacks = [starblade];
+            unit.abilities = [illuminatorOfTheLost, theLightOfSigmar, fly];
+        }
     }
 }
 
