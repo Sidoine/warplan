@@ -368,8 +368,10 @@ function fixUnits(data: DataStoreImpl):void {
         const blubberAndBile: Ability = { name: "Blubber and Bile", description: "Roll a dice each time you allocate a wound or mortal wounds to this model. On a 5+ the wound is negated. In addition, if the roll is 6+ and it is the combat phase, the attacking unie suffers 1 mortal wounds after all of its attacks have been made." };
         const corpulentMass: Ability = { name: "Corpulent Mass", description: "In your hero phase, you can heal D3 wounds that have been allocated to this model" };
         const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
+        const magic: Ability = { name: "Magic", description: "A Great Unclean One is a WIZARD. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Winds spells." };
+        const plagueWind: Ability = { name: "Plague Wind", description: "Plague Wind has a casting value of 7. If successfully cast, pick a point on the battlefield within 14\" of the caster and draw an imaginary straight line between it and the closest part of the caster. Each unit (friend of foe) crossed by the center of the line suffers D3 mortal wounds. Units with the NURGLE keyword are instead invigorated by the Plague Wind; if it passes over them, heal D3 wounds that have been allocated to the unit." };
         
-        uncleanOne.abilities = [blubberAndBile, corpulentMass, mountain];
+        uncleanOne.abilities = [blubberAndBile, corpulentMass, mountain, magic, plagueWind];
         
         // doomsday bell
         const reverberatingSummons: Ability = { name: "Reverberating Summons", description: "If a NURGLE unit begins its movement phase within 7\" of any models with a Doomsday Bell, add 3 to its Move characteristic until the end of the phase." };        

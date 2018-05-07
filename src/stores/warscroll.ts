@@ -1,5 +1,5 @@
 import { action, computed, observable, toJS } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion, Attack } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion, Attack } from "./units";
 
 export interface WarscrollWeaponOption {
     weaponOption?: WeaponOption;
