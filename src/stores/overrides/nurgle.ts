@@ -381,6 +381,39 @@ function fixUnits(data: DataStoreImpl):void {
     }
 
     {
+        const rotigus: Unit = data.units.rotigus;
+
+        const gnarlrodEffect: DamageColumn = { name: "Gnarlrod", values: ["2+", "3+", "3+", "4+", "4+"]};
+        const fangedMawEffect: DamageColumn = { name: "Fanged Maw", values: ["2+", "3+", "3+", "4+", "4+"]};
+        const delugeEffect: DamageColumn = { name: "Deluge of Nurgle", values: ["4+", "5+", "5+", "6+", "6+"]};
+
+        rotigus.damageTable = {
+            ranges: [0, 4, 7, 10, 13],
+            columns: [gnarlrodEffect, fangedMawEffect, delugeEffect]
+        }
+
+        rotigus.move = 5;
+        rotigus.wounds = 16;
+        rotigus.bravery = 10;
+        rotigus.save = "4+";
+
+        const blubberAndBile: Ability = { name: "Blubber and Bile", description: "Roll a dice each time you allocate a wound or mortal wounds to this model. On a 5+ the wound is negated. In addition, if the roll is 6+ and it is the combat phase, the attacking unie suffers 1 mortal wounds after all of its attacks have been made." };
+        const corpulentMass: Ability = { name: "Corpulent Mass", description: "In your hero phase, you can heal D3 wounds that have been allocated to this model" };
+        const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
+        const filth: Ability = { name: "Streams of Brackish Filth", description: "In your hero phase, roll a dice for each enemy unit that is within 6\" of Rotigus. On a 4+ the enemy units suffers D3 mortal wounds. Enemy units that can fly suffer D3 mortal wounds on a 6+ instead of 4+." };
+        const magic: Ability = { name: "Magic", description: "Rotigus is a WIZARD. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Deluge of Nurgle spells." };
+        const delugeOfNurgle: Ability = { name: "Deluge of Nurgle", description: "Deluge of Nurgle has a casting value of 7. If successfully cast, roll 7 dice. For each roll that equals or beats the Deluge of Nurgle value shown on the damage table above, you can pick an enemy unit that is visible to the caster. That unit suffers D3 mortal wounds. If this spell affects more than one enemy unit, you must pick a different enemy unit to suffer each set of D3 mortal wounds." };
+
+        rotigus.abilities = [blubberAndBile, corpulentMass, mountain, filth, magic, delugeOfNurgle];
+
+        const gnarlrod: Attack = { name: "Gnarlrod", range: "3", melee: true, attacks: "5", toHit: gnarlrodEffect, toWound: "3+", rend: "-1", damage: "2" };
+        const maw: Attack = { name: "Fanged Maw", range: "1", melee: true, attacks: "D3", toHit: "3+", toWound: fangedMawEffect, rend: "-2", damage: "2" };
+        const nurglings: Attack = { name: "Host of Nurglings", range: "1", melee: true, attacks: "3", toHit: "5+", toWound: "5+", damage: "1" };
+
+        rotigus.attacks = [gnarlrod, maw, nurglings];
+    }
+
+    {
         const uncleanOne: Unit = data.units.greatUncleanOne;
 
         const noxiousBileEffect: DamageColumn = { name: "Noxious Bile", values: ["2+", "3+", "3+", "4+", "5+"]};
@@ -638,6 +671,42 @@ function fixUnits(data: DataStoreImpl):void {
         const blade: Attack = { name: "Plague-ridden Great Blade", range: "1", melee: true, attacks: "3", toHit: "3+", toWound: "3+", damage: "D3", rend: "-1" };
 
         lordOfPlagues.attacks = [blade];
+    }
+
+    {
+        const glottkin: Unit = data.units.theGlottkin;
+
+        const moveEffect: DamageColumn = { name: "Move", values: ["8\"", "7\"", "6\"", "5\"", "4\""]};
+        const pestilentTorrentEffect: DamageColumn = { name: "Pestilent Torrent", values: ["2D6", "D6", "D3", "2", "1"]};
+        const tentacleEffect: DamageColumn = {name: "Ghurk's Flailing Tentacle", values: [6,5,4,3,2]};
+        glottkin.damageTable = {
+            ranges: [0, 4, 7, 10, 13],
+            columns: [moveEffect, pestilentTorrentEffect, tentacleEffect]
+        }
+
+        glottkin.move = moveEffect;
+        glottkin.wounds = 18;
+        glottkin.bravery = 9;
+        glottkin.save = "4+";
+
+        const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
+        const nurgle: Ability = { name: "Blessing of Nurgle", description: "At the start of your hero phase, you can heal D3 wounds that have been allocated to this model." };
+        const horrific: Ability = { name: "Horrific Opponent", description: "At the start of the combat phase, roll 2D6 for each enemy unit within 7\" of this model. If the roll is greater than that unit's Bravery characteristic, subtract 1 from hit rolls for that unit in that combat phase." };
+        const magic: Ability = { name: "Magic", description: "Ethrac Glott is a WIZARD. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Fleshy Abudance spells." };
+        const abundance: Ability = { name: "Fleshy Abundance", description: "Fleshy abundance has a casting value of 7. If successfully cast, pick a friendly unit within 14\" of the caster that is visible to them. Add 1 to the Wound characteristic of all models in that unit until your next hero phase. At the start of your next hero phase, the unit's Wounds characteristic is reduced to its original value. Note that this can result in a model that has been allocated wounds being slain." };
+
+        glottkin.abilities = [mountain, nurgle, horrific, magic, abundance];
+
+        const lord: Ability = { name: "Lords of Nurgle", description: "You can use this command ability in your hero phase. If you do, then until your next hero phase add 1 to the Attacks characteristic of any melee weapon used by friendly NURGLE units while they are within 14\" of this model." };
+
+        glottkin.commandAbilities = [lord];
+
+        const torrent: Attack = { name: "Pestilent Torrent", range: "12", melee: false, attacks: "1", toHit: "3+", toWound: "4+", damage: pestilentTorrentEffect, rend: "-2" };
+        const tentacle: Attack = { name: "Ghurk's Flailing Tentacle", range: "3", melee: true, attacks: tentacleEffect, toHit: "4+", toWound: "2+", damage: "2", rend: "-2" };
+        const maw: Attack = { name: "Ghurk's Laprey Maw", range: "2", melee: true, attacks: 1, toHit: "3+", toWound: "2+", damage: "D3", rend: "-1" };
+        const scythe: Attack = { name: "Otto's Poison-slick Scythe", range: "2", melee: true, attacks: 3, toHit: "3+", toWound: "3+", damage: "D3", rend: "-1" };
+
+        glottkin.attacks = [torrent, tentacle, maw, scythe];
     }
 }
 
