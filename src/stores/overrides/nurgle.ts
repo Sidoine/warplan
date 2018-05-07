@@ -1,5 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Unit, Ability, Attack, WoundsEffect } from "../units";
+import { Unit, Ability, Attack, DamageColumn } from "../units";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -383,6 +383,14 @@ function fixUnits(data: DataStoreImpl):void {
     {
         const uncleanOne: Unit = data.units.greatUncleanOne;
 
+        const noxiousBileEffect: DamageColumn = { name: "Noxious Bile", values: ["2+", "3+", "3+", "4+", "5+"]};
+        const plagueFlailEffect: DamageColumn = { name: "Plague Fail", values: ["2+", "3+", "3+", "4+", "4+"]};
+        const massiveBileswordEffect: DamageColumn = {name: "Massive Bilesword", values: [3,3,2,2,1]};
+        uncleanOne.damageTable = {
+            ranges: [0, 4, 7, 10, 13],
+            columns: [noxiousBileEffect, plagueFlailEffect, massiveBileswordEffect]
+        }
+
         uncleanOne.move = 5;
         uncleanOne.wounds = 16;
         uncleanOne.save = "4+";
@@ -403,34 +411,14 @@ function fixUnits(data: DataStoreImpl):void {
         // bileblade
         const putridOffering: Ability = { name: "Putrid Offering", description: "If this model has a Bileblade and attempts to cast or unbind a spell, you can say that it is using the Bileblade to hook out a portion of its own rotting guts as an offering to Nurgle. If you do do so, this model immediatly suffers 1 mortal wound (which cannot be negated), but you can then add 1 to the casting or unbinding roll." };
         const bileblade: Attack = { name: "Bileblade", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "1" };
-
-        const noxiousBileEffect: WoundsEffect[] = 
-            [{ woundMin:0, woundMax: 3, effect: { toWound: "2+" } },
-            { woundMin:4, woundMax: 6, effect: { toWound: "3+" } },
-            { woundMin:7, woundMax: 9, effect: { toWound: "3+" } },            
-            { woundMin:10, woundMax: 12, effect: { toWound: "4+" } },
-            { woundMin:13, effect: { toWound: "5+" } }];
                 
-        const noxiousBile: Attack = { name: "Noxious Bile", melee: false, range: "7", attacks: "D6", toHit: "3+", toWound: "*", rend: "-2", damage: "1", woundsEffects: noxiousBileEffect };
+        const noxiousBile: Attack = { name: "Noxious Bile", melee: false, range: "7", attacks: "D6", toHit: "3+", toWound: noxiousBileEffect, rend: "-2", damage: "1" };
         const hostOfNurglings: Attack = { name: "Host of Nurglings", range: "1", melee: true, attacks: "3", toHit: "5+", toWound: "5+", damage: "1" };
 
         uncleanOne.attacks = [noxiousBile, hostOfNurglings];
 
-        const plagueFlailEffect: WoundsEffect[] = 
-            [{ woundMin:0, woundMax: 3, effect: { toWound: "2+" } },
-            { woundMin:4, woundMax: 6, effect: { toWound: "3+" } },
-            { woundMin:7, woundMax: 9, effect: { toWound: "3+" } },
-            { woundMin:10, woundMax: 12, effect: { toWound: "3+" } },
-            { woundMin:13, effect: { toWound: "4+" } }];
-        const plagueFlail: Attack = { name: "Plague Flail", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: "*", rend: "-1", damage: "2", woundsEffects: plagueFlailEffect };
-
-        const massiveBileswordEffect: WoundsEffect[] = 
-            [{ woundMin:0, woundMax: 3, effect: { toWound: "3" } },
-            { woundMin:4, woundMax: 6, effect: { toWound: "3" } },
-            { woundMin:7, woundMax: 9, effect: { toWound: "2" } },
-            { woundMin:10, woundMax: 12, effect: { toWound: "2" } },
-            { woundMin:13, effect: { toWound: "1" } }];
-        const massiveBilesword: Attack = { name: "Massive Bilesword", range: "2", melee: true, attacks: "*", toHit: "4+", toWound: "3", rend: "-2", damage: "3", woundsEffects: massiveBileswordEffect };
+        const plagueFlail: Attack = { name: "Plague Flail", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: plagueFlailEffect, rend: "-1", damage: "2" };
+        const massiveBilesword: Attack = { name: "Massive Bilesword", range: "2", melee: true, attacks: massiveBileswordEffect, toHit: "4+", toWound: "3", rend: "-2", damage: "3" };
     
         uncleanOne.weaponOptions = [{
             options: [{

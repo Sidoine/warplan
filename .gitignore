@@ -3,3 +3,4 @@ wwwroot/bundle.*
 dist
 /wwwroot/main.*
 /wwwroot/files
+*.orig

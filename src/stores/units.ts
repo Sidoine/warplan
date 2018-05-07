@@ -32,19 +32,12 @@ export interface Ability {
 export interface Attack {
     melee: boolean;
     name: string;
-    range: string;
-    attacks?: string;
-    woundsEffects?: WoundsEffect[];
-    toHit?: string;
-    toWound?: string;
-    rend?: string;
-    damage?: string;
-}
-
-export interface WoundsEffect {
-    woundMin: number;
-    woundMax?: number;
-    effect: Partial<Attack>;
+    range: Value;
+    attacks?: Value;
+    toHit?: Value;
+    toWound?: Value;
+    rend?: Value;
+    damage?: Value;
 }
 
 export interface WeaponOption {
@@ -79,6 +72,17 @@ for (const axeValues of axes[i]) {
 }
 */
 
+export type Value = number | string | DamageColumn | undefined;
+
+export interface DamageTable {
+    ranges: number[];
+    columns: DamageColumn[];
+}
+
+export interface DamageColumn {
+    name: string;
+    values: Value[];
+}
 
 export interface Unit {
     id: string;
@@ -90,7 +94,7 @@ export interface Unit {
     factions: Faction[];
     subType?: string;
     warscroll?: string;
-    move?: number;
+    move?: Value;
     save?: string;
     wounds?: number;
     bravery?: number;
@@ -99,6 +103,7 @@ export interface Unit {
     abilities?: Ability[];
     commandAbilities?: Ability[];
     attacks?: Attack[];
+    damageTable?: DamageTable;
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => boolean;

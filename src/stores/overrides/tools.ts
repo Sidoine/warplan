@@ -39,8 +39,18 @@ export function getSavedWoundReroll1(save?: number) {
     return save ? 1/6 * 6 / (7 - save) : 0;
 }
 
+export function getWoundsForExtraWoundsRollsOn6OnHit(attack: Attack, extraWoundRolls: number) {
+    return getAttackDamageEx(attack, { toHit: 6 }) * extraWoundRolls;
+}
+
+export function getWoundsForSpecialRendIf6OnWound(attack: Attack, rend: number) {
+    return getAttackDamageEx(attack, { toWound: "6", rend: rend }) - getAttackDamageEx(attack, { toWound: "6" });
+}
+
+
 export const frequentRate = 0.75;
 export const mediumRate = 0.5;
 export const rareRate = 0.2;
 export const numberOfNeighborUnits = 2;
 export const enemyModelsInRange = 3;
+export const numberOfModelsPerUnit = 4;

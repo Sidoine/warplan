@@ -1,16 +1,23 @@
-import { Attack } from "./units";
+import { Attack, Value } from "./units";
 
-export function getValue(formula: string | undefined) {
-    if (!formula) return 0;
-    const number = formula.match(/^(-?\d+\.?\d*)\+?$/);
-    if (number) return parseInt(number[1]);
-    const dices = formula.match(/^(\d?)D(\d?)$/);
-    if (dices) {
-        const numberOfDices = dices[1] ? parseInt(dices[1]) : 1;
-        const numberOfSides = dices[2] ? parseInt(dices[2]) : 6;
-        return ((numberOfSides + 1) / 2) * numberOfDices;
+export function getValue(formula: Value): number {
+    if (formula === undefined) return 0;
+    if (typeof(formula) === "number") return formula;
+
+    if (typeof(formula) === "string") {
+        const number = formula.match(/^(-?\d+\.?\d*)[\+\"]?$/);
+        if (number) return parseInt(number[1]);
+        const dices = formula.match(/^(\d?)D(\d?)(\+\d+)?$/);
+        if (dices) {
+            const numberOfDices = dices[1] ? parseInt(dices[1]) : 1;
+            const numberOfSides = dices[2] ? parseInt(dices[2]) : 6;
+            const bonus = dices[3] ? parseInt(dices[3]) : 0;
+            return ((numberOfSides + 1) / 2) * numberOfDices + bonus;
+        }
+        throw Error(`Unable to parse ${formula}`)
     }
-    throw Error(`Unable to parse ${formula}`)
+
+    return getValue(formula.values[0]);
 }
 
 const enemySave = 5;
