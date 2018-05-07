@@ -1,5 +1,5 @@
 import { action, computed, observable, toJS } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, GrandAlliance, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion, Attack } from "./units";
 
 export interface WarscrollWeaponOption {
     weaponOption?: WeaponOption;
@@ -69,6 +69,40 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     @computed
     get nonAlliedUnits() {
         return this.warscroll.units.filter(x => !areAllied(this.unit, x.unit));
+    }
+
+    @computed
+    get attacksWithWoundEffects(): Attack[] {
+        let woundEffect: Attack[] = [];
+
+        if (this.unit.attacks !== undefined) {
+            const woundEffects = this.unit.attacks.filter(attack => attack.woundsEffects !== undefined);
+            woundEffect = woundEffect.concat(woundEffects);
+        }
+
+        if (this.unit.weaponOptions !== undefined) {
+            this.unit.weaponOptions.forEach(wo => {
+                wo.options.forEach(option => {
+                    if (option.attacks === undefined) return;
+                    
+                    option.attacks.forEach(attack => {
+                        if(attack.woundsEffects !== undefined){
+                            woundEffect.push(attack);
+                        }
+                    })
+                })
+            });
+        }
+
+        return woundEffect;
+    }
+
+    @computed
+    get hasWoundEffects(): boolean {
+        const attackHasWoundEffect: boolean = this.unit.attacks !== undefined && this.unit.attacks.some((attack) => attack.woundsEffects !== undefined) ;
+        const weaponOptionHasWoundEffect: boolean = this.unit.weaponOptions !== undefined && this.unit.weaponOptions.some((wo) => wo.options.some(opt => opt.attacks !== undefined && opt.attacks.some(att => att.woundsEffects !== undefined)));
+
+        return attackHasWoundEffect || weaponOptionHasWoundEffect;
     }
 
     constructor(protected warscroll: Warscroll, public unit: Unit, count?: number) {

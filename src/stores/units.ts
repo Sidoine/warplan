@@ -34,10 +34,17 @@ export interface Attack {
     name: string;
     range: string;
     attacks?: string;
+    woundsEffects?: WoundsEffect[];
     toHit?: string;
     toWound?: string;
     rend?: string;
     damage?: string;
+}
+
+export interface WoundsEffect {
+    woundMin: number;
+    woundMax?: number;
+    effect: Partial<Attack>;
 }
 
 export interface WeaponOption {

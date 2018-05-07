@@ -2,7 +2,7 @@ import * as React from "react";
 import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
 import { observer, inject } from "mobx-react";
 import { Header, Table, Icon, Segment } from "semantic-ui-react";
-import { Attack, Ability, WarscrollBattalion } from "../stores/units";
+import { Attack, Ability, WarscrollBattalion, WoundsEffect } from "../stores/units";
 import { toJS } from "mobx";
 import { join } from "../helpers/react";
 
@@ -112,6 +112,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <span className="wounds">{u.move && <>{u.move}" <Icon name="location arrow" /></>} {u.wounds} <Icon name="heart" /></span><br/><span className="wounds">{u.save && <> {u.save} <Icon name="shield" /></>} {u.bravery && <> {u.bravery} <Icon name="hand victory" /></>}</span></div>
 
                 {attacks.length > 0 && this.renderAllAttacks(attacks)}
+                {unit.hasWoundEffects && this.renderWoundEffects(unit.attacksWithWoundEffects)}
                 {abilities.length > 0 && this.renderAllAbilities(abilities)}
                 {u.commandAbilities && unit.isGeneral && this.renderAllAbilities(u.commandAbilities)}
                 <div>{u.keywords && u.keywords.join(", ")}</div>
@@ -161,5 +162,38 @@ export class Warscroll extends React.Component<WarscrollProps>{
                 </Table.Row>)}
             </Table.Body>
         </Table>;
+    }
+
+    renderWoundEffects(attacks: Attack[]) {
+        const attackNames = attacks.map(attack => attack.name);
+        const woundEffects = attacks[0].woundsEffects as WoundsEffect[];
+
+        return <Table>
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell>Wounds Allocated</Table.HeaderCell>
+                    {attackNames.map(name => <Table.HeaderCell>{name}</Table.HeaderCell>)}
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                {woundEffects.map((woundEffect, i) => this.renderRow(woundEffect, attacks, i) )}
+            </Table.Body>
+        </Table>
+    }
+
+    renderRow(woundEffect: WoundsEffect, attacks: Attack[], i: number){
+        return <Table.Row key={i}>
+            
+        { woundEffect.woundMax === undefined && <Table.Cell>{woundEffect.woundMin}+</Table.Cell> } 
+        { woundEffect.woundMax !== undefined && <Table.Cell>{woundEffect.woundMin}-{woundEffect.woundMax}</Table.Cell> }
+        { attacks.map(attack => this.renderEffect(attack, i)) }
+
+        </Table.Row>
+    }
+
+    renderEffect(attack: Attack, i: number){
+        const we = attack.woundsEffects as WoundsEffect[]; 
+
+        return <Table.Cell>{we[i].effect.toWound}{we[i].effect.toHit}{we[i].effect.attacks}{we[i].effect.damage}</Table.Cell>
     }
 }

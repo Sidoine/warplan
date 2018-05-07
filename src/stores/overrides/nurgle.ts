@@ -1,5 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Unit, Ability, Attack } from "../units";
+import { Unit, Ability, Attack, WoundsEffect } from "../units";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -355,6 +355,84 @@ function fixUnits(data: DataStoreImpl):void {
         const munificientDeathHead: Attack = { name: "Munificent Bounty Death's Head", range: "14", melee: false, attacks: "1", toHit: "4+", toWound: "3+", damage: "1" };
         
         lordOfBlight.attacks = [buboticHammer, thriceRipenedDeathHead, munificientDeathHead];
+    }
+
+    {
+        const uncleanOne: Unit = data.units.greatUncleanOne;
+
+        uncleanOne.move = 5;
+        uncleanOne.wounds = 16;
+        uncleanOne.save = "4+";
+        uncleanOne.bravery = 10;
+
+        const blubberAndBile: Ability = { name: "Blubber and Bile", description: "Roll a dice each time you allocate a wound or mortal wounds to this model. On a 5+ the wound is negated. In addition, if the roll is 6+ and it is the combat phase, the attacking unie suffers 1 mortal wounds after all of its attacks have been made." };
+        const corpulentMass: Ability = { name: "Corpulent Mass", description: "In your hero phase, you can heal D3 wounds that have been allocated to this model" };
+        const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
+        
+        uncleanOne.abilities = [blubberAndBile, corpulentMass, mountain];
+        
+        // doomsday bell
+        const reverberatingSummons: Ability = { name: "Reverberating Summons", description: "If a NURGLE unit begins its movement phase within 7\" of any models with a Doomsday Bell, add 3 to its Move characteristic until the end of the phase." };        
+        const doomsdayBell: Attack = { name: "Doomsday Bell", range: "2", melee: true, attacks: "4", toHit: "4+", toWound: "3+", rend: "-1", damage: "1" };
+
+        // bileblade
+        const putridOffering: Ability = { name: "Putrid Offering", description: "If this model has a Bileblade and attempts to cast or unbind a spell, you can say that it is using the Bileblade to hook out a portion of its own rotting guts as an offering to Nurgle. If you do do so, this model immediatly suffers 1 mortal wound (which cannot be negated), but you can then add 1 to the casting or unbinding roll." };
+        const bileblade: Attack = { name: "Bileblade", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "1" };
+
+        const noxiousBileEffect: WoundsEffect[] = 
+            [{ woundMin:0, woundMax: 3, effect: { toWound: "2+" } },
+            { woundMin:4, woundMax: 6, effect: { toWound: "3+" } },
+            { woundMin:7, woundMax: 9, effect: { toWound: "3+" } },            
+            { woundMin:10, woundMax: 12, effect: { toWound: "4+" } },
+            { woundMin:13, effect: { toWound: "5+" } }];
+                
+        const noxiousBile: Attack = { name: "Noxious Bile", melee: false, range: "7", attacks: "D6", toHit: "3+", toWound: "*", rend: "-2", damage: "1", woundsEffects: noxiousBileEffect };
+        const hostOfNurglings: Attack = { name: "Host of Nurglings", range: "1", melee: true, attacks: "3", toHit: "5+", toWound: "5+", damage: "1" };
+
+        uncleanOne.attacks = [noxiousBile, hostOfNurglings];
+
+        const plagueFlailEffect: WoundsEffect[] = 
+            [{ woundMin:0, woundMax: 3, effect: { toWound: "2+" } },
+            { woundMin:4, woundMax: 6, effect: { toWound: "3+" } },
+            { woundMin:7, woundMax: 9, effect: { toWound: "3+" } },
+            { woundMin:10, woundMax: 12, effect: { toWound: "3+" } },
+            { woundMin:13, effect: { toWound: "4+" } }];
+        const plagueFlail: Attack = { name: "Plague Flail", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: "*", rend: "-1", damage: "2", woundsEffects: plagueFlailEffect };
+
+        const massiveBileswordEffect: WoundsEffect[] = 
+            [{ woundMin:0, woundMax: 3, effect: { toWound: "3" } },
+            { woundMin:4, woundMax: 6, effect: { toWound: "3" } },
+            { woundMin:7, woundMax: 9, effect: { toWound: "2" } },
+            { woundMin:10, woundMax: 12, effect: { toWound: "2" } },
+            { woundMin:13, effect: { toWound: "1" } }];
+        const massiveBilesword: Attack = { name: "Massive Bilesword", range: "2", melee: true, attacks: "*", toHit: "4+", toWound: "3", rend: "-2", damage: "3", woundsEffects: massiveBileswordEffect };
+    
+        uncleanOne.weaponOptions = [{
+            options: [{
+                name: "Plague Flail",
+                id: "plagueFlail",
+                attacks: [plagueFlail]
+            },
+            {
+                name: "Bileblade",
+                id: "bileblade",
+                attacks: [bileblade],
+                abilities: [putridOffering]
+            }]
+        },
+        {
+            options: [{
+                name: "Massive Bilesword",
+                id: "massivebilesword",
+                attacks: [massiveBilesword]
+            },
+            {
+                name: "Doomsday Bell",
+                id: "doomsdaybell",
+                attacks: [doomsdayBell],
+                abilities: [reverberatingSummons]
+            }]
+        }];
     }
 }
 
