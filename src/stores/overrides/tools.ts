@@ -43,6 +43,11 @@ export function getWoundsForExtraWoundsRollsOn6OnHit(attack: Attack, extraWoundR
     return getAttackDamageEx(attack, { toHit: 6 }) * extraWoundRolls;
 }
 
+export function getWoundsForSpecialRendIf6OnWound(attack: Attack, rend: number) {
+    return getAttackDamageEx(attack, { toWound: "6", rend: rend }) - getAttackDamageEx(attack, { toWound: "6" });
+}
+
+
 export const frequentRate = 0.75;
 export const mediumRate = 0.5;
 export const rareRate = 0.2;

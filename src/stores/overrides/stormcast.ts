@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
 import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn } from "../units";
-import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit } from "./tools";
+import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound } from "./tools";
 import { getAttackDamage, getAttackDamageEx, getValue } from "../combat";
 
 function addBoxes(data: DataStoreImpl):void {
@@ -974,6 +974,30 @@ function fixUnits(data: DataStoreImpl):void {
             unit.attacks = [stardrakesGreatClaws];
             unit.abilities = [fly, inescapableVengance, sigmariteThundershield, cavernousJawsAbility, sweepingTail, lordOfTheHeavens, arcaneLineage];
             unit.commandAbilities = [lordOfTheCelestialHost];
+        }
+
+        {
+            const unit: Unit = data.units.knightVenator;
+            unit.move = 5;
+            unit.bravery = 9;
+            unit.save = "3+";
+            unit.keywords.push("CELESTIAL", "HUMAN", "KNIGHT-VENATOR");
+            const bow: Attack = { name: "Realmhunter's Bow", melee: false, range: 30, attacks: 3, toHit: "2+", toWound: "3+", rend: -1, damage: 1};
+            const talons: Attack = { name: "Star-eagle's Celestial Talons", melee: false, range: 30, attacks: 3, toHit: "4+", toWound: "3+", damage: 1};
+            const talonsMelee: Attack = { name: "Star-eagle's Celestial Talons", melee: true, range: 1, attacks: 3, toHit: "4+", toWound: "3+", damage: 1};
+            const fly: Ability = { name: "Fly", description: "A Knight-Venator can fly."};
+            const celestialsTalon: Ability = { 
+                name: "Celestial Talons",
+                description: "If the wound roll for the Stareagle’s Celestial Talons is 6 or more, that attack has a Rend of -3.",
+                getWounds: (models, melee, attack) => attack === talons || attack === talonsMelee ? getWoundsForSpecialRendIf6OnWound(attack, -3) : 0
+            };
+            const starFatedArrow: Ability = {
+                name: "Star-fated Arrow",
+                description: "Once per battle, in your shooting phase, you can declare that this model will loose a Star-fated Arrow. When you do so, it makes 1 attack with his Realmhunter’s Bow rather than 3, but it causes D3+3 Damage. If the target is a HERO or MONSTER, the Damage is D6+3 instead.",
+                getWounds: (models, melee, attack) => attack === bow ? (getAttackDamageEx(attack, { attacks: 1, damage: "D6+3" }) - getAttackDamage(attack)) * rareRate : 0
+            };
+            unit.attacks = [bow, talons, talonsMelee];
+            unit.abilities= [fly, celestialsTalon, starFatedArrow];
         }
     }
 }
