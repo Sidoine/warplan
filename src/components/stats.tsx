@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react";
 import { Table } from "semantic-ui-react";
 import { UnitStats } from "../stores/units";
 import { observable, action, computed } from "mobx";
-import { join } from "../helpers/react";
+import { join, value } from "../helpers/react";
 
 export interface StatsProps {
     uiStore?: UiStore;
@@ -124,7 +124,7 @@ export class Stats extends React.Component<StatsProps> {
             <Table.HeaderCell>{ !unit.warscroll && unit.model.name} { unit.warscroll && <a href={unit.warscroll}>{unit.model.name}</a> }</Table.HeaderCell>
             <Table.Cell>{unitStats.name}</Table.Cell>
             <Table.Cell>{unit.points}</Table.Cell>
-            <Table.Cell>{unit.move}</Table.Cell>
+            <Table.Cell>{value(unit.move)}</Table.Cell>
             <Table.Cell>{unit.bravery}</Table.Cell>
             <Table.Cell>{wounds} ({(wounds / points).toFixed(2)}) </Table.Cell>
             <Table.Cell>{unitStats.save}</Table.Cell>
@@ -132,7 +132,7 @@ export class Stats extends React.Component<StatsProps> {
             <Table.Cell>{unitStats.meleeDamage.toFixed(2)} ({(unitStats.meleeDamage / points).toFixed(2)}) </Table.Cell>
             <Table.Cell>{unitStats.rangedDamage.toFixed(2)} ({(unitStats.rangedDamage / points).toFixed(2)}) </Table.Cell>
             <Table.Cell>{unitStats.totalDamage.toFixed(2)} ({(unitStats.totalDamage / points).toFixed(2)}) </Table.Cell>
-            <Table.Cell>{ join(unitStats.ignoredAbilities.map(x => <span title={x.description}>{x.name}</span>), ", ") }</Table.Cell>
+            <Table.Cell>{ join(unitStats.ignoredAbilities.map(x => <span key={x.name} title={x.description}>{x.name}</span>), ", ") }</Table.Cell>
         </Table.Row>;
     }
 }
