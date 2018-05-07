@@ -43,4 +43,4 @@ export const frequentRate = 0.75;
 export const mediumRate = 0.5;
 export const rareRate = 0.2;
 export const numberOfNeighborUnits = 2;
-export const enemyModelsInRange = 4;
+export const enemyModelsInRange = 3;

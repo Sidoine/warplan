@@ -4,6 +4,7 @@ import { inject, observer } from "mobx-react";
 import { Table } from "semantic-ui-react";
 import { UnitStats } from "../stores/units";
 import { observable, action, computed } from "mobx";
+import { join } from "../helpers/react";
 
 export interface StatsProps {
     uiStore?: UiStore;
@@ -131,7 +132,7 @@ export class Stats extends React.Component<StatsProps> {
             <Table.Cell>{unitStats.meleeDamage.toFixed(2)} ({(unitStats.meleeDamage / points).toFixed(2)}) </Table.Cell>
             <Table.Cell>{unitStats.rangedDamage.toFixed(2)} ({(unitStats.rangedDamage / points).toFixed(2)}) </Table.Cell>
             <Table.Cell>{unitStats.totalDamage.toFixed(2)} ({(unitStats.totalDamage / points).toFixed(2)}) </Table.Cell>
-            <Table.Cell>{ unitStats.ignoredAbilities.map(x => x.name).join(", ") }</Table.Cell>
+            <Table.Cell>{ join(unitStats.ignoredAbilities.map(x => <span title={x.description}>{x.name}</span>), ", ") }</Table.Cell>
         </Table.Row>;
     }
 }
