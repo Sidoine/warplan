@@ -80,7 +80,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
             // if (o.count) totalWeapons -= o.count;
             if (o.weaponOption.attacks) {
                 for (const a of o.weaponOption.attacks) {
-                    const existing = attacks.find(x => x.attack.name === a.name);
+                    const existing = attacks.find(x => x.attack.name === a.name && x.attack.melee === a.melee);
                     if (existing) {
                         if (o.count && existing.count) existing.count += o.count;
                         else existing.count = 0;

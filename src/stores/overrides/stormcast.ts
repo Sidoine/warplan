@@ -513,12 +513,13 @@ function fixUnits(data: DataStoreImpl):void {
         }
 
         {
-            const prosecutorsWithStormcallJavelins: Unit = data.units.prosecutorsWithStormcallJavelins;
-            prosecutorsWithStormcallJavelins.move = 12;
-            prosecutorsWithStormcallJavelins.save = "4+";
-            prosecutorsWithStormcallJavelins.bravery = 6;
-            prosecutorsWithStormcallJavelins.wounds = 2;
-            prosecutorsWithStormcallJavelins.keywords.push("CELESTIAL", "HUMAN", "ANGELOS", "PROSECUTORS");
+            const unit: Unit = data.units.prosecutorsWithStormcallJavelins;
+            unit.move = 12;
+            unit.save = "4+";
+            unit.bravery = 6;
+            unit.wounds = 2;
+            unit.keywords.push("CELESTIAL", "HUMAN", "ANGELOS", "PROSECUTORS");
+            unit.description = "A unit of Prosecutors has 3 or more models. They are armed with Stormcall Javelins and carry Sigmarite Shields. 1 in every 3 models may wield a Stormsurge Trident in place of their Stormcall Javelins.";
 
             const stormcallJavelin: Attack = { melee: false, name: "Stormcall Javelin", range: "18", attacks: "1", toHit: "3+", toWound: "3+", damage: "1"};
             const stormsurgeTrident: Attack=  {melee: false, name: "Stormsurge Trident", range: "18", attacks: "1", toHit: "3+", toWound: "3+", rend: "-1", damage: "2"};
@@ -544,7 +545,7 @@ function fixUnits(data: DataStoreImpl):void {
 
             const stormcallJavelinOption: WeaponOption = {
                 id: "javelin",
-                name: "Stormcall Javelins and Sigmarite Shield",
+                name: "Stormcall Javelins",
                 abilities: [stormcallJavelinAbility, sigmariteShield],
                 attacks: [stormcallJavelin, stormcallJavelinMelee]
             };
@@ -552,11 +553,11 @@ function fixUnits(data: DataStoreImpl):void {
                 id: "trident",
                 name: "Stormsurge Trident",
                 attacks: [stormsurgeTrident, stormsurgeTridentMelee],
-                abilities: [stormcallJavelinAbility, prosecutorPrime]
+                abilities: [prosecutorPrime, sigmariteShield]
             }
 
-            prosecutorsWithStormcallJavelins.abilities= [fly, stormcallJavelinAbility, heraldsOfRightouness];
-            prosecutorsWithStormcallJavelins.weaponOptions = [
+            unit.abilities= [fly, stormcallJavelinAbility, heraldsOfRightouness];
+            unit.weaponOptions = [
                 { options: [stormcallJavelinOption] },
                 { maxCount: 1, options: [stormsurgeTridentOption]}
             ];
@@ -639,8 +640,8 @@ function fixUnits(data: DataStoreImpl):void {
                 description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields.",
                 getSavedWounds: getSavedWoundReroll1
             };
-            unit.abilities = [sigmariteShield, fly, prosecutorPrime, heraldsOfRightouness];
-            unit.attacks = [celestialHammers];
+            unit.abilities = [fly, heraldsOfRightouness];
+            unit.attacks = [];
             const pairOfCelestialHammers: WeaponOption = {
                 id: "celestialHammerDual",
                 abilities: [pairedCelestialHammers],
@@ -656,17 +657,19 @@ function fixUnits(data: DataStoreImpl):void {
             const grandaxeOption: WeaponOption = {
                 id: "grandaxe",
                 name: "Grandaxe",
-                abilities: [cleavingBlow],
+                abilities: [cleavingBlow, prosecutorPrime],
                 attacks: [grandaxe]
             }
             const grandbladeOption: WeaponOption = {
                 id: "grandblade",
                 name: "Grandblade",
+                abilities: [prosecutorPrime],
                 attacks: [grandblade]
             }
             const grandhammerOption: WeaponOption = {
                 id: "grandhammer",
                 name: "Grandhammer",
+                abilities: [prosecutorPrime],
                 attacks: [grandhammer]
             }
             unit.weaponOptions = [{

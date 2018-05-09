@@ -106,6 +106,7 @@ export interface Unit {
     commandAbilities?: Ability[];
     attacks?: Attack[];
     damageTable?: DamageTable;
+    description?: string;
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => boolean;
