@@ -2,6 +2,7 @@ import { DataStoreImpl } from "./imported-data";
 import { overrideStormcast } from "./overrides/stormcast";
 import { getAttackDamage, getValue } from "./combat";
 import { overrideNurgle } from "./overrides/nurgle";
+import { overrideDevotedOfSigmar } from "./overrides/devoted-of-sigmar";
 
 export interface Model {
     name: string;
@@ -324,6 +325,7 @@ export class UnitsStore {
     constructor(data: DataStoreImpl) {   
         overrideStormcast(data);   
         overrideNurgle(data);
+        overrideDevotedOfSigmar(data);
 
         const models: {[key: string]: Model} = data.models;  
         for (const key in models) {

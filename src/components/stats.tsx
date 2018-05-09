@@ -1,13 +1,16 @@
 import * as React from "react";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
-import { Table } from "semantic-ui-react";
+import { Table, Icon } from "semantic-ui-react";
 import { UnitStats } from "../stores/units";
 import { observable, action, computed } from "mobx";
 import { join, value } from "../helpers/react";
+import { Filter } from "./filter";
+import { WarscrollStore } from "../stores/warscroll";
 
 export interface StatsProps {
     uiStore?: UiStore;
+    warscrollStore?: WarscrollStore;
 }
 
 const enum Columns {
@@ -23,7 +26,7 @@ const enum Columns {
     TotalDamage
 }
 
-@inject("uiStore")
+@inject("uiStore", "warscrollStore")
 @observer
 export class Stats extends React.Component<StatsProps> {
     @observable
@@ -91,7 +94,9 @@ export class Stats extends React.Component<StatsProps> {
 
     render() {
 
-        return <Table sortable>
+        return <>
+            <Filter/>
+            <Table sortable>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell onClick={this.handleSort(Columns.Name)} sorted={this.sorted === Columns.Name ? this.direction : undefined}>Name</Table.HeaderCell>
@@ -113,7 +118,7 @@ export class Stats extends React.Component<StatsProps> {
                     this.sortedData.map(x => this.renderCombination(x))
                 }
             </Table.Body>
-        </Table>;
+        </Table></>;
     }
 
     renderCombination(unitStats: UnitStats) {
@@ -121,7 +126,7 @@ export class Stats extends React.Component<StatsProps> {
         const wounds = (unit.wounds || 0) * unit.size;
         const points = unit.points / 100;
         return <Table.Row key={unit.id + unitStats.name}>
-            <Table.HeaderCell>{ !unit.warscroll && unit.model.name} { unit.warscroll && <a href={unit.warscroll}>{unit.model.name}</a> }</Table.HeaderCell>
+            <Table.HeaderCell>{unit.model.name} <Icon name="add circle" onClick={() => this.props.warscrollStore!.addUnit(unit)}/> { unit.warscroll && <a href={unit.warscroll}><Icon name="help circle outline"/></a> }</Table.HeaderCell>
             <Table.Cell>{unitStats.name}</Table.Cell>
             <Table.Cell>{unit.points}</Table.Cell>
             <Table.Cell>{value(unit.move)}</Table.Cell>

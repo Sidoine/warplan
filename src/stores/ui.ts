@@ -4,9 +4,13 @@ import { GrandAlliance, UnitsStore, getUnitStats, UnitStats } from "./units";
 interface SerializedUi {
     grandAlliance: GrandAlliance;
     faction: string;
+    keywordFilter?: string;
 }
 
 export class UiStore {
+
+    @observable
+    keywordFilter = "";    
 
     @observable
     basketPopin: boolean = false;
@@ -22,6 +26,11 @@ export class UiStore {
 
     @computed
     get units() {
+        const keywordFilter = this.keywordFilter.toUpperCase();
+        if (keywordFilter.length > 2) {
+            const grandAlliance = this.grandAlliance;
+            return this.unitsStore.unitList.filter(x => x.factions.some(x => x.grandAlliance === grandAlliance) && (x.model.name.toUpperCase().indexOf(keywordFilter) >= 0 || x.keywords.some(x => x.indexOf(keywordFilter) >= 0)));
+        }
         return this.unitsStore.unitList.filter(x => x.factions.some(x => x.id === this.faction.id));
     }
 
@@ -51,6 +60,7 @@ export class UiStore {
             if (faction) {
                 this.faction = faction;
             }
+            this.keywordFilter = serialized.keywordFilter || "";
         }
     }
     
@@ -75,10 +85,17 @@ export class UiStore {
     }
     
     @action
+    setKeywordFilter(keyword: string) {
+        this.keywordFilter = keyword;
+        this.saveUi();
+    }
+
+    @action
     setFaction(factionId: string) {
         const faction = this.unitsStore!.factions[factionId]
         if (faction) {
             this.faction = faction;
+            this.keywordFilter = "";
             this.saveUi();
         }
     }
@@ -92,7 +109,8 @@ export class UiStore {
     private saveUi() {
         const serialized: SerializedUi = {
             faction: this.faction.id,
-            grandAlliance: this.grandAlliance
+            grandAlliance: this.grandAlliance,
+            keywordFilter: this.keywordFilter
         }
         localStorage.setItem('ui', JSON.stringify(serialized));
     }

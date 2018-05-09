@@ -310,7 +310,10 @@ const keywordRegex: { r: RegExp, n: string }[] = [
     { r: /\bDAEMONS?\b/, n: "DAEMON" },
     { r: /\bWIZARD\b/, n: "WIZARD" },
     { r: /\bMORTAL\b/, n: "MORTAL" },
-    { r: /\bBLOODBOUND\b/, n: "BLOODBOUND" }
+    { r: /\bBLOODBOUND\b/, n: "BLOODBOUND" },
+    { r: /\bBEHEMOTH\b/, n: "MONSTER" },
+    { r: /\bTOTEM\b/, n: "TOTEM" },
+    { r: /\bPRIEST\b/, n: "PRIEST"}
 ];
 
 for (const [key, unit] of gwPointsMap) {
