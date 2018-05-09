@@ -708,6 +708,102 @@ function fixUnits(data: DataStoreImpl):void {
 
         glottkin.attacks = [torrent, tentacle, maw, scythe];
     }
+
+    {
+        const orghott: Unit = data.units.orghottsDaemonspew;
+
+        const moveEffect: DamageColumn = { name: "Move", values: ["10\"", "8\"", "6\"", "6\"", "4\""]};
+        const tongueEffect: DamageColumn = { name: "Grasping Tongue", values: ["2+", "3+", "4+", "5+", "6+"]};
+        const clawEffect: DamageColumn = {name: "Monstruous Claws", values: [5,4,4,4,3]};
+        
+        orghott.damageTable = {
+            ranges: [0, 3, 5, 8, 0],
+            columns: [moveEffect, tongueEffect, clawEffect]
+        };
+
+        orghott.move = moveEffect;
+        orghott.wounds = 12;
+        orghott.save = "3+";
+        orghott.bravery = 9;
+
+        const acid: Ability = { name: "Acid Ichor", description: "Roll a dice each time you allocate a wound to this model in the combat phase (and it is not negated). On a 4+ the attacking unit suffers 1 mortal wound after all its attacks have been made." };
+        const halfblood: Ability = { name: "Fury of the Halfblood", description: "Add D3 to the Attacks characteristic of Orghotts Daemonspew's Rotaxes if he made a charge move in the same turn." };
+        const rotaxes: Ability = { name: "The Rotaxes", description: "At the end of the combat phase, roll a dice for each enemy model that was allocated any wounds caused by the Rotaxes in that combat phase and was not slain. On a 4+ that model suffers 1 mortal wound." };
+
+        orghott.abilities = [acid, halfblood, rotaxes];
+
+        const fester: Ability = { name: "Fester and Rot", description: "You can use this command ability in your hero phase. If you do, pick a friendly NURGLE unit within 14\" of Orghotts Daemonspew. Re-roll failed wound rolls for that unit until your next hero phase." };
+
+        orghott.commandAbilities = [fester];
+
+        const tongue: Attack = { name: "Whippermaw's Grasping Tongue", range: "6", melee: false, attacks: "1", toHit: "3+", toWound: tongueEffect, damage: "D6", rend: "-1" };
+        const rotaxe: Attack = { name: "The Rotaxes", range: "2", melee: true, attacks: "5", toHit: "3+", toWound: "3+", damage: "1", rend: "-1" };
+        const claws: Attack = { name: "Whippermaw's Monstruous Claws", range: "3", melee: true, attacks: clawEffect, toHit: "4+", toWound: "2+", damage: "1", rend: "-1" };
+
+        orghott.attacks = [tongue, rotaxe, claws];
+    }
+
+    {
+        const bloab: Unit = data.units.bloabRotspawned;
+
+        const moveEffect: DamageColumn = { name: "Move", values: ["10\"", "8\"", "6\"", "6\"", "4\""]};
+        const bileEffect: DamageColumn = { name: "Grasping Tongue", values: ["2+", "3+", "3+", "4+", "4+"]};
+        const clawEffect: DamageColumn = {name: "Monstruous Claws", values: [5,4,4,4,3]};
+        
+        bloab.damageTable = {
+            ranges: [0, 3, 5, 8, 10],
+            columns: [moveEffect, bileEffect, clawEffect]
+        };
+
+        bloab.move = moveEffect;
+        bloab.wounds = 12;
+        bloab.save = "4+";
+        bloab.bravery = 9;
+
+        const flies: Ability = { name: "Daemon-flies", description: "At the start of your hero phase, roll a dice for each enemy unit within 7\" of Bloab Rotspawned. On a 4+ subtract 1 from hit rolls for that unit until your next hero phase." };
+        const bells: Ability = { name: "Windspeaker Bells", description: "Subtract 1 from the casting rolls of enemy WIZARD while they are within 14\" of Bloab Rotspawned." };
+        const magic: Ability = { name: "Magic", description: "Bloab Rotspawed is a WIZARD. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Miasma of Pestilence spells." };
+        const miasma: Ability = { name: "Miasma of Pestilence", description: "Miasma of Pestilence has a casting value of 6. If successfully cast, pick an enemy unit within 14\" of the caster that is visible to them. Until your next hero phase, roll a dice at the end of each phase in which any wounds or mortal wounds were allocated to that unit and not negated. On a 2+ that unit suffers D3 mortal wounds." };
+        
+        bloab.abilities = [flies, bells, magic, miasma];
+
+        const bile: Attack = { name: "Bilespurter's Vile Bile", range: "12", melee: false, attacks: "D3", toHit: "4+", toWound: bileEffect, damage: "D3", rend: "-2" };
+        const scythe: Attack = { name: "Harvestman's Scythe", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: "3+", damage: "2", rend: "-1" };
+        const claws: Attack = { name: "Bilespurter's Monstruous Claws", range: "3", melee: true, attacks: clawEffect, toHit: "4+", toWound: "2+", damage: "1", rend: "-1" };
+
+        bloab.attacks = [bile, scythe, claws];
+    }
+
+    {
+        const morbidex: Unit = data.units.morbidexTwiceborn;
+
+        const moveEffect: DamageColumn = { name: "Move", values: ["10\"", "8\"", "6\"", "6\"", "4\""]};
+        const tongueEffect: DamageColumn = { name: "Slabrous Tongues", values: ["2+", "2+", "3+", "4+", "5+"]};
+        const clawEffect: DamageColumn = {name: "Monstruous Claws", values: [5,4,4,4,3]};
+        
+        morbidex.damageTable = {
+            ranges: [0, 3, 5, 8, 10],
+            columns: [moveEffect, tongueEffect, clawEffect]
+        };
+
+        morbidex.move = moveEffect;
+        morbidex.wounds = 12;
+        morbidex.save = "3+";
+        morbidex.bravery = 9;
+
+        const nurglings: Ability = { name: "Lord of Nurglings", description: "At the start of your hero phase, you can pick 1 friendly Nurglings unit within 7\" of Morbidex Twiceborn and add 1 model to it." };
+        const mites: Ability = { name: "Malicious Mites", description: "Add 1 to the wound rolls for friendly Nurglings units while they are within 7\" of Morbidex Twiceborn." };
+        const rot: Ability = { name: "Nurgle's Rot", description: "At the start of your hero phase, roll a dice for each unit (friend or foe) within 3\"  of any units with this ability. On the roll of a 6, that unit suffers D3 mortal wounds. Units with the NURGLE keyword are unaffected by this ability." };
+        const regrowth: Ability = { name: "Repugnant Regrowth", description: "Roll a dice in your hero phase. On a 4+ heal 1 wound that has been allocated to Morbidex Twiceborn. On a 6+ heal D3 wounds instead." };
+                
+        morbidex.abilities = [nurglings, mites, rot, regrowth];
+
+        const tongue: Attack = { name: "Slabrous Tongues", range: "6", melee: false, attacks: "3", toHit: "3+", toWound: tongueEffect, damage: "1", rend: "-1" };
+        const scythe: Attack = { name: "Fleshreaper Scythe", range: "2", melee: true, attacks: "5", toHit: "3+", toWound: "3+", damage: "2", rend: "-1" };
+        const claws: Attack = { name: "Monstruous Claws", range: "3", melee: true, attacks: clawEffect, toHit: "4+", toWound: "2+", damage: "1", rend: "-1" };
+
+        morbidex.attacks = [tongue, scythe, claws];
+    }
 }
 
 export function overrideNurgle(data: DataStoreImpl):void {
