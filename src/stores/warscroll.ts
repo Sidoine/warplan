@@ -90,8 +90,16 @@ export class Warscroll implements WarscrollInterface {
     constructor(public unitsStore: UnitsStore) {
     }
 
-    @observable
-    extraAbilities: ExtraAbility[] = [];
+    @computed
+    get extraAbilities() {
+        const result: ExtraAbility[] = [];
+        for (const unit of this.units) {
+            for (const ability of unit.extraAbilities) {
+                result.push(ability);
+            }
+        }
+        return result;
+    }
 
     @observable
     allegiance: Allegiance = this.unitsStore.allegianceList[0];
@@ -281,14 +289,12 @@ export class WarscrollStore {
     @action
     addExtraAbility(unit: WarscrollUnit, ability: ExtraAbility) {
         unit.extraAbilities.push(ability);
-        this.warscroll.extraAbilities.push(ability);
         this.saveWarscroll();
     }
 
     @action
     removeExtraAbility(unit: WarscrollUnit, ability: ExtraAbility) {
         unit.extraAbilities.splice(unit.extraAbilities.indexOf(ability), 1);
-        this.warscroll.extraAbilities.splice(unit.extraAbilities.indexOf(ability), 1);
         this.saveWarscroll();
     }
 
@@ -312,7 +318,6 @@ export class WarscrollStore {
         this.warscroll.units.splice(0);
         this.warscroll.battalions.splice(0);
         this.warscroll.allegiance = this.unitsStore.allegianceList.find(x => x.id === warscroll.allegiance) || this.unitsStore.allegianceList[0];
-        this.warscroll.extraAbilities.splice(0);
         this.warscroll.armyOption = warscroll.armyOption;
         
         for (const wu of warscroll.units) {
@@ -338,7 +343,6 @@ export class WarscrollStore {
                     const ability = this.unitsStore.getExtraAbility(e);
                     if (ability) {
                         newUnit.extraAbilities.push(ability);
-                        this.warscroll.extraAbilities.push(ability);
                     }
                 } 
             }

@@ -1,4 +1,4 @@
-import { WeaponOptionCategory, Attack, Ability, Unit } from "../units";
+import { WeaponOptionCategory, Attack, Ability, Unit, ExtraAbilityTest } from "../units";
 import { getAttackDamageEx, getValue } from "../combat";
 
 export function override<T>(value:T, f: (x: T) => void) {
@@ -47,7 +47,17 @@ export function getWoundsForSpecialRendIf6OnWound(attack: Attack, rend: number) 
     return getAttackDamageEx(attack, { toWound: "6", rend: rend }) - getAttackDamageEx(attack, { toWound: "6" });
 }
 
+export function keywordAvailable(category: string, keyword: string, alts: string[]): ExtraAbilityTest {
+    return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(keyword) >= 0 && alts.some(x => x === "ALL" || unit.unit.model.name.toUpperCase() === x || unit.unit.keywords.indexOf(x) >= 0);
+}
 
+export const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
+         && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
+
+export function artifactWithKeywordAvailable(keyword: string, alts: string[]): ExtraAbilityTest {
+    return (unit, ws) => artifactAvailable(unit, ws) && unit.unit.keywords.indexOf(keyword) >= 0 && alts.some(x => x === "ALL" || unit.unit.model.name.toUpperCase() === x || unit.unit.keywords.indexOf(x) >= 0);
+}
+         
 export const frequentRate = 0.75;
 export const mediumRate = 0.5;
 export const rareRate = 0.2;

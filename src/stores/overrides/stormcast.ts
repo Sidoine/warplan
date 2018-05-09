@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
 import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn } from "../units";
-import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound } from "./tools";
+import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound, override, artifactWithKeywordAvailable } from "./tools";
 import { getAttackDamage, getAttackDamageEx, getValue } from "../combat";
 
 function addBoxes(data: DataStoreImpl):void {
@@ -32,6 +32,17 @@ function addBoxes(data: DataStoreImpl):void {
         ],
         price: 126
     });
+    data.boxes.push({
+        id: "startCollectingStormcasts",
+        name: "Start Collecting! Stormcast Eternals",
+        units: [
+            { count: 1, models: [data.models.lordCelestant]},
+            { count: 2, models: [data.models.paladinRetributors]},
+            {count: 3, models: [data.models.prosecutorsWithCelestialHammers, data.models.prosecutorsWithStormcallJavelins]},
+            { count: 5, models: [data.models.liberators]}
+        ],
+        price: 65
+    })
     data.boxes.push({
         id: "easyToBuildLiberators",
         name: "Easy to Build: Liberators",
@@ -1380,6 +1391,38 @@ function addExtraAbilities(data: DataStoreImpl): void {
 
     // Artifacts
     data.extraAbilities.stormcastEternalsStrifeEnder.ability.description = "This sigmarite weapon has been energised with runes of emancipation and liberation from evil. Pick one of this HERO’s melee weapons to be a Strife-ender. Add 1 to the Attacks characteristic of this weapon. Add 2 instead if all of the weapon’s attacks are directed against a CHAOS unit.";
+    const treasuredStandard = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["TOTEM"]);
+    override(data.extraAbilities.stormcastEternalsTreasuredStandardHurricaneBanner, x => {
+        x.isAvailable = treasuredStandard;
+        x.category = "artifact";
+        x.ability.description = "The bearer of this potent item always has the wind at their back. They and their kin are driven towards victory by the fury of the tempest. This HERO and friendly STORMCAST ETERNALS units within 12\" of them can re-roll all rolls of 1 (on any dice) when running and charging.";
+    });
+    override(data.extraAbilities.stormcastEternalsTreasuredStandardLicheboneStandard, x => {
+        x.isAvailable = treasuredStandard;
+        x.category = "artifact";
+        x.ability.description = "Incorporating a femur blessed by the Great Necromancer, this banner can instil vigour in even a mortally wounded warrior. Friendly STORMCAST ETERNALS units, other than HEROES, within 6\" of this HERO heal one wound in each of their hero phases.";
+    });
+    override(data.extraAbilities.stormcastEternalsTreasuredStandardPennantOfSigmaron, x => {
+        x.isAvailable = treasuredStandard;
+        x.category = "artifact";
+        x.ability.description = "The steel in the souls of those near this standard is all but unbending, even in dire peril. If a friendly STORMCAST ETERNALS unit within 12\" of this HERO fails a battleshock test, roll a dice. On a 2 or more, only one model flees from that unit."
+    });
+    const mysticLight = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["LORD-CASTELLANT", "LORD-VERITANT", "KNIGHT-AZYROS"])
+    override(data.extraAbilities.stormcastEternalsMysticLightFuryBrand, x => {
+        x.isAvailable = mysticLight;
+        x.category = "artifact" ;
+        x.ability.description = "The fiery light that spills from this item can ignite a deep and righteous rage in those nearby. In your hero phase, this HERO can infuse themselves or another friendly STORMCAST ETERNALS HERO within 6\" with fury – add 1 to the Attacks characteristic of one weapon for that HERO until your next hero phase."
+    });
+    override(data.extraAbilities.stormcastEternalsMysticLightShrivingLight, x => {
+        x.isAvailable = mysticLight;
+        x.category = "artifact" ;
+        x.ability.description = "The redemptive light of the High Star Sigendil beams outwards, sapping the will of evil men. Any enemy units that take a battleshock test within 6\" of this HERO add 1 to the result. CHAOS units instead add D3 to the result.";
+    });
+    override(data.extraAbilities.stormcastEternalsMysticLightLanternOfTheTempest, x => {
+        x.isAvailable = mysticLight;
+        x.category = "artifact" ;
+        x.ability.description = "This lantern emits the flickering, blinding glare of a caged lightning storm. Enemy units that direct missile weapon attacks against this HERO or friendly STORMCAST ETERNALS units within 6\" of this HERO must re-roll hit rolls of 6 or more.";
+    });
 
     // Prayers
     data.extraAbilities.stormcastEternalsPrayerDivineLight.ability.description = "In your hero phase, you can declare that this model is going to pray for Sigmar to illuminate the battlefield. If you do so, pick a unit within 12\" and roll a dice. On a roll of 3 or more the prayer is heard – if you chose an enemy unit, friendly units re-roll hit rolls of 1 when attacking that unit until your next hero phase. If you instead chose a friendly unit, enemy units re-roll hit rolls of 6 or more when attacking that unit until your next hero phase.";
