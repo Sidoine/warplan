@@ -332,12 +332,12 @@ function fixUnits(data: DataStoreImpl):void {
         judicator.abilities = [judicatorPrime, eternalJudgment];
 
         {
-            const lordCelestantOnDracoth: Unit = data.units.lordCelestantOnDracoth;
-            lordCelestantOnDracoth.move = 10;
-            lordCelestantOnDracoth.wounds = 7;
-            lordCelestantOnDracoth.bravery = 9;
-            lordCelestantOnDracoth.save = "3+";
-            lordCelestantOnDracoth.keywords.push("CELESTIAL", "HUMAN", "LORD-CELESTANT");
+            const unit: Unit = data.units.lordCelestantOnDracoth;
+            unit.move = 10;
+            unit.wounds = 7;
+            unit.bravery = 9;
+            unit.save = "3+";
+            unit.keywords.push("CELESTIAL", "HUMAN", "LORD-CELESTANT");
             const stormstrikeGlaive: Attack = { melee: true, name: "Stormstrike Glaive", range: "2", attacks: "4", toHit: "3+", toWound: "4+", rend: "-1", damage: "1" };
             const lightningHammer: Attack = { melee: true,name: "Lightning Hammer", range: "1", attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "2" };
             const thunderAxe: Attack = { melee: true,name: "Thunderaxe", range: "2", attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "2"};
@@ -380,17 +380,17 @@ function fixUnits(data: DataStoreImpl):void {
             };
             const lordOfTheHost: Ability = {name: "Lord of the Host", description: "If a Lord-Celestant uses this ability, until your next hero phase you do not have to take battleshock tests for this model or any friendly STORMCAST ETERNALS that are within 24\" of it at the start of the battleshock phase."};
 
-            lordCelestantOnDracoth.abilities = [intolerableDamage, stormBreath];
-            lordCelestantOnDracoth.commandAbilities = [lordOfTheHost];
-            lordCelestantOnDracoth.attacks = [dracothsClawsAndFangs];
+            unit.abilities = [intolerableDamage, stormBreath];
+            unit.commandAbilities = [lordOfTheHost];
+            unit.attacks = [dracothsClawsAndFangs];
 
-            setBaseWeaponOption(lordCelestantOnDracoth, data.units.lordCelestantOnDracoth.baseWeaponOptions.tempestosHammerThundershield, [tempestosHammer], [sigmariteThundershield, tempestosHammerAbility]);
-            setBaseWeaponOption(lordCelestantOnDracoth, data.units.lordCelestantOnDracoth.baseWeaponOptions.lightningHammer, [lightningHammer], [lightningHammerAbility]);
-            setBaseWeaponOption(lordCelestantOnDracoth, data.units.lordCelestantOnDracoth.baseWeaponOptions.lightningHammerThundershield, [lightningHammer], [sigmariteThundershield, lightningHammerAbility]);
-            setBaseWeaponOption(lordCelestantOnDracoth, data.units.lordCelestantOnDracoth.baseWeaponOptions.stormstrikeGlaive, [stormstrikeGlaive], [stormstrikeGlaiveAbility]);
-            setBaseWeaponOption(lordCelestantOnDracoth, data.units.lordCelestantOnDracoth.baseWeaponOptions.stormstrikeGlaiveThundershield, [stormstrikeGlaive], [sigmariteThundershield, stormstrikeGlaiveAbility]);
-            setBaseWeaponOption(lordCelestantOnDracoth, data.units.lordCelestantOnDracoth.baseWeaponOptions.thunderaxe, [thunderAxe], [thunderaxeAbility]);
-            setBaseWeaponOption(lordCelestantOnDracoth, data.units.lordCelestantOnDracoth.baseWeaponOptions.thunderaxeThundershield, [thunderAxe], [sigmariteThundershield, thunderaxeAbility]);
+            setBaseWeaponOption(unit, data.units.lordCelestantOnDracoth.baseWeaponOptions.tempestosHammerThundershield, [tempestosHammer], [sigmariteThundershield, tempestosHammerAbility]);
+            setBaseWeaponOption(unit, data.units.lordCelestantOnDracoth.baseWeaponOptions.lightningHammer, [lightningHammer], [lightningHammerAbility]);
+            setBaseWeaponOption(unit, data.units.lordCelestantOnDracoth.baseWeaponOptions.lightningHammerThundershield, [lightningHammer], [sigmariteThundershield, lightningHammerAbility]);
+            setBaseWeaponOption(unit, data.units.lordCelestantOnDracoth.baseWeaponOptions.stormstrikeGlaive, [stormstrikeGlaive], [stormstrikeGlaiveAbility]);
+            setBaseWeaponOption(unit, data.units.lordCelestantOnDracoth.baseWeaponOptions.stormstrikeGlaiveThundershield, [stormstrikeGlaive], [sigmariteThundershield, stormstrikeGlaiveAbility]);
+            setBaseWeaponOption(unit, data.units.lordCelestantOnDracoth.baseWeaponOptions.thunderaxe, [thunderAxe], [thunderaxeAbility]);
+            setBaseWeaponOption(unit, data.units.lordCelestantOnDracoth.baseWeaponOptions.thunderaxeThundershield, [thunderAxe], [sigmariteThundershield, thunderaxeAbility]);
         }
 
         {
@@ -541,8 +541,25 @@ function fixUnits(data: DataStoreImpl):void {
                 description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields.",
                 getSavedWounds: getSavedWoundReroll1
             };
-            prosecutorsWithStormcallJavelins.attacks = [stormcallJavelin, stormsurgeTrident, stormcallJavelinMelee, stormsurgeTridentMelee];
-            prosecutorsWithStormcallJavelins.abilities= [fly, prosecutorPrime, stormcallJavelinAbility, heraldsOfRightouness, sigmariteShield];
+
+            const stormcallJavelinOption: WeaponOption = {
+                id: "javelin",
+                name: "Stormcall Javelins and Sigmarite Shield",
+                abilities: [stormcallJavelinAbility, sigmariteShield],
+                attacks: [stormcallJavelin, stormcallJavelinMelee]
+            };
+            const stormsurgeTridentOption: WeaponOption = {
+                id: "trident",
+                name: "Stormsurge Trident",
+                attacks: [stormsurgeTrident, stormsurgeTridentMelee],
+                abilities: [stormcallJavelinAbility, prosecutorPrime]
+            }
+
+            prosecutorsWithStormcallJavelins.abilities= [fly, stormcallJavelinAbility, heraldsOfRightouness];
+            prosecutorsWithStormcallJavelins.weaponOptions = [
+                { options: [stormcallJavelinOption] },
+                { maxCount: 1, options: [stormsurgeTridentOption]}
+            ];
         }
 
         {
@@ -1377,6 +1394,141 @@ If a STORMCAST ETERNAL unit is chosen, it is bathed in the healing energies of t
             unit.attacks = [astralHammer];
             unit.abilities = [arcaneEngineer, meteoricSlam, raindOfFire]
         }
+
+        {
+            const unit: Unit = data.units.steelheartSChampions;
+            unit.warscroll = "https://www.games-workshop.com/resources/PDF/Downloads/aos-warscroll-steelhearts-champions-en.pdf";
+            unit.keywords.push("CELESTIAL", "HUMAN", "REDEEMER", "LIBERATOR", "STEELHEART'S CHAMPION");
+            unit.move = 5;
+            unit.save = "4+";
+            unit.bravery = 7;
+            const severinsBroadsword: Attack = { melee: true, name: "Severin's Broadsword", range: 1, attacks: 3, toHit: "3+", toWound: "4+", rend: -1, damage: 2};
+            const obrynsGrandhammer: Attack = {melee: true, name: "Obryn's Grandhammer", range: 1, attacks: 2, toHit: "4+", toWound: "3+", rend: -1, damage: 3};
+            const angharadsWarhammer: Attack = {melee: true, name: "Angharad's Warhammer", range: 1, attacks: 3, toHit: "3+", toWound: "3+", damage: 1};
+            const severinSteelheart: Ability = { name: "Severin Steelheart", description: "The leader of this unit is Severin Steelheart. If a target unit has 5 or more models, you can re-roll failed hit rolls for Severin Steelheart’s Broadsword."};
+            const heroicGuard: Ability = {name: "Heroic Guard", description: "Steelheart’s Champions stand impervious and unyielding in the face of the enemy, refusing to give an inch even against seemingly impossible odds.If an enemy unit finishes its charge move within ½\" of this unit, add 1 to this unit’s save rolls for the rest of the turn. However, this unit cannot also add 1 to its save rolls for being wholly on or within a terrain feature while this ability is being used."};
+            const layLowTheTyrants: Ability = {name: "Lay Low the Tyrants", description:  "The Liberators’ task is to free the Mortal Realms from the yoke of oppression, and they do so by slaying tyrants, warlords and champions of ruin wherever they are found.If any model from this unit selects an enemy unit with a Wounds characteristic of 5 or more as the target for all of its attacks in a combat phase, add 1 to that model’s hit rolls in that combat phase."};
+            const sigmariteShields: Ability = {
+                name: "Sigmarite Shields",
+                description: "Forged from the wondrous living metal known as sigmarite, the shields of the Stormcast Eternals form an impenetrable wall against the blades and spells of their foes.You can re-roll save rolls of 1 for this unit while it includes Angharad Brightshield.",
+                getSavedWounds: getSavedWoundReroll1
+            };
+            const severinSteelheartOption: WeaponOption = {
+                abilities: [severinSteelheart],
+                attacks: [severinsBroadsword],
+                id: "severinSteelheartOption",
+                name: "Severin Steelheart"
+            };
+            const obrynOption: WeaponOption = {
+                attacks: [obrynsGrandhammer],
+                id: "obryn",
+                name: "Obryn the Bold"
+            };
+            const angharadOption: WeaponOption = {
+                attacks: [angharadsWarhammer],
+                abilities: [sigmariteShields],
+                id: "angharad",
+                name: "Angharad Brightshield"
+            };
+            unit.weaponOptions = [
+                {maxCount: 1, options: [severinSteelheartOption]},
+                {maxCount: 1, options: [obrynOption]},
+                {maxCount: 1, options: [angharadOption]}
+            ];
+            unit.abilities = [heroicGuard, layLowTheTyrants];
+        }
+    }
+
+    {
+        const unit: Unit = data.units.theFarstriders;
+        unit.warscroll = "https://www.games-workshop.com/resources/PDF/Downloads//aos-warscroll-the-farstriders-en.pdf";
+        unit.move = 6;
+        unit.save = "4+";
+        unit.bravery = 7;
+        const pistol: Attack = { melee: false, name: "Boltstorm Pistol", range: 9, attacks: 2, toHit: "3+", toWound: "4+", damage: 1};
+        const handaxe: Attack = {melee: true, name: "Shock Handaxe", range: 1, attacks: 2, toHit: "4+", toWound: "3+", damage: 1};
+        const stormSabre: Attack = {melee: true, name: "Storm Sabre", range: 1, attacks: 2, toHit: "3+", toWound: "4+", damage: 1};
+        const sansonFarstriderAbility: Ability = {
+            name: "Sanson Farstrider",
+            description: "The leader of this unit is Sanson Farstrider. Add 1 to the Attacks characteristic of this model’s Shock Handaxe",
+            getWounds: (models, melee, attack) => attack === handaxe ? getWoundsForExtraAttack(attack) : 0
+        };
+        const starFalcon: Ability = {
+            name: "Star Falcon",
+            description: "Farstrider’s loyal star falcon aids in scouting the enemy, but can also swoop at lightning speed to strike at the eyes and throats of enemy warriors.At the start of the Shooting phase, pick an enemy unit within 18\" of Sanson Farstrider and roll a dice. On a 4+, that enemy unit suffers a mortal wound. ",
+            getWounds: (models, melee, attack) => attack === undefined && !melee ? 0.5 : 0
+        };
+        const astralCompass: Ability = {
+            name: "Astral Compass",
+            description: "The Astral Compass shows the Vanguard-Hunters the best route to strike at their foe, no matter the terrain or the distance they must travel.Instead of setting up this unit on the battlefield, you can place it to one side and say that it is set up in pursuit. If you do so, in any of your movement phases you can set up the unit wholly within 6\" of any edge of the battlefield, more than 7\" from the enemy. This is their move for that movement phase."
+        };
+        const tirelessHunter: Ability = {
+            name: "Tireless Hunter",
+            description: "The warriors of the Vanguard Chambers never stop moving in pursuit of their prey. The Farstriders can run and still shoot in the same turn."
+        };
+        const sanson: WeaponOption = {
+            id: "sanson",
+            name: "Sanson Farstrider",
+            abilities: [sansonFarstriderAbility, starFalcon, astralCompass],
+            attacks: [pistol, handaxe]
+        };
+        const almeric: WeaponOption = {
+            id: "almeric",
+            name: "Almeric Eagle-eye",
+            attacks: [pistol, handaxe]
+        };
+        const elias: WeaponOption = {
+            id: "elias",
+            name: "Elias Swiftblade",
+            attacks: [pistol, stormSabre]
+        };
+        unit.weaponOptions = [
+            { options: [sanson], maxCount: 1},
+            { options: [almeric], maxCount: 1},
+            { options: [elias], maxCount: 1}
+        ];
+        unit.abilities = [tirelessHunter];
+    }
+
+    {
+        const unit: Unit = data.units.vandusHammerhand;
+        unit.warscroll = "https://www.games-workshop.com/resources/PDF/Downloads/Vandus_Hammerhand_CB_Web%20-%20cropped.pdf";
+        unit.move = 10;
+        unit.wounds = 7;
+        unit.bravery = 9;
+        unit.save = "3+";
+        unit.keywords.push("CELESTIAL", "HUMAN", "LORD-CELESTANT", "VANDUS HAMMERHAND");
+        const heldensen: Attack = { melee: true, name: "Heldensen", range: "2", attacks: "3", toHit: "3+", toWound: "2+", rend: "-1", damage: "3"};
+        const dracothsClawsAndFangs: Attack = {melee: true, name: "Calanax's Claws and Fangs", range: "1", attacks: "4", toHit: "3+", toWound: "3+", rend: "-1", damage: "1"};
+        const heldensenAbility: Ability = { 
+            name: "Heldensen", 
+            description: "With the momentum of a charge behind it, few can stand against the impact of Vandus Hammerhand's tempestos hammer. If Vandus has made a charge move this turn, it can make D3 extra attacks with its Tempestos Hammer.",
+            getWounds: (models, melee, attack) => attack === heldensen ? getWoundsForExtraAttack(attack, 2) * rareRate : 0
+        };
+        
+        const intolerableDamage: Ability = {
+            name: "Intolerable Damage", 
+            description: "If the wound roll for the Calanax’s Claws and Fangs attack is 6 or more, then that attack causes D6 Damage rather than 1.",
+            getWounds: (models, melee, attack) => attack === dracothsClawsAndFangs ? getWoundsForSpecialDamageIf6OnWound(attack, 3.5) : 0
+        };
+        const stormBreath: Ability = {
+            name: "Storm Breath", 
+            description: "You can make a storm breath attack with this model in your shooting phase. To do so, pick a point on the battlefield that is within 12\" of this model. Roll a dice for each unit (friend or foe) that is within 2\" of the point that you picked. On a roll of 4 or more, the unit being rolled for suffers D3 mortal wounds.",
+            getWounds: (models, melee, attack) => !attack && !melee ? numberOfNeighborUnits * 0.5 * 2 : 0
+        };
+        const lordOfTheHammerhands: Ability = {
+            name: "Lord of the Host", 
+            description: "If Vandus Hammerhand is taken as part of a Hammers of Sigmar Warrior Chamber battalion, then any units from the battalion that are within 24\" of him a the start of the battleshock phase do not have to take battleshock tests."
+        };
+        const vengefulDetermination: Ability = {
+            name: "Vengeful Determination",
+            description: "If Vandus Hammerhand uses this ability, then until your next hero phase you can add 1 to the Attacks characteristic of any melee weapon used by friendly STORMCAST ETERNAL units whilst they are within 6 \" of him." 
+        };
+
+
+        unit.abilities = [intolerableDamage, stormBreath, lordOfTheHammerhands, heldensenAbility];
+        unit.commandAbilities = [vengefulDetermination];
+        unit.attacks = [dracothsClawsAndFangs, heldensen];
     }
 }
 
