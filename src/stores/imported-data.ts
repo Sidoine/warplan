@@ -5972,6 +5972,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Daughters of Khaine Bloodwrack Medusa Wizard",
             keywords: ["ORDER", "DAUGHTERS OF KHAINE", "HERO", "WIZARD"],
             wounds: 6,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-bloodwrack-medusa-en.pdf",
             isLeader: () => true,
         },
         hagQueen: {
@@ -5984,6 +5985,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Daughters of Khaine Priest",
             keywords: ["ORDER", "DAUGHTERS OF KHAINE", "HERO", "PRIEST"],
             wounds: 5,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-hag-queen-en.pdf",
             isLeader: () => true,
         },
         slaughterQueen: {
@@ -5996,6 +5998,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Daughters of Khaine Priest",
             keywords: ["ORDER", "DAUGHTERS OF KHAINE", "HERO", "PRIEST"],
             wounds: 5,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-slaughter-queen-en.pdf",
             isLeader: () => true,
         },
         doomfireWarlocks: {
@@ -6052,7 +6055,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Daughters of Khaine Priest Totem - Behemoth",
             keywords: ["ORDER", "DAUGHTERS OF KHAINE", "HERO", "MONSTER", "TOTEM", "PRIEST"],
             wounds: 13,
-            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-caludron-blood-en.pdf",
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-hag-queen-caludron-blood-en.pdf",
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -6066,7 +6069,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Daughters of Khaine Priest Totem - Behemoth",
             keywords: ["ORDER", "DAUGHTERS OF KHAINE", "HERO", "MONSTER", "TOTEM", "PRIEST"],
             wounds: 13,
-            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-caludron-blood-en.pdf",
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-slaughter-queen-on-cauldron-of-blood-en.pdf",
             isLeader: () => true,
             isBehemot: () => true,
         },
@@ -6098,6 +6101,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["ORDER", "DAUGHTERS OF KHAINE"],
             wounds: 2,
             maxSize: 20,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-morathi-blood-stalkers-en.pdf",
         },
         bloodSisters: {
             id: "bloodSisters",
@@ -6111,6 +6115,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 20,
             maxPoints: 480,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-morathi-blood-sisters-en.pdf",
             isBattleline: () => true,
         },
         khineraiHeartrenders: {
@@ -6124,6 +6129,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["ORDER", "DAUGHTERS OF KHAINE"],
             wounds: 1,
             maxSize: 20,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-khinerai-heartrenders-en.pdf",
         },
         khineraiLifetakers: {
             id: "khineraiLifetakers",
@@ -6137,6 +6143,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 20,
             maxPoints: 280,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-khinerai-lifetakers-en.pdf",
         },
         avatarOfKhaine: {
             id: "avatarOfKhaine",
@@ -6160,6 +6167,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Daughters of Khaine Wizard - Unique",
             keywords: ["ORDER", "DAUGHTERS OF KHAINE", "HERO", "WIZARD"],
             wounds: 6,
+            warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-morathi-high-oracle-of-Khaine-en.pdf",
             isLeader: () => true,
         },
         drakespawnChariots: {
@@ -13358,6 +13366,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 30,
             maxPoints: 360,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Namarti_Thralls.pdf",
             isBattleline: () => true,
         },
         akhelianLeviadon: {
@@ -13382,6 +13391,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Akhelian - Unique",
             keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
             wounds: 8,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Volturnos.pdf",
             isLeader: () => true,
         },
         eidolonOfMathlannAspectOfTheStorm: {
@@ -13394,6 +13404,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Eidolon",
             keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
             wounds: 12,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Eidolon_of_Mathlann_Storm.pdf",
             isLeader: () => true,
         },
         eidolonOfMathlannAspectOfTheSea: {
@@ -13406,6 +13417,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Eidolon Wizard",
             keywords: ["ORDER", "IDONETH DEEPKIN", "HERO", "WIZARD"],
             wounds: 12,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Eidolon_of_Mathlann_Sea.pdf",
             isLeader: () => true,
         },
         akhelianKing: {
@@ -13418,6 +13430,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Akhelian",
             keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
             wounds: 7,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Akhelian_King.pdf",
             isLeader: () => true,
         },
         isharannTidecaster: {
@@ -13430,6 +13443,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Isharann Wizard",
             keywords: ["ORDER", "IDONETH DEEPKIN", "HERO", "WIZARD"],
             wounds: 5,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Isharann_Tidecaster.pdf",
             isLeader: () => true,
         },
         isharannSoulrender: {
@@ -13439,9 +13453,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             points: 100,
             type: "hero",
-            subType: "Isharann Priest",
-            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO", "PRIEST"],
+            subType: "Isharann",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
             wounds: 5,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Isharann_Soulrender.pdf",
             isLeader: () => true,
         },
         isharannSoulscryer: {
@@ -13451,9 +13466,10 @@ export class DataStoreImpl implements DataStore {
             size: 1,
             points: 100,
             type: "hero",
-            subType: "Isharann",
-            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
+            subType: "Isharann Priest",
+            keywords: ["ORDER", "IDONETH DEEPKIN", "HERO", "PRIEST"],
             wounds: 5,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Isharann_Soulscryer.pdf",
             isLeader: () => true,
         },
         lotannWardenOfTheSoulLedgers: {
@@ -13466,6 +13482,7 @@ export class DataStoreImpl implements DataStore {
             subType: "Isharann - Unique",
             keywords: ["ORDER", "IDONETH DEEPKIN", "HERO"],
             wounds: 5,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Lotann.pdf",
             isLeader: () => true,
         },
         akhelianAllopexes: {
@@ -13517,6 +13534,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["ORDER", "IDONETH DEEPKIN"],
             wounds: 1,
             maxSize: 20,
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Namarti_Reavers.pdf",
             isBattleline: () => true,
         },
     };

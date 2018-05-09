@@ -54,6 +54,7 @@ async function load(name: string) {
 
 async function main() {
     const version = "4";
+    const mainVersion = "5";
     try {
         await curl(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/src/allData.v${version}.min.js`, "src/stores/data/allData.ts", "export function load(availablePoolArmies:any) {\n", "\nloadAllArmiesFaster();\n}\n");
     }
@@ -61,8 +62,15 @@ async function main() {
         console.error(`${error} while loading main`);
         return;
     }
-    const data = await getData(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/main.v${version}.min.js`);
-
+    let data: string;
+    try {
+        data = await getData(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/main.v${mainVersion}.min.js`);
+    }
+    catch(error) {
+        console.error(`${error} while loading main.v${version}.min.js`);
+        return;
+    }
+    
     const tokenMatch = data.match(/VERSION="(.*?)"/);
     if (tokenMatch === null) {
         console.error("unable to read token");
