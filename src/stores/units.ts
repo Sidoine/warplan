@@ -86,7 +86,19 @@ export interface DamageColumn {
     values: Value[];
 }
 
-export interface Unit {
+export interface UnitInfos {
+    weaponOptions?: WeaponOptionCategory[];
+    abilities?: Ability[];
+    attacks?: Attack[];
+    commandAbilities?: Ability[];
+}
+
+export interface UnitModel extends UnitInfos {
+    name?: string;
+    maxCount?: number;
+}
+
+export interface Unit extends UnitInfos {
     id: string;
     model: Model;
     size: number;
@@ -101,12 +113,9 @@ export interface Unit {
     wounds?: number;
     bravery?: number;
     keywords: string[];
-    weaponOptions?: WeaponOptionCategory[];
-    abilities?: Ability[];
-    commandAbilities?: Ability[];
-    attacks?: Attack[];
     damageTable?: DamageTable;
     description?: string;
+    models?: UnitModel[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => boolean;

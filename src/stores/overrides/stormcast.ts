@@ -36,12 +36,21 @@ function addBoxes(data: DataStoreImpl):void {
         id: "startCollectingStormcasts",
         name: "Start Collecting! Stormcast Eternals",
         units: [
-            { count: 1, models: [data.models.lordCelestant]},
-            { count: 2, models: [data.models.paladinRetributors]},
-            {count: 3, models: [data.models.prosecutorsWithCelestialHammers, data.models.prosecutorsWithStormcallJavelins]},
-            { count: 5, models: [data.models.liberators]}
+            { count: 1, models: [data.models.lordCelestant] },
+            { count: 2, models: [data.models.paladinRetributors] },
+            { count: 3, models: [data.models.prosecutorsWithCelestialHammers, data.models.prosecutorsWithStormcallJavelins] },
+            { count: 5, models: [data.models.liberators] }
         ],
         price: 65
+    });
+    data.boxes.push({
+        id: "shadespire",
+        name: "Warhammer Underworlds: Shadespire",
+        units: [
+            { count: 3, models: [data.models.steelheartSChampions] },
+            { count: 5, models: [data.models.garrekSReavers]}
+        ],
+        price: 50
     })
     data.boxes.push({
         id: "easyToBuildLiberators",
