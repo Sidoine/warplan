@@ -125,8 +125,9 @@ export class Stats extends React.Component<StatsProps> {
         const unit = unitStats.unit;
         const wounds = (unit.wounds || 0) * unit.size;
         const points = unit.points / 100;
+        const count = this.props.warscrollStore!.warscroll.units.reduce((c, x) => x.unit.id === unit.id ? x.count + c : c, 0);
         return <Table.Row key={unit.id + unitStats.name}>
-            <Table.HeaderCell>{unit.model.name} <Icon name="add circle" onClick={() => this.props.warscrollStore!.addUnit(unit)}/> { unit.warscroll && <a href={unit.warscroll}><Icon name="help circle outline"/></a> }</Table.HeaderCell>
+            <Table.HeaderCell>{unit.model.name} { count > 0 && `(${count})`} <Icon name="add circle" onClick={() => this.props.warscrollStore!.addUnit(unit)}/> { unit.warscroll && <a href={unit.warscroll}><Icon name="help circle outline"/></a> }</Table.HeaderCell>
             <Table.Cell>{unitStats.name}</Table.Cell>
             <Table.Cell>{unit.points}</Table.Cell>
             <Table.Cell>{value(unit.move)}</Table.Cell>

@@ -430,7 +430,7 @@ function fixUnits(data: DataStoreImpl):void {
             paladinRetributors.abilities = [retributorPrime];
             const starsoulMaceOption: WeaponOption = { attacks: [starsoulMace], abilities: [starsoulMaceAbility], name: "Starsoul Mace", id: "starsoulMace" };
             const lightningHammerOption: WeaponOption = { attacks: [lightningHammer], abilities: [blastToAshes], name: "Lightning Hammer", id: "lightningHammer" };
-            paladinRetributors.weaponOptions = [{ options: [lightningHammerOption] }, { options: [ starsoulMaceOption], maxCount: 1 }];
+            paladinRetributors.weaponOptions = [{ options: [lightningHammerOption] }, { options: [ starsoulMaceOption], maxCount: 2 }];
         }
 
         {
