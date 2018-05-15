@@ -153,9 +153,15 @@ function addBoxes(data: DataStoreImpl):void {
     });
     data.boxes.push({
         id: "lordCastellant",
-        name: "Lord-Castellant/Lord-Veritant",
-        units: [{count:1, models: [data.models.lordCastellant, data.models.lordVeritant]}, {count:1, models: [data.models.gryphHound]}],
+        name: "Lord-Castellant",
+        units: [{count:1, models: [data.models.lordCastellant]}, {count:1, models: [data.models.gryphHound]}],
         price: 30
+    });
+    data.boxes.push({
+        id: "lordVeritant",
+        name: "Lord-Veritant",
+        units: [{count:1, models: [data.models.lordVeritant]}, {count:1, models: [data.models.gryphHound]}],
+        price: 26
     });
     data.boxes.push({
         id: "lordCelestant",

@@ -18,3 +18,17 @@ export function value(val: Value) {
     }
     return "*";
 }
+
+export function groupBy<TKey, T>(list: T[], keyGetter: (value: T) => TKey) {
+    const map = new Map<TKey, T[]>();
+    list.forEach((item) => {
+        const key = keyGetter(item);
+        const collection = map.get(key);
+        if (!collection) {
+            map.set(key, [item]);
+        } else {
+            collection.push(item);
+        }
+    });
+    return map;
+}
