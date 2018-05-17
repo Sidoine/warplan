@@ -4,6 +4,7 @@ import { getAttackDamage, getValue } from "./combat";
 import { overrideNurgle } from "./overrides/nurgle";
 import { overrideDevotedOfSigmar } from "./overrides/devoted-of-sigmar";
 import { overrideWanderers } from "./overrides/wanderers";
+import { overrideIdonethDeepkins } from "./overrides/idoneth-deepkins";
 
 export interface Model {
     name: string;
@@ -256,6 +257,7 @@ export interface Box {
     units: BoxedModel[];
     price: number;
     name: string;
+    url?: string;
 }
 
 
@@ -338,6 +340,7 @@ export class UnitsStore {
         overrideNurgle(data);
         overrideDevotedOfSigmar(data);
         overrideWanderers(data);
+        overrideIdonethDeepkins(data);
 
         const models: {[key: string]: Model} = data.models;  
         for (const key in models) {

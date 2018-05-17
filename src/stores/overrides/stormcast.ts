@@ -199,6 +199,30 @@ function addBoxes(data: DataStoreImpl):void {
         units: [{count:1, models: [data.models.knightHeraldor]}],
         price: 19.5
     });
+    data.boxes.push({
+        id: "warhammerQuestMightyHeroes",
+        name: "Warhammer Quest Mighty Heroes",
+        price: 45,
+        url: "https://www.games-workshop.com/en-EU/Warhammer-Quest-Mighty-Heroes",
+        units: [
+            { count: 1, models: [data.models.slaughterpriest]},
+            { count: 1, models: [data.models.knightVenator, data.models.knightAzyros]},
+            { count: 1, models: [data.models.auricRunemaster]}
+        ]
+    });
+    data.boxes.push({
+        id: "warhammerQuestArcaneHeroes",
+        name: "Warhammer Quest Arcane Heroes",
+        price: 45,
+        url: "https://www.games-workshop.com/en-EU/Warhammer-Quest-Arcane-Heroes",
+        units: [
+            { count: 1, models: [data.models.greySeer]},
+            { count: 1, models: [data.models.chaosSorcererLord]},
+            { count: 1, models: [data.models.knightHeraldor]},
+            { count: 1, models: [data.models.sorceress]},
+            { count: 1, models: [data.models.skinkPriest]}
+        ]
+    })
 }
 
 function fixBattalions(data: DataStoreImpl):void {
