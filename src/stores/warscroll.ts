@@ -1,5 +1,6 @@
 import { action, computed, observable, toJS } from "mobx";
 import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion } from "./units";
+import { deflate, inflate } from "pako";
 
 export interface WarscrollWeaponOption {
     weaponOption?: WeaponOption;
@@ -21,6 +22,11 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     
     @observable
     count: number = 1;
+
+    @computed
+    get modelCount() {
+        return this.count * this.unit.size;
+    }
 
     @observable
     weaponOption: WarscrollWeaponOption[] = [];
@@ -313,6 +319,10 @@ export class WarscrollStore {
         const serializedWarscroll = localStorage.getItem(this.getWarscrollItem(name));
         if (serializedWarscroll === null) return;
         const warscroll: SerializedWarscroll = JSON.parse(serializedWarscroll);
+        this.loadSerializedWarscroll(warscroll);
+    }
+
+    loadSerializedWarscroll(warscroll: SerializedWarscroll) {
         this.warscroll.name = warscroll.name;
         this.warscroll.general = undefined;
         this.warscroll.units.splice(0);
@@ -356,10 +366,8 @@ export class WarscrollStore {
         }
     }
 
-    @action
-    saveWarscroll(name?: string) {
-        if (name && this.warscrolls.indexOf(name) < 0) this.warscrolls.push(name);
-        const warscroll: SerializedWarscroll = {
+    getSerializedWarscroll(): SerializedWarscroll {
+        return {
             name: this.warscroll.name,
             units: this.warscroll.units.map(x => {return {
                 unitId: x.unit.id,
@@ -376,6 +384,30 @@ export class WarscrollStore {
             allegiance: this.warscroll.allegiance.id,
             armyOption: this.warscroll.armyOption
         };
+    }
+
+    @computed
+    get link() {
+        const ws = btoa(deflate(JSON.stringify(this.getSerializedWarscroll()), { to: 'string' }));
+        return `${document.location.protocol}//${document.location.host}${document.location.pathname}#?ws=${ws}`;
+    }
+
+    @action
+    loadLink() {
+        const hash = location.hash.match(/ws=(.*)/);
+        if (hash) {
+            const ws = hash[1];
+            this.loadSerializedWarscroll(JSON.parse(inflate(atob(ws), {to: 'string'})))
+            location.hash= "/wb";
+        }
+    }
+
+    // http://localhost:8080/#/wb?ws=eJytkTFPxDAMhf8K8twFxm4nDgELsN2AbvClprXkOsVxVKSq/520Q+kAEkJMsZyXz+85Eyj2BDU80Xh1QkvBoghUkJU9Qf06rdVjUyRI3pGNrG0qghCzOtTXFXC6JyVDgfoNJVEFI+EQ9XlwjrpAzhXQhxseLizsTGtvrnbsQELJUf3FuPj5Ae+W/0SXaM3hPXM5/935YDFRyB4tndi72zUIozxg35PtNnXzm3kTxLXeVrKRjrk8WyZvgtZQm2693KWav7dcuhd0R/kKhiLUMmpY/j+VAH3A5HdOpsUczJ8lx78z
+
+    @action
+    saveWarscroll(name?: string) {
+        if (name && this.warscrolls.indexOf(name) < 0) this.warscrolls.push(name);
+        const warscroll = this.getSerializedWarscroll();
         localStorage.setItem(this.getWarscrollItem(name), JSON.stringify(warscroll));
         this.saveWarscrolls();
     }
@@ -394,6 +426,7 @@ export class WarscrollStore {
         }
 
         this.loadWarscroll();
+        this.loadLink();
     }
 
 

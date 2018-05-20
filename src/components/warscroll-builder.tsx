@@ -23,6 +23,7 @@ export class WarscrollBuilder extends React.Component<WarscrollBuilderProps, {}>
             <WarscrollBattalionsList/>
             <WarscrollUnitsList/>
             <Button onClick={() => this.props.uiStore!.showWarscrollPopin()}>Manage warscrolls</Button>
+            <Button onClick={() => this.props.uiStore!.showExportPopin()}>Export</Button>
         </>;
     }
 }

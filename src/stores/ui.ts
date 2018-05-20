@@ -19,6 +19,9 @@ export class UiStore {
     warscrollPopin: boolean = false;
 
     @observable
+    exportPopin: boolean = false;
+
+    @observable
     grandAlliance: GrandAlliance = GrandAlliance.order;
 
     @observable
@@ -72,6 +75,16 @@ export class UiStore {
     @action
     closeWarscrollPopin() {
         this.warscrollPopin = false;
+    }
+
+    @action
+    showExportPopin() {
+        this.exportPopin = true;
+    }
+
+    @action
+    closeExportPopin() {
+        this.exportPopin = false;
     }
 
     @action

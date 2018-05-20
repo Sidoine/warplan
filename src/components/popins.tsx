@@ -3,6 +3,7 @@ import React = require("react");
 import { inject, observer } from "mobx-react";
 import { BasketPopin } from "./basket-popin";
 import { WarscrollPopin } from "./warscroll-popin";
+import { ExportPopin } from "./export-popin";
 
 export interface PopinsProps {
     uiStore?: UiStore;
@@ -15,6 +16,7 @@ export class Popins extends React.Component<PopinsProps, {}> {
         return <>
             { this.props.uiStore!.basketPopin && <BasketPopin/> }   
             { this.props.uiStore!.warscrollPopin && <WarscrollPopin/> }   
+            { this.props.uiStore!.exportPopin && <ExportPopin/> }
         </>;
     }
 }
