@@ -13,7 +13,7 @@ export interface WarscrollProps {
 
 interface AttackWithCount {
     attack: Attack;
-    count: number;
+    count?: number;
 }
 
 @inject("warscrollStore")
@@ -70,8 +70,9 @@ export class Warscroll extends React.Component<WarscrollProps>{
 
     renderUnit(unit: WarscrollUnit) {
         const u = unit.unit;
-        const wo = unit.weaponOption;
-        let attacks:AttackWithCount[] = (u.attacks && u.attacks.map(x => { return { count: 0, attack: x }} )) ||[];
+        const wo = unit.weaponOptionCategories;
+        const modelCount = unit.modelCount;
+        let attacks:AttackWithCount[] = (u.attacks && u.attacks.map(x => { return { count: undefined, attack: x }} )) ||[];
         let abilities = toJS(u.abilities || []).concat();
         // let totalWeapons = unit.count * u.size;
 
@@ -80,14 +81,14 @@ export class Warscroll extends React.Component<WarscrollProps>{
             // if (o.count) totalWeapons -= o.count;
             if (o.weaponOption.attacks) {
                 for (const a of o.weaponOption.attacks) {
-                    const existing = attacks.find(x => x.attack.name === a.name && x.attack.melee === a.melee);
-                    if (existing) {
-                        if (o.count && existing.count) existing.count += o.count;
-                        else existing.count = 0;
-                    }
-                    else {
-                        attacks.push({ count: o.count || 0, attack: a });
-                    }
+                    // const existing = attacks.find(x => x.attack.name === a.name && x.attack.melee === a.melee);
+                    // if (existing) {
+                    //     if (o.count && existing.count) existing.count += o.count;
+                    //     else existing.count = unit.defaultCategoryCount;
+                    // }
+                    // else {
+                    const count = o.count !== null ? o.count : (unit.defaultCategoryCount !== modelCount ? unit.defaultCategoryCount : undefined) 
+                    if (count !== 0) attacks.push({ count: count, attack: a });
                 }
             }
             if (o.weaponOption.abilities) {
@@ -152,7 +153,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
             </Table.Header>
             <Table.Body>
                 {attacks.map((x, index) => <Table.Row key={index} >
-                    <Table.Cell>{x.attack.name} { x.count > 0 && <>(x{x.count})</> }</Table.Cell>
+                    <Table.Cell>{x.attack.name} { x.count !== undefined && <>(x{x.count})</> }</Table.Cell>
                     <Table.Cell>{value(x.attack.range)} </Table.Cell>
                     <Table.Cell>{value(x.attack.attacks)} </Table.Cell>
                     <Table.Cell>{value(x.attack.toHit)} </Table.Cell>

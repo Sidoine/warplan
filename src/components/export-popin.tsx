@@ -25,7 +25,7 @@ export class ExportPopin extends React.Component<ExportPopinProps, {}> {
                 <b>{ x.modelCount > 1 ? <>{x.modelCount} x</> : <></> } {x.unit.model.name}</b>  
                 ({x.points})
                 {x.isGeneral && <div><i>- General</i></div>}
-                {x.weaponOption.map(y => y.weaponOption && <div key={y.weaponOption.id}><i>- {y.count && <>{y.count} x </> } {y.weaponOption.name} </i></div>)}
+                {x.weaponOptionCategories.map(y => y.weaponOption && <div key={y.weaponOption.id}><i>- {y.count && <>{y.count} x </> } {y.weaponOption.name} </i></div>)}
                     </div>) }
                 
                 { warscroll.battalions.map(x => <div key={x.id}><b>{x.battalion.name}</b></div>)}

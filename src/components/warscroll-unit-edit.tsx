@@ -3,12 +3,26 @@ import { observer, inject } from "mobx-react";
 import { NumberControl } from "../atoms/number-control";
 import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
 import { Dropdown, Button, Table, Icon, Checkbox, CheckboxProps, DropdownProps, Popup } from "semantic-ui-react";
-import { WeaponOption } from "../stores/units";
+import { WeaponOptionCategory } from "../stores/units";
 import { join } from "../helpers/react";
 
 export interface WarscrollUnitEditProps {
     unit: WarscrollUnit;
     warscrollStore?: WarscrollStore;
+}
+
+interface Option {
+    key: string | number;
+    text: string;
+    value: string | number;
+}
+
+function getInterval(maxValue: number) {
+    const result: Option[] = [];
+    for (let i = 0; i<=maxValue; i++) {
+        result.push({ key: i, value: i, text: i.toString() });
+    } 
+    return result;
 }
 
 @inject("warscrollStore")
@@ -30,7 +44,7 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
                 </div>
             </Table.Cell>
             <Table.Cell><NumberControl value={unit.count} onChange={this.onCountChange} /></Table.Cell>
-                    <Table.Cell> {unit.unit.weaponOptions && unit.unit.weaponOptions.map((x, index) => this.renderWeaponOption(x.options, index) ) } 
+                    <Table.Cell> {unit.unit.weaponOptionCategories && unit.unit.weaponOptionCategories.map((x, index) => this.renderWeaponOption(x, index, unit.count) ) } 
                     { join(unit.extraAbilities.map(x => <span key={x.id}><Popup content={<>{x.ability.description}</>} trigger={<span>{x.ability.name}</span>}/><Button onClick={() => this.props.warscrollStore!.removeExtraAbility(unit, x)} ><Icon name="remove"/> </Button></span>), ", ") }
                         { this.renderExtraAbilities(unit)}
                     </Table.Cell>
@@ -41,7 +55,7 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
     }
 
     private renderExtraAbilities(unit: WarscrollUnit) {
-        const options = unit.availableExtraAbilities.map(x => { return { key: x.id, text: x.ability.name, value: x.id }});
+        const options:Option[] = unit.availableExtraAbilities.map(x => { return { key: x.id, text: x.ability.name, value: x.id }});
         return unit.availableExtraAbilities.length > 0 && <Dropdown className="icon" icon="plus" button options={options} onChange={this.handleExtraAbilityChange(unit)} />;
     }
 
@@ -52,19 +66,31 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
         }
     }
 
-    private renderWeaponOption(weaponList: WeaponOption[], index: number) {
-        const weaponOptions = weaponList ?
-            weaponList.map(x => { return { key: x.id, text: x.name, value: x.id } }) : undefined;
-        const selected = this.props.unit.weaponOption[index];
-        return weaponOptions && <Dropdown key={index} selection value={ selected.weaponOption && selected.weaponOption.id } options={weaponOptions} onChange={this.onWeaponOptionChange(index)}  ></Dropdown>;
+    private renderWeaponOption(category: WeaponOptionCategory, index: number, unitCount: number) {
+        const options = category.options;
+        const weaponOptions: Option[] | undefined = options ?
+            options.map(x => { return { key: x.id, text: x.name, value: x.id } }) : undefined;
+        const selected = this.props.unit.weaponOptionCategories[index];
+        return weaponOptions && <div key={index}> 
+            { category.maxCount && <Dropdown value={selected.count !== null ? selected.count : undefined} options={getInterval(category.maxCount *  unitCount)} onChange={this.handleWeaponOptionCategoryCountChange(index)}/> }
+            { category.maxCount === undefined && this.props.unit.defaultCategoryCount }
+            <Dropdown selection value={ selected.weaponOption ? selected.weaponOption.id : undefined } options={weaponOptions} onChange={this.onWeaponOptionChange(index)}  ></Dropdown>
+        </div>;
+    }
+
+    private handleWeaponOptionCategoryCountChange(index: number) {
+        return (vent: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
+            const unit = this.props.unit;
+            this.props.warscrollStore!.setWeaponOptionCount(unit, index, props.value as number);
+        }
     }
 
     private onWeaponOptionChange(index: number) {
         return (vent: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
             const unit = this.props.unit;
-            const category = unit.unit.weaponOptions ? unit.unit.weaponOptions[index] : undefined;
+            const category = unit.unit.weaponOptionCategories ? unit.unit.weaponOptionCategories[index] : undefined;
             const weaponOption = category ? category.options.find(x => x.id === props.value) : undefined;
-            if (category && weaponOption) this.props.warscrollStore!.setWeaponOption(unit, index, weaponOption, category.maxCount);
+            if (category && weaponOption) this.props.warscrollStore!.setWeaponOption(unit, index, weaponOption);
         }
     }
 

@@ -10,7 +10,7 @@ export function getBaseWeaponOption(id: string, categories: WeaponOptionCategory
 }
 
 export function setBaseWeaponOption(unit: Unit, id: string, attacks: Attack[], abilities: Ability[]) {
-    const options = getBaseWeaponOption(id, unit.weaponOptions!);
+    const options = getBaseWeaponOption(id, unit.weaponOptionCategories!);
     options!.attacks = attacks;
     options!.abilities = abilities;
 }

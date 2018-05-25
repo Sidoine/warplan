@@ -1,5 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn } from "../units";
+import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn, UnitAltModel } from "../units";
 import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound, override, artifactWithKeywordAvailable } from "./tools";
 import { getAttackDamage, getAttackDamageEx, getValue } from "../combat";
 
@@ -282,7 +282,7 @@ function fixUnits(data: DataStoreImpl):void {
             description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields.",
             getSavedWounds: getSavedWoundReroll1
         };
-        const wc = liberator.weaponOptions![0];
+        const wc = liberator.weaponOptionCategories![0];
         const wh = wc.options.find(x => x.id === "warhammers")!;
         wh.attacks = [warhammer];
         wh.abilities = [pairedWeapons, layLowTheTyrants];
@@ -311,7 +311,7 @@ function fixUnits(data: DataStoreImpl):void {
             options: [gwb, gwh],
             maxCount: 1
         };
-        liberator.weaponOptions!.push(gwc);
+        liberator.weaponOptionCategories!.push(gwc);
         liberator.abilities = [{ 
             name: "Liberator-Prime",
             description: "The leader of this unit is the Liberator-Prime. A Liberator-Prime makes 3 attacks rather than 2.",
@@ -355,13 +355,13 @@ function fixUnits(data: DataStoreImpl):void {
             getWounds: (models, melee, attack) => attack === thunderboltCrossbow ? 2 * frequentRate : 0 
         };
         
-        const base = judicator.weaponOptions![0];
+        const base = judicator.weaponOptionCategories![0];
         let wo = base.options.find(x => x.id === "skyboltBows")!;
         wo.attacks = [skyboltBow, stormGladius];
         wo = base.options.find(x => x.id === "boltstormCrossbows")!;
         wo.attacks = [boltstormCrossbow, stormGladius];
         wo.abilities = [rapidFire];
-        judicator.weaponOptions!.push({
+        judicator.weaponOptionCategories!.push({
             maxCount: 1,
             options: [
                 { id: "shockboltBow", name: "Shockbolt Bow", abilities: [chainedLightning], attacks: [shockboltBow, stormGladius] },
@@ -457,10 +457,16 @@ function fixUnits(data: DataStoreImpl):void {
                 description: "The leader of this unit is the Retributor-Prime. A Retributor-Prime makes 3 attacks rather than 2 with a Lightning Hammer.",
                 getWounds: (models, melee, attack) => attack && attack === lightningHammer ? getWoundsForExtraAttack(attack) : 0
             };
-            paladinRetributors.abilities = [retributorPrime];
             const starsoulMaceOption: WeaponOption = { attacks: [starsoulMace], abilities: [starsoulMaceAbility], name: "Starsoul Mace", id: "starsoulMace" };
             const lightningHammerOption: WeaponOption = { attacks: [lightningHammer], abilities: [blastToAshes], name: "Lightning Hammer", id: "lightningHammer" };
-            paladinRetributors.weaponOptions = [{ options: [lightningHammerOption] }, { options: [ starsoulMaceOption], maxCount: 2 }];
+            paladinRetributors.weaponOptionCategories = [{ options: [lightningHammerOption] }, { options: [ starsoulMaceOption], maxCount: 2 }];
+
+            const prime: UnitAltModel = {
+                name: "Retributor-Prime",
+                maxCount: 1,
+                abilities: [retributorPrime]
+            };
+            paladinRetributors.altModels = [prime];
         }
 
         {
@@ -494,7 +500,7 @@ function fixUnits(data: DataStoreImpl):void {
             unit.abilities = [protectorPrime];
             const starsoulMaceOption: WeaponOption = { attacks: [starsoulMace], abilities: [starsoulMaceAbility], name: "Starsoul Mace", id: "starsoulMace" };
             const stormstrikeGlaiveOption: WeaponOption = { attacks: [stormstrikeGlaive], abilities: [deathstrike, stormShield], name: "Stormstrike Glaive", id: "stormstrikeGlaive" };
-            unit.weaponOptions = [{ options: [stormstrikeGlaiveOption] }, { options: [ starsoulMaceOption], maxCount: 1 }];
+            unit.weaponOptionCategories = [{ options: [stormstrikeGlaiveOption] }, { options: [ starsoulMaceOption], maxCount: 1 }];
         }
    
         {
@@ -529,7 +535,7 @@ function fixUnits(data: DataStoreImpl):void {
             unit.abilities = [protectorPrime];
             const starsoulMaceOption: WeaponOption = { attacks: [starsoulMace], abilities: [starsoulMaceAbility], name: "Starsoul Mace", id: "starsoulMace" };
             const stormstrikeGlaiveOption: WeaponOption = { attacks: [thunderaxe], abilities: [cleavingBlow, grimHarvesters], name: "Stormstrike Glaive", id: "stormstrikeGlaive" };
-            unit.weaponOptions = [{ options: [stormstrikeGlaiveOption] }, { options: [ starsoulMaceOption], maxCount: 1 }];
+            unit.weaponOptionCategories = [{ options: [stormstrikeGlaiveOption] }, { options: [ starsoulMaceOption], maxCount: 1 }];
         }
     
         {
@@ -596,7 +602,7 @@ function fixUnits(data: DataStoreImpl):void {
             }
 
             unit.abilities= [fly, stormcallJavelinAbility, heraldsOfRightouness];
-            unit.weaponOptions = [
+            unit.weaponOptionCategories = [
                 { options: [stormcallJavelinOption] },
                 { maxCount: 1, options: [stormsurgeTridentOption]}
             ];
@@ -624,7 +630,7 @@ function fixUnits(data: DataStoreImpl):void {
             const warningCry: Ability = {name: "Warning Cry", description: "If an enemy unit makes a charge move that ends within 1\" of a unit that includes a Raptor-Prime with an Aetherwing, roll a dice for each Vanguard-Raptor in the unit. Any rolls of 6 inflict 2 mortal wounds on the charging unit."}
             unit.attacks = [longstrikeCrossbow, heavyStock];
             unit.abilities = [raptorPrime, longshot, headshot];
-            unit.weaponOptions = [{
+            unit.weaponOptionCategories = [{
                 maxCount: 1,
                 options: [{ id: "aetherwing", name: "Aetherwing", abilities: [warningCry], attacks: [beakAndClaws] }]
             }];
@@ -711,7 +717,7 @@ function fixUnits(data: DataStoreImpl):void {
                 abilities: [prosecutorPrime],
                 attacks: [grandhammer]
             }
-            unit.weaponOptions = [{
+            unit.weaponOptionCategories = [{
                 options: [pairOfCelestialHammers, celestialHammerAndShield]
             }, {
                 maxCount: 1,
@@ -747,7 +753,7 @@ function fixUnits(data: DataStoreImpl):void {
             unit.abilities = [hunterPrime, astralCompass, tirelessHunters];
             const shockHandaxeOption: WeaponOption = { attacks: [shockHandaxe], id: "shockHandaxe", name: "Shock Handaxe" };
             const stormSabreOption: WeaponOption = { attacks: [stormSabre], id: "stormSabre", name: "Storm Sabre" };
-            unit.weaponOptions = [{ options: [shockHandaxeOption, stormSabreOption] }];
+            unit.weaponOptionCategories = [{ options: [shockHandaxeOption, stormSabreOption] }];
         }
 
         {
@@ -792,7 +798,7 @@ function fixUnits(data: DataStoreImpl):void {
                 name: "Starstrike Javelin",
                 attacks: [starstrikeJavelin, starstrikeJavelinMelee]
             };
-            unit.weaponOptions = [{ options: [shockHandaxeOption, starstrikeJavelinOption] }];
+            unit.weaponOptionCategories = [{ options: [shockHandaxeOption, starstrikeJavelinOption] }];
             unit.abilities = [palladorPrime, aetherealStrike, rideTheWindsAetheric, lunarBlade];
             unit.attacks = [bolstormPistol, beakAndClaws];
         }
@@ -1472,7 +1478,7 @@ If a STORMCAST ETERNAL unit is chosen, it is bathed in the healing energies of t
                 id: "angharad",
                 name: "Angharad Brightshield"
             };
-            unit.weaponOptions = [
+            unit.weaponOptionCategories = [
                 {maxCount: 1, options: [severinSteelheartOption]},
                 {maxCount: 1, options: [obrynOption]},
                 {maxCount: 1, options: [angharadOption]}
@@ -1524,7 +1530,7 @@ If a STORMCAST ETERNAL unit is chosen, it is bathed in the healing energies of t
             name: "Elias Swiftblade",
             attacks: [pistol, stormSabre]
         };
-        unit.weaponOptions = [
+        unit.weaponOptionCategories = [
             { options: [sanson], maxCount: 1},
             { options: [almeric], maxCount: 1},
             { options: [elias], maxCount: 1}

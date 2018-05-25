@@ -257,7 +257,7 @@ function fixUnits(data: DataStoreImpl):void {
         
         plagueDrones.attacks = [deathsHead, plaguesword, venomousSting];
 
-        plagueDrones.weaponOptions = [{
+        plagueDrones.weaponOptionCategories = [{
             options: [{
                 name: "Prehensile Proboscis",
                 id: "prehensileProboscis",
@@ -453,7 +453,7 @@ function fixUnits(data: DataStoreImpl):void {
         const plagueFlail: Attack = { name: "Plague Flail", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: plagueFlailEffect, rend: "-1", damage: "2" };
         const massiveBilesword: Attack = { name: "Massive Bilesword", range: "2", melee: true, attacks: massiveBileswordEffect, toHit: "4+", toWound: "3", rend: "-2", damage: "3" };
     
-        uncleanOne.weaponOptions = [{
+        uncleanOne.weaponOptionCategories = [{
             options: [{
                 name: "Plague Flail",
                 id: "plagueFlail",

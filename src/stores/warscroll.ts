@@ -2,9 +2,11 @@ import { action, computed, observable, toJS } from "mobx";
 import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion } from "./units";
 import { deflate, inflate } from "pako";
 
-export interface WarscrollWeaponOption {
-    weaponOption?: WeaponOption;
-    count?: number;
+export class WarscrollWeaponOptionCategory {
+    @observable
+    weaponOption: WeaponOption | null = null;
+    @observable
+    count: number | null = null;
 }
 
 function areAllied(unit1: Unit, unit2: Unit) {
@@ -15,6 +17,14 @@ function areAllied(unit1: Unit, unit2: Unit) {
         }
     }
     return false;
+}
+
+export class WarscrollAltModel {
+    @observable
+    count= 0;
+
+    @observable
+    weaponOptionCategories: WarscrollWeaponOptionCategory[] = [];
 }
 
 export class WarscrollUnit implements WarscrollUnitInterface {
@@ -28,8 +38,17 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         return this.count * this.unit.size;
     }
 
+    @computed
+    get defaultCategoryCount() {
+        return this.modelCount - this.weaponOptionCategories.reduce((p, c) => c.count ? p + c.count : p, 0);
+    }
+
+    /** Which option is chosen for each category */
     @observable
-    weaponOption: WarscrollWeaponOption[] = [];
+    weaponOptionCategories: WarscrollWeaponOptionCategory[] = [];
+
+    @observable
+    altModels: WarscrollAltModel[] = [];
 
     @observable
     extraAbilities: ExtraAbility[] = [];
@@ -82,9 +101,15 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         if (count !== undefined) {
             this.count = count;
         }
-        if (unit.weaponOptions) {
-            for (const {} of unit.weaponOptions) {
-                this.weaponOption.push({ weaponOption: undefined });
+        if (unit.weaponOptionCategories) {
+            for (const {} of unit.weaponOptionCategories) {
+                this.weaponOptionCategories.push(new WarscrollWeaponOptionCategory());
+            }
+        }
+
+        if (unit.altModels) {
+            for (const {} of unit.altModels) {
+                this.altModels.push(new WarscrollAltModel())
             }
         }
     }     
@@ -287,8 +312,14 @@ export class WarscrollStore {
     }
 
     @action
-    setWeaponOption(unit: WarscrollUnit, index: number, weaponOption: WeaponOption, count?: number) {
-        unit.weaponOption[index] = { weaponOption, count: count };
+    setWeaponOption(unit: WarscrollUnit, index: number, weaponOption: WeaponOption) {
+        unit.weaponOptionCategories[index].weaponOption = weaponOption;
+        this.saveWarscroll();
+    }
+
+    @action
+    setWeaponOptionCount(unit: WarscrollUnit, index: number, count: number) {
+        unit.weaponOptionCategories[index].count = count;
         this.saveWarscroll();
     }
 
@@ -338,14 +369,14 @@ export class WarscrollStore {
             if (wu.isGeneral) {
                 this.warscroll.general = newUnit;
             }
-            if (wu.weaponOptions && unit.weaponOptions) {
-                const wo = unit.weaponOptions;
+            if (wu.weaponOptions && unit.weaponOptionCategories) {
+                const wo = unit.weaponOptionCategories;
                 for (let i = 0; i < wu.weaponOptions.length; i++) {
                     const woId = wu.weaponOptions[i];
                     if (!woId) continue;
 
-                    newUnit.weaponOption[i].weaponOption = wo[i].options.find(y => y.id === woId.option);
-                    newUnit.weaponOption[i].count = woId.count;
+                    newUnit.weaponOptionCategories[i].weaponOption = wo[i].options.find(y => y.id === woId.option) || null;
+                    newUnit.weaponOptionCategories[i].count = woId.count !== undefined ? woId.count : null;
                 }
             }
             if (wu.extraAbilities) {
@@ -373,7 +404,7 @@ export class WarscrollStore {
                 unitId: x.unit.id,
                 count: x.count,
                 isGeneral: x === this.warscroll.general,
-                weaponOptions: x.weaponOption ? x.weaponOption.map(y => { return { option: y.weaponOption && y.weaponOption.id, count: y.count } }) : undefined,
+                weaponOptions: x.weaponOptionCategories ? x.weaponOptionCategories.map(y => { return { option: y.weaponOption ? y.weaponOption.id : undefined, count: y.count !== null ? y.count : undefined } }) : undefined,
                 extraAbilities: x.extraAbilities.map(x => x.id)
             }}),
             battalions: this.warscroll.battalions.map(x => {

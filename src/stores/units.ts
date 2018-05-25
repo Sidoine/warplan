@@ -88,14 +88,14 @@ export interface DamageColumn {
 }
 
 export interface UnitInfos {
-    weaponOptions?: WeaponOptionCategory[];
+    weaponOptionCategories?: WeaponOptionCategory[];
     abilities?: Ability[];
     attacks?: Attack[];
     commandAbilities?: Ability[];
 }
 
-export interface UnitModel extends UnitInfos {
-    name?: string;
+export interface UnitAltModel extends UnitInfos {
+    name: string;
     maxCount?: number;
 }
 
@@ -116,7 +116,7 @@ export interface Unit extends UnitInfos {
     keywords: string[];
     damageTable?: DamageTable;
     description?: string;
-    models?: UnitModel[];
+    altModels?: UnitAltModel[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => boolean;
@@ -215,11 +215,11 @@ export function getUnitStats(unit: Unit): UnitStats[] {
     };
     addAttacksAndAbilitiesToStats(baseStats, unit.attacks, unit.size, unit.abilities);
     
-    if (unit.weaponOptions) {
+    if (unit.weaponOptionCategories) {
         const combinations: WeaponOptionCombination[][] = [];
-        const sum = unit.weaponOptions.reduce((sum, category) => sum + (category.maxCount !== undefined ? category.maxCount : 0), 0);
+        const sum = unit.weaponOptionCategories.reduce((sum, category) => sum + (category.maxCount !== undefined ? category.maxCount : 0), 0);
         const remaining = unit.size - sum;
-        everyWeaponOptionCombinations(0, unit.weaponOptions, [], combinations, remaining);
+        everyWeaponOptionCombinations(0, unit.weaponOptionCategories, [], combinations, remaining);
         
         let combinationStats = combinations.map(x => {
             const result: UnitStats = {

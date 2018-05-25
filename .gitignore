@@ -4,3 +4,4 @@ dist
 /wwwroot/main.*
 /wwwroot/files
 *.orig
+/yarn-error.log
