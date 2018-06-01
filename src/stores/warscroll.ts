@@ -1,5 +1,5 @@
 import { action, computed, observable, toJS } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion, UnitAltModel, WeaponOptionCategory } from "./units";
 import { deflate, inflate } from "pako";
 
 export class WarscrollWeaponOptionCategory {
@@ -7,6 +7,7 @@ export class WarscrollWeaponOptionCategory {
     weaponOption: WeaponOption | null = null;
     @observable
     count: number | null = null;
+    constructor(public category: WeaponOptionCategory) {}
 }
 
 function areAllied(unit1: Unit, unit2: Unit) {
@@ -25,6 +26,8 @@ export class WarscrollAltModel {
 
     @observable
     weaponOptionCategories: WarscrollWeaponOptionCategory[] = [];
+
+    constructor(public model: UnitAltModel) { }
 }
 
 export class WarscrollUnit implements WarscrollUnitInterface {
@@ -39,8 +42,17 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     }
 
     @computed
+    get defaultModelCount() {
+        return this.modelCount - this.altModels.reduce((p, c) => c.count + p, 0);
+    }
+
+    getDefaultCategoryCount(modelCount: number, categories: WarscrollWeaponOptionCategory[]) {
+        return modelCount - categories.reduce((p, c) => c.count ? p + c.count : p, 0);
+    }
+
+    @computed
     get defaultCategoryCount() {
-        return this.modelCount - this.weaponOptionCategories.reduce((p, c) => c.count ? p + c.count : p, 0);
+        return this.getDefaultCategoryCount(this.defaultModelCount, this.weaponOptionCategories);
     }
 
     /** Which option is chosen for each category */
@@ -102,14 +114,20 @@ export class WarscrollUnit implements WarscrollUnitInterface {
             this.count = count;
         }
         if (unit.weaponOptionCategories) {
-            for (const {} of unit.weaponOptionCategories) {
-                this.weaponOptionCategories.push(new WarscrollWeaponOptionCategory());
+            for (const category of unit.weaponOptionCategories) {
+                this.weaponOptionCategories.push(new WarscrollWeaponOptionCategory(category));
             }
         }
 
         if (unit.altModels) {
-            for (const {} of unit.altModels) {
-                this.altModels.push(new WarscrollAltModel())
+            for (const altModel of unit.altModels) {
+                const wsModel = new WarscrollAltModel(altModel);
+                if (unit.weaponOptionCategories) {
+                    for (const category of unit.weaponOptionCategories) {
+                        wsModel.weaponOptionCategories.push(new WarscrollWeaponOptionCategory(category));
+                    }
+                }
+                this.altModels.push(wsModel);
             }
         }
     }     
@@ -249,14 +267,20 @@ export class Warscroll implements WarscrollInterface {
     }
 }
 
+interface SerializedWeaponOptions {
+    option: string | undefined;
+    count?: number;
+}
+
 interface SerializedWarscroll {
     name: string;
     units: {
         unitId: string;
         count: number;
         isGeneral?:boolean;
-        weaponOptions?: { option: string | undefined, count?: number }[];
+        weaponOptions?: SerializedWeaponOptions[];
         extraAbilities?: string[];
+        altModels?: { count?: number, weaponOptions?: SerializedWeaponOptions[]; }[];
     }[];
     battalions: {
         battalionId: string;
@@ -312,14 +336,14 @@ export class WarscrollStore {
     }
 
     @action
-    setWeaponOption(unit: WarscrollUnit, index: number, weaponOption: WeaponOption) {
-        unit.weaponOptionCategories[index].weaponOption = weaponOption;
+    setWeaponOption(wsCategory: WarscrollWeaponOptionCategory, weaponOption: WeaponOption) {
+        wsCategory.weaponOption = weaponOption;
         this.saveWarscroll();
     }
 
     @action
-    setWeaponOptionCount(unit: WarscrollUnit, index: number, count: number) {
-        unit.weaponOptionCategories[index].count = count;
+    setWeaponOptionCount(wsCategory: WarscrollWeaponOptionCategory, count: number) {
+        wsCategory.count = count;
         this.saveWarscroll();
     }
 
@@ -353,6 +377,16 @@ export class WarscrollStore {
         this.loadSerializedWarscroll(warscroll);
     }
 
+    loadWeaponOptions(weaponOptionCategories: WarscrollWeaponOptionCategory[], serialized: SerializedWeaponOptions[]) {
+        for (let i = 0; i < serialized.length; i++) {
+            const woId = serialized[i];
+            if (!woId) continue;
+
+            weaponOptionCategories[i].weaponOption = weaponOptionCategories[i].category.options.find(y => y.id === woId.option) || null;
+            weaponOptionCategories[i].count = woId.count !== undefined ? woId.count : null;
+        }
+    }
+
     loadSerializedWarscroll(warscroll: SerializedWarscroll) {
         this.warscroll.name = warscroll.name;
         this.warscroll.general = undefined;
@@ -370,14 +404,7 @@ export class WarscrollStore {
                 this.warscroll.general = newUnit;
             }
             if (wu.weaponOptions && unit.weaponOptionCategories) {
-                const wo = unit.weaponOptionCategories;
-                for (let i = 0; i < wu.weaponOptions.length; i++) {
-                    const woId = wu.weaponOptions[i];
-                    if (!woId) continue;
-
-                    newUnit.weaponOptionCategories[i].weaponOption = wo[i].options.find(y => y.id === woId.option) || null;
-                    newUnit.weaponOptionCategories[i].count = woId.count !== undefined ? woId.count : null;
-                }
+                this.loadWeaponOptions(newUnit.weaponOptionCategories, wu.weaponOptions)
             }
             if (wu.extraAbilities) {
                 for (const e of wu.extraAbilities) {
@@ -386,6 +413,17 @@ export class WarscrollStore {
                         newUnit.extraAbilities.push(ability);
                     }
                 } 
+            }
+            if (wu.altModels) {
+                for (let i = 0; i < wu.altModels.length; i++) {
+                    const altModel = wu.altModels[i];
+                    if (newUnit.altModels.length > i) {
+                        newUnit.altModels[i].count = altModel.count || 0;
+                        if (altModel.weaponOptions) {
+                            this.loadWeaponOptions(newUnit.altModels[i].weaponOptionCategories, altModel.weaponOptions)
+                        }
+                    }
+                }
             }
             this.warscroll.units.push(newUnit);
         }
@@ -405,7 +443,8 @@ export class WarscrollStore {
                 count: x.count,
                 isGeneral: x === this.warscroll.general,
                 weaponOptions: x.weaponOptionCategories ? x.weaponOptionCategories.map(y => { return { option: y.weaponOption ? y.weaponOption.id : undefined, count: y.count !== null ? y.count : undefined } }) : undefined,
-                extraAbilities: x.extraAbilities.map(x => x.id)
+                extraAbilities: x.extraAbilities.map(x => x.id),
+                altModels: x.altModels.map(x => { return { count: x.count, weaponOptions: x.weaponOptionCategories.map(y => { return { option: y.weaponOption ? y.weaponOption.id : undefined, count: y.count !== null ? y.count: undefined }}) } })
             }}),
             battalions: this.warscroll.battalions.map(x => {
                 return {
@@ -470,5 +509,11 @@ export class WarscrollStore {
 
     private getWarscrollItem(name?: string) {
         return name ? `warscroll/${name}` : 'warscroll';
+    }
+
+    @action
+    setAltModelCount(altModel: WarscrollAltModel, count: number) {
+        altModel.count = count;
+        this.saveWarscroll();
     }
 }

@@ -255,6 +255,15 @@ function fixBattalions(data: DataStoreImpl):void {
         { name: "Hammerstrike", description: "Instead of setting up the PALADINS on the battlefield, you can place either or both units to one side and say that they are set up in the Celestial Realm. In any of your movement phases, you can transport either or both units to the battlefield. When you do so, set them up on the battlefield within 6\" of the Hammerstrike Force’s Prosecutors. If the Prosecutors have been slain, set up the PALADINS more than 9\" from any enemy models. In either case, this is their move for that movement phase."},
         { name: "Celestial Supercharge", description: "When a unit of PALADINS from the Hammerstrike Force is set up within \" of its Prosecutors, they are supercharged with celestial energy until the end of your turn. Add 1 to the result of any wound rolls you make for this unit."}
     ];
+
+    const vanguardWing: Battalion = data.battalions.vanguardWing;
+    vanguardWing.units.push({ unit: [data.units.prosecutorsWithCelestialHammers, data.units.prosecutorsWithStormcallJavelins], count: 3, id: data.serial++});
+    vanguardWing.units.push({ unit: [data.units.liberators], count: 1, id: data.serial++});
+    vanguardWing.units.push({ unit: [data.units.judicators], count: 1, id: data.serial++});
+    vanguardWing.abilities = [
+        { name: "Bearers of the Storm", description: "Liberators and Judicators in a Vanguard Wing are empowered while they are within 8\" of the battalion’s Prosecutors. If a hit roll for an attack made by these Liberators or Judicators is 6 or higher, make two wound rolls rather than one."},
+        { name: "Stormstreak", description: "Instead of moving in their movement phase, a Vanguard Wing’s Liberators can vanish with a crash of thunder, travelling at the speed of a thunderbolt to aid their Prosecutor brethren. Remove the unit from the battlefield, then set it up anywhere within 5\" of a unit of Prosecutors from the Vanguard Wing."}
+    ];
 }
 
 function fixUnits(data: DataStoreImpl):void {

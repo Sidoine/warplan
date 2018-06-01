@@ -81,13 +81,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
             // if (o.count) totalWeapons -= o.count;
             if (o.weaponOption.attacks) {
                 for (const a of o.weaponOption.attacks) {
-                    // const existing = attacks.find(x => x.attack.name === a.name && x.attack.melee === a.melee);
-                    // if (existing) {
-                    //     if (o.count && existing.count) existing.count += o.count;
-                    //     else existing.count = unit.defaultCategoryCount;
-                    // }
-                    // else {
-                    const count = o.count !== null ? o.count : (unit.defaultCategoryCount !== modelCount ? unit.defaultCategoryCount : undefined) 
+                     const count = o.count !== null ? o.count : (unit.defaultCategoryCount !== modelCount ? unit.defaultCategoryCount : undefined) 
                     if (count !== 0) attacks.push({ count: count, attack: a });
                 }
             }
@@ -100,6 +94,32 @@ export class Warscroll extends React.Component<WarscrollProps>{
 
         for (const ability of unit.extraAbilities) {
             abilities.push(ability.ability);
+        }
+
+        for (const altModel of unit.altModels) {
+            if (altModel.count) {
+                if (altModel.model.abilities) {
+                    for (const ability of altModel.model.abilities) {
+                        abilities.push(ability);
+                    }
+                }
+                for (const woc of altModel.weaponOptionCategories) {
+                    if (woc.count !== 0 && woc.weaponOption !== null) {
+                        const wo = woc.weaponOption;
+                        if (wo.attacks) {
+                            for (const a of wo.attacks) {
+                                const count = woc.count || unit.getDefaultCategoryCount(altModel.count, altModel.weaponOptionCategories);
+                                const existing = attacks.find(x => x.attack.name === a.name);
+                                if (existing) {
+                                    if (existing.count) existing.count += count;
+                                } else {
+                                    attacks.push({ count: count, attack: a});
+                                }                            
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         // for (const a of attacks) {

@@ -25,6 +25,8 @@ export class WarscrollUnitsList extends React.Component<WarscrollUnitsListProps,
                         <Table.HeaderCell>Name</Table.HeaderCell>
                         <Table.HeaderCell>Count</Table.HeaderCell>
                         <Table.HeaderCell>Options</Table.HeaderCell>
+                        <Table.HeaderCell>Alt. Models</Table.HeaderCell>
+                        <Table.HeaderCell>Extras</Table.HeaderCell>
                         <Table.HeaderCell>Points</Table.HeaderCell>
                         <Table.HeaderCell></Table.HeaderCell>    
                     </Table.Row>

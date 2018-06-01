@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Input, Button, Icon, InputOnChangeData } from "semantic-ui-react";
+import { Input, Button, InputOnChangeData } from "semantic-ui-react";
 
 export interface NumberControlProps {
     value: number;
@@ -9,10 +9,10 @@ export interface NumberControlProps {
 
 export class NumberControl extends React.Component<NumberControlProps, {}> {
     render() {
-        return <Input type="text" action onChange={this.onCountChange} value={this.props.value}>
-                    <input/>    
-                    <Button onClick={this.plus}><Icon name="plus"/></Button>
-                    <Button onClick={this.minus}><Icon name="minus"/></Button>
+        return <Input type="text" action onChange={this.onCountChange} value={this.props.value} size="tiny">
+                    <input size={2} />    
+                    <Button onClick={this.plus} size="tiny" icon="plus"/>
+                    <Button onClick={this.minus} size="tiny" icon="minus"/>
                 </Input>;
     }
 
