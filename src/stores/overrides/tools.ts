@@ -1,8 +1,13 @@
-import { WeaponOptionCategory, Attack, Ability, Unit, ExtraAbilityTest } from "../units";
+import { WeaponOptionCategory, Attack, Ability, Unit, ExtraAbilityTest, Model, Material } from "../units";
 import { getAttackDamageEx, getValue } from "../combat";
 
 export function override<T>(value:T, f: (x: T) => void) {
     f(value);
+}
+
+export function overrideModel(model: Model, year: number, material: Material) {
+    model.material = material;
+    model.publicationYear = year;
 }
 
 export function getBaseWeaponOption(id: string, categories: WeaponOptionCategory[]) {

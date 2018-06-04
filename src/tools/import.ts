@@ -53,8 +53,31 @@ async function load(name: string) {
 }
 
 async function main() {
-    const version = "4";
-    const mainVersion = "5";
+    let version = "4";
+    let mainVersion = "5.1";
+    
+    try {
+        const index = await getData(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/`);
+        const versionMatch = index.match(/library\/js\/src\/allData\.v(.*)\.min\.js/);
+        if (versionMatch === null) {
+            console.error('Unable to read allData version in index');
+            process.exit(1);
+            return;
+        }
+        version = versionMatch[1];
+        const mainVersionMatch = index.match(/library\/js\/main\.v(.*)\.min\.js/);
+        if (mainVersionMatch === null) {
+            console.error('Unable to read main version in index');
+            process.exit(1);
+            return;
+        }
+        mainVersion = mainVersionMatch[1];
+    }
+    catch(error) {
+        console.error(`${error} while loading index`);
+        return;
+    }
+
     try {
         await curl(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/src/allData.v${version}.min.js`, "src/stores/data/allData.ts", "export function load(availablePoolArmies:any) {\n", "\nloadAllArmiesFaster();\n}\n");
     }

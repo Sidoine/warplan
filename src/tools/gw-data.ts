@@ -125,7 +125,12 @@ const factions:Faction[] = [
 { name: "Idoneth Deepkin", grandAlliance: "order", id: "IDONETHDEEPKIN" }
 ];
 
-const allegiances = [
+interface ImportedAllegiance {
+    grandAlliance: "chaos" | "order" | "death" | "destruction";
+    name: string;
+}
+
+const allegiances:ImportedAllegiance[] = [
     { grandAlliance: "chaos", name: "Chaos" },
     { grandAlliance: "chaos", name: "Brayherd" },
     { grandAlliance: "chaos", name: "Khorne" },
@@ -171,7 +176,7 @@ const allegiances = [
     { grandAlliance: "order", name: "Idoneth Deepkin" }
 ];
 
-let output = `import { Box, DataStore, GrandAlliance, ExtraAbilityTest } from "./units";
+let output = `import { Box, DataStore, GrandAlliance, ExtraAbilityTest, WarscrollInterface } from "./units";
 
 const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
 function bannerAvailable(id: string): ExtraAbilityTest {
@@ -330,12 +335,14 @@ for (const [key, unit] of gwPointsMap) {
 `;
 
     const keyWords: string[] = [];
+    const unitAllegiances: ImportedAllegiance[] = [];
     for (const factionId of extras.factionId) {
         const faction = factions.find(x => x.id === factionId);
         if (faction) {
             keyWords.push(faction.grandAlliance.toUpperCase());
             const allegiance = faction.allegiance ? allegiances.find(x => x.name === faction.allegiance) : allegiances.find(x => x.name === faction.name);
             if (allegiance) {
+                unitAllegiances.push(allegiance);
                 keyWords.push(allegiance.name.toUpperCase());
             }
         }
@@ -405,7 +412,29 @@ for (const [key, unit] of gwPointsMap) {
             output += "            isArtillery: () => true,\n";
         }
         if (type.indexOf("Battleline") >= 0) {
-            output += "            isBattleline: () => true,\n";
+            let allegianceBattleline: string | undefined;
+            for (const allegiance of unitAllegiances) {
+                if (type.toUpperCase().indexOf(allegiance.name.toUpperCase()) >= 0)  {
+                    allegianceBattleline = allegiance.name;
+                    break;
+                }
+            }
+
+            const generalMatch = type.match(/\((.*) General\)/);
+            let general: string | undefined;
+            if (generalMatch) {
+                general = generalMatch[1];
+            }
+
+            if (allegianceBattleline) {
+                output += `            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "${toCamelCase(allegianceBattleline)}"`;
+                if (general) {
+                    output += ` && wi.general && wi.general.unit.id === "${toCamelCase(general)}"`;
+                }
+                output += ",\n";
+            } else {
+                output += "            isBattleline: () => true,\n";
+            }
         }
     }
     output +=`        },

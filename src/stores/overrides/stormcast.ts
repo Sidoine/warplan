@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
-import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn, UnitAltModel } from "../units";
-import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound, override, artifactWithKeywordAvailable } from "./tools";
+import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn, UnitAltModel, Material } from "../units";
+import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound, override, artifactWithKeywordAvailable, overrideModel } from "./tools";
 import { getAttackDamage, getAttackDamageEx, getValue } from "../combat";
 
 function addBoxes(data: DataStoreImpl):void {
@@ -1650,9 +1650,48 @@ function addExtraAbilities(data: DataStoreImpl): void {
     data.extraAbilities.stormcastEternalsDracothTraitPackHunter.ability.description = "Like the hero that rides it to battle, this Dracoth is stronger when working in concert with its brethren than when it strikes alone at the enemies of Order. Add 2 to the Attacks characteristic of this HERO’s Dracoth’s Claws and Fangs if there is another friendly model riding a Dracoth within 6\".";
 }
 
+function fixModels(data: DataStoreImpl) {
+    const models = data.models;
+    overrideModel(models.aetherwings, 2017, Material.Plastic);
+    overrideModel(models.celestantPrime, 2014, Material.Plastic);
+    overrideModel(models.concussors, 2016, Material.Plastic);
+    overrideModel(models.desolators, 2016, Material.Plastic);
+    overrideModel(models.drakeswornTemplar, 2016, Material.Plastic);
+    overrideModel(models.fulminators, 2016, Material.Plastic);
+    overrideModel(models.gryphHound, 2017, Material.Plastic);
+    overrideModel(models.judicators, 2014, Material.Plastic);
+    overrideModel(models.knightAzyros, 2014, Material.Plastic);
+    overrideModel(models.knightHeraldor, 2014, Material.Plastic);
+    overrideModel(models.knightVenator, 2014, Material.Plastic);
+    overrideModel(models.knightVexillor, 2014, Material.Plastic);
+    overrideModel(models.liberators, 2014, Material.Plastic);
+    overrideModel(models.gavrielSureheart, 2017, Material.Plastic);
+    overrideModel(models.lordAquilor, 2017, Material.Plastic);
+    overrideModel(models.lordCastellant, 2014, Material.Plastic);
+    overrideModel(models.lordCelestant, 2014, Material.Plastic);
+    overrideModel(models.lordCelestantOnDracoth, 2016, Material.Plastic);
+    overrideModel(models.lordCelestantOnStardrake, 2016, Material.Plastic);
+    overrideModel(models.lordOrdinator, 2018, Material.Plastic);
+    overrideModel(models.lordRelictor, 2014, Material.Plastic);
+    overrideModel(models.lordVeritant, 2014, Material.Plastic);
+    overrideModel(models.paladinDecimators, 2014, Material.Plastic);
+    overrideModel(models.paladinProtectors, 2014, Material.Plastic);
+    overrideModel(models.paladinRetributors, 2014, Material.Plastic);
+    overrideModel(models.prosecutorsWithCelestialHammers, 2014, Material.Plastic);
+    overrideModel(models.prosecutorsWithStormcallJavelins, 2014, Material.Plastic);
+    overrideModel(models.steelheartSChampions, 2017, Material.Plastic);
+    overrideModel(models.tempestors, 2016, Material.Plastic);
+    overrideModel(models.vandusHammerhand, 2014, Material.Plastic);
+    overrideModel(models.vanguardHunters, 2017, Material.Plastic);
+    overrideModel(models.vanguardPalladors, 2017, Material.Plastic);
+    overrideModel(models.vanguardRaptorsWithHurricaneCrossbows, 2017, Material.Plastic);
+    overrideModel(models.vanguardRaptorsWithLongstrikeCrossbows, 2017, Material.Plastic);
+}
+
 export function overrideStormcast(data: DataStoreImpl):void {
     addBoxes(data);
     fixBattalions(data);
     fixUnits(data);
     addExtraAbilities(data);
+    fixModels(data);
 }

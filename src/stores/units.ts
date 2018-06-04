@@ -6,9 +6,18 @@ import { overrideDevotedOfSigmar } from "./overrides/devoted-of-sigmar";
 import { overrideWanderers } from "./overrides/wanderers";
 import { overrideIdonethDeepkins } from "./overrides/idoneth-deepkins";
 
+export const enum Material {
+    Metal,
+    Resin,
+    Plastic,
+    Mixed
+}
+
 export interface Model {
     name: string;
     id: string;
+    publicationYear?: number;
+    material?: Material;
 }
 
 export const enum GrandAlliance {
@@ -119,7 +128,7 @@ export interface Unit extends UnitInfos {
     altModels?: UnitAltModel[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
-    isBattleline?: (warscroll: WarscrollInterface) => boolean;
+    isBattleline?: (warscroll: WarscrollInterface) => (boolean | undefined);
     isBehemot?: (warscroll: WarscrollInterface) => boolean;
     isArtillery?: (warscroll: WarscrollInterface) => boolean;
 }
@@ -292,6 +301,7 @@ export interface WarscrollInterface {
     battalions: WarscrollBattalion[];
     general: WarscrollUnitInterface | undefined;
     extraAbilities: ExtraAbility[];
+    allegiance: Allegiance;
 }
 
 export interface DataStore {

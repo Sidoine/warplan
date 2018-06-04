@@ -1,4 +1,4 @@
-import { Box, DataStore, GrandAlliance, ExtraAbilityTest } from "./units";
+import { Box, DataStore, GrandAlliance, ExtraAbilityTest, WarscrollInterface } from "./units";
 
 const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
 function bannerAvailable(id: string): ExtraAbilityTest {
@@ -4388,7 +4388,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 360,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bestigors-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "brayherd",
         },
         greatBrayShaman: {
             id: "greatBrayShaman",
@@ -4431,7 +4431,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-gors-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Gor-Blades & Beastshields", id: "gorBladesBeastshields" },{ name: "Two Gor-Blades", id: "twoGorBlades" }] }],
             baseWeaponOptions: { gorBladesBeastshields: "gorBladesBeastshields", twoGorBlades: "twoGorBlades" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "brayherd",
         },
         ungors: {
             id: "ungors",
@@ -4448,7 +4448,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-ungors-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Mauls & Half-Shields", id: "maulsHalfShields" },{ name: "Shortspears & Half-Shields", id: "shortspearsHalfShields" }] }],
             baseWeaponOptions: { maulsHalfShields: "maulsHalfShields", shortspearsHalfShields: "shortspearsHalfShields" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "brayherd",
         },
         ungorRaiders: {
             id: "ungorRaiders",
@@ -4462,7 +4462,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 40,
             maxPoints: 360,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "brayherd",
         },
         bloodThrone: {
             id: "bloodThrone",
@@ -4555,7 +4555,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 270,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-bloodletters-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "khorne",
         },
         bloodthirsterOfInsensateRage: {
             id: "bloodthirsterOfInsensateRage",
@@ -4623,7 +4623,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-flesh-hounds-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "khorne" && wi.general && wi.general.unit.id === "karanak",
         },
         bloodcrushers: {
             id: "bloodcrushers",
@@ -4637,7 +4637,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 4,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-khorne-bloodcrushers-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "khorne" && wi.general && wi.general.unit.id === "skullmasterHeraldOfKhorne",
         },
         screamersOfTzeentch: {
             id: "screamersOfTzeentch",
@@ -4665,7 +4665,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 300,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-pink-horrors-of-tzeentch-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "tzeentch",
         },
         burningChariotsOfTzeentch: {
             id: "burningChariotsOfTzeentch",
@@ -4679,7 +4679,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 6,
             maxSize: 3,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-burning-chariot-of-tzeentch-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "tzeentch" && wi.general && wi.general.unit.id === "heraldOfTzeentchOnBurningChariot",
         },
         heraldOfTzeentch: {
             id: "heraldOfTzeentch",
@@ -4964,7 +4964,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodwarriors-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Goreaxes", id: "goreaxes" },{ name: "Goreaxe & Gorefist", id: "goreaxeGorefist" }] }],
             baseWeaponOptions: { goreaxes: "goreaxes", goreaxeGorefist: "goreaxeGorefist" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "khorne",
         },
         bloodreavers: {
             id: "bloodreavers",
@@ -4981,7 +4981,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bloodreavers-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Reaver Blades", id: "reaverBlades" },{ name: "Meatripper Axes", id: "meatripperAxes" }] }],
             baseWeaponOptions: { reaverBlades: "reaverBlades", meatripperAxes: "meatripperAxes" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "khorne",
         },
         mightySkullcrushers: {
             id: "mightySkullcrushers",
@@ -4997,7 +4997,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-skullcrushers-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Ensorcelled Axes", id: "ensorcelledAxes" },{ name: "Bloodglaives", id: "bloodglaives" },{ name: "Axes", id: "axes" },{ name: "Glaives", id: "glaives" }] }],
             baseWeaponOptions: { ensorcelledAxes: "ensorcelledAxes", bloodglaives: "bloodglaives", axes: "axes", glaives: "glaives" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "khorne" && wi.general && wi.general.unit.id === "lordOfKhorneOnJuggernaut",
         },
         scylaAnfingrimm: {
             id: "scylaAnfingrimm",
@@ -5156,7 +5156,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 450,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-tzaangors-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "tzeentch",
         },
         tzaangorEnlightenedOnDisc: {
             id: "tzaangorEnlightenedOnDisc",
@@ -5209,7 +5209,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 360,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-kairic-acolytes-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "tzeentch",
         },
         fatemaster: {
             id: "fatemaster",
@@ -5504,7 +5504,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 6,
             maxSize: 3,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-seeker-chariot-of-slaanesh-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "slaanesh" && wi.general && wi.general.unit.id === "heraldOfSlaaneshOnExaltedSeekerChariot",
         },
         seekersOfSlaanesh: {
             id: "seekersOfSlaanesh",
@@ -5632,7 +5632,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 30,
             maxPoints: 320,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "nurgle",
         },
         daemonPrinceOfNurgle: {
             id: "daemonPrinceOfNurgle",
@@ -5872,7 +5872,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 430,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-black-guard-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "darklingCovens",
         },
         executioners: {
             id: "executioners",
@@ -5887,7 +5887,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 480,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-executioners-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "darklingCovens",
         },
         sorceress: {
             id: "sorceress",
@@ -5915,7 +5915,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 360,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-bleakswords-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "darklingCovens",
         },
         darkshards: {
             id: "darkshards",
@@ -5929,7 +5929,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 40,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-darkshards-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "darklingCovens",
         },
         dreadspears: {
             id: "dreadspears",
@@ -5944,7 +5944,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 40,
             maxPoints: 360,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-dreadspears-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "darklingCovens",
         },
         sorceressOnBlackDragon: {
             id: "sorceressOnBlackDragon",
@@ -6029,7 +6029,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sisters-slaughter-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Barbed Whips and Sacrificial Knives", id: "barbedWhipsAndSacrificialKnives" },{ name: "Barbed Whips and Blade Bucklers", id: "barbedWhipsAndBladeBucklers" }] }],
             baseWeaponOptions: { barbedWhipsAndSacrificialKnives: "barbedWhipsAndSacrificialKnives", barbedWhipsAndBladeBucklers: "barbedWhipsAndBladeBucklers" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "daughtersOfKhaine",
         },
         bloodwrackShrine: {
             id: "bloodwrackShrine",
@@ -6088,7 +6088,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-witch-aelves-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Pairs of Sacrificial Knives", id: "pairsOfSacrificialKnives" },{ name: "Sacrificial Knives and Blade Bucklers", id: "sacrificialKnivesAndBladeBucklers" }] }],
             baseWeaponOptions: { pairsOfSacrificialKnives: "pairsOfSacrificialKnives", sacrificialKnivesAndBladeBucklers: "sacrificialKnivesAndBladeBucklers" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "daughtersOfKhaine",
         },
         bloodStalkers: {
             id: "bloodStalkers",
@@ -6116,7 +6116,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
             maxPoints: 480,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-morathi-blood-sisters-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "daughtersOfKhaine" && wi.general && wi.general.unit.id === "bloodwrackMedusa",
         },
         khineraiHeartrenders: {
             id: "khineraiHeartrenders",
@@ -6732,7 +6732,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 4,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-horrors-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "fleshEaterCourts" && wi.general && wi.general.unit.id === "cryptHaunterCourtier",
         },
         cryptFlayers: {
             id: "cryptFlayers",
@@ -6746,7 +6746,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 4,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-crypt-flayers-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "fleshEaterCourts" && wi.general && wi.general.unit.id === "cryptInfernalCourtier",
         },
         abhorrantGhoulKing: {
             id: "abhorrantGhoulKing",
@@ -6934,7 +6934,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
             maxSize: 15,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-blood-knights-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "soulblight",
         },
         blackCoach: {
             id: "blackCoach",
@@ -6973,7 +6973,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-hexwraiths-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "nighthaunt",
         },
         tombBanshee: {
             id: "tombBanshee",
@@ -7000,7 +7000,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-nighthaunt-spirithosts-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "nighthaunt",
         },
         cogsmith: {
             id: "cogsmith",
@@ -7383,7 +7383,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 480,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-hammerers-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "dispossessed",
         },
         ironbreakers: {
             id: "ironbreakers",
@@ -7787,7 +7787,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-demigryph-knights-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Lance and Sword", id: "lanceAndSword" },{ name: "Cavalry Halberd", id: "cavalryHalberd" }] }],
             baseWeaponOptions: { lanceAndSword: "lanceAndSword", cavalryHalberd: "cavalryHalberd" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "freePeoples",
         },
         knightsOfOrder: {
             id: "knightsOfOrder",
@@ -7839,7 +7839,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 30,
             maxPoints: 420,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "freePeoples",
         },
         freeguildOutriders: {
             id: "freeguildOutriders",
@@ -8704,7 +8704,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusguard-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "seraphon",
         },
         saurusKnights: {
             id: "saurusKnights",
@@ -8720,7 +8720,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-saurusknights-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Blades", id: "blades" },{ name: "Lances", id: "lances" }] }],
             baseWeaponOptions: { blades: "blades", lances: "lances" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "seraphon",
         },
         saurusAstrolithBearer: {
             id: "saurusAstrolithBearer",
@@ -9282,7 +9282,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/Beastclaw_Raiders//aos-warscroll-mournfang-pack-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Gargant Hackers", id: "gargantHackers" },{ name: "Culling Clubs or Prey Hackers with Iron Fists", id: "cullingClubsOrPreyHackersWithIronFists" }] }],
             baseWeaponOptions: { gargantHackers: "gargantHackers", cullingClubsOrPreyHackersWithIronFists: "cullingClubsOrPreyHackersWithIronFists" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "beastclawRaiders",
         },
         icefallYhetees: {
             id: "icefallYhetees",
@@ -9295,7 +9295,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["DESTRUCTION", "BEASTCLAW RAIDERS"],
             wounds: 4,
             maxSize: 12,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "beastclawRaiders" && wi.general && wi.general.unit.id === "frostlordOnThundertusk",
         },
         frostSabres: {
             id: "frostSabres",
@@ -9308,7 +9308,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["DESTRUCTION", "BEASTCLAW RAIDERS"],
             wounds: 2,
             maxSize: 12,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "beastclawRaiders" && wi.general && wi.general.unit.id === "icebrowHunter",
         },
         stonehornBeastriders: {
             id: "stonehornBeastriders",
@@ -9325,7 +9325,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptionCategories: [{ options: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Blood Vulture", id: "bloodVulture" }] }],
             baseWeaponOptions: { chaintrap: "chaintrap", bloodVulture: "bloodVulture" },
             isBehemot: () => true,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "beastclawRaiders",
         },
         thundertuskBeastriders: {
             id: "thundertuskBeastriders",
@@ -9342,7 +9342,7 @@ export class DataStoreImpl implements DataStore {
             weaponOptionCategories: [{ options: [{ name: "Chaintrap", id: "chaintrap" },{ name: "Blood Vulture", id: "bloodVulture" }] }],
             baseWeaponOptions: { chaintrap: "chaintrap", bloodVulture: "bloodVulture" },
             isBehemot: () => true,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "beastclawRaiders",
         },
         firebelly: {
             id: "firebelly",
@@ -9573,7 +9573,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["DESTRUCTION", "BONESPLITTERZ"],
             wounds: 2,
             maxSize: 30,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "bonesplitterz",
         },
         savageOrrukMorboys: {
             id: "savageOrrukMorboys",
@@ -9587,7 +9587,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 30,
             maxPoints: 300,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "bonesplitterz",
         },
         wardokk: {
             id: "wardokk",
@@ -9627,7 +9627,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 2,
             maxSize: 30,
             maxPoints: 300,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "bonesplitterz",
         },
         savageBoarboyManiaks: {
             id: "savageBoarboyManiaks",
@@ -9640,7 +9640,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["DESTRUCTION", "BONESPLITTERZ"],
             wounds: 3,
             maxSize: 20,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "bonesplitterz",
         },
         savageBoarboyz: {
             id: "savageBoarboyz",
@@ -9653,7 +9653,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["DESTRUCTION", "BONESPLITTERZ"],
             wounds: 3,
             maxSize: 20,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "bonesplitterz",
         },
         gitmobGrotShaman: {
             id: "gitmobGrotShaman",
@@ -9918,7 +9918,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 450,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-ardboyz-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "ironjawz",
         },
         orrukBrutes: {
             id: "orrukBrutes",
@@ -9932,7 +9932,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 3,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-brutes-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "ironjawz",
         },
         orrukGoreGruntas: {
             id: "orrukGoreGruntas",
@@ -9946,7 +9946,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 5,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-orruk-goregruntas-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "ironjawz",
         },
         gordrakkTheFistOfGork: {
             id: "gordrakkTheFistOfGork",
@@ -10448,7 +10448,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 30,
             maxPoints: 480,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "wanderers" && wi.general && wi.general.unit.id === "wayfinder",
         },
         sistersOfTheWatch: {
             id: "sistersOfTheWatch",
@@ -10461,7 +10461,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["ORDER", "WANDERERS"],
             wounds: 1,
             maxSize: 20,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "wanderers" && wi.general && wi.general.unit.id === "waywatcher",
         },
         eternalGuard: {
             id: "eternalGuard",
@@ -10475,7 +10475,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 30,
             maxPoints: 210,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "wanderers",
         },
         nomadPrince: {
             id: "nomadPrince",
@@ -11308,7 +11308,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/warhammer-aos-judicators-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Skybolt Bows", id: "skyboltBows" },{ name: "Boltstorm Crossbows", id: "boltstormCrossbows" }] }],
             baseWeaponOptions: { skyboltBows: "skyboltBows", boltstormCrossbows: "boltstormCrossbows" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "stormcastEternals",
         },
         vanguardHunters: {
             id: "vanguardHunters",
@@ -11321,7 +11321,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["ORDER", "STORMCAST ETERNALS"],
             wounds: 2,
             maxSize: 15,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "stormcastEternals" && wi.general && wi.general.unit.id === "lordAquilor",
         },
         knightVexillor: {
             id: "knightVexillor",
@@ -11726,7 +11726,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 420,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-tree-revenants-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "sylvaneth",
         },
         branchwraith: {
             id: "branchwraith",
@@ -11824,7 +11824,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 30,
             maxPoints: 420,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls//aos-warscroll-spite-revenants-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "sylvaneth",
         },
         chaosWarMammoth: {
             id: "chaosWarMammoth",
@@ -12317,7 +12317,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 3,
             weaponOptionCategories: [{ options: [{ name: "Greatblades", id: "greatblades" },{ name: "War flails", id: "warFlails" }] }],
             baseWeaponOptions: { greatblades: "greatblades", warFlails: "warFlails" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "slavesToDarkness",
         },
         chaosChosen: {
             id: "chaosChosen",
@@ -12450,7 +12450,7 @@ export class DataStoreImpl implements DataStore {
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-chaos-knights-en.pdf",
             weaponOptionCategories: [{ options: [{ name: "Ensorcelled Weapons", id: "ensorcelledWeapons" },{ name: "Chaos Glaives", id: "chaosGlaives" }] }],
             baseWeaponOptions: { ensorcelledWeapons: "ensorcelledWeapons", chaosGlaives: "chaosGlaives" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "slavesToDarkness",
         },
         chaosMarauderHorsemen: {
             id: "chaosMarauderHorsemen",
@@ -12466,7 +12466,7 @@ export class DataStoreImpl implements DataStore {
             maxPoints: 480,
             weaponOptionCategories: [{ options: [{ name: "Axes & Shield", id: "axesShield" },{ name: "Flails & Shield", id: "flailsShield" },{ name: "Javelin & Shield", id: "javelinShield" }] }],
             baseWeaponOptions: { axesShield: "axesShield", flailsShield: "flailsShield", javelinShield: "javelinShield" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "slavesToDarkness",
         },
         chaosLordOnManticore: {
             id: "chaosLordOnManticore",
@@ -12688,7 +12688,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
             weaponOptionCategories: [{ options: [{ name: "Claw spear", id: "clawSpear" },{ name: "Hellscourge", id: "hellscourge" },{ name: "Claw spear & Shield", id: "clawSpearShield" },{ name: "Hellscourge & Shield", id: "hellscourgeShield" }] }],
             baseWeaponOptions: { clawSpear: "clawSpear", hellscourge: "hellscourge", clawSpearShield: "clawSpearShield", hellscourgeShield: "hellscourgeShield" },
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "slaanesh",
         },
         putridBlightkings: {
             id: "putridBlightkings",
@@ -12703,7 +12703,7 @@ export class DataStoreImpl implements DataStore {
             maxSize: 20,
             maxPoints: 580,
             warscroll: "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-putridblightkings-en.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "nurgle",
         },
         pusgoyleBlightlords: {
             id: "pusgoyleBlightlords",
@@ -12717,7 +12717,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 7,
             maxSize: 12,
             warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG-Pusgoyle-blightlords.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "nurgle" && wi.general && wi.general.unit.id === "lordOfAfflictions",
         },
         gauntSummonerAndChaosFamiliars: {
             id: "gauntSummonerAndChaosFamiliars",
@@ -13508,7 +13508,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["ORDER", "IDONETH DEEPKIN"],
             wounds: 4,
             maxSize: 12,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "idonethDeepkin" && wi.general && wi.general.unit.id === "akhelian",
         },
         akhelianMorrsarrGuard: {
             id: "akhelianMorrsarrGuard",
@@ -13521,7 +13521,7 @@ export class DataStoreImpl implements DataStore {
             keywords: ["ORDER", "IDONETH DEEPKIN"],
             wounds: 4,
             maxSize: 12,
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "idonethDeepkin" && wi.general && wi.general.unit.id === "akhelian",
         },
         namartiReavers: {
             id: "namartiReavers",
@@ -13535,7 +13535,7 @@ export class DataStoreImpl implements DataStore {
             wounds: 1,
             maxSize: 20,
             warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Namarti_Reavers.pdf",
-            isBattleline: () => true,
+            isBattleline: (wi: WarscrollInterface) => wi.allegiance.id === "idonethDeepkin" && wi.general && wi.general.unit.id === "isharann",
         },
     };
     
