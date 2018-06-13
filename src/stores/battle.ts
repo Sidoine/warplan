@@ -1,4 +1,6 @@
 import { observable } from "mobx";
+import { Warscroll, WarscrollUnit } from "./warscroll";
+import { Ability } from "./units";
 
 export const enum Phase {
     Setup,
@@ -10,8 +12,20 @@ export const enum Phase {
     Battleshock
 }
 
+export interface UnitAura {
+    ability: Ability;
+}
+
+export class UnitState {
+    @observable wounds = 0;
+
+    public (unit: WarscrollUnit) {
+    }
+}
+
 export interface Player {
     name: string;
+    warscroll: Warscroll;
 }
 
 export class BattleStore {
