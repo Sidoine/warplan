@@ -16082,6 +16082,14 @@ export class DataStoreImpl implements DataStore {
             subCategory: "Enchanted Armour",
             isAvailable: artifactAvailable
         },
+        stormcastEternalsFeatherfoeTorc: {
+            id: "stormcastEternalsFeatherfoeTorc",
+            ability: { name: "Featherfoe Torc", description: "" },
+            allegiance: this.allegiances.stormcastEternals,
+            category: "artifact",
+            subCategory: "Enchanted Armour",
+            isAvailable: artifactAvailable
+        },
         stormcastEternalsTalismanOfEndurance: {
             id: "stormcastEternalsTalismanOfEndurance",
             ability: { name: "Talisman of Endurance", description: "" },
@@ -18013,6 +18021,14 @@ export class DataStoreImpl implements DataStore {
         daughtersOfKhaineRuneOfUlguMindrazor: {
             id: "daughtersOfKhaineRuneOfUlguMindrazor",
             ability: { name: "Rune of Ulgu - Mindrazor", description: "" },
+            allegiance: this.allegiances.daughtersOfKhaine,
+            category: "artifact",
+            subCategory: "Artefacts of Shadow",
+            isAvailable: artifactAvailable
+        },
+        daughtersOfKhaineRuneOfUlguShroudOfDespair: {
+            id: "daughtersOfKhaineRuneOfUlguShroudOfDespair",
+            ability: { name: "Rune of Ulgu - Shroud of Despair", description: "" },
             allegiance: this.allegiances.daughtersOfKhaine,
             category: "artifact",
             subCategory: "Artefacts of Shadow",

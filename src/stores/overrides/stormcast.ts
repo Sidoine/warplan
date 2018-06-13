@@ -1364,7 +1364,7 @@ function fixUnits(data: DataStoreImpl):void {
             const iconOfWar: Ability = { name: "Icon of War", description: "You can re-roll charge rolls for STORMCAST ETERNAL units in your army that are within 12\", as they are inspired to glorious acts of valour." };
             const meteoricStandard: Ability = {
                 name: "Meteoric Standard",
-                description: "Once per battle, a Knight-Vexillor carrying a Meteoric Standard can call down a comet in your hero phase. To do so, pick a point on the battlefield within 24\" of this modeland roll two dice, adding the results together. Each unit that is within that many inches of the point that you picked suffers D3 mortal wounds.",
+                description: "Once per battle, a Knight-Vexillor carrying a Meteoric Standard can call down a comet in your hero phase. To do so, pick a point on the battlefield within 24\" of this model and roll two dice, adding the results together. Each unit that is within that many inches of the point that you picked suffers D3 mortal wounds.",
                 getWounds: (models, melee, attack) => attack === undefined && !melee ? 4 * 2 * rareRate : 0
             }
             const penantOfTheStormbringer: Ability = {
@@ -1600,6 +1600,26 @@ function addExtraAbilities(data: DataStoreImpl): void {
 
     // Artifacts
     data.extraAbilities.stormcastEternalsStrifeEnder.ability.description = "This sigmarite weapon has been energised with runes of emancipation and liberation from evil. Pick one of this HERO’s melee weapons to be a Strife-ender. Add 1 to the Attacks characteristic of this weapon. Add 2 instead if all of the weapon’s attacks are directed against a CHAOS unit.";
+    data.extraAbilities.stormcastEternalsBladeOfHeroes.ability.description = "This shining blade glows bright in the presence of a truly dire threat, bolstering the warrior spirit of the wielder until no task seems insurmountable. Pick one of this HERO’s melee weapons to be a Blade of Heroes. Re-roll failed hit rolls made with this weapon that target HEROES or MONSTERS.";
+    data.extraAbilities.stormcastEternalsHammerOfMight.ability.description = "When the bearer strikes true, this noble weapon unleashes a thunderclap of energy that can shatter every bone in the victim’s body. Pick one of this HERO’s melee weapons to be a Hammer of Might. Wound rolls of 6 or more for this weapon cause double damage.";
+    data.extraAbilities.stormcastEternalsFangOfDracothion.ability.description = "Blessed by the stormy breath of the zodiacal godbeast Dracothion, this weapon’s void-cold bite is so fierce that even a slight slash can be fatal. Pick one of this HERO’s melee weapons to be a Fang of Dracothion. Re-roll any wound rolls of 1 for this weapon.";
+    data.extraAbilities.stormcastEternalsObsidianBlade.ability.description = "In the lightning-spewing volcanoes of the Sicklestar Peaks, the Obsidian Blades are forged. Their edges are so sharp they can cut bone like butter. Pick one of this HERO’s melee weapons to be an Obsidian Blade. Improve the Rend characteristic of this weapon by 1 (if it has a Rend characteristic of ‘-’ it becomes -1).";
+    data.extraAbilities.stormcastEternalsGiftOfTheSixSmiths.ability.description = "Some Stormcast Eternals, when reforged after a truly valorous death, will find their weapons remade as well, perfect examples of the Six Smiths’ craft that guide the bearer to his kill. Pick one of this HERO’s melee weapons to be a Gift of the Six Smiths. In each turn you can re-roll one hit, wound or damage roll for an attack made with this weapon.";
+
+    data.extraAbilities.stormcastEternalsArmourOfDestiny.ability.description = "This plate mail is blessed by fate. When this HERO suffers an unsaved wound or mortal wound, roll a dice. On a roll of 6 that wound or mortal wound is ignored.";
+    data.extraAbilities.stormcastEternalsArmorOfSilveredSigmarite.ability.description = "Shining and sacred, this armour gleams so bright it can dazzle the enemy. Subtract 1 from any hit rolls for melee weapon attacks directed against this HERO.";
+    data.extraAbilities.stormcastEternalsDrakescaleArmour.ability.description = "A guardian spirit lives on in this armour’s iron-hard drake scales. Re-roll failed save rolls for this HERO against weapons with a Damage characteristic greater than 1.";
+    data.extraAbilities.stormcastEternalsMirrorshield.ability.description = "This shield reflects the sun’s rays in questing beams that seek out the eyes of enemy archers. Subtract 2 from any hit rolls for missile weapon attacks directed at this HERO.";
+    data.extraAbilities.stormcastEternalsSpellshield.ability.description = "The bearer of this shield can use it to smash aside eldritch energies as if they were physical blows. This HERO may attempt to unbind a single spell in each enemy hero phase in the same manner as a Wizard.";
+    data.extraAbilities.stormcastEternalsFeatherfoeTorc.ability.description = "Forged in the image of a coiled raptordrake, this torc strikes primal fear into winged enemies. Units that can fly must re-roll successful hit rolls for attacks directed against this HERO.";
+    
+    data.extraAbilities.stormcastEternalsTalismanOfEndurance.ability.description = "The bearer of this powerful item never tires in the execution of the God-King’s will. Add 1 to this HERO’s Wounds characteristic.";
+    data.extraAbilities.stormcastEternalsObsidianAmulet.ability.description = "This amulet absorbs magical energy, drinking it in as a surgeon’s sponge soaks up blood. Roll a dice whenever this HERO is affected by a spell. On a roll of 4 or more, ignore the effects of the spell on this HERO. Other units are affected as normal.";
+    data.extraAbilities.stormcastEternalsLuckstone.ability.description = "Some say the Luckstone is so redolent with fortune it survived the death of the world-that-was. Once per battle, you can change the result of one hit, wound, damage or save roll for this HERO to the result of your choice.";
+    data.extraAbilities.stormcastEternalsSeedOfRebirth.ability.description = "A gift from the goddess Alarielle, this seed-shaped gem can heal the bearer, body and soul. Roll a D6 for this HERO in each of your hero phases. On a roll of 4 or more they heal 1 wound.";
+    data.extraAbilities.stormcastEternalsSigmaritePendant.ability.description = "This pendant is imbued with spells of vengeance – woe betide they who lay low its wielder. When this HERO is slain, roll a dice. On a 4 or more the unit that slew them suffers D6 mortal wounds.";
+    data.extraAbilities.stormcastEternalsQuicksilverDraught.ability.description = "Taken from the river of Anvrok, this potion lends uncanny speed to those who imbibe it. Once per battle, this HERO may pile in and make attacks in the combat phase before any other units, even if it is your opponent’s turn.";
+    
     const treasuredStandard = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["TOTEM"]);
     override(data.extraAbilities.stormcastEternalsTreasuredStandardHurricaneBanner, x => {
         x.isAvailable = treasuredStandard;
