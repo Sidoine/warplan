@@ -1,5 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Unit, Ability, Attack, DamageColumn } from "../units";
+import { Unit, Ability, Attack, DamageColumn, Battalion } from "../units";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -191,6 +191,66 @@ function addBoxes(data: DataStoreImpl):void {
     });
 }
 
+function fixBattalions(data: DataStoreImpl):void {
+    const tallybandOfNurgle: Battalion = data.battalions.tallybandOfNurgle;
+    tallybandOfNurgle.units.push({ unit: [data.units.greatUncleanOne], countMin: 0, countMax: 1, id: data.serial++ });
+    tallybandOfNurgle.units.push({ unit: [data.units.poxbringerHeraldOfNurgle, data.units.sloppityBilepiperHeraldOfNurgle, data.units.spoilpoxScrivenerHeraldOfNurgle], countMin: 1, countMax: 3, id: data.serial++ });
+    tallybandOfNurgle.units.push({ unit: [data.units.plaguebearers, data.units.plagueDrones], countMin: 4, countMax: 7, id: data.serial++ });    
+    tallybandOfNurgle.units.push({ unit: [data.units.beastsOfNurgle, data.units.nurglings], countMin: 0, countMax: 3, id: data.serial++ });
+    
+    tallybandOfNurgle.abilities = [
+        { name: "Droning Masses", description: "At the start of your hero phase, each unit in this battalion heals 1 wound that has been allocated to it. For units of Plaguebearers, return D3 slain models to each unit instead."},
+        { name: "Disease and Pestilence Personified", description: "If the number of Plaguebearers units plus the number of Plague Drones units in this battalion at the start of the battle is seven, you receive 1 extra contagion point in each of your hero phases." }
+    ];
+
+    const thricefold: Battalion = data.battalions.thricefoldBefoulment;
+    thricefold.units.push({ unit: [data.units.greatUncleanOne], count: 3, id: data.serial++});
+    
+    thricefold.abilities = [
+        { name: "Hungry for the Plague God's Praise", description: "Re-roll hit rolls of 1 for models from this battalion while they are within 14\" of another model from this battalion. In addition, reroll wound rolls of 1 for models from this battalion while they are within 14\" of two other models from this battalion" },
+        { name: "Plague Storm of Nurgle", description: "If a model from this battalion successfully casts the Plague Wind spell when it is within 7\" of another model from this battalion, then the number of mortal wounds inflicted by the spell is increased from D3 to 2D3. If the caster is within 7\" of two other models from this battalion, then the number of mortal wounds inflicted by the spell is increased to 3D3 instead." }
+    ]
+
+    const menagerie: Battalion = data.battalions.nurgleSMenagerie;
+    menagerie.units.push({ unit: [data.units.horticulousSlimux], count: 1, id: data.serial++ });
+    menagerie.units.push({ unit: [data.units.beastsOfNurgle], count: 3, id: data.serial++});
+    menagerie.units.push({ unit: [data.units.plagueDrones, data.units.beastsOfNurgle, data.units.nurglings], countMin: 0, countMax: 3, id: data.serial++});
+    
+    menagerie.abilities=  [
+        { name: "Assistant Gardeners", description: "Horticulous Slimux can use his Cultivating the Garden of Nurgle ability in each of your hero phases instead of only once per battle. In addition, when he does so, the Feculent Gnarlmaw can be set up within 3\" of any unit from this battalion instead of being set up within 3\" of Horticulous Slimux."},
+        { name: "Utterly Revolting Horde", description: "Subtract 1 from the Bravery characteristic of enemy units while they are within 14\" of 7 or more models from this battalion."}
+    ];
+
+    const plagueCyst: Battalion = data.battalions.plagueCyst;
+    plagueCyst.units.push({ unit: [data.units.lordOfPlagues], count: 1, id: data.serial++});
+    plagueCyst.units.push({ unit: [data.units.putridBlightkings], countMin: 3, countMax: 6, id: data.serial++});
+    plagueCyst.units.push({ unit: [data.units.sorcerer], countMin: 0, countMax: 1, id: data.serial++});
+    plagueCyst.units.push({ unit: [data.units.harbingerOfDecay], countMin: 0, countMax: 1, id: data.serial++});
+    plagueCyst.abilities = [
+        { name: "Master of Slaughter", description: "Re-roll all failed hit rolls for units from this battalion that are affected by the Wanton Slaughter ability of this battalion's Lord of Plagues, instead of only re-rolling hit rolls of 1."},
+        { name: "Horribly Contagious", description: "In your hero phase, roll a dice for each enemy unit within 3\" of any units from this battalion. On a 6+ the unit being rolled for suffers D3 mortal wounds." }
+    ];
+
+    const blightCyst: Battalion = data.battalions.blightCyst;
+    blightCyst.units.push({ unit: [data.units.lordOfBlights], count: 1, id: data.serial++});
+    blightCyst.units.push({ unit: [data.units.putridBlightkings], countMin: 3, countMax: 6, id: data.serial++});
+    blightCyst.units.push({ unit: [data.units.sorcerer], countMin: 0, countMax: 1, id: data.serial++});
+    blightCyst.units.push({ unit: [data.units.harbingerOfDecay], countMin: 0, countMax: 1, id: data.serial++});
+    blightCyst.abilities = [
+        { name: "Endless Bounty", description: "The Munificent Bounty ability of this battalion's Lord of Blights affects all units from this battalion that are within 3\" of him at the start of your shooting phase, instead of only one unit."},
+        { name: "Supremely Blighted Weapons", description: "The Blighted Weapons used by the Putrid Blightkings in this battalion have a Rend characteristic of '-1'." },
+        { name: "Blights on the Landscape", description: "In the combat phase, enemy units do not receive any benefits for being in cover against attacks made by this battalion." }
+    ];
+
+    const afflictionCyst: Battalion = data.battalions.afflictionCyst;
+    afflictionCyst.units.push({ unit: [data.units.lordOfAfflictions], count: 1, id: data.serial++});
+    afflictionCyst.units.push({ unit: [data.units.pusgoyleBlightlords], countMin: 3, countMax: 6, id: data.serial++});
+    afflictionCyst.abilities = [
+        { name: "The Droning Sky", description: "Instead of setting up a unit from this battalion on the battlefield, you can place it to one side and say that it is set up hovering in the skies. You can do this with as many units from the battalion as you wish. At the end of your first movement phase, set up each of these units more than 9\" from any enemy models."},
+        { name: "Diseased Onslaught", description: "If the Lord of Afflictions from this battalion uses his Spearhead of Contagion command ability, it affects all units from this battalion that are within 14\" of him, instead of only one unit." }
+    ];
+}
+
 function fixUnits(data: DataStoreImpl):void {
     {
         const plaguebearers: Unit = data.units.plaguebearers;
@@ -282,7 +342,7 @@ function fixUnits(data: DataStoreImpl):void {
         const fly: Ability = { name: "Fly", description: "Plague Drones can fly." };
         const disgustinglyResilient: Ability = { name: "Disgustingly Resilient", description: "Roll a dice each time you allocate a wound or mortal wound to a model in this unit. On a 5+ the wound is negated."};
         const virulentDischarge: Ability = { name: "Virulent Discharge", description: "In your hero phase, roll a dice for each unit (friend or foe) that is within 3\" of any friendly units with this ability. On a 6+ that unit suffers D3 mortal wounds. If the unit has the NURGLE keyword, heal D3 wounds allocated to the unit instead." };
-        const blightedWeapons: Ability = { name: "Blighted Weapons", description: "Each time you make a hit roll of 6+ for this unit's Blighted Weapons, that hit roll inflicts D6 instead of 1." };
+        const blightedWeapons: Ability = { name: "Blighted Weapons", description: "Each time you make a hit roll of 6+ for this unit's Blighted Weapons, that hit roll inflicts D6 hits instead of 1." };
 
         pusgoyle.abilities = [fly, disgustinglyResilient, virulentDischarge, blightedWeapons];
 
@@ -349,7 +409,7 @@ function fixUnits(data: DataStoreImpl):void {
         const iconBearer: Ability = { name: "Icon Bearer", description: "Models in this unit may be Icon Bearers. Add 1 to this unit's Bravery characteristic while it includes any Icon Bearers." };
         const sonorousTocsin: Ability = { name: "Sonorous Tocsin", description: "Models in this unit may carry a Sonorous Tocsin. Add 1 to this unit's run and charge rolls whilst it includes any models carrying a Sonorous Tocsin." };
         const virulentDischarge: Ability = { name: "Virulent Discharge", description: "In your hero phase, roll a dice for each unit (friend or foe) that is within 3\" of any friendly units with this ability. On a 6+ that unit suffers D3 mortal wounds. If the unit has the NURGLE keyword, heal D3 wounds allocated to the unit instead." };
-        const blightedWeapons: Ability = { name: "Blighted Weapons", description: "Each time you make a hit roll of 6+ for this unit's Blighted Weapons, that hit roll inflicts D6 instead of 1." };
+        const blightedWeapons: Ability = { name: "Blighted Weapons", description: "Each time you make a hit roll of 6+ for this unit's Blighted Weapons, that hit roll inflicts D6 hits instead of 1." };
 
         blightkings.abilities = [blightLord, iconBearer, sonorousTocsin, virulentDischarge, blightedWeapons];
 
@@ -809,4 +869,5 @@ function fixUnits(data: DataStoreImpl):void {
 export function overrideNurgle(data: DataStoreImpl):void {
     addBoxes(data);
     fixUnits(data);
+    fixBattalions(data);
 }

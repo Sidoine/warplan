@@ -20,7 +20,7 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
 
         for (const battalion of warscroll.battalions) {
             for (const unit of battalion.battalion.units) {
-                const count = { count: unit.count };
+                const count = { count: unit.count !== undefined ? unit.count : 0 };
                 counts.set(unit.id, count);
                 for (const alt of unit.unit) {
                     const requiredUnit = requiredUnits.get(alt.id);

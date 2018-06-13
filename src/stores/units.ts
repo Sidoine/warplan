@@ -273,7 +273,9 @@ export interface Box {
 export interface BattalionUnit {
     id: number;
     unit: Unit[];
-    count: number;
+    count?: number;
+    countMin?: number;
+    countMax?: number;
 }
 
 export interface Battalion {
