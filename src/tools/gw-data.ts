@@ -502,7 +502,7 @@ for (const artefact of artefacts) {
         continue;
     }
     const category = artefact[1];
-    const m = artefact[2].match(/(.*) \((.*\))/);
+    const m = artefact[2].match(/(.*?) ?\((.*\))/);
     if (m === null) continue;
     const name = m[1];
     // const criteria = m[2];
