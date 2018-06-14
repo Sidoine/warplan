@@ -1,5 +1,5 @@
 import { action, computed, observable, toJS } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalion, UnitAltModel, WeaponOptionCategory } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalionInterface, UnitAltModel, WeaponOptionCategory } from "./units";
 import { deflate, inflate } from "pako";
 
 export class WarscrollWeaponOptionCategory {
@@ -33,6 +33,9 @@ export class WarscrollAltModel {
 export class WarscrollUnit implements WarscrollUnitInterface {
     id: number;
     
+    @observable
+    battalion: WarscrollBattalionInterface | null = null;
+
     @observable
     count: number = 1;
 
@@ -131,6 +134,18 @@ export class WarscrollUnit implements WarscrollUnitInterface {
             }
         }
     }     
+}
+
+export class WarscrollBattalion implements WarscrollBattalionInterface {
+    id: number;
+
+    constructor(public warscroll: Warscroll, public battalion: Battalion) {
+        this.id = warscroll.serial++;
+    }
+
+    @computed get units() {
+        return this.warscroll.units.filter(x => x.battalion !== null && x.battalion.id === this.id);
+    }
 }
 
 export class Warscroll implements WarscrollInterface {
@@ -281,6 +296,7 @@ interface SerializedWarscroll {
         weaponOptions?: SerializedWeaponOptions[];
         extraAbilities?: string[];
         altModels?: { count?: number, weaponOptions?: SerializedWeaponOptions[]; }[];
+        battalionIndex?:number;
     }[];
     battalions: {
         battalionId: string;
@@ -315,17 +331,14 @@ export class WarscrollStore {
 
     @action
     addBattalion(battalion: Battalion) {
-        this.warscroll.battalions.push({
-            id: this.warscroll.serial++,
-            battalion: battalion
-        });
+        this.warscroll.battalions.push(new WarscrollBattalion(this.warscroll, battalion));
         this.saveWarscroll();
     }
     
     @action
-    removeBattalion(battalion: WarscrollBattalion) {
+    removeBattalion(battalion: WarscrollBattalionInterface) {
         const battalions = this.warscroll.battalions;
-        battalions.splice(battalions.indexOf(battalion), 1);
+        battalions.splice(battalions.findIndex(x => x.id === battalion.id), 1);
         this.saveWarscroll();
     }
 
@@ -395,6 +408,12 @@ export class WarscrollStore {
         this.warscroll.allegiance = this.unitsStore.allegianceList.find(x => x.id === warscroll.allegiance) || this.unitsStore.allegianceList[0];
         this.warscroll.armyOption = warscroll.armyOption;
         
+        for (const ba of warscroll.battalions) {
+            const battalion = this.unitsStore.battalions.find(x => x.id === ba.battalionId);
+            if (battalion === undefined) continue;
+            this.warscroll.battalions.push(new WarscrollBattalion(this.warscroll, battalion));
+        }
+
         for (const wu of warscroll.units) {
             const unit = this.unitsStore.getUnit(wu.unitId);
             if (unit === undefined) continue;
@@ -425,13 +444,10 @@ export class WarscrollStore {
                     }
                 }
             }
+            if (wu.battalionIndex && this.warscroll.battalions[wu.battalionIndex]) {
+                newUnit.battalion = this.warscroll.battalions[wu.battalionIndex];
+            }
             this.warscroll.units.push(newUnit);
-        }
-
-        for (const ba of warscroll.battalions) {
-            const battalion = this.unitsStore.battalions.find(x => x.id === ba.battalionId);
-            if (battalion === undefined) continue;
-            this.warscroll.battalions.push({ id: this.warscroll.serial++, battalion: battalion });
         }
     }
 
@@ -444,7 +460,8 @@ export class WarscrollStore {
                 isGeneral: x === this.warscroll.general,
                 weaponOptions: x.weaponOptionCategories ? x.weaponOptionCategories.map(y => { return { option: y.weaponOption ? y.weaponOption.id : undefined, count: y.count !== null ? y.count : undefined } }) : undefined,
                 extraAbilities: x.extraAbilities.map(x => x.id),
-                altModels: x.altModels.map(x => { return { count: x.count, weaponOptions: x.weaponOptionCategories.map(y => { return { option: y.weaponOption ? y.weaponOption.id : undefined, count: y.count !== null ? y.count: undefined }}) } })
+                altModels: x.altModels.map(x => { return { count: x.count, weaponOptions: x.weaponOptionCategories.map(y => { return { option: y.weaponOption ? y.weaponOption.id : undefined, count: y.count !== null ? y.count: undefined }}) } }),
+                battalionIndex: x.battalion === null ? undefined : this.warscroll.battalions.findIndex(y => x.battalion !== null && y.id === x.battalion.id)
             }}),
             battalions: this.warscroll.battalions.map(x => {
                 return {

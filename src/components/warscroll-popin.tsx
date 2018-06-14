@@ -29,7 +29,7 @@ export class WarscrollPopin extends React.Component<WarscrollPopinProps, {}> {
                     this.props.warscrollStore!.warscrolls.map(x => <div>{x}
                         <Button onClick={() => this.props.warscrollStore!.saveWarscroll(x)}>Update</Button>
                         <Button onClick={() => { this.props.warscrollStore!.loadWarscroll(x); this.handleClose(); }}>Load</Button>
-                        <Button onClick={() => this.props.warscrollStore!.removeWarscroll(x)}><Icon glyph="remove"/></Button>
+                        <Button onClick={() => this.props.warscrollStore!.removeWarscroll(x)}><Icon name="remove"/></Button>
                     </div>)
                 }
                     <Input type="text" value={this.warscrollName} onChange={(x,d) => this.warscrollName = d.value } />

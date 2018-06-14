@@ -2,7 +2,7 @@ import * as React from "react";
 import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
 import { observer, inject } from "mobx-react";
 import { Header, Table, Icon, Segment } from "semantic-ui-react";
-import { Attack, Ability, WarscrollBattalion, DamageTable } from "../stores/units";
+import { Attack, Ability, WarscrollBattalionInterface, DamageTable } from "../stores/units";
 import { toJS } from "mobx";
 import { join, value } from "../helpers/react";
 
@@ -58,7 +58,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
         </div>;
     }
 
-    renderBattalion(battalion: WarscrollBattalion) {
+    renderBattalion(battalion: WarscrollBattalionInterface) {
         return <Table.Row key={battalion.id}>
             <Table.Cell>{battalion.battalion.name}</Table.Cell>    
             <Table.Cell>{battalion.battalion.description}</Table.Cell>

@@ -14,12 +14,12 @@
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.1",
     "react-router-dom": "^4.2.2",
-    "semantic-ui-react": "^0.78.2",
+    "semantic-ui-react": "^0.81.1",
     "csv-parse": "^2.2.0",
     "pako": "^1.0.6"
   },
   "devDependencies": {
-    "typescript": "^2.8.3",
+    "typescript": "^2.9.2",
     "tslint": "^5.10.0",
     "webpack": "^3.10.0",
     "awesome-typescript-loader": "^3.4.1",
