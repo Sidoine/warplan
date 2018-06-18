@@ -2,6 +2,7 @@ import { DataStoreImpl } from "./imported-data";
 import { overrideStormcast } from "./overrides/stormcast";
 import { getAttackDamage, getValue } from "./combat";
 import { overrideNurgle } from "./overrides/nurgle";
+import { overrideKhorne } from "./overrides/khorne";
 import { overrideDevotedOfSigmar } from "./overrides/devoted-of-sigmar";
 import { overrideWanderers } from "./overrides/wanderers";
 import { overrideIdonethDeepkins } from "./overrides/idoneth-deepkins";
@@ -350,6 +351,7 @@ export class UnitsStore {
     constructor(data: DataStoreImpl) {   
         overrideStormcast(data);   
         overrideNurgle(data);
+        overrideKhorne(data);
         overrideDevotedOfSigmar(data);
         overrideWanderers(data);
         overrideIdonethDeepkins(data);

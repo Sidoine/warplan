@@ -1,5 +1,226 @@
 import { DataStoreImpl } from "../imported-data";
 import { Unit, Ability, Attack, DamageColumn, Battalion } from "../units";
+import { artifactWithKeywordAvailable, override } from "./tools";
+
+function addCommandAbilities(data: DataStoreImpl):void {
+    const rotbringer = artifactWithKeywordAvailable("ROTBRINGER", ["HERO"]);
+    override(data.extraAbilities.nurgleGrandfatherSBlessing, x => {
+        x.isAvailable = rotbringer;
+        x.category = "command";
+        x.ability.description = "Once per battle, at the start of your hero phase, you can move the Cycle of Corruption one stage forward of backward if your general has not been slain.";
+    });
+    override(data.extraAbilities.nurgleLivingPlague, x => {
+        x.isAvailable = rotbringer;
+        x.category = "command";
+        x.ability.description = "At the start of your hero phase, roll a dice for each enemy unit within 1\" of your general. On a 4+ the unit being rolled for suffers 1 mortal wound and you receive 1 contagion point.";
+    });
+    override(data.extraAbilities.nurgleHulkingPhysique, x => {
+        x.isAvailable = rotbringer;
+        x.category = "command";
+        x.ability.description = "Add 1 to wound rolls for your general in the combat phase.";
+    });
+    override(data.extraAbilities.nurgleBloatedWithCorruption, x => {
+        x.isAvailable = rotbringer;
+        x.category = "command";
+        x.ability.description = "Roll a dice each time you allocate a wound to your general in the combat phase (and it is not negated). On a 4+ the attacking unit suffers 1 mortal wound after all of its attacks have been made.";
+    });
+    override(data.extraAbilities.nurgleAvalancheOfRottenFlesh, x => {
+        x.isAvailable = rotbringer;
+        x.category = "command";
+        x.ability.description = "Add 2 to run and charge rolls for your general.";
+    });
+    override(data.extraAbilities.nurgleResilient, x => {
+        x.isAvailable = rotbringer;
+        x.category = "command";
+        x.ability.description = "Roll a dice each time you allocate a wound or mortal wound to your general. On a 6+ the wound is negated.";
+    });
+
+    const daemon = artifactWithKeywordAvailable("DAEMON", ["HERO"]);
+    override(data.extraAbilities.nurgleTaintedCorruptor, x => {
+        x.isAvailable = daemon;
+        x.category = "command";
+        x.ability.description = "At the start of each of your hero phases, you can pick one terrain feature that is within 3\" of your general. For the rest of the battle, that terrain feature has the Sickness Blossoms scenery rule from the Feculent Gnarlmaw warscroll, in addition to any other rules it already had.";
+    });
+    override(data.extraAbilities.nurgleNurglingInfestation, x => {
+        x.isAvailable = daemon;
+        x.category = "command";
+        x.ability.description = "Once per battle, at the start of combat phase, you can inflict D3 mortal wounds on an enemy unit that is within 3\" of your general.";
+    });
+    override(data.extraAbilities.nurglePestilentBreath, x => {
+        x.isAvailable = daemon;
+        x.category = "command";
+        x.ability.description = "At the start of your shooting phase, pick one enemy unit that is within 6\" of your general. Roll a dice for each model in that unit that is within 6\" of your general. The unit suffers 1 mortal wounds for each roll of 5+.";
+    });
+
+    const mortal = artifactWithKeywordAvailable("MORTAL", ["HERO"]);
+    override(data.extraAbilities.nurgleHideousVisage, x => {
+        x.isAvailable = mortal;
+        x.category = "command";
+        x.ability.description = "Subtract 2 from the Bravery characteristic of enemy units while they are within 3\" of your general.";
+    });
+    override(data.extraAbilities.nurgleOverpoweringStench, x => {
+        x.isAvailable = mortal;
+        x.category = "command";
+        x.ability.description = "Re-roll hit rolls of 6+ for attacks that target your general in the combat phase.";
+    });
+    override(data.extraAbilities.nurgleVirulentContagion, x => {
+        x.isAvailable = mortal;
+        x.category = "command";
+        x.ability.description = "Improve the Rend characteristic by 1 for attacks made by your general in the combat phase.";
+    });
+}
+
+function addSpells(data: DataStoreImpl):void {
+    const rotbringer = artifactWithKeywordAvailable("ROTBRINGER", ["HERO", "WIZARD"]);
+    override(data.extraAbilities.nurgleRotbringersLoreOfMalignanceBladesOfPutrefaction, x => {
+        x.isAvailable = rotbringer;
+        x.category = "lore";
+        x.ability.description = "Blades of Putrefaction has a casting value of 7. If successfully cast, pick a friendly unit within 14\" of the caster that is visible to them. Until your next hero phase, hit rolls of 6+ for that unit inflict 1 mortal wound in addition to any other damage.";
+    });
+    override(data.extraAbilities.nurgleRotbringersLoreOfMalignanceRancidVisitations, x => {
+        x.isAvailable = rotbringer;
+        x.category = "lore";
+        x.ability.description = "Rancid Visitations has a casting value of 6. If successfully cast, pick an enemy unit within 3\" of the caster. That unit suffers 1 mortal wound for each model from the unit that is within 3\" of the caster.";
+    });
+    override(data.extraAbilities.nurgleRotbringersLoreOfMalignanceGiftOfContagion, x => {
+        x.isAvailable = rotbringer;
+        x.category = "lore";
+        x.ability.description = "Gift of contagion has a casting value of 6. If successfully cast, select an enemy unit within 18\" of the caster that is visible to them. Then roll a dice and look up the result on the table below. Apply the penalty to all models in the unit until the start of your next hero phase.\n 1-2 : Flyblown Palsy - Subtract 1 from the unit's hits rolls in the combat phase. \n 3-4 : Muscular Atrophy - Subtract 1 from the unit's wound rolls in the combat phase. \n 5-6 : Liquefying Ague - Subtract 1 from the unit's save rolls.";
+    });
+
+    const daemon = artifactWithKeywordAvailable("DAEMON", ["HERO", "WIZARD"]);
+    override(data.extraAbilities.daemonsOfNurgleLoreOfVirulenceFavouredPoxes, x => {
+        x.isAvailable = daemon;
+        x.category = "lore";
+        x.ability.description = "Favoured Poxes has a casting value of 7. If successfully cast, pick an enemy unit within 14\" of the caster that is visible to them. Subtract 1 from hit, wound and save rolls for that unit until the caster moves, attempts to cast a spell or is slain.";
+    });
+    override(data.extraAbilities.daemonsOfNurgleLoreOfVirulenceGloriousAfflictions, x => {
+        x.isAvailable = daemon;
+        x.category = "lore";
+        x.ability.description = "Glorious Afflictions has a casting value of 5. If successfully cast, pick an enemy unit within 21\" of the caster that is visible to them. The unit's Move characteristic and any runs or charge rolls made for them are halved (rounding up) until your next hero phase. In addition, units that can normally fly canoot do so until your next hero phase.";
+    });
+    override(data.extraAbilities.daemonsOfNurgleLoreOfVirulenceSumptuousPestilence, x => {
+        x.isAvailable = daemon;
+        x.category = "lore";
+        x.ability.description = "Sumptuous Pestilence has a casting value of 6. If successfully cast, each enemy unit within 7\" of the caster suffers 1 mortal wound. Unit with more than 5 models suffers D3 mortal wounds instead.";
+    });
+
+    const mortal = artifactWithKeywordAvailable("MORTAL", ["HERO", "WIZARD"]);
+    override(data.extraAbilities.nurgleRotbringersLoreOfFoulnessMagnificentBuboes, x => {
+        x.isAvailable = mortal;
+        x.category = "lore";
+        x.ability.description = "Magnificent Buboes has a casting value of 7. If successfully cast, pick an enemy HERO within 21\" of the caster that is visible to them. The hero suffers D3 mortal wounds. In addition, subtract 1 from their hit rolls, casting rolls and unbinding rolls until your next hero phase.";
+    });
+    override(data.extraAbilities.everchosenLoreOfFoulnessPlagueSquall, x => {
+        x.isAvailable = mortal;
+        x.category = "lore";
+        x.ability.description = "Plague Squall has a casting value of 6. If successfully cast, roll 7 dices. For each roll of 6, you can pick an enemy unit that is visible to the caster. That unit suffers D3 mortal wounds. If you roll more than one 6, you must pick a different enemy unit to suffer each set of mortal wounds.";
+    });
+    override(data.extraAbilities.nurgleRotbringersLoreOfFoulnessCloyingQuagmire, x => {
+        x.isAvailable = mortal;
+        x.category = "lore";
+        x.ability.description = "Cloying Quagmire has a casting value of 5. If successfully cast, select an enemy unit within 14\" of the caster that is visible to them. Then roll a dice, and compare it to the enemy unit's Save characteristic. If the roll is equal to or higher than the Save characteristic, the units suffers D6 mortal wounds.";
+    });
+}
+
+function addArtefact(data: DataStoreImpl):void {
+    
+    const daemon = artifactWithKeywordAvailable("DAEMON", ["HERO"]);
+    override(data.extraAbilities.nurgleNoxiousNexus, x => {
+        x.isAvailable = daemon;
+        x.category = "artifact";
+        x.ability.description = "At the start of you hero phase, roll a dice for each enemy unit within 7\" of the bearer. If the roll is equal to or less than the number of the current battle round, the unit being rolled for suffers 1 mortal wound. For example, in the second battle round, enemy units would suffers a mortal wounds on a 1 or 2.";
+    });
+    override(data.extraAbilities.nurgleNurgleSNail, x => {
+        x.isAvailable = daemon;
+        x.category = "artifact";
+        x.ability.description = "Pick one of the bearer's melee weapons to be Nurgle's Nail. At the end of each combat phase, roll 2D6 for each enemy model that was allocated any wounds caused by Nurgle's Nail in that phase and was not slain. If the result is exactly 7, the model being rolled for is slain. Any other result has no effect.";
+    });
+    override(data.extraAbilities.nurgleTheBountifulSwarm, x => {
+        x.isAvailable = daemon;
+        x.category = "artifact";
+        x.ability.description = "At the start of your hero phase, pick an enemy model within 3\" of the bearer and then roll a dice. If the roll is greater than that model's Wounds characteristic, then it is slain. If a model with a Wounds characteristic of 4+ is slain by the Bountiful Swarm, before you remove the model, you can add a Beast of Nurgle to your army and set it up within 1\" of the enemy model.";
+    });
+    override(data.extraAbilities.nurgleTheWitherstave, x => {
+        x.isAvailable = daemon;
+        x.category = "artifact";
+        x.ability.description = "Re-roll hit rolls of 6 for enemy units while they are within 12\" of the bearer.";
+    });
+    override(data.extraAbilities.nurgleTomeOfAThousandPoxes, x => {
+        x.isAvailable = daemon;
+        x.category = "artifact";
+        x.ability.description = "If the bearer is a WIZARD, add 1 to the casting rolls for any spells from the Lore of Nurgle that they attempt to cast. If the bearer is not a WIZARD, they can attempt to cast the Sumptuous Pestilence spell in each of your hero phase (they cannot unbind spell).";
+    });
+    override(data.extraAbilities.nurgleTheEndlessGift, x => {
+        x.isAvailable = daemon;
+        x.category = "artifact";
+        x.ability.description = "At the start of the battleshock phase, roll a dice for each wound that was allocated to this model during the same turn. On a 4+ the wound is healed.";
+    });
+
+    const rotbringer = artifactWithKeywordAvailable("ROTBRINGER", ["HERO"]);
+    override(data.extraAbilities.nurgleTheSplithornHelm, x => {
+        x.isAvailable = rotbringer;
+        x.category = "artifact";
+        x.ability.description = "Roll a dice each time you allocate a wound or mortal wound to the bearer. On a 6+ the wound is negated.";
+    });
+    override(data.extraAbilities.nurgleMuttergrub, x => {
+        x.isAvailable = rotbringer;
+        x.category = "artifact";
+        x.ability.description = "If the bearer is a WIZARDn they can attempt to cast one additionnal spell ineach of their hero phases. If the bearer is not a WIZARD, they can attempt to cast Foul Regenesis in each of their hero phases (this does not give them the ability to unbind spells).";
+    });
+    override(data.extraAbilities.nurgleRustfang, x => {
+        x.isAvailable = rotbringer;
+        x.category = "artifact";
+        x.ability.description = "At the start of the combat phase, pick one enemy unit within 3\" of the bearer. Subtract 1 from its save rolls for the rest of the battle. You cannot use this ability more than once on the same enemy unit.";
+    });
+    override(data.extraAbilities.nurgleFleshPealer, x => {
+        x.isAvailable = rotbringer;
+        x.category = "artifact";
+        x.ability.description = "In your hero phase, roll a dice for each enemy unit that is within 6\" of the bearer. On a 5+ the unit being rolled for suffers D3 mortal wounds.";
+    });
+    override(data.extraAbilities.nurgleTheBileheart, x => {
+        x.isAvailable = rotbringer;
+        x.category = "artifact";
+        x.ability.description = "Roll a dice each time you allocate a wound or mortal wound to the bearer in the combat phase (and it is not negated). On a 4+ the attacking unit suffers 1 mortal wound after all of its attacks have been made.";
+    });
+    override(data.extraAbilities.nurgleTheFecundFlask, x => {
+        x.isAvailable = rotbringer;
+        x.category = "artifact";
+        x.ability.description = "You can use the fecund flask once per battle, at the start of your hero phase. If you do so, roll a dice. On a 2+ any wounds the bearer has suffered are healed. On a 1, the bearer is slain. If the bearer is slain by the fecund flask, before you remove the bearer's model, you can add a Beast of Nurgle to your army and set it up within 1\" of the bearer.";
+    });
+
+    const mortal = artifactWithKeywordAvailable("MORTAL", ["HERO"]);
+    override(data.extraAbilities.nurgleTheVirulentBlade, x => {
+        x.isAvailable = mortal;
+        x.category = "artifact";
+        x.ability.description = "Pick one of the bearer's melee weapon to be the virulent blade. Add 1 to the Damage characteristic for attacks made with the Virulent Blade if the wound roll for the attack is 5+";
+    });
+    override(data.extraAbilities.nurgleTheFoetidShroud, x => {
+        x.isAvailable = mortal;
+        x.category = "artifact";
+        x.ability.description = "Re-roll hit rolls of 6+ or more for attacks that target the bearer in the combat phase.";
+    });
+    override(data.extraAbilities.nurgleSublucusStenchplate, x => {
+        x.isAvailable = mortal;
+        x.category = "artifact";
+        x.ability.description = "Enemy units that are within 3\" of the bearer at the end of their movement phase suffer D3 mortal wounds.";
+    });
+    override(data.extraAbilities.nurgleTheEyeOfNurgle, x => {
+        x.isAvailable = mortal;
+        x.category = "artifact";
+        x.ability.description = "Once per battle, at the start of your hero phase, you can roll 2D6 if there are any enemy models within 12\" of the bearer. If the result is exactly 7, then the closest enemy model to the bearer is slain.";
+    });
+    override(data.extraAbilities.nurgleTheCarrionDirge, x => {
+        x.isAvailable = mortal;
+        x.category = "artifact";
+        x.ability.description = "Subtract 2 from the Bravery characteristic of enemy units while they are within 12\" of the bearer.";
+    });
+    override(data.extraAbilities.nurgleTheShieldOfGrowths, x => {
+        x.isAvailable = mortal;
+        x.category = "artifact";
+        x.ability.description = "You can re-roll failed save rolls for the bearer if the roll is equal to or less than the number of wounds currently allocated to the bearer.";
+    });
+}
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -187,6 +408,12 @@ function addBoxes(data: DataStoreImpl):void {
         units: [
             { count: 1, models: [data.models.lordOfPlagues] }
         ],
+        price: 12
+    });
+    data.boxes.push({
+        id: "sorcerer",
+        name: "Rotbringers Sorcerer",
+        units: [{ count: 1, models: [data.models.sorcerer] }],
         price: 12
     });
 }
@@ -870,4 +1097,7 @@ export function overrideNurgle(data: DataStoreImpl):void {
     addBoxes(data);
     fixUnits(data);
     fixBattalions(data);
+    addArtefact(data);
+    addCommandAbilities(data);
+    addSpells(data);
 }
