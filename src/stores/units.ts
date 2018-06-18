@@ -289,7 +289,7 @@ export interface Battalion {
     abilities?: Ability[];
 }
 
-export interface WarscrollBattalion {
+export interface WarscrollBattalionInterface {
     id: number;
     battalion: Battalion; 
 }
@@ -301,7 +301,7 @@ export interface WarscrollUnitInterface {
 }
 
 export interface WarscrollInterface {
-    battalions: WarscrollBattalion[];
+    battalions: WarscrollBattalionInterface[];
     general: WarscrollUnitInterface | undefined;
     extraAbilities: ExtraAbility[];
     allegiance: Allegiance;

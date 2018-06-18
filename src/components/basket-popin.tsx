@@ -27,7 +27,7 @@ export class BasketPopin extends React.Component<BasketPopinProps, {}> {
                     this.props.basketStore!.baskets.map(x => <div>{x}
                         <Button onClick={() => this.props.basketStore!.saveBasket(x)}>Update</Button>
                         <Button onClick={() => this.props.basketStore!.loadBasket(x)}>Load</Button>
-                        <Button onClick={() => this.props.basketStore!.removeBasket(x)}><Icon glyph="remove"/></Button>
+                        <Button onClick={() => this.props.basketStore!.removeBasket(x)}><Icon name="remove"/></Button>
                     </div>)
                 }
                     <Input type="text" value={this.basketName} onChange={(x,d) => this.basketName = d.value } />

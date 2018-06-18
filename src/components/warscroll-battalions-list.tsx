@@ -15,34 +15,20 @@ export interface WarscrollBattalionsListProps {
 export class WarscrollBattalionsList extends React.Component<WarscrollBattalionsListProps, {}> {
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;
-        const requiredUnits = new Map<string, { count: number }[]>();
+        // const missingUnits = new Map<string, { count: number }[]>();
         const counts = new Map<number, { count: number }>();
 
-        for (const battalion of warscroll.battalions) {
-            for (const unit of battalion.battalion.units) {
-                const count = { count: unit.count !== undefined ? unit.count : 0 };
-                counts.set(unit.id, count);
-                for (const alt of unit.unit) {
-                    const requiredUnit = requiredUnits.get(alt.id);
-                    if (requiredUnit !== undefined) {
-                        requiredUnit.push(count);
-                    }
-                    else {
-                        requiredUnits.set(alt.id, [count]);
-                    }    
-                }
-            }
-        }
-
-        for (const unit of warscroll.units) {
-            const requiredUnit = requiredUnits.get(unit.unit.id);
-            if (requiredUnit !== undefined) {
-                const firstEmpty = requiredUnit.find(x => x.count > 0);
-                if (firstEmpty) {
-                    firstEmpty.count--;
-                }
-            }
-        }
+        // for (const battalion of warscroll.battalions) {
+        //     const warscrollUnits = warscroll.units.filter(x => x.battalion !== null && x.battalion.id === battalion.id);
+        //     for (const battalionUnit of battalion.battalion.units) {
+        //         let count = 0;
+        //         for (const warscrollUnit of warscrollUnits) {
+        //             if (battalionUnit.unit.find(x => x.id === warscrollUnit.unit.id)) {
+        //                 count++;
+        //             }
+        //         }
+        //     }
+        // }
 
         return <div>
             <Header>Battalions</Header>
