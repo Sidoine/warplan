@@ -1,5 +1,5 @@
 import { WeaponOptionCategory, Attack, Ability, Unit, ExtraAbilityTest, Model, Material } from "../units";
-import { getAttackDamageEx, getValue } from "../combat";
+import { getAttackDamageEx, getValue, getAttackDamage } from "../combat";
 
 export function override<T>(value:T, f: (x: T) => void) {
     f(value);
@@ -46,6 +46,11 @@ export function getSavedWoundReroll1(save?: number) {
 
 export function getWoundsForExtraWoundsRollsOn6OnHit(attack: Attack, extraWoundRolls: number) {
     return getAttackDamageEx(attack, { toHit: 6 }) * extraWoundRolls;
+}
+
+
+export function getWoundsForExtraWoundsRollsOnHit(attack: Attack, extraWoundRolls: number) {
+    return getAttackDamage(attack) * extraWoundRolls;
 }
 
 export function getWoundsForSpecialRendIf6OnWound(attack: Attack, rend: number) {

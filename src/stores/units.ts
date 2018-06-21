@@ -37,6 +37,7 @@ export interface Faction {
 
 export interface Ability {
     name: string;
+    flavor?: string;
     description: string;
     getWounds?: (models: number, melee: boolean, attack?: Attack) => number;
     getSavedWounds?: (save?: number) => number;
