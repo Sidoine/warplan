@@ -61,6 +61,20 @@ export interface WeaponOption {
     attacks?: Attack[];
 }
 
+export interface ModelOption {
+    id: string;
+    name: string;
+    abilities?: Ability[];
+    attacks?: Attack[];
+
+    // A model can only have one option of this category
+    modelCategory?: string;
+
+    // An unit can't select another option of this category
+    unitCategory?: string;
+    getMaxModelCount?: (unit: WarscrollUnitInterface, model: WarscrollModel, otherModelsCount: number) => number;
+}
+
 export interface WeaponOptionCategory {
     options: WeaponOption[];
     maxCount?: number;
@@ -70,21 +84,6 @@ interface WeaponOptionCombination {
     count: number;
     weaponOption: WeaponOption;
 }
-
-/*
-OPTION 1
-OPTION 2
-
-si y'avait deux axes
-
-unroll(i, values)
-for (const axeValues of axes[i]) {
-    if (i < axes.length) 
-        unroll(i+ 1)
-    else
-       push({values, axeValues});
-}
-*/
 
 export type Value = number | string | DamageColumn | undefined;
 
@@ -128,6 +127,7 @@ export interface Unit extends UnitInfos {
     damageTable?: DamageTable;
     description?: string;
     altModels?: UnitAltModel[];
+    options?: ModelOption[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => (boolean | undefined);
@@ -299,6 +299,14 @@ export interface WarscrollUnitInterface {
     unit: Unit;
     isGeneral: boolean;
     extraAbilities: ExtraAbility[];
+    models: WarscrollModel[];
+    modelCount: number;
+}
+
+export interface WarscrollModel {
+    id: number;
+    options: ModelOption[];
+    count: number;
 }
 
 export interface WarscrollInterface {

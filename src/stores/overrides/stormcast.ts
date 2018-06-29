@@ -1,5 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn, UnitAltModel, Material } from "../units";
+import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn, UnitAltModel, Material, ModelOption } from "../units";
 import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound, override, artifactWithKeywordAvailable, overrideModel, getWoundsForExtraWoundsRollsOnHit } from "./tools";
 import { getAttackDamage, getAttackDamageEx, getValue } from "../combat";
 
@@ -1775,6 +1775,7 @@ export function overrideStormcast(data: DataStoreImpl):void {
     {
         const maul: Attack = { name: "Stormsmite Maul", melee: true, range: 1, attacks: 2, toHit: "3+", toWound: "3+", damage: 1};
         const greatMace: Attack = { name: "Stormsmite Greatmace", melee: true, range: 1, attacks: 2, toHit: "3+", toWound: "3+", damage: 1};
+        const tempestBlade: Attack = { name: "Tempest Blade", melee: true, range: 1, attacks: 3, toHit: "3+", toWound: "4+", damage: 1};
         const soulshields: Ability = { 
             name: "Soulshields",
             flavor: "Soulshields are harder than steel and thrice blessed during their forging, so they can withstand any blow.",
@@ -1792,35 +1793,90 @@ export function overrideStormcast(data: DataStoreImpl):void {
             description: "In the combat phase, each time you make a hit roll of 6+ for an attack made with this unit’s Stormsmite Greatmaces, that hit roll inflicts D3 hits instead of 1 if the target is a Daemon or Nighthaunt unit. "
         };
 
-        const maulOption: WeaponOption = {
+        const redemptionCache: Ability = {
+            name: "Redemption Cache",
+            flavor: " A Redemption Cache can drag the souls of the damned from their bodies.",
+            description: "At the start of your shooting phase, you can pick a Chaos or Death unit within 6\" of a Sequitor-Prime with a Redemption Cache and roll a dice. On a 4+, that unit suffers 1 mortal wound."
+        }
+
+        const sequitorPrime: Ability = {
+            name: "Sequitor Prime",
+            description: "The leader of this unit is a Sequitor-Prime. A Sequitor-Prime can replace the unit’s weapon option with a Stormsmite Greatmace, in addition to any other models in the unit that can do so. Add 1 to the Attacks characteristic of a Sequitor-Prime’s melee weapon. If a Sequitor-Prime is armed with a Stormsmite Maul and Soulshield or Tempest Blade and Soulshield, they may also carry a Redemption Cache."
+        };
+
+        const maulOldOption: WeaponOption = {
             attacks: [maul],
             id: "maul",
             name: "Stormsmite Maul",
         };
-        const greatmaceOption: WeaponOption = {
+        const greatmaceOldOption: WeaponOption = {
             attacks: [greatMace],
             id: "greatmace",
             name: "Stormsmite Greatmace",
             abilities: [greatmaceBlast]
         };
+
+        const maulAndShieldOption: ModelOption = {
+            id: "maul",
+            name: "Stormsmite Maul and Soulshield",
+            attacks: [maul],
+            abilities: [soulshields],
+            modelCategory: "weapon",
+            unitCategory: "main"
+        };
+
+        const tempestBladeAndShieldOption: ModelOption = {
+            id: "tempestblade",
+            name: "Tempest Blade and Soulshield",
+            attacks: [tempestBlade],
+            abilities: [soulshields],
+            modelCategory: "weapon",
+            unitCategory: "main"
+        }
+
+        const sequitorPrimeOption: ModelOption = {
+            id: "sequitorPrime",
+            name: "Sequitor-Prime",
+            abilities: [sequitorPrime],
+            getMaxModelCount: (unit, model, otherModelsCount) => otherModelsCount === 0 ? 1 : 0
+        }
+
+        const greatMaceOption: ModelOption = {
+            id: "greatmace",
+            name: "Stormsmite Greatmace",
+            getMaxModelCount: (unit, model, otherModelsCount) => Math.floor(unit.modelCount * 2 / 5) - otherModelsCount,
+            attacks: [greatMace],
+            abilities: [greatmaceBlast],
+            modelCategory: "weapon"
+        }
+        
+        const redemptionCacheOption: ModelOption = {
+            id: "redemptionCache",
+            name: "Redemption Cache",
+            getMaxModelCount: (unit, model, otherModelsCount) => model.options.some(x => x.id === sequitorPrimeOption.id) && model.options.every(x => x.id !== greatMaceOption.id) ? 1 : 0,
+            abilities: [redemptionCache]
+        }
+
         units["sequitors"] = {
             id: "sequitors",
+            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Stormcast_Sequitors.pdf",
             wounds: 2,
             move: 5,
             save: "4+",
             bravery: 7,
             model: { id: "sequitors", material: Material.Plastic, name: "Sequitors", publicationYear: 2018 },
-            abilities: [soulshields, aethericChanneling],
+            abilities: [aethericChanneling],
             weaponOptionCategories: [{
-                options: [maulOption]
+                options: [maulOldOption]
             }, {
                 maxCount: 1,
-                options: [greatmaceOption]
+                options: [greatmaceOldOption]
             }],
             keywords: ["ORDER", "CELESTIAL", "HUMAN", "STORMCAST ETERNAL", "SACROSANCT", "SEQUITORS"],
             factions: [data.factions.STORMCASTETERNALS],
             points: 120,
-            size: 5
+            size: 5,
+            options: [maulAndShieldOption, tempestBladeAndShieldOption, sequitorPrimeOption, redemptionCacheOption, greatMaceOption]
         }
     }
 }

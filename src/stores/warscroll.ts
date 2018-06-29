@@ -1,5 +1,5 @@
 import { action, computed, observable, toJS } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalionInterface, UnitAltModel, WeaponOptionCategory } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalionInterface, UnitAltModel, WeaponOptionCategory, WarscrollModel } from "./units";
 import { deflate, inflate } from "pako";
 
 export class WarscrollWeaponOptionCategory {
@@ -33,6 +33,9 @@ export class WarscrollAltModel {
 export class WarscrollUnit implements WarscrollUnitInterface {
     id: number;
     
+    @observable
+    models: WarscrollModel[] = [];
+
     @observable
     battalion: WarscrollBattalionInterface | null = null;
 
