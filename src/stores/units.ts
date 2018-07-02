@@ -72,7 +72,7 @@ export interface ModelOption {
 
     // An unit can't select another option of this category
     unitCategory?: string;
-    getMaxModelCount?: (unit: WarscrollUnitInterface, model: WarscrollModel, otherModelsCount: number) => number;
+    getMaxModelCount?: (unit: WarscrollUnitInterface, model: WarscrollModel) => number;
 }
 
 export interface WeaponOptionCategory {

@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
 import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn, UnitAltModel, Material, ModelOption } from "../units";
-import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound, override, artifactWithKeywordAvailable, overrideModel, getWoundsForExtraWoundsRollsOnHit } from "./tools";
+import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound, override, artifactWithKeywordAvailable, overrideModel, getWoundsForExtraWoundsRollsOnHit, hasOption, getModelRatio, getOtherModelsCount } from "./tools";
 import { getAttackDamage, getAttackDamageEx, getValue } from "../combat";
 
 function addBoxes(data: DataStoreImpl):void {
@@ -1723,15 +1723,18 @@ export function overrideStormcast(data: DataStoreImpl):void {
     data.units.vanguardPalladors.points = 200;
     data.units.vanguardHunters.points = 120;
     data.units.vanguardRaptorsWithHurricaneCrossbows.points = 140;
-    data.units.aetherwings.points = 50;
-    data.units.lordRelictor.points = 100;
     data.units.knightAzyros.points = 100;
     data.units.knightHeraldor.points = 100;
-    data.units.concussors.points = 260;
     data.units.knightVexillor.points = 120;
-    data.units.drakeswornTemplar.points = 460;
     data.units.lordOrdinator.points = 140;
-
+    data.units.lordRelictor.points = 100;
+    data.units.drakeswornTemplar.points = 460;
+    data.units.aetherwings.points = 50;
+    data.units.concussors.points = 260;
+    data.units.desolators.points = 220;
+    data.units.gryphHound.points = 140;
+    data.units.gryphHound.size = 6;
+    
     const units: {[key:string]: Unit} = data.units;
     {
         const rapidFireRate = 0.75;
@@ -1838,13 +1841,13 @@ export function overrideStormcast(data: DataStoreImpl):void {
             id: "sequitorPrime",
             name: "Sequitor-Prime",
             abilities: [sequitorPrime],
-            getMaxModelCount: (unit, model, otherModelsCount) => otherModelsCount === 0 ? 1 : 0
+            getMaxModelCount: (unit, model) => getOtherModelsCount(unit, model) === 0 ? 1 : 0
         }
 
         const greatMaceOption: ModelOption = {
             id: "greatmace",
             name: "Stormsmite Greatmace",
-            getMaxModelCount: (unit, model, otherModelsCount) => Math.floor(unit.modelCount * 2 / 5) - otherModelsCount,
+            getMaxModelCount: (unit, model) => hasOption(model, sequitorPrimeOption) ?  getModelRatio(unit, model, 2, 5) : 1,
             attacks: [greatMace],
             abilities: [greatmaceBlast],
             modelCategory: "weapon"
@@ -1853,7 +1856,7 @@ export function overrideStormcast(data: DataStoreImpl):void {
         const redemptionCacheOption: ModelOption = {
             id: "redemptionCache",
             name: "Redemption Cache",
-            getMaxModelCount: (unit, model, otherModelsCount) => model.options.some(x => x.id === sequitorPrimeOption.id) && model.options.every(x => x.id !== greatMaceOption.id) ? 1 : 0,
+            getMaxModelCount: (unit, model) => model.options.some(x => x.id === sequitorPrimeOption.id) && model.options.every(x => x.id !== greatMaceOption.id) ? 1 : 0,
             abilities: [redemptionCache]
         }
 

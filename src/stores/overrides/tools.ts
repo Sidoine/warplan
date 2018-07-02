@@ -1,5 +1,6 @@
-import { WeaponOptionCategory, Attack, Ability, Unit, ExtraAbilityTest, Model, Material } from "../units";
+import { WeaponOptionCategory, Attack, Ability, Unit, ExtraAbilityTest, Model, Material, WarscrollModel, ModelOption, WarscrollUnitInterface } from "../units";
 import { getAttackDamageEx, getValue, getAttackDamage } from "../combat";
+import { WarscrollUnit } from "../warscroll";
 
 export function override<T>(value:T, f: (x: T) => void) {
     f(value);
@@ -68,6 +69,18 @@ export function artifactWithKeywordAvailable(keyword: string, alts: string[]): E
     return (unit, ws) => artifactAvailable(unit, ws) && unit.unit.keywords.indexOf(keyword) >= 0 && alts.some(x => x === "ALL" || unit.unit.model.name.toUpperCase() === x || unit.unit.keywords.indexOf(x) >= 0);
 }
          
+export function hasOption(model: WarscrollModel, option: ModelOption) {
+    return model.options.some(x => x.id === option.id);
+}
+
+export function getOtherModelsCount(unit: WarscrollUnitInterface, model: WarscrollModel) {
+    return unit.models.filter(x => x.id !== model.id).reduce((prev, model) => prev + model.count, 0);
+}
+
+export function getModelRatio(unit: WarscrollUnitInterface, model: WarscrollModel, howMany: number, forHowMany: number) {
+    return Math.floor(unit.modelCount * howMany / forHowMany) - getOtherModelsCount(unit, model);
+}
+
 export const frequentRate = 0.75;
 export const mediumRate = 0.5;
 export const rareRate = 0.2;
