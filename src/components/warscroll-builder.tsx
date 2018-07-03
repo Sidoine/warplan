@@ -7,6 +7,7 @@ import { WarscrollSummary } from "./warscroll-summary";
 import { Button } from "semantic-ui-react";
 import { UiStore } from "../stores/ui";
 import { Filter } from "./filter";
+import { WarscrollSceneriesList } from "./warscroll-sceneries-list";
 
 export interface WarscrollBuilderProps {
     unitsStore?: UnitsStore;
@@ -22,6 +23,7 @@ export class WarscrollBuilder extends React.Component<WarscrollBuilderProps, {}>
             <WarscrollSummary/>
             <WarscrollBattalionsList/>
             <WarscrollUnitsList/>
+            <WarscrollSceneriesList/>
             <Button onClick={() => this.props.uiStore!.showWarscrollPopin()}>Manage warscrolls</Button>
             <Button onClick={() => this.props.uiStore!.showExportPopin()}>Export</Button>
         </>;

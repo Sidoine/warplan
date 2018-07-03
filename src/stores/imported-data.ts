@@ -21934,6 +21934,79 @@ export class DataStoreImpl implements DataStore {
         },
     };
     
+    sceneries = {
+        aethervoidPendulum: {
+            id: "aethervoidPendulum",
+            name: "Aethervoid Pendulum",
+            points: 40
+        },
+        balewindVortex: {
+            id: "balewindVortex",
+            name: "Balewind Vortex",
+            points: 40
+        },
+        theBurningHead: {
+            id: "theBurningHead",
+            name: "The Burning Head",
+            points: 40
+        },
+        chronomanticCogs: {
+            id: "chronomanticCogs",
+            name: "Chronomantic Cogs",
+            points: 60
+        },
+        emeraldLifeswarm: {
+            id: "emeraldLifeswarm",
+            name: "Emerald Lifeswarm",
+            points: 60
+        },
+        geminidsOfUhlGysh: {
+            id: "geminidsOfUhlGysh",
+            name: "Geminids of Uhl-Gysh",
+            points: 40
+        },
+        malevolentMaelstrom: {
+            id: "malevolentMaelstrom",
+            name: "Malevolent Maelstrom",
+            points: 20
+        },
+        prismaticPalisade: {
+            id: "prismaticPalisade",
+            name: "Prismatic Palisade",
+            points: 30
+        },
+        purpleSunOfShyish: {
+            id: "purpleSunOfShyish",
+            name: "Purple Sun of Shyish",
+            points: 100
+        },
+        quicksilverSwords: {
+            id: "quicksilverSwords",
+            name: "Quicksilver Swords",
+            points: 20
+        },
+        ravenakSGnashingJaws: {
+            id: "ravenakSGnashingJaws",
+            name: "Ravenak's Gnashing Jaws",
+            points: 40
+        },
+        soulsnareShackles: {
+            id: "soulsnareShackles",
+            name: "Soulsnare Shackles",
+            points: 20
+        },
+        suffocatingGravetide: {
+            id: "suffocatingGravetide",
+            name: "Suffocating Gravetide",
+            points: 30
+        },
+        umbralSpellportal: {
+            id: "umbralSpellportal",
+            name: "Umbral Spellportal",
+            points: 60
+        },
+    };
+    
     armyOptions = new Map([
         ["dispossessed", { name: "Grudge", values: ["Stuck-up", "Speed Merchants", "Monstrous Cheaters", "Cowardly Hordes", "Shoddy Craftsmanship", "Sneaky Ambushers"]}],
         ["slaanesh", { name: "Host", values: ["Pretenders", "Seekers", "Invaders"]}],

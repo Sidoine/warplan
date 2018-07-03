@@ -61,6 +61,13 @@ export interface WeaponOption {
     attacks?: Attack[];
 }
 
+export interface Scenery {
+    id: string;
+    name: string;
+    points: number;
+    description?: string;
+}
+
 export interface ModelOption {
     id: string;
     name: string;
@@ -356,6 +363,7 @@ export class UnitsStore {
     factionsList: Faction[] = [];
     allegianceList: Allegiance[] = [];
     armyOptions: Map<string, ArmyOptions>;
+    sceneryList: Scenery[] = [];
     
     constructor(data: DataStoreImpl) {   
         overrideStormcast(data);   
@@ -401,6 +409,11 @@ export class UnitsStore {
         }
 
         this.armyOptions = data.armyOptions;
+
+        const sceneries: {[key: string]: Scenery} = data.sceneries;
+        for (const key in sceneries) {
+            this.sceneryList.push(sceneries[key]);
+        }
 
         this.addAlliances(data);
     }

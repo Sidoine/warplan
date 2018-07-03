@@ -1,5 +1,5 @@
 import * as React from "react";
-import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
+import { WarscrollStore, WarscrollUnit, WarscrollScenery } from "../stores/warscroll";
 import { observer, inject } from "mobx-react";
 import { Header, Table, Icon, Segment } from "semantic-ui-react";
 import { Attack, Ability, WarscrollBattalionInterface, DamageTable } from "../stores/units";
@@ -55,6 +55,18 @@ export class Warscroll extends React.Component<WarscrollProps>{
                     </Table.Body>
                 </Table>
             </Segment>}    
+
+        {w.sceneries.length > 0 &&
+           <Segment> 
+                <Header>Sceneries</Header>
+                <Table>
+                    <Table.Body>
+                        {
+                            w.sceneries.map(x => this.renderScenery(x))
+                        }
+                    </Table.Body>
+                </Table>
+            </Segment>}    
         </div>;
     }
 
@@ -65,6 +77,13 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <Table.Cell>
                 { battalion.battalion.abilities && this.renderAllAbilities(battalion.battalion.abilities)}
             </Table.Cell>
+        </Table.Row>    
+    }
+
+    renderScenery(scenery: WarscrollScenery) {
+        return <Table.Row key={scenery.id}>
+            <Table.Cell>{scenery.scenery.name}</Table.Cell>    
+            <Table.Cell>{scenery.scenery.description}</Table.Cell>
         </Table.Row>    
     }
 

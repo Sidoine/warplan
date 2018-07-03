@@ -611,6 +611,23 @@ for (const [key, unit] of gwPointsMap) {
 `;
 }
 
+const sceneryLines = readCsv("src/stores/data/scenery.csv");
+
+output += `    };
+    
+    sceneries = {
+`;
+
+for (const line of sceneryLines) {
+    const key = toCamelCase(line[0]);
+    output += `        ${key}: {
+            id: "${key}",
+            name: "${line[0]}",
+            points: ${line[1]}
+        },
+`
+}
+
 const armyOptions = readCsv("src/stores/data/armyOptions.csv");
 
 output += `    };

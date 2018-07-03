@@ -1711,6 +1711,8 @@ function fixModels(data: DataStoreImpl) {
     overrideModel(models.vanguardPalladors, 2017, Material.Plastic);
     overrideModel(models.vanguardRaptorsWithHurricaneCrossbows, 2017, Material.Plastic);
     overrideModel(models.vanguardRaptorsWithLongstrikeCrossbows, 2017, Material.Plastic);
+    overrideModel(models.sequitors, 2018, Material.Plastic);
+    overrideModel(models.castigators, 2018, Material.Plastic);
 }
 
 export function overrideStormcast(data: DataStoreImpl):void {

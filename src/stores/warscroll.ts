@@ -1,5 +1,5 @@
 import { action, computed, observable, toJS } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalionInterface, UnitAltModel, WeaponOptionCategory, WarscrollModel } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, WeaponOption, ExtraAbility, WarscrollBattalionInterface, UnitAltModel, WeaponOptionCategory, WarscrollModel, Scenery } from "./units";
 import { deflate, inflate } from "pako";
 
 export class WarscrollWeaponOptionCategory {
@@ -139,6 +139,14 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     }     
 }
 
+export class WarscrollScenery {
+    id: number;
+
+    constructor(public warscroll: Warscroll, public scenery: Scenery) {
+        this.id = warscroll.serial++;
+    }
+}
+
 export class WarscrollBattalion implements WarscrollBattalionInterface {
     id: number;
 
@@ -184,11 +192,19 @@ export class Warscroll implements WarscrollInterface {
     battalions: WarscrollBattalion[] = [];
 
     @observable
-    general: WarscrollUnit | undefined = undefined;    
+    general: WarscrollUnit | undefined = undefined;   
+    
+    @observable
+    sceneries: WarscrollScenery[] = [];
 
     @computed
     get unitsPoints() {
         return this.units.reduce((p, x) => x.points + p, 0);
+    }
+
+    @computed
+    get sceneryPoints() {
+        return this.sceneries.reduce((p, x) => x.scenery.points + p, 0);
     }
 
     @computed
@@ -198,7 +214,7 @@ export class Warscroll implements WarscrollInterface {
 
     @computed
     get totalPoints() {
-        return this.unitsPoints + this.battalionsPoints;
+        return this.unitsPoints + this.battalionsPoints + this.sceneryPoints;
     }
 
     @computed
@@ -306,6 +322,7 @@ interface SerializedWarscroll {
     }[];
     allegiance: string;
     armyOption: string;
+    sceneries?: string[];
 }
 
 export class WarscrollStore {
@@ -316,6 +333,19 @@ export class WarscrollStore {
     addUnit(unit: Unit) {
         const warscroll = this.warscroll;
         warscroll.units.push(new WarscrollUnit(warscroll, unit));
+        this.saveWarscroll();
+    }
+
+    @action
+    addScenery(scenery: Scenery) {
+        this.warscroll.sceneries.push(new WarscrollScenery(this.warscroll, scenery));
+        this.saveWarscroll();
+    }
+
+    @action
+    removeScenery(scenery: WarscrollScenery) {
+        const sceneries = this.warscroll.sceneries;
+        sceneries.splice(sceneries.indexOf(scenery), 1);
         this.saveWarscroll();
     }
 
@@ -417,6 +447,14 @@ export class WarscrollStore {
             this.warscroll.battalions.push(new WarscrollBattalion(this.warscroll, battalion));
         }
 
+        if (warscroll.sceneries) {
+            for (const id of warscroll.sceneries) {
+                const scenery = this.unitsStore.sceneryList.find(x => x.id === id);
+                if (scenery === undefined) continue;
+                this.warscroll.sceneries.push(new WarscrollScenery(this.warscroll, scenery));
+            }
+        }
+        
         for (const wu of warscroll.units) {
             const unit = this.unitsStore.getUnit(wu.unitId);
             if (unit === undefined) continue;
@@ -472,7 +510,8 @@ export class WarscrollStore {
                 };
             }),
             allegiance: this.warscroll.allegiance.id,
-            armyOption: this.warscroll.armyOption
+            armyOption: this.warscroll.armyOption,
+            sceneries: this.warscroll.sceneries.map(x => x.scenery.id)
         };
     }
 
