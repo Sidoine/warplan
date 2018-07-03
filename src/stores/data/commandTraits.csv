@@ -1,15 +1,15 @@
 Order,Strategic Genius
 Order,Inspiring
-Order,Reckless
+Order,Dauntless
 Order,Tenacious
 Order,Legendary Fighter
 Order,Master of Defense
 Chaos,Dark Avenger
-Chaos,Spiteful Destroyer
+Chaos,Spiteful Duellist
 Chaos,Cunning Deceiver
 Chaos,Lord of War
 Chaos,Terrifying Presence
-Chaos,Great Destroyer
+Chaos,Malicious Conqueror
 Destruction,Nothing Left Standing
 Destruction,Might is Right
 Destruction,Wild Fury
@@ -22,13 +22,12 @@ Death,Death Incarnate
 Death,Master of the Black Arts
 Death,Red Fury
 Death,Supernatural Horror
-Skirmish,None
-Skirmish,Inspirational Fighter
-Skirmish,Merciless Killer
-Skirmish,Reserves of Courage
-Skirmish,Crusader
-Skirmish,Tenacious Defender
-Skirmish,Indomitable Will
+Skirmish,Burning Reaver (Skirmish)
+Skirmish,Volcanic Blood (Skirmish)
+Skirmish,Bright Soul (Skirmish)
+Skirmish,Exemplar of Rage (Skirmish)
+Skirmish,Ash-kin (Skirmish)
+Skirmish,Meteoric Charge (Skirmish)
 Bonesplitterz,Squirmy Warpaint (Bonesplitterz)
 Bonesplitterz,Prophet of da Waaagh! (Bonesplitterz)
 Bonesplitterz,Great Hunter (Bonesplitterz)

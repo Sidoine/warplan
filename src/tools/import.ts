@@ -79,7 +79,7 @@ async function main() {
     }
 
     try {
-        await curl(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/src/allData.v${version}.min.js`, "src/stores/data/allData.ts", "export function load(availablePoolArmies:any) {\n", "\nloadAllArmiesFaster();\n}\n");
+        await curl(`https://www.warhammer-community.com/wp-content/themes/gw-community/library/warscrollbuilder/library/js/src/allData.v${version}.min.js`, "src/stores/data/allData.ts", "export function load(availablePoolArmies:any, realmArtefacts: any, alliesByAllegiance: any) {\n", "\nloadAllArmiesFaster();\n}\n");
     }
     catch(error) {
         console.error(`${error} while loading main`);

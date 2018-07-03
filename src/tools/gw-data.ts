@@ -29,7 +29,15 @@ const data: {
     [key: string]: PoolArmy
 } = {} ;
 
-load(data);
+const realmArtefacts: {
+    [key: string]: string[]
+} = {};
+
+const alliesByAllegiance: {
+    [key: string]: string;
+} = {};
+
+load(data, realmArtefacts, alliesByAllegiance);
 
 interface Faction {
     name: string;

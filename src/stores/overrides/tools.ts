@@ -1,6 +1,5 @@
 import { WeaponOptionCategory, Attack, Ability, Unit, ExtraAbilityTest, Model, Material, WarscrollModel, ModelOption, WarscrollUnitInterface } from "../units";
 import { getAttackDamageEx, getValue, getAttackDamage } from "../combat";
-import { WarscrollUnit } from "../warscroll";
 
 export function override<T>(value:T, f: (x: T) => void) {
     f(value);

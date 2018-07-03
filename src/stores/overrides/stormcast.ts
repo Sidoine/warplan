@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
-import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn, UnitAltModel, Material, ModelOption } from "../units";
-import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound, override, artifactWithKeywordAvailable, overrideModel, getWoundsForExtraWoundsRollsOnHit, hasOption, getModelRatio, getOtherModelsCount } from "./tools";
+import { Battalion, Unit, Attack, Ability, WeaponOption, WeaponOptionCategory, DamageColumn, UnitAltModel, Material } from "../units";
+import { setBaseWeaponOption, getWoundsForAbility6OnHitIsMortalWound, getWoundsForExtraAttack, getWoundsForAbilityReroll1OnHit, getWoundsForAbilityBonus1OnHit, mediumRate, frequentRate, rareRate, numberOfNeighborUnits, getWoundsForSpecialDamageIf6OnWound, getSavedWoundReroll1, enemyModelsInRange, getWoundsForExtraWoundsRollsOn6OnHit, numberOfModelsPerUnit, getWoundsForSpecialRendIf6OnWound, override, artifactWithKeywordAvailable, overrideModel } from "./tools";
 import { getAttackDamage, getAttackDamageEx, getValue } from "../combat";
 
 function addBoxes(data: DataStoreImpl):void {
@@ -1626,33 +1626,33 @@ function addExtraAbilities(data: DataStoreImpl): void {
     data.extraAbilities.stormcastEternalsQuicksilverDraught.ability.description = "Taken from the river of Anvrok, this potion lends uncanny speed to those who imbibe it. Once per battle, this HERO may pile in and make attacks in the combat phase before any other units, even if it is your opponent’s turn.";
     
     const treasuredStandard = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["TOTEM"]);
-    override(data.extraAbilities.stormcastEternalsTreasuredStandardHurricaneBanner, x => {
+    override(data.extraAbilities.stormcastEternalsTreasuredStandardArtefactHurricaneBanner, x => {
         x.isAvailable = treasuredStandard;
         x.category = "artifact";
         x.ability.description = "The bearer of this potent item always has the wind at their back. They and their kin are driven towards victory by the fury of the tempest. This HERO and friendly STORMCAST ETERNALS units within 12\" of them can re-roll all rolls of 1 (on any dice) when running and charging.";
     });
-    override(data.extraAbilities.stormcastEternalsTreasuredStandardLicheboneStandard, x => {
+    override(data.extraAbilities.stormcastEternalsTreasuredStandardArtefactLicheboneStandard, x => {
         x.isAvailable = treasuredStandard;
         x.category = "artifact";
         x.ability.description = "Incorporating a femur blessed by the Great Necromancer, this banner can instil vigour in even a mortally wounded warrior. Friendly STORMCAST ETERNALS units, other than HEROES, within 6\" of this HERO heal one wound in each of their hero phases.";
     });
-    override(data.extraAbilities.stormcastEternalsTreasuredStandardPennantOfSigmaron, x => {
+    override(data.extraAbilities.stormcastEternalsTreasuredStandardArtefactPennantOfSigmaron, x => {
         x.isAvailable = treasuredStandard;
         x.category = "artifact";
         x.ability.description = "The steel in the souls of those near this standard is all but unbending, even in dire peril. If a friendly STORMCAST ETERNALS unit within 12\" of this HERO fails a battleshock test, roll a dice. On a 2 or more, only one model flees from that unit."
     });
     const mysticLight = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["LORD-CASTELLANT", "LORD-VERITANT", "KNIGHT-AZYROS"])
-    override(data.extraAbilities.stormcastEternalsMysticLightFuryBrand, x => {
+    override(data.extraAbilities.stormcastEternalsMysticLightArtefactFuryBrand, x => {
         x.isAvailable = mysticLight;
         x.category = "artifact" ;
         x.ability.description = "The fiery light that spills from this item can ignite a deep and righteous rage in those nearby. In your hero phase, this HERO can infuse themselves or another friendly STORMCAST ETERNALS HERO within 6\" with fury – add 1 to the Attacks characteristic of one weapon for that HERO until your next hero phase."
     });
-    override(data.extraAbilities.stormcastEternalsMysticLightShrivingLight, x => {
+    override(data.extraAbilities.stormcastEternalsMysticLightArtefactShrivingLight, x => {
         x.isAvailable = mysticLight;
         x.category = "artifact" ;
         x.ability.description = "The redemptive light of the High Star Sigendil beams outwards, sapping the will of evil men. Any enemy units that take a battleshock test within 6\" of this HERO add 1 to the result. CHAOS units instead add D3 to the result.";
     });
-    override(data.extraAbilities.stormcastEternalsMysticLightLanternOfTheTempest, x => {
+    override(data.extraAbilities.stormcastEternalsMysticLightArtefactLanternOfTheTempest, x => {
         x.isAvailable = mysticLight;
         x.category = "artifact" ;
         x.ability.description = "This lantern emits the flickering, blinding glare of a caged lightning storm. Enemy units that direct missile weapon attacks against this HERO or friendly STORMCAST ETERNALS units within 6\" of this HERO must re-roll hit rolls of 6 or more.";
@@ -1720,166 +1720,151 @@ export function overrideStormcast(data: DataStoreImpl):void {
     addExtraAbilities(data);
     fixModels(data);
 
-    data.units.vanguardPalladors.points = 200;
-    data.units.vanguardHunters.points = 120;
-    data.units.vanguardRaptorsWithHurricaneCrossbows.points = 140;
-    data.units.knightAzyros.points = 100;
-    data.units.knightHeraldor.points = 100;
-    data.units.knightVexillor.points = 120;
-    data.units.lordOrdinator.points = 140;
-    data.units.lordRelictor.points = 100;
-    data.units.drakeswornTemplar.points = 460;
-    data.units.aetherwings.points = 50;
-    data.units.concussors.points = 260;
-    data.units.desolators.points = 220;
-    data.units.gryphHound.points = 140;
-    data.units.gryphHound.size = 6;
-    
-    const units: {[key:string]: Unit} = data.units;
-    {
-        const rapidFireRate = 0.75;
-        const stormboltsSingleShot: Attack= { range: 36, attacks: 1, toHit: "3+", toWound: "3+", rend: -2, damage: 1, melee: false, name: "Celestar Stormbolts: Single Shot" };
-        const stormboltsRapidFire: Attack = { name: "Celestar Stormbolts: Rapid Fire", melee: false, range: 18, attacks: 4, toHit: "5+", toWound: "3+", rend: -2, damage: 1};
-        const sigmariteBlades: Attack = { name: "Sigmarite Blades", melee: true, range: 1, attacks: 4, toHit: "4+", toWound: "4+", damage: 1};
-        const bastionsOfDeath: Ability = {
-            name: "Bastions of Death",
-            flavor: "The crew of a Celestar Ballista make the maximum use of any cover when they are first deployed for battle",
-            description: "In the shooting phase, if this unit is in cover, add 2 to its save rolls for being in cover instead of 1"
-        };
-        const chainedLightning: Ability = {
-            name: "Chained Lightning",
-            flavor: "Each projectile unleashed by a Celestar Ballista has a bolt of Sigmar’s lightning imbued within it.",
-            description: "Each time you roll a hit for an attack made with this unit’s Stormbolts, that attack inflicts D6 hits on the target instead of 1.",
-            getWounds: (models, melee, attack) => attack === stormboltsRapidFire || attack === stormboltsSingleShot ? getWoundsForExtraWoundsRollsOnHit(attack, 2.5) / 2 : 0
-        }
-        const versatileWeapon: Ability = {
-            name: "Versatile Weapon",
-            flavor: "A Celestar Ballista can switch between two firing methods, taking down long-range targets with a single shot, or unleashing a volley of fire at closer foes.",
-            description: "Before attacking with Celestar Stormbolts, choose either the Single Shot or Rapid Fire missile weapon characteristics for that shooting attack.",
-            getWounds: (models, melee, attack) => attack === stormboltsRapidFire ? -getAttackDamage(attack) * (1 - rapidFireRate) : (attack === stormboltsSingleShot ? -getAttackDamage(attack) * rapidFireRate : 0)
-        }
-        units["celestarBallista"] = {
-            id: "celestarBallista",
-            wounds: 7,
-            move: 3,
-            save: "4+",
-            bravery: 7,
-            abilities: [bastionsOfDeath, chainedLightning, versatileWeapon],
-            factions: [data.factions.STORMCASTETERNALS],
-            keywords: ["ORDER", "CELESTIAL", "HUMAN", "STORMCAST ETERNAL", "SACROSANCT", "WAR MACHINE", "CELESTAR BALLISTA"],
-            points: 100,
-            size: 1,
-            model: { id: "celestarBallista", name: "Celestar Ballista", publicationYear: 2018, material: Material.Plastic },
-            description: "A Celestar Ballista consists of a Ballista and a crew of two Sacristan Engineers. The Ballista fires Celestar Stormbolts at the enemy, while the Sacristan Engineers defend it in close combat with Sigmarite Blades.The Ballista and its crew are treated as a single model, using the characteristics given above. The crew must remain within 1\" of the Ballista.",
-            attacks: [stormboltsRapidFire, stormboltsSingleShot, sigmariteBlades]
-        };
-    }
+    // const units: {[key:string]: Unit} = data.units;
+    // {
+    //     const rapidFireRate = 0.75;
+    //     const stormboltsSingleShot: Attack= { range: 36, attacks: 1, toHit: "3+", toWound: "3+", rend: -2, damage: 1, melee: false, name: "Celestar Stormbolts: Single Shot" };
+    //     const stormboltsRapidFire: Attack = { name: "Celestar Stormbolts: Rapid Fire", melee: false, range: 18, attacks: 4, toHit: "5+", toWound: "3+", rend: -2, damage: 1};
+    //     const sigmariteBlades: Attack = { name: "Sigmarite Blades", melee: true, range: 1, attacks: 4, toHit: "4+", toWound: "4+", damage: 1};
+    //     const bastionsOfDeath: Ability = {
+    //         name: "Bastions of Death",
+    //         flavor: "The crew of a Celestar Ballista make the maximum use of any cover when they are first deployed for battle",
+    //         description: "In the shooting phase, if this unit is in cover, add 2 to its save rolls for being in cover instead of 1"
+    //     };
+    //     const chainedLightning: Ability = {
+    //         name: "Chained Lightning",
+    //         flavor: "Each projectile unleashed by a Celestar Ballista has a bolt of Sigmar’s lightning imbued within it.",
+    //         description: "Each time you roll a hit for an attack made with this unit’s Stormbolts, that attack inflicts D6 hits on the target instead of 1.",
+    //         getWounds: (models, melee, attack) => attack === stormboltsRapidFire || attack === stormboltsSingleShot ? getWoundsForExtraWoundsRollsOnHit(attack, 2.5) / 2 : 0
+    //     }
+    //     const versatileWeapon: Ability = {
+    //         name: "Versatile Weapon",
+    //         flavor: "A Celestar Ballista can switch between two firing methods, taking down long-range targets with a single shot, or unleashing a volley of fire at closer foes.",
+    //         description: "Before attacking with Celestar Stormbolts, choose either the Single Shot or Rapid Fire missile weapon characteristics for that shooting attack.",
+    //         getWounds: (models, melee, attack) => attack === stormboltsRapidFire ? -getAttackDamage(attack) * (1 - rapidFireRate) : (attack === stormboltsSingleShot ? -getAttackDamage(attack) * rapidFireRate : 0)
+    //     }
+    //     units["celestarBallista"] = {
+    //         id: "celestarBallista",
+    //         wounds: 7,
+    //         move: 3,
+    //         save: "4+",
+    //         bravery: 7,
+    //         abilities: [bastionsOfDeath, chainedLightning, versatileWeapon],
+    //         factions: [data.factions.STORMCASTETERNALS],
+    //         keywords: ["ORDER", "CELESTIAL", "HUMAN", "STORMCAST ETERNAL", "SACROSANCT", "WAR MACHINE", "CELESTAR BALLISTA"],
+    //         points: 100,
+    //         size: 1,
+    //         model: { id: "celestarBallista", name: "Celestar Ballista", publicationYear: 2018, material: Material.Plastic },
+    //         description: "A Celestar Ballista consists of a Ballista and a crew of two Sacristan Engineers. The Ballista fires Celestar Stormbolts at the enemy, while the Sacristan Engineers defend it in close combat with Sigmarite Blades.The Ballista and its crew are treated as a single model, using the characteristics given above. The crew must remain within 1\" of the Ballista.",
+    //         attacks: [stormboltsRapidFire, stormboltsSingleShot, sigmariteBlades]
+    //     };
+    // }
 
-    {
-        const maul: Attack = { name: "Stormsmite Maul", melee: true, range: 1, attacks: 2, toHit: "3+", toWound: "3+", damage: 1};
-        const greatMace: Attack = { name: "Stormsmite Greatmace", melee: true, range: 1, attacks: 2, toHit: "3+", toWound: "3+", damage: 1};
-        const tempestBlade: Attack = { name: "Tempest Blade", melee: true, range: 1, attacks: 3, toHit: "3+", toWound: "4+", damage: 1};
-        const soulshields: Ability = { 
-            name: "Soulshields",
-            flavor: "Soulshields are harder than steel and thrice blessed during their forging, so they can withstand any blow.",
-            description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Soulshields.",
-            getWounds: getSavedWoundReroll1
-        };
-        const aethericChanneling: Ability = {
-            name: "Sequitor Aetheric Channelling",
-            flavor: "Sequitors can use their knowledge of the arcane arts to channel aetheric energy into their weapons or shields.",
-            description: "At the start of the combat phase, you must say if this unit will channel aetheric power into its weapons or its shields. If you choose its weapons, you can re-roll failed hit rolls for the unit in that combat phase. If you choose its shields, you can re-roll failed save rolls for the unit in that combat phase (instead of only re-rolling save rolls of 1).",
-        };
-        const greatmaceBlast: Ability = {
-            name: "Greatmace Blast",
-            flavor: "A stormsmite greatmace emits bursts of celestial energy that are deadly to daemons and spirit creatures.",
-            description: "In the combat phase, each time you make a hit roll of 6+ for an attack made with this unit’s Stormsmite Greatmaces, that hit roll inflicts D3 hits instead of 1 if the target is a Daemon or Nighthaunt unit. "
-        };
+    // {
+    //     const maul: Attack = { name: "Stormsmite Maul", melee: true, range: 1, attacks: 2, toHit: "3+", toWound: "3+", damage: 1};
+    //     const greatMace: Attack = { name: "Stormsmite Greatmace", melee: true, range: 1, attacks: 2, toHit: "3+", toWound: "3+", damage: 1};
+    //     const tempestBlade: Attack = { name: "Tempest Blade", melee: true, range: 1, attacks: 3, toHit: "3+", toWound: "4+", damage: 1};
+    //     const soulshields: Ability = { 
+    //         name: "Soulshields",
+    //         flavor: "Soulshields are harder than steel and thrice blessed during their forging, so they can withstand any blow.",
+    //         description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Soulshields.",
+    //         getWounds: getSavedWoundReroll1
+    //     };
+    //     const aethericChanneling: Ability = {
+    //         name: "Sequitor Aetheric Channelling",
+    //         flavor: "Sequitors can use their knowledge of the arcane arts to channel aetheric energy into their weapons or shields.",
+    //         description: "At the start of the combat phase, you must say if this unit will channel aetheric power into its weapons or its shields. If you choose its weapons, you can re-roll failed hit rolls for the unit in that combat phase. If you choose its shields, you can re-roll failed save rolls for the unit in that combat phase (instead of only re-rolling save rolls of 1).",
+    //     };
+    //     const greatmaceBlast: Ability = {
+    //         name: "Greatmace Blast",
+    //         flavor: "A stormsmite greatmace emits bursts of celestial energy that are deadly to daemons and spirit creatures.",
+    //         description: "In the combat phase, each time you make a hit roll of 6+ for an attack made with this unit’s Stormsmite Greatmaces, that hit roll inflicts D3 hits instead of 1 if the target is a Daemon or Nighthaunt unit. "
+    //     };
 
-        const redemptionCache: Ability = {
-            name: "Redemption Cache",
-            flavor: " A Redemption Cache can drag the souls of the damned from their bodies.",
-            description: "At the start of your shooting phase, you can pick a Chaos or Death unit within 6\" of a Sequitor-Prime with a Redemption Cache and roll a dice. On a 4+, that unit suffers 1 mortal wound."
-        }
+    //     const redemptionCache: Ability = {
+    //         name: "Redemption Cache",
+    //         flavor: " A Redemption Cache can drag the souls of the damned from their bodies.",
+    //         description: "At the start of your shooting phase, you can pick a Chaos or Death unit within 6\" of a Sequitor-Prime with a Redemption Cache and roll a dice. On a 4+, that unit suffers 1 mortal wound."
+    //     }
 
-        const sequitorPrime: Ability = {
-            name: "Sequitor Prime",
-            description: "The leader of this unit is a Sequitor-Prime. A Sequitor-Prime can replace the unit’s weapon option with a Stormsmite Greatmace, in addition to any other models in the unit that can do so. Add 1 to the Attacks characteristic of a Sequitor-Prime’s melee weapon. If a Sequitor-Prime is armed with a Stormsmite Maul and Soulshield or Tempest Blade and Soulshield, they may also carry a Redemption Cache."
-        };
+    //     const sequitorPrime: Ability = {
+    //         name: "Sequitor Prime",
+    //         description: "The leader of this unit is a Sequitor-Prime. A Sequitor-Prime can replace the unit’s weapon option with a Stormsmite Greatmace, in addition to any other models in the unit that can do so. Add 1 to the Attacks characteristic of a Sequitor-Prime’s melee weapon. If a Sequitor-Prime is armed with a Stormsmite Maul and Soulshield or Tempest Blade and Soulshield, they may also carry a Redemption Cache."
+    //     };
 
-        const maulOldOption: WeaponOption = {
-            attacks: [maul],
-            id: "maul",
-            name: "Stormsmite Maul",
-        };
-        const greatmaceOldOption: WeaponOption = {
-            attacks: [greatMace],
-            id: "greatmace",
-            name: "Stormsmite Greatmace",
-            abilities: [greatmaceBlast]
-        };
+    //     const maulOldOption: WeaponOption = {
+    //         attacks: [maul],
+    //         id: "maul",
+    //         name: "Stormsmite Maul",
+    //     };
+    //     const greatmaceOldOption: WeaponOption = {
+    //         attacks: [greatMace],
+    //         id: "greatmace",
+    //         name: "Stormsmite Greatmace",
+    //         abilities: [greatmaceBlast]
+    //     };
 
-        const maulAndShieldOption: ModelOption = {
-            id: "maul",
-            name: "Stormsmite Maul and Soulshield",
-            attacks: [maul],
-            abilities: [soulshields],
-            modelCategory: "weapon",
-            unitCategory: "main"
-        };
+    //     const maulAndShieldOption: ModelOption = {
+    //         id: "maul",
+    //         name: "Stormsmite Maul and Soulshield",
+    //         attacks: [maul],
+    //         abilities: [soulshields],
+    //         modelCategory: "weapon",
+    //         unitCategory: "main"
+    //     };
 
-        const tempestBladeAndShieldOption: ModelOption = {
-            id: "tempestblade",
-            name: "Tempest Blade and Soulshield",
-            attacks: [tempestBlade],
-            abilities: [soulshields],
-            modelCategory: "weapon",
-            unitCategory: "main"
-        }
+    //     const tempestBladeAndShieldOption: ModelOption = {
+    //         id: "tempestblade",
+    //         name: "Tempest Blade and Soulshield",
+    //         attacks: [tempestBlade],
+    //         abilities: [soulshields],
+    //         modelCategory: "weapon",
+    //         unitCategory: "main"
+    //     }
 
-        const sequitorPrimeOption: ModelOption = {
-            id: "sequitorPrime",
-            name: "Sequitor-Prime",
-            abilities: [sequitorPrime],
-            getMaxModelCount: (unit, model) => getOtherModelsCount(unit, model) === 0 ? 1 : 0
-        }
+    //     const sequitorPrimeOption: ModelOption = {
+    //         id: "sequitorPrime",
+    //         name: "Sequitor-Prime",
+    //         abilities: [sequitorPrime],
+    //         getMaxModelCount: (unit, model) => getOtherModelsCount(unit, model) === 0 ? 1 : 0
+    //     }
 
-        const greatMaceOption: ModelOption = {
-            id: "greatmace",
-            name: "Stormsmite Greatmace",
-            getMaxModelCount: (unit, model) => hasOption(model, sequitorPrimeOption) ?  getModelRatio(unit, model, 2, 5) : 1,
-            attacks: [greatMace],
-            abilities: [greatmaceBlast],
-            modelCategory: "weapon"
-        }
+    //     const greatMaceOption: ModelOption = {
+    //         id: "greatmace",
+    //         name: "Stormsmite Greatmace",
+    //         getMaxModelCount: (unit, model) => hasOption(model, sequitorPrimeOption) ?  getModelRatio(unit, model, 2, 5) : 1,
+    //         attacks: [greatMace],
+    //         abilities: [greatmaceBlast],
+    //         modelCategory: "weapon"
+    //     }
         
-        const redemptionCacheOption: ModelOption = {
-            id: "redemptionCache",
-            name: "Redemption Cache",
-            getMaxModelCount: (unit, model) => model.options.some(x => x.id === sequitorPrimeOption.id) && model.options.every(x => x.id !== greatMaceOption.id) ? 1 : 0,
-            abilities: [redemptionCache]
-        }
+    //     const redemptionCacheOption: ModelOption = {
+    //         id: "redemptionCache",
+    //         name: "Redemption Cache",
+    //         getMaxModelCount: (unit, model) => model.options.some(x => x.id === sequitorPrimeOption.id) && model.options.every(x => x.id !== greatMaceOption.id) ? 1 : 0,
+    //         abilities: [redemptionCache]
+    //     }
 
-        units["sequitors"] = {
-            id: "sequitors",
-            warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Stormcast_Sequitors.pdf",
-            wounds: 2,
-            move: 5,
-            save: "4+",
-            bravery: 7,
-            model: { id: "sequitors", material: Material.Plastic, name: "Sequitors", publicationYear: 2018 },
-            abilities: [aethericChanneling],
-            weaponOptionCategories: [{
-                options: [maulOldOption]
-            }, {
-                maxCount: 1,
-                options: [greatmaceOldOption]
-            }],
-            keywords: ["ORDER", "CELESTIAL", "HUMAN", "STORMCAST ETERNAL", "SACROSANCT", "SEQUITORS"],
-            factions: [data.factions.STORMCASTETERNALS],
-            points: 120,
-            size: 5,
-            options: [maulAndShieldOption, tempestBladeAndShieldOption, sequitorPrimeOption, redemptionCacheOption, greatMaceOption]
-        }
-    }
+    //     units["sequitors"] = {
+    //         id: "sequitors",
+    //         warscroll: "https://www.games-workshop.com/resources/PDF/Downloads//ENG_Stormcast_Sequitors.pdf",
+    //         wounds: 2,
+    //         move: 5,
+    //         save: "4+",
+    //         bravery: 7,
+    //         model: { id: "sequitors", material: Material.Plastic, name: "Sequitors", publicationYear: 2018 },
+    //         abilities: [aethericChanneling],
+    //         weaponOptionCategories: [{
+    //             options: [maulOldOption]
+    //         }, {
+    //             maxCount: 1,
+    //             options: [greatmaceOldOption]
+    //         }],
+    //         keywords: ["ORDER", "CELESTIAL", "HUMAN", "STORMCAST ETERNAL", "SACROSANCT", "SEQUITORS"],
+    //         factions: [data.factions.STORMCASTETERNALS],
+    //         points: 120,
+    //         size: 5,
+    //         options: [maulAndShieldOption, tempestBladeAndShieldOption, sequitorPrimeOption, redemptionCacheOption, greatMaceOption]
+    //     }
+    // }
 }
