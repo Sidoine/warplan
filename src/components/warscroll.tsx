@@ -26,23 +26,20 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <div>Allegiance: {w.allegiance.name}</div>
             {store.armyOptions && w.armyOption && <div>{store.armyOptions.name}: {w.armyOption}</div>}
             <div>{w.totalPoints} points</div>
-            <Segment><Header as="h1">Leaders</Header>
+            <Header as="h1">Leaders</Header>
                 {
                     w.units.filter(x => x.isLeader).sort((a, b) => (a.isGeneral ? 1 : 0) - (b.isGeneral ? 1: 0)).map(x => this.renderUnit(x))
                 }
-            </Segment>
-
-            <Segment>
+            
             <Header as="h1">Battelines</Header>
                 {
                     w.units.filter(x => x.isBattleline).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => this.renderUnit(x))
                 }
-            </Segment>
-
-            <Segment><Header as="h1">Units</Header>
-               {
-                    w.units.filter(x => !x.isBattleline && !x.isLeader).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => this.renderUnit(x))
-                }</Segment>
+            
+            <Header as="h1">Units</Header>
+            {
+                w.units.filter(x => !x.isBattleline && !x.isLeader).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => this.renderUnit(x))
+            }
             
         {w.battalions.length > 0 &&
            <Segment> 
@@ -148,12 +145,13 @@ export class Warscroll extends React.Component<WarscrollProps>{
         //     if (a.count === 0) a.count = totalWeapons;
         // }
         
-        return <Segment key={unit.id} className="unit"><Header as="h2">
-            <div>{ unit.isGeneral && <Icon name="star"/> } {u.model.name}</div> {wo.length > 0 && <div> {join(wo.map((x, index) => <i key={index}>{x.weaponOption && x.weaponOption.name}</i>), ',')}</div>}
+        return <Segment key={unit.id} className="unit"><div className="unit__title"><Header as="h2">
+            <div>{ unit.isGeneral && <Icon name="star"/> } {u.model.name}</div> {wo.length > 0 && <div> {join(wo.map((x, index) => <i key={index}>{x.weaponOption && x.weaponOption.name}</i>), ', ')}</div>}
             </Header>
-            <div>{unit.count * u.size} <Icon name="user"/>
+            <div className="unit__stats">{unit.count * u.size} <Icon name="user"/></div>
+            <div className="unit__stats"> 
             <span className="wounds">{u.move && <>{value(u.move)}" <Icon name="location arrow" /></>} {u.wounds} <Icon name="heart" /></span><br/><span className="wounds">{u.save && <> {value(u.save)} <Icon name="shield" /></>} {u.bravery && <> {value(u.bravery)} <Icon name="hand victory" /></>}</span></div>
-
+        </div>
                 {attacks.length > 0 && this.renderAllAttacks(attacks)}
                 {unit.unit.damageTable && this.renderWoundEffects(unit.unit.damageTable)}
                 {abilities.length > 0 && this.renderAllAbilities(abilities)}
@@ -167,7 +165,9 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <Table.Body>
                 {abilities.map((x, index) => <Table.Row key={index}>
                     <Table.HeaderCell>{x.name}</Table.HeaderCell>    
-                    <Table.Cell>{x.description}</Table.Cell>    
+                    <Table.Cell>
+                    { x.flavor && <div className="warscroll__flavor">{x.flavor}</div>}
+                    {x.description}</Table.Cell>    
                     </Table.Row>)}
             </Table.Body>
         </Table>;
@@ -196,7 +196,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <Table.Body>
                 {attacks.map((x, index) => <Table.Row key={index} >
                     <Table.Cell>{x.attack.name} { x.count !== undefined && <>(x{x.count})</> }</Table.Cell>
-                    <Table.Cell>{value(x.attack.range)} </Table.Cell>
+                    <Table.Cell>{value(x.attack.range)}" </Table.Cell>
                     <Table.Cell>{value(x.attack.attacks)} </Table.Cell>
                     <Table.Cell>{value(x.attack.toHit)} </Table.Cell>
                     <Table.Cell>{value(x.attack.toWound)} </Table.Cell>

@@ -1592,6 +1592,33 @@ If a STORMCAST ETERNAL unit is chosen, it is bathed in the healing energies of t
         unit.commandAbilities = [vengefulDetermination];
         unit.attacks = [dracothsClawsAndFangs, heldensen];
     }
+
+    { 
+        const unit: Unit = data.units.knightIncantor;
+        unit.move = 5;
+        unit.save = "3+";
+        unit.bravery = 9;
+        unit.description = "A Knight-Incantor is a single model. They are armed with an Incantor’s Staff, and carry a Voidstorm Scroll and Spirit Flasks.";
+        const voidstormScroll: Ability = {
+            name: "Voidstorm Scroll",
+            flavor: "Each Knight-Incantor bears a scroll infused with potent void magic.",
+            description: "Once per battle, when this model attempts to unbind a spell, instead of making an unbinding roll you can say this model is using its Voidstorm Scroll. If you do so, the spell is automatically unbound (do not roll t he dice)."
+        };
+        const spiritFlasks: Ability = {
+            name: "Spirit Flasks",
+            flavor: "Knights-Incantor can smash the filled spirit flasks they carry, causing a deadly explosion of soul energy.",
+            description: "Once per battle, at the start of the combat phase, you can say that this model will shatter 1, 2 or 3 spirit flasks. If you do so, each unit within 3\" of this model suffers a mortal wound for each spirit flask that was shattered. Units within 3\" with 10 or more models suffer D3 mortal wounds for each spirit flask that was shattered instead. Allocate the mortal wounds to this model last of all, after allocating them to any other units that are affected."
+        };
+        const incantorStaff: Attack = { melee: true, name: "Incantor's Staff", range: 2, attacks: 3, toHit: "3+", toWound: "3+", rend: -1, damage: "D3" };
+        const spiritStorm: Ability = {
+            name: "Spirit Storm",
+            flavor: "The wizard conjures a whirl of gusting winds and eldritch lightning.",
+            description: "Spirit Storm has a casting value of 7. If successfully cast, each enemy unit within 18\" of the caster suffers a mortal wound. In addition, until your next hero phase, subtract 1 from run and charge rolls for enemy units while they are within 18\" of the caster."
+        }
+        unit.abilities = [voidstormScroll, spiritFlasks, spiritStorm];
+        unit.attacks = [incantorStaff];
+        unit.keywords.push("CELESTIAL", "HUMAN", "SACROSANCT", "KNIGHT-INCANTOR");
+    }
 }
 
 function addExtraAbilities(data: DataStoreImpl): void {
