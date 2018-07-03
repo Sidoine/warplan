@@ -84,6 +84,9 @@ export class Warscroll extends React.Component<WarscrollProps>{
         return <Table.Row key={scenery.id}>
             <Table.Cell>{scenery.scenery.name}</Table.Cell>    
             <Table.Cell>{scenery.scenery.description}</Table.Cell>
+            <Table.Cell>
+                { scenery.scenery.abilities && this.renderAllAbilities(scenery.scenery.abilities)}
+            </Table.Cell>
         </Table.Row>    
     }
 

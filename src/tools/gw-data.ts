@@ -322,6 +322,7 @@ for (const e of extraWeapons) {
 const keywordRegex: { r: RegExp, n: string }[] = [
     { r: /\bDAEMONS?\b/, n: "DAEMON" },
     { r: /\bWIZARD\b/, n: "WIZARD" },
+    { r: /\bROTBRINGER\b/, n: "ROTBRINGER" },
     { r: /\bMORTAL\b/, n: "MORTAL" },
     { r: /\bBLOODBOUND\b/, n: "BLOODBOUND" },
     { r: /\bBEHEMOTH\b/, n: "MONSTER" },

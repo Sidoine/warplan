@@ -1,6 +1,18 @@
 import { DataStoreImpl } from "../imported-data";
-import { Unit, Ability, Attack, DamageColumn, Battalion } from "../units";
-import { artifactWithKeywordAvailable, override } from "./tools";
+import { Unit, Ability, Attack, DamageColumn, Battalion, Scenery } from "../units";
+import { artifactWithKeywordAvailable, override, keywordAvailable } from "./tools";
+
+function addEndlessSpells(data: DataStoreImpl):void {
+    const burningHeaad: Scenery = data.sceneries.theBurningHead;
+
+    const summon: Ability = { name: "Summoning Burning Head", description: "Summoning the Burning Head has a casting value of 7. If successful, place the Burning Head model entirely within 3\" of the summoner." };
+    const fiery: Ability = { name: "Fiery Missile", description: "When this model is set up, the player who set it up can immediately make a move with it." };
+    const flaming: Ability = { name: "Flaming Skull", description: "After this model has moved, each unit that has any models it passed across, and each other unit that is within 1\" of it at the end of its move, suffers D3 mortal wounds." };
+    const aura: Ability = { name: "Wrathful Aura", description: "Re-roll hit rolls of 1 for attacks made by this unit while they are wholly within 9\" of this model." };
+    const aqshy: Ability = { name: "Empowered by Aqshy", description: "If your battle is taking place in the Realm of Fire, add 1 to the number of mortal wounds inflicted by the Flaming Skull ability" };
+
+    burningHeaad.abilities = [summon, fiery, flaming, aura, aqshy];
+}
 
 function addCommandAbilities(data: DataStoreImpl):void {
     const rotbringer = artifactWithKeywordAvailable("ROTBRINGER", ["HERO"]);
@@ -88,37 +100,29 @@ function addSpells(data: DataStoreImpl):void {
         x.ability.description = "Gift of contagion has a casting value of 6. If successfully cast, select an enemy unit within 18\" of the caster that is visible to them. Then roll a dice and look up the result on the table below. Apply the penalty to all models in the unit until the start of your next hero phase.\n 1-2 : Flyblown Palsy - Subtract 1 from the unit's hits rolls in the combat phase. \n 3-4 : Muscular Atrophy - Subtract 1 from the unit's wound rolls in the combat phase. \n 5-6 : Liquefying Ague - Subtract 1 from the unit's save rolls.";
     });
 
-    const daemon = artifactWithKeywordAvailable("DAEMON", ["HERO", "WIZARD"]);
     override(data.extraAbilities.daemonsOfNurgleLoreOfVirulenceFavouredPoxes, x => {
-        x.isAvailable = daemon;
-        x.category = "lore";
+        x.isAvailable = keywordAvailable("Lore of Foulness", "ROTBRINGER", ["WIZARD"]);
         x.ability.description = "Favoured Poxes has a casting value of 7. If successfully cast, pick an enemy unit within 14\" of the caster that is visible to them. Subtract 1 from hit, wound and save rolls for that unit until the caster moves, attempts to cast a spell or is slain.";
     });
     override(data.extraAbilities.daemonsOfNurgleLoreOfVirulenceGloriousAfflictions, x => {
-        x.isAvailable = daemon;
-        x.category = "lore";
+        x.isAvailable = keywordAvailable("Lore of Foulness", "ROTBRINGER", ["WIZARD"]);
         x.ability.description = "Glorious Afflictions has a casting value of 5. If successfully cast, pick an enemy unit within 21\" of the caster that is visible to them. The unit's Move characteristic and any runs or charge rolls made for them are halved (rounding up) until your next hero phase. In addition, units that can normally fly canoot do so until your next hero phase.";
     });
     override(data.extraAbilities.daemonsOfNurgleLoreOfVirulenceSumptuousPestilence, x => {
-        x.isAvailable = daemon;
-        x.category = "lore";
+        x.isAvailable = keywordAvailable("Lore of Foulness", "ROTBRINGER", ["WIZARD"]);
         x.ability.description = "Sumptuous Pestilence has a casting value of 6. If successfully cast, each enemy unit within 7\" of the caster suffers 1 mortal wound. Unit with more than 5 models suffers D3 mortal wounds instead.";
     });
 
-    const mortal = artifactWithKeywordAvailable("MORTAL", ["HERO", "WIZARD"]);
     override(data.extraAbilities.nurgleRotbringersLoreOfFoulnessMagnificentBuboes, x => {
-        x.isAvailable = mortal;
-        x.category = "lore";
+        x.isAvailable = keywordAvailable("Lore of Foulness", "MORTAL", ["WIZARD"]);
         x.ability.description = "Magnificent Buboes has a casting value of 7. If successfully cast, pick an enemy HERO within 21\" of the caster that is visible to them. The hero suffers D3 mortal wounds. In addition, subtract 1 from their hit rolls, casting rolls and unbinding rolls until your next hero phase.";
     });
     override(data.extraAbilities.everchosenLoreOfFoulnessPlagueSquall, x => {
-        x.isAvailable = mortal;
-        x.category = "lore";
+        x.isAvailable = keywordAvailable("Lore of Foulness", "MORTAL", ["WIZARD"]);
         x.ability.description = "Plague Squall has a casting value of 6. If successfully cast, roll 7 dices. For each roll of 6, you can pick an enemy unit that is visible to the caster. That unit suffers D3 mortal wounds. If you roll more than one 6, you must pick a different enemy unit to suffer each set of mortal wounds.";
     });
     override(data.extraAbilities.nurgleRotbringersLoreOfFoulnessCloyingQuagmire, x => {
-        x.isAvailable = mortal;
-        x.category = "lore";
+        x.isAvailable = keywordAvailable("Lore of Foulness", "MORTAL", ["WIZARD"]);
         x.ability.description = "Cloying Quagmire has a casting value of 5. If successfully cast, select an enemy unit within 14\" of the caster that is visible to them. Then roll a dice, and compare it to the enemy unit's Save characteristic. If the roll is equal to or higher than the Save characteristic, the units suffers D6 mortal wounds.";
     });
 }
@@ -1100,4 +1104,5 @@ export function overrideNurgle(data: DataStoreImpl):void {
     addArtefact(data);
     addCommandAbilities(data);
     addSpells(data);
+    addEndlessSpells(data);
 }

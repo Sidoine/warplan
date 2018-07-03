@@ -60,9 +60,12 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
     }
 
     private renderUnit(bu: BattalionUnit, counts: Map<number, { count: number }>) {
-        const count = counts.get(bu.id)!.count;
-        if (count > 0) {
-            return <span style={{ color:  'red' } } key={bu.id}>{ bu.count} { join(bu.unit.map(x => <a key={x.id} href="" onClick={e => this.addUnit(x, e, count)}>{x.model.name}</a>), "/") } </span>;
+        const countsBu = counts.get(bu.id);
+        if (countsBu !== undefined){
+            const count = countsBu.count;
+            if (count > 0) {
+                return <span style={{ color:  'red' } } key={bu.id}>{ bu.count} { join(bu.unit.map(x => <a key={x.id} href="" onClick={e => this.addUnit(x, e, count)}>{x.model.name}</a>), "/") } </span>;
+            }
         }
 
         return <span key={bu.id}>{ bu.count} { bu.unit.map(x => x.model.name).join("/") } </span>;

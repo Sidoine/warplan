@@ -66,6 +66,7 @@ export interface Scenery {
     name: string;
     points: number;
     description?: string;
+    abilities?: Ability[];
 }
 
 export interface ModelOption {
