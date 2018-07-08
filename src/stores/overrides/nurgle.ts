@@ -1,5 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Unit, Ability, Attack, DamageColumn, Battalion, Scenery } from "../units";
+import { Unit, Ability, Attack, DamageColumn, Battalion, Scenery, ModelOption } from "../units";
 import { artifactWithKeywordAvailable, override, keywordAvailable } from "./tools";
 
 function addEndlessSpells(data: DataStoreImpl):void {
@@ -548,17 +548,19 @@ function fixUnits(data: DataStoreImpl):void {
         
         plagueDrones.attacks = [deathsHead, plaguesword, venomousSting];
 
-        plagueDrones.weaponOptionCategories = [{
-            options: [{
-                name: "Prehensile Proboscis",
-                id: "prehensileProboscis",
-                attacks: [prehensileProboscis]
-            },
-            {
-                name: "Foul Mouthparts",
-                id: "foulMouthparts",
-                attacks: [foulMouthparts]
-            }]
+        plagueDrones.options = [{
+            name: "Prehensile Proboscis",
+            id: "prehensileProboscis",
+            attacks: [prehensileProboscis],
+            unitCategory: "main",
+            modelCategory: "weapon"
+        },
+        {
+            name: "Foul Mouthparts",
+            id: "foulMouthparts",
+            attacks: [foulMouthparts],
+            unitCategory: "main",
+            modelCategory: "weapon"
         }];
     }
 
@@ -744,32 +746,31 @@ function fixUnits(data: DataStoreImpl):void {
         const plagueFlail: Attack = { name: "Plague Flail", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: plagueFlailEffect, rend: "-1", damage: "2" };
         const massiveBilesword: Attack = { name: "Massive Bilesword", range: "2", melee: true, attacks: massiveBileswordEffect, toHit: "4+", toWound: "3", rend: "-2", damage: "3" };
     
-        uncleanOne.weaponOptionCategories = [{
-            options: [{
-                name: "Plague Flail",
-                id: "plagueFlail",
-                attacks: [plagueFlail]
-            },
-            {
-                name: "Bileblade",
-                id: "bileblade",
-                attacks: [bileblade],
-                abilities: [putridOffering]
-            }]
-        },
-        {
-            options: [{
-                name: "Massive Bilesword",
-                id: "massivebilesword",
-                attacks: [massiveBilesword]
-            },
-            {
-                name: "Doomsday Bell",
-                id: "doomsdaybell",
-                attacks: [doomsdayBell],
-                abilities: [reverberatingSummons]
-            }]
-        }];
+        const plagueFlailOption: ModelOption = {
+            name: "Plague Flail",
+            id: "plagueFlail",
+            attacks: [plagueFlail]
+        };
+        const bilebladeOption: ModelOption = {
+            name: "Bileblade",
+            id: "bileblade",
+            attacks: [bileblade],
+            abilities: [putridOffering]
+        }
+
+        const bileswordOption: ModelOption = {
+            name: "Massive Bilesword",
+            id: "massivebilesword",
+            attacks: [massiveBilesword]
+        };
+    
+        const doomsdayOption: ModelOption = {
+            name: "Doomsday Bell",
+            id: "doomsdaybell",
+            attacks: [doomsdayBell],
+            abilities: [reverberatingSummons]
+        };
+        uncleanOne.options = [plagueFlailOption, bilebladeOption, bileswordOption, doomsdayOption];
     }
 
     {

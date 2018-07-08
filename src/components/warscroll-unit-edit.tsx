@@ -1,9 +1,10 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { NumberControl } from "../atoms/number-control";
-import { WarscrollStore, WarscrollUnit, WarscrollAltModel, WarscrollWeaponOptionCategory } from "../stores/warscroll";
-import { Dropdown, Button, Table, Icon, Checkbox, CheckboxProps, DropdownProps, Popup, Grid } from "semantic-ui-react";
+import { WarscrollStore, WarscrollUnit, WarscrollModel } from "../stores/warscroll";
+import { Dropdown, Button, Table, Icon, Checkbox, CheckboxProps, DropdownProps, Popup, Segment } from "semantic-ui-react";
 import { join } from "../helpers/react";
+import { ModelOption } from "../stores/units";
 
 export interface WarscrollUnitEditProps {
     unit: WarscrollUnit;
@@ -14,14 +15,6 @@ interface Option {
     key: string | number;
     text: string;
     value: string | number;
-}
-
-function getInterval(maxValue: number) {
-    const result: Option[] = [];
-    for (let i = 0; i<=maxValue; i++) {
-        result.push({ key: i, value: i, text: i.toString() });
-    } 
-    return result;
 }
 
 @inject("warscrollStore")
@@ -42,11 +35,10 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
                     {unit.isAllied && <>Allied</> }</div>
                 </div>
             </Table.Cell>
-            <Table.Cell><NumberControl value={unit.count} onChange={this.onCountChange} /></Table.Cell>
+            <Table.Cell>{unit.modelCount}</Table.Cell>
             <Table.Cell>
                 { this.renderModelOptions() }
             </Table.Cell>
-            <Table.Cell>{ unit.altModels && unit.altModels.map(model => this.renderAltModel(model))}</Table.Cell>
             <Table.Cell>{ join(unit.extraAbilities.map(x => <span key={x.id}>
                         <Popup content={<>{x.ability.description}</>} trigger={<span>{x.ability.name}</span>}/>
                         <Button onClick={() => this.props.warscrollStore!.removeExtraAbility(unit, x)} ><Icon name="remove"/> </Button></span>),
@@ -59,23 +51,52 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
             </Table.Cell></Table.Row>;
     }
 
+    private handleAddModel = (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
+        const option = this.props.unit.availableOptions.find(x => x.id === props.value);
+        this.props.warscrollStore!.addModel(this.props.unit, option);
+    }
+
     private renderModelOptions() {
-        return this.props.unit.weaponOptionCategories.map(x => this.renderWeaponOption(x, this.props.unit.defaultModelCount, this.props.unit.getDefaultCategoryCount(this.props.unit.defaultModelCount, this.props.unit.weaponOptionCategories)) );
-    }
-
-    private renderAltModel(altModel: WarscrollAltModel) {
-        const weaponOptionCategories = altModel.weaponOptionCategories;
-        
-        return <Grid.Column>
-            <Dropdown value={altModel.count} options={getInterval(altModel.model.maxCount || this.props.unit.modelCount)} onChange={this.handleAltModelCountChange(altModel)} /> { altModel.model.name }
-            { weaponOptionCategories.map(x => this.renderWeaponOption(x, altModel.count, this.props.unit.getDefaultCategoryCount(altModel.count, weaponOptionCategories)))}
-        </Grid.Column>;
-    }
-
-    private handleAltModelCountChange(altModel: WarscrollAltModel) {
-        return (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
-            this.props.warscrollStore!.setAltModelCount(altModel, props.value as number);
+        const unit = this.props.unit;
+        const options: Option[] = unit.availableOptions.map(x => { return { key: x.id, text: x.name, value: x.id } });
+        if (unit.models.length === 0 && options.length === 0) {
+            options.push({ key: 0, text: "Add", value: 0 });
         }
+        return <> {this.props.unit.models.map(x => this.renderModel(x))}
+            {options.length > 0 && <Dropdown className="icon" icon="plus" button options={options} onChange={this.handleAddModel} />}
+        </>;
+    }
+
+    private handleAddModelOption(model: WarscrollModel) {
+        return (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
+            const option = model.availableOptions.find(x => x.id === props.value);
+            if (option) this.props.warscrollStore!.addModelOption(model, option);
+        }
+    }
+
+    private handleRemoveModelOption(model: WarscrollModel, option: ModelOption) {
+        return (event: React.SyntheticEvent<HTMLElement>) => {
+            this.props.warscrollStore!.removeModelOption(model, option);
+        }
+    }
+
+    private handleModelCountChange(model: WarscrollModel) {
+        return (value: number) => {
+            if (value === 0) {
+                this.props.warscrollStore!.removeModel(this.props.unit, model);
+            } else {
+                this.props.warscrollStore!.setModelCount(model, value);
+            }
+        }
+    }
+
+    private renderModel(model: WarscrollModel) {
+        const options: Option[] = model.availableOptions.map(x => { return { key: x.id, text: x.name, value: x.id } });
+        return <Segment>
+            <NumberControl value={model.count} onChange={this.handleModelCountChange(model)}/>
+            {join(model.options.map(x => <span key={x.id}>{model.isOptionValid(x) || <Icon name="warning" />} {x.name} <Button icon="remove" onClick={this.handleRemoveModelOption(model, x)} /></span>), ', ')}
+            {options.length > 0 && <Dropdown className="icon" icon="plus" button options={options} value={0} onChange={this.handleAddModelOption(model)} />}
+        </Segment>;
     }
 
     private renderExtraAbilities(unit: WarscrollUnit) {
@@ -90,37 +111,7 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
         }
     }
 
-    private renderWeaponOption(wsCategory: WarscrollWeaponOptionCategory, modelCount: number, defaultCategoryCount: number) {
-        const category = wsCategory.category;
-        const options = category.options;
-        const weaponOptions: Option[] | undefined = options ?
-            options.map(x => { return { key: x.id, text: x.name, value: x.id } }) : undefined;
-        return weaponOptions && <div key={options.map(x => x.id).join(',')}> 
-            { category.maxCount && <Dropdown value={wsCategory.count !== null ? wsCategory.count : undefined} options={getInterval(Math.min(category.maxCount *  this.props.unit.count, modelCount))} onChange={this.handleWeaponOptionCategoryCountChange(wsCategory)}/> }
-            { category.maxCount === undefined && defaultCategoryCount }
-            <Dropdown selection value={ wsCategory.weaponOption ? wsCategory.weaponOption.id : undefined } options={weaponOptions} onChange={this.onWeaponOptionChange(wsCategory)}  ></Dropdown>
-        </div>;
-    }
-
-    private handleWeaponOptionCategoryCountChange(wsCategory: WarscrollWeaponOptionCategory) {
-        return (vent: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
-            this.props.warscrollStore!.setWeaponOptionCount(wsCategory, props.value as number);
-        }
-    }
-
-    private onWeaponOptionChange(wsCategory: WarscrollWeaponOptionCategory) {
-        return (vent: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
-            const category = wsCategory.category;
-            const weaponOption = category ? category.options.find(x => x.id === props.value) : undefined;
-            if (category && weaponOption) this.props.warscrollStore!.setWeaponOption(wsCategory, weaponOption);
-        }
-    }
-
     private toggleGeneral = (event: React.SyntheticEvent<HTMLElement>, props: CheckboxProps) => {
         this.props.warscrollStore!.setGeneral(props.checked ? this.props.unit : undefined);
-    }
-
-    private onCountChange = (value: number) => {
-        this.props.warscrollStore!.setUnitCount(this.props.unit, value);
     }
 }

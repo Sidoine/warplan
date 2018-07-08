@@ -80,17 +80,7 @@ export interface ModelOption {
 
     // An unit can't select another option of this category
     unitCategory?: string;
-    getMaxModelCount?: (unit: WarscrollUnitInterface, model: WarscrollModel) => number;
-}
-
-export interface WeaponOptionCategory {
-    options: WeaponOption[];
-    maxCount?: number;
-}
-
-interface WeaponOptionCombination {
-    count: number;
-    weaponOption: WeaponOption;
+    isOptionValid?: (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => boolean;
 }
 
 export type Value = number | string | DamageColumn | undefined;
@@ -106,15 +96,19 @@ export interface DamageColumn {
 }
 
 export interface UnitInfos {
-    weaponOptionCategories?: WeaponOptionCategory[];
     abilities?: Ability[];
     attacks?: Attack[];
     commandAbilities?: Ability[];
 }
 
-export interface UnitAltModel extends UnitInfos {
+export interface UnitStatModel {
+    options: ModelOption[];
+    count: number;
+}
+
+export interface UnitStatModels {
     name: string;
-    maxCount?: number;
+    models: UnitStatModel[];
 }
 
 export interface Unit extends UnitInfos {
@@ -134,8 +128,9 @@ export interface Unit extends UnitInfos {
     keywords: string[];
     damageTable?: DamageTable;
     description?: string;
-    altModels?: UnitAltModel[];
     options?: ModelOption[];
+
+    modelStats?: UnitStatModels[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => (boolean | undefined);
@@ -143,18 +138,18 @@ export interface Unit extends UnitInfos {
     isArtillery?: (warscroll: WarscrollInterface) => boolean;
 }
 
-function everyWeaponOptionCombinations(index: number, categories: WeaponOptionCategory[], options: WeaponOptionCombination[], result: WeaponOptionCombination[][], remaining: number) {
-    const count = categories[index].maxCount;
-    for (const weaponOption of categories[index].options) {
-        const newOptions = options.concat({ weaponOption: weaponOption, count: count || remaining});
-        if (categories.length > index + 1) {
-            everyWeaponOptionCombinations(index + 1, categories, newOptions, result, remaining);
-        }
-        else {
-            result.push(newOptions);
-        }
-    }
-}
+// function everyWeaponOptionCombinations(index: number, categories: WeaponOptionCategory[], options: WeaponOptionCombination[], result: WeaponOptionCombination[][], remaining: number) {
+//     const count = categories[index].maxCount;
+//     for (const weaponOption of categories[index].options) {
+//         const newOptions = options.concat({ weaponOption: weaponOption, count: count || remaining});
+//         if (categories.length > index + 1) {
+//             everyWeaponOptionCombinations(index + 1, categories, newOptions, result, remaining);
+//         }
+//         else {
+//             result.push(newOptions);
+//         }
+//     }
+// }
 
 export interface UnitStats {
     name?: string;
@@ -220,6 +215,14 @@ function updateTotalDamage(stats: UnitStats) {
     stats.totalDamage = stats.meleeDamage * 1.5 + stats.rangedDamage;
 }
 
+function getAllFromArray<T, U>(x: T[], lambda: (value: T) => (U[] | undefined)): U[] {
+    return x.reduce<U[]>((p, y) => {
+        const values = lambda(y);
+        if (values) return p.concat(values);
+        return p;
+    }, []);
+}
+
 export function getUnitStats(unit: Unit): UnitStats[] {
     const save = getValue(unit.save);
     const savedWounds = (unit.wounds || 0) * unit.size * (unit.save ? 6 / (7 - save) : 1);
@@ -234,15 +237,20 @@ export function getUnitStats(unit: Unit): UnitStats[] {
     };
     addAttacksAndAbilitiesToStats(baseStats, unit.attacks, unit.size, unit.abilities);
     
-    if (unit.weaponOptionCategories) {
-        const combinations: WeaponOptionCombination[][] = [];
-        const sum = unit.weaponOptionCategories.reduce((sum, category) => sum + (category.maxCount !== undefined ? category.maxCount : 0), 0);
-        const remaining = unit.size - sum;
-        everyWeaponOptionCombinations(0, unit.weaponOptionCategories, [], combinations, remaining);
-        
-        let combinationStats = combinations.map(x => {
+    let modelStats = unit.modelStats;
+    if (!modelStats && unit.options) {
+        modelStats = unit.options.filter(x => x.unitCategory === "main").map<UnitStatModels>(x => {
+            return {
+                name: x.name,
+                models: [{ count: unit.size, options: [x] }]
+            }
+        });
+    }
+
+    if (modelStats) {        
+        let combinationStats = modelStats.map(x => {
             const result: UnitStats = {
-                name: x.map(x => x.weaponOption.name).join("/"),
+                name: x.name,
                 meleeDamage: baseStats.meleeDamage,
                 rangedDamage: baseStats.rangedDamage,
                 save: baseStats.save,
@@ -251,8 +259,8 @@ export function getUnitStats(unit: Unit): UnitStats[] {
                 totalDamage: 0,
                 ignoredAbilities: baseStats.ignoredAbilities.concat()
             };
-            for (const woc of x) {
-                addAttacksAndAbilitiesToStats(result, woc.weaponOption.attacks, woc.count, woc.weaponOption.abilities, unit.abilities);
+            for (const unitStatModel of x.models) {
+                addAttacksAndAbilitiesToStats(result, getAllFromArray(unitStatModel.options, y => y.attacks), unitStatModel.count, getAllFromArray(unitStatModel.options, y => y.abilities), unit.abilities);
             }
             updateTotalDamage(result);
 
@@ -307,11 +315,11 @@ export interface WarscrollUnitInterface {
     unit: Unit;
     isGeneral: boolean;
     extraAbilities: ExtraAbility[];
-    models: WarscrollModel[];
+    models: WarscrollModelInterface[];
     modelCount: number;
 }
 
-export interface WarscrollModel {
+export interface WarscrollModelInterface {
     id: number;
     options: ModelOption[];
     count: number;
