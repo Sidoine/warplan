@@ -16,7 +16,8 @@
     "react-router-dom": "^4.3.1",
     "semantic-ui-react": "^0.81.3",
     "csv-parse": "^2.5.0",
-    "pako": "^1.0.6"
+    "pako": "^1.0.6",
+    "realm": "^2.13.0"
   },
   "devDependencies": {
     "typescript": "^2.9.2",
@@ -37,6 +38,7 @@
     "debug": "webpack-dev-server --content-base wwwroot/",
     "watch-tools": "tsc -w -p tsconfig.tools.json",
     "gw": "tsc -p tsconfig.tools.json && node dist/tools/gw-data.js",
-    "imp": "tsc -p tsconfig.tools.json && node dist/tools/import.js"
+    "imp": "tsc -p tsconfig.tools.json && node dist/tools/import.js",
+    "database": "node dist/tools/database.js"
   }
 }

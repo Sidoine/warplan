@@ -1,6 +1,55 @@
 import { Attack, Ability, Unit, ExtraAbilityTest, Model, Material, WarscrollModelInterface, ModelOption, WarscrollUnitInterface } from "../units";
 import { getAttackDamageEx, getValue, getAttackDamage } from "../combat";
 
+export const ModelCategoryWeapon = "weapon";
+export const UnitCategoryMain = "main";
+
+type ModelCondition = (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => boolean;
+export function setAbilityAsOption(unit: Unit, ability: Ability, condition?: (option: ModelOption) => ModelCondition) {
+    removeAbility(unit, ability);
+    const option: ModelOption = {
+        id: ability.name,
+        name: ability.name,
+        abilities: [ability]
+    };
+    if (condition) option.isOptionValid = condition(option);
+    return addOption(unit, option);
+}
+
+export function addOption(unit: Unit, option: ModelOption) {
+    if (!unit.options) unit.options = [];
+    unit.options.push(option);
+    return option;
+}
+
+export function setAttackAsOption(unit: Unit, attack: Attack, condition?: (option: ModelOption) => ModelCondition, abilities?: Ability[], unitCategory?: string) {
+    if (unit.attacks) {
+        unit.attacks.splice(unit.attacks.indexOf(attack), 1);
+    }
+    const option = addOption(unit, {
+        id: attack.name,
+        name: attack.name,
+        attacks: [attack],
+        modelCategory: "weapon",
+        abilities: abilities,
+        unitCategory: unitCategory        
+    });
+    if (condition) option.isOptionValid = condition(option);
+    return option;
+}
+
+export function removeAbility(unit: Unit, ability: Ability) {
+    if (unit.abilities) {
+        const index = unit.abilities.indexOf(ability);
+        if (index >= 0) unit.abilities.splice(index, 1);
+    }
+    return ability;
+}
+
+export function overrideAbility(ability: Ability, f: (x: Ability) => void) {
+    override(ability, f);
+}
+
 export function override<T>(value:T, f: (x: T) => void) {
     f(value);
 }
@@ -83,6 +132,16 @@ export function getUnitModelsWithOptionsCount(unit: WarscrollUnitInterface, opti
 
 export function isRatioCorrect(unit: WarscrollUnitInterface, option: ModelOption, howMany: number, forHowMany: number) {
     return getUnitModelsWithOptionCount(unit, option) <= unit.modelCount * howMany / forHowMany;
+}
+
+export function oneModelOption(option: ModelOption) {
+    return (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => getUnitModelsWithOptionCount(unit, option) <= 1;
+}
+
+export function ratioModelOption(howMany: number, forHowMany: number) {
+    return (option: ModelOption) => {
+        return (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => isRatioCorrect(unit, option, howMany, forHowMany);
+    }
 }
 
 export const frequentRate = 0.75;

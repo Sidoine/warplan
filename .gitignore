@@ -5,3 +5,4 @@ dist
 /wwwroot/files
 *.orig
 /yarn-error.log
+en.realm*

@@ -2,7 +2,7 @@ import * as React from "react";
 import { WarscrollStore, WarscrollUnit, WarscrollScenery } from "../stores/warscroll";
 import { observer, inject } from "mobx-react";
 import { Header, Table, Icon, Segment } from "semantic-ui-react";
-import { Attack, Ability, WarscrollBattalionInterface, DamageTable, ModelOption } from "../stores/units";
+import { Attack, Ability, WarscrollBattalionInterface, DamageTable, ModelOption, AbilityCategory } from "../stores/units";
 import { toJS } from "mobx";
 import { value } from "../helpers/react";
 
@@ -72,7 +72,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <Table.Cell>{battalion.battalion.name}</Table.Cell>    
             <Table.Cell>{battalion.battalion.description}</Table.Cell>
             <Table.Cell>
-                { battalion.battalion.abilities && this.renderAllAbilities(battalion.battalion.abilities)}
+                { battalion.battalion.abilities && this.renderAllAbilities("Abilities", battalion.battalion.abilities)}
             </Table.Cell>
         </Table.Row>    
     }
@@ -82,7 +82,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <Table.Cell>{scenery.scenery.name}</Table.Cell>    
             <Table.Cell>{scenery.scenery.description}</Table.Cell>
             <Table.Cell>
-                { scenery.scenery.abilities && this.renderAllAbilities(scenery.scenery.abilities)}
+                { scenery.scenery.abilities && this.renderAllAbilities("Abilities", scenery.scenery.abilities)}
             </Table.Cell>
         </Table.Row>    
     }
@@ -115,31 +115,41 @@ export class Warscroll extends React.Component<WarscrollProps>{
         for (const ability of unit.extraAbilities) {
             abilities.push(ability.ability);
         }
+        const normalAbilities = abilities.filter(x => x.category === undefined);
+        const specialRules = abilities.filter(x => x.category === AbilityCategory.SpecialRule);
+        const magicAbilites = abilities.filter(x => x.category === AbilityCategory.Magic);
 
-        return <Segment key={unit.id} className="unit"><div className="unit__title"><Header as="h2">
+        return <Segment key={unit.id} className="unit">
+            { unit.unit.pictureUrl && <img className="warscroll__image" src={unit.unit.pictureUrl}/>}
+            <div className="unit__title"><Header as="h2">
             <div>{ unit.isGeneral && <Icon name="star"/> } {u.model.name}</div> {models.length > 0 && <div> {mainOption && mainOption.name}</div>}
             </Header>
-            <div className="unit__stats">{unit.count * u.size} <Icon name="user"/></div>
+            <div className="unit__stats">{unit.modelCount} <Icon name="user"/></div>
             <div className="unit__stats"> 
             <span className="wounds">{u.move && <>{value(u.move)}" <Icon name="location arrow" /></>} {u.wounds} <Icon name="heart" /></span><br/><span className="wounds">{u.save && <> {value(u.save)} <Icon name="shield" /></>} {u.bravery && <> {value(u.bravery)} <Icon name="hand victory" /></>}</span></div>
         </div>
+        {unit.unit.flavor && <div className="unit__flavor">{unit.unit.flavor}</div>}
                 {attacks.length > 0 && this.renderAllAttacks(attacks)}
                 {unit.unit.damageTable && this.renderWoundEffects(unit.unit.damageTable)}
-                {abilities.length > 0 && this.renderAllAbilities(abilities)}
-                {u.commandAbilities && unit.isGeneral && this.renderAllAbilities(u.commandAbilities)}
+                <div className="warscroll__abilities">
+                    { this.renderAllAbilities("Description", specialRules, u.description)}
+                    {normalAbilities.length > 0 && this.renderAllAbilities("Abilities", normalAbilities)}
+                    {u.commandAbilities && unit.isGeneral && this.renderAllAbilities("Command abilities", u.commandAbilities)}
+                    {u.magicDescription && this.renderAllAbilities("Magic", magicAbilites, u.magicDescription)}
+                </div>
                 <div><strong>Keywords</strong> {u.keywords && u.keywords.join(", ")}</div>
         </Segment>;
     }
 
-    renderAllAbilities(abilities: Ability[]) {
-        return <div className="warscroll__abilities">
-                {abilities.map((x, index) => <p key={index}>
-                    <header>{x.name}</header>    
+    renderAllAbilities(title: string, abilities: Ability[], description?: string) {
+        return <div><header className="warscroll__section-header">{title}</header>
+                { description && <div>{description}</div>}  
+                { abilities.map((x, index) => <div key={index}>
+                    <header>{x.name}</header>  
                     <div>
                     { x.flavor && <div className="warscroll__flavor">{x.flavor}</div>}
                     {x.description}</div>    
-                    </p>)}
-        </div>;
+        </div>) }</div>;
     }
 
     renderAllAttacks(attacks: AttackWithCount[]) {

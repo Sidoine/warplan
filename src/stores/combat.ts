@@ -1,7 +1,7 @@
 import { Attack, Value } from "./units";
 
 export function getValue(formula: Value): number {
-    if (formula === undefined) return 0;
+    if (formula === undefined ||formula === "-" || formula === "✹" || formula === "👁") return 0;
     if (typeof(formula) === "number") return formula;
 
     if (typeof(formula) === "string") {

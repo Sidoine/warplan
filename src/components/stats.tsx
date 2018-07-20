@@ -7,6 +7,7 @@ import { observable, action, computed } from "mobx";
 import { join, value } from "../helpers/react";
 import { Filter } from "./filter";
 import { WarscrollStore } from "../stores/warscroll";
+import { getValue } from "../stores/combat";
 
 export interface StatsProps {
     uiStore?: UiStore;
@@ -123,7 +124,7 @@ export class Stats extends React.Component<StatsProps> {
 
     renderCombination(unitStats: UnitStats) {
         const unit = unitStats.unit;
-        const wounds = (unit.wounds || 0) * unit.size;
+        const wounds = getValue(unit.wounds) * unit.size;
         const points = unit.points / 100;
         const count = this.props.warscrollStore!.warscroll.units.reduce((c, x) => x.unit.id === unit.id ? x.count + c : c, 0);
         return <Table.Row key={unit.id + unitStats.name}>

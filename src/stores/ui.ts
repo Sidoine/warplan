@@ -25,7 +25,7 @@ export class UiStore {
     grandAlliance: GrandAlliance = GrandAlliance.order;
 
     @observable
-    faction = this.unitsStore.factions["STORMCASTETERNALS"];
+    faction = this.unitsStore.factionsList[0];
 
     @computed
     get units() {
@@ -51,7 +51,7 @@ export class UiStore {
 
     @computed
     get battalions() {
-        return this.unitsStore.battalions.filter(x => x.factions.some(x => x.id === this.faction.id));
+        return this.unitsStore.battalions.filter(x => x.allegiance.grandAlliance === this.grandAlliance);
     }
 
     constructor(private unitsStore: UnitsStore) {
