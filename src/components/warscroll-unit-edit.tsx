@@ -92,7 +92,7 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
 
     private renderModel(model: WarscrollModel) {
         const options: Option[] = model.availableOptions.map(x => { return { key: x.id, text: x.name, value: x.id } });
-        return <Segment>
+        return <Segment key={model.id}>
             <NumberControl value={model.count} onChange={this.handleModelCountChange(model)}/>
             {join(model.options.map(x => <span key={x.id}>{model.isOptionValid(x) || <Icon name="warning" />} {x.name} <Button icon="remove" onClick={this.handleRemoveModelOption(model, x)} /></span>), ', ')}
             {options.length > 0 && <Dropdown className="icon" icon="plus" button options={options} value={0} onChange={this.handleAddModelOption(model)} />}

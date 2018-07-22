@@ -12,6 +12,11 @@ function areAllied(unit1: Unit, unit2: Unit) {
     return false;
 }
 
+export const enum PointMode {
+    MatchedPlay,
+    OpenPlay
+}
+
 export class WarscrollModel implements WarscrollModelInterface {
     id: number;
 
@@ -121,9 +126,9 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed
     get points(): number {
-        if(this.count * this.unit.size === this.unit.maxSize && this.unit.maxPoints) return this.unit.maxPoints;
-
-        return this.count * this.unit.points;
+        const points = this.warscroll.pointMode === PointMode.MatchedPlay ? this.count * this.unit.points : Math.ceil(this.modelCount * this.unit.points / this.unit.size);
+        if (this.unit.maxPoints && points > this.unit.maxPoints) return this.unit.maxPoints;
+        return points;
     }
 
     @computed
@@ -302,6 +307,8 @@ export class Warscroll implements WarscrollInterface {
     get isArtilleryValid() {
         return this.numberOfArtillery <= this.maxArtillery;
     }
+
+    @observable pointMode = PointMode.MatchedPlay;   
 }
 
 interface SerializedWarscroll {
@@ -319,6 +326,7 @@ interface SerializedWarscroll {
     allegiance: string;
     armyOption: string;
     sceneries?: string[];
+    pointMode?: PointMode;
 }
 
 export class WarscrollStore {
@@ -394,6 +402,12 @@ export class WarscrollStore {
         this.saveWarscroll();
     }
     
+    @action
+    setPointMode(pointMode: PointMode) {
+        this.warscroll.pointMode = pointMode;
+        this.saveWarscroll();
+    }
+
     loadWarscroll(name?: string) {
         const serializedWarscroll = localStorage.getItem(this.getWarscrollItem(name));
         if (serializedWarscroll === null) return;
@@ -408,6 +422,7 @@ export class WarscrollStore {
         this.warscroll.battalions.splice(0);
         this.warscroll.allegiance = this.unitsStore.allegianceList.find(x => x.id === warscroll.allegiance) || this.unitsStore.allegianceList[0];
         this.warscroll.armyOption = warscroll.armyOption;
+        this.warscroll.pointMode = warscroll.pointMode || PointMode.MatchedPlay;
         
         for (const ba of warscroll.battalions) {
             const battalion = this.unitsStore.battalions.find(x => x.id === ba.battalionId);
@@ -477,7 +492,8 @@ export class WarscrollStore {
             }),
             allegiance: this.warscroll.allegiance.id,
             armyOption: this.warscroll.armyOption,
-            sceneries: this.warscroll.sceneries.map(x => x.scenery.id)
+            sceneries: this.warscroll.sceneries.map(x => x.scenery.id),
+            pointMode: this.warscroll.pointMode
         };
     }
 
