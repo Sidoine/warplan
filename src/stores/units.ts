@@ -38,7 +38,46 @@ export interface Faction {
 export const enum AbilityCategory {
     None,
     Magic,
-    SpecialRule
+    SpecialRule,
+    Command
+}
+
+export const enum Phase {
+    Setup,
+    Hero,
+    Movement,
+    Shooting,
+    Charge,
+    Combat,
+    Battleshock
+}
+
+export interface Aura {
+
+}
+
+export const enum SubPhase {
+    Before,
+    While,
+    After
+}
+
+export const EnemyKeyword = "ENEMY";
+
+export interface UnitState {
+    hasCharged: boolean;
+}
+
+export interface AbilityEffect {
+    aura: Aura;
+    targetRange?: number;
+    whollyWithin?: boolean;
+    targetKeyword?: string; // otherwise, self
+    targetCondition?: (state: UnitState) => boolean;
+    effectRange?: number;
+    phase: Phase;
+    subPhase: SubPhase;
+    condition?: (state: UnitState) => boolean;
 }
 
 export interface Ability {

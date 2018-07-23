@@ -24,7 +24,9 @@ export interface BattalionOrganisation {
 export interface BattalionWarscroll {
     id: string;
     name: string;
+    faction: string;
     allegiance: string;
+    grandAlliance: string;
     about: string | null;
     imageUrl: string;
     organisation: BattalionOrganisation[];
@@ -206,6 +208,7 @@ export interface UnitWarscroll {
     markOfChaos: boolean;
     legionOfNagash: boolean;
     damageTable: DamageColumn[];
+    warMachine: WarMachine;
     lastUpdated: number;
 }
 
@@ -220,4 +223,15 @@ export interface UnitWeapon {
     rend: string;
     damage: string;
     upgrade: boolean;
+}
+
+export interface WarMachine {
+    id: string;
+    move: string;
+    bravery: string;
+    wounds: string;
+    save: string;
+    weapons: UnitWeapon[];
+    crewTable: DamageColumn[];
+    keywords: string[];
 }

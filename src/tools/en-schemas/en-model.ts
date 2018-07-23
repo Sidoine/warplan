@@ -39,7 +39,9 @@ export const BattalionWarscroll = {
   properties: {
     id: 'string',
     name: 'string',
+    faction: 'string',
     allegiance: 'string',
+    grandAlliance: 'string',
     about: 'string?',
     imageUrl: 'string',
     organisation: 'BattalionOrganisation[]',
@@ -281,6 +283,7 @@ export const UnitWarscroll = {
     markOfChaos: 'bool',
     legionOfNagash: 'bool',
     damageTable: 'DamageColumn[]',
+    warMachine: 'WarMachine',
     lastUpdated: 'double'
   }
 }
@@ -299,6 +302,21 @@ export const UnitWeapon = {
     rend: 'string',
     damage: 'string',
     upgrade: 'bool'
+  }
+}
+
+export const WarMachine = {
+  name: 'WarMachine',
+  primaryKey: 'id',
+  properties: {
+    id: 'string',
+    move: 'string',
+    bravery: 'string',
+    wounds: 'string',
+    save: 'string',
+    weapons: 'UnitWeapon[]',
+    crewTable: 'DamageColumn[]',
+    keywords: 'string[]'
   }
 }
 

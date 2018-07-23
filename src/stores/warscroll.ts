@@ -123,7 +123,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         return this.warscroll.unitsStore.extraAbilities.filter(x => (x.allegiance === undefined || x.allegiance.id === this.warscroll.allegiance.id)
             && x.isAvailable(this, this.warscroll));
     }
-
+    
     @computed
     get points(): number {
         const points = this.warscroll.pointMode === PointMode.MatchedPlay ? this.count * this.unit.points : Math.ceil(this.modelCount * this.unit.points / this.unit.size);
@@ -332,6 +332,11 @@ interface SerializedWarscroll {
 export class WarscrollStore {
     @observable
     warscrolls: string[] = [];
+
+    @computed
+    get availableBattalions() {
+        return this.unitsStore.battalions.filter(x => x.allegiance.id === this.warscroll.allegiance.id);
+    }
 
     @action
     addUnit(unit: Unit) {

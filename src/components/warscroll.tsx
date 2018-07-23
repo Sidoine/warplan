@@ -134,7 +134,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
                 <div className="warscroll__abilities">
                     { this.renderAllAbilities("Description", specialRules, u.description)}
                     {normalAbilities.length > 0 && this.renderAllAbilities("Abilities", normalAbilities)}
-                    {u.commandAbilities && unit.isGeneral && this.renderAllAbilities("Command abilities", u.commandAbilities)}
+                    {u.commandAbilities && this.renderAllAbilities("Command abilities", u.commandAbilities)}
                     {u.magicDescription && this.renderAllAbilities("Magic", magicAbilites, u.magicDescription)}
                 </div>
                 <div><strong>Keywords</strong> {u.keywords && u.keywords.join(", ")}</div>

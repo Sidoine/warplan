@@ -65,9 +65,9 @@ export class DataStoreImpl implements DataStore {
             id: "bloodStalkers",
             name: "BLOOD STALKERS"
         },
-       blookwrackMedusa: {
-            id: "blookwrackMedusa",
-            name: "BLOOKWRACK MEDUSA"
+       bloodwrackMedusa: {
+            id: "bloodwrackMedusa",
+            name: "BLOODWRACK MEDUSA"
         },
        doomfireWarlocks: {
             id: "doomfireWarlocks",
@@ -1067,15 +1067,15 @@ export class DataStoreImpl implements DataStore {
         },
        archaon: {
             id: "archaon",
-            name: "Archaon"
+            name: "ARCHAON"
         },
        varanguard: {
             id: "varanguard",
-            name: "Varanguard"
+            name: "VARANGUARD"
         },
        gauntSummonerOfTzeentch53c2d4fc00e94f4a9835C523d8cf511e: {
             id: "gauntSummonerOfTzeentch53c2d4fc00e94f4a9835C523d8cf511e",
-            name: "Gaunt Summoner of Tzeentch"
+            name: "GAUNT SUMMONER OF TZEENTCH"
         },
        slannStarmaster: {
             id: "slannStarmaster",
@@ -2613,6 +2613,314 @@ export class DataStoreImpl implements DataStore {
             id: "evocatorsOnCelestialDracolines",
             name: "EVOCATORS ON CELESTIAL DRACOLINES"
         },
+       slambo: {
+            id: "slambo",
+            name: "SLAMBO"
+        },
+       screamingSkullCatapult: {
+            id: "screamingSkullCatapult",
+            name: "SCREAMING SKULL CATAPULT"
+        },
+       greatcannon: {
+            id: "greatcannon",
+            name: "GREATCANNON"
+        },
+       fieldMortar: {
+            id: "fieldMortar",
+            name: "FIELD MORTAR"
+        },
+       hellcannon: {
+            id: "hellcannon",
+            name: "HELLCANNON"
+        },
+       duardinBoltThrower: {
+            id: "duardinBoltThrower",
+            name: "DUARDIN BOLT THROWER"
+        },
+       flameCannon: {
+            id: "flameCannon",
+            name: "FLAME CANNON"
+        },
+       grudgeThrower: {
+            id: "grudgeThrower",
+            name: "GRUDGE THROWER"
+        },
+       fieldTrebuchet: {
+            id: "fieldTrebuchet",
+            name: "FIELD TREBUCHET"
+        },
+       engineerOnMechanicalSteed: {
+            id: "engineerOnMechanicalSteed",
+            name: "ENGINEER ON MECHANICAL STEED"
+        },
+       tombSwarm: {
+            id: "tombSwarm",
+            name: "TOMB SWARM"
+        },
+       drazhoathTheAshen: {
+            id: "drazhoathTheAshen",
+            name: " DRAZHOATH THE ASHEN"
+        },
+       daemonsmith: {
+            id: "daemonsmith",
+            name: "DAEMONSMITH"
+        },
+       sharTorTheExecutioner: {
+            id: "sharTorTheExecutioner",
+            name: "SHAR’TOR THE EXECUTIONER"
+        },
+       bullCentaurTaurRuk: {
+            id: "bullCentaurTaurRuk",
+            name: "BULL CENTAUR TAUR’RUK"
+        },
+       bullCentaurRenders: {
+            id: "bullCentaurRenders",
+            name: "BULL CENTAUR RENDERS"
+        },
+       infernalGuardsCastellan: {
+            id: "infernalGuardsCastellan",
+            name: "INFERNAL GUARDS CASTELLAN"
+        },
+       infernalGuardBattleStandardBearer: {
+            id: "infernalGuardBattleStandardBearer",
+            name: "INFERNAL GUARD BATTLE STANDARD BEARER"
+        },
+       infernalGuardFireglaives: {
+            id: "infernalGuardFireglaives",
+            name: "INFERNAL GUARD FIREGLAIVES"
+        },
+       infernalGuardIronsworn: {
+            id: "infernalGuardIronsworn",
+            name: "INFERNAL GUARD IRONSWORN"
+        },
+       kDaaiFireborn: {
+            id: "kDaaiFireborn",
+            name: "K’DAAI FIREBORN"
+        },
+       deathshriekerRocketLauncher: {
+            id: "deathshriekerRocketLauncher",
+            name: "DEATHSHRIEKER ROCKET LAUNCHER"
+        },
+       ironDaemonWarEngine: {
+            id: "ironDaemonWarEngine",
+            name: "IRON DAEMON WAR ENGINE"
+        },
+       magmaCannon: {
+            id: "magmaCannon",
+            name: "MAGMA CANNON"
+        },
+       dreadquakeMortar: {
+            id: "dreadquakeMortar",
+            name: "DREADQUAKE MORTAR"
+        },
+       skullcrackerWarEngine: {
+            id: "skullcrackerWarEngine",
+            name: "SKULLCRACKER WAR ENGINE"
+        },
+       basilisk: {
+            id: "basilisk",
+            name: "BASILISK"
+        },
+       bonegrinderGargant: {
+            id: "bonegrinderGargant",
+            name: "BONEGRINDER GARGANT"
+        },
+       broodHorror: {
+            id: "broodHorror",
+            name: "BROOD HORROR"
+        },
+       carmineDragon: {
+            id: "carmineDragon",
+            name: "CARMINE DRAGON"
+        },
+       chaosSiegeGargant: {
+            id: "chaosSiegeGargant",
+            name: "CHAOS SIEGE GARGANT"
+        },
+       chaosWarMammoth: {
+            id: "chaosWarMammoth",
+            name: "CHAOS WAR MAMMOTH"
+        },
+       colossalSquig: {
+            id: "colossalSquig",
+            name: "COLOSSAL SQUIG"
+        },
+       cursDEttin: {
+            id: "cursDEttin",
+            name: "CURS’D ETTIN"
+        },
+       dreadMaw: {
+            id: "dreadMaw",
+            name: "DREAD MAW"
+        },
+       dreadSaurian: {
+            id: "dreadSaurian",
+            name: "DREAD SAURIAN"
+        },
+       exaltedGreaterDaemonOfKhorne: {
+            id: "exaltedGreaterDaemonOfKhorne",
+            name: "EXALTED GREATER DAEMON OF KHORNE"
+        },
+       exaltedGreaterDaemonOfNurgle: {
+            id: "exaltedGreaterDaemonOfNurgle",
+            name: "EXALTED GREATER DAEMON OF NURGLE"
+        },
+       exaltedGreaterDaemonOfSlaanesh: {
+            id: "exaltedGreaterDaemonOfSlaanesh",
+            name: "EXALTED GREATER DAEMON OF SLAANESH"
+        },
+       exaltedGreaterDaemonOfTzeentch: {
+            id: "exaltedGreaterDaemonOfTzeentch",
+            name: "EXALTED GREATER DAEMON OF TZEENTCH"
+        },
+       fimirachNoble: {
+            id: "fimirachNoble",
+            name: "FIMIRACH NOBLE"
+        },
+       fimirWarriors: {
+            id: "fimirWarriors",
+            name: "FIMIR WARRIORS"
+        },
+       incarnateElementalOfBeasts: {
+            id: "incarnateElementalOfBeasts",
+            name: "INCARNATE ELEMENTAL OF BEASTS"
+        },
+       incarnateElementalOfFire: {
+            id: "incarnateElementalOfFire",
+            name: "INCARNATE ELEMENTAL OF FIRE"
+        },
+       giganticChaosSpawn: {
+            id: "giganticChaosSpawn",
+            name: "GIGANTIC CHAOS SPAWN"
+        },
+       magmaDragon: {
+            id: "magmaDragon",
+            name: "MAGMA DRAGON"
+        },
+       mazarallTheButcher: {
+            id: "mazarallTheButcher",
+            name: "MAZARALL THE BUTCHER"
+        },
+       merwyrm: {
+            id: "merwyrm",
+            name: "MERWYRM"
+        },
+       mourngul: {
+            id: "mourngul",
+            name: "MOURNGUL"
+        },
+       preyton: {
+            id: "preyton",
+            name: "PREYTON"
+        },
+       rogueIdol: {
+            id: "rogueIdol",
+            name: "ROGUE IDOL"
+        },
+       skaaracTheBloodborn: {
+            id: "skaaracTheBloodborn",
+            name: "SKAARAC THE BLOODBORN"
+        },
+       skavenWarlordOnBroodHorror: {
+            id: "skavenWarlordOnBroodHorror",
+            name: "SKAVEN WARLORD ON BROOD HORROR"
+        },
+       skinWolves: {
+            id: "skinWolves",
+            name: "SKIN WOLVES"
+        },
+       squigGobba: {
+            id: "squigGobba",
+            name: "SQUIG GOBBA"
+        },
+       skavenWolfRats: {
+            id: "skavenWolfRats",
+            name: "SKAVEN WOLF RATS"
+        },
+       troggothHag: {
+            id: "troggothHag",
+            name: "TROGGOTH HAG"
+        },
+       warpfireDragon: {
+            id: "warpfireDragon",
+            name: "WARPFIRE DRAGON"
+        },
+       warpgnawVerminlord: {
+            id: "warpgnawVerminlord",
+            name: "WARPGNAW VERMINLORD"
+        },
+       darkoathChieftain: {
+            id: "darkoathChieftain",
+            name: "DARKOATH CHIEFTAIN"
+        },
+       doomseeker: {
+            id: "doomseeker",
+            name: "DOOMSEEKER"
+        },
+       excelsiorWarpriest: {
+            id: "excelsiorWarpriest",
+            name: "EXCELSIOR WARPRIEST"
+        },
+       gauntSummonerAndChaosFamiliars: {
+            id: "gauntSummonerAndChaosFamiliars",
+            name: "GAUNT SUMMONER AND CHAOS FAMILIARS"
+        },
+       bileTroggoths: {
+            id: "bileTroggoths",
+            name: "BILE TROGGOTHS"
+        },
+       mistweaverSaih: {
+            id: "mistweaverSaih",
+            name: "MISTWEAVER SAIH"
+        },
+       skavenDeathrunner: {
+            id: "skavenDeathrunner",
+            name: "SKAVEN DEATHRUNNER"
+        },
+       tenebraelShard: {
+            id: "tenebraelShard",
+            name: "TENEBRAEL SHARD"
+        },
+       highWarden: {
+            id: "highWarden",
+            name: "HIGH WARDEN"
+        },
+       spireguard: {
+            id: "spireguard",
+            name: "SPIREGUARD"
+        },
+       reavers: {
+            id: "reavers",
+            name: "REAVERS"
+        },
+       tamurkhanTheMaggotLord: {
+            id: "tamurkhanTheMaggotLord",
+            name: "TAMURKHAN THE MAGGOT LORD"
+        },
+       kazykTheBefouled: {
+            id: "kazykTheBefouled",
+            name: "KAZYK THE BEFOULED"
+        },
+       daemonPlagueToadsOfNurgle: {
+            id: "daemonPlagueToadsOfNurgle",
+            name: "DAEMON PLAGUE TOADS OF NURGLE"
+        },
+       daemonPoxRidersOfNurgle: {
+            id: "daemonPoxRidersOfNurgle",
+            name: "DAEMON POX RIDERS OF NURGLE"
+        },
+       plagueOgors: {
+            id: "plagueOgors",
+            name: "PLAGUE OGORS"
+        },
+       saylTheFaithless: {
+            id: "saylTheFaithless",
+            name: "SAYL THE FAITHLESS"
+        },
+       nightmaw: {
+            id: "nightmaw",
+            name: "NIGHTMAW"
+        },
    };
     factions = {
        daughtersOfKhaine: {
@@ -2725,10 +3033,10 @@ export class DataStoreImpl implements DataStore {
             grandAlliance: GrandAlliance.death,
             name: "TOMB KINGS"
         },
-       skavenPestilens: {
-            id: "skavenPestilens",
+       clansPestilens: {
+            id: "clansPestilens",
             grandAlliance: GrandAlliance.chaos,
-            name: "SKAVEN PESTILENS"
+            name: "CLANS PESTILENS"
         },
        fyreslayers: {
             id: "fyreslayers",
@@ -2805,30 +3113,35 @@ export class DataStoreImpl implements DataStore {
             grandAlliance: GrandAlliance.chaos,
             name: "WARHERD"
         },
+       monstersOfChaos: {
+            id: "monstersOfChaos",
+            grandAlliance: GrandAlliance.chaos,
+            name: "MONSTERS OF CHAOS"
+        },
        masterclan: {
             id: "masterclan",
             grandAlliance: GrandAlliance.chaos,
             name: "MASTERCLAN"
         },
-       verminus: {
-            id: "verminus",
+       clansVerminus: {
+            id: "clansVerminus",
             grandAlliance: GrandAlliance.chaos,
-            name: "VERMINUS"
+            name: "CLANS VERMINUS"
         },
-       clanSkryre: {
-            id: "clanSkryre",
+       clansSkryre: {
+            id: "clansSkryre",
             grandAlliance: GrandAlliance.chaos,
-            name: "CLAN SKRYRE"
+            name: "CLANS SKRYRE"
         },
-       clanMoulder: {
-            id: "clanMoulder",
+       clansMoulder: {
+            id: "clansMoulder",
             grandAlliance: GrandAlliance.chaos,
-            name: "CLAN MOULDER"
+            name: "CLANS MOULDER"
         },
-       eshin: {
-            id: "eshin",
+       clansEshin: {
+            id: "clansEshin",
             grandAlliance: GrandAlliance.chaos,
-            name: "ESHIN"
+            name: "CLANS ESHIN"
         },
        devotedOfSigmar: {
             id: "devotedOfSigmar",
@@ -2849,11 +3162,6 @@ export class DataStoreImpl implements DataStore {
             id: "ironweldArsenal",
             grandAlliance: GrandAlliance.order,
             name: "IRONWELD ARSENAL"
-        },
-       order: {
-            id: "order",
-            grandAlliance: GrandAlliance.order,
-            name: "ORDER"
         },
        dispossessed: {
             id: "dispossessed",
@@ -2905,10 +3213,10 @@ export class DataStoreImpl implements DataStore {
             grandAlliance: GrandAlliance.order,
             name: "ORDER SERPENTIS"
         },
-       wanderer: {
-            id: "wanderer",
+       wanderers: {
+            id: "wanderers",
             grandAlliance: GrandAlliance.order,
-            name: "WANDERER"
+            name: "WANDERERS"
         },
        woodElves: {
             id: "woodElves",
@@ -2970,10 +3278,25 @@ export class DataStoreImpl implements DataStore {
             grandAlliance: GrandAlliance.order,
             name: "THE EMPIRE"
         },
-       bladesOfKhorne: {
-            id: "bladesOfKhorne",
+       legionOfAzgorh: {
+            id: "legionOfAzgorh",
             grandAlliance: GrandAlliance.chaos,
-            name: "BLADES OF KHORNE"
+            name: "LEGION OF AZGORH"
+        },
+       monstrousArcanum: {
+            id: "monstrousArcanum",
+            grandAlliance: GrandAlliance.destruction,
+            name: "MONSTROUS ARCANUM"
+        },
+       tamurkhanSHorde: {
+            id: "tamurkhanSHorde",
+            grandAlliance: GrandAlliance.chaos,
+            name: "TAMURKHAN'S HORDE"
+        },
+       aelf: {
+            id: "aelf",
+            grandAlliance: GrandAlliance.order,
+            name: "AELF"
         },
    };
    allegiances = {
@@ -3294,6 +3617,18 @@ export class DataStoreImpl implements DataStore {
             name: "Tomb King",
             keyword: "TOMB KING",
             grandAlliance: GrandAlliance.death,
+       },
+           legionOfAzgorh: {
+            id: "legionOfAzgorh",
+            name: "Legion of Azgorh",
+            keyword: "LEGION OF AZGORH",
+            grandAlliance: GrandAlliance.chaos,
+       },
+           tamurkhanSHorde: {
+            id: "tamurkhanSHorde",
+            name: "Tamurkhan's Horde",
+            keyword: "TAMURKHAN'S HORDE",
+            grandAlliance: GrandAlliance.chaos,
        },
     };
    damageTables = {
@@ -3987,6 +4322,186 @@ export class DataStoreImpl implements DataStore {
         ranges: ["0-2", "3-4", "5-7", "8-9", "10+"],
         columns: [{ name: "Move", values: ["10", "8", "8", "6", "4"] },{ name: "Razor-tipped Claws", values: ["6", "5", "4", "3", "2"] },{ name: "Mighty Jaws", values: ["2+", "3+", "3+", "4+", "4+"] }],
     },
+
+    drazhoathTheAshen: {
+        id: "drazhoathTheAshen",
+        ranges: ["0-3", "4-5", "6-8", "9-10", "11+"],
+        columns: [{ name: "Move", values: ["15”", "13”", "11”", "9”", "7”"] },{ name: "Brazen Horns and Teeth", values: ["3", "D3", "D3", "1", "1"] },{ name: "Burning Hooves", values: ["6", "5", "4", "3", "2"] }],
+    },
+
+    ironDaemonWarEngine: {
+        id: "ironDaemonWarEngine",
+        ranges: ["0-2", "3-4", "5-6", "7-9", "10+"],
+        columns: [{ name: "Move", values: ["10”", "9”", "8”", "7”", "6”"] },{ name: "Steam Cannonade", values: ["3+", "3+", "4+", "4+", "5+"] },{ name: "Crushing Bulk", values: ["6", "5", "4", "3", "2"] }],
+    },
+
+    skullcrackerWarEngine: {
+        id: "skullcrackerWarEngine",
+        ranges: ["0-2", "3-4", "5-6", "7-9", "10+"],
+        columns: [{ name: "Move", values: ["10”", "9”", "8”", "7”", "6”"] },{ name: "Hammers and Picks", values: ["3+", "3+", "4+", "4+", "5+"] },{ name: "Crushing Bulk", values: ["6", "5", "4", "3", "2"] }],
+    },
+
+    basilisk: {
+        id: "basilisk",
+        ranges: ["0-1", "2-3", "4-5", "6-7", "8+"],
+        columns: [{ name: "Move", values: ["10\"", "9\"", "8\"", "7\"", "6\""] },{ name: "Venomous Bite", values: ["-2", "-2", "-1", "-1", "-"] },{ name: "Acidic Spittle", values: ["2+", "3+", "4+", "5+", "6+"] }],
+    },
+
+    bonegrinderGargant: {
+        id: "bonegrinderGargant",
+        ranges: ["0-4", "5-8", "9-12", "13-16", "17+"],
+        columns: [{ name: "Move", values: ["12\"", "10\"", "8\"", "7\"", "6\""] },{ name: "Hurled Boulder", values: ["18\"", "16\"", "14\"", "12\"", "10\""] },{ name: "Gargantuan Club", values: ["3D6", "2D6", "2D6", "D6", "D3"] }],
+    },
+
+    carmineDragon: {
+        id: "carmineDragon",
+        ranges: ["0-3", "4-6", "7-9", "10-12", "13+"],
+        columns: [{ name: "Move", values: ["16\"", "14\"", "11\"", "9\"", "6\""] },{ name: "Raking Claws", values: ["8", "7", "6", "5", "4"] },{ name: "Amethyst Fangs", values: ["2+", "3+", "4+", "5+", "6+"] }],
+    },
+
+    chaosSiegeGargant: {
+        id: "chaosSiegeGargant",
+        ranges: ["0-2", "3-4", "5-6", "7-9", "10+"],
+        columns: [{ name: "Move", values: ["7\"", "6\"", "5\"", "4\"", "3\""] },{ name: "Colossal Hook-blades", values: ["7", "6", "5", "4", "3"] }],
+    },
+
+    chaosWarMammoth: {
+        id: "chaosWarMammoth",
+        ranges: ["0-4", "5-8", "9-14", "15-19", "20+"],
+        columns: [{ name: "Move", values: ["12\"", "10\"", "8\"", "6\"", "4\""] },{ name: "Goring Tusks", values: ["5", "4", "3", "2", "1"] },{ name: "Trampling Feet", values: ["10", "8", "6", "4", "2"] }],
+    },
+
+    colossalSquig: {
+        id: "colossalSquig",
+        ranges: ["0-3", "4-7", "8-10", "11-13", "14+"],
+        columns: [{ name: "Move", values: ["4D6\"", "3D6\"", "2D6\"", "2D6\"", "D6\""] },{ name: "Enormous Jaws", values: ["2+", "3+", "4+", "5+", "6+"] },{ name: "Trampling Feet", values: ["10", "8", "6", "4", "2"] }],
+    },
+
+    cursDEttin: {
+        id: "cursDEttin",
+        ranges: ["0-2", "3-4", "5-7", "8-10", "11+"],
+        columns: [{ name: "Move", values: ["10\"", "8\"", "7\"", "6\"", "5\""] },{ name: "Crushing Fist", values: ["2+", "3+", "3+", "4+", "4+"] },{ name: "Stomp", values: ["5", "4", "3", "2", "1"] }],
+    },
+
+    dreadMaw: {
+        id: "dreadMaw",
+        ranges: ["0-3", "4-6", "7-9", "10-12", "13+"],
+        columns: [{ name: "Move", values: ["14\"", "12\"", "10\"", "8\"", "6\""] },{ name: "Cavernous Maw", values: ["-3", "-2", "-2", "-1", "-1"] },{ name: "Writhing Coils", values: ["3D6", "2D6", "D6", "D3", "1"] }],
+    },
+
+    dreadSaurian: {
+        id: "dreadSaurian",
+        ranges: ["0-3", "4-7", "8-10", "11-13", "14+"],
+        columns: [{ name: "Move", values: ["10\"", "9\"", "8\"", "7\"", "6\""] },{ name: "Gargantuan Jaws", values: ["6", "5", "4", "3", "2"] },{ name: "Raking Claws", values: ["10", "8", "6", "4", "2"] }],
+    },
+
+    exaltedGreaterDaemonOfKhorne: {
+        id: "exaltedGreaterDaemonOfKhorne",
+        ranges: ["0-4", "5-8", "9-12", "13-16", "17+"],
+        columns: [{ name: "Move", values: ["12\"", "10\"", "9\"", "8\"", "7\""] },{ name: "Lash of Khorne", values: ["6", "5", "4", "3", "2"] },{ name: "Mighty Axe of Khorne", values: ["2+", "2+", "3+", "3+", "4+"] }],
+    },
+
+    exaltedGreaterDaemonOfNurgle: {
+        id: "exaltedGreaterDaemonOfNurgle",
+        ranges: ["0-4", "5-8", "9-11", "12-13", "14+"],
+        columns: [{ name: "Move", values: ["7\"", "6\"", "5\"", "4\"", "3\""] },{ name: "Noxious Bile", values: ["2+", "3+", "3+", "4+", "5+"] },{ name: "Massive Bilesword", values: ["4", "4", "3", "3", "2"] }],
+    },
+
+    exaltedGreaterDaemonOfSlaanesh: {
+        id: "exaltedGreaterDaemonOfSlaanesh",
+        ranges: ["0-3", "4-7", "8-10", "11-13", "14+"],
+        columns: [{ name: "Move", values: ["14\"", "12\"", "10\"", "8\"", "6\""] },{ name: "Razor-sharp Claws", values: ["7", "6", "5", "4", "3"] },{ name: "Elegant Greatblade", values: ["2+", "2+", "3+", "3+", "4+"] }],
+    },
+
+    exaltedGreaterDaemonOfTzeentch: {
+        id: "exaltedGreaterDaemonOfTzeentch",
+        ranges: ["0-3", "4-6", "7-9", "10-12", "13+"],
+        columns: [{ name: "Move", values: ["10\"", "9\"", "8\"", "7\"", "6\""] },{ name: "Staff of Tzeentch", values: ["2+", "2+", "3+", "3+", "4+"] },{ name: "Infernal Gateway", values: ["2+", "3+", "3+", "4+", "4+"] }],
+    },
+
+    incarnateElementalOfBeasts: {
+        id: "incarnateElementalOfBeasts",
+        ranges: ["0-3", "4-6", "7-9", "10-12", "13+"],
+        columns: [{ name: "Move", values: ["10\"", "8\"", "7\"", "6\"", "5\""] },{ name: "Save", values: ["3+", "4+", "4+", "5+", "6+"] },{ name: "Savage Talons", values: ["12", "10", "8", "6", "4"] }],
+    },
+
+    incarnateElementalOfFire: {
+        id: "incarnateElementalOfFire",
+        ranges: ["0-3", "4-6", "7-9", "10-12", "13+"],
+        columns: [{ name: "Move", values: ["8\"", "7\"", "6\"", "5\"", "4\""] },{ name: "Save", values: ["3+", "4+", "4+", "5+", "6+"] },{ name: "Fiery Bolts", values: ["10", "8", "6", "4", "2"] }],
+    },
+
+    giganticChaosSpawn: {
+        id: "giganticChaosSpawn",
+        ranges: ["0-2", "3-4", "5-7", "8-9", "10+"],
+        columns: [{ name: "Move", values: ["3D6\"", "2D6\"", "2D6\"", "D6\"", "D6\""] },{ name: "Slavering Maws", values: ["-2", "-2", "-1", "-1", "-"] }],
+    },
+
+    magmaDragon: {
+        id: "magmaDragon",
+        ranges: ["0-4", "5-8", "9-12", "13-16", "17+"],
+        columns: [{ name: "Move", values: ["16\"", "14\"", "12\"", "10\"", "8\""] },{ name: "Furnace-hot Jaws", values: ["-3", "-3", "-2", "-2", "-1"] },{ name: "Crushing Claws", values: ["8", "7", "6", "5", "4"] }],
+    },
+
+    mazarallTheButcher: {
+        id: "mazarallTheButcher",
+        ranges: ["0-2", "3-4", "5-7", "8-9", "10+"],
+        columns: [{ name: "Move", values: ["12\"", "10\"", "8\"", "6\"", "4\""] },{ name: "Harrow Meat", values: ["-2", "-2", "-1", "-1", "-"] },{ name: "Ancyte’s Shield Blades", values: ["5", "4", "3", "2", "1"] }],
+    },
+
+    merwyrm: {
+        id: "merwyrm",
+        ranges: ["0-2", "3-4", "5-7", "8-9", "10+"],
+        columns: [{ name: "Move", values: ["8\"", "7\"", "6\"", "5\"", "4\""] },{ name: "Hideous Jaws", values: ["-3", "-2", "-2", "-1", "-"] },{ name: "Powerful Tail", values: ["6", "D6", "D3", "2", "1"] }],
+    },
+
+    mourngul: {
+        id: "mourngul",
+        ranges: ["0-2", "3-4", "5-6", "7-8", "9+"],
+        columns: [{ name: "Move", values: ["12\"", "10\"", "9\"", "8\"", "7\""] },{ name: "Nightmarish Claws and Fangs", values: ["8", "7", "6", "5", "4"] }],
+    },
+
+    rogueIdol: {
+        id: "rogueIdol",
+        ranges: ["0-4", "5-8", "9-11", "12-13", "14+"],
+        columns: [{ name: "Move", values: ["10\"", "8\"", "6\"", "4\"", "2\""] },{ name: "Boulder Fists", values: ["2+", "3+", "3+", "4+", "5+"] },{ name: "Stompin’ Feet", values: ["10", "8", "6", "4", "2"] }],
+    },
+
+    skaaracTheBloodborn: {
+        id: "skaaracTheBloodborn",
+        ranges: ["0-3", "4-7", "8-10", "11-14", "15+"],
+        columns: [{ name: "Move", values: ["10\"", "9\"", "8\"", "7\"", "6\""] },{ name: "Burning Blood", values: ["3+", "3+", "4+", "4+", "5+"] },{ name: "Brutal Blades", values: ["8", "7", "6", "5", "4"] }],
+    },
+
+    troggothHag: {
+        id: "troggothHag",
+        ranges: ["0-4", "5-8", "9-11", "12-13", "14+"],
+        columns: [{ name: "Move", values: ["8\"", "7\"", "6\"", "5\"", "4+"] },{ name: "Copious Vomit", values: ["6", "5", "4", "3", "2"] },{ name: "Deadwood Staff", values: ["2+", "3+", "3+", "4+", "5+"] }],
+    },
+
+    warpfireDragon: {
+        id: "warpfireDragon",
+        ranges: ["0-2", "3-4", "5-7", "8-9", "10+"],
+        columns: [{ name: "Move", values: ["12\"", "10\"", "8\"", "6\"", "4\""] },{ name: "Snapping Jaws", values: ["3+", "3+", "4+", "4+", "5+"] },{ name: "Twisted Claws", values: ["5", "4", "3", "2", "1"] }],
+    },
+
+    warpgnawVerminlord: {
+        id: "warpgnawVerminlord",
+        ranges: ["0-1", "2-3", "4-5", "6-7", "8+"],
+        columns: [{ name: "Move", values: ["12\"", "10\"", "8\"", "6\"", "4\""] },{ name: "Prehensile Tail", values: ["5", "4", "3", "2", "1"] },{ name: "Gnaw-glaive", values: ["5", "4", "3", "2", "1"] }],
+    },
+
+    highWarden: {
+        id: "highWarden",
+        ranges: ["0-2", "3-4", "5-7", "8-9", "10+"],
+        columns: [{ name: "Move", values: ["16\"", "14\"", "12\"", "10\"", "8\""] },{ name: "Wicked Talons", values: ["6", "5", "4", "3", "2"] },{ name: "Razor-sharp Beak", values: ["3+", "4+", "4+", "5+", "5+"] }],
+    },
+
+    tamurkhanTheMaggotLord: {
+        id: "tamurkhanTheMaggotLord",
+        ranges: ["0-3", "4-7", "8-10", "11-14", "15+"],
+        columns: [{ name: "Move", values: ["10\"", "9\"", "8\"", "7\"", "6\""] },{ name: "Crushing Jaws", values: ["3+", "4+", "4+", "5+", "6+"] },{ name: "Befouled Bulk", values: ["12", "10", "8", "6", "4"] }],
+    },
    };
    options = {
 
@@ -4060,6 +4575,12 @@ export class DataStoreImpl implements DataStore {
             id: "graveGuardHornblower",
             name: "HORNBLOWER",
             description: "Models in this unit may be Hornblowers. A unit that includes any Hornblowers can always move up to 6\" when it charges, unless its charge roll is higher.",
+        },
+
+        grundstokThunderersHonourBearer: {
+            id: "grundstokThunderersHonourBearer",
+            name: "HONOUR BEARER",
+            description: "Models in this unit can be Honour Bearers. You can re-roll battleshock tests for a unit of Grundstok Thunderers that includes any Honour Bearers.",
         },
 
         gryphHoundsGryphHoundAlpha: {
@@ -4673,6 +5194,42 @@ export class DataStoreImpl implements DataStore {
             name: "DEATHBEAT DRUMMER",
             description: "Models in this unit can be Deathbeat Drummers. A unit that includes any Deathbeat Drummers can retreat and charge in the same turn.",
         },
+
+        infernalGuardFireglaivesIconOfDominionBearers: {
+            id: "infernalGuardFireglaivesIconOfDominionBearers",
+            name: "ICON OF DOMINION BEARERS",
+            description: "1 model in this unit can be Icon of Dominion Bearer. Add 1 to the Bravery characteristic of a unit that includes an Icon of Dominion Bearer.",
+        },
+
+        infernalGuardFireglaivesDrummer: {
+            id: "infernalGuardFireglaivesDrummer",
+            name: "DRUMMER",
+            description: "1 model in this unit can be a Drummer. Add 1 to run rolls for a unit that includes a Drummer.",
+        },
+
+        infernalGuardIronswornIconOfDominionBearers: {
+            id: "infernalGuardIronswornIconOfDominionBearers",
+            name: "ICON OF DOMINION BEARERS",
+            description: "1 model in this unit can be Icon of Dominion Bearer. Add 1 to the Bravery characteristic of a unit that includes an Icon of Dominion Bearer.",
+        },
+
+        infernalGuardIronswornDrummer: {
+            id: "infernalGuardIronswornDrummer",
+            name: "DRUMMER",
+            description: "1 model in this unit can be a Drummer. Add 1 to run rolls for a unit that includes a Drummer.",
+        },
+
+        spireguardHornblower: {
+            id: "spireguardHornblower",
+            name: "HORNBLOWER",
+            description: "Models in this unit may be Hornblowers. You can re-roll any dice rolls of 1 when determining how far this unit can run or charge if it includes any Hornblowers.",
+        },
+
+        spireguardStandardBearer: {
+            id: "spireguardStandardBearer",
+            name: "STANDARD BEARER",
+            description: "Models in this unit may be Standard Bearers. If the unit includes any Standard Bearers, add 1 to the Bravery of its models. Add 2 to their Bravery instead if the unit is within 8\" of another Swifthawk Agents unit from your army that includes a Standard Bearer.",
+        },
    };
    abilities = {
 
@@ -4713,6 +5270,13 @@ Queen warscroll (pg 77) for a description of how Morathi transforms.",
         description: "Arnzipal’s Black Horror has a casting value of 7. If successfully cast, pick an enemy unit within 18\" of the caster that is visible to them and roll a dice. On a 1 that unit suffers 1 mortal wound, on a 2 or 3 it suffers D3 mortal wounds, and on a 4+ it suffers D6 mortal wounds.",
            flavor: "A roiling black cloud of energy swirls into existence, smoking tendrils lashing out from it to clutch at those nearby.",
         category: AbilityCategory.Magic,
+        },
+
+    morathiHighOracleOfKhaineWorshipThroughBloodshed: {
+        id: "morathiHighOracleOfKhaineWorshipThroughBloodshed",
+        name: "Worship Through Bloodshed",
+        description: "If Morathi, High Oracle of Khaine is your general, you can use this ability. If you do, pick up to 2 friendly Daughters of Khaine units within 14\" of Morathi (you cannot choose Morathi herself). Those units can immediately shoot as if it were the shooting phase. Alternatively, if either unit is within 3\" of an enemy unit, it can instead be chosen to pile in and attack as if it were the combat phase. The same unit cannot be picked to benefit from this command ability more than once per hero phase.",
+        category: AbilityCategory.Command,
         },
 
     morathiTheShadowQueenMonstrousRevelation: {
@@ -4798,6 +5362,13 @@ Dance of Doom: Until your next hero phase, this model can be chosen to pile in a
         id: "slaughterQueenPactOfBlood",
         name: "Pact of Blood",
         description: "A Slaughter Queen can attempt to unbind one spell in the enemy hero phase as if it were a Wizard.",
+        },
+
+    slaughterQueenOrgyOfSlaughter: {
+        id: "slaughterQueenOrgyOfSlaughter",
+        name: "Orgy of Slaughter",
+        description: "If this model is your general, you can use this ability. If you do, pick a friendly Daughters of Khaine unit within 14\" of this model. If that unit is within 3\" of an enemy unit, it can pile in and attack as if it were the combat phase. The same unit cannot be picked to benefit from this command ability more than once per hero phase.",
+        category: AbilityCategory.Command,
         },
 
     avatarOfKhaineWrathOfKhaine: {
@@ -4972,6 +5543,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         description: "Add 1 to the Bravery characteristic of friendly Daughters of Khaine units that are within 7\" of any friendly Avatars of Khaine.",
         },
 
+    slaughterQueenOnCauldronOfBloodOrgyOfSlaughter: {
+        id: "slaughterQueenOnCauldronOfBloodOrgyOfSlaughter",
+        name: "Orgy of Slaughter",
+        description: "If this model is your general, you can use this ability. If you do, pick a friendly Daughters of Khaine unit within 14\" of this model. If that unit is within 3\" of an enemy unit, it can pile in and attack as if it were the combat phase. The same unit cannot be picked to benefit from this command ability more than once per hero phase.",
+        category: AbilityCategory.Command,
+        },
+
     bloodwrackShrineBladedImpact: {
         id: "bloodwrackShrineBladedImpact",
         name: "Bladed Impact",
@@ -5011,14 +5589,14 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
             category: AbilityCategory.SpecialRule,
         },
 
-    blookwrackMedusaBloodwrackStare: {
-        id: "blookwrackMedusaBloodwrackStare",
+    bloodwrackMedusaBloodwrackStare: {
+        id: "bloodwrackMedusaBloodwrackStare",
         name: "Bloodwrack Stare",
         description: "When making a Bloodwrack Stare attack, pick a unit that is visible to the Bloodwrack Medusa and roll a dice for each model in that unit that is within range; for each roll of 5+ the unit suffers 1 mortal wound.",
         },
 
-    blookwrackMedusaEnfeeblingFoe: {
-        id: "blookwrackMedusaEnfeeblingFoe",
+    bloodwrackMedusaEnfeeblingFoe: {
+        id: "bloodwrackMedusaEnfeeblingFoe",
         name: "Enfeebling Foe",
         description: "Enfeebling Foe has a casting value of 5. If successfully cast, pick a unit within 18\" of the caster that is visible to them. Until your next hero phase, subtract 1 from wound rolls for that unit in the combat phase.",
            flavor: "The Bloodwrack Medusa reaches into her victims’ minds, sapping their strength.",
@@ -5216,6 +5794,14 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
            flavor: "Every Deepmare has a spiral horn upon its head, which it uses to gore the foe when it charges into combat.",
         },
 
+    volturnosSupremeLordOfTides: {
+        id: "volturnosSupremeLordOfTides",
+        name: "Supreme Lord of Tides",
+        description: "You can use this command ability if Volturnos is your general and the High Tide ability from the Tides of Death table applies for the battle round. If you do so, pick up to 3 friendly IDONETH DEEPKIN units wholly within 18\" of Volturnos. Add 1 to the Attacks characteristic of melee weapons used by those units until your next hero phase.",
+           flavor: "At the High King’s command his warriors will attack with unrelenting fury if the tide is high.",
+        category: AbilityCategory.Command,
+        },
+
         volturnosFly: {
             id: "volturnosFly",
             name: "FLY",
@@ -5249,6 +5835,14 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         name: "Wave Rider",
         description: "In the combat phase, this model’s Bladed Polearm has a Damage characteristic of 3 if the model made a charge move in the same turn.",
            flavor: "When an Akhelian King charges the foe, their rhomphaia hits with the power of a crashing wave.",
+        },
+
+    akhelianKingLordOfTides: {
+        id: "akhelianKingLordOfTides",
+        name: "Lord of Tides",
+        description: "You can use this command ability if this model is your general and the High Tide ability from the Tides of Death table applies for the battle round. If you do so, pick a friendly IDONETH DEEPKIN unit wholly within 12\" of your general. Add 1 to the Attacks characteristic of melee weapons used by that unit until your next hero phase.",
+           flavor: "At the King’s command his warriors will attack as if the tide were high.",
+        category: AbilityCategory.Command,
         },
 
         akhelianKingFly: {
@@ -5416,7 +6010,7 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
     lordOrdinatorArcaneEngineer: {
         id: "lordOrdinatorArcaneEngineer",
         name: "Arcane Engineer",
-        description: "dd 1 to hit rolls for attacks made by Order War Machines while they are wholly within 9\" of one or more friendly Lord-Ordinators.",
+        description: "Add 1 to hit rolls for attacks made by Order War Machines while they are wholly within 9\" of one or more friendly Lord-Ordinators.",
            flavor: "A Lord-Ordinator is a scryer of possibilities. Those under their command gain insights into the movements of the enemy.",
         },
 
@@ -5434,6 +6028,14 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
            flavor: "A blow from an astral grandhammer can shatter most types of armour.",
         },
 
+    lordOrdinatorSolemnDuty: {
+        id: "lordOrdinatorSolemnDuty",
+        name: "Solemn Duty",
+        description: "You can use this command ability at the start of the battleshock phase. If you do so, pick a friendly model with this command ability. Until the end of that phase, you do not have to take battleshock tests for friendly Stormcast Eternal units that are wholly within 18\" of that model.",
+           flavor: "A Lord-Ordinator leads their warriors to battle without a hint of trepidation.",
+        category: AbilityCategory.Command,
+        },
+
     darkoathWarqueenSavageDuellist: {
         id: "darkoathWarqueenSavageDuellist",
         name: "Savage Duellist",
@@ -5446,6 +6048,14 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         name: "Infernal Runeshield",
         description: "Roll a dice each time you allocate a wound or mortal wound to this model. On a 6+ the wound is negated and the attacking model’s unit suffers 1 mortal wound after all of their attacks have been made.",
            flavor: "Inscribed with the runes of the barbarian tribes she has conquered, the Darkoath Warqueen’s shield is blessed by daemonic power.",
+        },
+
+    darkoathWarqueenTheWillOfTheGods: {
+        id: "darkoathWarqueenTheWillOfTheGods",
+        name: "The Will of the Gods",
+        description: "If this model is your general and uses this command ability, then you can re-roll failed charge rolls for friendly Slaves to Darkness units that are wholly within 12\" of your general at the start of the charge phase.",
+           flavor: "The Darkoath Warqueen speaks with an irresistible authority, for she has heard the wishes of the Chaos pantheon and leads her tribespeople to battle in their name. When she calls for her people to begin the slaughter, they are spurred to an all-out charge.",
+        category: AbilityCategory.Command,
         },
 
     fungoidCaveShamanDeffcapMushroom: {
@@ -5477,6 +6087,14 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         category: AbilityCategory.Magic,
         },
 
+    fungoidCaveShamanMouthpieceOfMork: {
+        id: "fungoidCaveShamanMouthpieceOfMork",
+        name: "Mouthpiece of Mork",
+        description: "If this model is your general and uses this command ability, then you can charge with one friendly Grot or Orruk unit that is wholly within 18\" of your general at the start of the following charge phase even if the unit ran or retreated earlier in the same turn.",
+           flavor: "The Cave-Shaman believes himself not to be a loony unmoored from the tethers of sanity, but a wise prophet with a direct conduit to the greenskin god Mork. Perhaps he is right – either way, he has a knack for planning a cunnin’ trap.",
+        category: AbilityCategory.Command,
+        },
+
     knightOfShroudsEthereal: {
         id: "knightOfShroudsEthereal",
         name: "Ethereal",
@@ -5489,6 +6107,14 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         name: "Stolen Hours",
         description: "Each time a wound inflicted by this model’s Sword of Stolen Hours slays an enemy Hero, heal 1 wound allocated to this model.",
            flavor: "The bearer of a sword of stolen hours can steal vital energy from a foe and use it to increase their own power.",
+        },
+
+    knightOfShroudsSpectralOverseer: {
+        id: "knightOfShroudsSpectralOverseer",
+        name: "Spectral Overseer",
+        description: "You can use this command ability at the start of the combat phase. If you do so, pick a friendly model with this command ability. Add 1 to hit rolls for friendly Nighthaunt units while they are wholly within 12\" of that model in that combat phase.",
+           flavor: "In life, the Knight of Shrouds commanded legions of devoted soldiers. In death, he turns his military genius to the command of shrieking spirits and vengeful phantasms.",
+        category: AbilityCategory.Command,
         },
 
         knightOfShroudsFly: {
@@ -5549,6 +6175,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         category: AbilityCategory.Magic,
         },
 
+    nagashSupremeLordOfTheUndeadSupremeLordOfDeath: {
+        id: "nagashSupremeLordOfTheUndeadSupremeLordOfDeath",
+        name: "Supreme Lord of Death",
+        description: "If Nagash uses this ability, then until your next hero phase you can reroll hit and save rolls of 1 for all friendly Death units. In addition, do not take battleshock tests for Death units affected by this ability.",
+        category: AbilityCategory.Command,
+        },
+
         nagashSupremeLordOfTheUndeadFly: {
             id: "nagashSupremeLordOfTheUndeadFly",
             name: "FLY",
@@ -5592,6 +6225,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         description: "Curse of Years has a casting value of 6. If successfully cast, pick an enemy unit within 18\" of the caster that is visible to them and roll ten dice. For each roll of 6, that unit suffers a mortal wound and you can roll an extra dice. For each roll of 5+ on these extra dice, the target suffers another mortal wound and you can roll another dice. Now, for each roll of 4+, the target suffers another mortal wound and you can roll another dice. Keep rolling dice in this way, inflicting mortal wounds and reducing the roll needed to cause them by 1 each time, until either no wounds are inflicted or the target unit is destroyed.",
            flavor: "Tracing a spiteful gesture in the air, Arkhan curses the enemy to age at an incredible rate.",
         category: AbilityCategory.Magic,
+        },
+
+    arkhanTheBlackMortarchOfSacramentFirstOfTheMortarchs: {
+        id: "arkhanTheBlackMortarchOfSacramentFirstOfTheMortarchs",
+        name: "First of the Mortarchs",
+        description: "If Arkhan the Black uses this ability, then until the end of the hero phase all friendly Death Wizards within 18\" of him can increase the range of their spells by 6\".",
+        category: AbilityCategory.Command,
         },
 
         arkhanTheBlackMortarchOfSacramentFly: {
@@ -5645,6 +6285,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         category: AbilityCategory.Magic,
         },
 
+    mannfredMortarchOfNightVigourOfUndeath: {
+        id: "mannfredMortarchOfNightVigourOfUndeath",
+        name: "Vigour of Undeath",
+        description: "If Mannfred uses this ability, then until your next hero phase you can re-roll hit and wound rolls of 1 for friendly Death units that are within the range shown on the damage table.",
+        category: AbilityCategory.Command,
+        },
+
         mannfredMortarchOfNightFly: {
             id: "mannfredMortarchOfNightFly",
             name: "FLY",
@@ -5682,6 +6329,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         description: "Dark Mist has a casting value of 6. If successfully cast, pick a friendly Death unit within 18\" of the caster. Until your next hero phase, that unit can fly and you must ignore modifiers (positive or negative) when making save rolls for the unit.",
            flavor: "At her arcane command, tendrils of dark mist coil around Neferata’s minions, turning their corporeal forms as insubstantial as smoke.",
         category: AbilityCategory.Magic,
+        },
+
+    neferataMortarchOfBloodTwilightSAllure: {
+        id: "neferataMortarchOfBloodTwilightSAllure",
+        name: "Twilight’s Allure",
+        description: "If Neferata uses this ability, then until your next hero phase subtract 1 from hit rolls for enemy units that are within the range shown on the damage table.",
+        category: AbilityCategory.Command,
         },
 
         neferataMortarchOfBloodFly: {
@@ -5727,6 +6381,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         description: "Quickblood has a casting value of 7. If successfully cast, add 1 to hit and wound rolls for the caster until your next hero phase.",
            flavor: "Prince Vhordrai calls upon the power of the ancient curse running through his veins, lending strength and shocking speed to his strikes.",
         category: AbilityCategory.Magic,
+        },
+
+    princeVhordraiFistOfNagash: {
+        id: "princeVhordraiFistOfNagash",
+        name: "Fist of Nagash",
+        description: "If Prince Vhordrai uses this ability, pick a friendly Death Hero within 14\" of him (you cannot choose Prince Vhordrai). That hero can immediately either be chosen to pile in and attack as if it were the combat phase, or if it is a Wizard, attempt to cast a spell in addition to any others they can attempt to cast this phase. The same unit cannot be picked to benefit from this command ability more than once per hero phase.",
+        category: AbilityCategory.Command,
         },
 
         princeVhordraiFly: {
@@ -5816,6 +6477,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         description: "Blood Boil has a casting value of 6. If successfully cast, pick an enemy unit within 18\" of the caster that is visible to them. That unit suffers a mortal wound. If a model was allocated any wounds caused by this spell but was not slain, roll another dice. On a 4+ that model suffers another mortal wound. If the model is still not slain, roll another dice. It will suffer another mortal wound on a 4+. Keep rolling dice in this way until either the model is slain or you fail to cause a mortal wound.",
            flavor: "The Vampire Lord utters a curse that causes his foe’s blood to boil in their veins.",
         category: AbilityCategory.Magic,
+        },
+
+    vampireLordOnZombieDragonDreadKnight: {
+        id: "vampireLordOnZombieDragonDreadKnight",
+        name: "Dread Knight",
+        description: "If this model uses this ability, pick a friendly Death unit within 15\" of it. Until your next hero phase, you can re-roll failed hit rolls for that unit.",
+        category: AbilityCategory.Command,
         },
 
         vampireLordOnZombieDragonFly: {
@@ -5934,6 +6602,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         description: "At the start of your hero phase, pick up to 3 different friendly Summonable units within 12\" of this model. You can heal D3 wounds that have been allocated to each unit you picked (roll separately for each unit). If no wounds are currently allocated to a unit you have picked, you may instead return a number of slain models to it that have a combined Wounds characteristic equal to or less than the roll of a D3.",
         },
 
+    vampireLordBloodFeast: {
+        id: "vampireLordBloodFeast",
+        name: "Blood Feast",
+        description: "If this model uses this ability, pick a friendly Death unit within 15\" of it. Models in that unit make one extra attack with each of their melee weapons until your next hero phase.",
+        category: AbilityCategory.Command,
+        },
+
         vampireLordNightmare: {
             id: "vampireLordNightmare",
             name: "NIGHTMARE",
@@ -6017,6 +6692,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         description: "Beguile has a casting value of 6. If successfully cast, pick an enemy unit within 12\" of the caster that is visible to them and roll three dice. If the total is higher than that unit’s Bravery, then until your next hero phase the caster cannot be selected as the target of any attacks made by that unit or spells cast by that unit.",
            flavor: "Staring into her prey’s eyes, the caster clouds their minds and steals their hearts.",
         category: AbilityCategory.Magic,
+        },
+
+    covenThroneTacticalInsight: {
+        id: "covenThroneTacticalInsight",
+        name: "Tactical Insight",
+        description: "If this model uses this ability, pick a friendly Death unit within 12\" of it. You can re-roll hit, wound and save rolls of 1 for that unit until your next hero phase.",
+        category: AbilityCategory.Command,
         },
 
         covenThroneFly: {
@@ -6175,6 +6857,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         description: "At the start of your hero phase, pick up to 2 different friendly Summonable units within 6\" of this model. You can heal D3 wounds that have been allocated to each unit you picked (roll separately for each unit). If no wounds are currently allocated to a unit you have picked, you may instead return a number of slain models to it that have a combined Wounds characteristic equal to or less than the roll of a D3.",
         },
 
+    wightKingLordOfBones: {
+        id: "wightKingLordOfBones",
+        name: "Lord of Bones",
+        description: "If this model uses this ability, pick a friendly Deathrattle unit within 18\" of it. Until your next hero phase, add 1 to the Attacks characteristic of that unit’s melee weapons.",
+        category: AbilityCategory.Command,
+        },
+
         wightKingSkeletalSteed: {
             id: "wightKingSkeletalSteed",
             name: "SKELETAL STEED",
@@ -6290,6 +6979,21 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         name: "Reaped Like Corn",
         description: "You can re-roll failed hit rolls for attacks made with a Reaper Scythe if the target unit has 5 or more models.",
            flavor: "The scythe wielded by a Cairn Wraith can be swung in great sweeping arcs, cutting down whole ranks of enemy warriors.",
+        },
+
+    cairnWraithEthereal: {
+        id: "cairnWraithEthereal",
+        name: "Ethereal",
+        description: "Ignore modifiers (positive or negative) when making save rolls for attacks that target this model.",
+           flavor: "Creatures whose bodies have rotted away are difficult to harm with ordinary weapons.",
+        },
+
+    cairnWraithFrightfulTouch: {
+        id: "cairnWraithFrightfulTouch",
+        name: "Frightful Touch",
+        description: "If the unmodified hit roll for an attack made with a Reaper Scythe is 6, that attack inflicts 2 mortal wounds and the attack sequence ends (do not make a wound or save roll).",
+           flavor: "The touch of a Cairn Wraith is imbued with the lethal chill of the grave, an unholy force that is transferred to the blade of its Reaper Scythe. Even the slightest nick from such a weapon might still a beating heart.\
+",
         },
 
         cairnWraithFly: {
@@ -6554,6 +7258,13 @@ Wrath of Khaine: Pick a friendly Avatar of Khaine on the battlefield; until your
         category: AbilityCategory.Magic,
         },
 
+    greatUncleanOneGrandfatherSJoy: {
+        id: "greatUncleanOneGrandfatherSJoy",
+        name: "Grandfather’s Joy",
+        description: "You can use this command ability in your hero phase. If you do, pick a friendly Nurgle Daemon unit within 21\" of this model. Add 1 to the Attacks characteristic of all melee weapons used by that unit until your next hero phase.",
+        category: AbilityCategory.Command,
+        },
+
     poxbringerHeraldOfNurgleDisgustinglyResilient: {
         id: "poxbringerHeraldOfNurgleDisgustinglyResilient",
         name: "Disgustingly Resilient",
@@ -6803,6 +7514,13 @@ These bonuses are cumulative and last for the rest of the battle, but end if Epi
         category: AbilityCategory.Magic,
         },
 
+    theGlottkinLordsOfNurgle: {
+        id: "theGlottkinLordsOfNurgle",
+        name: "Lords of Nurgle",
+        description: "You can use this command ability in your hero phase. If you do, then until your next hero phase add 1 to the Attacks characteristic of any melee weapons used by friendly Nurgle units while they are within 14\" of this model.",
+        category: AbilityCategory.Command,
+        },
+
     orghottsDaemonspewAcidIchor: {
         id: "orghottsDaemonspewAcidIchor",
         name: "Acid Ichor",
@@ -6819,6 +7537,13 @@ These bonuses are cumulative and last for the rest of the battle, but end if Epi
         id: "orghottsDaemonspewTheRotaxes",
         name: "The Rotaxes",
         description: "At the end of the combat phase, roll a dice for each enemy model that was allocated any wounds caused by the Rotaxes in that combat phase and was not slain. On a 4+ that model suffers 1 mortal wound.",
+        },
+
+    orghottsDaemonspewFesterAndRot: {
+        id: "orghottsDaemonspewFesterAndRot",
+        name: "Fester and Rot",
+        description: "You can use this command ability in your hero phase. If you do, pick a friendly Nurgle unit within 14\" of Orghotts Daemonspew. Re-roll failed wound rolls for that unit until your next hero phase.",
+        category: AbilityCategory.Command,
         },
 
     bloabRotspawnedDaemonFlies: {
@@ -6894,6 +7619,13 @@ These bonuses are cumulative and last for the rest of the battle, but end if Epi
         description: "In your hero phase, roll a dice for each unit (friend or foe) within 3\" of any friendly units with this ability. On a 6+ that unit suffers D3 mortal wounds. If the unit has the Nurgle keyword, heal D3 wounds allocated to it instead.",
         },
 
+    lordOfAfflictionsSpearheadOfContagion: {
+        id: "lordOfAfflictionsSpearheadOfContagion",
+        name: "Spearhead of Contagion",
+        description: "If this model is your general, you can use this ability in your hero phase. If you do, pick a friendly Pusgoyle Blightlords unit within 14\" of this model. Add 8\" to that unit’s Move characteristic until your next hero phase. The same unit cannot benefit from this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
+        },
+
         lordOfAfflictionsFly: {
             id: "lordOfAfflictionsFly",
             name: "FLY",
@@ -6932,6 +7664,13 @@ These bonuses are cumulative and last for the rest of the battle, but end if Epi
         description: "Once per battle, at the start of your hero phase, pick an enemy Hero within 1\" of this model and roll a dice. On a 2+ that Hero suffers D3 mortal wounds. On a 4+ that Hero suffers D3 mortal wounds, and each other enemy unit within 7\" of that Hero suffers 1 mortal wound.",
         },
 
+    harbingerOfDecayMorbidVigour: {
+        id: "harbingerOfDecayMorbidVigour",
+        name: "Morbid Vigour",
+        description: "You can use this command ability in your hero phase. If you do, then until your next hero phase roll a dice each time you allocate a wound or mortal wound to a friendly Nurgle Mortal unit while they are within 7\" of this model. On a 5+ the wound is negated. The same unit cannot benefit from this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
+        },
+
     sorcererBlessedWithVitality: {
         id: "sorcererBlessedWithVitality",
         name: "Blessed with Vitality",
@@ -6955,6 +7694,13 @@ These bonuses are cumulative and last for the rest of the battle, but end if Epi
         id: "lordOfBlightsVermidShield",
         name: "Vermid Shield",
         description: "In the combat phase, re-roll save rolls of 1 for this model.",
+        },
+
+    lordOfBlightsPlagueOfFlies: {
+        id: "lordOfBlightsPlagueOfFlies",
+        name: "Plague of Flies",
+        description: "You can use this command ability in your hero phase. If you do, pick a friendly Nurgle unit within 21\" of it. Until your next hero phase, subtract 1 from the hit rolls of attacks that target that unit in the shooting phase. If the unit contains 20 or more models, subtract 2 from the hit rolls of attacks that target that unit in the shooting phase, and 1 from the hit rolls of attacks that target that unit in the combat phase instead. The same unit cannot benefit from this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
         },
 
     gutrotSpumeClutchingPseudopods: {
@@ -6991,6 +7737,13 @@ These bonuses are cumulative and last for the rest of the battle, but end if Epi
         id: "lordOfPlaguesPlagueRiddenGreatWeapon",
         name: "Plague-ridden Great Weapon",
         description: "Each time you make a hit roll of 6+ for this model’s Plagueridden Great Blade, that hit roll inflicts D6 hits instead of 1.",
+        },
+
+    lordOfPlaguesGrandfatherSGift: {
+        id: "lordOfPlaguesGrandfatherSGift",
+        name: "Grandfather’s Gift",
+        description: "You can use this command ability in your hero phase. If you do, pick an enemy unit within 21\" of it and roll 7 dice. That unit suffers 1 mortal wound for each roll of 6+.",
+        category: AbilityCategory.Command,
         },
 
     putridBlightkingsVirulentDischarge: {
@@ -7075,6 +7828,13 @@ These bonuses are cumulative and last for the rest of the battle, but end if Epi
         description: "Brokk Grungsson does not count towards the maximum number of Skyfarers that can be embarked on a Skyvessel, and is not counted for the Overburdened rule.",
         },
 
+    brokkGrungssonLordMagnateOfBarakNarFirstRuleOfGrungsson: {
+        id: "brokkGrungssonLordMagnateOfBarakNarFirstRuleOfGrungsson",
+        name: "First Rule of Grungsson",
+        description: "If Brokk Grungsson uses this ability, he invokes his first and most significant commentary on the Code – ‘to the victor, the spoils’. Until your next hero phase, friendly Kharadron Overlords units within 18\" can charge even if they ran in the same turn.",
+        category: AbilityCategory.Command,
+        },
+
         brokkGrungssonLordMagnateOfBarakNarFly: {
             id: "brokkGrungssonLordMagnateOfBarakNarFly",
             name: "FLY",
@@ -7098,6 +7858,19 @@ These bonuses are cumulative and last for the rest of the battle, but end if Epi
         id: "arkanautAdmiralIfYouWantAJobDone",
         name: "If You Want A Job Done…",
         description: "You can re-roll hit and wound rolls of 1 for an Arkanaut Admiral if the target is a Hero or Monster.",
+        },
+
+    arkanautAdmiralInvokeTheCode: {
+        id: "arkanautAdmiralInvokeTheCode",
+        name: "Invoke the Code",
+        description: "If an Arkanaut Admiral uses this ability, they invoke one of the central tenets of the Code. Choose one of the following tenets – the effect lasts until your next hero phase.\
+\
+Lead By Example: Friendly Kharadron Overlords units within 12\" of the Admiral in the battleshock phase do not have to take battleshock tests.\
+\
+Look Out For The Boss: If there is a friendly Skyfarers unit within 1\" when the Admiral suffers a wound or mortal wound, you can roll a dice. On a 5 or 6, that unit suffers a mortal wound instead.\
+\
+Talk Softly, Carry A Big Hammer: Re-roll failed hit and wound rolls for the Admiral in the combat phase.",
+        category: AbilityCategory.Command,
         },
 
     aethericNavigatorAethersight: {
@@ -7373,7 +8146,7 @@ Grudgesettler Bombs: The enemy unit suffers D3 mortal wounds. Units that can fly
     grundstokThunderersDrillbill: {
         id: "grundstokThunderersDrillbill",
         name: "Drillbill",
-        description: "A unit of Grundstok Thunderers can be accompanied by an aethermatic bird known as a Drillbill, which perches upon the shoulder of one of the duardin. When the unit is threatened, the Drillbill whirrs to life, pecking at the enemy’s vulnerable spots. If any enemy unit ends its charge within 1\" of a unit with a Drillbill, roll a dice. On a 2 or more the unit suffers a mortal wound.",
+        description: "A unit of Grundstok Thunderers can be accompanied by an aethermatic bird known as a Drillbill, which perches upon the shoulder of one of the duardin. When the unit is threatened, the Drillbill whirrs to life, pecking at the enemy’s vulnerable spots. If any enemy unit ends its charge within 1” of a unit with a Drillbill, roll a dice. On a 2 or more the unit suffers a mortal wound.",
         },
 
     grundstokThunderersKeepYourDistance: {
@@ -7385,7 +8158,7 @@ Grudgesettler Bombs: The enemy unit suffers D3 mortal wounds. Units that can fly
     grundstokThunderersChokingFug: {
         id: "grundstokThunderersChokingFug",
         name: "Choking Fug",
-        description: "Enemy models that end their charge within 2\" of any models with an Aetheric Fumigator reduce the Attacks characteristics of all of their weapons by 1, to a minimum of 1, until the end of the subsequent combat phase.",
+        description: "Enemy models that end their charge within 2” of any models with an Aetheric Fumigator reduce the Attacks characteristics of all of their weapons by 1, to a minimum of 1, until the end of the subsequent combat phase.",
         },
 
     grundstokThunderersPinThemShredThem: {
@@ -7404,13 +8177,6 @@ Grudgesettler Bombs: The enemy unit suffers D3 mortal wounds. Units that can fly
             id: "grundstokThunderersGunnerySergeant",
             name: "GUNNERY SERGEANT",
             description: "The leader of this unit is the Gunnery Sergeant. A Gunnery Sergeant makes 4 attacks rather than 2 with an Aethershot Rifle.",
-            category: AbilityCategory.SpecialRule,
-        },
-
-        grundstokThunderersHonourBearer: {
-            id: "grundstokThunderersHonourBearer",
-            name: "HONOUR BEARER",
-            description: "Models in this unit can be Honour Bearers. You can re-roll battleshock tests for a unit of Grundstok Thunderers that includes any Honour Bearers.",
             category: AbilityCategory.SpecialRule,
         },
 
@@ -7554,6 +8320,13 @@ Skarbrand can use his rage to fuel one or more of the following abilities. Each 
         description: "The ground around a Bloodthirster of Unfettered Fury becomes cracked and broken beneath its stomping hooves, causing molten rock to bubble up from deep below. At the beginning of your hero phase, roll a dice for each enemy unit within 8\". On a 6, that unit suffers a mortal wound and halves its Move until your next hero phase.",
         },
 
+    bloodthirsterOfUnfetteredFuryRejoiceInTheSlaughter: {
+        id: "bloodthirsterOfUnfetteredFuryRejoiceInTheSlaughter",
+        name: "Rejoice in the Slaughter",
+        description: "A Bloodthirster of Unfettered Fury is an unsubtle leader, driving its subjects into the enemy in great numbers. If a Bloodthirster of Unfettered Fury uses this ability, then until your next hero phase Khorne Daemon units within 8\" of this model when they pile in can move up to 6\" instead of 3\".",
+        category: AbilityCategory.Command,
+        },
+
         bloodthirsterOfUnfetteredFuryFly: {
             id: "bloodthirsterOfUnfetteredFuryFly",
             name: "FLY",
@@ -7571,6 +8344,13 @@ Skarbrand can use his rage to fuel one or more of the following abilities. Each 
         id: "bloodthirsterOfInsensateRageOutrageousCarnage",
         name: "Outrageous Carnage",
         description: "A Great Axe of Khorne strikes with the boundless rage of the Blood God himself. As the unfortunate target is pulverised, those nearby are thrown backwards, their brains exploding from their skulls as they are struck by a bow wave of incredible force. If the wound roll for a Great Axe of Khorne is 6 or more, each enemy unit within 8\" of the Bloodthirster suffers a number of mortal wounds. The number of mortal wounds suffered is shown in the damage table above.",
+        },
+
+    bloodthirsterOfInsensateRageBloodthirstyCharge: {
+        id: "bloodthirsterOfInsensateRageBloodthirstyCharge",
+        name: "Bloodthirsty Charge",
+        description: "If a Bloodthirster of Insensate Rage uses this ability, then in your next charge phase, you can re-roll the dice when determining the charge distance for any Khorne Daemon units within 8\".",
+        category: AbilityCategory.Command,
         },
 
         bloodthirsterOfInsensateRageFly: {
@@ -7596,6 +8376,13 @@ Skarbrand can use his rage to fuel one or more of the following abilities. Each 
         id: "wrathOfKhorneBloodthirsterRuneCrownOfKhorne",
         name: "Rune-crown of Khorne",
         description: "A Wrath of Khorne Bloodthirster can attempt to unbind one spell in each enemy hero phase in the same manner as a wizard. Add 2 to the result of any unbinding rolls made for it.",
+        },
+
+    wrathOfKhorneBloodthirsterLordOfTheBloodHunt: {
+        id: "wrathOfKhorneBloodthirsterLordOfTheBloodHunt",
+        name: "Lord of the Blood Hunt",
+        description: "If a Wrath of Khorne Bloodthirster uses this ability, select a unit of Khorne Daemons within 16\". Until your next hero phase, that unit can run and charge in the same turn and you can add 1 to its run and charge rolls.",
+        category: AbilityCategory.Command,
         },
 
         wrathOfKhorneBloodthirsterFly: {
@@ -7821,6 +8608,13 @@ Skarbrand can use his rage to fuel one or more of the following abilities. Each 
         description: "After a Mighty Lord of Khorne has made all of his attacks with his Axe of Khorne in the combat phase, roll a dice for each enemy model that suffered one or more wounds as a result of those attacks but was not slain. On a roll of 5 or more, the axe cleaves a rent in the fabric of reality, hurling the victim to Khorne’s realm. The model being rolled for is slain.",
         },
 
+    mightyLordOfKhorneGorelord: {
+        id: "mightyLordOfKhorneGorelord",
+        name: "Gorelord",
+        description: "If this model uses this ability, pick up to 3 Mortal Khorne units in your army within 24\" of this model in your hero phase. Until your next hero phase, when you make charge rolls for this model or any of the units you picked, roll 3 dice rather than 2 dice, and use the 2 dice with the highest rolls to determine the charge move of the unit being rolled for.",
+        category: AbilityCategory.Command,
+        },
+
     bloodsecratorPortalOfSkulls: {
         id: "bloodsecratorPortalOfSkulls",
         name: "Portal of Skulls",
@@ -7886,6 +8680,13 @@ Rage of Khorne: Add 1 to the Attacks characteristic for melee weapons used by fr
         description: "If the wound roll for an attack made with the Wrathforged Axe is 6 or more, the daemon bound within awakens and guides the strike. The attack inflicts 3 wounds rather than D3.",
         },
 
+    lordOfKhorneOnJuggernautBloodStampede: {
+        id: "lordOfKhorneOnJuggernautBloodStampede",
+        name: "Blood Stampede",
+        description: "If this model uses this ability, pick up to 3 Mortal Khorne units within 24\" of him. Until your next hero phase, add 1 to the wound rolls made in the combat phase for this model and any units you picked, as long as they charged in the same turn. The same unit cannot be chosen to benefit from this command ability more than once in the same hero phase.",
+        category: AbilityCategory.Command,
+        },
+
     exaltedDeathbringerBloodedLieutenant: {
         id: "exaltedDeathbringerBloodedLieutenant",
         name: "Blooded Lieutenant",
@@ -7904,6 +8705,13 @@ Rage of Khorne: Add 1 to the Attacks characteristic for melee weapons used by fr
         description: "Each time you make a save roll of 6 or more in the combat phase for an Exalted Deathbringer with a Skullgouger, he turns aside the attack and delivers a brutal counterblow, inflicting D3 mortal wounds on the attacking unit.",
         },
 
+    exaltedDeathbringerBrutalCommand: {
+        id: "exaltedDeathbringerBrutalCommand",
+        name: "Brutal Command",
+        description: "If this model uses this ability, all Mortal Khorne units in your army within 12\" of the Exalted Deathbringer can use his Bravery characteristic instead of their own until your next hero phase. If there is a unit from your army within 1\" of the Exalted Deathbringer when he uses this ability, you can inflict D3 mortal wounds on that unit to increase its range from 12\" to 24\".",
+        category: AbilityCategory.Command,
+        },
+
     exaltedDeathbringerBrutalImpalement: {
         id: "exaltedDeathbringerBrutalImpalement",
         name: "Brutal Impalement",
@@ -7914,6 +8722,13 @@ Rage of Khorne: Add 1 to the Attacks characteristic for melee weapons used by fr
         id: "aspiringDeathbringerThirstForGlory",
         name: "Thirst for Glory",
         description: "If a Khorne Hero is slain within 6\" of this model, you can re-roll failed hit rolls and save rolls for this model for the rest of the battle.",
+        },
+
+    aspiringDeathbringerSlaughterIncarnate: {
+        id: "aspiringDeathbringerSlaughterIncarnate",
+        name: "Slaughter Incarnate",
+        description: "If this model uses this ability, then until your next hero phase you can add 1 to the Attacks characteristic of all melee weapons used by Mortal Khorne units in your army while they are within 6\" of this model.",
+        category: AbilityCategory.Command,
         },
 
     aspiringDeathbringerBaneOfCowards: {
@@ -8159,7 +8974,11 @@ Blood Bind: The Slaughterpriest fires the blood in his targets’ veins, urging 
     celestantPrimeRetributionFromOnHigh: {
         id: "celestantPrimeRetributionFromOnHigh",
         name: "Retribution from On High",
-        description: "Instead of setting up this model on the battlefield, you can place it to one side and say that it is set up in the Heavens as a reserve unit. If you do so, at the end of your movement phase you must declare whether this model will remain in reserve or strike from the Heavens. If this model remains in reserve, add 2 to the Attacks characteristic of Ghal Maraz until the end of the battle. If this model strikes from the Heavens, set this model up on the battlefield more than 9\" from any enemy units. In addition, if this model strikes from the Heavens, until your next hero phase subtract 2 from the Bravery characteristic of enemy units while they are within 12\" of this model. When the Celestant-Prime strikes from the Heavens, set him up on the battlefield more than 9\" from any enemy models. This is his move for that movement phase. Until your next hero phase, subtract 2 from the Bravery of all models in any enemy unit within 12\" of him.",
+        description: "Instead of setting up this model on the battlefield, you can place it to one side and say that it is set up in the Heavens as a reserve unit. If you do so, at the end of your movement phase you must declare whether this model will remain in reserve or strike from the Heavens.\
+\
+If this model remains in reserve, add 2 to the Attacks characteristic of Ghal Maraz until the end of the battle.\
+\
+If this model strikes from the Heavens, set this model up on the battlefield more than 9\" from any enemy units. In addition, if this model strikes from the Heavens, until your next hero phase subtract 2 from the Bravery characteristic of enemy units while they are within 12\" of this model. ",
            flavor: "The Celestant-Prime descends from Azyr into the thickest fighting, Ghal Maraz glowing with power as it smites the foe.",
         },
 
@@ -8252,6 +9071,14 @@ One roll that determines the range or number of mortal wounds for this model’s
            flavor: "Dracoths can unleash the power of Sigmar’s storm from within their maws.",
         },
 
+    lordCelestantOnDracothLordOfTheHost: {
+        id: "lordCelestantOnDracothLordOfTheHost",
+        name: "Lord of the Host",
+        description: "You can use this command ability at the start of the battleshock phase. If you do so, pick a friendly model with this command ability. Until the end of that phase, you do not have to take battleshock tests for friendly Stormcast Eternal units that are wholly within 24\" of that model.",
+           flavor: "A Lord-Celestant is a trusted and respected leader. Their presence steels the souls of those who fight nearby.",
+        category: AbilityCategory.Command,
+        },
+
         lordCelestantOnDracothMount: {
             id: "lordCelestantOnDracothMount",
             name: "MOUNT",
@@ -8271,6 +9098,14 @@ One roll that determines the range or number of mortal wounds for this model’s
         name: "Sigmarite Warcloak",
         description: "In your shooting phase, this model can make D6 storm magic strikes. For each strike, pick 1 enemy unit within 16\" of this model that is visible to them and roll a dice. On a 4+ that unit suffers 1 mortal wound.",
            flavor: "Lord-Celestants can unleash the lethal storm magic stored in the sigmarite adornments of their cloak.",
+        },
+
+    lordCelestantFuriousRetribution: {
+        id: "lordCelestantFuriousRetribution",
+        name: "Furious Retribution",
+        description: "You can use this command ability at the start of the combat phase. If you do so, pick a friendly model with this command ability that is within 3\" of an enemy unit. Add 1 to hit rolls for friendly Stormcast Eternal units wholly within 12\" of that model when they attack in that combat phase.",
+           flavor: "Lord-Celestants lead their brethren in assaults upon the enemy lines, breaking the foe beneath their immortal fury.",
+        category: AbilityCategory.Command,
         },
 
     lordRelictorLightningStorm: {
@@ -8406,7 +9241,7 @@ If a Stormcast Eternal unit is picked, add 1 to save rolls for attacks that targ
         knightAzyrosFly: {
             id: "knightAzyrosFly",
             name: "FLY",
-            description: "Thids unit can fly.",
+            description: "This unit can fly.",
             category: AbilityCategory.SpecialRule,
         },
 
@@ -8420,7 +9255,7 @@ If a Stormcast Eternal unit is picked, add 1 to save rolls for attacks that targ
     knightVenatorCelestialStrike: {
         id: "knightVenatorCelestialStrike",
         name: "Celestial Strike",
-        description: "f the unmodified wound roll for an attack made with a Star-eagle’s Celestial Beak and Talons is 6, that attack has a Rend characteristic of -3 instead of ‘-’.",
+        description: "If the unmodified wound roll for an attack made with a Star-eagle’s Celestial Beak and Talons is 6, that attack has a Rend characteristic of -3 instead of ‘-’.",
            flavor: "A Star-eagle can transmute its form into pure Azyrite energy.",
         },
 
@@ -8554,7 +9389,7 @@ If a Stormcast Eternal unit is picked, add 1 to save rolls for attacks that targ
         id: "protectorsStormShield",
         name: "Storm-shield",
         description: "Subtract 1 from hit rolls for attacks made with missile weapons that target this unit. In addition, if another friendly unit wholly within 6\" of this unit is targeted by an enemy model’s missile weapon, that friendly unit receives the benefit of cover if the attacking model is closer to this unit than it is to the target unit.",
-           flavor: "rrows are deflected by the Protectors’ weaving glaives.",
+           flavor: "Arrows are deflected by the Protectors’ weaving glaives.",
         },
 
     protectorsStarsoulMace: {
@@ -8713,6 +9548,14 @@ If it calls down a Rain of Stars, pick up to D6 enemy units on the battlefield. 
         name: "Arcane Lineage",
         description: "Add 1 to casting rolls for friendly Wizards while they are within 18\" of this model. In addition, subtract 1 from casting rolls for enemy Wizards while they are within 18\" of this model.",
            flavor: "Stardrakes are the children of Dracothion, and they possess innate power over the magic of the realms.",
+        },
+
+    lordCelestantLordOfTheCelestialHost: {
+        id: "lordCelestantLordOfTheCelestialHost",
+        name: "Lord of the Celestial Host",
+        description: "You can use this command ability at the start of the combat phase if a friendly model with this command ability is on the battlefield. If you do so, you can re-roll failed wound rolls for attacks made by friendly Stardrake and Dracoth mounts until the end of that phase.",
+           flavor: "The Stardrake ridden by a Lord-Celestant is more than a mere mount; it is an intelligent and cunning hunter in its own right.",
+        category: AbilityCategory.Command,
         },
 
         lordCelestantMount: {
@@ -8882,7 +9725,7 @@ If it calls down a Rain of Stars, pick up to D6 enemy units on the battlefield. 
     concussorsIntolerableDamage: {
         id: "concussorsIntolerableDamage",
         name: "Intolerable Damage",
-        description: "f the unmodified wound roll for an attack made with a Dracoth’s Claws and Fangs is 6, that attack has a Damage characteristic of D6 instead of 1.",
+        description: "If the unmodified wound roll for an attack made with a Dracoth’s Claws and Fangs is 6, that attack has a Damage characteristic of D6 instead of 1.",
            flavor: "When a Dracoth catches its prey, there is often little left of the victim.",
         },
 
@@ -8968,6 +9811,14 @@ If it calls down a Rain of Stars, pick up to D6 enemy units on the battlefield. 
         name: "Aethereal Strike",
         description: "If the unmodified hit roll for an attack made with a Gryph-charger’s Razor Beak and Claws is 6, that attack inflicts 1 mortal wound on the target and the attack sequence ends (do not make a wound or save roll).",
            flavor: "A Gryph-charger’s claws are supernaturally sharp, tearing through armour with ease.",
+        },
+
+    lordAquilorLordOfTheAzyriteHurricane: {
+        id: "lordAquilorLordOfTheAzyriteHurricane",
+        name: "Lord of the Azyrite Hurricane",
+        description: "You can use this command ability at the end of your movement phase. If you do so, pick a friendly model with this command ability. Remove that model, and/or one friendly unit of Vanguard-Hunters, Vanguard- Palladors, Vanguard-Raptors or Aetherwings wholly within 24\" of that model, from the battlefield and set them up wholly within 6\" of any edge of the battlefield, more than 7\" from any enemy units.",
+           flavor: "The Lord- Aquilor directs their warriors to fade and strike from an unexpected direction, whirling around the enemy like a cyclone.",
+        category: AbilityCategory.Command,
         },
 
         lordAquilorMount: {
@@ -9113,6 +9964,13 @@ If it calls down a Rain of Stars, pick up to D6 enemy units on the battlefield. 
         name: "INFERNAL GATEWAY",
         description: "The Lord of Change opens a portal to the Realm of Chaos, pulling warriors to their doom. Infernal Gateway has a casting value of 7. If successfully cast, pick a visible enemy unit within 18\" of the caster and roll 9 dice. For each roll that equals or beats the number shown on the damage table above, the unit suffers a mortal wound.",
         category: AbilityCategory.Magic,
+        },
+
+    lordOfChangeBeaconOfSorcery: {
+        id: "lordOfChangeBeaconOfSorcery",
+        name: "Beacon of Sorcery",
+        description: "Spreading its arms wide, the Lord of Change saturates the area with magic. If a Lord of Change uses this ability, then until your next hero phase you can add 1 to all casting and unbinding rolls made for friendly Tzeentch Daemon Wizards that are within 18\" of the Lord of Change.",
+        category: AbilityCategory.Command,
         },
 
         lordOfChangeFly: {
@@ -9455,6 +10313,13 @@ If it calls down a Rain of Stars, pick up to D6 enemy units on the battlefield. 
         description: "Add 2 to the result of any save rolls for this model in the combat phase unless the attacker can fly.",
         },
 
+    fatemasterLordOfFate: {
+        id: "fatemasterLordOfFate",
+        name: "Lord of Fate",
+        description: "Tzeentch’s chosen disciples can affect the destiny of those around them. If a Fatemaster uses this ability, roll a dice. Until your next hero phase, any time you make a dice roll for this model or a Tzeentch Mortal unit within 9\", and the result matches that on the dice you rolled in the hero phase, you can choose to re-roll it.",
+        category: AbilityCategory.Command,
+        },
+
         fatemasterFly: {
             id: "fatemasterFly",
             name: "FLY",
@@ -9646,6 +10511,12 @@ If it calls down a Rain of Stars, pick up to D6 enemy units on the battlefield. 
         description: "If you roll a double when determining the number of attacks made by a Chaos Spawn’s Freakish Mutations, resolve those attacks with a To Hit and To Wound characteristic of 3+ instead of 4+.",
         },
 
+    chaosSpawnCursedOfTheDarkGods: {
+        id: "chaosSpawnCursedOfTheDarkGods",
+        name: "Cursed of the Dark Gods",
+        description: "If you wish, when setting up this unit, you can pick one of the following keywords to assign to this unit for the duration of the battle: Khorne, Tzeentch, Nurgle or Slaanesh.",
+        },
+
     frostlordOnStonehornEarthShatteringCharge: {
         id: "frostlordOnStonehornEarthShatteringCharge",
         name: "Earth-shattering Charge",
@@ -9658,6 +10529,13 @@ If it calls down a Rain of Stars, pick up to D6 enemy units on the battlefield. 
         description: "Halve the Damage characteristic (rounding up) of weapons that target this model. In addition, halve the number of mortal wounds this model suffers from a spell or ability (rounding up).",
         },
 
+    frostlordOnStonehornBellowingVoice: {
+        id: "frostlordOnStonehornBellowingVoice",
+        name: "Bellowing Voice",
+        description: "With his booming voice the Frostlord signals the hunt. If a Frostlord uses this ability, you can re-roll all charge rolls for friendly Beastclaw Raiders units that are within 14\" when they charge.",
+        category: AbilityCategory.Command,
+        },
+
     frostlordOnThundertuskBlastsOfFrostWreathedIce: {
         id: "frostlordOnThundertuskBlastsOfFrostWreathedIce",
         name: "Blasts of Frost-wreathed Ice",
@@ -9668,6 +10546,13 @@ If it calls down a Rain of Stars, pick up to D6 enemy units on the battlefield. 
         id: "frostlordOnThundertuskNumbingChill",
         name: "Numbing Chill",
         description: "Your opponent must subtract 1 from any hit rolls that target this model in the combat phase.",
+        },
+
+    frostlordOnThundertuskBellowingVoice: {
+        id: "frostlordOnThundertuskBellowingVoice",
+        name: "Bellowing Voice",
+        description: "With his booming voice the Frostlord signals the hunt. If a Frostlord uses this ability, you can re-roll all charge rolls for friendly Beastclaw Raiders units that are within 14\" when they charge.",
+        category: AbilityCategory.Command,
         },
 
     huskardOnStonehornEarthShatteringCharge: {
@@ -9846,10 +10731,24 @@ Winter’s Strength: Winter winds howl through the unit, chilling their blood an
         category: AbilityCategory.Magic,
         },
 
+    wurrgogProphetProphetOfDaWaaagh: {
+        id: "wurrgogProphetProphetOfDaWaaagh",
+        name: "Prophet of da Waaagh!",
+        description: "If a Wurrgog Prophet uses this ability, select a Bonesplitterz unit within 15\". That unit can immediately pile in and attack as if it were the combat phase. This does not prevent the unit from attacking again later. The same unit cannot be picked to benefit from this command ability more than once per hero phase.",
+        category: AbilityCategory.Command,
+        },
+
     savageBigBossLetMeAtEm: {
         id: "savageBigBossLetMeAtEm",
         name: "Let Me At ’Em",
         description: "A Savage Big Boss cannot wait to get to grips with the foe, and this inspires any Bonesplitterz nearby to get into the fight as soon as possible. After this model has fought in the combat phase for the first time, you can pick a friendly Bonesplitterz unit that has not yet fought in that combat phase and which is within 3\" of an enemy unit and within 10\" of this model. That unit fights immediately, before the opposing player picks a unit to fight in that combat phase. That unit cannot fight again in that combat phase unless an ability or spell allows it to fight more than once.",
+        },
+
+    savageBigBossSavageAttack: {
+        id: "savageBigBossSavageAttack",
+        name: "Savage Attack",
+        description: "With a guttural bellow and a swing of their axe, the Savage Big Boss orders an all-out attack upon the foe. If a Savage Big Boss uses this ability, you can select a Bonesplitterz unit within 10\". Until your next hero phase, whenever you make a hit roll of 6 or more for a model in that unit, it can immediately make one extra attack using the same weapon.",
+        category: AbilityCategory.Command,
         },
 
     maniakWeirdnobTuskerCharge: {
@@ -10089,6 +10988,13 @@ D6 - Result\
         category: AbilityCategory.Magic,
         },
 
+    alarielleTheEverqueenGhyranSWrath: {
+        id: "alarielleTheEverqueenGhyranSWrath",
+        name: "Ghyran’s Wrath",
+        description: "The fury of the reborn Everqueen knows no bounds. Alarielle can use this ability once per battle. When she does so, you can re-roll all failed wound rolls made for friendly Sylvaneth models until your next hero phase.",
+        category: AbilityCategory.Command,
+        },
+
         alarielleTheEverqueenFly: {
             id: "alarielleTheEverqueenFly",
             name: "FLY",
@@ -10202,6 +11108,13 @@ Embittered: While Drycha is embittered, the sting of agony invigorates her. Subt
         name: "AWAKENING THE WOOD",
         description: "Awakening the Wood has a casting value of 6. If successfully cast, pick a Sylvaneth Wyldwood that is within 24\" of the caster. Each enemy unit within 3\" of this Sylvaneth Wyldwood suffers D3 mortal wounds as the trees come to life and attack with twisted branches and thorny boughs.",
         category: AbilityCategory.Magic,
+        },
+
+    treelordAncientHeedTheSpiritSong: {
+        id: "treelordAncientHeedTheSpiritSong",
+        name: "Heed the Spirit-song",
+        description: "The Treelord Ancient speaks to its kin through the spirit-song, warning them of approaching dangers. Until your next hero phase, you can re-roll save rolls of 1 for Sylvaneth units if they are within 10\" of the Treelord Ancient.",
+        category: AbilityCategory.Command,
         },
 
     treelordGroundshakingStomp: {
@@ -10382,6 +11295,13 @@ Embittered: While Drycha is embittered, the sting of agony invigorates her. Subt
         category: AbilityCategory.Magic,
         },
 
+    abhorrantGhoulKingOnTerrorgheistSummonRoyalGuard: {
+        id: "abhorrantGhoulKingOnTerrorgheistSummonRoyalGuard",
+        name: "Summon Royal Guard",
+        description: "You can use this command ability at the end of your movement phase. If you do so, pick a friendly model that has this command ability and has not used it before in the battle. That model summons 1 unit of 3 Crypt Horrors or 1 unit of 3 Crypt Flayers to the battlefield. The summoned unit is added to your army, and must be set up wholly within 6\" of the edge of the battlefield and more than 9\" from any enemy units.",
+        category: AbilityCategory.Command,
+        },
+
         abhorrantGhoulKingOnTerrorgheistFly: {
             id: "abhorrantGhoulKingOnTerrorgheistFly",
             name: "FLY",
@@ -10408,6 +11328,13 @@ Embittered: While Drycha is embittered, the sting of agony invigorates her. Subt
         category: AbilityCategory.Magic,
         },
 
+    abhorrantGhoulKingOnZombieDragonSummonCourtier: {
+        id: "abhorrantGhoulKingOnZombieDragonSummonCourtier",
+        name: "Summon Courtier",
+        description: "You can use this command ability at the end of your movement phase. If you do so, pick a friendly model that has this command ability and has not used it before in the battle. That model summons 1 Courtier unit to the battlefield. The summoned unit is added to your army, and must be set up wholly within 6\" of the edge of the battlefield and more than 9\" from any enemy units.",
+        category: AbilityCategory.Command,
+        },
+
         abhorrantGhoulKingOnZombieDragonFly: {
             id: "abhorrantGhoulKingOnZombieDragonFly",
             name: "FLY",
@@ -10426,6 +11353,13 @@ Embittered: While Drycha is embittered, the sting of agony invigorates her. Subt
         name: "BLACK HUNGER",
         description: "The Abhorrant Ghoul King’s dark sorcery raises the cravings of his minions to terrible new heights. Black Hunger has a casting value of 5. If successfully cast, pick a Flesh‑eater Courts unit within 18\". Add 1 to the Attacks characteristic of any melee weapons used by that unit until your next hero phase.",
         category: AbilityCategory.Magic,
+        },
+
+    abhorrantGhoulKingSummonMenAtArms: {
+        id: "abhorrantGhoulKingSummonMenAtArms",
+        name: "Summon Men-at-arms",
+        description: "You can use this command ability at the end of your movement phase. If you do so, pick a friendly model that has this command ability and has not used it before in the battle. That model summons 1 unit of 10 Crypt Ghouls to the battlefield. The summoned unit is added to your army, and must be set up wholly within 6\" of the edge of the battlefield and more than 9\" from any enemy units.",
+        category: AbilityCategory.Command,
         },
 
     varghulfCourtierToTheKing: {
@@ -10614,6 +11548,13 @@ Embittered: While Drycha is embittered, the sting of agony invigorates her. Subt
         description: "If the wounds inflicted by Bigteef’s Destructive Bulk attack mean that there are no enemy models left within 3\" of him, then he can immediately make another charge move (and can make another Destructive Bulk attack after the move if the charge is successfully carried out). Bigteef can make any number of charge moves like this in a single turn, so long as each one results in all enemy models within 3\" being slain.",
         },
 
+    gordrakkTheFistOfGorkVoiceOfGork: {
+        id: "gordrakkTheFistOfGorkVoiceOfGork",
+        name: "Voice of Gork",
+        description: "Gordrakk’s bellow carries the elemental force of his brutal god, and inspires his forces to surge into the enemy, hacking, bludgeoning and stomping with abandon. You can use this command ability once per battle, in your hero phase. If you do so, pick a friendly Destruction unit wholly within 24\" of Gordrakk. In the following charge phase, that unit can declare a charge if it is within 18\" of the enemy, and you can roll three dice to determine the distance it can charge. In addition, the unit makes 2 extra attacks with each of its melee weapons in the following combat phase. If the unit you chose is part of a warscroll battalion, then these benefits also apply to all other units from the battalion.",
+        category: AbilityCategory.Command,
+        },
+
         gordrakkTheFistOfGorkFly: {
             id: "gordrakkTheFistOfGorkFly",
             name: "FLY",
@@ -10639,6 +11580,13 @@ Embittered: While Drycha is embittered, the sting of agony invigorates her. Subt
         description: "If the wounds inflicted by a Maw-krusha’s Destructive Bulk attack mean that there are no enemy models left within 3\" of it, then it can immediately make another charge move (and can make another Destructive Bulk attack after the move if the charge is successfully carried out). A Maw-krusha can make any number of charge moves like this in a single turn, so long as each one results in all enemy models within 3\" being slain.",
         },
 
+    megabossOnMawKrushaMightyWaaagh: {
+        id: "megabossOnMawKrushaMightyWaaagh",
+        name: "Mighty Waaagh!",
+        description: "If a Megaboss on Mawkrusha uses this ability, count up the number of Ironjawz units within 15\" of them at the start of the combat phase of the turn, and roll a dice. If the roll is less than or equal to the number of units, then this model and all models in those units make 1 extra attack with each of their melee weapons in that combat phase. If the roll is a 6, and there are at least 6 Ironjawz units within 15\" of this model, then make 2 extra attacks rather than 1.",
+        category: AbilityCategory.Command,
+        },
+
         megabossOnMawKrushaFly: {
             id: "megabossOnMawKrushaFly",
             name: "FLY",
@@ -10657,6 +11605,13 @@ Embittered: While Drycha is embittered, the sting of agony invigorates her. Subt
         id: "orrukMegabossStrengthFromVictory",
         name: "Strength from Victory",
         description: "The more fights a Megaboss wins, the stronger they become. If a Megaboss makes an attack that slays an enemy Hero, add 1 to their Wounds characteristic and to the Attacks characteristic of their Boss Choppa.",
+        },
+
+    orrukMegabossWaaagh: {
+        id: "orrukMegabossWaaagh",
+        name: "Waaagh!",
+        description: "If a Megaboss uses this ability, count up the number of Ironjawz units within 10\" of them at the start of the combat phase of the turn, and roll a dice. If the roll is less than or equal to the number of units, then this model and all models in those units make 1 extra attack with their melee weapons in that combat phase. If the roll is 6 or more, and there are at least 6 Ironjawz units within 10\" of this model, then make 2 extra attacks rather than 1.",
+        category: AbilityCategory.Command,
         },
 
     orrukWarchanterWarchanterSBeat: {
@@ -10957,6 +11912,13 @@ Wither: Pick a unit within 13\". Until your next hero phase that unit is ravaged
         description: "A Latchkey Grandaxe’s unique design allows a Runefather to catch an enemy’s weapon between the teeth and give a sharp twist. If the Runefather is attacked in the combat phase by a Hero or Monster, and the result of a save roll is 6 or higher, roll another dice. If the result is 4 or more, the attacking weapon is damaged for the rest of the battle. Your opponent must re-roll successful hit rolls for damaged weapons.",
         },
 
+    auricRunefatherOnMagmadrothSteadfastAdvance: {
+        id: "auricRunefatherOnMagmadrothSteadfastAdvance",
+        name: "Steadfast Advance",
+        description: "You can use this command ability in your hero phase if this model is your general. If you do so, until your next hero phase you can re-roll battleshock tests and save rolls of 1 for friendly Fyreslayer units while they are wholly within 24\" of your general.",
+        category: AbilityCategory.Command,
+        },
+
     auricRunesmiterOnMagmadrothRoaringFyrestream: {
         id: "auricRunesmiterOnMagmadrothRoaringFyrestream",
         name: "Roaring Fyrestream",
@@ -11017,6 +11979,13 @@ Wither: Pick a unit within 13\". Until your next hero phase that unit is ravaged
         description: "These brutal missiles are best suited against large creatures, where their cruel hooks will catch onto thick hide before gouging deep. Add 2 to the Damage of a Wyrmslayer Javelin in the shooting phase if the target is a Monster.",
         },
 
+    auricRunesonOnMagmadrothFuriousOnslaught: {
+        id: "auricRunesonOnMagmadrothFuriousOnslaught",
+        name: "Furious Onslaught",
+        description: "You can use this command ability in your hero phase if this model is your general. If you do so, until your next hero phase you can re-roll charge rolls for friendly Fyreslayer units while they are wholly within 12\" of your general.",
+        category: AbilityCategory.Command,
+        },
+
     auricRunefatherStareDown: {
         id: "auricRunefatherStareDown",
         name: "Stare Down",
@@ -11027,6 +11996,13 @@ Wither: Pick a unit within 13\". Until your next hero phase that unit is ravaged
         id: "auricRunefatherWeaponBreaker",
         name: "Weapon-breaker",
         description: "A Latchkey Grandaxe’s unique design allows a Runefather to catch an enemy’s weapon between the teeth and give a sharp twist. If the Runefather is attacked in the combat phase by a Hero or Monster, and the result of a save roll is 6 or higher, roll another dice. If the result is 4 or more, the attacking weapon is damaged for the rest of the battle. Your opponent must re-roll successful hit rolls for damaged weapons.",
+        },
+
+    auricRunefatherLodgeLeader: {
+        id: "auricRunefatherLodgeLeader",
+        name: "Lodge Leader",
+        description: "You can use this command ability in your hero phase if this model is your general. If you do so, until your next hero phase, friendly Fyreslayer units wholly within 12\" of your general at the start of the combat phase can move up to 5\" when they pile in. In addition, until your next hero phase, each time you allocate a wound or mortal wound to your general, roll a dice. On a 4+, you can allocate that wound or mortal wound to a friendly Fyreslayer unit within 3\" of your general instead of allocating it to your general.",
+        category: AbilityCategory.Command,
         },
 
     auricRunesmiterRunicEmpowerment: {
@@ -11051,6 +12027,13 @@ Wither: Pick a unit within 13\". Until your next hero phase that unit is ravaged
         id: "auricRunesonExplosiveRage",
         name: "Explosive Rage",
         description: "In the hero phase, pick an enemy unit that is visible to the Runeson to be the subject of his latest outburst of wrath and rage. Until your next hero phase, you can re-roll hit rolls of 1 when the Runeson attacks that unit. In addition, subtract 1 from the unit’s Bravery characteristic until your next hero phase.",
+        },
+
+    auricRunesonDauntlessAssault: {
+        id: "auricRunesonDauntlessAssault",
+        name: "Dauntless Assault",
+        description: "You can use this command ability in your hero phase if this model is your general. If you do so, until your next hero phase you can re-roll failed wound rolls made by friendly Fyreslayer units that wholly within 18\" of your general, for attacks that target a unit with a Wounds characteristic of 3 or more.",
+        category: AbilityCategory.Command,
         },
 
     grimwrathBerzerkerUnstoppableBerzerker: {
@@ -11213,6 +12196,13 @@ Spell-eater: If any of the slain models were Wizards, Dorghar’s Tzeentchian he
         description: "Roll a dice if Archaon is affected by a spell cast by an enemy Wizard. If the result is 4 or higher, he is protected by the power of the Dark Gods and the spell has no effect on him (it will still affect other units as normal).",
         },
 
+    archaonWarlordWithoutEqual: {
+        id: "archaonWarlordWithoutEqual",
+        name: "Warlord Without Equal",
+        description: "You can use this command ability in your hero phase, if Archaon is your general and is on the battlefield. If you do so, all other Chaos Heroes in your army can use 1 command ability that is on their warscroll without a command point being spent.",
+        category: AbilityCategory.Command,
+        },
+
         archaonFly: {
             id: "archaonFly",
             name: "Fly",
@@ -11305,6 +12295,13 @@ At the start of your hero phase, one Slann Starmaster in your army can attempt t
         category: AbilityCategory.Magic,
         },
 
+    slannStarmasterGiftFromTheHeavens: {
+        id: "slannStarmasterGiftFromTheHeavens",
+        name: "Gift from the Heavens",
+        description: "If a Slann Starmaster uses this ability, Seraphon units from your army that are within 10\" of him are wrapped in a mantle of Azyrite energy, allowing them to disregard the natural laws that govern the Mortal Realms. Until your next hero phase, those units can fly and you can re-roll failed save rolls for them in the shooting phase.",
+        category: AbilityCategory.Command,
+        },
+
         slannStarmasterFly: {
             id: "slannStarmasterFly",
             name: "FLY",
@@ -11334,6 +12331,13 @@ At the start of your hero phase, one Slann Starmaster in your army can attempt t
         category: AbilityCategory.Magic,
         },
 
+    lordKroakImpeccableForesight: {
+        id: "lordKroakImpeccableForesight",
+        name: "Impeccable Foresight",
+        description: "Lord Kroak casts his consciousness ahead, reading the threads of destiny as easily as a mortal would read a map. If Lord Kroak uses this ability, roll three dice. For each one that scores 4 or more, Lord Kroak gains an insight into the future. Each insight can be used to re-roll any single dice before your next hero phase.",
+        category: AbilityCategory.Command,
+        },
+
         lordKroakFly: {
             id: "lordKroakFly",
             name: "FLY",
@@ -11353,6 +12357,13 @@ At the start of your hero phase, one Slann Starmaster in your army can attempt t
         description: "In the heat of battle, an Oldblood’s cold fury radiates outward and drives its lesser kin into a rage of their own. You can re-roll wound rolls of 1 for Saurus models within 5\" of an Oldblood.",
         },
 
+    saurusOldbloodParagonOfOrder: {
+        id: "saurusOldbloodParagonOfOrder",
+        name: "Paragon of Order",
+        description: "The Saurus Oldblood gives an unspoken command, causing its warriors to snap into a new formation. If a Saurus Oldblood uses this ability, each Seraphon unit from your army within 10\" can immediately reform around one of its models. That model must stay where it is, but each other model in the unit can move up to 3\" so long as it does not end this move within 3\" of the enemy. The same unit cannot benefit from this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
+        },
+
     saurusSunbloodAeonShield: {
         id: "saurusSunbloodAeonShield",
         name: "Aeon Shield",
@@ -11363,6 +12374,13 @@ At the start of your hero phase, one Slann Starmaster in your army can attempt t
         id: "saurusSunbloodFerociousRage",
         name: "Ferocious Rage",
         description: "A Sunblood in full battle-rage is the true embodiment of the seraphon’s savage fury. If the hit roll for one of this model’s attacks is 6 or higher, make D3 wound rolls rather than 1. If the wound roll for one of this model’s attacks is 6 or higher, it causes D3 Damage rather than 1.",
+        },
+
+    saurusSunbloodScentOfWeakness: {
+        id: "saurusSunbloodScentOfWeakness",
+        name: "Scent of Weakness",
+        description: "The Saurus Sunblood raises its war-mace, points it at an enemy and gives a predatory roar. If the Saurus Sunblood uses this ability, pick an enemy unit within 15\" – until your next hero phase, re-roll failed hit rolls for attacks made in the combat phase against that unit by any of your Saurus models.",
+        category: AbilityCategory.Command,
         },
 
     saurusOldbloodOnCarnosaurPinnedDown: {
@@ -11387,6 +12405,13 @@ At the start of your hero phase, one Slann Starmaster in your army can attempt t
         id: "saurusOldbloodOnCarnosaurBlazingSunbolts",
         name: "Blazing Sunbolts",
         description: "If the Saurus Oldblood atop the Carnosaur targets a Chaos Daemon unit with its Sunbolt Gauntlet, you can add 2 to the result of the wound rolls.",
+        },
+
+    saurusOldbloodOnCarnosaurAncientWarlord: {
+        id: "saurusOldbloodOnCarnosaurAncientWarlord",
+        name: "Ancient Warlord",
+        description: "A Saurus Oldblood is a veteran of battles without number – an experienced leader who is as inspirational to its kin as it is terrifying to the enemy. If the Saurus Oldblood uses this ability, then until your next hero phase, whenever a Saurus Hero from your army within 20\" attacks in the combat phase, pick one of its weapons and add 2 to its Attacks characteristic until the end of the phase.",
+        category: AbilityCategory.Command,
         },
 
     saurusEternityWardenSelflessProtector: {
@@ -11465,6 +12490,13 @@ At the start of your hero phase, one Slann Starmaster in your army can attempt t
         category: AbilityCategory.Magic,
         },
 
+    saurusScarVeteranOnCarnosaurSaurianSavagery: {
+        id: "saurusScarVeteranOnCarnosaurSaurianSavagery",
+        name: "Saurian Savagery",
+        description: "The Scar-Veteran looses an ear-splitting roar that drives nearby saurus into a frenzy. If the Saurus Scar- Veteran on Carnosaur uses this ability, pick a Saurus unit within 15\". Until your next hero phase, whenever you roll a hit roll of 6 or more for a model in that unit, that model can immediately make one additional attack using the same weapon.",
+        category: AbilityCategory.Command,
+        },
+
     saurusScarVeteranOnColdOneFuryOfTheSeraphon: {
         id: "saurusScarVeteranOnColdOneFuryOfTheSeraphon",
         name: "Fury of the Seraphon",
@@ -11482,6 +12514,13 @@ At the start of your hero phase, one Slann Starmaster in your army can attempt t
         name: "SUMMON KNIGHT VETERAN",
         description: "Summon Knight Veteran has a casting value of 5. If successfully cast, you can set up a Scar-Veteran on Cold One within 15\" of the caster and more than 9\" from any enemy models. The model is added to your army but cannot move in the following movement phase.",
         category: AbilityCategory.Magic,
+        },
+
+    saurusScarVeteranOnColdOneSavageCharge: {
+        id: "saurusScarVeteranOnColdOneSavageCharge",
+        name: "Savage Charge",
+        description: "The Scar-Veteran spurs its Cold One towards the enemy and urges its kin to follow. If a Scar-Veteran on Cold One uses this ability, then you can re-roll charge rolls and hit rolls of 1 for Saurus units within 8\". In addition, until your next hero phase this model and any Saurus Knights within 8\" make an additional attack with their Cold Ones’ Vicious Bites.",
+        category: AbilityCategory.Command,
         },
 
     saurusWarriorsStardrakeShields: {
@@ -11902,6 +12941,13 @@ Total: Effect\
         description: "Orruk Warbosses can carve their way through even more foes when they wield a pair of Boss Choppas.  ese Bosses make 8 attacks with their Boss Choppa instead of 6.",
         },
 
+    orrukWarbossOnWyvernWaaagh: {
+        id: "orrukWarbossOnWyvernWaaagh",
+        name: "Waaagh!",
+        description: "If an Orruk Warboss on Wyvern uses this ability, then all Orruk units from your army that are within 12\" when they attack in your next combat phase are frenzied. All models in these units make 1 extra attack with all of their melee weapons.",
+        category: AbilityCategory.Command,
+        },
+
         orrukWarbossOnWyvern: {
             id: "orrukWarbossOnWyvern",
             name: "",
@@ -11932,6 +12978,13 @@ Total: Effect\
         id: "orrukWarbossBossShield",
         name: "Boss Shield",
         description: "You can re-roll all failed save rolls for an Orruk Warboss with a Boss Shield.",
+        },
+
+    orrukWarbossWaaagh: {
+        id: "orrukWarbossWaaagh",
+        name: "Waaagh!",
+        description: "If an Orruk Warboss uses this ability, then all Orruk units from your army that are within 12\" when they attack in your next combat phase are frenzied. All models in these units make 1 extra attack with all of their melee weapons.",
+        category: AbilityCategory.Command,
         },
 
         orrukWarbossWarBoar: {
@@ -12056,13 +13109,13 @@ Total: Effect\
     nastySkulkersSurprise: {
         id: "nastySkulkersSurprise",
         name: "Surprise!",
-        description: "Instead of setting up this unit normally, you can place it to one side and say that it is set up in hiding. If you do so, secretly note down one of your Gitmob Grots units with at least  ve models for this unit to hide in. At the start of any combat phase you can reveal the Nasty Skulkers: set up the Nasty Skulkers within 1\" of the unit that is hiding them.  e Nasty Skulkers can then pile in and attack, even if it is your opponent’s turn to select a unit to attack with  rst. If the unit hiding the Nasty Skulkers is destroyed before revealing the Nasty Skulkers, those Nasty Skulkers are destroyed as well.",
+        description: "Instead of setting up this unit normally, you can place it to one side and say that it is set up in hiding. If you do so, secretly note down one of your Gitmob Grots units with at least  five models for this unit to hide in. At the start of any combat phase you can reveal the Nasty Skulkers: set up the Nasty Skulkers within 1\" of the unit that is hiding them. The Nasty Skulkers can then pile in and attack, even if it is your opponent’s turn to select a unit to attack with first. If the unit hiding the Nasty Skulkers is destroyed before revealing the Nasty Skulkers, those Nasty Skulkers are destroyed as well.",
         },
 
     nastySkulkersRightInDaUrtyBitz: {
         id: "nastySkulkersRightInDaUrtyBitz",
         name: "Right in da ’Urty Bitz!",
-        description: "If you roll a 6 or more when rolling to hit with a Nasty Skulker’s Back Stabba, you have hit the foe right in da ’urty bitz. Do not make a wound roll for that hit – the target su ers a mortal wound instead.",
+        description: "If you roll a 6 or more when rolling to hit with a Nasty Skulker’s Back Stabba, you have hit the foe right in da ’urty bitz. Do not make a wound roll for that hit – the target suffers a mortal wound instead.",
         },
 
     grotWolfRidersPokinSpear: {
@@ -12119,6 +13172,60 @@ Total: Effect\
         description: "If you roll a double when moving or charging, this unit is pumped up until the end of your turn. Pumped up units move an additional 6\" when moving or charging and make 2D6 attacks with their Ram Spikes and Scythed Wheels instead of D6.",
         },
 
+    grotSpearChukkaGrotWarArtillery: {
+        id: "grotSpearChukkaGrotWarArtillery",
+        name: "Grot War Artillery",
+        description: "A Spear Chukka can only move if its crew are within 1\" at the start of the movement phase. If its crew are within 1\" of the Spear Chukka in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    grotSpearChukkaGetTheOneWithTheBigHat: {
+        id: "grotSpearChukkaGetTheOneWithTheBigHat",
+        name: "Get the One with the Big Hat",
+        description: "You can add 1 to the hit roll when firing a Spear Chukka if the target is a Hero.",
+        },
+
+    grotSpearChukkaYouBetterHitEm: {
+        id: "grotSpearChukkaYouBetterHitEm",
+        name: "You Better Hit ’Em!",
+        description: "When several Spear Chukkas are fielded together, the most obnoxious grot in each crew will bully his mates to prove he’s the best by being the first to hit the foe. You can re-roll failed hit rolls when firing a Chukkin’ Spear if there is another Spear Chukka crew from your army within 3\" of the war machine.",
+        },
+
+    doomDiverCatapultGrotWarArtillery: {
+        id: "doomDiverCatapultGrotWarArtillery",
+        name: "Grot War Artillery",
+        description: "A Doom Diver Catapult can only move if its crew are within 1\" at the start of the movement phase. If its crew are within 1\" of the Doom Diver Catapult in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    doomDiverCatapultGrotGuidedMissile: {
+        id: "doomDiverCatapultGrotGuidedMissile",
+        name: "Grot-guided Missile",
+        description: "This war machine can shoot at enemy units that are not visible to it. In addition, if you fail to hit with a Divin’ Grot attack, roll a dice. On a 4 or more the plucky grot has managed to steer his descent; you may pick a different enemy unit within 10\" of the original target – the unfortunate Divin’ Grot has hit that target instead.",
+        },
+
+    doomDiverCatapultOiTubbyYouReNext: {
+        id: "doomDiverCatapultOiTubbyYouReNext",
+        name: "Oi Tubby, You’re Next",
+        description: "When Doom Diver Catapults are fielded in batteries, the crews will attempt to out-do each other by ensuring that only the biggest, heaviest grots are flung towards the enemy to guarantee maximum damage on impact. A Divin’ Grot attack inflicts D6 Damage instead of D3 if there is another Doom Diver Catapult crew from your army within 3\" of the war machine.",
+        },
+
+    grotRockLobberGrotWarArtillery: {
+        id: "grotRockLobberGrotWarArtillery",
+        name: "Grot War Artillery",
+        description: "A Rock Lobber catapult can only move if its crew are within 1\" at the start of the movement phase. If its crew are within 1\" of the Rock Lobber in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    grotRockLobberFlattenTheLotOfEm: {
+        id: "grotRockLobberFlattenTheLotOfEm",
+        name: "Flatten the Lot of ’Em",
+        description: "This war machine can shoot at enemy units that are not visible to it. In addition, you can add 1 to the hit roll when targeting a unit that has 10 or more models.",
+        },
+
+    grotRockLobberLoadItAgain: {
+        id: "grotRockLobberLoadItAgain",
+        name: "Load it Again!",
+        description: "When Rock Lobbers are fielded in batteries, frantic competition breaks out between the rival crews – typically because whichever performs best avoids the traditional post-battle beatings. If you roll a 6 or more to hit with a Big Rock and there is another Grot Rock Lobber crew from your army within 3\" of the war machine, you can immediately make another Big Rock attack.",
+        },
+
     grotWarbossGitShield: {
         id: "grotWarbossGitShield",
         name: "Git Shield",
@@ -12143,6 +13250,13 @@ Total: Effect\
         description: "If you roll a 6 or more when rolling to wound with a Giant Cave Squig’s Gaping Maw, that attack in icts D6 damage instead of D3.",
         },
 
+    grotWarbossIMDaBossNowStabEmGood: {
+        id: "grotWarbossIMDaBossNowStabEmGood",
+        name: "I’m da Boss, Now Stab ’em Good!",
+        description: "If a Grot Warboss uses this ability, you can select a Moonclan unit within 20\". Until your next hero phase, any wound roll of 6 or more for that unit inflicts double damage.",
+        category: AbilityCategory.Command,
+        },
+
     grotWarbossOnGreatCaveSquigGitShield: {
         id: "grotWarbossOnGreatCaveSquigGitShield",
         name: "Git Shield",
@@ -12153,6 +13267,13 @@ Total: Effect\
         id: "grotWarbossOnGreatCaveSquigSupremeBounder",
         name: "Supreme Bounder:",
         description: "If a Grot Warboss on Great Cave Squig rolls a double for its charge move, its Fang-filled Gob inflicts double damage in the ensuing combat phase.",
+        },
+
+    grotWarbossOnGreatCaveSquigEvenMoreBoingy: {
+        id: "grotWarbossOnGreatCaveSquigEvenMoreBoingy",
+        name: "Even More Boingy",
+        description: "If a Grot Warboss uses this ability, then until your next hero phase, all Moonclan units from your army that are within 10\" at the beginning of the movement phase can move and run an extra 1\". Grot Squig Hopper units that are within 10\" at the beginning of the movement phase become even more boingy instead; you can re-roll the dice for these units when determining how far they can move or run in that phase.",
+        category: AbilityCategory.Command,
         },
 
     grotShamanMadcapMushrooms: {
@@ -12269,6 +13390,13 @@ Total: Effect\
         id: "grotBigBossOnGiganticSpiderWallCrawler",
         name: "Wall-crawler",
         description: "A Grot Big Boss on a Gigantic Spider can choose to move across scenery as if it was not there.",
+        },
+
+    grotBigBossOnGiganticSpiderBlessingOfTheSpiderGod: {
+        id: "grotBigBossOnGiganticSpiderBlessingOfTheSpiderGod",
+        name: "Blessing of the Spider-god",
+        description: "If a Grot Big Boss on Gigantic Spider uses this ability, then until your next hero phase all Spiderfang units from your army that are within 8\" of this model when they attack in the combat phase receive the blessing of the Spider-god. When attacking with these units, their Spider Venom ability will inflict a mortal wound on a hit roll of a 5 or more, instead of a 6 or more.",
+        category: AbilityCategory.Command,
         },
 
     grotSpiderRidersSpiderfangShield: {
@@ -12416,6 +13544,13 @@ Total: Effect\
         id: "tyrantGutgouger",
         name: "Gutgouger",
         description: "Any wound roll of 6 or more made with a Great Gutgouger inflicts double Damage.",
+        },
+
+    tyrantBullyOfTheFirstDegree: {
+        id: "tyrantBullyOfTheFirstDegree",
+        name: "Bully of the First Degree",
+        description: "If a Tyrant uses this ability, pick one Gutbusters unit from your army within 6\".  at unit suffers D3 mortal wounds but does not then have to take battleshock tests for the rest of the battle whilst this Tyrant is alive and on the battlefield.",
+        category: AbilityCategory.Command,
         },
 
     butcherBloodgruel: {
@@ -12618,6 +13753,13 @@ Slaanesh: If this model has a mark of Slaanesh, enemy units must subtract one fr
         description: "Any who stray into the territory of a Manticore are as good as dead, especially larger creatures, which it sees as potential rivals. You can re-roll hit rolls of 1 for the Manticore’s Claws and Jaws attacks if the target is a Monster. If the target is a unit within your army’s territory, you can re-roll any failed hit rolls for these attacks.",
         },
 
+    chaosLordOnManticoreIronWilledOverlord: {
+        id: "chaosLordOnManticoreIronWilledOverlord",
+        name: "Iron-willed Overlord",
+        description: "Manticores are berserk killers, and any Chaos Lord who rides one to battle displays such obvious dominance that none would dare deny his orders. If a Chaos Lord on Manticore uses this ability, select a Chaos Warriors unit within 15\". Until your next hero phase, you can re-roll charge rolls, wound rolls and battleshock tests for that unit.",
+        category: AbilityCategory.Command,
+        },
+
         chaosLordOnManticoreFly: {
             id: "chaosLordOnManticoreFly",
             name: "FLY",
@@ -12739,6 +13881,13 @@ Nurgle: You can re-roll wound rolls of 1 for a Lord of Chaos with a mark of Nurg
         description: "Once during the battle, before attacking with the Lord of Chaos’ Reaperblade, you can say that he will unleash the fury of the daemon that possesses it. If you do, it makes only 1 Attack, but inflicts 2D6 Damage.",
         },
 
+    lordOfChaosAidedByTheGods: {
+        id: "lordOfChaosAidedByTheGods",
+        name: "Aided by the Gods",
+        description: "If a Lord of Chaos uses this ability, pick a Slaves to Darkness unit within 10\" that has the same mark of Chaos as the Lord. Until your next hero phase, that unit receives the same benefit as the Lord of Chaos receives for his mark of Chaos.",
+        category: AbilityCategory.Command,
+        },
+
     chaosLordOnDaemonicMountEyeOfTheGods: {
         id: "chaosLordOnDaemonicMountEyeOfTheGods",
         name: "Eye of the Gods",
@@ -12763,6 +13912,13 @@ Slaanesh: This model can run and charge in the same turn if it has a mark of Sla
         id: "chaosLordOnDaemonicMountChaosRuneshield",
         name: "Chaos Runeshield",
         description: "Roll a dice each time this model suffers a mortal wound. On a 5 or a 6 that mortal wound is ignored.",
+        },
+
+    chaosLordOnDaemonicMountTheKnightsOfChaos: {
+        id: "chaosLordOnDaemonicMountTheKnightsOfChaos",
+        name: "The Knights of Chaos",
+        description: "If a Chaos Lord on Daemonic Mount uses this ability, select a unit of Chaos Knights, Chaos Chariots or Gorebeast Chariots from your army within 15\". Until your next hero phase you can re-roll charge rolls for that unit and add 1 to any hit rolls for them in the combat phase.",
+        category: AbilityCategory.Command,
         },
 
     chaosWarriorsChaosRuneshields: {
@@ -13091,6 +14247,13 @@ Favour of Slaanesh: The Shrinemaster casts sickly-sweet incense into the shrine�
         category: AbilityCategory.Magic,
         },
 
+    keeperOfSecretsExcessOfViolence: {
+        id: "keeperOfSecretsExcessOfViolence",
+        name: "Excess of Violence",
+        description: "If a Keeper of Secrets uses this ability, select a Slaanesh Daemon unit within 12\". In your next combat phase, that unit can be selected to pile in and attack twice, instead of only once.",
+        category: AbilityCategory.Command,
+        },
+
     theMasqueOfSlaaneshUnnaturalReflexes: {
         id: "theMasqueOfSlaaneshUnnaturalReflexes",
         name: "Unnatural Reflexes",
@@ -13200,6 +14363,13 @@ Favour of Slaanesh: The Shrinemaster casts sickly-sweet incense into the shrine�
         description: "It is wise not to gaze long upon the splendour of a Lord of Slaanesh, lest terrible notions begin to form. If an enemy unit finishes its pile in move within 3\" of a Lord of Slaanesh, they are in danger of being beguiled. Subtract 1 from any of their hit rolls which target this model for the remainder of the phase.",
         },
 
+    lordOfSlaaneshOnDaemonicMountHellishSwiftness: {
+        id: "lordOfSlaaneshOnDaemonicMountHellishSwiftness",
+        name: "Hellish Swiftness",
+        description: "Devoted followers of Slaanesh seem to move in a blur, often as a result of soporific musks and perception‑altering auras. If a Lord of Slaanesh on Daemonic Mount uses this ability, select a Mortal Slaanesh unit within 12\" to receive the boon of hellish swiftness. In your next combat phase, that unit can be selected to pile in and attack twice, instead of only once.",
+        category: AbilityCategory.Command,
+        },
+
     chaosLordOfSlaaneshChaosRuneshield: {
         id: "chaosLordOfSlaaneshChaosRuneshield",
         name: "Chaos Runeshield",
@@ -13210,6 +14380,13 @@ Favour of Slaanesh: The Shrinemaster casts sickly-sweet incense into the shrine�
         id: "chaosLordOfSlaaneshStriveForPerfection",
         name: "Strive for Perfection",
         description: "Chaos Lords of Slaanesh are accomplished swordsmen, ever eager to test their skills with the blade against great foes. You can add 1 to hit rolls for this model’s Quicksilver Blade when targeting a Hero or a Monster.",
+        },
+
+    chaosLordOfSlaaneshLordOfExcess: {
+        id: "chaosLordOfSlaaneshLordOfExcess",
+        name: "Lord of Excess",
+        description: "If a Chaos Lord of Slaanesh uses this ability, select a Mortal Slaanesh unit within 12\". Until your next hero phase, each time you roll a 6 or more to hit with a model in that unit, that model can immediately make one extra attack using the same weapon.",
+        category: AbilityCategory.Command,
         },
 
     fiendsOfSlaaneshViciousPincers: {
@@ -13489,6 +14666,13 @@ Favour of Slaanesh: The Shrinemaster casts sickly-sweet incense into the shrine�
         description: "You can re-roll failed wound rolls for a Beastlord when it targets a Hero.",
         },
 
+    beastlordGrislyTrophy: {
+        id: "beastlordGrislyTrophy",
+        name: "Grisly Trophy",
+        description: "A Beastlord can use this ability if any attacks it made in the previous turn resulted in an enemy model being slain. If it does so, then until your next hero phase, all Brayherd units in your army can add 1 to their charge, run and hit rolls whilst they are within 16\" of the Beastlord. The same unit cannot benefit from this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
+        },
+
     greatBrayShamanInfuseWithBestialVigour: {
         id: "greatBrayShamanInfuseWithBestialVigour",
         name: "Infuse with Bestial Vigour",
@@ -13657,6 +14841,13 @@ Favour of Slaanesh: The Shrinemaster casts sickly-sweet incense into the shrine�
         id: "doombullBullshield",
         name: "Bullshield",
         description: "A Doombull with a Bullshield has a save of 4+ in the combat phase.",
+        },
+
+    doombullSlaughtererSCall: {
+        id: "doombullSlaughtererSCall",
+        name: "Slaughterer’s Call",
+        description: "If a Doombull uses this ability, then until your next hero phase you can add 1 to all wound rolls made for Warherd units in your army that are within 16\" of this model when they attack in the combat phase. The same unit cannot benefit from this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
         },
 
     bullgorsBloodgreed: {
@@ -13936,6 +15127,13 @@ Favour of Slaanesh: The Shrinemaster casts sickly-sweet incense into the shrine�
         category: AbilityCategory.Magic,
         },
 
+    greySeerUnderlingsWillNotFleeMustFightfight: {
+        id: "greySeerUnderlingsWillNotFleeMustFightfight",
+        name: "‘Underlings Will not Flee, must Fightfight!’",
+        description: "If a Grey Seer uses this ability, then until your next hero phase you can roll a dice whenever a Skaven model from your army flees whilst within 26\" of the Grey Seer. On a 4 or more that model is more scared of the Grey Seer’s wrath than the enemy and does not flee.",
+        category: AbilityCategory.Command,
+        },
+
     thanquolAndBoneripperWarpAmulet: {
         id: "thanquolAndBoneripperWarpAmulet",
         name: "Warp-amulet",
@@ -13959,6 +15157,13 @@ Favour of Slaanesh: The Shrinemaster casts sickly-sweet incense into the shrine�
         name: "SCORCH",
         description: "Thanquol thrusts out his paw and his foes (or his underlings) are roasted alive by a gout of magical flame. Scorch has a casting value shown in the damage table, above. If successfully cast, select a visible unit within 26\". That unit suffers D3 mortal wounds. If Thanquol targets a Skaven unit with this spell, it suffers D6 mortal wounds instead.",
         category: AbilityCategory.Magic,
+        },
+
+    thanquolAndBoneripperBlessingsOfTheHornedRat: {
+        id: "thanquolAndBoneripperBlessingsOfTheHornedRat",
+        name: "Blessings of the Horned Rat",
+        description: "If Thanquol uses this ability, select a Skaven unit within 13\". Until your next hero phase, roll a dice whenever that unit suffers a wound or mortal wound. Add one to the result if the unit has 13 or more models. On a 6 or more, the Horned Rat saves his minion from harm and that wound or mortal wound is ignored. The same unit cannot be picked to benefit from this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
         },
 
     lordSkreechVerminkingTheThirteenHeadedOne: {
@@ -13985,6 +15190,13 @@ Grey Seers: You add 1 to all casting and unbinding rolls for Lord Verminking.",
         description: "The Dreaded Thirteenth Spell has a casting value of 8. If successfully cast, pick an enemy unit within 13\" of the caster that is visible to them and roll 13 dice. For each 4+ that unit suffers 1 mortal wound. If any models are slain by these mortal wounds, you can summon a unit of Clanrats to the battlefield, and add it to your army. The summoned unit has one model for each model slain by these mortal wounds. The summoned unit must be set up wholly within 13\" of Lord Skreech Verminking, and more than 9\" from any enemy units. The summoned unit cannot move in the following movement phase.",
            flavor: "With a sickening lurch, the fabric of reality is torn open by the twisting, mutating power of the Great Horned Rat.",
         category: AbilityCategory.Magic,
+        },
+
+    lordSkreechVerminkingTheRatKing: {
+        id: "lordSkreechVerminkingTheRatKing",
+        name: "The Rat King",
+        description: "If Lord Skreech Verminking uses this ability, then until your next hero phase you can re-roll wound rolls of 1 for all Skaven units from your army that are within 13\" of Lord Verminking when they attack in the combat phase.",
+        category: AbilityCategory.Command,
         },
 
     screamingBellPushedIntoBattle: {
@@ -14028,6 +15240,13 @@ Grey Seers: You add 1 to all casting and unbinding rolls for Lord Verminking.",
         category: AbilityCategory.Magic,
         },
 
+    screamingBellTheAltarOfTheHornedRat: {
+        id: "screamingBellTheAltarOfTheHornedRat",
+        name: "The Altar of the Horned Rat",
+        description: "If the Grey Seer atop the Screaming Bell uses this ability, then until your next hero phase you can add one to the Move and Bravery of all Skaven units from your army that can see the Screaming Bell.",
+        category: AbilityCategory.Command,
+        },
+
     verminlordWarpseerScryOrb: {
         id: "verminlordWarpseerScryOrb",
         name: "Scry-orb",
@@ -14041,6 +15260,13 @@ Grey Seers: You add 1 to all casting and unbinding rolls for Lord Verminking.",
         category: AbilityCategory.Magic,
         },
 
+    verminlordWarpseerForthForthChildrenOfTheHornedRat: {
+        id: "verminlordWarpseerForthForthChildrenOfTheHornedRat",
+        name: "Forth-forth, Children of the Horned Rat!",
+        description: "If a Verminlord Warpseer uses this ability, you can summon a unit of Giant Rats to the battlefield. Set up a unit of 3D6 Giant Rats anywhere within 13\" of the Verminlord Warpseer and more than 9\" from any enemy models. The unit is added to your army but cannot move in your next movement phase.",
+        category: AbilityCategory.Command,
+        },
+
     verminlordWarbringerVerminousFury: {
         id: "verminlordWarbringerVerminousFury",
         name: "Verminous Fury",
@@ -14052,6 +15278,13 @@ Grey Seers: You add 1 to all casting and unbinding rolls for Lord Verminking.",
         name: "DEATH FRENZY",
         description: "Gesticulating wildly, the Verminlord gifts his minions with a rabid and frothing rage that even death does not cool. Death Frenzy has a casting value of 5. If successfully cast, select a Verminus unit within 13\". Until your next hero phase, each time a model from that unit is slain in the combat phase, you can make a pile in move and then attack with it before removing it.",
         category: AbilityCategory.Magic,
+        },
+
+    verminlordWarbringerTyrantsOfBattle: {
+        id: "verminlordWarbringerTyrantsOfBattle",
+        name: "Tyrants of Battle",
+        description: "If a Verminlord Warbringer uses this ability, you can re-roll hit rolls and wound rolls of 1 for Verminus models from your army that are within 13\" of the Verminlord when they attack in the combat phase.",
+        category: AbilityCategory.Command,
         },
 
     skavenWarlordStrikeAndScurryAway: {
@@ -14070,6 +15303,13 @@ Grey Seers: You add 1 to all casting and unbinding rolls for Lord Verminking.",
         id: "skavenWarlordClanshield",
         name: "Clanshield",
         description: "You can add 1 to save rolls for a Skaven Warlord with a Clanshield against attacks that have Damage 1.",
+        },
+
+    skavenWarlordGnashGnawOnTheirBones: {
+        id: "skavenWarlordGnashGnawOnTheirBones",
+        name: "Gnash-gnaw on their Bones!",
+        description: "If a Skaven Warlord uses this ability, pick one Verminus unit within 13\". Until your next hero phase, all models in that unit make one extra attack with each of their melee weapons.",
+        category: AbilityCategory.Command,
         },
 
     stormverminClanshields: {
@@ -14393,6 +15633,13 @@ Grey Seers: You add 1 to all casting and unbinding rolls for Lord Verminking.",
         category: AbilityCategory.Magic,
         },
 
+    verminlordCorruptorGougeTearTheirEyes: {
+        id: "verminlordCorruptorGougeTearTheirEyes",
+        name: "Gouge-tear their Eyes!",
+        description: "If this model is your general and uses this ability, select this model or one Skaven unit within 18\". Until your next hero phase, when that unit is selected to attack in the combat phase, you can add 1 to the attacks characteristic of all its melee weapons.",
+        category: AbilityCategory.Command,
+        },
+
     sepulchralStalkersTransmogrifyingGaze: {
         id: "sepulchralStalkersTransmogrifyingGaze",
         name: "Transmogrifying Gaze",
@@ -14446,6 +15693,13 @@ Grey Seers: You add 1 to all casting and unbinding rolls for Lord Verminking.",
         id: "royalWarsphinxSacredWarStatue",
         name: "Sacred War Statue",
         description: "Halve the Damage characteristic (rounding up) of weapons that target this model. In addition, halve the number of mortal wounds this model suffers from spells and abilities (rounding up).",
+        },
+
+    royalWarsphinxWhoDaresDisturbMySlumber: {
+        id: "royalWarsphinxWhoDaresDisturbMySlumber",
+        name: "Who Dares Disturb My Slumber?",
+        description: "If this model uses this ability, pick an enemy unit that is visible to it. Until your next hero phase, add 1 to all wound rolls for friendly Embalmed and Desert Legion units that target the chosen unit.",
+        category: AbilityCategory.Command,
         },
 
     warsphinxThundercrushAttack: {
@@ -14509,6 +15763,13 @@ Grey Seers: You add 1 to all casting and unbinding rolls for Lord Verminking.",
 \
 You can remove the selected model from the battlefield, and then set it up again anywhere on the battlefield that is more than 6\" from an enemy model. That model cannot move again in your next movement phase.",
         category: AbilityCategory.Magic,
+        },
+
+    verminlordDeceiverLordOfAssassins: {
+        id: "verminlordDeceiverLordOfAssassins",
+        name: "Lord of Assassins",
+        description: "If a Verminlord Deceiver uses this ability, you can re-roll all failed wound rolls for Eshin models from your army that are within 13\" when they attack in the combat phase. This ability lasts until your next hero phase.",
+        category: AbilityCategory.Command,
         },
 
     nightRunnersStabStabInTheBack: {
@@ -14688,6 +15949,13 @@ Healing Hands: One model in the unit immediately heals D3 wounds.",
         description: "In the battleshock phase, a Griffon can loose a piercing Bloodroar at a unit within 8\". If it does, that unit must roll two dice and use the highest result if it has to take a battleshock test that phase.",
         },
 
+    freeguildGeneralOnGriffonRousingBattleCry: {
+        id: "freeguildGeneralOnGriffonRousingBattleCry",
+        name: "Rousing Battle Cry",
+        description: "If a Freeguild General on Griffon uses this ability, pick a Free Peoples unit within 15\". Until your next hero phase you can add 2 to that unit’s Bravery and 1 to its charge rolls and hit rolls. The same unit cannot be picked to benefit from this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
+        },
+
         freeguildGeneralOnGriffonFly: {
             id: "freeguildGeneralOnGriffonFly",
             name: "FLY",
@@ -14711,6 +15979,13 @@ Healing Hands: One model in the unit immediately heals D3 wounds.",
         id: "freeguildGeneralFreeguildShield",
         name: "Freeguild Shield",
         description: "A Freeguild General with a Freeguild Shield has a Save of 3+.",
+        },
+
+    freeguildGeneralHoldTheLine: {
+        id: "freeguildGeneralHoldTheLine",
+        name: "Hold the Line!",
+        description: "If a Freeguild General uses this ability, pick up to three Free Peoples units within 15\". These units cannot move or charge during your turn, but you can add 1 to all hit and wound rolls for them until your next hero phase. The same unit cannot be picked to benefit from this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
         },
 
         freeguildGeneralWarhorse: {
@@ -15300,6 +16575,13 @@ Healing Hands: One model in the unit immediately heals D3 wounds.",
         description: "In the hero phase, a Warden King can stand atop his oath stone to increase the resolve of his followers. If he does so, he cannot move until his next hero phase, but all Dispossessed units from your army within 18\" in the battleshock phase may use the Warden King’s Bravery instead of their own.",
         },
 
+    wardenKingAncestralGrudge: {
+        id: "wardenKingAncestralGrudge",
+        name: "Ancestral Grudge",
+        description: "If a Warden King uses this ability, pick one enemy unit within 16\". Until your next hero phase, you can add 1 to wound rolls for all attacks made by Dispossessed models that target that unit. The same unit cannot be picked as the target of this command ability more than once in the same phase.",
+        category: AbilityCategory.Command,
+        },
+
     runelordRunesOfSpellbreaking: {
         id: "runelordRunesOfSpellbreaking",
         name: "Runes of Spellbreaking",
@@ -15776,6 +17058,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         description: "Whenever a Flamespyre Phoenix ridden by an Anointed suffers a wound or mortal wound, roll a dice. If the result is 4 or more, the wound or mortal wound is ignored.",
         },
 
+    anointedOnFlamespyrePhoenixCaptainOfThePhoenixGuard: {
+        id: "anointedOnFlamespyrePhoenixCaptainOfThePhoenixGuard",
+        name: "Captain of the Phoenix Guard",
+        description: "If the Anointed uses this ability, then until your next hero phase you can re-roll failed wound rolls for Phoenix Temple units from your army if they are within 8\" of this model when they attack in the combat phase.",
+        category: AbilityCategory.Command,
+        },
+
         anointedOnFlamespyrePhoenixAnointed: {
             id: "anointedOnFlamespyrePhoenixAnointed",
             name: "ANOINTED",
@@ -15827,6 +17116,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         description: "Whenever a Frostheart Phoenix ridden by an Anointed suffers a wound or mortal wound, roll a dice. If the result is 4 or more, the wound or mortal wound is ignored.",
         },
 
+    anointedOnFrostheartPhoenixCaptainOfThePhoenixGuard: {
+        id: "anointedOnFrostheartPhoenixCaptainOfThePhoenixGuard",
+        name: "Captain of the Phoenix Guard",
+        description: "If the Anointed uses this ability, then until your next hero phase you can re-roll failed wound rolls for Phoenix Temple units from your army if they are within 8\" of this model when they attack in the combat phase.",
+        category: AbilityCategory.Command,
+        },
+
         anointedOnFrostheartPhoenixAnointed: {
             id: "anointedOnFrostheartPhoenixAnointed",
             name: "ANOINTED",
@@ -15851,6 +17147,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         id: "anointedBlessingOfTheUrPhoenix",
         name: "Blessing of the Ur-Phoenix",
         description: "An Anointed can attempt to unbind one spell in each enemy hero phase as if he were a wizard.",
+        },
+
+    anointedCaptainOfThePhoenixGuard: {
+        id: "anointedCaptainOfThePhoenixGuard",
+        name: "Captain of the Phoenix Guard",
+        description: "If the Anointed uses this ability, then until your next hero phase you can re-roll failed wound rolls for Phoenix Temple units from your army if they are within 8\" of this model when they attack in the combat phase.",
+        category: AbilityCategory.Command,
         },
 
     phoenixGuardWitnessToDestiny: {
@@ -15961,6 +17264,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         description: "A Dragon can unleash a blast of Dragonfire in your shooting phase. When it does so, pick a visible unit within 12\" and roll a dice; on a 1 or 2 that unit suffers a mortal wound, on a 3 or 4 that unit suffers D3 mortal wounds, and on a 5 or 6 that unit suffers D6 mortal wounds.",
         },
 
+    dragonlordLordOfDragons: {
+        id: "dragonlordLordOfDragons",
+        name: "Lord of Dragons",
+        description: "If a Dragonlord uses this ability, then until your next hero phase you can re-roll failed hit rolls for any Order Draconis unit from your army that is within 10\" when it attacks in the combat phase.",
+        category: AbilityCategory.Command,
+        },
+
         dragonlordFly: {
             id: "dragonlordFly",
             name: "FLY",
@@ -15984,6 +17294,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         id: "dragonNobleEnchantedShield",
         name: "Enchanted Shield",
         description: "You can re-roll all failed save rolls for a Dragon Noble with an Enchanted Shield.",
+        },
+
+    dragonNobleMightOfTheDragon: {
+        id: "dragonNobleMightOfTheDragon",
+        name: "Might of the Dragon",
+        description: "If a Noble uses this ability, pick a Order Draconis unit within 16\". Until your next hero phase you can re-roll all failed hit rolls for that unit.",
+        category: AbilityCategory.Command,
         },
 
         dragonNobleAelvenPurebred: {
@@ -16054,6 +17371,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         id: "skywardenFleetOfWing",
         name: "Fleet of Wing",
         description: "If this model runs, roll two dice instead of one and use the total when determining how much extra it can move.",
+        },
+
+    skywardenSwoopAndAttack: {
+        id: "skywardenSwoopAndAttack",
+        name: "Swoop and Attack!",
+        description: "If a Skywarden uses this ability, Swifthawk Agents in your army that can fly can charge in your next charge phase even if they ran this turn.",
+        category: AbilityCategory.Command,
         },
 
         skywardenFly: {
@@ -16141,6 +17465,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         id: "blackArkFleetmasterMurderousSwashbuckler",
         name: "Murderous Swashbuckler",
         description: "You can reroll failed hit rolls for this model’s Black Ark Cutlass.",
+        },
+
+    blackArkFleetmasterAtThemYouCurs: {
+        id: "blackArkFleetmasterAtThemYouCurs",
+        name: "At Them, You Curs!",
+        description: "If a Black Ark Fleetmaster uses this ability, pick one Scourge Privateers unit within 14\". Until your next hero phase you can re-roll all failed hit rolls for that unit.",
+        category: AbilityCategory.Command,
         },
 
     blackArkCorsairsSeaDragonCloaks: {
@@ -16486,6 +17817,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         description: "A Lance of Spite inflicts 2 Damage instead of 1 if the Dreadlord charged that turn.",
         },
 
+    dreadlordOnBlackDragonDoNotDisappointMe: {
+        id: "dreadlordOnBlackDragonDoNotDisappointMe",
+        name: "Do Not Disappoint Me",
+        description: "If a Dreadlord on Black Dragon uses this ability, select an Order Serpentis unit from your army within 14\". Until your next hero phase you can re-roll all failed wound rolls for that unit in the combat phase.",
+        category: AbilityCategory.Command,
+        },
+
         dreadlordOnBlackDragonFly: {
             id: "dreadlordOnBlackDragonFly",
             name: "FLY",
@@ -16556,6 +17894,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         description: "You can re-roll any failed save rolls for a Nomad Prince.",
         },
 
+    nomadPrinceLordOfTheDeepwoodHost: {
+        id: "nomadPrinceLordOfTheDeepwoodHost",
+        name: "Lord of the Deepwood Host",
+        description: "If a Nomad Prince uses this ability, then until your next hero phase you can re-roll all hit rolls of 1 for Wanderer units from your army that are within 8\" of him when they attack.",
+        category: AbilityCategory.Command,
+        },
+
     spellweaverAncientBlessings: {
         id: "spellweaverAncientBlessings",
         name: "Ancient Blessings",
@@ -16573,6 +17918,13 @@ Forgefire: Until your next hero phase, increase the Rend characteristics of the 
         id: "waystriderHeartseekerArrow",
         name: "Heartseeker Arrow",
         description: "After set-up is complete, roll a dice if the enemy general is visible to at least one Waystrider from your army; on a 5 or more that general suffers a mortal wound.",
+        },
+
+    waystriderBoldestOfTheBold: {
+        id: "waystriderBoldestOfTheBold",
+        name: "Boldest of the Bold",
+        description: "If a Waystrider uses this ability, then until your next hero phase, Wanderers from your army that are within 18\" of him in the battleshock phase may use his Bravery instead of their own. In addition, if you roll a 1 for any of these units’ battleshock tests, that unit can immediately pile in and attack as if it were the combat phase.",
+        category: AbilityCategory.Command,
         },
 
     waywatcherInvisibleHunter: {
@@ -16597,10 +17949,24 @@ Precise Shots: A Waywatcher firing Precise Shots inflicts double damage with its
         description: "Add 1 to hit rolls made for a Waywatcher’s shooting attacks if it did not move in its preceding movement phase.",
         },
 
+    waywatcherSeeButDoNotBeSeen: {
+        id: "waywatcherSeeButDoNotBeSeen",
+        name: "See, But Do Not Be Seen",
+        description: "If a Waywatcher uses this ability, then until your next hero phase, Wanderers from your army that are within 18\" of him gain the Invisible Hunter ability (see left).",
+        category: AbilityCategory.Command,
+        },
+
     wayfinderHailOfDoomArrow: {
         id: "wayfinderHailOfDoomArrow",
         name: "Hail of Doom Arrow",
         description: "Once per game, a Wayfinder can fire its Hail of Doom Arrow during your shooting phase. When he does so he makes 3D6 attacks with his Greatbow that phase instead of 3.",
+        },
+
+    wayfinderBravestOfTheBrave: {
+        id: "wayfinderBravestOfTheBrave",
+        name: "Bravest of the Brave",
+        description: "If a Wayfinder uses this ability, then until your next hero phase, Wanderers from your army that are within 18\" of him in the battleshock phase may use his Bravery instead of their own. In addition, if you roll a 1 for any of these units’ battleshock tests, that unit can immediately shoot as if it were the shooting phase.",
+        category: AbilityCategory.Command,
         },
 
     gladeGuardPeerlessArchery: {
@@ -17115,6 +18481,13 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         description: "Re-roll hit rolls of 1 for friendly Chaos Troggoth units and Chaos Ogor units within 8\" of this model.",
         },
 
+    troggothKingLordOfTheMonstrousHost: {
+        id: "troggothKingLordOfTheMonstrousHost",
+        name: "Lord of the Monstrous Host",
+        description: "If the Troggoth King uses this ability, then until your next hero phase all friendly Chaos Troggoths and Chaos Ogors may use this model’s Bravery characteristic instead of their own.",
+        category: AbilityCategory.Command,
+        },
+
     chaosTroggothsRegeneration: {
         id: "chaosTroggothsRegeneration",
         name: "Regeneration",
@@ -17314,6 +18687,21 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         description: "Subtract 1 from  the Bravery characteristic of enemy units  within 14\" of this model when they take a  Battleshock test. ",
         },
 
+    overtyrantEveryoneHasTheirPrice: {
+        id: "overtyrantEveryoneHasTheirPrice",
+        name: "Everyone Has Their Price",
+        description: "An Overtyrant starts the battle with 3 large bags of gold, which can be represented with suitable markers, or with a dice to track the number. These may be used to bribe enemy units in the following ways. You may only use each effect once in a phase. \
+\
+- At the start of any enemy shooting phase  you may choose an enemy unit and  remove one bag. Subtract 1 from that  unit’s hit rolls for that phase.\
+\
+- At the start of the enemy charge phase  you may choose an enemy unit and  remove any number of bags. For each one  you remove, reduce the charge distance  rolled for that unit by 2\".\
+\
+- At the start of any combat phase you may  choose an enemy unit and remove one  bag. Subtract 1 from that unit’s hit rolls for that phase.\
+\
+- At the start of any battleshock phase  you may choose an enemy unit that is  required to take a battleshock test and  remove any number of bags. For each one  you use, that unit adds 1 to the result of their battleshock test.  ",
+        category: AbilityCategory.Command,
+        },
+
     bruiserStandardBearerBannerOfTheGreatMaw: {
         id: "bruiserStandardBearerBannerOfTheGreatMaw",
         name: "Banner of the Great Maw",
@@ -17481,6 +18869,13 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         description: "A Seawarden with a Sea Drake Pennant gains the Totem keyword. Add 1 to all wound rolls for Highborn units from your army if they are within 8\" of a friendly Sea Drake Pennant when they attack.",
         },
 
+    seawardenOnFootStandFast: {
+        id: "seawardenOnFootStandFast",
+        name: "Stand Fast!",
+        description: "If a Seawarden uses this ability, pick a friendly Highborn unit within 16\". That unit cannot move or charge this turn, but you can re‑roll hit rolls, wound rolls and save rolls for it until your next hero phase.",
+        category: AbilityCategory.Command,
+        },
+
     beastlordOnChariotCrushingCharge: {
         id: "beastlordOnChariotCrushingCharge",
         name: "Crushing Charge",
@@ -17539,6 +18934,13 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         id: "kingOnHippogryphChampionOfThePeople",
         name: "Champion of the People",
         description: "At the start of your hero phase, heal D3 wounds that have been allocated to this model.",
+        },
+
+    kingOnHippogryphKingOfTheRealm: {
+        id: "kingOnHippogryphKingOfTheRealm",
+        name: "King of the Realm",
+        description: "If this model uses this ability, then in your next combat phase add 1 to hit rolls for friendly Nobility units within 24\" of this model that made a charge move in the same turn.",
+        category: AbilityCategory.Command,
         },
 
         kingOnHippogryphFly: {
@@ -17614,6 +19016,13 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         id: "bretonnianLordDucalShield",
         name: "Ducal Shield",
         description: "In the combat phase, re-roll save rolls of 1 for this model if it made a charge move in the same turn.",
+        },
+
+    bretonnianLordLordOfTheRealm: {
+        id: "bretonnianLordLordOfTheRealm",
+        name: "Lord of the Realm",
+        description: "If this model uses this ability, until your next hero phase re-roll failed charge rolls for friendly Nobility units that are within 15\" of this model when the charge roll is made.",
+        category: AbilityCategory.Command,
         },
 
         bretonnianLordFly: {
@@ -18059,6 +19468,13 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         description: "If this model is slain, the unit that inflicted the final wound upon him suffers D6 mortal wounds after all of its attacks have been made.",
         },
 
+    tombKingOnExaltedChariotAndHeDidSayWarAndTheWorldDidTremble: {
+        id: "tombKingOnExaltedChariotAndHeDidSayWarAndTheWorldDidTremble",
+        name: "And He Did Say ‘War’, and the World Did Tremble...",
+        description: "If a Tomb King on Exalted Chariot uses this command ability, then in your next combat phase you can add 1 to hit rolls for Tomb Kings units in your army while they are within 18\" of this model. If a Desert Legions unit is affected by this ability, you can also add 1 to their wound rolls in the combat phase.",
+        category: AbilityCategory.Command,
+        },
+
     tombQueenTheTombQueenSCurse: {
         id: "tombQueenTheTombQueenSCurse",
         name: "The Tomb Queen’s Curse",
@@ -18069,6 +19485,13 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         id: "tombQueenSupernaturalSpeed",
         name: "Supernatural Speed",
         description: "When an enemy unit within 3\" of this model is picked to pile in and attack in the combat phase, if this model has not yet attacked this phase, you can immediately pile in and attack with it before that enemy unit does.",
+        },
+
+    tombQueenBlessingOfAccuracy: {
+        id: "tombQueenBlessingOfAccuracy",
+        name: "Blessing of Accuracy",
+        description: "If a Tomb Queen uses this command ability, add 1 to hit rolls made by friendly Desert Legions units during your next shooting phase.",
+        category: AbilityCategory.Command,
         },
 
     tombKingTheTombKingSCurse: {
@@ -18083,6 +19506,13 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         description: "You can re-roll failed save rolls for a Tomb King with a Royal Tomb Shield.",
         },
 
+    tombKingMyWillBeDone: {
+        id: "tombKingMyWillBeDone",
+        name: "My Will Be Done",
+        description: "If a Tomb King uses this command ability, pick one Desert Legions unit within 18\". Until your next hero phase add 1 to all hit, run and charge rolls for that unit.",
+        category: AbilityCategory.Command,
+        },
+
     tombKingInRoyalChariotTheTombKingSCurse: {
         id: "tombKingInRoyalChariotTheTombKingSCurse",
         name: "The Tomb King’s Curse",
@@ -18093,6 +19523,13 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         id: "tombKingInRoyalChariotRoyalChariot",
         name: "Royal Chariot",
         description: "In the combat phase, if this model charged in the same turn, add 2 to the Attacks characteristic of the Tomb King’s Dynastic Blade and double the Attacks characteristic of the Skeletal Steed’s Thundering Hooves.",
+        },
+
+    tombKingInRoyalChariotAndTheTombKingsRodeToWar: {
+        id: "tombKingInRoyalChariotAndTheTombKingsRodeToWar",
+        name: "‘And the Tomb Kings Rode to War...’",
+        description: "If a Tomb King in Royal Chariot uses this command ability you can re-roll charge rolls for this model and friendly units of Desert Legion Chariots that are within 18\" of him in your next charge phase.",
+        category: AbilityCategory.Command,
         },
 
     scarabPrinceSoulReaper: {
@@ -18412,6 +19849,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
            flavor: "Skaven Warlords gladly hurl their warriors into the blades of the enemy, content in the knowledge that there are always more Clanrat lives to sacrifice.",
         },
 
+    skritchSpiteclawGnashGnawOnTheirBones: {
+        id: "skritchSpiteclawGnashGnawOnTheirBones",
+        name: "Gnash-gnaw on their Bones!",
+        description: "You can use this command ability in the combat phase before fighting with a Verminus unit within 13\" of Skritch Spiteclaw. Add 1 to the Attacks characteristic of that unit’s melee weapons that phase.",
+           flavor: "The warlords of the skaven drive their minions into a killing frenzy with a highly effective blend of bullying, threats and coercion.",
+        category: AbilityCategory.Command,
+        },
+
     spiteclawSSwarmAversionToDeath: {
         id: "spiteclawSSwarmAversionToDeath",
         name: "Aversion to Death",
@@ -18487,6 +19932,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         name: "Weapon-breaker",
         description: "If you make a save roll of 6 or higher for this model for an attack from an enemy Hero or Monster, roll another dice. If the result is 4 or more, your opponent must re-roll successful hit rolls for the weapon which was used to make that attack for the rest of the battle.",
            flavor: "A Latchkey Grandaxe’s unique design allows the wielder to catch an enemy’s weapon between its metal teeth before breaking it with a forceful twist of the arm.",
+        },
+
+    fjulGrimnirLodgeLeader: {
+        id: "fjulGrimnirLodgeLeader",
+        name: "Lodge Leader",
+        description: "Use this command ability at the start of the combat phase. All friendly Fyreslayers units within 8\" of this model can move up to 5\" when they pile in. In addition, each time this model suffers a wound or mortal wound, pick a friendly Fyreslayers unit within 3\" and roll a dice. On a 4+, the wound is negated, and that Fyreslayers unit suffers 1 mortal wound.",
+           flavor: "Marching at the head of his army, an Auric Runefather inspires fierce pride in the loyal warriors under his command.",
+        category: AbilityCategory.Command,
         },
 
     theChosenAxesChosenKin: {
@@ -18571,6 +20024,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             name: "The Sepulchral Warden",
             description: "The leader of this unit is the Sepulchral Warden. In each of your hero phases you can return D3 slain models to this unit while the Sepulchral Warden is on the battlefield.",
             category: AbilityCategory.SpecialRule,
+        },
+
+    knightOfShroudsLordOfGheists: {
+        id: "knightOfShroudsLordOfGheists",
+        name: "Lord of Gheists",
+        description: "You can use this command ability at the start of the combat phase. If you do so, pick a friendly Nighthaunt unit that is wholly within 18\" of a friendly model with this command ability. Add 1 to the Attacks characteristic of that unit’s melee weapons in that combat phase. A unit cannot benefit from this command ability more than once per phase.",
+           flavor: "Each Knight of Shrouds was a mighty general in mortal life, and still retains the ability to spur their soldiery to great feats of arms.",
+        category: AbilityCategory.Command,
         },
 
         knightOfShroudsMount: {
@@ -18765,6 +20226,20 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         category: AbilityCategory.Magic,
         },
 
+    lordArcanumSoulEnergy: {
+        id: "lordArcanumSoulEnergy",
+        name: "Soul Energy",
+        description: "You can use this command ability in your hero phase, your shooting phase, or the combat phase. Hero Phase: If you use this command ability in your hero phase, pick a friendly unit of Evocators wholly within 9\" of a friendly model with this command ability. That unit can automatically cast Empower in that hero phase (no casting roll is required, and the spell cannot be unbound).\
+\
+\
+Shooting Phase: If you use this command ability in your shooting phase, pick a friendly unit of Castigators wholly within 9\" of a friendly model with this command ability. You can use Aetheric Channelling to increase the accuracy and power of that unit’s Thunderhead Greatbows in that shooting phase instead of choosing only one of those options.\
+\
+\
+Combat Phase: If you use this command ability in the combat phase, pick a friendly unit of Sequitors wholly within 9\" of a friendly model with this command ability. You can use Aetheric Channelling to increase the power of the unit’s weapons and shields in that combat phase instead of choosing only one of those options.",
+           flavor: "Lord-Arcanum can enhance the soul energy of nearby units from the Sacrosanct Chamber, allowing them to perform extraordinary deeds.",
+        category: AbilityCategory.Command,
+        },
+
         lordArcanumMount: {
             id: "lordArcanumMount",
             name: "MOUNT",
@@ -18797,7 +20272,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
     evocatorsCelestialLightningArc: {
         id: "evocatorsCelestialLightningArc",
         name: "Celestial Lightning Arc",
-        description: "with missile weapons that target this unit. In addition, each time this unit attacks, after all of its attacks have been resolved, you can pick 1 enemy unit within 3\" of this unit. If you do so, roll 2 dice for each model in this unit. For each 4+ that enemy unit suffers 1 mortal wound.",
+        description: "You can re-roll save rolls of 1 for attacks made with missile weapons that target this unit. In addition, each time this unit attacks, after all of its attacks have been resolved, you can pick 1 enemy unit within 3\" of this unit. If you do so, roll 2 dice for each model in this unit. For each 4+ that enemy unit suffers 1 mortal wound.",
            flavor: "Evocators summon bands of celestial lightning that arc around their weapons.",
         },
 
@@ -18819,7 +20294,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
     castigatorsCastigatorAethericChannelling: {
         id: "castigatorsCastigatorAethericChannelling",
         name: "Castigator Aetheric Channelling",
-        description: "this unit will increase the accuracy or the power of their Thunderhead Greatbows. If you choose accuracy, re-roll hit rolls of 1 for attacks made by this unit in that shooting phase. If you choose power, this unit’s Thunderhead Greatbows have a Rend characteristic of -2 instead of -1 in that shooting phase.",
+        description: "At the start of the shooting phase, you must say if this unit will increase the accuracy or the power of their Thunderhead Greatbows. If you choose accuracy, re-roll hit rolls of 1 for attacks made by this unit in that shooting phase. If you choose power, this unit’s Thunderhead Greatbows have a Rend characteristic of -2 instead of -1 in that shooting phase.",
            flavor: "Castigators can use their knowledge of the arcane to channel aetheric energy, making their weapons more accurate or powerful.",
         },
 
@@ -18897,7 +20372,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         id: "lordExecutionerBeheadingStrike",
         name: "Beheading Strike",
         description: "If the unmodified wound roll for an attack made with a Decapitating Greataxe is 6, add 2 to the Damage characteristic of that weapon for that attack.",
-           flavor: "e cutting edge of a Lord Executioner’s axe is razor-sharp, and they can use it to slice the head clean from a foe’s body.",
+           flavor: "The cutting edge of a Lord Executioner’s axe is razor-sharp, and they can use it to slice the head clean from a foe’s body.",
         },
 
     lordExecutionerEthereal: {
@@ -19040,6 +20515,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         description: "Grief-stricken has a casting value of 7. If successfully cast, pick an enemy unit that is within 18\" of the caster and visible to them. Until your next hero phase, subtract 1 from hit rolls for attacks made by that unit and add 1 to hit rolls for attacks made with melee weapons that target that unit.",
            flavor: "Lady Olynder’s incantations can cause a pall of misery and utter desolation to descend upon her enemies, so that their limbs feel leaden and their very will to live is sapped.",
         category: AbilityCategory.Magic,
+        },
+
+    ladyOlynderNoRestForTheWicked: {
+        id: "ladyOlynderNoRestForTheWicked",
+        name: "No Rest For the Wicked",
+        description: "You can use this command ability in your hero phase if this model is your general and is on the battlefield. If you do so, you can return 1 slain model to each friendly Summonable Nighthaunt unit that is within 12\" of a friendly model with this command ability.",
+           flavor: "Should the spectral forms of her minions be banished or destroyed, Lady Olynder will wrench their souls back from the underworlds time and again until her will is done.",
+        category: AbilityCategory.Command,
         },
 
         ladyOlynderCompanions: {
@@ -19367,6 +20850,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         category: AbilityCategory.Magic,
         },
 
+    aventisFirestrikeFieryOrator: {
+        id: "aventisFirestrikeFieryOrator",
+        name: "Fiery Orator",
+        description: "You can use this command ability at the start of the combat phase. If you do so, pick a friendly Hammers of Sigmar unit wholly within 12\" of a friendly model with this command ability. Add 1 to wound rolls for attacks made by that unit until the end of that phase.",
+           flavor: "Aventis Firestrike’s rousing commands can inflame the righteous fury of his followers, pushing them to ever greater heights of aggression.",
+        category: AbilityCategory.Command,
+        },
+
         aventisFirestrikeMount: {
             id: "aventisFirestrikeMount",
             name: "MOUNT",
@@ -19425,6 +20916,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         category: AbilityCategory.Magic,
         },
 
+    astreiaSolbrightSoulEnergyOfTheFirstHost: {
+        id: "astreiaSolbrightSoulEnergyOfTheFirstHost",
+        name: "Soul Energy of the First Host",
+        description: "You can use this command ability in your hero phase, your shooting phase, or the combat phase. Hero Phase: If you use this command ability in your hero phase, pick a friendly unit of Hammers of Sigmar Evocators wholly within 12\" of a friendly model with this command ability. That unit can automatically cast Empower in that hero phase (no casting roll is required, and the spell cannot be unbound). Shooting Phase: If you use this command ability in your shooting phase, pick a friendly unit of Hammers of Sigmar Castigators wholly within 12\" of a friendly model with this command ability. You can use Aetheric Channelling to increase the accuracy and power of that unit’s Thunderhead Greatbows in that shooting phase instead of choosing only one of those options. Combat Phase: If you use this command ability in the combat phase, pick a friendly unit of Hammers of Sigmar Sequitors wholly within 12\" of a friendly model with this command ability. You can use Aetheric Channelling to increase the power of the unit’s weapons and shields in that combat phase instead of choosing only one of those options.",
+           flavor: "Astreia Solbright can enhance the soul energy of nearby units from Hammers of Sigmar Sacrosanct Chambers, allowing them to perform extraordinary deeds.",
+        category: AbilityCategory.Command,
+        },
+
         astreiaSolbrightMount: {
             id: "astreiaSolbrightMount",
             name: "MOUNT",
@@ -19460,6 +20959,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
            flavor: "Vandus is a mighty champion of the Hammers of Sigmar, and a consummate commander.",
         },
 
+    vandusHammerhandVengefulDetermination: {
+        id: "vandusHammerhandVengefulDetermination",
+        name: "Vengeful Determination",
+        description: "You can use this command ability at the start of the combat phase. If you do so, until the end of that phase, add 1 to the Attacks characteristic of melee weapons used by friendly Hammers of Sigmar units while they are wholly within 12\" of a friendly model with this command ability.",
+           flavor: "Vandus leads the Hammers of Sigmar into the thickest fighting, inspiring them to fight harder with his feats of arms.",
+        category: AbilityCategory.Command,
+        },
+
         vandusHammerhandMount: {
             id: "vandusHammerhandMount",
             name: "MOUNT",
@@ -19479,6 +20986,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         name: "Sigmarite Thundershield",
         description: "You can re‑roll save rolls of 1 for attacks that target this model. If the re-rolled save is successful, each enemy unit within 3\" of this model suffers 1 mortal wound.",
            flavor: "Thundershields store storm energy, unleashing it when struck with sufficient force to blast those attempting to attack.",
+        },
+
+    gavrielSureheartOnceMoreForSigmarCharge: {
+        id: "gavrielSureheartOnceMoreForSigmarCharge",
+        name: "Once More, For Sigmar, Charge!",
+        description: "You can use this command ability at the start of your charge phase. If you do so, until the end of that phase, add 3 to charge rolls for friendly Hammers of Sigmar units that are wholly within 12\" of a friendly model with this command ability when the charge roll is made.",
+           flavor: "Gavriel raises his blade to the sky, exhorting his forces into the foe’s battle-lines.",
+        category: AbilityCategory.Command,
         },
 
     lordArcanumCometTrail: {
@@ -19503,6 +21018,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         category: AbilityCategory.Magic,
         },
 
+    lordArcanumSwiftOfWingLordArcanumsSurgeForwardOnTheirSwiftMountsUrgingTheirMagicallyAdeptComradesToEvenGreaterSpeeds: {
+        id: "lordArcanumSwiftOfWingLordArcanumsSurgeForwardOnTheirSwiftMountsUrgingTheirMagicallyAdeptComradesToEvenGreaterSpeeds",
+        name: "Swift of Wing: Lord-Arcanums surge forward on their swift mounts, urging their magically adept comrades to even greater speeds.",
+        description: "You can use this command ability at the start of the movement phase. If you do so, pick a friendly model with this command ability. Add 2 to run rolls for friendly Sacrosanct units that were wholly within 18\" of that model at the start of that phase.",
+           flavor: "Lord-Arcanums surge forward on their swift mounts, urging their magically adept comrades to even greater speeds.",
+        category: AbilityCategory.Command,
+        },
+
         lordArcanumFly: {
             id: "lordArcanumFly",
             name: "FLY",
@@ -19516,6 +21039,14 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         description: "Thunderclap has a casting value of 6. If successfully cast, pick 1 enemy unit within 18\" of the caster that is visible to them. Subtract 1 from hit rolls for attacks made by that unit until your next hero phase.",
            flavor: "The Lord-Arcanum gathers power from Azyr and unleashes a mighty thunderclap, stunning and deafening nearby enemies.",
         category: AbilityCategory.Magic,
+        },
+
+    lordArcanumAethericManipulation: {
+        id: "lordArcanumAethericManipulation",
+        name: "Aetheric Manipulation",
+        description: "You can use this command ability before an endless spell is moved. If you do so, pick a predatory Endless Spell model within 12\" of a friendly model with this command ability. Add D6\" to the distance that endless spell can move until the end of the battle round.",
+           flavor: "A Lord-Arcanum can manipulate the aetheric energies of the realms, channelling them into powerful spells to speed them towards the enemy.",
+        category: AbilityCategory.Command,
         },
 
     lordArcanumSupernaturalRoar: {
@@ -19540,10 +21071,18 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
         category: AbilityCategory.Magic,
         },
 
+    lordArcanumPackAlpha: {
+        id: "lordArcanumPackAlpha",
+        name: "Pack Alpha",
+        description: "You can use this command ability in the combat phase. If you do so, pick a friendly model with this command ability. Until the end of that phase, add 1 to the Attacks characteristic of the Monstrous Claws of friendly Evocators with Dracoline mounts while they are wholly within 18\" of that model.",
+           flavor: "A Lord-Arcanum on Dracoline can urge their mount to issue a great roar to its loyal pack-mates, stoking their rage and ferocity to untold heights.",
+        category: AbilityCategory.Command,
+        },
+
     lordExorcistRedemptorCasket: {
         id: "lordExorcistRedemptorCasket",
         name: "Redemptor Casket",
-        description: "t the start of your shooting phase, roll a dice for each Daemon or Nighthaunt unit within 6\" of this model. On a 4+ that unit suffers 1 mortal wound.",
+        description: "At the start of your shooting phase, roll a dice for each Daemon or Nighthaunt unit within 6\" of this model. On a 4+ that unit suffers 1 mortal wound.",
            flavor: "Each redemption stave incorporates a casket for the containment of malicious spirits.",
         },
 
@@ -19574,6 +21113,1838 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             name: "MOUNT",
             description: "This unit’s Celestial Dracolines attack with their Monstrous Claws.",
             category: AbilityCategory.SpecialRule,
+        },
+
+    slamboLegendaryKiller: {
+        id: "slamboLegendaryKiller",
+        name: "Legendary Killer",
+        description: "If Slambo charges, he can pile in and attack twice in the following combat phase instead of only once. The second pile in move and attacks are made immediately after the first set of attacks is completed.",
+        },
+
+    slamboGlorySeekingAxeman: {
+        id: "slamboGlorySeekingAxeman",
+        name: "Glory-seeking Axeman",
+        description: "Add 1 to hit rolls made for Slambo if the target is a Hero or Monster. If Slambo kills a Hero or Monster in a combat phase, he doubles the number of attacks he makes with his Chaos Axes in the next combat phase.",
+        },
+
+    screamingSkullCatapultCrewedWarMachine: {
+        id: "screamingSkullCatapultCrewedWarMachine",
+        name: "Crewed War Machine",
+        description: "A Screaming Skull Catapult can only move if its Crew are within 1\" at the start of the movement phase. If its Crew are within 1\" of the catapult in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The Crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    screamingSkullCatapultArcingSkulls: {
+        id: "screamingSkullCatapultArcingSkulls",
+        name: "Arcing Skulls",
+        description: "This war machine can lob its Screaming Skulls at targets that are not visible to it.",
+        },
+
+    screamingSkullCatapultScreamingAmmunition: {
+        id: "screamingSkullCatapultScreamingAmmunition",
+        name: "Screaming Ammunition",
+        description: "A unit that is attacked by any Screaming Skulls must subtract 2 from its Bravery until the end of the next battleshock phase.",
+        },
+
+    screamingSkullCatapultDeathlessOverseer: {
+        id: "screamingSkullCatapultDeathlessOverseer",
+        name: "Deathless Overseer",
+        description: "Necrotects imbue Skeleton Crews with extra animus to work and reload faster than any mortal could achieve. You can shoot a Screaming Skull Catapult twice in your shooting phase instead of once if there is a Necrotect from your army within 1\" of the war machine.",
+        },
+
+    screamingSkullCatapultRaiseSkeletonCrew: {
+        id: "screamingSkullCatapultRaiseSkeletonCrew",
+        name: "Raise Skeleton Crew",
+        description: "Raise Skeleton Crew has a casting value of 5. If successfully cast, pick a Screaming Skull Catapult from your army within 18\" which has no remaining crew. You can set up a unit of up to 3 Skeleton Crew within 1\" of the war machine. The unit is added to your army and can crew that war machine, but cannot move in the following movement phase.",
+        category: AbilityCategory.Magic,
+        },
+
+    greatcannonCrewedArtillery: {
+        id: "greatcannonCrewedArtillery",
+        name: "Crewed Artillery",
+        description: "A Greatcannon can only move if its Crew are within 1\" at the start of the movement phase. If its Crew are within 1\" of the cannon in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The Crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    greatcannonGrapeshot: {
+        id: "greatcannonGrapeshot",
+        name: "Grapeshot",
+        description: "Instead of firing a Cannon Ball using the profile above in the shooting phase, the Crew can load their war machine with grapeshot; if they do, then select a target that is visible to the Greatcannon. Roll one dice for each model in the target unit that is within 10\" of the Greatcannon; for each roll of a 6, that unit suffers a mortal wound.",
+        },
+
+    fieldMortarCrewedArtillery: {
+        id: "fieldMortarCrewedArtillery",
+        name: "Crewed Artillery",
+        description: "A Field Mortar can only move if its Crew are within 1\" at the start of the movement phase. If its Crew are within 1\" of the mortar in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The Crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    fieldMortarArtilleryBarrage: {
+        id: "fieldMortarArtilleryBarrage",
+        name: "Artillery Barrage",
+        description: "A Field Mortar can fire Mortar Shells at units that are not visible to it.",
+        },
+
+    fieldMortarHighExplosive: {
+        id: "fieldMortarHighExplosive",
+        name: "High Explosive",
+        description: "If a Mortar Shell hits a unit that has 10 or more models, increase its Damage characteristic to D6. If it hits a unit that has 20 or more models, increase its Damage characteristic to 2D6 instead.",
+        },
+
+    hellcannonCagedFury: {
+        id: "hellcannonCagedFury",
+        name: "Caged Fury",
+        description: "If the Hellcannon is not within 3\" of an enemy unit at the start of your movement phase, roll a dice and consult the War Machine Crew Table above. If the dice roll is equal to or greater than the score shown, the crew have caged the Hellfire’s fury this turn. Otherwise, the Hellcannon must move as far as it can towards the closest enemy unit that is visible to it.",
+        },
+
+    hellcannonDoomfire: {
+        id: "hellcannonDoomfire",
+        name: "Doomfire",
+        description: "The Hellcannon can only make Doomfire attacks if its crew are within 1\" of the war machine in the shooting phase. To make a Doomfire attack, pick an enemy unit within range, even if it is not visible to the Hellcannon, and roll to hit. Add 1 to the hit roll if the Hellcannon did not move in your preceding movement phase and add another 1 if the target unit has 20 or more models. A unit hit by Doomfire suffers D6 mortal wounds.",
+        },
+
+    hellcannonDaemonForgedCover: {
+        id: "hellcannonDaemonForgedCover",
+        name: "Daemon-forged Cover",
+        description: "A Hellcannon’s Crew can use their war machine as cover while they are within 1\" of it.",
+        },
+
+    duardinBoltThrowerDuardinArtillery: {
+        id: "duardinBoltThrowerDuardinArtillery",
+        name: "Duardin Artillery",
+        description: "A Duardin Bolt Thrower can only move if its Crew are within 1\" at the start of the movement phase. If its Crew are within 1\" of the Bolt Thrower in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The Crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    duardinBoltThrowerPenetratingShot: {
+        id: "duardinBoltThrowerPenetratingShot",
+        name: "Penetrating Shot",
+        description: "If a wound roll for a Runic Bolt is 6+, that shot has a Damage characteristic of D6 and a Rend characteristic of -3.",
+        },
+
+    duardinBoltThrowerRuneOfSkewering: {
+        id: "duardinBoltThrowerRuneOfSkewering",
+        name: "Rune of Skewering",
+        description: "Add 1 to wound rolls for Runic Bolts if the target unit has 20 or more models.",
+        },
+
+    flameCannonDuardinArtillery: {
+        id: "flameCannonDuardinArtillery",
+        name: "Duardin Artillery",
+        description: "A Flame Cannon can only move if its Crew are within 1\" at the start of the movement phase. If its Crew are within 1\" of the Flame Cannon in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The Crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    flameCannonFlameBurst: {
+        id: "flameCannonFlameBurst",
+        name: "Flame Burst",
+        description: "When firing a Flame Burst, pick a unit within range to suffer D3 mortal wounds. After firing a Flame Burst, roll a dice; on a 1, 2 or 3, the flames die out and the unit you shot suffers no further damage, but on a 4+ it is set ablaze and suffers another D3 mortal wounds before the flames are extinguished.",
+        },
+
+    flameCannonRuneOfBurning: {
+        id: "flameCannonRuneOfBurning",
+        name: "Rune of Burning",
+        description: "A Flame Burst inflicts D6 mortal wounds on the target instead of D3 if the target unit has 20 or more models (it will also inflict an additional D6 mortal wounds instead of D3 if the unit is set ablaze, as described in Flame Burst).",
+        },
+
+    grudgeThrowerDuardinArtillery: {
+        id: "grudgeThrowerDuardinArtillery",
+        name: "Duardin Artillery",
+        description: "A Grudge Thrower can only move if its Crew are within 1\" at the start of the movement phase. If its Crew are within 1\" of the catapult in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The Crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    grudgeThrowerLobbedShot: {
+        id: "grudgeThrowerLobbedShot",
+        name: "Lobbed Shot",
+        description: "A Grudge Thrower can hurl Grudge Rocks at units that are not visible to it.",
+        },
+
+    grudgeThrowerSettlingAGrudge: {
+        id: "grudgeThrowerSettlingAGrudge",
+        name: "Settling a Grudge",
+        description: "At the start of the first battle round, pick an enemy unit on the battlefield. Re-roll failed hit and wound rolls for this Grudge Thrower when it targets that unit.",
+        },
+
+    grudgeThrowerRuneOfShattering: {
+        id: "grudgeThrowerRuneOfShattering",
+        name: "Rune of Shattering",
+        description: "Grudge Rocks have a Damage characteristic of 6 instead of 3 if the target unit has 20 or more models.",
+        },
+
+    fieldTrebuchetHeavyArtillery: {
+        id: "fieldTrebuchetHeavyArtillery",
+        name: "Heavy Artillery",
+        description: "This model can only move if its Crew are within 1\" of it at the start of the movement phase. If its Crew are within 1\" of the Trebuchet in the shooting phase, they can fire the war machine. The war machine cannot make charge moves, does not need to take battleshock tests and is unaffected by any attack or ability that uses Bravery. The Crew are in cover while they are within 1\" of their war machine.",
+        },
+
+    fieldTrebuchetArcingShot: {
+        id: "fieldTrebuchetArcingShot",
+        name: "Arcing Shot",
+        description: "This unit can shoot at enemy units that are not visible to it. If it does, subtract 1 from the hit roll for the unit’s Rocks and Masonry attack.",
+        },
+
+    fieldTrebuchetSeismicImpact: {
+        id: "fieldTrebuchetSeismicImpact",
+        name: "Seismic Impact",
+        description: "Roll a dice before making the hit roll for a Rocks and Masonry attack. If the roll is less than the number of models in the target unit, the attack scores a hit without needing the hit roll to be made.",
+        },
+
+    engineerOnMechanicalSteedRangeFindingOptics: {
+        id: "engineerOnMechanicalSteedRangeFindingOptics",
+        name: "Range-finding Optics",
+        description: "Re-roll hit rolls of 1 for this model in the shooting phase if they did not move in their preceding movement phase and there are no enemy models within 3\" of them.",
+        },
+
+    engineerOnMechanicalSteedClockworkCharge: {
+        id: "engineerOnMechanicalSteedClockworkCharge",
+        name: "Clockwork Charge",
+        description: "Roll a dice for each enemy unit that is within 1\" of this model after this model makes a charge move. On a 4+ the unit being rolled for suffers 1 mortal wound.",
+        },
+
+    tombSwarmUndergroundScuttlers: {
+        id: "tombSwarmUndergroundScuttlers",
+        name: "Underground Scuttlers",
+        description: "Instead of setting up a Tomb Swarm on the battlefield, you can place them to one side and say that they are set up beneath the ground. In any of your movement phases, you can set the unit up on the battlefield more than 9\" from any enemy models. This is the unit’s move for that movement phase. The unit can burrow back underground in any of your future movement phases. If it does, remove the unit from the battlefield – it can return in a later turn as described above.",
+        },
+
+    tombSwarmHiddenAbodes: {
+        id: "tombSwarmHiddenAbodes",
+        name: "Hidden Abodes",
+        description: "If a Tomb Swarm burrows back underground as described above, it is joined by more of its scuttling brethren who had remained hidden. You may restore D3 slain models to the unit.",
+        },
+
+    drazhoathTheAshenBlazingBody: {
+        id: "drazhoathTheAshenBlazingBody",
+        name: "Blazing Body",
+        description: "At the start of the combat phase, roll 1 dice for each enemy unit within 3\" of this model. On a 4+, that unit suffers 1 mortal wound.",
+           flavor: "So fierce is the shimmering heat emitted by the Tauri of Hashut, that those who stand too close are prone to burst into flame.",
+        },
+
+    drazhoathTheAshenBloodRage: {
+        id: "drazhoathTheAshenBloodRage",
+        name: "Blood Rage",
+        description: "You can re-roll wound rolls for attacks made with Cinderbreath’s Brazen Horns and Teeth if this model made a charge move in the same turn.",
+           flavor: "The fury of a Bale Taurus burns like an eternal flame, and is at its strongest when the Taurus is hurtling towards its prey.",
+        },
+
+    drazhoathTheAshenHellshardAmulet: {
+        id: "drazhoathTheAshenHellshardAmulet",
+        name: "Hellshard Amulet",
+        description: "Roll a dice each time you allocate a wound inflicted by an attack made with a melee weapon to this model. On a 5+, that wound is negated and the attacking unit suffers 1 mortal wound.",
+           flavor: "This glowing amulet is laced with protective enchantments and baleful hexes that can strike down those who seek to harm its master.",
+        },
+
+    drazhoathTheAshenProphetOfAshAndFlame: {
+        id: "drazhoathTheAshenProphetOfAshAndFlame",
+        name: "Prophet of Ash and Flame",
+        description: "Add 1 to casting rolls for this model if the battle is being fought in the Aqshy, the Realm of Fire.",
+           flavor: "Few mortals can harness the fiery magical essence of Aqshy as instinctively as Drazhoath the Ashen.",
+        },
+
+    drazhoathTheAshenFlamesOfAzgorh: {
+        id: "drazhoathTheAshenFlamesOfAzgorh",
+        name: "Flames of Azgorh",
+        description: "Flames of Azgorh has a casting value of 8. If successfully cast, pick 1 enemy unit within 18\" of the caster that is visible to them. That unit suffers D6 mortal wounds. In addition, subtract 1 from that unit’s Bravery characteristic until the end of that turn.",
+           flavor: "Drazhoath the Ashen conjures a devastating eruption of molten rock and furnace-hot flames, charring his enemies to ash.",
+        category: AbilityCategory.Magic,
+        },
+
+    drazhoathTheAshenLordOfTheBlackFortress: {
+        id: "drazhoathTheAshenLordOfTheBlackFortress",
+        name: "Lord of the Black Fortress",
+        description: "You can use this ability at the start of the battleshock phase if this model is on the battlefield. If you do so, do not take battleshock tests for friendly Legion of Azgorh units while they are wholly within 24\" of this model.",
+           flavor: "In battle, the Legion of Azgorh follows Drazhoath without question, and at his bellowed word its warriors are instilled with unbreakable discipline.",
+        category: AbilityCategory.Command,
+        },
+
+        drazhoathTheAshenMount: {
+            id: "drazhoathTheAshenMount",
+            name: "MOUNT",
+            description: "This model’s Bale Taurus, Cinderbreath, attacks with its Gouts of Flame, Brazen Horns and Teeth, and Burning Hooves.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    daemonsmithEnsorcelledArmour: {
+        id: "daemonsmithEnsorcelledArmour",
+        name: "Ensorcelled Armour",
+        description: "Add 1 to unbinding rolls for this model if 1 or more wounds have been allocated to this model.",
+           flavor: "The protective spells woven into a Daemonsmith’s armour feed on the blood of its wearer.",
+        },
+
+    daemonsmithBloodOfHashut: {
+        id: "daemonsmithBloodOfHashut",
+        name: "Blood of Hashut",
+        description: "Do not use the attack sequence for an attack made with the Blood of Hashut. Instead roll a dice. On a 2+ the target unit suffers D3 mortal wounds. If the target unit is a War Machine it suffers D6 mortal wounds instead of D3.",
+           flavor: "The Blood of Hashut is a deadly incendiary alchemical substance that causes flesh to liquefy and metal to burst into all-consuming flames.",
+        },
+
+    daemonsmithAshStorm: {
+        id: "daemonsmithAshStorm",
+        name: "Ash Storm",
+        description: "Ash Storm has a casting value of 6. If successfully cast, pick 1 enemy unit within 36\" of the caster that is visible to them. Until your next hero phase, subtract 1 from hit rolls for attacks made by that unit, and that unit cannot run.",
+           flavor: "The Daemonsmith conjures a choking cloud of blisteringly hot ash to blind and confuse the enemy.",
+        category: AbilityCategory.Magic,
+        },
+
+    sharTorTheExecutionerDarktideReaping: {
+        id: "sharTorTheExecutionerDarktideReaping",
+        name: "Darktide Reaping",
+        description: "If the unmodified hit roll for an attack made with the Darktide Axe is a 6, that attack inflicts 1 mortal wound on the target in addition to any normal damage.",
+           flavor: "Countless murderous spirits are bound within the Darktide Axe, their number increasing with each foe it slays.",
+        },
+
+    sharTorTheExecutionerTheMaskOfTheExecutioner: {
+        id: "sharTorTheExecutionerTheMaskOfTheExecutioner",
+        name: "The Mask of the Executioner",
+        description: "At the start of your hero phase, you can pick 1 enemy unit within 8\" of this model and roll a dice. On a 1 or 2 nothing happens. On a 3-5 that enemy unit suffers D3 mortal wounds. On a 6, that enemy unit suffers D6 mortal wounds.",
+           flavor: "The malign spirits contained in the dark metal of Shar’tor’s mask can be unleashed upon his foes.",
+        },
+
+    sharTorTheExecutionerTrampleAndGore: {
+        id: "sharTorTheExecutionerTrampleAndGore",
+        name: "Trample and Gore",
+        description: "Add 1 to charge rolls for this unit. In addition, this unit’s Crushing Hooves have a Damage characteristic of D3 instead of 1 if this unit made a charge move in the same turn.",
+           flavor: "A charging Bull Centaur is an avalanche of muscle and rage that tramples all beneath its iron-shod hooves.",
+        },
+
+    sharTorTheExecutionerLordOfTheBaHal: {
+        id: "sharTorTheExecutionerLordOfTheBaHal",
+        name: "Lord of the Ba’hal",
+        description: "You can use this command ability at the start of your charge phase if this model is on the battlefield. If you do so, you can re-roll charge rolls for friendly Ba’hal units while they are wholly within 24\" of this model in that charge phase. In addition, you can re-roll hit rolls of 1 for attacks made with Crushing Hooves by friendly Ba’hal units while they are wholly within 24\" of this model in the subsequent combat phase.",
+           flavor: "The Ba’hal warriors of the Legion of Azgorh eagerly await Shar’tor’s order to attack the foe.",
+        category: AbilityCategory.Command,
+        },
+
+    bullCentaurTaurRukTrampleAndGore: {
+        id: "bullCentaurTaurRukTrampleAndGore",
+        name: "Trample and Gore",
+        description: "Add 1 to charge rolls for this unit. In addition, this unit’s Crushing Hooves have a Damage characteristic of D3 instead of 1 if this unit made a charge move in the same turn.",
+           flavor: "A charging Bull Centaur is an avalanche of muscle and rage that tramples all beneath its iron-shod hooves.",
+        },
+
+    bullCentaurTaurRukFavourOfTheBurningGod: {
+        id: "bullCentaurTaurRukFavourOfTheBurningGod",
+        name: "Favour of the Burning God",
+        description: "You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly model with this command ability. Add 1 to hit rolls for attacks made with melee weapons by friendly Ba’hal units while they are wholly within 12\" of that model until the end of that phase.",
+           flavor: "The bellowing, gore- reeking presence of a Taur’ruk drives others of its malformed kin into a zealous frenzy.",
+        category: AbilityCategory.Command,
+        },
+
+    bullCentaurRendersSpiteshield: {
+        id: "bullCentaurRendersSpiteshield",
+        name: "Spiteshield",
+        description: "If the unmodified save roll for an attack with a melee weapon that targets a unit that includes any models carrying a Spiteshield is 6, the attacking unit suffers 1 mortal wound.",
+           flavor: "The shields carried by those in the Legion of Azgorh are laced with malefic curses, and upon being struck erupt with tendrils of flame.",
+        },
+
+    bullCentaurRendersTrampleAndGore: {
+        id: "bullCentaurRendersTrampleAndGore",
+        name: "Trample and Gore",
+        description: "Add 1 to charge rolls for this unit. In addition, this unit’s Crushing Hooves have a Damage characteristic of D3 instead of 1 if this unit made a charge move in the same turn.",
+           flavor: "A charging Bull Centaur is an avalanche of muscle and rage that tramples all beneath its iron-shod hooves.",
+        },
+
+    infernalGuardsCastellanPyrelockPistol: {
+        id: "infernalGuardsCastellanPyrelockPistol",
+        name: "Pyrelock Pistol",
+        description: "If the unmodified hit roll for an attack made with a Pyrelock Pistol is 6, that attack inflicts 1 mortal wound on the target in addition to any normal damage.",
+           flavor: "Loaded with ammunition containing hungry pyre-spirits, each shot from a pyrelock weapon ravages the flesh of the foe.",
+        },
+
+    infernalGuardsCastellanMartialContempt: {
+        id: "infernalGuardsCastellanMartialContempt",
+        name: "Martial Contempt",
+        description: "You can use this command ability in your hero phase. If you do so, pick 1 enemy unit within 12\" of a friendly model with this command ability. Until the start of your next hero phase, add 1 to wound rolls for attacks made by friendly Legion of Azgorh units that target that unit. The same enemy unit cannot be picked as the target of this command ability more than once per hero phase.",
+           flavor: "Calling out to his warriors, the Castellan marshals his legion to strike down their foes without mercy.",
+        category: AbilityCategory.Command,
+        },
+
+    infernalGuardBattleStandardBearerBlackBannerOfMalice: {
+        id: "infernalGuardBattleStandardBearerBlackBannerOfMalice",
+        name: "Black Banner of Malice",
+        description: "Add 1 to the Bravery characteristic of friendly Legion of Azgorh units while they are wholly within 18\" of this model. In addition, you can re- roll wound rolls of 1 for attacks made with melee weapons by friendly Legion of Azgorh units while they are wholly within 18\" of this model.",
+           flavor: "A Black Banner of Malice bears fell enchantments that its bearer can invoke to unleash occult powers to terrible effect.",
+        },
+
+    infernalGuardFireglaivesPyrelockWeapons: {
+        id: "infernalGuardFireglaivesPyrelockWeapons",
+        name: "Pyrelock Weapons",
+        description: "If the unmodified hit roll for an attack made with a Pyrelock Pistol or Pyrelock Fireglaive is 6, that attack inflicts 1 mortal wound on the target in addition to any normal damage. In addition, you can re-roll hit rolls of 1 for attacks made with this unit’s Pyrelock Fireglaives if this unit has not made a move in the same turn.",
+           flavor: "Loaded with ammunition containing hungry pyre-spirits, each shot from a pyrelock weapon ravages the flesh of the foe.",
+        },
+
+        infernalGuardFireglaivesFireglaiveDeathmask: {
+            id: "infernalGuardFireglaivesFireglaiveDeathmask",
+            name: "FIREGLAIVE DEATHMASK",
+            description: "The leader of this unit is a Fireglaive Deathmask. A Fireglaive Deathmask is armed with an Ashsteel Hand Weapon and Pyrelock Pistol instead of a Pyrelock Fireglaive and a Pyrelock Fireglaive’s Bayonet-cleaver.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    infernalGuardIronswornPyrelockPistol: {
+        id: "infernalGuardIronswornPyrelockPistol",
+        name: "Pyrelock Pistol",
+        description: "If the unmodified hit roll for an attack made with a Pyrelock Pistol is 6, that attack inflicts 1 mortal wound on the target in addition to any normal damage.",
+           flavor: "Loaded with ammunition containing hungry pyre-spirits, each shot from a pyrelock weapon ravages the flesh of the foe.",
+        },
+
+    infernalGuardIronswornSpiteshield: {
+        id: "infernalGuardIronswornSpiteshield",
+        name: "Spiteshield",
+        description: "If the unmodified save roll for an attack with a melee weapon that targets a unit that includes any models carrying a Spiteshield is 6, the attacking unit suffers 1 mortal wound.",
+           flavor: "The shields carried by those in the Legion of Azgorh are laced with malefic curses, and upon being struck erupt with tendrils of flame.",
+        },
+
+        infernalGuardIronswornIronswornDeathmask: {
+            id: "infernalGuardIronswornIronswornDeathmask",
+            name: "IRONSWORN DEATHMASK",
+            description: "The leader of this unit is an Ironsworn Deathmask. An Ironsworn Deathmask is armed an Ashsteel Hand Weapon and Pyrelock Pistol instead of being armed with a Ashsteel Hand Weapon and carrying a Spiteshield.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    kDaaiFirebornBurningBright: {
+        id: "kDaaiFirebornBurningBright",
+        name: "Burning Bright",
+        description: "Ignore modifiers (positive or negative) when making save rolls for attacks that target this unit. In addition, this unit can run and still charge later in the same turn.",
+           flavor: "The bodies of the K’daai are made of ethereal flames, allowing them to soar across the battlefield streaming great arcs of fire.",
+        },
+
+    kDaaiFirebornKissOfFire: {
+        id: "kDaaiFirebornKissOfFire",
+        name: "Kiss of Fire",
+        description: "At the end of the combat phase, roll 1 dice for each enemy unit within 3\" of this unit. On a 2+, that unit suffers 1 mortal wound.",
+           flavor: "With a simple gesture, a wave of daemonic flame surges forth from the K’daai Fireborn, immolating their foes.",
+        },
+
+        kDaaiFirebornFly: {
+            id: "kDaaiFirebornFly",
+            name: "FLY",
+            description: "This unit can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    deathshriekerRocketLauncherDeathFromOnHigh: {
+        id: "deathshriekerRocketLauncherDeathFromOnHigh",
+        name: "Death From On High",
+        description: "This model’s Deathshrieker Rockets can target enemy units that are not visible to the attacking model. In addition, add 1 to hit rolls for attacks made with Deathshrieker Rockets if the target unit has 5 or more models.",
+           flavor: "A Deathshrieker’s rockets can be launched high overhead to rain their fiery payload down upon distant or hidden targets.",
+        },
+
+    deathshriekerRocketLauncherInfernalEngineers: {
+        id: "deathshriekerRocketLauncherInfernalEngineers",
+        name: "Infernal Engineers",
+        description: "Add 1 to the Attacks characteristic of this model’s Deathshrieker Rockets while this model is within 3\" of a friendly Daemonsmith.",
+           flavor: "Daemonsmiths are masters in the art of directing the fell artillery they forge.",
+        },
+
+    deathshriekerRocketLauncherSiegeArtillery: {
+        id: "deathshriekerRocketLauncherSiegeArtillery",
+        name: "Siege Artillery",
+        description: "This unit cannot run or make charge moves. In addition, add 1 to save rolls for attacks made with missile weapons that target this model.",
+           flavor: "This war machine is a heavily armoured and ponderous device.",
+        },
+
+        deathshriekerRocketLauncherCrew: {
+            id: "deathshriekerRocketLauncherCrew",
+            name: "CREW",
+            description: "This model has a crew that attack with Improvised Weapons. For rules purposes, the crew are treated in the same manner as a mount.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    ironDaemonWarEngineCarriageHauler: {
+        id: "ironDaemonWarEngineCarriageHauler",
+        name: "Carriage Hauler",
+        description: "At the start of your movement phase, you can pick 1 friendly Deathshrieker Rocket Launcher, Magma Cannon, or Dreadquake Mortar unit within 1\" of this model. If you do so, that unit can use this model’s Move characteristic during that movement phase, as long as it is within 1\" of this model at the end of that movement phase.",
+           flavor: "Such is the size and power of this war engine that it can be used to haul the carriages of other artillery pieces into battle.",
+        },
+
+    ironDaemonWarEngineMorePower: {
+        id: "ironDaemonWarEngineMorePower",
+        name: "More Power!",
+        description: "In your shooting phase, you can change the Attacks characteristic of this model’s Steam Cannonade from 2D6 to either 3D6 or 4D6. However, if you do so and the roll is 12+, this model suffers D3 mortal wounds after all of its attacks have been resolved.",
+           flavor: "If needed, the Iron Daemon’s crew can goad the half-possessed machine to even greater heights of power from its fire-spewing boiler, though doing so is not without risk of retaliation.",
+        },
+
+    magmaCannonInfernalEngineers: {
+        id: "magmaCannonInfernalEngineers",
+        name: "Infernal Engineers",
+        description: "Add 6\" to the Range characteristic of this model’s Magma Blast while this model is within 3\" of a friendly Daemonsmith.",
+           flavor: "Daemonsmiths are masters in the art of directing the fell artillery they forge.",
+        },
+
+    magmaCannonMagmaBlast: {
+        id: "magmaCannonMagmaBlast",
+        name: "Magma Blast",
+        description: " not use the attack sequence for an attack made with a Magma Blast. Instead, roll a dice. Add 1 to the roll if the target unit has 10 or more models. On a 3+, the target unit suffers a number of mortal wounds equal to the roll.",
+           flavor: "A Magma Cannon is a terrifying weapon, able to unleash blasts of molten rock that effortlessly consume metal and flesh alike.",
+        },
+
+    magmaCannonSiegeArtillery: {
+        id: "magmaCannonSiegeArtillery",
+        name: "Siege Artillery",
+        description: "This unit cannot run or make charge moves. In addition, add 1 to save rolls for attacks made with missile weapons that target this model.",
+           flavor: "This war machine is a heavily armoured and ponderous device.",
+        },
+
+        magmaCannonCrew: {
+            id: "magmaCannonCrew",
+            name: "CREW",
+            description: "This model has a crew that attack with Improvised Weapons. For rules purposes, the crew are treated in the same manner as a mount.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    dreadquakeMortarCruelOverlords: {
+        id: "dreadquakeMortarCruelOverlords",
+        name: "Cruel Overlords",
+        description: "When this model is picked to shoot in your shooting phase, you can say that the Slavemasters are lashing the Slave Ogor. If you do so, roll a dice. On a 1 or 2, this unit suffers D3 mortal wounds (if it is not slain it can shoot normally). On a 3+, add 1 to the Attacks characteristic of this model’s Dreadquake Bombs for that phase.",
+           flavor: "Slavemasters work their indentured slave ogors relentlessly, despite the risk of revolt.",
+        },
+
+    dreadquakeMortarInfernalEngineers: {
+        id: "dreadquakeMortarInfernalEngineers",
+        name: "Infernal Engineers",
+        description: "Add 1 to hit rolls for attacks made with this model’s Dreadquake Bomb while this model is within 3\" of a friendly Daemonsmith.",
+           flavor: "Daemonsmiths are masters in the art of directing the fell artillery they forge.",
+        },
+
+    dreadquakeMortarQuakeBlast: {
+        id: "dreadquakeMortarQuakeBlast",
+        name: "Quake Blast",
+        description: "This model’s Dreadquake Bomb can target enemy units that are not visible to the attacking model. In addition, you can re-roll the dice that determines the Damage characteristic of this model’s Dreadquake Bomb if the target unit has 10 or more models.",
+           flavor: "Dreadquake bombs are fired on a high arcing trajectory, and are packed with an explosive charge so powerful that they can turn dozens of armoured warriors into chunks of burnt meat in an instant.",
+        },
+
+    dreadquakeMortarSiegeArtillery: {
+        id: "dreadquakeMortarSiegeArtillery",
+        name: "Siege Artillery",
+        description: "This unit cannot run or make charge moves. In addition, add 1 to save rolls for attacks made with missile weapons that target this model.",
+           flavor: "This war machine is a heavily armoured and ponderous device.",
+        },
+
+        dreadquakeMortarCrew: {
+            id: "dreadquakeMortarCrew",
+            name: "CREW",
+            description: "This model has a crew that consists of Slavemasters that attack with Improvised Weapons, and a Slave Ogor that attacks with Fists and Chains. For rules purposes, the crew are treated in the same manner as a mount.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    skullcrackerWarEngineBeatenIntoScrap: {
+        id: "skullcrackerWarEngineBeatenIntoScrap",
+        name: "Beaten into Scrap",
+        description: "You can re-roll wound rolls for attacks made with this model’s Hammer and Picks that target a War Machine.",
+           flavor: "The war constructs of the enemy cannot withstand the relentless pounding blows of a Skullcracker’s weapons array for long.",
+        },
+
+    skullcrackerWarEngineCarriageHauler: {
+        id: "skullcrackerWarEngineCarriageHauler",
+        name: "Carriage Hauler",
+        description: "At the start of your movement phase, you can pick 1 friendly Deathshrieker Rocket Launcher, Magma Cannon, or Dreadquake Mortar unit within 1\" of this model. If you do so, that unit can use this model’s Move characteristic during that movement phase, as long as it is within 1\" of this model at the end of that movement phase.",
+           flavor: "Such is the size and power of this war engine that it can be used to haul the carriages of other artillery pieces into battle.",
+        },
+
+    skullcrackerWarEngineMorePower: {
+        id: "skullcrackerWarEngineMorePower",
+        name: "More Power!",
+        description: "In your combat phase, you can change the Attacks characteristic of this model’s Hammers and Picks from 2D6 to either 3D6 or 4D6. However, if you do so and the roll is 12+, this model suffers D3 mortal wounds after all of its attacks have been resolved.",
+           flavor: "If needed, the Skullcracker’s crew can goad the half-possessed machine to even greater heights of power from its fire-spewing boiler, though doing so is not without risk of retaliation.",
+        },
+
+    basiliskCorrosiveMiasma: {
+        id: "basiliskCorrosiveMiasma",
+        name: "Corrosive Miasma",
+        description: "At the start of the combat phase, roll 1 dice for each enemy unit within 3\" of this model. On a 2+, that unit suffers 1 mortal wound.",
+           flavor: "The poisons that emanate from the Basilisk’s skin are so toxic that they leave anyone nearby choking on their own blood as they fall victim to their corrosive effects.",
+        },
+
+    basiliskMalignantGaze: {
+        id: "basiliskMalignantGaze",
+        name: "Malignant Gaze",
+        description: "In your hero phase, you can pick 1 enemy unit within 12\" of this model that is visible to it, and roll a dice. On a 1, nothing happens. On a 2-3, that unit suffers D3 mortal wounds. On a 4+, that unit suffers D3+1 mortal wounds.",
+           flavor: "The Basilisk focuses its malice upon its intended victim, its eyes radiating with evil as the enemy slowly melts into a pile of steaming flesh and blistering metal.",
+        },
+
+    bonegrinderGargantILlBiteYourHeadOff: {
+        id: "bonegrinderGargantILlBiteYourHeadOff",
+        name: "I’ll Bite Your Head Off!",
+        description: "At the start of the combat phase, you can pick 1 enemy model that has a Wounds characteristic of 4 or less and that is within 3\" of this model, and roll a dice. On a 6, that model is slain.",
+           flavor: "A Bonegrinder Gargant’s cavernous mouth makes for an especially deadly weapon, should it fancy a light snack during a battle.",
+        },
+
+    bonegrinderGargantJumpUpAndDown: {
+        id: "bonegrinderGargantJumpUpAndDown",
+        name: "Jump Up and Down",
+        description: "At the end of the combat phase, you can pick 1 enemy unit within 1\" of this model. If you do so, roll a dice. If the dice roll is equal to or less than the number of models in that unit, that unit suffers D6 mortal wounds.",
+           flavor: "Bonegrinder Gargants love nothing more than to pound their enemies into paste by jumping up and down on their victims with their massive feet.",
+        },
+
+    bonegrinderGargantLongshanks: {
+        id: "bonegrinderGargantLongshanks",
+        name: "Longshanks",
+        description: "This model is eligible to fight in the combat phase if it is within 6\" of an enemy unit instead of 3\", and it can move an extra 3\" when it piles in.",
+           flavor: "Such is its vast size, a single step made by a Bonegrinder Gargant can cover an astonishing distance.",
+        },
+
+    bonegrinderGargantTimber: {
+        id: "bonegrinderGargantTimber",
+        name: "Timber!",
+        description: "If this model is slain, before removing the model from play, the players must roll off. The player who wins the roll-off picks a point on the battlefield 4\" from this model. Each unit within 3\" of that point suffers D3 mortal wounds. This model is then removed from play.",
+           flavor: "Should a gargant fall, it will likely crush anything in its path.",
+        },
+
+    broodHorrorRegeneratingMonstrosity: {
+        id: "broodHorrorRegeneratingMonstrosity",
+        name: "Regenerating Monstrosity",
+        description: "In your hero phase, you can heal up to D3 wounds allocated to this model.",
+           flavor: "A monstrous masterpiece from the breeding pits of the Clans Moulder, the flesh of a Brood Horror can reknit almost as fast as it can be torn in battle.",
+        },
+
+    carmineDragonDeathlyDarkScales: {
+        id: "carmineDragonDeathlyDarkScales",
+        name: "Deathly Dark Scales",
+        description: "Roll a dice each time you allocate a mortal wound to this unit. On a 5+, that mortal wound is negated.",
+           flavor: "The Carmine Dragon’s hide is nigh-on impenetrable to all but the strongest of blows.",
+        },
+
+    carmineDragonSoulSheeringBlast: {
+        id: "carmineDragonSoulSheeringBlast",
+        name: "Soul-sheering Blast",
+        description: "Do not use the attack sequence for an attack made with a Soul-sheering Blast. Instead roll a dice. On a 5+, the target unit suffers D6 mortal wounds.",
+           flavor: "Gouts of amethyst flame erupt from the Carmine Dragon’s open maw, sheering souls from their mortal forms and leaving bodies rendered to nothing more than a purpleglowing pile of ash.",
+        },
+
+    carmineDragonSpellDevourer: {
+        id: "carmineDragonSpellDevourer",
+        name: "Spell Devourer",
+        description: "Each time this model is affected by a spell or endless spell, you can roll a dice. If you do so, on a 4+, ignore the effects of that spell on this model.",
+           flavor: "With the amethyst energies of the Realm of Endings coalescing through its body, the Carmine Dragon can force a magical effect to die off with a single pulse of thought.",
+        },
+
+        carmineDragonFly: {
+            id: "carmineDragonFly",
+            name: "FLY",
+            description: "This model can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    chaosSiegeGargantScalingSpikesAndChains: {
+        id: "chaosSiegeGargantScalingSpikesAndChains",
+        name: "Scaling Spikes and Chains",
+        description: "When this model makes a move, it can pass across terrain features in the same manner as a model that can fly.",
+           flavor: "Resembling a living war machine, Siege Gargants are covered in various hooks, spikes and chains that make it easy for them to clamber over high walls and crush obstacles.",
+        },
+
+    chaosSiegeGargantSiegeArmour: {
+        id: "chaosSiegeGargantSiegeArmour",
+        name: "Siege Armour",
+        description: "You can re-roll save rolls for attacks made with ranged weapons that target this unit.",
+           flavor: "A Chaos Siege Gargant’s body is covered in ragged iron and bronze plates that have been hammered, nailed, fused, strapped and bound directly into its tortured flesh, making it all but impervious to incoming fire.",
+        },
+
+    chaosSiegeGargantTimber: {
+        id: "chaosSiegeGargantTimber",
+        name: "Timber!",
+        description: "If this model is slain, before removing the model from play, the players must roll off. The player who wins the roll-off picks a point on the battlefield 4\" from this model. Each unit within 3\" of that point suffers D3 mortal wounds. This model is then removed from play.",
+           flavor: "Should a gargant fall, it will likely crush anything in its path.",
+        },
+
+    chaosWarMammothCrushingFall: {
+        id: "chaosWarMammothCrushingFall",
+        name: "Crushing Fall",
+        description: "If this model is slain, before this model is removed from play, the players must roll off. The player who wins the roll-off picks a point on the battlefield 4\" from this model. Each unit within 3\" of that point suffers D6 mortal wounds. This model is then removed from play.",
+           flavor: "To be caught under the falling bulk of a dying War Mammoth is to meet a horrible death.",
+        },
+
+    chaosWarMammothEarthShakingCharge: {
+        id: "chaosWarMammothEarthShakingCharge",
+        name: "Earth-shaking charge",
+        description: "Subtract 2 from the Bravery characteristic of enemy units while they are within 3\" of this model if this model made a charge move in the same turn.",
+           flavor: "When the Chaos War Mammoth charges, the ground breaks beneath its tremendous weight, and the air is filled with its terrifying roar.",
+        },
+
+    chaosWarMammothGoringTusks: {
+        id: "chaosWarMammothGoringTusks",
+        name: "Goring Tusks",
+        description: "Do not use the attack sequence for an attack made with this model’s Goring Tusks. Instead, roll a number of dice equal to the Goring Tusks value shown on the damage table above. Add 1 to each roll if the target unit is a Monster. For each 4+, the target unit suffers D3 mortal wounds.",
+           flavor: "The enormous tusks of the Chaos War Mammoth can impale the largest of monsters, leaving them with grievous wounds.",
+        },
+
+    chaosWarMammothMarkOfChaos: {
+        id: "chaosWarMammothMarkOfChaos",
+        name: "Mark of Chaos",
+        description: "You can choose one of the following keywords to give to this unit the first time it is set up: Khorne, Nurgle, Slaanesh or Tzeentch.",
+           flavor: "When a tribe chooses to dedicate themselves to a single god of Chaos, gifts are bestowed upon all those worthy, including the beasts the warriors ride.",
+        },
+
+        chaosWarMammothCrew: {
+            id: "chaosWarMammothCrew",
+            name: "CREW",
+            description: "This model has a Marauder crew that attack with their Marauder Javelins and Axes. For rules purposes, the crew are treated in the same manner as a mount.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    colossalSquigCrazedCharge: {
+        id: "colossalSquigCrazedCharge",
+        name: "Crazed Charge",
+        description: "Roll a dice for each enemy unit that is within 1\" of this model after this model makes a charge move. On a 6, that unit suffers 1 mortal wound.",
+           flavor: "Driven mad with hunger, the Colossal Squig bounds head-first into anything that it considers edible, wildly gnashing its jaws in the hope of finding a tasty morsel.",
+        },
+
+    colossalSquigFungoidSquigExplosion: {
+        id: "colossalSquigFungoidSquigExplosion",
+        name: "Fungoid Squig Explosion",
+        description: "If this model is slain, before removing the model from play, roll a dice for each enemy unit within 3\" of it. On a 2+, that unit suffers D3 mortal wounds. Then, you can add 1 unit of up to 5 Cave Squigs to your army. Set up the unit of Cave Squigs wholly within 9\" of this model and more than 3\" from any enemy models, and then remove this model from the battlefield.",
+           flavor: "When these massive creatures meet their death, their body ripples with a build-up of fungal spore gas, and with an ear-splitting pop they burst into a mass of smaller Squigs.",
+        },
+
+    colossalSquigPuffSpores: {
+        id: "colossalSquigPuffSpores",
+        name: "Puff Spores",
+        description: "Subtract 1 from hit rolls for attacks made with melee weapons that target this model.",
+           flavor: "When the Colossal Squig is threatened, its tiny fungal blisters begin to burst, spreading thick clouds of spores that blind and choke any who venture too close.",
+        },
+
+    colossalSquigSwallowedWhole: {
+        id: "colossalSquigSwallowedWhole",
+        name: "Swallowed Whole",
+        description: "If the unmodified hit roll for an attack made with this model’s Enormous Jaws is 6, that attack inflicts D3 mortal wounds and the attack sequence ends (do not make a wound or save roll).",
+           flavor: "A Colossal Squig’s enormous jaws can stretch wide enough to consume their enemy whole.",
+        },
+
+    cursDEttinCannibalFeast: {
+        id: "cursDEttinCannibalFeast",
+        name: "Cannibal Feast",
+        description: "At the end of the combat phase, if any enemy models were slain by wounds inflicted by this model’s attacks in that combat phase, you can heal up to D3 wounds allocated to this model.",
+           flavor: "Whatever the Curs’d Ettin crushes it feasts upon, its strange physiology enabling it to grow stronger with each kill.",
+        },
+
+    cursDEttinGibberingCurse: {
+        id: "cursDEttinGibberingCurse",
+        name: "Gibbering Curse",
+        description: "At the start of your hero phase, roll 2D6 for each enemy unit within 3\" of this model. If the roll is more than that unit’s Bravery characteristic, that unit suffers D3 mortal wounds.",
+           flavor: "The incessant argumentative gibbering that comes from the Curs’d Ettin’s two heads carries the power of Chaos, driving those who hear it insane.",
+        },
+
+    cursDEttinTwoHeadedHorror: {
+        id: "cursDEttinTwoHeadedHorror",
+        name: "Two-headed Horror",
+        description: "At the start of the combat phase, you can pick 1 enemy model that has a Wounds characteristic of 2 or less and that is within 3\" of this model, and roll a dice. On a 6, that model is slain.",
+           flavor: "The Curs’d Ettin’s two heads eternally bicker with each other, but there is one thing they always agree upon – the need for fresh meat!",
+        },
+
+    dreadMawDevourerFromBelow: {
+        id: "dreadMawDevourerFromBelow",
+        name: "Devourer From Below",
+        description: "Instead of setting up this model on the battlefield, you can place it to one side and say that it is tunnelling through the earth in reserve. If you do so, at the end of your second movement phase, you must set up this model on the battlefield more than 9\" from any enemy units.",
+           flavor: "The Dread Maw’s ability to burrow through the ground means that it can emerge on any part of a battlefield without hindrance, taking its prey by surprise.",
+        },
+
+    dreadMawImpenetrableHide: {
+        id: "dreadMawImpenetrableHide",
+        name: "Impenetrable Hide",
+        description: "Roll a dice each time you allocate a mortal wound to this model. On a 4+ that mortal wound is negated.",
+           flavor: "Long exposure to the taint left behind from the Age of Chaos has made the armoured scales of Dread Maws all but impervious to harm.",
+        },
+
+    dreadMawTunnelWorm: {
+        id: "dreadMawTunnelWorm",
+        name: "Tunnel Worm",
+        description: "When this model makes a move, it can pass across terrain features and other models in the same manner as a model that can fly.",
+           flavor: "The Dread Maw grinds through rock and soil without resistance.",
+        },
+
+    dreadMawYawningMaw: {
+        id: "dreadMawYawningMaw",
+        name: "Yawning Maw",
+        description: "You can re-roll wound rolls of 1 for attacks made with this model’s Cavernous Maw if the target unit has a Wounds characteristic of 2 or less.",
+           flavor: "Their circular mouths studded with rows of sickle-shaped teeth, Dread Maws can swallow a fully armoured man whole.",
+        },
+
+    dreadSaurianDevourerOfBeasts: {
+        id: "dreadSaurianDevourerOfBeasts",
+        name: "Devourer of Beasts",
+        description: "You can re-roll hit and wound rolls of 1 for attacks made by this model that target a Monster.",
+           flavor: "Dread Saurians are adept at preying upon the beasts of the realms.",
+        },
+
+    dreadSaurianArcaneGlyphs: {
+        id: "dreadSaurianArcaneGlyphs",
+        name: "Arcane Glyphs",
+        description: "In your hero phase, you can heal up to D3 wounds allocated to this model.",
+           flavor: "The magic of the Slann thrums within a Dread Saurian’s glyph-covered plates, greatly speeding the rate at which the beast heals.",
+        },
+
+    dreadSaurianPrimalPresence: {
+        id: "dreadSaurianPrimalPresence",
+        name: "Primal Presence",
+        description: "Do not take battleshock tests for friendly Skink units while they are wholly within 24\" of this model.",
+           flavor: "Dread Saurians are a manifestation of the will of the Slann, and their presence on the battlefield bolsters the resolve of their smaller Seraphon kin.",
+        },
+
+    dreadSaurianRoarOfRuin: {
+        id: "dreadSaurianRoarOfRuin",
+        name: "Roar of Ruin",
+        description: "Subtract 1 from the Bravery characteristic of enemy units while they are within 12\" of any friendly models with this ability.",
+           flavor: "The roar of these gigantic creatures is truly terrifying and can drive the strongesthearted warriors into panicked flight.",
+        },
+
+    dreadSaurianCelestialConjuration: {
+        id: "dreadSaurianCelestialConjuration",
+        name: "CELESTIAL CONJURATION",
+        description: "1 Dread Saurian can be summoned to the battlefield using the Celestial Conjuration battle trait for 40 Celestial Conjuration points.",
+        category: AbilityCategory.Magic,
+        },
+
+    exaltedGreaterDaemonOfKhorneDrawnInForTheKill: {
+        id: "exaltedGreaterDaemonOfKhorneDrawnInForTheKill",
+        name: "Drawn in for the Kill",
+        description: "At the start of the enemy movement phase, pick 1 enemy unit within 3\" of this model. That unit cannot retreat in that phase.",
+           flavor: "Bloodthirsters often use their barbed lashes to entangle their opponents, rendering escape impossible.",
+        },
+
+    exaltedGreaterDaemonOfKhorneTheLandRebels: {
+        id: "exaltedGreaterDaemonOfKhorneTheLandRebels",
+        name: "The Land Rebels",
+        description: "At the start of your hero phase, roll a dice for each enemy unit within 8\" of any friendly models with this ability. On a 5+ that enemy unit suffers 1 mortal wound.",
+           flavor: "The ground around an Exalted Greater Daemon of Khorne becomes cracked and broken beneath its stomping hooves, causing molten rock to bubble up from deep below.",
+        },
+
+    exaltedGreaterDaemonOfKhorneSummonDaemonsOfKhorne: {
+        id: "exaltedGreaterDaemonOfKhorneSummonDaemonsOfKhorne",
+        name: "SUMMON DAEMONS OF KHORNE",
+        description: "1 Exalted Greater Daemon of Khorne can be summoned to the battlefield using the Summon Daemons of Khorne battle trait for 16 Blood Tithe points.",
+        category: AbilityCategory.Magic,
+        },
+
+    exaltedGreaterDaemonOfKhorneRejoiceInExaltedSlaughter: {
+        id: "exaltedGreaterDaemonOfKhorneRejoiceInExaltedSlaughter",
+        name: "Rejoice in Exalted Slaughter",
+        description: "You can use this command ability at the start of the combat phase. If you do so, pick a friendly model with this command ability. Until the end of that combat phase friendly Khorne Daemon units wholly within 18\" of that model are eligible to fight in that combat phase if they are within 6\" of an enemy unit instead of 3\", and they can move an extra 3\" when they pile-in.",
+           flavor: "An Exalted Greater Daemon of Khorne is an unsubtle leader, driving its subjects towards the enemy in great numbers.",
+        category: AbilityCategory.Command,
+        },
+
+        exaltedGreaterDaemonOfKhorneFly: {
+            id: "exaltedGreaterDaemonOfKhorneFly",
+            name: "FLY",
+            description: "This model can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    exaltedGreaterDaemonOfNurgleBlubberAndBile: {
+        id: "exaltedGreaterDaemonOfNurgleBlubberAndBile",
+        name: "Blubber and Bile",
+        description: "Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+, that wound or mortal wound is negated. In addition, on a 6, if the attacking unit is within 3\" of this model, it suffers 1 mortal wound.",
+           flavor: "The dubious reward for piercing the blubbery hide of an Exalted Greater Daemon of Nurgle is to be showered by acidic bile and putrid toxins.",
+        },
+
+    exaltedGreaterDaemonOfNurgleCorpulentMass: {
+        id: "exaltedGreaterDaemonOfNurgleCorpulentMass",
+        name: "Corpulent Mass",
+        description: "In your hero phase, you can heal up to D3 wounds allocated to this model.",
+           flavor: "An Exalted Greater Daemon of Nurgle is blessed with the Plaguefather’s gift of fecundity, enabling its body to swiftly regrow damaged flesh and tissue.",
+        },
+
+    exaltedGreaterDaemonOfNurgleMountainOfLoathsomeFlesh: {
+        id: "exaltedGreaterDaemonOfNurgleMountainOfLoathsomeFlesh",
+        name: "Mountain of Loathsome Flesh",
+        description: "Roll 1 dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, that enemy unit suffers D3 mortal wounds.",
+           flavor: "Such is the size and girth of an Exalted Greater Daemon of Nurgle that it can simply run over its foes, crushing or asphyxiating them beneath its monstrous bulk as it does so.",
+        },
+
+    exaltedGreaterDaemonOfNurglePlagueWind: {
+        id: "exaltedGreaterDaemonOfNurglePlagueWind",
+        name: "Plague Wind",
+        description: "Plague Wind has a casting value of 7. If successfully cast, pick a point on the battlefield within 14\" of the caster and draw an imaginary straight line 1mm wide between that point and the closest part of the caster. Each unit crossed by that line suffers D3 mortal wounds. If this line passes over any Nurgle units, heal up to D3 wounds allocated to that unit instead.",
+           flavor: "The Exalted Greater Daemon of Nurgle summons a whirlwind of maggots and filth, basking in its feculence for a moment before sending it forth.",
+        category: AbilityCategory.Magic,
+        },
+
+    exaltedGreaterDaemonOfNurgleSummonDaemonsOfNurgle: {
+        id: "exaltedGreaterDaemonOfNurgleSummonDaemonsOfNurgle",
+        name: "SUMMON DAEMONS OF NURGLE",
+        description: "1 Exalted Greater Daemon of Nurgle can be summoned to the battlefield using the Summon Daemons of Nurgle battle trait for 35 Contagion points.",
+        category: AbilityCategory.Magic,
+        },
+
+    exaltedGreaterDaemonOfNurgleGrandfatherSExaltedJoy: {
+        id: "exaltedGreaterDaemonOfNurgleGrandfatherSExaltedJoy",
+        name: "Grandfather’s Exalted Joy",
+        description: "You can use this command ability in your hero phase. If you do so, pick 1 friendly Nurgle Daemon unit wholly within 28\" of a friendly model with this command ability. Add 1 to the Attacks characteristic of that unit’s melee weapons until your next hero phase.",
+           flavor: "At the Great Unclean One’s command, Nurgle’s children are inspired to fight with even greater exuberance.",
+        category: AbilityCategory.Command,
+        },
+
+    exaltedGreaterDaemonOfSlaaneshWhisperedTemptations: {
+        id: "exaltedGreaterDaemonOfSlaaneshWhisperedTemptations",
+        name: "Whispered Temptations",
+        description: "At the start of the combat phase, you can pick 1 enemy Hero within 3\" of this model. If you do so, your opponent can re-roll hit rolls of 1 for attacks made by that Hero in that combat phase. Then, at the end of the combat phase, you can roll a dice for that Hero. On 6, that Hero is slain.",
+           flavor: "To heed the whispered promises of a Keeper of Secrets is to flirt with eternal damnation.",
+        },
+
+    exaltedGreaterDaemonOfSlaaneshCacophonicChoir: {
+        id: "exaltedGreaterDaemonOfSlaaneshCacophonicChoir",
+        name: "Cacophonic Choir",
+        description: "Cacophonic Choir has a casting value of 6. If successfully cast, roll 2D6; enemy units within 6\" of the caster whose Bravery characteristic is less than the roll suffer D3 mortal wounds.",
+           flavor: "The Daemon assaults its victims’ minds and souls with a sanity-shattering chorus of magical sound.",
+        category: AbilityCategory.Magic,
+        },
+
+    exaltedGreaterDaemonOfSlaaneshFeedOnDepravity: {
+        id: "exaltedGreaterDaemonOfSlaaneshFeedOnDepravity",
+        name: "FEED ON DEPRAVITY",
+        description: "1 Exalted Greater Daemon of Slaanesh can be summoned to the battlefield using the Feed on Depravity battle trait for 42 Depravity points.",
+        category: AbilityCategory.Magic,
+        },
+
+    exaltedGreaterDaemonOfSlaaneshExaltedExcessOfViolence: {
+        id: "exaltedGreaterDaemonOfSlaaneshExaltedExcessOfViolence",
+        name: "Exalted Excess of Violence",
+        description: "You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly Slaanesh Daemon unit wholly within 18\" of a friendly model with this command ability. After that unit has fought in that combat phase for the first time, if it is within 3\" of an enemy unit it can immediately make a pile-in move and then attack with all of the melee weapons it is armed with for a second time.",
+           flavor: "Keepers of Secrets can whip their followers into an ecstatic frenzy.",
+        category: AbilityCategory.Command,
+        },
+
+    exaltedGreaterDaemonOfTzeentchMasteryOfMagic: {
+        id: "exaltedGreaterDaemonOfTzeentchMasteryOfMagic",
+        name: "Mastery of Magic",
+        description: "When you make a casting or unbinding roll for this model, you can change the lowest dice roll to equal the highest dice roll.",
+           flavor: "Tzeentch’s daemons are manifestations of magic in its rawest form; the mightiest of their kind can wield sorcerous power with the same ease that a mortal breathes air.",
+        },
+
+    exaltedGreaterDaemonOfTzeentchSpellThief: {
+        id: "exaltedGreaterDaemonOfTzeentchSpellThief",
+        name: "Spell-Thief",
+        description: "If an unbinding roll for this model is 9+, it knows the spell that it is attempting to unbind for the rest of the battle.",
+           flavor: "Exalted Greater Daemons of Tzeentch have an insatiable appetite for sorcerous knowledge, and by feeding upon arcane manifestations they are able to instantly perfect new forms of spellcraft.",
+        },
+
+    exaltedGreaterDaemonOfTzeentchInfernalGateway: {
+        id: "exaltedGreaterDaemonOfTzeentchInfernalGateway",
+        name: "Infernal Gateway",
+        description: "Infernal Gateway has a casting value of 7. If successfully cast, pick 1 enemy unit within 18\" of the caster and roll 9 dice. For each roll that equals or beats the value shown for Infernal Gateway on the damage table above, that unit suffers 1 mortal wound.",
+           flavor: "Tendrils of magic shoot forth to rend the fabric of reality, opening a screaming portal into Tzeentch’s crystal labyrinth.",
+        category: AbilityCategory.Magic,
+        },
+
+    exaltedGreaterDaemonOfTzeentchSummonDaemonsOfTzeentch: {
+        id: "exaltedGreaterDaemonOfTzeentchSummonDaemonsOfTzeentch",
+        name: "SUMMON DAEMONS OF TZEENTCH",
+        description: "1 Exalted Greater Daemon of Tzeentch can be summoned to the battlefield using the Summon Daemons of Tzeentch battle trait for 45 Fate points.",
+        category: AbilityCategory.Magic,
+        },
+
+    exaltedGreaterDaemonOfTzeentchBeaconOfSorcery: {
+        id: "exaltedGreaterDaemonOfTzeentchBeaconOfSorcery",
+        name: "Beacon of Sorcery",
+        description: "You can use this command ability at the start of your hero phase. If you do so, pick 1 friendly model with this command ability. You can add 1 to casting and unbinding rolls for friendly Tzeentch Daemon Wizards that are within 24\" of that model until your next hero phase.",
+           flavor: "Spreading its arms wide, the Exalted Greater Daemon of Tzeentch saturates the area with magic.",
+        category: AbilityCategory.Command,
+        },
+
+        exaltedGreaterDaemonOfTzeentchFly: {
+            id: "exaltedGreaterDaemonOfTzeentchFly",
+            name: "FLY",
+            description: "This model can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    fimirachNobleBaleglyphMauls: {
+        id: "fimirachNobleBaleglyphMauls",
+        name: "Baleglyph Mauls",
+        description: "If the unmodified wound roll for an attack made with a Baleglyph Maul is 6, that attack inflicts 1 mortal wound on the target in addition to any normal damage.",
+           flavor: "Etched by Balefiends and imbued with vile magic, a weapon bearing these glyphs brings withering atrophy to anything it strikes.",
+        },
+
+    fimirachNobleShroudingMists: {
+        id: "fimirachNobleShroudingMists",
+        name: "Shrouding Mists",
+        description: "Subtract 1 from hit rolls for attacks made with missile weapons that target this model. In addition, roll a dice each time you allocate a mortal wound to this model. On a 5+ that mortal wound is negated.",
+           flavor: "Fimir despise the light, wrapping themselves in sorcerous mists whenever they venture from their dank lairs. Such mist serves to hide them from their enemies’ sight.",
+        },
+
+    fimirachNobleUnnaturalFlesh: {
+        id: "fimirachNobleUnnaturalFlesh",
+        name: "Unnatural Flesh",
+        description: "In your hero phase, you can heal 1 wound allocated to this model.",
+           flavor: "Fimir are wholly unnatural creatures whose very flesh twists and writhes, sealing wounds mere moments after they are inflicted.",
+        },
+
+    fimirachNobleBornToLead: {
+        id: "fimirachNobleBornToLead",
+        name: "Born to Lead",
+        description: "You can use this command ability at the start of your charge phase. If you do so, pick 1 friendly model with this command ability. You can reroll charge rolls for friendly Fimir units while they are wholly within 12\" of that model in that charge phase.",
+           flavor: "Set upon their path from the moment they hatch, Fimirach Nobles are well-versed in the intricacies of warfare, able to direct their warriors to exploit their foes’ smallest weaknesses.",
+        category: AbilityCategory.Command,
+        },
+
+    fimirWarriorsBaleglyphMauls: {
+        id: "fimirWarriorsBaleglyphMauls",
+        name: "Baleglyph Mauls",
+        description: "If the unmodified wound roll for an attack made with a Baleglyph Maul is 6, that attack inflicts 1 mortal wound on the target in addition to any normal damage.",
+           flavor: "Etched by Balefiends and imbued with vile magic, a weapon bearing these glyphs brings withering atrophy to anything it strikes.",
+        },
+
+    fimirWarriorsShroudingMists: {
+        id: "fimirWarriorsShroudingMists",
+        name: "Shrouding Mists",
+        description: "Subtract 1 from hit rolls for attacks made with missile weapons that target this unit. In addition, roll a dice each time you allocate a mortal wound to this unit. On a 5+ that mortal wound is negated.",
+           flavor: "Fimir despise the light, wrapping themselves in sorcerous mists whenever they venture from their dank lairs. Such mist serves to hide them from their enemies’ sight.",
+        },
+
+    fimirWarriorsUnnaturalFlesh: {
+        id: "fimirWarriorsUnnaturalFlesh",
+        name: "Unnatural Flesh",
+        description: "In your hero phase, you can heal 1 wound allocated to a model from this unit.",
+           flavor: "Fimir are wholly unnatural creatures whose very flesh twists and writhes, sealing wounds mere moments after they are inflicted.",
+        },
+
+    incarnateElementalOfBeastsSavageFrenzy: {
+        id: "incarnateElementalOfBeastsSavageFrenzy",
+        name: "Savage Frenzy",
+        description: "If this model is slain, before removing the model from play, it can make a pile-in move and then attack with all of the melee weapons it is armed with. This model is then removed from play.",
+           flavor: "These creatures are at their most dangerous in their final moments, lashing out at their enemies in vengeful hatred.",
+        },
+
+    incarnateElementalOfBeastsHowlOfTheGreatBeast: {
+        id: "incarnateElementalOfBeastsHowlOfTheGreatBeast",
+        name: "Howl of the Great Beast",
+        description: "Subtract 1 from the Bravery characteristic of enemy units while they are within 8\" of this model.",
+           flavor: "The howl of an Incarnate Elemental of Beasts can freeze the blood of all who hear it.",
+        },
+
+    incarnateElementalOfBeastsIncarnateOfGhur: {
+        id: "incarnateElementalOfBeastsIncarnateOfGhur",
+        name: "Incarnate of Ghur",
+        description: "In your hero phase, you can heal up to D3 wounds allocated to this model if the battle is taking place in Ghur, the Realm of Beasts. In addition, you can re-roll wound rolls of 1 for attacks made by this model if the battle is taking place in Ghur, the Realm of Beasts.",
+           flavor: "Incarnate Elementals are able to draw upon the energies from their realm to heal their bodies and increase their strength.",
+        },
+
+    incarnateElementalOfBeastsTheLureOfSpiltBlood: {
+        id: "incarnateElementalOfBeastsTheLureOfSpiltBlood",
+        name: "The Lure of Spilt Blood",
+        description: "You can re-roll charge rolls for this model while it is within 12\" of any enemy models that have any wounds allocated to them.",
+           flavor: "The potent aroma of freshly spilt blood sends these creatures into a frenzy.",
+        },
+
+    incarnateElementalOfFireAshesToAshes: {
+        id: "incarnateElementalOfFireAshesToAshes",
+        name: "Ashes to Ashes",
+        description: "If the unmodified hit roll for an attack made by this model is 6, double the Damage characteristic for that attack.",
+           flavor: "The burning power of an Incarnate Elemental of Fire is no natural flame, but an insidious and almost wilfully destructive arcane force that eats into anything it touches, destroying them from within.",
+        },
+
+    incarnateElementalOfFireGiftOfElementalFire: {
+        id: "incarnateElementalOfFireGiftOfElementalFire",
+        name: "Gift of Elemental Fire",
+        description: "At the end of the combat phase, roll a dice for each enemy unit within 3\" of this model. On a 2+, that unit suffers D3 mortal wounds.",
+           flavor: "The very presence of an Incarnate Elemental of Fire brings destruction, as the heat that radiates off its form is enough to scorch metal and kindle flesh into bright flame.",
+        },
+
+    incarnateElementalOfFireIncarnateOfAqshy: {
+        id: "incarnateElementalOfFireIncarnateOfAqshy",
+        name: "Incarnate of Aqshy",
+        description: "In your hero phase, you can heal up to D3 wounds allocated to this model if the battle is taking place in Aqshy, the Realm of Fire. In addition, you can re-roll wound rolls of 1 for attacks made by this model if the battle is taking place in Aqshy, the Realm of Fire.",
+           flavor: "Incarnate Elementals are able to draw upon the energies from their realm to heal their bodies and increase their strength.",
+        },
+
+    giganticChaosSpawnCurseOfTheDarkGods: {
+        id: "giganticChaosSpawnCurseOfTheDarkGods",
+        name: "Curse of the Dark Gods",
+        description: "You can choose one of the following keywords to give to this unit the first time it is set up: Khorne, Nurgle, Slaanesh or Tzeentch.",
+           flavor: "Chaos Spawn often bear the mark of their creator.",
+        },
+
+    giganticChaosSpawnPlaythingOfTheDarkGods: {
+        id: "giganticChaosSpawnPlaythingOfTheDarkGods",
+        name: "Plaything of the Dark Gods",
+        description: "At the start of your hero phase, roll a dice. On a 1, this model suffers D3 mortal wounds. On a 2+, you can heal up to D3 wounds allocated to this model. If you roll a 2+ and no wounds are allocated to this model, add D3 to its Wounds characteristic for the rest of the battle instead of healing D3 wounds.",
+           flavor: "Gifts bestowed by the Dark Gods can bless the receiver with a bounty of strength and stamina – or they can be the complete opposite, causing excruciating pain and anguish.",
+        },
+
+    giganticChaosSpawnWrithingTentacles: {
+        id: "giganticChaosSpawnWrithingTentacles",
+        name: "Writhing Tentacles",
+        description: "If you roll a double when determining the number of attacks made by this model’s Freakish Mutations, add 1 to hit and wound rolls for attacks made by this model until the end of the phase.",
+           flavor: "The bodies of these creatures are ever in flux, making them wildly unpredictable.",
+        },
+
+    magmaDragonBrimstoneDragonfire: {
+        id: "magmaDragonBrimstoneDragonfire",
+        name: "Brimstone Dragonfire",
+        description: "Do not use the attack sequence for an attack made with this model’s Brimstone Dragonfire. Instead, roll a dice. On a 2+, the target unit suffers D6 mortal wounds. If the target unit has 10 or more models, it suffers 2D6 mortal wounds instead of D6.",
+           flavor: "Unleashing the heat within, the Magma Dragon spews gouts of whitehot fire upon its prey.",
+        },
+
+    magmaDragonBurningBlood: {
+        id: "magmaDragonBurningBlood",
+        name: "Burning Blood",
+        description: "Roll a dice each time a wound or mortal wound that was inflicted by a melee weapon is allocated to this model. On a 4+, the attacking unit suffers 1 mortal wound. On a 6, the attacking unit suffers D3 mortal wounds instead.",
+           flavor: "The lifeblood that flows through Magma Dragons is molten rock. To spill it is akin to standing beside a volcanic eruption.",
+        },
+
+        magmaDragonFly: {
+            id: "magmaDragonFly",
+            name: "FLY",
+            description: "This model can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    mazarallTheButcherBloodyCharge: {
+        id: "mazarallTheButcherBloodyCharge",
+        name: "Bloody Charge",
+        description: "Roll a dice for each enemy unit that is within 1\" of this model after this model makes a charge move. On a 4+ that unit suffers D3 mortal wounds.",
+           flavor: "A towering creature of muscle and rage, Mazarall barrels into his foes, throwing aside bodies with contemptuous ease.",
+        },
+
+    mazarallTheButcherHarrowMeatSHunger: {
+        id: "mazarallTheButcherHarrowMeatSHunger",
+        name: "Harrow Meat’s Hunger",
+        description: "At the end of the combat phase, if any enemy models were slain by wounds inflicted by this model’s attacks in that combat phase, add 1 to the Attacks characteristic of Harrow Meat for the rest of the battle.",
+           flavor: "Harrow Meat, Mazarall’s infamous axe, possesses its own crude sentience, fuelling Mazarall’s fury with each drop of blood fed to it.",
+        },
+
+    mazarallTheButcherTheAncyteShield: {
+        id: "mazarallTheButcherTheAncyteShield",
+        name: "The Ancyte Shield",
+        description: "This model can attempt to unbind 1 spell in the enemy hero phase in the same manner as a Wizard.",
+           flavor: "Covered in the stretched skin of unfortunate spellcasters, the Ancyte Shield serves as protection against hateful magic.",
+        },
+
+    mazarallTheButcherTheButcherSDue: {
+        id: "mazarallTheButcherTheButcherSDue",
+        name: "The Butcher’s Due",
+        description: "You can use this command ability at the start of your hero phase if this model is on the battlefield. If you do so, pick 1 friendly Khorne unit wholly within 18\" of this model. You can re-roll wound rolls of 1 for attacks made by that unit until your next hero phase.",
+           flavor: "To follow Mazarall is to tread the path of ascension on a road paved with the butchered carcasses of the dead.",
+        category: AbilityCategory.Command,
+        },
+
+    merwyrmAbyssalPredator: {
+        id: "merwyrmAbyssalPredator",
+        name: "Abyssal Predator",
+        description: "If the unmodified wound roll for an attack made with this model’s Hideous Jaws is 6, that attack has a Damage characteristic of D6 instead of D3.",
+           flavor: "The Merwyrm’s usual prey are the leviathans of the deep, and they have a preternatural talent for latching onto their quarry and tearing away great chunks of flesh.",
+        },
+
+    merwyrmStenchOfTheDeep: {
+        id: "merwyrmStenchOfTheDeep",
+        name: "Stench of the Deep",
+        description: "Subtract 1 from hit rolls for attacks made with melee weapons that target this model.",
+           flavor: "The air around this beast is filled with an unholy stench of rotting flesh and brackish filth. This putrid smell upturns stomachs and stings eyes, weakening and blinding its enemies before they can attack.",
+        },
+
+    merwyrmUnnaturalMetabolism: {
+        id: "merwyrmUnnaturalMetabolism",
+        name: "Unnatural Metabolism",
+        description: "At the end of the combat phase, if any enemy models were slain by wounds inflicted by this model’s attacks in that combat phase, you can heal up to D3 wounds allocated to this model.",
+           flavor: "The Merwyrm’s cavernous jaws are so huge that stories abound of its ability to swallow a person whole, its wounds sealing each time it devours an unfortunate victim.",
+        },
+
+    mourngulDevourerOfFleshAndSouls: {
+        id: "mourngulDevourerOfFleshAndSouls",
+        name: "Devourer of Flesh and Souls",
+        description: "At the end of the combat phase, if any enemy models were slain by wounds inflicted by this model’s attacks in that combat phase, you can heal up to D3 wounds allocated to this model.",
+           flavor: "The unholy essence of a Mourngul is nourished by the souls of those it devours.",
+        },
+
+    mourngulEthereal: {
+        id: "mourngulEthereal",
+        name: "Ethereal",
+        description: "Ignore modifiers (positive or negative) when making save rolls for attacks that target this model.",
+           flavor: "Creatures whose bodies have rotted away are difficult to harm with ordinary weapons.",
+        },
+
+    mourngulFrightfulTouch: {
+        id: "mourngulFrightfulTouch",
+        name: "Frightful Touch",
+        description: "If the unmodified hit roll for an attack made with this model’s Nightmarish Claws and Fangs is 6, that attack inflicts 2 mortal wounds and the attack sequence ends (do not make a save roll).",
+           flavor: "Just one touch from a Mourngul’s claws can still the heart of a mortal opponent.",
+        },
+
+    mourngulGhastlyApparition: {
+        id: "mourngulGhastlyApparition",
+        name: "Ghastly Apparition",
+        description: "Subtract 1 from hit rolls for attacks made by enemy models while they are within 6\" of any friendly models with this ability.",
+           flavor: "Mournguls are soulsearing horrors to look upon, radiating an aura of supernatural terror, unutterable despair and ravenous hunger.",
+        },
+
+        mourngulFly: {
+            id: "mourngulFly",
+            name: "FLY",
+            description: "This model can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    preytonAgonizingVenom: {
+        id: "preytonAgonizingVenom",
+        name: "Agonizing Venom",
+        description: "If the unmodified wound roll for an attack made with this model’s Venom-dripping Fangs is 6, that attack inflicts 1 mortal wound in addition to any normal damage.",
+           flavor: "Those who survive wounds caused by a Preyton’s fangs can hardly be considered lucky, as the deadly venom coursing through their veins will leaving them writhing in pain and wishing for death.",
+        },
+
+    preytonCorrosiveBile: {
+        id: "preytonCorrosiveBile",
+        name: "Corrosive Bile",
+        description: "If the unmodified hit roll for an attack made with this model’s Corrosive Bile is 6, that attack inflicts 1 mortal wound on the target and the attack sequence ends (do not make a wound or save roll).",
+           flavor: "A Preyton is able to spit acidic bile at its foes, the caustic liquid burning through flesh.",
+        },
+
+    preytonGoringCharge: {
+        id: "preytonGoringCharge",
+        name: "Goring Charge",
+        description: "After this model makes a charge move, you can pick 1 enemy unit within 1\" of this model and roll a dice. On a 2+, that unit suffers D3 mortal wounds.",
+           flavor: "When a Preyton attacks, it charges headlong with its blackened and serrated antlers, crashing into its foes and shredding flesh with violent swings of its head.",
+        },
+
+    preytonStalkerOfTheDarkWilds: {
+        id: "preytonStalkerOfTheDarkWilds",
+        name: "Stalker of the Dark Wilds",
+        description: "Instead of setting up this model on the battlefield, you can place it to one side and say that it is stalking its prey as a reserve unit. In your first hero phase, you must set up this unit anywhere on the battlefield within 12\" of the edge of the battlefield and more than 9\" from any enemy units.",
+           flavor: "Preytons are cunning and sadistic creatures, adept at attacking from ambush.",
+        },
+
+        preytonFly: {
+            id: "preytonFly",
+            name: "FLY",
+            description: "This model can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    rogueIdolAvalanche: {
+        id: "rogueIdolAvalanche",
+        name: "Avalanche!",
+        description: "If this model is slain, before removing the model from play, roll a dice for each unit within 3\" of this model. On a 4+, that unit suffers D3 mortal wounds. This model is then removed from play.",
+           flavor: "Even in death, Rogue Idols cause widespread devastation, their stony forms collapsing in a rain of heavy boulders and rubble that has left more than one elated champion crushed flat by the remains of the very beast he just bested.",
+        },
+
+    rogueIdolDaBigUn: {
+        id: "rogueIdolDaBigUn",
+        name: "Da Big’ Un",
+        description: "If an attack targets this model, halve the Damage characteristic of the weapon used for that attack (rounding up). In addition, roll a dice each time you allocate a mortal wound to this model. On a 4+, that mortal wound is negated.",
+           flavor: "Nothing more, in truth, than a monumental pile of rocks in motion, the Rogue Idol has few weaknesses and does not feel pain.",
+        },
+
+    rogueIdolLivinIdol: {
+        id: "rogueIdolLivinIdol",
+        name: "Livin’ Idol",
+        description: "Add 1 to casting rolls for friendly Orruk Wizards and friendly Grot Wizards while they are within 6\" of any friendly models with this ability. In addition, add 1 to the Bravery characteristic of friendly Orruk and friendly Grot units while they are wholly within 18\" of any friendly models with this ability.",
+           flavor: "The crackling spiritual power of the Waaagh! is the lifeblood of the Rogue Idol, such that orruk shamans can tap into it when casting their magic.",
+        },
+
+    rogueIdolRubbleAndRuin: {
+        id: "rogueIdolRubbleAndRuin",
+        name: "Rubble and Ruin",
+        description: "At the end of the combat phase, roll a dice for each unit within 3\" of this model. On a 4+, that unit suffers 1 mortal wound.",
+           flavor: "A Rogue Idol doesn’t particularly care about where it’s treading, and chunks of stone and bits of former victims are forever falling off its thunderous bulk.",
+        },
+
+    rogueIdolSpiritOfTheWaaagh: {
+        id: "rogueIdolSpiritOfTheWaaagh",
+        name: "Spirit of the Waaagh!",
+        description: "You can re-roll hit rolls of 1 for attacks made by this model if it made a charge move in the same turn.",
+           flavor: "Rogue Idols storm relentlessly into battle, driven ever onwards by the will of Gorkamorka, smashing their enemies flat with one thunderous charge after another.",
+        },
+
+    skaaracTheBloodbornLifeEater: {
+        id: "skaaracTheBloodbornLifeEater",
+        name: "Life-eater",
+        description: "At the end of the combat phase, if any enemy models were slain by wounds inflicted by this model’s attacks in that combat phase, you can heal up to D3 wounds allocated to this model.",
+           flavor: "Skaarac is a creature fuelled by bloodshed, his wounds closing as the blood of his foes washes over him.",
+        },
+
+    skaaracTheBloodbornInfernalIron: {
+        id: "skaaracTheBloodbornInfernalIron",
+        name: "Infernal Iron",
+        description: "Subtract 2 from casting rolls for enemy Wizards while they are within 12\" of this model.",
+           flavor: "Clad in armour blessed by Khorne himself, the air around Skaarac warps and writhes, twisting the winds of magic into an uncontrollable maelstrom.",
+        },
+
+    skaaracTheBloodbornToweringHorror: {
+        id: "skaaracTheBloodbornToweringHorror",
+        name: "Towering Horror",
+        description: "Subtract 1 from the Bravery characteristic of enemy units while they are within 12\" of this model.",
+           flavor: "A creature of sheer malice possessing an unquenchable lust for death, Skaarac’s very presence shatters the courage of all around him.",
+        },
+
+    skaaracTheBloodbornUndyingHate: {
+        id: "skaaracTheBloodbornUndyingHate",
+        name: "Undying Hate",
+        description: "If this model is slain, before removing the model from play, roll a dice for each enemy model within 3\" of this model. On a 4+, that model’s unit suffers 1 mortal wound. This model is then removed from play.",
+           flavor: "Should Skaarac’s mortal form be slain, it disappears in a torrent of scalding blood and blazing soul-fire.",
+        },
+
+    skaaracTheBloodbornCallOfTheSkullThrone: {
+        id: "skaaracTheBloodbornCallOfTheSkullThrone",
+        name: "Call of the Skull Throne",
+        description: "You can use this command ability at the start of your charge phase if this model is on the battlefield. If you do so, you can re-roll charge rolls for friendly Khorne units while they are wholly within 12\" of this model in that charge phase.",
+           flavor: "Skaarac’s very being is driven by the need to spill blood in Khorne’s name. This singular desire overwhelms those around him, lending speed to their limbs as they race towards their foes.",
+        category: AbilityCategory.Command,
+        },
+
+    skavenWarlordRegeneratingMonstrosity: {
+        id: "skavenWarlordRegeneratingMonstrosity",
+        name: "Regenerating Monstrosity",
+        description: "In your hero phase, you can heal up to D3 wounds allocated to this model.",
+           flavor: "A monstrous masterpiece from the breeding pits of the Clans Moulder, the flesh of a Brood Horror can reknit almost as fast as it can be torn in battle.",
+        },
+
+    skavenWarlordMightyWarlord: {
+        id: "skavenWarlordMightyWarlord",
+        name: "Mighty Warlord",
+        description: "Add 1 to the Bravery characteristic of friendly Clans Verminus units while they are wholly within 13\" of any friendly models with this ability.",
+           flavor: "The sight of any Warlord riding such an imposing mount does wonders for the uncertain loyalty of the skaven around them.",
+        },
+
+        skavenWarlordMount: {
+            id: "skavenWarlordMount",
+            name: "MOUNT",
+            description: "This model’s Brood Horror attacks with its Fang and Claws, and Prehensile Tail.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    skinWolvesBoundingPredators: {
+        id: "skinWolvesBoundingPredators",
+        name: "Bounding Predators",
+        description: "This unit can run and still charge later in the same turn.",
+           flavor: "These creatures can move at a frighteningly deadly speed.",
+        },
+
+    skinWolvesTerrifyingBloodlust: {
+        id: "skinWolvesTerrifyingBloodlust",
+        name: "Terrifying Bloodlust",
+        description: "If the unmodified hit roll for an attack made by this unit is 6, that attack inflicts 2 hits on the target instead of 1. Make a wound and save roll for each hit.",
+           flavor: "Skin Wolves have a natural predatory instinct to hunt. With the taint of Chaos running through their veins, this bloodlust is amplified beyond imagining.",
+        },
+
+    squigGobbaArcingSpit: {
+        id: "squigGobbaArcingSpit",
+        name: "Arcing Spit",
+        description: "This model’s Spit-squigs can target enemy units that are not visible to attacking model. In addition, add 1 to hit rolls for attacks made with Spit-squigs if the target has 10 or more models.",
+           flavor: "Once gobbed forth, flailing Spitsquigs soar in an uncharacteristically graceful, saliva-trailing arc before messily splatting into their target.",
+        },
+
+        squigGobbaCrew: {
+            id: "squigGobbaCrew",
+            name: "CREW",
+            description: "This model has a grot crew that attack with their Bashin’ Sticks. For rules purposes, the crew are treated in the same manner as a mount.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    skavenWolfRatsBloodCrazed: {
+        id: "skavenWolfRatsBloodCrazed",
+        name: "Blood-crazed",
+        description: "Do not take battleshock tests for this unit while it is within 3\" of an enemy unit.",
+           flavor: "The scent of fresh blood sends these beasts into madness, their blood-lust rendering them immune to fear.",
+        },
+
+    skavenWolfRatsSnappingJaws: {
+        id: "skavenWolfRatsSnappingJaws",
+        name: "Snapping Jaws",
+        description: "Add 1 to wound rolls for attacks made by this unit if it made a charge move in the same turn.",
+           flavor: "Speed is a Wolf Rat’s greatest attribute, and the power of their charge makes their disease-ridden mouths and razor-sharp teeth even more lethal.",
+        },
+
+    troggothHagHagRegeneration: {
+        id: "troggothHagHagRegeneration",
+        name: "Hag Regeneration",
+        description: "In your hero phase, you can heal up to D6 wounds allocated to this model.",
+           flavor: "All troggoths have an innate ability to regenerate even the most grievous of injuries, and in the case of the Troggoth Hag, this trait is augmented further by the arcane energies coursing through her hulking physique.",
+        },
+
+    troggothHagSpellSpite: {
+        id: "troggothHagSpellSpite",
+        name: "Spell-spite",
+        description: "Each time this model successfully unbinds a spell, you can roll a dice; on a 4+ the Wizard that cast that spell suffers D3 mortal wounds.",
+           flavor: "A Troggoth Hag carries with her sackfuls of strange fetishes and weird keepsakes, the most cursed of which are used to call down malignant hexes upon those that would dare wield hostile magic against her.",
+        },
+
+    troggothHagTerribleStench: {
+        id: "troggothHagTerribleStench",
+        name: "Terrible Stench",
+        description: "Subtract 1 from hit rolls for attacks made with melee weapons that target this model.",
+           flavor: "So foul is the dank swamp stench given off by Troggoth Hags that even the hardiest of warriors will retch uncontrollably in their presence.",
+        },
+
+    troggothHagHagCurse: {
+        id: "troggothHagHagCurse",
+        name: "Hag Curse",
+        description: "Hag Curse has a casting value of 7. If successfully cast, pick an enemy unit within 12\" of the caster that is visible to them. Until your next hero phase, subtract 1 from hit rolls for attacks made by that unit, and subtract 1 from save rolls for attacks that target that unit.",
+           flavor: "The cackling curses of the Troggoth Hag are insidious and vile, robbing her victims of strength and shackling them with ill fortune.",
+        category: AbilityCategory.Magic,
+        },
+
+    warpfireDragonDeadlyDemise: {
+        id: "warpfireDragonDeadlyDemise",
+        name: "Deadly Demise",
+        description: "If this model is slain, before this model is removed from play, roll a dice for each unit within 3\" of this model. On a 4+, that unit suffers D3 mortal wounds. This model is then removed from play.",
+           flavor: "Even in their last moments these creatures are deadly, and those arrogant enough to believe they have won victory are soon bloodily corrected.",
+        },
+
+    warpfireDragonWarpfire: {
+        id: "warpfireDragonWarpfire",
+        name: "Warpfire",
+        description: "Do not use the attack sequence for an attack made with this model’s Warpfire. Instead roll a dice. On a 1, nothing happens. On a 2-5, the target unit suffers D3 mortal wounds. On a 6, the target unit suffers D6 mortal wounds.",
+           flavor: "These scintillating flames cause flesh and bone to undergo rapid and grotesque mutations, reshaping those touched into utterly grotesque configurations of their former selves.",
+        },
+
+        warpfireDragonFly: {
+            id: "warpfireDragonFly",
+            name: "FLY",
+            description: "This model can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    warpgnawVerminlordCloakOfSplinteredUnreality: {
+        id: "warpgnawVerminlordCloakOfSplinteredUnreality",
+        name: "Cloak of Splintered Unreality",
+        description: "Roll a dice each time you allocate a wound inflicted by a missile weapon or a mortal wound to this model. On a 5+, that wound or mortal wound is negated.",
+           flavor: "Warpgnaw Verminlords spend so much of their time slinking through the fractured maze of gnawholes that radiates out from Blight City that their bodies become saturated with uncertain and unreal energies. Their outlines seem to blur through dozens of fractured possibilities, their every movement stilted, subtly and disturbingly out of kilter with the world around them.",
+        },
+
+    warpgnawVerminlordRealmGuide: {
+        id: "warpgnawVerminlordRealmGuide",
+        name: "Realm Guide",
+        description: "Instead of setting up this model on the battlefield, you can place this model to one side and say that it is moving through the cracks in reality as a reserve unit. If you do so, when you would set up 1 other friendly Skaven unit, instead of setting up that unit on the battlefield, you can say that it is joining this model moving through the cracks in reality as a reserve unit – up to 1 unit can join this model in this way.\
+\
+At the end of your movement phase, you can set up this model anywhere on the battlefield, more than 9\" from any enemy units; then set up any unit that joined this model wholly within 6\" of this model and more than 9\" from any enemy units. Any units moving through the cracks in reality that are not set up on the battlefield before the start of the fourth battle round are slain.",
+           flavor: "The Warpgnaw Verminlords claim – and none have the courage to gainsay them – that it was they who first bestowed the boon of gnawholes upon the skaven race. Certainly their knowledge of these twisted ways is second to none, allowing them to squirm through the cracks in reality to fall upon their horrified foes.",
+        },
+
+    warpgnawVerminlordSplinterScreech: {
+        id: "warpgnawVerminlordSplinterScreech",
+        name: "Splinter-screech",
+        description: "Splinter-screech has a casting value of 5. If successfully cast, pick 1 enemy model within 12\" of the caster, and roll a dice. If the roll is equal to or greater than that model’s Wounds characteristic, it is slain.",
+           flavor: "The Warpgnaw Verminlord gives an atonal shriek that rises in pitch until reality itself shivers, shudders then cracks asunder.",
+        category: AbilityCategory.Magic,
+        },
+
+    darkoathChieftainBerserkerCharge: {
+        id: "darkoathChieftainBerserkerCharge",
+        name: "Berserker Charge",
+        description: "A Darkoath Chieftain makes 6 attacks with his Broadsword instead of 3 if he charged earlier in the turn.",
+        },
+
+    darkoathChieftainDeathblow: {
+        id: "darkoathChieftainDeathblow",
+        name: "Deathblow",
+        description: "If a Darkoath Chieftain slays any models in the combat phase, each enemy unit within 1\" of him at the end of that combat phase suffers 1 mortal wound.",
+        },
+
+    darkoathChieftainQuestForGlory: {
+        id: "darkoathChieftainQuestForGlory",
+        name: "Quest for Glory",
+        description: "Keep track of the number of wounds inflicted by this model during the battle. If the total reaches 8 or more, you can add 1 to all hit rolls made for this model for the remainder of the battle. If the total reaches 16 or more, you can add 1 to all wound rolls made for this model as well.",
+        },
+
+    doomseekerRunicPower: {
+        id: "doomseekerRunicPower",
+        name: "Runic Power",
+        description: "If a Doomseeker slays any models, add 1 to the Damage of its Wariron until the end of the following turn.",
+        },
+
+    doomseekerGoadedToFury: {
+        id: "doomseekerGoadedToFury",
+        name: "Goaded to Fury",
+        description: "You can add 1 to all hit rolls made for a Doomseeker if he has suffered any wounds.",
+        },
+
+    doomseekerOathbound: {
+        id: "doomseekerOathbound",
+        name: "Oathbound",
+        description: "At the start of the first battle round, pick an enemy unit that the Doomseeker has sworn to destroy. If that unit is within 3\" of the Doomseeker after he has made his attacks in the combat phase, he can pile in and attack for a second time.",
+        },
+
+    excelsiorWarpriestLightOfSigmar: {
+        id: "excelsiorWarpriestLightOfSigmar",
+        name: "Light of Sigmar",
+        description: "In your hero phase, the Warpriest can hold his book of Sigmar’s teachings up high, and pray to the God- King for aid. If you do so, roll a dice. On a 3 or more, pick the Warpriest or a unit within 10\". If you picked a friendly unit, it heals 1 wound (the Warpriest and friendly ORDER units heal D3 wounds instead). If you picked an enemy unit, it suffers 1 mortal wound (CHAOS units suffer D3 mortal wounds instead).",
+        },
+
+    excelsiorWarpriestDivinePower: {
+        id: "excelsiorWarpriestDivinePower",
+        name: "Divine Power",
+        description: "An Excelsior Warpriest can attempt to unbind 1 spell in each enemy hero phase as if he were a wizard.",
+        },
+
+    excelsiorWarpriestLoyalCompanion: {
+        id: "excelsiorWarpriestLoyalCompanion",
+        name: "Loyal Companion",
+        description: "After setting up an Excelsior Warpriest, you can if you wish immediately set up one Gryph-hound within 3\" of him. If you do so, the Gryphhound is bound to the Excelsior Warpriest. A Gryph-hound that is bound to an Excelsior Warpriest makes 4 attacks with its Beak and Claws rather than 2 if the target unit is within 3\" of the Excelsior Warpriest.",
+        },
+
+    gauntSummonerAndChaosFamiliarsBookOfProfaneSecrets: {
+        id: "gauntSummonerAndChaosFamiliarsBookOfProfaneSecrets",
+        name: "Book of Profane Secrets",
+        description: "If a Gaunt Summoner is within 9\" of a REALMGATE at the start of its movement phase, it can summon a unit of CHAOS DAEMONS to the battlefield, adding it to your army. Place the unit so that all models are within 6\" of the Realmgate and more than 9\" away from any enemy units. This is the summoned unit’s move for the movement phase.",
+        },
+
+    gauntSummonerAndChaosFamiliarsChaosFamiliars: {
+        id: "gauntSummonerAndChaosFamiliarsChaosFamiliars",
+        name: "Chaos Familiars",
+        description: "The Gaunt Summoner is accompanied by four Chaos Familiars: Tweak, Slop, Blot and Pug. Whenever the Gaunt Summoner is set up or finishes a move, place each surviving Familiar within 1\" of him. The range to or from the Gaunt Summoner can be measured to his own model or to any of his Chaos Familiars. When a wound is inflicted upon the Gaunt Summoner, the attacker can choose for the wound to either affect the Gaunt Summoner normally, or for it to remove one of the Chaos Familiars instead. All remaining Chaos Familiars are removed if the Gaunt Summoner is slain.\
+\
+The Chaos Familiars have the following effects as long as they are alive (they cannot do anything else):\
+\
+Tweak: Add 1 to the hit rolls for the Gaunt Summoner’s Warptongue Blade, as long as he is accompanied by Tweak.\
+\
+Slop: Your opponent must subtract 1 from the save rolls of enemy models that are within 3\" of the Gaunt Summoner, as long as he is accompanied by Slop.\
+\
+Blot: Add 1 to the casting rolls for the Gaunt Summoner, as long as he is accompanied by Blot.\
+\
+Pug: Your opponent must subtract 1 from any hit rolls that target the Gaunt Summoner in the combat phase, as long as he is accompanied by Pug.",
+        },
+
+    gauntSummonerAndChaosFamiliarsWarptongueBlade: {
+        id: "gauntSummonerAndChaosFamiliarsWarptongueBlade",
+        name: "Warptongue Blade",
+        description: "The body of anyone cut by a Warptongue Blade is wracked with sickening and uncontrollable mutations. If a Warptongue Blade inflicts damage on an enemy unit, roll two dice. If the roll is higher than the enemy unit’s Bravery, one model in the unit is slain. Otherwise, the blade inflicts 1 wound.",
+        },
+
+    gauntSummonerAndChaosFamiliarsInfernalFlames: {
+        id: "gauntSummonerAndChaosFamiliarsInfernalFlames",
+        name: "INFERNAL FLAMES",
+        description: "Infernal Flames creates an area of scorching fire that engulfs enemy formations. Infernal Flames has a casting value of 8. If successfully cast, pick an enemy unit within 18\" that is visible to the caster. Roll 1 dice for every model in the target unit that is within 18\"; the unit suffers 1 mortal wound for each roll of 4 or more. Roll 3 dice for each MONSTER or WAR MACHINE in the target unit, rather than only 1 dice.",
+        category: AbilityCategory.Magic,
+        },
+
+    bileTroggothsInfectedVomit: {
+        id: "bileTroggothsInfectedVomit",
+        name: "Infected Vomit",
+        description: "If the unmodified hit roll for an attack made with this unit’s Infected Vomit is 6, that attacks inflicts 1 mortal wound on the target in addition to any normal damage.",
+           flavor: "Even more vile than the acidic vomit produced by their fellows, the gastric stew of plague-filth and meat-maggots festering within a Bile Troggoth’s stomach is their deadliest weapon. It can eat through metal and flesh, and dissolve disciplined shield walls into a mess of fused armour and flesh.",
+        },
+
+    bileTroggothsFecundRegeneration: {
+        id: "bileTroggothsFecundRegeneration",
+        name: "Fecund Regeneration",
+        description: "In your hero phase, you can heal up to D3 wounds allocated to this unit.",
+           flavor: "Like all of their kind, Bile Troggoths heal at an astonishing rate, their rotting flesh knitting together before the eyes of their horrified prey.",
+        },
+
+    mistweaverSaihGlimmermist: {
+        id: "mistweaverSaihGlimmermist",
+        name: "Glimmermist",
+        description: "Once per turn, when this model is chosen as the target for an attack, the Mistweaver can use her staff to shroud herself in a magical mist. When she does so, her Save is increased to 1+ against that attack.",
+        },
+
+    mistweaverSaihIllusoryAssault: {
+        id: "mistweaverSaihIllusoryAssault",
+        name: "ILLUSORY ASSAULT",
+        description: "The Mistweaver twists the perceptions of her victims with ever more horrific illusions, sending them into a panicked frenzy of violent self-destruction. Illusory Assault has a casting value of 6. If successfully cast, pick an enemy unit within 24\" that is visible to the caster and roll three dice. If the total is greater than that unit’s Bravery, it suffers D3 mortal wounds. If the total is at least double that unit’s Bravery, it suffers D6 mortal wounds instead.",
+        category: AbilityCategory.Magic,
+        },
+
+    skavenDeathrunnerIllusoryTwin: {
+        id: "skavenDeathrunnerIllusoryTwin",
+        name: "Illusory Twin",
+        description: "Although he has two identical miniatures, there is only one Deathrunner, with the uncanny ability to appear in two places at once. When the Skaven Deathrunner is set up, place both models upon the battlefield. They do not need to be set up within 1\" of each other, and each is a separate unit. One of the models represents the real Deathrunner, the other is an illusion. The truth is only revealed when the Deathrunner attacks or is slain. If one of the miniatures is slain, roll a dice. On a 1, 2 or 3 the slain model was the illusion – it is removed. On a 4, 5 or 6 it was the true Deathrunner, and both miniatures are removed. If one of the models makes an attack, the other is the illusion and is removed.",
+        },
+
+    skavenDeathrunnerMarkedTarget: {
+        id: "skavenDeathrunnerMarkedTarget",
+        name: "Marked Target",
+        description: "At the start of the first battle round, pick an enemy HERO as the Deathrunner’s target for assassination. You can re-roll failed hit rolls for any attacks made by the Deathrunner upon his marked target.",
+        },
+
+    skavenDeathrunnerShadowsmokeBombs: {
+        id: "skavenDeathrunnerShadowsmokeBombs",
+        name: "Shadowsmoke Bombs",
+        description: "A Skaven Deathrunner carries a number of Shadowsmoke Bombs that can be used to mask his position and protect him from enemy missile fire. Your opponent must subtract 1 from any hit rolls that target a Skaven Deathrunner in the shooting phase.",
+        },
+
+    tenebraelShardShadowstrike: {
+        id: "tenebraelShardShadowstrike",
+        name: "Shadowstrike",
+        description: "Roll a dice for this model in each of your hero phases. On a roll of 4 or more you can remove it from the battlefield, and then set it back up anywhere within 3\" of the enemy. If you do so, you can add 1 to all hit rolls made for this model for the rest of the turn.",
+        },
+
+    tenebraelShardGracefulKiller: {
+        id: "tenebraelShardGracefulKiller",
+        name: "Graceful Killer",
+        description: "When you make save rolls for a Tenebrael Shard, ignore the attack’s Rend characteristic.",
+        },
+
+    tenebraelShardIncredibleSpeed: {
+        id: "tenebraelShardIncredibleSpeed",
+        name: "Incredible Speed",
+        description: "If a Tenebrael Shard slays any models in the combat phase, he can make an 8\" move immediately after his attacks have been resolved. He cannot finish the move within 3\" of any enemy models.",
+        },
+
+    highWardenPredatoryLeap: {
+        id: "highWardenPredatoryLeap",
+        name: "Predatory Leap",
+        description: "The High Warden’s Griffon can carry him high over the battle line directly to their chosen foe. When this model piles in it can move up to 6\" and can move over enemy models. Furthermore, it does not have to move towards the closest enemy model, as long as it ends its move within ½\" of an enemy unit.",
+        },
+
+    highWardenStarwoodLance: {
+        id: "highWardenStarwoodLance",
+        name: "Starwood Lance",
+        description: "Add 1 to the wound rolls and Damage of a Starwood Lance if this model charged in the same turn.",
+        },
+
+    highWardenHurricaneCharge: {
+        id: "highWardenHurricaneCharge",
+        name: "Hurricane Charge",
+        description: "If a High Warden uses this ability, then until your next hero phase you can re-roll any dice when determining the charge distance for Swifthawk Agents from your army if they are within 16\" of this model when they charge.",
+        category: AbilityCategory.Command,
+        },
+
+        highWardenFly: {
+            id: "highWardenFly",
+            name: "FLY",
+            description: "A High Warden can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    spireguardAelvenShield: {
+        id: "spireguardAelvenShield",
+        name: "Aelven Shield",
+        description: "You can re-roll save rolls of 1 for this unit. You can instead re‑roll save rolls of 1 or 2 for this unit in the shooting phase.",
+        },
+
+    spireguardStrengthOfTheSpireguard: {
+        id: "spireguardStrengthOfTheSpireguard",
+        name: "Strength of the Spireguard",
+        description: "You can re-roll hit rolls of 1 for a Spireguard if its unit has 20 or more models.",
+        },
+
+    spireguardSwifthawkDiscipline: {
+        id: "spireguardSwifthawkDiscipline",
+        name: "Swifthawk Discipline",
+        description: "If you fail a battleshock test for this unit whilst a Swifthawk Agents Hero from your army is within 16\", halve the number of models that flee (rounding fractions up).",
+        },
+
+        spireguardWatchMaster: {
+            id: "spireguardWatchMaster",
+            name: "WATCH MASTER",
+            description: "The leader of this unit is a Watch Master. A Watch Master makes 2 attacks rather than 1 with a Silverwood Spear.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    reaversAelvenPurebreeds: {
+        id: "reaversAelvenPurebreeds",
+        name: "Aelven Purebreeds",
+        description: "In the shooting phase, before or after making attacks with this unit, you can roll two dice and move all of the models in this unit up to that many inches. Models cannot start or end this move within 3\" of an enemy unit.",
+        },
+
+    reaversSwiftVolleys: {
+        id: "reaversSwiftVolleys",
+        name: "Swift Volleys",
+        description: "Models in this unit make 3 attacks with their Reaver Cavalry Bows if the unit is not within 3\" of an enemy unit.",
+        },
+
+        reaversHarbinger: {
+            id: "reaversHarbinger",
+            name: "HARBINGER",
+            description: "The leader of this unit is a Harbinger. A Harbinger wields a Starsteel Blade in place of a Starwood Spear.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    tamurkhanTheMaggotLordFeastOfTheMaggotLord: {
+        id: "tamurkhanTheMaggotLordFeastOfTheMaggotLord",
+        name: "Feast of the Maggot Lord",
+        description: "If this model is slain, before this model is removed from play, you can pick 1 enemy Hero within 3\" of this model. That Hero suffers D3 mortal wounds. If that Hero is slain by these mortal wounds, this model is not slain, D6 wounds allocated to this model are healed, and any that remain to be allocated to it are negated. If that Hero is not slain by these mortal wounds, this model is removed from play.",
+           flavor: "Tamurkhan’s true form is that of a hideous maggot-like parasite capable of burrowing into and possessing the bodies of his enemies in battle.",
+        },
+
+    tamurkhanTheMaggotLordKillerOfKings: {
+        id: "tamurkhanTheMaggotLordKillerOfKings",
+        name: "Killer of Kings",
+        description: "You can re-roll hit rolls for attacks made with this model’s Black Cleaver that target a Hero.",
+           flavor: "Tamurkhan loves nothing better than the challenge of hacking apart an enemy lord.",
+        },
+
+    tamurkhanTheMaggotLordNurgleSFavouredSon: {
+        id: "tamurkhanTheMaggotLordNurgleSFavouredSon",
+        name: "Nurgle’s Favoured Son",
+        description: "In your hero phase, you can heal up to D3 wounds allocated to this model.",
+           flavor: "Papa Nurgle can be a fickle god, but Tamurkhan was once his most favoured son.",
+        },
+
+    tamurkhanTheMaggotLordRoarOfCommand: {
+        id: "tamurkhanTheMaggotLordRoarOfCommand",
+        name: "Roar of Command",
+        description: "You can use this command ability at the start of your charge phase if this model is your general and is on the battlefield. If you do so, you can re-roll charge rolls for friendly Tamurkhan’s Horde units while they are wholly within 28\" of this model in that charge phase.",
+           flavor: "Tamurkhan can unleash a great bellowing roar, calling upon the horde at his command to crash down relentlessly upon his enemies.",
+        category: AbilityCategory.Command,
+        },
+
+        tamurkhanTheMaggotLordMount: {
+            id: "tamurkhanTheMaggotLordMount",
+            name: "MOUNT",
+            description: "This model’s toad dragon, Bubebolos, attacks with its Lashing Tongue, Crushing Jaws and Befouled Bulk.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    kazykTheBefouledCorruptedFlesh: {
+        id: "kazykTheBefouledCorruptedFlesh",
+        name: "Corrupted Flesh",
+        description: "Roll a dice each time you allocate a mortal wound to this model. On a 4+, that mortal wound is negated.",
+           flavor: "Kazyk’s ravaged body is a rotting mockery of life, little more than a roughly humanoid bag of putrescent filth that feels neither pain nor injury. He must be torn limb from limb if he is to be stopped.",
+        },
+
+    kazykTheBefouledNoxiousBlades: {
+        id: "kazykTheBefouledNoxiousBlades",
+        name: "Noxious Blades",
+        description: "If the unmodified hit roll for an attack with this model’s Noxious Blades is 6, that attack has a Damage characteristic of 3 instead of D3.",
+           flavor: "The poisonous filth that encrusts Kazyk’s blades is so baleful, flesh sloughs and decays at its touch.",
+        },
+
+    kazykTheBefouledBreathOfThePlaguePit: {
+        id: "kazykTheBefouledBreathOfThePlaguePit",
+        name: "Breath of the Plague Pit",
+        description: "You can use this command ability at the start of the battleshock phase if this model is on the battlefield. If you do so, do not take battleshock tests for friendly Nurgle units while they are wholly within 14\" of this model in that battleshock phase.",
+           flavor: "From his filthy carcass, Kazyk can pour forth a vile miasma, which fills the devotees of the Plague God with appalling vigour.",
+        category: AbilityCategory.Command,
+        },
+
+        kazykTheBefouledMount: {
+            id: "kazykTheBefouledMount",
+            name: "MOUNT",
+            description: "This model’s Rot Beast attacks with its Slavering Fangs.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    daemonPlagueToadsOfNurgleBloatedFlesh: {
+        id: "daemonPlagueToadsOfNurgleBloatedFlesh",
+        name: "Bloated Flesh",
+        description: "Roll a dice each time you allocate a mortal wound to a model in this unit. On a 4+, that mortal wound is negated.",
+           flavor: "Most weapons simply slide harmlessly through the bloated, abscess-riddled flesh of a Daemon Plague Toad with little effect, the foul bulk of the thing swallowing up blades and arrows harmlessly.",
+        },
+
+    daemonPlagueToadsOfNurgleRotEaters: {
+        id: "daemonPlagueToadsOfNurgleRotEaters",
+        name: "Rot-eaters",
+        description: "If the unmodified hit roll for an attack made with this unit’s Yawning Maw is 6, that attack inflicts 2 hits on the target instead of 1. Make a wound and save roll for each hit.",
+           flavor: "A Daemon Plague Toad’s jag-toothed maw yawns impossibly wide as the abomination prepares to devour its victim.",
+        },
+
+    daemonPlagueToadsOfNurgleSummonDaemonsOfNurgle: {
+        id: "daemonPlagueToadsOfNurgleSummonDaemonsOfNurgle",
+        name: "SUMMON DAEMONS OF NURGLE",
+        description: "1 unit of 3 Daemon Plague Toads of Nurgle can be summoned to the battlefield using the Summon Daemons of Nurgle battle trait for 14 Contagion points.",
+        category: AbilityCategory.Magic,
+        },
+
+        daemonPlagueToadsOfNurgleFly: {
+            id: "daemonPlagueToadsOfNurgleFly",
+            name: "FLY",
+            description: "This unit can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    daemonPoxRidersOfNurgleBloatedFlesh: {
+        id: "daemonPoxRidersOfNurgleBloatedFlesh",
+        name: "Bloated Flesh",
+        description: "Roll a dice each time you allocate a mortal wound to a model in this unit. On a 4+, that mortal wound is negated.",
+           flavor: "Most weapons simply slide harmlessly through the bloated, abscess-riddled flesh of a Daemon Plague Toad with little effect, the foul bulk of the thing swallowing up blades and arrows harmlessly.",
+        },
+
+    daemonPoxRidersOfNurgleCloudOfFlies: {
+        id: "daemonPoxRidersOfNurgleCloudOfFlies",
+        name: "Cloud of Flies",
+        description: "Subtract 1 from hit rolls for attacks made with missile weapons that target this unit.",
+           flavor: "Thanks to their odious nature, Pox Riders attract great clouds of flies that buzz about them, obscuring them from view.",
+        },
+
+    daemonPoxRidersOfNurgleLocusOfFecundity: {
+        id: "daemonPoxRidersOfNurgleLocusOfFecundity",
+        name: "Locus of Fecundity",
+        description: "You can re-roll save rolls of 1 for attacks that target this unit while this unit is wholly within 14\" of a friendly Nurgle Hero.",
+           flavor: "Pox Riders are a mainstay of many a legion of Nurgle, their powers amplified by Nurgle’s chosen leaders.",
+        },
+
+    daemonPoxRidersOfNurgleRotEaters: {
+        id: "daemonPoxRidersOfNurgleRotEaters",
+        name: "Rot-eaters",
+        description: "If the unmodified hit roll for an attack made with this unit’s Yawning Maw is 6, that attack inflicts 2 hits on the target instead of 1. Make a wound and save roll for each hit.",
+           flavor: "A Daemon Plague Toad’s jag-toothed maw yawns impossibly wide as the abomination prepares to devour its victim.",
+        },
+
+    daemonPoxRidersOfNurgleSummonDaemonsOfNurgle: {
+        id: "daemonPoxRidersOfNurgleSummonDaemonsOfNurgle",
+        name: "SUMMON DAEMONS  OF NURGLE",
+        description: undefined,
+           flavor: "1 unit of 3 Daemon Pox Riders of Nurgle can be summoned to the battlefield using the Summon Daemons of Nurgle battle trait for 21 Contagion points.",
+        category: AbilityCategory.Magic,
+        },
+
+        daemonPoxRidersOfNurgleMount: {
+            id: "daemonPoxRidersOfNurgleMount",
+            name: "MOUNT",
+            description: "This unit’s Plague Toads each attack with their Grasping Tongue and Yawning Maw.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+        daemonPoxRidersOfNurgleFly: {
+            id: "daemonPoxRidersOfNurgleFly",
+            name: "FLY",
+            description: "This unit can fly.",
+            category: AbilityCategory.SpecialRule,
+        },
+
+    plagueOgorsDamnedFlesh: {
+        id: "plagueOgorsDamnedFlesh",
+        name: "Damned Flesh",
+        description: "If a model from this unit is slain after a wound or mortal wound is allocated to it, roll a dice before the slain model is removed from play. On a 5+, that wound or mortal wound is negated and the model is not slain.",
+           flavor: "Plague Ogors are cursed creatures, rather than willing followers of their decaying lord. Often, not even death will free them readily from Nurgle’s grasp.",
+        },
+
+    plagueOgorsInsatiablyFamished: {
+        id: "plagueOgorsInsatiablyFamished",
+        name: "Insatiably Famished",
+        description: "You can re-roll hit rolls of 1 for attacks made by this unit if this unit made a charge move in the same turn.",
+           flavor: "With all manner of daemonic parasites crawling through their guts, Plague Ogors are utterly incapable of satisfying their ravenous hunger, no matter how quickly they wolf down the meat of their prey; as a result, their charges into battle often culminate in acts of extreme gluttony.",
+        },
+
+    plagueOgorsPlagueContagion: {
+        id: "plagueOgorsPlagueContagion",
+        name: "Plague Contagion",
+        description: "At the end of the combat phase, you can roll 1 dice for each enemy unit within 3\" of this unit. On a 5+, that enemy unit suffers D3 mortal wounds.",
+           flavor: "Its flesh covered in sores that seep a poisonous ooze, even a touch from a Plague Ogor can riddle an enemy’s body with deadly diseases that can kill in minutes.",
+        },
+
+    saylTheFaithlessMutantSight: {
+        id: "saylTheFaithlessMutantSight",
+        name: "Mutant Sight",
+        description: "Once per battle, you can re-roll 1 casting or unbinding roll for this model.",
+           flavor: "Sayl’s single eye stares into the beyond, enabling him to navigate the twisted paths of the future.",
+        },
+
+    saylTheFaithlessNightmawMyPetProtectMe: {
+        id: "saylTheFaithlessNightmawMyPetProtectMe",
+        name: "‘Nightmaw, my pet, protect me!’",
+        description: "Roll a dice before you allocate a wound or mortal wound to this model while this model is within 3\" of Nightmaw. On a 4+, that wound or mortal wound is allocated to Nightmaw instead of to this model.",
+           flavor: "Nightmaw is slaved to the will of its master and will bodily protect him if called upon.",
+        },
+
+    saylTheFaithlessSchalkainSTeeth: {
+        id: "saylTheFaithlessSchalkainSTeeth",
+        name: "Schalkain’s Teeth",
+        description: "In your hero phase, you can pick 1 enemy unit within 8\" of this model and roll a dice. On a 5+, that unit suffers D3 mortal wounds.",
+           flavor: "These sigil-etched teeth, each torn from the skull of a wizard or shaman, are enchanted with dark magic.",
+        },
+
+    saylTheFaithlessTraitorSMist: {
+        id: "saylTheFaithlessTraitorSMist",
+        name: "Traitor’s Mist",
+        description: "Traitor’s Mist has a casting value of 7. If successfully cast, pick 1 friendly Slaves to Darkness unit wholly within 15\" of the caster that is visible to them. Remove that unit from the battlefield and then set it up again anywhere on the battlefield more than 9\" from any enemy units. It cannot move in the subsequent movement phase.",
+           flavor: "Sayl can transform his armoured warriors into intangible mist, allowing them to drift unhindered through the enemy’s battle lines.",
+        category: AbilityCategory.Magic,
+        },
+
+    nightmawRestlessFlesh: {
+        id: "nightmawRestlessFlesh",
+        name: "Restless Flesh",
+        description: "In your hero phase you can heal 1 wound allocated to this model.",
+           flavor: "Nightmaw’s flesh is ever-changing and constantly knits itself back into new forms.",
+        },
+
+    nightmawShadowKin: {
+        id: "nightmawShadowKin",
+        name: "Shadow-kin",
+        description: "Add 1 to save rolls for attacks made with missile weapons that target this model. In addition, roll a dice each time you allocate a mortal wound to this model. On a 5+, that mortal wound is negated.",
+           flavor: "Nightmaw is surrounded by a swirling vortex of dark and shadowed forms, making him difficult to see.",
+        },
+
+    nightmawWrithingTentacles: {
+        id: "nightmawWrithingTentacles",
+        name: "Writhing Tentacles",
+        description: "If you roll a double when determining the number of attacks made by this model’s Razor- tipped Tentacles, add 1 to hit and wound rolls for attacks made by that model until the end of the phase.",
+           flavor: "The bodies of these creatures are ever in flux, making them wildly unpredictable.",
         },
    };
    attacks = {
@@ -19623,7 +22994,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             toWound: "3",
             melee: true,
             range: "2",
-            rend: "👁",
+            rend: "-2",
         },
 
         morathiTheShadowQueenCrownOfSerpents: {
@@ -19974,8 +23345,8 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             rend: "0",
         },
 
-        blookwrackMedusaBloodwrackStare: {
-            id: "blookwrackMedusaBloodwrackStare",
+        bloodwrackMedusaBloodwrackStare: {
+            id: "bloodwrackMedusaBloodwrackStare",
             name: "Bloodwrack Stare",
             attacks: "👁",
             damage: "👁",
@@ -19986,8 +23357,8 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             rend: "👁",
         },
 
-        blookwrackMedusaWhisperclaw: {
-            id: "blookwrackMedusaWhisperclaw",
+        bloodwrackMedusaWhisperclaw: {
+            id: "bloodwrackMedusaWhisperclaw",
             name: "Whisperclaw",
             attacks: "4",
             damage: "1",
@@ -19998,8 +23369,8 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             rend: "0",
         },
 
-        blookwrackMedusaTailOfSerpents: {
-            id: "blookwrackMedusaTailOfSerpents",
+        bloodwrackMedusaTailOfSerpents: {
+            id: "bloodwrackMedusaTailOfSerpents",
             name: "Tail of Serpents",
             attacks: "D6",
             damage: "1",
@@ -20010,8 +23381,8 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             rend: "0",
         },
 
-        blookwrackMedusaBloodwrackSpear: {
-            id: "blookwrackMedusaBloodwrackSpear",
+        bloodwrackMedusaBloodwrackSpear: {
+            id: "bloodwrackMedusaBloodwrackSpear",
             name: "Bloodwrack Spear",
             attacks: "2",
             damage: "D3",
@@ -20979,7 +24350,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             toWound: "3",
             melee: true,
             range: "1",
-            rend: "✹",
+            rend: "-1",
         },
 
         vampireLordOnZombieDragonZombieDragonSMaw: {
@@ -21288,10 +24659,10 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             attacks: this.damageTables.terrorgheist.columns[2],
             damage: "D3",
             toHit: "4",
-            toWound: "5",
+            toWound: "3",
             melee: true,
             range: "2",
-            rend: this.damageTables.terrorgheist.columns[2],
+            rend: "-1",
         },
 
         terrorgheistFangedMaw: {
@@ -21663,7 +25034,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             toWound: "3",
             melee: true,
             range: "2",
-            rend: "✹",
+            rend: "-1",
         },
 
         greatUncleanOneHostOfNurglings: {
@@ -22730,7 +26101,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             toHit: "4",
             toWound: "3",
             melee: false,
-            range: "36",
+            range: "12",
             rend: "0",
         },
 
@@ -23939,8 +27310,8 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             name: "Grandhammer",
             attacks: "2",
             damage: "2",
-            toHit: "3",
-            toWound: "4",
+            toHit: "4",
+            toWound: "3",
             melee: true,
             range: "1",
             rend: "-1",
@@ -27639,7 +31010,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             toWound: "4",
             melee: false,
             range: "18",
-            rend: "✹",
+            rend: "-1",
         },
 
         saurusOldbloodOnCarnosaurSunstoneSpear: {
@@ -28842,40 +32213,40 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             rend: "0",
         },
 
-        grotSpearChukkaChukkinSpear: {
-            id: "grotSpearChukkaChukkinSpear",
-            name: "Chukkin’ Spear",
-            attacks: "✹",
-            damage: "D3",
-            toHit: "4",
-            toWound: "3",
-            melee: false,
-            range: "36",
-            rend: "-2",
-        },
-
-        doomDiverCatapultDivinGrot: {
-            id: "doomDiverCatapultDivinGrot",
-            name: "Divin’ Grot",
+        grotSpearChukkaCrewSImprovisedWeapons: {
+            id: "grotSpearChukkaCrewSImprovisedWeapons",
+            name: "Crew’s Improvised Weapons",
             attacks: "1",
-            damage: "D3",
-            toHit: "3",
-            toWound: "3",
-            melee: false,
-            range: "✹",
-            rend: "-1",
-        },
-
-        grotRockLobberBigRock: {
-            id: "grotRockLobberBigRock",
-            name: "Big Rock",
-            attacks: "1",
-            damage: "3",
-            toHit: "✹",
-            toWound: "3",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
             melee: true,
-            range: "40",
-            rend: "-2",
+            range: "1",
+            rend: "0",
+        },
+
+        doomDiverCatapultCrewSImprovisedWeapons: {
+            id: "doomDiverCatapultCrewSImprovisedWeapons",
+            name: "Crew’s Improvised Weapons",
+            attacks: "1",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        grotRockLobberCrewSImprovisedWeapons: {
+            id: "grotRockLobberCrewSImprovisedWeapons",
+            name: "Crew’s Improvised Weapons",
+            attacks: "1",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
         },
 
         grotWarbossMoonProdder: {
@@ -30114,6 +33485,18 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             rend: "0",
         },
 
+        chaosChariotsWarSteedsRoughshodHooves: {
+            id: "chaosChariotsWarSteedsRoughshodHooves",
+            name: "War Steeds’ Roughshod Hooves",
+            attacks: "4",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
         chaosGorebeastChariotsLashingWhip: {
             id: "chaosGorebeastChariotsLashingWhip",
             name: "Lashing Whip",
@@ -30495,7 +33878,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             toWound: "4",
             melee: true,
             range: "1",
-            rend: "0",
+            rend: "-1",
         },
 
         seekersOfSlaaneshPoisonedTongue: {
@@ -33306,52 +36689,52 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             rend: "0",
         },
 
-        helblasterVolleyGunVolleyOfShots: {
-            id: "helblasterVolleyGunVolleyOfShots",
-            name: "Volley of Shots",
-            attacks: "D6",
+        helblasterVolleyGunCrewSTools: {
+            id: "helblasterVolleyGunCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
             damage: "1",
-            toHit: "✹",
-            toWound: "3",
-            melee: false,
-            range: "26",
-            rend: "-1",
-        },
-
-        helstormRocketBatteryHelstormRocketSalvo: {
-            id: "helstormRocketBatteryHelstormRocketSalvo",
-            name: "Helstorm Rocket Salvo",
-            attacks: "3",
-            damage: "✹",
             toHit: "5",
-            toWound: "3",
-            melee: false,
-            range: "10-36",
-            rend: "-2",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
         },
 
-        cannonCannonShell: {
-            id: "cannonCannonShell",
-            name: "Cannon Shell",
-            attacks: "✹",
-            damage: "D6",
-            toHit: "4",
-            toWound: "2",
-            melee: false,
-            range: "32",
-            rend: "-2",
-        },
-
-        organGunBarrageOfShots: {
-            id: "organGunBarrageOfShots",
-            name: "Barrage of Shots",
-            attacks: "D6",
+        helstormRocketBatteryCrewSTools: {
+            id: "helstormRocketBatteryCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
             damage: "1",
-            toHit: "✹",
-            toWound: "3",
-            melee: false,
-            range: "28",
-            rend: "-1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        cannonCrewSTools: {
+            id: "cannonCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        organGunCrewSTools: {
+            id: "organGunCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
         },
 
         steamTankRepeaterHandgun: {
@@ -35388,7 +38771,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             attacks: "2",
             damage: "1",
             toHit: "4",
-            toWound: "5",
+            toWound: "4",
             melee: false,
             range: "20",
             rend: undefined,
@@ -35798,7 +39181,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             toHit: "4",
             toWound: "4",
             melee: true,
-            range: "22",
+            range: "2",
             rend: undefined,
         },
 
@@ -36078,28 +39461,16 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             rend: "0",
         },
 
-        highbornRepeaterBoltThrowerIthilmarBolt: {
-            id: "highbornRepeaterBoltThrowerIthilmarBolt",
-            name: "Ithilmar Bolt",
-            attacks: "✹",
-            damage: "D3",
-            toHit: "3",
-            toWound: "3",
-            melee: false,
-            range: "36",
-            rend: "-2",
-        },
-
-        highbornRepeaterBoltThrowerRepeatingBolts: {
-            id: "highbornRepeaterBoltThrowerRepeatingBolts",
-            name: "Repeating Bolts",
-            attacks: "✹",
+        highbornRepeaterBoltThrowerIthilmarBlade: {
+            id: "highbornRepeaterBoltThrowerIthilmarBlade",
+            name: "Ithilmar Blade",
+            attacks: "1",
             damage: "1",
             toHit: "4",
-            toWound: "3",
-            melee: false,
-            range: "36",
-            rend: "-1",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
         },
 
         seawardenOnFootZephyrTrident: {
@@ -38213,6 +41584,2046 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             range: "1",
             rend: "-1",
         },
+
+        slamboHurledChaosAxe: {
+            id: "slamboHurledChaosAxe",
+            name: "Hurled Chaos Axe",
+            attacks: "1",
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: false,
+            range: "8",
+            rend: "-1",
+        },
+
+        slamboChaosAxes: {
+            id: "slamboChaosAxes",
+            name: "Chaos Axes",
+            attacks: "D6",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        screamingSkullCatapultCrewSTools: {
+            id: "screamingSkullCatapultCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        greatcannonCrewSTools: {
+            id: "greatcannonCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        fieldMortarCrewSTools: {
+            id: "fieldMortarCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        hellcannonCrewSImprovisedWeapons: {
+            id: "hellcannonCrewSImprovisedWeapons",
+            name: "Crew’s Improvised Weapons",
+            attacks: "1",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        duardinBoltThrowerCrewSTools: {
+            id: "duardinBoltThrowerCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        flameCannonCrewSTools: {
+            id: "flameCannonCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        grudgeThrowerCrewSTools: {
+            id: "grudgeThrowerCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        fieldTrebuchetCrewSTools: {
+            id: "fieldTrebuchetCrewSTools",
+            name: "Crew’s Tools",
+            attacks: "1",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        engineerOnMechanicalSteedHandgun: {
+            id: "engineerOnMechanicalSteedHandgun",
+            name: "Handgun",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: false,
+            range: "16",
+            rend: "-1",
+        },
+
+        engineerOnMechanicalSteedGrenadeLaunchingBlunderbuss: {
+            id: "engineerOnMechanicalSteedGrenadeLaunchingBlunderbuss",
+            name: "Grenade Launching Blunderbuss",
+            attacks: "1",
+            damage: "D3",
+            toHit: "4",
+            toWound: "3",
+            melee: false,
+            range: "10",
+            rend: "-2",
+        },
+
+        engineerOnMechanicalSteedRepeaterHandgun: {
+            id: "engineerOnMechanicalSteedRepeaterHandgun",
+            name: "Repeater Handgun",
+            attacks: "D3",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: false,
+            range: "14",
+            rend: "-1",
+        },
+
+        engineerOnMechanicalSteedLongRifle: {
+            id: "engineerOnMechanicalSteedLongRifle",
+            name: "Long Rifle",
+            attacks: "1",
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: false,
+            range: "30",
+            rend: "-1",
+        },
+
+        engineerOnMechanicalSteedMechanicalSteedSSteelHooves: {
+            id: "engineerOnMechanicalSteedMechanicalSteedSSteelHooves",
+            name: "Mechanical Steed’s Steel Hooves",
+            attacks: "2",
+            damage: "1",
+            toHit: "5",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        tombSwarmBitesAndStingers: {
+            id: "tombSwarmBitesAndStingers",
+            name: "Bites and Stingers",
+            attacks: "5",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        drazhoathTheAshenGoutsOfFlame: {
+            id: "drazhoathTheAshenGoutsOfFlame",
+            name: "Gouts of Flame",
+            attacks: "6",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "16",
+            rend: undefined,
+        },
+
+        drazhoathTheAshenTheGravenBrazier: {
+            id: "drazhoathTheAshenTheGravenBrazier",
+            name: "The Graven Brazier",
+            attacks: "1",
+            damage: "3",
+            toHit: "4",
+            toWound: "2",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        drazhoathTheAshenBrazenHornsAndTeeth: {
+            id: "drazhoathTheAshenBrazenHornsAndTeeth",
+            name: "Brazen Horns and Teeth",
+            attacks: "2",
+            damage: this.damageTables.drazhoathTheAshen.columns[1],
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-2",
+        },
+
+        drazhoathTheAshenBurningHooves: {
+            id: "drazhoathTheAshenBurningHooves",
+            name: "Burning Hooves",
+            attacks: this.damageTables.drazhoathTheAshen.columns[2],
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        daemonsmithBloodOfHashut: {
+            id: "daemonsmithBloodOfHashut",
+            name: "Blood of Hashut",
+            attacks: "👁",
+            damage: "👁",
+            toHit: "👁",
+            toWound: "👁",
+            melee: false,
+            range: "6",
+            rend: "👁",
+        },
+
+        daemonsmithDarkforgedWeapon: {
+            id: "daemonsmithDarkforgedWeapon",
+            name: "Darkforged Weapon",
+            attacks: "2",
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        daemonsmithPyreRuneStaff: {
+            id: "daemonsmithPyreRuneStaff",
+            name: "Pyre Rune Staff",
+            attacks: "1",
+            damage: "3",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        sharTorTheExecutionerDarktideAxe: {
+            id: "sharTorTheExecutionerDarktideAxe",
+            name: "Darktide Axe",
+            attacks: "5",
+            damage: "3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        sharTorTheExecutionerCrushingHooves: {
+            id: "sharTorTheExecutionerCrushingHooves",
+            name: "Crushing Hooves",
+            attacks: "4",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: undefined,
+        },
+
+        bullCentaurTaurRukDarkforgedGreatWeapon: {
+            id: "bullCentaurTaurRukDarkforgedGreatWeapon",
+            name: "Darkforged Great Weapon",
+            attacks: "5",
+            damage: "3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-2",
+        },
+
+        bullCentaurTaurRukCrushingHooves: {
+            id: "bullCentaurTaurRukCrushingHooves",
+            name: "Crushing Hooves",
+            attacks: "3",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: undefined,
+        },
+
+        bullCentaurRendersDarkforgedWeapon: {
+            id: "bullCentaurRendersDarkforgedWeapon",
+            name: "Darkforged Weapon",
+            attacks: "3",
+            damage: "2",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        bullCentaurRendersCrushingHooves: {
+            id: "bullCentaurRendersCrushingHooves",
+            name: "Crushing Hooves",
+            attacks: "3",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: undefined,
+        },
+
+        infernalGuardsCastellanPyrelockPistol: {
+            id: "infernalGuardsCastellanPyrelockPistol",
+            name: "Pyrelock Pistol",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "8",
+            rend: "-1",
+        },
+
+        infernalGuardsCastellanDarkforgedWeapon: {
+            id: "infernalGuardsCastellanDarkforgedWeapon",
+            name: "Darkforged Weapon",
+            attacks: "4",
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        infernalGuardBattleStandardBearerDarkforgedWeapon: {
+            id: "infernalGuardBattleStandardBearerDarkforgedWeapon",
+            name: "Darkforged Weapon",
+            attacks: "2",
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        infernalGuardFireglaivesPyrelockFireglaive: {
+            id: "infernalGuardFireglaivesPyrelockFireglaive",
+            name: "Pyrelock Fireglaive",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "16",
+            rend: "-1",
+        },
+
+        infernalGuardFireglaivesPyrelockPistol: {
+            id: "infernalGuardFireglaivesPyrelockPistol",
+            name: "Pyrelock Pistol",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "8",
+            rend: "-1",
+        },
+
+        infernalGuardFireglaivesPyrelockFireglaiveSBayonetCleaver: {
+            id: "infernalGuardFireglaivesPyrelockFireglaiveSBayonetCleaver",
+            name: "Pyrelock Fireglaive’s Bayonet-cleaver",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: undefined,
+        },
+
+        infernalGuardFireglaivesAshsteelHandWeapon: {
+            id: "infernalGuardFireglaivesAshsteelHandWeapon",
+            name: "Ashsteel Hand Weapon",
+            attacks: "1",
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        infernalGuardIronswornPyrelockPistol: {
+            id: "infernalGuardIronswornPyrelockPistol",
+            name: "Pyrelock Pistol",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "8",
+            rend: "-1",
+        },
+
+        infernalGuardIronswornAshsteelHandWeapon: {
+            id: "infernalGuardIronswornAshsteelHandWeapon",
+            name: "Ashsteel Hand Weapon",
+            attacks: "1",
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        kDaaiFirebornBurningIrons: {
+            id: "kDaaiFirebornBurningIrons",
+            name: "Burning Irons",
+            attacks: "5",
+            damage: "D3",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "3",
+            rend: undefined,
+        },
+
+        deathshriekerRocketLauncherDeathshriekerRockets: {
+            id: "deathshriekerRocketLauncherDeathshriekerRockets",
+            name: "Deathshrieker Rockets",
+            attacks: "3",
+            damage: "D3",
+            toHit: "4",
+            toWound: "3",
+            melee: false,
+            range: "36",
+            rend: "-1",
+        },
+
+        deathshriekerRocketLauncherImprovisedWeapons: {
+            id: "deathshriekerRocketLauncherImprovisedWeapons",
+            name: "Improvised Weapons",
+            attacks: "3",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: undefined,
+        },
+
+        ironDaemonWarEngineSteamCannonade: {
+            id: "ironDaemonWarEngineSteamCannonade",
+            name: "Steam Cannonade",
+            attacks: "2D6",
+            damage: "1",
+            toHit: "4",
+            toWound: this.damageTables.ironDaemonWarEngine.columns[1],
+            melee: false,
+            range: "14",
+            rend: "-2",
+        },
+
+        ironDaemonWarEngineCrushingBulk: {
+            id: "ironDaemonWarEngineCrushingBulk",
+            name: "Crushing Bulk",
+            attacks: this.damageTables.ironDaemonWarEngine.columns[2],
+            damage: "2",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: undefined,
+        },
+
+        magmaCannonMagmaBlast: {
+            id: "magmaCannonMagmaBlast",
+            name: "Magma Blast",
+            attacks: "👁",
+            damage: "👁",
+            toHit: "👁",
+            toWound: "👁",
+            melee: false,
+            range: "18",
+            rend: "👁",
+        },
+
+        magmaCannonImprovisedWeapons: {
+            id: "magmaCannonImprovisedWeapons",
+            name: "Improvised Weapons",
+            attacks: "3",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: undefined,
+        },
+
+        dreadquakeMortarDreadquakeBomb: {
+            id: "dreadquakeMortarDreadquakeBomb",
+            name: "Dreadquake Bomb",
+            attacks: "1",
+            damage: "D6",
+            toHit: "4",
+            toWound: "3",
+            melee: false,
+            range: "40",
+            rend: "-2",
+        },
+
+        dreadquakeMortarImprovisedWeapons: {
+            id: "dreadquakeMortarImprovisedWeapons",
+            name: "Improvised Weapons",
+            attacks: "3",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: undefined,
+        },
+
+        dreadquakeMortarFistsAndChains: {
+            id: "dreadquakeMortarFistsAndChains",
+            name: "Fists and Chains",
+            attacks: "2",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        skullcrackerWarEngineHammersAndPicks: {
+            id: "skullcrackerWarEngineHammersAndPicks",
+            name: "Hammers and Picks",
+            attacks: "2D6",
+            damage: "D3",
+            toHit: "3",
+            toWound: this.damageTables.skullcrackerWarEngine.columns[1],
+            melee: true,
+            range: "3",
+            rend: "-1",
+        },
+
+        skullcrackerWarEngineCrushingBulk: {
+            id: "skullcrackerWarEngineCrushingBulk",
+            name: "Crushing Bulk",
+            attacks: this.damageTables.skullcrackerWarEngine.columns[2],
+            damage: "2",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: undefined,
+        },
+
+        basiliskAcidicSpittle: {
+            id: "basiliskAcidicSpittle",
+            name: "Acidic Spittle",
+            attacks: "1",
+            damage: "1",
+            toHit: "5",
+            toWound: this.damageTables.basilisk.columns[2],
+            melee: false,
+            range: "10",
+            rend: "-1",
+        },
+
+        basiliskVenomousBite: {
+            id: "basiliskVenomousBite",
+            name: "Venomous Bite",
+            attacks: "1",
+            damage: "3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: this.damageTables.basilisk.columns[1],
+        },
+
+        basiliskClutchingClaws: {
+            id: "basiliskClutchingClaws",
+            name: "Clutching Claws",
+            attacks: "6",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        bonegrinderGargantHurledBoulder: {
+            id: "bonegrinderGargantHurledBoulder",
+            name: "Hurled Boulder",
+            attacks: "1",
+            damage: "D6",
+            toHit: "4",
+            toWound: "2",
+            melee: false,
+            range: this.damageTables.bonegrinderGargant.columns[1],
+            rend: "-2",
+        },
+
+        bonegrinderGargantGargantuanClub: {
+            id: "bonegrinderGargantGargantuanClub",
+            name: "Gargantuan Club",
+            attacks: this.damageTables.bonegrinderGargant.columns[2],
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "3",
+            rend: "-1",
+        },
+
+        bonegrinderGargantThunderousStomp: {
+            id: "bonegrinderGargantThunderousStomp",
+            name: "Thunderous Stomp",
+            attacks: "1",
+            damage: "D6",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-2",
+        },
+
+        broodHorrorPrehensileTail: {
+            id: "broodHorrorPrehensileTail",
+            name: "Prehensile Tail",
+            attacks: "3",
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "3",
+            rend: "0",
+        },
+
+        broodHorrorFangsAndClaws: {
+            id: "broodHorrorFangsAndClaws",
+            name: "Fangs and Claws",
+            attacks: "6",
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        carmineDragonSoulSheeringBlast: {
+            id: "carmineDragonSoulSheeringBlast",
+            name: "Soul-sheering Blast",
+            attacks: "👁",
+            damage: "👁",
+            toHit: "👁",
+            toWound: "👁",
+            melee: false,
+            range: "12",
+            rend: "👁",
+        },
+
+        carmineDragonRakingClaws: {
+            id: "carmineDragonRakingClaws",
+            name: "Raking Claws",
+            attacks: this.damageTables.carmineDragon.columns[1],
+            damage: "2",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        carmineDragonAmethystFangs: {
+            id: "carmineDragonAmethystFangs",
+            name: "Amethyst Fangs",
+            attacks: "3",
+            damage: "D6",
+            toHit: "3",
+            toWound: this.damageTables.carmineDragon.columns[2],
+            melee: true,
+            range: "3",
+            rend: "-2",
+        },
+
+        chaosSiegeGargantColossalHookBlades: {
+            id: "chaosSiegeGargantColossalHookBlades",
+            name: "Colossal Hook-blades",
+            attacks: this.damageTables.chaosSiegeGargant.columns[1],
+            damage: "2",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "3",
+            rend: "-1",
+        },
+
+        chaosSiegeGargantLashingChains: {
+            id: "chaosSiegeGargantLashingChains",
+            name: "Lashing Chains",
+            attacks: "D6",
+            damage: "1",
+            toHit: "3",
+            toWound: "5",
+            melee: true,
+            range: "2",
+            rend: "0",
+        },
+
+        chaosWarMammothMarauderJavelinsAndAxes: {
+            id: "chaosWarMammothMarauderJavelinsAndAxes",
+            name: "Marauder Javelins and Axes",
+            attacks: "8",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: false,
+            range: "10",
+            rend: "0",
+        },
+
+        chaosWarMammothGoringTusks: {
+            id: "chaosWarMammothGoringTusks",
+            name: "Goring Tusks",
+            attacks: "👁",
+            damage: "👁",
+            toHit: "👁",
+            toWound: "👁",
+            melee: true,
+            range: "3",
+            rend: "👁",
+        },
+
+        chaosWarMammothTramplingFeet: {
+            id: "chaosWarMammothTramplingFeet",
+            name: "Trampling Feet",
+            attacks: this.damageTables.chaosWarMammoth.columns[2],
+            damage: "D3",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-2",
+        },
+
+        colossalSquigPuffSpores: {
+            id: "colossalSquigPuffSpores",
+            name: "Puff Spores",
+            attacks: "1",
+            damage: "D3",
+            toHit: "5",
+            toWound: "5",
+            melee: false,
+            range: "8",
+            rend: "0",
+        },
+
+        colossalSquigEnormousJaws: {
+            id: "colossalSquigEnormousJaws",
+            name: "Enormous Jaws",
+            attacks: "8",
+            damage: "D3",
+            toHit: this.damageTables.colossalSquig.columns[1],
+            toWound: "3",
+            melee: true,
+            range: "3",
+            rend: "-2",
+        },
+
+        colossalSquigTramplingFeet: {
+            id: "colossalSquigTramplingFeet",
+            name: "Trampling Feet",
+            attacks: this.damageTables.colossalSquig.columns[2],
+            damage: "1",
+            toHit: "5",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        cursDEttinCrushingFist: {
+            id: "cursDEttinCrushingFist",
+            name: "Crushing Fist",
+            attacks: "1",
+            damage: "D6",
+            toHit: this.damageTables.cursDEttin.columns[1],
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        cursDEttinStomp: {
+            id: "cursDEttinStomp",
+            name: "Stomp",
+            attacks: this.damageTables.cursDEttin.columns[2],
+            damage: "2",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        dreadMawSlimeSpray: {
+            id: "dreadMawSlimeSpray",
+            name: "Slime Spray",
+            attacks: "1",
+            damage: "D6",
+            toHit: "4",
+            toWound: "3",
+            melee: false,
+            range: "12",
+            rend: "-2",
+        },
+
+        dreadMawCavernousMaw: {
+            id: "dreadMawCavernousMaw",
+            name: "Cavernous Maw",
+            attacks: "3",
+            damage: "D6",
+            toHit: "3",
+            toWound: "2",
+            melee: true,
+            range: "3",
+            rend: this.damageTables.dreadMaw.columns[1],
+        },
+
+        dreadMawWrithingCoils: {
+            id: "dreadMawWrithingCoils",
+            name: "Writhing Coils",
+            attacks: this.damageTables.dreadMaw.columns[2],
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        dreadSaurianGargantuanJaws: {
+            id: "dreadSaurianGargantuanJaws",
+            name: "Gargantuan Jaws",
+            attacks: "3",
+            damage: this.damageTables.dreadSaurian.columns[1],
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        dreadSaurianRakingClaws: {
+            id: "dreadSaurianRakingClaws",
+            name: "Raking Claws",
+            attacks: this.damageTables.dreadSaurian.columns[2],
+            damage: "1",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        dreadSaurianArmouredTail: {
+            id: "dreadSaurianArmouredTail",
+            name: "Armoured Tail",
+            attacks: "1",
+            damage: "D6",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        exaltedGreaterDaemonOfKhorneLashOfKhorne: {
+            id: "exaltedGreaterDaemonOfKhorneLashOfKhorne",
+            name: "Lash of Khorne",
+            attacks: this.damageTables.exaltedGreaterDaemonOfKhorne.columns[1],
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: false,
+            range: "8",
+            rend: "-1",
+        },
+
+        exaltedGreaterDaemonOfKhorneMightyAxeOfKhorne: {
+            id: "exaltedGreaterDaemonOfKhorneMightyAxeOfKhorne",
+            name: "Mighty Axe of Khorne",
+            attacks: "8",
+            damage: "3",
+            toHit: "3",
+            toWound: this.damageTables.exaltedGreaterDaemonOfKhorne.columns[2],
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        exaltedGreaterDaemonOfNurgleNoxiousBile: {
+            id: "exaltedGreaterDaemonOfNurgleNoxiousBile",
+            name: "Noxious Bile",
+            attacks: "D6",
+            damage: "1",
+            toHit: "3",
+            toWound: this.damageTables.exaltedGreaterDaemonOfNurgle.columns[1],
+            melee: false,
+            range: "7",
+            rend: "-2",
+        },
+
+        exaltedGreaterDaemonOfNurgleMassiveBilesword: {
+            id: "exaltedGreaterDaemonOfNurgleMassiveBilesword",
+            name: "Massive Bilesword",
+            attacks: this.damageTables.exaltedGreaterDaemonOfNurgle.columns[2],
+            damage: "3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        exaltedGreaterDaemonOfSlaaneshRazorSharpClaws: {
+            id: "exaltedGreaterDaemonOfSlaaneshRazorSharpClaws",
+            name: "Razor-sharp Claws",
+            attacks: this.damageTables.exaltedGreaterDaemonOfSlaanesh.columns[1],
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        exaltedGreaterDaemonOfSlaaneshElegantGreatblade: {
+            id: "exaltedGreaterDaemonOfSlaaneshElegantGreatblade",
+            name: "Elegant Greatblade",
+            attacks: "4",
+            damage: "3",
+            toHit: "3",
+            toWound: this.damageTables.exaltedGreaterDaemonOfSlaanesh.columns[2],
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        exaltedGreaterDaemonOfTzeentchStaffOfTzeentch: {
+            id: "exaltedGreaterDaemonOfTzeentchStaffOfTzeentch",
+            name: "Staff of Tzeentch",
+            attacks: "3",
+            damage: "2",
+            toHit: "3",
+            toWound: this.damageTables.exaltedGreaterDaemonOfTzeentch.columns[1],
+            melee: true,
+            range: "3",
+            rend: "0",
+        },
+
+        exaltedGreaterDaemonOfTzeentchCurvedBeakAndWickedTalons: {
+            id: "exaltedGreaterDaemonOfTzeentchCurvedBeakAndWickedTalons",
+            name: "Curved Beak and Wicked Talons",
+            attacks: "4",
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        fimirachNobleBaleglyphMaul: {
+            id: "fimirachNobleBaleglyphMaul",
+            name: "Baleglyph Maul",
+            attacks: "5",
+            damage: "1",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        fimirachNobleClubTail: {
+            id: "fimirachNobleClubTail",
+            name: "Club Tail",
+            attacks: "1",
+            damage: "D3",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        fimirWarriorsBaleglyphMaul: {
+            id: "fimirWarriorsBaleglyphMaul",
+            name: "Baleglyph Maul",
+            attacks: "3",
+            damage: "1",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        fimirWarriorsClubTail: {
+            id: "fimirWarriorsClubTail",
+            name: "Club Tail",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        incarnateElementalOfBeastsAmberBreath: {
+            id: "incarnateElementalOfBeastsAmberBreath",
+            name: "Amber Breath",
+            attacks: "D6",
+            damage: "D3",
+            toHit: "5",
+            toWound: "3",
+            melee: false,
+            range: "12",
+            rend: "-2",
+        },
+
+        incarnateElementalOfBeastsSavageTalons: {
+            id: "incarnateElementalOfBeastsSavageTalons",
+            name: "Savage Talons",
+            attacks: this.damageTables.incarnateElementalOfBeasts.columns[2],
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        incarnateElementalOfBeastsImpalingHorns: {
+            id: "incarnateElementalOfBeastsImpalingHorns",
+            name: "Impaling Horns",
+            attacks: "4",
+            damage: "D3",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        incarnateElementalOfFireFieryBolts: {
+            id: "incarnateElementalOfFireFieryBolts",
+            name: "Fiery Bolts",
+            attacks: this.damageTables.incarnateElementalOfFire.columns[2],
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "18",
+            rend: "-1",
+        },
+
+        incarnateElementalOfFireTendrilsOfFire: {
+            id: "incarnateElementalOfFireTendrilsOfFire",
+            name: "Tendrils of Fire",
+            attacks: "6",
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "2",
+            rend: "0",
+        },
+
+        incarnateElementalOfFireBurningLance: {
+            id: "incarnateElementalOfFireBurningLance",
+            name: "Burning Lance",
+            attacks: "3",
+            damage: "2",
+            toHit: "3",
+            toWound: "2",
+            melee: true,
+            range: "3",
+            rend: "-2",
+        },
+
+        giganticChaosSpawnFreakishMutations: {
+            id: "giganticChaosSpawnFreakishMutations",
+            name: "Freakish Mutations",
+            attacks: "2D6",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "0",
+        },
+
+        giganticChaosSpawnSlaveringMaws: {
+            id: "giganticChaosSpawnSlaveringMaws",
+            name: "Slavering Maws",
+            attacks: "D6",
+            damage: "D3",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: this.damageTables.giganticChaosSpawn.columns[1],
+        },
+
+        magmaDragonBrimstoneDragonfire: {
+            id: "magmaDragonBrimstoneDragonfire",
+            name: "Brimstone Dragonfire",
+            attacks: "👁",
+            damage: "👁",
+            toHit: "👁",
+            toWound: "👁",
+            melee: false,
+            range: "18",
+            rend: "👁",
+        },
+
+        magmaDragonFurnaceHotJaws: {
+            id: "magmaDragonFurnaceHotJaws",
+            name: "Furnace-hot Jaws",
+            attacks: "4",
+            damage: "D6",
+            toHit: "3",
+            toWound: "2",
+            melee: true,
+            range: "3",
+            rend: this.damageTables.magmaDragon.columns[1],
+        },
+
+        magmaDragonCrushingClaws: {
+            id: "magmaDragonCrushingClaws",
+            name: "Crushing Claws",
+            attacks: this.damageTables.magmaDragon.columns[2],
+            damage: "2",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        mazarallTheButcherAncyteShieldSWrath: {
+            id: "mazarallTheButcherAncyteShieldSWrath",
+            name: "Ancyte Shield’s Wrath",
+            attacks: "D6",
+            damage: "1",
+            toHit: "5",
+            toWound: "3",
+            melee: false,
+            range: "12",
+            rend: "-1",
+        },
+
+        mazarallTheButcherHarrowMeat: {
+            id: "mazarallTheButcherHarrowMeat",
+            name: "Harrow Meat",
+            attacks: "4",
+            damage: "3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: this.damageTables.mazarallTheButcher.columns[1],
+        },
+
+        mazarallTheButcherAncyteShieldSBlades: {
+            id: "mazarallTheButcherAncyteShieldSBlades",
+            name: "Ancyte Shield’s Blades",
+            attacks: "✹",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        merwyrmChillBreath: {
+            id: "merwyrmChillBreath",
+            name: "Chill Breath",
+            attacks: "6",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: false,
+            range: "8",
+            rend: "-1",
+        },
+
+        merwyrmHideousJaws: {
+            id: "merwyrmHideousJaws",
+            name: "Hideous Jaws",
+            attacks: "3",
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: this.damageTables.merwyrm.columns[1],
+        },
+
+        merwyrmPowerfulTail: {
+            id: "merwyrmPowerfulTail",
+            name: "Powerful Tail",
+            attacks: "1",
+            damage: this.damageTables.merwyrm.columns[2],
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        mourngulNightmarishClawsAndFangs: {
+            id: "mourngulNightmarishClawsAndFangs",
+            name: "Nightmarish Claws and Fangs",
+            attacks: this.damageTables.mourngul.columns[1],
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        preytonCorrosiveBile: {
+            id: "preytonCorrosiveBile",
+            name: "Corrosive Bile",
+            attacks: "3",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "12",
+            rend: "0",
+        },
+
+        preytonVenomDrippingFangs: {
+            id: "preytonVenomDrippingFangs",
+            name: "Venom-dripping Fangs",
+            attacks: "4",
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        rogueIdolBoulderFists: {
+            id: "rogueIdolBoulderFists",
+            name: "Boulder Fists",
+            attacks: "2",
+            damage: "D6",
+            toHit: "3",
+            toWound: this.damageTables.rogueIdol.columns[1],
+            melee: true,
+            range: "3",
+            rend: "-2",
+        },
+
+        rogueIdolStompinFeet: {
+            id: "rogueIdolStompinFeet",
+            name: "Stompin’ Feet",
+            attacks: this.damageTables.rogueIdol.columns[2],
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        skaaracTheBloodbornBurningBlood: {
+            id: "skaaracTheBloodbornBurningBlood",
+            name: "Burning Blood",
+            attacks: "1",
+            damage: "D6",
+            toHit: "3",
+            toWound: this.damageTables.skaaracTheBloodborn.columns[1],
+            melee: false,
+            range: "8",
+            rend: "0",
+        },
+
+        skaaracTheBloodbornBrutalBlades: {
+            id: "skaaracTheBloodbornBrutalBlades",
+            name: "Brutal Blades",
+            attacks: this.damageTables.skaaracTheBloodborn.columns[2],
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        skaaracTheBloodbornThunderousHooves: {
+            id: "skaaracTheBloodbornThunderousHooves",
+            name: "Thunderous Hooves",
+            attacks: "6",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        skavenWarlordPrehensileTail: {
+            id: "skavenWarlordPrehensileTail",
+            name: "Prehensile Tail",
+            attacks: "3",
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "3",
+            rend: "0",
+        },
+
+        skavenWarlordFangsAndClaws: {
+            id: "skavenWarlordFangsAndClaws",
+            name: "Fangs and Claws",
+            attacks: "6",
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        skinWolvesTeethAndClaws: {
+            id: "skinWolvesTeethAndClaws",
+            name: "Teeth and Claws",
+            attacks: "4",
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        squigGobbaSpitSquigs: {
+            id: "squigGobbaSpitSquigs",
+            name: "Spit-squigs",
+            attacks: "6",
+            damage: "D3",
+            toHit: "4",
+            toWound: "3",
+            melee: false,
+            range: "30",
+            rend: "0",
+        },
+
+        squigGobbaBashinSticks: {
+            id: "squigGobbaBashinSticks",
+            name: "Bashin’ Sticks",
+            attacks: "3",
+            damage: "1",
+            toHit: "5",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        squigGobbaCavernousMaw: {
+            id: "squigGobbaCavernousMaw",
+            name: "Cavernous Maw",
+            attacks: "3",
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        skavenWolfRatsDaggerLongTeeth: {
+            id: "skavenWolfRatsDaggerLongTeeth",
+            name: "Dagger-long Teeth",
+            attacks: "2",
+            damage: "1",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        troggothHagCopiousVomit: {
+            id: "troggothHagCopiousVomit",
+            name: "Copious Vomit",
+            attacks: this.damageTables.troggothHag.columns[1],
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: false,
+            range: "10",
+            rend: "-2",
+        },
+
+        troggothHagDeadwoodStaff: {
+            id: "troggothHagDeadwoodStaff",
+            name: "Deadwood Staff",
+            attacks: "4",
+            damage: "3",
+            toHit: "4",
+            toWound: this.damageTables.troggothHag.columns[2],
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        troggothHagCrushingBulk: {
+            id: "troggothHagCrushingBulk",
+            name: "Crushing Bulk",
+            attacks: "D3",
+            damage: "D6",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        warpfireDragonWarpfire: {
+            id: "warpfireDragonWarpfire",
+            name: "Warpfire",
+            attacks: "👁",
+            damage: "👁",
+            toHit: "👁",
+            toWound: "👁",
+            melee: false,
+            range: "12",
+            rend: "👁",
+        },
+
+        warpfireDragonSnappingJaws: {
+            id: "warpfireDragonSnappingJaws",
+            name: "Snapping Jaws",
+            attacks: "D3",
+            damage: "D6",
+            toHit: "3",
+            toWound: this.damageTables.warpfireDragon.columns[1],
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        warpfireDragonTwistedClaws: {
+            id: "warpfireDragonTwistedClaws",
+            name: "Twisted Claws",
+            attacks: this.damageTables.warpfireDragon.columns[2],
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        warpgnawVerminlordPrehensileTail: {
+            id: "warpgnawVerminlordPrehensileTail",
+            name: "Prehensile Tail",
+            attacks: this.damageTables.warpgnawVerminlord.columns[1],
+            damage: "1",
+            toHit: "3",
+            toWound: "3",
+            melee: false,
+            range: "6",
+            rend: "-1",
+        },
+
+        warpgnawVerminlordGnawGlaive: {
+            id: "warpgnawVerminlordGnawGlaive",
+            name: "Gnaw-glaive",
+            attacks: "4",
+            damage: this.damageTables.warpgnawVerminlord.columns[2],
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        darkoathChieftainWarAxe: {
+            id: "darkoathChieftainWarAxe",
+            name: "War Axe",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        darkoathChieftainBroadsword: {
+            id: "darkoathChieftainBroadsword",
+            name: "Broadsword",
+            attacks: "3",
+            damage: "1",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        doomseekerFyresteelThrowingAxe: {
+            id: "doomseekerFyresteelThrowingAxe",
+            name: "Fyresteel Throwing Axe",
+            attacks: "1",
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: false,
+            range: "8",
+            rend: "0",
+        },
+
+        doomseekerRunicWarIron: {
+            id: "doomseekerRunicWarIron",
+            name: "Runic War-iron",
+            attacks: "3",
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        doomseekerDoomseekerAxe: {
+            id: "doomseekerDoomseekerAxe",
+            name: "Doomseeker Axe",
+            attacks: "3",
+            damage: "1",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        excelsiorWarpriestWarhammer: {
+            id: "excelsiorWarpriestWarhammer",
+            name: "Warhammer",
+            attacks: "4",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        gauntSummonerAndChaosFamiliarsChangestaff: {
+            id: "gauntSummonerAndChaosFamiliarsChangestaff",
+            name: "Changestaff",
+            attacks: "1",
+            damage: "D3",
+            toHit: "3",
+            toWound: "4",
+            melee: false,
+            range: "18",
+            rend: "0",
+        },
+
+        gauntSummonerAndChaosFamiliarsWarptongueBlade: {
+            id: "gauntSummonerAndChaosFamiliarsWarptongueBlade",
+            name: "Warptongue Blade",
+            attacks: "1",
+            damage: "👁",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        bileTroggothsInfectedVomit: {
+            id: "bileTroggothsInfectedVomit",
+            name: "Infected Vomit",
+            attacks: "1",
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: false,
+            range: "7",
+            rend: "-2",
+        },
+
+        bileTroggothsRustedAxesAndCleavers: {
+            id: "bileTroggothsRustedAxesAndCleavers",
+            name: "Rusted Axes and Cleavers",
+            attacks: "3",
+            damage: "2",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        mistweaverSaihAelvenBlade: {
+            id: "mistweaverSaihAelvenBlade",
+            name: "Aelven Blade",
+            attacks: "3",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        mistweaverSaihMistweaverSStaff: {
+            id: "mistweaverSaihMistweaverSStaff",
+            name: "Mistweaver’s Staff",
+            attacks: "1",
+            damage: "D3",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        skavenDeathrunnerWarpstars: {
+            id: "skavenDeathrunnerWarpstars",
+            name: "Warpstars",
+            attacks: "2",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "12",
+            rend: "0",
+        },
+
+        skavenDeathrunnerBloodblade: {
+            id: "skavenDeathrunnerBloodblade",
+            name: "Bloodblade",
+            attacks: "2",
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        skavenDeathrunnerStabSlicer: {
+            id: "skavenDeathrunnerStabSlicer",
+            name: "Stab-slicer",
+            attacks: "3",
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        tenebraelShardBladedBarbs: {
+            id: "tenebraelShardBladedBarbs",
+            name: "Bladed Barbs",
+            attacks: "6",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        tenebraelShardReaperGauntlets: {
+            id: "tenebraelShardReaperGauntlets",
+            name: "Reaper Gauntlets",
+            attacks: "2",
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        highWardenStarwoodLance: {
+            id: "highWardenStarwoodLance",
+            name: "Starwood Lance",
+            attacks: "2",
+            damage: "2",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        highWardenStarblade: {
+            id: "highWardenStarblade",
+            name: "Starblade",
+            attacks: "4",
+            damage: "1",
+            toHit: "3",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        highWardenGriffonSRazorSharpBeak: {
+            id: "highWardenGriffonSRazorSharpBeak",
+            name: "Griffon’s Razor-sharp Beak",
+            attacks: "1",
+            damage: "D6",
+            toHit: this.damageTables.highWarden.columns[2],
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        highWardenGriffonSWickedTalons: {
+            id: "highWardenGriffonSWickedTalons",
+            name: "Griffon’s Wicked Talons",
+            attacks: this.damageTables.highWarden.columns[1],
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        spireguardSpireguardBow: {
+            id: "spireguardSpireguardBow",
+            name: "Spireguard Bow",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "16",
+            rend: "0",
+        },
+
+        spireguardSilverwoodSpear: {
+            id: "spireguardSilverwoodSpear",
+            name: "Silverwood Spear",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "2",
+            rend: "0",
+        },
+
+        reaversReaverCavalryBow: {
+            id: "reaversReaverCavalryBow",
+            name: "Reaver Cavalry Bow",
+            attacks: "2",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "16",
+            rend: "0",
+        },
+
+        reaversStarwoodSpear: {
+            id: "reaversStarwoodSpear",
+            name: "Starwood Spear",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        reaversStarsteelBlade: {
+            id: "reaversStarsteelBlade",
+            name: "Starsteel Blade",
+            attacks: "2",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        reaversAelvenPurebreedSSwiftHooves: {
+            id: "reaversAelvenPurebreedSSwiftHooves",
+            name: "Aelven Purebreed’s Swift Hooves",
+            attacks: "2",
+            damage: "1",
+            toHit: "4",
+            toWound: "5",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        tamurkhanTheMaggotLordLashingTongue: {
+            id: "tamurkhanTheMaggotLordLashingTongue",
+            name: "Lashing Tongue",
+            attacks: "1",
+            damage: "D3",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "14",
+            rend: "0",
+        },
+
+        tamurkhanTheMaggotLordTheBlackCleaver: {
+            id: "tamurkhanTheMaggotLordTheBlackCleaver",
+            name: "The Black Cleaver",
+            attacks: "4",
+            damage: "2",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-2",
+        },
+
+        tamurkhanTheMaggotLordCrushingJaws: {
+            id: "tamurkhanTheMaggotLordCrushingJaws",
+            name: "Crushing Jaws",
+            attacks: "2",
+            damage: "D3",
+            toHit: this.damageTables.tamurkhanTheMaggotLord.columns[1],
+            toWound: "2",
+            melee: true,
+            range: "3",
+            rend: "-3",
+        },
+
+        tamurkhanTheMaggotLordBefouledBulk: {
+            id: "tamurkhanTheMaggotLordBefouledBulk",
+            name: "Befouled Bulk",
+            attacks: this.damageTables.tamurkhanTheMaggotLord.columns[2],
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        kazykTheBefouledNoxiousBlades: {
+            id: "kazykTheBefouledNoxiousBlades",
+            name: "Noxious Blades",
+            attacks: "3",
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "0",
+        },
+
+        kazykTheBefouledSlaveringFangs: {
+            id: "kazykTheBefouledSlaveringFangs",
+            name: "Slavering Fangs",
+            attacks: "D6",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        daemonPlagueToadsOfNurgleGraspingTongue: {
+            id: "daemonPlagueToadsOfNurgleGraspingTongue",
+            name: "Grasping Tongue",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "7",
+            rend: "0",
+        },
+
+        daemonPlagueToadsOfNurgleYawningMaw: {
+            id: "daemonPlagueToadsOfNurgleYawningMaw",
+            name: "Yawning Maw",
+            attacks: "2",
+            damage: "D3",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        daemonPoxRidersOfNurgleGraspingTongue: {
+            id: "daemonPoxRidersOfNurgleGraspingTongue",
+            name: "Grasping Tongue",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: false,
+            range: "7",
+            rend: "0",
+        },
+
+        daemonPoxRidersOfNurglePlaguesword: {
+            id: "daemonPoxRidersOfNurglePlaguesword",
+            name: "Plaguesword",
+            attacks: "1",
+            damage: "1",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        daemonPoxRidersOfNurgleYawningMaw: {
+            id: "daemonPoxRidersOfNurgleYawningMaw",
+            name: "Yawning Maw",
+            attacks: "2",
+            damage: "D3",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "0",
+        },
+
+        plagueOgorsCorrodedWeapons: {
+            id: "plagueOgorsCorrodedWeapons",
+            name: "Corroded Weapons",
+            attacks: "3",
+            damage: "2",
+            toHit: "4",
+            toWound: "3",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
+
+        saylTheFaithlessTheViperousStaff: {
+            id: "saylTheFaithlessTheViperousStaff",
+            name: "The Viperous Staff",
+            attacks: "2",
+            damage: "D3",
+            toHit: "3",
+            toWound: "3",
+            melee: true,
+            range: "2",
+            rend: "-1",
+        },
+
+        nightmawRazorTippedTentacles: {
+            id: "nightmawRazorTippedTentacles",
+            name: "Razor-tipped Tentacles",
+            attacks: "2D6",
+            damage: "1",
+            toHit: "4",
+            toWound: "4",
+            melee: true,
+            range: "1",
+            rend: "-1",
+        },
    };
    units = {
        morathiHighOracleOfKhaine: {
@@ -38233,6 +43644,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519043266732-YC1nHsL4EQnwYbNw.jpg",
            options: [],
            abilities: [this.abilities.morathiHighOracleOfKhaineMonstrousTransformation, this.abilities.morathiHighOracleOfKhaineTheTruthRevealed, this.abilities.morathiHighOracleOfKhaineTheIronHeartOfKhaine, this.abilities.morathiHighOracleOfKhaineSorceressSupreme, this.abilities.morathiHighOracleOfKhaineEnchantingBeauty, this.abilities.morathiHighOracleOfKhaineArnzipalSBlackHorror],
+           commandAbilities: [this.abilities.morathiHighOracleOfKhaineWorshipThroughBloodshed],
            attacks: [this.attacks.morathiHighOracleOfKhaineHeartrender, this.attacks.morathiHighOracleOfKhaineBladedWings],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Morathi, High Oracle of Khaine is a Wizard. She can attempt to cast three spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Arnzipal’s Black Horror spells.",       },
@@ -38251,7 +43663,7 @@ The Shadow’s Coil: Add 2 to this unit’s save rolls.",
             move: this.damageTables.morathiTheShadowQueen.columns[0],
             save: "4",
             bravery: "9",
-            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519043266732-YC1nHsL4EQnwYbNw.jpg",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/cfb16a59-5ad4-4eaa-89b1-798d3e09cfcf.jpg",
            options: [],
            abilities: [this.abilities.morathiTheShadowQueenMonstrousRevelation, this.abilities.morathiTheShadowQueenGazeOfMorathi, this.abilities.morathiTheShadowQueenTheIronHeartOfKhaine, this.abilities.morathiTheShadowQueenFly, this.abilities.morathiTheShadowQueenArnzipalSBlackHorror],
            attacks: [this.attacks.morathiTheShadowQueenGazeOfMorathi, this.attacks.morathiTheShadowQueenHeartrender, this.attacks.morathiTheShadowQueenCrownOfSerpents, this.attacks.morathiTheShadowQueenEnvenomedTail],
@@ -38298,6 +43710,7 @@ stabs, thrusts and slices with her deadly blade, offering her own gory tributes 
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519633979219-uVmSDkqlMazv6iew.jpg",
            options: [],
            abilities: [this.abilities.slaughterQueenPriestessOfKhaine, this.abilities.slaughterQueenPactOfBlood],
+           commandAbilities: [this.abilities.slaughterQueenOrgyOfSlaughter],
            attacks: [this.attacks.slaughterQueenBladeOfKhaine, this.attacks.slaughterQueenDeathsword],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -38424,6 +43837,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1518618430485-NsJCLS9Ju88UIF8a.jpg",
            options: [],
            abilities: [this.abilities.slaughterQueenOnCauldronOfBloodBladedImpact, this.abilities.slaughterQueenOnCauldronOfBloodBloodshield, this.abilities.slaughterQueenOnCauldronOfBloodPactOfBlood, this.abilities.slaughterQueenOnCauldronOfBloodPriestessOfKhaine, this.abilities.slaughterQueenOnCauldronOfBloodWrathOfKhaine, this.abilities.slaughterQueenOnCauldronOfBloodAnimated, this.abilities.slaughterQueenOnCauldronOfBloodIdolOfWorship],
+           commandAbilities: [this.abilities.slaughterQueenOnCauldronOfBloodOrgyOfSlaughter],
            attacks: [this.attacks.slaughterQueenOnCauldronOfBloodTorrentOfBurningBlood, this.attacks.slaughterQueenOnCauldronOfBloodWitchAelvesSacrificialKnives, this.attacks.slaughterQueenOnCauldronOfBloodSlaughterQueenSBladeOfKhaine, this.attacks.slaughterQueenOnCauldronOfBloodSlaughterQueenSDeathsword, this.attacks.slaughterQueenOnCauldronOfBloodAvatarOfKhaineSSword],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -38468,9 +43882,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.bloodStalkersHeartseekers, this.abilities.bloodStalkersKrone],
            attacks: [this.attacks.bloodStalkersHeartseekerBow, this.attacks.bloodStalkersSacrificialDagger, this.attacks.bloodStalkersBloodWyrm],
        },
-       blookwrackMedusa: {
-            id: "blookwrackMedusa",
-            model: this.models.blookwrackMedusa,
+       bloodwrackMedusa: {
+            id: "bloodwrackMedusa",
+            model: this.models.bloodwrackMedusa,
             description: "A Bloodwrack Medusa is a single model. She slashes at her enemies with her Whisperclaw and impales them upon a barbed Bloodwrack Spear. Even her writhing Tail of Serpents is capable of delivering a flurry of lethal bites. However, a Bloodwrack Medusa’s stare is perhaps her most deadly weapon; should a victim’s eyes lock with hers for even a second its lifeblood violently rebels, flooding from every pore until its body collapses into a pool of gore.",
             flavor: "The most powerful of Morathi’s lieutenants are her Bloodwrack Medusae, sorceresses gifted – or cursed – with enormous serpentine bodies and heads crowned with snakes. They are so full of spite and shadow magic that to meet their horrific gaze can cause explosive haemorrhaging. Equally deadly in close quarters, a Bloodwrack Medusa dispatches her foes with claw, spear and snakebites.",
             factions: [this.factions.daughtersOfKhaine],
@@ -38483,16 +43897,12 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
             move: "8",
             save: "5",
             bravery: "8",
-            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519037096099-im1jpuvADjlb28n2.jpg",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e1262d1c-8df1-46db-a02d-eb2940bb2189.jpg",
            options: [],
-           abilities: [this.abilities.blookwrackMedusaBloodwrackStare, this.abilities.blookwrackMedusaEnfeeblingFoe],
-           attacks: [this.attacks.blookwrackMedusaBloodwrackStare, this.attacks.blookwrackMedusaWhisperclaw, this.attacks.blookwrackMedusaTailOfSerpents, this.attacks.blookwrackMedusaBloodwrackSpear],
+           abilities: [this.abilities.bloodwrackMedusaBloodwrackStare, this.abilities.bloodwrackMedusaEnfeeblingFoe],
+           attacks: [this.attacks.bloodwrackMedusaBloodwrackStare, this.attacks.bloodwrackMedusaWhisperclaw, this.attacks.bloodwrackMedusaTailOfSerpents, this.attacks.bloodwrackMedusaBloodwrackSpear],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Bloodwrack Medusa can attempt to cast one\
-spell in your hero phase, and attempt to unbind\
-one spell in the enemy hero phase. It knows\
-the Arcane Bolt, Mystic Shield and Enfeebling\
-Foe spells.",       },
+           magicDescription: "A Bloodwrack Medusa can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Enfeebling Foe spells.",       },
        doomfireWarlocks: {
             id: "doomfireWarlocks",
             model: this.models.doomfireWarlocks,
@@ -38561,7 +43971,7 @@ Foe spells.",       },
             factions: [this.factions.idonethDeepkin],
             size: 1,
             maxSize: 1,
-            points: 440,
+            points: 400,
             maxPoints: 0,
             keywords: ["ORDER", "AELF", "IDONETH DEEPKIN", "EIDOLON", "HERO", "ASPECT OF THE STORM"],
             wounds: "12",
@@ -38582,7 +43992,7 @@ Foe spells.",       },
             factions: [this.factions.idonethDeepkin],
             size: 1,
             maxSize: 1,
-            points: 420,
+            points: 440,
             maxPoints: 0,
             keywords: ["ORDER", "AELF", "IDONETH DEEPKIN", "EIDOLON", "HERO", "WIZARD", "ASPECT OF THE SEA"],
             wounds: "12",
@@ -38613,6 +44023,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1523014980094-ccHNkoxx5RybqS71.jpg",
            options: [],
            abilities: [this.abilities.volturnosTheAstraSolus, this.abilities.volturnosTheCrestOfTheHighKings, this.abilities.volturnosCealithTheHighKingSShield, this.abilities.volturnosFirstAmongAkhelians, this.abilities.volturnosDeepmareHorn, this.abilities.volturnosFly],
+           commandAbilities: [this.abilities.volturnosSupremeLordOfTides],
            attacks: [this.attacks.volturnosTheAstraSolus, this.attacks.volturnosUasallSFangedJawAndTalons, this.attacks.volturnosUasallSLashingTails],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -38634,6 +44045,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1523015088409-LZqp3kIEuaafrIjc.jpg",
            options: [],
            abilities: [this.abilities.akhelianKingDeepmareHorn, this.abilities.akhelianKingAkhelianParagon, this.abilities.akhelianKingStormOfBlows, this.abilities.akhelianKingWaveRider, this.abilities.akhelianKingFly],
+           commandAbilities: [this.abilities.akhelianKingLordOfTides],
            attacks: [this.attacks.akhelianKingBladedPolearm, this.attacks.akhelianKingGreatsword, this.attacks.akhelianKingFalchion, this.attacks.akhelianKingDeepmareSFangedJawAndTalons, this.attacks.akhelianKingDeepmareSLashingTails],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -38666,7 +44078,7 @@ Foe spells.",       },
             factions: [this.factions.idonethDeepkin],
             size: 1,
             maxSize: 1,
-            points: 80,
+            points: 100,
             maxPoints: 0,
             keywords: ["ORDER", "AELF", "IDONETH DEEPKIN", "ISHARANN", "HERO", "PRIEST", "SOULSCRYER"],
             wounds: "5",
@@ -38749,7 +44161,7 @@ Foe spells.",       },
             factions: [this.factions.idonethDeepkin],
             size: 1,
             maxSize: 1,
-            points: 440,
+            points: 380,
             maxPoints: 0,
             keywords: ["ORDER", "AELF", "IDONETH DEEPKIN", "MONSTER", "AKHELIAN", "LEVIADON"],
             wounds: "16",
@@ -38769,7 +44181,7 @@ Foe spells.",       },
             factions: [this.factions.idonethDeepkin],
             size: 3,
             maxSize: 12,
-            points: 140,
+            points: 160,
             maxPoints: 0,
             keywords: ["ORDER", "AELF", "IDONETH DEEPKIN", "AKHELIAN", "AKHELIAN GUARD", "MORRSARR GUARD"],
             wounds: "4",
@@ -38860,6 +44272,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516197784090-jgDbMmBPjDJpATVb.jpg",
            options: [],
            abilities: [this.abilities.lordOrdinatorArcaneEngineer, this.abilities.lordOrdinatorMeteoricSlam, this.abilities.lordOrdinatorCometStrike],
+           commandAbilities: [this.abilities.lordOrdinatorSolemnDuty],
            attacks: [this.attacks.lordOrdinatorAstralHammers, this.attacks.lordOrdinatorAstralGrandhammer],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -38881,6 +44294,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516198251247-sNiULcNsJfBRbeK5.jpg",
            options: [],
            abilities: [this.abilities.darkoathWarqueenSavageDuellist, this.abilities.darkoathWarqueenInfernalRuneshield],
+           commandAbilities: [this.abilities.darkoathWarqueenTheWillOfTheGods],
            attacks: [this.attacks.darkoathWarqueenWarlordAxe],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -38902,6 +44316,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516198460829-tx1BWQOTlfeIiADb.jpg",
            options: [],
            abilities: [this.abilities.fungoidCaveShamanDeffcapMushroom, this.abilities.fungoidCaveShamanHallucinogenicStupor, this.abilities.fungoidCaveShamanSporeSquig, this.abilities.fungoidCaveShamanSporeMaws],
+           commandAbilities: [this.abilities.fungoidCaveShamanMouthpieceOfMork],
            attacks: [this.attacks.fungoidCaveShamanMoonSickle, this.attacks.fungoidCaveShamanSporeSquigSViciousTeef],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Fungoid Cave-Shaman is a Wizard. They can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Spore Maws spells.",       },
@@ -38923,6 +44338,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516198518428-xW8OcJL9P8Etwrp4.jpg",
            options: [],
            abilities: [this.abilities.knightOfShroudsEthereal, this.abilities.knightOfShroudsStolenHours, this.abilities.knightOfShroudsFly],
+           commandAbilities: [this.abilities.knightOfShroudsSpectralOverseer],
            attacks: [this.attacks.knightOfShroudsSwordOfStolenHours],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -38944,6 +44360,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1452940041598-FJV1OL7iCLn23cv3.jpg",
            options: [],
            abilities: [this.abilities.nagashSupremeLordOfTheUndeadTheStaffOfPower, this.abilities.nagashSupremeLordOfTheUndeadFrightfulTouch, this.abilities.nagashSupremeLordOfTheUndeadMorikhane, this.abilities.nagashSupremeLordOfTheUndeadTheNineBooksOfNagash, this.abilities.nagashSupremeLordOfTheUndeadDeathlyInvocation, this.abilities.nagashSupremeLordOfTheUndeadDeathMagicIncarnate, this.abilities.nagashSupremeLordOfTheUndeadFly, this.abilities.nagashSupremeLordOfTheUndeadHandOfDust, this.abilities.nagashSupremeLordOfTheUndeadSoulStealer],
+           commandAbilities: [this.abilities.nagashSupremeLordOfTheUndeadSupremeLordOfDeath],
            attacks: [this.attacks.nagashSupremeLordOfTheUndeadGazeOfNagash, this.attacks.nagashSupremeLordOfTheUndeadAlakanash, this.attacks.nagashSupremeLordOfTheUndeadZefetNebtar, this.attacks.nagashSupremeLordOfTheUndeadSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Nagash is a Wizard. He can attempt to cast three spells in your hero phase, and attempt to unbind three spells in the enemy hero phase. In addition, he can attempt to cast or unbind extra spells with the Nine Books of Nagash. He knows the Arcane Bolt, Mystic Shield, Hand of Dust and Soul Stealer spells, as well as any spells known by other Death Wizards on the battlefield.",       },
@@ -38965,6 +44382,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1452940026487-wkW9RVple2dIIjTp.jpg",
            options: [],
            abilities: [this.abilities.arkhanTheBlackMortarchOfSacramentFeasterOfSouls, this.abilities.arkhanTheBlackMortarchOfSacramentTheStaffOfSpirits, this.abilities.arkhanTheBlackMortarchOfSacramentDeathlyInvocation, this.abilities.arkhanTheBlackMortarchOfSacramentMortarchOfSacrament, this.abilities.arkhanTheBlackMortarchOfSacramentFrightfulTouch, this.abilities.arkhanTheBlackMortarchOfSacramentFly, this.abilities.arkhanTheBlackMortarchOfSacramentCurseOfYears],
+           commandAbilities: [this.abilities.arkhanTheBlackMortarchOfSacramentFirstOfTheMortarchs],
            attacks: [this.attacks.arkhanTheBlackMortarchOfSacramentZefetKar, this.attacks.arkhanTheBlackMortarchOfSacramentKhenashAn, this.attacks.arkhanTheBlackMortarchOfSacramentRazarakSEbonClaws, this.attacks.arkhanTheBlackMortarchOfSacramentSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Arkhan the Black is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Curse of Years spells. Arkhan also knows the spells of any Death Wizard that is within 18\" of him.",       },
@@ -38986,6 +44404,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1452940000517-uzG7lCavKrx4IaeI.jpg",
            options: [],
            abilities: [this.abilities.mannfredMortarchOfNightFeasterOfSouls, this.abilities.mannfredMortarchOfNightArmourOfTemplehof, this.abilities.mannfredMortarchOfNightSwordOfUnholyPower, this.abilities.mannfredMortarchOfNightMortarchOfNight, this.abilities.mannfredMortarchOfNightFrightfulTouch, this.abilities.mannfredMortarchOfNightDeathlyInvocation, this.abilities.mannfredMortarchOfNightFly, this.abilities.mannfredMortarchOfNightWindOfDeath],
+           commandAbilities: [this.abilities.mannfredMortarchOfNightVigourOfUndeath],
            attacks: [this.attacks.mannfredMortarchOfNightGheistvor, this.attacks.mannfredMortarchOfNightSickleGlaive, this.attacks.mannfredMortarchOfNightAshigarothSEbonClaws, this.attacks.mannfredMortarchOfNightSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Mannfred is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Wind of Death spells.",       },
@@ -39007,6 +44426,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1452939978888-nefxVvEgSdFdG0gb.jpg",
            options: [],
            abilities: [this.abilities.neferataMortarchOfBloodDaggerOfJet, this.abilities.neferataMortarchOfBloodMortarchOfBlood, this.abilities.neferataMortarchOfBloodFrightfulTouch, this.abilities.neferataMortarchOfBloodDeathlyInvocation, this.abilities.neferataMortarchOfBloodFly, this.abilities.neferataMortarchOfBloodDarkMist],
+           commandAbilities: [this.abilities.neferataMortarchOfBloodTwilightSAllure],
            attacks: [this.attacks.neferataMortarchOfBloodAkmetHar, this.attacks.neferataMortarchOfBloodAkenSeth, this.attacks.neferataMortarchOfBloodNagadronSSkeletalClaws, this.attacks.neferataMortarchOfBloodSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Neferata is a Wizard. She can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Dark Mist spells.",       },
@@ -39028,6 +44448,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516217545508-MEaaRsNlI4EQnH5k.jpg",
            options: [],
            abilities: [this.abilities.princeVhordraiTheHunger, this.abilities.princeVhordraiChaliceOfBlood, this.abilities.princeVhordraiBloodlanceCharge, this.abilities.princeVhordraiBreathOfShyish, this.abilities.princeVhordraiDeathlyInvocation, this.abilities.princeVhordraiFly, this.abilities.princeVhordraiQuickblood],
+           commandAbilities: [this.abilities.princeVhordraiFistOfNagash],
            attacks: [this.attacks.princeVhordraiBloodlance, this.attacks.princeVhordraiShordemaireSMaw, this.attacks.princeVhordraiShordemaireSSwordLikeClaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Prince Vhordrai is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Quickblood spells.",       },
@@ -39089,6 +44510,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462613008110-0FV2jBJtAeeCpxuv.jpg",
            options: [],
            abilities: [this.abilities.vampireLordOnZombieDragonPestilentialBreath, this.abilities.vampireLordOnZombieDragonTheHunger, this.abilities.vampireLordOnZombieDragonDeathlanceCharge, this.abilities.vampireLordOnZombieDragonAncientShield, this.abilities.vampireLordOnZombieDragonChaliceOfBlood, this.abilities.vampireLordOnZombieDragonDeathlyInvocation, this.abilities.vampireLordOnZombieDragonFly, this.abilities.vampireLordOnZombieDragonBloodBoil],
+           commandAbilities: [this.abilities.vampireLordOnZombieDragonDreadKnight],
            attacks: [this.attacks.vampireLordOnZombieDragonPestilentialBreath, this.attacks.vampireLordOnZombieDragonDeathlance, this.attacks.vampireLordOnZombieDragonVampiricSword, this.attacks.vampireLordOnZombieDragonZombieDragonSMaw, this.attacks.vampireLordOnZombieDragonZombieDragonSSwordLikeClaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Vampire Lord on Zombie Dragon is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Blood Boil spells.",       },
@@ -39190,6 +44612,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436960642512-eRokJwQrW86NrESI.jpg",
            options: [],
            abilities: [this.abilities.vampireLordTheHunger, this.abilities.vampireLordChaliceOfBlood, this.abilities.vampireLordDeathlyInvocation, this.abilities.vampireLordNightmare, this.abilities.vampireLordFlyingHorror],
+           commandAbilities: [this.abilities.vampireLordBloodFeast],
            attacks: [this.attacks.vampireLordSpiritPossessedBlades, this.attacks.vampireLordNightmareSHoovesAndTeeth],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Vampire Lord is a Wizard. They can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. They know the Arcane Bolt and Mystic Shield spells.",       },
@@ -39232,6 +44655,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436960769736-OleKagmJh1kBPh6K.jpg",
            options: [],
            abilities: [this.abilities.covenThroneFrightfulTouch, this.abilities.covenThroneScryingPool, this.abilities.covenThroneTheHunger, this.abilities.covenThroneDeathlyInvocation, this.abilities.covenThroneFly, this.abilities.covenThroneBeguile],
+           commandAbilities: [this.abilities.covenThroneTacticalInsight],
            attacks: [this.attacks.covenThroneVampireQueenSPredatoryBite, this.attacks.covenThroneVampireQueenSStiletto, this.attacks.covenThroneHandmaidensNeedleSharpPoniards, this.attacks.covenThroneSpectralHostSEtherealWeapons],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "The Vampire Queen on a Coven Throne is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Beguile spells.",       },
@@ -39395,6 +44819,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436961166606-l1RkoBbGMn1A776v.jpg",
            options: [],
            abilities: [this.abilities.wightKingBeheadingStrike, this.abilities.wightKingDeathlyInvocation, this.abilities.wightKingSkeletalSteed],
+           commandAbilities: [this.abilities.wightKingLordOfBones],
            attacks: [this.attacks.wightKingBalefulTombBlade, this.attacks.wightKingSkeletalSteedSHoovesAndTeeth],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -39416,6 +44841,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1455365013743-5ld51vRh9Nq7orMg.jpg",
            options: [],
            abilities: [this.abilities.wightKingBlackAxe, this.abilities.wightKingBarrowArmour, this.abilities.wightKingDeathlyInvocation],
+           commandAbilities: [this.abilities.wightKingLordOfBones],
            attacks: [this.attacks.wightKingBlackAxe],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -39497,7 +44923,7 @@ Foe spells.",       },
             bravery: "10",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436961401363-Xpl6vGervBrkLFYP.jpg",
            options: [],
-           abilities: [this.abilities.cairnWraithReapedLikeCorn, this.abilities.cairnWraithFly],
+           abilities: [this.abilities.cairnWraithReapedLikeCorn, this.abilities.cairnWraithEthereal, this.abilities.cairnWraithFrightfulTouch, this.abilities.cairnWraithFly],
            attacks: [this.attacks.cairnWraithReaperScythe],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -39554,7 +44980,7 @@ Foe spells.",       },
             maxPoints: 0,
             keywords: ["DEATH", "MALIGNANT", "NIGHTHAUNT", "BLACK COACH"],
             wounds: "12",
-            move: "-1",
+            move: this.damageTables.blackCoach.columns[0],
             save: "4",
             bravery: "10",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/fa16d5c8-8e65-4440-8c9a-ba5916ff50e0.jpg",
@@ -39642,6 +45068,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515226695444-U9DVrvFyrYLWUjYu.jpg",
            options: [],
            abilities: [this.abilities.greatUncleanOneBlubberAndBile, this.abilities.greatUncleanOneCorpulentMass, this.abilities.greatUncleanOneMountainOfLoathsomeFlesh, this.abilities.greatUncleanOnePutridOffering, this.abilities.greatUncleanOneReverberatingSummons, this.abilities.greatUncleanOnePlagueWind],
+           commandAbilities: [this.abilities.greatUncleanOneGrandfatherSJoy],
            attacks: [this.attacks.greatUncleanOneNoxiousBile, this.attacks.greatUncleanOnePlagueFlail, this.attacks.greatUncleanOneMassiveBilesword, this.attacks.greatUncleanOneBileblade, this.attacks.greatUncleanOneDoomsdayBell, this.attacks.greatUncleanOneHostOfNurglings],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Great Unclean One is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Wind spells.",       },
@@ -39849,6 +45276,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439633191613-cOMI2KK1AIJPv9aC.jpg",
            options: [],
            abilities: [this.abilities.theGlottkinMountainOfLoathsomeFlesh, this.abilities.theGlottkinBlessingsOfNurgle, this.abilities.theGlottkinHorrificOpponent, this.abilities.theGlottkinFleshyAbundance],
+           commandAbilities: [this.abilities.theGlottkinLordsOfNurgle],
            attacks: [this.attacks.theGlottkinPestilentTorrent, this.attacks.theGlottkinGhurkSFlailingTentacle, this.attacks.theGlottkinGhurkSLampreyMaw, this.attacks.theGlottkinOttoSPoisonSlickScythe],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Ethrac Glott is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Fleshy Abundance spells.",       },
@@ -39870,6 +45298,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439633415482-6gkypxf8HFhTrMoe.jpg",
            options: [],
            abilities: [this.abilities.orghottsDaemonspewAcidIchor, this.abilities.orghottsDaemonspewFuryOfTheHalfblood, this.abilities.orghottsDaemonspewTheRotaxes],
+           commandAbilities: [this.abilities.orghottsDaemonspewFesterAndRot],
            attacks: [this.attacks.orghottsDaemonspewWhippermawSGraspingTongue, this.attacks.orghottsDaemonspewTheRotaxes, this.attacks.orghottsDaemonspewWhippermawSMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -39933,6 +45362,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515666622148-DoYc86ZFiOUpfYPv.jpg",
            options: [],
            abilities: [this.abilities.lordOfAfflictionsDisgustinglyResilient, this.abilities.lordOfAfflictionsRottenRegeneration, this.abilities.lordOfAfflictionsPlagueVector, this.abilities.lordOfAfflictionsIncubatch, this.abilities.lordOfAfflictionsVirulentDischarge, this.abilities.lordOfAfflictionsFly],
+           commandAbilities: [this.abilities.lordOfAfflictionsSpearheadOfContagion],
            attacks: [this.attacks.lordOfAfflictionsFesterspike, this.attacks.lordOfAfflictionsFoulMouthparts, this.attacks.lordOfAfflictionsVenomousSting, this.attacks.lordOfAfflictionsDolorousTocsin],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -39975,6 +45405,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1440416893950-v9zcmBuS9iGD2iwT.jpg",
            options: [],
            abilities: [this.abilities.harbingerOfDecaySoulboundShield, this.abilities.harbingerOfDecayRotsword],
+           commandAbilities: [this.abilities.harbingerOfDecayMorbidVigour],
            attacks: [this.attacks.harbingerOfDecayPlagueScythe, this.attacks.harbingerOfDecayDaemonicMountSFlyblownBite],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40017,6 +45448,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515666843678-bkgJWOFskDhD3zH2.jpg",
            options: [],
            abilities: [this.abilities.lordOfBlightsMunificentBounty, this.abilities.lordOfBlightsVermidShield],
+           commandAbilities: [this.abilities.lordOfBlightsPlagueOfFlies],
            attacks: [this.attacks.lordOfBlightsThriceRipenedDeathSHead, this.attacks.lordOfBlightsMunificentBountyDeathSHead, this.attacks.lordOfBlightsBuboticHammer],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40059,6 +45491,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439633515370-cnW8EgudAobIbGym.jpg",
            options: [],
            abilities: [this.abilities.lordOfPlaguesWantonSlaughter, this.abilities.lordOfPlaguesRottenCorpseMulch, this.abilities.lordOfPlaguesPlagueRiddenGreatWeapon],
+           commandAbilities: [this.abilities.lordOfPlaguesGrandfatherSGift],
            attacks: [this.attacks.lordOfPlaguesPlagueRiddenGreatBlade],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40120,6 +45553,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492597878878-KTJZrwq3PQBanuSd.jpg",
            options: [],
            abilities: [this.abilities.brokkGrungssonLordMagnateOfBarakNarTheLordMagnateMoves, this.abilities.brokkGrungssonLordMagnateOfBarakNarChampionOfBarakNar, this.abilities.brokkGrungssonLordMagnateOfBarakNarSuperchargedHarness, this.abilities.brokkGrungssonLordMagnateOfBarakNarHighHitcher, this.abilities.brokkGrungssonLordMagnateOfBarakNarFly],
+           commandAbilities: [this.abilities.brokkGrungssonLordMagnateOfBarakNarFirstRuleOfGrungsson],
            attacks: [this.attacks.brokkGrungssonLordMagnateOfBarakNarGrungssonSBoast, this.attacks.brokkGrungssonLordMagnateOfBarakNarMagnateSCharter, this.attacks.brokkGrungssonLordMagnateOfBarakNarAetherblasters, this.attacks.brokkGrungssonLordMagnateOfBarakNarAethermaticSaw],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40141,6 +45575,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492598213683-PA9MQGh7Nhw7xgOu.jpg",
            options: [],
            abilities: [this.abilities.arkanautAdmiralFirstToTheFray, this.abilities.arkanautAdmiralMasterOfTheSkies, this.abilities.arkanautAdmiralIfYouWantAJobDone],
+           commandAbilities: [this.abilities.arkanautAdmiralInvokeTheCode],
            attacks: [this.attacks.arkanautAdmiralVolleyPistol, this.attacks.arkanautAdmiralSkalfhammer],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40292,7 +45727,7 @@ Foe spells.",       },
        grundstokThunderers: {
             id: "grundstokThunderers",
             model: this.models.grundstokThunderers,
-            description: "A unit of Grundstok Thunderers has 5 or more models. Each Grundstok Thunderer is armed with an aethermatic weapon, whether the signature Aethershot Rifle, an Aetheric Fumigator, a Decksweeper, an Aethercannon or a Grundstok Mortar. If any enemies survive their devastating fusillades, they resort to bashing in skulls with their Gun Butts.",
+            description: "A unit of Grundstok Thunderers has 5 or more models. Each Grundstok Thunderer is armed with an Aethershot Rifle. For every 5 models in the unit, one Grundstok Thunderer can instead be armed with an Aetheric Fumigator, another Grundstok Thunderer can instead be armed with a Decksweeper, another Grundstok Thunderer can instead be armed with an Aethercannon and another Grundstok Thunderer can instead be armed with a Grundstok Mortar. If any enemies survive their devastating fusillades, they resort to bashing in skulls with their Gun Butts.",
             flavor: "Grundstok Thunderers are professional warriors, well drilled and trained to fire quickly with great accuracy. They are equipped with a broad arsenal of deadly aethermatic weapons, and it is their task to lay down a blistering hail of firepower to protect the Kharadron Overlords’ airfleets and the goods that they carry.",
             factions: [this.factions.kharadronOverlords],
             size: 5,
@@ -40305,8 +45740,8 @@ Foe spells.",       },
             save: "4",
             bravery: "7",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492597717612-xLFgMlmOnu9mt9Wp.jpg",
-           options: [],
-           abilities: [this.abilities.grundstokThunderersDrillbill, this.abilities.grundstokThunderersKeepYourDistance, this.abilities.grundstokThunderersChokingFug, this.abilities.grundstokThunderersPinThemShredThem, this.abilities.grundstokThunderersFinishThem, this.abilities.grundstokThunderersGunnerySergeant, this.abilities.grundstokThunderersHonourBearer],
+           options: [this.options.grundstokThunderersHonourBearer],
+           abilities: [this.abilities.grundstokThunderersDrillbill, this.abilities.grundstokThunderersKeepYourDistance, this.abilities.grundstokThunderersChokingFug, this.abilities.grundstokThunderersPinThemShredThem, this.abilities.grundstokThunderersFinishThem, this.abilities.grundstokThunderersGunnerySergeant],
            attacks: [this.attacks.grundstokThunderersAethershotRifle, this.attacks.grundstokThunderersAethericFumigator, this.attacks.grundstokThunderersDecksweeper, this.attacks.grundstokThunderersAethercannon, this.attacks.grundstokThunderersGrundstokMortar, this.attacks.grundstokThunderersGunButt],
        },
        endrinriggers: {
@@ -40388,6 +45823,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436771575989-poBfc7eAC7i7LtAd.jpg",
            options: [],
            abilities: [this.abilities.bloodthirsterOfUnfetteredFuryDrawnInForTheKill, this.abilities.bloodthirsterOfUnfetteredFuryTheLandRebels, this.abilities.bloodthirsterOfUnfetteredFuryFly],
+           commandAbilities: [this.abilities.bloodthirsterOfUnfetteredFuryRejoiceInTheSlaughter],
            attacks: [this.attacks.bloodthirsterOfUnfetteredFuryLashOfKhorne, this.attacks.bloodthirsterOfUnfetteredFuryMightyAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Chaos Wizards know the Summon Bloodthirster of Fury spell, in addition to any others they know.",       },
@@ -40409,6 +45845,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436771443315-e8Al4m6g8RSRDj3u.jpg",
            options: [],
            abilities: [this.abilities.bloodthirsterOfInsensateRageRageUnbound, this.abilities.bloodthirsterOfInsensateRageOutrageousCarnage, this.abilities.bloodthirsterOfInsensateRageFly],
+           commandAbilities: [this.abilities.bloodthirsterOfInsensateRageBloodthirstyCharge],
            attacks: [this.attacks.bloodthirsterOfInsensateRageGreatAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Chaos Wizards know the Summon Bloodthirster of Rage spell, in addition to any others they know.",       },
@@ -40430,6 +45867,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1453978249775-2XGqI2ooNGBdsziQ.jpg",
            options: [],
            abilities: [this.abilities.wrathOfKhorneBloodthirsterHellfireBreath, this.abilities.wrathOfKhorneBloodthirsterRelentlessHunter, this.abilities.wrathOfKhorneBloodthirsterRuneCrownOfKhorne, this.abilities.wrathOfKhorneBloodthirsterFly],
+           commandAbilities: [this.abilities.wrathOfKhorneBloodthirsterLordOfTheBloodHunt],
            attacks: [this.attacks.wrathOfKhorneBloodthirsterHellfireBreath, this.attacks.wrathOfKhorneBloodthirsterBloodflail, this.attacks.wrathOfKhorneBloodthirsterMightyAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Chaos Wizards know the Summon Bloodthirster of Wrath spell, in addition to any others they know.",       },
@@ -40638,6 +46076,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436979810751-pNyyWyI5FLXkGMmK.jpg",
            options: [],
            abilities: [this.abilities.mightyLordOfKhorneCollarOfKhorne, this.abilities.mightyLordOfKhorneRealitySplittingAxe],
+           commandAbilities: [this.abilities.mightyLordOfKhorneGorelord],
            attacks: [this.attacks.mightyLordOfKhorneAxeOfKhorne, this.attacks.mightyLordOfKhorneFleshHoundSBloodDarkClaws],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40722,6 +46161,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1442653980441-siUcoQSwar4ryWpV.jpg",
            options: [],
            abilities: [this.abilities.lordOfKhorneOnJuggernautBrassCladShield, this.abilities.lordOfKhorneOnJuggernautMurderousCharge, this.abilities.lordOfKhorneOnJuggernautDaemonicAxe],
+           commandAbilities: [this.abilities.lordOfKhorneOnJuggernautBloodStampede],
            attacks: [this.attacks.lordOfKhorneOnJuggernautWrathforgedAxe, this.attacks.lordOfKhorneOnJuggernautJuggernautSBrazenHooves],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40743,6 +46183,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439634621715-L827CPUDZVxBy591.jpg",
            options: [],
            abilities: [this.abilities.exaltedDeathbringerBloodedLieutenant, this.abilities.exaltedDeathbringerRunemarkedShield, this.abilities.exaltedDeathbringerSkullgouger],
+           commandAbilities: [this.abilities.exaltedDeathbringerBrutalCommand],
            attacks: [this.attacks.exaltedDeathbringerRuinousAxe, this.attacks.exaltedDeathbringerBloodbiteAxe],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40764,6 +46205,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458992271877-fEuM9TqM1ep7pqQ3.jpg",
            options: [],
            abilities: [this.abilities.exaltedDeathbringerBloodedLieutenant, this.abilities.exaltedDeathbringerBrutalImpalement],
+           commandAbilities: [this.abilities.exaltedDeathbringerBrutalCommand],
            attacks: [this.attacks.exaltedDeathbringerImpalingSpear],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40785,6 +46227,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1442654014916-SI6UGe4Df4PmN6Xv.jpg",
            options: [],
            abilities: [this.abilities.aspiringDeathbringerThirstForGlory],
+           commandAbilities: [this.abilities.aspiringDeathbringerSlaughterIncarnate],
            attacks: [this.attacks.aspiringDeathbringerBloodaxe, this.attacks.aspiringDeathbringerWrathHammer],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -40806,6 +46249,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458992415301-V8TtPXo7YwYl0lAu.jpg",
            options: [],
            abilities: [this.abilities.aspiringDeathbringerBaneOfCowards],
+           commandAbilities: [this.abilities.aspiringDeathbringerSlaughterIncarnate],
            attacks: [this.attacks.aspiringDeathbringerGoreaxe, this.attacks.aspiringDeathbringerSkullhammer],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -41075,6 +46519,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436978437672-jJKKCferuPxCJfzb.jpg",
            options: [],
            abilities: [this.abilities.lordCelestantOnDracothTempestosHammer, this.abilities.lordCelestantOnDracothThunderaxe, this.abilities.lordCelestantOnDracothLightningHammer, this.abilities.lordCelestantOnDracothStormstrikeGlaive, this.abilities.lordCelestantOnDracothSigmariteThundershield, this.abilities.lordCelestantOnDracothIntolerableDamage, this.abilities.lordCelestantOnDracothStormBreath, this.abilities.lordCelestantOnDracothMount],
+           commandAbilities: [this.abilities.lordCelestantOnDracothLordOfTheHost],
            attacks: [this.attacks.lordCelestantOnDracothStormstrikeGlaive, this.attacks.lordCelestantOnDracothLightningHammer, this.attacks.lordCelestantOnDracothThunderaxe, this.attacks.lordCelestantOnDracothTempestosHammer, this.attacks.lordCelestantOnDracothDracothSClawsAndFangs],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -41096,6 +46541,7 @@ Foe spells.",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436978515419-jqQ34gyJk2SzC6Ku.jpg",
            options: [],
            abilities: [this.abilities.lordCelestantInescapableVengeance, this.abilities.lordCelestantSigmariteWarcloak],
+           commandAbilities: [this.abilities.lordCelestantFuriousRetribution],
            attacks: [this.attacks.lordCelestantSigmariteRuneblade, this.attacks.lordCelestantWarhammer],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -41453,6 +46899,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458381974259-5AXh2E7OuTlDcjtd.jpg",
            options: [],
            abilities: [this.abilities.lordCelestantInescapableVengeance, this.abilities.lordCelestantSigmariteThundershield, this.abilities.lordCelestantStormboundBlade, this.abilities.lordCelestantCavernousJaws, this.abilities.lordCelestantSweepingTail, this.abilities.lordCelestantLordOfTheHeavens, this.abilities.lordCelestantArcaneLineage, this.abilities.lordCelestantMount, this.abilities.lordCelestantFly],
+           commandAbilities: [this.abilities.lordCelestantLordOfTheCelestialHost],
            attacks: [this.attacks.lordCelestantCelestineHammer, this.attacks.lordCelestantStormboundBlade, this.attacks.lordCelestantStardrakeSGreatClaws],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -41575,6 +47022,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487415257061-h9OJGvzLDxKInW7d.jpg",
            options: [],
            abilities: [this.abilities.lordAquilorAstralCompass, this.abilities.lordAquilorRideTheWindsAetheric, this.abilities.lordAquilorAetherealStrike, this.abilities.lordAquilorMount],
+           commandAbilities: [this.abilities.lordAquilorLordOfTheAzyriteHurricane],
            attacks: [this.attacks.lordAquilorHeavyBoltstormPistol, this.attacks.lordAquilorStarboundBlade, this.attacks.lordAquilorShockHandaxe, this.attacks.lordAquilorRazorBeakAndClaws],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -41696,6 +47144,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484394169479-FfGc3wZ1KS80YtMV.jpg",
            options: [],
            abilities: [this.abilities.lordOfChangeMasteryOfMagic, this.abilities.lordOfChangeSpellThief, this.abilities.lordOfChangeFly, this.abilities.lordOfChangeInfernalGateway],
+           commandAbilities: [this.abilities.lordOfChangeBeaconOfSorcery],
            attacks: [this.attacks.lordOfChangeRodOfSorcery, this.attacks.lordOfChangeStaffOfTzeentch, this.attacks.lordOfChangeBalefulSword, this.attacks.lordOfChangeCurvedBeakAndWickedTalons],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Lord of Change is a wizard. It can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Infernal Gateway spells.\
@@ -42078,6 +47527,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484396361266-mfrTcAsYYe2vet7z.jpg",
            options: [],
            abilities: [this.abilities.fatemasterSoulboundShield, this.abilities.fatemasterHoveringDiscOfTzeentch, this.abilities.fatemasterFly],
+           commandAbilities: [this.abilities.fatemasterLordOfFate],
            attacks: [this.attacks.fatemasterFireglaiveOfTzeentch, this.attacks.fatemasterDiscOfTzeentchSProtrudingBlades],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -42201,7 +47651,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             bravery: "10",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1440416781267-Z6AAH3ivmI9VWLs8.jpg",
            options: [],
-           abilities: [this.abilities.chaosSpawnWrithingTentacles],
+           abilities: [this.abilities.chaosSpawnWrithingTentacles, this.abilities.chaosSpawnCursedOfTheDarkGods],
            attacks: [this.attacks.chaosSpawnFreakishMutations],
        },
        frostlordOnStonehorn: {
@@ -42222,6 +47672,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469864808645-NNn3c3qKj6AIQnDt.jpg",
            options: [],
            abilities: [this.abilities.frostlordOnStonehornEarthShatteringCharge, this.abilities.frostlordOnStonehornStoneSkeleton],
+           commandAbilities: [this.abilities.frostlordOnStonehornBellowingVoice],
            attacks: [this.attacks.frostlordOnStonehornFrostSpear, this.attacks.frostlordOnStonehornFrostlordSPunchesAndKicks, this.attacks.frostlordOnStonehornStonehornSHorns, this.attacks.frostlordOnStonehornStonehornSCrushingHooves],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -42243,6 +47694,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469865415044-PkN3wUyqCYM9t0sX.jpg",
            options: [],
            abilities: [this.abilities.frostlordOnThundertuskBlastsOfFrostWreathedIce, this.abilities.frostlordOnThundertuskNumbingChill],
+           commandAbilities: [this.abilities.frostlordOnThundertuskBellowingVoice],
            attacks: [this.attacks.frostlordOnThundertuskFrostWreathedIce, this.attacks.frostlordOnThundertuskFrostSpear, this.attacks.frostlordOnThundertuskFrostlordSPunchesAndKicks, this.attacks.frostlordOnThundertuskThundertuskSCrushingBlows],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -42427,6 +47879,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436784687842-MiOKBWjV4d9rgwtl.jpg",
            options: [],
            abilities: [this.abilities.wurrgogProphetBeastMask, this.abilities.wurrgogProphetFistsOfGork],
+           commandAbilities: [this.abilities.wurrgogProphetProphetOfDaWaaagh],
            attacks: [this.attacks.wurrgogProphetJuJuStaff, this.attacks.wurrgogProphetFlintKnife, this.attacks.wurrgogProphetSquigglyBeastSFangedMaw],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Wurrgog Prophet is a wizard. They can attempt to cast two different spells in each of their own hero phases, and attempt to unbind two spells in each enemy hero phase. A Wurrgog Prophet knows the Arcane Bolt, Mystic Shield and Fists of Gork spells.",       },
@@ -42448,6 +47901,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469267090178-JCzzW0CyM7KOVPjk.jpg",
            options: [],
            abilities: [this.abilities.savageBigBossLetMeAtEm],
+           commandAbilities: [this.abilities.savageBigBossSavageAttack],
            attacks: [this.attacks.savageBigBossBossCleava],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -42632,6 +48086,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1467901635477-St11fpAXFHJWgnGw.jpg",
            options: [],
            abilities: [this.abilities.alarielleTheEverqueenTalonOfTheDwindling, this.abilities.alarielleTheEverqueenLifebloom, this.abilities.alarielleTheEverqueenSweepingBlows, this.abilities.alarielleTheEverqueenLivingBatteringRam, this.abilities.alarielleTheEverqueenSoulAmphorae, this.abilities.alarielleTheEverqueenFly, this.abilities.alarielleTheEverqueenMetamorphosis],
+           commandAbilities: [this.abilities.alarielleTheEverqueenGhyranSWrath],
            attacks: [this.attacks.alarielleTheEverqueenSpearOfKurnoth, this.attacks.alarielleTheEverqueenTalonOfTheDwindling, this.attacks.alarielleTheEverqueenWardrothBeetleSGreatAntlers],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Alarielle the Everqueen is a wizard. She can attempt to cast three different spells in each of your hero phases, and attempt to unbind three spells in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Metamorphosis spells.",       },
@@ -42695,6 +48150,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436980253578-ZESqdINN76BeAPtN.jpg",
            options: [],
            abilities: [this.abilities.treelordAncientGroundshakingStomp, this.abilities.treelordAncientImpale, this.abilities.treelordAncientSpiritPaths, this.abilities.treelordAncientSilentCommunion, this.abilities.treelordAncientAwakeningTheWood],
+           commandAbilities: [this.abilities.treelordAncientHeedTheSpiritSong],
            attacks: [this.attacks.treelordAncientDoomTendrilStaff, this.attacks.treelordAncientSweepingBlows, this.attacks.treelordAncientMassiveImpalingTalons],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Treelord Ancient is a wizard. It can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Awakening the Wood spells.",       },
@@ -42859,6 +48315,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462611215936-msLFt3A9r2V6yDS7.jpg",
            options: [],
            abilities: [this.abilities.abhorrantGhoulKingOnTerrorgheistDeathShriek, this.abilities.abhorrantGhoulKingOnTerrorgheistGapingMaw, this.abilities.abhorrantGhoulKingOnTerrorgheistInfested, this.abilities.abhorrantGhoulKingOnTerrorgheistRoyalBlood, this.abilities.abhorrantGhoulKingOnTerrorgheistFly, this.abilities.abhorrantGhoulKingOnTerrorgheistUnholyVitality],
+           commandAbilities: [this.abilities.abhorrantGhoulKingOnTerrorgheistSummonRoyalGuard],
            attacks: [this.attacks.abhorrantGhoulKingOnTerrorgheistTerrorgheistSDeathShriek, this.attacks.abhorrantGhoulKingOnTerrorgheistKingSGoryTalons, this.attacks.abhorrantGhoulKingOnTerrorgheistTerrorgheistSSkeletalClaws, this.attacks.abhorrantGhoulKingOnTerrorgheistTerrorgheistSFangedMaw],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "An Abhorrant Ghoul King on Terrorgheist is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Unholy Vitality spells.",       },
@@ -42870,7 +48327,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             factions: [this.factions.fleshEaterCourts],
             size: 1,
             maxSize: 1,
-            points: 400,
+            points: 440,
             maxPoints: 0,
             keywords: ["DEATH", "VAMPIRE", "ZOMBIE DRAGON", "FLESH-EATER COURTS", "MONSTER", "HERO", "WIZARD", "ABHORRANT GHOUL KING"],
             wounds: "14",
@@ -42880,6 +48337,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462614004953-DxFPJRtJooFvusKe.jpg",
            options: [],
            abilities: [this.abilities.abhorrantGhoulKingOnZombieDragonPestilentialBreath, this.abilities.abhorrantGhoulKingOnZombieDragonRoyalBlood, this.abilities.abhorrantGhoulKingOnZombieDragonFly, this.abilities.abhorrantGhoulKingOnZombieDragonFeedingFrenzy],
+           commandAbilities: [this.abilities.abhorrantGhoulKingOnZombieDragonSummonCourtier],
            attacks: [this.attacks.abhorrantGhoulKingOnZombieDragonZombieDragonSPestilentialBreath, this.attacks.abhorrantGhoulKingOnZombieDragonKingSGoryTalons, this.attacks.abhorrantGhoulKingOnZombieDragonZombieDragonSMaw, this.attacks.abhorrantGhoulKingOnZombieDragonZombieDragonSClaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "An Abhorrant Ghoul King on Zombie Dragon is a wizard. He can attempt to cast one spell in each of your hero phases and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Feeding Frenzy spells.",       },
@@ -42901,6 +48359,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462613191675-6JpgHHbsg2GyWmWy.jpg",
            options: [],
            abilities: [this.abilities.abhorrantGhoulKingRoyalBlood, this.abilities.abhorrantGhoulKingBlackHunger],
+           commandAbilities: [this.abilities.abhorrantGhoulKingSummonMenAtArms],
            attacks: [this.attacks.abhorrantGhoulKingGoryTalonsAndFangs],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "An Abhorrant Ghoul King is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Black Hunger spells.",       },
@@ -43107,6 +48566,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1461404561559-HBsf6H2gLztbGbYm.jpg",
            options: [],
            abilities: [this.abilities.gordrakkTheFistOfGorkSmasha, this.abilities.gordrakkTheFistOfGorkKunnin, this.abilities.gordrakkTheFistOfGorkStrengthFromVictory, this.abilities.gordrakkTheFistOfGorkDestructiveBulk, this.abilities.gordrakkTheFistOfGorkOnTheRampage, this.abilities.gordrakkTheFistOfGorkFly],
+           commandAbilities: [this.abilities.gordrakkTheFistOfGorkVoiceOfGork],
            attacks: [this.attacks.gordrakkTheFistOfGorkInnardBurstingBellow, this.attacks.gordrakkTheFistOfGorkSmasha, this.attacks.gordrakkTheFistOfGorkKunnin, this.attacks.gordrakkTheFistOfGorkBigteefSMightyFists, this.attacks.gordrakkTheFistOfGorkBigteefSBladedTail],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -43128,6 +48588,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1461404603360-Ysy5ap6PURwJPWzA.jpg",
            options: [],
            abilities: [this.abilities.megabossOnMawKrushaStrengthFromVictory, this.abilities.megabossOnMawKrushaDestructiveBulk, this.abilities.megabossOnMawKrushaOnTheRampage, this.abilities.megabossOnMawKrushaFly],
+           commandAbilities: [this.abilities.megabossOnMawKrushaMightyWaaagh],
            attacks: [this.attacks.megabossOnMawKrushaInnardBurstingBellow, this.attacks.megabossOnMawKrushaBossGoreHacka, this.attacks.megabossOnMawKrushaScrapTooth, this.attacks.megabossOnMawKrushaChoppa, this.attacks.megabossOnMawKrushaRipToothFist, this.attacks.megabossOnMawKrushaMawKrushaSMightyFists, this.attacks.megabossOnMawKrushaMawKrushaSBladedTail],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -43149,6 +48610,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1461404660037-hCIdFVsejAcjSnXb.jpg",
            options: [],
            abilities: [this.abilities.orrukMegabossGoOnLadzGetStuckIn, this.abilities.orrukMegabossStrengthFromVictory],
+           commandAbilities: [this.abilities.orrukMegabossWaaagh],
            attacks: [this.attacks.orrukMegabossBossChoppa, this.attacks.orrukMegabossRipToothFist],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -43279,7 +48741,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             model: this.models.plagueFurnace,
             description: "A Plague Furnace is a single model crewed by a trio of fanatical Plague Monks, who chitter with delight as they send the smouldering Great Censer crashing into the enemy’s ranks. At its fore stands a cackling Plague Priest wielding a Warpstone-tipped Staff that sparks with malign power. Any who come too close to the Plague Furnace meet a quick and messy end beneath its Rusty Wheels and Spikes.",
             flavor: "The great censer of the Plague Furnace roars low and loud as it swings ominously back and forth. Clouds of billowing smog roll from within, spilling forth to engulf the foe in a tide of choking foulness. As the screams of the dying rise to a crescendo, the chittering Plague Priest that rides the furnace to war spreads the blessings of filth to his befouled flock.",
-            factions: [this.factions.skavenPestilens],
+            factions: [this.factions.clansPestilens],
             size: 1,
             maxSize: 1,
             points: 180,
@@ -43300,7 +48762,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             model: this.models.plaguePriestWithWarpstoneTippedStaff,
             description: "A Plague Priest is a single model. The priest carries a Warpstone-tipped Staff and a censer filled with pestilent magic.",
             flavor: undefined,
-            factions: [this.factions.skavenPestilens],
+            factions: [this.factions.clansPestilens],
             size: 1,
             maxSize: 1,
             points: 80,
@@ -43321,7 +48783,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             model: this.models.plaguePriestWithPlagueCenser,
             description: "A Plague Priest is a single model. The priest carries a Plague Censer and bears a Plague Tome enchanted with foul sorcery.",
             flavor: "Chittered words ring across the battlefield as the Plague Priest reads aloud from his plague tome, while a toxic green smog issues from the vile censer he holds aloft, wafting out to poison and decompose any who breathe it.",
-            factions: [this.factions.skavenPestilens],
+            factions: [this.factions.clansPestilens],
             size: 1,
             maxSize: 1,
             points: 80,
@@ -43342,7 +48804,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             model: this.models.plagueMonks,
             description: "A unit of Plague Monks has 5 or more models. Some units of Plague Monks are armed with a pair of Foetid Blades, while others attack with a Foetid Blade in one claw and a Woe-stave in the other.",
             flavor: "Driven into battle by their frenzied faith, the Plague Monks of Clan Pestilens overwhelm their enemies in a pestilential swarm. They hack and stab wildly with their foetid blades, spreading disease and infection with every blow while scratching with jagged claws and biting with chisel-like, rotted fangs.",
-            factions: [this.factions.skavenPestilens],
+            factions: [this.factions.clansPestilens],
             size: 10,
             maxSize: 40,
             points: 70,
@@ -43362,7 +48824,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             model: this.models.plagueCenserBearers,
             description: "A unit of Plague Censer Bearers has 5 or more models. They wield Plague Censers – spiked metal balls filled with billowing, noxious filth that are attached to lengths of rusty chain. The frenzied monks flail these foul weapons around with a rabid fervour, breaking bones, rupturing organs and infecting those nearby with virulent contagions.",
             flavor: "Plague Censer Bearers rush forwards in a foaming frenzy, shrieking and squeaking as they charge into battle. Plaguemaddened, the Censer Bearers swing their weapons in devastating arcs, crunching armour, flesh and bone. Suffocating in the clouds of sorcerous fumes that surround them, few can stand long against their attacks.",
-            factions: [this.factions.skavenPestilens],
+            factions: [this.factions.clansPestilens],
             size: 5,
             maxSize: 20,
             points: 60,
@@ -43382,7 +48844,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             model: this.models.plagueclaw,
             description: "A Plagueclaw is a single model consisting of a deadly contraption crewed by a trio of fume-addled skaven. The catapult lobs a bubbling blend of semi-congealed poisons and diseases at the foe, and the crew defends their scaffold-like charge with a variety of Tools and Knives.",
             flavor: "Rotten wood creaks as the throwing arm of the Plagueclaw is cranked slowly back, until it strains near to breaking point. Only then are the foul plagues of the Clans Pestilens loaded into the weapon’s claw, bubbling and hissing with virulence. A single wrench upon a rusted lever and the vile brew is hurled high into the air to rain down upon the enemy.",
-            factions: [this.factions.skavenPestilens],
+            factions: [this.factions.clansPestilens],
             size: 1,
             maxSize: 1,
             points: 160,
@@ -43416,6 +48878,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1452939562881-BfAKs7OQYPeLpxCH.jpg",
            options: [],
            abilities: [this.abilities.auricRunefatherOnMagmadrothRoaringFyrestream, this.abilities.auricRunefatherOnMagmadrothLashingTail, this.abilities.auricRunefatherOnMagmadrothVolcanicBlood, this.abilities.auricRunefatherOnMagmadrothStareDown, this.abilities.auricRunefatherOnMagmadrothWeaponBreaker],
+           commandAbilities: [this.abilities.auricRunefatherOnMagmadrothSteadfastAdvance],
            attacks: [this.attacks.auricRunefatherOnMagmadrothFyresteelThrowingAxe, this.attacks.auricRunefatherOnMagmadrothMagmadrothSClawsAndHorns, this.attacks.auricRunefatherOnMagmadrothLatchkeyGrandaxe],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -43458,6 +48921,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1452939707934-igYj2wj3RwI21Fji.jpg",
            options: [],
            abilities: [this.abilities.auricRunesonOnMagmadrothRoaringFyrestream, this.abilities.auricRunesonOnMagmadrothLashingTail, this.abilities.auricRunesonOnMagmadrothVolcanicBlood, this.abilities.auricRunesonOnMagmadrothExplosiveRage, this.abilities.auricRunesonOnMagmadrothWyrmslayerJavelins],
+           commandAbilities: [this.abilities.auricRunesonOnMagmadrothFuriousOnslaught],
            attacks: [this.attacks.auricRunesonOnMagmadrothWyrmslayerJavelin, this.attacks.auricRunesonOnMagmadrothFyresteelThrowingAxe, this.attacks.auricRunesonOnMagmadrothMagmadrothSClawsAndHorns, this.attacks.auricRunesonOnMagmadrothAncestralWarAxe, this.attacks.auricRunesonOnMagmadrothWyrmslayerJavelin],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -43479,6 +48943,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1452939771313-MzlPkdyHC7IXUegP.jpg",
            options: [],
            abilities: [this.abilities.auricRunefatherStareDown, this.abilities.auricRunefatherWeaponBreaker],
+           commandAbilities: [this.abilities.auricRunefatherLodgeLeader],
            attacks: [this.attacks.auricRunefatherFyresteelThrowingAxe, this.attacks.auricRunefatherLatchkeyGrandaxe],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -43521,6 +48986,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1452939849967-o5mplRswb3gwynjO.jpg",
            options: [],
            abilities: [this.abilities.auricRunesonWyrmslayerJavelins, this.abilities.auricRunesonExplosiveRage],
+           commandAbilities: [this.abilities.auricRunesonDauntlessAssault],
            attacks: [this.attacks.auricRunesonWyrmslayerJavelin, this.attacks.auricRunesonFyresteelThrowingAxe, this.attacks.auricRunesonAncestralWarAxe, this.attacks.auricRunesonWyrmslayerJavelin],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -43658,7 +49124,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             maxSize: 1,
             points: 660,
             maxPoints: 0,
-            keywords: ["CHAOS", "DAEMON", "MORTAL", "KHORNE", "NURGLE ", "SLAANESH", "TZEENTCH", "EVERCHOSEN", "MONSTER", "HERO", "WIZARD", "ARCHAON"],
+            keywords: ["CHAOS", "DAEMON", "MORTAL", "KHORNE", "NURGLE", "SLAANESH", "TZEENTCH", "EVERCHOSEN", "MONSTER", "HERO", "WIZARD", "ARCHAON"],
             wounds: "20",
             move: this.damageTables.archaon.columns[0],
             save: "3",
@@ -43666,6 +49132,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1448704261567-oFvUmBx3R4eFtuOV.jpg",
            options: [],
            abilities: [this.abilities.archaonTheEyeOfSheerian, this.abilities.archaonTheSlayerOfKings, this.abilities.archaonTheArmourOfMorkar, this.abilities.archaonChaosRuneshield, this.abilities.archaonTheCrownOfDomination, this.abilities.archaonTripleHeadedMonstrosity, this.abilities.archaonTheEverchosen, this.abilities.archaonFly],
+           commandAbilities: [this.abilities.archaonWarlordWithoutEqual],
            attacks: [this.attacks.archaonTheSlayerOfKings, this.attacks.archaonDorgharSMonstrousClaws, this.attacks.archaonDorgharSLashingTails, this.attacks.archaonDorgharSThreeHeads],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Archaon is a wizard. He can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt and Mystic Shield spells, as well as any learned by Dorghar’s Tzeentchian head during the battle.",       },
@@ -43728,6 +49195,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446289609331-KQouIfbuRYdUxzn6.jpg",
            options: [],
            abilities: [this.abilities.slannStarmasterCelestialConfiguration, this.abilities.slannStarmasterArcaneVassal, this.abilities.slannStarmasterFly, this.abilities.slannStarmasterLightOfTheHeavens],
+           commandAbilities: [this.abilities.slannStarmasterGiftFromTheHeavens],
            attacks: [this.attacks.slannStarmasterAzureLightning],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Slann Starmaster is a wizard. It can attempt to cast three different spells in each of your own hero phases, and attempt to unbind three spells in each enemy hero phase. A Slann Starmaster knows the Arcane Bolt, Mystic Shield and Light of the Heavens spells.",       },
@@ -43749,6 +49217,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446288882067-rCZFN07Fqmrwne3k.jpg",
            options: [],
            abilities: [this.abilities.lordKroakDeadForInnumerableAges, this.abilities.lordKroakFly, this.abilities.lordKroakCelestialDeliverance, this.abilities.lordKroakCometSCall],
+           commandAbilities: [this.abilities.lordKroakImpeccableForesight],
            attacks: [this.attacks.lordKroakAncientSpiritsSpectralClaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Lord Kroak is a wizard. He can attempt to cast four spells in each of your own hero phases, and attempt to unbind four spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield, Celestial Deliverance and Comet’s Call spells.",       },
@@ -43770,6 +49239,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446288966096-PIEC8xXC2DQ4KujI.jpg",
            options: [],
            abilities: [this.abilities.saurusOldbloodStardrakeShield, this.abilities.saurusOldbloodWrathOfTheSeraphon],
+           commandAbilities: [this.abilities.saurusOldbloodParagonOfOrder],
            attacks: [this.attacks.saurusOldbloodSuntoothMaul, this.attacks.saurusOldbloodCelestiteWarblade, this.attacks.saurusOldbloodCelestiteWarSpear, this.attacks.saurusOldbloodCelestiteGreatblade, this.attacks.saurusOldbloodFearsomeJawsAndStardrakeShield],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Slann Wizards know the Summon Oldblood spell, in addition to any others they know.",       },
@@ -43791,6 +49261,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446289748785-pETI17cJebU6UP0k.jpg",
            options: [],
            abilities: [this.abilities.saurusSunbloodAeonShield, this.abilities.saurusSunbloodFerociousRage],
+           commandAbilities: [this.abilities.saurusSunbloodScentOfWeakness],
            attacks: [this.attacks.saurusSunbloodCelestiteWarMace, this.attacks.saurusSunbloodFearsomeJawsAndAeonShield],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Slann Wizards know the Summon Sunblood spell, in addition to any others they know.",       },
@@ -43812,6 +49283,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446289554090-HfriSiRXgXD2DdWe.jpg",
            options: [],
            abilities: [this.abilities.saurusOldbloodOnCarnosaurPinnedDown, this.abilities.saurusOldbloodOnCarnosaurBloodFrenzy, this.abilities.saurusOldbloodOnCarnosaurBloodroar, this.abilities.saurusOldbloodOnCarnosaurBlazingSunbolts],
+           commandAbilities: [this.abilities.saurusOldbloodOnCarnosaurAncientWarlord],
            attacks: [this.attacks.saurusOldbloodOnCarnosaurSunboltGauntlet, this.attacks.saurusOldbloodOnCarnosaurSunstoneSpear, this.attacks.saurusOldbloodOnCarnosaurCarnosaurSClawedForelimbs, this.attacks.saurusOldbloodOnCarnosaurCarnosaurSMassiveJaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Slann Wizards know the Summon Saurus Warlord spell, in addition to any others they know.",       },
@@ -43874,6 +49346,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446289479067-hgf7Tkr3xkcJFQdl.jpg",
            options: [],
            abilities: [this.abilities.saurusScarVeteranOnCarnosaurPinnedDown, this.abilities.saurusScarVeteranOnCarnosaurBloodFrenzy, this.abilities.saurusScarVeteranOnCarnosaurBloodroar, this.abilities.saurusScarVeteranOnCarnosaurStardrakeShield, this.abilities.saurusScarVeteranOnCarnosaurSummonCarnosaur],
+           commandAbilities: [this.abilities.saurusScarVeteranOnCarnosaurSaurianSavagery],
            attacks: [this.attacks.saurusScarVeteranOnCarnosaurCelestiteWarblade, this.attacks.saurusScarVeteranOnCarnosaurCelestiteWarSpear, this.attacks.saurusScarVeteranOnCarnosaurCelestiteGreatblade, this.attacks.saurusScarVeteranOnCarnosaurFearsomeJawsAndStardrakeShield, this.attacks.saurusScarVeteranOnCarnosaurCarnosaurSClawedForelimbs, this.attacks.saurusScarVeteranOnCarnosaurCarnosaurSMassiveJaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Slann Wizards know the Summon Carnosaur spell, in addition to any others they know.",       },
@@ -43895,6 +49368,7 @@ Chaos Wizards know the Summon Pink Horrors spell, in addition to any others they
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1504088668279-7BckgLSeH4XDgwBF.jpg",
            options: [],
            abilities: [this.abilities.saurusScarVeteranOnColdOneFuryOfTheSeraphon, this.abilities.saurusScarVeteranOnColdOneStardrakeShield, this.abilities.saurusScarVeteranOnColdOneSummonKnightVeteran],
+           commandAbilities: [this.abilities.saurusScarVeteranOnColdOneSavageCharge],
            attacks: [this.attacks.saurusScarVeteranOnColdOneCelestiteWarPick, this.attacks.saurusScarVeteranOnColdOneFearsomeJawsAndStardrakeShield, this.attacks.saurusScarVeteranOnColdOneColdOneSViciousBite],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Slann Wizards know the Summon Knight Veteran spell, in addition to any others they know.",       },
@@ -44288,6 +49762,7 @@ Slann Wizards know the Summon Starpriest spell, in addition to any others they k
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436783666831-TSpPPdbsAMqBejud.jpg",
            options: [],
            abilities: [this.abilities.orrukWarbossOnWyvernAgonisingVenom, this.abilities.orrukWarbossOnWyvernBossShield, this.abilities.orrukWarbossOnWyvernChoppaBoss, this.abilities.orrukWarbossOnWyvern, this.abilities.orrukWarbossOnWyvernFly],
+           commandAbilities: [this.abilities.orrukWarbossOnWyvernWaaagh],
            attacks: [this.attacks.orrukWarbossOnWyvernBossChoppa, this.attacks.orrukWarbossOnWyvernWyvernSHornsClawsAndTeeth, this.attacks.orrukWarbossOnWyvernWyvernSBarbedVenomousTail],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -44309,6 +49784,7 @@ Slann Wizards know the Summon Starpriest spell, in addition to any others they k
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436783627045-FN8sowO9xOKAWC7o.jpg",
            options: [],
            abilities: [this.abilities.orrukWarbossChoppaBoss, this.abilities.orrukWarbossGreatWaaaghBanner, this.abilities.orrukWarbossBossShield, this.abilities.orrukWarbossWarBoar],
+           commandAbilities: [this.abilities.orrukWarbossWaaagh],
            attacks: [this.attacks.orrukWarbossBossChoppa, this.attacks.orrukWarbossMassiveChoppa, this.attacks.orrukWarbossGreatWaaaghBanner, this.attacks.orrukWarbossWarBoarSTusks],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -44439,7 +49915,7 @@ Slann Wizards know the Summon Starpriest spell, in addition to any others they k
        nastySkulkers: {
             id: "nastySkulkers",
             model: this.models.nastySkulkers,
-            description: "A unit of Nasty Skulkers can have any number of models.  ey are armed with vicious Back Stabbas.",
+            description: "A unit of Nasty Skulkers can have any number of models. They are armed with vicious Back Stabbas.",
             flavor: undefined,
             factions: [this.factions.gitmob],
             size: 3,
@@ -44539,61 +50015,64 @@ Slann Wizards know the Summon Starpriest spell, in addition to any others they k
        grotSpearChukka: {
             id: "grotSpearChukka",
             model: this.models.grotSpearChukka,
-            description: undefined,
+            description: "A Grot Spear Chukka consists of a war machine and a unit of 3 Grot Crew, who can fight foes in melee using Improvised Weapons (although they’d rather shoot the foe before they get that close). The war machine fires Chukkin’ Spears into the enemy’s ranks.",
             flavor: undefined,
             factions: [this.factions.gitmob],
             size: 1,
             maxSize: 1,
             points: 120,
             maxPoints: 0,
-            keywords: ["DESTRUCTION", "WAR MACHINE", "GROT SPEAR CHUKKA", "GITMOB"],
-            wounds: "4",
-            move: "✹",
-            save: "5",
-            bravery: "0",
+            keywords: ["DESTRUCTION", "GROT", "GITMOB", "CREW"],
+            wounds: "1",
+            move: "5",
+            save: "6",
+            bravery: "4",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436785331944-AtJIl91q8Wr48I29.jpg",
            options: [],
-           attacks: [this.attacks.grotSpearChukkaChukkinSpear],
+           abilities: [this.abilities.grotSpearChukkaGrotWarArtillery, this.abilities.grotSpearChukkaGetTheOneWithTheBigHat, this.abilities.grotSpearChukkaYouBetterHitEm],
+           attacks: [this.attacks.grotSpearChukkaCrewSImprovisedWeapons],
            isArtillery: (ws: WarscrollInterface) => true,
        },
        doomDiverCatapult: {
             id: "doomDiverCatapult",
             model: this.models.doomDiverCatapult,
-            description: undefined,
+            description: "A Doom Diver Catapult consists of a muscle-powered catapult war machine and a unit of 4 Grot Crew, who can fight foes in melee using Improvised Weapons (although they’d rather shoot the foe before they get that close). The catapult can launch Divin’ Grots across the battlefield.",
             flavor: undefined,
             factions: [this.factions.gitmob],
             size: 1,
             maxSize: 1,
             points: 120,
             maxPoints: 0,
-            keywords: ["DESTRUCTION", "WAR MACHINE", "DOOM DIVER CATAPULT", "GITMOB"],
-            wounds: "4",
-            move: "✹",
-            save: "5",
-            bravery: "0",
+            keywords: ["DESTRUCTION", "GROT", "GITMOB", "CREW"],
+            wounds: "1",
+            move: "5",
+            save: "6",
+            bravery: "4",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436785446667-NcDpMDUcaORxabkp.jpg",
            options: [],
-           attacks: [this.attacks.doomDiverCatapultDivinGrot],
+           abilities: [this.abilities.doomDiverCatapultGrotWarArtillery, this.abilities.doomDiverCatapultGrotGuidedMissile, this.abilities.doomDiverCatapultOiTubbyYouReNext],
+           attacks: [this.attacks.doomDiverCatapultCrewSImprovisedWeapons],
            isArtillery: (ws: WarscrollInterface) => true,
        },
        grotRockLobber: {
             id: "grotRockLobber",
             model: this.models.grotRockLobber,
-            description: undefined,
+            description: "A Grot Rock Lobber consists of a catapult war machine and a unit of 4 Grot Crew, who can fight foes in melee using Improvised Weapons (although they’d rather shoot the foe before they get that close). The catapult can hurl Big Rocks across the battlefield to crush the enemy into bloody smears.",
             flavor: undefined,
             factions: [this.factions.gitmob],
             size: 1,
             maxSize: 1,
             points: 100,
             maxPoints: 0,
-            keywords: ["DESTRUCTION", "WAR MACHINE", "GROT ROCK LOBBER", "GITMOB"],
-            wounds: "5",
-            move: "✹",
-            save: "4",
-            bravery: "0",
+            keywords: ["DESTRUCTION", "GROT", "GITMOB", "CREW"],
+            wounds: "1",
+            move: "5",
+            save: "6",
+            bravery: "4",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436785394326-ShvwCdcX95jUQOqo.jpg",
            options: [],
-           attacks: [this.attacks.grotRockLobberBigRock],
+           abilities: [this.abilities.grotRockLobberGrotWarArtillery, this.abilities.grotRockLobberFlattenTheLotOfEm, this.abilities.grotRockLobberLoadItAgain],
+           attacks: [this.attacks.grotRockLobberCrewSImprovisedWeapons],
            isArtillery: (ws: WarscrollInterface) => true,
        },
        grotWarboss: {
@@ -44614,6 +50093,7 @@ Slann Wizards know the Summon Starpriest spell, in addition to any others they k
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436785586284-sBVkCZ9Ih4Z2hTjU.jpg",
            options: [],
            abilities: [this.abilities.grotWarbossGitShield, this.abilities.grotWarbossMoonCuttas, this.abilities.grotWarbossDeadTricksyOrJustLucky, this.abilities.grotWarbossDownInOne],
+           commandAbilities: [this.abilities.grotWarbossIMDaBossNowStabEmGood],
            attacks: [this.attacks.grotWarbossMoonProdder, this.attacks.grotWarbossMoonProdder, this.attacks.grotWarbossMoonCutta, this.attacks.grotWarbossMoonSlicer, this.attacks.grotWarbossGiantSquigSGapingMaw],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -44635,6 +50115,7 @@ Slann Wizards know the Summon Starpriest spell, in addition to any others they k
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436785641128-ZcJowKlk0bizjQQC.jpg",
            options: [],
            abilities: [this.abilities.grotWarbossOnGreatCaveSquigGitShield, this.abilities.grotWarbossOnGreatCaveSquigSupremeBounder],
+           commandAbilities: [this.abilities.grotWarbossOnGreatCaveSquigEvenMoreBoingy],
            attacks: [this.attacks.grotWarbossOnGreatCaveSquigMoonCutta, this.attacks.grotWarbossOnGreatCaveSquigMoonclanStabba, this.attacks.grotWarbossOnGreatCaveSquigFangFilledGob],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -44798,6 +50279,7 @@ Slann Wizards know the Summon Starpriest spell, in addition to any others they k
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436785979528-oeAkoDtRyZoeyMJ5.jpg",
            options: [],
            abilities: [this.abilities.grotBigBossOnGiganticSpiderBossShield, this.abilities.grotBigBossOnGiganticSpiderSpiderVenom, this.abilities.grotBigBossOnGiganticSpiderWallCrawler],
+           commandAbilities: [this.abilities.grotBigBossOnGiganticSpiderBlessingOfTheSpiderGod],
            attacks: [this.attacks.grotBigBossOnGiganticSpiderSwampspear, this.attacks.grotBigBossOnGiganticSpiderGiganticSpiderSFangs],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -44980,6 +50462,7 @@ Slann Wizards know the Summon Starpriest spell, in addition to any others they k
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436782732769-r2msCufhcjND2ilc.jpg",
            options: [],
            abilities: [this.abilities.tyrantBigName, this.abilities.tyrantClubEmThenClubEmAgain, this.abilities.tyrantGutgouger],
+           commandAbilities: [this.abilities.tyrantBullyOfTheFirstDegree],
            attacks: [this.attacks.tyrantOgorPistols, this.attacks.tyrantClubBasherOrSlicer, this.attacks.tyrantMassiveOgorClub, this.attacks.tyrantGreatGutgouger],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -45231,6 +50714,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1453976926661-CByKiwRF8yZZarkO.jpg",
            options: [],
            abilities: [this.abilities.chaosLordOnManticoreMarkOfChaos, this.abilities.chaosLordOnManticoreChaosRuneshield, this.abilities.chaosLordOnManticoreDaggerfist, this.abilities.chaosLordOnManticoreChaosLance, this.abilities.chaosLordOnManticoreTerritorialPredator, this.abilities.chaosLordOnManticoreFly],
+           commandAbilities: [this.abilities.chaosLordOnManticoreIronWilledOverlord],
            attacks: [this.attacks.chaosLordOnManticoreDaemonBlade, this.attacks.chaosLordOnManticoreChaosLance, this.attacks.chaosLordOnManticoreChaosFlail, this.attacks.chaosLordOnManticoreManticoreSClawsAndJaws, this.attacks.chaosLordOnManticoreManticoreSLashingTail],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -45315,6 +50799,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436962550703-KamWxLviGfpPKlvE.jpg",
            options: [],
            abilities: [this.abilities.lordOfChaosGloryOrDamnation, this.abilities.lordOfChaosMarkOfChaos, this.abilities.lordOfChaosReaperblade],
+           commandAbilities: [this.abilities.lordOfChaosAidedByTheGods],
            attacks: [this.attacks.lordOfChaosDaemonPossessedReaperblade, this.attacks.lordOfChaosChaosSword],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -45336,6 +50821,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1453977341598-wJYpNfnh3YnPlnSE.jpg",
            options: [],
            abilities: [this.abilities.chaosLordOnDaemonicMountEyeOfTheGods, this.abilities.chaosLordOnDaemonicMountMarkOfChaos, this.abilities.chaosLordOnDaemonicMountChaosRuneshield],
+           commandAbilities: [this.abilities.chaosLordOnDaemonicMountTheKnightsOfChaos],
            attacks: [this.attacks.chaosLordOnDaemonicMountCursedWarhammer, this.attacks.chaosLordOnDaemonicMountDaemonicMountSMightyHooves],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -45439,7 +50925,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1453977785172-3kTdzwZTC8a1tLi9.jpg",
            options: [],
            abilities: [this.abilities.chaosChariotsDonTSpareTheLash, this.abilities.chaosChariotsMarkOfChaos, this.abilities.chaosChariotsSwiftDeath, this.abilities.chaosChariotsExaltedCharioteer],
-           attacks: [this.attacks.chaosChariotsLashingWhip, this.attacks.chaosChariotsChaosGreatblade, this.attacks.chaosChariotsChaosWarFlail],
+           attacks: [this.attacks.chaosChariotsLashingWhip, this.attacks.chaosChariotsChaosGreatblade, this.attacks.chaosChariotsChaosWarFlail, this.attacks.chaosChariotsWarSteedsRoughshodHooves],
        },
        chaosGorebeastChariots: {
             id: "chaosGorebeastChariots",
@@ -45539,6 +51025,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1453982214817-3IUMftpPGVUqY3Ay.jpg",
            options: [],
            abilities: [this.abilities.keeperOfSecretsDarkTemptations, this.abilities.keeperOfSecretsDelicatePrecision, this.abilities.keeperOfSecretsCacophonicChoir, this.abilities.keeperOfSecretsSummonKeeperOfSecrets],
+           commandAbilities: [this.abilities.keeperOfSecretsExcessOfViolence],
            attacks: [this.attacks.keeperOfSecretsRazorSharpClaws, this.attacks.keeperOfSecretsElegantGreatblade],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Keeper of Secrets is a wizard. It can cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cacophonic Choir spells.\
@@ -45666,6 +51153,7 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436964213702-blAID9XfTw5R60pn.jpg",
            options: [],
            abilities: [this.abilities.lordOfSlaaneshOnDaemonicMountChaosRuneshield, this.abilities.lordOfSlaaneshOnDaemonicMountLordOfForbiddenPleasure],
+           commandAbilities: [this.abilities.lordOfSlaaneshOnDaemonicMountHellishSwiftness],
            attacks: [this.attacks.lordOfSlaaneshOnDaemonicMountQuicksilverGlaive, this.attacks.lordOfSlaaneshOnDaemonicMountDaemonicMountSPoisonedTongue],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -45687,6 +51175,7 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463488531280-uiux7uGnILGkt5mS.jpg",
            options: [],
            abilities: [this.abilities.chaosLordOfSlaaneshChaosRuneshield, this.abilities.chaosLordOfSlaaneshStriveForPerfection],
+           commandAbilities: [this.abilities.chaosLordOfSlaaneshLordOfExcess],
            attacks: [this.attacks.chaosLordOfSlaaneshQuicksilverSword],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -45890,6 +51379,7 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436010771107-i6zMvQBsb5IuORx7.jpg",
            options: [],
            abilities: [this.abilities.beastlordDualAxes, this.abilities.beastlordBrayshield, this.abilities.beastlordHatredOfHeroes],
+           commandAbilities: [this.abilities.beastlordGrislyTrophy],
            attacks: [this.attacks.beastlordManRipperAxe, this.attacks.beastlordManRenderGreatAxe],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -45964,8 +51454,8 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             factions: [this.factions.brayherd],
             size: 10,
             maxSize: 30,
-            points: 140,
-            maxPoints: 360,
+            points: 120,
+            maxPoints: 300,
             keywords: ["CHAOS", "GOR", "BRAYHERD", "BESTIGORS"],
             wounds: "1",
             move: "6",
@@ -45984,8 +51474,8 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             factions: [this.factions.brayherd],
             size: 10,
             maxSize: 40,
-            points: 100,
-            maxPoints: 360,
+            points: 80,
+            maxPoints: 0,
             keywords: ["CHAOS", "UNGOR", "BRAYHERD", "UNGOR RAIDERS"],
             wounds: "1",
             move: "6",
@@ -46034,6 +51524,7 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436019206772-fcfIDGCpir3myzTb.jpg",
            options: [],
            abilities: [this.abilities.doombullBloodgreed, this.abilities.doombullSlaughterStorm, this.abilities.doombullBullshield],
+           commandAbilities: [this.abilities.doombullSlaughtererSCall],
            attacks: [this.attacks.doombullDoombullAxe, this.attacks.doombullDoombullGreatAxe],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -46102,12 +51593,12 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             model: this.models.centigors,
             description: "A unit of Centigors has 5 or more models. Centigors bear Centigor Spears and carry Beastbucklers.",
             flavor: undefined,
-            factions: [this.factions.chaos],
+            factions: [this.factions.monstersOfChaos],
             size: 5,
             maxSize: 20,
             points: 80,
             maxPoints: 0,
-            keywords: ["CHAOS", "CENTIGORS"],
+            keywords: ["CHAOS", "CENTIGORS", "MONSTERS OF CHAOS"],
             wounds: "2",
             move: "12",
             save: "5",
@@ -46122,12 +51613,12 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             model: this.models.razorgors,
             description: "A unit of Razorgors has any number of models. They attack with gore‑encrusted Tusks and Hooves.",
             flavor: undefined,
-            factions: [this.factions.chaos],
+            factions: [this.factions.monstersOfChaos],
             size: 1,
             maxSize: 6,
             points: 60,
             maxPoints: 0,
-            keywords: ["CHAOS", "RAZORGORS"],
+            keywords: ["CHAOS", "RAZORGORS", "MONSTERS OF CHAOS"],
             wounds: "4",
             move: "10",
             save: "5",
@@ -46142,12 +51633,12 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             model: this.models.chaosWarhounds,
             description: "A unit of Chaos Warhounds has 5 or more models. They attack with fearsome Slavering Jaws.",
             flavor: undefined,
-            factions: [this.factions.chaos],
+            factions: [this.factions.monstersOfChaos],
             size: 10,
             maxSize: 30,
             points: 80,
             maxPoints: 210,
-            keywords: ["CHAOS", "CHAOS WARHOUNDS"],
+            keywords: ["CHAOS", "CHAOS WARHOUNDS", "MONSTERS OF CHAOS"],
             wounds: "1",
             move: "10",
             save: "6",
@@ -46162,12 +51653,12 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             model: this.models.harpies,
             description: "A unit of Harpies has 5 or more models. They are armed with razor-sharp Claws and Fangs.",
             flavor: undefined,
-            factions: [this.factions.chaos],
+            factions: [this.factions.monstersOfChaos],
             size: 5,
             maxSize: 20,
             points: 60,
             maxPoints: 0,
-            keywords: ["CHAOS", "HARPIES"],
+            keywords: ["CHAOS", "HARPIES", "MONSTERS OF CHAOS"],
             wounds: "1",
             move: "16",
             save: "6",
@@ -46182,12 +51673,12 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             model: this.models.jabberslythe,
             description: "A Jabberslythe is a single model. It attacks its prey with its horrible Slythey Tongue, unstoppable Vorpal Claws, and crushing Spiked Tail.",
             flavor: undefined,
-            factions: [this.factions.chaos],
+            factions: [this.factions.monstersOfChaos],
             size: 1,
             maxSize: 1,
             points: 140,
             maxPoints: 0,
-            keywords: ["CHAOS", "MONSTER", "JABBERSLYTHE"],
+            keywords: ["CHAOS", "MONSTER", "JABBERSLYTHE", "MONSTERS OF CHAOS"],
             wounds: "10",
             move: this.damageTables.jabberslythe.columns[0],
             save: "5",
@@ -46202,12 +51693,12 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             model: this.models.chimera,
             description: "A Chimera is a single model. It attacks with its three heads – one Avian, one Draconic and one Leonine – as well as its Mauling Claws and Fiend Tail. A Chimera can also roar a Fiery Breath from its Draconic Head, immolating its prey.",
             flavor: undefined,
-            factions: [this.factions.chaos],
+            factions: [this.factions.monstersOfChaos],
             size: 1,
             maxSize: 1,
             points: 220,
             maxPoints: 0,
-            keywords: ["CHAOS", "MONSTER", "CHIMERA"],
+            keywords: ["CHAOS", "MONSTER", "CHIMERA", "MONSTERS OF CHAOS"],
             wounds: "12",
             move: "10",
             save: "5",
@@ -46222,12 +51713,12 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             model: this.models.slaughterbrute,
             description: "A Slaughterbrute is a single model. It tears its way through the enemy with a pair of Razor-tipped Claws and its Mighty Jaws. Some Slaughterbrutes also sport a set of Lesser Claws, rendering them even deadlier. Slaughterbrutes are typically bound by means of a lengthy ritual to the will of a mighty Chaos Champion, their minds and actions under the control of a warrior born.",
             flavor: undefined,
-            factions: [this.factions.chaos],
+            factions: [this.factions.monstersOfChaos],
             size: 1,
             maxSize: 1,
             points: 180,
             maxPoints: 0,
-            keywords: ["CHAOS", "MONSTERS OF CHAOS", "MONSTER", "SLAUGHTERBRUTE"],
+            keywords: ["CHAOS", "MONSTERS OF CHAOS", "MONSTER", "SLAUGHTERBRUTE", "MONSTERS OF CHAOS"],
             wounds: "12",
             move: this.damageTables.slaughterbrute.columns[0],
             save: "4",
@@ -46242,7 +51733,7 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             model: this.models.mutalithVortexBeast,
             description: "A Mutalith Vortex Beast is a single model. It attacks its prey with its massive Crushing Claws and its writhing Betentacled Maw. A roiling orb of Chaos magic rages above the Mutalith’s back, warping and twisting everything nearby.",
             flavor: undefined,
-            factions: [this.factions.chaos],
+            factions: [this.factions.monstersOfChaos],
             size: 1,
             maxSize: 1,
             points: 200,
@@ -46262,12 +51753,12 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             model: this.models.cockatrice,
             description: "A Cockatrice is a single model. It is a hideous creature that attacks its prey with its Vicious Beak and its clawed feet and tail, which are tipped with Sword-like Talons. However, its most dangerous attack is its Petrifying Gaze which can turn flesh into stone.",
             flavor: undefined,
-            factions: [this.factions.chaos],
+            factions: [this.factions.monstersOfChaos],
             size: 1,
             maxSize: 1,
             points: 100,
             maxPoints: 0,
-            keywords: ["CHAOS", "MONSTER", "COCKATRICE"],
+            keywords: ["CHAOS", "MONSTER", "COCKATRICE", "MONSTERS OF CHAOS"],
             wounds: "8",
             move: "12",
             save: "6",
@@ -46356,6 +51847,7 @@ Chaos Wizards know the Summon Keeper of Secrets spell, in addition to any others
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436951263528-l8pgnEKUB4PJpyxg.jpg",
            options: [],
            abilities: [this.abilities.greySeerWarpstoneTokens, this.abilities.greySeerVermintide],
+           commandAbilities: [this.abilities.greySeerUnderlingsWillNotFleeMustFightfight],
            attacks: [this.attacks.greySeerWarpstoneStaff],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Grey Seer is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Vermintide spells.",       },
@@ -46379,6 +51871,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436951202241-zeAxfpPmgUAkX9yl.jpg",
            options: [],
            abilities: [this.abilities.thanquolAndBoneripperWarpAmulet, this.abilities.thanquolAndBoneripperWarpfireProjectors, this.abilities.thanquolAndBoneripperWarpstoneAddiction, this.abilities.thanquolAndBoneripperScorch],
+           commandAbilities: [this.abilities.thanquolAndBoneripperBlessingsOfTheHornedRat],
            attacks: [this.attacks.thanquolAndBoneripperWarpfireProjectors, this.attacks.thanquolAndBoneripperStaffOfTheHornedRat, this.attacks.thanquolAndBoneripperWarpfireBraziers, this.attacks.thanquolAndBoneripperCrushingBlows],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Thanquol is a wizard. He can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Scorch spells. Thanquol also knows the spells of any Skaven Wizard that is within 13\" in the hero phase (but only whilst he remains within 13\" of that wizard).",       },
@@ -46400,6 +51893,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436951383368-PJVjCuI4aLztoRbk.jpg",
            options: [],
            abilities: [this.abilities.lordSkreechVerminkingTheThirteenHeadedOne, this.abilities.lordSkreechVerminkingTheDreadedThirteenthSpell],
+           commandAbilities: [this.abilities.lordSkreechVerminkingTheRatKing],
            attacks: [this.attacks.lordSkreechVerminkingPrehensileTails, this.attacks.lordSkreechVerminkingDoomGlaive, this.attacks.lordSkreechVerminkingPlaguereaper],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Lord Skreech Verminking is a wizard. He can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. He knows Arcane Bolt, Mystic Shield and the Dreaded Thirteenth Spell.",       },
@@ -46421,6 +51915,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439030759476-btkNt7jiYgvxkIqA.jpg",
            options: [],
            abilities: [this.abilities.screamingBellPushedIntoBattle, this.abilities.screamingBellWarpstoneBrazier, this.abilities.screamingBellPealOfDoom, this.abilities.screamingBellCracksCall],
+           commandAbilities: [this.abilities.screamingBellTheAltarOfTheHornedRat],
            attacks: [this.attacks.screamingBellWarpstoneStaff, this.attacks.screamingBellRatOgorSClaws, this.attacks.screamingBellRustyWheelsAndSpikes],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "The Grey Seer atop a Screaming Bell is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Cracks Call spells.",       },
@@ -46442,6 +51937,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436951546908-aRVd3NGdJhViOezA.jpg",
            options: [],
            abilities: [this.abilities.verminlordWarpseerScryOrb, this.abilities.verminlordWarpseerHowlingWarpgale],
+           commandAbilities: [this.abilities.verminlordWarpseerForthForthChildrenOfTheHornedRat],
            attacks: [this.attacks.verminlordWarpseerPrehensileTails, this.attacks.verminlordWarpseerDoomGlaive],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Verminlord Warpseer is a wizard. It can attempt to cast two different spells in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Howling Warpgale spells.",       },
@@ -46450,7 +51946,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.verminlordWarbringer,
             description: "A Verminlord Warbringer is a single model. It wields a Doom Glaive and Punch Dagger, and can lash out with its long Prehensile Tails.",
             flavor: undefined,
-            factions: [this.factions.masterclan, this.factions.verminus],
+            factions: [this.factions.masterclan, this.factions.clansVerminus],
             size: 1,
             maxSize: 1,
             points: 280,
@@ -46463,6 +51959,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436951443000-AFCPdA6pgMww3KT8.jpg",
            options: [],
            abilities: [this.abilities.verminlordWarbringerVerminousFury, this.abilities.verminlordWarbringerDeathFrenzy],
+           commandAbilities: [this.abilities.verminlordWarbringerTyrantsOfBattle],
            attacks: [this.attacks.verminlordWarbringerPrehensileTails, this.attacks.verminlordWarbringerDoomGlaive, this.attacks.verminlordWarbringerPunchDagger],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a wizard. It can cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Death Frenzy spells.",       },
@@ -46471,7 +51968,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.skavenWarlord,
             description: "A Skaven Warlord is a single model. Some Skaven Warlords enter battle wielding only a dreaded Warpforged Blade. Others prefer to fight with a pair of Barbed Blades, whilst yet others wield a War Halberd in one hand and a Barbed Blade in the other. Some Skaven Warlords also carry a Clanshield into battle.",
             flavor: undefined,
-            factions: [this.factions.verminus],
+            factions: [this.factions.clansVerminus],
             size: 1,
             maxSize: 1,
             points: 100,
@@ -46484,6 +51981,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436951718213-RB4NU9bLXeO2TpZK.jpg",
            options: [],
            abilities: [this.abilities.skavenWarlordStrikeAndScurryAway, this.abilities.skavenWarlordFlurryOfRustedSteel, this.abilities.skavenWarlordClanshield],
+           commandAbilities: [this.abilities.skavenWarlordGnashGnawOnTheirBones],
            attacks: [this.attacks.skavenWarlordWarpforgedBlade, this.attacks.skavenWarlordWarHalberd, this.attacks.skavenWarlordBarbedBlade],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -46492,7 +51990,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.stormvermin,
             description: "A unit of Stormvermin has 10 or more models. Units of Stormvermin are armed with Rusty Halberds. Some units of Stormvermin also carry Clanshields into battle.",
             flavor: undefined,
-            factions: [this.factions.verminus],
+            factions: [this.factions.clansVerminus],
             size: 10,
             maxSize: 30,
             points: 140,
@@ -46512,7 +52010,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.clanrats,
             description: "A unit of Clanrats has 10 or more models. Some units are armed with Rusty Spears, while others wield Rusty Blades. Many units also carry Clanshields.",
             flavor: undefined,
-            factions: [this.factions.verminus],
+            factions: [this.factions.clansVerminus],
             size: 20,
             maxSize: 40,
             points: 120,
@@ -46533,7 +52031,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.archWarlock,
             description: "An Arch-warlock is a single model. They carry deadly Stormcage Halberds, and can crush victims with their Piston Claws. Each Arch-warlock wears a mighty device of his own design known as an iron frame, into which is built a Warpfire Gauntlet which can be fired in emergencies.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 1,
             maxSize: 1,
             points: 140,
@@ -46554,7 +52052,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.warlockEngineer,
             description: "A Warlock Engineer is a single model. They wield Warlock-augmented Blades and carry Warplock Pistols. They are also equipped with backpacks used to accumulate Warp-power.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 1,
             maxSize: 1,
             points: 100,
@@ -46575,7 +52073,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.poisonedWindMortarWeaponTeam,
             description: "A Poisoned Wind Mortar Team is a single model consisting of two skaven carrying a Poisoned Wind Mortar that fires deadly, warpstone gas-filled orbs. The crew can also lash out with their Rusty Knives.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 1,
             maxSize: 1,
             points: 60,
@@ -46595,7 +52093,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.doomFlayerWeaponTeam,
             description: "A Doom-flayer Weapon Team is a single model consisting of a motorised iron ball of whirling blades crewed by two maniacal skaven who add to the general carnage with their Rusty Knives.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 1,
             maxSize: 1,
             points: 60,
@@ -46615,7 +52113,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.ratlingGunWeaponTeam,
             description: "A Ratling Gun Weapon Team is a single model that consists of a pair of bold (or reckless!) skaven carrying a large, multibarrelled gun that fires a clattering hail of warpstone bullets. The team can also lash out with their Rusty Knives.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 1,
             maxSize: 1,
             points: 80,
@@ -46635,7 +52133,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.warpfireThrowerWeaponTeam,
             description: "A Warpfire Thrower Weapon Team is a single model consisting of two skaven carrying a large vat of pressurised fuel and a nozzle that spews bursts of unnatural flame. The crew can also lash out with their Rusty Knives.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 1,
             maxSize: 1,
             points: 70,
@@ -46655,7 +52153,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.warpGrinderWeaponTeam,
             description: "A Warp-grinder Weapon Team is a single model consisting of two skaven carrying a warpstone-tipped drill and Rusty Knives.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 1,
             maxSize: 1,
             points: 80,
@@ -46675,7 +52173,7 @@ Boneripper can be equipped either with deadly Warpfire Projectors that burn a sw
             model: this.models.skryreAcolytes,
             description: "A unit of Skryre Acolytes has 5 or more models. Units of Skryre Acolytes wield Notched Knives and carry Poisoned Wind Globes which they hurl at their foes to choke them with deadly warpstone gas.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 5,
             maxSize: 30,
             points: 60,
@@ -46699,7 +52197,7 @@ Many Stormfiends are instead equipped with deadly ranged weapons. Some are fitte
 \
 Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can use the sheer bulk of these weapons to make Clubbing Blows in the combat phase. Stormfiends armed with Doom-flayer Gauntlets or Shock Gauntlets are protected by heavy plates of Warp-laced Armour to sustain them whilst they are tearing apart the foe.",
             flavor: undefined,
-            factions: [this.factions.clanMoulder, this.factions.clanSkryre],
+            factions: [this.factions.clansMoulder, this.factions.clansSkryre],
             size: 3,
             maxSize: 9,
             points: 290,
@@ -46719,7 +52217,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.warpLightningCannon,
             description: "A Warp Lightning Cannon is a single model consisting of a giant, warpstonepowered gun mounted on a ramshackle scaffold, crewed by a trio of Skryre skaven. The cannon’s power output is notoriously unpredictable, but when the crew get it working right it can shoot bolts of pure warp lightning that scour all caught in their path. The crew will defend their war machine with a variety of Tools and Knives.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 1,
             maxSize: 1,
             points: 180,
@@ -46740,7 +52238,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.doomwheel,
             description: "A Doomwheel is a single model. Each is crewed by a Warlock Engineer and their apprentice, while the device’s great wheel is powered by a scurrying, screeching Rat Horde. Both the crew and Rat Horde tear at the foe with their gnawing Teeth. The Doomwheel itself will mercilessly crush and skewer anything in its path with its Giant Wheel and Ram Spikes. Those that try and evade its bulk are zapped with bolts of Warp Lightning discharged from its crackling conductors.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 1,
             maxSize: 1,
             points: 120,
@@ -46760,7 +52258,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.warplockJezzails,
             description: "A unit of Warplock Jezzails has 3 or more models. Each model consists of a pair of skaven. One wields the Warplock Jezzail itself. The other carries a large Pavise (which provides cover as well as a rest for the long-barrelled gun), and a Rusty Blade with which to stab-stab any foes that come too close.",
             flavor: undefined,
-            factions: [this.factions.clanSkryre],
+            factions: [this.factions.clansSkryre],
             size: 3,
             maxSize: 12,
             points: 140,
@@ -46781,7 +52279,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.packmaster,
             description: "A Packmaster is a single model. Many wield a Herding Whip and Blade to keep the Moulder clans’ monsters under control, whilst others carry an aptly named Things-catcher alongside their trusty whip. A few Packmasters instead prefer the zapping power of a Shock-Prod, which packs a punch powerful enough to get the attention of any rampaging Rat Ogor. It is also quite common for a Packmaster to enter battle accompanied by a prized and vicious Wolf Rat.",
             flavor: undefined,
-            factions: [this.factions.clanMoulder],
+            factions: [this.factions.clansMoulder],
             size: 1,
             maxSize: 1,
             points: 60,
@@ -46802,7 +52300,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.giantRats,
             description: "A unit of Giant Rats has 5 or more models. They latch onto their victims with their Vicious Teeth before ripping off chunks of exposed flesh and tearing open jugular veins.",
             flavor: undefined,
-            factions: [this.factions.clanMoulder],
+            factions: [this.factions.clansMoulder],
             size: 10,
             maxSize: 40,
             points: 60,
@@ -46822,7 +52320,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.ratSwarms,
             description: "A unit of Rat Swarms has any number of models. Units of Rat Swarms attack with dozens upon dozens of Gnawing Teeth.",
             flavor: undefined,
-            factions: [this.factions.clanMoulder],
+            factions: [this.factions.clansMoulder],
             size: 2,
             maxSize: 8,
             points: 110,
@@ -46842,7 +52340,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.ratOgors,
             description: "A unit of Rat Ogors has 2 or more models. Rat Ogors fight with Tearing Claws, Blades and Fangs. Any Rat Ogor can be equipped with a Warpfire Gun, which is grafted onto one of their limbs.",
             flavor: undefined,
-            factions: [this.factions.clanMoulder],
+            factions: [this.factions.clansMoulder],
             size: 2,
             maxSize: 8,
             points: 100,
@@ -46862,7 +52360,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.hellPitAbomination,
             description: "A Hell Pit Abomination is a single model. Each of these hideous mutant creations attacks its prey with dozens of Gnashing Teeth and a multitude of Flailing Fists. Hell Pit Abominations are so large that they can also crush their foes beneath an Avalanche of Flesh. Some Master Moulders have driven Warpstone Spikes into Hell Pit Abominations, the substance giving off a fell aura that disturbs the flow of many magic users.",
             flavor: undefined,
-            factions: [this.factions.clanMoulder],
+            factions: [this.factions.clansMoulder],
             size: 1,
             maxSize: 1,
             points: 220,
@@ -46882,7 +52380,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.verminlordCorruptor,
             description: "A Verminlord Corruptor is a single model. It wields Plaguereapers, and can lash out with its long Prehensile Tail.",
             flavor: undefined,
-            factions: [this.factions.skavenPestilens],
+            factions: [this.factions.clansPestilens],
             size: 1,
             maxSize: 1,
             points: 220,
@@ -46895,6 +52393,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1457173986506-GOM79jqylqr1a0tI.jpg",
            options: [],
            abilities: [this.abilities.verminlordCorruptorPlaguereapers, this.abilities.verminlordCorruptorPlaguemaster, this.abilities.verminlordCorruptorPlague],
+           commandAbilities: [this.abilities.verminlordCorruptorGougeTearTheirEyes],
            attacks: [this.attacks.verminlordCorruptorPrehensileTail, this.attacks.verminlordCorruptorPlaguereapers],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Verminlord Corruptor is a wizard. It can attempt to cast two different spells in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague spells.",       },
@@ -46956,6 +52455,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436957540728-BTMmlhU9AWylv3S1.jpg",
            options: [],
            abilities: [this.abilities.royalWarsphinxThundercrushAttack, this.abilities.royalWarsphinxTheTombKingSCurse, this.abilities.royalWarsphinxSacredWarStatue],
+           commandAbilities: [this.abilities.royalWarsphinxWhoDaresDisturbMySlumber],
            attacks: [this.attacks.royalWarsphinxFieryRoar, this.attacks.royalWarsphinxStoneClawsAndTeeth, this.attacks.royalWarsphinxBladedTail, this.attacks.royalWarsphinxVenomSpikeTail, this.attacks.royalWarsphinxTombKingSGlaiveOfKings],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -47004,7 +52504,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.skavenAssassin,
             description: "A Skaven Assassin is a single model. These stealthy skaven have been trained in the art of delivering death unseen – in battle, they often conceal themselves in swarms of lesser skaven before striking at the opportune moment, repeatedly stabbing enemy leaders with highly toxic Weeping Blades or exotic Fighting Claws. Some Skaven Assassins hurl Poisoned Throwing Stars, slaying their target in a flurry or razor-sharp projectiles before fading back into the shadows.",
             flavor: undefined,
-            factions: [this.factions.eshin],
+            factions: [this.factions.clansEshin],
             size: 1,
             maxSize: 1,
             points: 100,
@@ -47025,7 +52525,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.verminlordDeceiver,
             description: "A Verminlord Deceiver is a single model. It wields a Warpstiletto and Doomstar, and can lash out with its long Prehensile Tails.",
             flavor: undefined,
-            factions: [this.factions.eshin],
+            factions: [this.factions.clansEshin],
             size: 1,
             maxSize: 1,
             points: 300,
@@ -47038,6 +52538,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436951507559-iT7ueGqQRx3egbBi.jpg",
            options: [],
            abilities: [this.abilities.verminlordDeceiverDoomstar, this.abilities.verminlordDeceiverShroudedInDarkness, this.abilities.verminlordDeceiverSkitterleap],
+           commandAbilities: [this.abilities.verminlordDeceiverLordOfAssassins],
            attacks: [this.attacks.verminlordDeceiverDoomstar, this.attacks.verminlordDeceiverPrehensileTails, this.attacks.verminlordDeceiverWarpstiletto],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "A Verminlord Deceiver is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Skitterleap spells.",       },
@@ -47046,7 +52547,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.nightRunners,
             description: "A unit of Night Runners has 10 or more models. They carry a selection of Throwing Stars and Slings, and are armed with an assortment of Stabbing Blades.",
             flavor: undefined,
-            factions: [this.factions.eshin],
+            factions: [this.factions.clansEshin],
             size: 10,
             maxSize: 40,
             points: 100,
@@ -47066,7 +52567,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             model: this.models.gutterRunners,
             description: "A unit of Gutter Runners has 3 or more models. They each carry a supply of Throwing Stars and are armed with Punch Daggers and Blades.",
             flavor: undefined,
-            factions: [this.factions.eshin],
+            factions: [this.factions.clansEshin],
             size: 5,
             maxSize: 20,
             points: 60,
@@ -47182,6 +52683,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436954936286-LkADbn6brn4g7bCI.jpg",
            options: [],
            abilities: [this.abilities.freeguildGeneralOnGriffonChargingLance, this.abilities.freeguildGeneralOnGriffonFreeguildShield, this.abilities.freeguildGeneralOnGriffonPiercingBloodroar, this.abilities.freeguildGeneralOnGriffonFly],
+           commandAbilities: [this.abilities.freeguildGeneralOnGriffonRousingBattleCry],
            attacks: [this.attacks.freeguildGeneralOnGriffonFreeguildLance, this.attacks.freeguildGeneralOnGriffonSigmariteRunesword, this.attacks.freeguildGeneralOnGriffonSigmariteGreathammer, this.attacks.freeguildGeneralOnGriffonGriffonSDeadlyBeak, this.attacks.freeguildGeneralOnGriffonGriffonSRazorClaws],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -47203,6 +52705,7 @@ Stormfiends armed with Ratling Cannons, Warpfire Projectors or Windlaunchers can
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436954887610-vCPzctAVeoJf96Cd.jpg",
            options: [],
            abilities: [this.abilities.freeguildGeneralStatelyWarBanner, this.abilities.freeguildGeneralChargingLance, this.abilities.freeguildGeneralFreeguildShield, this.abilities.freeguildGeneralWarhorse],
+           commandAbilities: [this.abilities.freeguildGeneralHoldTheLine],
            attacks: [this.attacks.freeguildGeneralPistol, this.attacks.freeguildGeneralSigmariteWeapon, this.attacks.freeguildGeneralGreatWeapon, this.attacks.freeguildGeneralFreeguildLance, this.attacks.freeguildGeneralWarhorseSSteelShodHooves],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -47559,20 +53062,20 @@ Jade: Lifesurge",       },
             model: this.models.helblasterVolleyGun,
             description: "A Helblaster Volley Gun consists of a lethal war machine that fires a Volley of Shots at the foe, and a unit of 3 Ironweld Crew. The Crew load and fire the Volley Gun and can defend it in melee using their Tools as improvised weapons.",
             flavor: undefined,
-            factions: [this.factions.order],
+            factions: [this.factions.ironweldArsenal],
             size: 1,
             maxSize: 1,
             points: 120,
             maxPoints: 0,
-            keywords: ["ORDER", "WAR MACHINE", "HELBLASTER VOLLEY GUN"],
-            wounds: "4",
-            move: "✹",
-            save: "4",
-            bravery: "0",
+            keywords: ["ORDER", "HUMAN", "IRONWELD ARSENAL", "CREW"],
+            wounds: "1",
+            move: "5",
+            save: "6",
+            bravery: "5",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436956084094-3tzeKB2NSz53eRrs.jpg",
            options: [],
            abilities: [this.abilities.helblasterVolleyGunPointBlank, this.abilities.helblasterVolleyGunCrewedArtillery, this.abilities.helblasterVolleyGunHelblasterVolley, this.abilities.helblasterVolleyGunWorkingLikeClockwork],
-           attacks: [this.attacks.helblasterVolleyGunVolleyOfShots],
+           attacks: [this.attacks.helblasterVolleyGunCrewSTools],
            isArtillery: (ws: WarscrollInterface) => true,
        },
        helstormRocketBattery: {
@@ -47580,20 +53083,20 @@ Jade: Lifesurge",       },
             model: this.models.helstormRocketBattery,
             description: "A Helstorm Rocket Battery consists of an artillery piece that launches wildly inaccurate but deadly Helstorm Rockets, and a unit of 3 Ironweld Crew who operate their war machine. The Crew can use their Tools as improvised weapons.",
             flavor: undefined,
-            factions: [this.factions.order],
+            factions: [this.factions.ironweldArsenal],
             size: 1,
             maxSize: 1,
             points: 180,
             maxPoints: 0,
-            keywords: ["ORDER", "WAR MACHINE", "HELSTORM ROCKET BATTERY"],
-            wounds: "4",
-            move: "✹",
-            save: "4",
-            bravery: "0",
+            keywords: ["ORDER", "HUMAN", "IRONWELD ARSENAL", "CREW"],
+            wounds: "1",
+            move: "5",
+            save: "6",
+            bravery: "5",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436956116342-gjCTjWkU9p1wcLMy.jpg",
            options: [],
            abilities: [this.abilities.helstormRocketBatteryCrewedArtillery, this.abilities.helstormRocketBatteryArcingOrdnance, this.abilities.helstormRocketBatteryRocketSalvo, this.abilities.helstormRocketBatteryIMeantToHitThatOneHonest],
-           attacks: [this.attacks.helstormRocketBatteryHelstormRocketSalvo],
+           attacks: [this.attacks.helstormRocketBatteryCrewSTools],
            isArtillery: (ws: WarscrollInterface) => true,
        },
        cannon: {
@@ -47601,20 +53104,20 @@ Jade: Lifesurge",       },
             model: this.models.cannon,
             description: "A Cannon consists of a war machine and a unit of 3 Duardin Crew. The war machine fires deadly explosive Cannon Shells into the enemy’s ranks and the Crew can defend their charge using their Tools as improvised weapons.",
             flavor: undefined,
-            factions: [this.factions.order],
+            factions: [this.factions.ironweldArsenal],
             size: 1,
             maxSize: 1,
             points: 160,
             maxPoints: 0,
-            keywords: ["ORDER", "WAR MACHINE", "CANNON"],
-            wounds: "4",
-            move: "✹",
-            save: "4",
-            bravery: "0",
+            keywords: ["ORDER", "DUARDIN", "IRONWELD ARSENAL", "CREW"],
+            wounds: "1",
+            move: "4",
+            save: "5",
+            bravery: "6",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436778013817-pJcvo9p9ufgaiiT7.jpg",
            options: [],
            abilities: [this.abilities.cannonDuardinArtillery, this.abilities.cannonExplosiveShells, this.abilities.cannonRuneOfAccuracy],
-           attacks: [this.attacks.cannonCannonShell],
+           attacks: [this.attacks.cannonCrewSTools],
            isArtillery: (ws: WarscrollInterface) => true,
        },
        organGun: {
@@ -47622,20 +53125,20 @@ Jade: Lifesurge",       },
             model: this.models.organGun,
             description: "An Organ Gun consists of a four-barrelled war machine that fires a lethal Barrage of Shots and a unit of 3 Duardin Crew equipped with Tools.",
             flavor: undefined,
-            factions: [this.factions.order],
+            factions: [this.factions.ironweldArsenal],
             size: 1,
             maxSize: 1,
             points: 120,
             maxPoints: 0,
-            keywords: ["ORDER", "WAR MACHINE", "ORGAN GUN"],
-            wounds: "4",
-            move: "✹",
-            save: "4",
-            bravery: "0",
+            keywords: ["ORDER", "DUARDIN", "IRONWELD ARSENAL", "CREW"],
+            wounds: "1",
+            move: "4",
+            save: "5",
+            bravery: "6",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436778073970-3FoBV7OdqkkC5SJW.jpg",
            options: [],
            abilities: [this.abilities.organGunDuardinArtillery, this.abilities.organGunOrganFire, this.abilities.organGunRuneOfForging],
-           attacks: [this.attacks.organGunBarrageOfShots],
+           attacks: [this.attacks.organGunCrewSTools],
            isArtillery: (ws: WarscrollInterface) => true,
        },
        steamTank: {
@@ -47716,6 +53219,7 @@ Jade: Lifesurge",       },
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436776911216-xSnwkQs98yLxQtfk.jpg",
            options: [],
            abilities: [this.abilities.wardenKingAncestorShield, this.abilities.wardenKingOathStone],
+           commandAbilities: [this.abilities.wardenKingAncestralGrudge],
            attacks: [this.attacks.wardenKingRuneWeapon],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48047,6 +53551,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436780184804-1F70KrLo130Q7TYd.jpg",
            options: [],
            abilities: [this.abilities.anointedOnFlamespyrePhoenixPhoenixReborn, this.abilities.anointedOnFlamespyrePhoenixWakeOfFire, this.abilities.anointedOnFlamespyrePhoenixAttunedToMagic, this.abilities.anointedOnFlamespyrePhoenixWitnessToDestiny, this.abilities.anointedOnFlamespyrePhoenixAnointed, this.abilities.anointedOnFlamespyrePhoenixFly],
+           commandAbilities: [this.abilities.anointedOnFlamespyrePhoenixCaptainOfThePhoenixGuard],
            attacks: [this.attacks.anointedOnFlamespyrePhoenixFlamingTalons, this.attacks.anointedOnFlamespyrePhoenixGreatPhoenixHalberd],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48088,6 +53593,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1489075575179-7CeYyIeuYiTvdqlV.jpg",
            options: [],
            abilities: [this.abilities.anointedOnFrostheartPhoenixBlizzardAura, this.abilities.anointedOnFrostheartPhoenixAttunedToMagic, this.abilities.anointedOnFrostheartPhoenixWitnessToDestiny, this.abilities.anointedOnFrostheartPhoenixAnointed, this.abilities.anointedOnFrostheartPhoenixFly],
+           commandAbilities: [this.abilities.anointedOnFrostheartPhoenixCaptainOfThePhoenixGuard],
            attacks: [this.attacks.anointedOnFrostheartPhoenixIceHardTalons, this.attacks.anointedOnFrostheartPhoenixGreatPhoenixHalberd],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48109,6 +53615,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436780028172-xwWrs3dXaswePeTE.jpg",
            options: [],
            abilities: [this.abilities.anointedWitnessToDestiny, this.abilities.anointedBlessingOfTheUrPhoenix],
+           commandAbilities: [this.abilities.anointedCaptainOfThePhoenixGuard],
            attacks: [this.attacks.anointedGreatPhoenixHalberd],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48192,6 +53699,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436778975763-mMgPOcd5XgCYUbLD.jpg",
            options: [],
            abilities: [this.abilities.dragonlordDragonLance, this.abilities.dragonlordEnchantedShield, this.abilities.dragonlordAelvenWarHorn, this.abilities.dragonlordDragonfire, this.abilities.dragonlordFly],
+           commandAbilities: [this.abilities.dragonlordLordOfDragons],
            attacks: [this.attacks.dragonlordReaverBow, this.attacks.dragonlordDragonLance, this.attacks.dragonlordDragonBlade, this.attacks.dragonlordDragonSClaws, this.attacks.dragonlordDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48213,6 +53721,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436778895822-ChE5Jlw4xlHwYMs3.jpg",
            options: [],
            abilities: [this.abilities.dragonNoblePhoenixBanner, this.abilities.dragonNobleStarLance, this.abilities.dragonNobleEnchantedShield, this.abilities.dragonNobleAelvenPurebred],
+           commandAbilities: [this.abilities.dragonNobleMightOfTheDragon],
            attacks: [this.attacks.dragonNobleReaverBow, this.attacks.dragonNoblePurebreedSIthilmarShodHooves, this.attacks.dragonNobleStarLance, this.attacks.dragonNobleEnchantedPolearm, this.attacks.dragonNobleStarblade],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48254,6 +53763,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436780585707-1srCbkURsfMmezkc.jpg",
            options: [],
            abilities: [this.abilities.skywardenEnchantedShield, this.abilities.skywardenSwifthawkPennant, this.abilities.skywardenWindrider, this.abilities.skywardenFleetOfWing, this.abilities.skywardenFly],
+           commandAbilities: [this.abilities.skywardenSwoopAndAttack],
            attacks: [this.attacks.skywardenZephyrTrident, this.attacks.skywardenSkywardenSIthilmarBlade, this.attacks.skywardenAgentSBlade, this.attacks.skywardenSwiftfeatherHawkSRakingTalons],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48335,6 +53845,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436775554017-XURaU1qWHk2fQCWX.jpg",
            options: [],
            abilities: [this.abilities.blackArkFleetmasterSeaDragonCloak, this.abilities.blackArkFleetmasterMurderousSwashbuckler],
+           commandAbilities: [this.abilities.blackArkFleetmasterAtThemYouCurs],
            attacks: [this.attacks.blackArkFleetmasterBlackArkCutlass, this.attacks.blackArkFleetmasterMurderHook],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48604,6 +54115,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436775126127-SVqGuuab8m2yj5Gl.jpg",
            options: [],
            abilities: [this.abilities.dreadlordOnBlackDragonNoxiousBreath, this.abilities.dreadlordOnBlackDragonThePriceOfFailure, this.abilities.dreadlordOnBlackDragonTyrantShield, this.abilities.dreadlordOnBlackDragonExileBlades, this.abilities.dreadlordOnBlackDragonLanceOfSpite, this.abilities.dreadlordOnBlackDragonFly],
+           commandAbilities: [this.abilities.dreadlordOnBlackDragonDoNotDisappointMe],
            attacks: [this.attacks.dreadlordOnBlackDragonRepeaterCrossbow, this.attacks.dreadlordOnBlackDragonExileBlade, this.attacks.dreadlordOnBlackDragonLanceOfSpite, this.attacks.dreadlordOnBlackDragonBlackDragonSClaws, this.attacks.dreadlordOnBlackDragonBlackDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48672,7 +54184,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.nomadPrince,
             description: "A Nomad Prince is a single model. He is armed with a Starlight Spear and a Deepwood Shield. Each is accompanied by a trusted hawk who can peck out the eyes of his foes with its Beak.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 1,
             maxSize: 1,
             points: 80,
@@ -48685,6 +54197,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458991497405-p4Gnsk1x7jaPCvci.jpg",
            options: [],
            abilities: [this.abilities.nomadPrinceEyeThief, this.abilities.nomadPrinceDeepwoodShield],
+           commandAbilities: [this.abilities.nomadPrinceLordOfTheDeepwoodHost],
            attacks: [this.attacks.nomadPrinceHuntingHawkSBeak, this.attacks.nomadPrinceStarlightSpear],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48693,7 +54206,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.spellweaver,
             description: "A Spellweaver is a single model. Some Spellweavers carry a Heartwood Staff, while others strike with Blows of Mystic Power.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 1,
             maxSize: 1,
             points: 100,
@@ -48714,7 +54227,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.waystrider,
             description: "A Waystrider is a single model armed with a double-handed Starlight Greatblade that can bisect a warrior with a single swing. Waystriders also go to war with a magical Longbow to shoot down any who try to escape.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 1,
             maxSize: 1,
             points: 80,
@@ -48727,6 +54240,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458991717671-2m1IHglVltIoy7ly.jpg",
            options: [],
            abilities: [this.abilities.waystriderHeartseekerArrow],
+           commandAbilities: [this.abilities.waystriderBoldestOfTheBold],
            attacks: [this.attacks.waystriderLongbow, this.attacks.waystriderStarlightGreatblade],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48735,7 +54249,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.waywatcher,
             description: "A Waywatcher is a single model. Such is his skill with his Waystalker Bow that he can fire either Fast Shots or Precise Shots to deadly effect. He also carries a Waystalker Blade with which to finish off his prey.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 1,
             maxSize: 1,
             points: 120,
@@ -48748,6 +54262,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436968431625-fG6vlnzFzOH7P2iQ.jpg",
            options: [],
            abilities: [this.abilities.waywatcherInvisibleHunter, this.abilities.waywatcherHawkEyedArcher, this.abilities.waywatcherSolitaryMarksman],
+           commandAbilities: [this.abilities.waywatcherSeeButDoNotBeSeen],
            attacks: [this.attacks.waywatcherWaystalkerBow, this.attacks.waywatcherWaystalkerBlade],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48756,7 +54271,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.wayfinder,
             description: "A Wayfinder is a single model. These extraordinary archers each carry a lethal Hail of Doom Arrow, as well as a small Kindred Blade for defence in melee, and they are accompanied by a Hunting Falcon which attacks their enemies with its Beak.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 1,
             maxSize: 1,
             points: 100,
@@ -48769,6 +54284,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458993285312-oqEUn1TutAQ06dPD.jpg",
            options: [],
            abilities: [this.abilities.wayfinderHailOfDoomArrow],
+           commandAbilities: [this.abilities.wayfinderBravestOfTheBrave],
            attacks: [this.attacks.wayfinderHuntingFalconSBeak, this.attacks.wayfinderGreatbow, this.attacks.wayfinderKindredBlade],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -48777,7 +54293,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.gladeGuard,
             description: "A unit of Glade Guard has 10 or more models. They are armed with Glade Blades and loose deadly volleys of arrows from their Longbows.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 10,
             maxSize: 30,
             points: 120,
@@ -48798,7 +54314,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.wildwoodRangers,
             description: "A unit of Wildwood Rangers has 5 or more models. They fight with elegantly crafted Rangers’ Draichs.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 10,
             maxSize: 30,
             points: 140,
@@ -48818,7 +54334,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.eternalGuard,
             description: "A unit of Eternal Guard has 10 or more models. They fight with long and elegant Spear-staves. Some units of Eternal Guard also carry Glade Shields.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 10,
             maxSize: 30,
             points: 70,
@@ -48838,7 +54354,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.sistersOfTheThorn,
             description: "A unit of Sisters of the Thorn has 5 or more models. They carry Deepwood Coven Staffs and hurl Blackbriar Javelins from the backs of their Fey Steeds. These graceful creatures lash out with their Antlers and Thrashing Hooves.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 5,
             maxSize: 20,
             points: 220,
@@ -48858,7 +54374,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.sistersOfTheWatch,
             description: "A unit of Sisters of the Watch has 5 or more models. They carry Watch Bows which fire enchanted arrows that burn with a magical flame. Sisters of the Watch also wield Ithilmar Swords.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 10,
             maxSize: 30,
             points: 180,
@@ -48878,7 +54394,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.wildRiders,
             description: "A unit of Wild Riders has 5 or more models. Wild Riders ride down their foes with Hunting Spears. They ride mystical Steeds that lash out with their Horns and Hooves.",
             flavor: undefined,
-            factions: [this.factions.wanderer],
+            factions: [this.factions.wanderers],
             size: 5,
             maxSize: 20,
             points: 120,
@@ -48926,7 +54442,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             maxPoints: 0,
             keywords: ["ORDER", "AELF", "GREAT EAGLE", "HERO", "GLADE LORD"],
             wounds: "7",
-            move: "016",
+            move: "16",
             save: "4",
             bravery: "8",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436967990204-aWCPjKOBi3vJB8Ym.jpg",
@@ -48947,7 +54463,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             maxPoints: 0,
             keywords: ["ORDER", "AELF", "HERO", "GLADE LORD"],
             wounds: "7",
-            move: "010",
+            move: "10",
             save: "4",
             bravery: "7",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436968024897-Rw7tKJe4OG2UnW5I.jpg",
@@ -49214,7 +54730,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             maxPoints: 0,
             keywords: ["CHAOS", "MORTAL", "HERO", "TOTEM", "EXALTED HERO WITH BATTLE STANDARD"],
             wounds: "5",
-            move: "05",
+            move: "5",
             save: "4",
             bravery: "7",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436962793452-cxaJTNJZjXdq6WJG.jpg",
@@ -49235,7 +54751,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             maxPoints: 0,
             keywords: ["CHAOS", "MORTAL", "FORSAKEN"],
             wounds: "2",
-            move: "05",
+            move: "5",
             save: "4",
             bravery: "7",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436963013838-559Pstl9T2KkQvtx.jpg",
@@ -49301,6 +54817,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436964499481-mWqwxrZEeiFGOyrr.jpg",
            options: [],
            abilities: [this.abilities.troggothKingMutantRegeneration, this.abilities.troggothKingFerociousRetinue],
+           commandAbilities: [this.abilities.troggothKingLordOfTheMonstrousHost],
            attacks: [this.attacks.troggothKingCopiousVomit, this.attacks.troggothKingEnormousClub],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -49568,6 +55085,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436782652793-MeQRPbVOKc5IRsNT.jpg",
            options: [],
            abilities: [this.abilities.overtyrantTooRichToWalk, this.abilities.overtyrantOvertyrantSCrown],
+           commandAbilities: [this.abilities.overtyrantEveryoneHasTheirPrice],
            attacks: [this.attacks.overtyrantJewelledSceptre],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -49747,15 +55265,15 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             maxSize: 1,
             points: 120,
             maxPoints: 0,
-            keywords: ["ORDER", "WAR MACHINE", "HIGHBORN REPEATER BOLT THROWER"],
-            wounds: "4",
-            move: "✹",
+            keywords: ["ORDER", "AELF", "HIGHBORN", "CREW"],
+            wounds: "1",
+            move: "6",
             save: "5",
-            bravery: "0",
+            bravery: "6",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436779650138-Otp6kAwk7SxsHEMa.jpg",
            options: [],
            abilities: [this.abilities.highbornRepeaterBoltThrowerCrewedWarMachine, this.abilities.highbornRepeaterBoltThrowerBoltSelection],
-           attacks: [this.attacks.highbornRepeaterBoltThrowerIthilmarBolt, this.attacks.highbornRepeaterBoltThrowerRepeatingBolts],
+           attacks: [this.attacks.highbornRepeaterBoltThrowerIthilmarBlade],
            isArtillery: (ws: WarscrollInterface) => true,
        },
        greatEaglesac8c81fc4acd43d48e81D5b90ed31923: {
@@ -49796,6 +55314,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436780535017-bJECBhVoIzyKjEwj.jpg",
            options: [],
            abilities: [this.abilities.seawardenOnFootEnchantedShield, this.abilities.seawardenOnFootSeaDrakePennant],
+           commandAbilities: [this.abilities.seawardenOnFootStandFast],
            attacks: [this.attacks.seawardenOnFootZephyrTrident, this.attacks.seawardenOnFootIthilmarBlade],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -49859,6 +55378,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1502971050669-irJ33lKdkizatrQw.jpg",
            options: [],
            abilities: [this.abilities.kingOnHippogryphRegalCrown, this.abilities.kingOnHippogryphLionShield, this.abilities.kingOnHippogryphSwordOfTheKing, this.abilities.kingOnHippogryphChampionOfThePeople, this.abilities.kingOnHippogryphFly],
+           commandAbilities: [this.abilities.kingOnHippogryphKingOfTheRealm],
            attacks: [this.attacks.kingOnHippogryphSwordOfTheKing, this.attacks.kingOnHippogryphHippogryphSTalons, this.attacks.kingOnHippogryphHippogryhSRazorSharpBeak],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -49922,6 +55442,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436631257325-Ijxh18RzTfPdj7wR.jpg",
            options: [this.options.bretonnianLordPegasus],
            abilities: [this.abilities.bretonnianLordDragonbane, this.abilities.bretonnianLordDucalShield, this.abilities.bretonnianLordFly],
+           commandAbilities: [this.abilities.bretonnianLordLordOfTheRealm],
            attacks: [this.attacks.bretonnianLordDucalSwordAndDragonbaneLance, this.attacks.bretonnianLordSteedSHooves],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -50396,6 +55917,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436956786070-hlz56OepnUpkcEDI.jpg",
            options: [],
            abilities: [this.abilities.tombKingOnExaltedChariotCrownOfTheDesertKingdoms, this.abilities.tombKingOnExaltedChariotExaltedChariot, this.abilities.tombKingOnExaltedChariotIncantationOfTheDesertWind, this.abilities.tombKingOnExaltedChariotScarabAmulet, this.abilities.tombKingOnExaltedChariotAncientCurse],
+           commandAbilities: [this.abilities.tombKingOnExaltedChariotAndHeDidSayWarAndTheWorldDidTremble],
            attacks: [this.attacks.tombKingOnExaltedChariotBlessedBlade, this.attacks.tombKingOnExaltedChariotSteedsThunderingHooves],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -50417,6 +55939,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436956845836-OZxnTTOI290A4DzZ.jpg",
            options: [],
            abilities: [this.abilities.tombQueenTheTombQueenSCurse, this.abilities.tombQueenSupernaturalSpeed],
+           commandAbilities: [this.abilities.tombQueenBlessingOfAccuracy],
            attacks: [this.attacks.tombQueenVenomStaff, this.attacks.tombQueenVenomStaff],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -50438,6 +55961,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436956907873-Gr3J7iDQcDSeTcVO.jpg",
            options: [],
            abilities: [this.abilities.tombKingTheTombKingSCurse, this.abilities.tombKingRoyalTombShield],
+           commandAbilities: [this.abilities.tombKingMyWillBeDone],
            attacks: [this.attacks.tombKingDynasticBlade, this.attacks.tombKingMonarchSGreatBlade],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -50459,6 +55983,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436956980668-neZut4tZa1eh1uVb.jpg",
            options: [],
            abilities: [this.abilities.tombKingInRoyalChariotTheTombKingSCurse, this.abilities.tombKingInRoyalChariotRoyalChariot],
+           commandAbilities: [this.abilities.tombKingInRoyalChariotAndTheTombKingsRodeToWar],
            attacks: [this.attacks.tombKingInRoyalChariotDynasticBlade, this.attacks.tombKingInRoyalChariotSteedsThunderingHooves],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -50735,12 +56260,12 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.garrekSReavers,
             description: "Garrek’s Reavers has 5 models: Garrek Gorebeard (who bears a fearsome Blooddrinker Axe), Karsus the Chained (who swings a Chained Axe), Blooded Saek (who carries a Meatripper Axe), as well as Targor and Arnulf (who both wield Reaver Blades).",
             flavor: "Even amongst the pitiless hordes of the Goretide, the Bloodreavers led by Garrek Gorebeard are renowned for their cruelty and deranged ferocity. It is said that Garrek personally guts and skins any of his warriors who fail to secure a worthy trophy in each new battle.",
-            factions: [this.factions.khorne, this.factions.bladesOfKhorne],
+            factions: [this.factions.khorne],
             size: 5,
             maxSize: 5,
             points: 60,
             maxPoints: 0,
-            keywords: ["CHAOS", "MORTAL", "KHORNE", "BLOODBOUND", "BLOODREAVERS", "GARREK’S REAVERS"],
+            keywords: ["CHAOS", "MORTAL", "KHORNE", "BLOODBOUND", "BLOODREAVERS", "GARREK'S REAVERS"],
             wounds: "1",
             move: "6",
             save: "6",
@@ -50775,12 +56300,12 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.magoreSFiends,
             description: "Magore’s Fiends consists of 3 models: Magore Redhand (who wields a Daemonic Axe and can tear at his foes with his Belly Maw), Ghartok Flayskull and Zharkus the Bloodsighted (who both carry a Goreaxe and Gorefist).",
             flavor: "Magore Redhand leads his band of killers on an endless hunt for worthy skulls. In return for his prodigious offerings Khorne has blessed the Blood Warrior with several profane gifts, including the Flesh Hound Riptooth and a daemonic maw in his gut that can bite through sigmarite with ease.",
-            factions: [this.factions.khorne, this.factions.bladesOfKhorne],
+            factions: [this.factions.khorne],
             size: 3,
             maxSize: 3,
             points: 80,
             maxPoints: 0,
-            keywords: ["CHAOS", "MORTAL", "KHORNE", "BLOODBOUND", "BLOOD WARRIORS", "MAGORE’S FIENDS"],
+            keywords: ["CHAOS", "MORTAL", "KHORNE", "BLOODBOUND", "BLOOD WARRIORS", "MAGORE'S FIENDS"],
             wounds: "2",
             move: "5",
             save: "4",
@@ -50795,7 +56320,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.riptooth,
             description: "Riptooth is a single model. He tears his victims to pieces with his Blood-dark Claws.",
             flavor: "A daemonic tracker-beast known as a Flesh Hound, Riptooth was gifted to Magore Redhand in recognition of his offerings. The vicious beast’s blood-sense is so strong that he has led his new master to countless worthy kills in the years since.",
-            factions: [this.factions.khorne, this.factions.bladesOfKhorne],
+            factions: [this.factions.khorne],
             size: 1,
             maxSize: 1,
             points: 40,
@@ -50815,7 +56340,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.skritchSpiteclaw,
             description: "Skritch Spiteclaw is a single model. He is armed with a Wicked Halberd.",
             flavor: "Skritch Spiteclaw is a particularly cunning Skaven Warlord who has assembled an impressive horde of cutthroat vermin to serve his will. Though he prefers that his minions fight and die on his behalf, when cornered Skritch becomes a whirling dervish of spiked steel and ripping claws.",
-            factions: [this.factions.verminus],
+            factions: [this.factions.clansVerminus],
             size: 1,
             maxSize: 1,
             points: 120,
@@ -50828,6 +56353,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1518422411155-sVAr1eQMQymerfpN.jpg",
            options: [],
            abilities: [this.abilities.skritchSpiteclawStrikeAndScurryAway, this.abilities.skritchSpiteclawThereAreAlwaysMore],
+           commandAbilities: [this.abilities.skritchSpiteclawGnashGnawOnTheirBones],
            attacks: [this.attacks.skritchSpiteclawWickedHalberd],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -50836,7 +56362,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             model: this.models.spiteclawSSwarm,
             description: "Spiteclaw’s Swarm consists of 4 models: Krrk the Almost-trusted (who is armed with a Rusty Spear), a Lurking Skaven (who is armed with a pair of Punch Daggers), a Hungering Skaven (who is armed with a Rusty Flail and Clanshield) and a Festering Skaven (who is armed with a pair of Stabbing Blades).",
             flavor: "Warlord Skritch Spiteclaw entrusts the command and discipline of his verminous ranks to the sadistic taskmaster Krrk the Almost- trusted. Though for now he is content to spend skaven lives at his master’s command, the foul-spirited Krrk has his own ambitious schemes for power.",
-            factions: [this.factions.verminus],
+            factions: [this.factions.clansVerminus],
             size: 4,
             maxSize: 4,
             points: 30,
@@ -50889,6 +56415,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1518103078589-2EcEyiHYwNeOeUo2.jpg",
            options: [],
            abilities: [this.abilities.fjulGrimnirGrimnirSBlessing, this.abilities.fjulGrimnirStareDown, this.abilities.fjulGrimnirWeaponBreaker],
+           commandAbilities: [this.abilities.fjulGrimnirLodgeLeader],
            attacks: [this.attacks.fjulGrimnirLatchkeyGrandaxe],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -50970,6 +56497,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1529060649460-ISeQdRjLcbjLcIlX.jpg",
            options: [],
            abilities: [this.abilities.knightOfShroudsEthereal, this.abilities.knightOfShroudsStolenHours, this.abilities.knightOfShroudsMount, this.abilities.knightOfShroudsFly],
+           commandAbilities: [this.abilities.knightOfShroudsLordOfGheists],
            attacks: [this.attacks.knightOfShroudsSwordOfStolenHours, this.attacks.knightOfShroudsSteedSGhostlyHoovesAndTeeth],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -51094,6 +56622,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1529059850904-f4MHyav8ly5FjJRM.jpg",
            options: [],
            abilities: [this.abilities.lordArcanumAetherealStrike, this.abilities.lordArcanumCycleOfTheStorm, this.abilities.lordArcanumRideTheWindsAetheric, this.abilities.lordArcanumSpiritFlask, this.abilities.lordArcanumMount, this.abilities.lordArcanumHealingLight, this.abilities.lordArcanumPrimeElectrids],
+           commandAbilities: [this.abilities.lordArcanumSoulEnergy],
            attacks: [this.attacks.lordArcanumAetherstave, this.attacks.lordArcanumGryphChargerSRazorBeakAndClaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Healing Light spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",       },
@@ -51142,7 +56671,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             id: "castigators",
             model: this.models.castigators,
             description: "A unit of Castigators has any number of models, each armed with a Thunderhead Greatbow and a Heavy Stock.",
-            flavor: "Castigators are often employed against those ethereal enemies that can kill with but a touch. These shock troops fire their deadly projectiles over the heads of their brothersin- arms to detonate in blasts of cerulean force.",
+            flavor: "Castigators are often employed against those ethereal enemies that can kill with but a touch. These shock troops fire their deadly projectiles over the heads of their brothers-in-arms to detonate in blasts of cerulean force.",
             factions: [this.factions.stormcastEternal],
             size: 3,
             maxSize: 18,
@@ -51181,7 +56710,9 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
        celestarBallista: {
             id: "celestarBallista",
             model: this.models.celestarBallista,
-            description: "Celestar Ballista consists of a Ballista and a crew of two Sacristan Engineers. The Ballista is armed with Celestar Stormbolts, while the Sacristan Engineers are armed with Sigmarite Blades. The Ballista and its crew are treated as a single model, using the characteristics given above. The crew must remain within 1\" of the Ballista. The Ballista and its crew are treated as a single model, using the characteristics given above. The crew must remain within 1\" of the Ballista.",
+            description: "A Celestar Ballista consists of a Ballista and a crew of two Sacristan Engineers. The Ballista is armed with Celestar Stormbolts, while the Sacristan Engineers are armed with Sigmarite Blades.\
+\
+The Ballista and its crew are treated as a single model, using the characteristics given above. The crew must remain within 1\" of the Ballista.",
             flavor: "The Celestar Ballista fires bolts of blessed sigmarite, each imbued with a thunderbolt. On impact, these projectiles explode with devastating effect, sending chains of lightning leaping out to strike those nearby.",
             factions: [this.factions.stormcastEternal],
             size: 1,
@@ -51252,7 +56783,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             maxPoints: 0,
             keywords: ["CHAOS", "TZEENTCH", "MONSTER", "MUTALITH VORTEX BEAST"],
             wounds: "12",
-            move: "-1",
+            move: this.damageTables.mutalithVortexBeastOfTzeentch.columns[0],
             save: "4",
             bravery: "7",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492067771415-V4mZtgFcHfue8sIo.jpg",
@@ -51272,7 +56803,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             maxPoints: 0,
             keywords: ["CHAOS", "KHORNE", "MONSTER", "SLAUGHTERBRUTE"],
             wounds: "12",
-            move: "-1",
+            move: this.damageTables.slaughterbruteOfKhorne.columns[0],
             save: "4",
             bravery: "7",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492068154804-h2W9xyvDPVuVVvOB.jpg",
@@ -51298,6 +56829,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/b835ca76-ae19-48ca-860d-31e04bf8f7d6.jpg",
            options: [],
            abilities: [this.abilities.ladyOlynderEthereal, this.abilities.ladyOlynderFrightfulTouch, this.abilities.ladyOlynderGraveSandsOfTime, this.abilities.ladyOlynderLiftingTheVeil, this.abilities.ladyOlynderMortarchOfGrief, this.abilities.ladyOlynderWailOfTheDamned, this.abilities.ladyOlynderCompanions, this.abilities.ladyOlynderFly, this.abilities.ladyOlynderGriefStricken],
+           commandAbilities: [this.abilities.ladyOlynderNoRestForTheWicked],
            attacks: [this.attacks.ladyOlynderStaffOfMidnight, this.attacks.ladyOlynderBansheeHandmaidensSpectralClaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Lady Olynder is a Wizard. She can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Grief-stricken spells.",       },
@@ -51375,7 +56907,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             maxPoints: 0,
             keywords: ["DEATH", "MALIGNANT", "NIGHTHAUNT", "HERO", "DREADBLADE HARROW"],
             wounds: "5",
-            move: "012",
+            move: "12",
             save: "4",
             bravery: "10",
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/18a6f34d-5214-4409-8a1b-afb8dfac9ce5.jpg",
@@ -51462,6 +56994,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/0b7cb65f-1579-409f-8ea8-c60d61942e80.jpg",
            options: [],
            abilities: [this.abilities.aventisFirestrikeCometTrail, this.abilities.aventisFirestrikeCycleOfTheStorm, this.abilities.aventisFirestrikeMeteoricStrike, this.abilities.aventisFirestrikeRighteousIndignation, this.abilities.aventisFirestrikeSpiritFlask, this.abilities.aventisFirestrikeThunderheadCrown, this.abilities.aventisFirestrikeMount, this.abilities.aventisFirestrikeFly, this.abilities.aventisFirestrikePyroelectricBlast, this.abilities.aventisFirestrikePrimeElectrids],
+           commandAbilities: [this.abilities.aventisFirestrikeFieryOrator],
            attacks: [this.attacks.aventisFirestrikeStaffOfHammerhal, this.attacks.aventisFirestrikeHornsAndStampingHooves],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Aventis Firestrike is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Pyroelectric Blast spells. In addition, the Arcane Bolts that he unleashes are fuelled by Prime Electrids.",       },
@@ -51483,6 +57016,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2c7c22ab-adb8-4231-9565-14ad6d5f8b9b.jpg",
            options: [],
            abilities: [this.abilities.astreiaSolbrightCycleOfTheStorm, this.abilities.astreiaSolbrightSpiritFlask, this.abilities.astreiaSolbrightSupernaturalRoar, this.abilities.astreiaSolbrightThunderousPounce, this.abilities.astreiaSolbrightMount, this.abilities.astreiaSolbrightLightningPulse, this.abilities.astreiaSolbrightPrimeElectrids],
+           commandAbilities: [this.abilities.astreiaSolbrightSoulEnergyOfTheFirstHost],
            attacks: [this.attacks.astreiaSolbrightAetherstave, this.attacks.astreiaSolbrightMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "Astreia Solbright is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Lightning Pulse spells. In addition, the Arcane Bolts that she unleashes are fuelled by Prime Electrids.",       },
@@ -51504,6 +57038,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436978437672-jJKKCferuPxCJfzb.jpg",
            options: [],
            abilities: [this.abilities.vandusHammerhandHeldensen, this.abilities.vandusHammerhandIntolerableDamage, this.abilities.vandusHammerhandStormBreath, this.abilities.vandusHammerhandLordOfTheHammerhands, this.abilities.vandusHammerhandMount],
+           commandAbilities: [this.abilities.vandusHammerhandVengefulDetermination],
            attacks: [this.attacks.vandusHammerhandHeldensen, this.attacks.vandusHammerhandClawsAndFangs],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -51525,6 +57060,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1514970722763-Vxa2U4zPCkbu2WtQ.jpg",
            options: [],
            abilities: [this.abilities.gavrielSureheartInescapableVengeance, this.abilities.gavrielSureheartSigmariteThundershield],
+           commandAbilities: [this.abilities.gavrielSureheartOnceMoreForSigmarCharge],
            attacks: [this.attacks.gavrielSureheartStarboundBlade],
            isLeader: (ws: WarscrollInterface) => true,
        },
@@ -51546,6 +57082,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/dec42db1-c4ff-406e-993e-dd6e404c0528.jpg",
            options: [],
            abilities: [this.abilities.lordArcanumCometTrail, this.abilities.lordArcanumCycleOfTheStorm, this.abilities.lordArcanumMeteoricStrike, this.abilities.lordArcanumSpiritFlask, this.abilities.lordArcanumMount, this.abilities.lordArcanumFly, this.abilities.lordArcanumLightningOrb, this.abilities.lordArcanumPrimeElectrids],
+           commandAbilities: [this.abilities.lordArcanumSwiftOfWingLordArcanumsSurgeForwardOnTheirSwiftMountsUrgingTheirMagicallyAdeptComradesToEvenGreaterSpeeds],
            attacks: [this.attacks.lordArcanumAetherstave, this.attacks.lordArcanumHornsAndStampingHooves],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Lightning Orb spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",       },
@@ -51567,6 +57104,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/ad4fa538-402b-4d39-b04d-173a66065033.jpg",
            options: [],
            abilities: [this.abilities.lordArcanumCycleOfTheStorm, this.abilities.lordArcanumSpiritFlask, this.abilities.lordArcanumThunderclap, this.abilities.lordArcanumPrimeElectrids],
+           commandAbilities: [this.abilities.lordArcanumAethericManipulation],
            attacks: [this.attacks.lordArcanumAetherstave],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Thunderclap spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",       },
@@ -51588,6 +57126,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/758bc7fa-6563-4d47-8094-338611dac58b.jpg",
            options: [],
            abilities: [this.abilities.lordArcanumCycleOfTheStorm, this.abilities.lordArcanumSpiritFlask, this.abilities.lordArcanumSupernaturalRoar, this.abilities.lordArcanumThunderousPounce, this.abilities.lordArcanumMount, this.abilities.lordArcanumStormLance, this.abilities.lordArcanumPrimeElectrids],
+           commandAbilities: [this.abilities.lordArcanumPackAlpha],
            attacks: [this.attacks.lordArcanumAetherstave, this.attacks.lordArcanumMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Storm Lance spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",       },
@@ -51632,6 +57171,1597 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.evocatorsCelestialLightningArc, this.abilities.evocatorsSupernaturalRoar, this.abilities.evocatorsThunderousPounce, this.abilities.evocatorsMount, this.abilities.evocatorsEvocatorPrime, this.abilities.evocatorsEmpower],
            attacks: [this.attacks.evocatorsTempestBladeAndStormstave, this.attacks.evocatorsGrandstave, this.attacks.evocatorsMonstrousClaws],
            magicDescription: "This unit is a Wizard while it has 2 or more models. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Empower spell. It cannot attempt to cast any spells other than Empower, but any number of units of Evocators can attempt to cast Empower in the same hero phase.",       },
+       slambo: {
+            id: "slambo",
+            model: this.models.slambo,
+            description: "Slambo is a single model. He is armed with a pair of Chaos Axes which he uses to carve apart enemies at close quarters. He can also hurl them at cowardly foes who refuse to come close.",
+            flavor: undefined,
+            factions: [this.factions.slavesToDarkness],
+            size: 1,
+            maxSize: 1,
+            points: 80,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MORTAL", "SLAVES TO DARKNESS", "HERO", "EXALTED HERO OF CHAOS", "SLAMBO"],
+            wounds: "5",
+            move: "5",
+            save: "4",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491560783903-iEcbp7qlwzg7OWNd.jpg",
+           options: [],
+           abilities: [this.abilities.slamboLegendaryKiller, this.abilities.slamboGlorySeekingAxeman],
+           attacks: [this.attacks.slamboHurledChaosAxe, this.attacks.slamboChaosAxes],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       screamingSkullCatapult: {
+            id: "screamingSkullCatapult",
+            model: this.models.screamingSkullCatapult,
+            description: "A Screaming Skull Catapult consists of a catapult equipped with Screaming Skull ammunition and a unit of 3 Skeleton Crew, who can defend their war machine using their Tools as improvised weapons.",
+            flavor: undefined,
+            factions: [this.factions.tombKings],
+            size: 1,
+            maxSize: 1,
+            points: 160,
+            maxPoints: 0,
+            keywords: ["DEATH", "TOMB KINGS", "DESERT LEGIONS", "SKELETON", "CREW"],
+            wounds: "1",
+            move: "4",
+            save: "6",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436957655548-h6tdCvnARAF3lskC.jpg",
+           options: [],
+           abilities: [this.abilities.screamingSkullCatapultCrewedWarMachine, this.abilities.screamingSkullCatapultArcingSkulls, this.abilities.screamingSkullCatapultScreamingAmmunition, this.abilities.screamingSkullCatapultDeathlessOverseer, this.abilities.screamingSkullCatapultRaiseSkeletonCrew],
+           attacks: [this.attacks.screamingSkullCatapultCrewSTools],
+           isArtillery: (ws: WarscrollInterface) => true,
+           magicDescription: "Death Wizards know the Skeleton Crew spell, in addition to any other spells they know.",       },
+       greatcannon: {
+            id: "greatcannon",
+            model: this.models.greatcannon,
+            description: "A Greatcannon consists of a war machine that can hurl Cannon Balls into the enemy’s ranks, and a unit of 3 Crew that tend their charge and, if necessary, defend it using their Tools as improvised weapons.",
+            flavor: undefined,
+            factions: [this.factions.theEmpire],
+            size: 1,
+            maxSize: 1,
+            points: 180,
+            maxPoints: 0,
+            keywords: ["ORDER", "HUMAN", "CREW"],
+            wounds: "1",
+            move: "5",
+            save: "6",
+            bravery: "5",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1489998245817-U2TW8IHtIQICJrka.jpg",
+           options: [],
+           abilities: [this.abilities.greatcannonCrewedArtillery, this.abilities.greatcannonGrapeshot],
+           attacks: [this.attacks.greatcannonCrewSTools],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       fieldMortar: {
+            id: "fieldMortar",
+            model: this.models.fieldMortar,
+            description: "A Field Mortar consists of an artillery piece that fires Mortar Shells, and a unit of 3 Crew who load and fire their war machine. The Crew can, in desperate times, defend the Mortar using their Tools as improvised weapons.",
+            flavor: undefined,
+            factions: [this.factions.theEmpire],
+            size: 1,
+            maxSize: 1,
+            points: 140,
+            maxPoints: 0,
+            keywords: ["ORDER", "HUMAN", "CREW"],
+            wounds: "1",
+            move: "✹",
+            save: "6",
+            bravery: "5",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436956029260-MV1VhBAoEcCu7KeJ.jpg",
+           options: [],
+           abilities: [this.abilities.fieldMortarCrewedArtillery, this.abilities.fieldMortarArtilleryBarrage, this.abilities.fieldMortarHighExplosive],
+           attacks: [this.attacks.fieldMortarCrewSTools],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       hellcannon: {
+            id: "hellcannon",
+            model: this.models.hellcannon,
+            description: "A Hellcannon is a single model that is attended by a unit of 3 Chaos Dwarf Crew. It is a mighty, daemonforged war machine that launches gouts of Doomfire across the battlefield, and snatches the foe up into its Daemonic Maw. Its crew do their best to keep it under control, attacking any who come near with a variety of Improvised Weapons.",
+            flavor: undefined,
+            factions: [this.factions.warriorsOfChaos],
+            size: 1,
+            maxSize: 1,
+            points: 300,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DUARDIN", "CREW"],
+            wounds: "1",
+            move: "4",
+            save: "5",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436963307681-GcxWviMRXmOUAh5m.jpg",
+           options: [],
+           abilities: [this.abilities.hellcannonCagedFury, this.abilities.hellcannonDoomfire, this.abilities.hellcannonDaemonForgedCover],
+           attacks: [this.attacks.hellcannonCrewSImprovisedWeapons],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       duardinBoltThrower: {
+            id: "duardinBoltThrower",
+            model: this.models.duardinBoltThrower,
+            description: "A Duardin Bolt Thrower consists of a war machine that can fire Runic Bolts across the battlefield and a unit of 3 Duardin Crew, who are equipped with a variety of engineering and artillery Tools.",
+            flavor: undefined,
+            factions: [this.factions.dwarfs],
+            size: 1,
+            maxSize: 1,
+            points: 120,
+            maxPoints: 0,
+            keywords: ["ORDER", "DUARDIN", "CREW"],
+            wounds: "1",
+            move: "4",
+            save: "5",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436777980971-MBXAqVf43ncSKb0M.jpg",
+           options: [],
+           abilities: [this.abilities.duardinBoltThrowerDuardinArtillery, this.abilities.duardinBoltThrowerPenetratingShot, this.abilities.duardinBoltThrowerRuneOfSkewering],
+           attacks: [this.attacks.duardinBoltThrowerCrewSTools],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       flameCannon: {
+            id: "flameCannon",
+            model: this.models.flameCannon,
+            description: "A Flame Cannon consists of a single war machine that can belch a devastating Flame Burst, and a unit of 3 Duardin Crew equipped with Tools.",
+            flavor: undefined,
+            factions: [this.factions.dwarfs],
+            size: 1,
+            maxSize: 1,
+            points: 200,
+            maxPoints: 0,
+            keywords: ["ORDER", "DUARDIN", "CREW"],
+            wounds: "1",
+            move: "4",
+            save: "5",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436778041846-y1sqLAh5Vm8ERNjx.jpg",
+           options: [],
+           abilities: [this.abilities.flameCannonDuardinArtillery, this.abilities.flameCannonFlameBurst, this.abilities.flameCannonRuneOfBurning],
+           attacks: [this.attacks.flameCannonCrewSTools],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       grudgeThrower: {
+            id: "grudgeThrower",
+            model: this.models.grudgeThrower,
+            description: "A Grudge Thrower consists of a single catapult that launches rune-inscribed Grudge Rocks, and a unit of 3 Duardin Crew equipped with Tools.",
+            flavor: undefined,
+            factions: [this.factions.dwarfs],
+            size: 1,
+            maxSize: 1,
+            points: 180,
+            maxPoints: 0,
+            keywords: ["ORDER", "DUARDIN", "CREW"],
+            wounds: "1",
+            move: "4",
+            save: "5",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436778111086-zndEwWSRiECQNisb.jpg",
+           options: [],
+           abilities: [this.abilities.grudgeThrowerDuardinArtillery, this.abilities.grudgeThrowerLobbedShot, this.abilities.grudgeThrowerSettlingAGrudge, this.abilities.grudgeThrowerRuneOfShattering],
+           attacks: [this.attacks.grudgeThrowerCrewSTools],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       fieldTrebuchet: {
+            id: "fieldTrebuchet",
+            model: this.models.fieldTrebuchet,
+            description: "A Field Trebuchet consists of a Trebuchet and a unit of five crew. The Trebuchet can hurl Rocks and Masonry at the foe, and its crew defend themselves in close combat with a variety of Tools.",
+            flavor: undefined,
+            factions: [this.factions.bretonnia],
+            size: 1,
+            maxSize: 1,
+            points: 220,
+            maxPoints: 0,
+            keywords: ["ORDER", "HUMAN", "BRETONNIAN", "PEASANTRY", "CREW"],
+            wounds: "1",
+            move: "1",
+            save: "6",
+            bravery: "4",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436631797080-f36EhjcCOfpR7bLJ.jpg",
+           options: [],
+           abilities: [this.abilities.fieldTrebuchetHeavyArtillery, this.abilities.fieldTrebuchetArcingShot, this.abilities.fieldTrebuchetSeismicImpact],
+           attacks: [this.attacks.fieldTrebuchetCrewSTools],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       engineerOnMechanicalSteed: {
+            id: "engineerOnMechanicalSteed",
+            model: this.models.engineerOnMechanicalSteed,
+            description: "An Engineer on Mechanical Steed is a single model. These eccentric Engineers carry a favoured firearm into battle, either a trusted Handgun, a multibarrelled Repeater Handgun, a compact Grenade Launching Blunderbuss or an elegantly crafted Long Rifle. They ride atop Mechanical Steeds that stamp the foe to death in close quarters with their Steel Hooves.",
+            flavor: undefined,
+            factions: [this.factions.theEmpire],
+            size: 1,
+            maxSize: 1,
+            points: 80,
+            maxPoints: 0,
+            keywords: ["ORDER", "HUMAN", "HERO", "ENGINEER ON MECHANICAL STEED"],
+            wounds: "5",
+            move: "2D6",
+            save: "5",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436955948063-lY3DKXahrSaCbNLa.jpg",
+           options: [],
+           abilities: [this.abilities.engineerOnMechanicalSteedRangeFindingOptics, this.abilities.engineerOnMechanicalSteedClockworkCharge],
+           attacks: [this.attacks.engineerOnMechanicalSteedHandgun, this.attacks.engineerOnMechanicalSteedGrenadeLaunchingBlunderbuss, this.attacks.engineerOnMechanicalSteedRepeaterHandgun, this.attacks.engineerOnMechanicalSteedLongRifle, this.attacks.engineerOnMechanicalSteedMechanicalSteedSSteelHooves],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       tombSwarm: {
+            id: "tombSwarm",
+            model: this.models.tombSwarm,
+            description: "A Tomb Swarm can have any number of models. The creatures that make up the swarm attack with Bites and Stingers.",
+            flavor: undefined,
+            factions: [this.factions.tombKings],
+            size: 2,
+            maxSize: 8,
+            points: 80,
+            maxPoints: 0,
+            keywords: ["DEATH", "TOMB KINGS", "TOMB SWARM"],
+            wounds: "5",
+            move: "6",
+            save: "0",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1436957717964-iOTAtkIde3U3FhYH.jpg",
+           options: [],
+           abilities: [this.abilities.tombSwarmUndergroundScuttlers, this.abilities.tombSwarmHiddenAbodes],
+           attacks: [this.attacks.tombSwarmBitesAndStingers],
+       },
+       drazhoathTheAshen: {
+            id: "drazhoathTheAshen",
+            model: this.models.drazhoathTheAshen,
+            description: "Drazhoath the Ashen is a named character that is a single model. He is armed with the Graven Brazier.",
+            flavor: "A powerful warrior and mighty sorcerer-prophet of Hashut, Drazhoath the Ashen leads his warhost from the fore, riding into battle upon the Bale Taurus Cinderbreath to bring fire and ruin down upon the enemy.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 320,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "MONSTER", "HERO", "WIZARD", "DRAZHOATH THE ASHEN"],
+            wounds: "13",
+            move: this.damageTables.drazhoathTheAshen.columns[0],
+            save: "4",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.drazhoathTheAshenBlazingBody, this.abilities.drazhoathTheAshenBloodRage, this.abilities.drazhoathTheAshenHellshardAmulet, this.abilities.drazhoathTheAshenProphetOfAshAndFlame, this.abilities.drazhoathTheAshenMount, this.abilities.drazhoathTheAshenFlamesOfAzgorh],
+           commandAbilities: [this.abilities.drazhoathTheAshenLordOfTheBlackFortress],
+           attacks: [this.attacks.drazhoathTheAshenGoutsOfFlame, this.attacks.drazhoathTheAshenTheGravenBrazier, this.attacks.drazhoathTheAshenBrazenHornsAndTeeth, this.attacks.drazhoathTheAshenBurningHooves],
+           isLeader: (ws: WarscrollInterface) => true,
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Flames of Azgorh spells.",       },
+       daemonsmith: {
+            id: "daemonsmith",
+            model: this.models.daemonsmith,
+            description: "A Daemonsmith is a single model armed with one of the following weapon options: Blood of Hashut and Darkforged Weapon; or Blood of Hashut and Pyre Rune Staff.",
+            flavor: "Clad in suits of arcane armour saturated with infernal magic of their own creation, Daemonsmiths covet strength and power above all else, seeing other living creatures as chattel to be used and discarded according to their whims.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 100,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "HERO", "WIZARD", "DAEMONSMITH"],
+            wounds: "5",
+            move: "4",
+            save: "4",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.daemonsmithEnsorcelledArmour, this.abilities.daemonsmithBloodOfHashut, this.abilities.daemonsmithAshStorm],
+           attacks: [this.attacks.daemonsmithBloodOfHashut, this.attacks.daemonsmithDarkforgedWeapon, this.attacks.daemonsmithPyreRuneStaff],
+           isLeader: (ws: WarscrollInterface) => true,
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield, and Ash Storm spells.",       },
+       sharTorTheExecutioner: {
+            id: "sharTorTheExecutioner",
+            model: this.models.sharTorTheExecutioner,
+            description: "Shar’tor is a named character that is a single model. He is armed with the Darktide Axe and Crushing Hooves.",
+            flavor: "A malevolent warrior-priest of Hashut, Shar’tor is marked as the dark god’s favoured Ba’hal headsman. Adorned with the sacred mask of his patron, Shar’tor’s voice can stop the heart of the weak-willed or instil unbreakable loyalty in Hashut’s servants.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 220,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "BA'HAL", "LEGION OF AZGORH", "HERO", "SHAR'TOR THE EXECUTIONER"],
+            wounds: "8",
+            move: "7",
+            save: "4",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468694435209-qj5g23yNyohB9DN4.jpg",
+           options: [],
+           abilities: [this.abilities.sharTorTheExecutionerDarktideReaping, this.abilities.sharTorTheExecutionerTheMaskOfTheExecutioner, this.abilities.sharTorTheExecutionerTrampleAndGore],
+           commandAbilities: [this.abilities.sharTorTheExecutionerLordOfTheBaHal],
+           attacks: [this.attacks.sharTorTheExecutionerDarktideAxe, this.attacks.sharTorTheExecutionerCrushingHooves],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       bullCentaurTaurRuk: {
+            id: "bullCentaurTaurRuk",
+            model: this.models.bullCentaurTaurRuk,
+            description: "A Bull Centaur Taur’ruk is a single model armed with a Darkforged Great Weapon and Crushing Hooves.",
+            flavor: "The largest and most powerful of the Bull Centaurs bear the title of Taur’ruk. Hulking and violent creatures, they are nonetheless keen-witted and intelligent, leading their brethren in thunderous charges towards the enemy lines.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 160,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "BA'HAL", "LEGION OF AZGORH", "HERO", "BULL CENTAUR TAU'RUK"],
+            wounds: "7",
+            move: "7",
+            save: "4",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.bullCentaurTaurRukTrampleAndGore],
+           commandAbilities: [this.abilities.bullCentaurTaurRukFavourOfTheBurningGod],
+           attacks: [this.attacks.bullCentaurTaurRukDarkforgedGreatWeapon, this.attacks.bullCentaurTaurRukCrushingHooves],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       bullCentaurRenders: {
+            id: "bullCentaurRenders",
+            model: this.models.bullCentaurRenders,
+            description: "A unit of Bull Centaur Renders has any number of models, each armed with a Darkforged Weapon and Crushing Hooves, and each carrying a Spiteshield.",
+            flavor: "Bull Centaur Renders – known as Ba’hal in the Chaos duardin tongue – are monstrous creatures filled with an unquenchable hunger for flesh. Born through the foul works of the priests of Hashut, they are a twisted fusion of duardin and centaur.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: 640,
+            keywords: ["CHAOS", "DAWI ZHARR", "BA'HAL", "LEGION OF AZGORH", "BULL CENTAUR RENDERS"],
+            wounds: "5",
+            move: "7",
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.bullCentaurRendersSpiteshield, this.abilities.bullCentaurRendersTrampleAndGore],
+           attacks: [this.attacks.bullCentaurRendersDarkforgedWeapon, this.attacks.bullCentaurRendersCrushingHooves],
+       },
+       infernalGuardsCastellan: {
+            id: "infernalGuardsCastellan",
+            model: this.models.infernalGuardsCastellan,
+            description: "An Infernal Guard Castellan is a single model armed with a Darkforged Weapon and Pyrelock Pistol.",
+            flavor: "Clad in Blackshard armour graven with dark runes that celebrate their cruel victories, Infernal Guard Castellans march at the head of their iron-clad warriors, breaking the foe upon their immovable ranks.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 120,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "INFERNAL GUARD", "HERO", "INFERNAL GUARD CASTELLAN"],
+            wounds: "5",
+            move: "4",
+            save: "4",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.infernalGuardsCastellanPyrelockPistol],
+           commandAbilities: [this.abilities.infernalGuardsCastellanMartialContempt],
+           attacks: [this.attacks.infernalGuardsCastellanPyrelockPistol, this.attacks.infernalGuardsCastellanDarkforgedWeapon],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       infernalGuardBattleStandardBearer: {
+            id: "infernalGuardBattleStandardBearer",
+            model: this.models.infernalGuardBattleStandardBearer,
+            description: "An Infernal Guard Battle Standard Bearer is a single model armed with a Darkforged Weapon.",
+            flavor: "Selected from among the ranks of the Ironsworn for their stubbornness and contempt for all other races, only a few warriors have the privilege of carrying a Black Banner of Malice into battle.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 100,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "INFERNAL GUARD", "HERO", "TOTEM", "INFERNAL GUARD BATTLE STANDARD BEARER"],
+            wounds: "5",
+            move: "4",
+            save: "4",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.infernalGuardBattleStandardBearerBlackBannerOfMalice],
+           attacks: [this.attacks.infernalGuardBattleStandardBearerDarkforgedWeapon],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       infernalGuardFireglaives: {
+            id: "infernalGuardFireglaives",
+            model: this.models.infernalGuardFireglaives,
+            description: "A unit of Infernal Guard Fireglaives has any number of models, each armed with a Pyrelock Fireglaive and a Pyrelock Fireglaive’s Bayonet-cleaver.",
+            flavor: "Wielding weapons bound with malevolent spirits, Fireglaives pour shot after shot into the ranks of the enemy, eradicating scores of enemy warriors before they can reach the Legion’s main battle line.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 10,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "INFERNAL GUARD", "FIREGLAIVES"],
+            wounds: "1",
+            move: "4",
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [this.options.infernalGuardFireglaivesIconOfDominionBearers, this.options.infernalGuardFireglaivesDrummer],
+           abilities: [this.abilities.infernalGuardFireglaivesPyrelockWeapons, this.abilities.infernalGuardFireglaivesFireglaiveDeathmask],
+           attacks: [this.attacks.infernalGuardFireglaivesPyrelockFireglaive, this.attacks.infernalGuardFireglaivesPyrelockPistol, this.attacks.infernalGuardFireglaivesPyrelockFireglaiveSBayonetCleaver, this.attacks.infernalGuardFireglaivesAshsteelHandWeapon],
+       },
+       infernalGuardIronsworn: {
+            id: "infernalGuardIronsworn",
+            model: this.models.infernalGuardIronsworn,
+            description: "A unit of Infernal Guard Ironsworn has any number of models, each armed with an Ashsteel Hand Weapon and each carrying a Spiteshield.",
+            flavor: "Clad in Blackshard armour forged with the very realmstone of Aqshy itself, the Infernal Guard Ironsworn march into battle with smouldering runes of torment and death engraved into their weapons.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 10,
+            maxSize: 30,
+            points: 90,
+            maxPoints: 240,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "INFERNAL GUARD", "IRONSWORN"],
+            wounds: "1",
+            move: "4",
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [this.options.infernalGuardIronswornIconOfDominionBearers, this.options.infernalGuardIronswornDrummer],
+           abilities: [this.abilities.infernalGuardIronswornPyrelockPistol, this.abilities.infernalGuardIronswornSpiteshield, this.abilities.infernalGuardIronswornIronswornDeathmask],
+           attacks: [this.attacks.infernalGuardIronswornPyrelockPistol, this.attacks.infernalGuardIronswornAshsteelHandWeapon],
+           isBattleline: (ws: WarscrollInterface) => true,
+       },
+       kDaaiFireborn: {
+            id: "kDaaiFireborn",
+            model: this.models.kDaaiFireborn,
+            description: "A unit of K’daai Fireborn has any number of models, each armed with Burning Irons.",
+            flavor: "K’daai Fireborn are creatures of daemonic flame brought into being by the priests of Hashut. They are devastating shock troops for the Legion of Azgorh, birthed in boiling blood sacrifices and caged in iron and rune-stamped bronze.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 3,
+            maxSize: 12,
+            points: 140,
+            maxPoints: 480,
+            keywords: ["CHAOS", "DAEMON", "HASHUT", "K'DAAI", "LEGION OF AZGORH", "FIREBORN"],
+            wounds: "4",
+            move: "8",
+            save: "5",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.kDaaiFirebornBurningBright, this.abilities.kDaaiFirebornKissOfFire, this.abilities.kDaaiFirebornFly],
+           attacks: [this.attacks.kDaaiFirebornBurningIrons],
+       },
+       deathshriekerRocketLauncher: {
+            id: "deathshriekerRocketLauncher",
+            model: this.models.deathshriekerRocketLauncher,
+            description: "A Deathshrieker Rocket Launcher is a single model armed with Deathshrieker Rockets.",
+            flavor: "The Deathshrieker Rocket is one of the more diabolic examples of the Legion of Azgorh’s mastery of black-powder weapons. Bound within its munitions are howling, malevolent fire-spirits which are unleashed as the multiple warheads detonate over the battlefield.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 120,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "WAR MACHINE", "DEATHSHRIEKER ROCKET LAUNCHER"],
+            wounds: "6",
+            move: "3",
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.deathshriekerRocketLauncherDeathFromOnHigh, this.abilities.deathshriekerRocketLauncherInfernalEngineers, this.abilities.deathshriekerRocketLauncherSiegeArtillery, this.abilities.deathshriekerRocketLauncherCrew],
+           attacks: [this.attacks.deathshriekerRocketLauncherDeathshriekerRockets, this.attacks.deathshriekerRocketLauncherImprovisedWeapons],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       ironDaemonWarEngine: {
+            id: "ironDaemonWarEngine",
+            model: this.models.ironDaemonWarEngine,
+            description: "An Iron Daemon War Engine is a single model armed with a Steam Cannonade and Crushing Bulk.",
+            flavor: "Within the great furnace of an Iron Daemon War Engine, coal, bones and even screaming spirits burn with raging heat, powering the arcane workings and terrifying siege weaponry of this profane machine.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 180,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "WAR MACHINE", "IRON DAEMON WAR ENGINE"],
+            wounds: "11",
+            move: this.damageTables.ironDaemonWarEngine.columns[0],
+            save: "3",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.ironDaemonWarEngineCarriageHauler, this.abilities.ironDaemonWarEngineMorePower],
+           attacks: [this.attacks.ironDaemonWarEngineSteamCannonade, this.attacks.ironDaemonWarEngineCrushingBulk],
+       },
+       magmaCannon: {
+            id: "magmaCannon",
+            model: this.models.magmaCannon,
+            description: "A Magma Cannon is a single model armed with a Magma Blast.",
+            flavor: "A fiendish weapon first conceived for use against troggoths, the Magma Cannon is a deadly cross between a field artillery piece and a furnace. In battle, they unleash blasts of blazing magma upon their foes which quickly reduce their victims to ash.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 140,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "WAR MACHINE", "MAGMA CANNON"],
+            wounds: "6",
+            move: "3",
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.magmaCannonInfernalEngineers, this.abilities.magmaCannonMagmaBlast, this.abilities.magmaCannonSiegeArtillery, this.abilities.magmaCannonCrew],
+           attacks: [this.attacks.magmaCannonMagmaBlast, this.attacks.magmaCannonImprovisedWeapons],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       dreadquakeMortar: {
+            id: "dreadquakeMortar",
+            model: this.models.dreadquakeMortar,
+            description: "A Dreadquake Mortar is a single model armed with a Dreadquake Bomb.",
+            flavor: "The Dreadquake Mortar uses a vast boiler to generate steam pressure to fire its munitions. The sorcerous energies bound within its volatile shells explode on impact, striking the battlefield like a hammer blow to cause untold devastation.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 180,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "WAR MACHINE", "DREADQUAKE MORTAR"],
+            wounds: "10",
+            move: "3",
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.dreadquakeMortarCruelOverlords, this.abilities.dreadquakeMortarInfernalEngineers, this.abilities.dreadquakeMortarQuakeBlast, this.abilities.dreadquakeMortarSiegeArtillery, this.abilities.dreadquakeMortarCrew],
+           attacks: [this.attacks.dreadquakeMortarDreadquakeBomb, this.attacks.dreadquakeMortarImprovisedWeapons, this.attacks.dreadquakeMortarFistsAndChains],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       skullcrackerWarEngine: {
+            id: "skullcrackerWarEngine",
+            model: this.models.skullcrackerWarEngine,
+            description: "A Skullcracker War Engine is a single model armed with Hammers and Picks and Crushing Bulk.",
+            flavor: "Designed for crushing fortifications and walls, the Skullcracker is a hissing and grinding arcane-mechanical conglomeration of iron hammers, hacking blades, and brutal picks designed to pulverise and shred anything unfortunate to be caught in its path.",
+            factions: [this.factions.legionOfAzgorh],
+            size: 1,
+            maxSize: 1,
+            points: 200,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAWI ZHARR", "LEGION OF AZGORH", "WAR MACHINE", "SKULLCRACKER WAR ENGINE"],
+            wounds: "11",
+            move: this.damageTables.skullcrackerWarEngine.columns[0],
+            save: "3",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
+           options: [],
+           abilities: [this.abilities.skullcrackerWarEngineBeatenIntoScrap, this.abilities.skullcrackerWarEngineCarriageHauler, this.abilities.skullcrackerWarEngineMorePower],
+           attacks: [this.attacks.skullcrackerWarEngineHammersAndPicks, this.attacks.skullcrackerWarEngineCrushingBulk],
+       },
+       basilisk: {
+            id: "basilisk",
+            model: this.models.basilisk,
+            description: "A Basilisk is a single model armed with Acidic Spittle, a Venomous Bite and Clutching Claws.",
+            flavor: "Basilisks are creatures so inimical to life that they poison the very ground they walk on. They are a living blight that can swiftly reduce an area to ruinous wasteland, destroying crops and slaughtering livestock with venom that suffuses both body and spirit.",
+            factions: [this.factions.monstrousArcanum],
+            size: 1,
+            maxSize: 1,
+            points: 160,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "MONSTER", "BASILISK"],
+            wounds: "10",
+            move: this.damageTables.basilisk.columns[0],
+            save: "5",
+            bravery: "5",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e4778000-875c-11e8-9a94-a6cf71072f73.jpg",
+           options: [],
+           abilities: [this.abilities.basiliskCorrosiveMiasma, this.abilities.basiliskMalignantGaze],
+           attacks: [this.attacks.basiliskAcidicSpittle, this.attacks.basiliskVenomousBite, this.attacks.basiliskClutchingClaws],
+       },
+       bonegrinderGargant: {
+            id: "bonegrinderGargant",
+            model: this.models.bonegrinderGargant,
+            description: "A Bonegrinder Gargant is a single model armed with a Gargantuan Club, Thunderous Stomp and Hurled Boulder.",
+            flavor: "The Bonegrinder Gargant’s coming is heralded by earth-shaking footsteps as it stomps its way across the battlefield. Its sheer size, stupidity and propensity for drunken illtempered violence makes the others of its kind seem positively serene in comparison.",
+            factions: [this.factions.monstrousArcanum, this.factions.aleguzzler],
+            size: 1,
+            maxSize: 1,
+            points: 400,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "GARGANT", "ALEGUZZLER", "MONSTER", "BONEGRINDER GARGANT"],
+            wounds: "20",
+            move: this.damageTables.bonegrinderGargant.columns[0],
+            save: "4",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e47785dc-875c-11e8-9a94-a6cf71072f73.jpg",
+           options: [],
+           abilities: [this.abilities.bonegrinderGargantILlBiteYourHeadOff, this.abilities.bonegrinderGargantJumpUpAndDown, this.abilities.bonegrinderGargantLongshanks, this.abilities.bonegrinderGargantTimber],
+           attacks: [this.attacks.bonegrinderGargantHurledBoulder, this.attacks.bonegrinderGargantGargantuanClub, this.attacks.bonegrinderGargantThunderousStomp],
+       },
+       broodHorror: {
+            id: "broodHorror",
+            model: this.models.broodHorror,
+            description: "A Brood Horror is single model armed with Fangs and Claws, and a Prehensile Tail.",
+            flavor: "Of all the skittering creatures that emerge from skaven gnawholes, few can tear apart an enemy army faster than a Brood Horror. Its layers of sagging flab and bulging muscles reknit constantly, allowing the rat-beast to fight on despite the most grievous wounds.",
+            factions: [this.factions.monstrousArcanum, this.factions.clansMoulder],
+            size: 1,
+            maxSize: 1,
+            points: 160,
+            maxPoints: 0,
+            keywords: ["CHAOS", "SKAVEN", "CLANS MOULDER", "BROOD HORROR"],
+            wounds: "6",
+            move: "8",
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.broodHorrorRegeneratingMonstrosity],
+           attacks: [this.attacks.broodHorrorPrehensileTail, this.attacks.broodHorrorFangsAndClaws],
+       },
+       carmineDragon: {
+            id: "carmineDragon",
+            model: this.models.carmineDragon,
+            description: "A Carmine Dragon is a single model armed with Raking Claws, Amethyst Fangs and a Soul-sheering Blast.",
+            flavor: "The Carmine Dragon is a creature saturated with the arcane power of Shyish, its claws and fangs rippling with amethyst magic. With every roar, it unleashes deadly blasts of dark energy that strip its terrified victims of their souls.",
+            factions: [this.factions.monstrousArcanum],
+            size: 1,
+            maxSize: 1,
+            points: 440,
+            maxPoints: 0,
+            keywords: ["ORDER", "DRAGON", "MONSTER", "CARMINE DRAGON"],
+            wounds: "14",
+            move: this.damageTables.carmineDragon.columns[0],
+            save: "3",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.carmineDragonDeathlyDarkScales, this.abilities.carmineDragonSoulSheeringBlast, this.abilities.carmineDragonSpellDevourer, this.abilities.carmineDragonFly],
+           attacks: [this.attacks.carmineDragonSoulSheeringBlast, this.attacks.carmineDragonRakingClaws, this.attacks.carmineDragonAmethystFangs],
+       },
+       chaosSiegeGargant: {
+            id: "chaosSiegeGargant",
+            model: this.models.chaosSiegeGargant,
+            description: "A Chaos Siege Gargant is a single model armed with Colossal Hook-blades and Lashing Chains.",
+            flavor: "Chaos Siege Gargants are towering, iron-clad brutes. Equipped with immense hooked blades and massive weighted chains, these monstrosities can tear through fortifications and enemy armies with contemptuous ease.",
+            factions: [this.factions.monstrousArcanum, this.factions.monstersOfChaos],
+            size: 1,
+            maxSize: 1,
+            points: 200,
+            maxPoints: 0,
+            keywords: ["CHAOS", "GARGANT", "MONSTERS OF CHAOS", "MONSTER", "SIEGE GARGANT"],
+            wounds: "12",
+            move: this.damageTables.chaosSiegeGargant.columns[0],
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.chaosSiegeGargantScalingSpikesAndChains, this.abilities.chaosSiegeGargantSiegeArmour, this.abilities.chaosSiegeGargantTimber],
+           attacks: [this.attacks.chaosSiegeGargantColossalHookBlades, this.attacks.chaosSiegeGargantLashingChains],
+       },
+       chaosWarMammoth: {
+            id: "chaosWarMammoth",
+            model: this.models.chaosWarMammoth,
+            description: "A Chaos War Mammoth is a single model armed with Goring Tusks and Trampling Feet.",
+            flavor: "A Chaos War Mammoth is an immense beast capable of crushing scores of lesser creatures to bloody paste beneath its trampling feet, and of goring foes with its huge tusks, each of which carries the force of a battering ram.",
+            factions: [this.factions.monstrousArcanum, this.factions.monstersOfChaos, this.factions.slavesToDarkness],
+            size: 1,
+            maxSize: 1,
+            points: 320,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MORTAL", "MONSTERS OF CHAOS", "SLAVES TO DARKNESS", "MONSTER", "CHAOS WAR MAMMOTH"],
+            wounds: "22",
+            move: this.damageTables.chaosWarMammoth.columns[0],
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.chaosWarMammothCrushingFall, this.abilities.chaosWarMammothEarthShakingCharge, this.abilities.chaosWarMammothGoringTusks, this.abilities.chaosWarMammothMarkOfChaos, this.abilities.chaosWarMammothCrew],
+           attacks: [this.attacks.chaosWarMammothMarauderJavelinsAndAxes, this.attacks.chaosWarMammothGoringTusks, this.attacks.chaosWarMammothTramplingFeet],
+       },
+       colossalSquig: {
+            id: "colossalSquig",
+            model: this.models.colossalSquig,
+            description: "A Colossal Squig is a single model armed with Enormous Jaws, Trampling Feet and Puff Spores.",
+            flavor: "With their large, fleshy mouths and boundless energy, Colossal Squigs unleash untold havoc in battle. These insatiable fungoid beasts messily devour swathes of foes in an instant, squashing everything in their path as they careen towards their next meal.",
+            factions: [this.factions.monstrousArcanum, this.factions.moonclan],
+            size: 1,
+            maxSize: 1,
+            points: 300,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "SQUIG", "MOONCLAN", "MONSTER", "COLOSSAL SQUIG"],
+            wounds: "16",
+            move: this.damageTables.colossalSquig.columns[0],
+            save: "5",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458895457404-RvQ4EXXkbNI3qVkI.jpg",
+           options: [],
+           abilities: [this.abilities.colossalSquigCrazedCharge, this.abilities.colossalSquigFungoidSquigExplosion, this.abilities.colossalSquigPuffSpores, this.abilities.colossalSquigSwallowedWhole],
+           attacks: [this.attacks.colossalSquigPuffSpores, this.attacks.colossalSquigEnormousJaws, this.attacks.colossalSquigTramplingFeet],
+       },
+       cursDEttin: {
+            id: "cursDEttin",
+            model: this.models.cursDEttin,
+            description: "The Curs’d Ettin is a single model armed with a Crushing Fist and a Stomp.",
+            flavor: "A Curs’d Ettin is a hideous monstrosity of fused kinsmen, two souls trapped within one malformed body. Lured to battle with promises of meat and death, the bickering siblings crush their foes with ponderous swings of their single club-like arm.",
+            factions: [this.factions.monstrousArcanum, this.factions.monstersOfChaos, this.factions.slavesToDarkness],
+            size: 1,
+            maxSize: 1,
+            points: 200,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MORTAL", "MONSTERS OF CHAOS", "SLAVES TO DARKNESS", "MONSTER", "CURS'D ETTIN"],
+            wounds: "13",
+            move: this.damageTables.cursDEttin.columns[0],
+            save: "5",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.cursDEttinCannibalFeast, this.abilities.cursDEttinGibberingCurse, this.abilities.cursDEttinTwoHeadedHorror],
+           attacks: [this.attacks.cursDEttinCrushingFist, this.attacks.cursDEttinStomp],
+       },
+       dreadMaw: {
+            id: "dreadMaw",
+            model: this.models.dreadMaw,
+            description: "A Dread Maw is a single model armed with a Cavernous Maw, Writhing Coils and Slime Spray.",
+            flavor: "Dread Maws are massive reptilian worms that spend most of their lives below ground, only surfacing to hunt. They use their hard rock-like coils to bind and crush their prey, and are able to tunnel through rock and soil as a fish swims through water.",
+            factions: [this.factions.monstrousArcanum],
+            size: 1,
+            maxSize: 1,
+            points: 460,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "MONSTER", "DREAD MAW"],
+            wounds: "14",
+            move: this.damageTables.dreadMaw.columns[0],
+            save: "3",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e4778884-875c-11e8-9a94-a6cf71072f73.jpg",
+           options: [],
+           abilities: [this.abilities.dreadMawDevourerFromBelow, this.abilities.dreadMawImpenetrableHide, this.abilities.dreadMawTunnelWorm, this.abilities.dreadMawYawningMaw],
+           attacks: [this.attacks.dreadMawSlimeSpray, this.attacks.dreadMawCavernousMaw, this.attacks.dreadMawWrithingCoils],
+       },
+       dreadSaurian: {
+            id: "dreadSaurian",
+            model: this.models.dreadSaurian,
+            description: "A Dread Saurian is a single model armed with Gargantuan Jaws, Raking Claws and an Armoured Tail.",
+            flavor: "Dread Saurians are celestial reincarnations of terrifying creatures from the Age of Myth. Summoned to the battlefield by the power of the Slann, these reptilian monstrosities wreak havoc upon the foe with their enormous claws and fang-lined jaws.",
+            factions: [this.factions.monstrousArcanum, this.factions.seraphon],
+            size: 1,
+            maxSize: 1,
+            points: 420,
+            maxPoints: 0,
+            keywords: ["ORDER", "DAEMON", "CELESTIAL", "SERAPHON", "MONSTER", "DREAD SAURIAN"],
+            wounds: "16",
+            move: this.damageTables.dreadSaurian.columns[0],
+            save: "3",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e4778cee-875c-11e8-9a94-a6cf71072f73.jpg",
+           options: [],
+           abilities: [this.abilities.dreadSaurianDevourerOfBeasts, this.abilities.dreadSaurianArcaneGlyphs, this.abilities.dreadSaurianPrimalPresence, this.abilities.dreadSaurianRoarOfRuin, this.abilities.dreadSaurianCelestialConjuration],
+           attacks: [this.attacks.dreadSaurianGargantuanJaws, this.attacks.dreadSaurianRakingClaws, this.attacks.dreadSaurianArmouredTail],
+       },
+       exaltedGreaterDaemonOfKhorne: {
+            id: "exaltedGreaterDaemonOfKhorne",
+            model: this.models.exaltedGreaterDaemonOfKhorne,
+            description: "An Exalted Greater Daemon of Khorne is a single model armed with a Lash of Khorne and a Mighty Axe of Khorne.",
+            flavor: "Exalted Greater Daemons of Khorne are the largest and most fury-filled of the Blood God’s servants. Armed with weapons forged in the fires of their patron’s forges, they butcher their way through rank after rank of enemies, leaving great rivers of gore in their wake.",
+            factions: [this.factions.monstrousArcanum, this.factions.khorne],
+            size: 1,
+            maxSize: 1,
+            points: 580,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAEMON", "BLOODTHIRSTER", "KHORNE", "MONSTER", "HERO", "EXALTED GREATER DAEMON OF KHORNE"],
+            wounds: "20",
+            move: this.damageTables.exaltedGreaterDaemonOfKhorne.columns[0],
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1503666509461-5zx9QYNYBdb4bY8K.jpg",
+           options: [],
+           abilities: [this.abilities.exaltedGreaterDaemonOfKhorneDrawnInForTheKill, this.abilities.exaltedGreaterDaemonOfKhorneTheLandRebels, this.abilities.exaltedGreaterDaemonOfKhorneFly, this.abilities.exaltedGreaterDaemonOfKhorneSummonDaemonsOfKhorne],
+           commandAbilities: [this.abilities.exaltedGreaterDaemonOfKhorneRejoiceInExaltedSlaughter],
+           attacks: [this.attacks.exaltedGreaterDaemonOfKhorneLashOfKhorne, this.attacks.exaltedGreaterDaemonOfKhorneMightyAxeOfKhorne],
+       },
+       exaltedGreaterDaemonOfNurgle: {
+            id: "exaltedGreaterDaemonOfNurgle",
+            model: this.models.exaltedGreaterDaemonOfNurgle,
+            description: "An Exalted Greater Daemon of Nurgle is a single model armed with a Massive Bilesword and Noxious Bile.",
+            flavor: "Ridden with pestilence and disease, an Exalted Greater Daemon of Nurgle is a foul manifestation of Nurgle’s will. With each lumbering step and burbled word it spreads more of its diseased blessings to those who stand before it.",
+            factions: [this.factions.monstrousArcanum, this.factions.nurgle],
+            size: 1,
+            maxSize: 1,
+            points: 460,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAEMON", "NURGLE", "GREAT UNCLEAN ONE", "MONSTER", "HERO", "WIZARD", "EXALTED GREATER DAEMON OF NURGLE"],
+            wounds: "16",
+            move: this.damageTables.exaltedGreaterDaemonOfNurgle.columns[0],
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.exaltedGreaterDaemonOfNurgleBlubberAndBile, this.abilities.exaltedGreaterDaemonOfNurgleCorpulentMass, this.abilities.exaltedGreaterDaemonOfNurgleMountainOfLoathsomeFlesh, this.abilities.exaltedGreaterDaemonOfNurglePlagueWind, this.abilities.exaltedGreaterDaemonOfNurgleSummonDaemonsOfNurgle],
+           commandAbilities: [this.abilities.exaltedGreaterDaemonOfNurgleGrandfatherSExaltedJoy],
+           attacks: [this.attacks.exaltedGreaterDaemonOfNurgleNoxiousBile, this.attacks.exaltedGreaterDaemonOfNurgleMassiveBilesword],
+           magicDescription: "An Exalted Greater Daemon of Nurgle is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Wind spells.",       },
+       exaltedGreaterDaemonOfSlaanesh: {
+            id: "exaltedGreaterDaemonOfSlaanesh",
+            model: this.models.exaltedGreaterDaemonOfSlaanesh,
+            description: "An Exalted Greater Daemon of Slaanesh is a single model armed with Razor-sharp Claws and an Elegant Greatblade.",
+            flavor: "Exalted Greater Daemons of Slaanesh are the most beguiling of all immortals, moving with unmatched grace and sensuality. Their immaculate displays of violence are accompanied by cries of exhilaration and hypnotic whispers.",
+            factions: [this.factions.monstrousArcanum, this.factions.slaanesh],
+            size: 1,
+            maxSize: 1,
+            points: 440,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAEMON", "KEEPER OF SECRETS", "SLAANESH", "MONSTER", "HERO", "WIZARD", "EXALTED GREATER DAEMON OF SLAANESH"],
+            wounds: "15",
+            move: this.damageTables.exaltedGreaterDaemonOfSlaanesh.columns[0],
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1503667298393-FdBWDlo9e2OWBJXq.jpg",
+           options: [],
+           abilities: [this.abilities.exaltedGreaterDaemonOfSlaaneshWhisperedTemptations, this.abilities.exaltedGreaterDaemonOfSlaaneshCacophonicChoir, this.abilities.exaltedGreaterDaemonOfSlaaneshFeedOnDepravity],
+           commandAbilities: [this.abilities.exaltedGreaterDaemonOfSlaaneshExaltedExcessOfViolence],
+           attacks: [this.attacks.exaltedGreaterDaemonOfSlaaneshRazorSharpClaws, this.attacks.exaltedGreaterDaemonOfSlaaneshElegantGreatblade],
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cacophonic Choir spells.",       },
+       exaltedGreaterDaemonOfTzeentch: {
+            id: "exaltedGreaterDaemonOfTzeentch",
+            model: this.models.exaltedGreaterDaemonOfTzeentch,
+            description: "An Exalted Greater Daemon of Tzeentch is a single model armed with a Curved Beak and Wicked Talons, and a Staff of Tzeentch.",
+            flavor: "With a wave of its talons, an Exalted Greater Daemon of Tzeentch can hurl its foes into the nightmarish Realm of Chaos or bathe them in deadly magical fires. They are the most malefic servants of the God of Sorcery, and their very forms flicker with arcane energies.",
+            factions: [this.factions.monstrousArcanum, this.factions.tzeentch],
+            size: 1,
+            maxSize: 1,
+            points: 500,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAEMON", "LORD OF CHANGE", "TZEENTCH", "MONSTER", "HERO", "WIZARD", "EXALTED GREATER DAEMON OF TZEENTCH"],
+            wounds: "20",
+            move: this.damageTables.exaltedGreaterDaemonOfTzeentch.columns[0],
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1503667470525-Xq2WMBG1VxHMVXRt.jpg",
+           options: [],
+           abilities: [this.abilities.exaltedGreaterDaemonOfTzeentchMasteryOfMagic, this.abilities.exaltedGreaterDaemonOfTzeentchSpellThief, this.abilities.exaltedGreaterDaemonOfTzeentchFly, this.abilities.exaltedGreaterDaemonOfTzeentchInfernalGateway, this.abilities.exaltedGreaterDaemonOfTzeentchSummonDaemonsOfTzeentch],
+           commandAbilities: [this.abilities.exaltedGreaterDaemonOfTzeentchBeaconOfSorcery],
+           attacks: [this.attacks.exaltedGreaterDaemonOfTzeentchStaffOfTzeentch, this.attacks.exaltedGreaterDaemonOfTzeentchCurvedBeakAndWickedTalons],
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Infernal Gateway spells.",       },
+       fimirachNoble: {
+            id: "fimirachNoble",
+            model: this.models.fimirachNoble,
+            description: "A Fimirach Noble is a single model armed with a Baleglyph Maul and a Club Tail.",
+            flavor: "Marked for greatness at birth, a Fimirach Noble is raised to be a deadly killing machine in service to a stronghold’s Matriarch. Possessing a tougher hide and stouter build than its kin, the Noble has a cunning intellect, making it an ideal leader for bands of Fimir Warriors.",
+            factions: [this.factions.monstrousArcanum],
+            size: 1,
+            maxSize: 1,
+            points: 140,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "FIMIR", "HERO", "FIMIRACH NOBLE"],
+            wounds: "7",
+            move: "5",
+            save: "4",
+            bravery: "9",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.fimirachNobleBaleglyphMauls, this.abilities.fimirachNobleShroudingMists, this.abilities.fimirachNobleUnnaturalFlesh],
+           commandAbilities: [this.abilities.fimirachNobleBornToLead],
+           attacks: [this.attacks.fimirachNobleBaleglyphMaul, this.attacks.fimirachNobleClubTail],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       fimirWarriors: {
+            id: "fimirWarriors",
+            model: this.models.fimirWarriors,
+            description: "A unit of Fimir Warriors has any number of models, each armed with a Baleglyph Maul and Club Tail.",
+            flavor: "From unnatural clouds of mist come the hulking reptilian brutes known as Fimir Warriors. Possessed of prodigious strength and tenacity, they charge to wherever the fighting is thickest in order to savage their startled foes.",
+            factions: [this.factions.monstrousArcanum],
+            size: 3,
+            maxSize: 12,
+            points: 140,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "FIMIR", "FIMIR WARRIORS"],
+            wounds: "3",
+            move: "5",
+            save: "4",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.fimirWarriorsBaleglyphMauls, this.abilities.fimirWarriorsShroudingMists, this.abilities.fimirWarriorsUnnaturalFlesh],
+           attacks: [this.attacks.fimirWarriorsBaleglyphMaul, this.attacks.fimirWarriorsClubTail],
+       },
+       incarnateElementalOfBeasts: {
+            id: "incarnateElementalOfBeasts",
+            model: this.models.incarnateElementalOfBeasts,
+            description: "An Incarnate Elemental of Beasts is a single model armed with Savage Talons, Impaling Horns and Amber Breath.",
+            flavor: "Incarnate Elementals of Beasts are gruesome fusions of meat and bone, bound together and given will by the raw magic of Ghur. Savage beyond imagining, they slash and gore their way through whole armies, reducing their enemies to mutilated heaps of flesh.",
+            factions: [this.factions.monstrousArcanum],
+            size: 1,
+            maxSize: 1,
+            points: 300,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "MONSTER", "INCARNATE ELEMENTAL OF BEASTS"],
+            wounds: "14",
+            move: this.damageTables.incarnateElementalOfBeasts.columns[0],
+            save: this.damageTables.incarnateElementalOfBeasts.columns[1],
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.incarnateElementalOfBeastsSavageFrenzy, this.abilities.incarnateElementalOfBeastsHowlOfTheGreatBeast, this.abilities.incarnateElementalOfBeastsIncarnateOfGhur, this.abilities.incarnateElementalOfBeastsTheLureOfSpiltBlood],
+           attacks: [this.attacks.incarnateElementalOfBeastsAmberBreath, this.attacks.incarnateElementalOfBeastsSavageTalons, this.attacks.incarnateElementalOfBeastsImpalingHorns],
+       },
+       incarnateElementalOfFire: {
+            id: "incarnateElementalOfFire",
+            model: this.models.incarnateElementalOfFire,
+            description: "An Incarnate Elemental of Fire is a single model armed with Tendrils of Fire, a Burning Lance and Fiery Bolts.",
+            flavor: "An Incarnate Elemental of Fire is a magical creature formed from the wantonly destructive forces of Aqshy, the Realm of Fire. It appears as a great burning figure of cindered flesh engulfed in robes of furnace-hot flames.",
+            factions: [this.factions.monstrousArcanum],
+            size: 1,
+            maxSize: 1,
+            points: 300,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "MONSTER", "INCARNATE ELEMENTAL OF FIRE"],
+            wounds: "14",
+            move: this.damageTables.incarnateElementalOfFire.columns[0],
+            save: this.damageTables.incarnateElementalOfFire.columns[1],
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.incarnateElementalOfFireAshesToAshes, this.abilities.incarnateElementalOfFireGiftOfElementalFire, this.abilities.incarnateElementalOfFireIncarnateOfAqshy],
+           attacks: [this.attacks.incarnateElementalOfFireFieryBolts, this.attacks.incarnateElementalOfFireTendrilsOfFire, this.attacks.incarnateElementalOfFireBurningLance],
+       },
+       giganticChaosSpawn: {
+            id: "giganticChaosSpawn",
+            model: this.models.giganticChaosSpawn,
+            description: "A Gigantic Chaos Spawn is a single model armed with Freakish Mutations and Slavering Maws.",
+            flavor: "Chaos Spawn are true abominations. They are twisted forms of reality and flesh, moving with an uncontrollable urge for carnage and slaughter. Such debased creatures are literally nightmares made flesh.",
+            factions: [this.factions.monstrousArcanum, this.factions.monstersOfChaos],
+            size: 1,
+            maxSize: 1,
+            points: 180,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MONSTERS OF CHAOS", "MONSTER", "GIGANTIC CHAOS SPAWN"],
+            wounds: "10",
+            move: this.damageTables.giganticChaosSpawn.columns[0],
+            save: "5",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e4778f50-875c-11e8-9a94-a6cf71072f73.jpg",
+           options: [],
+           abilities: [this.abilities.giganticChaosSpawnCurseOfTheDarkGods, this.abilities.giganticChaosSpawnPlaythingOfTheDarkGods, this.abilities.giganticChaosSpawnWrithingTentacles],
+           attacks: [this.attacks.giganticChaosSpawnFreakishMutations, this.attacks.giganticChaosSpawnSlaveringMaws],
+       },
+       magmaDragon: {
+            id: "magmaDragon",
+            model: this.models.magmaDragon,
+            description: "A Magma Dragon is a single model armed with Furnace-hot Jaws, Crushing Claws and Brimstone Dragon Fire.",
+            flavor: "These primordial beasts are among the most malevolent of dragon kind. Their gullet burns with the intensity of a raging volcano, and when roused to wrath they incinerate their foes with jets of flame, or else tear them to shreds with their enormous claws and fangs.",
+            factions: [this.factions.monstrousArcanum],
+            size: 1,
+            maxSize: 1,
+            points: 540,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "DRAGON", "MONSTER", "MAGMA DRAGON"],
+            wounds: "20",
+            move: this.damageTables.magmaDragon.columns[0],
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e4779356-875c-11e8-9a94-a6cf71072f73.jpg",
+           options: [],
+           abilities: [this.abilities.magmaDragonBrimstoneDragonfire, this.abilities.magmaDragonBurningBlood, this.abilities.magmaDragonFly],
+           attacks: [this.attacks.magmaDragonBrimstoneDragonfire, this.attacks.magmaDragonFurnaceHotJaws, this.attacks.magmaDragonCrushingClaws],
+       },
+       mazarallTheButcher: {
+            id: "mazarallTheButcher",
+            model: this.models.mazarallTheButcher,
+            description: "Mazarall the Butcher is a named character that is a single model. He is armed with the Ancyte Shield’s Wrath, the Ancyte Shield’s Blades and Harrow Meat.",
+            flavor: "Mazarall the Butcher is a renderer of mortal flesh and a devourer of daemons both. His sheer barbarity and unbridled rage have led many to believe him more mindless beast than canny warlord, but such a belief is a mistake for which many have lost their lives.",
+            factions: [this.factions.monstrousArcanum, this.factions.khorne],
+            size: 1,
+            maxSize: 1,
+            points: 340,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAEMON", "KHORNE", "MONSTER", "HERO", "MAZARALL THE BUTCHER"],
+            wounds: "12",
+            move: this.damageTables.mazarallTheButcher.columns[0],
+            save: "3",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1505378612196-O7lRqdaBWL8nfDso.jpg",
+           options: [],
+           abilities: [this.abilities.mazarallTheButcherBloodyCharge, this.abilities.mazarallTheButcherHarrowMeatSHunger, this.abilities.mazarallTheButcherTheAncyteShield],
+           commandAbilities: [this.abilities.mazarallTheButcherTheButcherSDue],
+           attacks: [this.attacks.mazarallTheButcherAncyteShieldSWrath, this.attacks.mazarallTheButcherHarrowMeat, this.attacks.mazarallTheButcherAncyteShieldSBlades],
+       },
+       merwyrm: {
+            id: "merwyrm",
+            model: this.models.merwyrm,
+            description: "A Merwyrm is a single model armed with Chill Breath, Hideous Jaws and a Powerful Tail.",
+            flavor: "Merwyrms are nightmarish creatures able to traverse both land and sea. Harbouring a malice cultivated in their endless struggle for survival upon the ocean floor, they loose this hatred upon any foolish enough go into battle against them.",
+            factions: [this.factions.monstrousArcanum],
+            size: 1,
+            maxSize: 1,
+            points: 260,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "MONSTER", "MERWYRM"],
+            wounds: "12",
+            move: this.damageTables.merwyrm.columns[0],
+            save: "4",
+            bravery: "5",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e47795ea-875c-11e8-9a94-a6cf71072f73.jpg",
+           options: [],
+           abilities: [this.abilities.merwyrmAbyssalPredator, this.abilities.merwyrmStenchOfTheDeep, this.abilities.merwyrmUnnaturalMetabolism],
+           attacks: [this.attacks.merwyrmChillBreath, this.attacks.merwyrmHideousJaws, this.attacks.merwyrmPowerfulTail],
+       },
+       mourngul: {
+            id: "mourngul",
+            model: this.models.mourngul,
+            description: "A Mourngul is a single model armed with Nightmarish Claws and Fangs.",
+            flavor: "Driven by famine and pain to hunt their former friends and companions, Mournguls are damned to an eternity of terrible isolation. Their shadowy cadaverous forms of cold flesh and cracked bone warp and twist ceaselessly as they rake their foes with claws and teeth.",
+            factions: [this.factions.monstrousArcanum, this.factions.nighthaunt],
+            size: 1,
+            maxSize: 1,
+            points: 300,
+            maxPoints: 0,
+            keywords: ["DEATH", "MALIGNANT", "NIGHTHAUNT", "MONSTER", "MOURNGUL"],
+            wounds: "10",
+            move: this.damageTables.mourngul.columns[0],
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458897438821-ontnUKKVo59wHxW0.jpg",
+           options: [],
+           abilities: [this.abilities.mourngulDevourerOfFleshAndSouls, this.abilities.mourngulEthereal, this.abilities.mourngulFrightfulTouch, this.abilities.mourngulGhastlyApparition, this.abilities.mourngulFly],
+           attacks: [this.attacks.mourngulNightmarishClawsAndFangs],
+       },
+       preyton: {
+            id: "preyton",
+            model: this.models.preyton,
+            description: "A Preyton is a single model armed with Corrosive Bile and Venom-dripping Fangs.",
+            flavor: "Twisted creatures of Chaos, Preyton are hateful and cunning beasts that delight in carnage for its own sake. Wreaking havoc with poisoned fangs and serrated antlers, they crash into their foes before devouring any survivors foolish enough not to flee.",
+            factions: [this.factions.monstrousArcanum, this.factions.monstersOfChaos],
+            size: 1,
+            maxSize: 1,
+            points: 140,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MONSTERS OF CHAOS", "MONSTER", "PREYTON"],
+            wounds: "8",
+            move: "10",
+            save: "5",
+            bravery: "5",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.preytonAgonizingVenom, this.abilities.preytonCorrosiveBile, this.abilities.preytonGoringCharge, this.abilities.preytonStalkerOfTheDarkWilds, this.abilities.preytonFly],
+           attacks: [this.attacks.preytonCorrosiveBile, this.attacks.preytonVenomDrippingFangs],
+       },
+       rogueIdol: {
+            id: "rogueIdol",
+            model: this.models.rogueIdol,
+            description: "A Rogue Idol is a single model armed with Boulder Fists and Stompin’ Feet.",
+            flavor: "Crudely fashioned by orruk shamans from rocks and battlefield debris, Rogue Idols are daubed with sigils and animated by Waaagh! energy. They are drawn inexorably to the biggest battles, storming out of the wilderness to clobber their foes.",
+            factions: [this.factions.monstrousArcanum, this.factions.greenskinz],
+            size: 1,
+            maxSize: 1,
+            points: 400,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "GREENSKINZ", "MONSTER", "ROGUE IDOL"],
+            wounds: "16",
+            move: this.damageTables.rogueIdol.columns[0],
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516802160994-q7QiGED4GVJjImpy.jpg",
+           options: [],
+           abilities: [this.abilities.rogueIdolAvalanche, this.abilities.rogueIdolDaBigUn, this.abilities.rogueIdolLivinIdol, this.abilities.rogueIdolRubbleAndRuin, this.abilities.rogueIdolSpiritOfTheWaaagh],
+           attacks: [this.attacks.rogueIdolBoulderFists, this.attacks.rogueIdolStompinFeet],
+       },
+       skaaracTheBloodborn: {
+            id: "skaaracTheBloodborn",
+            model: this.models.skaaracTheBloodborn,
+            description: "Skaarac the Bloodborn is a named character that is a single model. It is armed with Burning Blood, Brutal Blades and Thunderous Hooves.",
+            flavor: "A creature of endless hate and brutality, Skaarac the Bloodborn is a beast of legend among the devoted of Khorne. If slain, his body is simply reformed in Khorne’s charnel pits so that his undying rage can be loosed once more upon the Mortal Realms.",
+            factions: [this.factions.monstrousArcanum, this.factions.khorne],
+            size: 1,
+            maxSize: 1,
+            points: 440,
+            maxPoints: 0,
+            keywords: ["CHAOS", "KHORNE", "MONSTER", "HERO", "SKAARAC THE BLOODBORN"],
+            wounds: "16",
+            move: this.damageTables.skaaracTheBloodborn.columns[0],
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458898623585-s6By8oLPtMn3PG6N.jpg",
+           options: [],
+           abilities: [this.abilities.skaaracTheBloodbornLifeEater, this.abilities.skaaracTheBloodbornInfernalIron, this.abilities.skaaracTheBloodbornToweringHorror, this.abilities.skaaracTheBloodbornUndyingHate],
+           commandAbilities: [this.abilities.skaaracTheBloodbornCallOfTheSkullThrone],
+           attacks: [this.attacks.skaaracTheBloodbornBurningBlood, this.attacks.skaaracTheBloodbornBrutalBlades, this.attacks.skaaracTheBloodbornThunderousHooves],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       skavenWarlordOnBroodHorror: {
+            id: "skavenWarlordOnBroodHorror",
+            model: this.models.skavenWarlordOnBroodHorror,
+            description: "A Skaven Warlord on Brood Horror is single model armed with a Warpforged Blade.",
+            flavor: "The most ostentatious of skaven warlords ride into battle mounted upon foul Brood Horrors. These beasts have grown to their immense size by brutally devouring all of their brood-kin, the twisted forms of which still writhe and claw within their fleshy prison.",
+            factions: [this.factions.monstrousArcanum, this.factions.clansVerminus],
+            size: 1,
+            maxSize: 1,
+            points: 220,
+            maxPoints: 0,
+            keywords: ["CHAOS", "SKAVEN", "CLANS VERMINUS", "HERO", "SKAVEN WARLORD ON BROOD HORROR"],
+            wounds: "8",
+            move: "8",
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.skavenWarlordRegeneratingMonstrosity, this.abilities.skavenWarlordMightyWarlord, this.abilities.skavenWarlordMount],
+           commandAbilities: [this.abilities.skavenWarlordGnashGnawOnTheirBones],
+           attacks: [this.attacks.skavenWarlordPrehensileTail, this.attacks.skavenWarlordFangsAndClaws, this.attacks.skavenWarlordWarpforgedBlade],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       skinWolves: {
+            id: "skinWolves",
+            model: this.models.skinWolves,
+            description: "A unit of Skin Wolves any number of models, each armed with Teeth and Claws.",
+            flavor: "Creatures of pure nightmare, Skin Wolves are draped in the tattered remains of their human flesh. Their malice and fury are incomparable, and with long-clawed fingers they shred their victims to ribbons and feast upon the remains.",
+            factions: [this.factions.monstrousArcanum, this.factions.monstersOfChaos],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MONSTERS OF CHAOS", "SKIN WOLVES"],
+            wounds: "4",
+            move: "8",
+            save: "5",
+            bravery: "5",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.skinWolvesBoundingPredators, this.abilities.skinWolvesTerrifyingBloodlust],
+           attacks: [this.attacks.skinWolvesTeethAndClaws],
+       },
+       squigGobba: {
+            id: "squigGobba",
+            model: this.models.squigGobba,
+            description: "A Squig Gobba is armed with Spit-squigs and a Cavernous Maw.",
+            flavor: "Armies of Moonclan grots use Squig Gobbas as living artillery. The enormous fungoid beasts are prodded and poked until they regurgitate smaller squigs they have devoured, sending them flying into the ranks of the enemy to explode in clouds of acidic spores.",
+            factions: [this.factions.monstrousArcanum, this.factions.moonclan],
+            size: 1,
+            maxSize: 1,
+            points: 160,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "SQUIG", "MOONCLAN", "MONSTER", "SQUIG GOBBA"],
+            wounds: "8",
+            move: "4",
+            save: "5",
+            bravery: "4",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e4779964-875c-11e8-9a94-a6cf71072f73.jpg",
+           options: [],
+           abilities: [this.abilities.squigGobbaArcingSpit, this.abilities.squigGobbaCrew],
+           attacks: [this.attacks.squigGobbaSpitSquigs, this.attacks.squigGobbaBashinSticks, this.attacks.squigGobbaCavernousMaw],
+           isArtillery: (ws: WarscrollInterface) => true,
+       },
+       skavenWolfRats: {
+            id: "skavenWolfRats",
+            model: this.models.skavenWolfRats,
+            description: "A unit of Skaven Wolf Rats has any number of models, each armed with Dagger-long Teeth.",
+            flavor: "Engineered by the insane masterminds of the Clans Moulder, Wolf Rats are grotesquely mutated attack beasts. Their barbed teeth are capable of piercing armour and crushing bone, and the taste of blood whips them into a vicious frenzy.",
+            factions: [this.factions.monstrousArcanum, this.factions.clansMoulder],
+            size: 5,
+            maxSize: 30,
+            points: 100,
+            maxPoints: 0,
+            keywords: ["CHAOS", "SKAVEN", "CLANS MOULDER", "SKAVEN WOLF RATS"],
+            wounds: "2",
+            move: "12",
+            save: "5",
+            bravery: "4",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.skavenWolfRatsBloodCrazed, this.abilities.skavenWolfRatsSnappingJaws],
+           attacks: [this.attacks.skavenWolfRatsDaggerLongTeeth],
+       },
+       troggothHag: {
+            id: "troggothHag",
+            model: this.models.troggothHag,
+            description: "A Troggoth Hag is a single model armed with Copious Vomit, a Deadwood Staff and Crushing Bulk.",
+            flavor: "Unlike most of their race, Troggoth Hags are possessed of both arcane powers and a modicum of intelligence. They serve as leaders and envoys of the troggoth tribes, communicating in ways even the most dim-witted of their kin can understand.",
+            factions: [this.factions.monstrousArcanum, this.factions.troggoth],
+            size: 1,
+            maxSize: 1,
+            points: 380,
+            maxPoints: 0,
+            keywords: ["DESTRUCTION", "TROGGOTH", "FELLWATER", "MONSTER", "HERO", "WIZARD", "TROGGOTH HAG"],
+            wounds: "14",
+            move: this.damageTables.troggothHag.columns[0],
+            save: "4",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458898364642-nd2DJ9fEdLbkN6CS.jpg",
+           options: [],
+           abilities: [this.abilities.troggothHagHagRegeneration, this.abilities.troggothHagSpellSpite, this.abilities.troggothHagTerribleStench, this.abilities.troggothHagHagCurse],
+           attacks: [this.attacks.troggothHagCopiousVomit, this.attacks.troggothHagDeadwoodStaff, this.attacks.troggothHagCrushingBulk],
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Hag Curse spells.",       },
+       warpfireDragon: {
+            id: "warpfireDragon",
+            model: this.models.warpfireDragon,
+            description: "A Warpfire Dragon is a single model armed with Warpfire, Snapping Jaws and Twisted Claws.",
+            flavor: "Twisted and malignant, these dragons are ruinous creatures that spit gouts of mutilating warpfire. Should one of these spite-filled beasts be slain, its body will erupt in a nova of anarchic energy, reducing its foes to mounds of malformed flesh.",
+            factions: [this.factions.monstrousArcanum, this.factions.monstersOfChaos],
+            size: 1,
+            maxSize: 1,
+            points: 240,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MONSTERS OF CHAOS", "DRAGON", "MONSTER", "WARPFIRE DRAGON"],
+            wounds: "12",
+            move: this.damageTables.warpfireDragon.columns[0],
+            save: "4",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/e4779c8e-875c-11e8-9a94-a6cf71072f73.jpg",
+           options: [],
+           abilities: [this.abilities.warpfireDragonDeadlyDemise, this.abilities.warpfireDragonWarpfire, this.abilities.warpfireDragonFly],
+           attacks: [this.attacks.warpfireDragonWarpfire, this.attacks.warpfireDragonSnappingJaws, this.attacks.warpfireDragonTwistedClaws],
+       },
+       warpgnawVerminlord: {
+            id: "warpgnawVerminlord",
+            model: this.models.warpgnawVerminlord,
+            description: "A Warpgnaw Verminlord is a single model armed with a Prehensile Tail and Gnaw-glaive.",
+            flavor: "Warpgnaw Verminlords possess the unique ability to bore gnawholes through reality using their dark magic. Hated and envied in equal measure by their daemonic peers, these secretive beings lead skaven swarms to invade the realms wherever it suits their agendas.",
+            factions: [this.factions.monstrousArcanum, this.factions.masterclan],
+            size: 1,
+            maxSize: 1,
+            points: 320,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAEMON", "MASTERCLAN", "VERMINLORD", "MONSTER", "HERO", "WIZARD", "WARPGNAW VERMINLORD"],
+            wounds: "10",
+            move: this.damageTables.warpgnawVerminlord.columns[0],
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1504690456288-lqau7vMGwIFOFDUr.jpg",
+           options: [],
+           abilities: [this.abilities.warpgnawVerminlordCloakOfSplinteredUnreality, this.abilities.warpgnawVerminlordRealmGuide, this.abilities.warpgnawVerminlordSplinterScreech],
+           attacks: [this.attacks.warpgnawVerminlordPrehensileTail, this.attacks.warpgnawVerminlordGnawGlaive],
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Splinter-screech spells.",       },
+       darkoathChieftain: {
+            id: "darkoathChieftain",
+            model: this.models.darkoathChieftain,
+            description: "A Darkoath Chieftain is a single model. He is armed with a mighty Broadsword. Some Darkoath Chieftains also carry a War Axe.",
+            flavor: "A Darkoath Chieftain has set his feet upon the path to glory or damnation. His every deed is meant to win the favour of the gods. This barbarous warrior has slain mighty rivals, bested great beasts, and torn down the enclaves of Order and light wherever he has found them.",
+            factions: [this.factions.slavesToDarkness],
+            size: 1,
+            maxSize: 1,
+            points: 80,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MORTAL", "SLAVES TO DARKNESS", "HERO", "DARKOATH CHIEFTAIN"],
+            wounds: "5",
+            move: "6",
+            save: "5",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463822304521-OLJu78inpfQ7hIk9.jpg",
+           options: [],
+           abilities: [this.abilities.darkoathChieftainBerserkerCharge, this.abilities.darkoathChieftainDeathblow, this.abilities.darkoathChieftainQuestForGlory],
+           attacks: [this.attacks.darkoathChieftainWarAxe, this.attacks.darkoathChieftainBroadsword],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       doomseeker: {
+            id: "doomseeker",
+            model: this.models.doomseeker,
+            description: "A Doomseeker is a single model. He is armed with a Runic War-iron and a Doomseeker Axe, and has a plentiful supply of Fyresteel Throwing Axes to hurl at the enemy.",
+            flavor: "It is said of the Doomseeker that his axe scorches the air with every swing, that he spits glowing cinders with every war cry, and the wrath of the forge burns in his glare. This is no dishonourable mercenary, but a religious crusader whose word is his bond.",
+            factions: [this.factions.fyreslayers],
+            size: 1,
+            maxSize: 1,
+            points: 80,
+            maxPoints: 0,
+            keywords: ["ORDER", "DUARDIN", "FYRESLAYERS", "HERO", "DOOMSEEKER"],
+            wounds: "5",
+            move: "5",
+            save: "4",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463822084540-r2p2w6Ckf2C2UaAU.jpg",
+           options: [],
+           abilities: [this.abilities.doomseekerRunicPower, this.abilities.doomseekerGoadedToFury, this.abilities.doomseekerOathbound],
+           attacks: [this.attacks.doomseekerFyresteelThrowingAxe, this.attacks.doomseekerRunicWarIron, this.attacks.doomseekerDoomseekerAxe],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       excelsiorWarpriest: {
+            id: "excelsiorWarpriest",
+            model: this.models.excelsiorWarpriest,
+            description: "An Excelsior Warpriest is a single model. He is armed with a Warhammer blessed by Sigmar himself.",
+            flavor: "This courageous mortal man has taken up arms to protect Sigmar’s faithful from Chaos, and has been gifted with the power to summon forth the divine light of Sigmar. With this holy radiance he scours away the abominations of Chaos even as he heals the wounds of his comrades in battle.",
+            factions: [this.factions.devotedOfSigmar],
+            size: 1,
+            maxSize: 1,
+            points: 80,
+            maxPoints: 0,
+            keywords: ["ORDER", "HUMAN", "CELESTIAL", "DEVOTED OF SIGMAR", "HERO", "PRIEST", "EXCELSIOR WARPRIEST"],
+            wounds: "5",
+            move: "6",
+            save: "4",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463822149378-1VgBBBVJ3J1WdU2v.jpg",
+           options: [],
+           abilities: [this.abilities.excelsiorWarpriestLightOfSigmar, this.abilities.excelsiorWarpriestDivinePower, this.abilities.excelsiorWarpriestLoyalCompanion],
+           attacks: [this.attacks.excelsiorWarpriestWarhammer],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       gauntSummonerAndChaosFamiliars: {
+            id: "gauntSummonerAndChaosFamiliars",
+            model: this.models.gauntSummonerAndChaosFamiliars,
+            description: "A Gaunt Summoner of Tzeentch is a single model. He is armed with a Changestaff that can blast his enemies with the iridescent fires of Tzeentch, and a Warptongue Blade. He is never without a Book of Profane Secrets, with which he can call cohorts of daemons to the battlefield through a Realmgate. He is accompanied by a quartet of Chaos Familiars, that aid him in a variety of evil ways.",
+            flavor: "A daemon mage of terrible power, the Gaunt Summoner delights in tricks and torments. With his sorcerous powers and dark arcana this terrible being can twist his enemies into mewling spawn, or annihilate them utterly with the iridescent fires of Tzeentch. Weird magical familiars caper at the Daemon’s heels, each one a focus for the powers of sorcery and change whose presence further bolsters the might of their leering master.",
+            factions: [this.factions.tzeentch, this.factions.everchosen],
+            size: 1,
+            maxSize: 1,
+            points: 180,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAEMON", "MORTAL", "TZEENTCH", "ARCANITES", "EVERCHOSEN", "HERO", "WIZARD", "GAUNT SUMMONER AND CHAOS FAMILIARS"],
+            wounds: "5",
+            move: "5",
+            save: "6",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463823058573-6k8hbud8mLoQ66Gp.jpg",
+           options: [],
+           abilities: [this.abilities.gauntSummonerAndChaosFamiliarsBookOfProfaneSecrets, this.abilities.gauntSummonerAndChaosFamiliarsChaosFamiliars, this.abilities.gauntSummonerAndChaosFamiliarsWarptongueBlade, this.abilities.gauntSummonerAndChaosFamiliarsInfernalFlames],
+           attacks: [this.attacks.gauntSummonerAndChaosFamiliarsChangestaff, this.attacks.gauntSummonerAndChaosFamiliarsWarptongueBlade],
+           isLeader: (ws: WarscrollInterface) => true,
+           magicDescription: "A Gaunt Summoner of Tzeentch is a wizard. He can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. A Gaunt Summoner knows the Arcane Bolt, Mystic Shield, and Infernal Flames spells.",       },
+       bileTroggoths: {
+            id: "bileTroggoths",
+            model: this.models.bileTroggoths,
+            description: "A unit of Bile Troggoths has any number of models, each armed with Infected Vomit and Rusted Axes and Cleavers.",
+            flavor: "Corrupt of flesh and cursed to a life of agony, Bile Troggoths are the vilest and most deformed creatures of all their kind. Their touch is lethal poison and their corrosive bile rots away living flesh in seconds.",
+            factions: [this.factions.tamurkhanSHorde],
+            size: 3,
+            maxSize: 12,
+            points: 180,
+            maxPoints: 0,
+            keywords: ["CHAOS", "TROGGOTH", "NURGLE", "BILE TROGGOTHS"],
+            wounds: "5",
+            move: "5",
+            save: "4",
+            bravery: "5",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/8a9a71af-2555-4f52-9050-21074b374811.jpg",
+           options: [],
+           abilities: [this.abilities.bileTroggothsInfectedVomit, this.abilities.bileTroggothsFecundRegeneration],
+           attacks: [this.attacks.bileTroggothsInfectedVomit, this.attacks.bileTroggothsRustedAxesAndCleavers],
+       },
+       mistweaverSaih: {
+            id: "mistweaverSaih",
+            model: this.models.mistweaverSaih,
+            description: "A Mistweaver Saih is a single model. She is armed with an Aelven Blade in one hand and carries a Mistweaver’s Staff in the other that can enshroud her in a glimmering haze.",
+            flavor: "A Mistweaver Saih is a powerful enchantress. Drifting amidst a swirling, sorcerous haze, she flickers in and out of sight at will, sowing confusion and paranoia amongst those who have drawn her ire. Amidst the carnage the aelven enchantress remains disturbingly serene, the eye at the heart of a storm of illusory horror and bloodshed.",
+            factions: [this.factions.aelf],
+            size: 1,
+            maxSize: 1,
+            points: 100,
+            maxPoints: 0,
+            keywords: ["ORDER", "AELF", "HERO", "WIZARD", "MISTWEAVER SAIH"],
+            wounds: "5",
+            move: "8",
+            save: "6",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463821833920-fDRW28XdglgHDzDB.jpg",
+           options: [],
+           abilities: [this.abilities.mistweaverSaihGlimmermist, this.abilities.mistweaverSaihIllusoryAssault],
+           attacks: [this.attacks.mistweaverSaihAelvenBlade, this.attacks.mistweaverSaihMistweaverSStaff],
+           isLeader: (ws: WarscrollInterface) => true,
+           magicDescription: "A Mistweaver Saih is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. A Mistweaver Saih knows the Arcane Bolt, Mystic Shield and Illusory Assault spells.",       },
+       skavenDeathrunner: {
+            id: "skavenDeathrunner",
+            model: this.models.skavenDeathrunner,
+            description: "A Skaven Deathrunner is represented by 2 models, one real and one an illusion (see Illusory Twin below). A Skaven Deathrunner is armed with a Bloodblade sword in one hand and a Stab-slicer dagger in the other. He also carries razor-sharp Warpstars that he can hurl at an enemy.",
+            flavor: "This cunning murderer has been dispatched to the battlefield on a mission of assassination. By poisoned blade and shadow magic does he seek to strike down his mark. The Deathrunner flickers impossibly through the smoke and flame of the battlefield, or conceals his advance with clouds of alchemical fume before springing forth to plunge his blades into his victim’s unprotected back.",
+            factions: [this.factions.clansEshin],
+            size: 1,
+            maxSize: 1,
+            points: 120,
+            maxPoints: 0,
+            keywords: ["CHAOS", "SKAVEN", "ESHIN", "HERO", "SKAVEN DEATHRUNNER"],
+            wounds: "5",
+            move: "7",
+            save: "4",
+            bravery: "5",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463823267387-Ym1RGamkq26nJTno.jpg",
+           options: [],
+           abilities: [this.abilities.skavenDeathrunnerIllusoryTwin, this.abilities.skavenDeathrunnerMarkedTarget, this.abilities.skavenDeathrunnerShadowsmokeBombs],
+           attacks: [this.attacks.skavenDeathrunnerWarpstars, this.attacks.skavenDeathrunnerBloodblade, this.attacks.skavenDeathrunnerStabSlicer],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       tenebraelShard: {
+            id: "tenebraelShard",
+            model: this.models.tenebraelShard,
+            description: "A Tenebrael Shard is a single model. He is armed with Bladed Barbs that hang from his body on iron chains, while his hands are sheathed within a pair of wickedly sharp Reaper Gauntlets.",
+            flavor: "A Tenebrael Shard is a killer of superlative skill. Fast beyond belief, supernaturally agile and ominously silent, the Shard closes upon his prey as fast as thought and ends their lives with callous efficiency. None know whether he is an assassin, a spy, or simply a terrifying force of nature, but to stand in his path means certain death.",
+            factions: [this.factions.aelf],
+            size: 1,
+            maxSize: 1,
+            points: 120,
+            maxPoints: 0,
+            keywords: ["ORDER", "AELF", "HERO", "TENEBRAEL SHARD"],
+            wounds: "5",
+            move: "8",
+            save: "5",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463821957972-VHC6v2hmhedrdRD9.jpg",
+           options: [],
+           abilities: [this.abilities.tenebraelShardShadowstrike, this.abilities.tenebraelShardGracefulKiller, this.abilities.tenebraelShardIncredibleSpeed],
+           attacks: [this.attacks.tenebraelShardBladedBarbs, this.attacks.tenebraelShardReaperGauntlets],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       highWarden: {
+            id: "highWarden",
+            model: this.models.highWarden,
+            description: "A High Warden is a single model. The High Warden is armed with a Starwood Lance and a Starblade. They ride a nimble Griffon which attacks with its Razor-sharp Beak and Wicked Talons.",
+            flavor: "Peerless tacticians and mighty warriors, the High Wardens command cadres of Swifthawk Agents, directing communications and covert operations across entire regions of the Mortal Realms. In battle they are a commanding presence, mounted atop their proud griffons, scanning the battlefield with an eagle’s eye before swooping down to tear through the enemy with their starwood lances.",
+            factions: [this.factions.swifthawkAgents],
+            size: 1,
+            maxSize: 1,
+            points: 220,
+            maxPoints: 0,
+            keywords: ["ORDER", "AELF", "GRIFFON", "SWIFTHAWK AGENTS", "HERO", "MONSTER", "HIGH WARDEN"],
+            wounds: "10",
+            move: this.damageTables.highWarden.columns[0],
+            save: "4",
+            bravery: "8",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1481485770914-WGmyqC5eKK1jAz9F.jpg",
+           options: [],
+           abilities: [this.abilities.highWardenPredatoryLeap, this.abilities.highWardenStarwoodLance, this.abilities.highWardenFly],
+           commandAbilities: [this.abilities.highWardenHurricaneCharge],
+           attacks: [this.attacks.highWardenStarwoodLance, this.attacks.highWardenStarblade, this.attacks.highWardenGriffonSRazorSharpBeak, this.attacks.highWardenGriffonSWickedTalons],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       spireguard: {
+            id: "spireguard",
+            model: this.models.spireguard,
+            description: "A unit of Spireguard has 10 or more models. They are armed with Silverwood Spears and Spireguard Bows, and carry Aelven Shields.",
+            flavor: "Dotted throughout the Mortal Realms are the soaring White Towers and wondrous monument-cities of the aelves. It is the Spireguard’s task to protect these beacons of civilisation, and they do so with fierce determination and breathtaking martial skill. The Spireguard can be formed by aelves of many different origins, but nonetheless they all serve with the same stalwart dedication.",
+            factions: [this.factions.swifthawkAgents],
+            size: 10,
+            maxSize: 30,
+            points: 120,
+            maxPoints: 300,
+            keywords: ["ORDER", "AELF", "SWIFTHAWK AGENTS", "SPIREGUARD"],
+            wounds: "1",
+            move: "6",
+            save: "5",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1481486814408-lTt74ywi6ril0Xho.jpg",
+           options: [this.options.spireguardHornblower, this.options.spireguardStandardBearer],
+           abilities: [this.abilities.spireguardAelvenShield, this.abilities.spireguardStrengthOfTheSpireguard, this.abilities.spireguardSwifthawkDiscipline, this.abilities.spireguardWatchMaster],
+           attacks: [this.attacks.spireguardSpireguardBow, this.attacks.spireguardSilverwoodSpear],
+       },
+       reavers: {
+            id: "reavers",
+            model: this.models.reavers,
+            description: "A unit of Reavers has 5 or more models. They wield supple Reaver Cavalry Bows and deadly Starwood Spears, and ride Aelven Purebreeds that attack with their Swift Hooves.",
+            flavor: "As swift as a hawk in flight upon their purebred steeds, Reavers are scouts and skirmishers without peer. With a speed that seems unnatural, these master horse riders flank and strike at the rear of the enemy formation, wreaking terrible carnage with spear and blade, or bringing enemy champions down with well-placed arrows.",
+            factions: [this.factions.swifthawkAgents],
+            size: 5,
+            maxSize: 20,
+            points: 140,
+            maxPoints: 0,
+            keywords: ["ORDER", "AELF", "SWIFTHAWK AGENTS", "REAVERS"],
+            wounds: "2",
+            move: "14",
+            save: "5",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1481487838397-hnGGQPIrVhqor90I.jpg",
+           options: [],
+           abilities: [this.abilities.reaversAelvenPurebreeds, this.abilities.reaversSwiftVolleys, this.abilities.reaversHarbinger],
+           attacks: [this.attacks.reaversReaverCavalryBow, this.attacks.reaversStarwoodSpear, this.attacks.reaversStarsteelBlade, this.attacks.reaversAelvenPurebreedSSwiftHooves],
+           isBattleline: (ws: WarscrollInterface) => true,
+       },
+       tamurkhanTheMaggotLord: {
+            id: "tamurkhanTheMaggotLord",
+            model: this.models.tamurkhanTheMaggotLord,
+            description: "Tamurkhan the Maggot Lord is a named character that is a single model. He is armed with the Black Cleaver.",
+            flavor: "Arrogant, savage, and a bringer of death and decay, Tamurkhan the Maggot Lord is one of Nurgle’s most powerful mortal champions. Riding atop his mighty Toad Dragon, Bubebolos, he enacts the Plague God’s will throughout the Mortal Realms.",
+            factions: [this.factions.tamurkhanSHorde],
+            size: 1,
+            maxSize: 1,
+            points: 460,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MORTAL", "DRAGON", "NURGLE", "TAMURKHAN'S HORDE", "HERO", "MONSTER", "TAMURKHAN THE MAGGOT LORD"],
+            wounds: "18",
+            move: this.damageTables.tamurkhanTheMaggotLord.columns[0],
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469103218676-hUvT3nkS9xYOBFdE.jpg",
+           options: [],
+           abilities: [this.abilities.tamurkhanTheMaggotLordFeastOfTheMaggotLord, this.abilities.tamurkhanTheMaggotLordKillerOfKings, this.abilities.tamurkhanTheMaggotLordNurgleSFavouredSon, this.abilities.tamurkhanTheMaggotLordMount],
+           commandAbilities: [this.abilities.tamurkhanTheMaggotLordRoarOfCommand],
+           attacks: [this.attacks.tamurkhanTheMaggotLordLashingTongue, this.attacks.tamurkhanTheMaggotLordTheBlackCleaver, this.attacks.tamurkhanTheMaggotLordCrushingJaws, this.attacks.tamurkhanTheMaggotLordBefouledBulk],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       kazykTheBefouled: {
+            id: "kazykTheBefouled",
+            model: this.models.kazykTheBefouled,
+            description: "Kazyk the Befouled is a named character that is a single model. He is armed with Noxious Blades.",
+            flavor: "The foetid rider known as Kazyk is a foul servant of Nurgle and one of Tamurkhan’s must trusted lieutenants. In body, mind and soul he serves as a living testament to the full horrors of Nurgle’s blessings.",
+            factions: [this.factions.tamurkhanSHorde],
+            size: 1,
+            maxSize: 1,
+            points: 120,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MORTAL", "NURGLE", "TAMURKHAN'S HORDE", "HERO", "KAZYK THE BEFOULED"],
+            wounds: "7",
+            move: "7",
+            save: "3",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/8a9a71af-2555-4f52-9050-21074b374811.jpg",
+           options: [],
+           abilities: [this.abilities.kazykTheBefouledCorruptedFlesh, this.abilities.kazykTheBefouledNoxiousBlades, this.abilities.kazykTheBefouledMount],
+           commandAbilities: [this.abilities.kazykTheBefouledBreathOfThePlaguePit],
+           attacks: [this.attacks.kazykTheBefouledNoxiousBlades, this.attacks.kazykTheBefouledSlaveringFangs],
+           isLeader: (ws: WarscrollInterface) => true,
+       },
+       daemonPlagueToadsOfNurgle: {
+            id: "daemonPlagueToadsOfNurgle",
+            model: this.models.daemonPlagueToadsOfNurgle,
+            description: "A unit of Daemon Plague Toads of Nurgle has any number of models, each armed with a Grasping Tongue and Yawning Maw.",
+            flavor: "Plague Toads are mutated, pseudo-amphibian sacs of brackish filth and pus, whose wide maws can swallow a man whole. They are drawn to places of disease and decay, and in such places they can be summoned by those loyal to the Plague Father.",
+            factions: [this.factions.tamurkhanSHorde],
+            size: 3,
+            maxSize: 12,
+            points: 120,
+            maxPoints: 400,
+            keywords: ["CHAOS", "DAEMON", "NURGLE", "DAEMON PLAGUE TOADS OF NURGLE"],
+            wounds: "4",
+            move: "7",
+            save: "5",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/8a9a71af-2555-4f52-9050-21074b374811.jpg",
+           options: [],
+           abilities: [this.abilities.daemonPlagueToadsOfNurgleBloatedFlesh, this.abilities.daemonPlagueToadsOfNurgleRotEaters, this.abilities.daemonPlagueToadsOfNurgleFly, this.abilities.daemonPlagueToadsOfNurgleSummonDaemonsOfNurgle],
+           attacks: [this.attacks.daemonPlagueToadsOfNurgleGraspingTongue, this.attacks.daemonPlagueToadsOfNurgleYawningMaw],
+       },
+       daemonPoxRidersOfNurgle: {
+            id: "daemonPoxRidersOfNurgle",
+            model: this.models.daemonPoxRidersOfNurgle,
+            description: "A unit of Daemon Pox Riders of Nurgle has any number of models, each armed with a Plaguesword.",
+            flavor: "Daemon Pox Riders form the vanguard of the Plague Lord’s daemon armies. Consisting of repulsive Plaguebearers mounted on ravenous and wide-mawed Daemon Plague Toads, they crash into the ranks of the foe like bloated cannonballs.",
+            factions: [this.factions.tamurkhanSHorde],
+            size: 3,
+            maxSize: 12,
+            points: 200,
+            maxPoints: 0,
+            keywords: ["CHAOS", "DAEMON", "NURGLE", "DAEMON POX RIDERS OF NURGLE"],
+            wounds: "5",
+            move: "7",
+            save: "5",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/8a9a71af-2555-4f52-9050-21074b374811.jpg",
+           options: [],
+           abilities: [this.abilities.daemonPoxRidersOfNurgleBloatedFlesh, this.abilities.daemonPoxRidersOfNurgleCloudOfFlies, this.abilities.daemonPoxRidersOfNurgleLocusOfFecundity, this.abilities.daemonPoxRidersOfNurgleRotEaters, this.abilities.daemonPoxRidersOfNurgleMount, this.abilities.daemonPoxRidersOfNurgleFly, this.abilities.daemonPoxRidersOfNurgleSummonDaemonsOfNurgle],
+           attacks: [this.attacks.daemonPoxRidersOfNurgleGraspingTongue, this.attacks.daemonPoxRidersOfNurglePlaguesword, this.attacks.daemonPoxRidersOfNurgleYawningMaw],
+       },
+       plagueOgors: {
+            id: "plagueOgors",
+            model: this.models.plagueOgors,
+            description: "A unit of Plague Ogors has any number of models, each armed with Corroded Weapons.",
+            flavor: "Plague Ogors are vile and malformed hulks whose natural resilience is augmented by the pox-ridden mutations and favours of their foul patron. They shamble into battle, battering their way through the enemy’s ranks whilst spreading Nurgle’s filthsome gifts.",
+            factions: [this.factions.tamurkhanSHorde],
+            size: 3,
+            maxSize: 12,
+            points: 160,
+            maxPoints: 560,
+            keywords: ["CHAOS", "OGOR", "NURGLE", "PLAGUE OGORS"],
+            wounds: "5",
+            move: "5",
+            save: "5",
+            bravery: "7",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/8a9a71af-2555-4f52-9050-21074b374811.jpg",
+           options: [],
+           abilities: [this.abilities.plagueOgorsDamnedFlesh, this.abilities.plagueOgorsInsatiablyFamished, this.abilities.plagueOgorsPlagueContagion],
+           attacks: [this.attacks.plagueOgorsCorrodedWeapons],
+       },
+       saylTheFaithless: {
+            id: "saylTheFaithless",
+            model: this.models.saylTheFaithless,
+            description: "Sayl the Faithless is a named character that is a single model. He is armed with the Viperous Staff.",
+            flavor: "An infamous arch-sorcerer and practised murderer, Sayl the Faithless revels in deceit and betrayal. His only goal is to acquire more power for himself, allying with those whose goals align with his own until they have outlived their usefulness.",
+            factions: [this.factions.monstrousArcanum, this.factions.slavesToDarkness],
+            size: 1,
+            maxSize: 1,
+            points: 0,
+            maxPoints: 0,
+            keywords: ["CHAOS", "MORTAL", "SLAVES TO DARKNESS", "HERO", "WIZARD", "SAYL THE FAITHLESS"],
+            wounds: "6",
+            move: "5",
+            save: "5",
+            bravery: "6",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.saylTheFaithlessMutantSight, this.abilities.saylTheFaithlessNightmawMyPetProtectMe, this.abilities.saylTheFaithlessSchalkainSTeeth, this.abilities.saylTheFaithlessTraitorSMist],
+           attacks: [this.attacks.saylTheFaithlessTheViperousStaff],
+           isLeader: (ws: WarscrollInterface) => true,
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Traitor’s Mist spells.",       },
+       nightmaw: {
+            id: "nightmaw",
+            model: this.models.nightmaw,
+            description: "Nightmaw is a named character that is a single model. It is armed with Razor-tipped Tentacles.",
+            flavor: "Nightmaw is slaved to the will of Sayl the Faithless. This flesh-shifting, darkness- bleeding hellspawn fights with dagger-like tentacles and the hungry mouths of its three ghastly faces.",
+            factions: [this.factions.monstrousArcanum, this.factions.slavesToDarkness],
+            size: 1,
+            maxSize: 1,
+            points: 200,
+            maxPoints: 0,
+            keywords: ["CHAOS", "SLAVES TO DARKNESS", "NIGHTMAW"],
+            wounds: "6",
+            move: "2D6",
+            save: "4",
+            bravery: "10",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/2e6e2263-a02c-4710-a267-f0b0f531b7be.jpg",
+           options: [],
+           abilities: [this.abilities.nightmawRestlessFlesh, this.abilities.nightmawShadowKin, this.abilities.nightmawWrithingTentacles],
+           attacks: [this.attacks.nightmawRazorTippedTentacles],
+       },
    };
    extraAbilities = {
                        brayherdUnreasoningAndDeadly: {
@@ -52100,64 +59230,64 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
                     id: "khorneMurderousArtefactsHeartSeeker",
                     ability: { name: "Heart Seeker", description: "" },
                     allegiance: this.allegiances.khorne,
-                    category: " MURDEROUS ARTEFACTS",
-                   isAvailable: keywordAvailable(" MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
+                    category: "MURDEROUS ARTEFACTS",
+                   isAvailable: keywordAvailable("MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
                },
                khorneMurderousArtefactsCollarOfKhorne: {
                     id: "khorneMurderousArtefactsCollarOfKhorne",
                     ability: { name: "Collar of Khorne", description: "" },
                     allegiance: this.allegiances.khorne,
-                    category: " MURDEROUS ARTEFACTS",
-                   isAvailable: keywordAvailable(" MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
+                    category: "MURDEROUS ARTEFACTS",
+                   isAvailable: keywordAvailable("MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
                },
                khorneMurderousArtefactsBloodDrinker: {
                     id: "khorneMurderousArtefactsBloodDrinker",
                     ability: { name: "Blood Drinker", description: "" },
                     allegiance: this.allegiances.khorne,
-                    category: " MURDEROUS ARTEFACTS",
-                   isAvailable: keywordAvailable(" MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
+                    category: "MURDEROUS ARTEFACTS",
+                   isAvailable: keywordAvailable("MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
                },
                khorneMurderousArtefactsGorecleaver: {
                     id: "khorneMurderousArtefactsGorecleaver",
                     ability: { name: "Gorecleaver", description: "" },
                     allegiance: this.allegiances.khorne,
-                    category: " MURDEROUS ARTEFACTS",
-                   isAvailable: keywordAvailable(" MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
+                    category: "MURDEROUS ARTEFACTS",
+                   isAvailable: keywordAvailable("MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
                },
                khorneMurderousArtefactsTheCrimsonPlate: {
                     id: "khorneMurderousArtefactsTheCrimsonPlate",
                     ability: { name: "The Crimson Plate", description: "" },
                     allegiance: this.allegiances.khorne,
-                    category: " MURDEROUS ARTEFACTS",
-                   isAvailable: keywordAvailable(" MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
+                    category: "MURDEROUS ARTEFACTS",
+                   isAvailable: keywordAvailable("MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
                },
                khorneMurderousArtefactsBloodRune: {
                     id: "khorneMurderousArtefactsBloodRune",
                     ability: { name: "Blood Rune", description: "" },
                     allegiance: this.allegiances.khorne,
-                    category: " MURDEROUS ARTEFACTS",
-                   isAvailable: keywordAvailable(" MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
+                    category: "MURDEROUS ARTEFACTS",
+                   isAvailable: keywordAvailable("MURDEROUS ARTEFACTS", "KHORNE", "MORTAL"),
                },
                khorneBannersOfKhorneBannerOfRage: {
                     id: "khorneBannersOfKhorneBannerOfRage",
                     ability: { name: "Banner of Rage", description: "" },
                     allegiance: this.allegiances.khorne,
-                    category: " BANNERS OF KHORNE",
-                   isAvailable: keywordAvailable(" BANNERS OF KHORNE", "KHORNE", "TOTEM"),
+                    category: "BANNERS OF KHORNE",
+                   isAvailable: keywordAvailable("BANNERS OF KHORNE", "KHORNE", "TOTEM"),
                },
                khorneBannersOfKhorneBannerOfWrath: {
                     id: "khorneBannersOfKhorneBannerOfWrath",
                     ability: { name: "Banner of Wrath", description: "" },
                     allegiance: this.allegiances.khorne,
-                    category: " BANNERS OF KHORNE",
-                   isAvailable: keywordAvailable(" BANNERS OF KHORNE", "KHORNE", "TOTEM"),
+                    category: "BANNERS OF KHORNE",
+                   isAvailable: keywordAvailable("BANNERS OF KHORNE", "KHORNE", "TOTEM"),
                },
                khorneBannersOfKhorneBannerOfWrath4d24e76f2f1a47568bfb599d79b4c84e: {
                     id: "khorneBannersOfKhorneBannerOfWrath4d24e76f2f1a47568bfb599d79b4c84e",
                     ability: { name: "Banner of Wrath", description: "" },
                     allegiance: this.allegiances.khorne,
-                    category: " BANNERS OF KHORNE",
-                   isAvailable: keywordAvailable(" BANNERS OF KHORNE", "KHORNE", "TOTEM"),
+                    category: "BANNERS OF KHORNE",
+                   isAvailable: keywordAvailable("BANNERS OF KHORNE", "KHORNE", "TOTEM"),
                },
                khorneTrophiesOfWarTheSkullHelmOfKhorne: {
                     id: "khorneTrophiesOfWarTheSkullHelmOfKhorne",
@@ -52499,43 +59629,43 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
                     id: "nurgleDaemonicBoonsNoxiousNexus",
                     ability: { name: "Noxious Nexus", description: "" },
                     allegiance: this.allegiances.nurgle,
-                    category: " DAEMONIC BOONS",
-                   isAvailable: keywordAvailable(" DAEMONIC BOONS", "NURGLE", "DAEMON"),
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "NURGLE", "DAEMON"),
                },
                nurgleDaemonicBoonsNurgleSNail: {
                     id: "nurgleDaemonicBoonsNurgleSNail",
                     ability: { name: "Nurgle’s Nail", description: "" },
                     allegiance: this.allegiances.nurgle,
-                    category: " DAEMONIC BOONS",
-                   isAvailable: keywordAvailable(" DAEMONIC BOONS", "NURGLE", "DAEMON"),
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "NURGLE", "DAEMON"),
                },
                nurgleDaemonicBoonsTheBountifulSwarm: {
                     id: "nurgleDaemonicBoonsTheBountifulSwarm",
                     ability: { name: "The Bountiful Swarm", description: "" },
                     allegiance: this.allegiances.nurgle,
-                    category: " DAEMONIC BOONS",
-                   isAvailable: keywordAvailable(" DAEMONIC BOONS", "NURGLE", "DAEMON"),
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "NURGLE", "DAEMON"),
                },
                nurgleDaemonicBoonsTheWitherstave: {
                     id: "nurgleDaemonicBoonsTheWitherstave",
                     ability: { name: "The Witherstave", description: "" },
                     allegiance: this.allegiances.nurgle,
-                    category: " DAEMONIC BOONS",
-                   isAvailable: keywordAvailable(" DAEMONIC BOONS", "NURGLE", "DAEMON"),
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "NURGLE", "DAEMON"),
                },
                nurgleDaemonicBoonsTomeOfAThousandPoxes: {
                     id: "nurgleDaemonicBoonsTomeOfAThousandPoxes",
                     ability: { name: "Tome of a Thousand Poxes", description: "" },
                     allegiance: this.allegiances.nurgle,
-                    category: " DAEMONIC BOONS",
-                   isAvailable: keywordAvailable(" DAEMONIC BOONS", "NURGLE", "DAEMON"),
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "NURGLE", "DAEMON"),
                },
                nurgleDaemonicBoonsTheEndlessGift: {
                     id: "nurgleDaemonicBoonsTheEndlessGift",
                     ability: { name: "The Endless Gift", description: "" },
                     allegiance: this.allegiances.nurgle,
-                    category: " DAEMONIC BOONS",
-                   isAvailable: keywordAvailable(" DAEMONIC BOONS", "NURGLE", "DAEMON"),
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "NURGLE", "DAEMON"),
                },
                nurglePlagueriddenGiftsTheVirulentBlade: {
                     id: "nurglePlagueriddenGiftsTheVirulentBlade",
@@ -52835,43 +59965,43 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
                     id: "tzeentchFatedArtefactsWickedShard",
                     ability: { name: "Wicked Shard", description: "" },
                     allegiance: this.allegiances.tzeentch,
-                    category: " FATED ARTEFACTS",
-                   isAvailable: keywordAvailable(" FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
+                    category: "FATED ARTEFACTS",
+                   isAvailable: keywordAvailable("FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
                },
                tzeentchFatedArtefactsChangeblade: {
                     id: "tzeentchFatedArtefactsChangeblade",
                     ability: { name: "Changeblade", description: "" },
                     allegiance: this.allegiances.tzeentch,
-                    category: " FATED ARTEFACTS",
-                   isAvailable: keywordAvailable(" FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
+                    category: "FATED ARTEFACTS",
+                   isAvailable: keywordAvailable("FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
                },
                tzeentchFatedArtefactsNexusStaff: {
                     id: "tzeentchFatedArtefactsNexusStaff",
                     ability: { name: "Nexus Staff", description: "" },
                     allegiance: this.allegiances.tzeentch,
-                    category: " FATED ARTEFACTS",
-                   isAvailable: keywordAvailable(" FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
+                    category: "FATED ARTEFACTS",
+                   isAvailable: keywordAvailable("FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
                },
                tzeentchFatedArtefactsTimeslipPendant: {
                     id: "tzeentchFatedArtefactsTimeslipPendant",
                     ability: { name: "Timeslip Pendant", description: "" },
                     allegiance: this.allegiances.tzeentch,
-                    category: " FATED ARTEFACTS",
-                   isAvailable: keywordAvailable(" FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
+                    category: "FATED ARTEFACTS",
+                   isAvailable: keywordAvailable("FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
                },
                tzeentchFatedArtefactsDaemonheart: {
                     id: "tzeentchFatedArtefactsDaemonheart",
                     ability: { name: "Daemonheart", description: "" },
                     allegiance: this.allegiances.tzeentch,
-                    category: " FATED ARTEFACTS",
-                   isAvailable: keywordAvailable(" FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
+                    category: "FATED ARTEFACTS",
+                   isAvailable: keywordAvailable("FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
                },
                tzeentchFatedArtefactsParadoxicalShield: {
                     id: "tzeentchFatedArtefactsParadoxicalShield",
                     ability: { name: "Paradoxical Shield", description: "" },
                     allegiance: this.allegiances.tzeentch,
-                    category: " FATED ARTEFACTS",
-                   isAvailable: keywordAvailable(" FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
+                    category: "FATED ARTEFACTS",
+                   isAvailable: keywordAvailable("FATED ARTEFACTS", "TZEENTCH", "MORTAL"),
                },
                tzeentchDaemonicWeaponsWarpfireBlade: {
                     id: "tzeentchDaemonicWeaponsWarpfireBlade",
@@ -54998,84 +62128,84 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
                     id: "kharadronOverlordsAethermaticWeaponsHammerOfAethermaticMight",
                     ability: { name: "Hammer of Aethermatic Might", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " AETHERMATIC WEAPONS",
+                    category: "AETHERMATIC WEAPONS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsAethermaticWeaponsSledgeshockHammer: {
                     id: "kharadronOverlordsAethermaticWeaponsSledgeshockHammer",
                     ability: { name: "Sledgeshock Hammer", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " AETHERMATIC WEAPONS",
+                    category: "AETHERMATIC WEAPONS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsAethermaticWeaponsAethershockBludgeon: {
                     id: "kharadronOverlordsAethermaticWeaponsAethershockBludgeon",
                     ability: { name: "Aethershock Bludgeon", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " AETHERMATIC WEAPONS",
+                    category: "AETHERMATIC WEAPONS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsAethermaticWeaponsGattlessonSEndlessRepeater: {
                     id: "kharadronOverlordsAethermaticWeaponsGattlessonSEndlessRepeater",
                     ability: { name: "Gattlesson’s Endless Repeater", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " AETHERMATIC WEAPONS",
+                    category: "AETHERMATIC WEAPONS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsAethermaticWeaponsAethershockEarbuster: {
                     id: "kharadronOverlordsAethermaticWeaponsAethershockEarbuster",
                     ability: { name: "Aethershock Earbuster", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " AETHERMATIC WEAPONS",
+                    category: "AETHERMATIC WEAPONS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsAethermaticWeaponsStaffOfOcularOptimisation: {
                     id: "kharadronOverlordsAethermaticWeaponsStaffOfOcularOptimisation",
                     ability: { name: "Staff of Ocular Optimisation", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " AETHERMATIC WEAPONS",
+                    category: "AETHERMATIC WEAPONS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsTreasuresOfTheSkyPortsMasterwroughtArmour: {
                     id: "kharadronOverlordsTreasuresOfTheSkyPortsMasterwroughtArmour",
                     ability: { name: "Masterwrought Armour", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " TREASURES OF THE SKY-PORTS",
+                    category: "TREASURES OF THE SKY-PORTS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsTreasuresOfTheSkyPortsBalebreathMask: {
                     id: "kharadronOverlordsTreasuresOfTheSkyPortsBalebreathMask",
                     ability: { name: "Balebreath Mask", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " TREASURES OF THE SKY-PORTS",
+                    category: "TREASURES OF THE SKY-PORTS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsTreasuresOfTheSkyPortsAutotinkerer: {
                     id: "kharadronOverlordsTreasuresOfTheSkyPortsAutotinkerer",
                     ability: { name: "Autotinkerer", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " TREASURES OF THE SKY-PORTS",
+                    category: "TREASURES OF THE SKY-PORTS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsTreasuresOfTheSkyPortsAethersightLoupe: {
                     id: "kharadronOverlordsTreasuresOfTheSkyPortsAethersightLoupe",
                     ability: { name: "Aethersight Loupe", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " TREASURES OF THE SKY-PORTS",
+                    category: "TREASURES OF THE SKY-PORTS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsTreasuresOfTheSkyPortsGimletLens: {
                     id: "kharadronOverlordsTreasuresOfTheSkyPortsGimletLens",
                     ability: { name: "Gimlet Lens", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " TREASURES OF THE SKY-PORTS",
+                    category: "TREASURES OF THE SKY-PORTS",
                    isAvailable: artifactAvailable,
                },
                kharadronOverlordsTreasuresOfTheSkyPortsAetherchargedRune: {
                     id: "kharadronOverlordsTreasuresOfTheSkyPortsAetherchargedRune",
                     ability: { name: "Aethercharged Rune", description: "" },
                     allegiance: this.allegiances.kharadronOverlords,
-                    category: " TREASURES OF THE SKY-PORTS",
+                    category: "TREASURES OF THE SKY-PORTS",
                    isAvailable: artifactAvailable,
                },
                seraphonSlannArcaneMight: {
@@ -55376,22 +62506,22 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
                     id: "stormcastEternalsMysticLightsShrivingLight",
                     ability: { name: "Shriving Light", description: "" },
                     allegiance: this.allegiances.stormcastEternals,
-                    category: " MYSTIC LIGHTS",
-                   isAvailable: keywordAvailable(" MYSTIC LIGHTS", "STORMCAST ETERNAL", "LORD-CASTELLANT"),
+                    category: "MYSTIC LIGHTS",
+                   isAvailable: keywordAvailable("MYSTIC LIGHTS", "STORMCAST ETERNAL", "LORD-CASTELLANT"),
                },
                stormcastEternalsMysticLightsFuryBrand: {
                     id: "stormcastEternalsMysticLightsFuryBrand",
                     ability: { name: "Fury Brand", description: "" },
                     allegiance: this.allegiances.stormcastEternals,
-                    category: " MYSTIC LIGHTS",
-                   isAvailable: keywordAvailable(" MYSTIC LIGHTS", "STORMCAST ETERNAL", "LORD-CASTELLANT"),
+                    category: "MYSTIC LIGHTS",
+                   isAvailable: keywordAvailable("MYSTIC LIGHTS", "STORMCAST ETERNAL", "LORD-CASTELLANT"),
                },
                stormcastEternalsMysticLightsLanternOfTheTempest: {
                     id: "stormcastEternalsMysticLightsLanternOfTheTempest",
                     ability: { name: "Lantern of the Tempest", description: "" },
                     allegiance: this.allegiances.stormcastEternals,
-                    category: " MYSTIC LIGHTS",
-                   isAvailable: keywordAvailable(" MYSTIC LIGHTS", "STORMCAST ETERNAL", "LORD-CASTELLANT"),
+                    category: "MYSTIC LIGHTS",
+                   isAvailable: keywordAvailable("MYSTIC LIGHTS", "STORMCAST ETERNAL", "LORD-CASTELLANT"),
                },
                stormcastEternalsMysticLightsShrivingLightdef0e5eb821e4756Ad0f499ef8633d9f: {
                     id: "stormcastEternalsMysticLightsShrivingLightdef0e5eb821e4756Ad0f499ef8633d9f",
@@ -56338,6 +63468,202 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
                     category: "ARTEFACTS OF ORDER",
                    isAvailable: artifactAvailable,
                },
+               legionOfAzgorhContemptuous: {
+                    id: "legionOfAzgorhContemptuous",
+                    ability: { name: "Contemptuous", description: "" },
+                    allegiance: this.allegiances.legionOfAzgorh,
+                    category: "command",
+                   isAvailable: commandTraitAvailable,
+               },
+               legionOfAzgorhRelentless: {
+                    id: "legionOfAzgorhRelentless",
+                    ability: { name: "Relentless", description: "" },
+                    allegiance: this.allegiances.legionOfAzgorh,
+                    category: "command",
+                   isAvailable: commandTraitAvailable,
+               },
+               legionOfAzgorhGrotesque: {
+                    id: "legionOfAzgorhGrotesque",
+                    ability: { name: "Grotesque", description: "" },
+                    allegiance: this.allegiances.legionOfAzgorh,
+                    category: "command",
+                   isAvailable: commandTraitAvailable,
+               },
+               legionOfAzgorhArtefactsOfPowerBlackHammerOfHashut: {
+                    id: "legionOfAzgorhArtefactsOfPowerBlackHammerOfHashut",
+                    ability: { name: "Black Hammer of Hashut", description: "" },
+                    allegiance: this.allegiances.legionOfAzgorh,
+                    category: "ARTEFACTS OF POWER",
+                   isAvailable: artifactAvailable,
+               },
+               legionOfAzgorhArtefactsOfPowerArmourOfBazherakTheCruel: {
+                    id: "legionOfAzgorhArtefactsOfPowerArmourOfBazherakTheCruel",
+                    ability: { name: "Armour of Bazherak the Cruel", description: "" },
+                    allegiance: this.allegiances.legionOfAzgorh,
+                    category: "ARTEFACTS OF POWER",
+                   isAvailable: artifactAvailable,
+               },
+               legionOfAzgorhArtefactsOfPowerChaliceOfBloodAndDarkness: {
+                    id: "legionOfAzgorhArtefactsOfPowerChaliceOfBloodAndDarkness",
+                    ability: { name: "Chalice of Blood and Darkness", description: "" },
+                    allegiance: this.allegiances.legionOfAzgorh,
+                    category: "ARTEFACTS OF POWER",
+                   isAvailable: artifactAvailable,
+               },
+               legionOfAzgorhArtefactsOfPower: {
+                    id: "legionOfAzgorhArtefactsOfPower",
+                    ability: { name: "", description: "" },
+                    allegiance: this.allegiances.legionOfAzgorh,
+                    category: "ARTEFACTS OF POWER",
+                   isAvailable: artifactAvailable,
+               },
+               legionOfAzgorhArtefactsOfPowerb80419b9A79a42e4A52f51669f1025bf: {
+                    id: "legionOfAzgorhArtefactsOfPowerb80419b9A79a42e4A52f51669f1025bf",
+                    ability: { name: "", description: "" },
+                    allegiance: this.allegiances.legionOfAzgorh,
+                    category: "ARTEFACTS OF POWER",
+                   isAvailable: artifactAvailable,
+               },
+               tamurkhanSHordeUnrelentingConqueror: {
+                    id: "tamurkhanSHordeUnrelentingConqueror",
+                    ability: { name: "Unrelenting Conqueror", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "command",
+                   isAvailable: commandTraitAvailable,
+               },
+               tamurkhanSHordeArtefactOfPowerDaemonFlask: {
+                    id: "tamurkhanSHordeArtefactOfPowerDaemonFlask",
+                    ability: { name: "Daemon Flask", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "ARTEFACT OF POWER",
+                   isAvailable: artifactAvailable,
+               },
+               tamurkhanSHordeArtefactsOfContagionTheSplithornHelm: {
+                    id: "tamurkhanSHordeArtefactsOfContagionTheSplithornHelm",
+                    ability: { name: "The Splithorn Helm", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "ARTEFACTS OF CONTAGION",
+                   isAvailable: keywordAvailable("ARTEFACTS OF CONTAGION", "TAMURKHAN'S HORDE", "ROTBRINGER"),
+               },
+               tamurkhanSHordeArtefactsOfContagionMuttergrub: {
+                    id: "tamurkhanSHordeArtefactsOfContagionMuttergrub",
+                    ability: { name: "Muttergrub", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "ARTEFACTS OF CONTAGION",
+                   isAvailable: keywordAvailable("ARTEFACTS OF CONTAGION", "TAMURKHAN'S HORDE", "ROTBRINGER"),
+               },
+               tamurkhanSHordeArtefactsOfContagionRustfang: {
+                    id: "tamurkhanSHordeArtefactsOfContagionRustfang",
+                    ability: { name: "Rustfang", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "ARTEFACTS OF CONTAGION",
+                   isAvailable: keywordAvailable("ARTEFACTS OF CONTAGION", "TAMURKHAN'S HORDE", "ROTBRINGER"),
+               },
+               tamurkhanSHordeArtefactsOfContagionFleshPealer: {
+                    id: "tamurkhanSHordeArtefactsOfContagionFleshPealer",
+                    ability: { name: "Flesh Pealer", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "ARTEFACTS OF CONTAGION",
+                   isAvailable: keywordAvailable("ARTEFACTS OF CONTAGION", "TAMURKHAN'S HORDE", "ROTBRINGER"),
+               },
+               tamurkhanSHordeArtefactsOfContagionTheBileheart: {
+                    id: "tamurkhanSHordeArtefactsOfContagionTheBileheart",
+                    ability: { name: "The Bileheart", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "ARTEFACTS OF CONTAGION",
+                   isAvailable: keywordAvailable("ARTEFACTS OF CONTAGION", "TAMURKHAN'S HORDE", "ROTBRINGER"),
+               },
+               tamurkhanSHordeArtefactsOfContagionTheFecundFlask: {
+                    id: "tamurkhanSHordeArtefactsOfContagionTheFecundFlask",
+                    ability: { name: "The Fecund Flask", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "ARTEFACTS OF CONTAGION",
+                   isAvailable: keywordAvailable("ARTEFACTS OF CONTAGION", "TAMURKHAN'S HORDE", "ROTBRINGER"),
+               },
+               tamurkhanSHordeDaemonicBoonsNoxiousNexus: {
+                    id: "tamurkhanSHordeDaemonicBoonsNoxiousNexus",
+                    ability: { name: "Noxious Nexus", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "TAMURKHAN'S HORDE", "DAEMON"),
+               },
+               tamurkhanSHordeDaemonicBoonsNurgleSNail: {
+                    id: "tamurkhanSHordeDaemonicBoonsNurgleSNail",
+                    ability: { name: "Nurgle’s Nail", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "TAMURKHAN'S HORDE", "DAEMON"),
+               },
+               tamurkhanSHordeDaemonicBoonsTheBountifulSwarm: {
+                    id: "tamurkhanSHordeDaemonicBoonsTheBountifulSwarm",
+                    ability: { name: "The Bountiful Swarm", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "TAMURKHAN'S HORDE", "DAEMON"),
+               },
+               tamurkhanSHordeDaemonicBoonsTheWitherstave: {
+                    id: "tamurkhanSHordeDaemonicBoonsTheWitherstave",
+                    ability: { name: "The Witherstave", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "TAMURKHAN'S HORDE", "DAEMON"),
+               },
+               tamurkhanSHordeDaemonicBoonsTomeOfAThousandPoxes: {
+                    id: "tamurkhanSHordeDaemonicBoonsTomeOfAThousandPoxes",
+                    ability: { name: "Tome of a Thousand Poxes", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "TAMURKHAN'S HORDE", "DAEMON"),
+               },
+               tamurkhanSHordeDaemonicBoonsTheEndlessGift: {
+                    id: "tamurkhanSHordeDaemonicBoonsTheEndlessGift",
+                    ability: { name: "The Endless Gift", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "DAEMONIC BOONS",
+                   isAvailable: keywordAvailable("DAEMONIC BOONS", "TAMURKHAN'S HORDE", "DAEMON"),
+               },
+               tamurkhanSHordePlagueriddenGiftsTheVirulentBlade: {
+                    id: "tamurkhanSHordePlagueriddenGiftsTheVirulentBlade",
+                    ability: { name: "The Virulent Blade", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "PLAGUERIDDEN GIFTS",
+                   isAvailable: keywordAvailable("PLAGUERIDDEN GIFTS", "TAMURKHAN'S HORDE", "MORTAL"),
+               },
+               tamurkhanSHordePlagueriddenGiftsTheFoetidShroud: {
+                    id: "tamurkhanSHordePlagueriddenGiftsTheFoetidShroud",
+                    ability: { name: "The Foetid Shroud", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "PLAGUERIDDEN GIFTS",
+                   isAvailable: keywordAvailable("PLAGUERIDDEN GIFTS", "TAMURKHAN'S HORDE", "MORTAL"),
+               },
+               tamurkhanSHordePlagueriddenGiftsSublucusStenchplate: {
+                    id: "tamurkhanSHordePlagueriddenGiftsSublucusStenchplate",
+                    ability: { name: "Sublucus’ Stenchplate", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "PLAGUERIDDEN GIFTS",
+                   isAvailable: keywordAvailable("PLAGUERIDDEN GIFTS", "TAMURKHAN'S HORDE", "MORTAL"),
+               },
+               tamurkhanSHordePlagueriddenGiftsTheEyeOfNurgle: {
+                    id: "tamurkhanSHordePlagueriddenGiftsTheEyeOfNurgle",
+                    ability: { name: "The Eye of Nurgle", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "PLAGUERIDDEN GIFTS",
+                   isAvailable: keywordAvailable("PLAGUERIDDEN GIFTS", "TAMURKHAN'S HORDE", "MORTAL"),
+               },
+               tamurkhanSHordePlagueriddenGiftsTheCarrionDirge: {
+                    id: "tamurkhanSHordePlagueriddenGiftsTheCarrionDirge",
+                    ability: { name: "The Carrion Dirge", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "PLAGUERIDDEN GIFTS",
+                   isAvailable: keywordAvailable("PLAGUERIDDEN GIFTS", "TAMURKHAN'S HORDE", "MORTAL"),
+               },
+               tamurkhanSHordePlagueriddenGiftsTheShieldOfGrowths: {
+                    id: "tamurkhanSHordePlagueriddenGiftsTheShieldOfGrowths",
+                    ability: { name: "The Shield of Growths", description: "" },
+                    allegiance: this.allegiances.tamurkhanSHorde,
+                    category: "PLAGUERIDDEN GIFTS",
+                   isAvailable: keywordAvailable("PLAGUERIDDEN GIFTS", "TAMURKHAN'S HORDE", "MORTAL"),
+               },
 
     };
    battalions = {
@@ -56387,21 +63713,21 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             id: "royalCouncil",
             name: "ROYAL COUNCIL",
             allegiance: this.allegiances.idonethDeepkin,
-            points: 100,
+            points: 140,
             units: [],
 
         },       akhelianCorps: {
             id: "akhelianCorps",
             name: "AKHELIAN CORPS",
             allegiance: this.allegiances.idonethDeepkin,
-            points: 140,
+            points: 100,
             units: [],
 
         },       namartiCorps: {
             id: "namartiCorps",
             name: "NAMARTI CORPS",
             allegiance: this.allegiances.idonethDeepkin,
-            points: 120,
+            points: 100,
             units: [],
 
         },       phalanx: {
@@ -57407,7 +64733,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
 
         },       plaguetouchedWarband: {
             id: "plaguetouchedWarband",
-            name: "Plaguetouched Warband",
+            name: "PLAGUETOUCHED WARBAND",
             allegiance: this.allegiances.everchosen,
             points: 160,
             units: [],
@@ -57566,6 +64892,27 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             points: 150,
             units: [],
 
+        },       waystonePathfinders: {
+            id: "waystonePathfinders",
+            name: "WAYSTONE PATHFINDERS",
+            allegiance: this.allegiances.wanderers,
+            points: 200,
+            units: [],
+
+        },       sonsOfTheMaggotLord: {
+            id: "sonsOfTheMaggotLord",
+            name: "SONS OF THE MAGGOT LORD",
+            allegiance: this.allegiances.tamurkhanSHorde,
+            points: 160,
+            units: [],
+
+        },       leapingPox: {
+            id: "leapingPox",
+            name: "LEAPING POX",
+            allegiance: this.allegiances.tamurkhanSHorde,
+            points: 170,
+            units: [],
+
         },       sacrosanctChamber: {
             id: "sacrosanctChamber",
             name: "SACROSANCT CHAMBER",
@@ -57655,6 +65002,69 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
             name: "SHRIEKER HOST",
             allegiance: this.allegiances.nighthaunt,
             points: 140,
+            units: [],
+
+        },       vostargLodge: {
+            id: "vostargLodge",
+            name: "VOSTARG LODGE",
+            allegiance: this.allegiances.fyreslayers,
+            points: 100,
+            units: [],
+
+        },       greyfyrdLodge: {
+            id: "greyfyrdLodge",
+            name: "GREYFYRD LODGE",
+            allegiance: this.allegiances.fyreslayers,
+            points: 60,
+            units: [],
+
+        },       fangsOfSotek: {
+            id: "fangsOfSotek",
+            name: "FANGS OF SOTEK",
+            allegiance: this.allegiances.seraphon,
+            points: 70,
+            units: [],
+
+        },       dracothionSTail: {
+            id: "dracothionSTail",
+            name: "DRACOTHION’S TAIL",
+            allegiance: this.allegiances.seraphon,
+            points: 80,
+            units: [],
+
+        },       ironsunz: {
+            id: "ironsunz",
+            name: "IRONSUNZ",
+            allegiance: this.allegiances.ironjawz,
+            points: 120,
+            units: [],
+
+        },       bloodtoofs: {
+            id: "bloodtoofs",
+            name: "BLOODTOOFS",
+            allegiance: this.allegiances.ironjawz,
+            points: 120,
+            units: [],
+
+        },       blackshardWarhost: {
+            id: "blackshardWarhost",
+            name: "BLACKSHARD WARHOST",
+            allegiance: this.allegiances.legionOfAzgorh,
+            points: 160,
+            units: [],
+
+        },       hashutSWrathArtilleryTrain: {
+            id: "hashutSWrathArtilleryTrain",
+            name: "HASHUT’S WRATH ARTILLERY TRAIN",
+            allegiance: this.allegiances.legionOfAzgorh,
+            points: 120,
+            units: [],
+
+        },       executionHerd: {
+            id: "executionHerd",
+            name: "EXECUTION HERD",
+            allegiance: this.allegiances.legionOfAzgorh,
+            points: 160,
             units: [],
 
         },    }

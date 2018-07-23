@@ -49,11 +49,6 @@ export class UiStore {
         return result;
     }
 
-    @computed
-    get battalions() {
-        return this.unitsStore.battalions.filter(x => x.allegiance.grandAlliance === this.grandAlliance);
-    }
-
     constructor(private unitsStore: UnitsStore) {
         const ui: string | null = localStorage.getItem('ui');
         if (ui) {

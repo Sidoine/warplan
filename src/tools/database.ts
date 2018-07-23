@@ -11,6 +11,7 @@ function getId(name: string, alt: string, ids: Map<string, boolean>) {
     let id = toCamelCase(name);
     if (ids.get(id)) {
         id += toCamelCase(alt);
+        if (ids.get(id)) return undefined;
     }
     ids.set(id, true);
     return id;
@@ -29,7 +30,7 @@ const models: realm.ObjectSchema[] = [ model.Ability, model.ArtefactGroup, model
     model.Battleplan, model.CommandTraitGroup, model.CompoundKeyword, model.DamageColumn,
     model.DamagePair, model.Division, model.EndlessSpell, model.ExceptionalTraitGroup, model.KharadronCode,
     model.RealmAllegiance, model.RealmOfBattle, model.RealmscapeFeature, model.Rule, model.Skyport,
-    model.UnitWarscroll, model.UnitWeapon];
+    model.UnitWarscroll, model.UnitWeapon, model.WarMachine];
 const tab = "    ";
 const allegianceIdByKeyword = new Map<string, string>();
 allegianceIdByKeyword.set("SKAVEN PESTILENS", "clansPestilens");
@@ -69,7 +70,7 @@ async function load() {
         const db = await realm.open({
             path: 'src/tools/en.realm',
             schema: models,
-            schemaVersion: 32
+            schemaVersion: 35
         })
         let result = `import { DataStore, GrandAlliance, ExtraAbilityTest, WarscrollInterface, Box, AbilityCategory } from "./units";
 
@@ -257,6 +258,7 @@ function getAbilities(db: realm) {
     for (const unit of db.objects<def.UnitWarscroll>(model.UnitWarscroll.name)) {
         result += getUnitAbilities(unit, unit.abilities, ids);
         result += getUnitAbilities(unit, unit.magicAbilities, ids, "Magic");
+        result += getUnitAbilities(unit, unit.commandAbilities, ids, "Command");
         for (const ability of unit.specialRules) {
             const id = toCamelCase(`${unit.name} ${ability.name}`);
             if (ids.get(id)) continue;
@@ -287,6 +289,7 @@ function getAttacks(db: realm) {
     for (const unit of db.objects<def.UnitWarscroll>(model.UnitWarscroll.name)) {
         const name = unit.subName ? `${unit.name} ${unit.subName}` : unit.name;
         const unitId = getId(name, unit.id, unitIds);
+        if (!unitId) continue;
         for (const weapon of unit.weapons) {
             const id = toCamelCase(`${unit.name} ${weapon.name}`);
             if (ids.get(id)) continue;
@@ -360,6 +363,7 @@ function getUnits(db: realm) {
     for (const unit of db.objects<def.UnitWarscroll>(model.UnitWarscroll.name)) {
         const name = unit.subName ? `${unit.name} ${unit.subName}` : unit.name;
         const id = getId(name, unit.id, usedNames);
+        if (!id) continue;
         result += 
 `       ${id}: {
             id: "${id}",
@@ -387,6 +391,12 @@ function getUnits(db: realm) {
             const abilities = unit.abilities.map(x => x.name).concat(unit.specialRules.map(x => x.name)).concat(unit.magicAbilities.map(x => x.name));
             result += 
 `           abilities: [${abilities.map(x => `this.abilities.${toCamelCase(`${unit.name} ${x}`)}`).join(', ')}],
+`
+        }
+        if (unit.commandAbilities.length > 0) {
+            const abilities = unit.commandAbilities.map(x => x.name);
+            result += 
+`           commandAbilities: [${abilities.map(x => `this.abilities.${toCamelCase(`${unit.name} ${x}`)}`).join(', ')}],
 `
         }
         if (unit.weapons) {
@@ -498,6 +508,7 @@ function getExtraAbilities(db: realm) {
             const groupTitle = artefactGroup.groupTitle.toLowerCase();
             for (const artefact of artefactGroup.artefacts) {
                 const id = getId(`${allegiance.name} ${groupTitle} ${artefact}`, artefactGroup.id, usedNames);
+                if (!id) continue;
                 result += 
 `               ${id}: {
                     id: "${id}",
