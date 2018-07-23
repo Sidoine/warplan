@@ -220,7 +220,7 @@ function getOptions(db: realm) {
     return result;
 }
 
-function getUnitAbilities(unit: def.UnitWarscroll, abilities: def.Ability[], ids: Map<string, boolean>, category?: string) {
+function getUnitAbilities(unit: { name: string }, abilities: def.Ability[], ids: Map<string, boolean>, category?: string) {
     let result = "";
     for (const ability of abilities) {
         const id = toCamelCase(`${unit.name} ${ability.name}`);
@@ -274,6 +274,12 @@ function getAbilities(db: realm) {
 `
         }
     }
+
+    for (const battalion of db.objects<def.BattalionWarscroll>(model.BattalionWarscroll.name)) {
+        result += getUnitAbilities(battalion, battalion.abilities, ids);
+        result += getUnitAbilities(battalion, battalion.commandAbilities, ids, "Command");
+    }
+
     result += 
 `   };
 `
@@ -557,9 +563,18 @@ function getBattalions(db: realm) {
             id: "${id}",
             name: ${escapeQuotedString(battalion.name)},
             allegiance: this.allegiances.${allegiance},
+            description: ${escapeQuotedString(battalion.about)},
+            pictureUrl: ${escapeQuotedString(battalion.imageUrl)},
             points: ${battalion.points},
-            units: [],
+            units: [${battalion.organisation.map(x => `{ id: "${x.id}", countMin: ${x.min}, countMax: ${x.max}, required: ${x.required}, units: [${
+                x.compoundKeywords.map(y => `[${y.keywords.map(z => `"${z}"`).join(', ')}]`).join(', ')
+            }] }`).join(', ')}],
+            abilities: [${battalion.abilities.map(x => `this.abilities.${toCamelCase(`${battalion.name} ${x.name}`)}`).join(', ')}],
 `;
+        if (battalion.organisationFootnote) {
+            result += 
+`           organisationFootnote: ${escapeQuotedString(battalion.organisationFootnote)},`
+        }
         result += `
         },`;
     }

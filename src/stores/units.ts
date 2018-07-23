@@ -339,11 +339,11 @@ export interface Box {
 
 
 export interface BattalionUnit {
-    id: number;
-    unit: Unit[];
-    count?: number;
-    countMin?: number;
-    countMax?: number;
+    id: string;
+    // Outer is and, inner is or (keywords)
+    units: string[][];
+    countMin: number;
+    countMax: number;
 }
 
 export interface Battalion {

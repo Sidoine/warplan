@@ -22946,6 +22946,2034 @@ Pug: Your opponent must subtract 1 from any hit rolls that target the Gaunt Summ
         description: "If you roll a double when determining the number of attacks made by this model’s Razor- tipped Tentacles, add 1 to hit and wound rolls for attacks made by that model until the end of the phase.",
            flavor: "The bodies of these creatures are ever in flux, making them wildly unpredictable.",
         },
+
+    warCovenOfMorathiBloodRituals: {
+        id: "warCovenOfMorathiBloodRituals",
+        name: "Blood Rituals",
+        description: "If your army has the Daughters of Khaine allegiance, units in this battalion count the current battle round number as being 1 higher than it actually is when determining what abilities they receive from the Blood Rites battle trait (pg 50). This is cumulative with other, similar abilities (e.g. the True Believer Command Trait or the Sacrament of Blood prayer).",
+        },
+
+    warCovenOfMorathiDevoutFollowers: {
+        id: "warCovenOfMorathiDevoutFollowers",
+        name: "Devout Followers",
+        description: "Do not take a battleshock test for War Coven of Morathi units\
+that are within 18\" of Morathi (in either of her forms) when the test is taken.",
+        },
+
+    cauldronGuardFrenziedDevotees: {
+        id: "cauldronGuardFrenziedDevotees",
+        name: "Frenzied Devotees",
+        description: "Add 1 to run and charge rolls made for units from this battalion.",
+        },
+
+    slaughterTroupeGladiatorialAcrobatics: {
+        id: "slaughterTroupeGladiatorialAcrobatics",
+        name: "Gladiatorial Acrobatics",
+        description: "Slaughter Troupe units that retreat can still shoot and charge in the same turn.",
+        },
+
+    templeNestLethalTransfixion: {
+        id: "templeNestLethalTransfixion",
+        name: "Lethal Transfixion",
+        description: "Each time your opponent makes a hit roll of 1 when attacking a Temple Nest unit in the combat phase, the attacking unit suffers 1 mortal wound after all of its attacks have been made.",
+        },
+
+    shadowPatrolShadowpaths: {
+        id: "shadowPatrolShadowpaths",
+        name: "Shadowpaths",
+        description: "Once per battle round, instead of moving in your movement phase, one unit from this battalion that is more than 3\" from any enemy models can move along the shadowpaths. If it does so, remove the unit from the battlefield, then set it up anywhere on the battlefield more than 9\" from any enemy models. This is its move for that movement phase.",
+        },
+
+    shadowhammerCompactRighteousFervour: {
+        id: "shadowhammerCompactRighteousFervour",
+        name: "Righteous Fervour",
+        description: "In your hero phase, choose one Daughters of Khaine unit from this battalion and one Stormcast Eternal unit from this battalion that are within 6\" of each other. Both units can either make a normal move as if it were your movement phase, shoot as if it were your shooting phase, or pile in and attack as if it were the combat phase. Both units must perform the same action (if only one of the units is able to perform the action you chose – for example, if one of the units shoots but the other has no missile weapons – then the other unit does nothing).",
+        },
+
+    royalCouncilGiveThemNoRespite: {
+        id: "royalCouncilGiveThemNoRespite",
+        name: "Give Them No Respite",
+        description: "You can use this command ability in your hero phase if the Akhelian King from this battalion is your general, and the Isharann Tidecaster and Isharann Soulscryer from this battalion are within 3\" of the general. If you do so, pick up to three friendly IDONETH DEEPKIN units that are wholly within 12\" of your general. Add 3\" to the Move characteristic of the units you pick until your next hero phase.",
+           flavor: "The Akhelian King and his councillors understand the vital importance of the raid their army is carrying out, and will not allow the warriors under their command to tarry for even a moment.",
+        category: AbilityCategory.Command,
+        },
+
+    akhelianCorpsPulsingRhythmOfTheDrums: {
+        id: "akhelianCorpsPulsingRhythmOfTheDrums",
+        name: "Pulsing Rhythm of the Drums",
+        description: "Once per phase, you can re-roll one hit, wound, save, run, or charge roll for one unit from this battalion that is wholly within 12\" of the Akhelian Leviadon from this battalion when the re-roll is made.",
+           flavor: "The pounding rhythm beat out by the void drummers mounted atop the Leviadon inspires nearby warriors to perform extraordinary feats of valour.",
+        },
+
+    namartiCorpsSoulBond: {
+        id: "namartiCorpsSoulBond",
+        name: "Soul Bond",
+        description: "If the Isharann Soulrender from this battalion uses their Lurelight ability on a Namarti unit from this battalion, the D3 roll to determine how many models are returned to the Namarti unit is treated as being a roll of 3 (there is no need to roll the dice).",
+           flavor: "Ancient rituals of servitude are used to bind the Namarti to the Isharann Soulrender that leads them.",
+        },
+
+    phalanxFullFuryOfTheStorm: {
+        id: "phalanxFullFuryOfTheStorm",
+        name: "Full Fury of the Storm",
+        description: "If your army has the Idoneth Deepkin allegiance and includes this battalion, then once per battle at the start of a battle round, you can choose to use the High Tide ability from the Tides of Death table (pg 86) for that battle round instead of the ability that would normally be used.",
+           flavor: "When they surface for battle, an Idoneth Deepkin phalanx crashes against the foe again and again, pounding them apart in waves of unrelenting fury.",
+        },
+
+    allianceOfWoodAndSeaStrengthOfTheEthersea: {
+        id: "allianceOfWoodAndSeaStrengthOfTheEthersea",
+        name: "Strength of the Ethersea",
+        description: "Sylvaneth units from this battalion have the Tides of Death battle trait, and gain abilities from the Tides of Death table in the same manner as Idoneth Deepkin units.",
+        },
+
+    theFirstCohortCeaselessVigil: {
+        id: "theFirstCohortCeaselessVigil",
+        name: "Ceaseless Vigil",
+        description: "Each time a wound or mortal wound is allocated to Nagash, you may pick a Morghast unit from the First Cohort within 3\" of him and roll a dice. On a 3+ you may allocate that wound or mortal wound to the chosen Morghast unit instead.",
+        },
+
+    theFirstCohortEternalServitude: {
+        id: "theFirstCohortEternalServitude",
+        name: "Eternal Servitude",
+        description: "If Nagash uses his Deathly Invocation ability (pg 96) on any Summonable unit from the First Cohort, you can treat the D3 result as 3 instead of rolling the dice.",
+        },
+
+    lordsOfSacramentUnearthlyFocus: {
+        id: "lordsOfSacramentUnearthlyFocus",
+        name: "Unearthly Focus",
+        description: "In your hero phase, each Wizard from the Lords of Sacrament may cast an additional spell whilst they are within 6\" of the battalion’s Mortis Engine.",
+        },
+
+    lordsOfSacramentSwirlingSpirits: {
+        id: "lordsOfSacramentSwirlingSpirits",
+        name: "Swirling Spirits",
+        description: "In the shooting phase, add 1 to save rolls for units from the Lords of Sacrament whilst they are within 6\" of the battalion’s Mortis Engine.",
+        },
+
+    deathmarchUnbreakingRanks: {
+        id: "deathmarchUnbreakingRanks",
+        name: "Unbreaking Ranks",
+        description: "At the start of your hero phase, you can return 1 slain model to each Deathmarch unit that is within 9\" of the battalion’s Wight King.",
+        },
+
+    deathmarchMarchOfTheDead: {
+        id: "deathmarchMarchOfTheDead",
+        name: "March of the Dead",
+        description: "In your hero phase, the Wight King and all units from his Deathmarch that are within 9\" of him can make a move of up to 4\" as if it were your Movement phase (models cannot run as part of this move).",
+        },
+
+    castellansOfTheCrimsonKeepTheShiftingKeep: {
+        id: "castellansOfTheCrimsonKeepTheShiftingKeep",
+        name: "The Shifting Keep",
+        description: "At the start of the game, after territories have been determined, but before any units have been set up, pick a battlefield edge. Instead of setting up this battalion, you may place it to one side and say that it is set up in the Crimson Keep. At the end of any of your movement phases you may set up any units from this battalion wholly within 6\" of the chosen battlefield edge and more than 9\" from enemy models.",
+        },
+
+    castellansOfTheCrimsonKeepInTheShadowOfTheKeep: {
+        id: "castellansOfTheCrimsonKeepInTheShadowOfTheKeep",
+        name: "In the Shadow of the Keep",
+        description: "Whilst they are within 15\" of the battlefield edge picked as described in the Shifting Keep ability above, you can re-roll failed hit rolls for the Templar Lances or Blades used by units of Blood Knights in this battalion.",
+        },
+
+    courtOfNulahmiaTheAdevore: {
+        id: "courtOfNulahmiaTheAdevore",
+        name: "The Adevore",
+        description: "Whilst she is within 9\" of this battalion’s Bloodseeker Palanquin, you may re-roll failed hit rolls for Neferata if the target is an enemy Hero.",
+        },
+
+    courtOfNulahmiaScentOfBlood: {
+        id: "courtOfNulahmiaScentOfBlood",
+        name: "Scent of Blood",
+        description: "At the start of your movement phase, units from the Court of Nulahmia that are within 9\" of the battalion’s Bloodseeker Palanquin may add 4\" to their Move characteristic until the end of the phase.",
+        },
+
+    nightfallPackSwoopingPredators: {
+        id: "nightfallPackSwoopingPredators",
+        name: "Swooping Predators",
+        description: "On any turn in which they completed a successful charge move, add 1 to the Attacks characteristic of the Murderous Fangs and Talons of this battalion’s Vargheists.",
+        },
+
+    nightfallPackCallOfTheNight: {
+        id: "nightfallPackCallOfTheNight",
+        name: "Call of the Night",
+        description: "If Mannfred uses his Deathly Invocation ability (pg 98) on any Skeleton Warriors unit from the Nightfall Pack, you may re-roll the D3 result for that unit.",
+        },
+
+    theMunificentWanderersInfestedWithFoulGifts: {
+        id: "theMunificentWanderersInfestedWithFoulGifts",
+        name: "Infested with Foul Gifts",
+        description: "In the Rampant Disease stage of the Cycle of Corruption, enemy units that are affected by the Rampant Disease that are within 14\" of a unit from this battalion suffer D6 mortal wounds instead of D3 mortal wounds. In addition, if Thrombolhox the Giving is on the battlefield in the Rampant Disease stage of the Cycle of Corruption, then D6 enemy units are affected by the Rampant Disease instead of D3 units.",
+        },
+
+    tallybandOfNurgleDroningMasses: {
+        id: "tallybandOfNurgleDroningMasses",
+        name: "Droning Masses",
+        description: "At the start of your hero phase, each unit in this battalion heals 1 wound that has been allocated to it. For units of Plaguebearers, return D3 slain models to each unit instead.",
+        },
+
+    tallybandOfNurgleDiseaseAndPestilencePersonified: {
+        id: "tallybandOfNurgleDiseaseAndPestilencePersonified",
+        name: "Disease and Pestilence Personified",
+        description: "If the number of Plaguebearers units plus the number of Plague Drones units in this battalion at the start of the battle is seven, you receive 1 extra contagion point in each of your hero phases.",
+        },
+
+    thricefoldBefoulmentHungryForThePlagueGodSPraise: {
+        id: "thricefoldBefoulmentHungryForThePlagueGodSPraise",
+        name: "Hungry for the Plague God’s Praise",
+        description: "Re-roll hit rolls of 1 for models from this battalion while they are within 14\" of another model from this battalion. In addition, re-roll wound rolls of 1 for models from this battalion while they are within 14\" of two other models from this battalion.",
+        },
+
+    thricefoldBefoulmentPlagueStormOfNurgle: {
+        id: "thricefoldBefoulmentPlagueStormOfNurgle",
+        name: "Plague Storm of Nurgle",
+        description: "If a model from this battalion successfully casts the Plague Wind spell when it is within 7\" of another model from this battalion, then the number of mortal wounds inflicted by the spell is increased from D3 to 2D3. If the caster is within 7\" of two other models from this battalion, then the number of mortal wounds inflicted by the spell is increased to 3D3 instead.",
+        },
+
+    nurgleSMenagerieAssistantGardeners: {
+        id: "nurgleSMenagerieAssistantGardeners",
+        name: "Assistant Gardeners",
+        description: "Horticulous Slimux can use his Cultivating the Garden of Nurgle ability in each of your hero phases instead of only once per battle. In addition, when he does so, the Feculent Gnarlmaw can be set up within 3\" of any unit from this battalion instead of being set up within 3\" of Horticulous Slimux.",
+        },
+
+    nurgleSMenagerieUtterlyRevoltingHorde: {
+        id: "nurgleSMenagerieUtterlyRevoltingHorde",
+        name: "Utterly Revolting Horde",
+        description: "Subtract 1 from the Bravery characteristic of enemy units while they are within 14\" of 7 or more models from this battalion.",
+        },
+
+    theBlessedSonsSwollenWithPride: {
+        id: "theBlessedSonsSwollenWithPride",
+        name: "Swollen with Pride",
+        description: "Units in this battalion do not have to take battleshock tests while they have 7 or more models.",
+        },
+
+    theBlessedSonsBlessedBlightplate: {
+        id: "theBlessedSonsBlessedBlightplate",
+        name: "Blessed Blightplate",
+        description: "Re-roll save rolls of 1 for models in this battalion.",
+        },
+
+    plagueCystMasterOfSlaughter: {
+        id: "plagueCystMasterOfSlaughter",
+        name: "Master of Slaughter",
+        description: "Re-roll all failed hit rolls for units from this battalion that are affected by the Wanton Slaughter ability of this battalion’s Lord of Plagues, instead of only re-rolling hit rolls of 1.",
+        },
+
+    plagueCystHorriblyContagious: {
+        id: "plagueCystHorriblyContagious",
+        name: "Horribly Contagious",
+        description: "In your hero phase, roll a dice for each enemy unit within 3\" of any units from this battalion. On a 6+ the unit being rolled for suffers D3 mortal wounds.",
+        },
+
+    blightCystEndlessBounty: {
+        id: "blightCystEndlessBounty",
+        name: "Endless Bounty",
+        description: "The Munificent Bounty ability of this battalion’s Lord of Blights affects all units from this battalion that are within 3\" of him at the start of your shooting phase, instead of only one unit.",
+        },
+
+    blightCystSupremelyBlightedWeapons: {
+        id: "blightCystSupremelyBlightedWeapons",
+        name: "Supremely Blighted Weapons",
+        description: "The Blighted Weapons used by the Putrid Blightkings in this battalion have a Rend characteristic of ‘-1’.",
+        },
+
+    blightCystBlightsOnTheLandscape: {
+        id: "blightCystBlightsOnTheLandscape",
+        name: "Blights on the Landscape",
+        description: "In the combat phase, enemy units do not receive any benefits for being in cover against attacks made by this battalion.",
+        },
+
+    afflictionCystTheDroningSky: {
+        id: "afflictionCystTheDroningSky",
+        name: "The Droning Sky",
+        description: "Instead of setting up a unit from this battalion on the battlefield, you can place it to one side and say that it is set up hovering in the skies. You can do this with as many units from the battalion as you wish. At the end of your first movement phase, set up each of these units more than 9\" from any enemy models.",
+        },
+
+    afflictionCystDiseasedOnslaught: {
+        id: "afflictionCystDiseasedOnslaught",
+        name: "Diseased Onslaught",
+        description: "If the Lord of Afflictions from this battalion uses his Spearhead of Contagion command ability, it affects all units from this battalion that are within 14\" of him, instead of only one unit.",
+        },
+
+    grandArmadaOnAWarFooting: {
+        id: "grandArmadaOnAWarFooting",
+        name: "On a War Footing",
+        description: "In the hero phase of your first turn, all Skyvessels in this battalion can move as if it were the movement phase. They can act normally for the remainder of your turn, including allowing embarked units to disembark in the hero phase.",
+        },
+
+    grandArmadaConstitutionalExperts: {
+        id: "grandArmadaConstitutionalExperts",
+        name: "Constitutional Experts",
+        description: "As long as the Admiral and at least one other Hero from the Grand Armada are on the battlefield, you can use footnotes (other than These Are Just Guidelines) once per battle round, rather than once per battle.",
+        },
+
+    ironSkyCommandLordsOfTheSkies: {
+        id: "ironSkyCommandLordsOfTheSkies",
+        name: "Lords of the Skies",
+        description: "Friendly units within 12\" of the Arkanaut Ironclad from this battalion subtract 1 from the result of any battleshock test they make.",
+        },
+
+    ironSkyCommandTrustedBodyguard: {
+        id: "ironSkyCommandTrustedBodyguard",
+        name: "Trusted Bodyguard",
+        description: "While a friendly Hero is within 3\" of the Arkanaut Company from this battalion, you can roll a dice every time they suffer a wound or mortal wound. On the roll of 5 or more, the Arkanaut Company suffers the wound instead.",
+        },
+
+    ironSkySquadronBoldPrivateers: {
+        id: "ironSkySquadronBoldPrivateers",
+        name: "Bold Privateers",
+        description: "In the turn in which an Arkanaut Company from this battalion disembarks from an Arkanaut Frigate from this battalion, you can re-roll run and charge moves for that unit.",
+        },
+
+    ironSkySquadronOpeningSalvo: {
+        id: "ironSkySquadronOpeningSalvo",
+        name: "Opening Salvo",
+        description: "In the first battle round, add 1 to the Attacks characteristics of all missile weapons of the Arkanaut Frigates from this battalion.",
+        },
+
+    grundstokEscortWingFocusFire: {
+        id: "grundstokEscortWingFocusFire",
+        name: "Focus Fire",
+        description: "At the start of each of your shooting phases, choose an enemy unit. Add 1 to the hit rolls for any units from this battalion if all of that unit’s attacks are directed against that enemy unit.",
+        },
+
+    aetherstrikeForceMarkedForDestruction: {
+        id: "aetherstrikeForceMarkedForDestruction",
+        name: "Marked for Destruction",
+        description: "In any of your hero phases, the Knight-Venator from this battalion can loose their Star-fated Arrow as if it were your shooting phase. If this attack hits but the target unit is not slain, units from this battalion add 1 to their hit rolls against that unit for the remainder of the battle.",
+        },
+
+    aetherstrikeForceLightningFastVolleys: {
+        id: "aetherstrikeForceLightningFastVolleys",
+        name: "Lightning-fast Volleys",
+        description: "In each of your hero phases, you can choose a single unit (other than the Knight-Venator) from this battalion to make shooting attacks as if it were your shooting phase. A unit may only do so if two or more other units from this battalion are within 6\".",
+        },
+
+    daemonLegionOfKhorneKhorneCaresNotFromWhenceTheBloodFlows: {
+        id: "daemonLegionOfKhorneKhorneCaresNotFromWhenceTheBloodFlows",
+        name: "Khorne Cares Not From Whence The Blood Flows",
+        description: "If any units are wiped out during the combat phase, you can add 1 to the Attacks characteristic of all melee weapons used by the Daemon Legion of Khorne for the remainder of that combat phase.",
+        },
+
+    daemonLegionOfKhorneRevelInCarnage: {
+        id: "daemonLegionOfKhorneRevelInCarnage",
+        name: "Revel in Carnage",
+        description: "You immediately gain 1 Blood Tithe point at the start of each of your hero phases.",
+        },
+
+    murderhostInsatiableBloodlust: {
+        id: "murderhostInsatiableBloodlust",
+        name: "Insatiable Bloodlust",
+        description: "The bloodthirsty Daemons of Khorne’s Murderhosts can barely be restrained when battle looms, and hurl themselves at the foe as soon as battle lines are drawn. After set-up has been completed, roll two dice for the Murderhost’s Bloodletter Hero and for each unit from this battalion that is within 8\" of them, and move the unit(s) being rolled for up to the total distance rolled in inches. If the Murderhost contained the maximum number of units at the start of the battle, then you can repeat this process in each of your hero phases as well.",
+        },
+
+    bloodthunderStampedeAvalancheOfBrass: {
+        id: "bloodthunderStampedeAvalancheOfBrass",
+        name: "Avalanche of Brass",
+        description: "If the Bloodthunder Stampede contained the maximum number of units at the start of the battle, roll a dice for each enemy unit within 3\" of any units from the Bloodthunder Stampede in each of your hero phases; on a roll of 2 or more, that unit suffers D3 mortal wounds as they are crushed beneath the Juggernaut herd’s stamping hooves.",
+        },
+
+    bloodthunderStampedeBloodScent: {
+        id: "bloodthunderStampedeBloodScent",
+        name: "Blood-scent",
+        description: "If a pack of Juggernauts catches the scent of freshly spilled blood, it is driven into a frenzy. If any units in either army have been wiped out, the Bloodthunder Stampede add 3 to their charge rolls.",
+        },
+
+    bloodthunderStampedeObliteratingCharge: {
+        id: "bloodthunderStampedeObliteratingCharge",
+        name: "Obliterating Charge",
+        description: "If a unit uses its Murderous Charge ability within 3\" of another unit in the Bloodthunder Stampede, you do not need to roll a dice – it automatically inflicts D3 mortal wounds (or D6 if the Bloodcrusher unit includes 6 or more models) as the enemy is trampled to a bloody pulp.",
+        },
+
+    councilOfBloodFierceRivals: {
+        id: "councilOfBloodFierceRivals",
+        name: "Fierce Rivals",
+        description: "In each of your hero phases, pick one Bloodthirster from the Council of Blood to pile in and make attacks. If that Bloodthirster kills an enemy Hero or Monster, or wipes out a unit in doing so, you can immediately pick another Bloodthirster from the Council of Blood to pile in and make attacks with. You can continue to do this until either each model in the battalion has attacked once in this manner, or one of them fails to slay an enemy Hero or Monster, or wipe out a unit.",
+           flavor: "Khorne respects only martial strength in battle, and when his mightiest daemons witness their rivals drawing the Blood God’s gaze with slaughterous deeds, they will not hesitate to join in the carnage to avoid being outdone.",
+        },
+
+    councilOfBloodLordsOfBattle: {
+        id: "councilOfBloodLordsOfBattle",
+        name: "Lords of Battle",
+        description: "Each Bloodthirster from a Council of Blood can use the command ability on its warscroll in each of your hero phases, even if they are not your army’s general.",
+           flavor: "Not only are Bloodthirsters nigh-unstoppable adversaries, but they each serve as a consummate battlefield commander of Khorne’s daemonic legions.",
+        },
+
+    bloodHuntBloodMark: {
+        id: "bloodHuntBloodMark",
+        name: "Blood Mark",
+        description: "After set-up, pick an enemy Hero to receive Khorne’s blood mark. At the start of each of your hero phases, you can roll two dice for each unit from the Blood Hunt that is not within 3\" of any enemy models and move the unit being rolled for up to the total distance rolled in inches towards the Hero with the blood mark (provided that they are on the battlefield).",
+           flavor: "When Khorne marks a victim for death, the Blood Hunt will not stop until their skull belongs to their infernal master.",
+        },
+
+    bloodHuntKhorneSHunters: {
+        id: "bloodHuntKhorneSHunters",
+        name: "Khorne’s Hunters",
+        description: "Add 1 to any wound rolls you make for models from a Blood Hunt when attacking an enemy Hero. If a Blood Hunt contained the maximum number of units at the start of the battle, then you can re-roll all failed wound rolls you make for models from the battalion when attacking an enemy Hero.",
+           flavor: "Those that have displeased mighty Khorne are often fated to die beneath the claws and blades of his Blood Hunts.",
+        },
+
+    gorethunderCohortTheCannonsOfKhorne: {
+        id: "gorethunderCohortTheCannonsOfKhorne",
+        name: "The Cannons of Khorne",
+        description: "Many a battle line has been shattered by the relentless bombardments of a Gorethunder Cohort. In each of your hero phases, D3 Skull Cannons from a Gorethunder Cohort that are within 8\" of their battalion’s Blood Throne can shoot as if were the shooting phase. If a Gorethunder Cohort contained the maximum number of units at the start of the battle, then all Skull Cannons that are within 8\" of their battalion’s Blood Throne can shoot as if were the shooting phase.",
+        },
+
+    bloodHostOfKhorneComethTheSlaughter: {
+        id: "bloodHostOfKhorneComethTheSlaughter",
+        name: "Cometh the Slaughter",
+        description: "For the daemonic minions of the Blood God, the harvest of skulls is never-ending. In each of your hero phases, pick D3 units from the Blood Host of Khorne that are within 3\" of the enemy. All models in the units you pick can immediately pile in and attack with one of their melee weapons. Increase the number of units that can attack from D3 to D6 if there are sixteen or more units in the battalion at the start of the hero phase.",
+        },
+
+    charnelHostDaemonCommander: {
+        id: "charnelHostDaemonCommander",
+        name: "Daemon Commander",
+        description: "The Bloodthirsters of the eighth host serve as battlefield generals of Khorne’s daemonic legions. Even should they not be in overall command, their dominion over their lesser kin is absolute. You can use the Rejoice in the Slaughter command ability of the Charnel Host’s Bloodthirster of Unfettered Fury in your hero phase, even if it is not your general.",
+        },
+
+    charnelHostButchersOfKhorne: {
+        id: "charnelHostButchersOfKhorne",
+        name: "Butchers of Khorne",
+        description: "Charnel Hosts form the main bulk of the Blood God’s foot legions, their numbers replete with rank upon rank of deadly killers that will fight all the harder in the presence of their daemonic master. In each of your hero phases, you can pile in and attack with any units from a Charnel Host that are within 8\" of their battalion’s Bloodthirster of Unfettered Fury at the start of the phase.",
+        },
+
+    skullseekerHostGiantKillers: {
+        id: "skullseekerHostGiantKillers",
+        name: "Giant Killers",
+        description: "Khorne commands his Skullseeker Hosts to bring him the heads of monstrous foes so that their skulls can adorn the walls of the Brass Citadel. If any units from a Skullseeker Host are within 3\" of any enemy Monsters at the start of your hero phase, they can immediately pile in and each model in the unit can make a single attack against the Monster with one of their melee weapons.",
+        },
+
+    skullseekerHostPreyUponTheWounded: {
+        id: "skullseekerHostPreyUponTheWounded",
+        name: "Prey Upon the Wounded",
+        description: "The Skull Cannons seek to wound their quarry that they may be ridden down by their blood-hungry kin. In each of your hero phases, you can make a shooting attack with any Skull Cannons from a Skullseeker Host that are within 8\" of a Khorne Hero from the same battalion. After resolving any attacks made in this manner, any other units in the same Skullseeker Host can immediately attempt to charge any units that suffered any unsaved wounds from these attacks, and can attack as described in Giant Killers if the unit they charge is a Monster.",
+        },
+
+    theReapersOfVengeanceKhorneSVengeanceMadeManifest: {
+        id: "theReapersOfVengeanceKhorneSVengeanceMadeManifest",
+        name: "Khorne’s Vengeance Made Manifest",
+        description: "The daemons of the Reapers of Vengeance are unleashed upon those whose ranks contain a number of Khorne’s most hated foes. This ability replaces the Blood Mark ability of any Blood Hunts in this battalion and applies to all of the units from the Reapers of Vengeance. After set-up, pick up to D3+1 enemy units (note that they need not be Heroes) from your opponent’s army to receive Khorne’s blood mark. At the start of each of your hero phases, you can roll two dice for each unit from the Reapers of Vengeance that is not within 3\" of any enemy models and move the unit being rolled for up to the total distance rolled in inches towards a unit with a blood mark (provided that they are on the battlefield).",
+        },
+
+    theReapersOfVengeanceUnstoppableCharge: {
+        id: "theReapersOfVengeanceUnstoppableCharge",
+        name: "Unstoppable Charge",
+        description: "When the Juggernauts of the Reapers of Vengeance crash into the enemy lines, their foes fall like wheat before the scythe. Units of Bloodcrushers from the Reapers of Vengeance inflict D3 mortal wounds as a result of their Murderous Charge ability on a roll of 2+ instead of 4+.",
+        },
+
+    theBloodlordsMurderousLieutenants: {
+        id: "theBloodlordsMurderousLieutenants",
+        name: "Murderous Lieutenants",
+        description: "The fell-handed Heralds that lead Khorne’s Bloodlords are chosen from amongst the deadliest of their kind, and such is their dedication to claiming heads for their master that even the mighty Skulltaker can often be seen fighting alongside them. Any Bloodletter Heroes from the Bloodlords that are within 3\" of any enemy models at the start of your hero phase can immediately pile in and attack as if it were the combat phase.",
+        },
+
+    theBloodlordsExaltedLociOfKhorne: {
+        id: "theBloodlordsExaltedLociOfKhorne",
+        name: "Exalted Loci of Khorne",
+        description: "The Bloodlords’ Heralds are high within Khorne’s favour and swollen with his power, acting as beacons of pure rage that infuse their followers with a measure of the Blood God’s unholy might. If any units of Bloodletters and/or Bloodcrushers from the Bloodlords are within 8\" of any of the battalion’s Bloodletter Heroes at the start of your hero phase, they can immediately pile in and each model in the unit can make a single attack with one of their melee weapons.",
+        },
+
+    bloodboundWarhordeKhorneCaresNotFromWhenceTheBloodFlows: {
+        id: "bloodboundWarhordeKhorneCaresNotFromWhenceTheBloodFlows",
+        name: "Khorne Cares Not From Whence The Blood Flows",
+        description: "If any units are wiped out during the combat phase, you can add 1 to the Attacks characteristic of all melee weapons used by the Bloodbound Warhorde for the remainder of that combat phase.",
+        },
+
+    bloodboundWarhordeTheBloodGodSScorn: {
+        id: "bloodboundWarhordeTheBloodGodSScorn",
+        name: "The Blood God’s Scorn",
+        description: "There is little that stirs Khorne’s ire as quickly as the cowardice of sorcery. Units from the Bloodbound Warhorde can attempt to unbind one spell (or one additional spell if they could already do so) in each enemy hero phase in the same manner as a wizard. If a Mighty Lord of Khorne or Slaughterpriest from the Warhorde successfully unbinds a spell, you immediately earn one Blood Tithe point.",
+        },
+
+    theGorechosenEternalContest: {
+        id: "theGorechosenEternalContest",
+        name: "Eternal Contest",
+        description: "So that they might maintain their power and ascend further in Khorne’s favour, the warriors of the Gorechosen are constantly vying against each other to perform ever greater acts of slaughter. If a Gorechosen model is within 12\" of at least two other models from the Gorechosen battalion, add 1 to its hit rolls.",
+        },
+
+    theGorechosenMightiestOfChampions: {
+        id: "theGorechosenMightiestOfChampions",
+        name: "Mightiest of Champions",
+        description: "The Gorechosen are unquestionable paragons of violence, each one hand-picked for his ferocity and might – add 1 to the Attacks characteristic of all their melee weapons.",
+        },
+
+    brassStampedeAvalancheOfBrass: {
+        id: "brassStampedeAvalancheOfBrass",
+        name: "Avalanche of Brass",
+        description: "If the Brass Stampede contained the maximum number of units at the start of the battle, roll a dice for each enemy unit within 3\" of any units from the Brass Stampede in each of your hero phases; on a roll of 2 or more, that unit suffers D3 mortal wounds as they are crushed beneath the Juggernaut herd’s stamping hooves.",
+        },
+
+    brassStampedeBloodScent: {
+        id: "brassStampedeBloodScent",
+        name: "Blood-scent",
+        description: "If a pack of Juggernauts catches the scent of freshly spilled blood, it is driven into a frenzy. If any units in either army have been wiped out, the Brass Stampede add 3 to their charge rolls.",
+        },
+
+    brassStampedeObliteratingCharge: {
+        id: "brassStampedeObliteratingCharge",
+        name: "Obliterating Charge",
+        description: "If a unit uses its Murderous Charge ability within 3\" of another unit in the Brass Stampede, you do not need to roll a dice – it automatically inflicts D3 mortal wounds (or D6 if the Mighty Skullcrusher unit includes 6 or more models) as the enemy is trampled to a bloody pulp.",
+        },
+
+    darkFeastFeedingFrenzy: {
+        id: "darkFeastFeedingFrenzy",
+        name: "Feeding Frenzy",
+        description: "The Slaughterpriest can incite the Dark Feast to a terrible feeding frenzy – as long as he is alive, add 1 to the Attacks characteristics of any melee weapons used by a unit from this battalion whenever it is selected to attack.",
+        },
+
+    darkFeastBloodGoaded: {
+        id: "darkFeastBloodGoaded",
+        name: "Blood-goaded",
+        description: "The Bloodstoker drives the warriors of the Dark Feast ever onwards with the barbs of his lash – units from this battalion within 12\" of him do not need to take battleshock tests.",
+        },
+
+    skulltakeReapingStrikes: {
+        id: "skulltakeReapingStrikes",
+        name: "Reaping Strikes",
+        description: "Skullreapers from a Skulltake within 12\" of their Bloodstoker are in a frenzied fury. If the wound roll for a Skullreaper in a frenzied fury is 6 or higher, add 1 to the Damage characteristic of the weapon they are using. If the Skulltake contained the maximum number of units at the start of the battle, then this ability applies to all Skulltake units that are within 12\" of the Bloodstoker.",
+        },
+
+    skulltakeSkullhungry: {
+        id: "skulltakeSkullhungry",
+        name: "Skullhungry",
+        description: "For each skull that the Skullreapers take as a trophy, a dozen are left for the Khorgoraths to devour. The witless beasts are mad with hunger, and follow the warriors closely to pounce upon anything else that comes close. The Skulltake’s Khorgoraths make 8 attacks with their Claws and Fangs rather than 5, as long as their unit is within 6\" of any of the battalion’s Skullreapers.",
+        },
+
+    redHeadsmenSlayTheWorthy: {
+        id: "redHeadsmenSlayTheWorthy",
+        name: "Slay the Worthy",
+        description: "At the start of your first hero phase, pick up to 3 Heroes and/ or Monsters in your opponent’s army and declare them to be worthy foes. Your opponent can re-roll failed hit rolls for attacks made by those units. For each worthy foe they slay, the Red Headsmen add 1 to the Attacks characteristic of their melee weapons for the rest of the game. If the Red Headsmen contained the maximum number of units at the start of the battle, then you can pick up to 5 Heroes and/or Monsters to be worthy foes instead.",
+        },
+
+    redHeadsmenRitualSlaughter: {
+        id: "redHeadsmenRitualSlaughter",
+        name: "Ritual Slaughter",
+        description: "Red Headsmen always count as being within range of their Skullgrinder’s Altar of Skulls ability. In addition, if the Skullgrinder slays a worthy foe (see above), the range of his Altar of Skulls ability is doubled.",
+        },
+
+    bloodboundWarbandBloodrain: {
+        id: "bloodboundWarbandBloodrain",
+        name: "Bloodrain",
+        description: "If at least three units from a Bloodbound Warband are within 3\" of an enemy unit at the start of your hero phase, Khorne’s blessing manifests as a squall of blood and gore which falls until your next hero phase. While this bloodrain is falling, Khorne units in your army do not need to take battleshock tests.",
+        },
+
+    bloodboundWarbandFrenziedCharge: {
+        id: "bloodboundWarbandFrenziedCharge",
+        name: "Frenzied Charge",
+        description: "When units in a Bloodbound Warband make attacks in any turn that they charged, add 1 to the Attacks characteristic of all melee weapons they use. If the Bloodbound Warband contained the maximum number of units at the start of the battle, then you can also re-roll failed wound rolls of 1 for units from this battalion in the combat phase of any turn in which the unit charged.",
+        },
+
+    bloodforgedBloodAegis: {
+        id: "bloodforgedBloodAegis",
+        name: "Blood Aegis",
+        description: "For the Bloodforged, attack has ever been the best form of defence, for the blood they spill hardens upon their flesh until it is proof against all but the sharpest blade. When you make save rolls for this unit in the combat phase, ignore the enemy’s Rend characteristic unless it is -2 or better.",
+        },
+
+    bloodforgedInfectiousBloodletting: {
+        id: "bloodforgedInfectiousBloodletting",
+        name: "Infectious Bloodletting",
+        description: "When the Bloodforged crash into the enemy battleline, so potent is their ferocity that their mere proximity can cause even the most disciplined soldier to lose control. Roll a dice for each enemy model within 3\" of a Bloodforged model at the start of each of your hero phases. On a roll of 6, you can immediately attack (but not pile in) with all of the melee weapons of the enemy model being rolled for as though it was part of your army. The model can attack its own unit, and even itself!",
+        },
+
+    gorePilgrimsAcolytesOfKhorne: {
+        id: "gorePilgrimsAcolytesOfKhorne",
+        name: "Acolytes of Khorne",
+        description: "The Slaughterpriests that lead the murderous congregation of Gore Pilgrims are amongst the most devoted of their bloody creed. You can choose to re-roll the dice when attempting a Bloodfuelled Prayer or Blood Blessing of Khorne with a Slaughterpriest from the Gore Pilgrims.",
+        },
+
+    gorePilgrimsWideningTheRift: {
+        id: "gorePilgrimsWideningTheRift",
+        name: "Widening the Rift",
+        description: "The baleful chanting and bloody deeds of the Slaughterpriests greatly empower the Portal of Skulls borne by the Gore Pilgrims’ Bloodsecrator, tearing a ragged breach into Khorne’s realm through which the Blood God’s boundless hate can freely flow. Increase the range of the Portal of Skulls ability of this battalion’s Bloodsecrator by 6\" for each of this battalion’s Slaughterpriests that are within 8\" of him when he opens the Portal of Skulls.",
+        },
+
+    slaughterbornHungryForGlory: {
+        id: "slaughterbornHungryForGlory",
+        name: "Hungry for Glory",
+        description: "Though at first glance it seems that the Slaughterborn will hurl themselves into the fray to protect their lord, their actions are more often born simply of an unquenchable thirst to prove themselves in battle and raise their stature in Khorne’s eyes. If your general is a Khorne Hero and they are within 3\" of any enemy units in the hero phase, any Slaughterborn units that are within 12\" of your general can immediately attempt to charge those enemy units. Any Slaughterborn units that make successful charges in this manner can immediately pile in and each model in those units can make a single attack with one of their melee weapons during that hero phase.",
+        },
+
+    theGoretideAqshySBane: {
+        id: "theGoretideAqshySBane",
+        name: "Aqshy’s Bane",
+        description: "Korghos Khul had all but conquered the Realm of Fire before Sigmar’s Tempest robbed him of ultimate victory, and he remains one of Khorne’s foremost mortal champions. In each of your hero phases, you can pile in up to 8\" and attack with the Goretide’s Mighty Lord of Khorne. In addition, you can re-roll all failed hit rolls for the Goretide’s Mighty Lord of Khorne, including any attacks made with the Blood-dark Claws of his ferocious Flesh Hound, Grizzlemaw.",
+        },
+
+    theGoretideHotHeadedConquerors: {
+        id: "theGoretideHotHeadedConquerors",
+        name: "Hot-headed Conquerors",
+        description: "Whether by their own bloodyminded approach to warfare or the fiery influence of Aqshy itself, the Bloodbound tribes that fight beneath the banner of Korghos Khul’s Goretide are always the first into battle. In each of your hero phases, roll a D6. You can move each Goretide unit up to the number rolled in inches. You cannot retreat or run as part of this move, but can use it to charge the enemy.",
+        },
+
+    theSkullfiendTribeSkullHunters: {
+        id: "theSkullfiendTribeSkullHunters",
+        name: "Skull Hunters",
+        description: "The murderous warriors of the Skullfiend Tribe choose to glorify Khorne by offering him the skulls of their most worthy adversaries, and have a well-deserved reputation for bringing down the mightiest foes to provide the Blood God his due. If any units from the Skullfiend Tribe are within 3\" of any enemy Heroes or Monsters at the start of your hero phase, they can immediately pile in and each model in that unit can make a single attack against one such unit with one of their melee weapons.",
+        },
+
+    warriorChamberWrathOfTheStorm: {
+        id: "warriorChamberWrathOfTheStorm",
+        name: "Wrath of the Storm",
+        description: "You can re-roll failed wound rolls for attacks made by models from this battalion while there are 50 or more models from the same battalion on the battlefield.",
+           flavor: "A Warrior Chamber overwhelms the foe with rank upon rank of Sigmar’s finest fighters, each acting in concert with their fellows to bring the wrath of the God-King down upon the unworthy.",
+        },
+
+    harbingerChamberCelestialNimbus: {
+        id: "harbingerChamberCelestialNimbus",
+        name: "Celestial Nimbus",
+        description: "Add 1 to hit rolls for attacks made by models from this battalion.",
+           flavor: "The warriors that form a Harbinger Chamber are charged with a nimbus of celestial energy that lets them anticipate their opponents’ actions with preternatural speed.",
+        },
+
+    exemplarChamberMartialBond: {
+        id: "exemplarChamberMartialBond",
+        name: "Martial Bond",
+        description: "If a unit from this battalion is destroyed in the combat phase, pick another unit from the same battalion. Add 1 to the Attacks characteristic of that unit’s melee weapons for the rest of the battle. A unit cannot be picked to benefit from this ability more than once per battle.",
+           flavor: "The warriors that fight together in an Exemplar Chamber share a strong bond; should they witness a comrade’s destruction at the hands of the enemy, they will redouble their efforts to seek revenge.",
+        },
+
+    lordsOfTheStormStormBornCommanders: {
+        id: "lordsOfTheStormStormBornCommanders",
+        name: "Storm-born Commanders",
+        description: "At the start of your hero phase, if any Heroes from this battalion are on the battlefield, roll a dice. On a 4+ you receive 1 additional command point.",
+           flavor: "Stormcast Eternals commanders direct their forces with the ease that comes from years of experience.",
+        },
+
+    thunderheadBrotherhoodSigmariteShieldWall: {
+        id: "thunderheadBrotherhoodSigmariteShieldWall",
+        name: "Sigmarite Shield Wall",
+        description: "You can re-roll save rolls of 1 for attacks that target a unit of Judicators from this battalion if that unit is wholly within 3\" of a unit of Liberators from the same battalion that has any models carrying a Sigmarite Shield.",
+           flavor: "Liberators and Judicators acting in concert provide a solid defensive bulwark.",
+        },
+
+    hammerstrikeForceCelestialSupercharge: {
+        id: "hammerstrikeForceCelestialSupercharge",
+        name: "Celestial Supercharge",
+        description: "In your hero phase, you can pick one unit of Paladins from this battalion that is wholly within 9\" of the unit of Prosecutors from the same battalion. If you do so, add 1 to wound rolls for attacks made by the unit you pick until the end of the turn.",
+           flavor: "Prosecutors can channel the power of the storm down to their allies below.",
+        },
+
+    vanguardWingBearersOfTheStorm: {
+        id: "vanguardWingBearersOfTheStorm",
+        name: "Bearers of the Storm",
+        description: "If the unmodified hit roll for an attack made by a unit of Liberators or Judicators from this battalion that is wholly within 16\" of a unit of Prosecutors from the same battalion is 6, add 1 to the Damage characteristic of that attack.",
+           flavor: "Prosecutors imbue their allies with a sense of urgency, bringing swift death to Sigmar’s foes.",
+        },
+
+    devastationBrotherhoodCrushingAssault: {
+        id: "devastationBrotherhoodCrushingAssault",
+        name: "Crushing Assault",
+        description: "If an enemy unit suffers wounds from attacks made by all three units of Paladins from this battalion in the same combat phase, that enemy unit suffers D6 mortal wounds at the end of that combat phase.",
+           flavor: "When an enemy must be destroyed at all costs, a Devastation Brotherhood will wade into the foe, obliterating all before them.",
+        },
+
+    vanguardAuxiliaryChamberAzyriteHurricane: {
+        id: "vanguardAuxiliaryChamberAzyriteHurricane",
+        name: "Azyrite Hurricane",
+        description: "Add 1 to the Attacks characteristic of missile weapons used by models from this battalion that are not Heroes.",
+           flavor: "When a Vanguard Auxiliary Chamber gathers in its full strength, their enemies are caught in a deadly crossfire that fills the skies with lightning.",
+        },
+
+    vanguardAngelosConclaveAethericWake: {
+        id: "vanguardAngelosConclaveAethericWake",
+        name: "Aetheric Wake",
+        description: "When units from this battalion use the Ride the Winds Aetheric ability, roll 9 dice instead of 6 dice when determining the distance moved.",
+           flavor: "The warriors of this conclave have trained to make the most of their mounts’ supernatural abilities.",
+        },
+
+    vanguardJusticarConclaveFightInConcert: {
+        id: "vanguardJusticarConclaveFightInConcert",
+        name: "Fight in Concert",
+        description: "You can re-roll hit rolls of 1 for attacks made with missile weapons by units of Vanguard-Raptors from this battalion, if the target of that attack is an enemy unit within 18\" of any Aetherwing units from the same battalion.",
+           flavor: "The Aetherwings and Stormcast Eternals from this conclave have formed close bonds and are united in their efforts to destroy the enemies of Order.",
+        },
+
+    extremisChamberBorneByTheHighStar: {
+        id: "extremisChamberBorneByTheHighStar",
+        name: "Borne by the High Star",
+        description: "At the start of your first hero phase, you can transport all reserve units from this battalion that are in the Celestial Realm to the battlefield. If you do so, pick a point on the battlefield and set up the units wholly within 24\" of that point and more than 9\" from any enemy units. Those units cannot move in the following movement phase. After setting up those units, roll a dice for each enemy unit within 18\" of the point you picked. On a 4+ that unit suffers D3 mortal wounds.",
+           flavor: "The forces of the Extremis Chamber share a close kinship with Dracothion and other celestial beings.",
+        },
+
+    drakeswornTempleNovaSurge: {
+        id: "drakeswornTempleNovaSurge",
+        name: "Nova Surge",
+        description: "Once per battle, in your hero phase, you can summon a celestial wave. If you do so, each unit within 3\" of any models from this battalion is caught in the celestial wave. Each enemy unit caught in the celestial wave suffers D3 mortal wounds. Heal D3 wounds allocated to each friendly Stormcast Eternal unit caught in the celestial wave.",
+           flavor: "The members of a Drakesworn Temple can summon a celestial wave of star energy.",
+        },
+
+    lightningEchelonLinebreakerAssault: {
+        id: "lightningEchelonLinebreakerAssault",
+        name: "Linebreaker Assault",
+        description: "Once per battle, at the end of your charge phase, you can make a line-breaker assault with each unit from this battalion that made a charge move in that charge phase. Pick one enemy unit within 1\" of each unit making a line-breaker assault. That enemy unit suffers D3 mortal wounds.",
+           flavor: "Dracoths can unleash bursts of lightning energy, riding straight through the enemy lines.",
+        },
+
+    thunderwaveEchelonRideOfTheAnnihilators: {
+        id: "thunderwaveEchelonRideOfTheAnnihilators",
+        name: "Ride of the Annihilators",
+        description: "Subtract 1 from the Bravery characteristic of enemy units while they are within 3\" of one or more units from the same battalion.",
+           flavor: "The warriors of a Thunderwave Echelon delight in chasing the enemy with hammer and axe, running down any in reach and breaking the spirit of those who survive.",
+        },
+
+    aetherstrikeForceVengeanceFromAfar: {
+        id: "aetherstrikeForceVengeanceFromAfar",
+        name: "Vengeance from Afar",
+        description: "Any who seeks to strike against the comrades of these warriors will find their temerity punished with ice cold efficiency. When a unit from this force is destroyed, another unit from this force can attack as if it were the shooting phase. All of their attacks must be directed at the enemy unit that destroyed the unit from the Aetherstrike Force.",
+        },
+
+    celestialHuntingPackAethericStorm: {
+        id: "celestialHuntingPackAethericStorm",
+        name: "Aetheric Storm",
+        description: "The eddies in the aether created by the Gryph-chargers of this pack create channels for the already terrifying storm-powers of the Dracoths that accompany them. If a unit from this pack moves over an enemy unit while Riding the Winds Aetheric, and there is a unit from this battalion with the Storm Breath or Storm Blast ability within 12\" of the enemy unit, that enemy unit suffers a mortal wound.",
+        },
+
+    celestialHuntingPackTwoHeadedBeast: {
+        id: "celestialHuntingPackTwoHeadedBeast",
+        name: "Two-headed Beast",
+        description: "The Lord-Celestant and Lord-Aquilor that lead this pack fight with one accord, directing their units in a two-headed attack that devastates the enemy. If either the Lord-Celestant or the Lord-Aquilor from this pack is your general, the other may also use their own command abilities as if they were your general.",
+        },
+
+    stormVortexGarrisonInSigmarSName: {
+        id: "stormVortexGarrisonInSigmarSName",
+        name: "In Sigmar’s Name",
+        description: "The Storm Vortex Garrison have sworn mighty oaths to hold this ground, no matter the foes they must best to do so. Units from the garrison that are within 8\" of any Hero from this garrison do not have to take battleshock tests.",
+        },
+
+    stormVortexGarrisonPromisedAid: {
+        id: "stormVortexGarrisonPromisedAid",
+        name: "Promised Aid",
+        description: "The warriors of the Storm Vortex Garrison know that if they keep their vows, Sigmar will send reinforcements to aid them. If a unit of Vanguard- Hunters from this garrison is set up in pursuit, when they arrive you may also set up a unit from this garrison that has already been destroyed. This additional unit is added to your army as reinforcements, and is set up wholly within 6\" of a table edge, more than 7\" from the enemy and within 6\" of the Vanguard-Hunters that led them to the battle.",
+        },
+
+    stormHeraldsTheHowlingGale: {
+        id: "stormHeraldsTheHowlingGale",
+        name: "The Howling Gale",
+        description: "The Vanguard-Palladors of the Storm Heralds are the sweeping gale that brings the storm. You can set up any unit from the Storm Heralds in the aetheric currents. When a unit of Vanguard-Palladors from the Storm Heralds Rides the Winds Aetheric, at the end of their move you can set up any units from the Storm Heralds that were waiting in the aetheric currents within 5\" of that unit and more than 3\" from the enemy. This is their move for that movement phase.",
+        },
+
+    stormHeraldsThePiercingLightning: {
+        id: "stormHeraldsThePiercingLightning",
+        name: "The Piercing Lightning",
+        description: "The Prosecutors strike like lightning in the wake of the Vanguard-Palladors. When they are set up from the aetheric currents, they can add 1 to all of their hit and wound rolls in the subsequent shooting phase.",
+        },
+
+    stormHeraldsTheRoaringThunder: {
+        id: "stormHeraldsTheRoaringThunder",
+        name: "The Roaring Thunder",
+        description: "The Lord-Celestant arrives with a great roll of thunder on their bellowing mount. Their Stardrake’s Roiling Thunderhead ability can be used in your hero phase as well as in your shooting phase.",
+        },
+
+    hammersOfSigmarWarriorChamberFirstToBeForged: {
+        id: "hammersOfSigmarWarriorChamberFirstToBeForged",
+        name: "First to be Forged",
+        description: "The Hammers of Sigmar were the first Stormcast Eternals, the most veteran of Sigmar’s superhuman warriors. All units in a Hammers of Sigmar Warrior Chamber increase their Bravery characteristic by 1.",
+        },
+
+    hammersOfSigmarWarriorChamberHeraldsOfTheGodKing: {
+        id: "hammersOfSigmarWarriorChamberHeraldsOfTheGodKing",
+        name: "Heralds of the God-King",
+        description: "Sigmar watches the Hammers of Sigmar closely, as he entrusts them with the most crucial missions. When a friendly unit of Liberators is destroyed, roll a dice. On a roll of 6, Sigmar reinforces his chosen warriors: set up that unit, restored to its full strength, in the Celestial Realm, and return it to the battle in your next movement phase as if it had the Lightning Strike ability (pg 115).",
+        },
+
+    hallowedKnightsWarriorChamberOnlyTheFaithful: {
+        id: "hallowedKnightsWarriorChamberOnlyTheFaithful",
+        name: "Only the Faithful",
+        description: "The Hallowed Knights are armoured spiritually as much as they are physically. Whenever a friendly Hallowed Knights unit would be affected by an enemy spell, roll a dice. On a roll of 5 or more, ignore the effects of the spell on this unit. Other units are affected as normal.",
+        },
+
+    hallowedKnightsWarriorChamberHolyCrusaders: {
+        id: "hallowedKnightsWarriorChamberHolyCrusaders",
+        name: "Holy Crusaders",
+        description: "When the Hallowed Knights sight their enemy, their zeal impels them to take the fight to their foe so that the realms might be saved. Hallowed Knights units can add 1\" to their run and charge distances.",
+        },
+
+    hallowedKnightsWarriorChamberAMartyrSDeath: {
+        id: "hallowedKnightsWarriorChamberAMartyrSDeath",
+        name: "A Martyr’s Death",
+        description: "When a Hallowed Knights Hero is slain in the combat phase before they have made their attacks, roll a dice. If the result is 2 or more, they are not removed as a casualty until the end of the phase, and in the meantime can still pile in and attack as normal.",
+        },
+
+    celestialVindicatorsWarriorChamberVowsOfVengeance: {
+        id: "celestialVindicatorsWarriorChamberVowsOfVengeance",
+        name: "Vows of Vengeance",
+        description: "If any models from a unit of Celestial Vindicators are slain, that unit can re-roll failed hit rolls of 1 until the end of the turn. If the unit is armed with Warblades, Grandblades, Storm Gladii, Stormstrike Glaives or Storm Sabres, it can re-roll all hit rolls for these weapons until the end of the turn.",
+        },
+
+    celestialVindicatorsWarriorChamberBondsOfHatred: {
+        id: "celestialVindicatorsWarriorChamberBondsOfHatred",
+        name: "Bonds of Hatred",
+        description: "The range of the Celestial Supercharge ability of Celestial Vindicator Hammerstrike Forces is 12\" rather than 6\".",
+        },
+
+    anvilsOfTheHeldenhammerWarriorChamberHeroesOfAnotherAge: {
+        id: "anvilsOfTheHeldenhammerWarriorChamberHeroesOfAnotherAge",
+        name: "Heroes of Another Age",
+        description: "The Anvils of the Heldenhammer fight with tactics not seen for an age and more. In your hero phase, roll a dice for each Anvils of the Heldenhammer unit within 8\" of any Heroes from an Anvils of the Heldenhammer Lords of the Storm battalion (do not roll for Heroes). On a roll of 6, that unit can move as if it were the movement phase, shoot as if it were the shooting phase, or pile in and make attacks as if it were the combat phase. This does not prevent it acting normally for the rest of your turn.",
+        },
+
+    knightsExcelsiorExemplarChamberTheChainUnbroken: {
+        id: "knightsExcelsiorExemplarChamberTheChainUnbroken",
+        name: "The Chain Unbroken",
+        description: "While a Knights Excelsior unit is within 3\" of two or more other Knights Excelsior units, it can re-roll save rolls of 1. Units bearing Sigmarite Shields can instead re-roll failed save rolls of 1 or 2.",
+        },
+
+    knightsExcelsiorExemplarChamberVictoryAbsolute: {
+        id: "knightsExcelsiorExemplarChamberVictoryAbsolute",
+        name: "Victory Absolute",
+        description: "Nothing but complete annihilation satisfies these warriors. If a unit of Knights Excelsior destroys an enemy unit in the combat phase, it heals D3 wounds.",
+        },
+
+    celestialWarbringersHarbingerChamberTheHornsOfWar: {
+        id: "celestialWarbringersHarbingerChamberTheHornsOfWar",
+        name: "The Horns of War",
+        description: "When the Celestial Warbringers go to battle, it is to a fanfare of horns. When more than one Celestial Warbringers Knight-Heraldor uses their Battle-horn in a hero or shooting phase (declare which models will do so before resolving any effects), each can pick a target within 25\" for their Onwards to Glory or Thunderblast abilities.",
+        },
+
+    celestialWarbringersHarbingerChamberJoyousHost: {
+        id: "celestialWarbringersHarbingerChamberJoyousHost",
+        name: "Joyous Host",
+        description: "The Celestial Warbringers live to fight – it is something that they do with boundless enthusiasm. If a Celestial Warbringers unit slays an enemy unit in the combat phase, and there is another enemy unit within 3\", roll a dice. On a roll of 6 the Celestial Warbringers unit may immediately pile in again and attack with one of their melee weapons.",
+        },
+
+    celestialWarbringersHarbingerChamberUnshakeableConfidence: {
+        id: "celestialWarbringersHarbingerChamberUnshakeableConfidence",
+        name: "Unshakeable Confidence",
+        description: "The warriors of the Celestial Warbringers believe that they will be visited by a premonition of their death. If they receive no such premonition, then they go to battle with unshakeable certainty about their victory. Celestial Warbringers units cannot be affected by any rules or abilities that reduce Bravery in any way.",
+        },
+
+    tempestLordsHarbingerChamberMastersOfTheSkies: {
+        id: "tempestLordsHarbingerChamberMastersOfTheSkies",
+        name: "Masters of the Skies",
+        description: "Tempest Lord units that can fly can make a charge move in the charge phase whether or not an enemy unit is in range, and they can move even if that move would not finish within ½\" of an enemy unit.",
+        },
+
+    tempestLordsHarbingerChamberTakeYourTally: {
+        id: "tempestLordsHarbingerChamberTakeYourTally",
+        name: "Take Your Tally",
+        description: "Tempest Lords believe that to fall before they have taken their tally from the foe is a great disgrace. Keep a count of the enemy models slain. Once that number is equal to or more than 12 times the number of Heroes in your army (e.g. 24 if you have 2 Heroes), each friendly Tempest Lords Hero adds 1 to each of their Attacks characteristics and their Wounds characteristic.",
+        },
+
+    astralTemplarsExemplarChamberBeastHunters: {
+        id: "astralTemplarsExemplarChamberBeastHunters",
+        name: "Beast-hunters",
+        description: "The Astral Templars are experienced hunters of the most terrifying beasts the Mortal Realms have to offer. Astral Templars Heroes can add 1 to their hit rolls against Monsters.",
+        },
+
+    astralTemplarsExemplarChamberDauntlessBrawlers: {
+        id: "astralTemplarsExemplarChamberDauntlessBrawlers",
+        name: "Dauntless Brawlers",
+        description: "Though they may fight with less discipline than some of Sigmar’s Stormhosts, the Astral Templars are matchless warriors when they plunge deep into enemy lines. While there are more enemy models than friendly models within 3\" of an Astral Templars Hero, add 1 to all of the Hero’s Attacks characteristics.",
+        },
+
+    warpflameHostStormOfDaemonicFire: {
+        id: "warpflameHostStormOfDaemonicFire",
+        name: "Storm of Daemonic Fire",
+        description: "So great is the roiling tide of warpfire surrounding a Warpflame Host that to merely stand in close proximity to the daemons is to risk being set alight. In each of your hero phases, roll a dice for each enemy unit that is within 9\" of a unit from a Warpflame Host. On a roll of a 6, the unit being rolled for suffers D3 mortal wounds.",
+        },
+
+    multitudinousHostHorrorsWithoutNumber: {
+        id: "multitudinousHostHorrorsWithoutNumber",
+        name: "Horrors Without Number",
+        description: "So concentrated is the change-magic that swirls about a Multitudinous Host that the Horrors multiply at an alarming rate. In each of your hero phases, add D6 models to each unit of Pink Horrors and/or Blue Horrors, and add D3 models to each unit of Brimstone Horrors in this battalion.",
+        },
+
+    aetherEaterHostFeedOnMagic: {
+        id: "aetherEaterHostFeedOnMagic",
+        name: "Feed on Magic",
+        description: "Though all daemons are manifested from raw magic, those of an Aether-eater Host can drain the sorcerous energies unleashed by their foes to revitalise their physical forms. If a unit from an Aether-eater Host successfully unbinds a spell cast by an enemy model, they immediately heal D3 wounds. Whilst an Aether-eater Host has 9 or more units, then any units of Screamers from the battalion can attempt to unbind one spell in each enemy hero phase in the same manner as a wizard (meaning they can also heal wounds as described above).",
+        },
+
+    changehostDeceiveAndDismay: {
+        id: "changehostDeceiveAndDismay",
+        name: "Deceive and Dismay",
+        description: "Nothing is ever quite as it seems when fighting against the forces of Tzeentch. In the blink of an eye, the foe before you will shimmer and disappear from sight, only to be replaced with a different adversary. In each of your hero phases, you may pick a pair of units from this battalion that are within 27\" of the battalion’s Lord of Change to swap places. To do so, take one model from each unit, and have them swap places on the battlefield. Then, remove all of the other models from the two units, and set them back up within 9\" of the model from their unit that first swapped places. Whilst a Changehost has 9 or more units, then two different pairs of units can swap places rather than only one. Whilst it has 18 or more units, then three different pairs of units can swap places instead.",
+        },
+
+    overseerSFateTwistersTheWillOfTzeentch: {
+        id: "overseerSFateTwistersTheWillOfTzeentch",
+        name: "The Will of Tzeentch",
+        description: "The Lords of Change known as the Overseers and their most accomplished lieutenants bear the favour of the Great Conspirator, the better to enact his will in all things. At the start of each of your hero phases, add 1 dice to your Destiny Dice pool whilst at least one model from this battalion is on the battlefield. In addition, you can choose to substitute dice rolls that you have already made with Destiny Dice (rather than substituting them before rolling) whilst this battalion has 9 or more models.",
+        },
+
+    overseerSFateTwistersMasterOfFate: {
+        id: "overseerSFateTwistersMasterOfFate",
+        name: "Master of Fate",
+        description: "The Overseers are at the centre of an intricate web of lies and deceit, and are tasked with reading the skeins of fate to ensure the fruition of Tzeentch’s multifarious plans. If the Lord of Change from this battalion is on the battlefield, then in each of your hero phases you can choose to re-roll the result of one of the dice in your Destiny Dice pool.",
+        },
+
+    omniscientOraclesKnowledgeOfPastPresentAndFuture: {
+        id: "omniscientOraclesKnowledgeOfPastPresentAndFuture",
+        name: "Knowledge of Past, Present and Future",
+        description: "Kairos Fateweaver sees both the past and the future, but in sealing a soul-binding pact with the Lords of Change known to their kin as the Allscryers, Kairos has ensured the deeds of the moment are made clear to him as well. You can re-roll any hit, wound, save and run rolls of 1 – as well as any dice rolls of 1 in a charge roll – for models from this battalion.",
+        },
+
+    theEternalConflagrationPawnsOfTheRadiantLord: {
+        id: "theEternalConflagrationPawnsOfTheRadiantLord",
+        name: "Pawns of the Radiant Lord",
+        description: "The Flamers of the Eternal Conflagration are extensions of their Overseer’s will, and the greater daemon uses them as such, channelling destructive magics through them, regardless of cost, to achieve its own ends. When the Lord of Change that must be taken in this battalion attempts to cast a spell, you can select any Flamer from this battalion to act as the casting model – range, visibility and so on are all measured from that model.",
+        },
+
+    theEternalConflagrationCoruscatingFlames: {
+        id: "theEternalConflagrationCoruscatingFlames",
+        name: "Coruscating Flames",
+        description: "As the many Flamers of the Eternal Conflagration bound and cavort across the battlefield, their fires burn ever brighter, dazzling their foes. Your opponent must subtract 1 from any hit rolls that target units of Flamers and Exalted Flamers of Tzeentch from the Eternal Conflagration in the shooting phase.",
+        },
+
+    theHostsDuplicitousGlamoursmiths: {
+        id: "theHostsDuplicitousGlamoursmiths",
+        name: "Glamoursmiths",
+        description: "When a Wizard from this battalion rolls a 1 on any dice as part of a casting roll, count it as a 2 instead.",
+        },
+
+    arcaniteCultDestinyPreordained: {
+        id: "arcaniteCultDestinyPreordained",
+        name: "Destiny Preordained",
+        description: "When Tzeentch’s armies are unleashed in their full might, it is to fulfil a purpose that the Change God has long foreseen. When generating your Destiny Dice pool at the start of the battle, you can choose the results of 3 of the dice before rolling the remaining 6 dice as normal.",
+        },
+
+    arcaniteCultStrengthInConviction: {
+        id: "arcaniteCultStrengthInConviction",
+        name: "Strength in Conviction",
+        description: "Sure in their purpose, Arcanite cultists march to war with unshakable confidence that they are enacting their master’s ineffable will. Add 1 to the Bravery of all models in an Arcanite Cult.",
+        },
+
+    arcaniteCabalMasterOfTheCult: {
+        id: "arcaniteCabalMasterOfTheCult",
+        name: "Master of the Cult",
+        description: "The cult’s master wears Tzeentch’s favour like a mantle. After set-up, pick one model from this battalion to be the master of the cult. Each time you use a Destiny Dice to predetermine a dice roll for the master of the cult, roll a dice; on a roll of 4, 5 or 6, you may roll another dice and immediately add it to your Destiny Dice pool.",
+        },
+
+    arcaniteCabalCabalOfSorcerers: {
+        id: "arcaniteCabalCabalOfSorcerers",
+        name: "Cabal of Sorcerers",
+        description: "With their powers combined, the sorcerers of an Arcanite Cabal are far greater than the sum of their parts. Each model from an Arcanite Cabal that is within 9\" of at least two other models from the same battalion in your hero phase can attempt to cast one additional spell.",
+        },
+
+    alterKinCovenBoonOfMutation: {
+        id: "alterKinCovenBoonOfMutation",
+        name: "Boon of Mutation",
+        description: "In each of your hero phases, roll a dice for each enemy unit that is within 3\" of a unit from an Alter-kin Coven. On a roll of a 6, the unit being rolled for suffers D3 mortal wounds. If any models are slain in this manner, they are blessed with mutation and transmogrified into a Tzaangor. If there is already a friendly Tzaangor unit within 6\" of the slain model’s unit, add the Tzaangor to that unit, otherwise set it up as a new unit within 6\" of the slain model’s unit.",
+        },
+
+    witchfyreCovenMasteryOfWyrdflame: {
+        id: "witchfyreCovenMasteryOfWyrdflame",
+        name: "Mastery of Wyrdflame",
+        description: "The Kairic Acolytes that form a Witchfyre Coven are the cult’s most skilled at conjuring the flames of change, able to assail their foes with a relentless bombardment of eldritch fire. You can make a Sorcerous Bolt attack with each Kairic Acolyte model from a Witchfyre Coven in each of your hero phases.",
+        },
+
+    skyshoalCovenScintillatingAttackRun: {
+        id: "skyshoalCovenScintillatingAttackRun",
+        name: "Scintillating Attack Run",
+        description: "The Tzaangor Enlightened and Skyfires of the Skyshoal Covens have learned to utilise the blade-like protrusions of their daemonic mounts to lethal effect. In each of your hero phases, you can move any units from a Skyshoal Coven up to 9\" as if it were the movement phase (they cannot run as part of this move, and it does not stop them from moving normally later in the turn). After a unit moves in this manner, you can pick an enemy unit that it moved across. Roll a dice for each model in the Skyshoal Coven unit; for each roll of 6, the unit it moved across suffers a mortal wound.",
+        },
+
+    tzaangorCovenAspirantGorKin: {
+        id: "tzaangorCovenAspirantGorKin",
+        name: "Aspirant Gor-kin",
+        description: "If the unit of Tzaangors from a Tzaangor Coven is within 9\" of the battalion’s unit of Tzaangor Enlightened or Tzaangor Skyfires at the start of your hero phase, they may pile in and attack as if it were the combat phase. If the unit of Tzaangors is within 9\" of both of these units at the start of your hero phase, then you can also add 1 to their wound rolls when they attack in this manner.",
+        },
+
+    tzaangorCovenFerociousFighters: {
+        id: "tzaangorCovenFerociousFighters",
+        name: "Ferocious Fighters",
+        description: "Vicious Beak attacks made by models from a Tzaangor Coven wound on a roll of 4+ instead of 5+.",
+        },
+
+    cultOfTheTransientFormTheChangeGift: {
+        id: "cultOfTheTransientFormTheChangeGift",
+        name: "The Change-gift",
+        description: "Roll a dice each time a Kairic Acolyte from the Cult of the Transient Form is slain. On a roll of 6, they are blessed with new life and are transmogrified into a Tzaangor. If there is already a friendly Tzaangor unit within 6\" of the slain model’s unit, add the Tzaangor to that unit, otherwise set it up as a new unit within 6\" of the slain model’s unit. In addition, roll a dice each time a Hero from the Cult of the Transient Form is slain. On a roll of 6 they are reborn as a horrific Chaos Spawn; set up a Chaos Spawn under your control anywhere within 6\" of the slain Hero model just before removing it.",
+        },
+
+    thePyrofaneCultArchPyromancers: {
+        id: "thePyrofaneCultArchPyromancers",
+        name: "Arch-Pyromancers",
+        description: "You can add 1 to the wound rolls of Sorcerous Bolt attacks made by Kairic Acolytes from the Pyrofane Cult for each other unit from the battalion that attacked the target unit with Sorcerous Bolts earlier in the same phase. For example, if two units of Kairic Acolytes from the Pyrofane Cult had already targeted a unit with Sorcerous Bolts, you could add 2 to the wound rolls of the third unit that did so.",
+        },
+
+    alfrostunAlfrostunAvalanche: {
+        id: "alfrostunAlfrostunAvalanche",
+        name: "Alfrostun Avalanche",
+        description: "When an entire Alfrostun stampedes towards its foes, it is akin to an unstoppable avalanche that sweeps away all before it. On a turn in which they charged into combat, you can re-roll all failed wound rolls made for Beastclaw Raider models in the combat phase.",
+        },
+
+    jorlbadTipOfTheHuntingSpear: {
+        id: "jorlbadTipOfTheHuntingSpear",
+        name: "Tip of the Hunting Spear",
+        description: "Charging at the forefront of any Alfrostun’s attack, the Jorlbad are the first to hit the enemy lines. Jorlbad units can run and charge in the same turn.",
+        },
+
+    jorlbadFightingHand: {
+        id: "jorlbadFightingHand",
+        name: "Fighting Hand",
+        description: "Second only to the Frostlord within the Alfrostun’s ranks, the Huskard Jorl holds great authority over his kin and can inspire them in battle. You can re-roll failed battleshock tests for friendly Beastclaw Raiders units that are within 12\" of the Jorlbad’s Huskard.",
+        },
+
+    eurlbadCrushMangleTenderise: {
+        id: "eurlbadCrushMangleTenderise",
+        name: "Crush, Mangle, Tenderise",
+        description: "Those that face the destructive attentions of the Eurlbad are assured of a brutal death. If you roll a wound roll of 6 or more for an Eurlbad model in the combat phase, that attack inflicts one mortal wound on the target in addition to the normal damage.",
+        },
+
+    eurlbadEatingHand: {
+        id: "eurlbadEatingHand",
+        name: "Eating Hand",
+        description: "As one of the Frostlord’s favoured leaders, the Huskard of the Eurlbad is always on the lookout for an opportunity to prove his worth and crush the foes of the Alfrostun. Add 1 to the Damage characteristic of all melee weapons used by the Eurlbad’s Huskard.",
+        },
+
+    torrbadHeartNumbingChill: {
+        id: "torrbadHeartNumbingChill",
+        name: "Heart-numbing Chill",
+        description: "When the Thundertusks of the Torrbad gather in number, the strength of their freezing magical enchantments magnifies to chill the blood of those not used to its bitter touch. Enemy units cannot retreat whilst they are within 3\" of any Torrbad unit. Furthermore, roll a dice in each of your hero phases for each enemy unit within 3\" of at least one of your Torbadd Thundertusks. Add 1 to the result of this dice roll for each additional Torrbad Thundertusk that is within 3\" of the unit being rolled for. On a 6 the unit suffers a mortal wound, on a 7 it suffers D3 mortal wounds and on an 8 or more it suffers D6 mortal wounds.",
+        },
+
+    skalHuntingPack: {
+        id: "skalHuntingPack",
+        name: "Hunting Pack",
+        description: "When Icebrow Hunters are on the hunt, they will often take their best packs of Frost Sabres along to aid them as they prepare a deadly ambush. During set-up, you can place units of Frost Sabres from the Skal to one side. In any of your hero phases, when an Icebrow Hunter from this battalion sets up from ambush (see the Icebrow Hunter’s Masters of Ambush ability, pg 114), you can also set up any units of Frost Sabres that you set to one side earlier – these units are set up anywhere on the battlefield that is within 18\" of an ambushing Icebrow Hunter, but not within 9\" of any enemy models. This is their move for that movement phase.",
+        },
+
+    svardAlfrostunAHardyBreed: {
+        id: "svardAlfrostunAHardyBreed",
+        name: "A Hardy Breed",
+        description: "The Stonehorns of the Svard are resilient in the extreme, perhaps the toughest of their breed, and are renowned as such across the Mortal Realms. Add 1 to the Wounds characteristic of all Svard Stonehorn models.",
+        },
+
+    olwyrAlfrostunCunningAndWise: {
+        id: "olwyrAlfrostunCunningAndWise",
+        name: "Cunning and Wise",
+        description: "An Olwyr general can have two command traits instead of one. If you choose to randomly generate your general’s command trait, re-roll any duplicate results.",
+        },
+
+    olwyrAlfrostunViciousBeasts: {
+        id: "olwyrAlfrostunViciousBeasts",
+        name: "Vicious Beasts",
+        description: "Olwyr Mournfangs are amongst the most savage of their kind. You can add 1 to all hit rolls made for an Olwyr Mournfang’s Tusks.",
+        },
+
+    olwyrAlfrostunSwiftstride: {
+        id: "olwyrAlfrostunSwiftstride",
+        name: "Swiftstride",
+        description: "The Olwyr are adept and skilled riders, and their Icebrow Hunters are renowned for their long stride. You can re-roll run rolls for all Olwyr units.",
+        },
+
+    braggothSBeastHammerAHardyBreed: {
+        id: "braggothSBeastHammerAHardyBreed",
+        name: "A Hardy Breed",
+        description: "The Stonehorns of the Svard are resilient in the extreme, perhaps the toughest of their breed, and are renowned as such across the Mortal Realms. Add 1 to Braggoth’s Wounds characteristic.",
+        },
+
+    braggothSBeastHammerFierceRivals: {
+        id: "braggothSBeastHammerFierceRivals",
+        name: "Fierce Rivals",
+        description: "Though they have formed an uneasy alliance, the Ironjawz and Beastclaw Raiders are both attempting to prove they are the best. You can add 1 to hit rolls made for any Beastclaw Raiders unit from this battalion whilst it is within 6\" of an Ironjawz unit from this battalion, and vice versa.",
+        },
+
+    braggothSBeastHammerOverrunningStampede: {
+        id: "braggothSBeastHammerOverrunningStampede",
+        name: "Overrunning Stampede",
+        description: "The combined mass of bestial muscle and savage rage of the Beast Hammer will smash aside anything in its path. Once per battle, at the end of any of your combat phases, this battalion can make an Overrunning Stampede. When it does so, each unit in this battalion that charged successfully this turn can immediately pile in and attack again, in an order of your choice.",
+        },
+
+    savageWarclanExtraJuJuWarpaint: {
+        id: "savageWarclanExtraJuJuWarpaint",
+        name: "Extra Ju-ju Warpaint",
+        description: "When a Savage Warclan gathers for battle, the shamans daub their warriors and war boars in an extra layer of warpaint making them especially lucky. You can re-roll all failed save rolls for models in a Savage Warclan, but the re-rolled saves will only be passed on the roll of a 6, irrespective of the unit’s actual Save characteristic or any modifiers that apply to the attack. In addition, you can re-roll the dice rolled to see if a Savage Warclan’s model’s warpaint saves them from any mortal wounds they suffer (pg 85).",
+        },
+
+    kopRukkSavageWaaaghEnergy: {
+        id: "kopRukkSavageWaaaghEnergy",
+        name: "Savage Waaagh! Energy",
+        description: "The build up of Waaagh! energy in the presence of so many crazed boys makes the Wardokks’ powers even more dangerous – sometimes for the orruks themselves. Add 1 to all casting rolls made by a Kop Rukk Wardokk that is within 12\" of 20 or more Savage Orruk Morboys. If the Wardokk is within 12\" of 30 or more Savage Orruk Morboys, add 2 to that model’s casting rolls instead. If the casting roll is a double, you must remove D3 models from the nearest unit of Savage Orruk Morboys as the build up of Waaagh! energy causes their heads to explode.",
+        },
+
+    kopRukkWaaaghStomp: {
+        id: "kopRukkWaaaghStomp",
+        name: "Waaagh! Stomp",
+        description: "All the Wardokks’ chanting and chest thumping only riles the Morboys up into a greater frenzy. Add 1 to any wound rolls made for a Savage Orruk Morboy if its unit is within 12\" of at least two Wardokks from this battalion when it makes its attacks.",
+        },
+
+    snagaRukkManiakStampede: {
+        id: "snagaRukkManiakStampede",
+        name: "Maniak Stampede",
+        description: "When the enemy’s scent is in their nostrils, nothing can stop the boys of a Snaga Rukk from charging full pelt. In your hero phase, one Savage Boarboy Maniak unit from the Snaga Rukk can attempt to charge an enemy unit (if there is an eligible unit within 12\") as if it were the charge phase. You can re-roll the charge roll if the Savage Boarboy Maniaks are within 10\" of either of the battalion’s Maniak Weirdnobs. If the charge is successful, roll a dice for each charging model that ends within 1\" of an enemy model: on a 4 or more, the enemy unit suffers a mortal wound. For each roll of 1, however, the charging unit suffers a mortal wound instead.",
+        },
+
+    brutalRukkSavageSwiftness: {
+        id: "brutalRukkSavageSwiftness",
+        name: "Savage Swiftness",
+        description: "Orruks are always competing to be the first to get stuck in, and run at breakneck pace to fight the foe. You can re-roll the dice when determining how far a unit from a Brutal Rukk runs. The Brutal Rukk’s Savage Big Boss and any unit that starts their move within 10\" of the big boss always move an extra 6\" when they run (there is no need to roll the dice).",
+        },
+
+    kunninRukkDeadSneaky: {
+        id: "kunninRukkDeadSneaky",
+        name: "Dead Sneaky",
+        description: "Orruks can be surprisingly sneaky when they want, catching out a foe with an unexpected advance or a sudden sneak attack. In each of your hero phases, pick one unit from the Kunnin’ Rukk that is within 10\" of the battalion’s Savage Big Boss. The unit you pick can move as if it were the movement phase if it is more than 3\" from the enemy (and is allowed to run), shoot as if it were the shooting phase, or pile in and attack as if it were the combat phase if it is within 3\" of an enemy. It can still perform actions normally later in the turn, whatever it does in the hero phase.",
+        },
+
+    teefRukkCrazedMonsterHunters: {
+        id: "teefRukkCrazedMonsterHunters",
+        name: "Crazed Monster Hunters",
+        description: "In your hero phase, pick an enemy Monster. Each unit from a Teef Rukk that is within 6\" of the Monster can pile in 6\" and then make an attack as if it were the combat phase. This does not stop them from attacking again later in the same turn.",
+        },
+
+    bonegrinzWarclanLoadsaBoyz: {
+        id: "bonegrinzWarclanLoadsaBoyz",
+        name: "Loadsa Boyz",
+        description: "Bonegrinz Warclans attack the enemy in huge foot-slogging hordes. Roll a dice each time a unit of Savage Orruks, Savage Orruk Arrowboys or Savage Big Stabbas is completely destroyed. On a 6, you can set up an identical, replacement unit within 6\" of the edge of the battlefield and more than 9\" from any enemy models. This counts as its move for the following movement phase.",
+        },
+
+    bonegrinzWarclanBeastSlayers: {
+        id: "bonegrinzWarclanBeastSlayers",
+        name: "Beast Slayers",
+        description: "Bonegrinz are emboldened each time a part of Gorkamorka’s essence is freed. Add 1 to the Bravery of all Bonegrinz models the first time a Monster is slain in the battle.",
+        },
+
+    iceboneWarclanTundraStriderz: {
+        id: "iceboneWarclanTundraStriderz",
+        name: "Tundra Striderz",
+        description: "Icebone Warclans use only the hardiest warboars to track their prey at great speed. Icebone Savage Boarboys, Savage Boarboy Maniaks and Maniak Weirdnobs have a Move of 11\" instead of 9\".",
+        },
+
+    iceboneWarclanFreezinWeapons: {
+        id: "iceboneWarclanFreezinWeapons",
+        name: "Freezin’ Weapons",
+        description: "The weapons of the Icebone Warclans slow and weaken their monstrous quarry. If an enemy Monster suffers any wounds from a model from an Icebone Warclan in the combat phase, it can only be selected to attack that phase once all other eligible units have attacked.",
+        },
+
+    drakkfootWarclanJuJuSpirits: {
+        id: "drakkfootWarclanJuJuSpirits",
+        name: "Ju-ju Spirits",
+        description: "Drakkfoot wizards are adept at channelling the spirit of Gorkamorka. Any casting roll made for a Wizard from a Drakkfoot Warclan that is a double is successful, even if the total is less than the minimum normally required.",
+        },
+
+    drakkfootWarclanRedWaaaghPaint: {
+        id: "drakkfootWarclanRedWaaaghPaint",
+        name: "Red Waaagh! Paint",
+        description: "The glowing warpaint of the Drakkfoot Warclan is enchanted by the warclan’s many shamans. When a unit from a Drakkfoot Warclan is affected by an enemy spell, roll a dice: on a 6, the spell has no effect on the unit being rolled for (though it may still affect other units).",
+        },
+
+    freeSpiritsSwiftVengeance: {
+        id: "freeSpiritsSwiftVengeance",
+        name: "Swift Vengeance",
+        description: "The Free Spirits move without delay to fulfil Alarielle’s will. In your hero phase, you can pick either an enemy unit or a terrain feature, and then move each unit from the Free Spirits as though it were the movement phase (they cannot run). They must end their move closer to the chosen unit or terrain feature than they were before they moved.",
+        },
+
+    lordsOfTheClanDeadlyChorus: {
+        id: "lordsOfTheClanDeadlyChorus",
+        name: "Deadly Chorus",
+        description: "The leaders of a sylvaneth clan bear a great many duties, not least of which is leading the spirit-song. When standing together, they can cause it to rise into a great chorus so powerful that it rips through the air like a howling gale. In the hero phase, the Head of the Clan can unleash a great chorus. Roll a dice for each enemy unit within 10\" of him, adding 1 to the result for each other model from this battalion that is also within 10\" of the enemy unit being rolled for. If the result is 6-9, that enemy unit suffers D3 mortal wounds. If the result is 10 or more, that enemy unit suffers D6 mortal wounds instead.",
+        },
+
+    householdDisciplineOfTheAges: {
+        id: "householdDisciplineOfTheAges",
+        name: "Discipline of the Ages",
+        description: "The noble warriors of a Household are adept at engaging the foe and drawing them in so that they are open to swift assaults by their fellows. Enemy units cannot choose to retreat if they are within 3\" of a Household unit. In addition, units from this battalion add 1 to their Bravery in the battleshock phase if they are within 3\" of an enemy unit.",
+        },
+
+    forestFolkFadeFromView: {
+        id: "forestFolkFadeFromView",
+        name: "Fade from View",
+        description: "The Forest Folk favour a swift, hit-and-run fighting style that allows them to strike and disappear before the enemy can deal a reprisal. Once per game, in your hero phase, the Forest Folk can vanish along the spirit paths. Remove all of the models in the battalion from the battlefield and set them to one side. Then set up each of the units anywhere within your territory, or within 3\" of a Sylvaneth Wyldwood. They must be set up at least 9\" from the enemy, and cannot move in the following movement phase.",
+        },
+
+    outcastsFearTheForestKin: {
+        id: "outcastsFearTheForestKin",
+        name: "Fear the Forest-kin",
+        description: "Every civilisation has its tales of terrifying creatures that emerge from the trees, blood slick upon their talons, their fangs bared in a terrifying rictus. They come to slaughter, to feast, or simply to revel in the fear that precedes them. When a host of such creatures gathers together, the combined dread they instil can stop their foes’ hearts from beating. In your hero phase, roll two dice for each enemy unit that is within 8\" of at least two units from this battalion. For each point by which the total dice roll exceeds the unit’s Bravery, the unit suffers a mortal wound.",
+        },
+
+    sylvanethWargroveMightyWyldwood: {
+        id: "sylvanethWargroveMightyWyldwood",
+        name: "Mighty Wyldwood",
+        description: "When joined in harmony, the sylvaneth can command the forests, summoning trees from even the most barren ground and effortlessly traversing the realmroots to confound their foes. If your army has the Sylvaneth allegiance and includes a Sylvaneth Wargrove, then the Wyldwood Groves ability (pg 107) allows you to set up one additional Sylvaneth Wyldwood. In addition, each time one of your units uses the Navigate Realmroots ability (pg 107), add 1 to the dice result.",
+        },
+
+    oakenbrowWargroveNobleSpirits: {
+        id: "oakenbrowWargroveNobleSpirits",
+        name: "Noble Spirits",
+        description: "Oakenbrow Treelords are renowned for the resilience of their heartwood. Oakenbrow Treelords and Treelord Ancients have a Wounds characteristic of 13.",
+        },
+
+    oakenbrowWargroveMightyHosts: {
+        id: "oakenbrowWargroveMightyHosts",
+        name: "Mighty Hosts",
+        description: "Oakenbrow clans can draw on great numbers. Once during the battle, in your hero phase, you can replace a unit of Oakenbrow Dryads or Tree-Revenants that has been completely destroyed with an identical unit. Set up the replacement unit within 6\" of the edge of the battlefield or within a Sylvaneth Wyldwood, and more than 9\" from any enemy models. This counts as its move for the following movement phase.",
+        },
+
+    gnarlrootWargroveSeekersOfKnowledge: {
+        id: "gnarlrootWargroveSeekersOfKnowledge",
+        name: "Seekers of Knowledge",
+        description: "Gnarlroot Clans prize arcane knowledge and spell lore above all things. A Gnarlroot Treelord Ancient, Branchwych or Branchwraith is allowed to attempt to cast one extra spell in each of their hero phases, and unbind one extra spell in each enemy hero phase.",
+        },
+
+    heartwoodWargroveWorshippersOfKurnoth: {
+        id: "heartwoodWargroveWorshippersOfKurnoth",
+        name: "Worshippers of Kurnoth",
+        description: "The clans of Heartwood Glade are dedicated followers of the god Kurnoth, and hold the warriors of Kurnoth’s Hunters in the highest regard. Add 1 to the Bravery of any Heartwood units that are within 6\" of a friendly unit of Kurnoth Hunters. This bonus does not apply to units of Kurnoth Hunters themselves.",
+        },
+
+    heartwoodWargroveFollowersOfTheWildHunt: {
+        id: "heartwoodWargroveFollowersOfTheWildHunt",
+        name: "Followers of the Wild Hunt",
+        description: "When a Wild Hunt is called, many members of Heartwood heed the call. Roll a dice in each of your hero phases, adding 1 to the roll if there are any friendly units of Kurnoth Hunters on the battlefield. On a roll of 6 or more you can replace a unit of Heartwood Dryads, Tree-Revenants, or Spite-Revenants that has been completely destroyed with an identical unit. Set up the replacement unit within 6\" of the edge of the battlefield or within a Sylvaneth Wyldwood, and more than 9\" from any enemy units. This counts as its move for the following movement phase.",
+        },
+
+    ironbarkWargroveStubbornAndTaciturn: {
+        id: "ironbarkWargroveStubbornAndTaciturn",
+        name: "Stubborn and Taciturn",
+        description: "Ironbark Clans are famous for their stoic indifference. Halve the number of casualties when working out the result of a battleshock test for a Sylvaneth Ironbark unit, rounding fractions up. For example, if an Ironbark unit suffered 3 casualties, then 2 would be added to its battleshock test rather than 3.",
+        },
+
+    ironbarkWargroveMasterCraftedWeapons: {
+        id: "ironbarkWargroveMasterCraftedWeapons",
+        name: "Master-crafted Weapons",
+        description: "Ironbark Sylvaneth excel at drawing up and crafting precious metals. You can re-roll wound rolls of 1 for the enchanted blades, protector glaives or greenwood scythes used by Ironbark Tree‑Revenants and Branchwyches.",
+        },
+
+    winterleafWargroveSurroundedByDevastation: {
+        id: "winterleafWargroveSurroundedByDevastation",
+        name: "Surrounded by Devastation",
+        description: "Winterleaf Clans inhabit frozen wastelands filled with empty ruins. Any Sylvaneth Winterleaf units that are set up in a hidden enclave at the start of the battle (see the Forest Spirits rule on pg 107), can be set up within 3\" of an Ophidian Archway and more than 9\" from any enemy models, in addition to the other ways it can be set up. This is their move for that movement phase.",
+        },
+
+    winterleafWargroveEmbitteredByWar: {
+        id: "winterleafWargroveEmbitteredByWar",
+        name: "Embittered by War",
+        description: "Winterleaf Dryads are especially bitter about the destruction of their homeland, and eager to vent their malice. Each time you make a hit roll of 6 or more for a Winterleaf Dryad, it can immediately make one additional attack with its Wracking Talons.",
+        },
+
+    winterleafWargroveRevengeAgainstChaos: {
+        id: "winterleafWargroveRevengeAgainstChaos",
+        name: "Revenge Against Chaos",
+        description: "The Winterleaf Clans harbour a deep hatred against the followers of Chaos. You can re-roll hit and wound rolls of 1 for any attack made by a Sylvaneth Winterleaf unit upon a Chaos unit.",
+        },
+
+    dreadwoodWargroveMaliciousTormentors: {
+        id: "dreadwoodWargroveMaliciousTormentors",
+        name: "Malicious Tormentors",
+        description: "The Spite-Revenants that fight alongside Dreadwood Glade are renowned for being especially cruel and malicious, and delight in tormenting their prey. You can re-roll wound rolls of 1 for attacks made by Dreadwood Spite-Revenants.",
+        },
+
+    dreadwoodWargroveSubterfuge: {
+        id: "dreadwoodWargroveSubterfuge",
+        name: "Subterfuge",
+        description: "Dreadwood Clans are masters of subterfuge. Roll a dice at the start of the first battle round; on a 1 or 2 you can use one of the following stratagems, on a 3 or 4 you can use two of them, and on a 5 or 6 you can use all three:\
+\
+Ambush: A Dreadwood unit can be redeployed anywhere on the battlefield that is more than 6\" from an enemy unit.\
+\
+Hidden Attackers: The maximum range of enemy attacks, abilities and spells against Dreadwood units is limited to 12\" during the first round of the battle.\
+\
+Sneak Attack: Up to 3 Dreadwood units can immediately move as if it were the movement phase (they cannot run).",
+        },
+
+    harvestboonWargroveChorusOfMagic: {
+        id: "harvestboonWargroveChorusOfMagic",
+        name: "Chorus of Magic",
+        description: "Harvestboon Branchwraiths are known for the sheer power of their spellcraft. Add 1 to casting rolls for Harvestboon Branchwraiths.",
+        },
+
+    harvestboonWargroveVibrantSurge: {
+        id: "harvestboonWargroveVibrantSurge",
+        name: "Vibrant Surge",
+        description: "Sylvaneth of Harvestboon have a burning desire to drive any enemies from their territory. Add 1 to any run or charge rolls made for Harvestboon units.",
+        },
+
+    guardiansOfAlarielleTheSongOfTheLadyOfVines: {
+        id: "guardiansOfAlarielleTheSongOfTheLadyOfVines",
+        name: "The Song of the Lady of Vines",
+        description: "The Lady of Vines’ song has magical healing powers. She can give voice to the song in each of her hero phases. If she does so, pick a model anywhere on the battlefield; that model heals 1 wound (it heals D3 wounds instead if it is a Sylvaneth unit within 18\").",
+        },
+
+    guardiansOfAlarielleMasterOfDefence: {
+        id: "guardiansOfAlarielleMasterOfDefence",
+        name: "Master of Defence",
+        description: "Lorrus Grymn is a master of defensive warfare. Add 1 to the save rolls of Grymn, and to the save rolls of any Stormcast Eternals unit from this battalion that is within 9\" of him when the save is made.",
+        },
+
+    guardiansOfAlarielleGuardiansOfTheQueenSeed: {
+        id: "guardiansOfAlarielleGuardiansOfTheQueenSeed",
+        name: "Guardians of the Queen-seed",
+        description: "The Lady of Vines bears Alarielle’s dormant form in a soulpod, and those tasked with the Everqueen’s defence will fight to the last to protect it. So long as the Lady of Vines is still alive, the Bravery of all Guardians of Alarielle units is 10.",
+        },
+
+    royalFamilyLordsOfTheManor: {
+        id: "royalFamilyLordsOfTheManor",
+        name: "Lords of the Manor",
+        description: "In the dominating presence of their royal masters, courtiers of every rank call forth their minions in ever greater numbers. Each time a Courtier in your army uses an ability to call forth additional Flesh-eater Courts models, add one additional model to one eligible unit if the Courtier is within 10\" of a Royal Family model when the ability is used.",
+        },
+
+    royalFamilySummonSycophant: {
+        id: "royalFamilySummonSycophant",
+        name: "Summon Sycophant",
+        description: "If your general was chosen from this battalion and your Royal Family currently has fewer than 6 Abhorrant Ghoul King models, your general can use this command ability instead of any others he can normally use. If he does so, set up a new Abhorrant Ghoul King within 3\" of any edge of the battlefield and more than 9\" from enemy models. It cannot move in the subsequent movement phase, and it counts as part of the Royal Family for the rest of the battle.",
+        category: AbilityCategory.Command,
+        },
+
+    attendantsAtCourtLoyalSubjects: {
+        id: "attendantsAtCourtLoyalSubjects",
+        name: "Loyal Subjects",
+        description: "The Crypt Horrors known as the Lickspittles are the king’s most trusted subjects, and can be relied upon to fight with murderous fury even when they are far from their master’s prying gaze. You can re-roll failed hit rolls for units of Crypt Horrors from the Attendants at Court, even if they are not within 15\" of an Abhorrant Ghoul King from your army.",
+        },
+
+    attendantsAtCourtStewardToTheKing: {
+        id: "attendantsAtCourtStewardToTheKing",
+        name: "Steward to the King",
+        description: "As the king’s chief minister at court, the Lord Chamberslough is adept at relaying and enforcing the commands of his master in battle. If your general is an Abhorrant Ghoul King and is within 10\" of this battalion’s Crypt Haunter Courtier during your hero phase, he can use two command abilities that phase (and can even use the same command ability twice).",
+        },
+
+    deadwatchTheAbhorrantKingSOwn: {
+        id: "deadwatchTheAbhorrantKingSOwn",
+        name: "The Abhorrant King’s Own",
+        description: "Nominally the king’s bodyguard, the winged monstrosities that form the ranks of the Deadwatch epitomise the belief that the best defence is a good offence. In your hero phase, you can make a pile in move and attack with each Deadwatch unit as if it were the combat phase.",
+        },
+
+    abattoirBodyPartAcquisition: {
+        id: "abattoirBodyPartAcquisition",
+        name: "Body Part Acquisition",
+        description: "True to their purpose, the Abattoir displays an uncanny talent for acquiring culinary provisions in battle. In your hero phase, roll a dice for each enemy model within 3\" of an Abattoir model. On the roll of a 6, the unit of the model being rolled for suffers a mortal wound.",
+        },
+
+    abattoirTheChoicestCuts: {
+        id: "abattoirTheChoicestCuts",
+        name: "The Choicest Cuts",
+        description: "As Lord Liverbelch, the Crypt Haunter Courtier in command of the Abattoir knows exactly where to carve the best cuts of meat from the flanks of a prey-beast. Add 1 to the wound rolls for an Abattoir’s courtier in the combat phase if the target is a Monster.",
+        },
+
+    ghoulPatrolOnPatrol: {
+        id: "ghoulPatrolOnPatrol",
+        name: "On Patrol",
+        description: "Instead of setting up the units in a Ghoul Patrol on the battlefield, you must place them to one side. In your first movement phase, you must set up all of these units wholly within 6\" of any edge of the battlefield, and more than 9\" from any enemy models. This counts as their move for that turn.",
+        },
+
+    ghoulPatrolDrawnToBattle: {
+        id: "ghoulPatrolDrawnToBattle",
+        name: "Drawn to Battle",
+        description: "Though the logistical organisation of the Ghoul Patrol’s ambushes often leaves much to be desired, those that wander astray and miss the initial attack are soon reunited with their kin as the stragglers trickle onto the battlefield. In each of your hero phases, roll a dice for each unit of Crypt Ghouls from this battalion that is on the battlefield and add that many models to the unit.",
+        },
+
+    kingSGhoulsGuardiansOfTheCourt: {
+        id: "kingSGhoulsGuardiansOfTheCourt",
+        name: "Guardians of the Court",
+        description: "Tasked with protecting the lair of their master, the King’s Ghouls would rather fight to the last than see it ransacked by intruders. You do not need to take battleshock tests for King’s Ghouls units that are within your territory.",
+        },
+
+    kingSGhoulsValorousMenAtArms: {
+        id: "kingSGhoulsValorousMenAtArms",
+        name: "Valorous Men-at-Arms",
+        description: "The King’s Ghouls will hurl themselves bodily into the foe in order to pin them down and prevent their enemies from breaking through to their territory beyond. If any King’s Ghouls units are within 3\" of an enemy unit in your hero phase, you can make a 6\" pile in move with any models in those King’s Ghouls units as if it were the combat phase.",
+        },
+
+    royalMordantsMartialExcellence: {
+        id: "royalMordantsMartialExcellence",
+        name: "Martial Excellence",
+        description: "Well drilled on parade and instilled with iron discipline – to their deluded minds, at least – the Royal Mordants heed the bestial roars of their courtier without a moment’s hesitation. In your hero phase, one unit in the Royal Mordants within 10\" of their Varghulf Courtier can immediately reform around one of its models. That model must stay where it is, but each other model in the unit can move up to 6\" so long as it does not end this move within 3\" of the enemy. This unit can still move in the ensuing movement phase as normal.",
+        },
+
+    royalMenagerieForwardMyPretties: {
+        id: "royalMenagerieForwardMyPretties",
+        name: "Forward, My Pretties!",
+        description: "At their master’s command, vast wings are unfurled as the monstrous beasts of the Royal Menagerie take to the skies in search of fresh prey. If your general is an Abhorrant Ghoul King, then in your hero phase, you can make a 6\" move with any models from a Royal Menagerie that are within 15\" of him. They can still move in the ensuing movement phase as normal.",
+        },
+
+    royalMenagerieMonstrousEnsemble: {
+        id: "royalMenagerieMonstrousEnsemble",
+        name: "Monstrous Ensemble",
+        description: "When massed together, the creatures of the Royal Menagerie gain mutual benefit from the dark energies coursing through their vast bodies. Models from the Royal Menagerie that are within 5\" of any other model from the Royal Menagerie heal 1 wound in your hero phase, in addition to any other wounds that they heal.",
+        },
+
+    fleshEaterCourtOnTheMarch: {
+        id: "fleshEaterCourtOnTheMarch",
+        name: "On the March",
+        description: "When a Flesh-eater Court marches forth from its lair, any who oppose them will find themselves assailed at great speed by a tide of voracious cannibals. All units from the Flesh-eater Court (including any new Flesh-eater Courts units that are summoned by models from the Flesh-eater Court), can make a move in your hero phase as if it were the movement phase. They can still move in the ensuing movement phase as normal.",
+        },
+
+    fleshEaterCourtDarkMaster: {
+        id: "fleshEaterCourtDarkMaster",
+        name: "Dark Master",
+        description: "The abhorrant king can summon forth minions and sycophants from accross his domain at will. If your general is an Abhorrant Ghoul King from this battalion, he knows all the command abilities found on the Flesh-eater Court warscrolls and battalions included in the Flesh-eater Court, and can use up to three different command abilities each turn.",
+        },
+
+    brutefistBruteBigBoss: {
+        id: "brutefistBruteBigBoss",
+        name: "Brute Big Boss",
+        description: "Pick a Brute Boss from one of the units in this battalion to be the battalion’s Big Boss. The model you pick has a Wounds characteristic of 5 rather than 3.",
+        },
+
+    brutefistGreenSkinnedBatteringRam: {
+        id: "brutefistGreenSkinnedBatteringRam",
+        name: "Green-skinned Battering Ram",
+        description: "A Brutefist is a living tide of destruction that can pulverise even the toughest of foes. In your hero phase, units from the battalion within 10\" of its Brute Big Boss (including his own unit) can make a charge move as if it were the charge phase. If the charge is successful, pick one enemy unit within 3\" of the unit that charged; it suffers D3 mortal wounds.",
+        },
+
+    gorefistGoreGruntaBigBoss: {
+        id: "gorefistGoreGruntaBigBoss",
+        name: "Gore-grunta Big Boss",
+        description: "Pick a Gore-grunta Boss from one of the units in this battalion to be the battalion’s Big Boss. The model you pick has a Wounds characteristic of 7 rather than 5.",
+        },
+
+    gorefistGoreGruntaFormations: {
+        id: "gorefistGoreGruntaFormations",
+        name: "Gore-grunta Formations",
+        description: "Gore-grunta Big Bosses often come up with cunning formations, like the Tusks of Gork or the Snorting Snout Spear. You can tell your opponent that this battalion is in such a formation when you set it up if all of the units are within 10\" of the Big Boss’ unit (you should also come up with a name for the formation!). The formation allows all of the units in the battalion to make a move of 15\" in the hero phase of their first turn. The move is made as if it were the movement phase, except that the units cannot run. It does not stop the units from moving again normally later in the turn. After the first turn is over, the formation dissolves into anarchy and the normal rules apply for the rest of the battle.",
+        },
+
+    ardfistDrawnToTheWaaagh: {
+        id: "ardfistDrawnToTheWaaagh",
+        name: "Drawn to the Waaagh!",
+        description: "The intoxicating beat drummed out by Orruk Warchanters draws many Ardboys out of the badlands. If the battalion’s Warchanter is still alive in your hero phase, you can replace any units from the battalion that have been wiped out. The replacement unit is identical to the unit that was destroyed, and must be set up with all models within 6\" of the edge of the battlefield, and more than 6\" from any enemy units. Within these restrictions, it must be deployed as close to the battalion’s Warchanter as possible. This counts as the unit’s move for the following movement phase.",
+        },
+
+    weirdfistWeirdEnergy: {
+        id: "weirdfistWeirdEnergy",
+        name: "Weird Energy",
+        description: "The focussed energy absorbed by a Weirdnob Shaman in a Weirdfist overcharges their spells and incantations. In addition to the bonuses that the Weirdnob normally receives for being near other orruks, roll one dice for each unit from the battalion that is within 10\" of the Weirdnob when an Arcane Bolt, Green Puke or Foot of Gork spell is successfully cast. Add 6\" to the spell’s range for each of these dice that rolls 1, 2 or 3, and add 1 to the mortal wounds inflicted by the spell for each roll of 4, 5 or 6. If the spell inflicts mortal wounds more than once, add the bonus each time!",
+        },
+
+    ironfistIronfistBigBoss: {
+        id: "ironfistIronfistBigBoss",
+        name: "Ironfist Big Boss",
+        description: "Pick a Brute Boss or Gore-grunta Boss from the battalion to be its Big Boss, and add 2 to their Wounds characteristic.",
+        },
+
+    ironfistEreWeGoEreWeGoEreWeGo: {
+        id: "ironfistEreWeGoEreWeGoEreWeGo",
+        name: "’Ere We Go! ’Ere We Go! ’Ere We Go!",
+        description: "Urged on by their Big Boss, the mobs in this battalion are forever rushing forwards to get stuck into the fight. As long as the battalion’s Big Boss has not been slain, in your hero phase each unit in this battalion can move D6\". Roll separately for each unit, and then make its move in the same manner as a move in the movement phase, except that the unit cannot run.",
+        },
+
+    brawlBigWaaagh: {
+        id: "brawlBigWaaagh",
+        name: "Big Waaagh!",
+        description: "The Megaboss that leads a Brawl is able to channel and direct the Waaagh! energy generated by their Warchanters and Weirdnob Shamans directly to their Big Bosses. To represent this, if the Megaboss of an Ironjaw Brawl is within 10\" of a Warchanter and a Weirdnob Shaman from the battalion in the hero phase, then the Megaboss can use the Big Waaagh! command ability.\
+\
+When a Megaboss calls a Big Waaagh!, all units from the Brawl that are within 15\" of the Megaboss at the start of the following combat phase make 2 extra attacks with each of their melee weapons. Any units that don’t receive this bonus but which are within 10\" of a Big Boss from the Brawl make 1 extra attack instead with each of their melee weapons instead.",
+        category: AbilityCategory.Command,
+        },
+
+    congregationOfFilthFanaticalZealotry: {
+        id: "congregationOfFilthFanaticalZealotry",
+        name: "Fanatical Zealotry",
+        description: "When throngs of Plague Monks mass about a Plague Furnace, their fervent determination to spread disease across the realms increases exponentially. You can re-roll charge rolls for any units of Plague Monks from a Congregation of Filth that include 20 or more models and are within 13\" of their Plague Furnace.",
+        },
+
+    congregationOfFilthPlagueAltar: {
+        id: "congregationOfFilthPlagueAltar",
+        name: "Plague Altar",
+        description: "The Plague Monks that accompany a Plague Furnace into battle are amongst the most fanatical of their kind, and will fight to their last breath for the greater glory of the Horned Rat at their priest’s command. Roll a dice each time a Plague Monk from a Congregation of Filth that is within 13\" of their Plague Furnace suffers a wound or a mortal wound; on a roll of 6, the Wound is ignored.",
+        },
+
+    foulrainCongregationFoetidBlessings: {
+        id: "foulrainCongregationFoetidBlessings",
+        name: "Foetid Blessings",
+        description: "The Plague Priest can infuse the vile ammunition of his congregation’s Plagueclaws with even greater virulence. Add 1 to any wound rolls you make for any of the congregation’s Plagueclaws during the shooting phase, so long as they are within 13\" of the Plague Priest.",
+        },
+
+    foulrainCongregationSaturationOfFilth: {
+        id: "foulrainCongregationSaturationOfFilth",
+        name: "Saturation of Filth",
+        description: "In the shooting phase, if a Plagueclaw from this congregation successfully hits an enemy unit, you can re-roll failed hit rolls for the congregation’s other Plagueclaws if they target the same unit in that shooting phase.",
+        },
+
+    plaguesmogCongregationBillowingCloudOfPlagueSmog: {
+        id: "plaguesmogCongregationBillowingCloudOfPlagueSmog",
+        name: "Billowing Cloud of Plague Smog",
+        description: "A cloying, green fog surrounds a Plaguesmog Congregation at all times, shrouding them from sight and confounding the aim of enemy missile troops. Your opponent must subtract 1 from any hit rolls that target any units from a Plaguesmog Congregation in the shooting phase.",
+        },
+
+    plaguesmogCongregationPoisonousMiasma: {
+        id: "plaguesmogCongregationPoisonousMiasma",
+        name: "Poisonous Miasma",
+        description: "So thick is the roiling cloud of poisonous smoke that issues from a Plaguesmog Congregation that to breathe its tainted air is a death sentence. Replace the Poisonous Fumes ability of all units in a Plaguesmog Congregation with the following, more virulent version: in your hero phase, roll a dice for each unit that is within 3\" of any units in a Plaguesmog Congregation. If the result is a 2 or more, the unit suffers D3 mortal wounds. Nurgle units are not affected by the poisonous fumes and do not suffer any mortal wounds.",
+        },
+
+    virulentProcessionNefariousSustenance: {
+        id: "virulentProcessionNefariousSustenance",
+        name: "Nefarious Sustenance",
+        description: "In your hero phase, you can choose to heal the Verminlord Corruptor from this Virulent Procession by draining the life essence of its underlings. To do so, pick a unit from this Procession that is within 7\" of the Verminlord Corruptor; that unit suffers D6 mortal wounds. The Verminlord Corruptor immediately heals a single wound for each mortal wound that was inflicted upon the unit as it siphons their life force.",
+        },
+
+    virulentProcessionVerminousInfestation: {
+        id: "virulentProcessionVerminousInfestation",
+        name: "Verminous Infestation",
+        description: "As the Virulent Procession advances, plague-ridden rats surge forth from their hiding places in furry waves to gnaw upon and infect the enemies of the Horned Rat. At the start of each of your hero phases, pick one terrain feature within 13\" of this Procession’s Verminlord Corruptor. Roll a dice for each enemy unit within 3\" of that terrain feature; on a 4 or more that unit suffers D3 mortal wounds.",
+        },
+
+    lordsOfTheLodgeHotBloodedFury: {
+        id: "lordsOfTheLodgeHotBloodedFury",
+        name: "Hot-blooded Fury",
+        description: "The Fyreslayers’ impetuosity makes them unpredictable foes – something that their leaders can turn to their advantage. Once per battle, before rolling the dice to see who takes the first turn in a battle round, you can declare that you will seize the initiative. Add 1 to the result of your dice roll for each Hero from the Lords of the Lodge that is on the battlefield.",
+        },
+
+    lordsOfTheLodgeOathboundGuardians: {
+        id: "lordsOfTheLodgeOathboundGuardians",
+        name: "Oathbound Guardians",
+        description: "It is the duty of Hearthguard Berzerkers to defend their lords on the field of battle, and they would rather die than be found wanting. The Hearthguard Berzerkers in the Lords of the Lodge can be selected to pile in and attack twice in the combat phase, but only if they are within 6\" of a Hero that is also part of the battalion the second time they are selected.",
+        },
+
+    warriorKinbandLegacyOfTheLodge: {
+        id: "warriorKinbandLegacyOfTheLodge",
+        name: "Legacy of the Lodge",
+        description: "A Runeson is always striving to impress the Runefather, and drills the warriors under his command to prove that he is an able leader as well as a ferocious warrior. Under the watchful eye of the Runeson, the Vulkite Berzerkers vindicate his efforts by hurling a storm of razor-edged fyresteel even as they close with the foe. In the shooting phase, any Vulkite Berzerkers from a Warrior Kinband that are armed with Fyresteel Throwing Axes can throw them twice instead of once, as long as they are within 10\" of the Runeson from the same Kinband.",
+        },
+
+    warriorKinbandBerserkKindred: {
+        id: "warriorKinbandBerserkKindred",
+        name: "Berserk Kindred",
+        description: "The members of a Warrior Kinband drive each other on to greater fury as they carve their way through the enemy. Vulkite Berzerkers from a Warrior Kinband move an additional D3 inches when they pile in if they are within 5\" of another unit of Vulkite Berzerkers from the same Kinband (roll for each unit separately).",
+        },
+
+    forgeBrethrenMasterForgedBlades: {
+        id: "forgeBrethrenMasterForgedBlades",
+        name: "Master-forged Blades",
+        description: "Even amongst the finely wrought weapons of the Fyreslayers, the masterfully worked blades carried by members of the Forge Brethren are breathtaking to behold – and equally deadly. If the result of a wound roll in the combat phase for a model from the Forge Brethren is 6 or higher, subtract 1 from the result of the save roll for that attack.",
+        },
+
+    forgeBrethrenBulwarkOfMoltenStone: {
+        id: "forgeBrethrenBulwarkOfMoltenStone",
+        name: "Bulwark of Molten Stone",
+        description: "In your hero phase, a unit of Auric Hearthguard that is within 10\" of the Runesmiter from their Forge Brethren can fashion makeshift defences with a sustained volley from their Magmapikes. Pick either the Auric Hearthguard themselves or another unit within 15\". Add 1 to the result of any save rolls for that unit until your next hero phase, or until it makes a charge move.",
+        },
+
+    grandFyrdDourAndFearless: {
+        id: "grandFyrdDourAndFearless",
+        name: "Dour and Fearless",
+        description: "Subtract 2 from the result of any battleshock tests made for units that are part of a Grand Fyrd.",
+        },
+
+    grandFyrdOathsOfBattle: {
+        id: "grandFyrdOathsOfBattle",
+        name: "Oaths of Battle",
+        description: "After set-up is complete, you can declare an oath of battle. This could be anything – for example, ‘this unit will be in your territory by the third turn’, or ‘my Runefather will slay your general’. If your opponent deems your oath unworthy you can either make another, or declare that they wouldn’t know an oath if it swung an axe at them (in which case this ability has no further effect). If your opponent agrees that your oath is worthy, you are bound by it. If you do not complete the oath by the end of the battle, your victory is lessened; a major victory counts as a minor victory, and a minor victory counts as a draw! Should you complete your oath, however, you can make a roll on the Triumph table at the start of your next battle – or two rolls if you also win a major victory!",
+        },
+
+    overlordsOfChaosDarkVizier: {
+        id: "overlordsOfChaosDarkVizier",
+        name: "Dark Vizier",
+        description: "If Archaon is within 3\" of the Overlords of Chaos’ Gaunt Summoner in your hero phase, he can demand a boon of a prophecy. When he does so, roll a dice; you can look at the result of this dice but you should keep it hidden from your opponent. At the start of the next battle round, reveal this dice instead of deciding which player will take the first turn in the usual way; if the hidden dice result is a 1, 2 or 3, your opponent takes the first turn; if it is a 4, 5 or 6, you take it. This foresight means that Archaon will know in advance who will take the first turn in the next battle round and can adjust his plans accordingly.",
+        },
+
+    overlordsOfChaosTheWillOfTheEverchosen: {
+        id: "overlordsOfChaosTheWillOfTheEverchosen",
+        name: "The Will of the Everchosen",
+        description: "Should Archaon mark an enemy for destruction, the Varanguard will ensure its fate is sealed. If Archaon is on the battlefield in your hero phase, pick a unit that is within 20\" of him, or anywhere if the Overlords of Chaos’ Gaunt Summoner is on the battlefield. Until your next hero phase, the Varanguard can re‑roll failed hit and wound rolls when attacking that unit.",
+        },
+
+    bloodmarkedWarbandBrandOfTheBloodGod: {
+        id: "bloodmarkedWarbandBrandOfTheBloodGod",
+        name: "Brand of the Blood God",
+        description: "Khorne’s sacred number is 8, and he gifts those of his followers who revere it with a portion of his great strength. If the number of models in a unit from a Bloodmarked Warband is a multiple of 8 when it is first set up, you can re-roll wound rolls of 1 for the unit for the duration of the battle.",
+        },
+
+    bloodmarkedWarbandBloodRage: {
+        id: "bloodmarkedWarbandBloodRage",
+        name: "Blood Rage",
+        description: "If any Hero from a Bloodmarked Warband slays an enemy model in the combat phase, then all other units from that warband within 16\" become filled with an unstoppable blood rage. Add 1 to the Attacks of any melee weapons used by those units for the rest of the combat phase.",
+        },
+
+    bloodmarkedWarbandRaisedToGreatness: {
+        id: "bloodmarkedWarbandRaisedToGreatness",
+        name: "Raised to Greatness",
+        description: "If a Hero from this warband is slain, pick another model in the warband that is not a Hero. That model adds 1 to the Attacks of all its melee weapons, becomes a Hero, and is treated as a separate unit for the rest of the battle.",
+        },
+
+    plaguetouchedWarbandGrandfatherSFavour: {
+        id: "plaguetouchedWarbandGrandfatherSFavour",
+        name: "Grandfather’s Favour",
+        description: "Nurgle’s sacred number is 7, and those of his followers that adhere to it are rendered ripe with caustic bile. If the number of models in a unit from the Plaguetouched Warband is a multiple of 7 when it is first set up, its warriors are bile‑swollen for the duration of the battle. In the combat phase, if the wound roll for an attack that targets one of these units is 6 or higher, the attacker’s unit suffers a mortal wound after all its attacks have been made. Furthermore, when the leader of one of these Plaguetouched units attacks in the combat phase, pick an enemy unit within 1\" and roll a dice. If the result is 4 or more, the leader vomits a thick spray of this bile and the target suffers a mortal wound.",
+        },
+
+    plaguetouchedWarbandLifeAbundant: {
+        id: "plaguetouchedWarbandLifeAbundant",
+        name: "Life Abundant",
+        description: "Those facing the Plaguetouched are blighted by clouds of droning flies that seek to burrow into their eyes, nostrils and mouths. Your opponent must subtract 1 from all hit rolls that target a unit in this warband in the combat phase.",
+        },
+
+    fateswornWarbandScionsOfChange: {
+        id: "fateswornWarbandScionsOfChange",
+        name: "Scions of Change",
+        description: "Tzeentch’s sacred number is 9, and fortune favours those of his followers that adhere to it. If the number of models in a unit from the warband is a multiple of 9 when it is first set up, roll a dice each time it suffers a wound or mortal wound. On a roll of 6, fate intervenes and the wound is ignored.",
+        },
+
+    fateswornWarbandConduitsOfArcanePower: {
+        id: "fateswornWarbandConduitsOfArcanePower",
+        name: "Conduits of Arcane Power",
+        description: "Tzeentch’s followers thrum with magical energy and their weapons crackle with coruscating force. All weapons used by models in the Fatesworn Warband with a Rend of ‘-’ have a Rend of -1 instead. In addition, Heroes in this warband can attempt to cast the Arcane Bolt spell in their hero phase as if they were a wizard. If the model is already a wizard, it can attempt to cast Arcane Bolt twice in each of its hero phases, once through the power granted by Tzeentch, and once more as one of the spells the model is normally allowed to cast.",
+        },
+
+    pleasureboundWarbandCaressOfTheDarkPrince: {
+        id: "pleasureboundWarbandCaressOfTheDarkPrince",
+        name: "Caress of the Dark Prince",
+        description: "Slaanesh’s sacred number is 6, and those of his followers that adhere to it stride into battle to the sound of disturbing, otherworldly melodies and the heady scent of soporific musk, heedless of anything but their desire to transcend the limits of mortal sensation. If the number of models in a unit from a Pleasurebound Warband is a multiple of 6 when it is first set up, add 2 to its Bravery for the duration of the battle.",
+        },
+
+    pleasureboundWarbandPerverseYearnings: {
+        id: "pleasureboundWarbandPerverseYearnings",
+        name: "Perverse Yearnings",
+        description: "For a follower of Slaanesh, there is little as tormenting as watching another experience the ecstasy of pain but being too distant to feel it first‑hand. If a model from a Pleasurebound Warband is slain in the combat phase, then until the end of the phase add 3\" to the distance that models from the warband can move when they pile in.",
+        },
+
+    archaonSGrandHostDaemonicPacts: {
+        id: "archaonSGrandHostDaemonicPacts",
+        name: "Daemonic Pacts",
+        description: "Such is the power of Archaon’s Grand Host that daemons rip their way into the Mortal Realms to fight at the Everchosen’s side. Roll a dice if Archaon is on the battlefield in your hero phase; on a 5 or more you can set up a Chaos Daemon unit within 10\" of Archaon but more than 9\" from any enemy units, adding it to your army and the Grand Host. This counts as the Daemon unit’s move for the turn.",
+        },
+
+    archaonSGrandHostDarkCommand: {
+        id: "archaonSGrandHostDarkCommand",
+        name: "Dark Command",
+        description: "Archaon knows exactly when to strike and can rouse his Grand Host to crush all before them in a single surge of bloodshed and violence. Once per game, at the start of any combat phase, Archaon can use the Dark Command ability. When he does, all other units from the Grand Host within 10\" can immediately pile in and attack. Once all these units have fought, the players then continue to alternate selecting units to attack with in the normal way.",
+        },
+
+    sunclawStarhostPredatoryFighters: {
+        id: "sunclawStarhostPredatoryFighters",
+        name: "Predatory Fighters",
+        description: "Saurus Warriors from a Sunclaw Starhost make 2 attacks with their Powerful Jaws and Stardrake Shields rather than 1.",
+        },
+
+    sunclawStarhostStarChargedCelestite: {
+        id: "sunclawStarhostStarChargedCelestite",
+        name: "Star-charged Celestite",
+        description: "The Celestite weapons carried by Saurus Warriors in a Sunclaw Starhost are supercharged with the power of Azyr. Celestite Clubs or Spears carried by Saurus Warriors in this starhost have a Rend characteristic of -1 rather than ‘-’. When attacking Chaos Daemons, these weapons also have a Damage characteristic of 2 rather than 1.",
+        },
+
+    eternalStarhostDrakescaleShieldwall: {
+        id: "eternalStarhostDrakescaleShieldwall",
+        name: "Drakescale Shieldwall",
+        description: "At the Eternity Warden’s unspoken signal, the Saurus Guard under its command lock their shields to form an impenetrable wall of drakescale and snapping jaws. Add 1 to the result of any save rolls for the Eternal Starhost’s Saurus Guard while they are within 10\" of their Eternity Warden.",
+        },
+
+    eternalStarhostPatientGuardians: {
+        id: "eternalStarhostPatientGuardians",
+        name: "Patient Guardians",
+        description: "While the Saurus Guard that form an Eternal Starhost remain motionless, their weapons gather celestial energy that discharges with the force of a supernova. If a unit of Saurus Guard from an Eternal Starhost does not move in its movement or charge phases, its Celestite Polearms have a Damage characteristic of D3 rather than 1 in the following combat phase.",
+        },
+
+    firelanceStarhostAzyriteHunters: {
+        id: "firelanceStarhostAzyriteHunters",
+        name: "Azyrite Hunters",
+        description: "Following in the wake of their commander, the Saurus Knights that form a Firelance Starhost move at the speed of a streaking comet. Add 3 to the result of any run and charge rolls for Saurus Knights that are within 10\" of their Scar-Veteran.",
+        },
+
+    firelanceStarhostBlazingCohort: {
+        id: "firelanceStarhostBlazingCohort",
+        name: "Blazing Cohort",
+        description: "Firelance Starhosts are saturated with the magic of Azyr, causing their weapons to burn with azure flame. If the wound roll for a Celestite weapon carried by a model from a Firelance Starhost is 6 or higher and it charged in the same turn, the attack inflicts an additional mortal wound, as well as any caused by the Saurus Knights’ Blazing Lances ability",
+        },
+
+    shadowstrikeStarhostStealthyAdvance: {
+        id: "shadowstrikeStarhostStealthyAdvance",
+        name: "Stealthy Advance",
+        description: "After set-up is complete, you can roll two dice for each unit in a Shadowstrike Starhost and move all of its models up to that many inches.",
+        },
+
+    shadowstrikeStarhostTheTrapIsSprung: {
+        id: "shadowstrikeStarhostTheTrapIsSprung",
+        name: "The Trap is Sprung",
+        description: "In your hero phase, pick a unit that is visible to the starhost’s Skink Priest or Starpriest. Until your next hero phase, you can re-roll hit and wound rolls of 1 for units from the Shadowstrike Starhost that attack the unit you picked.",
+        },
+
+    shadowstrikeStarhostStrikeFromTheSkies: {
+        id: "shadowstrikeStarhostStrikeFromTheSkies",
+        name: "Strike from the Skies",
+        description: "Instead of setting up the flying unit from this battalion on the battlefield, you can place it to one side and say that it is hidden amid the clouds. In any of your movement phases, the unit can plummet from the skies to assail the foe. When it does so, you can set it up anywhere more than 3\" from the enemy. In the following combat phase, add 1 to the result of any wound rolls made for models from that unit.",
+        },
+
+    thunderquakeStarhostTheCreatorSWill: {
+        id: "thunderquakeStarhostTheCreatorSWill",
+        name: "The Creator’s Will",
+        description: "The Engine of the Gods or Troglodon, and any units from the Thunderquake Starhost within 8\", are guided by the will of their creator. At the start of each combat phase you can declare that all of those units will either be swift, in which case you can re-roll charge rolls and failed hit rolls for them, or savage, in which case you can re-roll failed wound rolls and save rolls for them.",
+        },
+
+    thunderquakeStarhostCelestialSurge: {
+        id: "thunderquakeStarhostCelestialSurge",
+        name: "Celestial Surge",
+        description: "The great beasts of the seraphon are almost invincible when they march forth as a pack, even more so when in the presence of the Starmaster that created them. In your hero phase, each model from a Thunderquake Starhost heals a wound. Models from a Thunderquake Starhost that are within 10\" of a Slann heal D3 wounds instead.",
+        },
+
+    starbeastConstellationOrderedConstellation: {
+        id: "starbeastConstellationOrderedConstellation",
+        name: "Ordered Constellation",
+        description: "A Starbeast Constellation is order exemplified, its warriors marching forth in fearless, disciplined ranks. Units in a Starbeast Constellation do not need to take battleshock tests.",
+        },
+
+    starbeastConstellationStrategicMastery: {
+        id: "starbeastConstellationStrategicMastery",
+        name: "Strategic Mastery",
+        description: "When an Oldblood is attended by capable lieutenants, it forms the warriors under its command into a lethal machine capable of incredible feats of strategy. The Saurus Oldblood, and any other Heroes from the Starbeast Constellation that are within 20\", can use the command abilities on their warscrolls even if they are not your general.",
+        },
+
+    godswornChampionsOfRuinUnholyChallenge: {
+        id: "godswornChampionsOfRuinUnholyChallenge",
+        name: "Unholy Challenge",
+        description: "In each of your hero phases, one unit from the Godsworn Champions of Ruin that is within 3\" of an enemy Hero or Monster can issue an unholy challenge, calling upon the Dark Gods to give them the power to smite down the foe. This call is answered, allowing your unit to immediately pile in and then attack as if it were the combat phase.",
+        },
+
+    godswrathWarbandChaosDoomBolts: {
+        id: "godswrathWarbandChaosDoomBolts",
+        name: "Chaos Doom Bolts",
+        description: "In each of your hero phases, choose one Chaos Warshrine from this Godswrath Warband. Roll one dice for each unit from the warband that is within 24\" of that Chaos Warshrine (do not count the Warshrine itself). For each result of 6 you can pick an enemy unit that is visible to the Warshrine. The Chaos Gods have heeded the prayers of their followers, and unleashed a Chaos Doom Bolt that smites the enemy unit, which suffers D3 mortal wounds. An enemy unit cannot be struck by more than one Chaos Doom Bolt in the same turn – if you run out of any enemy units to smite, you must start picking friendly units (whether visible to the Warshrine or not) until all of the Chaos Doom Bolts have found a target! The Dark Gods are fickle...",
+        },
+
+    ruinbringerWarbandDevastatingCharge: {
+        id: "ruinbringerWarbandDevastatingCharge",
+        name: "Devastating Charge",
+        description: "Once per battle, in any of your hero phases, a Ruinbringer Warband can hurl itself forward in a bone-shattering charge, banners and icons held high as they chant praises to their dark masters. When it does so, all of the units in the battalion immediately attempt to make a charge move as if it were a charge phase. After any charges have been made, any enemy units within 3\" of any models from the battalion are crushed under the weight of the charge, and suffer D3 mortal wounds. Enemy units within 3\" of more than 10 models from the battalion suffer D6 mortal wounds instead.",
+        },
+
+    wildstalkerBrayherdPrimalFury: {
+        id: "wildstalkerBrayherdPrimalFury",
+        name: "Primal Fury",
+        description: "Goaded on by their chieftains and shamans, the beastmen become consumed by a savage fury, tearing apart the hated foe. Models from a Wildstalker Brayherd make one extra attack with each of their melee weapons whilst they are within 16\" of their Beastlord. You can also re-roll wound rolls of 1 made for these models whilst they are within 16\" of both their Beastlord and a Great Bray-Shaman from the same battalion.",
+        },
+
+    wildstalkerBrayherdBrayherdAmbush: {
+        id: "wildstalkerBrayherdBrayherdAmbush",
+        name: "Brayherd Ambush",
+        description: "Endowed with the cunning of the hunting pack, a Wildstalker Brayherd is adept at encircling the foe and attacking from an unexpected direction. Instead of setting up the units in a Wildstalker Brayherd on the battlefield, you can place them to one side. In your first movement phase you must set up all of these units wholly within 6\" of the edges of the battlefield, and more than 9\" from any enemy models. This is the unit’s move for that movement phase.",
+        },
+
+    clanSkryreWhyrlbladeThreshik: {
+        id: "clanSkryreWhyrlbladeThreshik",
+        name: "Whyrlblade Threshik",
+        description: "In your hero phase, the Warlock Engineer of a Whyrlblade Threshik Enginecoven can screech an order at one Doomwheel or Doom-flayer from the Enginecoven that is within 13\". Roll two dice – the unit can move up to that many inches as though it were the movement phase (it cannot choose to run). However, if the roll is a double, power overloads and warp lightning arcs back through the arcane devices, dealing D3 mortal wounds to the unit once it has moved.",
+        },
+
+    clanSkryreGascloudChokelung: {
+        id: "clanSkryreGascloudChokelung",
+        name: "Gascloud Chokelung",
+        description: "In your hero phase, the Warlock Engineer of a Gascloud Chokelung Enginecoven can order the use of an experimental bomb by a unit of Skryre Acolytes or a Poisoned Wind Mortar from the Enginecoven that is within 13\". Roll a dice. On a result of 1 the graceless rodents drop the valuable payload, and the unit suffers D3 mortal wounds. On a result of 2 or more they can fling it at an enemy unit that is within range of their missile weapon. The unfortunate target suffers D6 mortal wounds.",
+        },
+
+    clanSkryreRattlegaugeWarplock: {
+        id: "clanSkryreRattlegaugeWarplock",
+        name: "Rattlegauge Warplock",
+        description: "In your hero phase, the Warlock Engineer of a Rattlegauge Warplock Enginecoven can point a gnarled claw at a unit of Warplock Jezzails or a Ratling Gun from the Enginecoven that is within 13\" and order it to increase its rate of fire – no matter the cost! The unit can immediately attack as though it were the shooting phase. Once the attack has been resolved, the unit suffers D3 mortal wounds.",
+        },
+
+    clanSkryreArkhsparkVoltik: {
+        id: "clanSkryreArkhsparkVoltik",
+        name: "Arkhspark Voltik",
+        description: "In your hero phase, the Warlock Engineer of a Arkhspark Voltik Enginecoven can order a Warp Lightning Cannon from the Enginecoven that is within 13\" to supercharge the generator and open fire. That Warp Lightning Cannon can immediately attack as though it were the shooting phase. Once the attack has been resolved, roll a dice. On a result of 1, 2 or 3 the Warp Lightning Cannon suffers D6 mortal wounds.",
+        },
+
+    clanSkryreGautfyreSkorch: {
+        id: "clanSkryreGautfyreSkorch",
+        name: "Gautfyre Skorch",
+        description: "Instead of setting up a Gautfyre Skorch Enginecoven on the battlefield, you can place it to one side and declare that it is constructing an elaborate network of tunnels beneath the surface. In any of your hero phases, the Enginecoven can surface under the watchful eye of its Warlock Engineer. Set up one of the Warp-grinder Weapon Teams anywhere on the battlefield, then set up each other unit from the Enginecoven within 8\" of it. Any unit that is set up within 3\" of the enemy suffers D6 mortal wounds.",
+        },
+
+    clanSkryreArchWarlock: {
+        id: "clanSkryreArchWarlock",
+        name: "Arch-warlock",
+        description: "In each of your hero phases, the Arch-warlock has a maniacal insight that lets you re-roll any one dice for him during that hero phase. If you wish, he can pass off his insight to a Warlock Engineer from his battalion. If he does so, you can use the re-roll for that Warlock Engineer, or any model from its Enginecoven, during the hero phase.",
+        },
+
+    pilgrimageOfWrathSlayTheUnbelievers: {
+        id: "pilgrimageOfWrathSlayTheUnbelievers",
+        name: "Slay the Unbelievers!",
+        description: "The close proximity of a War Altar and the rousing oratory of Warrior Priests drives Flagellants into a righteous fury. Such is their zeal that they hurl themselves at nearby enemies with crazed abandon. Roll a dice in your hero phase for each unit of Flagellants from the Pilgrimage that is within 12\" of their War Altar and within 3\" of an enemy unit. Add 1 to the dice roll for each Warrior Priest from the same battalion that is within 6\" of the unit you are rolling for. The total is the number of models from that unit of Flagellants that lash out at the foe (this cannot exceed the number of models left in the unit). Roll a dice for each of these models; for each result of 4 or more, the closest enemy unit to the Flagellants suffers a mortal wound.",
+        },
+
+    freeguildRegimentStandTogetherFightTogether: {
+        id: "freeguildRegimentStandTogetherFightTogether",
+        name: "Stand Together, Fight Together",
+        description: "The warriors in this battalion are trained to fight together to overcome their foes. You can add 1 to all hit rolls for a unit in a Freeguild Regiment if it is within 6\" of another unit from the regiment when the attack rolls are made.",
+        },
+
+    freeguildRegimentRegimentalDiscipline: {
+        id: "freeguildRegimentRegimentalDiscipline",
+        name: "Regimental Discipline",
+        description: "The troops in this battalion are drilled to hold in the face of even the most terrifying enemies. Units from a Freeguild Regiment have +1 Bravery whilst they are within 10\" of their Freeguild General. In addition, if you roll a 1 when taking a battleshock test for a unit from a Freeguild Regiment, no models flee from that unit regardless of the result. If that unit includes any standard bearers, no models flee if you roll a 1 or a 2.",
+        },
+
+    warCouncilAugmentedMight: {
+        id: "warCouncilAugmentedMight",
+        name: "Augmented Might",
+        description: "Any Battlemages in a War Council can choose to forgo casting a spell in their hero phase in order to augment a spell cast by another model from the same battalion that is within 6\". Declare that they will do so before making the casting roll. Add 1 to the casting roll and 6\" to the range of the spell for each Battlemage that helps to augment it.",
+        },
+
+    artilleryDetachmentPreliminaryBombardment: {
+        id: "artilleryDetachmentPreliminaryBombardment",
+        name: "Preliminary Bombardment",
+        description: "In your hero phase, pick an enemy unit that is visible to either the battalion’s Gunmaster or Cogsmith. Then, roll a dice for each other unit in this battalion; on a 6 that unit can immediately shoot at the nominated enemy unit as if it were the shooting phase.",
+        },
+
+    grudgeboundWarThrongAncientGrudges: {
+        id: "grudgeboundWarThrongAncientGrudges",
+        name: "Ancient Grudges",
+        description: "The warriors of a Grudgebound War Throng hold deep-rooted grudges. When a Grudgebound War Throng goes to war, these sparks of bitterness are fanned into seething flames of vengeance that will only be extinguished when old scores are settled. You can re-roll all hit rolls of 1 for models in a Grudgebound War Throng.",
+        },
+
+    grudgeboundWarThrongStubbornToTheEnd: {
+        id: "grudgeboundWarThrongStubbornToTheEnd",
+        name: "Stubborn to the End",
+        description: "The Dispossessed are renowned for their stubborn refusal to admit defeat, especially in the face of overwhelming odds. If you roll a 1, 2 or a 3 when taking a battleshock test for a unit in a Grudgebound War Throng, that unit stubbornly refuses to yield and is treated as having passed the battleshock test irrespective of any penalties on their Bravery or the number of casualties they have suffered that turn.",
+        },
+
+    spyreheartWarhostElementalNova: {
+        id: "spyreheartWarhostElementalNova",
+        name: "Elemental Nova",
+        description: "A flight of Phoenixes can beat their wings in unison to batter the foe with freezing blizzards or searing firestorms. In the hero phase, select one enemy unit and roll a dice for each Flamespyre and/or Frostheart Phoenix from this battalion that is within 9\" of it. For each result of 4 or more, that unit suffers D3 mortal wounds.",
+        },
+
+    dragonlordHostMartialPride: {
+        id: "dragonlordHostMartialPride",
+        name: "Martial Pride",
+        description: "When a Dragonlord Host goes to war the ancient martial discipline and pride of their heritage is roused once again. Once per battle, in any of your hero phases, the Dragonlord Host’s Dragonlord, and each other unit from his battalion that is within 8\" of him, can make a move as if it were the movement phase (models cannot run as part of this move). If, after a unit moves, there are any enemy units within 12\" of it, roll a dice; on a 4 or more that unit can then attempt to charge as if it were the charge phase. On a 4 or more the Dragonlord can instead choose to attack with its Dragonfire as if it were the shooting phase.",
+        },
+
+    realmReaversFearedTaskmaster: {
+        id: "realmReaversFearedTaskmaster",
+        name: "Feared Taskmaster",
+        description: "The warriors of a Realm Reavers force fear the wrath of their Fleetmaster more than any enemy, and they obey without hesitation whenever he looms nearby barking orders. In your hero phase, this battalion’s Black Ark Fleetmaster can bark orders to another unit from this battalion that is within 8\". When he does so, the unit can immediately do one of the following things; move as if it were the movement phase (it cannot run as part of this move), shoot as if it were the shooting phase, charge as if it were the charge phase or, if there are any enemy units within 3\", pile in and attack as if it were the combat phase.",
+        },
+
+    realmReaversCaptureThatBeast: {
+        id: "realmReaversCaptureThatBeast",
+        name: "Capture That Beast!",
+        description: "A Fleetmaster can gain both prestige and riches if his Realm Reavers force can capture a large and impressive beast. You can re-roll wound rolls of 1 whenever a model from a Realm Reavers battalion targets a Monster.",
+        },
+
+    thrallWarhostKillThemNow: {
+        id: "thrallWarhostKillThemNow",
+        name: "Kill Them Now!",
+        description: "The commands of the Sorceress that leads a Thrall Warhost are obeyed instantly. At the beginning of the game, pick one Sorceress in the battalion to be the coven’s master. In your hero phase, pick one unit from this battalion that is within 12\" of an enemy unit and within 18\" of the coven master. The unit you pick can charge as if it were the charge phase, and then pile in and attack as if it were the combat phase. This does not stop them from charging, piling in and attacking again later in the turn.",
+        },
+
+    ebondrakeWarhostMurderousProwess: {
+        id: "ebondrakeWarhostMurderousProwess",
+        name: "Murderous Prowess",
+        description: "Ebondrake Warhosts are filled with proficient killers – for these warriors, dealing death is a pleasure and an art as much as it their duty. You can re-roll wound rolls of 1 in the combat phase for models from an Ebondrake Warhost.",
+        },
+
+    ebondrakeWarhostAncientHatred: {
+        id: "ebondrakeWarhostAncientHatred",
+        name: "Ancient Hatred",
+        description: "A pit of hatred lurks in the soul of every knight of the Order Serpentis, and when they march to war this becomes a source of strength that guides them as they give vent to their innermost fury. Once per battle, in any of your hero phases, the warhost’s Dreadlord can let loose his hatred in a chilling howl. When he does so, every unit in his warhost that is within 8\" of him and within 12\" of at least one enemy unit can immediately attempt to charge as if it were the charge phase.",
+        },
+
+    waystonePathfindersRealmWanderers: {
+        id: "waystonePathfindersRealmWanderers",
+        name: "Realm Wanderers",
+        description: "Waystone Pathfinders have travelled the realms for countless years and know many hidden paths. Instead of setting up the units in this battalion on the battlefield, you can place them to one side. In your first movement phase, set up all of these units wholly within 6\" of the edges of the battlefield, and more than 9\" from any enemy models. This is each unit’s move for that movement phase.",
+        },
+
+    waystonePathfindersProtectiveVolley: {
+        id: "waystonePathfindersProtectiveVolley",
+        name: "Protective Volley",
+        description: "Perhaps the greatest weapon of the Waystone Pathfinders lies in their ability to cut down any foes that draw close enough to threaten their leader with devastatingly effective volleys of bow-fire. In your hero phase, pick one enemy unit within 12\" of the battalion’s Nomad Prince. All other Waystone Pathfinder units can immediately make a shooting attack against that unit as if it were the shooting phase.",
+        },
+
+    sonsOfTheMaggotLordTheTideOfConquest: {
+        id: "sonsOfTheMaggotLordTheTideOfConquest",
+        name: "The Tide of Conquest",
+        description: "Add 1 to the charge roll for units from this battalion.",
+           flavor: "The earth itself blisters and trembles with the thunderous footfalls of Tamurkhan’s monstrous horde, which crashes down upon its enemies in a deadly tide, pounding them into oblivion.",
+        },
+
+    leapingPoxInfectious: {
+        id: "leapingPoxInfectious",
+        name: "Infectious!",
+        description: "In your hero phase, roll a dice for each enemy unit within 1\" of any units with this ability. On a 4+, that unit suffers 1 mortal wound. This ability has no effect on Nurgle units.",
+           flavor: "Where the leaping pox goes, so plagues and contagions follow.",
+        },
+
+    sacrosanctChamberCelestialFulcrum: {
+        id: "sacrosanctChamberCelestialFulcrum",
+        name: "Celestial Fulcrum",
+        description: "At the start of your hero phase, pick a Lord-Arcanum from this battalion. That model can attempt to cast 1 additional spell in that hero phase.",
+           flavor: "At the head of a great host, a Lord-Arcanum finds the aetheric powers easy to command.",
+        },
+
+    grandConvocationPowersCombined: {
+        id: "grandConvocationPowersCombined",
+        name: "Powers Combined",
+        description: "Add 1 to casting rolls for Wizards from this battalion while they are wholly within 9\" of two or more other Wizards from the same battalion.",
+           flavor: "When warrior-mages combine their might, Sigmar’s storm boils ever more violent, and their powers grow in kind.",
+        },
+
+    hailstormBatteryHailstormStrike: {
+        id: "hailstormBatteryHailstormStrike",
+        name: "Hailstorm Strike",
+        description: "You can re-roll failed hit rolls for attacks made by the Celestar Ballista from this battalion if the unit of Castigators from the same battalion inflicted one or more wounds on the target unit in the same turn.",
+           flavor: "To ensure the destruction of a particularly stubborn foe, the crew of a Celestar Ballista will focus their fire on the explosions of celestial energy released when a thunderhead greatbow strikes its target.",
+        },
+
+    cleansingPhalanxChannelledEmpowerment: {
+        id: "cleansingPhalanxChannelledEmpowerment",
+        name: "Channelled Empowerment",
+        description: "If a unit of Evocators from this battalion successfully casts their Empower spell on a unit of Sequitors from the same battalion, and the spell is not unbound, you can re-roll failed hit rolls for attacks made by that Sequitors unit in addition to the effects of the spell.",
+           flavor: "A Sacrosanct force acting in concert is a wonder to behold, the units of Evocators boosting the abilities of their allies to even greater heights.",
+        },
+
+    soulstrikeBrotherhoodInterceptionForce: {
+        id: "soulstrikeBrotherhoodInterceptionForce",
+        name: "Interception Force",
+        description: "If any units of Vanguard- Hunters from this battalion were on the battlefield at the start of a turn in which a reserve Sacrosanct unit from the same battalion is set up on the battlefield for the first time, add 1 to the Attacks characteristic of missile weapons used by that Sacrosanct unit in that turn.",
+           flavor: "When Stormcast Rangers come across a threat that requires overwhelming force to defeat, they can call upon the forces of a Sacrosanct Chamber to destroy that foe with celestially charged firepower.",
+        },
+
+    nighthauntProcessionBoundBeneathIndomitableWill: {
+        id: "nighthauntProcessionBoundBeneathIndomitableWill",
+        name: "Bound Beneath Indomitable Will",
+        description: "Roll a dice each time you allocate a wound or mortal wound to a friendly Nighthaunt model from this battalion within 12\" of your general or a friendly Nighthaunt Hero from the battalion. On a 6+ the wound is negated. If this battalion is part of a Nighthaunt army, this ability replaces the Deathless Spirits battle trait for all units in this battalion.",
+           flavor: "When a Nighthaunt procession gathers in full force, the amethyst magic of Shyish hangs heavy in the air. The spectral commanders that lead this dread army of gheists to war serve as beacons of this deathly energy, empowering their minions with an unholy resilience.",
+        },
+
+    shroudguardFrenziedFervour: {
+        id: "shroudguardFrenziedFervour",
+        name: "Frenzied Fervour",
+        description: "Roll a dice each time you allocate a wound or mortal wound to a Bladegheist Revenant model from a unit in this battalion wholly within 12\" of a Knight of Shrouds or Reikenor the Grimhailer from the same battalion. On a 5+, that wound or mortal wound is negated. If you use this ability, you cannot also use the Deathless Spirits battle trait to try to negate the same wound or mortal wound.",
+           flavor: "The Bladegheists of the Shroudguard are cursed with fanatical devotion to their spectral lord, and are incredibly hard to destroy in his presence.",
+        },
+
+    deathridersSpectralSpearhead: {
+        id: "deathridersSpectralSpearhead",
+        name: "Spectral Spearhead",
+        description: "Add 1 to charge rolls for units from this battalion. In addition, if you make an unmodified charge roll of 9+ for a unit from this battalion, it can fight immediately after you complete the charge move. This does not stop the unit from being picked to fight in the combat phase of the same turn. If this battalion is part of a Nighthaunt army, this ability replaces the Wave of Terror battle trait for all units in this battalion.",
+           flavor: "Deathriders lead the Nighthaunt processions from the front, scything through their petrified prey before they can even react to the murderous spectral cavalrymen in their midst.",
+        },
+
+    theCondemnedCruelTaskmasters: {
+        id: "theCondemnedCruelTaskmasters",
+        name: "Cruel Taskmasters",
+        description: "You can re-roll failed hit rolls for attacks made by Chainrasp Horde units from this battalion while they are wholly within 15\" of this battalion’s Spirit Torment or Chainghasts.",
+           flavor: "The spectral overseers of the Condemned push their tormented charges hard, never letting up whilst there are living foes yet to slay.",
+        },
+
+    chainguardHeartOfTheHorde: {
+        id: "chainguardHeartOfTheHorde",
+        name: "Heart of the Horde",
+        description: "Each time a Chainrasp Horde from this battalion is affected by a Spectral Lure or Temporal Translocation spell cast by this battalion’s Guardian of Souls, you can return D6 slain models to that unit (in addition to any models returned to the unit by the Spectral Lure spell).",
+           flavor: "The cursed souls of the Chainguard are eternally bound to the will of the Guardian of Souls that accompanies them, and are drawn inexorably to the magic he wields.",
+        },
+
+    executionHordeTheHeadsmanSMasses: {
+        id: "executionHordeTheHeadsmanSMasses",
+        name: "The Headsman’s Masses",
+        description: "Subtract 1 from hit rolls for attacks that target this battalion’s Lord Executioner while a Spirit Host unit from this battalion is within 6\" of the attacker’s unit. In addition, add 1 to hit rolls for attacks made by this battalion’s Lord Executioner while any Spirit Host units from this battalion are within 6\" of the target unit.",
+           flavor: "The spirit swarms that accompany an Execution Horde’s master serve to distract his prey whilst he delivers the killing blow.",
+        },
+
+    deathStalkersSoulMarkedPrey: {
+        id: "deathStalkersSoulMarkedPrey",
+        name: "Soul-marked Prey",
+        description: "After set-up is complete but before the battle begins, pick one enemy unit to be soul-marked by this battalion. Add 1 to hit and wound rolls for attacks made by units from this battalion that target the soul-marked unit.",
+           flavor: "When Nagash desires the death of a certain target, he sends forth his Death Stalkers, who will fight with terrible and relentless purpose to see the subject of their master’s ire slain.",
+        },
+
+    shriekerHostAbilitiesMournfulWailing: {
+        id: "shriekerHostAbilitiesMournfulWailing",
+        name: "ABILITIES Mournful Wailing",
+        description: "Re-roll battleshock rolls of 1 for enemy units that are within 6\" of any units from this battalion at the start of the battleshock phase. In addition, the Inspiring Presence command ability cannot be used on enemy units that are within 6\" of any units from this battalion.",
+           flavor: "The wailing of so many tormented souls is enough to fill even the most disciplined heart with melancholy.",
+        },
+
+    vostargLodgeProudLineage: {
+        id: "vostargLodgeProudLineage",
+        name: "Proud Lineage",
+        description: "If the Rune of Fiery Determination (pg 108) is activated, it always has its enhanced effect on units from a Vostarg Lodge.",
+           flavor: "The Fyreslayers of the Vostarg lodge fight to the very end, slaying enemies in the name of their ancestors even as they themselves face death.",
+        },
+
+    vostargLodgeFearsomeReputation: {
+        id: "vostargLodgeFearsomeReputation",
+        name: "Fearsome Reputation",
+        description: "Subtract 1 from the Bravery characteristic of enemy units while they are within 3\" of any units from a Vostarg Lodge.",
+           flavor: "The fury of the Vostarg lodge is known throughout Aqshy and beyond, causing even the most battle-hardened enemies to tremble at their approach.",
+        },
+
+    greyfyrdLodgeMercenaryWanderers: {
+        id: "greyfyrdLodgeMercenaryWanderers",
+        name: "Mercenary Wanderers",
+        description: "Instead of setting up a unit from a Greyfyrd Lodge on the battlefield, you can place it to one side and say that it is using the obstinite mountain portals. If you do, you can roll a D3 for the unit at the end of any of your movement phases and look up the result on the table below.\
+\
+D3 Result 1 Difficult Journey: The unit is still travelling to the battlefield; it does not arrive in this turn but you can roll for it again in your next turn.\
+\
+2 Flank March: Set up the unit wholly within 6\" of the edge of the battlefield, not in enemy territory and more than 9\" from any enemy units.\
+\
+3 Rear March: Set up the unit wholly within 6\" of the edge of the battlefield, anywhere in enemy territory and more than 9\" from any enemy units.",
+           flavor: "The warriors of the Greyfyrd lodge have travelled the realms, and have perfected the savage art of ambushing their enemies.",
+        },
+
+    fangsOfSotekFirstToBattle: {
+        id: "fangsOfSotekFirstToBattle",
+        name: "First to Battle",
+        description: "In the first battle round, add 3\" to the Move characteristic of Fangs of Sotek units, excluding Zectoka.",
+           flavor: "Like the tip of a spear or head of an arrow, the Fangs of Sotek drive forward with blinding speed to strike at the enemy.",
+        },
+
+    fangsOfSotekFirstOldblood: {
+        id: "fangsOfSotekFirstOldblood",
+        name: "First Oldblood",
+        description: "Add 1 to the number of command points you start the battle with.",
+           flavor: "The ancient saurus Ku-Quar has seen countless battles, and has learnt many ways to savagely hunt down the foes he faces.",
+        },
+
+    fangsOfSotekBellowingCarnosaur: {
+        id: "fangsOfSotekBellowingCarnosaur",
+        name: "Bellowing Carnosaur",
+        description: "Add 1 to the dice roll when using Ku-Quar’s Bloodroar ability.",
+           flavor: "Even the most dauntless enemies turn tail and flee in the presence of Ku-Quar’s monstrous mount.",
+        },
+
+    dracothionSTailAppearAtKuoteqSCommand: {
+        id: "dracothionSTailAppearAtKuoteqSCommand",
+        name: "Appear at Kuoteq’s Command",
+        description: "Instead of setting up a unit from this battalion on the battlefield, you can place it to one side and say that it is set up waiting to appear at Kuoteq’s command as a reserve unit. You can set up one reserve unit waiting to appear at Kuoteq’s command for each unit from the same battalion you set up on the battlefield.\
+\
+In your hero phase, you can set up one or more of the reserve units waiting to appear at Kuoteq’s command on the battlefield more than 9\" from any enemy units and wholly within 18\" of Kuoteq. However, each reserve unit set up in the same turn must be a different unit chosen from a different warscroll – Kuoteq cannot command the same unit to appear more than once in the same turn. Reserve units that are set up on the battlefield for the first time cannot move in the following movement phase. Any reserve units waiting to appear at Kuoteq’s command which are not set up on the battlefield before the start of the fourth battle round are slain.",
+           flavor: "At the will of their Starmaster, the reptilian throngs of Dracothion’s Tail appear on the battlefield, emerging from beams of starlight to savage their foes.",
+        },
+
+    ironsunzDakkbadSCunning: {
+        id: "ironsunzDakkbadSCunning",
+        name: "Dakkbad’s Cunning",
+        description: "Roll a dice after set-up is complete, but before the battle begins. On a 3+ subtract 1 from hit rolls for enemy units in the first battle round.",
+           flavor: "Dakkbad knows that the less his boyz get hit, the more hitting they can do. He has thus taken to launching surprise attacks at opposing armies, springing assaults with blinding speed before his foes can form into defensive positions.",
+        },
+
+    ironsunzDakkbadSBashing: {
+        id: "ironsunzDakkbadSBashing",
+        name: "Dakkbad’s Bashing!",
+        description: "For the purposes of his Strength from Victories ability Dakkbad Grotkicker counts as already having slain an enemy Hero when the battle starts, with the weapon of your choice from those listed on his warscroll.",
+           flavor: "Scant time passes in which Dakkbad has not felled some enemy champion, and he has a keen memory for each and every one of these fights.",
+        },
+
+    bloodtoofsHuntAndCrush: {
+        id: "bloodtoofsHuntAndCrush",
+        name: "Hunt and Crush",
+        description: "Add 1 to run and charge rolls for units in a Bloodtoofs battalion.",
+           flavor: "The Bloodtoofs are always on the move, and can cover the ground between them and their enemies in a terrifyingly short amount of time.",
+        },
+
+    bloodtoofsGetDaRealmgate: {
+        id: "bloodtoofsGetDaRealmgate",
+        name: "Get Da Realmgate!",
+        description: "You can set up a Baleful Realmgate in your opponent’s territory before they set up any units. Add 2 to the Bravery characteristic of units in a Bloodtoofs battalion while there are any Baleful Realmgates on the battlefield.",
+           flavor: "The Bloodtoofs are forever surging from realm to realm in their great search, and the sight of a fresh Realmgate fills the boyz with delight as they think of the unspoilt lands that they will soon get to ravage.",
+        },
+
+    blackshardWarhostUnyieldingSlaughterers: {
+        id: "blackshardWarhostUnyieldingSlaughterers",
+        name: "Unyielding Slaughterers",
+        description: "Add 1 to the Bravery characteristic of units from this battalion. In addition, you can re-roll hit rolls of 1 for attacks made with melee weapons by models from this battalion if that model has not made a move in the same turn.",
+           flavor: "Blackshard Warhosts are infamous for the methodical butchery they employ in combat, locking shields and standing fast with implacable determination.",
+        },
+
+    hashutSWrathArtilleryTrainMurderousBarrage: {
+        id: "hashutSWrathArtilleryTrainMurderousBarrage",
+        name: "Murderous Barrage",
+        description: "Units from this battalion with the Infernal Engineers ability can benefit from that ability as long as the Daemonsmith from the same battalion is on the battlefield (even if the Daemonsmith is not within 3\" of the model using the Infernal Engineers ability).",
+           flavor: "The gunners in a Hashut’s Wrath Artillery Train are experts at goading their charges into a roaring frenzy of destruction.",
+        },
+
+    executionHerdMarkedForDeath: {
+        id: "executionHerdMarkedForDeath",
+        name: "Marked for Death",
+        description: "After set-up is complete, but before the battle begins, pick 1 enemy unit to be marked for death. You can re-roll hit rolls for attacks made by units from this battalion that target that unit. If that unit is destroyed, you can choose a new unit to be marked for death in your next hero phase.",
+           flavor: "Hashut, like those who worship him, holds unbridled contempt for all other creatures, creating an endless list of targets to be slain. Should an Execution Herd’s prey fall, visions and portents immediately direct their ravenous hunger towards another unfortunate soul.",
+        },
    };
    attacks = {
 
@@ -63671,1401 +65699,2003 @@ The Ballista and its crew are treated as a single model, using the characteristi
             id: "warCovenOfMorathi",
             name: "WAR COVEN OF MORATHI",
             allegiance: this.allegiances.daughtersOfKhaine,
+            description: "No longer does Morathi attempt to rule through whispers and manipulation alone. Instead, she marches to battle at the fore of her own war coven, eager to smite down any that defy her will. Those who dare oppose the Daughters of Khaine find they must pay a steep price in their own blood.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519040900309-JMiltcjmF2zb076Z.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "61cfa467-05f9-49b3-a26b-5226c582e7bb", countMin: 1, countMax: 1, required: true, units: [["Morathi, High Oracle of Khaine"]] }, { id: "b1c39061-ca6b-4387-b427-e68c87ca141d", countMin: 1, countMax: 1, required: true, units: [["Cauldron Guard"]] }, { id: "da00a074-868a-40de-98c0-65bc3e0bfd95", countMin: 1, countMax: 1, required: true, units: [["Slaughter Troupe"]] }, { id: "f899a43e-8f1f-4fc8-8a4e-48c4d8b93f22", countMin: 1, countMax: 1, required: true, units: [["Temple Nest"]] }, { id: "0a60c527-3531-4290-b43f-5223d7225834", countMin: 1, countMax: 1, required: true, units: [["Shadow Patrol"]] }],
+            abilities: [this.abilities.warCovenOfMorathiBloodRituals, this.abilities.warCovenOfMorathiDevoutFollowers],
 
         },       cauldronGuard: {
             id: "cauldronGuard",
             name: "CAULDRON GUARD",
             allegiance: this.allegiances.daughtersOfKhaine,
+            description: "Raised to a state of frenzied devotion by the witchbrews of their Hag Queen, the Cauldron Guard rush forwards to carve a gaping wound in the enemy’s ranks, a gory path along which the sect’s most powerful icon may be delivered straight into the heart of battle.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519040947326-TmFUJrBM6q6YJozk.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "1c660817-dbb5-4607-8d82-85de6aae817e", countMin: 1, countMax: 1, required: true, units: [["Hag Queen"]] }, { id: "c38ace22-d835-4fd0-9e4f-653a89be56f9", countMin: 2, countMax: 2, required: true, units: [["Witch Aelves"]] }, { id: "f5e7f284-e088-4376-a26b-47228bb1047b", countMin: 2, countMax: 2, required: true, units: [["Khinerai Lifetakers"]] }],
+            abilities: [this.abilities.cauldronGuardFrenziedDevotees],
 
         },       slaughterTroupe: {
             id: "slaughterTroupe",
             name: "SLAUGHTER TROUPE",
             allegiance: this.allegiances.daughtersOfKhaine,
+            description: "Honed in ritual duels, gladiatorial fights and battles beyond count, the skills of the Slaughter Troupe are razor-sharp. Yet they are not rage blind berserkers, but canny fighters able to engage and disengage from melee as best serves their needs – charging into and out of combat at will.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519041321442-uJWEDe2hhca8q6dV.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "6b479606-6e19-46e9-966c-2b4f8d543eb7", countMin: 1, countMax: 1, required: true, units: [["Slaughter Queen"]] }, { id: "55177f70-c713-4187-a148-bd499d3b0453", countMin: 2, countMax: 2, required: true, units: [["Sisters of Slaughter"]] }, { id: "1ed4a60a-5d2e-4780-b20a-ad6151cd25c3", countMin: 2, countMax: 2, required: true, units: [["Khinerai Heartrenders"]] }],
+            abilities: [this.abilities.slaughterTroupeGladiatorialAcrobatics],
 
         },       templeNest: {
             id: "templeNest",
             name: "TEMPLE NEST",
             allegiance: this.allegiances.daughtersOfKhaine,
+            description: "With the speed of striking snakes, the Melusai of the Temple Nest move quickly to exploit any weakness. Against such supernatural peril the slightest hesitation or fumble can prove fatal, leaving the victim ripe for a heart-plucking stab or gazing directly into the blood-boiling stare of the Medusa.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519041624391-KtECFsvqIKHFnTUG.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "db37eb1d-6065-432b-a8a7-fb0565c32fb0", countMin: 1, countMax: 1, required: true, units: [["Bloodwrack Medusa"]] }, { id: "27dcbd38-d53f-4d2d-a53d-e7e699cb4224", countMin: 2, countMax: 2, required: true, units: [["Blood Stalkers"]] }, { id: "ca179abe-b33b-48bb-b284-c77c409c1d15", countMin: 2, countMax: 2, required: true, units: [["Blood Sisters"]] }],
+            abilities: [this.abilities.templeNestLethalTransfixion],
 
         },       shadowPatrol: {
             id: "shadowPatrol",
             name: "SHADOW PATROL",
             allegiance: this.allegiances.daughtersOfKhaine,
+            description: "The outriders and scouts of the war covens, Shadow Patrols are masters at finding secret paths. It is\
+said they can travel via the shadows themselves, covering vast distances in the blink of an eye to appear\
+from some unexpected quarter. Nowhere is safe from a sudden strike from out of the shadows.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519041901235-kPwWcL96uuEiG7GU.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "67a00bc6-d0bb-4e60-b004-b687da0ea389", countMin: 2, countMax: 2, required: true, units: [["Doomfire Warlocks"]] }, { id: "e72744d9-c26d-45b2-bb63-9e8fb51ece34", countMin: 4, countMax: 4, required: true, units: [["Khinerai Harpies"]] }],
+            abilities: [this.abilities.shadowPatrolShadowpaths],
 
         },       shadowhammerCompact: {
             id: "shadowhammerCompact",
             name: "SHADOWHAMMER COMPACT",
             allegiance: this.allegiances.daughtersOfKhaine,
+            description: "The battle lust and blood rituals of the Khainites are disturbing to even the most hard-hearted Stormhosts of the Stormcast Eternals. However, when it comes to fighting the enemies of Order – especially the forces of Chaos – there are no allies more eager to slay than the Daughters of Khaine.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1519043008951-MLTmn87jie3ook3k.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "c6fd8f8e-f25a-4dd6-93a5-382685feefe0", countMin: 1, countMax: 1, required: true, units: [["Slaughter Queen"]] }, { id: "f0ee023b-feb7-403b-afc6-62455906bde3", countMin: 2, countMax: 2, required: true, units: [["Witch Aelves"]] }, { id: "c70dbc34-b4ce-4efe-a36e-3656a674d665", countMin: 1, countMax: 1, required: true, units: [["Khinerai Harpies"]] }, { id: "914d1b28-f480-4dac-a920-3544c496e7fd", countMin: 1, countMax: 1, required: true, units: [["Blood Stalkers"]] }, { id: "67358c4b-601a-4e96-a103-8b5673eb6041", countMin: 2, countMax: 2, required: true, units: [["Liberators"]] }, { id: "5f27706a-53af-4a49-8986-bf88f418a050", countMin: 1, countMax: 1, required: true, units: [["Prosecutors"]] }, { id: "c258c01f-cbe4-4ea7-9ef3-171f1f408fe7", countMin: 1, countMax: 1, required: true, units: [["Judicators"]] }],
+            abilities: [this.abilities.shadowhammerCompactRighteousFervour],
 
         },       royalCouncil: {
             id: "royalCouncil",
             name: "ROYAL COUNCIL",
             allegiance: this.allegiances.idonethDeepkin,
+            description: "The leadership of the Idoneth Deepkin is composed of a powerful triumvirate that combines both might and magic. It is these individuals that relentlessly drive the phalanx to victory, never forgetting the dire need that brings the Idoneth out of the safety of their reclusive depths.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1523012709367-3vuFO7YGTZTGj1In.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "09dd8f16-6267-4168-8c5e-2302625fddbc", countMin: 1, countMax: 1, required: true, units: [["Akhelian King"]] }, { id: "e38e1724-5dfb-4c52-8425-b4ed9d315403", countMin: 1, countMax: 1, required: true, units: [["Isharann Tidecaster"]] }, { id: "05a4c354-3bd3-4b70-bfe0-cc4a72a11ea0", countMin: 1, countMax: 1, required: true, units: [["Isharann Soulscryer"]] }],
+            abilities: [],
 
         },       akhelianCorps: {
             id: "akhelianCorps",
             name: "AKHELIAN CORPS",
             allegiance: this.allegiances.idonethDeepkin,
+            description: "The Akhelians are the sharpened tip of the Idoneth Deepkin army. Drawn from the battalions that make up the phalanx, the Akhelian Corps are a battle-hardened wing of fast-moving sea cavalry. Their charge crashes upon the enemy with line-breaking force.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1523012949712-opgPdlPerLc7LJlr.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "03f0d223-2650-472a-87d6-47ef5c1a0866", countMin: 1, countMax: 1, required: true, units: [["Akhelian Leviadon"]] }, { id: "f3ba3a0d-5b04-40f4-96ed-f77fcdc9f794", countMin: 2, countMax: 4, required: true, units: [["Akhelian Guard"]] }, { id: "2c40645d-f0db-4311-9330-19a466b26f83", countMin: 1, countMax: 2, required: true, units: [["Akhelian Allopexes"]] }],
+            abilities: [this.abilities.akhelianCorpsPulsingRhythmOfTheDrums],
 
         },       namartiCorps: {
             id: "namartiCorps",
             name: "NAMARTI CORPS",
             allegiance: this.allegiances.idonethDeepkin,
+            description: "The Namarti are skilled warriors that form the backbone of the Idoneth Deepkin armies, with their corps counting for half the full strength of a phalanx. Each corps is led to battle by a Soulrender, who can revive the fallen to rejoin the battle.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1523013254340-j6TLS7WpXFEyoP4J.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "e0ab2afc-a8a0-49b2-b027-decb4e01d647", countMin: 1, countMax: 1, required: true, units: [["Isharann Soulrender"]] }, { id: "8834577d-1d30-41b1-a2f3-3982f2a92141", countMin: 2, countMax: 6, required: true, units: [["Namarti Thralls"]] }, { id: "62ee61f1-cf37-4a07-abf7-b0f823a699d0", countMin: 2, countMax: 4, required: true, units: [["Namarti Reavers"]] }],
+            abilities: [this.abilities.namartiCorpsSoulBond],
 
         },       phalanx: {
             id: "phalanx",
             name: "PHALANX",
             allegiance: this.allegiances.idonethDeepkin,
+            description: "Fast and flexible, an Idoneth Deepkin phalanx is an ideal force for soul-raiding. The Namarti corps advance under the protective cover of the Tidecaster’s magic, while the King waits for the perfect moment to unleash the undeniable charge of the Akhelian Corps.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1523014491277-e5iVGscRo5nIT1Js.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "a968a059-e7dc-402e-9c82-4a9de75d058d", countMin: 1, countMax: 1, required: true, units: [["Royal Council"]] }, { id: "536a1cb1-6290-4c0a-a4f9-99ff4e6f81a2", countMin: 2, countMax: 4, required: true, units: [["Akhelian Corps"]] }, { id: "c708e76f-821a-4acf-b5f5-0ed3c2e15a07", countMin: 2, countMax: 4, required: true, units: [["Namarti Corps"]] }],
+            abilities: [this.abilities.phalanxFullFuryOfTheStorm],
 
         },       allianceOfWoodAndSea: {
             id: "allianceOfWoodAndSea",
             name: "ALLIANCE OF WOOD AND SEA",
             allegiance: this.allegiances.idonethDeepkin,
+            description: "When old grievances and mutual mistrusts are set aside, the Idoneth Deepkin and the Sylvaneth can combine to make a powerful force. Few foes can stand before the mystic powers of the woods and the deep places, as sea monsters and living tree spirits fight side-by-side within the ethersea.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1523014638434-rSNURt40McrLqPLv.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "3de519ca-f11d-4475-9b2f-b8d8fd104a6b", countMin: 1, countMax: 1, required: true, units: [["Isharann Tidecaster"]] }, { id: "a85764ca-c571-474b-bd18-6fa34d4816af", countMin: 2, countMax: 2, required: true, units: [["Akhelian Guard"]] }, { id: "33241e3d-eb8d-4e2f-8cec-059f0948dddd", countMin: 1, countMax: 1, required: true, units: [["Namarti Thralls"]] }, { id: "66198fc6-979f-4b84-bb31-b7f60607648a", countMin: 1, countMax: 1, required: true, units: [["Namarti Reavers"]] }, { id: "0a0089e2-9d61-46d3-84ea-c60bb2825c82", countMin: 1, countMax: 1, required: true, units: [["Akhelian Allopexes"]] }, { id: "a5d44e8a-1090-49a9-9951-621ef587aea2", countMin: 1, countMax: 1, required: true, units: [["Branchwych"]] }, { id: "47777d91-0197-4468-a715-12b3985304a5", countMin: 2, countMax: 2, required: true, units: [["Dryads"]] }, { id: "c38e3600-8ffe-4442-aef6-fba69ee4447b", countMin: 1, countMax: 1, required: true, units: [["Treelord Ancient"]] }],
+            abilities: [this.abilities.allianceOfWoodAndSeaStrengthOfTheEthersea],
 
         },       theFirstCohort: {
             id: "theFirstCohort",
             name: "THE FIRST COHORT",
             allegiance: this.allegiances.grandHostOfNagash,
+            description: "The First Cohort is the Great Necromancer’s personal guard and retinue. Its warriors form an unbreachable phalanx around their liege-lord, protecting his physical form at all costs.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516203571816-vJwJlll4ShxvLjDY.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "e65868ce-6638-4838-adae-bfcefc8e6963", countMin: 1, countMax: 1, required: true, units: [["Nagash"]] }, { id: "5ed30d77-1a9c-42a4-ba7c-9ce106c0895e", countMin: 1, countMax: 1, required: true, units: [["Morghasts"]] }, { id: "d68e3b3d-77fa-416e-bb02-c59b8c934c41", countMin: 3, countMax: 0, required: true, units: [["Skeleton Warriors"], ["Grave Guard"], ["Black Knights"]] }],
+            abilities: [this.abilities.theFirstCohortCeaselessVigil, this.abilities.theFirstCohortEternalServitude],
 
         },       lordsOfSacrament: {
             id: "lordsOfSacrament",
             name: "LORDS OF SACRAMENT",
             allegiance: this.allegiances.legionOfSacrament,
+            description: "Arkhan and his Black Disciples form a nexus of necromantic power upon the battlefield, channelling their spells of destruction and death through the nightmarish focus of a Mortis Engine.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516213995649-DXlLmHQ6pP561hdJ.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "e98ca966-e0f7-4275-b9f6-dc5c7fc2efca", countMin: 1, countMax: 1, required: true, units: [["Arkhan the Black, Mortarch of Sacrament"]] }, { id: "2bc5b41f-d565-499c-9f4d-b89e174932de", countMin: 2, countMax: 0, required: true, units: [["Necromancers"]] }, { id: "80e84f12-8582-442d-be8a-2b1827099370", countMin: 1, countMax: 1, required: true, units: [["Mortis Engine"]] }],
+            abilities: [this.abilities.lordsOfSacramentUnearthlyFocus, this.abilities.lordsOfSacramentSwirlingSpirits],
 
         },       deathmarch: {
             id: "deathmarch",
             name: "DEATHMARCH",
             allegiance: this.allegiances.death,
+            description: "A relentless wall of bone and ancient steel, the Deathmarch follows its undead king into war, its cryptcursed blades and ancient spears ready to bring death to the races of the realms.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516214599654-FPF2EsFoNdWuhrqk.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "65602cdc-8961-4065-8128-aced385931f2", countMin: 1, countMax: 1, required: true, units: [["Wight King"]] }, { id: "3a18d178-0da2-47a3-838d-f849d2c6f9d0", countMin: 1, countMax: 1, required: true, units: [["Black Knights"]] }, { id: "cf63b2a9-5ee8-4ab1-8141-f16e65b21273", countMin: 1, countMax: 1, required: true, units: [["Grave Guard"]] }, { id: "3cd40489-a6ab-44d4-af4a-3dcf2130d30d", countMin: 3, countMax: 3, required: false, units: [["Skeleton Warriors"]] }],
+            abilities: [this.abilities.deathmarchUnbreakingRanks, this.abilities.deathmarchMarchOfTheDead],
 
         },       castellansOfTheCrimsonKeep: {
             id: "castellansOfTheCrimsonKeep",
             name: "CASTELLANS OF THE CRIMSON KEEP",
             allegiance: this.allegiances.death,
+            description: "Temporarily released from the confines of their cursed citadel, Prince Vhordrai and his loyal retinue of lancers fall upon the foe with desperate hunger, glutting themselves upon blood and slaughter.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516214895868-S0wr8qfccgfKcL6H.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "78767d6a-80e3-4abc-9c5a-920992f1a655", countMin: 1, countMax: 1, required: true, units: [["Prince Vhordrai"]] }, { id: "995864aa-cc4f-44c3-a7ca-d6f05ec932af", countMin: 3, countMax: 0, required: true, units: [["Blood Knights"]] }],
+            abilities: [this.abilities.castellansOfTheCrimsonKeepTheShiftingKeep, this.abilities.castellansOfTheCrimsonKeepInTheShadowOfTheKeep],
 
         },       courtOfNulahmia: {
             id: "courtOfNulahmia",
             name: "COURT OF NULAHMIA",
             allegiance: this.allegiances.legionOfBlood,
+            description: "Vampire courtiers and generals high in Queen Neferata’s regard are rewarded with a place at her side in battle, and the honour of sampling the intoxicating brews of her favoured Sanguinarchs.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516215001062-UilhIYUyRcKdQ8bn.jpg",
             points: 110,
-            units: [],
+            units: [{ id: "4e61bd60-2d94-4945-bf53-10f1b6d36029", countMin: 1, countMax: 1, required: true, units: [["Neferata, Mortarch of Blood"]] }, { id: "b4f5f8aa-8bdc-43e3-a3e4-7bbbc3e60454", countMin: 2, countMax: 0, required: true, units: [["Vampire Lords"]] }, { id: "df8dc7b9-96d3-4337-b3ee-48575f07a1a5", countMin: 1, countMax: 1, required: true, units: [["Bloodseeker Palanquin"]] }],
+            abilities: [this.abilities.courtOfNulahmiaTheAdevore, this.abilities.courtOfNulahmiaScentOfBlood],
 
         },       nightfallPack: {
             id: "nightfallPack",
             name: "NIGHTFALL PACK",
             allegiance: this.allegiances.legionOfNight,
+            description: "The Mortarch of Night greatly relishes the terror that ensues when a pack of bat-winged Vargheists smashes into the rear of a stunned enemy formation, ripping and tearing with tooth and claw.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1516215502288-azwYnpUPzOz2xQyr.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "0050ce4c-cf1c-443c-b79e-577c301f8e36", countMin: 1, countMax: 1, required: true, units: [["Mannfred, Mortarch of Night"]] }, { id: "1a9e5432-93f6-419c-8b2e-0931da9bf2d6", countMin: 2, countMax: 2, required: true, units: [["Vargheists"]] }, { id: "fdc5b308-a4a8-441c-b525-18a76980f88b", countMin: 3, countMax: 0, required: true, units: [["Skeleton Warriors"]] }],
+            abilities: [this.abilities.nightfallPackSwoopingPredators, this.abilities.nightfallPackCallOfTheNight],
 
         },       theMunificentWanderers: {
             id: "theMunificentWanderers",
             name: "THE MUNIFICENT WANDERERS",
             allegiance: this.allegiances.nurgle,
+            description: "The Munificent Wanderers have been greatly blessed by Nurgle and, following their god’s generous example, wish only to share their bountiful foulness with all they meet. As they shamble into battle, their unnatural flesh and rusted blades teem with parasites and plagues that they distribute vigorously. Every claw slash, every bite of rotted fangs, every liquid spray and sword thrust bestows the gifts of Nurgle upon their unfortunate foes.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515662845256-QA67kgq5czNeu0tp.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "88ff24eb-8b04-4558-a48b-c755a2ee61ae", countMin: 1, countMax: 1, required: true, units: [["Great Unclean One"]] }, { id: "4aaf1490-ab99-45bc-bbaa-a7e59a18896b", countMin: 2, countMax: 2, required: true, units: [["Tallybands of Nurgle"]] }, { id: "0c210db9-5d4a-4055-a12a-447771c2b044", countMin: 0, countMax: 5, required: false, units: [["Tallybands of Nurgle"]] }, { id: "efb48120-8658-4206-bb4b-45638df0888e", countMin: 0, countMax: 0, required: false, units: [["Nurgle", "Daemon"]] }],
+            abilities: [this.abilities.theMunificentWanderersInfestedWithFoulGifts],
 
         },       tallybandOfNurgle: {
             id: "tallybandOfNurgle",
             name: "TALLYBAND OF NURGLE",
             allegiance: this.allegiances.nurgle,
+            description: "The Tallyband is disease and pestilence personified, a trudging, lumbering, squirming mass of rancid daemonflesh that rolls across the battlefield like the inexorable approach of death itself. Unnatural plague energies thicken the air, conjuring new daemons into being even as the advance continues.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515664687936-ejv8rVJdXcIoklMi.jpg",
             points: 220,
-            units: [],
+            units: [{ id: "858d12b6-eac2-4aeb-826c-e89308ac8773", countMin: 0, countMax: 1, required: true, units: [["Great Unclean One"]] }, { id: "4b5bac35-991c-4299-9e8a-cae179632ddd", countMin: 1, countMax: 3, required: true, units: [["Poxbringer, Herald of Nurgle"], ["Sloppity Bilepiper, Herald of Nurgle"], ["Spoilpox Scrivener, Herald of Nurgle"]] }, { id: "21f5f7a2-0f65-46a9-83bb-04e10e2b6c46", countMin: 4, countMax: 7, required: true, units: [["Plaguebearers"], ["Plague Drones"]] }, { id: "814f1520-cd1c-4f9b-964f-5ab220dff77f", countMin: 0, countMax: 3, required: true, units: [["Beasts of Nurgle"], ["Nurglings"]] }],
+            abilities: [this.abilities.tallybandOfNurgleDroningMasses, this.abilities.tallybandOfNurgleDiseaseAndPestilencePersonified],
 
         },       thricefoldBefoulment: {
             id: "thricefoldBefoulment",
             name: "THRICEFOLD BEFOULMENT",
             allegiance: this.allegiances.nurgle,
+            description: "The ground shakes beneath the tread of this revolting trio as they lumber to war. The Great Unclean Ones of the Thricefold Befoulment are the living embodiment of Nurgle’s tri-lobed sigil writ vast in rotting flesh and pulsating power, and nothing pure or untainted can stand before their might.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515664817733-XyslyvOhtjtfT1r7.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "604e9b85-df9f-40eb-a0d6-897d25e2cc04", countMin: 3, countMax: 3, required: true, units: [["Great Unclean Ones"]] }],
+            abilities: [this.abilities.thricefoldBefoulmentHungryForThePlagueGodSPraise, this.abilities.thricefoldBefoulmentPlagueStormOfNurgle],
 
         },       nurgleSMenagerie: {
             id: "nurgleSMenagerie",
             name: "NURGLE’S MENAGERIE",
             allegiance: this.allegiances.nurgle,
+            description: "From the festering depths of Nurgle’s realm, his filthsome pretties spill forth. Loping on bloated limbs or ploughing through the air on buzzing wings, these abominations obey the croaked commands of Horticulous Slimux, burying their victims in an avalanche of rancid flesh and lethal ebullience.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515664941721-x5ooaFxskodqhAJx.jpg",
             points: 240,
-            units: [],
+            units: [{ id: "1f24ab1d-851f-48fd-a8f6-1553bf05d13c", countMin: 1, countMax: 1, required: true, units: [["Horticulous Slimux"]] }, { id: "e6aa09e5-5ac9-4b06-8e27-aa884004d65f", countMin: 3, countMax: 3, required: true, units: [["Beasts of Nurgle"]] }, { id: "a96e40cc-5d1e-4008-bac8-228f90261ff8", countMin: 0, countMax: 3, required: true, units: [["Plague Drones"], ["Beasts of Nurgle"], ["Nurglings"]] }],
+            abilities: [this.abilities.nurgleSMenagerieAssistantGardeners, this.abilities.nurgleSMenagerieUtterlyRevoltingHorde],
 
         },       theBlessedSons: {
             id: "theBlessedSons",
             name: "THE BLESSED SONS",
             allegiance: this.allegiances.nurgle,
+            description: "Long and droning are the prideful chants of the Blessed Sons as they enumerate the glories they have won in Nurgle’s name. Even as they butcher their foes, they gloat and chortle, goading their enemies in their arrogance and pouring scorn upon their cleanliness and unsavoury good health. For all their hoarse braggadocio, the Blessed Sons are ferociously dangerous warriors, worthy bearers of Nurgle’s rancid gifts.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515665000582-vglvuanu8654Bgd4.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "39e91116-9b35-4ce7-a22b-a6f102e3e421", countMin: 1, countMax: 1, required: true, units: [["Plague Cyst"]] }, { id: "7611e9df-0edd-4f5c-899d-2fbbf7e2808c", countMin: 0, countMax: 6, required: false, units: [["Plague Cyst"], ["Blight Cyst"], ["Affliction Cyst"]] }, { id: "b853c5aa-3f31-4729-ba1e-8396d0236d54", countMin: 0, countMax: 0, required: false, units: [["Rotbringer"]] }],
+            abilities: [this.abilities.theBlessedSonsSwollenWithPride, this.abilities.theBlessedSonsBlessedBlightplate],
 
         },       plagueCyst: {
             id: "plagueCyst",
             name: "PLAGUE CYST",
             allegiance: this.allegiances.nurgle,
+            description: "The warriors of a Plague Cyst are as direct and aggressive as their lord. They view their enemies as little more than living sacks of meat and fluids, waiting to be split open and strewn as plague-fertiliser across the battlefields of the Mortal Realms.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515665054117-kDOcAskYCprv1PZT.jpg",
             points: 200,
-            units: [],
+            units: [{ id: "2c9ba92f-f119-4380-a9b1-f89b900bde42", countMin: 1, countMax: 1, required: true, units: [["Lord of Plagues"]] }, { id: "c651c9ee-e9fb-4800-8012-fc8cfe26f611", countMin: 3, countMax: 6, required: true, units: [["Putrid Blightkings"]] }, { id: "2b8442e6-f8ae-4387-b136-2e8f6a01e076", countMin: 0, countMax: 1, required: true, units: [["Sorcerer"]] }, { id: "ad936e1f-183f-40ba-9f4d-c3d0cc060dbf", countMin: 0, countMax: 1, required: true, units: [["Harbinger of Decay"]] }],
+            abilities: [this.abilities.plagueCystMasterOfSlaughter, this.abilities.plagueCystHorriblyContagious],
 
         },       blightCyst: {
             id: "blightCyst",
             name: "BLIGHT CYST",
             allegiance: this.allegiances.nurgle,
+            description: "To stand against the Blight Cyst is to be beset by virulent foulness at every turn. Hails of filth-filled death’s heads rain down upon the enemy and swarms of biting flies envelop them in a blinding, choking mass, before the pox-ridden servants of Nurgle hack their way through the diseased survivors.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515665181339-1Noil7Ldb94jf8eG.jpg",
             points: 220,
-            units: [],
+            units: [{ id: "9296f049-8218-4f9c-b9e0-23ab247889e4", countMin: 1, countMax: 1, required: true, units: [["Lord of Blights"]] }, { id: "8a8e8714-cd99-4218-b0c0-c1634f4520b8", countMin: 3, countMax: 6, required: true, units: [["Putrid Blightkings"]] }, { id: "60e07c4c-fc5d-475f-ac75-bdf2b40790dd", countMin: 0, countMax: 1, required: true, units: [["Sorcerer"]] }, { id: "158ac139-ed9f-4f8a-a1f5-045a9d34a7e7", countMin: 0, countMax: 1, required: false, units: [["Harbinger of Decay"]] }],
+            abilities: [this.abilities.blightCystEndlessBounty, this.abilities.blightCystSupremelyBlightedWeapons, this.abilities.blightCystBlightsOnTheLandscape],
 
         },       afflictionCyst: {
             id: "afflictionCyst",
             name: "AFFLICTION CYST",
             allegiance: this.allegiances.nurgle,
+            description: "The air fills with the thunderous drone of membranous wings as the warriors of the Affliction Cyst ride their bloated Rot Flies into battle. Enemies scatter in panic as Pusgoyle Blightlords plunge down from on high, their dark shadows heralding disease and death.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1515665232116-nB7DHfwRA1boxb1Q.jpg",
             points: 220,
-            units: [],
+            units: [{ id: "6b612e1f-0d52-4e87-850d-5a77693836db", countMin: 1, countMax: 1, required: true, units: [["Lord of Afflictions"]] }, { id: "069e2330-29e4-4a76-9b79-b30bb05699a2", countMin: 3, countMax: 6, required: true, units: [["Pusgoyle Blightlords"]] }],
+            abilities: [this.abilities.afflictionCystTheDroningSky, this.abilities.afflictionCystDiseasedOnslaught],
 
         },       grandArmada: {
             id: "grandArmada",
             name: "GRAND ARMADA",
             allegiance: this.allegiances.kharadronOverlords,
+            description: "Aggressive and determined, an Admiral leads his Kharadron Overlords fleet forth from their sky‑port, sailing outwards intent on completing their mission and securing riches.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492596613513-JTivDqwE3QpRA3mA.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "046b6536-23ae-4965-a464-29daa87dc450", countMin: 1, countMax: 1, required: true, units: [["Arkanaut Admiral"]] }, { id: "d759cc7c-3610-4d8e-b0a8-a9a3b05b467a", countMin: 1, countMax: 1, required: true, units: [["Iron Sky Command"]] }, { id: "f8d6751f-dcd7-4959-a66e-8e7d9ecc8533", countMin: 1, countMax: 1, required: true, units: [["Iron Sky Squadron"]] }, { id: "30942528-c113-4af9-9b68-0be0c7617a55", countMin: 1, countMax: 1, required: true, units: [["Grundstok Escort Wing"]] }],
+            abilities: [this.abilities.grandArmadaOnAWarFooting, this.abilities.grandArmadaConstitutionalExperts],
 
         },       ironSkyCommand: {
             id: "ironSkyCommand",
             name: "IRON SKY COMMAND",
             allegiance: this.allegiances.kharadronOverlords,
+            description: "When the warriors of the fleet form up around the officers and specialists of Iron Sky Command, neither the strongest aether-currents nor the most terrible foe can divert them from their course.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492596824669-4S88MKgIsAGAqBlS.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "d22fb892-5e4f-4673-b456-a9d35f191632", countMin: 1, countMax: 1, required: true, units: [["Arkanaut Ironclad"]] }, { id: "6040f1cf-a369-43bd-9626-10ecde65c3fb", countMin: 3, countMax: 3, required: true, units: [["Aether-Khemist"], ["Aetheric Navigator"], ["Endrinmaster"]] }, { id: "b2da4b87-4e9c-47a3-8479-32474cc838a7", countMin: 1, countMax: 1, required: true, units: [["Arkanaut Company"]] }, { id: "9f2bc72b-9497-4bb3-adcf-d35cf636ae34", countMin: 1, countMax: 3, required: true, units: [["Endrinriggers"]] }],
+            abilities: [this.abilities.ironSkyCommandLordsOfTheSkies, this.abilities.ironSkyCommandTrustedBodyguard],
 
         },       ironSkySquadron: {
             id: "ironSkySquadron",
             name: "IRON SKY SQUADRON",
             allegiance: this.allegiances.kharadronOverlords,
+            description: "The opening enfilade unleashed by a gunline of Arkanaut Frigates followed by the rapid deployment of Arkanaut Company eager to stake their claim has spelled swift doom for many a foe.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492596903909-AX41qkmwOFpO88V2.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "c9bf62e9-2fb0-42c5-8b63-ee3c10f5a903", countMin: 2, countMax: 10, required: true, units: [["Arkanaut Frigates"]] }, { id: "91e23901-2567-4690-92e5-425dea585526", countMin: 2, countMax: 10, required: false, units: [["Arkanaut Companies"]] }],
+            abilities: [this.abilities.ironSkySquadronBoldPrivateers, this.abilities.ironSkySquadronOpeningSalvo],
 
         },       grundstokEscortWing: {
             id: "grundstokEscortWing",
             name: "GRUNDSTOK ESCORT WING",
             allegiance: this.allegiances.kharadronOverlords,
+            description: "A great deal of the Grundcorps’ training revolves around focussed fire, and nowhere is this better exemplified than when a Grundstok Escort Wing directs its formidable guns upon a single target.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492597000459-pAtHYFkcIsKKqwWq.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "963ddb76-b16a-4628-8d64-fae126611ff3", countMin: 3, countMax: 3, required: true, units: [["Grundstok Gunhaulers"]] }, { id: "f312da17-0704-47c2-bca1-252e8dc186f3", countMin: 1, countMax: 1, required: true, units: [["Arkanaut Frigate"]] }, { id: "517dc20c-1737-404d-98c5-c14a63d554bb", countMin: 1, countMax: 3, required: true, units: [["Grundstok Thunderers"]] }, { id: "58c48d68-5093-4b60-b188-a6ba236442af", countMin: 1, countMax: 3, required: true, units: [["Skywardens"]] }],
+            abilities: [this.abilities.grundstokEscortWingFocusFire],
 
         },       aetherstrikeForce: {
             id: "aetherstrikeForce",
             name: "AETHERSTRIKE FORCE",
             allegiance: this.allegiances.kharadronOverlords,
+            description: "Filling the air with blazing shots and meteoric missiles, an Aetherstrike Forces combines the celestial powers of the Stormcast Eternals with the aether-fuelled technologies of the Kharadron Overlords.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1492605919164-VQDSPgGnx8kx6oxq.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "2728668c-2d61-4931-ae93-0cef640da5c0", countMin: 1, countMax: 1, required: true, units: [["Knight-Venator"]] }, { id: "e5da98ea-9f07-4565-bf7b-5dc906cae4c6", countMin: 3, countMax: 3, required: true, units: [["Prosecutors"]] }, { id: "37e0ca5e-ee20-4f29-bb61-ed30b647f6bd", countMin: 1, countMax: 1, required: true, units: [["Grundstok Gunhauler"]] }, { id: "8dda1643-7002-4053-8c32-0066d8b697f7", countMin: 1, countMax: 1, required: true, units: [["Endrinriggers"]] }, { id: "28e0e850-c179-4cf4-ae9e-b565e0f8a97b", countMin: 2, countMax: 2, required: false, units: [["Skywardens"]] }],
+            abilities: [this.abilities.aetherstrikeForceMarkedForDestruction, this.abilities.aetherstrikeForceLightningFastVolleys],
 
         },       daemonLegionOfKhorne: {
             id: "daemonLegionOfKhorne",
             name: "DAEMON LEGION OF KHORNE",
             allegiance: this.allegiances.khorne,
+            description: "A Khornate Daemon Legion is a monstrously efficient force that crushes all before it in a storm of gore-splattered carnage. With every skull taken and every foe torn to gory shreds, the inferno of the daemons’ destructive rage is stoked anew, further anchoring their essence to the realms.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635967436-yvTYKJNw4bO4VLaC.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "0bcab278-ff82-499f-8028-5970488b4187", countMin: 1, countMax: 1, required: true, units: [["Blood Host of Khorne"]] }, { id: "ab721ff5-983c-43e8-ac2e-86c65e168393", countMin: 3, countMax: 8, required: true, units: [["Murderhost"], ["Bloodthunder Stampede"], ["Council of Blood"], ["Blood Hunt"], ["Gorethunder Cohort"], ["Charnel Host"], ["Skullseeker Host"]] }],
+            abilities: [this.abilities.daemonLegionOfKhorneKhorneCaresNotFromWhenceTheBloodFlows, this.abilities.daemonLegionOfKhorneRevelInCarnage],
 
         },       murderhost: {
             id: "murderhost",
             name: "MURDERHOST",
             allegiance: this.allegiances.khorne,
+            description: "Whether summoned to the Mortal Realms by foul ritual or acts of unfettered slaughter, a Murderhost of daemons delights in the chance to wreak terror and carnage. Their blazing desire for bloodshed can never truly be leashed – once battle is joined, they heed only their primal urge to maim and kill.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635882393-lI6qSofR4jMM7igi.jpg",
             points: 220,
-            units: [],
+            units: [{ id: "00e81bb3-b444-4385-9703-9da1bc55043c", countMin: 1, countMax: 1, required: true, units: [["Bloodletter", "Hero"]] }, { id: "392325b0-3e1f-441b-b9e2-8f02d960961a", countMin: 3, countMax: 8, required: true, units: [["Bloodletters"], ["Flesh Hounds"], ["Bloodcrushers"], ["Skull Cannons"]] }],
+            abilities: [this.abilities.murderhostInsatiableBloodlust],
 
         },       bloodthunderStampede: {
             id: "bloodthunderStampede",
             name: "BLOODTHUNDER STAMPEDE",
             allegiance: this.allegiances.khorne,
+            description: "The earth shatters under the metal hooves of a Bloodthunder Stampede, and as the smell of blood on the battlefield thickens, the wall of living brass moves ever faster. Those in the path of the daemon steeds explode in showers of pulp or are hacked apart by the arcing blades of the frenzied riders.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635827046-LMUjzrv03qxBfYnh.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "f46c9d6d-3e1c-483c-81ee-12cfb6466d09", countMin: 1, countMax: 1, required: true, units: [["Skullmaster, Herald of Khorne"]] }, { id: "14688fa3-0698-4eee-bd84-8da10b08fc11", countMin: 3, countMax: 8, required: true, units: [["Bloodcrushers"]] }],
+            abilities: [this.abilities.bloodthunderStampedeAvalancheOfBrass, this.abilities.bloodthunderStampedeBloodScent, this.abilities.bloodthunderStampedeObliteratingCharge],
 
         },       councilOfBlood: {
             id: "councilOfBlood",
             name: "COUNCIL OF BLOOD",
             allegiance: this.allegiances.khorne,
+            description: "When Khorne’s daemonic generals gather for war, there is only rivalry and hostility between them. Each Bloodthirster roars thunderous orders and throws themselves at their foes with the fury of an erupting volcano, unwilling to let another take their kills or their glory.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635744363-JUkPO8KjcAqjSLLs.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "b5c9ad54-8f5b-4c11-91de-534b4f86faa9", countMin: 3, countMax: 8, required: true, units: [["Bloodthirsters"]] }],
+            abilities: [this.abilities.councilOfBloodFierceRivals, this.abilities.councilOfBloodLordsOfBattle],
 
         },       bloodHunt: {
             id: "bloodHunt",
             name: "BLOOD HUNT",
             allegiance: this.allegiances.khorne,
+            description: "When a Blood Hunt is called, the gruesome fate of those marked by Khorne is all but sealed. Daemonic predators race across the battlefield, slavering maws snapping as they draw closer to their quarry. The hunt ends only when the mangled carcass is dragged before the Blood God.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635684674-8WclqrbFSQQnCiRw.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "adde1653-81ac-4ac9-b784-040e538fea01", countMin: 1, countMax: 1, required: true, units: [["Wrath of Khorne Bloodthirster"], ["Karanak"]] }, { id: "6912c987-4243-46bc-b868-a11e5afc4c98", countMin: 3, countMax: 8, required: true, units: [["Flesh Hounds"], ["Bloodcrushers"]] }],
+            abilities: [this.abilities.bloodHuntBloodMark, this.abilities.bloodHuntKhorneSHunters],
 
         },       gorethunderCohort: {
             id: "gorethunderCohort",
             name: "GORETHUNDER COHORT",
             allegiance: this.allegiances.khorne,
+            description: "Few are the souls brave enough to hold their ground in the face of a Gorethunder Cohort’s unholy barrage. Volleys of screeching, flame-wreathed skulls spit forth from the Skull Cannons, while atop his Blood Throne a bellowing Herald of Khorne conducts the cataclysmic hellstorm.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635615413-WgvB2gOiE2ChNen6.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "05705bf3-0bc6-40b6-85ee-7a97ae052a75", countMin: 1, countMax: 1, required: true, units: [["Blood Throne"]] }, { id: "6580004d-cb9d-420f-b787-6a87b1e48d79", countMin: 3, countMax: 8, required: true, units: [["Skull Cannons"]] }],
+            abilities: [this.abilities.gorethunderCohortTheCannonsOfKhorne],
 
         },       bloodHostOfKhorne: {
             id: "bloodHostOfKhorne",
             name: "BLOOD HOST OF KHORNE",
             allegiance: this.allegiances.khorne,
+            description: "Led by a fearsome Bloodthirster, a Blood Host of Khorne is an axe swing aimed at the heart of the foe. Bellowing their devotion to mighty Khorne, the host bounds into the fray behind their fell commander, sweeping all before them in a storm of blood and fire.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1454147589745-vEw1cDQAjQqA4keP.jpg",
             points: 220,
-            units: [],
+            units: [{ id: "4cb6d5bb-76ee-4f01-972d-779505f2024b", countMin: 1, countMax: 1, required: true, units: [["Bloodthirster"]] }, { id: "a6f2bcfa-b5b0-4962-abee-ccb3ec168c3c", countMin: 7, countMax: 0, required: true, units: [["Bloodletter", "Hero"], ["Bloodthirster"], ["Bloodletters"], ["Bloodcrushers"], ["Skull Cannons"], ["Flesh Hounds"]] }],
+            abilities: [this.abilities.bloodHostOfKhorneComethTheSlaughter],
 
         },       charnelHost: {
             id: "charnelHost",
             name: "CHARNEL HOST",
             allegiance: this.allegiances.khorne,
+            description: "Bloodthirsters of Unfettered Fury, lords of the eighth host, are the fell generals that lead Khorne’s daemonic legions to war. Charnel Hosts of howling Bloodletters march in their wake, hell-forged blades brandished high, eyes afire with the prospect of bloodshed and death.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635105949-zNs0KX9eBGVmqyWw.jpg",
             points: 200,
-            units: [],
+            units: [{ id: "c5e95a22-b2f3-437e-a339-bedb3d3a5ffb", countMin: 1, countMax: 1, required: true, units: [["Bloodthirster of Unfettered Fury"]] }, { id: "b6eb03bc-2bbc-4fd2-a231-0691d0238a94", countMin: 1, countMax: 1, required: true, units: [["Bloodmaster, Herald of Khorne"]] }, { id: "005616ee-6649-450f-8c55-49ba46e47348", countMin: 3, countMax: 8, required: true, units: [["Bloodletters"]] }],
+            abilities: [this.abilities.charnelHostDaemonCommander, this.abilities.charnelHostButchersOfKhorne],
 
         },       skullseekerHost: {
             id: "skullseekerHost",
             name: "SKULLSEEKER HOST",
             allegiance: this.allegiances.khorne,
+            description: "The Skullseeker Hosts are sent forth to claim great bounties of skulls in Khorne’s name, and they go about their dark business with a furious delight. The Skull Cannons roar, blasting the enemy line to bloody chunks, and behind this nightmarish cannonade rushes a tide of blood-hungry daemons.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635011197-opkHRMgWUEzKu5Rp.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "489768b9-ad40-4eaa-a285-7cb4716f443b", countMin: 1, countMax: 1, required: true, units: [["Bloodthirster of Insensate Rage"]] }, { id: "bea6bec0-9ba9-48c2-8d77-fdd1fa4e2de5", countMin: 1, countMax: 1, required: true, units: [["Bloodmaster, Herald of Khorne"]] }, { id: "caa4c0bd-b327-425b-9189-66d4f59d35b8", countMin: 2, countMax: 5, required: true, units: [["Bloodcrushers"]] }, { id: "79d28668-58e0-419e-a341-69fe0df8b5d5", countMin: 1, countMax: 3, required: true, units: [["Skull Cannons"]] }],
+            abilities: [this.abilities.skullseekerHostGiantKillers, this.abilities.skullseekerHostPreyUponTheWounded],
 
         },       theReapersOfVengeance: {
             id: "theReapersOfVengeance",
             name: "THE REAPERS OF VENGEANCE",
             allegiance: this.allegiances.khorne,
+            description: "Rage ever smoulders within Khorne’s black heart, but when his ire is truly stoked, the cataclysm that follows can sunder entire regions of the Mortal Realms. It is the Daemon Legion known as the Reapers of Vengeance who have the honour of enacting Khorne’s brutal retribution on those armies who have – whether by the use of hated magic, or any other act of cowardice or low cunning – denied him his rightful tithe of skulls. Led always by a Wrath of Khorne Bloodthirster and his personal guard of Bloodcrushers, the charge of the Reapers is as ferocious and unstoppable as the Blood God himself.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491634929049-rGHmfgWweqRbxXwM.jpg",
             points: 80,
-            units: [],
-
+            units: [{ id: "c514ad37-cf92-44ce-97d5-3a438c429a8e", countMin: 1, countMax: 1, required: true, units: [["Blood Hunt"]] }, { id: "f530a7e5-c230-4a3e-8e80-97851ce5f395", countMin: 3, countMax: 8, required: true, units: [["Blood Host of Khorne"], ["Murderhost"], ["Bloodthunder Stampede"], ["Council of Blood"], ["Blood Hunt"], ["Gorethunder Cohort"], ["Charnel Host"], ["Skullseeker Host"]] }, { id: "040b2a42-72e8-4ef6-8c94-92c7be92e971", countMin: 0, countMax: 0, required: false, units: [["Khorne", "Daemon"]] }],
+            abilities: [this.abilities.theReapersOfVengeanceKhorneSVengeanceMadeManifest, this.abilities.theReapersOfVengeanceUnstoppableCharge],
+           organisationFootnote: "If the Reapers of Vengeance contains the maximum number of battalions, it gains the Khorne Cares Not From Whence The Blood Flows and Revel in Carnage abilities (pg 100).",
         },       theBloodlords: {
             id: "theBloodlords",
             name: "THE BLOODLORDS",
             allegiance: this.allegiances.khorne,
+            description: "The ruinous legion known as the Bloodlords is formed of those daemons highest in the Blood God’s favour, and the blazing inferno of his unquenchable rage burns brightly within their veins. The Bloodlords will not sully their hellblades with unworthy blood, as only the greatest champions and mightiest armies make fitting sacrifices for their exacting masters. So renowned are the Bloodlords’ gore-strewn crusades that even Skulltaker, the Blood God’s Immortal Champion, has been sighted fighting alongside them – for their bloody path inevitably leads to the greatest and most prestigious skulls.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491634824710-xzAD9BawMDABOTN2.jpg",
             points: 100,
-            units: [],
-
+            units: [{ id: "71fd6717-a72e-4482-9964-3cb1ae0fec22", countMin: 1, countMax: 1, required: true, units: [["Murderhost"]] }, { id: "9d9b310e-635b-41fd-9163-6bf94b82a901", countMin: 3, countMax: 8, required: true, units: [["Blood Host of Khorne"], ["Murderhost"], ["Bloodthunder Stampede"], ["Council of Blood"], ["Blood Hunt"], ["Gorethunder Cohort"], ["Charnel Host"], ["Skullseeker Host"]] }, { id: "76983086-0f2b-4aa2-8513-81589f89ecf5", countMin: 0, countMax: 0, required: true, units: [["Khorne", "Daemon"]] }],
+            abilities: [this.abilities.theBloodlordsMurderousLieutenants, this.abilities.theBloodlordsExaltedLociOfKhorne],
+           organisationFootnote: "If the Bloodlords contains the maximum number of battalions, it gains the Khorne Cares Not From Whence The Blood Flows and Revel in Carnage abilities (pg 100).",
         },       bloodboundWarhorde: {
             id: "bloodboundWarhorde",
             name: "BLOODBOUND WARHORDE",
             allegiance: this.allegiances.khorne,
+            description: "Massed into a single mighty horde, the Bloodbound surge across the battlefield with blades held high, their rage and hatred rolling like a tidal wave before them. Swept away in the face of this furious onslaught, the enemy is hacked and torn apart, their skulls claimed as another bounty for Khorne.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1443259319519-iHgw8RBeP1N9xKPd.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "df881680-2180-4223-9c99-3f20ed3b2f9b", countMin: 1, countMax: 1, required: true, units: [["Mighty Lord of Khorne"], ["Lord of Khorne on Juggernaut"], ["Skarr Bloodwrath"], ["Valkia the Bloody"]] }, { id: "7c8b8e4d-1a6f-47d4-942b-896214b89af8", countMin: 1, countMax: 1, required: true, units: [["The Gorechosen"]] }, { id: "63048d10-416f-48e7-8c68-22d0e89e133f", countMin: 1, countMax: 1, required: true, units: [["Bloodbound Warband"]] }, { id: "9451be47-a7e3-4459-8861-de75665d984f", countMin: 3, countMax: 7, required: true, units: [["Bloodbound Warband"], ["Bloodforged"], ["Brass Stampede"], ["Dark Feast"], ["Gore Pilgrims"], ["Red Headsmen"], ["Slaughterborn"], ["Skulltake"]] }],
+            abilities: [this.abilities.bloodboundWarhordeKhorneCaresNotFromWhenceTheBloodFlows, this.abilities.bloodboundWarhordeTheBloodGodSScorn],
 
         },       theGorechosen: {
             id: "theGorechosen",
             name: "THE GORECHOSEN",
             allegiance: this.allegiances.khorne,
+            description: "The greatest champions of each Lord of Khorne ascend to join his Gorechosen, a circle of supreme warriors who vie furiously for power even as they enforce the lord’s bloody will. Nowhere is this internecine conflict more prevalent than in the thick of battle.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1443259008897-4DqW9Ha8YJxr5E0F.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "9b289d7e-3be5-4af2-9b59-1b07d48ac6df", countMin: 1, countMax: 1, required: true, units: [["Exalted Deathbringer"]] }, { id: "dfc72f2d-982e-4a96-a091-2a829f6831d2", countMin: 7, countMax: 7, required: true, units: [["Aspiring Deathbringer"], ["Slaughterpriest"], ["Skullgrinder"], ["Bloodstoker"], ["Bloodsecrator"]] }],
+            abilities: [this.abilities.theGorechosenEternalContest, this.abilities.theGorechosenMightiestOfChampions],
 
         },       brassStampede: {
             id: "brassStampede",
             name: "BRASS STAMPEDE",
             allegiance: this.allegiances.khorne,
+            description: "Nothing can stop the thunderous onset of a Brass Stampede once it has scented the blood of the foe. Like a brazen avalanche, the Mighty Skullcrushers obliterate everything that stands in their path, goring foes to death with brass-tipped horns or grinding them to paste under smouldering hooves.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1443259062126-lGi3njDiJElirTKZ.jpg",
             points: 200,
-            units: [],
+            units: [{ id: "96949e57-5b20-406e-b2d0-2d85196e24df", countMin: 0, countMax: 1, required: true, units: [["Lords of Khorne on Juggernaut"]] }, { id: "09358642-5060-4c8f-a7ef-0582bb9f1c12", countMin: 3, countMax: 7, required: true, units: [["Mighty Skullcrushers"]] }],
+            abilities: [this.abilities.brassStampedeAvalancheOfBrass, this.abilities.brassStampedeBloodScent, this.abilities.brassStampedeObliteratingCharge],
 
         },       darkFeast: {
             id: "darkFeast",
             name: "DARK FEAST",
             allegiance: this.allegiances.khorne,
+            description: "Driven into battle by the bellowed exhortations of a Slaughterpriest and the lash of a Bloodstoker, the Bloodreavers of a Dark Feast hack down their foes and messily devour their hearts. This hideous banquet blesses its participants with an unnatural constitution.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1443259109242-NjbPnaWouyQOEOHj.jpg",
             points: 200,
-            units: [],
+            units: [{ id: "55231411-6bb5-4a75-ba5f-fb941e7f0e59", countMin: 1, countMax: 1, required: true, units: [["Slaughterpriest"]] }, { id: "ccbd8ce1-ca8c-4f83-836d-fcfb60bb6904", countMin: 1, countMax: 1, required: true, units: [["Bloodstoker"]] }, { id: "5968ac4e-3730-45eb-93f3-8ec302ba7d2f", countMin: 3, countMax: 6, required: true, units: [["Bloodreavers"]] }],
+            abilities: [this.abilities.darkFeastFeedingFrenzy, this.abilities.darkFeastBloodGoaded],
 
         },       skulltake: {
             id: "skulltake",
             name: "SKULLTAKE",
             allegiance: this.allegiances.khorne,
+            description: "Driven to frenzied fury by the Bloodstoker’s cruel, barbed lash, the warriors of a Skulltake reap heads by the hundred. Hulking Khorgoraths lumber along in their wake, hungrily devouring those skulls deemed unworthy of a place in the Skulltake’s towering osseous ziggurats.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1443259157472-Yv0yFaQpknQjPtrX.jpg",
             points: 190,
-            units: [],
+            units: [{ id: "76d768cb-ea34-4378-ad91-1d85cf9035f6", countMin: 1, countMax: 1, required: true, units: [["Bloodstoker"]] }, { id: "3eaf3366-742d-4d2a-939b-4b5d31b8e1a2", countMin: 2, countMax: 3, required: true, units: [["Skullreapers"]] }, { id: "b60d8d80-b3cd-4124-b6e5-53eeb09ccd2a", countMin: 1, countMax: 2, required: true, units: [["Khorgoraths"]] }, { id: "f8518b98-377c-4a4d-8c64-371f0b74c787", countMin: 0, countMax: 2, required: true, units: [["Blood Warriors"], ["Bloodreavers"]] }],
+            abilities: [this.abilities.skulltakeReapingStrikes, this.abilities.skulltakeSkullhungry],
 
         },       redHeadsmen: {
             id: "redHeadsmen",
             name: "RED HEADSMEN",
             allegiance: this.allegiances.khorne,
+            description: "The blades of the Red Headsmen glow with the heat of Khorne’s forge, aiding their quest to win glory in the dark god’s eyes as they search for the most worthy foes upon the field of battle. Each champion slain by these eager killers is another step on the path towards their dark ascension.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1443259210497-5oI8Az6azXBF1TMm.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "42903a0b-3e55-4514-909a-65415233c0c1", countMin: 1, countMax: 1, required: true, units: [["Aspiring Deathbringer"]] }, { id: "fac41f0c-fc23-4da5-b127-520045e10b46", countMin: 1, countMax: 1, required: true, units: [["Skullgrinder"]] }, { id: "6ef3b915-549e-45f8-bcbc-ec04e8d836fc", countMin: 3, countMax: 6, required: true, units: [["Blood Warriors"]] }],
+            abilities: [this.abilities.redHeadsmenSlayTheWorthy, this.abilities.redHeadsmenRitualSlaughter],
 
         },       bloodboundWarband: {
             id: "bloodboundWarband",
             name: "BLOODBOUND WARBAND",
             allegiance: this.allegiances.khorne,
+            description: "At the heart of every great Khornate host stands a Bloodbound Warband – hordes of Blood Warriors, Bloodreavers and Skullreapers who hurl themselves into battle with screams of devotion to Khorne, hacking and tearing at the foe until the ground is slick with gore.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1443259261894-ne6AIZECRGAEakpN.jpg",
             points: 220,
-            units: [],
+            units: [{ id: "23163208-1d4c-4b43-a04b-f9ef4de3723d", countMin: 1, countMax: 1, required: true, units: [["Aspiring Deathbringer"]] }, { id: "57b82bba-09d0-42ec-b3ed-5cb9a97ba3b4", countMin: 1, countMax: 1, required: true, units: [["Bloodsecrator"]] }, { id: "6bec8d12-35fd-445a-bb86-eaed902aeac5", countMin: 3, countMax: 3, required: true, units: [["Blood Warriors"]] }, { id: "e2894c59-8d88-4110-b39c-940c1c0c1fa9", countMin: 1, countMax: 2, required: true, units: [["Bloodreavers"]] }, { id: "9e7bf5c0-f331-4cee-a911-3caa2a8e9d88", countMin: 1, countMax: 1, required: true, units: [["Skullreapers"]] }],
+            abilities: [this.abilities.bloodboundWarbandBloodrain, this.abilities.bloodboundWarbandFrenziedCharge],
 
         },       bloodforged: {
             id: "bloodforged",
             name: "BLOODFORGED",
             allegiance: this.allegiances.khorne,
+            description: "With roaring vigour, the warrior-smiths of the Bloodforged set about their gruesome labour. Using hammer and anvil, and stoked by the fiery wrath of the Blood God, they armour themselves in the fresh gore and viscera of their enemies.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635545366-cFmFrGg76bX24LvT.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "accfd337-c943-41a0-9b9b-42ae72de57ab", countMin: 1, countMax: 1, required: true, units: [["Skullgrinder"]] }, { id: "ca912e83-5af6-4262-a206-099932177204", countMin: 2, countMax: 4, required: true, units: [["Wrathmongers"]] }, { id: "2ec47f13-1c47-421b-8053-6a5acc5737ad", countMin: 1, countMax: 3, required: true, units: [["Blood Warriors"]] }],
+            abilities: [this.abilities.bloodforgedBloodAegis, this.abilities.bloodforgedInfectiousBloodletting],
 
         },       gorePilgrims: {
             id: "gorePilgrims",
             name: "GORE PILGRIMS",
             allegiance: this.allegiances.khorne,
+            description: "A procession of Gore Pilgrims charges to battle screaming verses of profane liturgy, and with each hack of their blades their prayers to Khorne grow louder. Blood seeps up from the ground, old wounds open afresh and the heart of every warrior beats with uncontrolled fury.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635477696-eiQ27B2lQPPlrvEI.jpg",
             points: 200,
-            units: [],
+            units: [{ id: "b977f7a1-c3f3-4027-87b1-0c42576fd2ed", countMin: 1, countMax: 1, required: true, units: [["Bloodsecrator"]] }, { id: "3abc4daf-0d3e-4bb7-a89b-52d4e92771f1", countMin: 2, countMax: 3, required: true, units: [["Slaughterpriests"]] }, { id: "65f63f8e-c091-4f89-bab4-6cd284259e22", countMin: 1, countMax: 2, required: true, units: [["Blood Warriors"]] }, { id: "17765f8d-5d18-4b46-b352-172a6f307a88", countMin: 1, countMax: 2, required: true, units: [["Bloodreavers"]] }],
+            abilities: [this.abilities.gorePilgrimsAcolytesOfKhorne, this.abilities.gorePilgrimsWideningTheRift],
 
         },       slaughterborn: {
             id: "slaughterborn",
             name: "SLAUGHTERBORN",
             allegiance: this.allegiances.khorne,
+            description: "Though a Lord of Khorne needs no bodyguard, the elite warriors of the Slaughterborn will carve a bloody path through their enemies to reach his side. By butchering all those that stand before the Lord, the Slaughterborn keep him from harm and from gaining more of Khorne’s glory for himself.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635423211-05yqf3y5tDkY9Fi1.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "3c30d116-a5b4-44b3-a294-893169c0b85b", countMin: 1, countMax: 1, required: true, units: [["Exalted Deathbringer"]] }, { id: "8e60ff90-e5c2-4ee5-81a2-06e8c5745fad", countMin: 2, countMax: 4, required: true, units: [["Skullreapers"]] }, { id: "fe519788-e760-4095-9d4b-b7316c08e082", countMin: 1, countMax: 3, required: true, units: [["Blood Warriors"]] }],
+            abilities: [this.abilities.slaughterbornHungryForGlory],
 
         },       theGoretide: {
             id: "theGoretide",
             name: "THE GORETIDE",
             allegiance: this.allegiances.khorne,
+            description: "The mere mention of the Goretide is enough to strike mortal fear into even the most valiant heart. Led by the dread warlord Korghos Khul, conqueror of a thousand empires, these blood-drunk killers have cut a gory swathe across the Realm of Fire, leaving nothing but smoking ruins and the piled skulls of their victims behind. Khul has promised to conquer all of Aqshy in his dark master’s name, and such is his fearful reputation and slaughterous might that the outlandish oath hardly seems impossible. There is precious little in all the Mortal Realms that can hold back the unbridled ferocity of the Goretide’s charge.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635279936-QUzcfFrCEsanXaRR.jpg",
             points: 130,
-            units: [],
-
+            units: [{ id: "c4cdcd5b-b315-4b9d-995c-a256ceb9169f", countMin: 1, countMax: 1, required: true, units: [["Mighty Lord of Khorne"]] }, { id: "66e33d9b-ebd7-4cb4-94d4-3330fbdcfad9", countMin: 1, countMax: 1, required: true, units: [["Slaughterborn battalion"]] }, { id: "4d8dcbf2-71f4-4812-b6d8-63ed82f3bc15", countMin: 0, countMax: 1, required: false, units: [["Gorechosen battalion"]] }, { id: "c97fef43-294c-4325-8f4e-61c34d426669", countMin: 3, countMax: 7, required: false, units: [["Bloodbound Warband"], ["Bloodforged"], ["Brass Stampede"], ["Dark Feast"], ["Gore Pilgrims"], ["Skulltake"], ["Red Headsmen"]] }, { id: "7ef0adb6-fda0-4568-b3a0-c431053de2d6", countMin: 0, countMax: 0, required: false, units: [["Khorne", "Bloodbound"]] }],
+            abilities: [this.abilities.theGoretideAqshySBane, this.abilities.theGoretideHotHeadedConquerors],
+           organisationFootnote: "If the Goretide contains the maximum number of battalions, it gains the Khorne Cares Not From Whence The Blood Flows and The Blood God’s Scorn abilities (pg 112).",
         },       theSkullfiendTribe: {
             id: "theSkullfiendTribe",
             name: "THE SKULLFIEND TRIBE",
             allegiance: this.allegiances.khorne,
+            description: "Warriors of the Skullfiend Tribe care only for the taking of skulls, and have mastered the brutal art of decapitation during countless unholy purges and gore-splattered campaigns. From the back of his Juggernaut warbeast, the murderous psychopath known as Lord Skardrax the Slayer extols his horde to ever greater acts of carnage. His cruel laughter echoes over the screams of the dying and the sickening crunch of axes carving into soft necks. For the Skullfiends, this grim harvest is the only way to truly honour the Blood God, and they go about their holy work with ferocious glee.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1491635200078-L4KOyRtG0ztQMvGa.jpg",
             points: 70,
-            units: [],
-
+            units: [{ id: "a94176fa-88ad-47bf-9a2f-7379d842d452", countMin: 1, countMax: 1, required: true, units: [["Lord of Khorne on Juggernaut"]] }, { id: "4517c014-7ba7-4c3a-b8e1-8c6bcb8624e7", countMin: 1, countMax: 1, required: true, units: [["Skulltake"]] }, { id: "6d6080e4-4ded-4e58-9960-190e6e7d1f5b", countMin: 0, countMax: 1, required: false, units: [["Gorechosen"]] }, { id: "41548ffa-0b29-45b6-a4db-dfb4ef59fbf2", countMin: 3, countMax: 7, required: false, units: [["Bloodbound Warband"], ["Bloodforged"], ["Brass Stampede"], ["Dark Feast"], ["Gore Pilgrims"], ["Slaughterborn"], ["Skulltake"], ["Red Headsmen"]] }, { id: "647b5999-20e8-427f-94ea-9bf3e24179be", countMin: 0, countMax: 0, required: false, units: [["Khorne", "Bloodbound"]] }],
+            abilities: [this.abilities.theSkullfiendTribeSkullHunters],
+           organisationFootnote: "If the Skullfiend Tribe contains the maximum number of battalions, it gains the Khorne Cares Not From Whence The Blood Flows and The Blood God’s Scorn abilities (pg 112).",
         },       warriorChamber: {
             id: "warriorChamber",
             name: "WARRIOR CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "A Warrior Chamber is the beating heart of its parent Stormhost. Led by the officer cadre known as the Lords of the Storm, these warriors are trained extensively in the Gladitorium. The shield-walls of its Thunderhead Brotherhoods and the crushing assaults of its Hammerstrike Forces work in concert to batter apart the enemy.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1442049202562-JNFXdu1h9LnnTqAo.png",
             points: 80,
-            units: [],
+            units: [{ id: "cac11a3a-1b10-475f-a027-d07069ba1277", countMin: 1, countMax: 1, required: true, units: [["Lords of the Storm"]] }, { id: "f284ab5c-f354-465b-8b02-d9919e3d6012", countMin: 3, countMax: 3, required: true, units: [["Thunderhead Brotherhoods"]] }, { id: "cbd1f4b2-c1a9-437c-870e-4d21d2250de6", countMin: 3, countMax: 3, required: false, units: [["Hammerstrike Forces"]] }],
+            abilities: [this.abilities.warriorChamberWrathOfTheStorm],
 
         },       harbingerChamber: {
             id: "harbingerChamber",
             name: "HARBINGER CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "A Harbinger Chamber is the shining speartip of Sigmar’s crusade. The majority of its troops are borne high on wings of light, and soar in a nimbus of corposant from one skirmish to another, leaving scorched and ruined corpses in their wake. Imbued with a measure of foresight by the Heavens, they are terrifying enemies indeed.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1442049254932-53EMeZ8HfjUPbZzh.png",
             points: 100,
-            units: [],
+            units: [{ id: "3b1999d9-980e-4bfb-a5ed-47a6178e8693", countMin: 1, countMax: 1, required: true, units: [["Lords of the Storm"]] }, { id: "c95edc8f-cec0-4543-96be-b85627dadef3", countMin: 3, countMax: 3, required: true, units: [["Vanguard Wings"]] }],
+            abilities: [this.abilities.harbingerChamberCelestialNimbus],
 
         },       exemplarChamber: {
             id: "exemplarChamber",
             name: "EXEMPLAR CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "Exemplar Chambers are composed of only the most stalwart warriors, and the lords that command them lead their elite forces into the dark heart of battle without trepidation. Should one of their number fall, the others will fight twice as hard to win revenge. In theory, there is no foe they cannot overcome, no matter its size or ferocity. Each of the chamber’s Paladins wields a two-handed weapon so massive a normal man could not hope to lift it; in the hands of a Stormcast Eternal, these relics of war can fell mutated giants and titanic spawn alike.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1442049307412-ayW2GaNNM4T6Mwar.png",
             points: 80,
-            units: [],
+            units: [{ id: "3d9c2578-cbfe-4c01-91b0-7bb95068cf7a", countMin: 1, countMax: 1, required: true, units: [["Lords of the Storm"]] }, { id: "0da59ca0-0d5e-427c-b959-b46875d71a15", countMin: 3, countMax: 3, required: true, units: [["Devastation Brotherhoods"]] }],
+            abilities: [this.abilities.exemplarChamberMartialBond],
 
         },       lordsOfTheStorm: {
             id: "lordsOfTheStorm",
             name: "LORDS OF THE STORM",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1442048894504-L9AQlKFMnBCK59gy.png",
             points: 140,
-            units: [],
+            units: [{ id: "7aee7875-42bb-4bfd-b638-af9e2421b6e8", countMin: 1, countMax: 1, required: true, units: [["Lord-Celestant"], ["Lord-Celestant on Dracoth"], ["Lord-Celestant on Stardrake"]] }, { id: "b5b4ab2a-7aa5-47da-a2eb-6be6343b0f94", countMin: 1, countMax: 1, required: true, units: [["Lord-Relictor"]] }, { id: "57431e9e-9dcb-4596-a005-293e859967bc", countMin: 0, countMax: 1, required: true, units: [["Gryph-hounds"]] }, { id: "0ce497c4-727f-43f7-a35c-aef5258986a8", countMin: 1, countMax: 4, required: true, units: [["Lord-Castellants"], ["Lord-Veritants"]] }, { id: "a3de49f7-546f-4afe-a1d7-747529a29c08", countMin: 3, countMax: 15, required: true, units: [["Knights-Heraldor"], ["Knights-Vexillor"], ["Knights-Azyros"], ["Knights-Venator"]] }],
+            abilities: [this.abilities.lordsOfTheStormStormBornCommanders],
 
         },       thunderheadBrotherhood: {
             id: "thunderheadBrotherhood",
             name: "THUNDERHEAD BROTHERHOOD",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1442048975919-3W3EeBhFa6aQA1bi.png",
             points: 160,
-            units: [],
+            units: [{ id: "9065a009-df42-46e4-9c4b-ba98ff0142a9", countMin: 3, countMax: 3, required: true, units: [["Liberators"]] }, { id: "bb1460b9-cf60-43f7-aac3-2573047d1680", countMin: 2, countMax: 2, required: true, units: [["Judicators"]] }],
+            abilities: [this.abilities.thunderheadBrotherhoodSigmariteShieldWall],
 
         },       hammerstrikeForce: {
             id: "hammerstrikeForce",
             name: "HAMMERSTRIKE FORCE",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1442049028417-DIyECAB3aPK3gFLy.png",
             points: 120,
-            units: [],
+            units: [{ id: "c3abdfa7-fee3-44aa-a1be-236230fc16a4", countMin: 2, countMax: 2, required: true, units: [["Paladins"]] }, { id: "99e3f06e-2dd3-400b-ac45-5b110f20b292", countMin: 1, countMax: 1, required: true, units: [["Prosecutors"]] }],
+            abilities: [this.abilities.hammerstrikeForceCelestialSupercharge],
 
         },       vanguardWing: {
             id: "vanguardWing",
             name: "VANGUARD WING",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1442049099156-8ODlmQJUD8e2CvAD.png",
             points: 140,
-            units: [],
+            units: [{ id: "2282c352-b190-4051-9d79-021f3582bdfb", countMin: 3, countMax: 3, required: true, units: [["Prosecutors"]] }, { id: "46642935-6c02-42e9-bdb1-4ac2d4e7bcd9", countMin: 1, countMax: 1, required: true, units: [["Liberators"]] }, { id: "8aed6b45-1ea1-4611-b8cd-ea7b5ace8a3f", countMin: 1, countMax: 1, required: true, units: [["Judicators"]] }],
+            abilities: [this.abilities.vanguardWingBearersOfTheStorm],
 
         },       devastationBrotherhood: {
             id: "devastationBrotherhood",
             name: "DEVASTATION BROTHERHOOD",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439985188438-ZPYxamQg7mpsZ5fi.jpg",
             points: 110,
-            units: [],
+            units: [{ id: "1d1e1706-4ed5-4574-af22-a455556b1af0", countMin: 1, countMax: 1, required: true, units: [["Retributors"]] }, { id: "3b3a8ae8-21c7-498f-9c39-0b631df8d553", countMin: 1, countMax: 1, required: true, units: [["Protectors"]] }, { id: "1dbce530-953f-409b-bee0-dc75312d5624", countMin: 1, countMax: 1, required: true, units: [["Decimators"]] }, { id: "fea83cad-03fd-4608-8ed5-52467a945507", countMin: 1, countMax: 1, required: true, units: [["Prosecutors"]] }, { id: "1c2ece12-2c62-4e91-9101-7ccb5b684174", countMin: 1, countMax: 1, required: true, units: [["Judicators"]] }],
+            abilities: [this.abilities.devastationBrotherhoodCrushingAssault],
 
         },       vanguardAuxiliaryChamber: {
             id: "vanguardAuxiliaryChamber",
             name: "VANGUARD AUXILIARY CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "A Vanguard Auxiliary Chamber moves like the wind, and strikes with the force of a raging tornado. These consummate hunters are well trained in the art of the running battle, riding the winds aetheric to chase down even the most elusive prey. They are also beastmasters supreme, having formed bonds of respect and brotherhood with the lithe Gryph-chargers and the eagle-eyed Aetherwings that accompany them to battle.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412062278-J6ygkpNxX5W2SCrm.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "945a7b22-e91c-4711-b284-354a4e744638", countMin: 1, countMax: 1, required: true, units: [["Lord-Aquilor"]] }, { id: "9ba9ccd7-af26-44c1-bac1-3b6262a88efc", countMin: 3, countMax: 9, required: true, units: [["Knights-Azyros"], ["Knights-Venator"]] }, { id: "b786039d-9741-4a34-9d23-843f4814f8c5", countMin: 1, countMax: 1, required: true, units: [["Vanguard Angelos Conclave"]] }, { id: "cd82d38f-ebb9-4d23-ad71-e1dd28fbb371", countMin: 1, countMax: 1, required: true, units: [["Vanguard Justicar Conclave"]] }],
+            abilities: [this.abilities.vanguardAuxiliaryChamberAzyriteHurricane],
 
         },       vanguardAngelosConclave: {
             id: "vanguardAngelosConclave",
             name: "VANGUARD ANGELOS CONCLAVE",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412226704-y4sWt3rdwgD6exQz.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "053a8b2f-5600-4041-93bb-260d9ed221d6", countMin: 1, countMax: 3, required: true, units: [["Vanguard-Palladors"]] }, { id: "cf47a974-5f3e-4810-8ea6-1340f2646a6d", countMin: 3, countMax: 9, required: true, units: [["Vanguard-Hunters"]] }],
+            abilities: [this.abilities.vanguardAngelosConclaveAethericWake],
 
         },       vanguardJusticarConclave: {
             id: "vanguardJusticarConclave",
             name: "VANGUARD JUSTICAR CONCLAVE",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412290834-ksQUfXGgKGUXSfcC.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "564461d1-824d-4d33-ae5d-239c791704e0", countMin: 3, countMax: 3, required: true, units: [["Vanguard-Raptors"]] }, { id: "dd8827af-da0e-4805-8094-51e5547a99f3", countMin: 3, countMax: 3, required: true, units: [["Aetherwings"]] }],
+            abilities: [this.abilities.vanguardJusticarConclaveFightInConcert],
 
         },       extremisChamber: {
             id: "extremisChamber",
             name: "EXTREMIS CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "Sigendil glimmers bright as the Extremis Chamber plunges into the fray. Mounted upon the noble scions of Dracothion, they are all but unstoppable. First to hit home is the Lightning Echelon; protected by a shimmering field of energy, its line-breaker assault crashes home with battering-ram force. In their wake is the Thunderwave Echelon, despatching the survivors with devastating efficiency as the Lord-Celestant and those of the Drakesworn Temple tear apart the most monstrous foes with sigmarite blade, Stardrake claw, and blasts of celestial force.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458382573686-72pxonAEQk3Y3Vcd.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "e832da1a-db8f-4e6e-bdd6-bda1053dfb35", countMin: 1, countMax: 1, required: true, units: [["Lord-Celestant on Stardrake"], ["Lord-Celestant on Dracoth"]] }, { id: "f171cea5-972c-4e07-8c84-481c4b609067", countMin: 1, countMax: 1, required: true, units: [["Drakesworn Temple"]] }, { id: "d98bc2c8-f255-4ae5-9086-ece1bb3e17e4", countMin: 1, countMax: 1, required: true, units: [["Lightning Echelon"]] }, { id: "37e35786-a7e3-47f2-bea2-2bc324d7355c", countMin: 1, countMax: 1, required: true, units: [["Thunderwave Echelon"]] }],
+            abilities: [this.abilities.extremisChamberBorneByTheHighStar],
 
         },       drakeswornTemple: {
             id: "drakeswornTemple",
             name: "DRAKESWORN TEMPLE",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458382375401-5ZbLrVE8KQ3eZNVC.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "e445aec9-6b50-4c91-88e2-d390a1449180", countMin: 3, countMax: 3, required: true, units: [["Drakesworn Templars"]] }],
+            abilities: [this.abilities.drakeswornTempleNovaSurge],
 
         },       lightningEchelon: {
             id: "lightningEchelon",
             name: "LIGHTNING ECHELON",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458382451624-q7RtMB9EGOE7GhV7.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "6d717b96-c169-4b0e-9083-04226e4f48fd", countMin: 2, countMax: 2, required: true, units: [["Fulminators"]] }, { id: "bb053004-fec6-4ac1-8823-604bfbbfd53d", countMin: 2, countMax: 2, required: true, units: [["Tempestors"]] }],
+            abilities: [this.abilities.lightningEchelonLinebreakerAssault],
 
         },       thunderwaveEchelon: {
             id: "thunderwaveEchelon",
             name: "THUNDERWAVE ECHELON",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1458382516930-dhwRele3hpmMaz5S.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "056476bd-7439-44d5-907f-a7ed6d450cdd", countMin: 2, countMax: 2, required: true, units: [["Concussors"]] }, { id: "28eb7c32-e971-4e07-bbd8-085fcaa084da", countMin: 2, countMax: 2, required: true, units: [["Desolators"]] }],
+            abilities: [this.abilities.thunderwaveEchelonRideOfTheAnnihilators],
 
         },       aetherstrikeForce15b059a18a214105Be32A3f14ef2c870: {
             id: "aetherstrikeForce15b059a18a214105Be32A3f14ef2c870",
             name: "AETHERSTRIKE FORCE",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412364555-O2QqY97jNudhcwFy.jpg",
             points: 80,
-            units: [],
+            units: [{ id: "8b3ba507-466b-4be1-8839-42191af64f85", countMin: 1, countMax: 1, required: true, units: [["Knight-Venator"]] }, { id: "b36f6c3d-927b-42a7-abfd-72621938f7c8", countMin: 1, countMax: 1, required: true, units: [["Knight-Azyros"]] }, { id: "795b4cc0-c397-4a00-9843-f363745c1726", countMin: 2, countMax: 2, required: true, units: [["Judicators"]] }, { id: "e01d8b33-1694-41fc-9470-fffe43977d34", countMin: 2, countMax: 2, required: true, units: [["Vanguard-Raptors"]] }, { id: "8630d8b8-6f87-4502-8ee2-8226e954d30f", countMin: 2, countMax: 2, required: true, units: [["Aetherwings"]] }],
+            abilities: [this.abilities.aetherstrikeForceMarkedForDestruction, this.abilities.aetherstrikeForceVengeanceFromAfar],
 
         },       celestialHuntingPack: {
             id: "celestialHuntingPack",
             name: "CELESTIAL HUNTING PACK",
             allegiance: this.allegiances.stormcastEternals,
+            description: "Like the two-headed gryphons that prowl the Azyrheim peaks, the twin cavalry elements of the Celestial Hunting Pack strike with one accord. Gryph-charger and Dracoth, united in their hatred for Chaos, channel their aetheric might with that of their masters to form a furious storm of power.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412419712-NevPeKU49RiWWgiq.jpg",
             points: 80,
-            units: [],
+            units: [{ id: "1277849e-46f4-4893-9f33-154287258643", countMin: 1, countMax: 1, required: true, units: [["Lord-Celestant on Dracoth"]] }, { id: "f283a89c-d557-43bb-a803-ba681fffbf96", countMin: 3, countMax: 3, required: true, units: [["Dracothian Guard"]] }, { id: "fe3ccf42-1284-4fbe-8ed6-16895335f466", countMin: 1, countMax: 1, required: true, units: [["Lord-Aquilor"]] }, { id: "1e133931-b38e-4b2e-9f1f-6ad0f4e71a5f", countMin: 3, countMax: 3, required: true, units: [["Vanguard-Palladors"]] }],
+            abilities: [this.abilities.celestialHuntingPackAethericStorm, this.abilities.celestialHuntingPackTwoHeadedBeast],
 
         },       stormVortexGarrison: {
             id: "stormVortexGarrison",
             name: "STORM VORTEX GARRISON",
             allegiance: this.allegiances.stormcastEternals,
+            description: "When a location critical to Sigmar’s plan is seized by the Stormhosts’ tempestuous strikes, a Storm Vortex Garrison is sworn to defend it – no matter the cost. Though they may be outnumbered severely, they keep the faith, for by the God-King’s own hand their kin will be close behind.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412478680-KSSwySkxXjfbArFd.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "5cf1bec0-ff87-4644-8ca8-5446861d2f1c", countMin: 1, countMax: 1, required: true, units: [["Lord-Castellant"]] }, { id: "da91dd79-c73e-4e11-bb8f-80ae7e94263d", countMin: 1, countMax: 1, required: true, units: [["Knight-Heraldor"]] }, { id: "9fc9486b-7084-4438-be62-9d47fe149252", countMin: 1, countMax: 1, required: true, units: [["Knight-Vexillor"]] }, { id: "f6d53cdc-8899-4704-b115-660e1a37da6a", countMin: 2, countMax: 2, required: true, units: [["Liberators"]] }, { id: "b57e753a-f0c9-4137-9c73-5e171f7dad50", countMin: 2, countMax: 2, required: true, units: [["Paladins"]] }, { id: "3a60657a-83ce-4b95-9ef5-4238139039c3", countMin: 2, countMax: 2, required: true, units: [["Vanguard-Hunters"]] }],
+            abilities: [this.abilities.stormVortexGarrisonInSigmarSName, this.abilities.stormVortexGarrisonPromisedAid],
 
         },       stormHeralds: {
             id: "stormHeralds",
             name: "STORM HERALDS",
             allegiance: this.allegiances.stormcastEternals,
+            description: "Before the main thunderhead of the Stormhost attack breaks, the Storm Heralds launch their tripartite attack, swift and deadly. These warriors are a tempest unto themselves – the Vanguard- Palladors its raging wind, the Prosecutors its darting sky-bolts, and the Lord-Celestant its thunder.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412537285-CScadoQMaMyns5lQ.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "e6a75498-814a-4c14-bd48-b6cb88fe315a", countMin: 1, countMax: 1, required: true, units: [["Lord-Celestant on Stardrake"]] }, { id: "dafa4736-ae2e-49bb-a594-98510ddace94", countMin: 3, countMax: 3, required: true, units: [["Prosecutors"]] }, { id: "e9f46b69-e8f7-4c16-9ff0-9c7cdcb4f744", countMin: 3, countMax: 3, required: true, units: [["Vanguard-Palladors"]] }],
+            abilities: [this.abilities.stormHeraldsTheHowlingGale, this.abilities.stormHeraldsThePiercingLightning, this.abilities.stormHeraldsTheRoaringThunder],
 
         },       hammersOfSigmarWarriorChamber: {
             id: "hammersOfSigmarWarriorChamber",
             name: "HAMMERS OF SIGMAR WARRIOR CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "The first of the Stormhosts to be hurled to the Mortal Realms upon Sigmar’s divine lightning, the Hammers of Sigmar bear the responsibility that accompanies such an honour with strength and nobility. As one of the largest of the Stormhosts, the Hammers of Sigmar can call upon almost all of the types of warrior Sigmar has yet devised, and every one of them, from steadfast Liberator to imperious Lord-Celestant, fights with a vengeful determination that fills the servants of the Dark Gods with dread.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412609598-pYQE6uTDBV6Wdsly.jpg",
             points: 120,
-            units: [],
-
+            units: [{ id: "6958d93a-f41c-4288-b610-95959f95108a", countMin: 1, countMax: 1, required: true, units: [["Thunderhead Brotherhood"]] }, { id: "e617d693-2130-44b0-a83a-625fcfd6d57d", countMin: 0, countMax: 1, required: false, units: [["Lords of the Storm battalion"]] }, { id: "645d65ef-cc53-46a2-9a9b-c0d903c63a59", countMin: 0, countMax: 2, required: false, units: [["Thunderhead Brotherhood"]] }, { id: "00b846de-d85b-4f5a-a2d8-40797c05c2d0", countMin: 0, countMax: 3, required: false, units: [["Hammerstrike Force"]] }, { id: "125307b2-6281-4cb2-bfa4-c1279b885e6c", countMin: 0, countMax: 0, required: false, units: [["Stormcast Eternals"]] }],
+            abilities: [this.abilities.hammersOfSigmarWarriorChamberFirstToBeForged, this.abilities.hammersOfSigmarWarriorChamberHeraldsOfTheGodKing],
+           organisationFootnote: "If a Hammers of Sigmar Warrior Chamber contains the maximum number of battalions, it gains the Lightning Strike and Wrath of the Storm abilities (pg 115).",
         },       hallowedKnightsWarriorChamber: {
             id: "hallowedKnightsWarriorChamber",
             name: "HALLOWED KNIGHTS WARRIOR CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "Mortals who followed Sigmar devoutly in life may find themselves reforged to serve him again as Hallowed Knights. Zealous beyond measure, loyal beyond question, the Hallowed Knights consider the war against Chaos to be a sacred crusade for which no sacrifice is too great. Clad in burnished silver armour and filled with holy fervour, they fear no evil, for their trust in the God-King is absolute. ‘Only the faithful!’ is the war cry of the Hallowed Knights, the words resounding like temple bells wherever they do battle.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412674864-Hh3asO8THGEh7PgD.jpg",
             points: 100,
-            units: [],
-
+            units: [{ id: "af1aabdc-aad3-41f2-b5a7-bb7e776c255e", countMin: 1, countMax: 1, required: true, units: [["Lords of the Storm"]] }, { id: "f2937b5c-cce6-40f2-b504-079de44927c9", countMin: 0, countMax: 3, required: false, units: [["Thunderhead Brotherhood"]] }, { id: "6efb28e0-621d-492c-b4f0-a21a73a33a55", countMin: 0, countMax: 3, required: false, units: [["Hammerstrike Force"]] }, { id: "925c9f86-e02b-4f63-bb1d-9f9c01e19ab2", countMin: 0, countMax: 0, required: false, units: [["Stormcast Eternals"]] }],
+            abilities: [this.abilities.hallowedKnightsWarriorChamberOnlyTheFaithful, this.abilities.hallowedKnightsWarriorChamberHolyCrusaders, this.abilities.hallowedKnightsWarriorChamberAMartyrSDeath],
+           organisationFootnote: "If a Hallowed Knights Warrior Chamber contains the maximum number of battalions, it gains the Lightning Strike and Wrath of the Storm abilities (pg 115).",
         },       celestialVindicatorsWarriorChamber: {
             id: "celestialVindicatorsWarriorChamber",
             name: "CELESTIAL VINDICATORS WARRIOR CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "The Celestial Vindicators are vengeance incarnate. Stern and unforgiving, their hearts burn with a hatred for Chaos which knows no bounds, born of great losses suffered in their mortal lives. Entry to the Celestial Vindicators depends on this aggrieved inheritance, and each warrior must ask of Sigmar the right to exact their own personal revenge. Only by the chanting of grim war songs are the Celestial Vindicators able to channel their fury, but in the heat of combat their hate becomes a wildfire that cannot be quenched.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412748356-FaMsNy2ZgIHq3Mve.jpg",
             points: 80,
-            units: [],
-
+            units: [{ id: "d857a5a3-a4a8-40cf-8635-3c207d53d007", countMin: 1, countMax: 1, required: true, units: [["Hammerstrike Force"]] }, { id: "97a91623-07af-429d-93b3-5ab8b7c2ec21", countMin: 0, countMax: 1, required: false, units: [["Lords of the Storm battalion"]] }, { id: "62355805-4060-460a-8cce-5f0fdb025b4e", countMin: 0, countMax: 3, required: false, units: [["Thunderhead Brotherhood"]] }, { id: "807b69ab-4f8d-4349-95e9-95a103fbf5f3", countMin: 0, countMax: 2, required: false, units: [["Hammerstrike Force"]] }, { id: "9dd97c30-e07f-40e9-86a7-dd2994059f70", countMin: 0, countMax: 0, required: false, units: [["Stormcast Eternals"]] }],
+            abilities: [this.abilities.celestialVindicatorsWarriorChamberVowsOfVengeance, this.abilities.celestialVindicatorsWarriorChamberBondsOfHatred],
+           organisationFootnote: "If a Celestial Vindicators Warrior Chamber contains the maximum number of battalions, it gains the Lightning Strike and Wrath of the Storm abilities (pg 115).",
         },       anvilsOfTheHeldenhammerWarriorChamber: {
             id: "anvilsOfTheHeldenhammerWarriorChamber",
             name: "ANVILS OF THE HELDENHAMMER WARRIOR CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "First reforged as the Broken World reeled beneath fell magics, the black-clad warriors of the Anvils of the Heldenhammer are heroes of a distant age. Sinister of aspect and archaic in mindset, they fight like spectres out of legend, preserving practices and rites long lost to mortal memory. As the ancient dead reborn, the Anvils of the Heldenhammer hold in particular dread the prospect of their final demise, and their Lord-Relictors brood long on the subject, trusting ever in Sigmar lest the War of Spirits be lost.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412818552-QRDpFMvkQL4uSl8Z.jpg",
             points: 80,
-            units: [],
-
+            units: [{ id: "77cc1dba-79da-486c-ba5a-eaf678e6f105", countMin: 1, countMax: 1, required: true, units: [["Thunderhead Brotherhood"]] }, { id: "78392432-17a2-4467-8eae-d942c54774a7", countMin: 0, countMax: 1, required: false, units: [["Lords of the Storm"]] }, { id: "a5e44699-d7a0-4bba-9745-2b64647b06fc", countMin: 0, countMax: 2, required: false, units: [["Thunderhead Brotherhood"]] }, { id: "46a47b1b-9b40-48a9-849f-2a528dc973c0", countMin: 0, countMax: 3, required: false, units: [["Hammerstrike Force"]] }, { id: "8d9867b9-e591-4d01-8278-44dda0adede9", countMin: 0, countMax: 0, required: false, units: [["Stormcast Eternals"]] }],
+            abilities: [this.abilities.anvilsOfTheHeldenhammerWarriorChamberHeroesOfAnotherAge],
+           organisationFootnote: "If an Anvils of the Heldenhammer Warrior Chamber contains the maximum number of battalions, it gains the Lightning Strike and Wrath of the Storm abilities (pg 115).",
         },       knightsExcelsiorExemplarChamber: {
             id: "knightsExcelsiorExemplarChamber",
             name: "KNIGHTS EXCELSIOR EXEMPLAR CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "In disciplined lockstep, the Knights Excelsior march to war, an unbroken chain of gleaming white armour and blue shields. The martial philosophy of the Knights Excelsior emphasises the regiment over the individual, favouring proven tactical doctrine over risky experiment. Meticulous to the last, only the utter destruction of the enemy satisfies them in battle. Whatever the dreadful toll of war, the Knights Excelsior are trustworthy to a fault, for they will allow nothing to tarnish Sigmar’s glory.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412886848-1BV3oFg47FyAmQvW.jpg",
             points: 80,
-            units: [],
-
+            units: [{ id: "d4a898bd-79dd-407b-9518-236706a91a14", countMin: 1, countMax: 1, required: true, units: [["Devastation Brotherhood"]] }, { id: "c5ebd414-d125-4e66-80f6-7b332785678b", countMin: 0, countMax: 1, required: false, units: [["Lords of the Storm"]] }, { id: "2eae6016-ac11-451e-a054-9f472612538c", countMin: 0, countMax: 2, required: false, units: [["Devastation Brotherhood"]] }, { id: "f21f3c8d-15f8-4264-ac65-2aad5c175950", countMin: 0, countMax: 0, required: false, units: [["Stormcast Eternals"]] }],
+            abilities: [this.abilities.knightsExcelsiorExemplarChamberTheChainUnbroken, this.abilities.knightsExcelsiorExemplarChamberVictoryAbsolute],
+           organisationFootnote: "If a Knights Excelsior Exemplar Chamber contains the maximum number of battalions, it gains the Lightning Strike and Martial Bond abilities (pg 117).",
         },       celestialWarbringersHarbingerChamber: {
             id: "celestialWarbringersHarbingerChamber",
             name: "CELESTIAL WARBRINGERS HARBINGER CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "For the Celestial Warbringers, there is no greater joy than righteous battle. The bond shared by this Stormhost’s brethren is second to none, for each of them hails from the same mortal tribe – a clan of bold warriors who claimed to have foresight of their own unique doom. Hurling brazen insults at the foe and laughing as they break heads, their fearlessness and infectious audacity has persisted even after their Reforging, carrying them to glorious victory in the face of seemingly insurmountable odds time and again.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487412961931-tG8sToy573dWtv9h.jpg",
             points: 60,
-            units: [],
-
+            units: [{ id: "40dca893-0333-4a5e-b836-f702b8dbc0a7", countMin: 1, countMax: 1, required: true, units: [["Lords of the Storm"]] }, { id: "1029bc60-e438-4829-ab55-57f6f54a8a18", countMin: 0, countMax: 3, required: false, units: [["Vanguard Wing"]] }, { id: "df575986-f8cb-41b1-9684-43c05dc44321", countMin: 0, countMax: 0, required: false, units: [["Stormcast Eternals"]] }],
+            abilities: [this.abilities.celestialWarbringersHarbingerChamberTheHornsOfWar, this.abilities.celestialWarbringersHarbingerChamberJoyousHost, this.abilities.celestialWarbringersHarbingerChamberUnshakeableConfidence],
+           organisationFootnote: "If a Celestial Warbringers Harbinger Chamber contains the maximum number of battalions, it gains the Lightning Strike and Celestial Nimbus abilities (pg 116).",
         },       tempestLordsHarbingerChamber: {
             id: "tempestLordsHarbingerChamber",
             name: "TEMPEST LORDS HARBINGER CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "The Tempest Lords are noble and courteous in everything they do. Each hails from a dynasty of warrior aristocrats that is accustomed to rulership, and with good reason. Not for these lords of battle the comforts of privilege. Instead they lead by example, winging down from their lofty vantage points to reap their twelve-tally before fighting onwards in Sigmar’s name. Their stirring rhetoric has a galvanising effect on those around them; even the downtrodden and oppressed rise up, inspired to follow the Tempest Lords to glory.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487413033550-0oWMhmqG8RiaV1s4.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "de3b5877-0477-4cae-bee1-06fd024ebd93", countMin: 1, countMax: 1, required: true, units: [["Vanguard Wing"]] }, { id: "e584686b-e491-4701-9704-5c6091a840c7", countMin: 0, countMax: 1, required: false, units: [["Lords of the Storm"]] }, { id: "872eebca-3779-4e4a-a427-75c8ef3bbce0", countMin: 0, countMax: 2, required: false, units: [["Vanguard Wing"]] }, { id: "5b5d6b2b-eb49-4238-9d55-29415f75acee", countMin: 0, countMax: 0, required: false, units: [["Stormcast Eternals"]] }],
+            abilities: [this.abilities.tempestLordsHarbingerChamberMastersOfTheSkies, this.abilities.tempestLordsHarbingerChamberTakeYourTally],
 
         },       astralTemplarsExemplarChamber: {
             id: "astralTemplarsExemplarChamber",
             name: "ASTRAL TEMPLARS EXEMPLAR CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "Recruited from the most warlike and barbaric mortal tribes, the Stormcast Eternals of the Astral Templars are warriors born, never more at home than when surrounded by enemies in battle. Their commanders are amongst the most ferocious of their kind, and take great delight in hurling themselves into the most desperate of combats. Such was their feral upbringing that, as mortals, hunting dangerous beasts was a daily necessity for survival – a skill at which the Astral Templars still excel to this day.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1487413103209-ZzR9wOm6XP7EKA2H.jpg",
             points: 100,
-            units: [],
-
+            units: [{ id: "3f9736ff-96f8-4fa6-902f-a58e2ea440fd", countMin: 1, countMax: 1, required: true, units: [["Lords of the Storm"]] }, { id: "6703c29d-7426-4fe0-9ae3-9d7a137937da", countMin: 0, countMax: 3, required: false, units: [["Devastation Brotherhood"]] }, { id: "b64bc788-4b59-43ac-8b46-f97ffff5ad23", countMin: 0, countMax: 0, required: false, units: [["Stormcast Eternals"]] }],
+            abilities: [this.abilities.astralTemplarsExemplarChamberBeastHunters, this.abilities.astralTemplarsExemplarChamberDauntlessBrawlers],
+           organisationFootnote: "If an Astral Templars Exemplar Chamber contains the maximum number of battalions, it gains the Lightning Strike and Martial Bond abilities (pg 117).",
         },       warpflameHost: {
             id: "warpflameHost",
             name: "WARPFLAME HOST",
             allegiance: this.allegiances.tzeentch,
+            description: "On the battlefield it is difficult to see a Warpflame Host, for their numbers are concealed behind blazing curtains of Tzeentchian wyrdfire. The intense heat which they give off causes the very air to smoulder as the Warpflame Host unleashes the all-consuming fires of change upon the foe.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484990371318-ObK3P9m4OX9sG7qm.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "bca94c45-9c21-43df-b6ad-3ff3f1ed8f0d", countMin: 1, countMax: 1, required: true, units: [["Exalted Flamer of Tzeentch"]] }, { id: "19c7adff-f919-4a64-a5af-cfce99c7f6ec", countMin: 3, countMax: 0, required: true, units: [["Exalted Flamers of Tzeentch"], ["Flamers of Tzeentch"], ["Burning Chariots of Tzeentch"]] }],
+            abilities: [this.abilities.warpflameHostStormOfDaemonicFire],
 
         },       multitudinousHost: {
             id: "multitudinousHost",
             name: "MULTITUDINOUS HOST",
             allegiance: this.allegiances.tzeentch,
+            description: "The Multitudinous Host is a glowing Horror-tide that seeks to drown the foe beneath their multihued numbers. Packed together in one large cavorting mass, the concentration of fate-altering magic is so great that even more Horrors spontaneously burst into existence amongst the cackling throng.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484990480566-sX6oeGRqiIDtqT2U.jpg",
             points: 240,
-            units: [],
+            units: [{ id: "6fcbebb5-e0d5-419f-a4c7-3f2eeba399ae", countMin: 1, countMax: 1, required: true, units: [["Herald of Tzeentch"]] }, { id: "0c63e3b5-a14a-432d-9dc1-462c8f29b82f", countMin: 8, countMax: 0, required: true, units: [["Pink Horrors of Tzeentch"], ["Blue Horrors of Tzeentch"], ["Brimstone Horrors of Tzeentch"]] }],
+            abilities: [this.abilities.multitudinousHostHorrorsWithoutNumber],
 
         },       aetherEaterHost: {
             id: "aetherEaterHost",
             name: "AETHER-EATER HOST",
             allegiance: this.allegiances.tzeentch,
+            description: "Many of Tzeentch’s daemons hunger for magic, coveting the very stuff from which they are forged. In battle the fast-moving Aether-eater Host seeks enemy spellcasters, hoping to leech and absorb the foe’s eldritch force and use it to increase their own power.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484994119237-WAFqbmD6loCmtuwq.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "4a959526-c495-4945-988e-d63a0f101dae", countMin: 1, countMax: 1, required: true, units: [["Herald of Tzeentch on Burning Chariot"]] }, { id: "1590c498-efed-41dd-ab74-1a8d87149cd3", countMin: 3, countMax: 0, required: true, units: [["The Blue Scribes"], ["Herald of Tzeentch on Burning Chariot"], ["Herald of Tzeentch on Disc"], ["Screamers of Tzeentch"]] }],
+            abilities: [this.abilities.aetherEaterHostFeedOnMagic],
 
         },       changehost: {
             id: "changehost",
             name: "CHANGEHOST",
             allegiance: this.allegiances.tzeentch,
+            description: "Illusion and deception feature prominently in the actions of Tzeentch’s minions, but the Changehost brings such ruses to the battlefield. Foes eager to overwhelm a small formation suddenly find themselves facing more powerful opposition, before being engulfed by a searing eldritch firestorm.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484992416113-6VB2QoucLFhPYPe2.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "6aef912c-98b4-4814-9b49-dca21d3a951d", countMin: 1, countMax: 1, required: true, units: [["Lord of Change"]] }, { id: "df09afb5-fd1d-4548-a1b2-e50c8e721033", countMin: 8, countMax: 0, required: true, units: [["Horror", "Hero"], ["Exalted Flamers of Tzeentch"], ["Pink Horrors of Tzeentch"], ["Blue Horrors of Tzeentch"], ["Brimstone Horrors of Tzeentch"], ["Flamers of Tzeentch"], ["Screamers of Tzeentch"], ["Burning Chariots of Tzeentch"]] }],
+            abilities: [this.abilities.changehostDeceiveAndDismay],
 
         },       overseerSFateTwisters: {
             id: "overseerSFateTwisters",
             name: "OVERSEER’S FATE-TWISTERS",
             allegiance: this.allegiances.tzeentch,
+            description: "Aided by an entourage of powerful daemons known as Fate-twisters, the Overseers read the skeins of destiny to sidestep sword-blows and shift the flight of enemy arrows so they clatter harmlessly away. Guided by such future-sight, the Overseers ensure they fulfil their own crucial part in Tzeentch’s plan.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484990842618-laGowVbsDcIOYjn1.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "2119e036-7a29-40e7-87c4-bb89780bf37c", countMin: 1, countMax: 1, required: true, units: [["Lord of Change"]] }, { id: "39f76477-67c3-4d81-81fb-f1356aa92e60", countMin: 8, countMax: 0, required: true, units: [["Horror", "Hero"], ["Exalted Flamers of Tzeentch"], ["Burning Chariots of Tzeentch"]] }],
+            abilities: [this.abilities.overseerSFateTwistersTheWillOfTzeentch, this.abilities.overseerSFateTwistersMasterOfFate],
 
         },       omniscientOracles: {
             id: "omniscientOracles",
             name: "OMNISCIENT ORACLES",
             allegiance: this.allegiances.tzeentch,
+            description: "Through manipulation, Kairos Fateweaver has created the perfect bodyguard – his Omniscient Oracles. This gathering of so much eldritch might can scour the battlefield with sorcery or topple entire kingdoms. Even the other Dark Gods pay heed when the Omniscient Oracles take to the field.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484990998820-hLywOshFc1dz5D9d.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "2fe0fc9f-a192-4007-9eb7-088f0281315c", countMin: 1, countMax: 1, required: true, units: [["Kairos Fateweaver"]] }, { id: "0006a3cf-bbff-4ead-b9b2-139299cb9b05", countMin: 3, countMax: 3, required: true, units: [["Lords of Change"]] }],
+            abilities: [this.abilities.omniscientOraclesKnowledgeOfPastPresentAndFuture],
 
         },       theEternalConflagration: {
             id: "theEternalConflagration",
             name: "THE ETERNAL CONFLAGRATION",
             allegiance: this.allegiances.tzeentch,
+            description: "All will burn when the hosts of the Eternal Conflagration arrive on the battlefield. Here is no subterfuge or subtlety, for it is this convocation that Tzeentch sends forth to scour the foe – to blast them with unnatural flames. The Flamers of the Eternal Conflagration burn brightest of all, lighting the horizon like a psychedelic sun. The Lord of Change that commands the Eternal Conflagration holds the title of Radiant Lord, and is tasked with bringing fiery annihilation to those that would thwart the plans of Tzeentch. All must burn before the flames of change.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991054307-5Q3b93q4b2kGHw3H.jpg",
             points: 110,
-            units: [],
-
+            units: [{ id: "f192b3b4-601e-41f1-bd68-07c3649a63a5", countMin: 1, countMax: 1, required: true, units: [["Lord of Change"], ["Overseer's Fate-twisters"]] }, { id: "2bb128c0-723f-4686-857d-b0220ba12bed", countMin: 1, countMax: 1, required: true, units: [["Warpflame Host"]] }, { id: "b1dccfb2-7e08-43e2-9db7-692ed58434fe", countMin: 0, countMax: 8, required: false, units: [["Warpflame Host"], ["Aether-eater Host"], ["Multitudinous Host"], ["Changehost"]] }, { id: "f2acedd1-20f9-420a-b74f-7bd46f53dda2", countMin: 0, countMax: 0, required: false, units: [["Tzeentch", "Daemon"]] }],
+            abilities: [this.abilities.theEternalConflagrationPawnsOfTheRadiantLord, this.abilities.theEternalConflagrationCoruscatingFlames],
+           organisationFootnote: "If the Eternal Conflagration contains the maximum number of battalions, it gains the Destiny Preordained ability (pg 104).",
         },       theHostsDuplicitous: {
             id: "theHostsDuplicitous",
             name: "THE HOSTS DUPLICITOUS",
             allegiance: this.allegiances.tzeentch,
+            description: "The daemons of the Hosts Duplicitous are masters of illusion and deception. Tzeentch sends forth this convocation’s hosts on any number of covert actions, such as affecting secret regime changes or stealthily infiltrating well-guarded places of power. In battle the Hosts Duplicitous utilise spell‑generated mirages to bolster their ranks, allowing them to strike indiscriminately while their foes waste efforts fighting mere hallucinations. The Lord of Change that leads the Hosts Duplicitous holds the sinister title of Phantom Lord.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991121842-V1exgxadMXr6sahM.jpg",
             points: 110,
-            units: [],
+            units: [{ id: "3834ad27-7577-454e-a4d4-2a7d08c265d8", countMin: 1, countMax: 1, required: true, units: [["Lord of Change"], ["Overseer's Fate-twisters"]] }, { id: "7e68b0cd-df1b-4c0e-b1db-481e9077745b", countMin: 1, countMax: 1, required: true, units: [["Changehost"]] }, { id: "c756fc51-da0b-4a77-97a9-f99912486088", countMin: 0, countMax: 8, required: false, units: [["Warpflame Host"], ["Aether-eater Host"], ["Multitudinous Host"], ["Changehost"]] }, { id: "f3438dea-d25f-404d-91fe-262954294b86", countMin: 0, countMax: 0, required: false, units: [["Tzeentch", "Daemon"]] }],
+            abilities: [this.abilities.theHostsDuplicitousGlamoursmiths],
 
         },       arcaniteCult: {
             id: "arcaniteCult",
             name: "ARCANITE CULT",
             allegiance: this.allegiances.tzeentch,
+            description: "When at last the call for open battle arrives, the full Arcanite Cult strides forth to wage war in the name of their patron. Soon, shrill calls and chanting fill the air as the cult hurls itself into the fray, eager to do their part in Tzeentch’s Great Plan, and fate itself twists to favour their cause.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991303193-EB5koa8JdIA35KK5.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "9c4efe3a-d3b9-498c-842d-d88fa1032d54", countMin: 1, countMax: 1, required: true, units: [["Arcanite Cabal"]] }, { id: "df9fa1aa-03f2-4c4e-b922-3fe608eb45dd", countMin: 3, countMax: 9, required: true, units: [["Alter-kin Coven"], ["Skyshoal Coven"], ["Tzaangor Coven"], ["Witchfyre Coven"]] }, { id: "7c671047-5176-4efe-a936-456d1aa109f8", countMin: 0, countMax: 1, required: true, units: [["Curseling, Eye of Tzeentch"]] }, { id: "02b7bfc5-9a80-4b18-a199-0a6c20ab9a68", countMin: 0, countMax: 1, required: true, units: [["Gaunt Summoner of Tzeentch"]] }, { id: "fa8205b5-dc80-41b0-bfad-8f45a3a0a92c", countMin: 0, countMax: 1, required: true, units: [["Ogroid Thaumaturge"]] }],
+            abilities: [this.abilities.arcaniteCultDestinyPreordained, this.abilities.arcaniteCultStrengthInConviction],
 
         },       arcaniteCabal: {
             id: "arcaniteCabal",
             name: "ARCANITE CABAL",
             allegiance: this.allegiances.tzeentch,
+            description: "The dark heart of an Arcanite Cult is its cabal. While the master of the cult pulls upon the eldritch might of the group to sway the tides of fate, the sorcerers find their own magics likewise enhanced by the cabal’s collective power, allowing them each to cast a veritable hurricane of spells.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991371354-EbU9oOwLXjVWSTpQ.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "c763ea16-ab95-441f-969f-3b4875a6b41f", countMin: 3, countMax: 9, required: true, units: [["Fatemaster"], ["Magister"], ["Tzaangor Shaman"]] }],
+            abilities: [this.abilities.arcaniteCabalMasterOfTheCult, this.abilities.arcaniteCabalCabalOfSorcerers],
 
         },       alterKinCoven: {
             id: "alterKinCoven",
             name: "ALTER-KIN COVEN",
             allegiance: this.allegiances.tzeentch,
+            description: "Death is perhaps the most lenient of fates that await those who dare defy an Alter-kin Coven. These servants of Tzeentch are so imbued with transmogrifying magics that those in their proximity can be torn apart by these energies only to be remade in the form of a Tzaangor.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991446992-jCd6QtnSlePGjJX3.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "da6fae6d-df0e-4266-ae28-c4c32a9f3102", countMin: 1, countMax: 1, required: true, units: [["Kairic Acolytes"]] }, { id: "82e05e36-9385-45c2-bb3c-700372f1190e", countMin: 1, countMax: 1, required: true, units: [["Tzaangors"]] }, { id: "83d98014-2c74-4ef8-a52a-7202b09ffb8d", countMin: 1, countMax: 1, required: true, units: [["Tzaangor Skyfires"]] }],
+            abilities: [this.abilities.alterKinCovenBoonOfMutation],
 
         },       witchfyreCoven: {
             id: "witchfyreCoven",
             name: "WITCHFYRE COVEN",
             allegiance: this.allegiances.tzeentch,
+            description: "Protected by a bodyguard of formidable Tzaangor Enlightened, the Kairic Acolytes of the Witchfyre Covens are true disciples of the wyrdflame. Many a foe has suffered blazing annihilation at the hands of its sorcerous brethren, incinerated by wave after wave of arcane fireballs.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991536027-xUFrbeuavMbbypwS.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "1fcb7cae-6548-4a70-b144-3321d7ad64a1", countMin: 2, countMax: 2, required: true, units: [["Kairic Acolytes"]] }, { id: "d82196d0-5072-4c52-9791-4cf0636fcb89", countMin: 1, countMax: 1, required: true, units: [["Tzaangor Enlightened"]] }],
+            abilities: [this.abilities.witchfyreCovenMasteryOfWyrdflame],
 
         },       skyshoalCoven: {
             id: "skyshoalCoven",
             name: "SKYSHOAL COVEN",
             allegiance: this.allegiances.tzeentch,
+            description: "Leaving behind shimmering contrails, Skyshoal Covens whisk through the air with dazzling speed. The elite Tzaangors sweep over the heads of their prey upon Discs of Tzeentch, severing limbs and heads with the razor-edged protrusions of their daemonic mounts.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991605814-r7tezMyJbdTsLXBA.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "7ef0384d-3eaa-4fbd-a0aa-0c3e180eec47", countMin: 1, countMax: 1, required: true, units: [["Tzaangor Enlightened"]] }, { id: "893ac1a3-7999-4908-badd-97a0375dc5a9", countMin: 2, countMax: 2, required: true, units: [["Tzaangor Skyfires"]] }],
+            abilities: [this.abilities.skyshoalCovenScintillatingAttackRun],
 
         },       tzaangorCoven: {
             id: "tzaangorCoven",
             name: "TZAANGOR COVEN",
             allegiance: this.allegiances.tzeentch,
+            description: "In battle the sects of a Tzaangor Coven flock towards one another, drawing a rabid ferocity from each other’s presence. Driven by ambition and the proximity of their savage kin, the Tzaangors attack in a flurry of blades and stabbing beaks, seeking to bring down their foe and gain Tzeentch’s favour.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991676364-U3RkCDANIZXOhefk.jpg",
             points: 110,
-            units: [],
+            units: [{ id: "68626e5f-feaa-4332-9566-94283a4380d1", countMin: 1, countMax: 1, required: true, units: [["Tzaangors"]] }, { id: "f2c50923-a854-408f-a488-41d9b350d194", countMin: 1, countMax: 1, required: true, units: [["Tzaangor Enlightened"]] }, { id: "9ee5f44f-289e-4e0a-8513-d0e2b67f1e38", countMin: 1, countMax: 1, required: true, units: [["Tzaangor Skyfires"]] }],
+            abilities: [this.abilities.tzaangorCovenAspirantGorKin, this.abilities.tzaangorCovenFerociousFighters],
 
         },       cultOfTheTransientForm: {
             id: "cultOfTheTransientForm",
             name: "CULT OF THE TRANSIENT FORM",
             allegiance: this.allegiances.tzeentch,
+            description: "None embrace the power of change as zealously as the Cult of the Transient Form. Many of its human members actively seek to be transformed into Tzaangors, whom they regard as closer to the Great Mutator in form and spirit, and the prideful Gor-kin are only too happy to indulge them. Death is seen not as the end for these fanatics, but as the gateway to a glorious new beginning. Enemies are horrified as the corpses of slain cultists quiver and spasm, their flesh running like candle wax, before rising once more as shrieking Tzaangors – or something altogether more terrifying…",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991732186-N21qI68qQhUyP6jc.jpg",
             points: 100,
-            units: [],
-
+            units: [{ id: "f5487b2f-173c-4774-b124-3622a42f1453", countMin: 1, countMax: 1, required: true, units: [["Arcanite Cabal"]] }, { id: "3d1dd845-ceb3-4279-9165-4185c79ff6c4", countMin: 1, countMax: 1, required: true, units: [["Alter-kin Coven"]] }, { id: "9d525a61-3f03-40f6-985c-cb94d2a96ec8", countMin: 0, countMax: 8, required: false, units: [["Alter-kin Coven"], ["Skyshoal Coven"], ["Tzaangor Coven"], ["Witchfyre Coven"]] }, { id: "5ed10e39-d8bd-4590-9929-dda3c5e4b117", countMin: 0, countMax: 0, required: false, units: [["Tzeentch Arcanite"]] }],
+            abilities: [this.abilities.cultOfTheTransientFormTheChangeGift],
+           organisationFootnote: "If the Cult of the Transient Form contains at least 3 Covens, it gains the Destiny Preordained and Strength in Conviction abilities (pg 104).",
         },       thePyrofaneCult: {
             id: "thePyrofaneCult",
             name: "THE PYROFANE CULT",
             allegiance: this.allegiances.tzeentch,
+            description: "The Pyrofane Cult and their splinter cults revel in destruction. Their arcane pyrotechnics build upon themselves, gathering strength like an out-of-control wildfire. Each burning bolt that they chant into existence sears with unnatural fury. Few dare stand before such an inferno for long, as the air itself begins to smoulder and smoke. Tzeentch blesses those who bring the corrupting flames to his enemies, granting the Pyrofane Cult’s sorcerers the ability to cast flickering chainfires that leap from foe to foe. True glory comes only through fiery ruination.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1484991813061-14AvLrVLI9xDnvhd.jpg",
             points: 140,
-            units: [],
-
+            units: [{ id: "e34760f5-929c-4bac-a43d-b23dc4a73613", countMin: 1, countMax: 1, required: true, units: [["Arcanite Cabal"]] }, { id: "7b27160f-fc84-4a8e-9e93-47e5be46b278", countMin: 1, countMax: 1, required: true, units: [["Witchfyre Coven"]] }, { id: "a6f0afbb-3382-4413-abfb-76d93c28fe26", countMin: 0, countMax: 8, required: false, units: [["Alter-kin Coven"], ["Skyshoal Coven"], ["Tzaangor Coven"], ["Witchfyre Coven"]] }, { id: "96563118-d807-48e3-93b6-dee37abfdebf", countMin: 0, countMax: 0, required: false, units: [["Tzeentch", "Arcanite"]] }],
+            abilities: [this.abilities.thePyrofaneCultArchPyromancers],
+           organisationFootnote: "If the Pyrofane Cult contains at least 3 Covens, it gains the Destiny Preordained and Strength in Conviction abilities (pg 104).",
         },       alfrostun: {
             id: "alfrostun",
             name: "ALFROSTUN",
             allegiance: this.allegiances.beastclawRaiders,
+            description: "An Alfrostun is a savage raiding army forged by the wintery will of the Frostlord. Moving swiftly over battlefields of ice and snow it precedes the Everwinter, a wall of cold that scours the land. In its wake naught is left behind but ruined cities and empires picked clean of every last shred of meat.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1470467052764-KJeYXhXExxDr7dC8.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "9636b974-47aa-42c0-8eff-20ece2d2dfc1", countMin: 1, countMax: 1, required: true, units: [["Frostlord on Stonehorn"], ["Frostlord on Thundertusk"]] }, { id: "120f7ffd-ab3f-41f5-b57b-dfb3314ce805", countMin: 1, countMax: 1, required: true, units: [["Jorlbad"]] }, { id: "842e232f-44fb-44a1-8d0d-e814fbfca696", countMin: 1, countMax: 1, required: true, units: [["Eurlbad"]] }, { id: "eaa74e38-4e02-47c8-bda8-d5a50368cfff", countMin: 1, countMax: 1, required: true, units: [["Torrbad"]] }, { id: "360b1a90-bd85-41ac-8f14-48c0aaa6a1c6", countMin: 1, countMax: 1, required: true, units: [["Skal"]] }],
+            abilities: [this.abilities.alfrostunAlfrostunAvalanche],
 
         },       jorlbad: {
             id: "jorlbad",
             name: "JORLBAD",
             allegiance: this.allegiances.beastclawRaiders,
+            description: "The Jorlbad is a spear thrust through the throat of the prey. It tears into enemy lines, overruns fleeing foes and tramples them into the ground, its riders never pausing in their pursuit of their next meal. Leading it is the Jorl, the mightiest warrior of the tribe after the Frostlord, riding a massive Stonehorn.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1470467290389-OERvbFvojM0lwjvH.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "7bcd8e3c-b385-416b-8404-dfc7de4f515f", countMin: 1, countMax: 1, required: true, units: [["Huskard on Stonehorn"]] }, { id: "e9dec32e-cdf4-44e2-ae3f-0c83bf184e6a", countMin: 1, countMax: 3, required: true, units: [["Stonehorn Beastriders"]] }, { id: "bdb6b144-1e6d-48d8-9501-4520943f9ef4", countMin: 2, countMax: 4, required: true, units: [["Mournfang Packs"]] }],
+            abilities: [this.abilities.jorlbadTipOfTheHuntingSpear, this.abilities.jorlbadFightingHand],
 
         },       eurlbad: {
             id: "eurlbad",
             name: "EURLBAD",
             allegiance: this.allegiances.beastclawRaiders,
+            description: "The lumpen hammer that tenderises the foe for the Alfrostun, the Eurlbad surrounds and crushes defenders. It breaks down fortress walls and savages the prey within, before carrying off their mangled remains. Commanding the carnage is the Eurl, a huge and pitiless ogor warrior eager to amass meat.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1470467396546-iKxygNTr1teh1LQW.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "298c7e28-5c6f-47bb-883d-a50543dcaeba", countMin: 1, countMax: 1, required: true, units: [["Huskard on Stonehorn"]] }, { id: "f4513b17-401e-4d2d-ac44-b23a50bed033", countMin: 1, countMax: 3, required: true, units: [["Stonehorn Beastriders"]] }, { id: "1999e24d-0a47-487d-a5d7-5c00eaf69640", countMin: 2, countMax: 4, required: true, units: [["Mournfang Packs"]] }],
+            abilities: [this.abilities.eurlbadCrushMangleTenderise, this.abilities.eurlbadEatingHand],
 
         },       torrbad: {
             id: "torrbad",
             name: "TORRBAD",
             allegiance: this.allegiances.beastclawRaiders,
+            description: "From the driving snows rides the Huskard Torr atop his lumbering Thundertusk. His Torrbad is the herald of winter. It is a cold wind rolling out across the land to freeze the enemies of the Alfrostun, blind them with raging blizzards and make them easy prey for the Beastclaw warriors.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1470467604742-A7XGoVopdEzNcvyP.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "df863c72-49cd-45b5-802b-c06ac9ad8903", countMin: 1, countMax: 1, required: true, units: [["Huskard on Thundertusk"]] }, { id: "9813755d-e5a4-4ca4-8dd6-d97f220b5af3", countMin: 3, countMax: 9, required: true, units: [["Thundertusk Beastriders"]] }, { id: "bac54c29-dc71-4cd6-aa01-9f7e0be73c07", countMin: 0, countMax: 3, required: true, units: [["Icefall Yhetees"]] }],
+            abilities: [this.abilities.torrbadHeartNumbingChill],
 
         },       skal: {
             id: "skal",
             name: "SKAL",
             allegiance: this.allegiances.beastclawRaiders,
+            description: "Icebrow Hunters range out on the Alfrostun’s flanks in search of prey. Pitiless predators, they appear from the swirling snow to bring down monsters and heroes with club and spear. At their whistled command, Frost Sabres bound forth from the gloom, tearing apart the target with fang and claw.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1470467682700-V1ehNClpzIkg8ICK.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "f62d9ce6-5eed-40dd-ac9a-1d488dbdd27f", countMin: 1, countMax: 6, required: true, units: [["Icebrow Hunters"]] }, { id: "5baa6451-4e4f-4917-a01c-97e2bca999b6", countMin: 2, countMax: 10, required: true, units: [["Frost Sabres"]] }],
+            abilities: [this.abilities.skalHuntingPack],
 
         },       svardAlfrostun: {
             id: "svardAlfrostun",
             name: "SVARD ALFROSTUN",
             allegiance: this.allegiances.beastclawRaiders,
+            description: "The Svard Alfrostun is comprised of ancient warriors wreathed in frost and covered in the scars of countless battles. They survived the legendary wars of the Age of Myth and endured the ruinous carnage of the Age of Chaos encased in thick layers of ice. Now they walk the Mortal Realms once more under the mighty leadership of Frostlord Braggoth Vardruk. The iron grip of the lord fills his Huskards with a grim purpose, and none are willing to accept failure in the eyes of their leader. The Alfrostun’s Stornhorns, too, share the tribe’s great resilience, many of the stone-backed beasts having carried Braggoth’s warriors to war since the Age of Myth.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1470467756145-w5IbEyIy5w1sVU6P.jpg",
             points: 150,
-            units: [],
-
+            units: [{ id: "eee9eea8-a842-45ee-879b-73f8a751fa1f", countMin: 1, countMax: 1, required: true, units: [["Frostlord on Stonehorn"]] }, { id: "fbda91c5-bddc-4660-a21c-eccf5d5e8518", countMin: 1, countMax: 1, required: true, units: [["Jorlbad"]] }, { id: "97abf524-4d22-4750-85ab-fa1c9b63da3a", countMin: 0, countMax: 1, required: false, units: [["Eurlbad"]] }, { id: "7d6e510f-fc2d-417e-a60e-7e465d6ba7e9", countMin: 0, countMax: 1, required: false, units: [["Torrbad"]] }, { id: "186ad696-b145-4e18-9fe5-3da2838b112e", countMin: 0, countMax: 1, required: false, units: [["Skal"]] }],
+            abilities: [this.abilities.svardAlfrostunAHardyBreed],
+           organisationFootnote: "If a Svard Alfrostun contains the maximum number of battalions, it gains the Alfrostun Avalanche ability (pg 97).",
         },       olwyrAlfrostun: {
             id: "olwyrAlfrostun",
             name: "OLWYR ALFROSTUN",
             allegiance: this.allegiances.beastclawRaiders,
+            description: "The Olwyr Alfrostun stalks the wind-whipped Sky Roads of Chamon. A forbidding wilderness of freezing bridges that weave through valleys of cloud, only the most skilful riders can master this forbidding landscape. The thunder of Mournfang cavalry and the snarl of countless beasts heralds the raid’s arrival into the fray. These ogors are renowned for the speed of their riders, and the viciousness of their steeds, for only the quick survive the Sky Roads. The success of the Olwyr also rests in the hands of their lords. Instinctively they can scent the prey on the shifting winds, mustering their packs to strike the enemy in sudden and merciless attacks.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1470467836677-ideycKpOPJ0GdaJc.jpg",
             points: 190,
-            units: [],
+            units: [{ id: "7931cd77-1b06-4014-8347-304b1b635940", countMin: 1, countMax: 1, required: true, units: [["Frostlord on Thundertusk"]] }, { id: "9bd6535d-82b6-4573-b4e4-f28ca72a5ff5", countMin: 1, countMax: 1, required: true, units: [["Eurlbad"]] }, { id: "3accbb27-2462-4f6c-880e-860f86978e57", countMin: 0, countMax: 1, required: false, units: [["Jorlbad"]] }, { id: "1dfd0bea-c81b-4b7b-9bac-aa5ca860eb2b", countMin: 0, countMax: 1, required: false, units: [["Torrbad"]] }, { id: "4ba53780-d8bb-4a54-afeb-15df40a30743", countMin: 0, countMax: 1, required: false, units: [["Skal"]] }],
+            abilities: [this.abilities.olwyrAlfrostunCunningAndWise, this.abilities.olwyrAlfrostunViciousBeasts, this.abilities.olwyrAlfrostunSwiftstride],
 
         },       braggothSBeastHammer: {
             id: "braggothSBeastHammer",
             name: "BRAGGOTH’S BEAST HAMMER",
             allegiance: this.allegiances.beastclawRaiders,
+            description: "The Beast Hammer is forged from the rivalry between orruks and ogors. Competing for kills, its packs and mobs are a stampede of vicious beasts and savage riders, their fury augmented by the excessive violence of Frostlord Braggoth Vardruk.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1470467925707-MRhlipVJioFm55np.jpg",
             points: 230,
-            units: [],
+            units: [{ id: "711b75b8-7387-434b-9782-261315bf9530", countMin: 1, countMax: 1, required: true, units: [["Frostlord on Stonehorn"]] }, { id: "cce59cdb-d412-4c0a-aa54-361ca52e8d00", countMin: 2, countMax: 2, required: true, units: [["Mournfang Packs"]] }, { id: "fac86bdf-e946-4149-9cb6-b3d953b1bb98", countMin: 2, countMax: 2, required: true, units: [["Gore-gruntas"]] }],
+            abilities: [this.abilities.braggothSBeastHammerAHardyBreed, this.abilities.braggothSBeastHammerFierceRivals, this.abilities.braggothSBeastHammerOverrunningStampede],
 
         },       savageWarclan: {
             id: "savageWarclan",
             name: "SAVAGE WARCLAN",
             allegiance: this.allegiances.bonesplitterz,
+            description: "Gorkamorka seems to scream down from the sky as the Bonesplitterz gather for war, their roiling Waaagh! energy infecting both the land and nearby beasts with a boundless animal frenzy.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469261449207-kuQuhsn5SWLBX9Q9.jpg",
             points: 80,
-            units: [],
+            units: [{ id: "0289c3a7-239e-403a-a8c2-e7f537688cb4", countMin: 1, countMax: 1, required: true, units: [["Wurrgog Prophet"]] }, { id: "871e992f-d24b-4171-82d2-1843752f5904", countMin: 1, countMax: 1, required: true, units: [["Kop Rukk"]] }, { id: "3cbc1735-9ce5-49ed-b699-5469c485dc6a", countMin: 1, countMax: 1, required: true, units: [["Snaga Rukk"]] }, { id: "97add16e-c6f4-4479-a0bc-cef8657a60a6", countMin: 1, countMax: 1, required: true, units: [["Brutal Rukk"]] }, { id: "7ff2f1f7-f60c-40cc-a662-ee77cd590f3f", countMin: 1, countMax: 1, required: true, units: [["Kunnin' Rukk"]] }, { id: "105d6a02-4123-476a-af8b-4aeb123f192b", countMin: 1, countMax: 1, required: true, units: [["Teef Rukk"]] }],
+            abilities: [this.abilities.savageWarclanExtraJuJuWarpaint],
 
         },       kopRukk: {
             id: "kopRukk",
             name: "KOP RUKK",
             allegiance: this.allegiances.bonesplitterz,
+            description: "Before battle, hordes of crazed Morboys stamp the ground and beat their chests as Wardokks chant and dance around, the savage racket rousing the beast spirits and striking fear into their foes.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469261522862-C4usBqSYFMrplyzJ.jpg",
             points: 200,
-            units: [],
+            units: [{ id: "be2c685e-f990-48cb-9718-e79d99a64a86", countMin: 2, countMax: 5, required: true, units: [["Wardokks"]] }, { id: "03f1d47f-e20b-4a75-9536-7b94fa8793ac", countMin: 2, countMax: 5, required: true, units: [["Savage Orruk Morboys"]] }],
+            abilities: [this.abilities.kopRukkSavageWaaaghEnergy, this.abilities.kopRukkWaaaghStomp],
 
         },       snagaRukk: {
             id: "snagaRukk",
             name: "SNAGA RUKK",
             allegiance: this.allegiances.bonesplitterz,
+            description: "A savage tide of boar flesh and green muscle, Snaga Rukks hurtle into combat no matter what is in their way, be it man, beast or mountain range, even scrambling over their own boys if need be.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469261762160-vzDIhuI5ciZ9RiiC.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "4a2f0b66-8ef8-4f2e-a0d3-e8dee57b8d21", countMin: 2, countMax: 2, required: true, units: [["Maniak Weirdnobs"]] }, { id: "bb352ddc-3efe-42a3-92fe-ebebf16b2c11", countMin: 2, countMax: 10, required: true, units: [["Savage Boarboy Maniaks"]] }],
+            abilities: [this.abilities.snagaRukkManiakStampede],
 
         },       brutalRukk: {
             id: "brutalRukk",
             name: "BRUTAL RUKK",
             allegiance: this.allegiances.bonesplitterz,
+            description: "No one is going to beat a Brutal Rukk to the fight. Tearing off across the battlefield, its boys try to keep up with their boss, waving their weapons about and bellowing as they get ready for the killing.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469261826859-gMLeNk2bflpvyt7m.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "00483d17-f5c4-433c-92a3-8ecb8f885068", countMin: 1, countMax: 1, required: true, units: [["Savage Big Boss"]] }, { id: "714ba1d4-8025-4e63-b2b5-6bd07120dc1b", countMin: 2, countMax: 5, required: true, units: [["Savage Orruks"], ["Savage Boarboys"]] }],
+            abilities: [this.abilities.brutalRukkSavageSwiftness],
 
         },       kunninRukk: {
             id: "kunninRukk",
             name: "KUNNIN’ RUKK",
             allegiance: this.allegiances.bonesplitterz,
+            description: "Cunning and brutal, this half of the Gob Rukks take their enemies by surprise, filling them full of arrows when they least expect it, or dodging around counter-attacks to stab them in the flank.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469261919926-Os8Th3RoFGCxVqrE.jpg",
             points: 200,
-            units: [],
+            units: [{ id: "ce5444ef-0383-4b93-af78-d340586d9a3a", countMin: 1, countMax: 1, required: true, units: [["Savage Big Boss"]] }, { id: "8d00b67a-3f24-4e3e-8823-1a02c1e0e38d", countMin: 2, countMax: 5, required: true, units: [["Savage Orruks"], ["Savage Orruk Arrowboys"]] }],
+            abilities: [this.abilities.kunninRukkDeadSneaky],
 
         },       teefRukk: {
             id: "teefRukk",
             name: "TEEF RUKK",
             allegiance: this.allegiances.bonesplitterz,
+            description: "Massed mobs of Big Stabbas seek out monsters with their Gork Teef. The larger the beast, the more spears are used to bring it down, each Gork Toof thrust into the wound left by the last.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469262005053-F7y3rJsMSAyg0avG.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "14450985-3c21-45b6-b9a9-421cc7c2e11c", countMin: 2, countMax: 5, required: true, units: [["Savage Big Stabbas"]] }],
+            abilities: [this.abilities.teefRukkCrazedMonsterHunters],
 
         },       bonegrinzWarclan: {
             id: "bonegrinzWarclan",
             name: "BONEGRINZ WARCLAN",
             allegiance: this.allegiances.bonesplitterz,
+            description: "Bonegrinz are savage beast hunters without peer. Countless monsters and great spirits have fallen to their crazed orruk warriors in their nomadic journeys across the Mortal Realms. The warclan is festooned with the potent trophies from these hunts; bones and teeth ripped from Magmadroths, Gargants and Maw-Krushas adorning its boys. Every greenskin warrior that wears the mark of the Bonegrinz is a skilled beastkiller, and more than any other warclan, they boast huge numbers of savage orruk boys so they can bring down the biggest beasts of the realms.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469262309735-qYVsT8yUtiEMdtiF.jpg",
             points: 110,
-            units: [],
-
+            units: [{ id: "2ac4e181-e2ac-4840-a09f-ccecdc0c99ee", countMin: 1, countMax: 1, required: true, units: [["Kunnin' Rukk"]] }, { id: "b22459ec-bb19-4398-bad4-ff66731fb09c", countMin: 0, countMax: 1, required: false, units: [["Wurrgog Prophet"]] }, { id: "3286ee4d-6f0c-490b-b378-b30fdd22842f", countMin: 0, countMax: 1, required: false, units: [["Kop Rukk"]] }, { id: "b2f12d08-0e62-4934-ba15-b5ac2140268e", countMin: 0, countMax: 1, required: false, units: [["Snaga Rukk"]] }, { id: "90b303cd-4227-461b-b6f4-2152909c00b4", countMin: 0, countMax: 1, required: false, units: [["Teef Rukk"]] }, { id: "26b463ca-8718-41ff-8b2f-e0b118e9d975", countMin: 0, countMax: 0, required: false, units: [["Bonesplitterz"]] }],
+            abilities: [this.abilities.bonegrinzWarclanLoadsaBoyz, this.abilities.bonegrinzWarclanBeastSlayers],
+           organisationFootnote: "If a Bonegrinz Warclan contains a Wurrgog Prophet and the maximum number of battalions, it gains the Extra Ju-ju Warpaint ability (pg 93).",
         },       iceboneWarclan: {
             id: "iceboneWarclan",
             name: "ICEBONE WARCLAN",
             allegiance: this.allegiances.bonesplitterz,
+            description: "Deep in the Skyblind Tundras of Ghur, the Icebone orruks hunt their prey through swirling blizzards and freezing storms. They craft their chompas and stikkas from shards of the gigantic spirit-glaciers of their land, each slow-moving mountain of sorcerous ice filled with the caged corpses of slain beasts. Upon the backs of white-furred warboars, the Icebone orruks thunder into battle, the weak sunlight glinting off their crude weapons. A blow from their blades carries the frigid touch of the glaciers and can freeze the blood of a monster, slowing it down for the kill.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469262418151-VEIKxtY96BsxB76t.jpg",
             points: 160,
-            units: [],
-
+            units: [{ id: "891d5628-7f47-42fb-a010-9dff2775e0ff", countMin: 1, countMax: 1, required: true, units: [["Snaga Rukk"]] }, { id: "daf807fb-437b-4848-b2ca-a1dc049e7c39", countMin: 0, countMax: 1, required: false, units: [["Wurrgog Prophet"]] }, { id: "421d5a14-2e00-46d9-83d5-f717d2d7560a", countMin: 0, countMax: 1, required: false, units: [["Kop Rukk"]] }, { id: "58979d4f-dab8-413d-9037-2bad8e9b3215", countMin: 0, countMax: 1, required: false, units: [["Teef Rukk"]] }, { id: "cc0f01db-1200-4888-8e74-b5ee934195e8", countMin: 0, countMax: 1, required: false, units: [["Brutal Rukk"]] }, { id: "1ef757b3-c034-4d32-aca8-5bbdc73bdf52", countMin: 0, countMax: 0, required: false, units: [["Bonesplitterz"]] }],
+            abilities: [this.abilities.iceboneWarclanTundraStriderz, this.abilities.iceboneWarclanFreezinWeapons],
+           organisationFootnote: "If an Icebone Warclan contains a Wurrgog Prophet and the maximum number of battalions, it gains the Extra Ju-ju Warpaint ability (pg 93).",
         },       drakkfootWarclan: {
             id: "drakkfootWarclan",
             name: "DRAKKFOOT WARCLAN",
             allegiance: this.allegiances.bonesplitterz,
+            description: "The Drakkfoot Warclan hunt their prey among the sprawling Gorelakes in the Ashlands of Aqshy. The lakes are a relic of the Dark God’s dominion over the land, and each crimson pool bubbles and boils with slain souls. The Drakkfoot orruks use the glowing red blood of the Gorelakes to paint beast tattoos on their bodies, its strange magic mixing with their ambient Waaagh! power. When Gork’s fury takes the Drakkfoot Bonesplitterz, these markings blaze fiery crimson and dance about, filling them with strength, and warding away even the most potent of enemy sorceries.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1469262727309-PhfLiW17bSMDWHWv.jpg",
             points: 140,
-            units: [],
-
+            units: [{ id: "859c1dd1-e25c-4b36-8767-5f8d545f296e", countMin: 1, countMax: 1, required: true, units: [["Wurrgog Prophet"]] }, { id: "6e9c1d31-8421-40bd-a9f5-5606001314b1", countMin: 1, countMax: 1, required: true, units: [["Kop Rukk"]] }, { id: "67a94d28-acda-43ad-ab8b-ca2d4c055ddf", countMin: 0, countMax: 1, required: false, units: [["Snaga Rukk"]] }, { id: "7298726a-df57-411e-b8eb-adb012ccfecf", countMin: 0, countMax: 1, required: false, units: [["Teef Rukk"]] }, { id: "b55ed47f-e68e-4226-b330-bf68ccba9bbb", countMin: 0, countMax: 1, required: false, units: [["Brutal Rukk"]] }, { id: "33220cc3-dd31-487d-8fae-39c9c2013da0", countMin: 0, countMax: 1, required: false, units: [["Kunnin' Rukk"]] }, { id: "d335c78e-814d-4e1d-b2d7-26aea3f51223", countMin: 0, countMax: 0, required: false, units: [["Bonesplitterz"]] }],
+            abilities: [this.abilities.drakkfootWarclanJuJuSpirits, this.abilities.drakkfootWarclanRedWaaaghPaint],
+           organisationFootnote: "If a Drakkfoot Warclan contains the maximum number of battalions, it gains the Extra Ju-ju Warpaint ability (pg 93).",
         },       freeSpirits: {
             id: "freeSpirits",
             name: "FREE SPIRITS",
             allegiance: this.allegiances.sylvaneth,
+            description: "The Free Spirits are the instruments of Alarielle’s will, a cadre of elite warriors whose presence hones the sylvaneth muster into a swift and deadly weapon of singular purpose.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468050153749-nxa7OzapUWZjUjj8.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "cfafb0f9-851f-45d1-a18a-92a100be098e", countMin: 1, countMax: 1, required: true, units: [["Spirit of Durthu"]] }, { id: "3aae624a-cb7e-4c89-85f7-8fa505554a08", countMin: 3, countMax: 3, required: true, units: [["Kurnoth Hunters"]] }],
+            abilities: [this.abilities.freeSpiritsSwiftVengeance],
 
         },       lordsOfTheClan: {
             id: "lordsOfTheClan",
             name: "LORDS OF THE CLAN",
             allegiance: this.allegiances.sylvaneth,
+            description: "The spirit-song surges through the Lords of the Clan like a raging river. As they stride across the battlefield, the Treelords harness that energy to marshal their forces, and to punish their foes.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468050206308-sKMQpdo2CAQ4HUCG.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "dc33c839-2564-4a20-8837-1bbcc7bff902", countMin: 1, countMax: 1, required: true, units: [["Treelord Ancient"]] }, { id: "34fd1af2-aa15-43a8-ae12-d083ae802809", countMin: 1, countMax: 3, required: true, units: [["Treelord Ancients"]] }, { id: "05831e88-b188-477e-9968-46ca6959f778", countMin: 1, countMax: 3, required: true, units: [["Treelords"]] }],
+            abilities: [this.abilities.lordsOfTheClanDeadlyChorus],
 
         },       household: {
             id: "household",
             name: "HOUSEHOLD",
             allegiance: this.allegiances.sylvaneth,
+            description: "In ritually ordered formations, the warriors of the Household advance into the teeth of the enemy army, pinning them in battle while the rest of the clan rips into them from all sides.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468050256448-iFL37s1szamtb95w.jpg",
             points: 100,
-            units: [],
+            units: [{ id: "c595bf39-52c7-47fe-935d-d7464f84369a", countMin: 1, countMax: 1, required: true, units: [["Treelord"]] }, { id: "efb4e874-0739-4c5c-88ec-8f4578bdaf1d", countMin: 1, countMax: 1, required: true, units: [["Branchwych"]] }, { id: "a3b5362a-d2cc-436c-80a6-43ed021b5a7a", countMin: 1, countMax: 1, required: true, units: [["Tree-Revenants"]] }],
+            abilities: [this.abilities.householdDisciplineOfTheAges],
 
         },       forestFolk: {
             id: "forestFolk",
             name: "FOREST FOLK",
             allegiance: this.allegiances.sylvaneth,
+            description: "Moving quickly through the undergrowth, the Forest Folk plunge into battle. Attacking from every side, multiple bands of Dryads lash their victims to bloody tatters before vanishing once again.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468050318442-gkHQqxkKnco7lk11.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "a9848734-a172-48d6-9028-08244dee1afa", countMin: 1, countMax: 1, required: true, units: [["Branchwraith"]] }, { id: "9cdf16d0-217c-4161-95fd-6222eb116433", countMin: 3, countMax: 3, required: true, units: [["Dryads"]] }],
+            abilities: [this.abilities.forestFolkFadeFromView],
 
         },       outcasts: {
             id: "outcasts",
             name: "OUTCASTS",
             allegiance: this.allegiances.sylvaneth,
+            description: "The Outcasts are the terrors that lurk in the shadows, the creeping things beneath the forest eaves. When great masses of them surge into battle, it is all the enemy can do to avoid dying of sheer fright.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468050354123-5bzspdcGSPipIRuM.jpg",
             points: 90,
-            units: [],
+            units: [{ id: "6610ded3-f469-4d29-852f-686da4d6cb22", countMin: 3, countMax: 3, required: true, units: [["Spite-Revenants"]] }],
+            abilities: [this.abilities.outcastsFearTheForestKin],
 
         },       sylvanethWargrove: {
             id: "sylvanethWargrove",
             name: "SYLVANETH WARGROVE",
             allegiance: this.allegiances.sylvaneth,
+            description: "Drawn together by the strident melodies of the song of war, a sylvaneth Wargrove moves and fights as a single mighty warrior whose swift and deadly attacks have been the death of countless foes.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468050428863-6mxeY0s95JrmLKA9.jpg",
             points: 80,
-            units: [],
+            units: [{ id: "11b2408c-ec09-4ae0-8456-2faa5b13c767", countMin: 1, countMax: 1, required: true, units: [["Lords of the Clan"]] }, { id: "4faf20a5-a87c-4ab6-bd0b-d4a724b02e82", countMin: 3, countMax: 3, required: true, units: [["Household"]] }, { id: "eedd015d-47b9-47c8-a4bb-594d09871b20", countMin: 3, countMax: 3, required: true, units: [["Forest Folk"]] }, { id: "88cd41bd-6154-4af9-a4c5-92b005431509", countMin: 1, countMax: 1, required: true, units: [["Free Spirits"]] }, { id: "284c5b38-21f2-4e57-b418-94140f688adc", countMin: 1, countMax: 1, required: true, units: [["Outcasts"]] }],
+            abilities: [this.abilities.sylvanethWargroveMightyWyldwood],
 
         },       oakenbrowWargrove: {
             id: "oakenbrowWargrove",
             name: "OAKENBROW WARGROVE",
             allegiance: this.allegiances.sylvaneth,
+            description: "The Wargroves of Oakenbrow Glade are led by great numbers of mighty Treelords and Treelord Ancients. Possessed of unfailing nobility and might, these regal warriors stride at the fore of their Wargrove, smashing a hole in the enemy lines through which their kin then pour. The resilience and tenacity of Oakenbrow’s armies is legendary, and it is said that no matter what weapons their enemies wield, or how desperate matters become, the noble warriors of Oakenbrow will never disgrace Alarielle by giving in to defeat.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468066952468-c97V9OrhNw1tcG7T.jpg",
             points: 90,
-            units: [],
-
+            units: [{ id: "1f44447d-2429-4765-ae0e-f279cfabdbf8", countMin: 1, countMax: 1, required: true, units: [["Lords of the Clan"]] }, { id: "bcd45a0c-7d79-4903-8ce4-94fb4f27d43c", countMin: 0, countMax: 3, required: false, units: [["Household"]] }, { id: "51439387-5b70-438c-aa0e-87379ec4d6b7", countMin: 0, countMax: 3, required: false, units: [["Forest Folk"]] }, { id: "830d7436-6f7d-4a31-9d98-cc85f945e056", countMin: 0, countMax: 1, required: false, units: [["Free Spirits"]] }, { id: "4e21ac7d-2049-4a0e-908c-aa5b4fb1e788", countMin: 0, countMax: 1, required: false, units: [["Outcasts"]] }, { id: "5cc4272c-8250-44bd-9bf4-a10314bd834b", countMin: 0, countMax: 0, required: false, units: [["Sylvaneth"]] }],
+            abilities: [this.abilities.oakenbrowWargroveNobleSpirits, this.abilities.oakenbrowWargroveMightyHosts],
+           organisationFootnote: "If an Oakenbrow Wargrove contains the maximum number of battalions, it gains the Mighty Wyldwood ability (see pg 120).",
         },       gnarlrootWargrove: {
             id: "gnarlrootWargrove",
             name: "GNARLROOT WARGROVE",
             allegiance: this.allegiances.sylvaneth,
+            description: "No other sylvaneth army can match the sorcerous might wielded by the Wargroves of Gnarlroot Glade. At their head stride Treelord Ancients who were old even before Sigmar’s pantheon was formed, attended by Branchwyches and Branchwraiths privy to the myriad forbidden secrets of their gnarled lords. Even as the warriors of the Households and the Forest Folk spring into battle, they are accompanied by a veritable gale of sorcerous energies that sees the enemy wither like rotted fruit on the vine, while the sylvaneth blossom into greater strength and vitality than ever before.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468066989468-S9aiWkWOcBhihkNx.jpg",
             points: 130,
-            units: [],
-
+            units: [{ id: "efe1e841-fd6e-4091-bd63-775a306931d7", countMin: 1, countMax: 1, required: true, units: [["Household"]] }, { id: "69816077-e3bf-44ea-ab15-d8372b1e3283", countMin: 0, countMax: 1, required: false, units: [["Lords of the Clan"]] }, { id: "b601dce1-026d-4875-9eb2-bcda1ddd0e57", countMin: 0, countMax: 2, required: false, units: [["Household"]] }, { id: "2d1ae087-6f74-4fb7-8283-6641def9b8f7", countMin: 0, countMax: 3, required: false, units: [["Forest Folk"]] }, { id: "3ba50894-0c12-49ec-813d-d1a0cde6c371", countMin: 0, countMax: 1, required: false, units: [["Free Spirits"]] }, { id: "6dd12b70-a99a-4c62-bbec-933997f8bd8d", countMin: 0, countMax: 1, required: false, units: [["Outcasts"]] }, { id: "6b4c0659-2830-4551-b2dc-7ab2c0948623", countMin: 0, countMax: 1, required: false, units: [["Order", "Wizard"]] }, { id: "68a07b07-4b3d-4388-b6b5-89aca2654f51", countMin: 0, countMax: 0, required: false, units: [["Sylvaneth"]] }],
+            abilities: [this.abilities.gnarlrootWargroveSeekersOfKnowledge],
+           organisationFootnote: "If a Gnarlroot Wargrove contains the maximum number of battalions, it gains the Mighty Wyldwood ability (see pg 120).",
         },       heartwoodWargrove: {
             id: "heartwoodWargrove",
             name: "HEARTWOOD WARGROVE",
             allegiance: this.allegiances.sylvaneth,
+            description: "Few Wargroves are as warlike as those of Heartwood Glade. Brave and determined, these sylvaneth warriors worship not only Alarielle but also her spiritual consort, Kurnoth. They draw their inspiration from the teachings of the God of the Hunt, and welcome gladly the Free Spirits who serve as his mortal avatars upon the field of battle. It is common to see the Wargroves of Heartwood led into battle by whole hunting parties of those towering warriors, or racing out upon the Wild Hunt to drag down and tear apart those who have defiled Alarielle’s realm.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468066885595-HVcOLFBHdNQ4V2dp.jpg",
             points: 80,
-            units: [],
-
+            units: [{ id: "95a31d3e-8ba6-4771-88d2-3a1e96b7f0f5", countMin: 1, countMax: 1, required: true, units: [["Free Spirits"]] }, { id: "46ef7c18-bb78-4450-a23d-9d898134fe6d", countMin: 0, countMax: 1, required: false, units: [["Lords of the Clan"]] }, { id: "7c394f4d-5bf5-487d-a2db-cb12f1127c04", countMin: 0, countMax: 3, required: false, units: [["Household"]] }, { id: "74fef656-4797-40c0-8184-80c5292b551b", countMin: 0, countMax: 3, required: false, units: [["Forest Folk"]] }, { id: "d79f8f4e-05d4-4caf-8692-2060a7509427", countMin: 0, countMax: 1, required: false, units: [["Outcasts"]] }, { id: "d25f5987-d80e-4e32-a275-a110cc5cf040", countMin: 0, countMax: 0, required: false, units: [["Sylvaneth"]] }],
+            abilities: [this.abilities.heartwoodWargroveWorshippersOfKurnoth, this.abilities.heartwoodWargroveFollowersOfTheWildHunt],
+           organisationFootnote: "If a Heartwood Wargrove contains the maximum number of battalions, it gains the Mighty Wyldwood ability (see pg 120).",
         },       ironbarkWargrove: {
             id: "ironbarkWargrove",
             name: "IRONBARK WARGROVE",
             allegiance: this.allegiances.sylvaneth,
+            description: "Like a towering tree with its roots dug deep, a Wargrove of Ironbark Glade is as immovable as it is mighty. Built around stoic Households of Noble Spirits, each armed with expertly crafted blades of the most enduring metals and minerals, the warriors of Ironbark soak up the fury of the enemy charge before cutting their enemies to pieces without mercy. It is said that the spirits of Ironbark have learned much – perhaps a little too much – stubborn determination from their duardin allies, but there can be no denying that their unfailing grit stands them in good stead upon the field of battle.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468067011026-LdnFqpFkIOkkcoSb.jpg",
             points: 80,
-            units: [],
-
+            units: [{ id: "69b307f8-17f7-4d05-af0e-a05c3d80d11c", countMin: 1, countMax: 1, required: true, units: [["Household"]] }, { id: "ea2a9938-d450-46af-88f8-58ddd42e11e7", countMin: 0, countMax: 1, required: false, units: [["Lords of the Clan"]] }, { id: "bb6c4489-5676-42cc-a3e8-aa6f9457f115", countMin: 0, countMax: 2, required: false, units: [["Household"]] }, { id: "6469c42f-bcaa-4559-bee7-a0e6facb8cc5", countMin: 0, countMax: 3, required: false, units: [["Forest Folk"]] }, { id: "6137e522-acd3-4f52-89eb-f419db5ac33b", countMin: 0, countMax: 1, required: false, units: [["Free Spirits"]] }, { id: "906825e0-ea09-4fab-b6e3-adaa84917829", countMin: 0, countMax: 1, required: false, units: [["Outcasts"]] }, { id: "0b1923f5-1256-4f0a-b716-8c156106ccb3", countMin: 0, countMax: 2, required: false, units: [["Duardin"]] }, { id: "7b9962be-d771-41da-a60c-54fb858a2b2f", countMin: 0, countMax: 0, required: false, units: [["Sylvaneth"]] }],
+            abilities: [this.abilities.ironbarkWargroveStubbornAndTaciturn, this.abilities.ironbarkWargroveMasterCraftedWeapons],
+           organisationFootnote: "If an Ironbark Wargrove contains the maximum number of battalions, it gains the Mighty Wyldwood ability (pg 120).",
         },       winterleafWargrove: {
             id: "winterleafWargrove",
             name: "WINTERLEAF WARGROVE",
             allegiance: this.allegiances.sylvaneth,
+            description: "To stand before the Wargroves of Winterleaf Glade is to know the icy fury of the blizzard as it rips its way through the rattling, clawing branches of a leafless canopy. Cold of eye and heartwood alike, the warriors of Winterleaf harbour neither mercy nor compassion for their foes. They care nothing for their own lives, believing themselves already dead in every way that matters. Thus they advance with the grim inevitability of the frozen seasons, every savage claw thrust and whistling blade felling another foe and leaving its contorted corpse sprawled amidst the carrion dead.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468067041194-RQ0yS0Vyg5F7MR5L.jpg",
             points: 90,
-            units: [],
-
+            units: [{ id: "5c100d94-0827-4054-92bc-690e0dfa3440", countMin: 1, countMax: 1, required: true, units: [["Forest Folk"]] }, { id: "58af9d46-f49e-44df-bcf4-b406c3e08fff", countMin: 0, countMax: 1, required: false, units: [["Lords of the Clan"]] }, { id: "6f9b1d55-1937-46e4-a78d-ae69ef186d4b", countMin: 0, countMax: 3, required: false, units: [["Household"]] }, { id: "bc06cb98-48f6-4518-be0b-16c69dae5662", countMin: 0, countMax: 2, required: false, units: [["Forest Folk"]] }, { id: "c865099c-0f4f-4541-9771-6d8f8fc64563", countMin: 0, countMax: 1, required: false, units: [["Free Spirits"]] }, { id: "26a1a422-0bca-4586-a219-113bded15bfb", countMin: 0, countMax: 1, required: false, units: [["Outcasts"]] }, { id: "79e0a2d3-9ff5-4ed6-82c5-c1c6d06e5e2b", countMin: 0, countMax: 1, required: false, units: [["Order"]] }, { id: "8e53796c-885d-41aa-9b64-a512b051c7f9", countMin: 0, countMax: 0, required: false, units: [["Sylvaneth"]] }],
+            abilities: [this.abilities.winterleafWargroveSurroundedByDevastation, this.abilities.winterleafWargroveEmbitteredByWar, this.abilities.winterleafWargroveRevengeAgainstChaos],
+           organisationFootnote: "If a Winterleaf Wargrove contains the maximum number of battalions, it gains the Mighty Wyldwood ability (see pg 120).",
         },       dreadwoodWargrove: {
             id: "dreadwoodWargrove",
             name: "DREADWOOD WARGROVE",
             allegiance: this.allegiances.sylvaneth,
+            description: "Battling a Wargrove of Dreadwood Glade is like trying to fight choking smoke rising from a fire‑blackened forest. These spiteful creatures care nothing for the honour, nobility and grace of their kin. They delight, instead, in spreading confusion, fear and pain. From ambushes and sneak attacks to cruel illusions, torture and terror tactics, there is no strategy that is beneath the cruel warriors of Dreadwood. Such is their malice that even the Spite- Revenants drawn to their musters are blacker of heartwood than most, ripping into their enemies with a savagery that borders on atrocity.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468067067720-57ZRAGtlooyeK8mj.jpg",
             points: 90,
-            units: [],
-
+            units: [{ id: "49752124-c1c6-42bd-bdd7-6d64015dc49e", countMin: 1, countMax: 1, required: false, units: [["Outcasts"]] }, { id: "99bf0c72-5538-4e80-a486-fccbdb668127", countMin: 0, countMax: 1, required: false, units: [["Lords of the Clan"]] }, { id: "e85aa69d-7bb1-40a4-ba4e-4014815263a6", countMin: 0, countMax: 3, required: false, units: [["Household"]] }, { id: "026bcfcc-85db-41f3-9117-2764239dbca1", countMin: 0, countMax: 3, required: false, units: [["Forest Folk"]] }, { id: "d4d2cf4b-0ae9-44ed-b3e0-3f2d4c06d123", countMin: 0, countMax: 1, required: false, units: [["Free Spirits"]] }, { id: "648d11ef-c3ba-4fee-8302-e554b06c7ec1", countMin: 0, countMax: 0, required: false, units: [["Sylvaneth"]] }],
+            abilities: [this.abilities.dreadwoodWargroveMaliciousTormentors, this.abilities.dreadwoodWargroveSubterfuge],
+           organisationFootnote: "If a Dreadwood Wargrove contains the maximum number of battalions, it gains the Mighty Wyldwood ability (see pg 120).",
         },       harvestboonWargrove: {
             id: "harvestboonWargrove",
             name: "HARVESTBOON WARGROVE",
             allegiance: this.allegiances.sylvaneth,
+            description: "Built around vibrant, quicktempered warbands of Forest Folk, the Wargroves of Harvestboon Glade are swift and aggressive. The hope that sings through the heartwood of these lithe young spirits lends them speed and agility, and sees them surge across the battlefield like the spear of Kurnoth. Life magic swirls around the Harvestboon Wargroves, focussed upon the Branchwraiths who lead their Forest Folk to war. These graceful creatures shield their kin from harm while ripping gaps in the enemy lines for their warriors to exploit.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468067090508-tSSEbG5NmnJnoSUB.jpg",
             points: 100,
-            units: [],
-
+            units: [{ id: "986d8d6d-c50b-4d30-bd18-e82f66b2b21f", countMin: 1, countMax: 1, required: true, units: [["Forest Folk"]] }, { id: "053676f0-759f-45e4-8df4-aff160a37ce6", countMin: 0, countMax: 1, required: false, units: [["Lords of the Clan"]] }, { id: "377c1a23-60e9-43ee-bf65-897155e2e55d", countMin: 0, countMax: 3, required: false, units: [["Household"]] }, { id: "0df53170-9773-4770-af72-37a893150dd9", countMin: 0, countMax: 2, required: false, units: [["Forest Folk"]] }, { id: "0e3572e2-d8b2-4d35-84f4-094ef171c551", countMin: 0, countMax: 1, required: false, units: [["Free Spirits"]] }, { id: "30e91def-4409-4cb7-bd67-be6df4a08c70", countMin: 0, countMax: 1, required: false, units: [["Outcasts"]] }, { id: "31c29f2d-c5c5-4bd6-9115-e956b3237cbd", countMin: 0, countMax: 0, required: false, units: [["Sylvaneth"]] }],
+            abilities: [this.abilities.harvestboonWargroveChorusOfMagic, this.abilities.harvestboonWargroveVibrantSurge],
+           organisationFootnote: "If a Harvestboon Wargrove contains the maximum number of battalions, it gains the Mighty Wyldwood ability (see pg 120).",
         },       guardiansOfAlarielle: {
             id: "guardiansOfAlarielle",
             name: "GUARDIANS OF ALARIELLE",
             allegiance: this.allegiances.sylvaneth,
+            description: "Combining the swift strength of the sylvaneth with the resilience and courage of the Hallowed Knights, the Guardians of Alarielle formed a nigh-unstoppable force to defend the dormant Alarielle.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1468051111431-chOH4R7fN24LBx6E.jpg",
             points: 200,
-            units: [],
+            units: [{ id: "edd26e66-10f0-4000-81fa-6ce503986aca", countMin: 1, countMax: 1, required: true, units: [["Branchwraith"]] }, { id: "6fddf9e5-98eb-4f23-ac6f-4f8cba958a1d", countMin: 2, countMax: 2, required: true, units: [["Treelords"], ["Treelord Ancients"]] }, { id: "749f1460-b2b2-4eec-a660-7c1cbdb72404", countMin: 2, countMax: 2, required: true, units: [["Dryads"]] }, { id: "5a6422f1-c0d5-49be-be80-ccba3221b366", countMin: 1, countMax: 1, required: true, units: [["Lord-Castellant"]] }, { id: "1a3198a2-a3f3-47f0-8d0f-ce906e2905f3", countMin: 2, countMax: 2, required: true, units: [["Liberators"]] }, { id: "9a92eec2-eebd-4114-b599-719ab41d4357", countMin: 1, countMax: 1, required: true, units: [["Judicators"]] }],
+            abilities: [this.abilities.guardiansOfAlarielleTheSongOfTheLadyOfVines, this.abilities.guardiansOfAlarielleMasterOfDefence, this.abilities.guardiansOfAlarielleGuardiansOfTheQueenSeed],
 
         },       royalFamily: {
             id: "royalFamily",
             name: "ROYAL FAMILY",
             allegiance: this.allegiances.fleshEaterCourts,
+            description: "Blood calls to blood, and under the bestial gaze of the Abhorrant Ghoul King, his royal family gathers to unleash red ruin upon their foes, calling forth an unending tide of twisted mordant warriors.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463219220791-1CBi7XxjPiA5N6pP.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "b12ddb13-59eb-4dc9-966e-5a4927c3120f", countMin: 1, countMax: 1, required: true, units: [["Abhorrant Ghoul King on Terrorgheist"], ["Abhorrant Ghoul King on Zombie Dragon"]] }, { id: "6038d46d-6e8f-4b4e-bd93-9f1fba7f0bb7", countMin: 2, countMax: 6, required: true, units: [["Abhorrant Ghoul Kings"]] }],
+            abilities: [this.abilities.royalFamilyLordsOfTheManor],
 
         },       attendantsAtCourt: {
             id: "attendantsAtCourt",
             name: "ATTENDANTS AT COURT",
             allegiance: this.allegiances.fleshEaterCourts,
+            description: "Favoured creatures of the court, the Lickspittles have free rein to rend and tear their foes at will. The Lord Chamberslough gives what few orders they will follow, enacting the king’s will.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463219417814-B4jzSfu34oMRpO6Z.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "6c85c3cd-cce5-4415-91c9-5728c6fe235d", countMin: 1, countMax: 1, required: true, units: [["Crypt Haunter Courtier"]] }, { id: "0bfd65ff-fbcd-4d89-9e79-5ef78d0f849e", countMin: 2, countMax: 2, required: true, units: [["Crypt Horrors"]] }],
+            abilities: [this.abilities.attendantsAtCourtLoyalSubjects, this.abilities.attendantsAtCourtStewardToTheKing],
 
         },       deadwatch: {
             id: "deadwatch",
             name: "DEADWATCH",
             allegiance: this.allegiances.fleshEaterCourts,
+            description: "Trusted guardians of the king, the Deadwatch hammer into any who might endanger him. Victims not slain in the first attack are sent fleeing in terror as the Crypt Flayers loose their keening war cry.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463219526324-mG4fJLqdJeJXWEAt.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "ce23a908-3b5a-4168-a799-4b0daea0114e", countMin: 1, countMax: 1, required: true, units: [["Crypt Infernal Courtier"]] }, { id: "8eca72eb-efd3-4fe5-9a7d-2d788342d6a4", countMin: 3, countMax: 3, required: true, units: [["Crypt Flayers"]] }],
+            abilities: [this.abilities.deadwatchTheAbhorrantKingSOwn],
 
         },       abattoir: {
             id: "abattoir",
             name: "ABATTOIR",
             allegiance: this.allegiances.fleshEaterCourts,
+            description: "The Abattoir reaps a fleshy toll from the opposing army, the Lord Liverbelch directing its warriors with exacting precision to carve off bloody chunks of meat for the king’s feasting table.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463219596778-2Tsj4iQJPJN27unO.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "05fe8d10-3739-45d9-bf76-c39ef03f31e2", countMin: 1, countMax: 1, required: true, units: [["Crypt Haunter Courtier"]] }, { id: "b52d61ff-e866-4d15-b189-e7f2e85d53bc", countMin: 2, countMax: 2, required: true, units: [["Crypt Horrors"]] }, { id: "ee7166de-5a8c-4840-9dc2-63fa79d019e8", countMin: 1, countMax: 1, required: true, units: [["Crypt Ghouls"]] }],
+            abilities: [this.abilities.abattoirBodyPartAcquisition, this.abilities.abattoirTheChoicestCuts],
 
         },       ghoulPatrol: {
             id: "ghoulPatrol",
             name: "GHOUL PATROL",
             allegiance: this.allegiances.fleshEaterCourts,
+            description: "Scuttling through the shadows, the mordants of the Ghoul Patrol burst from the darkness to ambush their prey, pulling them down in a flurry of rancid fangs and crusted claws before devouring them.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463219654225-b2uzU1CcMmiI4TgS.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "2016674c-092c-4b07-a0e5-16ceec955dab", countMin: 1, countMax: 1, required: true, units: [["Crypt Ghast Courtier"]] }, { id: "7810cc27-d0e7-4a29-b7e6-7a83ad208780", countMin: 3, countMax: 3, required: true, units: [["Crypt Ghouls"]] }],
+            abilities: [this.abilities.ghoulPatrolOnPatrol, this.abilities.ghoulPatrolDrawnToBattle],
 
         },       kingSGhouls: {
             id: "kingSGhouls",
             name: "KING’S GHOULS",
             allegiance: this.allegiances.fleshEaterCourts,
+            description: "The proud heart of their ruler’s armies, the King’s Ghouls advance in motley ranks, give voice to hissing war chants and charge madly into battle, burying their enemies under their reeking bodies.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463219708244-or8AtlTe0PKK4nwz.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "2c5893b6-305e-4bec-950e-6573d831aa70", countMin: 1, countMax: 1, required: true, units: [["Crypt Ghast Courtier"]] }, { id: "818eb937-ec00-4fa7-84d8-407fbfb51561", countMin: 1, countMax: 1, required: true, units: [["Crypt Horrors"]] }, { id: "e135e44a-e6fa-4681-bc99-d4b8f7cdfc84", countMin: 2, countMax: 2, required: true, units: [["Crypt Ghouls"]] }],
+            abilities: [this.abilities.kingSGhoulsGuardiansOfTheCourt, this.abilities.kingSGhoulsValorousMenAtArms],
 
         },       royalMordants: {
             id: "royalMordants",
             name: "ROYAL MORDANTS",
             allegiance: this.allegiances.fleshEaterCourts,
+            description: "Under the leadership of the Marquis Gruelsop, the elite warriors of the Royal Mordants demonstrate a twisted parody of military strategy in battle, instantly reacting to their courtier’s roared commands.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463219755641-R2uEWQKeTgEcejLS.jpg",
             points: 110,
-            units: [],
+            units: [{ id: "99ec1863-c83b-4d87-9a12-4fbbbe11c3a5", countMin: 1, countMax: 1, required: true, units: [["Varghulf Courtier"]] }, { id: "cb34c5a5-7137-4f85-b752-8b3f86b4edf8", countMin: 1, countMax: 1, required: true, units: [["Crypt Horrors"]] }, { id: "de8f2a71-b679-4eb0-baa1-94981e685f7f", countMin: 1, countMax: 1, required: true, units: [["Crypt Flayers"]] }, { id: "cb4e6dfa-e292-4eb2-b0bc-1d7f12237bd4", countMin: 1, countMax: 1, required: true, units: [["Crypt Ghouls"]] }],
+            abilities: [this.abilities.royalMordantsMartialExcellence],
 
         },       royalMenagerie: {
             id: "royalMenagerie",
             name: "ROYAL MENAGERIE",
             allegiance: this.allegiances.fleshEaterCourts,
+            description: "Tattered wings beat the air, gigantic shadows fill the sky and a dread chill washes over the land as the Abhorrant Ghoul King orders his menagerie of undead dragons and monstrous bats into battle.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463219827845-XVhUVm5h5I8udONM.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "0a37469a-fb84-4ef4-9d78-f54dc68ce11d", countMin: 3, countMax: 0, required: true, units: [["Terrorgheist"], ["Zombie Dragon"]] }],
+            abilities: [this.abilities.royalMenagerieForwardMyPretties, this.abilities.royalMenagerieMonstrousEnsemble],
 
         },       fleshEaterCourt: {
             id: "fleshEaterCourt",
             name: "FLESH-EATER COURT",
             allegiance: this.allegiances.fleshEaterCourts,
+            description: "A resplendent procession of mad, ragged wretches, the Flesh-eater Court marches to war. At its head stands the Abhorrant Ghoul King in all his dark majesty, his subjects crouched at his feet.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1463219874670-x7oxhRV7bnGlISnK.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "720499e9-f847-4dd0-a302-7ab7d7188588", countMin: 1, countMax: 1, required: true, units: [["Royal Family"]] }, { id: "9fdbe5bc-7c1f-4115-8443-42154264aef7", countMin: 1, countMax: 1, required: true, units: [["Attendants at Court"]] }, { id: "b10cb867-f8a9-4dea-afc1-453b9658f223", countMin: 1, countMax: 1, required: true, units: [["Deadwatch"]] }, { id: "6f4d8fcd-e157-4ea5-a4d8-8b108146456e", countMin: 1, countMax: 1, required: true, units: [["Abattoir"]] }, { id: "dd688207-cea0-44d1-8091-a1aaf2e83c98", countMin: 1, countMax: 1, required: true, units: [["Ghoul Patrol"]] }, { id: "a9f60cd7-0e9b-4c2d-a952-e75b58f1ea3c", countMin: 1, countMax: 1, required: true, units: [["King's Ghouls"]] }, { id: "f6e16356-33be-4057-be99-6a75fb075215", countMin: 1, countMax: 1, required: true, units: [["Royal Mordants"]] }, { id: "98a25df9-4a93-4ff0-82a3-795f44ea1e24", countMin: 1, countMax: 1, required: true, units: [["Royal Menagerie"]] }],
+            abilities: [this.abilities.fleshEaterCourtOnTheMarch, this.abilities.fleshEaterCourtDarkMaster],
 
         },       brutefist: {
             id: "brutefist",
             name: "BRUTEFIST",
             allegiance: this.allegiances.ironjawz,
+            description: "The Brutefist lives up to its name with uncompromising force. A big boss takes pride in leading their fist in hammering through the thickest enemy ranks or heaviest defences like an armoured battering ram. There are few bastions safe from the fury of this blunt and brutal Ironjaw formation.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462011652222-ZMvsVGvCmduOrjA9.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "a792f880-8bfa-4d90-b8a8-53df78306201", countMin: 3, countMax: 5, required: true, units: [["Orruk Brutes"]] }],
+            abilities: [this.abilities.brutefistBruteBigBoss, this.abilities.brutefistGreenSkinnedBatteringRam],
 
         },       gorefist: {
             id: "gorefist",
             name: "GOREFIST",
             allegiance: this.allegiances.ironjawz,
+            description: "An unstoppable landslide of grunting rage, Gorefists thunder across the battlefield at breakneck speed. Fighting in only a loose approximation of formations, their beasts and riders plough through everything in their path in a shower of broken bodies and shattered shields.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462011749937-aysq4zpPKdO5Bzgu.jpg",
             points: 190,
-            units: [],
+            units: [{ id: "011ebafb-ae40-425f-b2d5-10b438425c6b", countMin: 3, countMax: 5, required: true, units: [["Gore-gruntas"]] }],
+            abilities: [this.abilities.gorefistGoreGruntaBigBoss, this.abilities.gorefistGoreGruntaFormations],
 
         },       ardfist: {
             id: "ardfist",
             name: "ARDFIST",
             allegiance: this.allegiances.ironjawz,
+            description: "Marching to the thumping beat of a Warchanter, the Ardboys gather, feeling the thunderous heartbeat of Gorkamorka reverberating in their chests. In seemingly endless numbers they come, eager to prove themselves the ’ardest greenskins around with booming war cries and brutal choppa blows.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462011815339-gJfOkOZET32wF3k0.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "4235970c-fd72-48cf-8850-a291176c6a07", countMin: 1, countMax: 1, required: true, units: [["Orruk Warchanter"]] }, { id: "f9381144-7ec2-4db7-88fe-eafca93fba2f", countMin: 3, countMax: 5, required: true, units: [["Orruk Ardboys"]] }],
+            abilities: [this.abilities.ardfistDrawnToTheWaaagh],
 
         },       weirdfist: {
             id: "weirdfist",
             name: "WEIRDFIST",
             allegiance: this.allegiances.ironjawz,
+            description: "The savage power of the Waaagh! courses through a Weirdfist, cords of arcing green energy leaping from the massed greenskins and into the Weirdnob Shaman leading it. Jerking about even more alarmingly than normal, the Weirdnob unleashes this power in stunning displays of magical violence.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462011879156-aETP0zawSpdJlhdB.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "bd938064-e189-46cb-9997-30adff3036d7", countMin: 1, countMax: 1, required: true, units: [["Orruk Weirdnob Shaman"]] }, { id: "c6fddd84-dab3-48ab-86a2-b612bfc0ec85", countMin: 3, countMax: 5, required: true, units: [["Orruk Brutes"], ["Orruk Gore-gruntas"], ["Orruk Ardboys"]] }],
+            abilities: [this.abilities.weirdfistWeirdEnergy],
 
         },       ironfist: {
             id: "ironfist",
             name: "IRONFIST",
             allegiance: this.allegiances.ironjawz,
+            description: "Gathering up all the surrounding Ironjawz, a particularly aggressive boss bashes an Ironfist together to do some clobbering. While the boss keeps the boys in line, they charge ahead bawling out Waaagh! cries, needing little excuse to go and stomp on anyone foolish enough to try and stand in their way.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462011942247-T9Ltyz2RrewhPzim.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "5b0a4c2f-46c3-4d41-9db6-8b98416f64db", countMin: 3, countMax: 5, required: true, units: [["Orruk Brutes"], ["Orruk Goregruntas"], ["Orruk Ardboys"]] }],
+            abilities: [this.abilities.ironfistIronfistBigBoss, this.abilities.ironfistEreWeGoEreWeGoEreWeGo],
 
         },       brawl: {
             id: "brawl",
             name: "BRAWL",
             allegiance: this.allegiances.ironjawz,
+            description: "The ground shakes under the clanking, shuddering march of an Ironjaw Brawl. Filled with mobs of rowdy, bloody-minded orruks smashed together into mighty fists, it is a vast green tide that sweeps away armies, kingdoms and empires in an endless storm of violence.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1462012022253-wX8oT4tDWc2p4rgm.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "9aac7355-c6cd-40ee-897a-49b23e0214b7", countMin: 1, countMax: 1, required: true, units: [["Orruk Megaboss"], ["Orruk Megaboss on Maw-krusha"]] }, { id: "04d409aa-42c4-438b-aa99-97f0ee45e583", countMin: 1, countMax: 1, required: true, units: [["Orruk Warchanter"]] }, { id: "09ad71d1-3f91-4a15-b2b9-761fede82bc0", countMin: 1, countMax: 1, required: true, units: [["Orruk Weirdnob Shaman"]] }, { id: "61d99cf4-51f5-4876-a9ae-7b86bd33c5ad", countMin: 5, countMax: 5, required: true, units: [["Brutefist, Gorefist, Ardfist, Weirdfist, Ironfist"]] }],
+            abilities: [],
 
         },       congregationOfFilth: {
             id: "congregationOfFilth",
             name: "CONGREGATION OF FILTH",
             allegiance: this.allegiances.clansPestilens,
+            description: "Massed around their rumbling Plague Furnace, the Congregation of Filth surges towards the enemy with frightening speed, shrugging off the most horrific injuries in their fanatical frenzy.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1457781943707-YFGIJD6x1mmaTKXQ.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "194d1507-c279-49bb-a508-0224e05b34d5", countMin: 1, countMax: 1, required: true, units: [["Plague Furnace"]] }, { id: "3a4d8690-720c-490e-a9a8-cf772a9b911e", countMin: 2, countMax: 0, required: true, units: [["Plague Monks"]] }],
+            abilities: [this.abilities.congregationOfFilthFanaticalZealotry, this.abilities.congregationOfFilthPlagueAltar],
 
         },       foulrainCongregation: {
             id: "foulrainCongregation",
             name: "FOULRAIN CONGREGATION",
             allegiance: this.allegiances.clansPestilens,
+            description: "The air fills with a torrent of infectious slop as the Foulrain Congregation opens fire. Each loathsome payload seethes with unholy blessings, and as the shots rain down the foe are soon mired in filth.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1457782064470-vMDouVn2ScN2mbLS.jpg",
             points: 190,
-            units: [],
+            units: [{ id: "66b15c03-5547-4ddf-af5a-aa15a54c7de1", countMin: 1, countMax: 1, required: true, units: [["Plague Priest"]] }, { id: "450956e1-43b1-4c9d-95b9-5c5c593a398b", countMin: 3, countMax: 3, required: true, units: [["Plagueclaws"]] }],
+            abilities: [this.abilities.foulrainCongregationFoetidBlessings, this.abilities.foulrainCongregationSaturationOfFilth],
 
         },       plaguesmogCongregation: {
             id: "plaguesmogCongregation",
             name: "PLAGUESMOG CONGREGATION",
             allegiance: this.allegiances.clansPestilens,
+            description: "Great billowing banks of corrosive fumes engulf the enemy as the Plaguesmog Congregation attacks. Anyone caught in the lung-rotting cloud is reduced to a useless retching mess before death takes them.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1457782116412-lSVwYrPQvMRpHy8e.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "34bcd826-20b8-45a5-9b6a-bdc07cd2d696", countMin: 1, countMax: 1, required: true, units: [["Plague Furnace"]] }, { id: "4c40c2cc-ee6c-4657-80d9-492c8802dd87", countMin: 2, countMax: 0, required: true, units: [["Plague Censer Bearers"]] }],
+            abilities: [this.abilities.plaguesmogCongregationBillowingCloudOfPlagueSmog, this.abilities.plaguesmogCongregationPoisonousMiasma],
 
         },       virulentProcession: {
             id: "virulentProcession",
             name: "VIRULENT PROCESSION",
             allegiance: this.allegiances.clansPestilens,
+            description: "The Virulent Procession streams across the battlefield, corrupting and infecting all in its path. At its heart strides a Verminlord Corruptor, drawing hideous life from the sickness of his servants.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1457782184680-Nbl4hIozUfWx6xfV.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "b10fe37b-3bec-483b-ac0c-aa59237e10c8", countMin: 1, countMax: 1, required: true, units: [["Verminlord Corruptor"]] }, { id: "217a61cd-5b19-401b-99e3-13bf9c9aa937", countMin: 2, countMax: 0, required: true, units: [["Congregations of Filth"]] }],
+            abilities: [this.abilities.virulentProcessionNefariousSustenance, this.abilities.virulentProcessionVerminousInfestation],
 
         },       lordsOfTheLodge: {
             id: "lordsOfTheLodge",
             name: "LORDS OF THE LODGE",
             allegiance: this.allegiances.fyreslayers,
+            description: "Led by the will of the Runefather and guided by the wisdom of the Runemaster, the Lords of the Lodge are the white-hot core of a Fyreslayer army, their burning rage tempered by sacred oaths of war.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1453542563553-vt8JOPBUzkoxprW7.jpg",
             points: 110,
-            units: [],
+            units: [{ id: "1220d0ab-11bf-4c5c-96b3-82cee9ab6337", countMin: 1, countMax: 1, required: true, units: [["Auric Runefather"], ["Auric Runefather on Magmadroth"]] }, { id: "112438ec-089c-458d-a9ec-a18ab19883d8", countMin: 1, countMax: 1, required: true, units: [["Auric Runemaster"]] }, { id: "3216c4f8-4a1b-4fd6-b00c-9c114d3c1e1b", countMin: 1, countMax: 1, required: true, units: [["Battlesmith"]] }, { id: "d4bfdca5-07fc-43cb-b60b-8debf23a227d", countMin: 1, countMax: 1, required: true, units: [["Hearthguard Berzerkers"]] }],
+            abilities: [this.abilities.lordsOfTheLodgeHotBloodedFury, this.abilities.lordsOfTheLodgeOathboundGuardians],
 
         },       warriorKinband: {
             id: "warriorKinband",
             name: "WARRIOR KINBAND",
             allegiance: this.allegiances.fyreslayers,
+            description: "Filled with the fierce fighting spirit of Grimnir, the Warrior Kinband hurls itself into the foe amid a blur of fyresteel, enemies felled by glinting axes and the berserk fury of the Fyreslayers.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1453542676856-yinLT1INgbtaPafj.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "0d0c8a23-5d7c-481f-948f-bda03a01df99", countMin: 1, countMax: 1, required: true, units: [["Auric Runeson"], ["Auric Runeson on Magmadroth"]] }, { id: "3093c981-dc95-4acd-86bf-bc56d686c948", countMin: 3, countMax: 3, required: true, units: [["Vulkite Berzerkers"]] }],
+            abilities: [this.abilities.warriorKinbandLegacyOfTheLodge, this.abilities.warriorKinbandBerserkKindred],
 
         },       forgeBrethren: {
             id: "forgeBrethren",
             name: "FORGE BRETHREN",
             allegiance: this.allegiances.fyreslayers,
+            description: "Shrouded in the shimmering heat of the forge-temple, the Forge Brethren blast enemies to ash and form blazing barricades of lava with sustained volleys of fire from their magmapikes.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1453542617018-e4ZHlYIJQabwX31v.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "c251b051-6e06-4d51-8aa9-4db6ae5b3df4", countMin: 1, countMax: 1, required: true, units: [["Auric Runesmiter"], ["Auric Runesmiter on Magmadroth"]] }, { id: "bc974c27-1325-47bd-849a-9220e4a5c77f", countMin: 3, countMax: 3, required: true, units: [["Auric Hearthguard"]] }],
+            abilities: [this.abilities.forgeBrethrenMasterForgedBlades, this.abilities.forgeBrethrenBulwarkOfMoltenStone],
 
         },       grandFyrd: {
             id: "grandFyrd",
             name: "GRAND FYRD",
             allegiance: this.allegiances.fyreslayers,
+            description: "When the war anvils ring to the sounds of a great battle, the Runefather will form a Grand Fyrd, gathering up the warriors of his lodge into a mighty host of berserk fighters to sweep away his foes.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1453542727516-ZUevl6YgIRX1fQfJ.jpg",
             points: 60,
-            units: [],
+            units: [{ id: "81a44081-edca-4688-8e0d-117662e09120", countMin: 1, countMax: 1, required: true, units: [["Lords of the Lodge"]] }, { id: "4af5c958-b893-461a-983b-3272bcc18f46", countMin: 2, countMax: 2, required: true, units: [["Warrior Kinbands"]] }, { id: "0867fb03-f105-476f-ba14-2623fc9369e0", countMin: 1, countMax: 1, required: true, units: [["Forge Brethren"]] }],
+            abilities: [this.abilities.grandFyrdDourAndFearless, this.abilities.grandFyrdOathsOfBattle],
 
         },       overlordsOfChaos: {
             id: "overlordsOfChaos",
             name: "Overlords of Chaos",
             allegiance: this.allegiances.everchosen,
+            description: "Like the cruel hand of Chaos itself, Archaon and his overlords herald the doom of worlds. Attended to by his dread Varanguard and a Gaunt Summoner of Tzeentch, the Everchosen sees all and crushes all.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1449917966612-DvWn8m5rl9NuXWOG.jpg",
             points: 220,
-            units: [],
+            units: [{ id: "5c5c5f15-7ee0-49fa-8061-a85b64d462f1", countMin: 1, countMax: 1, required: true, units: [["Archaon"]] }, { id: "5bf67fe1-e40b-486c-910f-b9c64debd749", countMin: 1, countMax: 1, required: true, units: [["Gaunt Summoner of Tzeentch"]] }, { id: "b0ccd20a-e3c0-4f70-9716-fee667dfc939", countMin: 1, countMax: 1, required: true, units: [["Varanguard"]] }],
+            abilities: [this.abilities.overlordsOfChaosDarkVizier, this.abilities.overlordsOfChaosTheWillOfTheEverchosen],
 
         },       bloodmarkedWarband: {
             id: "bloodmarkedWarband",
             name: "Bloodmarked Warband",
             allegiance: this.allegiances.everchosen,
+            description: "Those Bloodmarked Warbands that fight for the Everchosen reap life after life until their axes and faces are dripping with glistening gore, stoking their furnace-hot fury to ever greater heights.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1449918066398-KwBrfcYhJhzMlfSP.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "10fc9bed-645a-4bef-ae0b-25e337dec940", countMin: 1, countMax: 1, required: true, units: [["Mortal", "Khorne", "Hero"]] }, { id: "0831eaf4-44c7-4eac-8911-93df61b3b121", countMin: 8, countMax: 8, required: true, units: [["Mortal", "Khorne"]] }],
+            abilities: [this.abilities.bloodmarkedWarbandBrandOfTheBloodGod, this.abilities.bloodmarkedWarbandBloodRage, this.abilities.bloodmarkedWarbandRaisedToGreatness],
 
         },       plaguetouchedWarband: {
             id: "plaguetouchedWarband",
             name: "PLAGUETOUCHED WARBAND",
             allegiance: this.allegiances.everchosen,
+            description: "Those unfortunate enough to face one of the many Plaguetouched Warbands that swell Archaon’s hosts are chopped apart by rusted blades, even as they choke on droning flies.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1449918314890-QFjsfS5mCm5Ccxqt.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "58c8cb07-902c-4317-97f4-fb392082223a", countMin: 1, countMax: 1, required: true, units: [["Mortal", "Nurgle", "Hero"]] }, { id: "15ca1e00-2f23-4f8e-b89a-1f4cadce3ba0", countMin: 7, countMax: 7, required: true, units: [["Mortal", "Nurgle"]] }],
+            abilities: [this.abilities.plaguetouchedWarbandGrandfatherSFavour, this.abilities.plaguetouchedWarbandLifeAbundant],
 
         },       fateswornWarband: {
             id: "fateswornWarband",
             name: "Fatesworn Warband",
             allegiance: this.allegiances.everchosen,
+            description: "Writhing coils of multi-hued magic surround Fatesworn Warbands. Spells fill the air above these warriors of Tzeentch, turning away blades and loosing blazing bolts of energy to immolate their foes.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1449918402335-5qJWEJCLTn0RpR6B.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "eb697cf5-a00b-4632-9157-29bc689a6dea", countMin: 1, countMax: 1, required: true, units: [["Mortal", "Tzeentch", "Hero"]] }, { id: "6b8e6b25-ef9f-4a4e-a63e-8d70b3852c10", countMin: 9, countMax: 9, required: true, units: [["Mortal", "Tzeentch"]] }],
+            abilities: [this.abilities.fateswornWarbandScionsOfChange, this.abilities.fateswornWarbandConduitsOfArcanePower],
 
         },       pleasureboundWarband: {
             id: "pleasureboundWarband",
             name: "Pleasurebound Warband",
             allegiance: this.allegiances.everchosen,
+            description: "Archaon’s Pleasurebound Warbands are the tormenting lash of Slaanesh made manifest. Enemies scream in tortured ecstasy as they fall beneath gilded blades of these warriors of the Dark Prince.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1449918484938-2lPLdt7NS4atz7M9.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "0a914d67-2c11-4015-b141-0ce7cf8300c1", countMin: 1, countMax: 1, required: true, units: [["Mortal", "Slaanesh", "Hero"]] }, { id: "6a4dfa8a-a2ad-4d85-a15f-be6cad6c0200", countMin: 6, countMax: 6, required: true, units: [["Mortal", "Slaanesh"]] }],
+            abilities: [this.abilities.pleasureboundWarbandCaressOfTheDarkPrince, this.abilities.pleasureboundWarbandPerverseYearnings],
 
         },       archaonSGrandHost: {
             id: "archaonSGrandHost",
             name: "Archaon’s grand host",
             allegiance: this.allegiances.everchosen,
+            description: "An army that marches with the Everchosen at its head is followed closely by the gaze of the Dark Gods. Chaos Lords gather their hosts, while daemons flock to the banners of this dark alliance.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1449918571411-jQDp2rmv2FwAYWAh.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "bae0134a-e4c0-4bfc-9bec-da3085813c76", countMin: 1, countMax: 1, required: true, units: [["Overlords of Chaos"]] }, { id: "7d22bedd-cdf5-47cf-89e1-4f4998170f92", countMin: 4, countMax: 4, required: true, units: [["Bloodmarked Warband"], ["Plaguetouched Warband"], ["Fatesworn Warband"], ["Pleasurebound Warband"]] }],
+            abilities: [this.abilities.archaonSGrandHostDaemonicPacts, this.abilities.archaonSGrandHostDarkCommand],
 
         },       sunclawStarhost: {
             id: "sunclawStarhost",
             name: "SUNCLAW STARHOST",
             allegiance: this.allegiances.seraphon,
+            description: "Saurus Sunbloods are focal points for the power of Azyr – the weapons of saurus who fight at their side become infused with celestial energy, empowering their strikes with the might of the stars.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446888757522-APW2TnisILasJkIv.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "ac774017-2a23-4f76-9fd1-ff801c8a25ca", countMin: 1, countMax: 1, required: true, units: [["Saurus Sunblood"]] }, { id: "70b46be2-19ac-4698-9406-685788e2dcd6", countMin: 3, countMax: 3, required: true, units: [["Saurus Warriors"]] }],
+            abilities: [this.abilities.sunclawStarhostPredatoryFighters, this.abilities.sunclawStarhostStarChargedCelestite],
 
         },       eternalStarhost: {
             id: "eternalStarhost",
             name: "ETERNAL STARHOST",
             allegiance: this.allegiances.seraphon,
+            description: "When led by a mighty Eternity Warden, the Saurus Guard become virtually immovable. The power of the heavens is drawn to the saurus’ stubborn defiance, charging their weapons with magical force.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446888859480-5dIyjpiNrSWsWyf7.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "7c21afdb-7c1e-4b52-b1ec-0caf8ef83507", countMin: 1, countMax: 1, required: true, units: [["Saurus Eternity Warden"]] }, { id: "e55a8411-de05-49ef-85fd-95ff5b14b272", countMin: 3, countMax: 3, required: true, units: [["Saurus Guard"]] }],
+            abilities: [this.abilities.eternalStarhostDrakescaleShieldwall, this.abilities.eternalStarhostPatientGuardians],
 
         },       firelanceStarhost: {
             id: "firelanceStarhost",
             name: "FIRELANCE STARHOST",
             allegiance: this.allegiances.seraphon,
+            description: "Swift as a roaring meteor, the warriors of a Firelance Starhost forge a burning path across the battlefield, their weapons smouldering with the heat of a star to bring flaming ruin to the foe.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446888926766-WmMlFeLsOwFkc7JX.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "52a39c1c-40e1-4f6d-91a8-4a843b165abc", countMin: 1, countMax: 1, required: true, units: [["Scar-Veteran on Cold One"], ["Scar-Veteran on Carnosaur"]] }, { id: "a5bc354a-a3ba-4c24-a444-45aa7317d91f", countMin: 3, countMax: 3, required: true, units: [["Saurus Knights"]] }],
+            abilities: [this.abilities.firelanceStarhostAzyriteHunters, this.abilities.firelanceStarhostBlazingCohort],
 
         },       shadowstrikeStarhost: {
             id: "shadowstrikeStarhost",
             name: "SHADOWSTRIKE STARHOST",
             allegiance: this.allegiances.seraphon,
+            description: "The stealthy skinks of a Shadowstrike Starhost know to strike their target when the omens are propitious – and strike they do, with all the fury of a blazing beam of starlight from a clear night sky.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446888999453-FqHI7iYpaK43uHeb.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "b73360e2-b3b2-466f-95dd-11a125c8c41e", countMin: 1, countMax: 1, required: true, units: [["Skink Starpriest"], ["Skink Priest"]] }, { id: "10cd3824-16c0-4c3e-b0da-c8bf71b94d57", countMin: 2, countMax: 2, required: true, units: [["Skinks"], ["Chameleon Skinks"]] }, { id: "39cf5e5c-a100-4323-977d-130e08187259", countMin: 1, countMax: 1, required: true, units: [["Terradon Riders"], ["Ripperdactyl Riders"]] }],
+            abilities: [this.abilities.shadowstrikeStarhostStealthyAdvance, this.abilities.shadowstrikeStarhostTheTrapIsSprung, this.abilities.shadowstrikeStarhostStrikeFromTheSkies],
 
         },       thunderquakeStarhost: {
             id: "thunderquakeStarhost",
             name: "THUNDERQUAKE STARHOST",
             allegiance: this.allegiances.seraphon,
+            description: "Augmented by the concentration of celestial magic from which their gigantic forms are woven, the bellowing monsters of a Thunderquake Starhost gore and trample entire armies in their bestial fury.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446889058366-URkYY0YEQNjQBtFN.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "7f690b55-a1a9-464e-9208-d7b542abb348", countMin: 1, countMax: 1, required: true, units: [["Engine of the Gods"], ["Troglodon"]] }, { id: "e7e22ddf-3ab9-42bf-bc44-4622723c9388", countMin: 2, countMax: 2, required: true, units: [["Stegadon"], ["Bastiladon"]] }, { id: "1b597171-7c14-4834-a1d6-adbc0fc1d512", countMin: 1, countMax: 1, required: true, units: [["Kroxigor, Skink Handers"]] }],
+            abilities: [this.abilities.thunderquakeStarhostTheCreatorSWill, this.abilities.thunderquakeStarhostCelestialSurge],
 
         },       starbeastConstellation: {
             id: "starbeastConstellation",
             name: "STARBEAST CONSTELLATION",
             allegiance: this.allegiances.seraphon,
+            description: "When a constellation is summoned to war, the Dark Gods themselves take notice. The advance of such a host is akin to a world-shifting celestial event, and a terrible omen indeed for the enemies of order.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1446889283938-DH0Lnx1DCJKuJln4.jpg",
             points: 70,
-            units: [],
+            units: [{ id: "63f962ad-0f53-4efd-a7c2-cf132f57d294", countMin: 1, countMax: 1, required: true, units: [["Saurus Oldblood"], ["Saurus Oldblood on Carnosaur"]] }, { id: "0d400d86-e873-4ff0-9750-d54697819060", countMin: 1, countMax: 1, required: true, units: [["Skink Starseer"]] }, { id: "d3e5206f-02f2-4f8a-89cb-92929c6e2351", countMin: 1, countMax: 1, required: true, units: [["Sunclaw Starhost"]] }, { id: "923f81ac-851f-42b4-8af9-82107dc2dd27", countMin: 1, countMax: 1, required: true, units: [["Eternal Starhost"]] }, { id: "167ab33d-70c7-4659-aa6b-e27ffb2ec830", countMin: 1, countMax: 1, required: true, units: [["Firelance Starhost"]] }, { id: "da5d353c-c794-4228-ba1d-8111e4d7967c", countMin: 1, countMax: 1, required: true, units: [["Shadowstrike Starhost"]] }, { id: "84b7b1bf-081f-4505-991a-104a915ff5fb", countMin: 1, countMax: 1, required: true, units: [["Thunderquake Starhost"]] }],
+            abilities: [this.abilities.starbeastConstellationOrderedConstellation, this.abilities.starbeastConstellationStrategicMastery],
 
         },       godswornChampionsOfRuin: {
             id: "godswornChampionsOfRuin",
             name: "GODSWORN CHAMPIONS OF RUIN",
             allegiance: this.allegiances.slavesToDarkness,
+            description: "Surrounded by the Champions of Ruin, the Godsworn Overlord searches for the greatest of the enemy’s champions in order to slay them in the name of Chaos.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1454147155867-ioecc9ms53EpgFkx.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "35934b20-9a35-4d0c-87f6-7d0813f2f637", countMin: 1, countMax: 1, required: true, units: [["Daemon Prince"], ["Lord of Chaos"], ["Chaos Sorcerer Lord"]] }, { id: "2c5c48cd-1e44-4d5b-8fa9-ca37d2d5171f", countMin: 3, countMax: 8, required: true, units: [["Chaos Warriors"], ["Chaos Chosen"], ["Chaos Knights"], ["Chaos Spawn"], ["Exalted Hero of Chaos"], ["Chaos Sorcerer Lord"]] }],
+            abilities: [this.abilities.godswornChampionsOfRuinUnholyChallenge],
 
         },       godswrathWarband: {
             id: "godswrathWarband",
             name: "GODSWRATH WARBAND",
             allegiance: this.allegiances.slavesToDarkness,
+            description: "The warriors of the Godswrath Warband advance into battle with bellowed prayers, beseeching the gods of Chaos to strike their enemies down with dark sorcery.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1454147344560-oekjG11htPUbDdMY.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "86d1330f-3a12-4ed1-8779-e367d4fe98f2", countMin: 1, countMax: 1, required: true, units: [["Chaos Lord on Manticore"]] }, { id: "c0ef9048-c87f-40ff-9f7d-018e610db034", countMin: 10, countMax: 0, required: true, units: [["Chaos Chosen"], ["Chaos Knights"], ["Chaos Warriors"], ["Chaos Chariots"], ["Chaos Gorebeast Chariots"]] }, { id: "1b6de15a-5223-4f63-9e7c-8a445fa554a9", countMin: 1, countMax: 0, required: true, units: [["Chaos Warshrines"]] }],
+            abilities: [this.abilities.godswrathWarbandChaosDoomBolts],
 
         },       ruinbringerWarband: {
             id: "ruinbringerWarband",
             name: "RUINBRINGER WARBAND",
             allegiance: this.allegiances.slavesToDarkness,
+            description: "The thunderous pound of iron-shod hooves shakes the ground as the Ruinbringer Warband charges into battle, and screaming warriors vanish beneath the hurtling Chaos attackers in sprays of blood.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1454147450001-tBwKIZufwcaz7gE5.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "75e143b0-bd00-4796-b4bd-ccb36120afa6", countMin: 1, countMax: 1, required: true, units: [["Chaos Lord on Daemonic Mount"]] }, { id: "419233f0-3e16-4c66-8a5e-c4f1359542b3", countMin: 5, countMax: 0, required: true, units: [["Chaos Knights"], ["Chaos Chariots"], ["Chaos Gorebeast Chariots"], ["Chaos Marauder Horsemen"]] }],
+            abilities: [this.abilities.ruinbringerWarbandDevastatingCharge],
 
         },       wildstalkerBrayherd: {
             id: "wildstalkerBrayherd",
             name: "WILDSTALKER BRAYHERD",
             allegiance: this.allegiances.brayherd,
+            description: "Pouring into battle from all sides, the Wildstalker Brayherd fall upon their victims from ambush and tear them limb from limb with animalistic savagery.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1454148265873-EcGr7j7uTqxrfca7.jpg",
             points: 210,
-            units: [],
+            units: [{ id: "28637795-c340-4982-bd45-648ee7f88fff", countMin: 1, countMax: 1, required: true, units: [["Beastlord"]] }, { id: "b739971e-fe5c-427a-8cc8-e7e89eb466ec", countMin: 1, countMax: 3, required: true, units: [["Great Bray-Shamans"]] }, { id: "238adcfc-7257-4b86-8a31-24cdf779f315", countMin: 2, countMax: 6, required: true, units: [["Bestigors"], ["Tuskgor Chariots"]] }, { id: "eda3c9d4-befb-455d-9a95-346421d7e41d", countMin: 3, countMax: 9, required: true, units: [["Gors"]] }, { id: "a9f9055d-9a66-4a2a-8c96-c9eb8fd7ceef", countMin: 4, countMax: 12, required: true, units: [["Ungors"], ["Ungor Raiders"]] }],
+            abilities: [this.abilities.wildstalkerBrayherdPrimalFury, this.abilities.wildstalkerBrayherdBrayherdAmbush],
 
         },       clanSkryre: {
             id: "clanSkryre",
             name: "CLAN SKRYRE",
             allegiance: this.allegiances.clansSkryre,
+            description: "The Clans Skryre go to war amid the hiss, whirr, clatter and roar of their many unstable yet deadly war machines. From hails of bullets to blasts of ensorcelled flame, they unleash myriad forms of death.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1454148355969-GqxPOWM27hBn6vox.jpg",
             points: 80,
-            units: [],
+            units: [{ id: "c4c59763-7269-4f62-b769-b66353d2177a", countMin: 1, countMax: 1, required: true, units: [["Arch-warlock"]] }, { id: "0dcd5d3d-1969-4fe2-aa65-a7a55a1eb653", countMin: 2, countMax: 5, required: true, units: [["Enginecovens"]] }],
+            abilities: [this.abilities.clanSkryreWhyrlbladeThreshik, this.abilities.clanSkryreGascloudChokelung, this.abilities.clanSkryreRattlegaugeWarplock, this.abilities.clanSkryreArkhsparkVoltik, this.abilities.clanSkryreGautfyreSkorch, this.abilities.clanSkryreArchWarlock],
 
         },       pilgrimageOfWrath: {
             id: "pilgrimageOfWrath",
             name: "PILGRIMAGE OF WRATH",
             allegiance: this.allegiances.devotedOfSigmar,
+            description: "Lashing the ground upon which they march, the Pilgrimage of Wrath cleanses the realms through bloody sacrifice, its warriors tearing apart the foe as its priests chant the word of the Heldenhammer.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1459588569596-8IydgxGv42dF0raU.jpg",
             points: 140,
-            units: [],
+            units: [{ id: "62025048-8276-49cd-b98a-24c4027fb910", countMin: 1, countMax: 1, required: true, units: [["War Altar of Sigmar"]] }, { id: "fddb9954-6510-404e-aae9-7e0d88c6867a", countMin: 2, countMax: 2, required: true, units: [["Warrior Priests"]] }, { id: "c8166d14-b328-4561-9ea2-8c9d7c8936ef", countMin: 1, countMax: 1, required: true, units: [["Witch Hunter"]] }, { id: "7812eaa5-bba1-4e77-ac46-85a23d01d025", countMin: 2, countMax: 2, required: true, units: [["Flagellants"]] }],
+            abilities: [this.abilities.pilgrimageOfWrathSlayTheUnbelievers],
 
         },       freeguildRegiment: {
             id: "freeguildRegiment",
             name: "FREEGUILD REGIMENT",
             allegiance: this.allegiances.freePeoples,
+            description: "When the cities of the Free Peoples are threatened they can call upon the disciplined ranks of the Freeguilds, stalwart warriors that stand shoulder to shoulder against enemies of Order.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1459588620556-O7SDCyJH5aH7bzT8.jpg",
             points: 210,
-            units: [],
+            units: [{ id: "0f4aa215-7801-475f-8e26-19d3cc8a3afe", countMin: 1, countMax: 1, required: true, units: [["Freeguild General"], ["Freeguild General on Griffon"]] }, { id: "21f45ae3-e959-4f15-88b9-8ee193e2c002", countMin: 1, countMax: 1, required: true, units: [["Demigryph Knights"]] }, { id: "932969da-7352-48b1-ab25-e53f70afd909", countMin: 1, countMax: 1, required: true, units: [["Freeguild Greatswords"]] }, { id: "0b05f7df-9966-4a9e-94a6-d8c2b925386a", countMin: 3, countMax: 3, required: true, units: [["Freeguild Guard"]] }, { id: "ad4643a7-a475-439a-9f4f-235924a9a912", countMin: 3, countMax: 3, required: true, units: [["Freeguild Archers"], ["Freeguild Crossbowmen"], ["Freeguild Handgunners"]] }, { id: "ecc8b288-13de-437b-82f2-1e507281494f", countMin: 1, countMax: 1, required: true, units: [["Freeguild Outriders"]] }, { id: "6bb7d1cc-cbf9-47bf-858f-11a5c7c4cc94", countMin: 1, countMax: 1, required: true, units: [["Freeguild Pistoliers"]] }],
+            abilities: [this.abilities.freeguildRegimentStandTogetherFightTogether, this.abilities.freeguildRegimentRegimentalDiscipline],
 
         },       grudgeboundWarThrong: {
             id: "grudgeboundWarThrong",
             name: "GRUDGEBOUND WAR THRONG",
             allegiance: this.allegiances.dispossessed,
+            description: "The Dispossessed warriors still keenly remember the destruction of their empire, and are more than willing to sell their lives against their ancient enemies if it means a chance of settling old scores.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1459588957305-8QQ6zC5LW9swDlX2.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "3c736e9c-e1c7-4dc8-be39-44dec0e93972", countMin: 1, countMax: 1, required: true, units: [["Warden King"]] }, { id: "4878b889-a548-4440-be49-233fd1a94a43", countMin: 1, countMax: 1, required: true, units: [["Runelord"]] }, { id: "a01d3dee-442c-498f-bc1e-95166c9d0058", countMin: 1, countMax: 1, required: true, units: [["Unforged"]] }, { id: "7ee09ce6-97a6-4673-a338-9aa3db511cbe", countMin: 4, countMax: 4, required: true, units: [["Warriors"], ["Thunderers"], ["Quarrellers"], ["Longbeards"]] }, { id: "03e0ccfc-1e63-4707-ba12-b15991c2ef91", countMin: 3, countMax: 3, required: true, units: [["Irondrakes"], ["Ironbreakers"], ["Hammerers"]] }],
+            abilities: [this.abilities.grudgeboundWarThrongAncientGrudges, this.abilities.grudgeboundWarThrongStubbornToTheEnd],
 
         },       spyreheartWarhost: {
             id: "spyreheartWarhost",
             name: "SPYREHEART WARHOST",
             allegiance: this.allegiances.phoenixTemple,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1459589073086-dJEkl5ExtU4vgqgn.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "97d35aa6-5b56-4922-ad76-d357b2a12b4e", countMin: 2, countMax: 2, required: true, units: [["Flamespyre Phoenix"], ["Frostheart Phoenix"]] }, { id: "9318dc01-819f-4f24-a07c-d60010d548d5", countMin: 1, countMax: 1, required: true, units: [["Anointed"]] }, { id: "c9ec04c2-a374-46fa-9e23-83c555894f2d", countMin: 2, countMax: 2, required: true, units: [["Phoenix Guard"]] }],
+            abilities: [this.abilities.spyreheartWarhostElementalNova],
 
         },       dragonlordHost: {
             id: "dragonlordHost",
             name: "DRAGONLORD HOST",
             allegiance: this.allegiances.orderDraconis,
+            description: "A beacon of martial discipline, each Order Draconis Dragonlord is the flame that forges his knights into an unbreakable blade, the shadow of the aelf hero and his steed guiding his brothers to the fray.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1459589148488-DkttPgnfXFUOOAIX.jpg",
             points: 130,
-            units: [],
+            units: [{ id: "fb6ba7a0-1a89-4252-8f54-248828e31b07", countMin: 1, countMax: 1, required: true, units: [["Dragonlord"]] }, { id: "6a5d5e2d-3f9f-4d85-9c95-26484cfe63aa", countMin: 2, countMax: 3, required: true, units: [["Dragon Blades"]] }],
+            abilities: [this.abilities.dragonlordHostMartialPride],
 
         },       realmReavers: {
             id: "realmReavers",
             name: "REALM REAVERS",
             allegiance: this.allegiances.scourgePrivateers,
+            description: "The Scourge Privateers range out into the realms under the harsh leadership of their Fleetmaster, attacking remote settlements and capturing mighty monsters for the beast markets of Azyrheim.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1459589221878-oUhv93ILDGgxAY8r.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "ece1bc4a-8ef3-4fc9-9452-7615efb452ad", countMin: 1, countMax: 1, required: true, units: [["Black Ark Fleetmaster"]] }, { id: "0f76b0ad-6f02-4cdc-ba8a-8eae44807c70", countMin: 2, countMax: 2, required: true, units: [["Black Ark Corsairs"]] }, { id: "057ee32b-14b9-457a-80bc-e451bd21ce5e", countMin: 1, countMax: 1, required: true, units: [["Scourgerunner Chariots"]] }, { id: "c0feff1c-2af0-42a2-bfae-9778fff81b6d", countMin: 1, countMax: 1, required: true, units: [["Kharibdyss"]] }],
+            abilities: [this.abilities.realmReaversFearedTaskmaster, this.abilities.realmReaversCaptureThatBeast],
 
         },       thrallWarhost: {
             id: "thrallWarhost",
             name: "THRALL WARHOST",
             allegiance: this.allegiances.darklingCovens,
+            description: "Ensorcelled by the unbreakable will of the Sorceress, the warriors of her warhost hurl themselves into battle, each soldier bound to give their life for their dark and terrible queen if need be.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1459589357415-PDTKxgGQob2Famav.jpg",
             points: 180,
-            units: [],
+            units: [{ id: "36d3c4e2-135f-40c5-b657-41a88dc64da3", countMin: 1, countMax: 6, required: true, units: [["Sorceresses"], ["Sorceresses on Black Dragons"]] }, { id: "0373ce81-e3c6-413b-9103-06432c9676e6", countMin: 1, countMax: 1, required: true, units: [["Black Guard"]] }, { id: "ab2279f6-6b35-4b15-9f90-22549a0b2015", countMin: 1, countMax: 1, required: true, units: [["Executioners"]] }, { id: "b859ed7d-5e30-471c-8a2a-de3ff0f85cf4", countMin: 3, countMax: 6, required: true, units: [["Dreadspears"], ["Bleakswords"], ["Darkshards"]] }],
+            abilities: [this.abilities.thrallWarhostKillThemNow],
 
         },       ebondrakeWarhost: {
             id: "ebondrakeWarhost",
             name: "EBONDRAKE WARHOST",
             allegiance: this.allegiances.orderSerpentis,
+            description: "A scaled shadow upon the land, the Ebondrake Warhost is an army of masterful killers, skilled in the arts of blade and lance, but also driven to war by a fathomless hatred of the enemies of Order.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1459589450081-xnStgtDfix7urhBE.jpg",
             points: 150,
-            units: [],
+            units: [{ id: "4e27af7b-aadb-4f15-8ee0-a43d2ad1d5e2", countMin: 1, countMax: 1, required: true, units: [["Dreadlord on Black Dragon"]] }, { id: "1a8c250e-72a1-486c-b7d3-c5098a1eebb5", countMin: 2, countMax: 3, required: true, units: [["Drakespawn Knights"]] }, { id: "6a2ecf97-00b4-42ac-af29-73dde1691b13", countMin: 1, countMax: 2, required: true, units: [["Drakespawn Chariots"]] }, { id: "ad75c073-1392-4b8e-b4de-7852fd43a966", countMin: 1, countMax: 3, required: true, units: [["War Hydras"]] }],
+            abilities: [this.abilities.ebondrakeWarhostMurderousProwess, this.abilities.ebondrakeWarhostAncientHatred],
 
         },       waystonePathfinders: {
             id: "waystonePathfinders",
             name: "WAYSTONE PATHFINDERS",
             allegiance: this.allegiances.wanderers,
+            description: "Moving through the wilds of the realms, the Waystone Pathfinders follow the ley lines, their warriors appearing as if from nowhere to bring down their enemies with swift blades and a hail of arrows.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1459589560609-mhT6Wn1U5QwIzoFW.jpg",
             points: 200,
-            units: [],
+            units: [{ id: "ff7a3ee5-22bc-4b4d-92b0-889e68e07856", countMin: 1, countMax: 1, required: true, units: [["Nomad Prince"]] }, { id: "3f43f41c-3ed3-422f-9666-b306f43dde36", countMin: 1, countMax: 1, required: true, units: [["Spellweaver"]] }, { id: "b5ffcb26-bfdc-4a4a-8011-a207d1fbdd76", countMin: 3, countMax: 3, required: true, units: [["Wayfinder"], ["Waystrider"], ["Waywatcher"]] }, { id: "f71e9e4c-c9ee-47f9-b970-27d8d83ca6f7", countMin: 4, countMax: 4, required: true, units: [["Eternal Guard"], ["Glade Guard"], ["Wildwood Rangers"], ["Sisters of the Watch"]] }, { id: "35cb24b3-5050-427e-9ca9-a8ce36972922", countMin: 2, countMax: 2, required: true, units: [["Wild Riders"], ["Sisters of the Thorn"]] }],
+            abilities: [this.abilities.waystonePathfindersRealmWanderers, this.abilities.waystonePathfindersProtectiveVolley],
 
         },       sonsOfTheMaggotLord: {
             id: "sonsOfTheMaggotLord",
             name: "SONS OF THE MAGGOT LORD",
             allegiance: this.allegiances.tamurkhanSHorde,
+            description: "Great are the armies assembled by Tamurkhan the Maggot Lord, chosen champion of Nurgle. In his quest for ascension, a trail of foul creatures follow in his wake, each a match for dozens of lesser warriors.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439985898791-It9wNEy91GyBH3dG.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "4da1a7b0-3ea7-4062-bc0f-611164a58a7c", countMin: 1, countMax: 1, required: true, units: [["Tamurkhan the Maggot Lord"]] }, { id: "f6a7bff7-551c-433e-97ce-2a05449295e7", countMin: 1, countMax: 1, required: true, units: [["Kazyk the Befouled"]] }, { id: "4f893822-6f98-4946-bbb6-5833665e6019", countMin: 3, countMax: 3, required: true, units: [["Plague Ogors"]] }, { id: "9fc09e9a-937f-4a05-a0a2-d23eb605c855", countMin: 1, countMax: 1, required: true, units: [["Bile Troggoths"]] }, { id: "0a288942-fbc7-4744-a87d-410ece8f3983", countMin: 0, countMax: 1, required: true, units: [["Gigantic Chaos Spawn", "Nurgle"]] }],
+            abilities: [this.abilities.sonsOfTheMaggotLordTheTideOfConquest],
 
         },       leapingPox: {
             id: "leapingPox",
             name: "LEAPING POX",
             allegiance: this.allegiances.tamurkhanSHorde,
+            description: "From the Garden of Nurgle spring countless horrors, yet few are as strangely macabre as the phenomena known as the Leaping Pox. Each a band of roving Plague Toads, some ridden by Nurgle’s favoured Pox Riders, they caper onto battlefields to bring disease and death before heading off to spread their Father’s gifts to other ‘fortunate’ souls.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439985651791-mGbp8Ib8YAWIs9xm.jpg",
             points: 170,
-            units: [],
+            units: [{ id: "db751bb6-bf0d-401b-afb7-a8e4820d351c", countMin: 3, countMax: 3, required: true, units: [["Daemon Pox Riders of Nurgle"]] }, { id: "c0b274b8-aa47-4d08-b705-9738624722a8", countMin: 2, countMax: 3, required: true, units: [["Daemon Plague Toads of Nurgle"]] }],
+            abilities: [this.abilities.leapingPoxInfectious],
 
         },       sacrosanctChamber: {
             id: "sacrosanctChamber",
             name: "SACROSANCT CHAMBER",
             allegiance: this.allegiances.stormcastEternals,
+            description: "A Sacrosanct Chamber is a gathering of warrior wizards who specialise in wielding the energies of the tempest. The Evocators of the Cleansing Phalanxes invigorate their Sequitor allies with arcane lightning, while Hailstorm Batteries rain volleys of magically infused stormbolts into the thick of the foe. The Grand Convocation that leads the formation is empowered to new levels of potency by the intensity of the gathering celestial energies.",
+            pictureUrl: "http://none",
             points: 70,
-            units: [],
+            units: [{ id: "4e03ba65-91fa-43c2-84fc-cfe3add12b83", countMin: 1, countMax: 1, required: true, units: [["Grand Convocation"]] }, { id: "56cac307-f543-4c3a-848b-0141f281b863", countMin: 3, countMax: 3, required: true, units: [["Hailstorm Batteries"]] }, { id: "05b7005c-ee35-40af-85c6-549c0289d218", countMin: 3, countMax: 3, required: true, units: [["Cleansing Phalanxes"]] }],
+            abilities: [this.abilities.sacrosanctChamberCelestialFulcrum],
 
         },       grandConvocation: {
             id: "grandConvocation",
             name: "GRAND CONVOCATION",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://none",
             points: 130,
-            units: [],
+            units: [{ id: "24849a7f-da14-4291-b7a9-e80b2b27b9f6", countMin: 1, countMax: 1, required: true, units: [["Lord-Arcanum"]] }, { id: "97bacc0c-f922-4829-b4a3-fac8a5a153e4", countMin: 1, countMax: 1, required: true, units: [["Lord-Exorcist"]] }, { id: "73e8879a-5923-47c7-877f-67a1c13d0117", countMin: 2, countMax: 0, required: true, units: [["Knights-Incantor"]] }],
+            abilities: [this.abilities.grandConvocationPowersCombined],
 
         },       hailstormBattery: {
             id: "hailstormBattery",
             name: "HAILSTORM BATTERY",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://none",
             points: 120,
-            units: [],
+            units: [{ id: "7d23c7b8-4fda-45f8-bf5f-2016eb672c94", countMin: 1, countMax: 1, required: true, units: [["Lord-Ordinator"]] }, { id: "dc67a1f3-fa4d-4444-81a0-85c9447d08a2", countMin: 1, countMax: 1, required: true, units: [["Castigators"]] }, { id: "353ef7b9-807f-4f56-88fd-f5db87065127", countMin: 1, countMax: 1, required: true, units: [["Celestar Ballista"]] }],
+            abilities: [this.abilities.hailstormBatteryHailstormStrike],
 
         },       cleansingPhalanx: {
             id: "cleansingPhalanx",
             name: "CLEANSING PHALANX",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://none",
             points: 120,
-            units: [],
+            units: [{ id: "9c522ed0-ff47-426b-8a84-ca50e1740663", countMin: 2, countMax: 2, required: true, units: [["Evocators"]] }, { id: "ccd96001-8374-4d0d-811a-d285475a8d36", countMin: 2, countMax: 2, required: true, units: [["Sequitors"]] }],
+            abilities: [this.abilities.cleansingPhalanxChannelledEmpowerment],
 
         },       soulstrikeBrotherhood: {
             id: "soulstrikeBrotherhood",
             name: "SOULSTRIKE BROTHERHOOD",
             allegiance: this.allegiances.stormcastEternals,
+            description: undefined,
+            pictureUrl: "http://none",
             points: 120,
-            units: [],
+            units: [{ id: "093e6324-8dd9-45b0-8cce-1ad9d10cf75b", countMin: 2, countMax: 2, required: true, units: [["Vanguard-Hunters"]] }, { id: "d4836ec0-6df1-4756-964f-f767a36006da", countMin: 2, countMax: 2, required: true, units: [["Castigators"]] }, { id: "763f3208-b812-48b6-b147-c42935aaa448", countMin: 1, countMax: 1, required: true, units: [["Celestar Ballista"]] }],
+            abilities: [this.abilities.soulstrikeBrotherhoodInterceptionForce],
 
         },       nighthauntProcession: {
             id: "nighthauntProcession",
             name: "NIGHTHAUNT PROCESSION",
             allegiance: this.allegiances.nighthaunt,
+            description: "The vanguard of the Soul Wars, the Nighthaunts press forward relentlessly. To a mortal, the approach of a Nighthaunt army is a terrifying sight. However, to Nagash the procession is as he himself has ordained – an ordered affair of minions driven forward by the malign willpower of the more powerful spirits amongst them.",
+            pictureUrl: "http://none",
             points: 80,
-            units: [],
+            units: [{ id: "bd27e019-b9bd-4724-9dd2-2806dce68579", countMin: 1, countMax: 1, required: true, units: [["Shroudguard"]] }, { id: "6adbe711-9345-4496-9f86-f85d16fd18e5", countMin: 6, countMax: 6, required: true, units: [["The Condemned", "Chainguard", "Execution Horde", "Deathriders", "Death Stalkers", "Shrieker Host"]] }],
+            abilities: [this.abilities.nighthauntProcessionBoundBeneathIndomitableWill],
 
         },       shroudguard: {
             id: "shroudguard",
             name: "SHROUDGUARD",
             allegiance: this.allegiances.nighthaunt,
+            description: "When the whirling Bladegheist Revenants undertake the fell ritual of the Shroudguard they bond to the fell champion Nagash has chosen as their new master. In such a state they become a formidable bodyguard that will fight on even after absorbing blows that would normally destroy their supernatural forms.",
+            pictureUrl: "http://none",
             points: 110,
-            units: [],
+            units: [{ id: "ad986eb3-b6ed-4030-b58b-c84ed7923192", countMin: 1, countMax: 1, required: true, units: [["Knight of Shrouds"], ["Reikenor the Grimhailer"]] }, { id: "f96ae052-2950-4e20-9477-0d9576f24031", countMin: 2, countMax: 2, required: true, units: [["Units of Bladegheist Revenants"]] }],
+            abilities: [this.abilities.shroudguardFrenziedFervour],
 
         },       deathriders: {
             id: "deathriders",
             name: "DEATHRIDERS",
             allegiance: this.allegiances.nighthaunt,
+            description: "When the spectral cavalry of the Nighthaunt processions amass alongside a Black Coach, they create a swell of supernatural energies. The speartip of the Nighthaut processions, the surging tide of Deathriders charge with unnatural speed to scythe down any foe foolish enough to stand before them.",
+            pictureUrl: "http://none",
             points: 130,
-            units: [],
+            units: [{ id: "bd04f36b-207f-4842-b7ab-d963dd3e36f4", countMin: 1, countMax: 2, required: true, units: [["Dreadblade Harrows"]] }, { id: "a97d98c6-93b1-4215-9802-1e08bf51e0fb", countMin: 2, countMax: 2, required: true, units: [["Hexwraiths"]] }, { id: "5a2fae17-546e-4126-8704-0882f9d74e9b", countMin: 1, countMax: 1, required: true, units: [["Black Coach"]] }],
+            abilities: [this.abilities.deathridersSpectralSpearhead],
 
         },       theCondemned: {
             id: "theCondemned",
             name: "THE CONDEMNED",
             allegiance: this.allegiances.nighthaunt,
+            description: "The concentrated energies of massed Chainrasps awaken a depthless cruelty in their punishers. Thus are the Condemned goaded and compelled to heave forward and smite the foe. With the desperate fervour of their attacks, these battalions often lead assaults or are assigned to especially forlorn hopes.",
+            pictureUrl: "http://none",
             points: 150,
-            units: [],
+            units: [{ id: "ad197b79-4ace-4e0f-b854-ccb9c0b93bf3", countMin: 1, countMax: 1, required: true, units: [["Spirit Torment"]] }, { id: "5012faff-57c0-4206-aeb3-742d52d4fab8", countMin: 1, countMax: 1, required: true, units: [["Chainghasts"]] }, { id: "987faa93-ec07-468f-bb04-a94650ed3afb", countMin: 2, countMax: 2, required: true, units: [["Chainrasp Horde"]] }],
+            abilities: [this.abilities.theCondemnedCruelTaskmasters],
 
         },       chainguard: {
             id: "chainguard",
             name: "CHAINGUARD",
             allegiance: this.allegiances.nighthaunt,
+            description: "For many Nighthaunt processions the Chainguard form the centre of their assault – a mainstay formation around which the rest of the army manoeuvres. While the foe is pinned in place fighting the ever-returning Chainrasp Hordes, a wise spectral commander can ensure they seize the initiative with any number of counter-attacks.",
+            pictureUrl: "http://none",
             points: 120,
-            units: [],
+            units: [{ id: "5a330dde-ce48-4d73-9af3-cdadc00941fd", countMin: 1, countMax: 1, required: true, units: [["Guardian of Souls"]] }, { id: "c2b13e4e-3e50-4788-a658-9b739f894ac3", countMin: 2, countMax: 2, required: true, units: [["Chainrasp Horde"]] }],
+            abilities: [this.abilities.chainguardHeartOfTheHorde],
 
         },       executionHorde: {
             id: "executionHorde",
             name: "EXECUTION HORDE",
             allegiance: this.allegiances.nighthaunt,
+            description: "When an Execution Horde is summoned, a Lord Executioner is surrounded by Spirit Hosts composed of the massed and intermingled souls of those whom he slew in life. The Nighthaunts use such small but hard-hitting battalions to supplement their fighting strength, often working alongside the massed Chainguard.",
+            pictureUrl: "http://none",
             points: 100,
-            units: [],
+            units: [{ id: "b7775c70-42b0-4a3a-b76e-e24dac67b0b0", countMin: 1, countMax: 1, required: true, units: [["Lord Executioner"]] }, { id: "64caeff3-ce2b-46e3-b783-e0fdb754c40f", countMin: 3, countMax: 3, required: true, units: [["Spirit Hosts"]] }],
+            abilities: [this.abilities.executionHordeTheHeadsmanSMasses],
 
         },       deathStalkers: {
             id: "deathStalkers",
             name: "DEATH STALKERS",
             allegiance: this.allegiances.nighthaunt,
+            description: undefined,
+            pictureUrl: "http://none",
             points: 120,
-            units: [],
+            units: [{ id: "0d27e0ac-2a68-4059-9d8b-7cd347b540f4", countMin: 1, countMax: 1, required: true, units: [["Cairn Wraith"]] }, { id: "4e10b52d-442e-4f79-ad5e-b7a68d3ea962", countMin: 2, countMax: 2, required: true, units: [["Grimghast Reapers"]] }, { id: "9583a3df-6929-4661-97df-6f117c9c3c34", countMin: 2, countMax: 2, required: true, units: [["Glaivewraith Stalkers"]] }],
+            abilities: [this.abilities.deathStalkersSoulMarkedPrey],
 
         },       shriekerHost: {
             id: "shriekerHost",
             name: "SHRIEKER HOST",
             allegiance: this.allegiances.nighthaunt,
+            description: "The scream of a single Tomb Banshee can kill even the mightiest warrior. When backed by a screeching hell-choir of Myrmourn Banshees and Dreadscythe Harridans, that shrieking builds to an unholy cacophony – an unnatural sound that often serves to break opposing forces already beset by the horror of a Nighthaunt procession.",
+            pictureUrl: "http://none",
             points: 140,
-            units: [],
+            units: [{ id: "24a02961-3f24-47fe-9e7f-035d3b2d5588", countMin: 1, countMax: 1, required: true, units: [["Tomb Banshee"]] }, { id: "00f6ff63-569f-4171-b490-1a2e51bad6a3", countMin: 2, countMax: 2, required: true, units: [["Dreadscythe Harridans"]] }, { id: "f2fed08f-95e9-4052-ac0d-90683e480cc3", countMin: 2, countMax: 2, required: true, units: [["Myrmourn Banshees"]] }],
+            abilities: [this.abilities.shriekerHostAbilitiesMournfulWailing],
 
         },       vostargLodge: {
             id: "vostargLodge",
             name: "VOSTARG LODGE",
             allegiance: this.allegiances.fyreslayers,
+            description: "Beneath the smouldering volcanoes of the Cynder Peaks, the hammers of the Vostarg lodge ring ceaselessly upon their anvils like drums of war. Among the oldest of the Aqshy Fyreslayer lodges, the Vostarg can trace their lineage back to the legendary Vosforge, and they are the only scions of the original Vostarg lodge still to bear that name. From their sprawling magmahold of Furios Peak, the might of the Vostarg casts a blazing glow across the lands, and their reputation as brutal mercenaries and fearsome warriors stretches far beyond the borders of their domain.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1503311251710-hWNYiuC3mseJPoXj.jpg",
             points: 100,
-            units: [],
-
+            units: [{ id: "7d313c47-c3ee-489b-8d4c-d26a98a948ff", countMin: 1, countMax: 1, required: true, units: [["Lords of the Lodge"]] }, { id: "711b3787-aca9-4759-808d-7053fc602965", countMin: 1, countMax: 1, required: true, units: [["Warrior Kinband"]] }, { id: "ed49524d-41bd-40fe-b7e2-e6d0d65cd4ef", countMin: 0, countMax: 2, required: false, units: [["Warrior Kinband"], ["Forge Brethren"]] }, { id: "b2c95f97-f243-4c1e-be08-dbdc3ee8f9a4", countMin: 0, countMax: 0, required: false, units: [["Fyreslayer"]] }],
+            abilities: [this.abilities.vostargLodgeProudLineage, this.abilities.vostargLodgeFearsomeReputation],
+           organisationFootnote: "If a Vostarg Lodge contains the maximum number of battalions, it gains the Dour and Fearless ability from the Grand Fyrd warscroll battalion in Battletome: Fyreslayers.",
         },       greyfyrdLodge: {
             id: "greyfyrdLodge",
             name: "GREYFYRD LODGE",
             allegiance: this.allegiances.fyreslayers,
+            description: "Mercenary wanderers, the Greyfyrd lodge travel the realms in search of precious ur-gold to smelt within their forges. From the heart of their great magmahold Gateswold, where portals to many realms lurk beneath megalithic obstinite mountains, the Greyfyrds embark on crusades into the far reaches of the Mortal Realms. In many realms the lodge are much sought-after as mercenaries, and their warriors have changed the fates of the Ninefold Kingdoms of Obsidia, the Gloom tribes of Shyish and the Neolantic Bloodlands among uncounted others.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1503311346426-9R1y2XjitXPQOqvc.jpg",
             points: 60,
-            units: [],
-
+            units: [{ id: "7301b4ac-868a-4ef2-942b-5907b0565633", countMin: 1, countMax: 1, required: true, units: [["Lords of the Lodge"]] }, { id: "127a19e1-a16d-45ae-ac06-990b5d158db7", countMin: 1, countMax: 1, required: true, units: [["Warrior Kinband"]] }, { id: "52ccc456-f18a-46aa-b101-e9408c74cf82", countMin: 0, countMax: 2, required: false, units: [["Warrior Kinband"], ["Forge Brethren"]] }, { id: "1ab120f5-958c-4900-8f09-942ac960e7c0", countMin: 0, countMax: 0, required: false, units: [["Fyreslayer"]] }],
+            abilities: [this.abilities.greyfyrdLodgeMercenaryWanderers],
+           organisationFootnote: "If a Greyfyrd Lodge contains the maximum number of battalions, it gains the Dour and Fearless ability from the Grand Fyrd warscroll battalion in Battletome: Fyreslayers.",
         },       fangsOfSotek: {
             id: "fangsOfSotek",
             name: "FANGS OF SOTEK",
             allegiance: this.allegiances.seraphon,
+            description: "The curving fangs of the constellation of Sotek rise above the Mortal Realms on nights when the winds of Azyr blow their strongest. Each shimmering star in this radiant formation is a Seraphon cohort waiting for the call of the slann Starmaster Zectoka. Blazing upon the tip of the longest tooth is Ku-Quar – when Zectoka summons the constellation to battle this saurus is often the first to step into the Mortal Realms. From the back of his bellowing Carnosaur, Ku-Quar leads a host of warriors and lumbering reptilian beasts into battle against the armies of Chaos.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1503311413087-43Xr14fH13xlOd6z.jpg",
             points: 70,
-            units: [],
-
+            units: [{ id: "f137ee8c-1b5a-4c60-b7c4-caa905334d15", countMin: 1, countMax: 1, required: true, units: [["Slann Starmaster"]] }, { id: "01f224af-7241-4875-b204-7568352c01dd", countMin: 1, countMax: 1, required: true, units: [["Saurus Oldblood on Carnosaur"]] }, { id: "1a0e4470-524c-4372-bd71-3addfdcd3d6b", countMin: 1, countMax: 1, required: true, units: [["Sunclaw Starhost"]] }, { id: "01f32482-844b-4b76-a672-a5d445830431", countMin: 0, countMax: 4, required: false, units: [["Sunclaw Starhost"], ["Firelance Starhost"], ["Eternal Starhost"], ["Thunderquake Starhost"]] }, { id: "77c4ada0-02c9-4aba-a31c-0f398b4d0e40", countMin: 0, countMax: 0, required: false, units: [["Seraphon"]] }],
+            abilities: [this.abilities.fangsOfSotekFirstToBattle, this.abilities.fangsOfSotekFirstOldblood, this.abilities.fangsOfSotekBellowingCarnosaur],
+           organisationFootnote: "If a Fangs of Sotek battalion contains the maximum number of battalions, it gains the Strategic Mastery ability from the Starbeast Constellation warscroll battalion in Battletome: Seraphon.",
         },       dracothionSTail: {
             id: "dracothionSTail",
             name: "DRACOTHION’S TAIL",
             allegiance: this.allegiances.seraphon,
+            description: "Whipping across the heavens, the tail of the great star drake Dracothion is said to mirror the mood of Azyr itself. Within the stars of this vast constellation dwell the armies of the Scar-Veteran Quar-Toc, known as the Fury of Azyr. They appear at the call of the Slann Starmaster Kuoteq, riding and flying forth from the stars and into the Mortal Realms. As befits the constellation from which they come, the seraphon of Dracothion’s Tail are quick and unpredictable upon the battlefield, and their ranks are filled with Saurus Knights, Ripperdactyls and Terradon Riders.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1503311470509-jI7YjVVTVErRUS0c.jpg",
             points: 80,
-            units: [],
-
+            units: [{ id: "77b2f0d0-c6a2-4212-a332-6e50a8dbde62", countMin: 1, countMax: 1, required: true, units: [["Slann Starmaster"]] }, { id: "a2b4c7ef-23ff-4b4f-ab1d-ff7e7c04969a", countMin: 1, countMax: 1, required: true, units: [["Firelance Starhost"]] }, { id: "8769a143-da78-49bc-b3f3-d01ae91efcae", countMin: 0, countMax: 4, required: false, units: [["Sunclaw Starhost"], ["Firelance Starhost"], ["Eternal Starhost"], ["Shadowstrike Starhost"]] }, { id: "7db3f518-1a16-4f40-b693-224696bd3b77", countMin: 0, countMax: 0, required: false, units: [["Seraphon"]] }],
+            abilities: [this.abilities.dracothionSTailAppearAtKuoteqSCommand],
+           organisationFootnote: "If a Dracothion’s Tail battalion contains the maximum number of battalions, it gains the Strategic Mastery ability from the Starbeast Constellation warscroll battalion in Battletome: Seraphon.",
         },       ironsunz: {
             id: "ironsunz",
             name: "IRONSUNZ",
             allegiance: this.allegiances.ironjawz,
+            description: "One of the largest warclans to fight in Gordrakk’s Waaagh!, the Ironsunz can be seen in almost every realm, wearing flashy yellow armour and throwing their weight around to make sure that everyone knows they are the best. Megaboss Dakkbad Grotkicker has risen to rule the Ironsunz over a trail of bashed-in skulls and broken bones. Everyone knows that Dakkbad is cunning, and some orruks even reckon he might have an eye on Gordrakk’s position. If the Fist of Gork is concerned about this, he hasn’t let on, and if Dakkbad ever decides to have a go at usurping the Great Waaagh!, he had better make it count.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1503311674607-ndl6TPXJF8TIpF5W.jpg",
             points: 120,
-            units: [],
-
+            units: [{ id: "2d44c1dd-0ac7-426a-8e83-59ad816de120", countMin: 1, countMax: 1, required: true, units: [["Megaboss on Maw-krusha"]] }, { id: "b28d8801-a3b1-4219-afa7-54f300850540", countMin: 1, countMax: 1, required: true, units: [["Ironfist battalion"]] }, { id: "84ed4e18-3d16-43c5-888b-326d28de17af", countMin: 0, countMax: 4, required: false, units: [["Brutefist"], ["Gorefist"], ["Ardfist"], ["Ironfist"]] }, { id: "d006f109-acb7-46ca-b8c7-c2dfb658cf76", countMin: 0, countMax: 0, required: false, units: [["Ironjawz"]] }],
+            abilities: [this.abilities.ironsunzDakkbadSCunning, this.abilities.ironsunzDakkbadSBashing],
+           organisationFootnote: "If an Ironsunz battalion contains the maximum number of battalions, it gains the Big Waaagh! ability from the Brawl warscroll battalion in Battletome: Ironjawz.",
         },       bloodtoofs: {
             id: "bloodtoofs",
             name: "BLOODTOOFS",
             allegiance: this.allegiances.ironjawz,
+            description: undefined,
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1503311560246-4EXinjJu1vFiA4GK.jpg",
             points: 120,
-            units: [],
-
+            units: [{ id: "f949665c-f00e-466f-9bc1-5b89374f5ce3", countMin: 1, countMax: 1, required: true, units: [["Megaboss on Maw-krusha"]] }, { id: "7914e2c8-b267-4b36-819e-4831e37df2fe", countMin: 1, countMax: 1, required: true, units: [["Ironfist"]] }, { id: "9b0c445c-2b50-4f71-9911-b163e01f50f6", countMin: 0, countMax: 4, required: false, units: [["Brutefist"], ["Gorefist"], ["Weirdfist"], ["Ironfist"]] }, { id: "e7a73b63-47e2-4255-8bf3-791df2f0e149", countMin: 0, countMax: 0, required: false, units: [["Ironjawz"]] }],
+            abilities: [this.abilities.bloodtoofsHuntAndCrush, this.abilities.bloodtoofsGetDaRealmgate],
+           organisationFootnote: "If a Bloodtoofs battalion contains the maximum number of battalions, it gains the Big Waaagh! ability from the Brawl warscroll battalion in Battletome: Ironjawz.",
         },       blackshardWarhost: {
             id: "blackshardWarhost",
             name: "BLACKSHARD WARHOST",
             allegiance: this.allegiances.legionOfAzgorh,
+            description: "The mainstay of the Legion of Azgorh, Blackshard Warhosts greet their foe’s advance with precise volleys of pyrelock shot, thinning the enemy lines before breaking the survivors on a nigh-impenetrable wall of ensorcelled iron armour and cursed shields.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439984830355-haSISp9h64eH0F65.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "ca83fd2a-4994-4064-9718-5aa55bd1d0b2", countMin: 1, countMax: 1, required: true, units: [["Infernal Guard Castellan"]] }, { id: "673405e3-4e38-454c-aacd-427952494f03", countMin: 1, countMax: 1, required: true, units: [["Infernal Guard Battle Standard Bearer"]] }, { id: "e7928fd9-be0b-44fc-90bf-b31a4631fdff", countMin: 2, countMax: 2, required: true, units: [["Infernal Guard Ironsworn"]] }, { id: "d34f40e9-b35b-4826-a342-a184481e9e07", countMin: 2, countMax: 2, required: true, units: [["Infernal Guard Fireglaives"]] }],
+            abilities: [this.abilities.blackshardWarhostUnyieldingSlaughterers],
 
         },       hashutSWrathArtilleryTrain: {
             id: "hashutSWrathArtilleryTrain",
             name: "HASHUT’S WRATH ARTILLERY TRAIN",
             allegiance: this.allegiances.legionOfAzgorh,
+            description: "When the nightmarish engines of war used by the Legion of Azgorh venture forth in great numbers, the ground trembles as their bombardments tear through entire regiments of troops. The machines themselves are often bound with hungry spirits eager to cause carnage, gifting these terrible weapons of war with a dangerous sentience that lusts for nothing more than to shed rivers of blood.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/1439986003154-O69OWohRThXKpmXc.jpg",
             points: 120,
-            units: [],
+            units: [{ id: "cf95cd37-0c7b-45c1-9c74-1c2a555f4adf", countMin: 1, countMax: 1, required: true, units: [["Daemonsmith"]] }, { id: "1fdb1f9f-4a93-4230-9a99-213e4586405c", countMin: 1, countMax: 1, required: true, units: [["Iron Daemon War Engine"]] }, { id: "945cd232-9750-4f85-b1ea-9683aaa1ba53", countMin: 3, countMax: 3, required: true, units: [["Deathshrieker Rocket Launcher"], ["Magma Cannon"], ["Dreadquake Mortar"], ["Iron Daemon War Engine"]] }],
+            abilities: [this.abilities.hashutSWrathArtilleryTrainMurderousBarrage],
 
         },       executionHerd: {
             id: "executionHerd",
             name: "EXECUTION HERD",
             allegiance: this.allegiances.legionOfAzgorh,
+            description: "Led by Shar’tor, an Execution Herd is a terrifying prospect, a stampede of twisted Bull Centaurs blessed with the unholy wrath of Hashut. Blazing a path across the realms, they follow Hashut’s portents, relentlessly pursuing those who draw his ire to run them down and devour their flesh.",
+            pictureUrl: "http://d3qtedtlq2zst6.cloudfront.net/Warscrolls/Images/21d2e552-6f48-40ab-be8d-73d43255b827.jpg",
             points: 160,
-            units: [],
+            units: [{ id: "67c5a832-5ea8-4d56-a517-1c081b844a1b", countMin: 1, countMax: 1, required: true, units: [["Shar’tor the Executioner"]] }, { id: "b4d4b24a-ea68-42c2-9866-b16d33675780", countMin: 1, countMax: 1, required: true, units: [["Bull Centaur Taur’ruk"]] }, { id: "c70be3d9-3208-4ec5-8b13-53ad03709ecc", countMin: 3, countMax: 3, required: true, units: [["Bull Centaur Renders"]] }],
+            abilities: [this.abilities.executionHerdMarkedForDeath],
 
         },    }
    sceneries = {

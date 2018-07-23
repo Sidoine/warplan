@@ -3,7 +3,7 @@ import { observer, inject } from "mobx-react";
 import { BattalionsList } from "./battalions-list";
 import { WarscrollStore } from "../stores/warscroll";
 import { Header, Table, Button, Icon } from "semantic-ui-react";
-import { BattalionUnit, Unit } from "../stores/units";
+import { BattalionUnit } from "../stores/units";
 import { join } from "../helpers/react";
 
 export interface WarscrollBattalionsListProps {
@@ -16,7 +16,7 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;
         // const missingUnits = new Map<string, { count: number }[]>();
-        const counts = new Map<number, { count: number }>();
+        const counts = new Map<string, { count: number }>();
 
         // for (const battalion of warscroll.battalions) {
         //     const warscrollUnits = warscroll.units.filter(x => x.battalion !== null && x.battalion.id === battalion.id);
@@ -59,22 +59,23 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
             </div>;
     }
 
-    private renderUnit(bu: BattalionUnit, counts: Map<number, { count: number }>) {
+    private renderUnit(bu: BattalionUnit, counts: Map<string, { count: number }>) {
         const countsBu = counts.get(bu.id);
         if (countsBu !== undefined){
             const count = countsBu.count;
             if (count > 0) {
-                return <span style={{ color:  'red' } } key={bu.id}>{ bu.count} { join(bu.unit.map(x => <a key={x.id} href="" onClick={e => this.addUnit(x, e, count)}>{x.model.name}</a>), "/") } </span>;
+              //  return <span style={{ color:  'red' } } key={bu.id}>{ bu.count} { join(bu.units.map(x => <a key={x.id} href="" onClick={e => this.addUnit(x, e, count)}>{x.model.name}</a>), "/") } </span>;
+              return <span style={{ color:  'red' } } key={bu.id}>{ bu.countMin} { bu.countMax !== bu.countMin && ` - ${bu.countMax} `} { bu.units.map(x => x.join(', ')).join("/") } </span>;
             }
         }
 
-        return <span key={bu.id}>{ bu.count} { bu.unit.map(x => x.model.name).join("/") } </span>;
+        return <span key={bu.id}>{ bu.countMin} { bu.countMax !== bu.countMin && ` - ${bu.countMax} `} { bu.units.map(x => x.join('/')).join(" or ") } </span>;
     }
 
-    private addUnit(unit: Unit, e: React.MouseEvent<HTMLAnchorElement>, count: number) {
-        e.preventDefault();
-        for (let i = 0; i< count; i++) {
-            this.props.warscrollStore!.addUnit(unit);   
-        }
-    }
+    // private addUnit(unit: Unit, e: React.MouseEvent<HTMLAnchorElement>, count: number) {
+    //     e.preventDefault();
+    //     for (let i = 0; i< count; i++) {
+    //         this.props.warscrollStore!.addUnit(unit);   
+    //     }
+    // }
 }
