@@ -20,18 +20,20 @@ function fixUnits(data: DataStoreImpl):void {
         const axe: Attack = { name: "Meatripper Axe", melee: true, range: "1", attacks: "1", toHit: "4+", toWound: "4+", rend:"-1", damage: "1" };
         const blades: Ability = { name: "Reaver Blades", description: "You can re-roll hit rolls of 1 for models armed with Reaper Blades." };
 
-        bloodreavers.weaponOptionCategories = [{
-            options: [{
-                name: "Reaver Blades",
-                id: "reaverblade",
-                attacks: [reaverblades],
-                abilities: [blades]
-            },
-            {
-                name: "Meatripper Axe",
-                id: "meatripperaxe",
-                attacks: [axe]
-            }]
+        bloodreavers.options = [{
+            name: "Reaver Blades",
+            id: "reaverblade",
+            attacks: [reaverblades],
+            abilities: [blades],
+            unitCategory: "main",
+            modelCategory: "weapon"
+        },
+        {
+            name: "Meatripper Axe",
+            id: "meatripperaxe",
+            attacks: [axe],
+            unitCategory: "main",
+            modelCategory: "weapon"
         }];
     }
 }

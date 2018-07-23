@@ -1,16 +1,6 @@
 import { observable } from "mobx";
 import { Warscroll, WarscrollUnit } from "./warscroll";
-import { Ability } from "./units";
-
-export const enum Phase {
-    Setup,
-    Hero,
-    Movement,
-    Shooting,
-    Charge,
-    Combat,
-    Battleshock
-}
+import { Ability, Phase } from "./units";
 
 export interface UnitAura {
     ability: Ability;

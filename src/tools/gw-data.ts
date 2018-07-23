@@ -405,8 +405,8 @@ for (const [key, unit] of gwPointsMap) {
     const weapons = extraWeaponsMap.get(key);
     if (weapons) {
         const distinctWeapons = weapons.filter((x, index) => weapons.findIndex(y => y.name === x.name) === index);
-        output+= `            weaponOptionCategories: [{ options: [${distinctWeapons.map(x => `{ name: "${x.name}", id: "${toCamelCase(x.name)}" }`).join(",")}] }],
-            baseWeaponOptions: { ${distinctWeapons.map(x => `${toCamelCase(x.name)}: "${toCamelCase(x.name)}"`).join(", ")} },\n`
+        output+= `            options: [${distinctWeapons.map(x => `{ name: "${x.name}", id: "${toCamelCase(x.name)}", unitCategory: "main", modelCategory: "weapon" }`).join(",")}],
+            baseOptions: { ${distinctWeapons.map(x => `${toCamelCase(x.name)}: "${toCamelCase(x.name)}"`).join(", ")} },\n`
     }
 
     if (extras.type === "hero") {

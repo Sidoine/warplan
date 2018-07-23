@@ -36,12 +36,58 @@ export interface Faction {
     allied?: string[];
 }
 
+export const enum AbilityCategory {
+    None,
+    Magic,
+    SpecialRule,
+    Command
+}
+
+export const enum Phase {
+    Setup,
+    Hero,
+    Movement,
+    Shooting,
+    Charge,
+    Combat,
+    Battleshock
+}
+
+export interface Aura {
+
+}
+
+export const enum SubPhase {
+    Before,
+    While,
+    After
+}
+
+export const EnemyKeyword = "ENEMY";
+
+export interface UnitState {
+    hasCharged: boolean;
+}
+
+export interface AbilityEffect {
+    aura: Aura;
+    targetRange?: number;
+    whollyWithin?: boolean;
+    targetKeyword?: string; // otherwise, self
+    targetCondition?: (state: UnitState) => boolean;
+    effectRange?: number;
+    phase: Phase;
+    subPhase: SubPhase;
+    condition?: (state: UnitState) => boolean;
+}
+
 export interface Ability {
     name: string;
     flavor?: string;
-    description: string;
+    description?: string;
     getWounds?: (models: number, melee: boolean, attack?: Attack) => number;
     getSavedWounds?: (save?: number) => number;
+    category?: AbilityCategory;
 }
 
 export interface Attack {
@@ -81,17 +127,7 @@ export interface ModelOption {
 
     // An unit can't select another option of this category
     unitCategory?: string;
-    getMaxModelCount?: (unit: WarscrollUnitInterface, model: WarscrollModel) => number;
-}
-
-export interface WeaponOptionCategory {
-    options: WeaponOption[];
-    maxCount?: number;
-}
-
-interface WeaponOptionCombination {
-    count: number;
-    weaponOption: WeaponOption;
+    isOptionValid?: (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => boolean;
 }
 
 export type Value = number | string | DamageColumn | undefined;
@@ -107,15 +143,19 @@ export interface DamageColumn {
 }
 
 export interface UnitInfos {
-    weaponOptionCategories?: WeaponOptionCategory[];
     abilities?: Ability[];
     attacks?: Attack[];
     commandAbilities?: Ability[];
 }
 
-export interface UnitAltModel extends UnitInfos {
+export interface UnitStatModel {
+    options: ModelOption[];
+    count: number;
+}
+
+export interface UnitStatModels {
     name: string;
-    maxCount?: number;
+    models: UnitStatModel[];
 }
 
 export interface Unit extends UnitInfos {
@@ -129,14 +169,18 @@ export interface Unit extends UnitInfos {
     subType?: string;
     warscroll?: string;
     move?: Value;
-    save?: string;
-    wounds?: number;
-    bravery?: number;
+    save?: Value;
+    wounds?: Value;
+    bravery?: Value;
     keywords: string[];
     damageTable?: DamageTable;
     description?: string;
-    altModels?: UnitAltModel[];
+    flavor?: string;
+    magicDescription?: string;
     options?: ModelOption[];
+    pictureUrl?: string;
+
+    modelStats?: UnitStatModels[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => (boolean | undefined);
@@ -144,18 +188,18 @@ export interface Unit extends UnitInfos {
     isArtillery?: (warscroll: WarscrollInterface) => boolean;
 }
 
-function everyWeaponOptionCombinations(index: number, categories: WeaponOptionCategory[], options: WeaponOptionCombination[], result: WeaponOptionCombination[][], remaining: number) {
-    const count = categories[index].maxCount;
-    for (const weaponOption of categories[index].options) {
-        const newOptions = options.concat({ weaponOption: weaponOption, count: count || remaining});
-        if (categories.length > index + 1) {
-            everyWeaponOptionCombinations(index + 1, categories, newOptions, result, remaining);
-        }
-        else {
-            result.push(newOptions);
-        }
-    }
-}
+// function everyWeaponOptionCombinations(index: number, categories: WeaponOptionCategory[], options: WeaponOptionCombination[], result: WeaponOptionCombination[][], remaining: number) {
+//     const count = categories[index].maxCount;
+//     for (const weaponOption of categories[index].options) {
+//         const newOptions = options.concat({ weaponOption: weaponOption, count: count || remaining});
+//         if (categories.length > index + 1) {
+//             everyWeaponOptionCombinations(index + 1, categories, newOptions, result, remaining);
+//         }
+//         else {
+//             result.push(newOptions);
+//         }
+//     }
+// }
 
 export interface UnitStats {
     name?: string;
@@ -188,7 +232,7 @@ function addAttacksAndAbilitiesToStats(stats: UnitStats, attacks: Attack[] | und
             } 
 
             if (ability.getSavedWounds) {
-                stats.savedWounds += ability.getSavedWounds(stats.save) * size * (stats.unit.wounds || 0);
+                stats.savedWounds += ability.getSavedWounds(stats.save) * size * getValue(stats.unit.wounds);
             }
 
             if (!ability.getWounds && !ability.getSavedWounds && stats.ignoredAbilities.indexOf(ability) < 0) {
@@ -221,9 +265,17 @@ function updateTotalDamage(stats: UnitStats) {
     stats.totalDamage = stats.meleeDamage * 1.5 + stats.rangedDamage;
 }
 
+function getAllFromArray<T, U>(x: T[], lambda: (value: T) => (U[] | undefined)): U[] {
+    return x.reduce<U[]>((p, y) => {
+        const values = lambda(y);
+        if (values) return p.concat(values);
+        return p;
+    }, []);
+}
+
 export function getUnitStats(unit: Unit): UnitStats[] {
     const save = getValue(unit.save);
-    const savedWounds = (unit.wounds || 0) * unit.size * (unit.save ? 6 / (7 - save) : 1);
+    const savedWounds = getValue(unit.wounds) * unit.size * (unit.save ? 6 / (7 - save) : 1);
     const baseStats: UnitStats = {
         rangedDamage: 0,
         meleeDamage: 0,
@@ -235,15 +287,20 @@ export function getUnitStats(unit: Unit): UnitStats[] {
     };
     addAttacksAndAbilitiesToStats(baseStats, unit.attacks, unit.size, unit.abilities);
     
-    if (unit.weaponOptionCategories) {
-        const combinations: WeaponOptionCombination[][] = [];
-        const sum = unit.weaponOptionCategories.reduce((sum, category) => sum + (category.maxCount !== undefined ? category.maxCount : 0), 0);
-        const remaining = unit.size - sum;
-        everyWeaponOptionCombinations(0, unit.weaponOptionCategories, [], combinations, remaining);
-        
-        let combinationStats = combinations.map(x => {
+    let modelStats = unit.modelStats;
+    if (!modelStats && unit.options) {
+        modelStats = unit.options.filter(x => x.unitCategory === "main").map<UnitStatModels>(x => {
+            return {
+                name: x.name,
+                models: [{ count: unit.size, options: [x] }]
+            }
+        });
+    }
+
+    if (modelStats) {        
+        let combinationStats = modelStats.map(x => {
             const result: UnitStats = {
-                name: x.map(x => x.weaponOption.name).join("/"),
+                name: x.name,
                 meleeDamage: baseStats.meleeDamage,
                 rangedDamage: baseStats.rangedDamage,
                 save: baseStats.save,
@@ -252,8 +309,8 @@ export function getUnitStats(unit: Unit): UnitStats[] {
                 totalDamage: 0,
                 ignoredAbilities: baseStats.ignoredAbilities.concat()
             };
-            for (const woc of x) {
-                addAttacksAndAbilitiesToStats(result, woc.weaponOption.attacks, woc.count, woc.weaponOption.abilities, unit.abilities);
+            for (const unitStatModel of x.models) {
+                addAttacksAndAbilitiesToStats(result, getAllFromArray(unitStatModel.options, y => y.attacks), unitStatModel.count, getAllFromArray(unitStatModel.options, y => y.abilities), unit.abilities);
             }
             updateTotalDamage(result);
 
@@ -295,7 +352,7 @@ export interface Battalion {
     units: BattalionUnit[];
     description?: string;
     points: number;
-    factions: Faction[];
+    allegiance: Allegiance;
     abilities?: Ability[];
 }
 
@@ -308,11 +365,11 @@ export interface WarscrollUnitInterface {
     unit: Unit;
     isGeneral: boolean;
     extraAbilities: ExtraAbility[];
-    models: WarscrollModel[];
+    models: WarscrollModelInterface[];
     modelCount: number;
 }
 
-export interface WarscrollModel {
+export interface WarscrollModelInterface {
     id: number;
     options: ModelOption[];
     count: number;
@@ -393,7 +450,7 @@ export class UnitsStore {
             this.battalions.push(battalions[key]);
         }
 
-        this.boxes = data.boxes;
+        this.boxes = [];
         this.factions = data.factions;
 
         for (const key in this.factions) {
@@ -429,90 +486,6 @@ export class UnitsStore {
         return this.extraAbilities.find(x => x.id === id);
     }
 
-    private addAlliance(faction1: Faction, ...factions: Faction[]) {
-        if (!faction1.allied) faction1.allied = [];
-        for (let j = 0; j < factions.length; j++) {
-            const faction2 = factions[j];
-            if (!faction2.allied) faction2.allied = [];
-            if (faction1.allied.indexOf(faction2.id) < 0) {
-                faction1.allied.push(faction2.id);
-                faction2.allied.push(faction1.id);
-            }
-        }
-    }
-
     private addAlliances(data: DataStoreImpl) {
-        const factions = data.factions;
-
-        // Chaos
-        this.addAlliance(factions.BRAYHERD, factions.CHAOSGARGANTS, factions.MONSTERSOFCHAOS, factions.THUNDERSCORN, factions.WANDERERS);
-        this.addAlliance(factions.KHORNEBLOODBOUND, factions.BRAYHERD, factions.CHAOSGARGANTS, factions.EVERCHOSEN, factions.MONSTERSOFCHAOS, factions.NURGLEROTBRINGERS, factions.SLAVESTODARKNESS, factions.WARHERD);
-        // factions.CHAOSGARGANTS
-        this.addAlliance(factions.SKAVENESHIN, factions.SKAVENESHIN, factions.SKAVENMOULDER, factions.SKAVENPESTILENS, factions.SKAVENVERMINUS, factions.MASTERCLAN);
-        this.addAlliance(factions.SKAVENMOULDER, factions.SKAVENESHIN, factions.SKAVENSKRYRE, factions.SKAVENPESTILENS, factions.SKAVENVERMINUS, factions.MASTERCLAN);
-        this.addAlliance(factions.SKAVENPESTILENS, factions.SKAVENESHIN, factions.SKAVENMOULDER, factions.SKAVENSKRYRE, factions.SKAVENVERMINUS, factions.NURGLEDAEMONS, factions.MASTERCLAN);
-        this.addAlliance(factions.SKAVENSKRYRE, factions.SKAVENESHIN, factions.SKAVENMOULDER, factions.SKAVENPESTILENS, factions.SKAVENVERMINUS, factions.MASTERCLAN);
-        this.addAlliance(factions.SKAVENVERMINUS, factions.SKAVENESHIN, factions.SKAVENMOULDER, factions.SKAVENPESTILENS, factions.SKAVENSKRYRE, factions.MASTERCLAN);
-        // this.addAlliance(factions.DAEMONSOFCHAOS)
-        // factions.NURGLEDAEMONS
-        // TODO Faction name?
-        this.addAlliance(factions.TZEENTCHDAEMONS, factions.CHAOSGARGANTS, factions.EVERCHOSEN, factions.MONSTERSOFCHAOS, factions.SLAVESTODARKNESS, factions.THUNDERSCORN);
-        this.addAlliance(factions.EVERCHOSEN, ...this.factionsList.filter(x => x.grandAlliance === GrandAlliance.chaos));
-        this.addAlliance(factions.SLAANESHDAEMONS, factions.BRAYHERD, factions.CHAOSGARGANTS, factions.EVERCHOSEN, factions.MONSTERSOFCHAOS, factions.NURGLEROTBRINGERS, factions.SLAVESTODARKNESS, factions.WARHERD);
-        // factions.MASTERCLAN
-        // factions.MONSTERSOFCHAOS
-        this.addAlliance(factions.NURGLEROTBRINGERS, factions.BRAYHERD, factions.CHAOSGARGANTS, factions.EVERCHOSEN, factions.MONSTERSOFCHAOS, factions.SLAANESHDAEMONS, factions.SLAVESTODARKNESS, factions.WARHERD);
-        this.addAlliance(factions.SLAVESTODARKNESS, factions.KHORNEBLOODBOUND, factions.BRAYHERD, factions.CHAOSGARGANTS, factions.NURGLEDAEMONS, factions.TZEENTCHDAEMONS, factions.EVERCHOSEN, factions.SLAANESHDAEMONS, factions.NURGLEROTBRINGERS, factions.WARHERD);
-        this.addAlliance(factions.THUNDERSCORN, factions.CHAOSGARGANTS, factions.MONSTERSOFCHAOS, factions.BRAYHERD, factions.WARHERD);
-        this.addAlliance(factions.WARHERD, factions.CHAOSGARGANTS, factions.MONSTERSOFCHAOS, factions.THUNDERSCORN, factions.BRAYHERD);
-
-        // Death
-        this.addAlliance(factions.DEADWALKERS, factions.FLESHEATERCOURTS, factions.DEATHRATTLE, factions.DEATHMAGES, factions.NIGHTHAUNT, factions.SOULBLIGHT);
-        this.addAlliance(factions.DEATHLORDS, factions.DEADWALKERS, factions.FLESHEATERCOURTS, factions.DEATHRATTLE, factions.DEATHMAGES, factions.NIGHTHAUNT, factions.SOULBLIGHT);
-        //this.addAlliance(factions.DEATHMAGES);
-        this.addAlliance(factions.DEATHRATTLE, factions.DEADWALKERS, factions.DEATHLORDS, factions.DEATHMAGES, factions.SOULBLIGHT);
-        this.addAlliance(factions.FLESHEATERCOURTS, factions.DEADWALKERS, factions.DEATHLORDS, factions.DEATHMAGES);
-        this.addAlliance(factions.NIGHTHAUNT, factions.DEATHLORDS, factions.SOULBLIGHT);
-        this.addAlliance(factions.SOULBLIGHT, factions.DEADWALKERS, factions.DEATHLORDS, factions.DEATHMAGES, factions.NIGHTHAUNT);
-
-        // Destruction
-        //this.addAlliance(factions.ALEGUZZLERGARGANTS);
-        this.addAlliance(factions.BEASTCLAWRAIDERS, factions.ALEGUZZLERGARGANTS, factions.FIREBELLIES, factions.GUTBUSTERS, factions.MANEATERS, factions.TROGGOTHS);
-        this.addAlliance(factions.BONESPLITTERZ, factions.ALEGUZZLERGARGANTS, factions.ORRUKS, factions.IRONJAWZ, factions.MOONCLANGROTS, factions.SPIDERFANGGROTS, factions.TROGGOTHS);
-        // this.addAlliance(factions.FIREBELLIES);
-        // TODO Is this the same as Gitmob Grot?
-        this.addAlliance(factions.GROTS, factions.ALEGUZZLERGARGANTS, factions.ORRUKS, factions.MOONCLANGROTS, factions.SPIDERFANGGROTS, factions.TROGGOTHS);
-        // Same as Greenskinz
-        this.addAlliance(factions.ORRUKS, factions.ALEGUZZLERGARGANTS, factions.BONESPLITTERZ, factions.GROTS, factions.IRONJAWZ, factions.MOONCLANGROTS, factions.SPIDERFANGGROTS, factions.TROGGOTHS);
-        this.addAlliance(factions.GUTBUSTERS, factions.ALEGUZZLERGARGANTS, factions.FIREBELLIES, factions.BEASTCLAWRAIDERS, factions.MANEATERS, factions.TROGGOTHS);
-        this.addAlliance(factions.IRONJAWZ, factions.ALEGUZZLERGARGANTS, factions.BONESPLITTERZ, factions.GROTS, factions.ORRUKS, factions.MOONCLANGROTS, factions.TROGGOTHS);
-        //this.addAlliance(factions.MANEATERS);
-        this.addAlliance(factions.MOONCLANGROTS, factions.ALEGUZZLERGARGANTS, factions.ORRUKS, factions.GROTS, factions.SPIDERFANGGROTS, factions.TROGGOTHS);
-        this.addAlliance(factions.SPIDERFANGGROTS, factions.ALEGUZZLERGARGANTS, factions.ORCSANDGOBLINS, factions.MOONCLANGROTS, factions.GROTS, factions.TROGGOTHS);
-        //this.addAlliance(factions.TROGGOTHS);
-
-        // Order
-        //this.addAlliance(factions.AELVES);
-        //this.addAlliance(factions.COLLEGIATEARCANE);
-        this.addAlliance(factions.DARKLINGCOVENS, factions.DAUGHTERSOFKHAINE, factions.ORDERSERPENTIS, factions.SCOURGEPRIVATEERS, factions.SHADOWBLADES, factions.STORMCASTETERNALS);
-        this.addAlliance(factions.DAUGHTERSOFKHAINE, factions.DARKLINGCOVENS, factions.ORDERSERPENTIS, factions.SCOURGEPRIVATEERS, factions.SHADOWBLADES, factions.STORMCASTETERNALS);
-        this.addAlliance(factions.DEVOTEDOFSIGMAR, factions.COLLEGIATEARCANE, factions.FREEPEOPLES, factions.IRONWELDARSONAL, factions.STORMCASTETERNALS);
-        this.addAlliance(factions.DISPOSSESSED, factions.FYRESLAYERS, factions.IRONWELDARSONAL, factions.KHARADRONOVERLORDS, factions.STORMCASTETERNALS);
-        this.addAlliance(factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.ORDERDRACONIS, factions.PHOENIXTEMPLE, factions.STORMCASTETERNALS, factions.SWIFTHAWKAGENTS, factions.SYLVANETH, factions.WANDERERS);
-        this.addAlliance(factions.FREEPEOPLES, factions.COLLEGIATEARCANE, factions.DEVOTEDOFSIGMAR, factions.IRONWELDARSONAL, factions.STORMCASTETERNALS);
-        this.addAlliance(factions.FYRESLAYERS, factions.DISPOSSESSED, factions.IRONWELDARSONAL, factions.KHARADRONOVERLORDS, factions.STORMCASTETERNALS);
-        //this.addAlliance(factions.IRONWELDARSONAL);
-        this.addAlliance(factions.KHARADRONOVERLORDS, factions.DISPOSSESSED, factions.FYRESLAYERS, factions.IRONWELDARSONAL, factions.STORMCASTETERNALS);
-        //this.addAlliance(factions.LIONRANGERS);
-        this.addAlliance(factions.ORDERDRACONIS, factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.PHOENIXTEMPLE, factions.STORMCASTETERNALS, factions.SWIFTHAWKAGENTS, factions.SYLVANETH, factions.WANDERERS);
-        this.addAlliance(factions.ORDERSERPENTIS, factions.DARKLINGCOVENS, factions.DAUGHTERSOFKHAINE, factions.SCOURGEPRIVATEERS, factions.SHADOWBLADES, factions.STORMCASTETERNALS);
-        this.addAlliance(factions.PHOENIXTEMPLE, factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.ORDERDRACONIS, factions.STORMCASTETERNALS, factions.SWIFTHAWKAGENTS, factions.WANDERERS);
-        this.addAlliance(factions.SCOURGEPRIVATEERS, factions.DARKLINGCOVENS, factions.DAUGHTERSOFKHAINE, factions.ORDERSERPENTIS, factions.SHADOWBLADES, factions.STORMCASTETERNALS);
-        this.addAlliance(factions.SERAPHON, factions.STORMCASTETERNALS);
-        this.addAlliance(factions.SHADOWBLADES, factions.DARKLINGCOVENS, factions.DAUGHTERSOFKHAINE, factions.ORDERSERPENTIS, factions.SCOURGEPRIVATEERS, factions.STORMCASTETERNALS);
-        this.addAlliance(factions.STORMCASTETERNALS, ...this.factionsList.filter(x => x.grandAlliance === GrandAlliance.order));
-        this.addAlliance(factions.SWIFTHAWKAGENTS, factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.ORDERDRACONIS, factions.PHOENIXTEMPLE, factions.STORMCASTETERNALS, factions.SYLVANETH, factions.WANDERERS);
-        this.addAlliance(factions.SYLVANETH, factions.STORMCASTETERNALS, factions.WANDERERS);
-        this.addAlliance(factions.WANDERERS, factions.ELDRITCHCOUNCIL, factions.LIONRANGERS, factions.ORDERDRACONIS, factions.PHOENIXTEMPLE, factions.STORMCASTETERNALS, factions.SWIFTHAWKAGENTS, factions.SYLVANETH);
     }
 }

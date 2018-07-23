@@ -1,9 +1,10 @@
 import React = require("react");
 import { inject, observer } from "mobx-react";
-import { WarscrollStore } from "../stores/warscroll";
+import { WarscrollStore, PointMode } from "../stores/warscroll";
 import { Dropdown, Segment, Grid, Icon, DropdownProps } from "semantic-ui-react";
 import { UnitsStore } from "../stores/units";
 import { UiStore } from "../stores/ui";
+import { DropdownValues } from "./dropdown-list";
 
 interface WarscrollSummaryProps {
     warscrollStore?: WarscrollStore;
@@ -14,6 +15,10 @@ interface WarscrollSummaryProps {
 @inject("warscrollStore", "uiStore", "unitsStore")
 @observer    
 export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}> {
+    private handlePointsModeChange = (value: PointMode) => {
+        this.props.warscrollStore!.setPointMode(value);
+    }
+
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;
         const totalPoints = warscroll.totalPoints;
@@ -36,6 +41,9 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
                             <Dropdown selection options={armyOptionsValues} value={this.props.warscrollStore!.warscroll.armyOption} onChange={this.setArmyOption} />    
                         </Grid.Column>
                     }
+                    <Grid.Column width={5}>
+                        Mode: <DropdownValues value={warscroll.pointMode} options={[PointMode.MatchedPlay, PointMode.OpenPlay]} getText={(v) => v === PointMode.MatchedPlay ? "Matched play" : "Open play" } onChange={this.handlePointsModeChange} />
+                    </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={3} >{totalPoints} points { alliedPoints > 0 && <>({ !warscroll.isAlliedValid && <Icon name="warning"/> } { alliedPoints} allied)</> } </Grid.Column>
