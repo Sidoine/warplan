@@ -6,6 +6,7 @@ import { overrideKhorne } from "./overrides/khorne";
 import { overrideDevotedOfSigmar } from "./overrides/devoted-of-sigmar";
 import { overrideWanderers } from "./overrides/wanderers";
 import { overrideIdonethDeepkins } from "./overrides/idoneth-deepkins";
+import { overrideEverchosen } from "./overrides/everchosen";
 
 export const enum Material {
     Metal,
@@ -369,6 +370,7 @@ export class UnitsStore {
     constructor(data: DataStoreImpl) {   
         overrideStormcast(data);   
         overrideNurgle(data);
+        overrideEverchosen(data);
         overrideKhorne(data);
         overrideDevotedOfSigmar(data);
         overrideWanderers(data);
