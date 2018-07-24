@@ -1,4 +1,4 @@
-import { Attack, Ability, Unit, ExtraAbilityTest, Model, Material, WarscrollModelInterface, ModelOption, WarscrollUnitInterface } from "../units";
+import { Attack, Ability, Unit, ExtraAbilityTest, Model, Material, WarscrollModelInterface, ModelOption, WarscrollUnitInterface, AbilityEffect } from "../units";
 import { getAttackDamageEx, getValue, getAttackDamage } from "../combat";
 
 export const ModelCategoryWeapon = "weapon";
@@ -150,3 +150,8 @@ export const rareRate = 0.2;
 export const numberOfNeighborUnits = 2;
 export const enemyModelsInRange = 3;
 export const numberOfModelsPerUnit = 4;
+
+export function addAbilityEffect(ability: Ability, auraEffect: AbilityEffect) {
+    if (ability.effects === undefined) ability.effects = [];
+    ability.effects.push(auraEffect);
+}

@@ -1,6 +1,7 @@
 import { DataStoreImpl } from "../imported-data";
 import { Unit, Material } from "../units";
-import { rareRate, overrideModel,setAbilityAsOption, overrideAbility, setAttackAsOption, removeAbility, addOption, ModelCategoryWeapon, UnitCategoryMain, oneModelOption, ratioModelOption, override } from "./tools";
+import { rareRate, overrideModel,setAbilityAsOption, overrideAbility, setAttackAsOption, removeAbility, addOption, ModelCategoryWeapon, UnitCategoryMain, oneModelOption, ratioModelOption, override, addAbilityEffect } from "./tools";
+import { getValue } from "../combat";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -291,6 +292,10 @@ function fixUnits(data: DataStoreImpl):void {
             unitCategory: UnitCategoryMain
         });
         const prime = setAbilityAsOption(liberator, data.abilities.liberatorsLiberatorPrime, oneModelOption);
+        addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, { attackAura: { bonusHitRoll: 1, targetCondition: (state) => getValue(state.unit.wounds) >= 5 } });
+        addAbilityEffect(data.abilities.liberatorsLiberatorPrime, { attackAura: { bonusAttacks: 1 } });
+        addAbilityEffect(data.abilities.liberatorsSigmariteShields, { attackAura: { rerollSavesOn: 1 } });
+        addAbilityEffect(data.abilities.liberatorsPairedWeapons, { attackAura: { extraHitsOn6: 1 } });
         
         liberator.modelStats = [
             { name: "Warhammers, prime with Grandhammer", models: [{ options: [wh], count: 4 }, { options: [gh, prime], count: 1 }] },

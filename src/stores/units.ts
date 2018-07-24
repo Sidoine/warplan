@@ -53,8 +53,12 @@ export const enum Phase {
     Battleshock
 }
 
-export interface Aura {
-
+export interface AttackAura {
+    bonusHitRoll?: Value;
+    bonusAttacks?: Value;
+    rerollSavesOn?: number;
+    extraHitsOn6?: Value;
+    targetCondition?: (state: UnitState) => boolean;
 }
 
 export const enum SubPhase {
@@ -63,21 +67,22 @@ export const enum SubPhase {
     After
 }
 
-export const EnemyKeyword = "ENEMY";
-
 export interface UnitState {
     hasCharged: boolean;
+    unit: Unit;
+    attackAuras: AttackAura[];
 }
 
 export interface AbilityEffect {
-    aura: Aura;
+    attackAura?: AttackAura;
     targetRange?: number;
     whollyWithin?: boolean;
+    targetEnemy?: boolean;
     targetKeyword?: string; // otherwise, self
     targetCondition?: (state: UnitState) => boolean;
     effectRange?: number;
-    phase: Phase;
-    subPhase: SubPhase;
+    phase?: Phase;
+    subPhase?: SubPhase;
     condition?: (state: UnitState) => boolean;
 }
 
@@ -88,6 +93,7 @@ export interface Ability {
     getWounds?: (models: number, melee: boolean, attack?: Attack) => number;
     getSavedWounds?: (save?: number) => number;
     category?: AbilityCategory;
+    effects?: AbilityEffect[];
 }
 
 export interface Attack {
@@ -212,6 +218,61 @@ export interface UnitStats {
     ignoredAbilities: Ability[];
 }
 
+function applyEffect(target: UnitState, effect: AbilityEffect) {
+    if (effect.condition && !effect.condition(target)) return;
+
+    if (effect.attackAura) {
+        target.attackAuras.push(effect.attackAura);
+    }
+}
+
+function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit, model: UnitStatModel) {
+    let abilities = unit.abilities || [];
+    let attacks = unit.attacks || [];
+    for (const option of model.options) {
+        if (option.abilities) abilities = abilities.concat(option.abilities)
+        if (option.attacks) attacks = attacks.concat(option.attacks);
+    }
+    
+    for (const ability of abilities) {
+        if (ability.effects) {
+            for (const effect of ability.effects) {
+                if (effect.targetEnemy) {
+                    applyEffect(enemyState, effect);
+                } else {
+                    applyEffect(myState, effect);
+                }
+            }
+        }
+    }
+    for (const attack of attacks) {
+        let toHit = getValue(attack.toHit);
+        if (!toHit) continue;
+        for (const aura of myState.attackAuras) {
+            if (aura.bonusHitRoll) {
+                toHit += getValue(aura.bonusHitRoll);
+            }
+        }
+    }
+}
+
+function computeUnitStats(stats: UnitStats, unit: Unit, models: UnitStatModel[]) {
+    const myState: UnitState = {
+        unit: unit,
+        hasCharged: false,
+        attackAuras: []
+    };
+    const enemyState: UnitState = {
+        hasCharged: false,
+        attackAuras: [],
+        unit: { id: "enemy", model: { id: "enemy", name: "Enemy" }, size: 1, points: 0, wounds: 2, factions: [], keywords: [] }
+    }
+
+    for (const model of models) {
+        computeModelStats(myState, enemyState, unit, model);
+    }
+}
+
 function addAttacksAndAbilitiesToStats(stats: UnitStats, attacks: Attack[] | undefined, size: number, abilities: Ability[] | undefined, baseAbilities?: Ability[]) {
     let meleeDamage = attacks ? size * attacks.filter(x => x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
     let rangedDamage = attacks ? size * attacks.filter(x => !x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
@@ -297,6 +358,10 @@ export function getUnitStats(unit: Unit): UnitStats[] {
         });
     }
 
+    if (!modelStats) {
+        modelStats = [{ name: "Main", models: [{ count:unit.size, options: [] }] }]
+    }
+
     if (modelStats) {        
         let combinationStats = modelStats.map(x => {
             const result: UnitStats = {
@@ -319,6 +384,8 @@ export function getUnitStats(unit: Unit): UnitStats[] {
         return combinationStats;
     }
     updateTotalDamage(baseStats);
+
+    computeUnitStats(baseStats, unit, modelStats);
 
     return [baseStats];
 }
