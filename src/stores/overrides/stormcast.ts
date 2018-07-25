@@ -1,7 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
 import { Unit, Material } from "../units";
-import { rareRate, overrideModel,setAbilityAsOption, overrideAbility, setAttackAsOption, removeAbility, addOption, ModelCategoryWeapon, UnitCategoryMain, oneModelOption, ratioModelOption, override, addAbilityEffect } from "./tools";
-import { getValue } from "../combat";
+import { overrideModel,setAbilityAsOption, setAttackAsOption, removeAbility, addOption, ModelCategoryWeapon, UnitCategoryMain, oneModelOption, ratioModelOption, override, addAbilityEffect } from "./tools";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -292,10 +291,10 @@ function fixUnits(data: DataStoreImpl):void {
             unitCategory: UnitCategoryMain
         });
         const prime = setAbilityAsOption(liberator, data.abilities.liberatorsLiberatorPrime, oneModelOption);
-        addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, { attackAura: { bonusHitRoll: 1, targetCondition: (state) => getValue(state.unit.wounds) >= 5 } });
+        addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, { attackAura: { bonusHitRoll: 1, targetCondition: { minWounds: 5 } } });
         addAbilityEffect(data.abilities.liberatorsLiberatorPrime, { attackAura: { bonusAttacks: 1 } });
-        addAbilityEffect(data.abilities.liberatorsSigmariteShields, { attackAura: { rerollSavesOn: 1 } });
-        addAbilityEffect(data.abilities.liberatorsPairedWeapons, { attackAura: { extraHitsOn6: 1 } });
+        addAbilityEffect(data.abilities.liberatorsSigmariteShields, { defenseAura: { rerollSavesOn: 1 } });
+        addAbilityEffect(data.abilities.liberatorsPairedWeapons, { attackAura: { numberOfHitsOn6: 2 } });
         
         liberator.modelStats = [
             { name: "Warhammers, prime with Grandhammer", models: [{ options: [wh], count: 4 }, { options: [gh, prime], count: 1 }] },
@@ -306,71 +305,23 @@ function fixUnits(data: DataStoreImpl):void {
     }
 
     {
-        // const judicator: Unit = data.units.judicators;
-        // judicator.move = 5;
-        // judicator.save = "4+";
-        // judicator.bravery = 6;
-        // judicator.keywords.push("CELESTIAL", "HUMAN", "JUSTICAR", "JUDICATORS");
-        // const skyboltBow: Attack = { name: "Skybolt Bow", range: "24", attacks: "1", toHit: "3+", toWound: "3+", rend: "-1", damage: "1", melee: false };
-        // const boltstormCrossbow: Attack = { name: "Boltstorm Crossbow", range: "12", attacks: "2", toHit: "3+", toWound: "4+", damage: "1", melee: false };
-        // const shockboltBow: Attack = { name: "Shockbolt Bow", range: "24", attacks: "1", toHit: "3+", toWound: "3+", rend: "-1", damage: "1", melee: false };
-        // const thunderboltCrossbow: Attack = { name: "Thunderbolt Crossbow", range: "18", melee: false };
-        // const stormGladius: Attack = { name: "Storm Gladius", range: "1", attacks: "1", toHit: "3+", toWound: "4+", damage: "1", melee: true };
-        // const judicatorPrime: Ability = {
-        //     name: "Judicator-Prime",
-        //     description: "A Judicator-Prime leads this unit. Add 1 to the hit rolls for a Judicator-Prime.",
-        //     getWounds: (models, melee, attack) => attack === skyboltBow || attack === shockboltBow ? getWoundsForAbilityBonus1OnHit(1, attack) : 0
-        // };
-        // const rapidFire: Ability = {
-        //     name: "Rapid Fire",
-        //     description: "If a unit of Judicators does not move in the movement phase, then you can add 1 to the Attacks characteristic of any Boltstorm Crossbows the unit uses in the shooting phase of the same turn.",
-        //     getWounds: (models, melee, attack) => attack === boltstormCrossbow ? getWoundsForExtraAttack(attack) * models * mediumRate : 0
-        // };
-        // const chainedLightning: Ability = {
-        //     name: "Chained Lightning",
-        //     description: "If a Judicator attacking with a Shockbolt Bow scores a hit then the bolt explodes into a storm of lightning. Instead of making a single wound roll, roll a dice and make a number of wound rolls equal to the number scored.",
-        //     getWounds: (models, melee, attack) => attack === shockboltBow ? getAttackDamage(attack) * 2.5 : 0
-        // };
-        // const eternalJudgment: Ability = {
-        //     name: "Eternal Judgment",
-        //     description: "You may re-roll any hit rolls of 1 when a Judicator attacks a CHAOS unit in the shooting phase."
-        // };
-        // const thunderboltCrossbowAbility: Ability = {
-        //     name: "Thunderbolt Crossbow",
-        //     description: "When a model attacks with a Thunderbolt Crossbow the target is struck by a mighty blast of Celestial energy; pick an enemy unit within 18\" and roll a dice. Subtract 1 from the roll if the target is a MONSTER. If the result is equal to or less than the number of models in the unit, the unit suffers D3 mortal wounds.",
-        //     getWounds: (models, melee, attack) => attack === thunderboltCrossbow ? 2 * frequentRate : 0
-        // };
-        
-        // const skyboltBowsOption = setBaseModelOption(judicator, data.units.judicators.baseOptions.skyboltBows, [skyboltBow, stormGladius], []);
-        // const bolstromOption = setBaseModelOption(judicator, data.units.judicators.baseOptions.boltstormCrossbows, [boltstormCrossbow, stormGladius], [rapidFire]);
-        // const shockboltBowOption: ModelOption = {
-        //     id: "shockboltBow",
-        //     name: "Shockbolt Bow",
-        //     abilities: [chainedLightning],
-        //     attacks: [shockboltBow],
-        //     modelCategory: "weapon",
-        //     isOptionValid: (unit, model) => isRatioCorrect(unit, shockboltBowOption, 1, 5)
-        // }
-        // const thunderboltOption: ModelOption = {
-        //     id: "thunderbolt",
-        //     name: "Thunderbolt Crossbow",
-        //     attacks: [thunderboltCrossbow],
-        //     abilities: [thunderboltCrossbowAbility],
-        //     modelCategory: "weapon",
-        //     isOptionValid: (unit, model) => isRatioCorrect(unit, shockboltBowOption, 1, 5)
-        // }
-        // const primeOption: ModelOption = {
-        //     id: "prime",
-        //     name: "Judicator-Prime",
-        //     abilities: [judicatorPrime],
-        //     isOptionValid: (unit, model) => getUnitModelsWithOptionCount(unit, primeOption) <= 0
-        // }
-        // judicator.options = [skyboltBowsOption, bolstromOption, shockboltBowOption, thunderboltOption, primeOption];
-        // judicator.abilities = [eternalJudgment];
-        // judicator.modelStats = [
-        //     { name: "Skybolt Bows and prime with Shockbolt Bow", models: [{ count: 4, options: [skyboltBowsOption] }, { count: 1, options: [shockboltBowOption, primeOption] }] },
-        //     { name: "Boltstorm Crossbows and prime with Thunderbolt Crossbow", models: [{ count: 4, options: [bolstromOption] } , { count: 1, options: [thunderboltOption, primeOption] } ] }
-        // ]
+        const judicator: Unit = data.units.judicators;
+        const rapidFire = removeAbility(judicator, data.abilities.judicatorsRapidFire);
+        const chainedLightning = removeAbility(judicator, data.abilities.judicatorsChainedLightning);
+        const thunderboltCrossbowAbility = removeAbility(judicator, data.abilities.judicatorsThunderboltCrossbow);
+        const skyboltBow = setAttackAsOption(judicator, data.attacks.judicatorsSkyboltBow);
+        const boltstormCrossbow = setAttackAsOption(judicator, data.attacks.judicatorsBoltstormCrossbow, undefined, [rapidFire]);
+        const shockboltBow = setAttackAsOption(judicator, data.attacks.judicatorsShockboltBow, ratioModelOption(1, 5), [chainedLightning]);
+        const thunderboltCrossbow = setAttackAsOption(judicator, data.attacks.judicatorsThunderboltCrossbow, ratioModelOption(1, 5), [thunderboltCrossbowAbility]);
+        const judicatorPrime = setAbilityAsOption(judicator, data.abilities.judicatorsJudicatorPrime, oneModelOption);
+        addAbilityEffect(data.abilities.judicatorsChainedLightning, { attackAura: { numberOfHitsOnHit: "D6", attack: data.attacks.judicatorsShockboltBow } })
+        addAbilityEffect(data.abilities.judicatorsRapidFire, { targetCondition: { hasNotMoved: true }, attackAura: { bonusAttacks: 1, attack: data.attacks.judicatorsBoltstormCrossbow } });
+        addAbilityEffect(data.abilities.judicatorsEternalJudgement, { attackAura: { targetCondition: { keyword: "CHAOS" }, onlyMissileAttacks: true, rerollHitsOn: 1 }})
+
+        judicator.modelStats = [
+            { name: "Skybolt Bows and prime with Shockbolt Bow", models: [{ count: 4, options: [skyboltBow] }, { count: 1, options: [shockboltBow, judicatorPrime] }] },
+            { name: "Boltstorm Crossbows and prime with Thunderbolt Crossbow", models: [{ count: 4, options: [boltstormCrossbow] } , { count: 1, options: [thunderboltCrossbow, judicatorPrime] } ] }
+        ]
     }
 
     {
@@ -1453,7 +1404,7 @@ function fixUnits(data: DataStoreImpl):void {
         const unit: Unit = data.units.knightVexillor;
         const meteoricStandard = data.abilities.knightVexillorMeteoricStandard;
         const penantOfTheStormbringer = data.abilities.knightVexillorPennantOfTheStormbringer;
-        overrideAbility(meteoricStandard, x => x.getWounds = (models, melee, attack) => attack === undefined && !melee ? 4 * 2 * rareRate : 0)
+        // overrideAbility(meteoricStandard, x => x.getWounds = (models, melee, attack) => attack === undefined && !melee ? 4 * 2 * rareRate : 0)
         setAbilityAsOption(unit, meteoricStandard);
         setAbilityAsOption(unit, penantOfTheStormbringer);
     }

@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "./imported-data";
 import { overrideStormcast } from "./overrides/stormcast";
-import { getAttackDamage, getValue } from "./combat";
+import { getValue } from "./combat";
 import { overrideNurgle } from "./overrides/nurgle";
 import { overrideKhorne } from "./overrides/khorne";
 import { overrideDevotedOfSigmar } from "./overrides/devoted-of-sigmar";
@@ -53,12 +53,29 @@ export const enum Phase {
     Battleshock
 }
 
+export interface DefenseAura {
+    rerollSavesOn?: number;
+}
+
+export interface TargetCondition {
+    minWounds?: number;
+    keyword?: string;
+    hasCharged?: boolean;
+    hasNotCharged?: boolean;
+    hasMoved?: boolean;
+    hasNotMoved?: boolean;
+}
+
 export interface AttackAura {
     bonusHitRoll?: Value;
     bonusAttacks?: Value;
-    rerollSavesOn?: number;
-    extraHitsOn6?: Value;
-    targetCondition?: (state: UnitState) => boolean;
+    rerollHitsOn?: number;
+    numberOfHitsOn6?: Value;
+    numberOfHitsOnHit?: Value;
+    targetCondition?: TargetCondition;
+    attack?: Attack;
+    onlyMeleeAttacks?: boolean;
+    onlyMissileAttacks?: boolean;
 }
 
 export const enum SubPhase {
@@ -69,29 +86,31 @@ export const enum SubPhase {
 
 export interface UnitState {
     hasCharged: boolean;
+    hasMoved: boolean;
     unit: Unit;
     attackAuras: AttackAura[];
+    defenseAura: DefenseAura[];
+    wounds: number;
 }
 
 export interface AbilityEffect {
     attackAura?: AttackAura;
+    defenseAura?: DefenseAura;
     targetRange?: number;
     whollyWithin?: boolean;
     targetEnemy?: boolean;
     targetKeyword?: string; // otherwise, self
-    targetCondition?: (state: UnitState) => boolean;
+    targetCondition?: TargetCondition;
     effectRange?: number;
     phase?: Phase;
     subPhase?: SubPhase;
-    condition?: (state: UnitState) => boolean;
+    condition?: TargetCondition;
 }
 
 export interface Ability {
     name: string;
     flavor?: string;
     description?: string;
-    getWounds?: (models: number, melee: boolean, attack?: Attack) => number;
-    getSavedWounds?: (save?: number) => number;
     category?: AbilityCategory;
     effects?: AbilityEffect[];
 }
@@ -194,19 +213,6 @@ export interface Unit extends UnitInfos {
     isArtillery?: (warscroll: WarscrollInterface) => boolean;
 }
 
-// function everyWeaponOptionCombinations(index: number, categories: WeaponOptionCategory[], options: WeaponOptionCombination[], result: WeaponOptionCombination[][], remaining: number) {
-//     const count = categories[index].maxCount;
-//     for (const weaponOption of categories[index].options) {
-//         const newOptions = options.concat({ weaponOption: weaponOption, count: count || remaining});
-//         if (categories.length > index + 1) {
-//             everyWeaponOptionCombinations(index + 1, categories, newOptions, result, remaining);
-//         }
-//         else {
-//             result.push(newOptions);
-//         }
-//     }
-// }
-
 export interface UnitStats {
     name?: string;
     meleeDamage: number;
@@ -218,15 +224,20 @@ export interface UnitStats {
     ignoredAbilities: Ability[];
 }
 
-function applyEffect(target: UnitState, effect: AbilityEffect) {
-    if (effect.condition && !effect.condition(target)) return;
+function applyEffect(caster: UnitState, target: UnitState, effect: AbilityEffect) {
+    if (effect.condition && !checkCondition(effect.condition, caster)) return;
+    if (effect.targetCondition && !checkCondition(effect.targetCondition, target)) return;
 
     if (effect.attackAura) {
         target.attackAuras.push(effect.attackAura);
     }
 }
 
-function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit, model: UnitStatModel) {
+function checkCondition(condition: TargetCondition, target: UnitState) {
+
+}
+
+function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit, model: UnitStatModel, stats: UnitStats) {
     let abilities = unit.abilities || [];
     let attacks = unit.attacks || [];
     for (const option of model.options) {
@@ -238,20 +249,62 @@ function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit
         if (ability.effects) {
             for (const effect of ability.effects) {
                 if (effect.targetEnemy) {
-                    applyEffect(enemyState, effect);
+                    applyEffect(myState, enemyState, effect);
                 } else {
-                    applyEffect(myState, effect);
+                    applyEffect(myState, myState, effect);
                 }
+            }
+        } else {
+            if (stats.ignoredAbilities.find(x => x.name === ability.name) === undefined) {
+                stats.ignoredAbilities.push(ability);
             }
         }
     }
     for (const attack of attacks) {
+        let numberOfAttacks = getValue(attack.attacks) * model.count;
         let toHit = getValue(attack.toHit);
+        let toWound = getValue(attack.toWound);
+        let numberOfHitsOn6 = 0;
+        let numberOfHitsOnHit = 1;
+        let rerollHitsOn = 0;
+        let rend = getValue(attack.rend);
+        let enemySave = getValue(enemyState.unit.save);
         if (!toHit) continue;
         for (const aura of myState.attackAuras) {
+            if (aura.targetCondition && !checkCondition(aura.targetCondition, enemyState)) continue;
+
             if (aura.bonusHitRoll) {
                 toHit += getValue(aura.bonusHitRoll);
             }
+            if (aura.bonusAttacks) {
+                numberOfAttacks += getValue(aura.bonusAttacks);
+            }
+            if (aura.numberOfHitsOn6) {
+                numberOfHitsOn6 += getValue(aura.numberOfHitsOn6);
+            }
+            if (aura.numberOfHitsOnHit) {
+                numberOfHitsOnHit = getValue(aura.numberOfHitsOnHit);
+            }
+            if (aura.rerollHitsOn) {
+                rerollHitsOn = aura.rerollHitsOn;
+            }
+        }
+
+        let numberOfHits = numberOfAttacks * (7 - toHit) / 6;
+        if (rerollHitsOn) {
+            numberOfHits *= rerollHitsOn / 6;
+        }
+        if (numberOfHitsOn6) {
+            numberOfHits += 1 / 6 * (numberOfHitsOn6 - 1);
+        }
+        numberOfHits *= numberOfHitsOnHit;
+
+        let numberOfWounds = numberOfHits * (7 - toWound) / 6;
+        let numberOfMortalWounds = (enemySave - rend < 7) ? numberOfWounds * (enemySave - rend - 1) / 6 : numberOfWounds;
+        if (attack.melee) {
+            stats.meleeDamage += numberOfMortalWounds;
+        } else {
+            stats.rangedDamage += numberOfMortalWounds;
         }
     }
 }
@@ -260,134 +313,56 @@ function computeUnitStats(stats: UnitStats, unit: Unit, models: UnitStatModel[])
     const myState: UnitState = {
         unit: unit,
         hasCharged: false,
-        attackAuras: []
+        hasMoved: false,
+        attackAuras: [],
+        defenseAura: [],
+        wounds: 0
     };
     const enemyState: UnitState = {
         hasCharged: false,
+        hasMoved: false,
         attackAuras: [],
-        unit: { id: "enemy", model: { id: "enemy", name: "Enemy" }, size: 1, points: 0, wounds: 2, factions: [], keywords: [] }
+        defenseAura: [],
+        unit: { id: "enemy", model: { id: "enemy", name: "Enemy" }, size: 1, points: 0, wounds: 2, factions: [], keywords: [], save: 5 },
+        wounds: 0
     }
 
     for (const model of models) {
-        computeModelStats(myState, enemyState, unit, model);
+        computeModelStats(myState, enemyState, unit, model, stats);
     }
-}
-
-function addAttacksAndAbilitiesToStats(stats: UnitStats, attacks: Attack[] | undefined, size: number, abilities: Ability[] | undefined, baseAbilities?: Ability[]) {
-    let meleeDamage = attacks ? size * attacks.filter(x => x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
-    let rangedDamage = attacks ? size * attacks.filter(x => !x.melee).reduce((x, c) => x + getAttackDamage(c), 0) : 0;
-    if (abilities) {
-        for (const ability of abilities) {
-            if (ability.getWounds) {
-                meleeDamage  += ability.getWounds(size, true);
-                rangedDamage += ability.getWounds(size, false);
-                if (attacks) {
-                    for (const attack of attacks) {
-                        if (attack.melee) {
-                            meleeDamage += ability.getWounds(size, true, attack);
-                        } else {
-                            rangedDamage += ability.getWounds(size, false, attack);
-                        }
-                    }    
-                }
-            } 
-
-            if (ability.getSavedWounds) {
-                stats.savedWounds += ability.getSavedWounds(stats.save) * size * getValue(stats.unit.wounds);
-            }
-
-            if (!ability.getWounds && !ability.getSavedWounds && stats.ignoredAbilities.indexOf(ability) < 0) {
-                stats.ignoredAbilities.push(ability);
-            }
-        }
-    } 
-
-    if (baseAbilities) {
-        for (const ability of baseAbilities) {
-            if (ability.getWounds) {
-                if (attacks) {
-                    for (const attack of attacks) {
-                        if (attack.melee) {
-                            meleeDamage += ability.getWounds(size, true, attack);
-                        } else {
-                            rangedDamage += ability.getWounds(size, false, attack);
-                        }
-                    }    
-                }
-            } 
-        }
-    }
-
-    stats.meleeDamage += meleeDamage;
-    stats.rangedDamage += rangedDamage;
-}
-
-function updateTotalDamage(stats: UnitStats) {
-    stats.totalDamage = stats.meleeDamage * 1.5 + stats.rangedDamage;
-}
-
-function getAllFromArray<T, U>(x: T[], lambda: (value: T) => (U[] | undefined)): U[] {
-    return x.reduce<U[]>((p, y) => {
-        const values = lambda(y);
-        if (values) return p.concat(values);
-        return p;
-    }, []);
 }
 
 export function getUnitStats(unit: Unit): UnitStats[] {
-    const save = getValue(unit.save);
-    const savedWounds = getValue(unit.wounds) * unit.size * (unit.save ? 6 / (7 - save) : 1);
-    const baseStats: UnitStats = {
-        rangedDamage: 0,
-        meleeDamage: 0,
-        save: save,
-        savedWounds: savedWounds,
-        unit: unit,
-        totalDamage: 0,
-        ignoredAbilities: unit.abilities ? unit.abilities.filter(x => !x.getSavedWounds && !x.getWounds) : []
-    };
-    addAttacksAndAbilitiesToStats(baseStats, unit.attacks, unit.size, unit.abilities);
-    
     let modelStats = unit.modelStats;
-    if (!modelStats && unit.options) {
-        modelStats = unit.options.filter(x => x.unitCategory === "main").map<UnitStatModels>(x => {
-            return {
-                name: x.name,
-                models: [{ count: unit.size, options: [x] }]
-            }
-        });
-    }
-
     if (!modelStats) {
-        modelStats = [{ name: "Main", models: [{ count:unit.size, options: [] }] }]
+        if (unit.options && unit.options.length > 0) {
+            modelStats = unit.options.filter(x => x.unitCategory === "main").map<UnitStatModels>(x => {
+                return {
+                    name: x.name,
+                    models: [{ count: unit.size, options: [x] }]
+                }
+            });
+        }
+        else {
+            modelStats = [{ name: "Main", models: [{ count: unit.size, options: [] }] }]
+        }
     }
 
-    if (modelStats) {        
-        let combinationStats = modelStats.map(x => {
-            const result: UnitStats = {
-                name: x.name,
-                meleeDamage: baseStats.meleeDamage,
-                rangedDamage: baseStats.rangedDamage,
-                save: baseStats.save,
-                savedWounds: baseStats.savedWounds,
-                unit: baseStats.unit,
-                totalDamage: 0,
-                ignoredAbilities: baseStats.ignoredAbilities.concat()
-            };
-            for (const unitStatModel of x.models) {
-                addAttacksAndAbilitiesToStats(result, getAllFromArray(unitStatModel.options, y => y.attacks), unitStatModel.count, getAllFromArray(unitStatModel.options, y => y.abilities), unit.abilities);
-            }
-            updateTotalDamage(result);
-
-            return result;
-        });
-        return combinationStats;
-    }
-    updateTotalDamage(baseStats);
-
-    computeUnitStats(baseStats, unit, modelStats);
-
-    return [baseStats];
+    return modelStats.map(x => {
+        const result: UnitStats = {
+            name: x.name,
+            meleeDamage: 0,
+            rangedDamage: 0,
+            save: 0,
+            savedWounds: 0,
+            unit: unit,
+            totalDamage: 0,
+            ignoredAbilities: []
+        };
+        computeUnitStats(result, unit, x.models);
+        result.totalDamage = result.meleeDamage * 1.5 + result.rangedDamage;
+        return result;
+    });
 }
             
 export interface BoxedModel {
