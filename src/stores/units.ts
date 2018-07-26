@@ -76,6 +76,8 @@ export interface AttackAura {
     attack?: Attack;
     onlyMeleeAttacks?: boolean;
     onlyMissileAttacks?: boolean;
+    mortalWoundsOnHitUnmodified6?: Value;
+    mortalWounds?: Value;
 }
 
 export const enum SubPhase {
@@ -84,12 +86,18 @@ export const enum SubPhase {
     After
 }
 
+export interface AuraState<T> {
+    aura: T;
+    effectRatio?: number;
+    duration?: number;
+}
+
 export interface UnitState {
     hasCharged: boolean;
     hasMoved: boolean;
     unit: Unit;
-    attackAuras: AttackAura[];
-    defenseAura: DefenseAura[];
+    attackAuras: AuraState<AttackAura>[];
+    defenseAura: AuraState<DefenseAura>[];
     wounds: number;
 }
 
@@ -105,6 +113,9 @@ export interface AbilityEffect {
     phase?: Phase;
     subPhase?: SubPhase;
     condition?: TargetCondition;
+
+    /** In case of random effects, the dice value must be in this range  */
+    randomEffectRange?: { min: number; max: number };
 }
 
 export interface Ability {
@@ -113,6 +124,7 @@ export interface Ability {
     description?: string;
     category?: AbilityCategory;
     effects?: AbilityEffect[];
+    randomEffectDices?: string;
 }
 
 export interface Attack {
@@ -227,14 +239,23 @@ export interface UnitStats {
 function applyEffect(caster: UnitState, target: UnitState, effect: AbilityEffect) {
     if (effect.condition && !checkCondition(effect.condition, caster)) return;
     if (effect.targetCondition && !checkCondition(effect.targetCondition, target)) return;
-
+    let ratio: number|undefined;
+    if (effect.randomEffectRange) {
+        ratio = (effect.randomEffectRange.max - effect.randomEffectRange.min + 1) / 6;
+    }
     if (effect.attackAura) {
-        target.attackAuras.push(effect.attackAura);
+        target.attackAuras.push({ aura: effect.attackAura, effectRatio: ratio });
     }
 }
 
 function checkCondition(condition: TargetCondition, target: UnitState) {
-
+    if (condition.hasCharged && !target.hasCharged) return false;
+    if (condition.hasMoved && !target.hasMoved) return false;
+    if (condition.hasNotCharged && target.hasCharged) return false;
+    if (condition.hasNotMoved && target.hasMoved) return false;
+    if (condition.keyword && target.unit.keywords.indexOf(condition.keyword) < 0) return false;
+    if (condition.minWounds && getValue(target.unit.wounds) < condition.minWounds) return false;
+    return true;
 }
 
 function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit, model: UnitStatModel, stats: UnitStats) {
@@ -269,28 +290,47 @@ function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit
         let rerollHitsOn = 0;
         let rend = getValue(attack.rend);
         let enemySave = getValue(enemyState.unit.save);
+        let mortalWoundsOnHitIsUnmodifed6 = 0;
+        let numberOfMortalWounds = 0;
+        
         if (!toHit) continue;
-        for (const aura of myState.attackAuras) {
+        for (const auraState of myState.attackAuras) {
+            const aura = auraState.aura;
+            const ratio = auraState.effectRatio || 1;
             if (aura.targetCondition && !checkCondition(aura.targetCondition, enemyState)) continue;
+            
+            if (aura.onlyMeleeAttacks && !attack.melee) continue;
+            if (aura.onlyMissileAttacks && attack.melee) continue;
 
             if (aura.bonusHitRoll) {
-                toHit += getValue(aura.bonusHitRoll);
+                toHit += getValue(aura.bonusHitRoll) * ratio;
             }
             if (aura.bonusAttacks) {
-                numberOfAttacks += getValue(aura.bonusAttacks);
+                numberOfAttacks += getValue(aura.bonusAttacks) * ratio;
             }
             if (aura.numberOfHitsOn6) {
-                numberOfHitsOn6 += getValue(aura.numberOfHitsOn6);
+                numberOfHitsOn6 += getValue(aura.numberOfHitsOn6) * ratio;
             }
             if (aura.numberOfHitsOnHit) {
-                numberOfHitsOnHit = getValue(aura.numberOfHitsOnHit);
+                numberOfHitsOnHit = (getValue(aura.numberOfHitsOnHit) - 1) * ratio + 1;
             }
             if (aura.rerollHitsOn) {
-                rerollHitsOn = aura.rerollHitsOn;
+                rerollHitsOn = aura.rerollHitsOn * ratio;
+            }
+            if (aura.mortalWoundsOnHitUnmodified6) {
+                mortalWoundsOnHitIsUnmodifed6 += getValue(aura.mortalWoundsOnHitUnmodified6) * ratio;
+            }
+            if (aura.mortalWounds) {
+                numberOfMortalWounds += getValue(aura.mortalWounds) * ratio;
             }
         }
 
         let numberOfHits = numberOfAttacks * (7 - toHit) / 6;
+        if (mortalWoundsOnHitIsUnmodifed6) {
+            numberOfHits -= numberOfAttacks * 1/6;
+            numberOfMortalWounds += 1/6 * numberOfAttacks * mortalWoundsOnHitIsUnmodifed6;
+        }
+
         if (rerollHitsOn) {
             numberOfHits *= rerollHitsOn / 6;
         }
@@ -300,7 +340,7 @@ function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit
         numberOfHits *= numberOfHitsOnHit;
 
         let numberOfWounds = numberOfHits * (7 - toWound) / 6;
-        let numberOfMortalWounds = (enemySave - rend < 7) ? numberOfWounds * (enemySave - rend - 1) / 6 : numberOfWounds;
+        numberOfMortalWounds += (enemySave - rend < 7) ? numberOfWounds * (enemySave - rend - 1) / 6 : numberOfWounds;
         if (attack.melee) {
             stats.meleeDamage += numberOfMortalWounds;
         } else {
