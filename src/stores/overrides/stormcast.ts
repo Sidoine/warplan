@@ -1,5 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Unit, Material } from "../units";
+import { Unit, Material, Phase, SubPhase } from "../units";
 import { overrideModel,setAbilityAsOption, setAttackAsOption, removeAbility, addOption, ModelCategoryWeapon, UnitCategoryMain, oneModelOption, ratioModelOption, override, addAbilityEffect } from "./tools";
 
 function addBoxes(data: DataStoreImpl):void {
@@ -638,7 +638,6 @@ function fixUnits(data: DataStoreImpl):void {
     }
 
     {
-        // const unit: Unit = data.units.aetherwings;
         // unit.move = 12;
         // unit.bravery = 6;
         // unit.wounds = 2;
@@ -1368,9 +1367,11 @@ function fixUnits(data: DataStoreImpl):void {
         const unit: Unit = data.units.knightVexillor;
         const meteoricStandard = data.abilities.knightVexillorMeteoricStandard;
         const penantOfTheStormbringer = data.abilities.knightVexillorPennantOfTheStormbringer;
-        // overrideAbility(meteoricStandard, x => x.getWounds = (models, melee, attack) => attack === undefined && !melee ? 4 * 2 * rareRate : 0)
-        setAbilityAsOption(unit, meteoricStandard);
-        setAbilityAsOption(unit, penantOfTheStormbringer);
+        addAbilityEffect(meteoricStandard, { targetEnemy: true, targetRange: 24, targetArea: true, targetRadius: "2D6", mortalWounds: "D3", timesPerBattle: 1, phase: Phase.Hero });
+        addAbilityEffect(data.abilities.knightVexillorIconOfWar, { targetKeyword: data.allegiances.stormcastEternals.keyword, targetRadius: 18, whollyWithin: true, defenseAura: { rerollCharge: true } });
+        addAbilityEffect(penantOfTheStormbringer, { targetKeyword: data.allegiances.stormcastEternals.keyword, setUpAwayFromEnemy: 9, timesPerBattle: 1, phase: Phase.Movement, subPhase: SubPhase.After });
+        setAbilityAsOption(unit, meteoricStandard, undefined, "main");
+        setAbilityAsOption(unit, penantOfTheStormbringer, undefined, "main");
     }
 
     {

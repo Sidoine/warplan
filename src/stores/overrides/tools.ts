@@ -5,12 +5,13 @@ export const ModelCategoryWeapon = "weapon";
 export const UnitCategoryMain = "main";
 
 type ModelCondition = (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => boolean;
-export function setAbilityAsOption(unit: Unit, ability: Ability, condition?: (option: ModelOption) => ModelCondition) {
+export function setAbilityAsOption(unit: Unit, ability: Ability, condition?: (option: ModelOption) => ModelCondition, unitCategory?: string) {
     removeAbility(unit, ability);
     const option: ModelOption = {
         id: ability.name,
         name: ability.name,
-        abilities: [ability]
+        abilities: [ability],
+        unitCategory: unitCategory
     };
     if (condition) option.isOptionValid = condition(option);
     return addOption(unit, option);
@@ -152,6 +153,7 @@ export const enemyModelsInRange = 3;
 export const numberOfModelsPerUnit = 4;
 
 export function addAbilityEffect(ability: Ability, auraEffect: AbilityEffect) {
+    if (!auraEffect.name) auraEffect.name = ability.name;
     if (ability.effects === undefined) ability.effects = [];
     ability.effects.push(auraEffect);
 }

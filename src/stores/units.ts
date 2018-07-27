@@ -55,6 +55,7 @@ export const enum Phase {
 
 export interface DefenseAura {
     rerollSavesOn?: number;
+    rerollCharge?: boolean;
 }
 
 export interface TargetCondition {
@@ -102,17 +103,25 @@ export interface UnitState {
 }
 
 export interface AbilityEffect {
+    name?: string;
+
     attackAura?: AttackAura;
     defenseAura?: DefenseAura;
-    targetRange?: number;
+    targetRange?: Value;
+    targetRadius?: Value;
     whollyWithin?: boolean;
     targetEnemy?: boolean;
-    targetKeyword?: string; // otherwise, self
+    targetArea?: boolean;
+    targetKeyword?: string;
     targetCondition?: TargetCondition;
     effectRange?: number;
     phase?: Phase;
     subPhase?: SubPhase;
     condition?: TargetCondition;
+    timesPerBattle?: number;
+
+    mortalWounds?: Value;
+    setUpAwayFromEnemy?: Value; // The distance to the enemy
 
     /** In case of random effects, the dice value must be in this range  */
     randomEffectRange?: { min: number; max: number };
@@ -236,15 +245,21 @@ export interface UnitStats {
     ignoredAbilities: Ability[];
 }
 
-function applyEffect(caster: UnitState, target: UnitState, effect: AbilityEffect) {
+function applyEffect(caster: UnitState, target: UnitState, effect: AbilityEffect, stats: UnitStats) {
     if (effect.condition && !checkCondition(effect.condition, caster)) return;
     if (effect.targetCondition && !checkCondition(effect.targetCondition, target)) return;
     let ratio: number|undefined;
     if (effect.randomEffectRange) {
         ratio = (effect.randomEffectRange.max - effect.randomEffectRange.min + 1) / 6;
     }
+    if (effect.timesPerBattle) {
+        ratio = (ratio || 1) * effect.timesPerBattle / 5;
+    }    
     if (effect.attackAura) {
         target.attackAuras.push({ aura: effect.attackAura, effectRatio: ratio });
+    }
+    if (effect.mortalWounds) {
+        stats.rangedDamage += getValue(effect.mortalWounds) * (ratio || 1);
     }
 }
 
@@ -270,9 +285,9 @@ function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit
         if (ability.effects) {
             for (const effect of ability.effects) {
                 if (effect.targetEnemy) {
-                    applyEffect(myState, enemyState, effect);
+                    applyEffect(myState, enemyState, effect, stats);
                 } else {
-                    applyEffect(myState, myState, effect);
+                    applyEffect(myState, myState, effect, stats);
                 }
             }
         } else {
