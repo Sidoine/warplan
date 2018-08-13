@@ -137,7 +137,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
                     {u.commandAbilities && this.renderAllAbilities("Command abilities", u.commandAbilities)}
                     {u.magicDescription && this.renderAllAbilities("Magic", magicAbilites, u.magicDescription)}
                 </div>
-                <div><strong>Keywords</strong> {u.keywords && u.keywords.join(", ")}</div>
+                <div className="keywords"><strong>Keywords</strong> {u.keywords && u.keywords.join(", ")}</div>
         </Segment>;
     }
 
@@ -188,7 +188,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
 
     renderWoundEffects(damageTable: DamageTable) {
         const ranges = damageTable.ranges;
-        return <Table>
+        return <Table className="wound-table">
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Wounds Suffered</Table.HeaderCell>
