@@ -119,14 +119,19 @@ export class Warscroll extends React.Component<WarscrollProps>{
         const specialRules = abilities.filter(x => x.category === AbilityCategory.SpecialRule);
         const magicAbilites = abilities.filter(x => x.category === AbilityCategory.Magic);
 
-        return <Segment key={unit.id} className="unit">
-            { unit.unit.pictureUrl && <img className="warscroll__image" src={unit.unit.pictureUrl}/>}
-            <div className="unit__title"><Header as="h2">
-            <div>{ unit.isGeneral && <Icon name="star"/> } {u.model.name}</div> {models.length > 0 && <div> {mainOption && mainOption.name}</div>}
-            </Header>
-            <div className="unit__stats">{unit.modelCount} <Icon name="user"/></div>
-            <div className="unit__stats"> 
-            <span className="wounds">{u.move && <>{value(u.move)}" <Icon name="location arrow" /></>} {u.wounds} <Icon name="heart" /></span><br/><span className="wounds">{u.save && <> {value(u.save)} <Icon name="shield" /></>} {u.bravery && <> {value(u.bravery)} <Icon name="hand victory" /></>}</span></div>
+        return <div key={unit.id} className="unit">
+        <div className="unit__header">
+            <div className="unit__stats">
+                <div className="move">{u.move && <>{value(u.move)}"</>}</div>
+                <div className="wounds">{u.wounds}</div>
+                <div className="save">{u.save && <> {value(u.save)}</>}</div>
+                <div className="bravery">{u.bravery && <> {value(u.bravery)}</>}</div>
+            </div>
+            <div className="unit__title">
+                <div>{ unit.isGeneral && <Icon name="star"/> } {u.model.name}</div> {models.length > 0 && <div className="unit__title__option"> {mainOption && mainOption.name}</div>}
+                <div className="unit__count">{unit.modelCount} <Icon name="user"/> {unit.points} points</div>
+            </div>
+            <div className="unit__image"><img src={unit.unit.pictureUrl}/></div>
         </div>
         {unit.unit.flavor && <div className="unit__flavor">{unit.unit.flavor}</div>}
                 {attacks.length > 0 && this.renderAllAttacks(attacks)}
@@ -137,18 +142,17 @@ export class Warscroll extends React.Component<WarscrollProps>{
                     {u.commandAbilities && this.renderAllAbilities("Command abilities", u.commandAbilities)}
                     {u.magicDescription && this.renderAllAbilities("Magic", magicAbilites, u.magicDescription)}
                 </div>
-                <div className="keywords"><strong>Keywords</strong> {u.keywords && u.keywords.join(", ")}</div>
-        </Segment>;
+                <div className="warscroll__keywords"><div className="warscroll__keywords__header">Keywords</div><div>{u.keywords && u.keywords.join(", ")}</div></div>
+        </div>;
     }
 
     renderAllAbilities(title: string, abilities: Ability[], description?: string) {
         return <div><header className="warscroll__section-header">{title}</header>
                 { description && <div>{description}</div>}  
                 { abilities.map((x, index) => <div key={index}>
-                    <header>{x.name}</header>  
-                    <div>
-                    { x.flavor && <div className="warscroll__flavor">{x.flavor}</div>}
-                    {x.description}</div>    
+                    <span className="warscroll__ability__name">{x.name}:</span>
+                    { x.flavor && <span className="warscroll__flavor"> {x.flavor}</span>}
+                    <div>{x.description}</div>    
         </div>) }</div>;
     }
 
@@ -160,30 +164,30 @@ export class Warscroll extends React.Component<WarscrollProps>{
     }
 
     renderAttacks(attacks: AttackWithCount[], name: string) {
-        return <Table>
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell>{name}</Table.HeaderCell>
-                    <Table.HeaderCell>Range</Table.HeaderCell>
-                    <Table.HeaderCell>Attacks</Table.HeaderCell>
-                    <Table.HeaderCell>To Hit</Table.HeaderCell>
-                    <Table.HeaderCell>To Wound</Table.HeaderCell>
-                    <Table.HeaderCell>Rend</Table.HeaderCell>
-                    <Table.HeaderCell>Damage</Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
-            <Table.Body>
-                {attacks.map((x, index) => <Table.Row key={index} >
-                    <Table.Cell>{x.attack.name} { x.count !== undefined && <>(x{x.count})</> }</Table.Cell>
-                    <Table.Cell>{value(x.attack.range)}" </Table.Cell>
-                    <Table.Cell>{value(x.attack.attacks)} </Table.Cell>
-                    <Table.Cell>{value(x.attack.toHit)} </Table.Cell>
-                    <Table.Cell>{value(x.attack.toWound)} </Table.Cell>
-                    <Table.Cell>{value(x.attack.rend) || "-"} </Table.Cell>
-                    <Table.Cell>{value(x.attack.damage)} </Table.Cell>
-                </Table.Row>)}
-            </Table.Body>
-        </Table>;
+        return <table className="warscroll__attack">
+            <thead>
+                <tr>
+                    <td className="warscroll__attack__name">{name}</td>
+                    <td>Range</td>
+                    <td>Attacks</td>
+                    <td>To Hit</td>
+                    <td>To Wound</td>
+                    <td>Rend</td>
+                    <td>Damage</td>
+                </tr>
+            </thead>
+            <tbody>
+                {attacks.map((x, index) => <tr key={index} >
+                    <td>{x.attack.name} { x.count !== undefined && <>(x{x.count})</> }</td>
+                    <td>{value(x.attack.range)}" </td>
+                    <td>{value(x.attack.attacks)} </td>
+                    <td>{value(x.attack.toHit)} </td>
+                    <td>{value(x.attack.toWound)} </td>
+                    <td>{value(x.attack.rend) || "-"} </td>
+                    <td>{value(x.attack.damage)} </td>
+                </tr>)}
+            </tbody>
+        </table>;
     }
 
     renderWoundEffects(damageTable: DamageTable) {

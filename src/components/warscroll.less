@@ -6,22 +6,93 @@
     page-break-inside: avoid;
 }
 .unit {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 2px solid black ;
+    font-family: serif;
+    width: 900px;
+
+    &__count {
+        font-size: 15px;
+    }
+
     &__title {
-        display: flex;
+        background-image: url('./warscroll-middle.png');
+        background-repeat: repeat-x;
+        background-size: 100% 100%;
+        height: 160px;
+        /*width: 300px;*/
+        flex: 1;
+        padding-top: 40px;
+        line-height: 40px;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+
+        &__option {
+            font-size: 25px;
+            font-style: italic;
+        }
     }
     &__stats {
-        margin-left: 1rem;
-        font-size: 1.2rem;
+        background-image: url('./warscroll-left.png');
+        width: 160px;
+        height: 160px;
+        background-size: 100%;
+        position: relative;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center;
+
+        & .wounds {
+            position: absolute;
+            left: 45px;
+            top: 70px;
+        }
+        
+        & .move {
+            position: absolute;
+            left: 70px;
+            top: 40px;
+        }
+
+        & .save {
+            position: absolute;
+            left: 100px;
+            top: 70px;
+        }
+
+        & .bravery {
+            position: absolute;
+            left: 75px;
+            top: 100px;
+        }
+    }
+    &__header {
+        display: flex;
+        flex-direction: row;
+    }    
+    &__image {
+        width: 160px;
+        height: 160px;
+        background: url('./warscroll-right.png');
+        background-size: 100%;
+        position: relative;
+        background-repeat: no-repeat;
+
+        img {
+            position: absolute;
+            left: 13px;
+            top: 13px;
+            width: 130px;
+            height: 130px;
+            border-radius: 100px;
+        }
     }
 }
 
 .warscroll {
-    &__image {
-        float: right;
-        height: 10rem;
-        width: 10rem;
-    }
-
     &__section-header {
         font-variant: small-caps;
         font-size: 1.4rem;
@@ -37,6 +108,45 @@
 
         header {
             font-weight: bold;
+        }
+    }
+
+    &__ability {
+        &__name {
+            font-weight: bold;
+        }
+    }
+
+    &__attack {
+        margin: 8px;
+        width: calc(100% - 16px);
+        border-collapse: collapse;
+        border-bottom: 2px solid #b5ad82;
+        font-weight: bold;
+        text-align: center;
+        thead {
+            background-color: #e6dccb;
+            border-top: 2px solid #b5ad82;
+            border-bottom: 2px solid #b5ad82;
+        }
+
+        &__name {
+            text-transform: uppercase;
+        }
+    }
+
+    &__keywords {
+        display: flex;
+        border-top: 2px solid #b5ad82;
+        border-bottom: 2px solid #b5ad82;
+        margin-top: 5px;
+
+        div {
+            padding: 5px;
+        }
+        &__header {
+            background-color:#908149; 
+            text-transform: uppercase;
         }
     }
 }
