@@ -2,6 +2,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractLess = new ExtractTextPlugin({ filename: "[name].css" });
 
 module.exports = {
+    mode: "development",
     entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",

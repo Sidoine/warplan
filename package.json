@@ -4,33 +4,35 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@types/react": "^16.4.6",
-    "@types/react-dom": "^16.0.6",
-    "@types/react-router-dom": "^4.2.7",
     "@types/csv-parse": "^1.1.11",
     "@types/pako": "^1.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "mobx": "^5.0.3",
-    "mobx-react": "^5.2.3",
-    "react-router-dom": "^4.3.1",
-    "semantic-ui-react": "^0.81.3",
-    "csv-parse": "^2.5.0",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.7",
+    "@types/react-router-dom": "^4.3.0",
+    "csv-parse": "^3.0.0",
+    "mobx": "^5.1.0",
+    "mobx-react": "^5.2.8",
     "pako": "^1.0.6",
-    "realm": "^2.13.0"
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-router-dom": "^4.3.1",
+    "semantic-ui-react": "^0.82.4"
   },
   "devDependencies": {
-    "typescript": "^2.9.2",
-    "tslint": "^5.10.0",
-    "webpack": "^3.10.0",
-    "awesome-typescript-loader": "^3.4.1",
-    "source-map-loader": "^0.2.3",
-    "webpack-dev-server": "^2.11.1",
-    "less-loader": "^4.0.5",
-    "css-loader": "^0.28.10",
-    "file-loader": "^1.1.9",
-    "less": "^3.0.1",
-    "extract-text-webpack-plugin": "^3.0.2"
+    "ava": "^0.25.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "css-loader": "^1.0.0",
+    "extract-text-webpack-plugin": "4.0.0-beta.0",
+    "file-loader": "^2.0.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "realm": "^2.15.3",
+    "source-map-loader": "^0.2.4",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.3",
+    "webpack": "^4.18.0",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
   },
   "scripts": {
     "prepare": "webpack",
@@ -39,6 +41,8 @@
     "watch-tools": "tsc -w -p tsconfig.tools.json",
     "gw": "tsc -p tsconfig.tools.json && node dist/tools/gw-data.js",
     "imp": "tsc -p tsconfig.tools.json && node dist/tools/import.js",
-    "database": "node dist/tools/database.js"
+    "database": "node dist/tools/database.js",
+    "test": "ava dist/test",
+    "watch-test": "ava -w dist/test"
   }
 }

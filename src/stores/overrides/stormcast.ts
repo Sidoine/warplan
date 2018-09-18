@@ -314,9 +314,9 @@ function fixUnits(data: DataStoreImpl):void {
         const shockboltBow = setAttackAsOption(judicator, data.attacks.judicatorsShockboltBow, ratioModelOption(1, 5), [chainedLightning]);
         const thunderboltCrossbow = setAttackAsOption(judicator, data.attacks.judicatorsThunderboltCrossbow, ratioModelOption(1, 5), [thunderboltCrossbowAbility]);
         const judicatorPrime = setAbilityAsOption(judicator, data.abilities.judicatorsJudicatorPrime, oneModelOption);
-        addAbilityEffect(data.abilities.judicatorsChainedLightning, { attackAura: { numberOfHitsOnHit: "D6", attack: data.attacks.judicatorsShockboltBow } })
-        addAbilityEffect(data.abilities.judicatorsRapidFire, { targetCondition: { hasNotMoved: true }, attackAura: { bonusAttacks: 1, attack: data.attacks.judicatorsBoltstormCrossbow } });
-        addAbilityEffect(data.abilities.judicatorsEternalJudgement, { attackAura: { targetCondition: { keyword: "CHAOS" }, onlyMissileAttacks: true, rerollHitsOn: 1 }})
+        addAbilityEffect(data.abilities.judicatorsChainedLightning, { attackAura: { numberOfExtraHitsOnHit: "D6-1", attackCondition: { attack: data.attacks.judicatorsShockboltBow }} })
+        addAbilityEffect(data.abilities.judicatorsRapidFire, { targetCondition: { hasNotMoved: true }, attackAura: { bonusAttacks: 1, attackCondition: { attack: data.attacks.judicatorsBoltstormCrossbow }} });
+        addAbilityEffect(data.abilities.judicatorsEternalJudgement, { attackAura: { targetCondition: { keyword: "CHAOS" }, attackCondition: { onlyMissileAttacks: true }, rerollHitsOn: 1 }})
 
         judicator.modelStats = [
             { name: "Skybolt Bows and prime with Shockbolt Bow", models: [{ count: 4, options: [skyboltBow] }, { count: 1, options: [shockboltBow, judicatorPrime] }] },
@@ -907,12 +907,8 @@ function fixUnits(data: DataStoreImpl):void {
     }
 
     {
-        // const unit: Unit = data.units.concussors;
-        // unit.keywords.push("CELESTIAL", "HUMAN", "DRACOTHIAN GUARD", "CONCUSSORS");
-        // unit.move = 10;
-        // unit.save = "3+";
-        // unit.bravery = 7;
-        // unit.wounds = 5;
+        addAbilityEffect(data.abilities.concussorsBlastToAshes, { attackAura: { effectsOnHitUnmodified6: [{ mortalWounds: 1 }, { targetAura: { noPileIn: true } }] } });
+        addAbilityEffect(data.abilities.concussorsIntolerableDamage, { attackAura: { attackCondition: { attack: data.attacks.concussorsClawsAndFangs }, damageOnWoundUnmodified6: "D6" } });
         // const stormBlast: Attack = { melee: false, name: "Storm Blast", range: "12", attacks: "1", toHit: "4+" };
         // const lightningHammer: Attack = { melee: true, name: "Lightning Hammer", range: "1", attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "2" };
         // const dracothsClawsAndFangs: Attack = { melee: true, name: "Dracoth's Claws and Fangs", range: "1", attacks: "3", toHit: "3+", toWound: '3+', rend: "-1", damage: "1" };
