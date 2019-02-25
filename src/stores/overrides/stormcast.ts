@@ -272,13 +272,13 @@ function fixUnits(data: DataStoreImpl):void {
         const pairedWeapons = removeAbility(liberator, data.abilities.liberatorsPairedWeapons);
         const gb = setAttackAsOption(liberator, data.attacks.liberatorsGrandblade, ratioModelOption(1, 5));
         const gh = setAttackAsOption(liberator, data.attacks.liberatorsGrandhammer, ratioModelOption(1, 5));
-        const wb = setAttackAsOption(liberator, data.attacks.liberatorsWarbladeS, undefined, [pairedWeapons], UnitCategoryMain);
-        const wh = setAttackAsOption(liberator, data.attacks.liberatorsWarhammerS, undefined, [pairedWeapons], UnitCategoryMain);
+        const wb = setAttackAsOption(liberator, data.attacks.liberatorsWarblade, undefined, [pairedWeapons], UnitCategoryMain);
+        const wh = setAttackAsOption(liberator, data.attacks.liberatorsWarhammer, undefined, [pairedWeapons], UnitCategoryMain);
         const whs = addOption(liberator, {
             id: "warhammerAndShield",
             name: "Warhammer and shield",
             abilities: [shield],
-            attacks: [data.attacks.liberatorsWarhammerS],
+            attacks: [data.attacks.liberatorsWarhammer],
             modelCategory: ModelCategoryWeapon,
             unitCategory: UnitCategoryMain
         });
@@ -286,7 +286,7 @@ function fixUnits(data: DataStoreImpl):void {
             id: "warbladeAndShield",
             name: "Warblade and shield",
             abilities: [shield],
-            attacks: [data.attacks.liberatorsWarbladeS],
+            attacks: [data.attacks.liberatorsWarblade],
             modelCategory: ModelCategoryWeapon,
             unitCategory: UnitCategoryMain
         });

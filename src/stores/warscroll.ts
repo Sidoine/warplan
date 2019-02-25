@@ -335,7 +335,7 @@ export class WarscrollStore {
 
     @computed
     get availableBattalions() {
-        return this.unitsStore.battalions.filter(x => x.allegiance.id === this.warscroll.allegiance.id);
+        return this.unitsStore.battalions.filter(x => x.allegiances.some(y => y.id === this.warscroll.allegiance.id));
     }
 
     @action

@@ -7,7 +7,7 @@ export function getValue(formula: Value): number {
     if (typeof(formula) === "string") {
         const number = formula.match(/^(-?\d+\.?\d*)[\+\"]?$/);
         if (number) return parseInt(number[1]);
-        const dices = formula.match(/^(\d?)D(\d?)(\+\d+)?$/);
+        const dices = formula.match(/^(\d?)D(\d?)([\+\-]\d+)?$/);
         if (dices) {
             const numberOfDices = dices[1] ? parseInt(dices[1]) : 1;
             const numberOfSides = dices[2] ? parseInt(dices[2]) : 6;

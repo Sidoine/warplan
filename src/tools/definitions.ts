@@ -8,7 +8,7 @@ export interface Ability {
 export interface ArtefactGroup {
     id: string;
     groupTitle: string;
-    keyword: string | null;
+    keywords: CompoundKeyword[];
     artefacts: string[];
 }
 
@@ -25,7 +25,7 @@ export interface BattalionWarscroll {
     id: string;
     name: string;
     faction: string;
-    allegiance: string;
+    allegiance: string[];
     grandAlliance: string;
     about: string | null;
     imageUrl: string;
@@ -59,7 +59,7 @@ export interface Battleplan {
 export interface CommandTraitGroup {
     id: string;
     groupTitle: string;
-    keyword: string | null;
+    keywords: CompoundKeyword[];
     commandTraits: string[];
 }
 
@@ -183,12 +183,14 @@ export interface UnitWarscroll {
     specialRules: Rule[];
     upgrades: Rule[];
     abilities: Ability[];
+    minionAbilities: Ability[];
     commandAbilities: Ability[];
     magicBlurb: string | null;
     magicAbilities: Ability[];
     weapons: UnitWeapon[];
     blurb: string;
     keywords: string[];
+    hiddenKeywords: string[];
     grandAlliance: string;
     factions: string[];
     unitSizeMin: number;
@@ -199,7 +201,8 @@ export interface UnitWarscroll {
     additionalNotes: string | null;
     overriddenRoles: string[];
     overrideAllegiance: string | null;
-    overrideGeneralKeywords: string[];
+    overrideGeneralKeywords: CompoundKeyword[];
+    nonGeneralCommonOverrideKeyword: string | null;
     maxCount: number;
     maxAppliesToKeyword: string | null;
     requiredIncludedKeyword: string | null;

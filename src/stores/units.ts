@@ -537,7 +537,7 @@ export interface Battalion {
     units: BattalionUnit[];
     description?: string;
     points: number;
-    allegiance: Allegiance;
+    allegiances: Allegiance[];
     abilities?: Ability[];
 }
 
@@ -631,7 +631,7 @@ export class UnitsStore {
         }
         this.unitList = this.unitList.sort((a, b) => a.model.name > b.model.name ? 1: -1);
 
-        const battalions: { [key: string]: Battalion } = data.battalions;
+        const battalions: { [key: string]: Battalion } = <any>data.battalions;
         for (const key in battalions) {
             this.battalions.push(battalions[key]);
         }

@@ -3,6 +3,8 @@ import * as model from "./en-schemas/en-model";
 import * as fs from "fs";
 import * as def from "./definitions";
 
+const schemaVersion = 42;
+
 function toCamelCase(name: string) {
     return name.toLowerCase().replace(/[^\w]+(\w)/g, (p,x) => x.toUpperCase()).replace(/^(.)/, (p,x) => x.toLowerCase()).replace(/[^A-Za-z0-9]/g, '');
 }
@@ -70,24 +72,24 @@ async function load() {
         const db = await realm.open({
             path: 'src/tools/en.realm',
             schema: models,
-            schemaVersion: 35
+            schemaVersion: schemaVersion
         })
         let result = `import { DataStore, GrandAlliance, ExtraAbilityTest, WarscrollInterface, Box, AbilityCategory } from "./units";
 
 const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
-function commandTraitWithKeywordAvailable(keyword: string): ExtraAbilityTest {
-    return (unit, ws) => commandTraitAvailable(unit, ws) && unit.unit.keywords.indexOf(keyword) >= 0;
+function commandTraitWithKeywordAvailable(keywords: string[][]): ExtraAbilityTest {
+    return (unit, ws) => commandTraitAvailable(unit, ws) && keywords.some(x => x.every(y => unit.unit.keywords.indexOf(y) >= 0));
 }
-const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
-         && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
+// const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
+//         && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
 
 function multiKeywordAvailable(category: string, allegianceKeyword: string, keywords: string[][]): ExtraAbilityTest {
     return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && keywords.some(x => x.every(y => unit.unit.keywords.indexOf(y) >= 0));
 }
  
-function keywordAvailable(category: string, allegianceKeyword: string, keyword: string): ExtraAbilityTest {
-    return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && unit.unit.keywords.indexOf(keyword) >= 0;
-}
+// function keywordAvailable(category: string, allegianceKeyword: string, keyword: string): ExtraAbilityTest {
+//     return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && unit.unit.keywords.indexOf(keyword) >= 0;
+// }
 
 export class DataStoreImpl implements DataStore {
 `;
@@ -447,6 +449,10 @@ function getUnits(db: realm) {
     return result;
 }
 
+function compoundKeywordsToString(keywords: def.CompoundKeyword[]) {
+    return `[${keywords.map(y => `[${y.keywords.map(z => `"${z.toUpperCase()}"`).join(', ')}]`).join(', ')}]`;
+}
+
 function getExceptionalTraits(allegiance: def.RealmAllegiance, groups: def.ExceptionalTraitGroup[], name: string, usedNames: Map<string, boolean>) {
     let result = "";
     for (const artefactGroup of groups) {
@@ -462,7 +468,7 @@ function getExceptionalTraits(allegiance: def.RealmAllegiance, groups: def.Excep
 `;
             if (artefactGroup.keywords) {
                 result += 
-`                   isAvailable: multiKeywordAvailable("${name}", "${allegiance.keyword.toUpperCase()}", [${artefactGroup.keywords.map(y => `[${y.keywords.map(z => `"${z.toUpperCase()}"`).join(', ')}]`)}]),
+`                   isAvailable: multiKeywordAvailable("${name}", "${allegiance.keyword.toUpperCase()}", ${compoundKeywordsToString(artefactGroup.keywords)}),
 `
             } else {
                 result +=
@@ -486,7 +492,7 @@ function getExtraAbilities(db: realm) {
         for (const allegiance of db.objects<def.RealmAllegiance>(model.RealmAllegiance.name)) {
         for (const commandTraitGroup of allegiance.commandTraitGroups) {
             for (const commandTrait of commandTraitGroup.commandTraits) {
-                const id = getId(commandTraitGroup.keyword ? `${allegiance.name} ${commandTraitGroup.keyword} ${commandTrait}`
+                const id = getId(commandTraitGroup.keywords ? `${allegiance.name} ${commandTraitGroup.keywords.map(y => y.keywords.join(' ')).join(' ')} ${commandTrait}`
                     : `${allegiance.name} ${commandTrait}`, commandTraitGroup.id, usedNames);
                 result += 
 `               ${id}: {
@@ -495,9 +501,9 @@ function getExtraAbilities(db: realm) {
                     allegiance: this.allegiances.${toCamelCase(allegiance.name)},
                     category: "command",
 `;
-                if (commandTraitGroup.keyword) {
+                if (commandTraitGroup.keywords) {
                     result += 
-`                   isAvailable: commandTraitWithKeywordAvailable("${commandTraitGroup.keyword.toUpperCase()}"),
+`                   isAvailable: commandTraitWithKeywordAvailable(${compoundKeywordsToString(commandTraitGroup.keywords)}),
 `
                 } else {
                     result +=
@@ -522,9 +528,9 @@ function getExtraAbilities(db: realm) {
                     allegiance: this.allegiances.${toCamelCase(allegiance.name)},
                     category: "${artefactGroup.groupTitle}",
 `;
-                if (artefactGroup.keyword) {
+                if (artefactGroup.keywords) {
                     result += 
-`                   isAvailable: keywordAvailable("${artefactGroup.groupTitle}", "${allegiance.keyword.toUpperCase()}", "${artefactGroup.keyword.toUpperCase()}"),
+`                   isAvailable: multiKeywordAvailable("${artefactGroup.groupTitle}", "${allegiance.keyword.toUpperCase()}", ${compoundKeywordsToString(artefactGroup.keywords)}),
 `
                 } else {
                     result +=
@@ -556,13 +562,11 @@ function getBattalions(db: realm) {
     const ids = new Map<string, boolean>();
     for (const battalion of db.objects<def.BattalionWarscroll>(model.BattalionWarscroll.name)) {
         const id = getId(battalion.name, battalion.id, ids);
-        const allegiance = allegianceIdByKeyword.get(battalion.allegiance);
-        if (!allegiance) continue;
         result += 
 `       ${id}: {
             id: "${id}",
             name: ${escapeQuotedString(battalion.name)},
-            allegiance: this.allegiances.${allegiance},
+            allegiances: [${battalion.allegiance.map(x => allegianceIdByKeyword.get(x)).filter(x => x !== undefined).map(x => `this.allegiances.${x}`)}],
             description: ${escapeQuotedString(battalion.about)},
             pictureUrl: ${escapeQuotedString(battalion.imageUrl)},
             points: ${battalion.points},

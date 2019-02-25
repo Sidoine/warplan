@@ -15,7 +15,7 @@ export const ArtefactGroup = {
   properties: {
     id: 'string',
     groupTitle: 'string',
-    keyword: 'string?',
+    keywords: 'CompoundKeyword[]',
     artefacts: 'string[]'
   }
 }
@@ -40,7 +40,7 @@ export const BattalionWarscroll = {
     id: 'string',
     name: 'string',
     faction: 'string',
-    allegiance: 'string',
+    allegiance: 'string[]',
     grandAlliance: 'string',
     about: 'string?',
     imageUrl: 'string',
@@ -82,7 +82,7 @@ export const CommandTraitGroup = {
   properties: {
     id: 'string',
     groupTitle: 'string',
-    keyword: 'string?',
+    keywords: 'CompoundKeyword[]',
     commandTraits: 'string[]'
   }
 }
@@ -227,6 +227,22 @@ export const Rule = {
   }
 }
 
+export const SceneryWarscroll = {
+  name: 'SceneryWarscroll',
+  primaryKey: 'id',
+  properties: {
+    id: 'string',
+    name: 'string',
+    about: 'string?',
+    imageUrl: 'string',
+    blurb: 'string',
+    sceneryRules: 'Ability[]',
+    keywords: 'string[]',
+    productURL: 'string?',
+    lastUpdated: 'double'
+  }
+}
+
 export const Skyport = {
   name: 'Skyport',
   primaryKey: 'id',
@@ -258,12 +274,14 @@ export const UnitWarscroll = {
     specialRules: 'Rule[]',
     upgrades: 'Rule[]',
     abilities: 'Ability[]',
+    minionAbilities: 'Ability[]',
     commandAbilities: 'Ability[]',
     magicBlurb: 'string?',
     magicAbilities: 'Ability[]',
     weapons: 'UnitWeapon[]',
     blurb: 'string',
     keywords: 'string[]',
+    hiddenKeywords: 'string[]',
     grandAlliance: 'string',
     factions: 'string[]',
     unitSizeMin: 'int',
@@ -274,7 +292,8 @@ export const UnitWarscroll = {
     additionalNotes: 'string?',
     overriddenRoles: 'string[]',
     overrideAllegiance: 'string?',
-    overrideGeneralKeywords: 'string[]',
+    overrideGeneralKeywords: 'CompoundKeyword[]',
+    nonGeneralCommonOverrideKeyword: 'string?',
     maxCount: 'int',
     maxAppliesToKeyword: 'string?',
     requiredIncludedKeyword: 'string?',
