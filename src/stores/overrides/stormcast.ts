@@ -294,7 +294,7 @@ function fixUnits(data: DataStoreImpl):void {
         addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, { attackAura: { bonusHitRoll: 1, targetCondition: { minWounds: 5 } } });
         addAbilityEffect(data.abilities.liberatorsLiberatorPrime, { attackAura: { bonusAttacks: 1 } });
         addAbilityEffect(data.abilities.liberatorsSigmariteShields, { defenseAura: { rerollSavesOn: 1 } });
-        addAbilityEffect(data.abilities.liberatorsPairedWeapons, { attackAura: { numberOfHitsOn6: 2 } });
+        addAbilityEffect(data.abilities.liberatorsPairedWeapons, { attackAura: { numberOfHitsOnUnmodified6: 2 } });
         
         liberator.modelStats = [
             { name: "Warhammers, prime with Grandhammer", models: [{ options: [wh], count: 4 }, { options: [gh, prime], count: 1 }] },
@@ -314,7 +314,7 @@ function fixUnits(data: DataStoreImpl):void {
         const shockboltBow = setAttackAsOption(judicator, data.attacks.judicatorsShockboltBow, ratioModelOption(1, 5), [chainedLightning]);
         const thunderboltCrossbow = setAttackAsOption(judicator, data.attacks.judicatorsThunderboltCrossbow, ratioModelOption(1, 5), [thunderboltCrossbowAbility]);
         const judicatorPrime = setAbilityAsOption(judicator, data.abilities.judicatorsJudicatorPrime, oneModelOption);
-        addAbilityEffect(data.abilities.judicatorsChainedLightning, { attackAura: { numberOfExtraHitsOnHit: "D6-1", attackCondition: { attack: data.attacks.judicatorsShockboltBow }} })
+        addAbilityEffect(data.abilities.judicatorsChainedLightning, { attackAura: { numberOfHitsOnHit: "D6", attackCondition: { attack: data.attacks.judicatorsShockboltBow }} })
         addAbilityEffect(data.abilities.judicatorsRapidFire, { targetCondition: { hasNotMoved: true }, attackAura: { bonusAttacks: 1, attackCondition: { attack: data.attacks.judicatorsBoltstormCrossbow }} });
         addAbilityEffect(data.abilities.judicatorsEternalJudgement, { attackAura: { targetCondition: { keyword: "CHAOS" }, attackCondition: { onlyMissileAttacks: true }, rerollHitsOn: 1 }})
 

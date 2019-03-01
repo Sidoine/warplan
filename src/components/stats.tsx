@@ -2,7 +2,7 @@ import * as React from "react";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
 import { Table, Icon } from "semantic-ui-react";
-import { UnitStats } from "../stores/units";
+import { UnitStats } from "../stores/stats";
 import { observable, action, computed } from "mobx";
 import { join, value } from "../helpers/react";
 import { Filter } from "./filter";

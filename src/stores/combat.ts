@@ -1,4 +1,5 @@
-import { Attack, Value, UnitState, AbilityEffect, targetEnemy, checkCondition, isRatioValue, isSumValue } from "./units";
+import { Attack, Value, UnitState, AbilityEffect, isRatioValue, isSumValue } from "./units";
+import { targetEnemy, checkCondition } from "./stats";
 
 export function getValue(formula: Value): number {
     if (formula === undefined ||formula === "-" || formula === "✹" || formula === "👁") return 0;
@@ -25,28 +26,28 @@ export function getValue(formula: Value): number {
 }
 
 
-export function rollValue(formula: Value): number {
+export function rollValue(formula: Value, howMany: number): number {
     if (formula === undefined ||formula === "-" || formula === "✹" || formula === "👁") return 0;
-    if (typeof(formula) === "number") return formula;
+    if (typeof(formula) === "number") return formula * howMany;
 
     if (typeof(formula) === "string") {
         const number = formula.match(/^(-?\d+\.?\d*)[\+\"]?$/);
-        if (number) return parseInt(number[1]);
+        if (number) return parseInt(number[1]) * howMany;
         const dices = formula.match(/^(\d?)D(\d?)(\+\d+)?$/);
         if (dices) {
             const numberOfDices = dices[1] ? parseInt(dices[1]) : 1;
             const numberOfSides = dices[2] ? parseInt(dices[2]) : 6;
             const bonus = dices[3] ? parseInt(dices[3]) : 0;
-            return rolls(numberOfSides, numberOfDices) + bonus;
+            return rolls(numberOfSides, numberOfDices * howMany) + bonus * howMany;
         }
         throw Error(`Unable to parse ${formula}`)
     } else if (isRatioValue(formula)) {
-        return rollValue(formula.value) * formula.ratio;
+        return rollValue(formula.value, howMany) * formula.ratio;
     } else if (isSumValue(formula)) {
-        return rollValue(formula.value1) + rollValue(formula.value2);
+        return rollValue(formula.value1, howMany) + rollValue(formula.value2, howMany);
     }
 
-    return rollValue(formula.values[0]);
+    return rollValue(formula.values[0], howMany);
 }
     
 const enemySave = 5;
@@ -72,8 +73,12 @@ export function rolls(faces: number, rolls: number) {
     return result;
 }
 
+function count(array: number[], value: number) {
+    return array.reduce((p, v) => v === value ? p + 1 : p, 0);
+}
+
 export abstract class Combat {
-    abstract async valueRoller(value: Value, multiplier: number): Promise<number>;
+    abstract async valueRoller(value: Value, howMany: number): Promise<number>;
 
     /** Roll dices
      * @param dices The number of dices
@@ -85,26 +90,54 @@ export abstract class Combat {
     abstract async diceRoller(dices: number, groups: number[]): Promise<number[]>;
 
     async executeAttack(caster: UnitState, target: UnitState, attack: Attack) {
-        const attacks = await this.valueRoller(attack.attacks, 1);
+        let attacks = await this.valueRoller(attack.attacks, 1);
         const toHit = await this.valueRoller(attack.toHit, 1);
         const toWound = await this.valueRoller(attack.toWound, 1);
-        const hitRolls = await this.diceRoller(attacks, [toHit]);
-        const hits = hitRolls.filter(x => x >= toHit).length;
-        if (hits === 0) return;
+
         const attackAura = caster.attackAura;
+        if (attackAura.bonusAttacks) {
+            attacks += await this.valueRoller(attackAura.bonusAttacks, 1);
+        }
+
+        let hitRolls = await this.diceRoller(attacks, [toHit]);
+        if (attackAura.rerollHitsOn) {
+            hitRolls = await this.reroll(hitRolls, attackAura.rerollHitsOn, [toHit]);
+        }
+
+        if (attackAura.mortalWoundsOnHitUnmodified6) {
+            const numberOf6 = count(hitRolls, 6);
+            if (numberOf6 > 0) {
+                hitRolls = hitRolls.filter(x => x !== 6);
+                target.wounds += await this.valueRoller(attackAura.mortalWoundsOnHitUnmodified6, numberOf6);
+            }
+        }
+
+        const bonusHit = await this.valueRoller(attackAura.bonusHitRoll, 1) || 0;
+        let hits = hitRolls.filter(x => x + bonusHit >= toHit).length;
+        if (hits === 0) return;
+        if (attackAura.numberOfHitsOnUnmodified6) {
+            const bonusHits = count(hitRolls, 6);
+            hits += await this.valueRoller(attackAura.numberOfHitsOnUnmodified6, bonusHits) - bonusHits;
+        }
+
         if (attackAura.effectsOnHitUnmodified6) {
-            const numberOf6 = hitRolls.filter(x => x === 6).length;
+            const numberOf6 = count(hitRolls, 6);
             if (numberOf6 > 0) {
                 for (const effect of attackAura.effectsOnHitUnmodified6) {
                     this.executeAbilityEffect(caster, target, effect, numberOf6);
                 }
             }                    
         }
+
+        if (attackAura.numberOfHitsOnHit) {
+            hits = await this.valueRoller(attackAura.numberOfHitsOnHit, hits);
+        }
+
         const woundRolls = await this.diceRoller(hits, [toWound]);
         let wounds = woundRolls.filter(x => x >= toWound).length;
         if (wounds === 0) return;
         if (attackAura.damageOnWoundUnmodified6) {
-            const sixes = woundRolls.filter(x => x === 6).length;
+            const sixes = count(woundRolls, 6);
             if (sixes > 0) {
                 wounds -= sixes;
                 await this.executeDamage(sixes, target, attack, attackAura.damageOnWoundUnmodified6);
@@ -114,14 +147,20 @@ export abstract class Combat {
         await this.executeDamage(wounds, target, attack);
     }
 
+    async reroll(dice: number[], rerollOn: number, groups: number[]) {
+        const numberOfRerolls = count(dice, rerollOn);
+        const newRolls = await this.diceRoller(numberOfRerolls, groups);
+        return dice.filter(x => x !== rerollOn).concat(newRolls);
+    }
+
     async executeDamage(wounds: number, target: UnitState, attack: Attack, attackDamage?: Value) {
         const rend = await this.valueRoller(attack.rend, 1);
         const save = await this.valueRoller(target.unit.save, 1);
         const mortalWoundRolls = await this.diceRoller(wounds, [save - rend]);
         const mortalWounds = mortalWoundRolls.filter(x => x < save - rend).length;
         if (mortalWounds === 0) return 0;
-        const damage = await this.valueRoller(attackDamage || attack.damage, 1);
-        target.wounds += mortalWounds * damage;
+        const damage = await this.valueRoller(attackDamage || attack.damage, mortalWounds);
+        target.wounds += damage;
     }
 
     async executeAbilityEffect(caster: UnitState, target: UnitState, effect: AbilityEffect, multiplier: number = 1) {
@@ -148,7 +187,7 @@ export class RandomCombat extends Combat {
         return Promise.resolve(rolls);
     }
     
-    valueRoller(value: Value, multiplier: number) {
-        return Promise.resolve(rollValue(value) * multiplier);
+    valueRoller(value: Value, howMany: number) {
+        return Promise.resolve(rollValue(value, howMany));
     }
 } 

@@ -1,6 +1,7 @@
-import { test, TestContext } from "ava";
-import { getUnitStats, Unit, Attack, Ability, AttackAura, UnitState } from "../../src/stores/units";
+import { default as test, ExecutionContext } from "ava";
+import { Unit, Attack, Ability, AttackAura, UnitState } from "../../src/stores/units";
 import { RandomCombat } from "../../src/stores/combat";
+import { getUnitStats } from "../../src/stores/stats";
 
 const randomCombat = new RandomCombat();
 
@@ -31,8 +32,8 @@ async function computeUnitDamage(unit: Unit, melee?: boolean) {
     return result / tries;
 }
 
-function near(t: TestContext, expected: number, value: number) {
-    return t.true(Math.abs(value - expected) < 0.01, `real=${value} - stats=${expected} > 0.01`);
+function near(t: ExecutionContext, expected: number, value: number, text: string) {
+    return t.true(Math.abs(value - expected) < 0.01, `${text}=${value} - expected=${expected} > 0.01`);
 }
 
 function createFakeUnit(attacks?: Attack[], abilities?: Ability[]): Unit {
@@ -74,23 +75,57 @@ test("stat of simple unit without any ability", async t => {
 
     // Assert
     t.is(unitStats.length, 1);
-    near(t, unitStats[0].meleeDamage, await computeUnitDamage(unit, true));
-    near(t, unitStats[0].rangedDamage, await computeUnitDamage(unit));
+    near(t, unitStats[0].meleeDamage, await computeUnitDamage(unit, true), 'melee');
+    near(t, unitStats[0].rangedDamage, await computeUnitDamage(unit), 'ranged');
 });
 
-test("stat of unit with aura", async t => {
-    // Arrange
-    const attackAura: AttackAura = {
-        effectsOnHitUnmodified6: [{ mortalWounds: 1 }],
-        damageOnWoundUnmodified6: "7"
-    };
-    const unit = createFakeUnit([createFakeAttack()], [{ effects: [{ attackAura: attackAura }], name: "Fake" }]);
+function testattackaura(attackAura: AttackAura, expected?: number) {
+    return async (t: ExecutionContext) => {
+        // Arrange
+        const unit = createFakeUnit([createFakeAttack()], [{ effects: [{ attackAura: attackAura }], name: "Fake" }]);
 
-    // Act
-    const unitStats = getUnitStats(unit);
+        // Act
+        const unitStats = getUnitStats(unit);
 
-    // Assert
-    t.is(unitStats.length, 1);
-    near(t, unitStats[0].meleeDamage, await computeUnitDamage(unit, true));
-});
+        // Assert
+        t.is(unitStats.length, 1);
+        if (expected) {
+            near(t, expected, unitStats[0].meleeDamage, 'stats');
+            near(t, expected, await computeUnitDamage(unit, true), 'combat');
+        } 
+        else {
+            near(t, unitStats[0].meleeDamage, await computeUnitDamage(unit, true), 'combat');
+        }
+    }
+}
 
+// enemy save à 5, soit 5/6 des blessures font des dommages
+// 1/3 des attaques touches, 1/2 des touches blessent
+//  return { attacks: 1, damage: 1, name: "Fake", melee: true, range: 1, rend: -1, toHit: 5, toWound: 4 };
+
+// 900 attacks: 300 hits, 150 wounds dont 150 wounds, 125 MW
+test("no aura", testattackaura({ }, 125/900));
+
+// 900 attacks: 300 hits, 150 wounds dont 50 hits à 10 wounds et 100 hits à 1 wound, soit 600 wounds donc 500 MW
+test("damageOnWoundUnmodified6", testattackaura({ damageOnWoundUnmodified6: "10" }, 500/900));
+
+// 900 attacks: 300 hits dont 150 font des MW, en plus des 125 MW habituelles, soit 275 MW
+test("effectsOnHitUnmodified6", testattackaura({ effectsOnHitUnmodified6: [{ mortalWounds: 1 }] }, 275 / 900));
+
+// 900 attacks: 300 hits + 150 rerolls qui font 50 hits, soit 350 hits, donc 175 wounds soit 5*176/6 MW
+test("rerollHitsOn", testattackaura({ rerollHitsOn: 1 }, 5*176/6 / 900));
+
+// 900 attacks: 300 hits dont 150 font des MW, donc 150 hits touchent => 75 wounds donc 5*75/6 + 150 MW
+test("mortalWoundsOnHitUnmodified6", testattackaura({ mortalWoundsOnHitUnmodified6: 1 }, (5*75/6 + 150) / 900));
+
+// Double le nombre d'attaques
+test("bonusAttacks", testattackaura({ bonusAttacks: 1 }, 250 / 900));
+
+// 900 attacks: 450 hits, 225 wounds 5*225/6 MW
+test("bonusHitRoll", testattackaura({ bonusHitRoll: 1 }, 5*225/6 / 900));
+
+// 900 attacks: 300 hits dont 150 font deux hits, soit 450 hits, donc 225 wounds, donc 5*225/6 MW
+test("numberOfHitsOnUnmodified6", testattackaura({ numberOfHitsOnUnmodified6: 2 }, 5*225/6 / 900));
+
+// 900 attacks: 300 hits soit 600 hits, donc 300 wounds, donc 250 MW
+test("numberOfHitsOnHit", testattackaura({ numberOfHitsOnHit: 2 }, 250/ 900));

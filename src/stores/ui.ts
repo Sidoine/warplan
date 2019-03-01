@@ -1,5 +1,6 @@
 import { observable, action, computed } from "mobx";
-import { GrandAlliance, UnitsStore, getUnitStats, UnitStats } from "./units";
+import { GrandAlliance, UnitsStore } from "./units";
+import { UnitStats, getUnitStats } from "./stats";
 
 interface SerializedUi {
     grandAlliance: GrandAlliance;
