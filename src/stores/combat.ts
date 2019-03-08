@@ -77,6 +77,10 @@ function count(array: number[], value: number) {
     return array.reduce((p, v) => v === value ? p + 1 : p, 0);
 }
 
+function countLowerOrEqual(array: number[], max: number) {
+    return array.reduce((p, v) => v <= max ? p + 1 : p, 0);
+}
+
 export abstract class Combat {
     abstract async valueRoller(value: Value, howMany: number): Promise<number>;
 
@@ -104,6 +108,11 @@ export abstract class Combat {
             hitRolls = await this.reroll(hitRolls, attackAura.rerollHitsOn, [toHit]);
         }
 
+        const bonusHit = await this.valueRoller(attackAura.bonusHitRoll, 1) || 0;
+        if (attackAura.rerollFailedHits) {
+            hitRolls = await this.rerollLowerOrEqual(hitRolls, Math.max(1, toHit - bonusHit - 1), [toHit]);
+        }
+
         if (attackAura.mortalWoundsOnHitUnmodified6) {
             const numberOf6 = count(hitRolls, 6);
             if (numberOf6 > 0) {
@@ -112,8 +121,8 @@ export abstract class Combat {
             }
         }
 
-        const bonusHit = await this.valueRoller(attackAura.bonusHitRoll, 1) || 0;
-        let hits = hitRolls.filter(x => x + bonusHit >= toHit).length;
+        let hits = hitRolls.filter(x => x + bonusHit >= toHit && x !== 1).length;
+        
         if (hits === 0) return;
         if (attackAura.numberOfHitsOnUnmodified6) {
             const bonusHits = count(hitRolls, 6);
@@ -140,21 +149,30 @@ export abstract class Combat {
             const sixes = count(woundRolls, 6);
             if (sixes > 0) {
                 wounds -= sixes;
-                await this.executeDamage(sixes, target, attack, attackAura.damageOnWoundUnmodified6);
+                await this.executeDamage(caster, sixes, target, attack, attackAura.damageOnWoundUnmodified6);
                 if (wounds === 0) return;
             }
         }
-        await this.executeDamage(wounds, target, attack);
+        await this.executeDamage(caster, wounds, target, attack);
     }
 
     async reroll(dice: number[], rerollOn: number, groups: number[]) {
         const numberOfRerolls = count(dice, rerollOn);
+        if (numberOfRerolls === 0) return dice;
         const newRolls = await this.diceRoller(numberOfRerolls, groups);
         return dice.filter(x => x !== rerollOn).concat(newRolls);
     }
 
-    async executeDamage(wounds: number, target: UnitState, attack: Attack, attackDamage?: Value) {
-        const rend = await this.valueRoller(attack.rend, 1);
+    async rerollLowerOrEqual(dice: number[], max: number, groups: number[]) {
+        const numberOfRerolls = countLowerOrEqual(dice, max);
+        if (numberOfRerolls === 0) return dice;
+        const newRolls = await this.diceRoller(numberOfRerolls, groups);
+        return dice.filter(x => x > max).concat(newRolls);
+    }
+
+    async executeDamage(caster: UnitState, wounds: number, target: UnitState, attack: Attack, attackDamage?: Value) {
+        let rend = await this.valueRoller(attack.rend, 1);
+        if (caster.attackAura.bonusRend) rend += await this.valueRoller(caster.attackAura.bonusRend, 1);
         const save = await this.valueRoller(target.unit.save, 1);
         const mortalWoundRolls = await this.diceRoller(wounds, [save - rend]);
         const mortalWounds = mortalWoundRolls.filter(x => x < save - rend).length;
@@ -165,8 +183,8 @@ export abstract class Combat {
 
     async executeAbilityEffect(caster: UnitState, target: UnitState, effect: AbilityEffect, multiplier: number = 1) {
         if (!targetEnemy(effect)) target = caster;
-        if (effect.condition && !checkCondition(effect.condition, caster)) return;
-        if (effect.targetCondition && !checkCondition(effect.targetCondition, target)) return;
+        if (effect.condition && !checkCondition(effect.condition, caster)) return false;
+        if (effect.targetCondition && !checkCondition(effect.targetCondition, target)) return false;
          
         if (effect.attackAura) {
             target.addAttackAura({ aura: effect.attackAura });
@@ -175,6 +193,7 @@ export abstract class Combat {
             const mortalWounds = await this.valueRoller(effect.mortalWounds, multiplier);
             target.wounds += mortalWounds;
         }
+        return true;
     }
 }
 

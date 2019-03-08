@@ -55,16 +55,21 @@ export const enum Phase {
 
 export interface DefenseAura {
     rerollSavesOn?: number;
+    rerollFailedSaves?: boolean;
     rerollCharge?: boolean;
+    bonusSave?: number;
 }
 
 export interface TargetCondition {
     minWounds?: number;
+    minModels?: Value;
     keyword?: string;
+    anyKeyword?: string[];
     hasCharged?: boolean;
     hasNotCharged?: boolean;
     hasMoved?: boolean;
     hasNotMoved?: boolean;
+    inCover?: boolean;
 }
 
 export interface AttackCondition {
@@ -81,10 +86,11 @@ export interface AttackAuraValues {
     mortalWoundsOnHitUnmodified6?: Value;
     mortalWounds?: Value;
     damageOnWoundUnmodified6?: Value;
+    bonusRend?: Value;
 }
 
 type AttackAuraValueKey = keyof AttackAuraValues;
-const attackAuraValueKeys: AttackAuraValueKey[] = ["bonusHitRoll", "bonusAttacks", "numberOfHitsOnUnmodified6", "numberOfHitsOnHit", "mortalWoundsOnHitUnmodified6", "mortalWounds", "damageOnWoundUnmodified6"];
+const attackAuraValueKeys: AttackAuraValueKey[] = ["bonusHitRoll", "bonusAttacks", "numberOfHitsOnUnmodified6", "numberOfHitsOnHit", "mortalWoundsOnHitUnmodified6", "mortalWounds", "damageOnWoundUnmodified6", "bonusRend"];
 
 export interface AttackAuraNumbers {
     rerollHitsOn?: number;
@@ -92,12 +98,18 @@ export interface AttackAuraNumbers {
 
 const attackAuraNumberKeys: (keyof AttackAuraNumbers)[] = ["rerollHitsOn"];
 
+export interface AttackAuraBooleans {
+    rerollFailedHits?: boolean;
+}
+
+const attackAuraBooleanKeys: (keyof AttackAuraBooleans)[] = ["rerollFailedHits"];
+
 export interface AttackAuraAbilityEffects {
     effectsOnHitUnmodified6?: AbilityEffect[];
 }
 const attackAuraAbilityEffectKeys: (keyof AttackAuraAbilityEffects)[] = ["effectsOnHitUnmodified6"];
 
-export interface AttackAura extends AttackAuraValues, AttackAuraNumbers, AttackAuraAbilityEffects {
+export interface AttackAura extends AttackAuraValues, AttackAuraNumbers, AttackAuraAbilityEffects, AttackAuraBooleans {
     
     targetCondition?: TargetCondition;
     attackCondition?: AttackCondition;
@@ -115,14 +127,33 @@ export interface AuraState<T> {
     duration?: number;
 }
 
-export class UnitState {
-    hasCharged: boolean = false;
-    hasMoved: boolean = false;
-    private attackAuras: AuraState<AttackAura>[] = [];
+export interface States {
+    attackAuras: AuraState<AttackAura>[];
+    attackAura: AttackAura;
+    defenseAura: AuraState<DefenseAura>[];
+    debuffAuras: AuraState<DebuffAura>[];
+}
+
+export class ModelState implements States {
+    attackAuras: AuraState<AttackAura>[] = [];
     attackAura: AttackAura = {};
     defenseAura: AuraState<DefenseAura>[] = [];
     debuffAuras: AuraState<DebuffAura>[] = [];
+
+    constructor(public model: ModelOption) {
+    }
+}
+
+export class UnitState implements States {
+    attackAuras: AuraState<AttackAura>[] = [];
+    attackAura: AttackAura = {};
+    defenseAura: AuraState<DefenseAura>[] = [];
+    debuffAuras: AuraState<DebuffAura>[] = [];
+
+    hasCharged: boolean = false;
+    hasMoved: boolean = false;
     wounds: number = 0;
+    models: ModelState[] = [];
     constructor(public unit: Unit) {
     }
 
@@ -140,6 +171,9 @@ export class UnitState {
             if (a) {
                 sum[key] = a * (auraState.effectRatio || 1);
             }
+        }
+        for (const key of attackAuraBooleanKeys) {
+            if (aura[key]) sum[key] = true;
         }
         for (const key of attackAuraAbilityEffectKeys) {
             const a = aura[key]
@@ -174,6 +208,8 @@ export interface AbilityEffect {
     subPhase?: SubPhase;
     condition?: TargetCondition;
     timesPerBattle?: number;
+    ignoreOtherEffects?: boolean;
+    choice?: string;
 
     mortalWounds?: Value;
     setUpAwayFromEnemy?: Value; // The distance to the enemy
@@ -200,6 +236,8 @@ export interface Attack {
     toWound?: Value;
     rend?: Value;
     damage?: Value;
+    // Unique string to allow to choose between multiple available weapon during play
+    choice?: string;
 }
 
 export interface WeaponOption {
@@ -308,6 +346,7 @@ export interface UnitStatModel {
 export interface UnitStatModels {
     name: string;
     models: UnitStatModel[];
+    choice?: string;
 }
 
 export interface Unit extends UnitInfos {

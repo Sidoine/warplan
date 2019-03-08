@@ -15,8 +15,8 @@ export interface UnitStats {
 
 function applyEffect(caster: UnitState, target: UnitState, effect: AbilityEffect, stats: UnitStats, ratio?: number) {
     if (!targetEnemy(effect)) target = caster;
-    if (effect.condition && !checkCondition(effect.condition, caster)) return;
-    if (effect.targetCondition && !checkCondition(effect.targetCondition, target)) return;
+    if (effect.condition && !checkCondition(effect.condition, caster)) return false;
+    if (effect.targetCondition && !checkCondition(effect.targetCondition, target)) return false;
     if (effect.randomEffectRange) {
         ratio = (effect.randomEffectRange.max - effect.randomEffectRange.min + 1) / 6;
     }
@@ -34,6 +34,7 @@ function applyEffect(caster: UnitState, target: UnitState, effect: AbilityEffect
             stats.meleeDamage += mortalWounds;
         }
     }
+    return true;
 }
 
 export function checkCondition(condition: TargetCondition, target: UnitState) {
@@ -42,7 +43,9 @@ export function checkCondition(condition: TargetCondition, target: UnitState) {
     if (condition.hasNotCharged && target.hasCharged) return false;
     if (condition.hasNotMoved && target.hasMoved) return false;
     if (condition.keyword && target.unit.keywords.indexOf(condition.keyword) < 0) return false;
+    if (condition.anyKeyword && condition.anyKeyword.every(x => target.unit.keywords.indexOf(x) < 0)) return false;
     if (condition.minWounds && getValue(target.unit.wounds) < condition.minWounds) return false;
+    if (condition.minModels && target.models.length < getValue(condition.minModels)) return false;
     return true;
 }
 
@@ -56,7 +59,7 @@ export function targetEnemy(effect: AbilityEffect) {
     return effect.targetEnemy || effect.targetAura || effect.mortalWounds;
 }
 
-function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit, model: UnitStatModel, stats: UnitStats) {
+function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit, model: UnitStatModel, stats: UnitStats, choice: string | undefined) {
     let abilities = unit.abilities || [];
     let attacks = unit.attacks || [];
     for (const option of model.options) {
@@ -67,7 +70,9 @@ function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit
     for (const ability of abilities) {
         if (ability.effects) {
             for (const effect of ability.effects) {
-                applyEffect(myState, enemyState, effect, stats);
+                if (effect.choice && effect.choice !== choice) continue;
+                const applied = applyEffect(myState, enemyState, effect, stats);
+                if (applied && effect.ignoreOtherEffects) break;
             }
         } else {
             if (stats.ignoredAbilities.find(x => x.name === ability.name) === undefined) {
@@ -76,6 +81,7 @@ function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit
         }
     }
     for (const attack of attacks) {
+        if (attack.choice && attack.choice !== choice) continue;
         const attackAura = myState.attackAura;
         if (attackAura.attackCondition && !checkAttackCondition(attackAura.attackCondition, attack)) continue;
         let numberOfAttacks = (getValue(attack.attacks) + getValue(attackAura.bonusAttacks)) * model.count;
@@ -85,13 +91,13 @@ function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit
         let numberOfHitsOnUnmodified6 = getValue(attackAura.numberOfHitsOnUnmodified6);
         let numberOfHitsOnHit = getValue(attackAura.numberOfHitsOnHit) || 1;
         let rerollHitsOn = getValue(attackAura.rerollHitsOn);
-        let rend = getValue(attack.rend);
+        let rend = getValue(attack.rend) + getValue(attackAura.bonusRend);
         let enemySave = getValue(enemyState.unit.save);
         let mortalWoundsOnHitIsUnmodifed6 = getValue(attackAura.mortalWoundsOnHitUnmodified6);
         let numberOfMortalWounds = getValue(attackAura.mortalWounds);
         let effectsOnHitUnmodified6 = attackAura.effectsOnHitUnmodified6 || [];
         let damageOnWoundUnmodified6 = getValue(attackAura.damageOnWoundUnmodified6);
-        
+                
         if (!toHit) continue;
         
         let numberOfHits = numberOfAttacks * (7 - toHit) / 6;
@@ -112,6 +118,9 @@ function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit
         if (numberOfHitsOnUnmodified6) {
             numberOfHits += (numberOfHitsOnUnmodified6 - 1) / 6;
         }
+        if (attackAura.rerollFailedHits) {
+            numberOfHits += (numberOfAttacks - numberOfHits) / numberOfAttacks * numberOfHits / numberOfAttacks;
+        }
         numberOfHits *= numberOfHitsOnHit;
 
         if (damageOnWoundUnmodified6 > 0) {
@@ -127,12 +136,12 @@ function computeModelStats(myState: UnitState, enemyState: UnitState, unit: Unit
     }
 }
 
-function computeUnitStats(stats: UnitStats, unit: Unit, models: UnitStatModel[]) {
+function computeUnitStats(stats: UnitStats, unit: Unit, models: UnitStatModel[], choice: string | undefined) {
     const myState = new UnitState(unit);
     const enemyState = new UnitState({ id: "enemy", model: { id: "enemy", name: "Enemy" }, size: 1, points: 0, wounds: 2, factions: [], keywords: [], save: 5 });
 
     for (const model of models) {
-        computeModelStats(myState, enemyState, unit, model, stats);
+        computeModelStats(myState, enemyState, unit, model, stats, choice);
     }
 }
 
@@ -163,7 +172,7 @@ export function getUnitStats(unit: Unit): UnitStats[] {
             totalDamage: 0,
             ignoredAbilities: []
         };
-        computeUnitStats(result, unit, x.models);
+        computeUnitStats(result, unit, x.models, x.choice);
         result.totalDamage = result.meleeDamage * 1.5 + result.rangedDamage;
         return result;
     });

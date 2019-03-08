@@ -51,6 +51,10 @@ export function overrideAbility(ability: Ability, f: (x: Ability) => void) {
     override(ability, f);
 }
 
+export function overrideAttack(ability: Attack, f: (x: Attack) => void) {
+    override(ability, f);
+}
+
 export function override<T>(value:T, f: (x: T) => void) {
     f(value);
 }

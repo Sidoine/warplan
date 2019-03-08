@@ -1,14 +1,17 @@
-import { DataStore, GrandAlliance, ExtraAbilityTest, WarscrollInterface, Box, AbilityCategory } from "./units";
+import { Unit, DataStore, GrandAlliance, ExtraAbilityTest, WarscrollInterface, Box, AbilityCategory } from "./units";
+function hasKeyword(unit: Unit, keywords: string[][]) {
+    return keywords.some(x => x.every(y => unit.keywords.indexOf(y) >= 0));
+}
 
 const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
 function commandTraitWithKeywordAvailable(keywords: string[][]): ExtraAbilityTest {
-    return (unit, ws) => commandTraitAvailable(unit, ws) && keywords.some(x => x.every(y => unit.unit.keywords.indexOf(y) >= 0));
+    return (unit, ws) => commandTraitAvailable(unit, ws) && hasKeyword(unit.unit, keywords);
 }
 // const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
 //         && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
 
 function multiKeywordAvailable(category: string, allegianceKeyword: string, keywords: string[][]): ExtraAbilityTest {
-    return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && keywords.some(x => x.every(y => unit.unit.keywords.indexOf(y) >= 0));
+    return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && hasKeyword(unit.unit, keywords);
 }
  
 // function keywordAvailable(category: string, allegianceKeyword: string, keyword: string): ExtraAbilityTest {
@@ -48244,6 +48247,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.avatarOfKhaineWrathOfKhaine, this.abilities.avatarOfKhaineAnimated, this.abilities.avatarOfKhaineIdolOfWorship],
            attacks: [this.attacks.avatarOfKhaineTorrentOfBurningBlood, this.attacks.avatarOfKhaineAvatarOfKhaineSSword],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        bloodSisters: {
             id: "bloodSisters",
@@ -48264,6 +48268,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.bloodSistersTurnedToCrystal, this.abilities.bloodSistersGorgai],
            attacks: [this.attacks.bloodSistersHeartshardGlaive, this.attacks.bloodSistersCrystalTouch],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.daughtersOfKhaine.id && ws.general && hasKeyword(ws.general.unit, [["BLOODWRACK MEDUSA"]]),
        },
        hagQueenOnCauldronOfBlood: {
             id: "hagQueenOnCauldronOfBlood",
@@ -48285,6 +48290,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.hagQueenOnCauldronOfBloodBladedImpact, this.abilities.hagQueenOnCauldronOfBloodBloodshield, this.abilities.hagQueenOnCauldronOfBloodWitchbrew, this.abilities.hagQueenOnCauldronOfBloodPriestessOfKhaine, this.abilities.hagQueenOnCauldronOfBloodWrathOfKhaine, this.abilities.hagQueenOnCauldronOfBloodAnimated, this.abilities.hagQueenOnCauldronOfBloodIdolOfWorship],
            attacks: [this.attacks.hagQueenOnCauldronOfBloodTorrentOfBurningBlood, this.attacks.hagQueenOnCauldronOfBloodWitchAelvesSacrificialKnives, this.attacks.hagQueenOnCauldronOfBloodHagQueenSBladeOfKhaine, this.attacks.hagQueenOnCauldronOfBloodAvatarOfKhaineSSword],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        witchAelves: {
             id: "witchAelves",
@@ -48349,6 +48355,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.slaughterQueenOnCauldronOfBloodOrgyOfSlaughter],
            attacks: [this.attacks.slaughterQueenOnCauldronOfBloodTorrentOfBurningBlood, this.attacks.slaughterQueenOnCauldronOfBloodWitchAelvesSacrificialKnives, this.attacks.slaughterQueenOnCauldronOfBloodSlaughterQueenSBladeOfKhaine, this.attacks.slaughterQueenOnCauldronOfBloodSlaughterQueenSDeathsword, this.attacks.slaughterQueenOnCauldronOfBloodAvatarOfKhaineSSword],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        bloodwrackShrine: {
             id: "bloodwrackShrine",
@@ -48370,6 +48377,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.bloodwrackShrineBladedImpact, this.abilities.bloodwrackShrineBloodwrackStare, this.abilities.bloodwrackShrineAuraOfAgony, this.abilities.bloodwrackShrineEnfeeblingFoe],
            attacks: [this.attacks.bloodwrackShrineBloodwrackStare, this.attacks.bloodwrackShrineTailOfSerpents, this.attacks.bloodwrackShrineWhisperclaw, this.attacks.bloodwrackShrineBloodwrackSpear, this.attacks.bloodwrackShrineShrinekeepersGoadstaves],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "The Bloodwrack Medusa atop a Bloodwrack Shrine can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. A Bloodwrack Medusa knows the Arcane Bolt, Mystic Shield and Enfeebling Foe spells.",       },
        bloodStalkers: {
             id: "bloodStalkers",
@@ -48681,6 +48689,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.akhelianLeviadonJawsOfDeath, this.abilities.akhelianLeviadonVoidDrum, this.abilities.akhelianLeviadonFly],
            attacks: [this.attacks.akhelianLeviadonHarpoonLaunchers, this.attacks.akhelianLeviadonLeviadonSCrushingJaws, this.attacks.akhelianLeviadonLeviadonSMassiveScythedFins, this.attacks.akhelianLeviadonTwinProngedSpear, this.attacks.akhelianLeviadonRazorshellHarpoons],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        akhelianMorrsarrGuard: {
             id: "akhelianMorrsarrGuard",
@@ -48701,6 +48710,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [this.options.akhelianMorrsarrGuardCommandGroup],
            abilities: [this.abilities.akhelianMorrsarrGuardBiovoltaicBlast, this.abilities.akhelianMorrsarrGuardWaveRiders, this.abilities.akhelianMorrsarrGuardFly],
            attacks: [this.attacks.akhelianMorrsarrGuardVoltspear, this.attacks.akhelianMorrsarrGuardFangmoraSFangedMaw, this.attacks.akhelianMorrsarrGuardFangmoraSLashingTail],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.idonethDeepkin.id && ws.general && hasKeyword(ws.general.unit, [["AKHELIAN", "HERO"]]),
        },
        akhelianIshlaenGuard: {
             id: "akhelianIshlaenGuard",
@@ -48721,6 +48731,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [this.options.akhelianIshlaenGuardCommandGroup],
            abilities: [this.abilities.akhelianIshlaenGuardBiovoltaicBarrier, this.abilities.akhelianIshlaenGuardFly],
            attacks: [this.attacks.akhelianIshlaenGuardHelsabre, this.attacks.akhelianIshlaenGuardFangmoraSFangedMaw, this.attacks.akhelianIshlaenGuardFangmoraSLashingTail],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.idonethDeepkin.id && ws.general && hasKeyword(ws.general.unit, [["AKHELIAN", "HERO"]]),
        },
        namartiThralls: {
             id: "namartiThralls",
@@ -48762,6 +48773,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [this.options.namartiReaversIconBearer],
            abilities: [this.abilities.namartiReaversSwiftTide, this.abilities.namartiReaversFluidFiringStyle],
            attacks: [this.attacks.namartiReaversWhisperbowAimedFire, this.attacks.namartiReaversWhisperbowStormFire, this.attacks.namartiReaversKeeningBlade],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.idonethDeepkin.id && ws.general && hasKeyword(ws.general.unit, [["ISHARANN", "HERO"]]),
        },
        lordOrdinator: {
             id: "lordOrdinator",
@@ -48871,6 +48883,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.nagashSupremeLordOfTheUndeadSupremeLordOfDeath],
            attacks: [this.attacks.nagashSupremeLordOfTheUndeadGazeOfNagash, this.attacks.nagashSupremeLordOfTheUndeadAlakanash, this.attacks.nagashSupremeLordOfTheUndeadZefetNebtar, this.attacks.nagashSupremeLordOfTheUndeadSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Nagash is a Wizard. He can attempt to cast three spells in your hero phase, and attempt to unbind three spells in the enemy hero phase. In addition, he can attempt to cast or unbind extra spells with the Nine Books of Nagash. He knows the Arcane Bolt, Mystic Shield, Hand of Dust and Soul Stealer spells, as well as any spells known by other Death Wizards on the battlefield.",       },
        arkhanTheBlackMortarchOfSacrament: {
             id: "arkhanTheBlackMortarchOfSacrament",
@@ -48893,6 +48906,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.arkhanTheBlackMortarchOfSacramentFirstOfTheMortarchs],
            attacks: [this.attacks.arkhanTheBlackMortarchOfSacramentZefetKar, this.attacks.arkhanTheBlackMortarchOfSacramentKhenashAn, this.attacks.arkhanTheBlackMortarchOfSacramentRazarakSEbonClaws, this.attacks.arkhanTheBlackMortarchOfSacramentSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Arkhan the Black is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Curse of Years spells. Arkhan also knows the spells of any Death Wizard that is within 18\" of him.",       },
        mannfredMortarchOfNight: {
             id: "mannfredMortarchOfNight",
@@ -48915,6 +48929,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.mannfredMortarchOfNightVigourOfUndeath],
            attacks: [this.attacks.mannfredMortarchOfNightGheistvor, this.attacks.mannfredMortarchOfNightSickleGlaive, this.attacks.mannfredMortarchOfNightAshigarothSEbonClaws, this.attacks.mannfredMortarchOfNightSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Mannfred is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Wind of Death spells.",       },
        neferataMortarchOfBlood: {
             id: "neferataMortarchOfBlood",
@@ -48937,6 +48952,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.neferataMortarchOfBloodTwilightSAllure],
            attacks: [this.attacks.neferataMortarchOfBloodAkmetHar, this.attacks.neferataMortarchOfBloodAkenSeth, this.attacks.neferataMortarchOfBloodNagadronSSkeletalClaws, this.attacks.neferataMortarchOfBloodSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Neferata is a Wizard. She can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Dark Mist spells.",       },
        princeVhordrai: {
             id: "princeVhordrai",
@@ -48959,6 +48975,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.princeVhordraiFistOfNagash],
            attacks: [this.attacks.princeVhordraiBloodlance, this.attacks.princeVhordraiShordemaireSMaw, this.attacks.princeVhordraiShordemaireSSwordLikeClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Prince Vhordrai is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Quickblood spells.",       },
        morghastHarbingers: {
             id: "morghastHarbingers",
@@ -48979,6 +48996,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.morghastHarbingersHeraldsOfTheAccursedOne, this.abilities.morghastHarbingersHarbingersOfDeath, this.abilities.morghastHarbingersFly],
            attacks: [this.attacks.morghastHarbingersSpiritSwords, this.attacks.morghastHarbingersSpiritHalberd],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.grandHostOfNagash.id && ws.general && hasKeyword(ws.general.unit, [["NAGASH"]]),
        },
        morghastArchai: {
             id: "morghastArchai",
@@ -48999,6 +49017,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.morghastArchaiHeraldsOfTheAccursedOne, this.abilities.morghastArchaiEbonWroughtArmour, this.abilities.morghastArchaiFly],
            attacks: [this.attacks.morghastArchaiSpiritHalberd, this.attacks.morghastArchaiSpiritSwords],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.grandHostOfNagash.id && ws.general && hasKeyword(ws.general.unit, [["NAGASH"]]),
        },
        vampireLordOnZombieDragon: {
             id: "vampireLordOnZombieDragon",
@@ -49021,6 +49040,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.vampireLordOnZombieDragonDreadKnight],
            attacks: [this.attacks.vampireLordOnZombieDragonPestilentialBreath, this.attacks.vampireLordOnZombieDragonDeathlance, this.attacks.vampireLordOnZombieDragonVampiricSword, this.attacks.vampireLordOnZombieDragonZombieDragonSMaw, this.attacks.vampireLordOnZombieDragonZombieDragonSSwordLikeClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Vampire Lord on Zombie Dragon is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Blood Boil spells.",       },
        bloodKnights: {
             id: "bloodKnights",
@@ -49041,6 +49061,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.bloodKnightsTheHunger, this.abilities.bloodKnightsMartialFury, this.abilities.bloodKnightsBloodshields, this.abilities.bloodKnightsKastellan, this.abilities.bloodKnightsStandardBearer, this.abilities.bloodKnightsHornblower],
            attacks: [this.attacks.bloodKnightsTemplarLanceOrBlade, this.attacks.bloodKnightsNightmareSHoovesAndTeeth],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.soulblight.id,
        },
        vargheists: {
             id: "vargheists",
@@ -49144,6 +49165,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.bloodseekerPalanquinFrightfulTouch, this.abilities.bloodseekerPalanquinAFineVintage, this.abilities.bloodseekerPalanquinWailOfTheDamned, this.abilities.bloodseekerPalanquinDeathlyInvocation, this.abilities.bloodseekerPalanquinFly, this.abilities.bloodseekerPalanquinBloodSiphon],
            attacks: [this.attacks.bloodseekerPalanquinWailOfTheDamned, this.attacks.bloodseekerPalanquinSanguinarchSBloodlettingBlade, this.attacks.bloodseekerPalanquinSpectralHostSEtherealWeapons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "The Sanguinarch on a Bloodseeker Palanquin is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Blood Siphon spells.",       },
        covenThrone: {
             id: "covenThrone",
@@ -49166,6 +49188,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.covenThroneTacticalInsight],
            attacks: [this.attacks.covenThroneVampireQueenSPredatoryBite, this.attacks.covenThroneVampireQueenSStiletto, this.attacks.covenThroneHandmaidensNeedleSharpPoniards, this.attacks.covenThroneSpectralHostSEtherealWeapons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "The Vampire Queen on a Coven Throne is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Beguile spells.",       },
        mortisEngine: {
             id: "mortisEngine",
@@ -49186,6 +49209,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.mortisEngineWailOfTheDamned, this.abilities.mortisEngineFrightfulTouch, this.abilities.mortisEngineTheReliquary, this.abilities.mortisEngineBoundNecromancer, this.abilities.mortisEngineFly],
            attacks: [this.attacks.mortisEngineWailOfTheDamned, this.attacks.mortisEngineCorpsemasterSMortisStaff, this.attacks.mortisEngineSpectralHostSEtherealWeapons],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        necromancer: {
             id: "necromancer",
@@ -49394,6 +49418,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [this.options.graveGuardStandardBearer, this.options.graveGuardHornblower],
            abilities: [this.abilities.graveGuardCursedWeapons, this.abilities.graveGuardCryptShields, this.abilities.graveGuardSeneschal],
            attacks: [this.attacks.graveGuardWightBlade, this.attacks.graveGuardGreatWightBlade],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.grandHostOfNagash.id,
        },
        skeletonWarriors: {
             id: "skeletonWarriors",
@@ -49477,6 +49502,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.hexwraithsEthereal, this.abilities.hexwraithsFrightfulTouch, this.abilities.hexwraithsSpectralHunters, this.abilities.hexwraithsMount, this.abilities.hexwraithsHellwraith, this.abilities.hexwraithsFly],
            attacks: [this.attacks.hexwraithsSpectralScythe, this.attacks.hexwraithsSkeletalSteedSHoovesAndTeeth],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.nighthaunt.id,
        },
        blackCoach: {
             id: "blackCoach",
@@ -49497,6 +49523,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.blackCoachEthereal, this.abilities.blackCoachFrightfulTouch, this.abilities.blackCoachEvocationOfDeath, this.abilities.blackCoachFirstLevelNimbusOfPower, this.abilities.blackCoachSecondLevelUnholyVigour, this.abilities.blackCoachThirdLevelSpectralScythes, this.abilities.blackCoachFourthLevelInsubstantialForm, this.abilities.blackCoachFifthLevelWitchFire, this.abilities.blackCoachReapedLikeCorn, this.abilities.blackCoachSteedsAndCrew, this.abilities.blackCoachFly],
            attacks: [this.attacks.blackCoachCairnWraithSSoulreachGrasp, this.attacks.blackCoachCairnWraithSReaperScythe, this.attacks.blackCoachCairnWraithSSoulreachGrasp, this.attacks.blackCoachRelicBearersSpectralClaws, this.attacks.blackCoachNightmaresHoovesAndTeeth],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        spiritHosts: {
             id: "spiritHosts",
@@ -49517,6 +49544,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.spiritHostsEthereal, this.abilities.spiritHostsFrightfulTouch, this.abilities.spiritHostsFly],
            attacks: [this.attacks.spiritHostsSpectralClawsAndDaggers],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.nighthaunt.id,
        },
        direWolves: {
             id: "direWolves",
@@ -49559,6 +49587,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.rotigusBlubberAndBile, this.abilities.rotigusCorpulentMass, this.abilities.rotigusMountainOfLoathsomeFlesh, this.abilities.rotigusStreamsOfBrackishFilth, this.abilities.rotigusDelugeOfNurgle],
            attacks: [this.attacks.rotigusGnarlrod, this.attacks.rotigusFangedMaw, this.attacks.rotigusHostOfNurglings],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Rotigus is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Deluge of Nurgle spells.",       },
        greatUncleanOne: {
             id: "greatUncleanOne",
@@ -49581,6 +49610,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.greatUncleanOneGrandfatherSJoy],
            attacks: [this.attacks.greatUncleanOneNoxiousBile, this.attacks.greatUncleanOnePlagueFlail, this.attacks.greatUncleanOneMassiveBilesword, this.attacks.greatUncleanOneBileblade, this.attacks.greatUncleanOneDoomsdayBell, this.attacks.greatUncleanOneHostOfNurglings],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Great Unclean One is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Wind spells.",       },
        poxbringerHeraldOfNurgle: {
             id: "poxbringerHeraldOfNurgle",
@@ -49789,6 +49819,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.theGlottkinLordsOfNurgle],
            attacks: [this.attacks.theGlottkinPestilentTorrent, this.attacks.theGlottkinGhurkSFlailingTentacle, this.attacks.theGlottkinGhurkSLampreyMaw, this.attacks.theGlottkinOttoSPoisonSlickScythe],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Ethrac Glott is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Fleshy Abundance spells.",       },
        orghottsDaemonspew: {
             id: "orghottsDaemonspew",
@@ -49811,6 +49842,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.orghottsDaemonspewFesterAndRot],
            attacks: [this.attacks.orghottsDaemonspewWhippermawSGraspingTongue, this.attacks.orghottsDaemonspewTheRotaxes, this.attacks.orghottsDaemonspewWhippermawSMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        bloabRotspawned: {
             id: "bloabRotspawned",
@@ -49832,6 +49864,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.bloabRotspawnedDaemonFlies, this.abilities.bloabRotspawnedWindspeakerBells, this.abilities.bloabRotspawnedMiasmaOfPestilence],
            attacks: [this.attacks.bloabRotspawnedBilespurterSVileBile, this.attacks.bloabRotspawnedHarvestmanSScythe, this.attacks.bloabRotspawnedBilespurterSMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Bloab Rotspawned is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Miasma of Pestilence spells.",       },
        morbidexTwiceborn: {
             id: "morbidexTwiceborn",
@@ -49853,6 +49886,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.morbidexTwicebornLordOfNurglings, this.abilities.morbidexTwicebornMaliciousMites, this.abilities.morbidexTwicebornNurgleSRot, this.abilities.morbidexTwicebornRepugnantRegrowth],
            attacks: [this.attacks.morbidexTwicebornSlabrousTongues, this.attacks.morbidexTwicebornFleshreaperScythe, this.attacks.morbidexTwicebornMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        lordOfAfflictions: {
             id: "lordOfAfflictions",
@@ -50024,6 +50058,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.putridBlightkingsVirulentDischarge, this.abilities.putridBlightkingsBlightedWeapons, this.abilities.putridBlightkingsBlightlord, this.abilities.putridBlightkingsIconBearers, this.abilities.putridBlightkingsSonorousTocsin],
            attacks: [this.attacks.putridBlightkingsBlightedWeapon],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.nurgle.id,
        },
        pusgoyleBlightlords: {
             id: "pusgoyleBlightlords",
@@ -50044,6 +50079,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.pusgoyleBlightlordsDisgustinglyResilient, this.abilities.pusgoyleBlightlordsVirulentDischarge, this.abilities.pusgoyleBlightlordsBlightedWeapons, this.abilities.pusgoyleBlightlordsFly],
            attacks: [this.attacks.pusgoyleBlightlordsBlightedWeapon, this.attacks.pusgoyleBlightlordsDolorousTocsin, this.attacks.pusgoyleBlightlordsFoulMouthparts, this.attacks.pusgoyleBlightlordsVenomousSting],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.nurgle.id && ws.general && hasKeyword(ws.general.unit, [["LORD OF AFFLICTIONS"]]),
        },
        brokkGrungssonLordMagnateOfBarakNar: {
             id: "brokkGrungssonLordMagnateOfBarakNar",
@@ -50192,6 +50228,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.arkanautIroncladAethericNavigation, this.abilities.arkanautIroncladFlagship, this.abilities.arkanautIroncladBattenTheHatches, this.abilities.arkanautIroncladBombRacks, this.abilities.arkanautIroncladSkyhook, this.abilities.arkanautIroncladSupremacyMine, this.abilities.arkanautIroncladTirelessEndrinrigger, this.abilities.arkanautIroncladVessel, this.abilities.arkanautIroncladOverburdened, this.abilities.arkanautIroncladSetUp, this.abilities.arkanautIroncladEmbark, this.abilities.arkanautIroncladDisembark, this.abilities.arkanautIroncladFly],
            attacks: [this.attacks.arkanautIroncladGreatSkyCannon, this.attacks.arkanautIroncladGreatSkyhook, this.attacks.arkanautIroncladAethermaticVolleyCannon, this.attacks.arkanautIroncladAethershockTorpedoes, this.attacks.arkanautIroncladAethershotCarbines, this.attacks.arkanautIroncladFragmentationCharges, this.attacks.arkanautIroncladBelayingValves],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        arkanautFrigate: {
             id: "arkanautFrigate",
@@ -50212,6 +50249,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.arkanautFrigateAethericNavigation, this.abilities.arkanautFrigateAllHandsToTheGuns, this.abilities.arkanautFrigateBombRacks, this.abilities.arkanautFrigateSkyhook, this.abilities.arkanautFrigateSkymines, this.abilities.arkanautFrigateTirelessEndrinrigger, this.abilities.arkanautFrigateVessel, this.abilities.arkanautFrigateOverburdened, this.abilities.arkanautFrigateSetUp, this.abilities.arkanautFrigateEmbark, this.abilities.arkanautFrigateDisembark, this.abilities.arkanautFrigateFly],
            attacks: [this.attacks.arkanautFrigateHeavySkyCannon, this.attacks.arkanautFrigateHeavySkyhook, this.attacks.arkanautFrigateAethershotCarbines, this.attacks.arkanautFrigateBelayingValves],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        grundstokGunhauler: {
             id: "grundstokGunhauler",
@@ -50314,6 +50352,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.skarbrandSkarbrandSRage, this.abilities.skarbrandRoarOfTotalRage, this.abilities.skarbrandTotalCarnage],
            attacks: [this.attacks.skarbrandSlaughter, this.attacks.skarbrandCarnage],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        bloodthirsterOfUnfetteredFury: {
             id: "bloodthirsterOfUnfetteredFury",
@@ -50336,6 +50375,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.bloodthirsterOfUnfetteredFuryRejoiceInTheSlaughter],
            attacks: [this.attacks.bloodthirsterOfUnfetteredFuryLashOfKhorne, this.attacks.bloodthirsterOfUnfetteredFuryMightyAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        bloodthirsterOfInsensateRage: {
             id: "bloodthirsterOfInsensateRage",
@@ -50358,6 +50398,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.bloodthirsterOfInsensateRageBloodthirstyCharge],
            attacks: [this.attacks.bloodthirsterOfInsensateRageGreatAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        wrathOfKhorneBloodthirster: {
             id: "wrathOfKhorneBloodthirster",
@@ -50380,6 +50421,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.wrathOfKhorneBloodthirsterLordOfTheBloodHunt],
            attacks: [this.attacks.wrathOfKhorneBloodthirsterHellfireBreath, this.attacks.wrathOfKhorneBloodthirsterBloodflail, this.attacks.wrathOfKhorneBloodthirsterMightyAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        karanak: {
             id: "karanak",
@@ -50421,6 +50463,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [this.options.fleshHoundsGoreHounds],
            abilities: [this.abilities.fleshHoundsCollarsOfKhorne, this.abilities.fleshHoundsUnflaggingHunters],
            attacks: [this.attacks.fleshHoundsBloodDarkClaws, this.attacks.fleshHoundsBurningRoar],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.khorne.id,
        },
        skulltaker: {
             id: "skulltaker",
@@ -50525,6 +50568,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [this.options.bloodcrushersIconBearer, this.options.bloodcrushersHornblower],
            abilities: [this.abilities.bloodcrushersDecapitatingBlow, this.abilities.bloodcrushersMurderousCharge, this.abilities.bloodcrushersLocusOfWrath, this.abilities.bloodcrushersMount],
            attacks: [this.attacks.bloodcrushersHellblade, this.attacks.bloodcrushersBrazenHooves],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.khorne.id && ws.general && hasKeyword(ws.general.unit, [["SKULLMASTER"]]),
        },
        skullCannons: {
             id: "skullCannons",
@@ -50948,6 +50992,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.mightySkullcrushersBrassCladShield, this.abilities.mightySkullcrushersMurderousCharge, this.abilities.mightySkullcrushersSkullhunter, this.abilities.mightySkullcrushersStandardBearer, this.abilities.mightySkullcrushersHornblower],
            attacks: [this.attacks.mightySkullcrushersEnsorcelledAxe, this.attacks.mightySkullcrushersBloodglaive, this.attacks.mightySkullcrushersJuggernautSBrazenHooves],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.khorne.id && ws.general && hasKeyword(ws.general.unit, [["LORD OF KHORNE ON JUGGERNAUT"]]),
        },
        scylaAnfingrimm: {
             id: "scylaAnfingrimm",
@@ -51262,6 +51307,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.judicatorsRapidFire, this.abilities.judicatorsChainedLightning, this.abilities.judicatorsEternalJudgement, this.abilities.judicatorsThunderboltCrossbow, this.abilities.judicatorsJudicatorPrime],
            attacks: [this.attacks.judicatorsSkyboltBow, this.attacks.judicatorsBoltstormCrossbow, this.attacks.judicatorsShockboltBow, this.attacks.judicatorsThunderboltCrossbow, this.attacks.judicatorsStormGladius],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.stormcastEternals.id,
        },
        liberators: {
             id: "liberators",
@@ -51412,6 +51458,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.lordCelestantLordOfTheCelestialHost],
            attacks: [this.attacks.lordCelestantCelestineHammer, this.attacks.lordCelestantStormboundBlade, this.attacks.lordCelestantStardrakeSGreatClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        drakeswornTemplar: {
             id: "drakeswornTemplar",
@@ -51433,6 +51480,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.drakeswornTemplarTempestAxe, this.abilities.drakeswornTemplarArcHammer, this.abilities.drakeswornTemplarStormlance, this.abilities.drakeswornTemplarSkyboltBow, this.abilities.drakeswornTemplarCavernousJaws, this.abilities.drakeswornTemplarSweepingTail, this.abilities.drakeswornTemplarLordOfTheHeavens, this.abilities.drakeswornTemplarArcaneLineage, this.abilities.drakeswornTemplarMount, this.abilities.drakeswornTemplarFly],
            attacks: [this.attacks.drakeswornTemplarSkyboltBow, this.attacks.drakeswornTemplarTempestAxe, this.attacks.drakeswornTemplarArcHammer, this.attacks.drakeswornTemplarStormlance, this.attacks.drakeswornTemplarGreatClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        fulminators: {
             id: "fulminators",
@@ -51595,6 +51643,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.vanguardHuntersAstralCompass, this.abilities.vanguardHuntersTirelessHunters, this.abilities.vanguardHuntersHunterPrime],
            attacks: [this.attacks.vanguardHuntersBoltstormPistol, this.attacks.vanguardHuntersShockHandaxe, this.attacks.vanguardHuntersStormSabre],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.stormcastEternals.id && ws.general && hasKeyword(ws.general.unit, [["LORD-AQUILOR"]]),
        },
        aetherwings: {
             id: "aetherwings",
@@ -51657,6 +51706,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.lordOfChangeBeaconOfSorcery],
            attacks: [this.attacks.lordOfChangeRodOfSorcery, this.attacks.lordOfChangeStaffOfTzeentch, this.attacks.lordOfChangeBalefulSword, this.attacks.lordOfChangeCurvedBeakAndWickedTalons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Lord of Change is a wizard. It can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Infernal Gateway spells.",       },
        kairosFateweaver: {
             id: "kairosFateweaver",
@@ -51678,6 +51728,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.kairosFateweaverMasteryOfMagic, this.abilities.kairosFateweaverOracleOfEternity, this.abilities.kairosFateweaverFly, this.abilities.kairosFateweaverGiftOfChange],
            attacks: [this.attacks.kairosFateweaverStaffOfTomorrow, this.attacks.kairosFateweaverBeaksAndClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Kairos Fateweaver is a wizard. He can attempt to cast two different spells in each of your own hero phases and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Gift of Change spells. Kairos also knows the spells of all other Wizards from your army that are within 18\" of him.",       },
        heraldOfTzeentchOnBurningChariot: {
             id: "heraldOfTzeentchOnBurningChariot",
@@ -51823,6 +51874,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.burningChariotsOfTzeentchCapriciousWarpflame, this.abilities.burningChariotsOfTzeentchSkySharks, this.abilities.burningChariotsOfTzeentchWakeOfFire, this.abilities.burningChariotsOfTzeentchFly],
            attacks: [this.attacks.burningChariotsOfTzeentchBillowingWarpflame, this.attacks.burningChariotsOfTzeentchFlamingMaw, this.attacks.burningChariotsOfTzeentchBlueHorrorsJabs, this.attacks.burningChariotsOfTzeentchScreamersLampreyBites],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.tzeentch.id && ws.general && hasKeyword(ws.general.unit, [["HERALD ON BURNING CHARIOT"]]),
        },
        exaltedFlamersOfTzeentch: {
             id: "exaltedFlamersOfTzeentch",
@@ -52175,6 +52227,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.frostlordOnStonehornBellowingVoice],
            attacks: [this.attacks.frostlordOnStonehornFrostSpear, this.attacks.frostlordOnStonehornFrostlordSPunchesAndKicks, this.attacks.frostlordOnStonehornStonehornSHorns, this.attacks.frostlordOnStonehornStonehornSCrushingHooves],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        frostlordOnThundertusk: {
             id: "frostlordOnThundertusk",
@@ -52197,6 +52250,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.frostlordOnThundertuskBellowingVoice],
            attacks: [this.attacks.frostlordOnThundertuskFrostWreathedIce, this.attacks.frostlordOnThundertuskFrostSpear, this.attacks.frostlordOnThundertuskFrostlordSPunchesAndKicks, this.attacks.frostlordOnThundertuskThundertuskSCrushingBlows],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        huskardOnStonehorn: {
             id: "huskardOnStonehorn",
@@ -52218,6 +52272,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.huskardOnStonehornEarthShatteringCharge, this.abilities.huskardOnStonehornStoneSkeleton, this.abilities.huskardOnStonehornLineBreakers, this.abilities.huskardOnStonehornBloodVulture],
            attacks: [this.attacks.huskardOnStonehornChaintrap, this.attacks.huskardOnStonehornHarpoonLauncher, this.attacks.huskardOnStonehornHuskardSPunchesAndKicks, this.attacks.huskardOnStonehornStonehornSHorns, this.attacks.huskardOnStonehornStonehornSCrushingHooves],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        huskardOnThundertusk: {
             id: "huskardOnThundertusk",
@@ -52239,6 +52294,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.huskardOnThundertuskBlastsOfFrostWreathedIce, this.abilities.huskardOnThundertuskNumbingChill, this.abilities.huskardOnThundertuskBloodVulture, this.abilities.huskardOnThundertuskBlizzardSpeaker],
            attacks: [this.attacks.huskardOnThundertuskFrostWreathedIce, this.attacks.huskardOnThundertuskChaintrap, this.attacks.huskardOnThundertuskHarpoonLauncher, this.attacks.huskardOnThundertuskHuskardSPunchesAndKicks, this.attacks.huskardOnThundertuskThundertuskSCrushingBlows],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        stonehornBeastriders: {
             id: "stonehornBeastriders",
@@ -52259,6 +52315,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.stonehornBeastridersEarthShatteringCharge, this.abilities.stonehornBeastridersStoneSkeleton, this.abilities.stonehornBeastridersBloodVulture],
            attacks: [this.attacks.stonehornBeastridersChaintrap, this.attacks.stonehornBeastridersHarpoonLauncher, this.attacks.stonehornBeastridersBeastridersPunchesAndKicks, this.attacks.stonehornBeastridersStonehornSHorns, this.attacks.stonehornBeastridersStonehornSCrushingHooves],
+           isBehemoth: (ws: WarscrollInterface) => true,
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastclawRaiders.id,
        },
        thundertuskBeastriders: {
             id: "thundertuskBeastriders",
@@ -52279,6 +52337,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.thundertuskBeastridersBlastsOfFrostWreathedIce, this.abilities.thundertuskBeastridersNumbingChill, this.abilities.thundertuskBeastridersBloodVulture],
            attacks: [this.attacks.thundertuskBeastridersFrostWreathedIce, this.attacks.thundertuskBeastridersChaintrap, this.attacks.thundertuskBeastridersHarpoonLauncher, this.attacks.thundertuskBeastridersBeastridersPunchesAndKicks, this.attacks.thundertuskBeastridersThundertuskSCrushingBlows],
+           isBehemoth: (ws: WarscrollInterface) => true,
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastclawRaiders.id,
        },
        icebrowHunter: {
             id: "icebrowHunter",
@@ -52320,6 +52380,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.frostSabresTheirMasterSVoice],
            attacks: [this.attacks.frostSabresElongatedFangs],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastclawRaiders.id && ws.general && hasKeyword(ws.general.unit, [["ICEBROW HUNTER"]]),
        },
        icefallYhetees: {
             id: "icefallYhetees",
@@ -52340,6 +52401,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.icefallYheteesAuraOfFrost, this.abilities.icefallYheteesBoundingLeaps, this.abilities.icefallYheteesInvigoratedByTheBlizzard],
            attacks: [this.attacks.icefallYheteesClawsAndIceEncrustedClubs],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastclawRaiders.id && ws.general && hasKeyword(ws.general.unit, [["THUNDERTUSK"]]),
        },
        mournfangPack: {
             id: "mournfangPack",
@@ -52360,6 +52422,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.mournfangPackIronFists, this.abilities.mournfangPackMournfangCharge, this.abilities.mournfangPackSkalg, this.abilities.mournfangPackHornBlower, this.abilities.mournfangPackBannerBearer],
            attacks: [this.attacks.mournfangPackIronlockPistol, this.attacks.mournfangPackCullingClubsAndPreyHackers, this.attacks.mournfangPackGargantHacker, this.attacks.mournfangPackMournfangSTusks],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastclawRaiders.id,
        },
        wurrgogProphet: {
             id: "wurrgogProphet",
@@ -52487,6 +52550,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.savageBoarboysTuskerCharge, this.abilities.savageBoarboysBoarStikka, this.abilities.savageBoarboysHitRun, this.abilities.savageBoarboysBoneShield, this.abilities.savageBoarboysSavageBoarBoss, this.abilities.savageBoarboysBoarThumper, this.abilities.savageBoarboysBoarTotem],
            attacks: [this.attacks.savageBoarboysChompa, this.attacks.savageBoarboysBoarStikka, this.attacks.savageBoarboysWarBoarSTusks],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.bonesplitterz.id,
        },
        savageBigStabbas: {
             id: "savageBigStabbas",
@@ -52527,6 +52591,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [this.options.savageOrrukMorboysBoneTotems, this.options.savageOrrukMorboysSkullThumper],
            abilities: [this.abilities.savageOrrukMorboysPowerOfTheBeastSpirit, this.abilities.savageOrrukMorboysDeffRide, this.abilities.savageOrrukMorboysSavageMorboyBoss],
            attacks: [this.attacks.savageOrrukMorboysChompa, this.attacks.savageOrrukMorboysToofShiv],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.bonesplitterz.id,
        },
        savageBoarboyManiaks: {
             id: "savageBoarboyManiaks",
@@ -52547,6 +52612,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.savageBoarboyManiaksTuskerCharge, this.abilities.savageBoarboyManiaksManiakFury, this.abilities.savageBoarboyManiaksHackAndSlash, this.abilities.savageBoarboyManiaksSavageBoarBossManiak, this.abilities.savageBoarboyManiaksBoarTotem, this.abilities.savageBoarboyManiaksBoarThumper],
            attacks: [this.attacks.savageBoarboyManiaksTwoChompas, this.attacks.savageBoarboyManiaksWarBoarSTusks],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.bonesplitterz.id,
        },
        savageOrrukArrowboys: {
             id: "savageOrrukArrowboys",
@@ -52567,6 +52633,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [this.options.savageOrrukArrowboysBoneTotems, this.options.savageOrrukArrowboysSkullThumper],
            abilities: [this.abilities.savageOrrukArrowboysAimFerItsEyes, this.abilities.savageOrrukArrowboysLoadsaArrows, this.abilities.savageOrrukArrowboysSavageOrrukArrowBoss],
            attacks: [this.attacks.savageOrrukArrowboysStingaBow, this.attacks.savageOrrukArrowboysArrows, this.attacks.savageOrrukArrowboysChompa],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.bonesplitterz.id,
        },
        alarielleTheEverqueen: {
             id: "alarielleTheEverqueen",
@@ -52589,6 +52656,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.alarielleTheEverqueenGhyranSWrath],
            attacks: [this.attacks.alarielleTheEverqueenSpearOfKurnoth, this.attacks.alarielleTheEverqueenTalonOfTheDwindling, this.attacks.alarielleTheEverqueenWardrothBeetleSGreatAntlers],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Alarielle the Everqueen is a wizard. She can attempt to cast three different spells in each of your hero phases, and attempt to unbind three spells in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Metamorphosis spells.",       },
        drychaHamadreth: {
             id: "drychaHamadreth",
@@ -52610,6 +52678,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.drychaHamadrethColonyOfFlitterfuries, this.abilities.drychaHamadrethSwarmOfSquirmlings, this.abilities.drychaHamadrethMercurialAspect, this.abilities.drychaHamadrethSongOfSpite, this.abilities.drychaHamadrethPrimalTerror],
            attacks: [this.attacks.drychaHamadrethColonyOfFlitterfuries, this.attacks.drychaHamadrethSwarmOfSquirmlings, this.attacks.drychaHamadrethSlashingTalons, this.attacks.drychaHamadrethThornedSlendervines],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Drycha Hamadreth is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Primal Terror spells.",       },
        spiritOfDurthu: {
             id: "spiritOfDurthu",
@@ -52631,6 +52700,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.spiritOfDurthuGroundshakingStomp, this.abilities.spiritOfDurthuImpale, this.abilities.spiritOfDurthuSpiritPaths, this.abilities.spiritOfDurthuGuardianSword, this.abilities.spiritOfDurthuChampionsOfTheEverqueenSWill, this.abilities.spiritOfDurthuVerdantBlast, this.abilities.spiritOfDurthuSolemnGuardian],
            attacks: [this.attacks.spiritOfDurthuVerdantBlast, this.attacks.spiritOfDurthuGuardianSword, this.attacks.spiritOfDurthuMassiveImpalingTalons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        treelordAncient: {
             id: "treelordAncient",
@@ -52653,6 +52723,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.treelordAncientHeedTheSpiritSong],
            attacks: [this.attacks.treelordAncientDoomTendrilStaff, this.attacks.treelordAncientSweepingBlows, this.attacks.treelordAncientMassiveImpalingTalons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Treelord Ancient is a wizard. It can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Awakening the Wood spells.",       },
        treelord: {
             id: "treelord",
@@ -52673,6 +52744,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.treelordGroundshakingStomp, this.abilities.treelordImpale, this.abilities.treelordSpiritPaths],
            attacks: [this.attacks.treelordStrangleroots, this.attacks.treelordSweepingBlows, this.attacks.treelordMassiveImpalingTalons],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        branchwych: {
             id: "branchwych",
@@ -52735,6 +52807,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.treeRevenantsMartialMemories, this.abilities.treeRevenantsScion, this.abilities.treeRevenantsGladeBanner, this.abilities.treeRevenantsWaypipes],
            attacks: [this.attacks.treeRevenantsEnchantedBlade, this.attacks.treeRevenantsProtectorGlaive],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.sylvaneth.id,
        },
        spiteRevenants: {
             id: "spiteRevenants",
@@ -52755,6 +52828,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.spiteRevenantsWhispersInTheDark, this.abilities.spiteRevenantsUnbridledMalice, this.abilities.spiteRevenantsShadestalker],
            attacks: [this.attacks.spiteRevenantsCruelTalonsAndFangs],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.sylvaneth.id,
        },
        kurnothHunters: {
             id: "kurnothHunters",
@@ -52818,6 +52892,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.abhorrantGhoulKingSummonRoyalGuard],
            attacks: [this.attacks.abhorrantGhoulKingDeathShriek, this.attacks.abhorrantGhoulKingGoryTalonsAndFangs, this.attacks.abhorrantGhoulKingSkeletalClaws, this.attacks.abhorrantGhoulKingFangedMaw],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Unholy Vitality spells.",       },
        abhorrantGhoulKingOnRoyalZombieDragon: {
             id: "abhorrantGhoulKingOnRoyalZombieDragon",
@@ -52840,6 +52915,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.abhorrantGhoulKingSummonCourtier],
            attacks: [this.attacks.abhorrantGhoulKingPestilentialBreath, this.attacks.abhorrantGhoulKingGoryTalonsAndFangs, this.attacks.abhorrantGhoulKingSnappingMawMaw, this.attacks.abhorrantGhoulKingSwordLikeClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Malefic Hunger spells.",       },
        abhorrantGhoulKing: {
             id: "abhorrantGhoulKing",
@@ -52966,6 +53042,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.cryptHorrorsChosenOfTheKing, this.abilities.cryptHorrorsNobleBlood, this.abilities.cryptHorrorsWarriorElite, this.abilities.cryptHorrorsCryptHaunter],
            attacks: [this.attacks.cryptHorrorsClubsAndSepticTalons],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.fleshEaterCourts.id && ws.general && hasKeyword(ws.general.unit, [["CRYPT HAUNTER COURTIER"], ["HOLLOWMOURNE"]]),
        },
        cryptInfernalCourtier: {
             id: "cryptInfernalCourtier",
@@ -53007,6 +53084,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.cryptFlayersDeathScream, this.abilities.cryptFlayersSkeweringStrike, this.abilities.cryptFlayersCryptInfernal, this.abilities.cryptFlayersFly],
            attacks: [this.attacks.cryptFlayersDeathScream, this.attacks.cryptFlayersPiercingTalons],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.fleshEaterCourts.id && ws.general && hasKeyword(ws.general.unit, [["CRYPT INFERNAL COURTIER"], ["BLISTERSKIN"]]),
        },
        royalTerrorgheist: {
             id: "royalTerrorgheist",
@@ -53027,6 +53105,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.royalTerrorgheistDeathShriek, this.abilities.royalTerrorgheistGapingMaw, this.abilities.royalTerrorgheistInfested, this.abilities.royalTerrorgheistRoyalMenagerie, this.abilities.royalTerrorgheistFly],
            attacks: [this.attacks.royalTerrorgheistDeathShriek, this.attacks.royalTerrorgheistSkeletalClaws, this.attacks.royalTerrorgheistFangedMaw],
+           isBehemoth: (ws: WarscrollInterface) => true,
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.fleshEaterCourts.id && ws.general && hasKeyword(ws.general.unit, [["GRISTLEGORE"]]),
        },
        royalZombieDragon: {
             id: "royalZombieDragon",
@@ -53047,6 +53127,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.royalZombieDragonPestilentialBreath, this.abilities.royalZombieDragonFly],
            attacks: [this.attacks.royalZombieDragonPestilentialBreath, this.attacks.royalZombieDragonSnappingMaw, this.attacks.royalZombieDragonSwordLikeClaws],
+           isBehemoth: (ws: WarscrollInterface) => true,
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.fleshEaterCourts.id && ws.general && hasKeyword(ws.general.unit, [["GRISTLEGORE"]]),
        },
        gordrakkTheFistOfGork: {
             id: "gordrakkTheFistOfGork",
@@ -53069,6 +53151,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.gordrakkTheFistOfGorkVoiceOfGork],
            attacks: [this.attacks.gordrakkTheFistOfGorkInnardBurstingBellow, this.attacks.gordrakkTheFistOfGorkSmasha, this.attacks.gordrakkTheFistOfGorkKunnin, this.attacks.gordrakkTheFistOfGorkBigteefSMightyFists, this.attacks.gordrakkTheFistOfGorkBigteefSBladedTail],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        megabossOnMawKrusha: {
             id: "megabossOnMawKrusha",
@@ -53091,6 +53174,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.megabossOnMawKrushaMightyWaaagh],
            attacks: [this.attacks.megabossOnMawKrushaInnardBurstingBellow, this.attacks.megabossOnMawKrushaBossGoreHacka, this.attacks.megabossOnMawKrushaScrapTooth, this.attacks.megabossOnMawKrushaChoppa, this.attacks.megabossOnMawKrushaRipToothFist, this.attacks.megabossOnMawKrushaMawKrushaSMightyFists, this.attacks.megabossOnMawKrushaMawKrushaSBladedTail],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        orrukMegaboss: {
             id: "orrukMegaboss",
@@ -53175,6 +53259,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.orrukBrutesDuffUpDaBigThing, this.abilities.orrukBrutesDaGrabAnBash, this.abilities.orrukBrutesBruteBoss],
            attacks: [this.attacks.orrukBrutesTwoBruteChoppas, this.attacks.orrukBrutesJaggedGoreHacka, this.attacks.orrukBrutesGoreChoppa, this.attacks.orrukBrutesBossChoppa, this.attacks.orrukBrutesBossKlaw, this.attacks.orrukBrutesBruteSmasha],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.ironjawz.id,
        },
        orrukGoreGruntas: {
             id: "orrukGoreGruntas",
@@ -53195,6 +53280,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.orrukGoreGruntasGoreGruntaCharge, this.abilities.orrukGoreGruntasGoreGruntaBoss],
            attacks: [this.attacks.orrukGoreGruntasPigIronChoppa, this.attacks.orrukGoreGruntasJaggedGoreHacka, this.attacks.orrukGoreGruntasFangedMawAndHooves],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.ironjawz.id,
        },
        orrukArdboys: {
             id: "orrukArdboys",
@@ -53215,6 +53301,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [this.options.orrukArdboysStandardBearer, this.options.orrukArdboysWaaaghDrummer],
            abilities: [this.abilities.orrukArdboysOrrukBanner, this.abilities.orrukArdboysIconOfGork, this.abilities.orrukArdboysOrrukForgedShields, this.abilities.orrukArdboysArdboyBoss],
            attacks: [this.attacks.orrukArdboysOrrukForgedChoppaOrSmasha, this.attacks.orrukArdboysOrrukForgedChoppasAndSmashas, this.attacks.orrukArdboysOrrukForgedBigChoppa],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.ironjawz.id,
        },
        boneGiant: {
             id: "boneGiant",
@@ -53235,6 +53322,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.boneGiantUnstoppableAssault, this.abilities.boneGiantColossusOfWar],
            attacks: [this.attacks.boneGiantGiganticBlades, this.attacks.boneGiantHeavyFootfalls],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        plaguePriestOnPlagueFurnace: {
             id: "plaguePriestOnPlagueFurnace",
@@ -53256,6 +53344,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.plaguePriestAltarOfTheHornedRat, this.abilities.plaguePriestGreatPlagueCenser, this.abilities.plaguePriestNoxiousPrayers, this.abilities.plaguePriestPoisonousFumes, this.abilities.plaguePriestProtectionOfTheHornedRat, this.abilities.plaguePriestPushedIntoBattle, this.abilities.plaguePriestMount, this.abilities.plaguePriestCrew],
            attacks: [this.attacks.plaguePriestGreatPlagueCenser, this.attacks.plaguePriestWarpstoneTippedStaff, this.attacks.plaguePriestFoetidBlades, this.attacks.plaguePriestRustySpikes],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        plaguePriest: {
             id: "plaguePriest",
@@ -53318,6 +53407,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [this.options.plagueMonksBringerOfTheWord, this.options.plagueMonksStandardBearers, this.options.plagueMonksPlagueHarbingers],
            abilities: [this.abilities.plagueMonksPairOfFoetidBlades, this.abilities.plagueMonksFrenziedAssault, this.abilities.plagueMonksBookOfWoes],
            attacks: [this.attacks.plagueMonksFoetidBlade, this.attacks.plagueMonksWoeStave],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.skaventide.id && ws.general && hasKeyword(ws.general.unit, [["MASTERCLAN"], ["CLANS PESTILENS"]]),
        },
        plagueCenserBearers: {
             id: "plagueCenserBearers",
@@ -53338,6 +53428,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.plagueCenserBearersFrenziedAssault, this.abilities.plagueCenserBearersPlagueDisciples, this.abilities.plagueCenserBearersPoisonousFumes],
            attacks: [this.attacks.plagueCenserBearersPlagueCenser],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.skaventide.id && ws.general && hasKeyword(ws.general.unit, [["MASTERCLAN"], ["CLANS PESTILENS"]]),
        },
        plagueclaw: {
             id: "plagueclaw",
@@ -53381,6 +53472,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.auricRunefatherOnMagmadrothSteadfastAdvance],
            attacks: [this.attacks.auricRunefatherOnMagmadrothFyresteelThrowingAxe, this.attacks.auricRunefatherOnMagmadrothMagmadrothSClawsAndHorns, this.attacks.auricRunefatherOnMagmadrothLatchkeyGrandaxe],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        auricRunesmiterOnMagmadroth: {
             id: "auricRunesmiterOnMagmadroth",
@@ -53402,6 +53494,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.auricRunesmiterOnMagmadrothRoaringFyrestream, this.abilities.auricRunesmiterOnMagmadrothLashingTail, this.abilities.auricRunesmiterOnMagmadrothVolcanicBlood, this.abilities.auricRunesmiterOnMagmadrothRunicEmpowerment, this.abilities.auricRunesmiterOnMagmadrothGrandRitualOfAwakening],
            attacks: [this.attacks.auricRunesmiterOnMagmadrothFyresteelThrowingAxe, this.attacks.auricRunesmiterOnMagmadrothMagmadrothSClawsAndHorns, this.attacks.auricRunesmiterOnMagmadrothLatchAxe, this.attacks.auricRunesmiterOnMagmadrothRunicIron],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        auricRunesonOnMagmadroth: {
             id: "auricRunesonOnMagmadroth",
@@ -53424,6 +53517,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.auricRunesonOnMagmadrothFuriousOnslaught],
            attacks: [this.attacks.auricRunesonOnMagmadrothWyrmslayerJavelin, this.attacks.auricRunesonOnMagmadrothFyresteelThrowingAxe, this.attacks.auricRunesonOnMagmadrothMagmadrothSClawsAndHorns, this.attacks.auricRunesonOnMagmadrothAncestralWarAxe, this.attacks.auricRunesonOnMagmadrothWyrmslayerJavelin],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        auricRunefather: {
             id: "auricRunefather",
@@ -53593,6 +53687,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.auricHearthguardMoltenRockbolts, this.abilities.auricHearthguardSwornProtectors, this.abilities.auricHearthguardKarl],
            attacks: [this.attacks.auricHearthguardFyresteelThrowingAxe, this.attacks.auricHearthguardMoltenRockbolts, this.attacks.auricHearthguardMagmapike],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.fyreslayers.id && ws.general && hasKeyword(ws.general.unit, [["AURIC RUNEMASTER"]]),
        },
        hearthguardBerzerkers: {
             id: "hearthguardBerzerkers",
@@ -53613,6 +53708,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.hearthguardBerzerkersDutyUntoDeath, this.abilities.hearthguardBerzerkersSmoulderingBraziers, this.abilities.hearthguardBerzerkersKarl],
            attacks: [this.attacks.hearthguardBerzerkersFyresteelThrowingAxe, this.attacks.hearthguardBerzerkersBerzerkerBroadaxe, this.attacks.hearthguardBerzerkersFlamestrikePoleaxe],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.fyreslayers.id && ws.general && hasKeyword(ws.general.unit, [["AURIC RUNEFATHER"]]),
        },
        archaon: {
             id: "archaon",
@@ -53635,6 +53731,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.archaonWarlordWithoutEqual],
            attacks: [this.attacks.archaonTheSlayerOfKings, this.attacks.archaonDorgharSMonstrousClaws, this.attacks.archaonDorgharSLashingTails, this.attacks.archaonDorgharSThreeHeads],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Archaon is a wizard. He can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt and Mystic Shield spells, as well as any learned by Dorghar’s Tzeentchian head during the battle.",       },
        varanguard: {
             id: "varanguard",
@@ -53655,6 +53752,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.varanguardRelentlessKillers, this.abilities.varanguardImpalingCharge, this.abilities.varanguardDaemonforgedBlades, this.abilities.varanguardWarpsteelShields, this.abilities.varanguardFavouredOfTheEverchosen, this.abilities.varanguardArchaonSCommand],
            attacks: [this.attacks.varanguardEnsorcelledWeapon, this.attacks.varanguardFellspear, this.attacks.varanguardDaemonforgedBlade, this.attacks.varanguardSteedSJaggedFangs],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.everchosen.id,
        },
        gauntSummonerOnDiscOfTzeentch: {
             id: "gauntSummonerOnDiscOfTzeentch",
@@ -53786,6 +53884,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.saurusOldbloodOnCarnosaurAncientWarlord],
            attacks: [this.attacks.saurusOldbloodOnCarnosaurSunboltGauntlet, this.attacks.saurusOldbloodOnCarnosaurSunstoneSpear, this.attacks.saurusOldbloodOnCarnosaurCarnosaurSClawedForelimbs, this.attacks.saurusOldbloodOnCarnosaurCarnosaurSMassiveJaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        saurusEternityWarden: {
             id: "saurusEternityWarden",
@@ -53827,6 +53926,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.saurusGuardStardrakeShields, this.abilities.saurusGuardSwornGuardians, this.abilities.saurusGuardAlphaGuardian, this.abilities.saurusGuardStardrakeIcon, this.abilities.saurusGuardWardrum],
            attacks: [this.attacks.saurusGuardCelestitePolearm, this.attacks.saurusGuardPowerfulJawsAndStardrakeShield],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.seraphon.id,
        },
        saurusScarVeteranOnCarnosaur: {
             id: "saurusScarVeteranOnCarnosaur",
@@ -53849,6 +53949,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.saurusScarVeteranOnCarnosaurSaurianSavagery],
            attacks: [this.attacks.saurusScarVeteranOnCarnosaurCelestiteWarblade, this.attacks.saurusScarVeteranOnCarnosaurCelestiteWarSpear, this.attacks.saurusScarVeteranOnCarnosaurCelestiteGreatblade, this.attacks.saurusScarVeteranOnCarnosaurFearsomeJawsAndStardrakeShield, this.attacks.saurusScarVeteranOnCarnosaurCarnosaurSClawedForelimbs, this.attacks.saurusScarVeteranOnCarnosaurCarnosaurSMassiveJaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        saurusScarVeteranOnColdOne: {
             id: "saurusScarVeteranOnColdOne",
@@ -53933,6 +54034,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.saurusKnightsStardrakeShields, this.abilities.saurusKnightsBlazingLances, this.abilities.saurusKnightsAlphaKnight, this.abilities.saurusKnightsStardrakeIcon, this.abilities.saurusKnightsWardrum],
            attacks: [this.attacks.saurusKnightsCelestiteBlade, this.attacks.saurusKnightsCelestiteLance, this.attacks.saurusKnightsPowerfulJawsAndStardrakeShield, this.attacks.saurusKnightsColdOneSViciousBite],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.seraphon.id,
        },
        skinkStarseer: {
             id: "skinkStarseer",
@@ -53995,6 +54097,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.troglodonDiviningRod, this.abilities.troglodonPrimevalRoar, this.abilities.troglodonDrawnToTheScreams],
            attacks: [this.attacks.troglodonNoxiousSpittle, this.attacks.troglodonVenomousBite, this.attacks.troglodonTroglodonSClawedForelimbs, this.attacks.troglodonSkinkOracleSDiviningRod],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        skinkPriest: {
             id: "skinkPriest",
@@ -54036,6 +54139,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.skinksCelestialCohort, this.abilities.skinksStarBuckler, this.abilities.skinksWaryFighters, this.abilities.skinksAlpha],
            attacks: [this.attacks.skinksMeteoricJavelin, this.attacks.skinksBoltspitter, this.attacks.skinksMeteoricJavelin, this.attacks.skinksBoltspitter, this.attacks.skinksMoonstoneClub],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.seraphon.id,
        },
        chameleonSkinks: {
             id: "chameleonSkinks",
@@ -54158,6 +54262,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.bastiladonImperviousDefence, this.abilities.bastiladonLightOfTheHeavens, this.abilities.bastiladonTideOfSnakes],
            attacks: [this.attacks.bastiladonSearingBeam, this.attacks.bastiladonMeteoricJavelins, this.attacks.bastiladonBludgeoningTail],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        terradonRiders: {
             id: "terradonRiders",
@@ -54218,6 +54323,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.stegadonUnstoppableStampede, this.abilities.stegadonSteadfastMajesty, this.abilities.stegadonGoutOfSunfire, this.abilities.stegadonSkinkAlpha],
            attacks: [this.attacks.stegadonMeteoricJavelins, this.attacks.stegadonSkystreakBow, this.attacks.stegadonSunfireThrowers, this.attacks.stegadonMassiveHorns, this.attacks.stegadonCrushingStomps],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        engineOfTheGods: {
             id: "engineOfTheGods",
@@ -54239,6 +54345,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.engineOfTheGodsUnstoppableStampede, this.abilities.engineOfTheGodsCosmicEngine, this.abilities.engineOfTheGodsSteadfastMajesty],
            attacks: [this.attacks.engineOfTheGodsMeteoricJavelins, this.attacks.engineOfTheGodsSharpenedHorns, this.attacks.engineOfTheGodsCrushingStomps],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        orrukWarbossOnWyvern: {
             id: "orrukWarbossOnWyvern",
@@ -54261,6 +54368,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.orrukWarbossOnWyvernWaaagh],
            attacks: [this.attacks.orrukWarbossOnWyvernBossChoppa, this.attacks.orrukWarbossOnWyvernWyvernSHornsClawsAndTeeth, this.attacks.orrukWarbossOnWyvernWyvernSBarbedVenomousTail],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        orrukWarboss: {
             id: "orrukWarboss",
@@ -54345,6 +54453,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [this.options.orrukBoarboysOrrukBoarboyBoss, this.options.orrukBoarboysGlyphBearer, this.options.orrukBoarboysWaaaghHorns],
            abilities: [this.abilities.orrukBoarboysTuskerCharge, this.abilities.orrukBoarboysTuskerShield],
            attacks: [this.attacks.orrukBoarboysChoppa, this.attacks.orrukBoarboysPigstikkaSpear, this.attacks.orrukBoarboysWarBoarSTusks],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.greenskinz.id,
        },
        orrukBoarChariots: {
             id: "orrukBoarChariots",
@@ -54365,6 +54474,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.orrukBoarChariotsScythedWheels, this.abilities.orrukBoarChariotsTuskerCharge],
            attacks: [this.attacks.orrukBoarChariotsCrewSPigstikkaSpears, this.attacks.orrukBoarChariotsWarBoarsTusks],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.greenskinz.id,
        },
        grotShaman: {
             id: "grotShaman",
@@ -54447,6 +54557,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [this.options.grotWolfRidersHornblower, this.options.grotWolfRidersStandardBearer, this.options.grotWolfRidersGrotWolfRiderBoss],
            abilities: [this.abilities.grotWolfRidersPokinSpear, this.abilities.grotWolfRidersPounce, this.abilities.grotWolfRidersRaidinShield],
            attacks: [this.attacks.grotWolfRidersWolfbow, this.attacks.grotWolfRidersSlitta, this.attacks.grotWolfRidersPokinSpear, this.attacks.grotWolfRidersGiantWolfSSlaveringJaws],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.gitmobGrots.id,
        },
        grotWolfChariots: {
             id: "grotWolfChariots",
@@ -54467,6 +54578,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.grotWolfChariotsLopingCharge, this.abilities.grotWolfChariotsFightinPlatform, this.abilities.grotWolfChariotsWolfIcon],
            attacks: [this.attacks.grotWolfChariotsWolfbow, this.attacks.grotWolfChariotsGiantWolvesSlaveringJaws, this.attacks.grotWolfChariotsCrewSSlittas],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.gitmobGrots.id,
        },
        snotlings: {
             id: "snotlings",
@@ -54676,6 +54788,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.manglerSquigsKerSplat, this.abilities.manglerSquigsWatchOut, this.abilities.manglerSquigsCrew, this.abilities.manglerSquigsFly],
            attacks: [this.attacks.manglerSquigsHugeFangFilledGobs, this.attacks.manglerSquigsBallsAndChains, this.attacks.manglerSquigsGrotsBashinSticks],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        sporesplattaFanatics: {
             id: "sporesplattaFanatics",
@@ -54716,6 +54829,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.squigHoppersBoingBoingBoing, this.abilities.squigHoppersMount, this.abilities.squigHoppersFly, this.abilities.squigHoppersSquigHopperBoss],
            attacks: [this.attacks.squigHoppersSlitta, this.attacks.squigHoppersFangFilledGob],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.gloomspiteGitz.id && ws.general && hasKeyword(ws.general.unit, [["LOONBOSS", "SQUIG"]]),
        },
        stabbas: {
             id: "stabbas",
@@ -54799,6 +54913,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [this.options.spiderRidersBoneDrummer, this.options.spiderRidersSpiderTotemBearers],
            abilities: [this.abilities.spiderRidersSpiderVenom, this.abilities.spiderRidersWallCrawler, this.abilities.spiderRidersMount, this.abilities.spiderRidersSpiderRiderBoss],
            attacks: [this.attacks.spiderRidersSpiderBow, this.attacks.spiderRidersCrookedSpear, this.attacks.spiderRidersFangs],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.gloomspiteGitz.id && ws.general && hasKeyword(ws.general.unit, [["SPIDERFANG"]]),
        },
        skitterstrandArachnarok: {
             id: "skitterstrandArachnarok",
@@ -54819,6 +54934,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.skitterstrandArachnarokSpiderVenom, this.abilities.skitterstrandArachnarokWallCrawler, this.abilities.skitterstrandArachnarokAmbushFromBeyond],
            attacks: [this.attacks.skitterstrandArachnarokChitinousLegs, this.attacks.skitterstrandArachnarokMonstrousFangs],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        arachnarokSpiderWithSpiderfangWarparty: {
             id: "arachnarokSpiderWithSpiderfangWarparty",
@@ -54839,6 +54955,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.arachnarokSpiderSpiderVenom, this.abilities.arachnarokSpiderWallCrawler, this.abilities.arachnarokSpiderVoraciousPredator, this.abilities.arachnarokSpiderCrew],
            attacks: [this.attacks.arachnarokSpiderSpiderBows, this.attacks.arachnarokSpiderCrookedSpears, this.attacks.arachnarokSpiderChitinousLegs, this.attacks.arachnarokSpiderMonstrousFangs],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        webspinnerShamanOnArachnarokSpider: {
             id: "webspinnerShamanOnArachnarokSpider",
@@ -54860,6 +54977,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.webspinnerShamanSpiderVenom, this.abilities.webspinnerShamanWallCrawler, this.abilities.webspinnerShamanCatchwebSpidershrine, this.abilities.webspinnerShamanMount, this.abilities.webspinnerShamanCrew, this.abilities.webspinnerShamanVenomOfTheSpiderGod],
            attacks: [this.attacks.webspinnerShamanSpiderBows, this.attacks.webspinnerShamanCrookedSpears, this.attacks.webspinnerShamanChitinousLegs, this.attacks.webspinnerShamanMonstrousFangs, this.attacks.webspinnerShamanSpiderGodStaff],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Venom of the Spider God spells.",       },
        aleguzzlerGargant: {
             id: "aleguzzlerGargant",
@@ -54880,6 +54998,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.aleguzzlerGargantTimber, this.abilities.aleguzzlerGargantStuffEmInMeBag, this.abilities.aleguzzlerGargantDrunkenStagger],
            attacks: [this.attacks.aleguzzlerGargantMassiveClub, this.attacks.aleguzzlerGargantEadbutt, this.attacks.aleguzzlerGargantMightyKick],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        fellwaterTroggoths: {
             id: "fellwaterTroggoths",
@@ -54900,6 +55019,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.fellwaterTroggothsRegeneration, this.abilities.fellwaterTroggothsTerribleStench],
            attacks: [this.attacks.fellwaterTroggothsNoxiousVomit, this.attacks.fellwaterTroggothsSpikedClub],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.gloomspiteGitz.id && ws.general && hasKeyword(ws.general.unit, [["DANKHOLD", "TROGGBOSS"]]),
        },
        rockgutTroggoths: {
             id: "rockgutTroggoths",
@@ -54920,6 +55040,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [],
            abilities: [this.abilities.rockgutTroggothsRegeneration, this.abilities.rockgutTroggothsStonySkin, this.abilities.rockgutTroggothsThrowinBoulders],
            attacks: [this.attacks.rockgutTroggothsMassiveStoneMaul],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.gloomspiteGitz.id && ws.general && hasKeyword(ws.general.unit, [["DANKHOLD", "TROGGBOSS"]]),
        },
        sourbreathTroggoths: {
             id: "sourbreathTroggoths",
@@ -55026,6 +55147,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [this.options.irongutsGutlord, this.options.irongutsBellower, this.options.irongutsRuneMawBearer],
            abilities: [this.abilities.irongutsDownToTheIronguts],
            attacks: [this.attacks.irongutsMightyBashingWeapon],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.gutbusters.id,
        },
        gorgers: {
             id: "gorgers",
@@ -55066,6 +55188,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            options: [this.options.leadbelchersThunderfist, this.options.leadbelchersBellower],
            abilities: [this.abilities.leadbelchersThunderousBlastsOfHotMetal],
            attacks: [this.attacks.leadbelchersLeadbelcherGun, this.attacks.leadbelchersLeadbelcherGun],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.gutbusters.id,
        },
        ironblaster: {
             id: "ironblaster",
@@ -55190,6 +55313,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.daemonPrinceCursedSoulEater, this.abilities.daemonPrinceImmortalChampion, this.abilities.daemonPrinceFly],
            attacks: [this.attacks.daemonPrinceDaemonicAxe, this.attacks.daemonPrinceHellforgedSword, this.attacks.daemonPrinceMaleficTalons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        chaosLordOnManticore: {
             id: "chaosLordOnManticore",
@@ -55214,6 +55338,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            commandAbilities: [this.abilities.chaosLordOnManticoreIronWilledOverlord],
            attacks: [this.attacks.chaosLordOnManticoreDaemonBlade, this.attacks.chaosLordOnManticoreChaosLance, this.attacks.chaosLordOnManticoreChaosFlail, this.attacks.chaosLordOnManticoreManticoreSClawsAndJaws, this.attacks.chaosLordOnManticoreManticoreSLashingTail],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        chaosSorcererLordOnManticore: {
             id: "chaosSorcererLordOnManticore",
@@ -55235,6 +55360,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.chaosSorcererLordOnManticoreMarkOfChaos, this.abilities.chaosSorcererLordOnManticoreOracularVisions, this.abilities.chaosSorcererLordOnManticoreTerritorialPredator, this.abilities.chaosSorcererLordOnManticoreFly, this.abilities.chaosSorcererLordOnManticoreWindOfChaos],
            attacks: [this.attacks.chaosSorcererLordOnManticoreSorcerousReapingStaff, this.attacks.chaosSorcererLordOnManticoreManticoreSClawsAndJaws, this.attacks.chaosSorcererLordOnManticoreManticoreSLashingTail],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Chaos Sorcerer Lord is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Wind of Chaos spells.",       },
        chaosSorcererLord: {
             id: "chaosSorcererLord",
@@ -55403,6 +55529,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.chaosMarauderHorsemenDarkwoodShield, this.abilities.chaosMarauderHorsemenFeignedFlight, this.abilities.chaosMarauderHorsemenDamnedIcon, this.abilities.chaosMarauderHorsemenTribalBanner, this.abilities.chaosMarauderHorsemenMarkOfChaos, this.abilities.chaosMarauderHorsemenHorsemaster, this.abilities.chaosMarauderHorsemenIconBearer, this.abilities.chaosMarauderHorsemenHornblower],
            attacks: [this.attacks.chaosMarauderHorsemenMarauderJavelin, this.attacks.chaosMarauderHorsemenBarbarianAxe, this.attacks.chaosMarauderHorsemenMarauderJavelin, this.attacks.chaosMarauderHorsemenBarbarianFlail, this.attacks.chaosMarauderHorsemenChaosSteedSFlailingHooves],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.slavesToDarkness.id,
        },
        chaosChariots: {
             id: "chaosChariots",
@@ -55423,6 +55550,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.chaosChariotsDonTSpareTheLash, this.abilities.chaosChariotsMarkOfChaos, this.abilities.chaosChariotsSwiftDeath, this.abilities.chaosChariotsExaltedCharioteer],
            attacks: [this.attacks.chaosChariotsLashingWhip, this.attacks.chaosChariotsChaosGreatblade, this.attacks.chaosChariotsChaosWarFlail, this.attacks.chaosChariotsWarSteedsRoughshodHooves],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.slavesToDarkness.id,
        },
        chaosGorebeastChariots: {
             id: "chaosGorebeastChariots",
@@ -55463,6 +55591,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.chaosWarshrineDedicatedToChaos, this.abilities.chaosWarshrineProtectionOfTheDarkGods, this.abilities.chaosWarshrineFavourOfTheRuinousPowers],
            attacks: [this.attacks.chaosWarshrineSacrificialBlade, this.attacks.chaosWarshrineClubbedFists],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        chaosKnights: {
             id: "chaosKnights",
@@ -55483,6 +55612,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [this.options.chaosKnightsStandardBearer, this.options.chaosKnightsHornblower],
            abilities: [this.abilities.chaosKnightsChaosRuneshields, this.abilities.chaosKnightsImpalingCharge, this.abilities.chaosKnightsMarkOfChaos, this.abilities.chaosKnightsTerrifyingChampions, this.abilities.chaosKnightsDoomKnight],
            attacks: [this.attacks.chaosKnightsEnsorcelledWeapon, this.attacks.chaosKnightsChaosGlaive, this.attacks.chaosKnightsWarSteedSRoughshodHooves],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.slavesToDarkness.id,
        },
        carrion: {
             id: "carrion",
@@ -55525,6 +55655,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            commandAbilities: [this.abilities.keeperOfSecretsExcessOfViolence],
            attacks: [this.attacks.keeperOfSecretsRazorSharpClaws, this.attacks.keeperOfSecretsElegantGreatblade],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Keeper of Secrets is a wizard. It can cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cacophonic Choir spells.",       },
        theMasqueOfSlaanesh: {
             id: "theMasqueOfSlaanesh",
@@ -55754,6 +55885,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.seekerChariotsOfSlaaneshImpossiblyQuick, this.abilities.seekerChariotsOfSlaaneshExenteratingBlades, this.abilities.seekerChariotsOfSlaaneshDeadlyGrace],
            attacks: [this.attacks.seekerChariotsOfSlaaneshAlluressFlensingWhipsOrClaws, this.attacks.seekerChariotsOfSlaaneshDaemonetteSPiercingClaws, this.attacks.seekerChariotsOfSlaaneshSteedsPoisonedTongues],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.slaanesh.id && ws.general && hasKeyword(ws.general.unit, [["EXALTED SEEKER CHARIOT"]]),
        },
        exaltedSeekerChariotsOfSlaanesh: {
             id: "exaltedSeekerChariotsOfSlaanesh",
@@ -55794,6 +55926,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [this.options.hellstridersOfSlaaneshIconBearer, this.options.hellstridersOfSlaaneshHornblower],
            abilities: [this.abilities.hellstridersOfSlaaneshSoulHunters, this.abilities.hellstridersOfSlaaneshImpalingStrike, this.abilities.hellstridersOfSlaaneshChaosRuneshields, this.abilities.hellstridersOfSlaaneshIconOfExcess, this.abilities.hellstridersOfSlaaneshEnrapturingBanner, this.abilities.hellstridersOfSlaaneshHellreaver],
            attacks: [this.attacks.hellstridersOfSlaaneshClawSpear, this.attacks.hellstridersOfSlaaneshHellscourge, this.attacks.hellstridersOfSlaaneshSteedOfSlaaneshSPoisonedTongue],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.slaanesh.id,
        },
        furies: {
             id: "furies",
@@ -55834,6 +55967,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.soulGrinderDaemonEngineOfTheDarkGods, this.abilities.soulGrinderImplacableAdvance, this.abilities.soulGrinderCaughtByTheClaw],
            attacks: [this.attacks.soulGrinderHarvesterCannon, this.attacks.soulGrinderPhlegmBombardment, this.attacks.soulGrinderPistonDrivenLegs, this.attacks.soulGrinderHellforgedClaw, this.attacks.soulGrinderWarpmetalBlade, this.attacks.soulGrinderDaemonboneTalon],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        beLakorChaosDaemonPrince: {
             id: "beLakorChaosDaemonPrince",
@@ -55855,6 +55989,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.beLakorChaosDaemonPrinceShadowForm, this.abilities.beLakorChaosDaemonPrinceTheDarkMaster, this.abilities.beLakorChaosDaemonPrinceLordOfTorment, this.abilities.beLakorChaosDaemonPrinceFly, this.abilities.beLakorChaosDaemonPrinceEnfeebleFoe],
            attacks: [this.attacks.beLakorChaosDaemonPrinceBladeOfShadows],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Be’lakor is a wizard. He can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Enfeeble Foe spells.",       },
        beastlord: {
             id: "beastlord",
@@ -55960,6 +56095,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [this.options.bestigorsBrayhorn, this.options.bestigorsBannerBearer],
            abilities: [this.abilities.bestigorsDespoilers, this.abilities.bestigorsBestialCharge, this.abilities.bestigorsGougeHorn],
            attacks: [this.attacks.bestigorsDespoilerAxe],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastsOfChaos.id && ws.general && hasKeyword(ws.general.unit, [["BEASTLORD"], ["GREAT BRAY-SHAMAN"]]),
        },
        ungorRaiders: {
             id: "ungorRaiders",
@@ -56043,6 +56179,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [this.options.bullgorsWarherdDrummer, this.options.bullgorsWarherdBannerBearer],
            abilities: [this.abilities.bullgorsBloodgreed, this.abilities.bullgorsDualAxes, this.abilities.bullgorsBullshields, this.abilities.bullgorsBloodkine],
            attacks: [this.attacks.bullgorsBullgorAxeS, this.attacks.bullgorsBullgorGreatAxe, this.attacks.bullgorsBullgorHorns],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastsOfChaos.id && ws.general && hasKeyword(ws.general.unit, [["DOOMBULL"]]),
        },
        ghorgon: {
             id: "ghorgon",
@@ -56063,6 +56200,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.ghorgonRavenousBloodgreed, this.abilities.ghorgonSwallowWhole],
            attacks: [this.attacks.ghorgonButcheringBlades, this.attacks.ghorgonHugeSlaveringMaw],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        cygor: {
             id: "cygor",
@@ -56083,6 +56221,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.cygorSoulEater, this.abilities.cygorGhostsight],
            attacks: [this.attacks.cygorDesecratedBoulder, this.attacks.cygorMassiveHorns],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        centigors: {
             id: "centigors",
@@ -56183,6 +56322,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.jabberslytheAuraOfMadness, this.abilities.jabberslytheSpurtingBileBlood, this.abilities.jabberslytheFly],
            attacks: [this.attacks.jabberslytheSlytheyTongue, this.attacks.jabberslytheVorpalClaws, this.attacks.jabberslytheSpikedTail],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        chimera: {
             id: "chimera",
@@ -56203,6 +56343,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.chimeraDraconicHeadSFieryBreath, this.abilities.chimeraViciousCharge, this.abilities.chimeraFly],
            attacks: [this.attacks.chimeraDraconicHeadSFieryBreath, this.attacks.chimeraAvianHead, this.attacks.chimeraDraconicHead, this.attacks.chimeraLeonineHead, this.attacks.chimeraMaulingClaws],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        slaughterbrute: {
             id: "slaughterbrute",
@@ -56223,6 +56364,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.slaughterbruteRunesOfBinding, this.abilities.slaughterbruteBeastUnbound],
            attacks: [this.attacks.slaughterbruteRazorTippedClaws, this.attacks.slaughterbruteMightyJaws, this.attacks.slaughterbruteLesserClaws],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        mutalithVortexBeast: {
             id: "mutalithVortexBeast",
@@ -56243,6 +56385,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.mutalithVortexBeastAuraOfMutation, this.abilities.mutalithVortexBeastMutantRegeneration],
            attacks: [this.attacks.mutalithVortexBeastCrushingClaws, this.attacks.mutalithVortexBeastBetentacledMaw],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        cockatrice: {
             id: "cockatrice",
@@ -56283,6 +56426,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.chaosGargantTimber, this.abilities.chaosGargantStuffEmInMeBag, this.abilities.chaosGargantDrunkenStagger, this.abilities.chaosGargantWhippedIntoAFrenzy],
            attacks: [this.attacks.chaosGargantMassiveClub, this.attacks.chaosGargantViciousEadbutt, this.attacks.chaosGargantMightyKick],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        dragonOgors: {
             id: "dragonOgors",
@@ -56303,6 +56447,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.dragonOgorsStormRage],
            attacks: [this.attacks.dragonOgorsPairedAncientWeapons, this.attacks.dragonOgorsDraconicWarGlaive, this.attacks.dragonOgorsDraconicCrusher, this.attacks.dragonOgorsRakingForeclaws],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastsOfChaos.id && ws.general && hasKeyword(ws.general.unit, [["DRAGON OGOR", "SHAGGOTH"]]),
        },
        dragonOgorShaggoth: {
             id: "dragonOgorShaggoth",
@@ -56367,6 +56512,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            commandAbilities: [this.abilities.thanquolPowerBehindTheThrone],
            attacks: [this.attacks.thanquolWarpfireProjectors, this.attacks.thanquolStaffOfTheHornedRat, this.attacks.thanquolWarpfireBraziers, this.attacks.thanquolCrushingBlows],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Thanquol on Boneripper is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Madness spells.",       },
        lordSkreechVerminking: {
             id: "lordSkreechVerminking",
@@ -56389,6 +56535,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            commandAbilities: [this.abilities.lordSkreechVerminkingTheRatKing],
            attacks: [this.attacks.lordSkreechVerminkingPrehensileTails, this.attacks.lordSkreechVerminkingDoomGlaive, this.attacks.lordSkreechVerminkingPlaguereaper],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "Lord Skreech Verminking is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Dreaded Thirteenth Spell spells.",       },
        greySeerOnScreamingBell: {
             id: "greySeerOnScreamingBell",
@@ -56410,6 +56557,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.greySeerAltarOfTheHornedRat, this.abilities.greySeerProtectionOfTheHornedRat, this.abilities.greySeerPushedIntoBattle, this.abilities.greySeerPealOfDoom, this.abilities.greySeerMount, this.abilities.greySeerCrew, this.abilities.greySeerCracksCall],
            attacks: [this.attacks.greySeerWarpstoneStaff, this.attacks.greySeerTearingClawsAndFangs, this.attacks.greySeerRustySpikes],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cracks Call spells.",       },
        verminlordWarpseer: {
             id: "verminlordWarpseer",
@@ -56432,6 +56580,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            commandAbilities: [this.abilities.verminlordWarpseerForthForthChildrenOfTheHornedRat],
            attacks: [this.attacks.verminlordWarpseerPrehensileTails, this.attacks.verminlordWarpseerDoomGlaive],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Warpgale spells.",       },
        verminlordWarbringer: {
             id: "verminlordWarbringer",
@@ -56454,6 +56603,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            commandAbilities: [this.abilities.verminlordWarbringerTyrantsOfBattle],
            attacks: [this.attacks.verminlordWarbringerPrehensileTails, this.attacks.verminlordWarbringerDoomGlaive, this.attacks.verminlordWarbringerSpikeFist],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Death Frenzy spells.",       },
        clawlord: {
             id: "clawlord",
@@ -56496,6 +56646,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [this.options.stormverminFangleader, this.options.stormverminStormverminStandardBearer, this.options.stormverminStormverminDrummer],
            abilities: [this.abilities.stormverminClanshields],
            attacks: [this.attacks.stormverminRustyHalberd],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.skaventide.id,
        },
        clanrats: {
             id: "clanrats",
@@ -56579,6 +56730,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.arachnarokSpiderFlinger, this.abilities.arachnarokSpiderSpiderVenom, this.abilities.arachnarokSpiderWallCrawler, this.abilities.arachnarokSpiderCrew],
            attacks: [this.attacks.arachnarokSpiderFlinger, this.attacks.arachnarokSpiderSpiderBows, this.attacks.arachnarokSpiderChitinousLegs, this.attacks.arachnarokSpiderMonstrousFangs, this.attacks.arachnarokSpiderCrookedSpears],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        doomFlayer: {
             id: "doomFlayer",
@@ -56679,6 +56831,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            options: [],
            abilities: [this.abilities.skryreAcolytesQuickQuickVolley, this.abilities.skryreAcolytesGasClouds],
            attacks: [this.attacks.skryreAcolytesPoisonedWindGlobe, this.attacks.skryreAcolytesRustyKnife],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.skaventide.id && ws.general && hasKeyword(ws.general.unit, [["MASTERCLAN"], ["CLANS SKRYRE"]]),
        },
        stormfiends: {
             id: "stormfiends",
@@ -56703,6 +56856,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.stormfiendsDoomflayerGauntlets, this.abilities.stormfiendsGrinderfistTunnellers, this.abilities.stormfiendsShockGauntlets, this.abilities.stormfiendsWarpfireProjectors, this.abilities.stormfiendsWarpstoneLacedArmour, this.abilities.stormfiendsWindlaunchers],
            attacks: [this.attacks.stormfiendsRatlingCannons, this.attacks.stormfiendsWindlaunchers, this.attacks.stormfiendsWarpfireProjectors, this.attacks.stormfiendsDoomflayerGauntlets, this.attacks.stormfiendsGrinderfists, this.attacks.stormfiendsShockGauntlets, this.attacks.stormfiendsClubbingBlows],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.skaventide.id && ws.general && hasKeyword(ws.general.unit, [["MASTERCLAN"], ["CLANS SKRYRE"]]),
        },
        warpLightningCannon: {
             id: "warpLightningCannon",
@@ -56744,6 +56898,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.doomwheelRollingDoom, this.abilities.doomwheelMoreMoreSpeed, this.abilities.doomwheelMoreMoreWarpBolts],
            attacks: [this.attacks.doomwheelWarpBolts, this.attacks.doomwheelGrindingWheel, this.attacks.doomwheelTeethAndKnives],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        warplockJezzails: {
             id: "warplockJezzails",
@@ -56805,6 +56960,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.giantRatsWaveOfRats],
            attacks: [this.attacks.giantRatsViciousTeeth],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.skaventide.id && ws.general && hasKeyword(ws.general.unit, [["MASTERCLAN"], ["CLANS MOULDER"]]),
        },
        ratSwarms: {
             id: "ratSwarms",
@@ -56845,6 +57001,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.ratOgorsRabidFury],
            attacks: [this.attacks.ratOgorsWarpfireGun, this.attacks.ratOgorsTearingClawsBladesAndFangs],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.skaventide.id && ws.general && hasKeyword(ws.general.unit, [["MASTERCLAN"], ["CLANS MOULDER"]]),
        },
        hellPitAbomination: {
             id: "hellPitAbomination",
@@ -56865,6 +57022,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.hellPitAbominationAvalancheOfFlesh, this.abilities.hellPitAbominationRegeneratingMonstrosity, this.abilities.hellPitAbominationTerrifying, this.abilities.hellPitAbominationWarpstoneSpikes, this.abilities.hellPitAbominationTooHorribleToDie],
            attacks: [this.attacks.hellPitAbominationGnashingTeeth, this.attacks.hellPitAbominationFlailingFists, this.attacks.hellPitAbominationAvalancheOfFlesh],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        verminlordCorruptor: {
             id: "verminlordCorruptor",
@@ -56887,6 +57045,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            commandAbilities: [this.abilities.verminlordCorruptorLordOfPestilence],
            attacks: [this.attacks.verminlordCorruptorPrehensileTail, this.attacks.verminlordCorruptorPlaguereapers],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Plague spells.",       },
        sepulchralStalkers: {
             id: "sepulchralStalkers",
@@ -56927,6 +57086,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.necrosphinxNeedToDestroy, this.abilities.necrosphinxSacredWarStatue, this.abilities.necrosphinxDecapitatingStrike, this.abilities.necrosphinxFly],
            attacks: [this.attacks.necrosphinxGiganticScythingBlades, this.attacks.necrosphinxStoneClaws, this.attacks.necrosphinxBladedTail, this.attacks.necrosphinxVenomSpikeTail],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        royalWarsphinx: {
             id: "royalWarsphinx",
@@ -56949,6 +57109,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            commandAbilities: [this.abilities.royalWarsphinxWhoDaresDisturbMySlumber],
            attacks: [this.attacks.royalWarsphinxFieryRoar, this.attacks.royalWarsphinxStoneClawsAndTeeth, this.attacks.royalWarsphinxBladedTail, this.attacks.royalWarsphinxVenomSpikeTail, this.attacks.royalWarsphinxTombKingSGlaiveOfKings],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        warsphinx: {
             id: "warsphinx",
@@ -56969,6 +57130,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.warsphinxThundercrushAttack, this.abilities.warsphinxSacredWarStatue],
            attacks: [this.attacks.warsphinxFieryRoar, this.attacks.warsphinxStoneClawsAndTeeth, this.attacks.warsphinxBladedTail, this.attacks.warsphinxVenomSpikeTail, this.attacks.warsphinxTombGuardsSpears],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        ushabti: {
             id: "ushabti",
@@ -57032,6 +57194,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            commandAbilities: [this.abilities.verminlordDeceiverLordOfAssassins],
            attacks: [this.attacks.verminlordDeceiverDoomstar, this.attacks.verminlordDeceiverPrehensileTails, this.attacks.verminlordDeceiverWarpstiletto],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Skitterleap spells.",       },
        nightRunners: {
             id: "nightRunners",
@@ -57052,6 +57215,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [this.options.nightRunnersNightleader],
            abilities: [this.abilities.nightRunnersRunningDeath, this.abilities.nightRunnersSlinkingAdvance, this.abilities.nightRunnersThrowingWeapons],
            attacks: [this.attacks.nightRunnersEshinThrowingWeapons, this.attacks.nightRunnersStabbingBlades],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.skaventide.id && ws.general && hasKeyword(ws.general.unit, [["MASTERCLAN"], ["CLANS ESHIN"]]),
        },
        gutterRunners: {
             id: "gutterRunners",
@@ -57072,6 +57236,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.gutterRunnersRunningDeath, this.abilities.gutterRunnersSneakyInfiltrators, this.abilities.gutterRunnersThrowingStars],
            attacks: [this.attacks.gutterRunnersEshinThrowingStars, this.attacks.gutterRunnersPunchDaggerAndBlade],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.skaventide.id && ws.general && hasKeyword(ws.general.unit, [["MASTERCLAN"], ["CLANS ESHIN"]]),
        },
        warAltarOfSigmar: {
             id: "warAltarOfSigmar",
@@ -57093,6 +57258,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            abilities: [this.abilities.warAltarOfSigmarDivinePower, this.abilities.warAltarOfSigmarSigmarSShield, this.abilities.warAltarOfSigmarThePowerOfFaith, this.abilities.warAltarOfSigmarLightOfBanishment, this.abilities.warAltarOfSigmarDevotionalHorn, this.abilities.warAltarOfSigmarBattlePrayers],
            attacks: [this.attacks.warAltarOfSigmarLightOfBanishment, this.attacks.warAltarOfSigmarSigmariteGreathammer, this.attacks.warAltarOfSigmarSigmariteWarhammer, this.attacks.warAltarOfSigmarStaffOfSigmar, this.attacks.warAltarOfSigmarWarhorsesSteelShodHooves],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        warriorPriest: {
             id: "warriorPriest",
@@ -57155,6 +57321,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.flagellantsGloriousMartyrs, this.abilities.flagellantsFanaticalFury, this.abilities.flagellantsRecklessAbandon, this.abilities.flagellantsProphet],
            attacks: [this.attacks.flagellantsCastigatingFlailsAndClubs],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.devotedOfSigmar.id,
        },
        freeguildGeneralOnGriffon: {
             id: "freeguildGeneralOnGriffon",
@@ -57177,6 +57344,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            commandAbilities: [this.abilities.freeguildGeneralOnGriffonRousingBattleCry],
            attacks: [this.attacks.freeguildGeneralOnGriffonFreeguildLance, this.attacks.freeguildGeneralOnGriffonSigmariteRunesword, this.attacks.freeguildGeneralOnGriffonSigmariteGreathammer, this.attacks.freeguildGeneralOnGriffonGriffonSDeadlyBeak, this.attacks.freeguildGeneralOnGriffonGriffonSRazorClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        freeguildGeneral: {
             id: "freeguildGeneral",
@@ -57219,6 +57387,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.demigryphKnightsShield, this.abilities.demigryphKnightsChargingLance, this.abilities.demigryphKnightsSavageFerocity, this.abilities.demigryphKnightsPreceptor, this.abilities.demigryphKnightsStandardBearer, this.abilities.demigryphKnightsHornblower],
            attacks: [this.attacks.demigryphKnightsLanceAndSword, this.attacks.demigryphKnightsCavalryHalberd, this.attacks.demigryphKnightsDemigryphSRazorSharpTalons],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.freePeoples.id,
        },
        freeguildGreatswords: {
             id: "freeguildGreatswords",
@@ -57239,6 +57408,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            options: [],
            abilities: [this.abilities.freeguildGreatswordsOathswornHonourGuard, this.abilities.freeguildGreatswordsGuildChampion, this.abilities.freeguildGreatswordsStandardBearer, this.abilities.freeguildGreatswordsHornblower],
            attacks: [this.attacks.freeguildGreatswordsZweihander],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.freePeoples.id,
        },
        freeguildCrossbowmen: {
             id: "freeguildCrossbowmen",
@@ -57423,6 +57593,7 @@ Jade: Lifesurge",       },
            abilities: [this.abilities.battlemageOnGriffonAmberBattlemage, this.abilities.battlemageOnGriffonTwoHeaded, this.abilities.battlemageOnGriffonFly, this.abilities.battlemageOnGriffonAmberSpear],
            attacks: [this.attacks.battlemageOnGriffonBeaststaff, this.attacks.battlemageOnGriffonGriffonSTwinBeaks, this.attacks.battlemageOnGriffonGriffonSRazorClaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Battlemage can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Amber Spear spells.",       },
        luminarkOfHysh: {
             id: "luminarkOfHysh",
@@ -57443,6 +57614,7 @@ Jade: Lifesurge",       },
            options: [],
            abilities: [this.abilities.luminarkOfHyshLocusOfHysh, this.abilities.luminarkOfHyshAuraOfProtection],
            attacks: [this.attacks.luminarkOfHyshSearingBeamOfLight, this.attacks.luminarkOfHyshAcolytesArcaneTools, this.attacks.luminarkOfHyshWarhorsesSteelShodHooves],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        luminarkOfHyshWithWhiteBattlemage: {
             id: "luminarkOfHyshWithWhiteBattlemage",
@@ -57464,6 +57636,7 @@ Jade: Lifesurge",       },
            abilities: [this.abilities.luminarkOfHyshWithWhiteBattlemageLocusOfHysh, this.abilities.luminarkOfHyshWithWhiteBattlemageAuraOfProtection, this.abilities.luminarkOfHyshWithWhiteBattlemageWhiteBattlemage, this.abilities.luminarkOfHyshWithWhiteBattlemageBurningGaze],
            attacks: [this.attacks.luminarkOfHyshWithWhiteBattlemageSearingBeamOfLight, this.attacks.luminarkOfHyshWithWhiteBattlemageBattlemageSStaff, this.attacks.luminarkOfHyshWithWhiteBattlemageAcolytesArcaneTools, this.attacks.luminarkOfHyshWithWhiteBattlemageWarhorsesSteelShodHooves],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "The White Battlemage atop a Luminark can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Burning Gaze spells.",       },
        celestialHurricanum: {
             id: "celestialHurricanum",
@@ -57484,6 +57657,7 @@ Jade: Lifesurge",       },
            options: [],
            abilities: [this.abilities.celestialHurricanumLocusOfAzyr, this.abilities.celestialHurricanumPortentsOfBattle, this.abilities.celestialHurricanumStormOfShemtek],
            attacks: [this.attacks.celestialHurricanumStormOfShemtek, this.attacks.celestialHurricanumAcolytesArcaneTools, this.attacks.celestialHurricanumWarhorsesSteelShodHooves],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        celestialHurricanumWithCelestialBattlemage: {
             id: "celestialHurricanumWithCelestialBattlemage",
@@ -57505,6 +57679,7 @@ Jade: Lifesurge",       },
            abilities: [this.abilities.celestialHurricanumWithCelestialBattlemageLocusOfAzyr, this.abilities.celestialHurricanumWithCelestialBattlemagePortentsOfBattle, this.abilities.celestialHurricanumWithCelestialBattlemageStormOfShemtek, this.abilities.celestialHurricanumWithCelestialBattlemageCelestialBattlemage, this.abilities.celestialHurricanumWithCelestialBattlemageCometOfCasandora],
            attacks: [this.attacks.celestialHurricanumWithCelestialBattlemageStormOfShemtek, this.attacks.celestialHurricanumWithCelestialBattlemageBattlemageSStaff, this.attacks.celestialHurricanumWithCelestialBattlemageAcolytesArcaneTools, this.attacks.celestialHurricanumWithCelestialBattlemageWarhorsesSteelShodHooves],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Battlemage tending a Celestial Hurricanum can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Comet of Casandora spells.",       },
        gunmaster: {
             id: "gunmaster",
@@ -57651,6 +57826,7 @@ Jade: Lifesurge",       },
            options: [],
            abilities: [this.abilities.steamTankMorePressure, this.abilities.steamTankSteelBehemoth, this.abilities.steamTankBouncingCannonBalls, this.abilities.steamTankILlFixIt],
            attacks: [this.attacks.steamTankRepeaterHandgun, this.attacks.steamTankLongRifle, this.attacks.steamTankSteamCannon, this.attacks.steamTankSteamGun, this.attacks.steamTankCrushingWheelsAndIroncladBulk, this.attacks.steamTankCommanderSSwordOrRod],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        gyrocopters: {
             id: "gyrocopters",
@@ -57837,6 +58013,7 @@ Jade: Lifesurge",       },
            options: [],
            abilities: [this.abilities.ironbreakersBraceOfDrakefirePistols, this.abilities.ironbreakersCinderblastBomb, this.abilities.ironbreakersGromrilShields, this.abilities.ironbreakersForgeProvenGromrilArmour, this.abilities.ironbreakersIronbeard, this.abilities.ironbreakersIconBearer, this.abilities.ironbreakersDrummer],
            attacks: [this.attacks.ironbreakersDrakefirePistol, this.attacks.ironbreakersDrakefirePistol, this.attacks.ironbreakersIronbreakerAxeOrHammer],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.dispossessed.id,
        },
        hammerers: {
             id: "hammerers",
@@ -57857,6 +58034,7 @@ Jade: Lifesurge",       },
            options: [this.options.hammerersThrongMusician, this.options.hammerersStandardBearer],
            abilities: [this.abilities.hammerersKingsguard, this.abilities.hammerersKeeperOfTheGate],
            attacks: [this.attacks.hammerersGromrilGreatHammer],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.dispossessed.id,
        },
        thunderers: {
             id: "thunderers",
@@ -57941,6 +58119,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            abilities: [this.abilities.archmageOnDragonTalismanOfArcanePower, this.abilities.archmageOnDragonDragonfire, this.abilities.archmageOnDragonFly, this.abilities.archmageOnDragonDrainMagic],
            attacks: [this.attacks.archmageOnDragonMagestaff, this.attacks.archmageOnDragonSorcerousBlade, this.attacks.archmageOnDragonDragonSClaws, this.attacks.archmageOnDragonDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "An Archmage on Dragon is a wizard. He can attempt to cast one spell in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. An Archmage with an Arcane Tome can attempt to cast two different spells in each of your hero phases instead of just one, and attempt to unbind two spells in each enemy hero phase. An Archmage on Dragon knows the Arcane Bolt, Mystic Shield and Drain Magic spells.",       },
        drakeseer: {
             id: "drakeseer",
@@ -57962,6 +58141,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            abilities: [this.abilities.drakeseerWarriorMage, this.abilities.drakeseerDragonfire, this.abilities.drakeseerFly, this.abilities.drakeseerFlamesOfThePhoenix],
            attacks: [this.attacks.drakeseerDrakeseerSSunstaff, this.attacks.drakeseerDragonSClaws, this.attacks.drakeseerDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Drakeseer is a wizard. He can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield, and Flames of the Phoenix spells.",       },
        loremaster: {
             id: "loremaster",
@@ -58003,6 +58183,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            options: [],
            abilities: [this.abilities.swordmastersABlurOfBlades, this.abilities.swordmastersDeflectShots, this.abilities.swordmastersBladelord, this.abilities.swordmastersHornblower, this.abilities.swordmastersStandardBearer],
            attacks: [this.attacks.swordmastersGreatsword],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.eldritchCouncil.id,
        },
        flamespyrePhoenix: {
             id: "flamespyrePhoenix",
@@ -58023,6 +58204,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            options: [],
            abilities: [this.abilities.flamespyrePhoenixPhoenixReborn, this.abilities.flamespyrePhoenixWakeOfFire, this.abilities.flamespyrePhoenixAttunedToMagic, this.abilities.flamespyrePhoenixFly],
            attacks: [this.attacks.flamespyrePhoenixFlamingTalons],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        anointedOnFlamespyrePhoenix: {
             id: "anointedOnFlamespyrePhoenix",
@@ -58045,6 +58227,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            commandAbilities: [this.abilities.anointedOnFlamespyrePhoenixCaptainOfThePhoenixGuard],
            attacks: [this.attacks.anointedOnFlamespyrePhoenixFlamingTalons, this.attacks.anointedOnFlamespyrePhoenixGreatPhoenixHalberd],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        frostheartPhoenix: {
             id: "frostheartPhoenix",
@@ -58065,6 +58248,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            options: [],
            abilities: [this.abilities.frostheartPhoenixBlizzardAura, this.abilities.frostheartPhoenixAttunedToMagic, this.abilities.frostheartPhoenixFly],
            attacks: [this.attacks.frostheartPhoenixIceHardTalons],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        anointedOnFrostheartPhoenix: {
             id: "anointedOnFrostheartPhoenix",
@@ -58087,6 +58271,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            commandAbilities: [this.abilities.anointedOnFrostheartPhoenixCaptainOfThePhoenixGuard],
            attacks: [this.attacks.anointedOnFrostheartPhoenixIceHardTalons, this.attacks.anointedOnFrostheartPhoenixGreatPhoenixHalberd],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        anointed: {
             id: "anointed",
@@ -58129,6 +58314,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            options: [],
            abilities: [this.abilities.phoenixGuardWitnessToDestiny, this.abilities.phoenixGuardAuraOfDread, this.abilities.phoenixGuardEmboldened, this.abilities.phoenixGuardKeeperOfTheFlame, this.abilities.phoenixGuardStandardBearer, this.abilities.phoenixGuardDrummers],
            attacks: [this.attacks.phoenixGuardPhoenixHalberd],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.phoenixTemple.id,
        },
        whiteLions: {
             id: "whiteLions",
@@ -58193,6 +58379,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            commandAbilities: [this.abilities.dragonlordLordOfDragons],
            attacks: [this.attacks.dragonlordReaverBow, this.attacks.dragonlordDragonLance, this.attacks.dragonlordDragonBlade, this.attacks.dragonlordDragonSClaws, this.attacks.dragonlordDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        dragonNoble: {
             id: "dragonNoble",
@@ -58235,6 +58422,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            options: [],
            abilities: [this.abilities.dragonBladesLanceCharge, this.abilities.dragonBladesDrakeShield, this.abilities.dragonBladesAncientDignity, this.abilities.dragonBladesDrakemaster, this.abilities.dragonBladesStandardBearer, this.abilities.dragonBladesHornblower],
            attacks: [this.attacks.dragonBladesDrakeLanceAndSword, this.attacks.dragonBladesPurebreedSIthilmarShodHooves],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.orderDraconis.id,
        },
        skywarden: {
             id: "skywarden",
@@ -58317,6 +58505,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            options: [],
            abilities: [this.abilities.shadowWarriorsOneWithTheShadows, this.abilities.shadowWarriorsStrikeUnseen, this.abilities.shadowWarriorsShadowWalker],
            attacks: [this.attacks.shadowWarriorsRangerBow, this.attacks.shadowWarriorsShadowBlade],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.swifthawkAgents.id,
        },
        blackArkFleetmaster: {
             id: "blackArkFleetmaster",
@@ -58359,6 +58548,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            options: [],
            abilities: [this.abilities.blackArkCorsairsSeaDragonCloaks, this.abilities.blackArkCorsairsFlashingSteel, this.abilities.blackArkCorsairsNotoriousRaiders, this.abilities.blackArkCorsairsReaver, this.abilities.blackArkCorsairsStandardBearer, this.abilities.blackArkCorsairsHornblower],
            attacks: [this.attacks.blackArkCorsairsRepeaterHandbow, this.attacks.blackArkCorsairsViciousBlade, this.attacks.blackArkCorsairsWickedCutlass],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.scourgePrivateers.id,
        },
        kharibdyss: {
             id: "kharibdyss",
@@ -58379,6 +58569,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            options: [],
            abilities: [this.abilities.kharibdyssAbyssalHowl, this.abilities.kharibdyssFeastOfBones, this.abilities.kharibdyssQuickWithTheLash],
            attacks: [this.attacks.kharibdyssFangedTentacles, this.attacks.kharibdyssClawedLimbs, this.attacks.kharibdyssSpikedTail, this.attacks.kharibdyssHandlersCruelGoadsAndWhips],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        scourgerunnerChariots: {
             id: "scourgerunnerChariots",
@@ -58399,6 +58590,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            options: [],
            abilities: [this.abilities.scourgerunnerChariotsLayTheBeastLow, this.abilities.scourgerunnerChariotsHighBeastmaster],
            attacks: [this.attacks.scourgerunnerChariotsRepeaterCrossbow, this.attacks.scourgerunnerChariotsRavagerHarpoon, this.attacks.scourgerunnerChariotsHookSpears, this.attacks.scourgerunnerChariotsDarkSteedsViciousBites],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.scourgePrivateers.id,
        },
        sorceressOnBlackDragon: {
             id: "sorceressOnBlackDragon",
@@ -58420,6 +58612,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            abilities: [this.abilities.sorceressOnBlackDragonBloodSacrifice, this.abilities.sorceressOnBlackDragonNoxiousBreath, this.abilities.sorceressOnBlackDragonFly, this.abilities.sorceressOnBlackDragonBladewind],
            attacks: [this.attacks.sorceressOnBlackDragonWitchRod, this.attacks.sorceressOnBlackDragonDarklingSword, this.attacks.sorceressOnBlackDragonWitchLash, this.attacks.sorceressOnBlackDragonBlackDragonSClaws, this.attacks.sorceressOnBlackDragonBlackDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Sorceress on Black Dragon is a wizard. She can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Bladewind spells.",       },
        sorceress: {
             id: "sorceress",
@@ -58461,6 +58654,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            options: [],
            abilities: [this.abilities.blackGuardEliteBodyguard, this.abilities.blackGuardCaptain, this.abilities.blackGuardStandardBearer, this.abilities.blackGuardDrummers],
            attacks: [this.attacks.blackGuardEbonHalberd],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.darklingCovens.id,
        },
        executioners: {
             id: "executioners",
@@ -58481,6 +58675,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            options: [],
            abilities: [this.abilities.executionersSeveringStrike, this.abilities.executionersDraichMaster, this.abilities.executionersStandardBearer, this.abilities.executionersDrummers],
            attacks: [this.attacks.executionersExecutionerSDraich],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.darklingCovens.id,
        },
        dreadspears: {
             id: "dreadspears",
@@ -58585,6 +58780,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            options: [],
            abilities: [this.abilities.darkRidersSowTerrorAndConfusion, this.abilities.darkRidersDarkshields, this.abilities.darkRidersHerald, this.abilities.darkRidersStandardBearer, this.abilities.darkRidersHornblower],
            attacks: [this.attacks.darkRidersRepeaterCrossbow, this.attacks.darkRidersBarbedSpearsAndSwords, this.attacks.darkRidersDarkSteedsViciousBites],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.shadowblades.id,
        },
        dreadlordOnBlackDragon: {
             id: "dreadlordOnBlackDragon",
@@ -58609,6 +58805,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            commandAbilities: [this.abilities.dreadlordOnBlackDragonDoNotDisappointMe],
            attacks: [this.attacks.dreadlordOnBlackDragonRepeaterCrossbow, this.attacks.dreadlordOnBlackDragonExileBlade, this.attacks.dreadlordOnBlackDragonLanceOfSpite, this.attacks.dreadlordOnBlackDragonBlackDragonSClaws, this.attacks.dreadlordOnBlackDragonBlackDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        drakespawnKnights: {
             id: "drakespawnKnights",
@@ -58629,6 +58826,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.drakespawnKnightsLanceCharge, this.abilities.drakespawnKnightsDarkshields, this.abilities.drakespawnKnightsDreadKnight, this.abilities.drakespawnKnightsStandardBearer, this.abilities.drakespawnKnightsHornblower],
            attacks: [this.attacks.drakespawnKnightsBarbedLanceAndBlade, this.attacks.drakespawnKnightsDrakespawnSFerociousJaws],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.orderSerpentis.id,
        },
        drakespawnChariots: {
             id: "drakespawnChariots",
@@ -58649,6 +58847,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.drakespawnChariotsScythedRunners],
            attacks: [this.attacks.drakespawnChariotsRepeaterCrossbow, this.attacks.drakespawnChariotsCharioteersBarbedSpearsAndBlades, this.attacks.drakespawnChariotsDrakespawnSFerociousJaws],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.orderSerpentis.id,
        },
        warHydra: {
             id: "warHydra",
@@ -58669,6 +58868,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.warHydraSeverOneHeadAnotherTakesItsPlace, this.abilities.warHydraQuickWithTheLash],
            attacks: [this.attacks.warHydraFieryBreath, this.attacks.warHydraRazorSharpFangs, this.attacks.warHydraClawedLimbs, this.attacks.warHydraHandlersCruelGoadsAndWhips],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        nomadPrince: {
             id: "nomadPrince",
@@ -58819,6 +59019,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.wildwoodRangersGuardiansOfTheKindreds, this.abilities.wildwoodRangersWildwoodWarden, this.abilities.wildwoodRangersStandardBearer, this.abilities.wildwoodRangersHornblower],
            attacks: [this.attacks.wildwoodRangersRangerSDraich],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.wanderers.id && ws.general && hasKeyword(ws.general.unit, [["WAYFINDER"]]),
        },
        eternalGuard: {
             id: "eternalGuard",
@@ -58839,6 +59040,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.eternalGuardFortressOfBoughs, this.abilities.eternalGuardGladeShields, this.abilities.eternalGuardEternalWarden, this.abilities.eternalGuardStandardBearer, this.abilities.eternalGuardHornblower],
            attacks: [this.attacks.eternalGuardSpearStave],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.wanderers.id,
        },
        sistersOfTheThorn: {
             id: "sistersOfTheThorn",
@@ -58879,6 +59081,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.sistersOfTheWatchEldritchArrows, this.abilities.sistersOfTheWatchQuicksilverShot, this.abilities.sistersOfTheWatchLooseUntilTheLast, this.abilities.sistersOfTheWatchHighSister],
            attacks: [this.attacks.sistersOfTheWatchWatchBow, this.attacks.sistersOfTheWatchIthilmarSword],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.wanderers.id && ws.general && hasKeyword(ws.general.unit, [["WAYWATCHER"]]),
        },
        wildRiders: {
             id: "wildRiders",
@@ -58983,6 +59186,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.gladeLordOnForestDragonSoporificBreath, this.abilities.gladeLordOnForestDragonKindredShield, this.abilities.gladeLordOnForestDragonStarlightStrike, this.abilities.gladeLordOnForestDragonFly],
            attacks: [this.attacks.gladeLordOnForestDragonStarlightSpear, this.attacks.gladeLordOnForestDragonDragonSGapingMaw, this.attacks.gladeLordOnForestDragonDragonSDaggerLikeTalons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        gladeLordOnPurebredSteed: {
             id: "gladeLordOnPurebredSteed",
@@ -59025,6 +59229,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.avatarOfTheHuntCloakOfLeaves, this.abilities.avatarOfTheHuntHornOfTheWildHunt],
            attacks: [this.attacks.avatarOfTheHuntHawkSTalon, this.attacks.avatarOfTheHuntHuntingSpear, this.attacks.avatarOfTheHuntHuntingSpear],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        huntingHounds: {
             id: "huntingHounds",
@@ -59066,6 +59271,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.twilightSistersOnForestDragonSoporificBreath, this.abilities.twilightSistersOnForestDragonImpetuousBeast, this.abilities.twilightSistersOnForestDragonDawnbow, this.abilities.twilightSistersOnForestDragonDuskbow, this.abilities.twilightSistersOnForestDragonConjoinedDestiny, this.abilities.twilightSistersOnForestDragonFly],
            attacks: [this.attacks.twilightSistersOnForestDragonDawnbow, this.attacks.twilightSistersOnForestDragonDuskbow, this.attacks.twilightSistersOnForestDragonTwilightSistersSpears, this.attacks.twilightSistersOnForestDragonDragonSGapingMaw, this.attacks.twilightSistersOnForestDragonDragonSDaggerLikeTalons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        shadowdancer: {
             id: "shadowdancer",
@@ -59269,6 +59475,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.chaosDragonBreathOfMutation, this.abilities.chaosDragonFly, this.abilities.chaosDragonTreasonousCurse],
            attacks: [this.attacks.chaosDragonSwatheOfDarkFire, this.attacks.chaosDragonBreathOfMutation, this.attacks.chaosDragonWarpedMaws, this.attacks.chaosDragonViciousTalons],
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Chaos Dragon is a wizard. It can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Treasonous Curse spells.",       },
        chaosOgors: {
             id: "chaosOgors",
@@ -59371,6 +59578,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.greatTaurusBlazingBody, this.abilities.greatTaurusBloodRage, this.abilities.greatTaurusFly],
            attacks: [this.attacks.greatTaurusBelchFire, this.attacks.greatTaurusHornsAndTeeth, this.attacks.greatTaurusBurningHooves],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        lammasu: {
             id: "lammasu",
@@ -59391,6 +59599,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.lammasuSorcerousMiasma, this.abilities.lammasuFly],
            attacks: [this.attacks.lammasuHornsAndTeeth, this.attacks.lammasuClawedForelimbs],
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "A Lammasu is a wizard. It can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt and Mystic Shield spells.",       },
        vampireLordOnAbyssalTerror: {
             id: "vampireLordOnAbyssalTerror",
@@ -60563,6 +60772,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.casketOfSoulsCovenantOfPower, this.abilities.casketOfSoulsCasket, this.abilities.casketOfSoulsKeeperSScrolls, this.abilities.casketOfSoulsUnleashedSouls],
            attacks: [this.attacks.casketOfSoulsKeeperSMortuaryDaggerAndGlaive, this.attacks.casketOfSoulsCasketGuardsDoubleHandedSwords],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        skeletalLegionnaires: {
             id: "skeletalLegionnaires",
@@ -60604,6 +60814,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [this.options.skeletonArchersIconBearer, this.options.skeletonArchersHornblower],
            abilities: [this.abilities.skeletonArchersHailOfAncientArrows, this.abilities.skeletonArchersMasterOfArrows],
            attacks: [this.attacks.skeletonArchersAncientBow, this.attacks.skeletonArchersArrow],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.tombKings.id && ws.general && hasKeyword(ws.general.unit, [["TOMB QUEEN"]]),
        },
        skeletonHorsemen: {
             id: "skeletonHorsemen",
@@ -61055,6 +61266,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.grimghastReapersEthereal, this.abilities.grimghastReapersReapedLikeCorn, this.abilities.grimghastReapersForWhomTheBellTolls, this.abilities.grimghastReapersExtollerOfShyish, this.abilities.grimghastReapersFly],
            attacks: [this.attacks.grimghastReapersSlasherScythe, this.attacks.grimghastReapersDeathKnell],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.nighthaunt.id,
        },
        glaivewraithStalkers: {
             id: "glaivewraithStalkers",
@@ -61199,6 +61411,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.sequitorsSequitorAethericChannelling, this.abilities.sequitorsSoulshields, this.abilities.sequitorsRedemptionCache, this.abilities.sequitorsGreatmaceBlast, this.abilities.sequitorsSequitorPrime],
            attacks: [this.attacks.sequitorsStormsmiteMaul, this.attacks.sequitorsStormsmiteGreatmace, this.attacks.sequitorsTempestBlade],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.stormcastEternals.id && ws.general && hasKeyword(ws.general.unit, [["LORD-ARCANUM"]]),
        },
        celestarBallista: {
             id: "celestarBallista",
@@ -61284,6 +61497,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.mutalithVortexBeastOfTzeentchAuraOfMutation, this.abilities.mutalithVortexBeastOfTzeentchMutantRegeneration],
            attacks: [this.attacks.mutalithVortexBeastOfTzeentchCrushingClaws, this.attacks.mutalithVortexBeastOfTzeentchBetentacledMaw],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        slaughterbruteOfKhorne: {
             id: "slaughterbruteOfKhorne",
@@ -61304,6 +61518,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.slaughterbruteOfKhorneRunesOfBinding, this.abilities.slaughterbruteOfKhorneBeastUnbound],
            attacks: [this.attacks.slaughterbruteOfKhorneRazorTippedClaws, this.attacks.slaughterbruteOfKhorneMightyJaws, this.attacks.slaughterbruteOfKhorneLesserClaws],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        ladyOlynder: {
             id: "ladyOlynder",
@@ -61916,6 +62131,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.drazhoathTheAshenLordOfTheBlackFortress],
            attacks: [this.attacks.drazhoathTheAshenGoutsOfFlame, this.attacks.drazhoathTheAshenTheGravenBrazier, this.attacks.drazhoathTheAshenBrazenHornsAndTeeth, this.attacks.drazhoathTheAshenBurningHooves],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Flames of Azgorh spells.",       },
        daemonsmith: {
             id: "daemonsmith",
@@ -62001,6 +62217,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.bullCentaurRendersSpiteshield, this.abilities.bullCentaurRendersTrampleAndGore],
            attacks: [this.attacks.bullCentaurRendersDarkforgedWeapon, this.attacks.bullCentaurRendersCrushingHooves],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.legionOfAzgorh.id && ws.general && hasKeyword(ws.general.unit, [["SHAR'TOR THE EXECUTIONER"]]),
        },
        infernalGuardsCastellan: {
             id: "infernalGuardsCastellan",
@@ -62064,6 +62281,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [this.options.infernalGuardFireglaivesIconOfDominionBearers, this.options.infernalGuardFireglaivesDrummer],
            abilities: [this.abilities.infernalGuardFireglaivesPyrelockWeapons, this.abilities.infernalGuardFireglaivesFireglaiveDeathmask],
            attacks: [this.attacks.infernalGuardFireglaivesPyrelockFireglaive, this.attacks.infernalGuardFireglaivesPyrelockPistol, this.attacks.infernalGuardFireglaivesPyrelockFireglaiveSBayonetCleaver, this.attacks.infernalGuardFireglaivesAshsteelHandWeapon],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.legionOfAzgorh.id,
        },
        infernalGuardIronsworn: {
             id: "infernalGuardIronsworn",
@@ -62146,6 +62364,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.ironDaemonWarEngineCarriageHauler, this.abilities.ironDaemonWarEngineMorePower],
            attacks: [this.attacks.ironDaemonWarEngineSteamCannonade, this.attacks.ironDaemonWarEngineCrushingBulk],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        magmaCannon: {
             id: "magmaCannon",
@@ -62208,6 +62427,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.skullcrackerWarEngineBeatenIntoScrap, this.abilities.skullcrackerWarEngineCarriageHauler, this.abilities.skullcrackerWarEngineMorePower],
            attacks: [this.attacks.skullcrackerWarEngineHammersAndPicks, this.attacks.skullcrackerWarEngineCrushingBulk],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        basilisk: {
             id: "basilisk",
@@ -62228,6 +62448,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.basiliskCorrosiveMiasma, this.abilities.basiliskMalignantGaze],
            attacks: [this.attacks.basiliskAcidicSpittle, this.attacks.basiliskVenomousBite, this.attacks.basiliskClutchingClaws],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        bonegrinderGargant: {
             id: "bonegrinderGargant",
@@ -62248,6 +62469,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.bonegrinderGargantILlBiteYourHeadOff, this.abilities.bonegrinderGargantJumpUpAndDown, this.abilities.bonegrinderGargantLongshanks, this.abilities.bonegrinderGargantTimber],
            attacks: [this.attacks.bonegrinderGargantHurledBoulder, this.attacks.bonegrinderGargantGargantuanClub, this.attacks.bonegrinderGargantThunderousStomp],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        broodHorror: {
             id: "broodHorror",
@@ -62288,6 +62510,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.carmineDragonDeathlyDarkScales, this.abilities.carmineDragonSoulSheeringBlast, this.abilities.carmineDragonSpellDevourer, this.abilities.carmineDragonFly],
            attacks: [this.attacks.carmineDragonSoulSheeringBlast, this.attacks.carmineDragonRakingClaws, this.attacks.carmineDragonAmethystFangs],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        chaosSiegeGargant: {
             id: "chaosSiegeGargant",
@@ -62308,6 +62531,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.chaosSiegeGargantScalingSpikesAndChains, this.abilities.chaosSiegeGargantSiegeArmour, this.abilities.chaosSiegeGargantTimber],
            attacks: [this.attacks.chaosSiegeGargantColossalHookBlades, this.attacks.chaosSiegeGargantLashingChains],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        chaosWarMammoth: {
             id: "chaosWarMammoth",
@@ -62328,6 +62552,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.chaosWarMammothCrushingFall, this.abilities.chaosWarMammothEarthShakingCharge, this.abilities.chaosWarMammothGoringTusks, this.abilities.chaosWarMammothMarkOfChaos, this.abilities.chaosWarMammothCrew],
            attacks: [this.attacks.chaosWarMammothMarauderJavelinsAndAxes, this.attacks.chaosWarMammothGoringTusks, this.attacks.chaosWarMammothTramplingFeet],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        colossalSquig: {
             id: "colossalSquig",
@@ -62348,6 +62573,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.colossalSquigCrazedCharge, this.abilities.colossalSquigFungoidSquigExplosion, this.abilities.colossalSquigPuffSpores, this.abilities.colossalSquigSwallowedWhole],
            attacks: [this.attacks.colossalSquigPuffSpores, this.attacks.colossalSquigEnormousJaws, this.attacks.colossalSquigTramplingFeet],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        cursDEttin: {
             id: "cursDEttin",
@@ -62368,6 +62594,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.cursDEttinCannibalFeast, this.abilities.cursDEttinGibberingCurse, this.abilities.cursDEttinTwoHeadedHorror],
            attacks: [this.attacks.cursDEttinCrushingFist, this.attacks.cursDEttinStomp],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        dreadMaw: {
             id: "dreadMaw",
@@ -62388,6 +62615,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.dreadMawDevourerFromBelow, this.abilities.dreadMawImpenetrableHide, this.abilities.dreadMawTunnelWorm, this.abilities.dreadMawYawningMaw],
            attacks: [this.attacks.dreadMawSlimeSpray, this.attacks.dreadMawCavernousMaw, this.attacks.dreadMawWrithingCoils],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        dreadSaurian: {
             id: "dreadSaurian",
@@ -62408,6 +62636,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.dreadSaurianDevourerOfBeasts, this.abilities.dreadSaurianArcaneGlyphs, this.abilities.dreadSaurianPrimalPresence, this.abilities.dreadSaurianRoarOfRuin, this.abilities.dreadSaurianCelestialConjuration],
            attacks: [this.attacks.dreadSaurianGargantuanJaws, this.attacks.dreadSaurianRakingClaws, this.attacks.dreadSaurianArmouredTail],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        exaltedGreaterDaemonOfKhorne: {
             id: "exaltedGreaterDaemonOfKhorne",
@@ -62430,6 +62659,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.exaltedGreaterDaemonOfKhorneRejoiceInExaltedSlaughter],
            attacks: [this.attacks.exaltedGreaterDaemonOfKhorneLashOfKhorne, this.attacks.exaltedGreaterDaemonOfKhorneMightyAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        exaltedGreaterDaemonOfNurgle: {
             id: "exaltedGreaterDaemonOfNurgle",
@@ -62452,6 +62682,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.exaltedGreaterDaemonOfNurgleGrandfatherSExaltedJoy],
            attacks: [this.attacks.exaltedGreaterDaemonOfNurgleNoxiousBile, this.attacks.exaltedGreaterDaemonOfNurgleMassiveBilesword],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "An Exalted Greater Daemon of Nurgle is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Wind spells.",       },
        exaltedGreaterDaemonOfSlaanesh: {
             id: "exaltedGreaterDaemonOfSlaanesh",
@@ -62474,6 +62705,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.exaltedGreaterDaemonOfSlaaneshExaltedExcessOfViolence],
            attacks: [this.attacks.exaltedGreaterDaemonOfSlaaneshRazorSharpClaws, this.attacks.exaltedGreaterDaemonOfSlaaneshElegantGreatblade],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cacophonic Choir spells.",       },
        exaltedGreaterDaemonOfTzeentch: {
             id: "exaltedGreaterDaemonOfTzeentch",
@@ -62496,6 +62728,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.exaltedGreaterDaemonOfTzeentchBeaconOfSorcery],
            attacks: [this.attacks.exaltedGreaterDaemonOfTzeentchStaffOfTzeentch, this.attacks.exaltedGreaterDaemonOfTzeentchCurvedBeakAndWickedTalons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Infernal Gateway spells.",       },
        fimirachNoble: {
             id: "fimirachNoble",
@@ -62538,6 +62771,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.fimirWarriorsBaleglyphMauls, this.abilities.fimirWarriorsShroudingMists, this.abilities.fimirWarriorsUnnaturalFlesh],
            attacks: [this.attacks.fimirWarriorsBaleglyphMaul, this.attacks.fimirWarriorsClubTail],
+           isBattleline: (ws: WarscrollInterface) => ws.general && hasKeyword(ws.general.unit, [["FIMIRACH NOBLE"]]),
        },
        incarnateElementalOfBeasts: {
             id: "incarnateElementalOfBeasts",
@@ -62558,6 +62792,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.incarnateElementalOfBeastsSavageFrenzy, this.abilities.incarnateElementalOfBeastsHowlOfTheGreatBeast, this.abilities.incarnateElementalOfBeastsIncarnateOfGhur, this.abilities.incarnateElementalOfBeastsTheLureOfSpiltBlood],
            attacks: [this.attacks.incarnateElementalOfBeastsAmberBreath, this.attacks.incarnateElementalOfBeastsSavageTalons, this.attacks.incarnateElementalOfBeastsImpalingHorns],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        incarnateElementalOfFire: {
             id: "incarnateElementalOfFire",
@@ -62578,6 +62813,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.incarnateElementalOfFireAshesToAshes, this.abilities.incarnateElementalOfFireGiftOfElementalFire, this.abilities.incarnateElementalOfFireIncarnateOfAqshy],
            attacks: [this.attacks.incarnateElementalOfFireFieryBolts, this.attacks.incarnateElementalOfFireTendrilsOfFire, this.attacks.incarnateElementalOfFireBurningLance],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        giganticChaosSpawn: {
             id: "giganticChaosSpawn",
@@ -62598,6 +62834,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.giganticChaosSpawnCurseOfTheDarkGods, this.abilities.giganticChaosSpawnPlaythingOfTheDarkGods, this.abilities.giganticChaosSpawnWrithingTentacles],
            attacks: [this.attacks.giganticChaosSpawnFreakishMutations, this.attacks.giganticChaosSpawnSlaveringMaws],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        magmaDragon: {
             id: "magmaDragon",
@@ -62618,6 +62855,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.magmaDragonBrimstoneDragonfire, this.abilities.magmaDragonBurningBlood, this.abilities.magmaDragonFly],
            attacks: [this.attacks.magmaDragonBrimstoneDragonfire, this.attacks.magmaDragonFurnaceHotJaws, this.attacks.magmaDragonCrushingClaws],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        mazarallTheButcher: {
             id: "mazarallTheButcher",
@@ -62639,6 +62877,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.mazarallTheButcherBloodyCharge, this.abilities.mazarallTheButcherHarrowMeatSHunger, this.abilities.mazarallTheButcherTheAncyteShield],
            commandAbilities: [this.abilities.mazarallTheButcherTheButcherSDue],
            attacks: [this.attacks.mazarallTheButcherAncyteShieldSWrath, this.attacks.mazarallTheButcherHarrowMeat, this.attacks.mazarallTheButcherAncyteShieldSBlades],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        merwyrm: {
             id: "merwyrm",
@@ -62659,6 +62898,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.merwyrmAbyssalPredator, this.abilities.merwyrmStenchOfTheDeep, this.abilities.merwyrmUnnaturalMetabolism],
            attacks: [this.attacks.merwyrmChillBreath, this.attacks.merwyrmHideousJaws, this.attacks.merwyrmPowerfulTail],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        mourngul: {
             id: "mourngul",
@@ -62679,6 +62919,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.mourngulDevourerOfFleshAndSouls, this.abilities.mourngulEthereal, this.abilities.mourngulFrightfulTouch, this.abilities.mourngulGhastlyApparition, this.abilities.mourngulFly],
            attacks: [this.attacks.mourngulNightmarishClawsAndFangs],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        preyton: {
             id: "preyton",
@@ -62719,6 +62960,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.rogueIdolAvalanche, this.abilities.rogueIdolDaBigUn, this.abilities.rogueIdolLivinIdol, this.abilities.rogueIdolRubbleAndRuin, this.abilities.rogueIdolSpiritOfTheWaaagh],
            attacks: [this.attacks.rogueIdolBoulderFists, this.attacks.rogueIdolStompinFeet],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        skaaracTheBloodborn: {
             id: "skaaracTheBloodborn",
@@ -62741,6 +62983,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.skaaracTheBloodbornCallOfTheSkullThrone],
            attacks: [this.attacks.skaaracTheBloodbornBurningBlood, this.attacks.skaaracTheBloodbornBrutalBlades, this.attacks.skaaracTheBloodbornThunderousHooves],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        skavenClawlordOnBroodHorror: {
             id: "skavenClawlordOnBroodHorror",
@@ -62845,6 +63088,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.troggothHagHagRegeneration, this.abilities.troggothHagSpellSpite, this.abilities.troggothHagTerribleStench, this.abilities.troggothHagHagCurse],
            attacks: [this.attacks.troggothHagCopiousVomit, this.attacks.troggothHagDeadwoodStaff, this.attacks.troggothHagCrushingBulk],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Hag Curse spells.",       },
        warpfireDragon: {
             id: "warpfireDragon",
@@ -62865,6 +63109,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.warpfireDragonDeadlyDemise, this.abilities.warpfireDragonWarpfire, this.abilities.warpfireDragonFly],
            attacks: [this.attacks.warpfireDragonWarpfire, this.attacks.warpfireDragonSnappingJaws, this.attacks.warpfireDragonTwistedClaws],
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        warpgnawVerminlord: {
             id: "warpgnawVerminlord",
@@ -62885,6 +63130,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.warpgnawVerminlordProtectionOfTheHornedRat, this.abilities.warpgnawVerminlordRealmGuide, this.abilities.warpgnawVerminlordTerrifying, this.abilities.warpgnawVerminlordSplinterScreech],
            attacks: [this.attacks.warpgnawVerminlordPrehensileTail, this.attacks.warpgnawVerminlordGnawGlaive],
+           isBehemoth: (ws: WarscrollInterface) => true,
            magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Splinter-screech spells.",       },
        darkoathChieftain: {
             id: "darkoathChieftain",
@@ -63074,6 +63320,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.highWardenHurricaneCharge],
            attacks: [this.attacks.highWardenStarwoodLance, this.attacks.highWardenStarblade, this.attacks.highWardenGriffonSRazorSharpBeak, this.attacks.highWardenGriffonSWickedTalons],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        spireguard: {
             id: "spireguard",
@@ -63094,6 +63341,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [this.options.spireguardHornblower, this.options.spireguardStandardBearer],
            abilities: [this.abilities.spireguardAelvenShield, this.abilities.spireguardStrengthOfTheSpireguard, this.abilities.spireguardSwifthawkDiscipline, this.abilities.spireguardWatchMaster],
            attacks: [this.attacks.spireguardSpireguardBow, this.attacks.spireguardSilverwoodSpear],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.swifthawkAgents.id,
        },
        reavers: {
             id: "reavers",
@@ -63137,6 +63385,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.tamurkhanTheMaggotLordRoarOfCommand],
            attacks: [this.attacks.tamurkhanTheMaggotLordLashingTongue, this.attacks.tamurkhanTheMaggotLordTheBlackCleaver, this.attacks.tamurkhanTheMaggotLordCrushingJaws, this.attacks.tamurkhanTheMaggotLordBefouledBulk],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        kazykTheBefouled: {
             id: "kazykTheBefouled",
@@ -63179,6 +63428,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.daemonPlagueToadsOfNurgleBloatedFlesh, this.abilities.daemonPlagueToadsOfNurgleRotEaters, this.abilities.daemonPlagueToadsOfNurgleFly, this.abilities.daemonPlagueToadsOfNurgleSummonDaemonsOfNurgle],
            attacks: [this.attacks.daemonPlagueToadsOfNurgleGraspingTongue, this.attacks.daemonPlagueToadsOfNurgleYawningMaw],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.tamurkhanSHorde.id,
        },
        daemonPoxRidersOfNurgle: {
             id: "daemonPoxRidersOfNurgle",
@@ -63219,6 +63469,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.plagueOgorsDamnedFlesh, this.abilities.plagueOgorsInsatiablyFamished, this.abilities.plagueOgorsPlagueContagion],
            attacks: [this.attacks.plagueOgorsCorrodedWeapons],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.tamurkhanSHorde.id,
        },
        saylTheFaithless: {
             id: "saylTheFaithless",
@@ -63529,6 +63780,7 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            abilities: [this.abilities.vorgarothTheScarredSkalokTheSkullHostOfKhorneMonstrousTrophies, this.abilities.vorgarothTheScarredSkalokTheSkullHostOfKhorneCrushingBulk, this.abilities.vorgarothTheScarredSkalokTheSkullHostOfKhorneEternalHunt, this.abilities.vorgarothTheScarredSkalokTheSkullHostOfKhorneFetteredServitude, this.abilities.vorgarothTheScarredSkalokTheSkullHostOfKhorneFuelledByDeath, this.abilities.vorgarothTheScarredSkalokTheSkullHostOfKhorneWingsOfFury, this.abilities.vorgarothTheScarredSkalokTheSkullHostOfKhorneFly, this.abilities.vorgarothTheScarredSkalokTheSkullHostOfKhorneMount],
            attacks: [this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneWhiteHotBalefire, this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneSkullCleaverAxeOfKhorne, this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneEvisceratingClaws, this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneCavernousJaws, this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneBrassPlatedTail],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        infernalEnrapturessHeraldOfSlaanesh: {
             id: "infernalEnrapturessHeraldOfSlaanesh",
@@ -63592,6 +63844,7 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            options: [],
            abilities: [this.abilities.squigHerdGoDatWay, this.abilities.squigHerdSquigsGoWild, this.abilities.squigHerdSquigHerders],
            attacks: [this.attacks.squigHerdFangFilledGob, this.attacks.squigHerdSquigProdder],
+           isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.gloomspiteGitz.id && ws.general && hasKeyword(ws.general.unit, [["MOONCLAN"]]),
        },
        scaremonger: {
             id: "scaremonger",
@@ -63714,6 +63967,7 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            commandAbilities: [this.abilities.loonbossBiteDaMoon],
            attacks: [this.attacks.loonbossMoonCutta, this.attacks.loonbossHugeFangFilledGobs, this.attacks.loonbossBallsAndChains, this.attacks.loonbossGrotsBashinStikks],
            isLeader: (ws: WarscrollInterface) => true,
+           isBehemoth: (ws: WarscrollInterface) => true,
        },
        loonbossWithGiantCaveSquig: {
             id: "loonbossWithGiantCaveSquig",

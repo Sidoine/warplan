@@ -17,7 +17,8 @@ async function computeUnitDamage(unit: Unit, melee?: boolean) {
             for (const ability of abilities) {
                 if (ability.effects) {
                     for (const effect of ability.effects) {
-                        await randomCombat.executeAbilityEffect(myState, enemyState, effect);
+                        const applied = await randomCombat.executeAbilityEffect(myState, enemyState, effect);
+                        if (applied && effect.ignoreOtherEffects) break;
                     }
                 }
             }
@@ -129,3 +130,9 @@ test("numberOfHitsOnUnmodified6", testattackaura({ numberOfHitsOnUnmodified6: 2 
 
 // 900 attacks: 300 hits soit 600 hits, donc 300 wounds, donc 250 MW
 test("numberOfHitsOnHit", testattackaura({ numberOfHitsOnHit: 2 }, 250/ 900));
+
+// 900 attacks: 300 hits et 600 non-hits qui rerollés donnent 200 hits, soit un total de 500 hits, donc 250 wounds, donc 5/6*250 MW
+test("rerollFailedHits", testattackaura({ rerollFailedHits: true }, 5/6*250/ 900));
+
+// 900 attacks: 300 hits, 150 wounds dont 150 wounds, 150 MW
+test("bonusRend", testattackaura({ bonusRend: -1 }, 150/ 900));

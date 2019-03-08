@@ -74,17 +74,20 @@ async function load() {
             schema: models,
             schemaVersion: schemaVersion
         })
-        let result = `import { DataStore, GrandAlliance, ExtraAbilityTest, WarscrollInterface, Box, AbilityCategory } from "./units";
+        let result = `import { Unit, DataStore, GrandAlliance, ExtraAbilityTest, WarscrollInterface, Box, AbilityCategory } from "./units";
+function hasKeyword(unit: Unit, keywords: string[][]) {
+    return keywords.some(x => x.every(y => unit.keywords.indexOf(y) >= 0));
+}
 
 const commandTraitAvailable: ExtraAbilityTest = (unit, ws) => unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
 function commandTraitWithKeywordAvailable(keywords: string[][]): ExtraAbilityTest {
-    return (unit, ws) => commandTraitAvailable(unit, ws) && keywords.some(x => x.every(y => unit.unit.keywords.indexOf(y) >= 0));
+    return (unit, ws) => commandTraitAvailable(unit, ws) && hasKeyword(unit.unit, keywords);
 }
 // const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
 //         && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
 
 function multiKeywordAvailable(category: string, allegianceKeyword: string, keywords: string[][]): ExtraAbilityTest {
-    return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && keywords.some(x => x.every(y => unit.unit.keywords.indexOf(y) >= 0));
+    return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && hasKeyword(unit.unit, keywords);
 }
  
 // function keywordAvailable(category: string, allegianceKeyword: string, keyword: string): ExtraAbilityTest {
@@ -118,6 +121,15 @@ export class DataStoreImpl implements DataStore {
 }
 
 load();
+
+function toAllegianceId(allegianceId: string) {
+    const id = toCamelCase(allegianceId);
+    if (id === "stormcastEternal") return "stormcastEternals";
+    if (id === "wanderer") return "wanderers";
+    if (id === "gitmob") return "gitmobGrots";
+    if (id === "darklingCoven") return "darklingCovens";
+    return id;
+}
 
 function getFactions(db: realm) {
     const factions: {id: string, grandAlliance: string, name: string}[] = [];
@@ -362,6 +374,10 @@ function getValue(value: string | undefined, name: string, unit: def.UnitWarscro
     return `"${value}"`;
 }
 
+function compoundKeywordsToString(keywords: def.CompoundKeyword[]) {
+    return `[${keywords.map(y => `[${y.keywords.map(z => `"${z.toUpperCase()}"`).join(', ')}]`).join(', ')}]`;
+}
+
 function getUnits(db: realm) {
     
     let result = 
@@ -414,23 +430,25 @@ function getUnits(db: realm) {
         }
         if (unit.battlefieldRoles) {
             for (const role of unit.battlefieldRoles) {
-                if (role === "Battleline") {
-                    result +=
-`           isBattleline: (ws: WarscrollInterface) => true,
-`
-                } else if (role === "Leader") {
-                    result +=
-`           isLeader: (ws: WarscrollInterface) => true,
-`
-                } else if (role === "Behemot") {
-                    result +=
-`           isBehemot: (ws: WarscrollInterface) => true,
-`
-                } else if (role === "Artillery") {
-                    result +=
-`           isArtillery: (ws: WarscrollInterface) => true,
-`
+                if (role === 'Other') continue;
+                result += 
+`           is${role}: (ws: WarscrollInterface) => true,
+`;
+            }
+        }
+        if (unit.overriddenRoles) {
+            for (const role of unit.overriddenRoles) {
+                if (unit.battlefieldRoles.some(x => x === role)) continue;
+                const conditions: string[] = [];
+                if (unit.overrideAllegiance) {
+                    conditions.push(`ws.allegiance.id === this.allegiances.${toAllegianceId(unit.overrideAllegiance)}.id`);
                 }
+                if (unit.overrideGeneralKeywords && unit.overrideGeneralKeywords.length) {
+                    conditions.push(`ws.general && hasKeyword(ws.general.unit, ${compoundKeywordsToString(unit.overrideGeneralKeywords)})`);
+                }
+                result += 
+`           is${role}: (ws: WarscrollInterface) => ${conditions.join(' && ')},
+`;
             }
         }
 
@@ -447,10 +465,6 @@ function getUnits(db: realm) {
 `   };
 `
     return result;
-}
-
-function compoundKeywordsToString(keywords: def.CompoundKeyword[]) {
-    return `[${keywords.map(y => `[${y.keywords.map(z => `"${z.toUpperCase()}"`).join(', ')}]`).join(', ')}]`;
 }
 
 function getExceptionalTraits(allegiance: def.RealmAllegiance, groups: def.ExceptionalTraitGroup[], name: string, usedNames: Map<string, boolean>) {
