@@ -253,6 +253,16 @@ export class Warscroll implements WarscrollInterface {
     minLeaders = 1;
     
     @computed
+    get maxPoints() {
+        return this.totalPoints <= 1000 ? 1000 : (this.totalPoints <= 2000 ? 2000: 2500);
+    }    
+    
+    @computed 
+    get extraCommandPoints() {
+        return Math.floor((this.maxPoints - this.totalPoints) / 50);
+    }
+
+    @computed
     get maxLeaders() {
         return this.totalPoints <= 1000 ? 4 : (this.totalPoints <= 2000 ? 6 : 8);
     } 

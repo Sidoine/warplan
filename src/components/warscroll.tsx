@@ -202,7 +202,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <Table.Body>
             {ranges.map((x, index) =>
             <Table.Row key={x}>
-                 <Table.HeaderCell>{ index === ranges.length - 1 ? `${x}+` : `${x}-${ranges[index+1] -1 }` }</Table.HeaderCell>
+                 <Table.HeaderCell>{x}</Table.HeaderCell>
                 {damageTable.columns.map(x => <Table.Cell key={x.name}> { x.values[index] } </Table.Cell>)}
             </Table.Row>)}
             </Table.Body>

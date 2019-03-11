@@ -21,6 +21,7 @@ import { Markers } from "./components/markers";
 import "./index.less";
 import { MarkersStore } from "./stores/markers";
 import { Stats } from "./components/stats";
+import { WarscrollView } from "./components/warscroll-view";
 
 const root = document.getElementById("root");
 
@@ -46,6 +47,7 @@ ReactDOM.render(
                     <Route exact path="/warscroll" component={Warscroll} />
                     <Route exact path="/markers" component={Markers}/>
                     <Route exact path="/stats" component={Stats}/>
+                    <Route exact path="/list" component={WarscrollView}/>
                 </Switch>
             </Container>
         </HashRouter>

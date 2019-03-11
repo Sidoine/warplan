@@ -1,5 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Unit, Ability, Attack, DamageColumn, Scenery, ModelOption } from "../units";
+import { Unit, Ability, Attack, Scenery } from "../units";
 import { override, artifactWithKeywordAvailable } from "./tools";
 
 function addEndlessSpells(data: DataStoreImpl):void {
@@ -697,105 +697,105 @@ function fixUnits(data: DataStoreImpl):void {
         lordOfBlight.attacks = [buboticHammer, thriceRipenedDeathHead, munificientDeathHead];
     }
 
-    {
-        const rotigus: Unit = data.units.rotigus;
+    // {
+    //     const rotigus: Unit = data.units.rotigus;
 
-        const gnarlrodEffect: DamageColumn = { name: "Gnarlrod", values: ["2+", "3+", "3+", "4+", "4+"]};
-        const fangedMawEffect: DamageColumn = { name: "Fanged Maw", values: ["2+", "3+", "3+", "4+", "4+"]};
-        const delugeEffect: DamageColumn = { name: "Deluge of Nurgle", values: ["4+", "5+", "5+", "6+", "6+"]};
+    //     const gnarlrodEffect: DamageColumn = { name: "Gnarlrod", values: ["2+", "3+", "3+", "4+", "4+"]};
+    //     const fangedMawEffect: DamageColumn = { name: "Fanged Maw", values: ["2+", "3+", "3+", "4+", "4+"]};
+    //     const delugeEffect: DamageColumn = { name: "Deluge of Nurgle", values: ["4+", "5+", "5+", "6+", "6+"]};
 
-        rotigus.damageTable = {
-            ranges: [0, 4, 7, 10, 13],
-            columns: [gnarlrodEffect, fangedMawEffect, delugeEffect]
-        }
+    //     rotigus.damageTable = {
+    //         ranges: [0, 4, 7, 10, 13],
+    //         columns: [gnarlrodEffect, fangedMawEffect, delugeEffect]
+    //     }
 
-        rotigus.move = 5;
-        rotigus.wounds = 16;
-        rotigus.bravery = 10;
-        rotigus.save = "4+";
+    //     rotigus.move = 5;
+    //     rotigus.wounds = 16;
+    //     rotigus.bravery = 10;
+    //     rotigus.save = "4+";
 
-        const blubberAndBile: Ability = { name: "Blubber and Bile", description: "Roll a dice each time you allocate a wound or mortal wounds to this model. On a 5+ the wound is negated. In addition, if the roll is 6+ and it is the combat phase, the attacking unie suffers 1 mortal wounds after all of its attacks have been made." };
-        const corpulentMass: Ability = { name: "Corpulent Mass", description: "In your hero phase, you can heal D3 wounds that have been allocated to this model" };
-        const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
-        const filth: Ability = { name: "Streams of Brackish Filth", description: "In your hero phase, roll a dice for each enemy unit that is within 6\" of Rotigus. On a 4+ the enemy units suffers D3 mortal wounds. Enemy units that can fly suffer D3 mortal wounds on a 6+ instead of 4+." };
-        const magic: Ability = { name: "Magic", description: "Rotigus is a WIZARD. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Deluge of Nurgle spells." };
-        const delugeOfNurgle: Ability = { name: "Deluge of Nurgle", description: "Deluge of Nurgle has a casting value of 7. If successfully cast, roll 7 dice. For each roll that equals or beats the Deluge of Nurgle value shown on the damage table above, you can pick an enemy unit that is visible to the caster. That unit suffers D3 mortal wounds. If this spell affects more than one enemy unit, you must pick a different enemy unit to suffer each set of D3 mortal wounds." };
+    //     const blubberAndBile: Ability = { name: "Blubber and Bile", description: "Roll a dice each time you allocate a wound or mortal wounds to this model. On a 5+ the wound is negated. In addition, if the roll is 6+ and it is the combat phase, the attacking unie suffers 1 mortal wounds after all of its attacks have been made." };
+    //     const corpulentMass: Ability = { name: "Corpulent Mass", description: "In your hero phase, you can heal D3 wounds that have been allocated to this model" };
+    //     const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
+    //     const filth: Ability = { name: "Streams of Brackish Filth", description: "In your hero phase, roll a dice for each enemy unit that is within 6\" of Rotigus. On a 4+ the enemy units suffers D3 mortal wounds. Enemy units that can fly suffer D3 mortal wounds on a 6+ instead of 4+." };
+    //     const magic: Ability = { name: "Magic", description: "Rotigus is a WIZARD. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Deluge of Nurgle spells." };
+    //     const delugeOfNurgle: Ability = { name: "Deluge of Nurgle", description: "Deluge of Nurgle has a casting value of 7. If successfully cast, roll 7 dice. For each roll that equals or beats the Deluge of Nurgle value shown on the damage table above, you can pick an enemy unit that is visible to the caster. That unit suffers D3 mortal wounds. If this spell affects more than one enemy unit, you must pick a different enemy unit to suffer each set of D3 mortal wounds." };
 
-        rotigus.abilities = [blubberAndBile, corpulentMass, mountain, filth, magic, delugeOfNurgle];
+    //     rotigus.abilities = [blubberAndBile, corpulentMass, mountain, filth, magic, delugeOfNurgle];
 
-        const gnarlrod: Attack = { name: "Gnarlrod", range: "3", melee: true, attacks: "5", toHit: gnarlrodEffect, toWound: "3+", rend: "-1", damage: "2" };
-        const maw: Attack = { name: "Fanged Maw", range: "1", melee: true, attacks: "D3", toHit: "3+", toWound: fangedMawEffect, rend: "-2", damage: "2" };
-        const nurglings: Attack = { name: "Host of Nurglings", range: "1", melee: true, attacks: "3", toHit: "5+", toWound: "5+", damage: "1" };
+    //     const gnarlrod: Attack = { name: "Gnarlrod", range: "3", melee: true, attacks: "5", toHit: gnarlrodEffect, toWound: "3+", rend: "-1", damage: "2" };
+    //     const maw: Attack = { name: "Fanged Maw", range: "1", melee: true, attacks: "D3", toHit: "3+", toWound: fangedMawEffect, rend: "-2", damage: "2" };
+    //     const nurglings: Attack = { name: "Host of Nurglings", range: "1", melee: true, attacks: "3", toHit: "5+", toWound: "5+", damage: "1" };
 
-        rotigus.attacks = [gnarlrod, maw, nurglings];
-    }
+    //     rotigus.attacks = [gnarlrod, maw, nurglings];
+    // }
 
-    {
-        const uncleanOne: Unit = data.units.greatUncleanOne;
+    // {
+    //     const uncleanOne: Unit = data.units.greatUncleanOne;
 
-        const noxiousBileEffect: DamageColumn = { name: "Noxious Bile", values: ["2+", "3+", "3+", "4+", "5+"]};
-        const plagueFlailEffect: DamageColumn = { name: "Plague Fail", values: ["2+", "3+", "3+", "4+", "4+"]};
-        const massiveBileswordEffect: DamageColumn = {name: "Massive Bilesword", values: [3,3,2,2,1]};
-        uncleanOne.damageTable = {
-            ranges: [0, 4, 7, 10, 13],
-            columns: [noxiousBileEffect, plagueFlailEffect, massiveBileswordEffect]
-        }
+    //     const noxiousBileEffect: DamageColumn = { name: "Noxious Bile", values: ["2+", "3+", "3+", "4+", "5+"]};
+    //     const plagueFlailEffect: DamageColumn = { name: "Plague Fail", values: ["2+", "3+", "3+", "4+", "4+"]};
+    //     const massiveBileswordEffect: DamageColumn = {name: "Massive Bilesword", values: [3,3,2,2,1]};
+    //     uncleanOne.damageTable = {
+    //         ranges: [0, 4, 7, 10, 13],
+    //         columns: [noxiousBileEffect, plagueFlailEffect, massiveBileswordEffect]
+    //     }
 
-        uncleanOne.move = 5;
-        uncleanOne.wounds = 16;
-        uncleanOne.save = "4+";
-        uncleanOne.bravery = 10;
+    //     uncleanOne.move = 5;
+    //     uncleanOne.wounds = 16;
+    //     uncleanOne.save = "4+";
+    //     uncleanOne.bravery = 10;
 
-        const blubberAndBile: Ability = { name: "Blubber and Bile", description: "Roll a dice each time you allocate a wound or mortal wounds to this model. On a 5+ the wound is negated. In addition, if the roll is 6+ and it is the combat phase, the attacking unie suffers 1 mortal wounds after all of its attacks have been made." };
-        const corpulentMass: Ability = { name: "Corpulent Mass", description: "In your hero phase, you can heal D3 wounds that have been allocated to this model" };
-        const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
-        const magic: Ability = { name: "Magic", description: "A Great Unclean One is a WIZARD. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Winds spells." };
-        const plagueWind: Ability = { name: "Plague Wind", description: "Plague Wind has a casting value of 7. If successfully cast, pick a point on the battlefield within 14\" of the caster and draw an imaginary straight line between it and the closest part of the caster. Each unit (friend of foe) crossed by the center of the line suffers D3 mortal wounds. Units with the NURGLE keyword are instead invigorated by the Plague Wind; if it passes over them, heal D3 wounds that have been allocated to the unit." };
+    //     const blubberAndBile: Ability = { name: "Blubber and Bile", description: "Roll a dice each time you allocate a wound or mortal wounds to this model. On a 5+ the wound is negated. In addition, if the roll is 6+ and it is the combat phase, the attacking unie suffers 1 mortal wounds after all of its attacks have been made." };
+    //     const corpulentMass: Ability = { name: "Corpulent Mass", description: "In your hero phase, you can heal D3 wounds that have been allocated to this model" };
+    //     const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
+    //     const magic: Ability = { name: "Magic", description: "A Great Unclean One is a WIZARD. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Winds spells." };
+    //     const plagueWind: Ability = { name: "Plague Wind", description: "Plague Wind has a casting value of 7. If successfully cast, pick a point on the battlefield within 14\" of the caster and draw an imaginary straight line between it and the closest part of the caster. Each unit (friend of foe) crossed by the center of the line suffers D3 mortal wounds. Units with the NURGLE keyword are instead invigorated by the Plague Wind; if it passes over them, heal D3 wounds that have been allocated to the unit." };
         
-        uncleanOne.abilities = [blubberAndBile, corpulentMass, mountain, magic, plagueWind];
+    //     uncleanOne.abilities = [blubberAndBile, corpulentMass, mountain, magic, plagueWind];
         
-        // doomsday bell
-        const reverberatingSummons: Ability = { name: "Reverberating Summons", description: "If a NURGLE unit begins its movement phase within 7\" of any models with a Doomsday Bell, add 3 to its Move characteristic until the end of the phase." };        
-        const doomsdayBell: Attack = { name: "Doomsday Bell", range: "2", melee: true, attacks: "4", toHit: "4+", toWound: "3+", rend: "-1", damage: "1" };
+    //     // doomsday bell
+    //     const reverberatingSummons: Ability = { name: "Reverberating Summons", description: "If a NURGLE unit begins its movement phase within 7\" of any models with a Doomsday Bell, add 3 to its Move characteristic until the end of the phase." };        
+    //     const doomsdayBell: Attack = { name: "Doomsday Bell", range: "2", melee: true, attacks: "4", toHit: "4+", toWound: "3+", rend: "-1", damage: "1" };
 
-        // bileblade
-        const putridOffering: Ability = { name: "Putrid Offering", description: "If this model has a Bileblade and attempts to cast or unbind a spell, you can say that it is using the Bileblade to hook out a portion of its own rotting guts as an offering to Nurgle. If you do do so, this model immediatly suffers 1 mortal wound (which cannot be negated), but you can then add 1 to the casting or unbinding roll." };
-        const bileblade: Attack = { name: "Bileblade", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "1" };
+    //     // bileblade
+    //     const putridOffering: Ability = { name: "Putrid Offering", description: "If this model has a Bileblade and attempts to cast or unbind a spell, you can say that it is using the Bileblade to hook out a portion of its own rotting guts as an offering to Nurgle. If you do do so, this model immediatly suffers 1 mortal wound (which cannot be negated), but you can then add 1 to the casting or unbinding roll." };
+    //     const bileblade: Attack = { name: "Bileblade", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "1" };
                 
-        const noxiousBile: Attack = { name: "Noxious Bile", melee: false, range: "7", attacks: "D6", toHit: "3+", toWound: noxiousBileEffect, rend: "-2", damage: "1" };
-        const hostOfNurglings: Attack = { name: "Host of Nurglings", range: "1", melee: true, attacks: "3", toHit: "5+", toWound: "5+", damage: "1" };
+    //     const noxiousBile: Attack = { name: "Noxious Bile", melee: false, range: "7", attacks: "D6", toHit: "3+", toWound: noxiousBileEffect, rend: "-2", damage: "1" };
+    //     const hostOfNurglings: Attack = { name: "Host of Nurglings", range: "1", melee: true, attacks: "3", toHit: "5+", toWound: "5+", damage: "1" };
 
-        uncleanOne.attacks = [noxiousBile, hostOfNurglings];
+    //     uncleanOne.attacks = [noxiousBile, hostOfNurglings];
 
-        const plagueFlail: Attack = { name: "Plague Flail", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: plagueFlailEffect, rend: "-1", damage: "2" };
-        const massiveBilesword: Attack = { name: "Massive Bilesword", range: "2", melee: true, attacks: massiveBileswordEffect, toHit: "4+", toWound: "3", rend: "-2", damage: "3" };
+    //     const plagueFlail: Attack = { name: "Plague Flail", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: plagueFlailEffect, rend: "-1", damage: "2" };
+    //     const massiveBilesword: Attack = { name: "Massive Bilesword", range: "2", melee: true, attacks: massiveBileswordEffect, toHit: "4+", toWound: "3", rend: "-2", damage: "3" };
     
-        const plagueFlailOption: ModelOption = {
-            name: "Plague Flail",
-            id: "plagueFlail",
-            attacks: [plagueFlail]
-        };
-        const bilebladeOption: ModelOption = {
-            name: "Bileblade",
-            id: "bileblade",
-            attacks: [bileblade],
-            abilities: [putridOffering]
-        }
+    //     const plagueFlailOption: ModelOption = {
+    //         name: "Plague Flail",
+    //         id: "plagueFlail",
+    //         attacks: [plagueFlail]
+    //     };
+    //     const bilebladeOption: ModelOption = {
+    //         name: "Bileblade",
+    //         id: "bileblade",
+    //         attacks: [bileblade],
+    //         abilities: [putridOffering]
+    //     }
 
-        const bileswordOption: ModelOption = {
-            name: "Massive Bilesword",
-            id: "massivebilesword",
-            attacks: [massiveBilesword]
-        };
+    //     const bileswordOption: ModelOption = {
+    //         name: "Massive Bilesword",
+    //         id: "massivebilesword",
+    //         attacks: [massiveBilesword]
+    //     };
     
-        const doomsdayOption: ModelOption = {
-            name: "Doomsday Bell",
-            id: "doomsdaybell",
-            attacks: [doomsdayBell],
-            abilities: [reverberatingSummons]
-        };
-        uncleanOne.options = [plagueFlailOption, bilebladeOption, bileswordOption, doomsdayOption];
-    }
+    //     const doomsdayOption: ModelOption = {
+    //         name: "Doomsday Bell",
+    //         id: "doomsdaybell",
+    //         attacks: [doomsdayBell],
+    //         abilities: [reverberatingSummons]
+    //     };
+    //     uncleanOne.options = [plagueFlailOption, bilebladeOption, bileswordOption, doomsdayOption];
+    // }
 
     {
         const poxbringer: Unit = data.units.poxbringerHeraldOfNurgle;
@@ -989,137 +989,132 @@ function fixUnits(data: DataStoreImpl):void {
         lordOfPlagues.attacks = [blade];
     }
 
-    {
-        const glottkin: Unit = data.units.theGlottkin;
+    // {
+    //     const glottkin: Unit = data.units.theGlottkin;
 
-        const moveEffect: DamageColumn = { name: "Move", values: ["8\"", "7\"", "6\"", "5\"", "4\""]};
-        const pestilentTorrentEffect: DamageColumn = { name: "Pestilent Torrent", values: ["2D6", "D6", "D3", "2", "1"]};
-        const tentacleEffect: DamageColumn = {name: "Ghurk's Flailing Tentacle", values: [6,5,4,3,2]};
-        glottkin.damageTable = {
-            ranges: [0, 4, 7, 10, 13],
-            columns: [moveEffect, pestilentTorrentEffect, tentacleEffect]
-        }
+    //     const moveEffect: DamageColumn = { name: "Move", values: ["8\"", "7\"", "6\"", "5\"", "4\""]};
+    //     const pestilentTorrentEffect: DamageColumn = { name: "Pestilent Torrent", values: ["2D6", "D6", "D3", "2", "1"]};
+    //     const tentacleEffect: DamageColumn = {name: "Ghurk's Flailing Tentacle", values: [6,5,4,3,2]};
+    //     glottkin.damageTable = {
+    //         ranges: [0, 4, 7, 10, 13],
+    //         columns: [moveEffect, pestilentTorrentEffect, tentacleEffect]
+    //     }
 
-        glottkin.move = moveEffect;
-        glottkin.wounds = 18;
-        glottkin.bravery = 9;
-        glottkin.save = "4+";
+    //     glottkin.move = moveEffect;
+    //     glottkin.wounds = 18;
+    //     glottkin.bravery = 9;
+    //     glottkin.save = "4+";
 
-        const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
-        const nurgle: Ability = { name: "Blessing of Nurgle", description: "At the start of your hero phase, you can heal D3 wounds that have been allocated to this model." };
-        const horrific: Ability = { name: "Horrific Opponent", description: "At the start of the combat phase, roll 2D6 for each enemy unit within 7\" of this model. If the roll is greater than that unit's Bravery characteristic, subtract 1 from hit rolls for that unit in that combat phase." };
-        const magic: Ability = { name: "Magic", description: "Ethrac Glott is a WIZARD. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Fleshy Abudance spells." };
-        const abundance: Ability = { name: "Fleshy Abundance", description: "Fleshy abundance has a casting value of 7. If successfully cast, pick a friendly unit within 14\" of the caster that is visible to them. Add 1 to the Wound characteristic of all models in that unit until your next hero phase. At the start of your next hero phase, the unit's Wounds characteristic is reduced to its original value. Note that this can result in a model that has been allocated wounds being slain." };
+    //     const mountain: Ability = { name: "Mountain of Loathsome Flesh", description: "Roll a dice for each enemy unit that is within 1\" of this model after this model completes a charge move. On a 4+, the enemy unit suffers D3 mortal wounds." };
+    //     const nurgle: Ability = { name: "Blessing of Nurgle", description: "At the start of your hero phase, you can heal D3 wounds that have been allocated to this model." };
+    //     const horrific: Ability = { name: "Horrific Opponent", description: "At the start of the combat phase, roll 2D6 for each enemy unit within 7\" of this model. If the roll is greater than that unit's Bravery characteristic, subtract 1 from hit rolls for that unit in that combat phase." };
+    //     const magic: Ability = { name: "Magic", description: "Ethrac Glott is a WIZARD. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Fleshy Abudance spells." };
+    //     const abundance: Ability = { name: "Fleshy Abundance", description: "Fleshy abundance has a casting value of 7. If successfully cast, pick a friendly unit within 14\" of the caster that is visible to them. Add 1 to the Wound characteristic of all models in that unit until your next hero phase. At the start of your next hero phase, the unit's Wounds characteristic is reduced to its original value. Note that this can result in a model that has been allocated wounds being slain." };
 
-        glottkin.abilities = [mountain, nurgle, horrific, magic, abundance];
+    //     glottkin.abilities = [mountain, nurgle, horrific, magic, abundance];
 
-        const lord: Ability = { name: "Lords of Nurgle", description: "You can use this command ability in your hero phase. If you do, then until your next hero phase add 1 to the Attacks characteristic of any melee weapon used by friendly NURGLE units while they are within 14\" of this model." };
+    //     const lord: Ability = { name: "Lords of Nurgle", description: "You can use this command ability in your hero phase. If you do, then until your next hero phase add 1 to the Attacks characteristic of any melee weapon used by friendly NURGLE units while they are within 14\" of this model." };
 
-        glottkin.commandAbilities = [lord];
+    //     glottkin.commandAbilities = [lord];
 
-        const torrent: Attack = { name: "Pestilent Torrent", range: "12", melee: false, attacks: "1", toHit: "3+", toWound: "4+", damage: pestilentTorrentEffect, rend: "-2" };
-        const tentacle: Attack = { name: "Ghurk's Flailing Tentacle", range: "3", melee: true, attacks: tentacleEffect, toHit: "4+", toWound: "2+", damage: "2", rend: "-2" };
-        const maw: Attack = { name: "Ghurk's Laprey Maw", range: "2", melee: true, attacks: 1, toHit: "3+", toWound: "2+", damage: "D3", rend: "-1" };
-        const scythe: Attack = { name: "Otto's Poison-slick Scythe", range: "2", melee: true, attacks: 3, toHit: "3+", toWound: "3+", damage: "D3", rend: "-1" };
+    //     const torrent: Attack = { name: "Pestilent Torrent", range: "12", melee: false, attacks: "1", toHit: "3+", toWound: "4+", damage: pestilentTorrentEffect, rend: "-2" };
+    //     const tentacle: Attack = { name: "Ghurk's Flailing Tentacle", range: "3", melee: true, attacks: tentacleEffect, toHit: "4+", toWound: "2+", damage: "2", rend: "-2" };
+    //     const maw: Attack = { name: "Ghurk's Laprey Maw", range: "2", melee: true, attacks: 1, toHit: "3+", toWound: "2+", damage: "D3", rend: "-1" };
+    //     const scythe: Attack = { name: "Otto's Poison-slick Scythe", range: "2", melee: true, attacks: 3, toHit: "3+", toWound: "3+", damage: "D3", rend: "-1" };
 
-        glottkin.attacks = [torrent, tentacle, maw, scythe];
-    }
+    //     glottkin.attacks = [torrent, tentacle, maw, scythe];
+    // }
 
-    {
-        const orghott: Unit = data.units.orghottsDaemonspew;
+    // {
+    //     const orghott: Unit = data.units.orghottsDaemonspew;
 
-        const moveEffect: DamageColumn = { name: "Move", values: ["10\"", "8\"", "6\"", "6\"", "4\""]};
-        const tongueEffect: DamageColumn = { name: "Grasping Tongue", values: ["2+", "3+", "4+", "5+", "6+"]};
-        const clawEffect: DamageColumn = {name: "Monstruous Claws", values: [5,4,4,4,3]};
+    //     const moveEffect: DamageColumn = { name: "Move", values: ["10\"", "8\"", "6\"", "6\"", "4\""]};
+    //     const tongueEffect: DamageColumn = { name: "Grasping Tongue", values: ["2+", "3+", "4+", "5+", "6+"]};
+    //     const clawEffect: DamageColumn = {name: "Monstruous Claws", values: [5,4,4,4,3]};
         
-        orghott.damageTable = {
-            ranges: [0, 3, 5, 8, 0],
-            columns: [moveEffect, tongueEffect, clawEffect]
-        };
+    //     orghott.damageTable = {
+    //         ranges: [0, 3, 5, 8, 0],
+    //         columns: [moveEffect, tongueEffect, clawEffect]
+    //     };
 
-        orghott.move = moveEffect;
-        orghott.wounds = 12;
-        orghott.save = "3+";
-        orghott.bravery = 9;
+    //     orghott.move = moveEffect;
+    //     orghott.wounds = 12;
+    //     orghott.save = "3+";
+    //     orghott.bravery = 9;
 
-        const acid: Ability = { name: "Acid Ichor", description: "Roll a dice each time you allocate a wound to this model in the combat phase (and it is not negated). On a 4+ the attacking unit suffers 1 mortal wound after all its attacks have been made." };
-        const halfblood: Ability = { name: "Fury of the Halfblood", description: "Add D3 to the Attacks characteristic of Orghotts Daemonspew's Rotaxes if he made a charge move in the same turn." };
-        const rotaxes: Ability = { name: "The Rotaxes", description: "At the end of the combat phase, roll a dice for each enemy model that was allocated any wounds caused by the Rotaxes in that combat phase and was not slain. On a 4+ that model suffers 1 mortal wound." };
+    //     const acid: Ability = { name: "Acid Ichor", description: "Roll a dice each time you allocate a wound to this model in the combat phase (and it is not negated). On a 4+ the attacking unit suffers 1 mortal wound after all its attacks have been made." };
+    //     const halfblood: Ability = { name: "Fury of the Halfblood", description: "Add D3 to the Attacks characteristic of Orghotts Daemonspew's Rotaxes if he made a charge move in the same turn." };
+    //     const rotaxes: Ability = { name: "The Rotaxes", description: "At the end of the combat phase, roll a dice for each enemy model that was allocated any wounds caused by the Rotaxes in that combat phase and was not slain. On a 4+ that model suffers 1 mortal wound." };
 
-        orghott.abilities = [acid, halfblood, rotaxes];
+    //     orghott.abilities = [acid, halfblood, rotaxes];
 
-        const fester: Ability = { name: "Fester and Rot", description: "You can use this command ability in your hero phase. If you do, pick a friendly NURGLE unit within 14\" of Orghotts Daemonspew. Re-roll failed wound rolls for that unit until your next hero phase." };
+    //     const fester: Ability = { name: "Fester and Rot", description: "You can use this command ability in your hero phase. If you do, pick a friendly NURGLE unit within 14\" of Orghotts Daemonspew. Re-roll failed wound rolls for that unit until your next hero phase." };
 
-        orghott.commandAbilities = [fester];
+    //     orghott.commandAbilities = [fester];
 
-        const tongue: Attack = { name: "Whippermaw's Grasping Tongue", range: "6", melee: false, attacks: "1", toHit: "3+", toWound: tongueEffect, damage: "D6", rend: "-1" };
-        const rotaxe: Attack = { name: "The Rotaxes", range: "2", melee: true, attacks: "5", toHit: "3+", toWound: "3+", damage: "1", rend: "-1" };
-        const claws: Attack = { name: "Whippermaw's Monstruous Claws", range: "3", melee: true, attacks: clawEffect, toHit: "4+", toWound: "2+", damage: "1", rend: "-1" };
+    //     const tongue: Attack = { name: "Whippermaw's Grasping Tongue", range: "6", melee: false, attacks: "1", toHit: "3+", toWound: tongueEffect, damage: "D6", rend: "-1" };
+    //     const rotaxe: Attack = { name: "The Rotaxes", range: "2", melee: true, attacks: "5", toHit: "3+", toWound: "3+", damage: "1", rend: "-1" };
+    //     const claws: Attack = { name: "Whippermaw's Monstruous Claws", range: "3", melee: true, attacks: clawEffect, toHit: "4+", toWound: "2+", damage: "1", rend: "-1" };
 
-        orghott.attacks = [tongue, rotaxe, claws];
-    }
+    //     orghott.attacks = [tongue, rotaxe, claws];
+    // }
 
-    {
-        const bloab: Unit = data.units.bloabRotspawned;
+    // {
+    //     const bloab: Unit = data.units.bloabRotspawned;
 
-        const moveEffect: DamageColumn = { name: "Move", values: ["10\"", "8\"", "6\"", "6\"", "4\""]};
-        const bileEffect: DamageColumn = { name: "Grasping Tongue", values: ["2+", "3+", "3+", "4+", "4+"]};
-        const clawEffect: DamageColumn = {name: "Monstruous Claws", values: [5,4,4,4,3]};
+    //     const moveEffect: DamageColumn = { name: "Move", values: ["10\"", "8\"", "6\"", "6\"", "4\""]};
+    //     const bileEffect: DamageColumn = { name: "Grasping Tongue", values: ["2+", "3+", "3+", "4+", "4+"]};
+    //     const clawEffect: DamageColumn = {name: "Monstruous Claws", values: [5,4,4,4,3]};
         
-        bloab.damageTable = {
-            ranges: [0, 3, 5, 8, 10],
-            columns: [moveEffect, bileEffect, clawEffect]
-        };
+    //     bloab.damageTable = {
+    //         ranges: [0, 3, 5, 8, 10],
+    //         columns: [moveEffect, bileEffect, clawEffect]
+    //     };
 
-        bloab.move = moveEffect;
-        bloab.wounds = 12;
-        bloab.save = "4+";
-        bloab.bravery = 9;
+    //     bloab.move = moveEffect;
+    //     bloab.wounds = 12;
+    //     bloab.save = "4+";
+    //     bloab.bravery = 9;
 
-        const flies: Ability = { name: "Daemon-flies", description: "At the start of your hero phase, roll a dice for each enemy unit within 7\" of Bloab Rotspawned. On a 4+ subtract 1 from hit rolls for that unit until your next hero phase." };
-        const bells: Ability = { name: "Windspeaker Bells", description: "Subtract 1 from the casting rolls of enemy WIZARD while they are within 14\" of Bloab Rotspawned." };
-        const magic: Ability = { name: "Magic", description: "Bloab Rotspawed is a WIZARD. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Miasma of Pestilence spells." };
-        const miasma: Ability = { name: "Miasma of Pestilence", description: "Miasma of Pestilence has a casting value of 6. If successfully cast, pick an enemy unit within 14\" of the caster that is visible to them. Until your next hero phase, roll a dice at the end of each phase in which any wounds or mortal wounds were allocated to that unit and not negated. On a 2+ that unit suffers D3 mortal wounds." };
+    //     const flies: Ability = { name: "Daemon-flies", description: "At the start of your hero phase, roll a dice for each enemy unit within 7\" of Bloab Rotspawned. On a 4+ subtract 1 from hit rolls for that unit until your next hero phase." };
+    //     const bells: Ability = { name: "Windspeaker Bells", description: "Subtract 1 from the casting rolls of enemy WIZARD while they are within 14\" of Bloab Rotspawned." };
+    //     const magic: Ability = { name: "Magic", description: "Bloab Rotspawed is a WIZARD. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Miasma of Pestilence spells." };
+    //     const miasma: Ability = { name: "Miasma of Pestilence", description: "Miasma of Pestilence has a casting value of 6. If successfully cast, pick an enemy unit within 14\" of the caster that is visible to them. Until your next hero phase, roll a dice at the end of each phase in which any wounds or mortal wounds were allocated to that unit and not negated. On a 2+ that unit suffers D3 mortal wounds." };
         
-        bloab.abilities = [flies, bells, magic, miasma];
+    //     bloab.abilities = [flies, bells, magic, miasma];
 
-        const bile: Attack = { name: "Bilespurter's Vile Bile", range: "12", melee: false, attacks: "D3", toHit: "4+", toWound: bileEffect, damage: "D3", rend: "-2" };
-        const scythe: Attack = { name: "Harvestman's Scythe", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: "3+", damage: "2", rend: "-1" };
-        const claws: Attack = { name: "Bilespurter's Monstruous Claws", range: "3", melee: true, attacks: clawEffect, toHit: "4+", toWound: "2+", damage: "1", rend: "-1" };
+    //     const bile: Attack = { name: "Bilespurter's Vile Bile", range: "12", melee: false, attacks: "D3", toHit: "4+", toWound: bileEffect, damage: "D3", rend: "-2" };
+    //     const scythe: Attack = { name: "Harvestman's Scythe", range: "2", melee: true, attacks: "3", toHit: "3+", toWound: "3+", damage: "2", rend: "-1" };
+    //     const claws: Attack = { name: "Bilespurter's Monstruous Claws", range: "3", melee: true, attacks: clawEffect, toHit: "4+", toWound: "2+", damage: "1", rend: "-1" };
 
-        bloab.attacks = [bile, scythe, claws];
-    }
+    //     bloab.attacks = [bile, scythe, claws];
+    // }
 
-    {
-        const morbidex: Unit = data.units.morbidexTwiceborn;
+    // {
+    //     const morbidex: Unit = data.units.morbidexTwiceborn;
 
-        const moveEffect: DamageColumn = { name: "Move", values: ["10\"", "8\"", "6\"", "6\"", "4\""]};
-        const tongueEffect: DamageColumn = { name: "Slabrous Tongues", values: ["2+", "2+", "3+", "4+", "5+"]};
-        const clawEffect: DamageColumn = {name: "Monstruous Claws", values: [5,4,4,4,3]};
+    //     const moveEffect: DamageColumn = { name: "Move", values: ["10\"", "8\"", "6\"", "6\"", "4\""]};
+    //     const tongueEffect: DamageColumn = { name: "Slabrous Tongues", values: ["2+", "2+", "3+", "4+", "5+"]};
+    //     const clawEffect: DamageColumn = {name: "Monstruous Claws", values: [5,4,4,4,3]};
         
-        morbidex.damageTable = {
-            ranges: [0, 3, 5, 8, 10],
-            columns: [moveEffect, tongueEffect, clawEffect]
-        };
+    //          morbidex.move = moveEffect;
+    //     morbidex.wounds = 12;
+    //     morbidex.save = "3+";
+    //     morbidex.bravery = 9;
 
-        morbidex.move = moveEffect;
-        morbidex.wounds = 12;
-        morbidex.save = "3+";
-        morbidex.bravery = 9;
-
-        const nurglings: Ability = { name: "Lord of Nurglings", description: "At the start of your hero phase, you can pick 1 friendly Nurglings unit within 7\" of Morbidex Twiceborn and add 1 model to it." };
-        const mites: Ability = { name: "Malicious Mites", description: "Add 1 to the wound rolls for friendly Nurglings units while they are within 7\" of Morbidex Twiceborn." };
-        const rot: Ability = { name: "Nurgle's Rot", description: "At the start of your hero phase, roll a dice for each unit (friend or foe) within 3\"  of any units with this ability. On the roll of a 6, that unit suffers D3 mortal wounds. Units with the NURGLE keyword are unaffected by this ability." };
-        const regrowth: Ability = { name: "Repugnant Regrowth", description: "Roll a dice in your hero phase. On a 4+ heal 1 wound that has been allocated to Morbidex Twiceborn. On a 6+ heal D3 wounds instead." };
+    //     const nurglings: Ability = { name: "Lord of Nurglings", description: "At the start of your hero phase, you can pick 1 friendly Nurglings unit within 7\" of Morbidex Twiceborn and add 1 model to it." };
+    //     const mites: Ability = { name: "Malicious Mites", description: "Add 1 to the wound rolls for friendly Nurglings units while they are within 7\" of Morbidex Twiceborn." };
+    //     const rot: Ability = { name: "Nurgle's Rot", description: "At the start of your hero phase, roll a dice for each unit (friend or foe) within 3\"  of any units with this ability. On the roll of a 6, that unit suffers D3 mortal wounds. Units with the NURGLE keyword are unaffected by this ability." };
+    //     const regrowth: Ability = { name: "Repugnant Regrowth", description: "Roll a dice in your hero phase. On a 4+ heal 1 wound that has been allocated to Morbidex Twiceborn. On a 6+ heal D3 wounds instead." };
                 
-        morbidex.abilities = [nurglings, mites, rot, regrowth];
+    //     morbidex.abilities = [nurglings, mites, rot, regrowth];
 
-        const tongue: Attack = { name: "Slabrous Tongues", range: "6", melee: false, attacks: "3", toHit: "3+", toWound: tongueEffect, damage: "1", rend: "-1" };
-        const scythe: Attack = { name: "Fleshreaper Scythe", range: "2", melee: true, attacks: "5", toHit: "3+", toWound: "3+", damage: "2", rend: "-1" };
-        const claws: Attack = { name: "Monstruous Claws", range: "3", melee: true, attacks: clawEffect, toHit: "4+", toWound: "2+", damage: "1", rend: "-1" };
+    //     const tongue: Attack = { name: "Slabrous Tongues", range: "6", melee: false, attacks: "3", toHit: "3+", toWound: tongueEffect, damage: "1", rend: "-1" };
+    //     const scythe: Attack = { name: "Fleshreaper Scythe", range: "2", melee: true, attacks: "5", toHit: "3+", toWound: "3+", damage: "2", rend: "-1" };
+    //     const claws: Attack = { name: "Monstruous Claws", range: "3", melee: true, attacks: clawEffect, toHit: "4+", toWound: "2+", damage: "1", rend: "-1" };
 
-        morbidex.attacks = [tongue, scythe, claws];
-    }
+    //     morbidex.attacks = [tongue, scythe, claws];
+    // }
 }
 
 export function overrideNurgle(data: DataStoreImpl):void {

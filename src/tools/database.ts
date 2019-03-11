@@ -336,15 +336,19 @@ function getAttacks(db: realm) {
     return result;
 }
 
+function getUnitId(unit: def.UnitWarscroll, usedNames: Map<string, boolean>) {
+    const name = unit.subName ? `${unit.name} ${unit.subName}` : unit.name;
+    return getId(name, unit.id, usedNames);
+}
+
 function getDamageTables(db: realm) {
     let result = 
 `   damageTables = {
 `;
     const usedNames = new Map<string, boolean>();
     for (const unit of db.objects<def.UnitWarscroll>(model.UnitWarscroll.name)) {
-        const name = unit.subName ? `${unit.name} ${unit.subName}` : unit.name;
-        const id = getId(name, unit.id, usedNames);
-        if (unit.damageTable.length === 0) continue;
+        const id = getUnitId(unit, usedNames);
+        if (!id || unit.damageTable.length === 0) continue;
         const damageTable = unit.damageTable;
         result += 
 `
@@ -385,8 +389,7 @@ function getUnits(db: realm) {
 `;
     const usedNames = new Map<string, boolean>();
     for (const unit of db.objects<def.UnitWarscroll>(model.UnitWarscroll.name)) {
-        const name = unit.subName ? `${unit.name} ${unit.subName}` : unit.name;
-        const id = getId(name, unit.id, usedNames);
+        const id = getUnitId(unit, usedNames);
         if (!id) continue;
         result += 
 `       ${id}: {
@@ -454,7 +457,14 @@ function getUnits(db: realm) {
 
         if (unit.magicBlurb) {
             result +=
-`           magicDescription: ${escapeQuotedString(unit.magicBlurb)},`
+`           magicDescription: ${escapeQuotedString(unit.magicBlurb)},
+`
+        }
+
+        if (unit.damageTable.length > 0) {
+            result +=
+`           damageTable: this.damageTables.${id},
+`
         }
 
         result += 

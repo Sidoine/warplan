@@ -292,7 +292,7 @@ export function getSumValues(value1: Value, value2: Value): Value {
 }
 
 export interface DamageTable {
-    ranges: number[];
+    ranges: string[];
     columns: DamageColumn[];
 }
 

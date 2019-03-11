@@ -48159,7 +48159,8 @@ After rolling a dice for each unit from this battalion, roll a dice for each ene
            commandAbilities: [this.abilities.morathiHighOracleOfKhaineWorshipThroughBloodshed],
            attacks: [this.attacks.morathiHighOracleOfKhaineHeartrender, this.attacks.morathiHighOracleOfKhaineBladedWings],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Morathi, High Oracle of Khaine is a Wizard. She can attempt to cast three spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Arnzipal’s Black Horror spells.",       },
+           magicDescription: "Morathi, High Oracle of Khaine is a Wizard. She can attempt to cast three spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Arnzipal’s Black Horror spells.",
+       },
        morathiTheShadowQueen: {
             id: "morathiTheShadowQueen",
             model: this.models.morathiTheShadowQueen,
@@ -48180,7 +48181,9 @@ After rolling a dice for each unit from this battalion, roll a dice for each ene
            abilities: [this.abilities.morathiTheShadowQueenMonstrousRevelation, this.abilities.morathiTheShadowQueenGazeOfMorathi, this.abilities.morathiTheShadowQueenTheIronHeartOfKhaine, this.abilities.morathiTheShadowQueenFly, this.abilities.morathiTheShadowQueenArnzipalSBlackHorror],
            attacks: [this.attacks.morathiTheShadowQueenGazeOfMorathi, this.attacks.morathiTheShadowQueenHeartrender, this.attacks.morathiTheShadowQueenCrownOfSerpents, this.attacks.morathiTheShadowQueenEnvenomedTail],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Morathi, the Shadow Queen is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Arnzipal’s Black Horror spells.",       },
+           magicDescription: "Morathi, the Shadow Queen is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Arnzipal’s Black Horror spells.",
+           damageTable: this.damageTables.morathiTheShadowQueen,
+       },
        hagQueen: {
             id: "hagQueen",
             model: this.models.hagQueen,
@@ -48291,6 +48294,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.hagQueenOnCauldronOfBloodTorrentOfBurningBlood, this.attacks.hagQueenOnCauldronOfBloodWitchAelvesSacrificialKnives, this.attacks.hagQueenOnCauldronOfBloodHagQueenSBladeOfKhaine, this.attacks.hagQueenOnCauldronOfBloodAvatarOfKhaineSSword],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.hagQueenOnCauldronOfBlood,
        },
        witchAelves: {
             id: "witchAelves",
@@ -48356,6 +48360,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.slaughterQueenOnCauldronOfBloodTorrentOfBurningBlood, this.attacks.slaughterQueenOnCauldronOfBloodWitchAelvesSacrificialKnives, this.attacks.slaughterQueenOnCauldronOfBloodSlaughterQueenSBladeOfKhaine, this.attacks.slaughterQueenOnCauldronOfBloodSlaughterQueenSDeathsword, this.attacks.slaughterQueenOnCauldronOfBloodAvatarOfKhaineSSword],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.slaughterQueenOnCauldronOfBlood,
        },
        bloodwrackShrine: {
             id: "bloodwrackShrine",
@@ -48378,7 +48383,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.bloodwrackShrineBloodwrackStare, this.attacks.bloodwrackShrineTailOfSerpents, this.attacks.bloodwrackShrineWhisperclaw, this.attacks.bloodwrackShrineBloodwrackSpear, this.attacks.bloodwrackShrineShrinekeepersGoadstaves],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "The Bloodwrack Medusa atop a Bloodwrack Shrine can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. A Bloodwrack Medusa knows the Arcane Bolt, Mystic Shield and Enfeebling Foe spells.",       },
+           magicDescription: "The Bloodwrack Medusa atop a Bloodwrack Shrine can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. A Bloodwrack Medusa knows the Arcane Bolt, Mystic Shield and Enfeebling Foe spells.",
+           damageTable: this.damageTables.bloodwrackShrine,
+       },
        bloodStalkers: {
             id: "bloodStalkers",
             model: this.models.bloodStalkers,
@@ -48419,7 +48426,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.bloodwrackMedusaBloodwrackStare, this.abilities.bloodwrackMedusaEnfeeblingFoe],
            attacks: [this.attacks.bloodwrackMedusaBloodwrackStare, this.attacks.bloodwrackMedusaWhisperclaw, this.attacks.bloodwrackMedusaTailOfSerpents, this.attacks.bloodwrackMedusaBloodwrackSpear],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Bloodwrack Medusa can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Enfeebling Foe spells.",       },
+           magicDescription: "A Bloodwrack Medusa can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Enfeebling Foe spells.",
+       },
        doomfireWarlocks: {
             id: "doomfireWarlocks",
             model: this.models.doomfireWarlocks,
@@ -48439,7 +48447,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            options: [],
            abilities: [this.abilities.doomfireWarlocksDoomfireCoven, this.abilities.doomfireWarlocksMasterOfWarlocks, this.abilities.doomfireWarlocksDoomfire],
            attacks: [this.attacks.doomfireWarlocksDoomfireCrossbow, this.attacks.doomfireWarlocksCursedScimitar, this.attacks.doomfireWarlocksDarkSteedSViciousBite],
-           magicDescription: "A unit of Doomfire Warlocks can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. A unit of Doomfire Warlocks knows the Arcane Bolt, Mystic Shield and Doomfire spells.",       },
+           magicDescription: "A unit of Doomfire Warlocks can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. A unit of Doomfire Warlocks knows the Arcane Bolt, Mystic Shield and Doomfire spells.",
+       },
        khineraiHeartrenders: {
             id: "khineraiHeartrenders",
             model: this.models.khineraiHeartrenders,
@@ -48521,7 +48530,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.eidolonOfMathlannDormantEnergies, this.abilities.eidolonOfMathlannTranquilityOfTheAbyss, this.abilities.eidolonOfMathlannFly, this.abilities.eidolonOfMathlannCloyingSeaMists, this.abilities.eidolonOfMathlannTsunamiOfTerror],
            attacks: [this.attacks.eidolonOfMathlannBlastsOfAbyssalEnergy, this.attacks.eidolonOfMathlannPsiTrident, this.attacks.eidolonOfMathlannDeepSeaSceptre, this.attacks.eidolonOfMathlannStormshoal],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "An Eidolon of Mathlann in its Aspect of the Sea is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield, Cloying Sea Mists and Tsunami of Terror spells.",       },
+           magicDescription: "An Eidolon of Mathlann in its Aspect of the Sea is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield, Cloying Sea Mists and Tsunami of Terror spells.",
+       },
        volturnosHighKingOfTheDeep: {
             id: "volturnosHighKingOfTheDeep",
             model: this.models.volturnosHighKingOfTheDeep,
@@ -48586,7 +48596,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.isharannTidecasterSpiritGuardians, this.abilities.isharannTidecasterTheWideEthersea, this.abilities.isharannTidecasterRiptide],
            attacks: [this.attacks.isharannTidecasterPelagicStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "An Isharann Tidecaster is a Wizard. They can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. They know the Arcane Bolt, Mystic Shield and Riptide spells.",       },
+           magicDescription: "An Isharann Tidecaster is a Wizard. They can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. They know the Arcane Bolt, Mystic Shield and Riptide spells.",
+       },
        isharannSoulscryer: {
             id: "isharannSoulscryer",
             model: this.models.isharannSoulscryer,
@@ -48690,6 +48701,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.akhelianLeviadonJawsOfDeath, this.abilities.akhelianLeviadonVoidDrum, this.abilities.akhelianLeviadonFly],
            attacks: [this.attacks.akhelianLeviadonHarpoonLaunchers, this.attacks.akhelianLeviadonLeviadonSCrushingJaws, this.attacks.akhelianLeviadonLeviadonSMassiveScythedFins, this.attacks.akhelianLeviadonTwinProngedSpear, this.attacks.akhelianLeviadonRazorshellHarpoons],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.akhelianLeviadon,
        },
        akhelianMorrsarrGuard: {
             id: "akhelianMorrsarrGuard",
@@ -48839,7 +48851,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.fungoidCaveShamanMouthpieceOfMork, this.abilities.fungoidCaveShamanDeffcapMushroom, this.abilities.fungoidCaveShamanSporeSquig, this.abilities.fungoidCaveShamanCompanion, this.abilities.fungoidCaveShamanSporeMaws],
            attacks: [this.attacks.fungoidCaveShamanMoonSickle, this.attacks.fungoidCaveShamanSporeSquigSViciousTeeth],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Fungoid Cave-Shaman is a Wizard. They can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Spore Maws spells.",       },
+           magicDescription: "A Fungoid Cave-Shaman is a Wizard. They can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Spore Maws spells.",
+       },
        knightOfShrouds: {
             id: "knightOfShrouds",
             model: this.models.knightOfShrouds,
@@ -48884,7 +48897,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.nagashSupremeLordOfTheUndeadGazeOfNagash, this.attacks.nagashSupremeLordOfTheUndeadAlakanash, this.attacks.nagashSupremeLordOfTheUndeadZefetNebtar, this.attacks.nagashSupremeLordOfTheUndeadSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Nagash is a Wizard. He can attempt to cast three spells in your hero phase, and attempt to unbind three spells in the enemy hero phase. In addition, he can attempt to cast or unbind extra spells with the Nine Books of Nagash. He knows the Arcane Bolt, Mystic Shield, Hand of Dust and Soul Stealer spells, as well as any spells known by other Death Wizards on the battlefield.",       },
+           magicDescription: "Nagash is a Wizard. He can attempt to cast three spells in your hero phase, and attempt to unbind three spells in the enemy hero phase. In addition, he can attempt to cast or unbind extra spells with the Nine Books of Nagash. He knows the Arcane Bolt, Mystic Shield, Hand of Dust and Soul Stealer spells, as well as any spells known by other Death Wizards on the battlefield.",
+           damageTable: this.damageTables.nagashSupremeLordOfTheUndead,
+       },
        arkhanTheBlackMortarchOfSacrament: {
             id: "arkhanTheBlackMortarchOfSacrament",
             model: this.models.arkhanTheBlackMortarchOfSacrament,
@@ -48907,7 +48922,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.arkhanTheBlackMortarchOfSacramentZefetKar, this.attacks.arkhanTheBlackMortarchOfSacramentKhenashAn, this.attacks.arkhanTheBlackMortarchOfSacramentRazarakSEbonClaws, this.attacks.arkhanTheBlackMortarchOfSacramentSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Arkhan the Black is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Curse of Years spells. Arkhan also knows the spells of any Death Wizard that is within 18\" of him.",       },
+           magicDescription: "Arkhan the Black is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Curse of Years spells. Arkhan also knows the spells of any Death Wizard that is within 18\" of him.",
+           damageTable: this.damageTables.arkhanTheBlackMortarchOfSacrament,
+       },
        mannfredMortarchOfNight: {
             id: "mannfredMortarchOfNight",
             model: this.models.mannfredMortarchOfNight,
@@ -48930,7 +48947,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.mannfredMortarchOfNightGheistvor, this.attacks.mannfredMortarchOfNightSickleGlaive, this.attacks.mannfredMortarchOfNightAshigarothSEbonClaws, this.attacks.mannfredMortarchOfNightSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Mannfred is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Wind of Death spells.",       },
+           magicDescription: "Mannfred is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Wind of Death spells.",
+           damageTable: this.damageTables.mannfredMortarchOfNight,
+       },
        neferataMortarchOfBlood: {
             id: "neferataMortarchOfBlood",
             model: this.models.neferataMortarchOfBlood,
@@ -48953,7 +48972,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.neferataMortarchOfBloodAkmetHar, this.attacks.neferataMortarchOfBloodAkenSeth, this.attacks.neferataMortarchOfBloodNagadronSSkeletalClaws, this.attacks.neferataMortarchOfBloodSpiritsSpectralClawsAndDaggers],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Neferata is a Wizard. She can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Dark Mist spells.",       },
+           magicDescription: "Neferata is a Wizard. She can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Dark Mist spells.",
+           damageTable: this.damageTables.neferataMortarchOfBlood,
+       },
        princeVhordrai: {
             id: "princeVhordrai",
             model: this.models.princeVhordrai,
@@ -48976,7 +48997,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.princeVhordraiBloodlance, this.attacks.princeVhordraiShordemaireSMaw, this.attacks.princeVhordraiShordemaireSSwordLikeClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Prince Vhordrai is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Quickblood spells.",       },
+           magicDescription: "Prince Vhordrai is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Quickblood spells.",
+           damageTable: this.damageTables.princeVhordrai,
+       },
        morghastHarbingers: {
             id: "morghastHarbingers",
             model: this.models.morghastHarbingers,
@@ -49041,7 +49064,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.vampireLordOnZombieDragonPestilentialBreath, this.attacks.vampireLordOnZombieDragonDeathlance, this.attacks.vampireLordOnZombieDragonVampiricSword, this.attacks.vampireLordOnZombieDragonZombieDragonSMaw, this.attacks.vampireLordOnZombieDragonZombieDragonSSwordLikeClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Vampire Lord on Zombie Dragon is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Blood Boil spells.",       },
+           magicDescription: "A Vampire Lord on Zombie Dragon is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Blood Boil spells.",
+           damageTable: this.damageTables.vampireLordOnZombieDragon,
+       },
        bloodKnights: {
             id: "bloodKnights",
             model: this.models.bloodKnights,
@@ -49144,7 +49169,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.vampireLordBloodFeast],
            attacks: [this.attacks.vampireLordSpiritPossessedBlades, this.attacks.vampireLordNightmareSHoovesAndTeeth],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Vampire Lord is a Wizard. They can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. They know the Arcane Bolt and Mystic Shield spells.",       },
+           magicDescription: "A Vampire Lord is a Wizard. They can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. They know the Arcane Bolt and Mystic Shield spells.",
+       },
        bloodseekerPalanquin: {
             id: "bloodseekerPalanquin",
             model: this.models.bloodseekerPalanquin,
@@ -49166,7 +49192,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.bloodseekerPalanquinWailOfTheDamned, this.attacks.bloodseekerPalanquinSanguinarchSBloodlettingBlade, this.attacks.bloodseekerPalanquinSpectralHostSEtherealWeapons],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "The Sanguinarch on a Bloodseeker Palanquin is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Blood Siphon spells.",       },
+           magicDescription: "The Sanguinarch on a Bloodseeker Palanquin is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Blood Siphon spells.",
+           damageTable: this.damageTables.bloodseekerPalanquin,
+       },
        covenThrone: {
             id: "covenThrone",
             model: this.models.covenThrone,
@@ -49189,7 +49217,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.covenThroneVampireQueenSPredatoryBite, this.attacks.covenThroneVampireQueenSStiletto, this.attacks.covenThroneHandmaidensNeedleSharpPoniards, this.attacks.covenThroneSpectralHostSEtherealWeapons],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "The Vampire Queen on a Coven Throne is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Beguile spells.",       },
+           magicDescription: "The Vampire Queen on a Coven Throne is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Beguile spells.",
+           damageTable: this.damageTables.covenThrone,
+       },
        mortisEngine: {
             id: "mortisEngine",
             model: this.models.mortisEngine,
@@ -49210,6 +49240,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.mortisEngineWailOfTheDamned, this.abilities.mortisEngineFrightfulTouch, this.abilities.mortisEngineTheReliquary, this.abilities.mortisEngineBoundNecromancer, this.abilities.mortisEngineFly],
            attacks: [this.attacks.mortisEngineWailOfTheDamned, this.attacks.mortisEngineCorpsemasterSMortisStaff, this.attacks.mortisEngineSpectralHostSEtherealWeapons],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.mortisEngine,
        },
        necromancer: {
             id: "necromancer",
@@ -49231,7 +49262,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.necromancerUndeadMinions, this.abilities.necromancerDeathlyInvocation, this.abilities.necromancerVanhelSDanseMacabre],
            attacks: [this.attacks.necromancerNecromancerSStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Necromancer is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Vanhel’s Danse Macabre spells.",       },
+           magicDescription: "A Necromancer is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Vanhel’s Danse Macabre spells.",
+       },
        zombies: {
             id: "zombies",
             model: this.models.zombies,
@@ -49334,7 +49366,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            commandAbilities: [this.abilities.abhorrantArchregentSummonImperialGuard],
            attacks: [this.attacks.abhorrantArchregentGoryTalonsAndFangs],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Ferocious Hunger spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Ferocious Hunger spells.",
+       },
        wightKingWithBalefulTombBlade: {
             id: "wightKingWithBalefulTombBlade",
             model: this.models.wightKingWithBalefulTombBlade,
@@ -49524,6 +49557,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.blackCoachEthereal, this.abilities.blackCoachFrightfulTouch, this.abilities.blackCoachEvocationOfDeath, this.abilities.blackCoachFirstLevelNimbusOfPower, this.abilities.blackCoachSecondLevelUnholyVigour, this.abilities.blackCoachThirdLevelSpectralScythes, this.abilities.blackCoachFourthLevelInsubstantialForm, this.abilities.blackCoachFifthLevelWitchFire, this.abilities.blackCoachReapedLikeCorn, this.abilities.blackCoachSteedsAndCrew, this.abilities.blackCoachFly],
            attacks: [this.attacks.blackCoachCairnWraithSSoulreachGrasp, this.attacks.blackCoachCairnWraithSReaperScythe, this.attacks.blackCoachCairnWraithSSoulreachGrasp, this.attacks.blackCoachRelicBearersSpectralClaws, this.attacks.blackCoachNightmaresHoovesAndTeeth],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.blackCoach,
        },
        spiritHosts: {
             id: "spiritHosts",
@@ -49588,7 +49622,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.rotigusGnarlrod, this.attacks.rotigusFangedMaw, this.attacks.rotigusHostOfNurglings],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Rotigus is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Deluge of Nurgle spells.",       },
+           magicDescription: "Rotigus is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Deluge of Nurgle spells.",
+           damageTable: this.damageTables.rotigus,
+       },
        greatUncleanOne: {
             id: "greatUncleanOne",
             model: this.models.greatUncleanOne,
@@ -49611,7 +49647,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.greatUncleanOneNoxiousBile, this.attacks.greatUncleanOnePlagueFlail, this.attacks.greatUncleanOneMassiveBilesword, this.attacks.greatUncleanOneBileblade, this.attacks.greatUncleanOneDoomsdayBell, this.attacks.greatUncleanOneHostOfNurglings],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Great Unclean One is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Wind spells.",       },
+           magicDescription: "A Great Unclean One is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Wind spells.",
+           damageTable: this.damageTables.greatUncleanOne,
+       },
        poxbringerHeraldOfNurgle: {
             id: "poxbringerHeraldOfNurgle",
             model: this.models.poxbringerHeraldOfNurgle,
@@ -49632,7 +49670,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.poxbringerHeraldOfNurgleDisgustinglyResilient, this.abilities.poxbringerHeraldOfNurgleInDeathThereIsLife, this.abilities.poxbringerHeraldOfNurgleEruptiveInfestation],
            attacks: [this.attacks.poxbringerHeraldOfNurgleBalesword],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Poxbringer is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Eruptive Infestation spells.",       },
+           magicDescription: "A Poxbringer is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Eruptive Infestation spells.",
+       },
        epidemiusTallymanOfNurgle: {
             id: "epidemiusTallymanOfNurgle",
             model: this.models.epidemiusTallymanOfNurgle,
@@ -49820,7 +49859,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.theGlottkinPestilentTorrent, this.attacks.theGlottkinGhurkSFlailingTentacle, this.attacks.theGlottkinGhurkSLampreyMaw, this.attacks.theGlottkinOttoSPoisonSlickScythe],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Ethrac Glott is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Fleshy Abundance spells.",       },
+           magicDescription: "Ethrac Glott is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Fleshy Abundance spells.",
+           damageTable: this.damageTables.theGlottkin,
+       },
        orghottsDaemonspew: {
             id: "orghottsDaemonspew",
             model: this.models.orghottsDaemonspew,
@@ -49843,6 +49884,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.orghottsDaemonspewWhippermawSGraspingTongue, this.attacks.orghottsDaemonspewTheRotaxes, this.attacks.orghottsDaemonspewWhippermawSMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.orghottsDaemonspew,
        },
        bloabRotspawned: {
             id: "bloabRotspawned",
@@ -49865,7 +49907,9 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.bloabRotspawnedBilespurterSVileBile, this.attacks.bloabRotspawnedHarvestmanSScythe, this.attacks.bloabRotspawnedBilespurterSMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Bloab Rotspawned is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Miasma of Pestilence spells.",       },
+           magicDescription: "Bloab Rotspawned is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Miasma of Pestilence spells.",
+           damageTable: this.damageTables.bloabRotspawned,
+       },
        morbidexTwiceborn: {
             id: "morbidexTwiceborn",
             model: this.models.morbidexTwiceborn,
@@ -49887,6 +49931,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.morbidexTwicebornSlabrousTongues, this.attacks.morbidexTwicebornFleshreaperScythe, this.attacks.morbidexTwicebornMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.morbidexTwiceborn,
        },
        lordOfAfflictions: {
             id: "lordOfAfflictions",
@@ -49930,7 +49975,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.festusTheLeechlordHealingElixirs, this.abilities.festusTheLeechlordDelightfulBrewsSplendidRestoratives, this.abilities.festusTheLeechlordCurseOfTheLeper],
            attacks: [this.attacks.festusTheLeechlordPlagueStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Festus the Leechlord is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Curse of the Leper spells.",       },
+           magicDescription: "Festus the Leechlord is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Curse of the Leper spells.",
+       },
        harbingerOfDecay: {
             id: "harbingerOfDecay",
             model: this.models.harbingerOfDecay,
@@ -49973,7 +50019,8 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.sorcererBlessedWithVitality, this.abilities.sorcererStreamOfCorruption],
            attacks: [this.attacks.sorcererRotwoodStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Sorcerer is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Stream of Corruption spells.",       },
+           magicDescription: "A Sorcerer is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Stream of Corruption spells.",
+       },
        lordOfBlights: {
             id: "lordOfBlights",
             model: this.models.lordOfBlights,
@@ -50229,6 +50276,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.arkanautIroncladAethericNavigation, this.abilities.arkanautIroncladFlagship, this.abilities.arkanautIroncladBattenTheHatches, this.abilities.arkanautIroncladBombRacks, this.abilities.arkanautIroncladSkyhook, this.abilities.arkanautIroncladSupremacyMine, this.abilities.arkanautIroncladTirelessEndrinrigger, this.abilities.arkanautIroncladVessel, this.abilities.arkanautIroncladOverburdened, this.abilities.arkanautIroncladSetUp, this.abilities.arkanautIroncladEmbark, this.abilities.arkanautIroncladDisembark, this.abilities.arkanautIroncladFly],
            attacks: [this.attacks.arkanautIroncladGreatSkyCannon, this.attacks.arkanautIroncladGreatSkyhook, this.attacks.arkanautIroncladAethermaticVolleyCannon, this.attacks.arkanautIroncladAethershockTorpedoes, this.attacks.arkanautIroncladAethershotCarbines, this.attacks.arkanautIroncladFragmentationCharges, this.attacks.arkanautIroncladBelayingValves],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.arkanautIronclad,
        },
        arkanautFrigate: {
             id: "arkanautFrigate",
@@ -50250,6 +50298,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            abilities: [this.abilities.arkanautFrigateAethericNavigation, this.abilities.arkanautFrigateAllHandsToTheGuns, this.abilities.arkanautFrigateBombRacks, this.abilities.arkanautFrigateSkyhook, this.abilities.arkanautFrigateSkymines, this.abilities.arkanautFrigateTirelessEndrinrigger, this.abilities.arkanautFrigateVessel, this.abilities.arkanautFrigateOverburdened, this.abilities.arkanautFrigateSetUp, this.abilities.arkanautFrigateEmbark, this.abilities.arkanautFrigateDisembark, this.abilities.arkanautFrigateFly],
            attacks: [this.attacks.arkanautFrigateHeavySkyCannon, this.attacks.arkanautFrigateHeavySkyhook, this.attacks.arkanautFrigateAethershotCarbines, this.attacks.arkanautFrigateBelayingValves],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.arkanautFrigate,
        },
        grundstokGunhauler: {
             id: "grundstokGunhauler",
@@ -50353,6 +50402,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.skarbrandSlaughter, this.attacks.skarbrandCarnage],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.skarbrand,
        },
        bloodthirsterOfUnfetteredFury: {
             id: "bloodthirsterOfUnfetteredFury",
@@ -50376,6 +50426,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.bloodthirsterOfUnfetteredFuryLashOfKhorne, this.attacks.bloodthirsterOfUnfetteredFuryMightyAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.bloodthirsterOfUnfetteredFury,
        },
        bloodthirsterOfInsensateRage: {
             id: "bloodthirsterOfInsensateRage",
@@ -50399,6 +50450,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.bloodthirsterOfInsensateRageGreatAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.bloodthirsterOfInsensateRage,
        },
        wrathOfKhorneBloodthirster: {
             id: "wrathOfKhorneBloodthirster",
@@ -50422,6 +50474,7 @@ fight the enemies of the Daughters of Khaine, hewing down foes with their blades
            attacks: [this.attacks.wrathOfKhorneBloodthirsterHellfireBreath, this.attacks.wrathOfKhorneBloodthirsterBloodflail, this.attacks.wrathOfKhorneBloodthirsterMightyAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.wrathOfKhorneBloodthirster,
        },
        karanak: {
             id: "karanak",
@@ -51459,6 +51512,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.lordCelestantCelestineHammer, this.attacks.lordCelestantStormboundBlade, this.attacks.lordCelestantStardrakeSGreatClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.lordCelestantOnStardrake,
        },
        drakeswornTemplar: {
             id: "drakeswornTemplar",
@@ -51481,6 +51535,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.drakeswornTemplarSkyboltBow, this.attacks.drakeswornTemplarTempestAxe, this.attacks.drakeswornTemplarArcHammer, this.attacks.drakeswornTemplarStormlance, this.attacks.drakeswornTemplarGreatClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.drakeswornTemplar,
        },
        fulminators: {
             id: "fulminators",
@@ -51707,7 +51762,9 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.lordOfChangeRodOfSorcery, this.attacks.lordOfChangeStaffOfTzeentch, this.attacks.lordOfChangeBalefulSword, this.attacks.lordOfChangeCurvedBeakAndWickedTalons],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Lord of Change is a wizard. It can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Infernal Gateway spells.",       },
+           magicDescription: "A Lord of Change is a wizard. It can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Infernal Gateway spells.",
+           damageTable: this.damageTables.lordOfChange,
+       },
        kairosFateweaver: {
             id: "kairosFateweaver",
             model: this.models.kairosFateweaver,
@@ -51729,7 +51786,9 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.kairosFateweaverStaffOfTomorrow, this.attacks.kairosFateweaverBeaksAndClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Kairos Fateweaver is a wizard. He can attempt to cast two different spells in each of your own hero phases and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Gift of Change spells. Kairos also knows the spells of all other Wizards from your army that are within 18\" of him.",       },
+           magicDescription: "Kairos Fateweaver is a wizard. He can attempt to cast two different spells in each of your own hero phases and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Gift of Change spells. Kairos also knows the spells of all other Wizards from your army that are within 18\" of him.",
+           damageTable: this.damageTables.kairosFateweaver,
+       },
        heraldOfTzeentchOnBurningChariot: {
             id: "heraldOfTzeentchOnBurningChariot",
             model: this.models.heraldOfTzeentchOnBurningChariot,
@@ -51750,7 +51809,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.heraldOfTzeentchArcaneTome, this.abilities.heraldOfTzeentchSkySharks, this.abilities.heraldOfTzeentchWakeOfFire, this.abilities.heraldOfTzeentchFly, this.abilities.heraldOfTzeentchTzeentchSFirestorm],
            attacks: [this.attacks.heraldOfTzeentchStaffOfChange, this.attacks.heraldOfTzeentchRitualDagger, this.attacks.heraldOfTzeentchScreamersLampreyBites],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Herald of Tzeentch on Burning Chariot is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Tzeentch’s Firestorm spells.",       },
+           magicDescription: "A Herald of Tzeentch on Burning Chariot is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Tzeentch’s Firestorm spells.",
+       },
        heraldOfTzeentchOnDisc: {
             id: "heraldOfTzeentchOnDisc",
             model: this.models.heraldOfTzeentchOnDisc,
@@ -51771,7 +51831,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.heraldOfTzeentchFly, this.abilities.heraldOfTzeentchBlueFireOfTzeentch],
            attacks: [this.attacks.heraldOfTzeentchMagicalFlames, this.attacks.heraldOfTzeentchStaffOfChange, this.attacks.heraldOfTzeentchRitualDagger, this.attacks.heraldOfTzeentchDiscOfTzeentchSTeethAndHorns],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Herald of Tzeentch on Disc is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Blue Fire of Tzeentch spells.",       },
+           magicDescription: "A Herald of Tzeentch on Disc is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Blue Fire of Tzeentch spells.",
+       },
        theChangeling: {
             id: "theChangeling",
             model: this.models.theChangeling,
@@ -51792,7 +51853,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.theChangelingArchDeceiver, this.abilities.theChangelingPuckishMisdirection, this.abilities.theChangelingFormlessHorror],
            attacks: [this.attacks.theChangelingTheTricksterSStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "The Changeling is a wizard. It can cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt and Mystic Shield spells. Instead of casting a spell that it knows, the Changeling can attempt to cast one spell known by a Wizard that is within 9\" of it when it attempts to cast the spell.",       },
+           magicDescription: "The Changeling is a wizard. It can cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt and Mystic Shield spells. Instead of casting a spell that it knows, the Changeling can attempt to cast one spell known by a Wizard that is within 9\" of it when it attempts to cast the spell.",
+       },
        heraldOfTzeentch: {
             id: "heraldOfTzeentch",
             model: this.models.heraldOfTzeentch,
@@ -51813,7 +51875,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.heraldOfTzeentchArcaneTome, this.abilities.heraldOfTzeentchFortuneAndFate, this.abilities.heraldOfTzeentchPinkFireOfTzeentch],
            attacks: [this.attacks.heraldOfTzeentchMagicalFlames, this.attacks.heraldOfTzeentchStaffOfChange, this.attacks.heraldOfTzeentchRitualDagger],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Herald of Tzeentch is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Pink Fire of Tzeentch spells.",       },
+           magicDescription: "A Herald of Tzeentch is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Pink Fire of Tzeentch spells.",
+       },
        theBlueScribes: {
             id: "theBlueScribes",
             model: this.models.theBlueScribes,
@@ -51834,7 +51897,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.theBlueScribesFranticScribbling, this.abilities.theBlueScribesScrollsOfSorcery, this.abilities.theBlueScribesFly, this.abilities.theBlueScribesBoonOfTzeentch],
            attacks: [this.attacks.theBlueScribesSharpenedQuills, this.attacks.theBlueScribesDiscSManyFangedMouths],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "The Blue Scribes can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. They know the Arcane Bolt, Mystic Shield and Boon of Tzeentch spells.",       },
+           magicDescription: "The Blue Scribes can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. They know the Arcane Bolt, Mystic Shield and Boon of Tzeentch spells.",
+       },
        screamersOfTzeentch: {
             id: "screamersOfTzeentch",
             model: this.models.screamersOfTzeentch,
@@ -51936,7 +52000,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.pinkHorrorsOfTzeentchFlickeringFlames, this.abilities.pinkHorrorsOfTzeentchLocusOfConjuration, this.abilities.pinkHorrorsOfTzeentchIridescentHorror, this.abilities.pinkHorrorsOfTzeentchIconBearer, this.abilities.pinkHorrorsOfTzeentchHornblower],
            attacks: [this.attacks.pinkHorrorsOfTzeentchMagicalFlames, this.attacks.pinkHorrorsOfTzeentchGraspingHands],
            isBattleline: (ws: WarscrollInterface) => true,
-           magicDescription: "A unit of Pink Horrors can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. Pink Horrors know the Arcane Bolt and Mystic Shield spells.",       },
+           magicDescription: "A unit of Pink Horrors can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. Pink Horrors know the Arcane Bolt and Mystic Shield spells.",
+       },
        blueHorrorsOfTzeentch: {
             id: "blueHorrorsOfTzeentch",
             model: this.models.blueHorrorsOfTzeentch,
@@ -51997,7 +52062,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.tzaangorShamanSorcerousElixir, this.abilities.tzaangorShamanVisionsOfTheFuture, this.abilities.tzaangorShamanVisionsOfThePast, this.abilities.tzaangorShamanFly, this.abilities.tzaangorShamanMount, this.abilities.tzaangorShamanBoonOfMutation],
            attacks: [this.attacks.tzaangorShamanStaffOfChange, this.attacks.tzaangorShamanRitualDagger, this.attacks.tzaangorShamanTeethAndHorns],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Boon of Mutation spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Boon of Mutation spells.",
+       },
        gauntSummonerOfTzeentch: {
             id: "gauntSummonerOfTzeentch",
             model: this.models.gauntSummonerOfTzeentch,
@@ -52018,7 +52084,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.gauntSummonerOfTzeentchBookOfProfaneSecrets, this.abilities.gauntSummonerOfTzeentchWarptongueBlade, this.abilities.gauntSummonerOfTzeentchInfernalFlames],
            attacks: [this.attacks.gauntSummonerOfTzeentchChangestaff, this.attacks.gauntSummonerOfTzeentchWarptongueBlade],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Gaunt Summoner of Tzeentch is a wizard. He can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. A Gaunt Summoner knows the Arcane Bolt, Mystic Shield and Infernal Flames spells.",       },
+           magicDescription: "A Gaunt Summoner of Tzeentch is a wizard. He can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. A Gaunt Summoner knows the Arcane Bolt, Mystic Shield and Infernal Flames spells.",
+       },
        curselingEyeOfTzeentch: {
             id: "curselingEyeOfTzeentch",
             model: this.models.curselingEyeOfTzeentch,
@@ -52039,7 +52106,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.curselingEyeOfTzeentchVesselOfChaos, this.abilities.curselingEyeOfTzeentchGleanMagic],
            attacks: [this.attacks.curselingEyeOfTzeentchBlazingSword, this.attacks.curselingEyeOfTzeentchThreshingFlail, this.attacks.curselingEyeOfTzeentchStaffOfTzeentch],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Curseling is a wizard. He can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Glean Magic spells.",       },
+           magicDescription: "A Curseling is a wizard. He can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Glean Magic spells.",
+       },
        magister: {
             id: "magister",
             model: this.models.magister,
@@ -52060,7 +52128,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.magisterMagicTouched, this.abilities.magisterBoltOfChange],
            attacks: [this.attacks.magisterTzeentchianRunestaff, this.attacks.magisterWarpsteelSword],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Magister is a wizard. It can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Bolt of Change spells.",       },
+           magicDescription: "A Magister is a wizard. It can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Bolt of Change spells.",
+       },
        fatemaster: {
             id: "fatemaster",
             model: this.models.fatemaster,
@@ -52103,7 +52172,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.ogroidThaumaturgeBrutalRage, this.abilities.ogroidThaumaturgeMightyBulk, this.abilities.ogroidThaumaturgeOverwhelmingPower, this.abilities.ogroidThaumaturgeFireblast],
            attacks: [this.attacks.ogroidThaumaturgeThaumaturgeStaff, this.attacks.ogroidThaumaturgeGreatHorns, this.attacks.ogroidThaumaturgeClovenHooves],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "An Ogroid Thaumaturge is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. An Ogroid Thaumaturge knows the Arcane Bolt, Mystic Shield and Fireblast spells.",       },
+           magicDescription: "An Ogroid Thaumaturge is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. An Ogroid Thaumaturge knows the Arcane Bolt, Mystic Shield and Fireblast spells.",
+       },
        tzaangors: {
             id: "tzaangors",
             model: this.models.tzaangors,
@@ -52228,6 +52298,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.frostlordOnStonehornFrostSpear, this.attacks.frostlordOnStonehornFrostlordSPunchesAndKicks, this.attacks.frostlordOnStonehornStonehornSHorns, this.attacks.frostlordOnStonehornStonehornSCrushingHooves],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.frostlordOnStonehorn,
        },
        frostlordOnThundertusk: {
             id: "frostlordOnThundertusk",
@@ -52251,6 +52322,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.frostlordOnThundertuskFrostWreathedIce, this.attacks.frostlordOnThundertuskFrostSpear, this.attacks.frostlordOnThundertuskFrostlordSPunchesAndKicks, this.attacks.frostlordOnThundertuskThundertuskSCrushingBlows],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.frostlordOnThundertusk,
        },
        huskardOnStonehorn: {
             id: "huskardOnStonehorn",
@@ -52273,6 +52345,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.huskardOnStonehornChaintrap, this.attacks.huskardOnStonehornHarpoonLauncher, this.attacks.huskardOnStonehornHuskardSPunchesAndKicks, this.attacks.huskardOnStonehornStonehornSHorns, this.attacks.huskardOnStonehornStonehornSCrushingHooves],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.huskardOnStonehorn,
        },
        huskardOnThundertusk: {
             id: "huskardOnThundertusk",
@@ -52295,6 +52368,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.huskardOnThundertuskFrostWreathedIce, this.attacks.huskardOnThundertuskChaintrap, this.attacks.huskardOnThundertuskHarpoonLauncher, this.attacks.huskardOnThundertuskHuskardSPunchesAndKicks, this.attacks.huskardOnThundertuskThundertuskSCrushingBlows],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.huskardOnThundertusk,
        },
        stonehornBeastriders: {
             id: "stonehornBeastriders",
@@ -52317,6 +52391,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.stonehornBeastridersChaintrap, this.attacks.stonehornBeastridersHarpoonLauncher, this.attacks.stonehornBeastridersBeastridersPunchesAndKicks, this.attacks.stonehornBeastridersStonehornSHorns, this.attacks.stonehornBeastridersStonehornSCrushingHooves],
            isBehemoth: (ws: WarscrollInterface) => true,
            isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastclawRaiders.id,
+           damageTable: this.damageTables.stonehornBeastriders,
        },
        thundertuskBeastriders: {
             id: "thundertuskBeastriders",
@@ -52339,6 +52414,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.thundertuskBeastridersFrostWreathedIce, this.attacks.thundertuskBeastridersChaintrap, this.attacks.thundertuskBeastridersHarpoonLauncher, this.attacks.thundertuskBeastridersBeastridersPunchesAndKicks, this.attacks.thundertuskBeastridersThundertuskSCrushingBlows],
            isBehemoth: (ws: WarscrollInterface) => true,
            isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.beastclawRaiders.id,
+           damageTable: this.damageTables.thundertuskBeastriders,
        },
        icebrowHunter: {
             id: "icebrowHunter",
@@ -52445,7 +52521,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.wurrgogProphetProphetOfDaWaaagh],
            attacks: [this.attacks.wurrgogProphetJuJuStaff, this.attacks.wurrgogProphetFlintKnife, this.attacks.wurrgogProphetSquigglyBeastSFangedMaw],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Wurrgog Prophet is a wizard. They can attempt to cast two different spells in each of their own hero phases, and attempt to unbind two spells in each enemy hero phase. A Wurrgog Prophet knows the Arcane Bolt, Mystic Shield and Fists of Gork spells.",       },
+           magicDescription: "A Wurrgog Prophet is a wizard. They can attempt to cast two different spells in each of their own hero phases, and attempt to unbind two spells in each enemy hero phase. A Wurrgog Prophet knows the Arcane Bolt, Mystic Shield and Fists of Gork spells.",
+       },
        savageBigBoss: {
             id: "savageBigBoss",
             model: this.models.savageBigBoss,
@@ -52488,7 +52565,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.maniakWeirdnobTuskerCharge, this.abilities.maniakWeirdnobJuJuSquig, this.abilities.maniakWeirdnobBoneSpirit],
            attacks: [this.attacks.maniakWeirdnobBonebeastStaff, this.attacks.maniakWeirdnobWarBoarSTusks],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Maniak Weirdnob is a wizard. They can attempt to cast one spell in each of their own hero phases and attempt to unbind one spell in each enemy hero phase. A Maniak Weirdnob knows the Arcane Bolt, Mystic Shield and Bone Spirit spells.",       },
+           magicDescription: "A Maniak Weirdnob is a wizard. They can attempt to cast one spell in each of their own hero phases and attempt to unbind one spell in each enemy hero phase. A Maniak Weirdnob knows the Arcane Bolt, Mystic Shield and Bone Spirit spells.",
+       },
        wardokk: {
             id: "wardokk",
             model: this.models.wardokk,
@@ -52509,7 +52587,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.wardokkRitualDance],
            attacks: [this.attacks.wardokkBonebeastStikk],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Wardokk is a wizard. They can attempt to cast one spell in each of their own hero phases, and attempt to unbind one spell in each enemy hero phase. A Wardokk knows the Arcane Bolt and Mystic Shield spells.",       },
+           magicDescription: "A Wardokk is a wizard. They can attempt to cast one spell in each of their own hero phases, and attempt to unbind one spell in each enemy hero phase. A Wardokk knows the Arcane Bolt and Mystic Shield spells.",
+       },
        savageOrruks: {
             id: "savageOrruks",
             model: this.models.savageOrruks,
@@ -52657,7 +52736,9 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.alarielleTheEverqueenSpearOfKurnoth, this.attacks.alarielleTheEverqueenTalonOfTheDwindling, this.attacks.alarielleTheEverqueenWardrothBeetleSGreatAntlers],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Alarielle the Everqueen is a wizard. She can attempt to cast three different spells in each of your hero phases, and attempt to unbind three spells in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Metamorphosis spells.",       },
+           magicDescription: "Alarielle the Everqueen is a wizard. She can attempt to cast three different spells in each of your hero phases, and attempt to unbind three spells in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Metamorphosis spells.",
+           damageTable: this.damageTables.alarielleTheEverqueen,
+       },
        drychaHamadreth: {
             id: "drychaHamadreth",
             model: this.models.drychaHamadreth,
@@ -52679,7 +52760,9 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.drychaHamadrethColonyOfFlitterfuries, this.attacks.drychaHamadrethSwarmOfSquirmlings, this.attacks.drychaHamadrethSlashingTalons, this.attacks.drychaHamadrethThornedSlendervines],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Drycha Hamadreth is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Primal Terror spells.",       },
+           magicDescription: "Drycha Hamadreth is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Primal Terror spells.",
+           damageTable: this.damageTables.drychaHamadreth,
+       },
        spiritOfDurthu: {
             id: "spiritOfDurthu",
             model: this.models.spiritOfDurthu,
@@ -52701,6 +52784,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.spiritOfDurthuVerdantBlast, this.attacks.spiritOfDurthuGuardianSword, this.attacks.spiritOfDurthuMassiveImpalingTalons],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.spiritOfDurthu,
        },
        treelordAncient: {
             id: "treelordAncient",
@@ -52724,7 +52808,9 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.treelordAncientDoomTendrilStaff, this.attacks.treelordAncientSweepingBlows, this.attacks.treelordAncientMassiveImpalingTalons],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Treelord Ancient is a wizard. It can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Awakening the Wood spells.",       },
+           magicDescription: "A Treelord Ancient is a wizard. It can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Awakening the Wood spells.",
+           damageTable: this.damageTables.treelordAncient,
+       },
        treelord: {
             id: "treelord",
             model: this.models.treelord,
@@ -52745,6 +52831,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.treelordGroundshakingStomp, this.abilities.treelordImpale, this.abilities.treelordSpiritPaths],
            attacks: [this.attacks.treelordStrangleroots, this.attacks.treelordSweepingBlows, this.attacks.treelordMassiveImpalingTalons],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.treelord,
        },
        branchwych: {
             id: "branchwych",
@@ -52766,7 +52853,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.branchwychFuryOfTheForest, this.abilities.branchwychQuickTempered, this.abilities.branchwychUnleashSpites],
            attacks: [this.attacks.branchwychGreenwoodScythe, this.attacks.branchwychBittergrubSMandibles],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Branchwych is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Unleash Spites spells.",       },
+           magicDescription: "A Branchwych is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Unleash Spites spells.",
+       },
        branchwraith: {
             id: "branchwraith",
             model: this.models.branchwraith,
@@ -52787,7 +52875,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.branchwraithBlessingsOfTheForest, this.abilities.branchwraithRousedToWrath],
            attacks: [this.attacks.branchwraithPiercingTalons],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Branchwraith is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Roused to Wrath spells.",       },
+           magicDescription: "A Branchwraith is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Roused to Wrath spells.",
+       },
        treeRevenants: {
             id: "treeRevenants",
             model: this.models.treeRevenants,
@@ -52893,7 +52982,9 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.abhorrantGhoulKingDeathShriek, this.attacks.abhorrantGhoulKingGoryTalonsAndFangs, this.attacks.abhorrantGhoulKingSkeletalClaws, this.attacks.abhorrantGhoulKingFangedMaw],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Unholy Vitality spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Unholy Vitality spells.",
+           damageTable: this.damageTables.abhorrantGhoulKingOnRoyalTerrorgheist,
+       },
        abhorrantGhoulKingOnRoyalZombieDragon: {
             id: "abhorrantGhoulKingOnRoyalZombieDragon",
             model: this.models.abhorrantGhoulKingOnRoyalZombieDragon,
@@ -52916,7 +53007,9 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.abhorrantGhoulKingPestilentialBreath, this.attacks.abhorrantGhoulKingGoryTalonsAndFangs, this.attacks.abhorrantGhoulKingSnappingMawMaw, this.attacks.abhorrantGhoulKingSwordLikeClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Malefic Hunger spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Malefic Hunger spells.",
+           damageTable: this.damageTables.abhorrantGhoulKingOnRoyalZombieDragon,
+       },
        abhorrantGhoulKing: {
             id: "abhorrantGhoulKing",
             model: this.models.abhorrantGhoulKing,
@@ -52938,7 +53031,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.abhorrantGhoulKingSummonMenAtArms],
            attacks: [this.attacks.abhorrantGhoulKingGoryTalonsAndFangs],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Black Hunger spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Black Hunger spells.",
+       },
        varghulfCourtier: {
             id: "varghulfCourtier",
             model: this.models.varghulfCourtier,
@@ -53107,6 +53201,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.royalTerrorgheistDeathShriek, this.attacks.royalTerrorgheistSkeletalClaws, this.attacks.royalTerrorgheistFangedMaw],
            isBehemoth: (ws: WarscrollInterface) => true,
            isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.fleshEaterCourts.id && ws.general && hasKeyword(ws.general.unit, [["GRISTLEGORE"]]),
+           damageTable: this.damageTables.royalTerrorgheist,
        },
        royalZombieDragon: {
             id: "royalZombieDragon",
@@ -53129,6 +53224,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.royalZombieDragonPestilentialBreath, this.attacks.royalZombieDragonSnappingMaw, this.attacks.royalZombieDragonSwordLikeClaws],
            isBehemoth: (ws: WarscrollInterface) => true,
            isBattleline: (ws: WarscrollInterface) => ws.allegiance.id === this.allegiances.fleshEaterCourts.id && ws.general && hasKeyword(ws.general.unit, [["GRISTLEGORE"]]),
+           damageTable: this.damageTables.royalZombieDragon,
        },
        gordrakkTheFistOfGork: {
             id: "gordrakkTheFistOfGork",
@@ -53152,6 +53248,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.gordrakkTheFistOfGorkInnardBurstingBellow, this.attacks.gordrakkTheFistOfGorkSmasha, this.attacks.gordrakkTheFistOfGorkKunnin, this.attacks.gordrakkTheFistOfGorkBigteefSMightyFists, this.attacks.gordrakkTheFistOfGorkBigteefSBladedTail],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.gordrakkTheFistOfGork,
        },
        megabossOnMawKrusha: {
             id: "megabossOnMawKrusha",
@@ -53175,6 +53272,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.megabossOnMawKrushaInnardBurstingBellow, this.attacks.megabossOnMawKrushaBossGoreHacka, this.attacks.megabossOnMawKrushaScrapTooth, this.attacks.megabossOnMawKrushaChoppa, this.attacks.megabossOnMawKrushaRipToothFist, this.attacks.megabossOnMawKrushaMawKrushaSMightyFists, this.attacks.megabossOnMawKrushaMawKrushaSBladedTail],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.megabossOnMawKrusha,
        },
        orrukMegaboss: {
             id: "orrukMegaboss",
@@ -53239,7 +53337,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.orrukWeirdnobShamanPowerOfTheWaaagh, this.abilities.orrukWeirdnobShamanGreenPuke, this.abilities.orrukWeirdnobShamanFootOfGork],
            attacks: [this.attacks.orrukWeirdnobShamanWaaaghStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Weirdnob Shaman is a wizard. They can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. They know the Arcane Bolt, Mystic Shield, Green Puke and Foot of Gork spells.",       },
+           magicDescription: "A Weirdnob Shaman is a wizard. They can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. They know the Arcane Bolt, Mystic Shield, Green Puke and Foot of Gork spells.",
+       },
        orrukBrutes: {
             id: "orrukBrutes",
             model: this.models.orrukBrutes,
@@ -53345,6 +53444,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.plaguePriestGreatPlagueCenser, this.attacks.plaguePriestWarpstoneTippedStaff, this.attacks.plaguePriestFoetidBlades, this.attacks.plaguePriestRustySpikes],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.plaguePriestOnPlagueFurnace,
        },
        plaguePriest: {
             id: "plaguePriest",
@@ -53387,7 +53487,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.warlockBombardierMoreMoreDoomrocket, this.abilities.warlockBombardierWarpLightning],
            attacks: [this.attacks.warlockBombardierDoomrocket, this.attacks.warlockBombardierFiringPole],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Warp Lightning spell. Any number of Warlock Engineers can attempt to cast Warp Lightning spells in the same hero phase.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Warp Lightning spell. Any number of Warlock Engineers can attempt to cast Warp Lightning spells in the same hero phase.",
+       },
        plagueMonks: {
             id: "plagueMonks",
             model: this.models.plagueMonks,
@@ -53473,6 +53574,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.auricRunefatherOnMagmadrothFyresteelThrowingAxe, this.attacks.auricRunefatherOnMagmadrothMagmadrothSClawsAndHorns, this.attacks.auricRunefatherOnMagmadrothLatchkeyGrandaxe],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.auricRunefatherOnMagmadroth,
        },
        auricRunesmiterOnMagmadroth: {
             id: "auricRunesmiterOnMagmadroth",
@@ -53495,6 +53597,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.auricRunesmiterOnMagmadrothFyresteelThrowingAxe, this.attacks.auricRunesmiterOnMagmadrothMagmadrothSClawsAndHorns, this.attacks.auricRunesmiterOnMagmadrothLatchAxe, this.attacks.auricRunesmiterOnMagmadrothRunicIron],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.auricRunesmiterOnMagmadroth,
        },
        auricRunesonOnMagmadroth: {
             id: "auricRunesonOnMagmadroth",
@@ -53518,6 +53621,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.auricRunesonOnMagmadrothWyrmslayerJavelin, this.attacks.auricRunesonOnMagmadrothFyresteelThrowingAxe, this.attacks.auricRunesonOnMagmadrothMagmadrothSClawsAndHorns, this.attacks.auricRunesonOnMagmadrothAncestralWarAxe, this.attacks.auricRunesonOnMagmadrothWyrmslayerJavelin],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.auricRunesonOnMagmadroth,
        },
        auricRunefather: {
             id: "auricRunefather",
@@ -53732,7 +53836,9 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.archaonTheSlayerOfKings, this.attacks.archaonDorgharSMonstrousClaws, this.attacks.archaonDorgharSLashingTails, this.attacks.archaonDorgharSThreeHeads],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Archaon is a wizard. He can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt and Mystic Shield spells, as well as any learned by Dorghar’s Tzeentchian head during the battle.",       },
+           magicDescription: "Archaon is a wizard. He can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt and Mystic Shield spells, as well as any learned by Dorghar’s Tzeentchian head during the battle.",
+           damageTable: this.damageTables.archaon,
+       },
        varanguard: {
             id: "varanguard",
             model: this.models.varanguard,
@@ -53774,7 +53880,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.gauntSummonerOnDiscOfTzeentchHoveringDiscOfTzeentch, this.abilities.gauntSummonerOnDiscOfTzeentchBookOfProfaneSecrets, this.abilities.gauntSummonerOnDiscOfTzeentchWarptongueBlade, this.abilities.gauntSummonerOnDiscOfTzeentchFly, this.abilities.gauntSummonerOnDiscOfTzeentchFractalMindstorm],
            attacks: [this.attacks.gauntSummonerOnDiscOfTzeentchChangestaff, this.attacks.gauntSummonerOnDiscOfTzeentchWarptongueBlade, this.attacks.gauntSummonerOnDiscOfTzeentchDiscOfTzeentchSBladesAndStingers],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Gaunt Summoner on Disc of Tzeentch is a wizard. He can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. A Gaunt Summoner knows the Arcane Bolt, Mystic Shield, and Fractal Mindstorm spells.",       },
+           magicDescription: "Gaunt Summoner on Disc of Tzeentch is a wizard. He can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. A Gaunt Summoner knows the Arcane Bolt, Mystic Shield, and Fractal Mindstorm spells.",
+       },
        slannStarmaster: {
             id: "slannStarmaster",
             model: this.models.slannStarmaster,
@@ -53796,7 +53903,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.slannStarmasterGiftFromTheHeavens],
            attacks: [this.attacks.slannStarmasterAzureLightning],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Slann Starmaster is a wizard. It can attempt to cast three different spells in each of your own hero phases, and attempt to unbind three spells in each enemy hero phase. A Slann Starmaster knows the Arcane Bolt, Mystic Shield and Light of the Heavens spells.",       },
+           magicDescription: "A Slann Starmaster is a wizard. It can attempt to cast three different spells in each of your own hero phases, and attempt to unbind three spells in each enemy hero phase. A Slann Starmaster knows the Arcane Bolt, Mystic Shield and Light of the Heavens spells.",
+       },
        lordKroak: {
             id: "lordKroak",
             model: this.models.lordKroak,
@@ -53818,7 +53926,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            commandAbilities: [this.abilities.lordKroakImpeccableForesight],
            attacks: [this.attacks.lordKroakAncientSpiritsSpectralClaws],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Lord Kroak is a wizard. He can attempt to cast four spells in each of your own hero phases, and attempt to unbind four spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield, Celestial Deliverance and Comet’s Call spells.",       },
+           magicDescription: "Lord Kroak is a wizard. He can attempt to cast four spells in each of your own hero phases, and attempt to unbind four spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield, Celestial Deliverance and Comet’s Call spells.",
+       },
        saurusOldblood: {
             id: "saurusOldblood",
             model: this.models.saurusOldblood,
@@ -53885,6 +53994,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.saurusOldbloodOnCarnosaurSunboltGauntlet, this.attacks.saurusOldbloodOnCarnosaurSunstoneSpear, this.attacks.saurusOldbloodOnCarnosaurCarnosaurSClawedForelimbs, this.attacks.saurusOldbloodOnCarnosaurCarnosaurSMassiveJaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.saurusOldbloodOnCarnosaur,
        },
        saurusEternityWarden: {
             id: "saurusEternityWarden",
@@ -53950,6 +54060,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.saurusScarVeteranOnCarnosaurCelestiteWarblade, this.attacks.saurusScarVeteranOnCarnosaurCelestiteWarSpear, this.attacks.saurusScarVeteranOnCarnosaurCelestiteGreatblade, this.attacks.saurusScarVeteranOnCarnosaurFearsomeJawsAndStardrakeShield, this.attacks.saurusScarVeteranOnCarnosaurCarnosaurSClawedForelimbs, this.attacks.saurusScarVeteranOnCarnosaurCarnosaurSMassiveJaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.saurusScarVeteranOnCarnosaur,
        },
        saurusScarVeteranOnColdOne: {
             id: "saurusScarVeteranOnColdOne",
@@ -54056,7 +54167,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.skinkStarseerCosmicHerald, this.abilities.skinkStarseerFly, this.abilities.skinkStarseerCurseOfFates],
            attacks: [this.attacks.skinkStarseerAstromancerSStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Skink Starseer is a wizard. It can attempt to cast a spell in each of your hero phases, and unbind a spell in each enemy hero phase. It knows the Arcane Bolt, Curse of Fates and Mystic Shield spells.",       },
+           magicDescription: "A Skink Starseer is a wizard. It can attempt to cast a spell in each of your hero phases, and unbind a spell in each enemy hero phase. It knows the Arcane Bolt, Curse of Fates and Mystic Shield spells.",
+       },
        skinkStarpriest: {
             id: "skinkStarpriest",
             model: this.models.skinkStarpriest,
@@ -54077,7 +54189,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.skinkStarpriestSerpentStaff, this.abilities.skinkStarpriestSummonStarlight],
            attacks: [this.attacks.skinkStarpriestStarStoneDagger],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Skink Starpriest is a wizard. It can attempt to cast a spell in each of your own hero phases, and attempt to unbind a spell in each enemy hero phase. A Skink Starpriest knows the Arcane Bolt, Mystic Shield and Summon Starlight spells.",       },
+           magicDescription: "A Skink Starpriest is a wizard. It can attempt to cast a spell in each of your own hero phases, and attempt to unbind a spell in each enemy hero phase. A Skink Starpriest knows the Arcane Bolt, Mystic Shield and Summon Starlight spells.",
+       },
        troglodon: {
             id: "troglodon",
             model: this.models.troglodon,
@@ -54098,6 +54211,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.troglodonDiviningRod, this.abilities.troglodonPrimevalRoar, this.abilities.troglodonDrawnToTheScreams],
            attacks: [this.attacks.troglodonNoxiousSpittle, this.attacks.troglodonVenomousBite, this.attacks.troglodonTroglodonSClawedForelimbs, this.attacks.troglodonSkinkOracleSDiviningRod],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.troglodon,
        },
        skinkPriest: {
             id: "skinkPriest",
@@ -54324,6 +54438,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.stegadonUnstoppableStampede, this.abilities.stegadonSteadfastMajesty, this.abilities.stegadonGoutOfSunfire, this.abilities.stegadonSkinkAlpha],
            attacks: [this.attacks.stegadonMeteoricJavelins, this.attacks.stegadonSkystreakBow, this.attacks.stegadonSunfireThrowers, this.attacks.stegadonMassiveHorns, this.attacks.stegadonCrushingStomps],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.stegadon,
        },
        engineOfTheGods: {
             id: "engineOfTheGods",
@@ -54346,6 +54461,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.engineOfTheGodsMeteoricJavelins, this.attacks.engineOfTheGodsSharpenedHorns, this.attacks.engineOfTheGodsCrushingStomps],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.engineOfTheGods,
        },
        orrukWarbossOnWyvern: {
             id: "orrukWarbossOnWyvern",
@@ -54369,6 +54485,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.orrukWarbossOnWyvernBossChoppa, this.attacks.orrukWarbossOnWyvernWyvernSHornsClawsAndTeeth, this.attacks.orrukWarbossOnWyvernWyvernSBarbedVenomousTail],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.orrukWarbossOnWyvern,
        },
        orrukWarboss: {
             id: "orrukWarboss",
@@ -54412,7 +54529,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.orrukGreatShamanWaaaghEnergy, this.abilities.orrukGreatShamanWarBoar, this.abilities.orrukGreatShamanGazeOfMork],
            attacks: [this.attacks.orrukGreatShamanTotemicStaff, this.attacks.orrukGreatShamanWarBoarSTusks],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "An Orruk Great Shaman is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. An Orruk Great Shaman knows the Arcane Bolt, Mystic Shield and Gaze of Mork spells.",       },
+           magicDescription: "An Orruk Great Shaman is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. An Orruk Great Shaman knows the Arcane Bolt, Mystic Shield and Gaze of Mork spells.",
+       },
        orruks: {
             id: "orruks",
             model: this.models.orruks,
@@ -54496,7 +54614,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.grotShamanKunninOrJustLucky, this.abilities.grotShamanGiantWolves, this.abilities.grotShamanSneakyStabbin],
            attacks: [this.attacks.grotShamanShamanStick, this.attacks.grotShamanGiantWolfSSlaveringJaws],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Grot Shaman is a wizard.  The shaman can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. A Grot Shaman knows the Arcane Bolt, Mystic Shield and Sneaky Stabbin’ spells.",       },
+           magicDescription: "A Grot Shaman is a wizard.  The shaman can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. A Grot Shaman knows the Arcane Bolt, Mystic Shield and Sneaky Stabbin’ spells.",
+       },
        grots: {
             id: "grots",
             model: this.models.grots,
@@ -54747,7 +54866,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.madcapShamansMadcapMushroom, this.abilities.madcapShamansNightShroud],
            attacks: [this.attacks.madcapShamansMoonStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Night Shroud spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Night Shroud spells.",
+       },
        shootas: {
             id: "shootas",
             model: this.models.shootas,
@@ -54789,6 +54909,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.manglerSquigsKerSplat, this.abilities.manglerSquigsWatchOut, this.abilities.manglerSquigsCrew, this.abilities.manglerSquigsFly],
            attacks: [this.attacks.manglerSquigsHugeFangFilledGobs, this.attacks.manglerSquigsBallsAndChains, this.attacks.manglerSquigsGrotsBashinSticks],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.manglerSquigs,
        },
        sporesplattaFanatics: {
             id: "sporesplattaFanatics",
@@ -54935,6 +55056,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.skitterstrandArachnarokSpiderVenom, this.abilities.skitterstrandArachnarokWallCrawler, this.abilities.skitterstrandArachnarokAmbushFromBeyond],
            attacks: [this.attacks.skitterstrandArachnarokChitinousLegs, this.attacks.skitterstrandArachnarokMonstrousFangs],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.skitterstrandArachnarok,
        },
        arachnarokSpiderWithSpiderfangWarparty: {
             id: "arachnarokSpiderWithSpiderfangWarparty",
@@ -54956,6 +55078,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.arachnarokSpiderSpiderVenom, this.abilities.arachnarokSpiderWallCrawler, this.abilities.arachnarokSpiderVoraciousPredator, this.abilities.arachnarokSpiderCrew],
            attacks: [this.attacks.arachnarokSpiderSpiderBows, this.attacks.arachnarokSpiderCrookedSpears, this.attacks.arachnarokSpiderChitinousLegs, this.attacks.arachnarokSpiderMonstrousFangs],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.arachnarokSpiderWithSpiderfangWarparty,
        },
        webspinnerShamanOnArachnarokSpider: {
             id: "webspinnerShamanOnArachnarokSpider",
@@ -54978,7 +55101,9 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            attacks: [this.attacks.webspinnerShamanSpiderBows, this.attacks.webspinnerShamanCrookedSpears, this.attacks.webspinnerShamanChitinousLegs, this.attacks.webspinnerShamanMonstrousFangs, this.attacks.webspinnerShamanSpiderGodStaff],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Venom of the Spider God spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Venom of the Spider God spells.",
+           damageTable: this.damageTables.webspinnerShamanOnArachnarokSpider,
+       },
        aleguzzlerGargant: {
             id: "aleguzzlerGargant",
             model: this.models.aleguzzlerGargant,
@@ -54999,6 +55124,7 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.aleguzzlerGargantTimber, this.abilities.aleguzzlerGargantStuffEmInMeBag, this.abilities.aleguzzlerGargantDrunkenStagger],
            attacks: [this.attacks.aleguzzlerGargantMassiveClub, this.attacks.aleguzzlerGargantEadbutt, this.attacks.aleguzzlerGargantMightyKick],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.aleguzzlerGargant,
        },
        fellwaterTroggoths: {
             id: "fellwaterTroggoths",
@@ -55105,7 +55231,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.butcherBloodgruel, this.abilities.butcherGreatCauldron, this.abilities.butcherVoraciousMaw],
            attacks: [this.attacks.butcherButcherSCleaverOrTenderiser, this.attacks.butcherStumpBlades],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Butcher is a wizard. He can attempt to cast one spell in each of his own hero phases, and unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Voracious Maw spells.",       },
+           magicDescription: "A Butcher is a wizard. He can attempt to cast one spell in each of his own hero phases, and unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Voracious Maw spells.",
+       },
        ogors: {
             id: "ogors",
             model: this.models.ogors,
@@ -55272,7 +55399,8 @@ If the unit is armed with any other weapon option, 1 in every 3 models can repla
            abilities: [this.abilities.firebellyFireBreath, this.abilities.firebellyCascadingFireCloak],
            attacks: [this.attacks.firebellyFireBreath, this.attacks.firebellyBasaltHammer],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Firebelly is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind a spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Cascading Fire-Cloak spells.",       },
+           magicDescription: "A Firebelly is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind a spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Cascading Fire-Cloak spells.",
+       },
        maneaters: {
             id: "maneaters",
             model: this.models.maneaters,
@@ -55339,6 +55467,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            attacks: [this.attacks.chaosLordOnManticoreDaemonBlade, this.attacks.chaosLordOnManticoreChaosLance, this.attacks.chaosLordOnManticoreChaosFlail, this.attacks.chaosLordOnManticoreManticoreSClawsAndJaws, this.attacks.chaosLordOnManticoreManticoreSLashingTail],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.chaosLordOnManticore,
        },
        chaosSorcererLordOnManticore: {
             id: "chaosSorcererLordOnManticore",
@@ -55361,7 +55490,9 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            attacks: [this.attacks.chaosSorcererLordOnManticoreSorcerousReapingStaff, this.attacks.chaosSorcererLordOnManticoreManticoreSClawsAndJaws, this.attacks.chaosSorcererLordOnManticoreManticoreSLashingTail],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Chaos Sorcerer Lord is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Wind of Chaos spells.",       },
+           magicDescription: "A Chaos Sorcerer Lord is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Wind of Chaos spells.",
+           damageTable: this.damageTables.chaosSorcererLordOnManticore,
+       },
        chaosSorcererLord: {
             id: "chaosSorcererLord",
             model: this.models.chaosSorcererLord,
@@ -55382,7 +55513,8 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.chaosSorcererLordOracularVisions, this.abilities.chaosSorcererLordMarkOfChaos, this.abilities.chaosSorcererLordChaosSteed, this.abilities.chaosSorcererLordDaemonicPower],
            attacks: [this.attacks.chaosSorcererLordChaosRunestaff, this.attacks.chaosSorcererLordChaosRunesword, this.attacks.chaosSorcererLordChaosSteedSFlailingHooves],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Chaos Sorcerer Lord is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Daemonic Power spells.",       },
+           magicDescription: "A Chaos Sorcerer Lord is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Daemonic Power spells.",
+       },
        exaltedHeroOfChaos: {
             id: "exaltedHeroOfChaos",
             model: this.models.exaltedHeroOfChaos,
@@ -55592,6 +55724,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.chaosWarshrineDedicatedToChaos, this.abilities.chaosWarshrineProtectionOfTheDarkGods, this.abilities.chaosWarshrineFavourOfTheRuinousPowers],
            attacks: [this.attacks.chaosWarshrineSacrificialBlade, this.attacks.chaosWarshrineClubbedFists],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.chaosWarshrine,
        },
        chaosKnights: {
             id: "chaosKnights",
@@ -55656,7 +55789,9 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            attacks: [this.attacks.keeperOfSecretsRazorSharpClaws, this.attacks.keeperOfSecretsElegantGreatblade],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Keeper of Secrets is a wizard. It can cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cacophonic Choir spells.",       },
+           magicDescription: "A Keeper of Secrets is a wizard. It can cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cacophonic Choir spells.",
+           damageTable: this.damageTables.keeperOfSecrets,
+       },
        theMasqueOfSlaanesh: {
             id: "theMasqueOfSlaanesh",
             model: this.models.theMasqueOfSlaanesh,
@@ -55968,6 +56103,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.soulGrinderDaemonEngineOfTheDarkGods, this.abilities.soulGrinderImplacableAdvance, this.abilities.soulGrinderCaughtByTheClaw],
            attacks: [this.attacks.soulGrinderHarvesterCannon, this.attacks.soulGrinderPhlegmBombardment, this.attacks.soulGrinderPistonDrivenLegs, this.attacks.soulGrinderHellforgedClaw, this.attacks.soulGrinderWarpmetalBlade, this.attacks.soulGrinderDaemonboneTalon],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.soulGrinder,
        },
        beLakorChaosDaemonPrince: {
             id: "beLakorChaosDaemonPrince",
@@ -55990,7 +56126,8 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            attacks: [this.attacks.beLakorChaosDaemonPrinceBladeOfShadows],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Be’lakor is a wizard. He can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Enfeeble Foe spells.",       },
+           magicDescription: "Be’lakor is a wizard. He can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Enfeeble Foe spells.",
+       },
        beastlord: {
             id: "beastlord",
             model: this.models.beastlord,
@@ -56033,7 +56170,8 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.greatBrayShamanInfuseWithBestialVigour, this.abilities.greatBrayShamanDevolve],
            attacks: [this.attacks.greatBrayShamanFetishStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Devolve spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Devolve spells.",
+       },
        gors: {
             id: "gors",
             model: this.models.gors,
@@ -56201,6 +56339,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.ghorgonRavenousBloodgreed, this.abilities.ghorgonSwallowWhole],
            attacks: [this.attacks.ghorgonButcheringBlades, this.attacks.ghorgonHugeSlaveringMaw],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.ghorgon,
        },
        cygor: {
             id: "cygor",
@@ -56222,6 +56361,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.cygorSoulEater, this.abilities.cygorGhostsight],
            attacks: [this.attacks.cygorDesecratedBoulder, this.attacks.cygorMassiveHorns],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.cygor,
        },
        centigors: {
             id: "centigors",
@@ -56344,6 +56484,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.chimeraDraconicHeadSFieryBreath, this.abilities.chimeraViciousCharge, this.abilities.chimeraFly],
            attacks: [this.attacks.chimeraDraconicHeadSFieryBreath, this.attacks.chimeraAvianHead, this.attacks.chimeraDraconicHead, this.attacks.chimeraLeonineHead, this.attacks.chimeraMaulingClaws],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.chimera,
        },
        slaughterbrute: {
             id: "slaughterbrute",
@@ -56365,6 +56506,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.slaughterbruteRunesOfBinding, this.abilities.slaughterbruteBeastUnbound],
            attacks: [this.attacks.slaughterbruteRazorTippedClaws, this.attacks.slaughterbruteMightyJaws, this.attacks.slaughterbruteLesserClaws],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.slaughterbrute,
        },
        mutalithVortexBeast: {
             id: "mutalithVortexBeast",
@@ -56386,6 +56528,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.mutalithVortexBeastAuraOfMutation, this.abilities.mutalithVortexBeastMutantRegeneration],
            attacks: [this.attacks.mutalithVortexBeastCrushingClaws, this.attacks.mutalithVortexBeastBetentacledMaw],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.mutalithVortexBeast,
        },
        cockatrice: {
             id: "cockatrice",
@@ -56427,6 +56570,7 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.chaosGargantTimber, this.abilities.chaosGargantStuffEmInMeBag, this.abilities.chaosGargantDrunkenStagger, this.abilities.chaosGargantWhippedIntoAFrenzy],
            attacks: [this.attacks.chaosGargantMassiveClub, this.attacks.chaosGargantViciousEadbutt, this.attacks.chaosGargantMightyKick],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.chaosGargant,
        },
        dragonOgors: {
             id: "dragonOgors",
@@ -56469,7 +56613,8 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.dragonOgorShaggothBeneathTheTempest, this.abilities.dragonOgorShaggothSummonLightning],
            attacks: [this.attacks.dragonOgorShaggothStormWroughtAxe, this.attacks.dragonOgorShaggothSweepingTail, this.attacks.dragonOgorShaggothTalonedForelimbs],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Summon Lightning spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Summon Lightning spells.",
+       },
        greySeer: {
             id: "greySeer",
             model: this.models.greySeer,
@@ -56490,7 +56635,8 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.greySeerWarpstoneTokens, this.abilities.greySeerWither],
            attacks: [this.attacks.greySeerWarpstoneStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Wither spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Wither spells.",
+       },
        thanquolOnBoneripper: {
             id: "thanquolOnBoneripper",
             model: this.models.thanquolOnBoneripper,
@@ -56513,7 +56659,9 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            attacks: [this.attacks.thanquolWarpfireProjectors, this.attacks.thanquolStaffOfTheHornedRat, this.attacks.thanquolWarpfireBraziers, this.attacks.thanquolCrushingBlows],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Thanquol on Boneripper is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Madness spells.",       },
+           magicDescription: "Thanquol on Boneripper is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Madness spells.",
+           damageTable: this.damageTables.thanquolOnBoneripper,
+       },
        lordSkreechVerminking: {
             id: "lordSkreechVerminking",
             model: this.models.lordSkreechVerminking,
@@ -56536,7 +56684,9 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            attacks: [this.attacks.lordSkreechVerminkingPrehensileTails, this.attacks.lordSkreechVerminkingDoomGlaive, this.attacks.lordSkreechVerminkingPlaguereaper],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "Lord Skreech Verminking is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Dreaded Thirteenth Spell spells.",       },
+           magicDescription: "Lord Skreech Verminking is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Dreaded Thirteenth Spell spells.",
+           damageTable: this.damageTables.lordSkreechVerminking,
+       },
        greySeerOnScreamingBell: {
             id: "greySeerOnScreamingBell",
             model: this.models.greySeerOnScreamingBell,
@@ -56558,7 +56708,9 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            attacks: [this.attacks.greySeerWarpstoneStaff, this.attacks.greySeerTearingClawsAndFangs, this.attacks.greySeerRustySpikes],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cracks Call spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cracks Call spells.",
+           damageTable: this.damageTables.greySeerOnScreamingBell,
+       },
        verminlordWarpseer: {
             id: "verminlordWarpseer",
             model: this.models.verminlordWarpseer,
@@ -56581,7 +56733,9 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            attacks: [this.attacks.verminlordWarpseerPrehensileTails, this.attacks.verminlordWarpseerDoomGlaive],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Warpgale spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Warpgale spells.",
+           damageTable: this.damageTables.verminlordWarpseer,
+       },
        verminlordWarbringer: {
             id: "verminlordWarbringer",
             model: this.models.verminlordWarbringer,
@@ -56604,7 +56758,9 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            attacks: [this.attacks.verminlordWarbringerPrehensileTails, this.attacks.verminlordWarbringerDoomGlaive, this.attacks.verminlordWarbringerSpikeFist],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Death Frenzy spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Death Frenzy spells.",
+           damageTable: this.damageTables.verminlordWarbringer,
+       },
        clawlord: {
             id: "clawlord",
             model: this.models.clawlord,
@@ -56689,7 +56845,8 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.archWarlockMoreMoreStormcage, this.abilities.archWarlockWarpfireGauntlet, this.abilities.archWarlockWarpLightningStorm],
            attacks: [this.attacks.archWarlockStormcageHalberd, this.attacks.archWarlockPistonClaw],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Warp Lightning Storm spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Warp Lightning Storm spells.",
+       },
        warlockEngineer: {
             id: "warlockEngineer",
             model: this.models.warlockEngineer,
@@ -56710,7 +56867,8 @@ These mighty champions ride atop a Manticore that fights with its fearsome Claws
            abilities: [this.abilities.warlockEngineerMoreMoreWarpEnergy, this.abilities.warlockEngineerWarpLightning],
            attacks: [this.attacks.warlockEngineerWarplockPistol, this.attacks.warlockEngineerWarpEnergyBlade],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Warp Lightning spell. Any number of Warlock Engineers can attempt to cast Warp Lightning spells in the same hero phase.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Warp Lightning spell. Any number of Warlock Engineers can attempt to cast Warp Lightning spells in the same hero phase.",
+       },
        arachnarokSpiderWithFlinger: {
             id: "arachnarokSpiderWithFlinger",
             model: this.models.arachnarokSpiderWithFlinger,
@@ -57023,6 +57181,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            abilities: [this.abilities.hellPitAbominationAvalancheOfFlesh, this.abilities.hellPitAbominationRegeneratingMonstrosity, this.abilities.hellPitAbominationTerrifying, this.abilities.hellPitAbominationWarpstoneSpikes, this.abilities.hellPitAbominationTooHorribleToDie],
            attacks: [this.attacks.hellPitAbominationGnashingTeeth, this.attacks.hellPitAbominationFlailingFists, this.attacks.hellPitAbominationAvalancheOfFlesh],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.hellPitAbomination,
        },
        verminlordCorruptor: {
             id: "verminlordCorruptor",
@@ -57046,7 +57205,9 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            attacks: [this.attacks.verminlordCorruptorPrehensileTail, this.attacks.verminlordCorruptorPlaguereapers],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Plague spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Plague spells.",
+           damageTable: this.damageTables.verminlordCorruptor,
+       },
        sepulchralStalkers: {
             id: "sepulchralStalkers",
             model: this.models.sepulchralStalkers,
@@ -57087,6 +57248,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            abilities: [this.abilities.necrosphinxNeedToDestroy, this.abilities.necrosphinxSacredWarStatue, this.abilities.necrosphinxDecapitatingStrike, this.abilities.necrosphinxFly],
            attacks: [this.attacks.necrosphinxGiganticScythingBlades, this.attacks.necrosphinxStoneClaws, this.attacks.necrosphinxBladedTail, this.attacks.necrosphinxVenomSpikeTail],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.necrosphinx,
        },
        royalWarsphinx: {
             id: "royalWarsphinx",
@@ -57110,6 +57272,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            attacks: [this.attacks.royalWarsphinxFieryRoar, this.attacks.royalWarsphinxStoneClawsAndTeeth, this.attacks.royalWarsphinxBladedTail, this.attacks.royalWarsphinxVenomSpikeTail, this.attacks.royalWarsphinxTombKingSGlaiveOfKings],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.royalWarsphinx,
        },
        warsphinx: {
             id: "warsphinx",
@@ -57131,6 +57294,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            abilities: [this.abilities.warsphinxThundercrushAttack, this.abilities.warsphinxSacredWarStatue],
            attacks: [this.attacks.warsphinxFieryRoar, this.attacks.warsphinxStoneClawsAndTeeth, this.attacks.warsphinxBladedTail, this.attacks.warsphinxVenomSpikeTail, this.attacks.warsphinxTombGuardsSpears],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.warsphinx,
        },
        ushabti: {
             id: "ushabti",
@@ -57195,7 +57359,9 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            attacks: [this.attacks.verminlordDeceiverDoomstar, this.attacks.verminlordDeceiverPrehensileTails, this.attacks.verminlordDeceiverWarpstiletto],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Skitterleap spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Dreaded Skitterleap spells.",
+           damageTable: this.damageTables.verminlordDeceiver,
+       },
        nightRunners: {
             id: "nightRunners",
             model: this.models.nightRunners,
@@ -57259,6 +57425,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            attacks: [this.attacks.warAltarOfSigmarLightOfBanishment, this.attacks.warAltarOfSigmarSigmariteGreathammer, this.attacks.warAltarOfSigmarSigmariteWarhammer, this.attacks.warAltarOfSigmarStaffOfSigmar, this.attacks.warAltarOfSigmarWarhorsesSteelShodHooves],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.warAltarOfSigmar,
        },
        warriorPriest: {
             id: "warriorPriest",
@@ -57345,6 +57512,7 @@ Up to one third of the models in the unit (rounding up) can be armed with one of
            attacks: [this.attacks.freeguildGeneralOnGriffonFreeguildLance, this.attacks.freeguildGeneralOnGriffonSigmariteRunesword, this.attacks.freeguildGeneralOnGriffonSigmariteGreathammer, this.attacks.freeguildGeneralOnGriffonGriffonSDeadlyBeak, this.attacks.freeguildGeneralOnGriffonGriffonSRazorClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.freeguildGeneralOnGriffon,
        },
        freeguildGeneral: {
             id: "freeguildGeneral",
@@ -57572,7 +57740,8 @@ Grey: Mystifying Miasma\
 \
 Amber: Wildform\
 \
-Jade: Lifesurge",       },
+Jade: Lifesurge",
+       },
        battlemageOnGriffon: {
             id: "battlemageOnGriffon",
             model: this.models.battlemageOnGriffon,
@@ -57594,7 +57763,9 @@ Jade: Lifesurge",       },
            attacks: [this.attacks.battlemageOnGriffonBeaststaff, this.attacks.battlemageOnGriffonGriffonSTwinBeaks, this.attacks.battlemageOnGriffonGriffonSRazorClaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Battlemage can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Amber Spear spells.",       },
+           magicDescription: "A Battlemage can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Amber Spear spells.",
+           damageTable: this.damageTables.battlemageOnGriffon,
+       },
        luminarkOfHysh: {
             id: "luminarkOfHysh",
             model: this.models.luminarkOfHysh,
@@ -57615,6 +57786,7 @@ Jade: Lifesurge",       },
            abilities: [this.abilities.luminarkOfHyshLocusOfHysh, this.abilities.luminarkOfHyshAuraOfProtection],
            attacks: [this.attacks.luminarkOfHyshSearingBeamOfLight, this.attacks.luminarkOfHyshAcolytesArcaneTools, this.attacks.luminarkOfHyshWarhorsesSteelShodHooves],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.luminarkOfHysh,
        },
        luminarkOfHyshWithWhiteBattlemage: {
             id: "luminarkOfHyshWithWhiteBattlemage",
@@ -57637,7 +57809,9 @@ Jade: Lifesurge",       },
            attacks: [this.attacks.luminarkOfHyshWithWhiteBattlemageSearingBeamOfLight, this.attacks.luminarkOfHyshWithWhiteBattlemageBattlemageSStaff, this.attacks.luminarkOfHyshWithWhiteBattlemageAcolytesArcaneTools, this.attacks.luminarkOfHyshWithWhiteBattlemageWarhorsesSteelShodHooves],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "The White Battlemage atop a Luminark can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Burning Gaze spells.",       },
+           magicDescription: "The White Battlemage atop a Luminark can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Burning Gaze spells.",
+           damageTable: this.damageTables.luminarkOfHyshWithWhiteBattlemage,
+       },
        celestialHurricanum: {
             id: "celestialHurricanum",
             model: this.models.celestialHurricanum,
@@ -57658,6 +57832,7 @@ Jade: Lifesurge",       },
            abilities: [this.abilities.celestialHurricanumLocusOfAzyr, this.abilities.celestialHurricanumPortentsOfBattle, this.abilities.celestialHurricanumStormOfShemtek],
            attacks: [this.attacks.celestialHurricanumStormOfShemtek, this.attacks.celestialHurricanumAcolytesArcaneTools, this.attacks.celestialHurricanumWarhorsesSteelShodHooves],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.celestialHurricanum,
        },
        celestialHurricanumWithCelestialBattlemage: {
             id: "celestialHurricanumWithCelestialBattlemage",
@@ -57680,7 +57855,9 @@ Jade: Lifesurge",       },
            attacks: [this.attacks.celestialHurricanumWithCelestialBattlemageStormOfShemtek, this.attacks.celestialHurricanumWithCelestialBattlemageBattlemageSStaff, this.attacks.celestialHurricanumWithCelestialBattlemageAcolytesArcaneTools, this.attacks.celestialHurricanumWithCelestialBattlemageWarhorsesSteelShodHooves],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Battlemage tending a Celestial Hurricanum can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Comet of Casandora spells.",       },
+           magicDescription: "A Battlemage tending a Celestial Hurricanum can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Comet of Casandora spells.",
+           damageTable: this.damageTables.celestialHurricanumWithCelestialBattlemage,
+       },
        gunmaster: {
             id: "gunmaster",
             model: this.models.gunmaster,
@@ -57827,6 +58004,7 @@ Jade: Lifesurge",       },
            abilities: [this.abilities.steamTankMorePressure, this.abilities.steamTankSteelBehemoth, this.abilities.steamTankBouncingCannonBalls, this.abilities.steamTankILlFixIt],
            attacks: [this.attacks.steamTankRepeaterHandgun, this.attacks.steamTankLongRifle, this.attacks.steamTankSteamCannon, this.attacks.steamTankSteamGun, this.attacks.steamTankCrushingWheelsAndIroncladBulk, this.attacks.steamTankCommanderSSwordOrRod],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.steamTank,
        },
        gyrocopters: {
             id: "gyrocopters",
@@ -58096,7 +58274,8 @@ Jade: Lifesurge",       },
            abilities: [this.abilities.archmageTalismanOfArcanePower, this.abilities.archmageAelvenSteed, this.abilities.archmageElementalShield],
            attacks: [this.attacks.archmageSeerstaff, this.attacks.archmageAelvenSteedSSwiftHooves],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "An Archmage is a wizard. He can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Elemental Shield spells.",       },
+           magicDescription: "An Archmage is a wizard. He can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Elemental Shield spells.",
+       },
        archmageOnDragon: {
             id: "archmageOnDragon",
             model: this.models.archmageOnDragon,
@@ -58120,7 +58299,9 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            attacks: [this.attacks.archmageOnDragonMagestaff, this.attacks.archmageOnDragonSorcerousBlade, this.attacks.archmageOnDragonDragonSClaws, this.attacks.archmageOnDragonDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "An Archmage on Dragon is a wizard. He can attempt to cast one spell in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. An Archmage with an Arcane Tome can attempt to cast two different spells in each of your hero phases instead of just one, and attempt to unbind two spells in each enemy hero phase. An Archmage on Dragon knows the Arcane Bolt, Mystic Shield and Drain Magic spells.",       },
+           magicDescription: "An Archmage on Dragon is a wizard. He can attempt to cast one spell in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. An Archmage with an Arcane Tome can attempt to cast two different spells in each of your hero phases instead of just one, and attempt to unbind two spells in each enemy hero phase. An Archmage on Dragon knows the Arcane Bolt, Mystic Shield and Drain Magic spells.",
+           damageTable: this.damageTables.archmageOnDragon,
+       },
        drakeseer: {
             id: "drakeseer",
             model: this.models.drakeseer,
@@ -58142,7 +58323,9 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            attacks: [this.attacks.drakeseerDrakeseerSSunstaff, this.attacks.drakeseerDragonSClaws, this.attacks.drakeseerDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Drakeseer is a wizard. He can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield, and Flames of the Phoenix spells.",       },
+           magicDescription: "A Drakeseer is a wizard. He can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield, and Flames of the Phoenix spells.",
+           damageTable: this.damageTables.drakeseer,
+       },
        loremaster: {
             id: "loremaster",
             model: this.models.loremaster,
@@ -58163,7 +58346,8 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            abilities: [this.abilities.loremasterDeflectShots, this.abilities.loremasterHandOfGlory],
            attacks: [this.attacks.loremasterGreatsword],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Loremaster is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Hand of Glory spells.",       },
+           magicDescription: "A Loremaster is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Hand of Glory spells.",
+       },
        swordmasters: {
             id: "swordmasters",
             model: this.models.swordmasters,
@@ -58205,6 +58389,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            abilities: [this.abilities.flamespyrePhoenixPhoenixReborn, this.abilities.flamespyrePhoenixWakeOfFire, this.abilities.flamespyrePhoenixAttunedToMagic, this.abilities.flamespyrePhoenixFly],
            attacks: [this.attacks.flamespyrePhoenixFlamingTalons],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.flamespyrePhoenix,
        },
        anointedOnFlamespyrePhoenix: {
             id: "anointedOnFlamespyrePhoenix",
@@ -58228,6 +58413,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            attacks: [this.attacks.anointedOnFlamespyrePhoenixFlamingTalons, this.attacks.anointedOnFlamespyrePhoenixGreatPhoenixHalberd],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.anointedOnFlamespyrePhoenix,
        },
        frostheartPhoenix: {
             id: "frostheartPhoenix",
@@ -58249,6 +58435,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            abilities: [this.abilities.frostheartPhoenixBlizzardAura, this.abilities.frostheartPhoenixAttunedToMagic, this.abilities.frostheartPhoenixFly],
            attacks: [this.attacks.frostheartPhoenixIceHardTalons],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.frostheartPhoenix,
        },
        anointedOnFrostheartPhoenix: {
             id: "anointedOnFrostheartPhoenix",
@@ -58272,6 +58459,7 @@ An Archmage’s Dragon mount devours enemies in its Fearsome Jaws and tears them
            attacks: [this.attacks.anointedOnFrostheartPhoenixIceHardTalons, this.attacks.anointedOnFrostheartPhoenixGreatPhoenixHalberd],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.anointedOnFrostheartPhoenix,
        },
        anointed: {
             id: "anointed",
@@ -58380,6 +58568,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            attacks: [this.attacks.dragonlordReaverBow, this.attacks.dragonlordDragonLance, this.attacks.dragonlordDragonBlade, this.attacks.dragonlordDragonSClaws, this.attacks.dragonlordDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.dragonlord,
        },
        dragonNoble: {
             id: "dragonNoble",
@@ -58570,6 +58759,7 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            abilities: [this.abilities.kharibdyssAbyssalHowl, this.abilities.kharibdyssFeastOfBones, this.abilities.kharibdyssQuickWithTheLash],
            attacks: [this.attacks.kharibdyssFangedTentacles, this.attacks.kharibdyssClawedLimbs, this.attacks.kharibdyssSpikedTail, this.attacks.kharibdyssHandlersCruelGoadsAndWhips],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.kharibdyss,
        },
        scourgerunnerChariots: {
             id: "scourgerunnerChariots",
@@ -58613,7 +58803,9 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            attacks: [this.attacks.sorceressOnBlackDragonWitchRod, this.attacks.sorceressOnBlackDragonDarklingSword, this.attacks.sorceressOnBlackDragonWitchLash, this.attacks.sorceressOnBlackDragonBlackDragonSClaws, this.attacks.sorceressOnBlackDragonBlackDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Sorceress on Black Dragon is a wizard. She can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Bladewind spells.",       },
+           magicDescription: "A Sorceress on Black Dragon is a wizard. She can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Bladewind spells.",
+           damageTable: this.damageTables.sorceressOnBlackDragon,
+       },
        sorceress: {
             id: "sorceress",
             model: this.models.sorceress,
@@ -58634,7 +58826,8 @@ A Dragonlord’s mount devours enemies in its Fearsome Jaws and tears them apart
            abilities: [this.abilities.sorceressBloodSacrifice, this.abilities.sorceressWordOfPain],
            attacks: [this.attacks.sorceressWitchstaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Sorceress is a wizard. She can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Word of Pain spells.",       },
+           magicDescription: "A Sorceress is a wizard. She can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Word of Pain spells.",
+       },
        blackGuard: {
             id: "blackGuard",
             model: this.models.blackGuard,
@@ -58806,6 +58999,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            attacks: [this.attacks.dreadlordOnBlackDragonRepeaterCrossbow, this.attacks.dreadlordOnBlackDragonExileBlade, this.attacks.dreadlordOnBlackDragonLanceOfSpite, this.attacks.dreadlordOnBlackDragonBlackDragonSClaws, this.attacks.dreadlordOnBlackDragonBlackDragonSFearsomeJaws],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.dreadlordOnBlackDragon,
        },
        drakespawnKnights: {
             id: "drakespawnKnights",
@@ -58869,6 +59063,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.warHydraSeverOneHeadAnotherTakesItsPlace, this.abilities.warHydraQuickWithTheLash],
            attacks: [this.attacks.warHydraFieryBreath, this.attacks.warHydraRazorSharpFangs, this.attacks.warHydraClawedLimbs, this.attacks.warHydraHandlersCruelGoadsAndWhips],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.warHydra,
        },
        nomadPrince: {
             id: "nomadPrince",
@@ -58912,7 +59107,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.spellweaverAncientBlessings, this.abilities.spellweaverBlessingOfLife],
            attacks: [this.attacks.spellweaverBlowsOfMysticPower, this.attacks.spellweaverHeartwoodStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Spellweaver is a wizard. A Spellweaver can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. A Spellweaver knows the Arcane Bolt, Mystic Shield and Blessing of Life spells.",       },
+           magicDescription: "A Spellweaver is a wizard. A Spellweaver can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. A Spellweaver knows the Arcane Bolt, Mystic Shield and Blessing of Life spells.",
+       },
        waystrider: {
             id: "waystrider",
             model: this.models.waystrider,
@@ -59061,7 +59257,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.sistersOfTheThornHandmaidenOfTheThorn, this.abilities.sistersOfTheThornHornblower, this.abilities.sistersOfTheThornStandardBearer, this.abilities.sistersOfTheThornShieldOfThorns],
            attacks: [this.attacks.sistersOfTheThornBlackbriarJavelin, this.attacks.sistersOfTheThornDeepwoodCovenStaff, this.attacks.sistersOfTheThornSteedsAntlersAndThrashingHooves],
-           magicDescription: "A unit of Sisters of the Thorn can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. You can add 1 to any casting or unbinding rolls made for this unit if it includes 10 or more models. Sisters of the Thorn know the Arcane Bolt, Mystic Shield and Shield of Thorns spells.",       },
+           magicDescription: "A unit of Sisters of the Thorn can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. You can add 1 to any casting or unbinding rolls made for this unit if it includes 10 or more models. Sisters of the Thorn know the Arcane Bolt, Mystic Shield and Shield of Thorns spells.",
+       },
        sistersOfTheWatch: {
             id: "sistersOfTheWatch",
             model: this.models.sistersOfTheWatch,
@@ -59187,6 +59384,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            attacks: [this.attacks.gladeLordOnForestDragonStarlightSpear, this.attacks.gladeLordOnForestDragonDragonSGapingMaw, this.attacks.gladeLordOnForestDragonDragonSDaggerLikeTalons],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.gladeLordOnForestDragon,
        },
        gladeLordOnPurebredSteed: {
             id: "gladeLordOnPurebredSteed",
@@ -59272,6 +59470,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            attacks: [this.attacks.twilightSistersOnForestDragonDawnbow, this.attacks.twilightSistersOnForestDragonDuskbow, this.attacks.twilightSistersOnForestDragonTwilightSistersSpears, this.attacks.twilightSistersOnForestDragonDragonSGapingMaw, this.attacks.twilightSistersOnForestDragonDragonSDaggerLikeTalons],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.twilightSistersOnForestDragon,
        },
        shadowdancer: {
             id: "shadowdancer",
@@ -59293,7 +59492,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.shadowdancerTalismanicTattoos, this.abilities.shadowdancerShadowDance, this.abilities.shadowdancerBridgeOfShadows],
            attacks: [this.attacks.shadowdancerWarStave, this.attacks.shadowdancerWeavingBlade],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Shadowdancer is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. A Shadowdancer knows the Arcane Bolt, Mystic Shield and Bridge of Shadows spells.",       },
+           magicDescription: "A Shadowdancer is a wizard. It can attempt to cast one spell in each of your own hero phases, and attempt to unbind one spell in each enemy hero phase. A Shadowdancer knows the Arcane Bolt, Mystic Shield and Bridge of Shadows spells.",
+       },
        wardancers: {
             id: "wardancers",
             model: this.models.wardancers,
@@ -59476,7 +59676,9 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.chaosDragonBreathOfMutation, this.abilities.chaosDragonFly, this.abilities.chaosDragonTreasonousCurse],
            attacks: [this.attacks.chaosDragonSwatheOfDarkFire, this.attacks.chaosDragonBreathOfMutation, this.attacks.chaosDragonWarpedMaws, this.attacks.chaosDragonViciousTalons],
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Chaos Dragon is a wizard. It can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Treasonous Curse spells.",       },
+           magicDescription: "A Chaos Dragon is a wizard. It can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Treasonous Curse spells.",
+           damageTable: this.damageTables.chaosDragon,
+       },
        chaosOgors: {
             id: "chaosOgors",
             model: this.models.chaosOgors,
@@ -59600,7 +59802,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.lammasuSorcerousMiasma, this.abilities.lammasuFly],
            attacks: [this.attacks.lammasuHornsAndTeeth, this.attacks.lammasuClawedForelimbs],
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "A Lammasu is a wizard. It can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt and Mystic Shield spells.",       },
+           magicDescription: "A Lammasu is a wizard. It can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. It knows the Arcane Bolt and Mystic Shield spells.",
+       },
        vampireLordOnAbyssalTerror: {
             id: "vampireLordOnAbyssalTerror",
             model: this.models.vampireLordOnAbyssalTerror,
@@ -59621,7 +59824,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.vampireLordOnAbyssalTerrorTheHunger, this.abilities.vampireLordOnAbyssalTerrorDeathlanceCharge, this.abilities.vampireLordOnAbyssalTerrorAncientShield, this.abilities.vampireLordOnAbyssalTerrorSupernaturalTerror, this.abilities.vampireLordOnAbyssalTerrorFly, this.abilities.vampireLordOnAbyssalTerrorHellishVigour],
            attacks: [this.attacks.vampireLordOnAbyssalTerrorDeathlance, this.attacks.vampireLordOnAbyssalTerrorVampiricSword, this.attacks.vampireLordOnAbyssalTerrorAbyssalTerrorSClawsAndTusks],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Vampire Lord is a wizard. They can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. They know the Arcane Bolt, Mystic Shield and Hellish Vigour spells.",       },
+           magicDescription: "A Vampire Lord is a wizard. They can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. They know the Arcane Bolt, Mystic Shield and Hellish Vigour spells.",
+       },
        necromancerOnNightmare: {
             id: "necromancerOnNightmare",
             model: this.models.necromancerOnNightmare,
@@ -59642,7 +59846,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.necromancerOnNightmareUndeadMinions, this.abilities.necromancerOnNightmareVanhelSDanseMacabre],
            attacks: [this.attacks.necromancerOnNightmareNecromancerSStaff, this.attacks.necromancerOnNightmareNightmareSHoovesAndTeeth],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Necromancer is a wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Vanhel’s Danse Macabre spells.",       },
+           magicDescription: "A Necromancer is a wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Vanhel’s Danse Macabre spells.",
+       },
        masterMoulder: {
             id: "masterMoulder",
             model: this.models.masterMoulder,
@@ -59685,7 +59890,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.theddraSkullScryerPactOfSoulAndIron, this.abilities.theddraSkullScryerEnfeeblement],
            attacks: [this.attacks.theddraSkullScryerDarkoathWand],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Theddra Skull-Scryer is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Enfeeblement spells.",       },
+           magicDescription: "Theddra Skull-Scryer is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Enfeeblement spells.",
+       },
        orrukBully: {
             id: "orrukBully",
             model: this.models.orrukBully,
@@ -60083,6 +60289,7 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            commandAbilities: [this.abilities.kingOnHippogryphKingOfTheRealm],
            attacks: [this.attacks.kingOnHippogryphSwordOfTheKing, this.attacks.kingOnHippogryphHippogryphSTalons, this.attacks.kingOnHippogryphHippogryhSRazorSharpBeak],
            isLeader: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.kingOnHippogryph,
        },
        enchantress: {
             id: "enchantress",
@@ -60104,7 +60311,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.enchantressChaliceOfPotions, this.abilities.enchantressSaintlyGuardians, this.abilities.enchantressSpitefulGlance, this.abilities.enchantressBlessed, this.abilities.enchantressDivineFavour],
            attacks: [this.attacks.enchantressEnchantressBlessedBlade, this.attacks.enchantressUnicornSEnchantedHorn, this.attacks.enchantressUnicornSSilvershodHooves],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "An Enchantress is a wizard. She can attempt to cast two spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Divine Favour spells.",       },
+           magicDescription: "An Enchantress is a wizard. She can attempt to cast two spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Divine Favour spells.",
+       },
        sacredProtector: {
             id: "sacredProtector",
             model: this.models.sacredProtector,
@@ -60210,7 +60418,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.damselSoothingAura, this.abilities.damselFly, this.abilities.damselDivineBlessing],
            attacks: [this.attacks.damselStaffOfPurity, this.attacks.damselMountSHooves],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Damsel is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Divine Blessing spells.",       },
+           magicDescription: "A Damsel is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Divine Blessing spells.",
+       },
        knightsErrant: {
             id: "knightsErrant",
             model: this.models.knightsErrant,
@@ -60559,7 +60768,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.battlemageOnPegasusAmuletOfNegation, this.abilities.battlemageOnPegasusFly, this.abilities.battlemageOnPegasusSearingDoom],
            attacks: [this.attacks.battlemageOnPegasusBattlemageSStaff, this.attacks.battlemageOnPegasusPegasusIronHardHooves],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Battlemage on Pegasus is a wizard. They can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. They know the Arcane Bolt, Mystic Shield and Searing Doom spells.",       },
+           magicDescription: "A Battlemage on Pegasus is a wizard. They can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. They know the Arcane Bolt, Mystic Shield and Searing Doom spells.",
+       },
        huntmarshal: {
             id: "huntmarshal",
             model: this.models.huntmarshal,
@@ -60751,7 +60961,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.lichePriestHierophantSScrolls, this.abilities.lichePriestRighteousSmiting],
            attacks: [this.attacks.lichePriestMortuaryStaff, this.attacks.lichePriestSteedSThunderingHooves],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Liche Priest is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Righteous Smiting spells.",       },
+           magicDescription: "A Liche Priest is a wizard. He can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Righteous Smiting spells.",
+       },
        casketOfSouls: {
             id: "casketOfSouls",
             model: this.models.casketOfSouls,
@@ -61225,7 +61436,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.guardianOfSoulsEthereal, this.abilities.guardianOfSoulsNightmareLantern, this.abilities.guardianOfSoulsFly, this.abilities.guardianOfSoulsSpectralLure],
            attacks: [this.attacks.guardianOfSoulsChillBlade, this.attacks.guardianOfSoulsMaulOfJudgement],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Guardian of Souls is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Spectral Lure spells.",       },
+           magicDescription: "A Guardian of Souls is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Spectral Lure spells.",
+       },
        spiritTorment: {
             id: "spiritTorment",
             model: this.models.spiritTorment,
@@ -61330,7 +61542,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            commandAbilities: [this.abilities.lordArcanumSoulEnergy],
            attacks: [this.attacks.lordArcanumAetherstave, this.attacks.lordArcanumGryphChargerSRazorBeakAndClaws],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Healing Light spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Healing Light spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",
+       },
        knightIncantor: {
             id: "knightIncantor",
             model: this.models.knightIncantor,
@@ -61351,7 +61564,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            abilities: [this.abilities.knightIncantorVoidstormScroll, this.abilities.knightIncantorSpiritFlasks, this.abilities.knightIncantorSpiritStorm],
            attacks: [this.attacks.knightIncantorIncantorSStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Spirit Storm spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Spirit Storm spells.",
+       },
        evocators: {
             id: "evocators",
             model: this.models.evocators,
@@ -61371,7 +61585,8 @@ The Dreadlord’s Black Dragon can rend foes apart with its Claws and swallow me
            options: [],
            abilities: [this.abilities.evocatorsCelestialLightningArc, this.abilities.evocatorsEvocatorPrime, this.abilities.evocatorsEmpower],
            attacks: [this.attacks.evocatorsTempestBladeAndStormstave, this.attacks.evocatorsGrandstave],
-           magicDescription: "This unit is a Wizard while it has 2 or more models. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Empower spell. It cannot attempt to cast any spells other than Empower, but any number of units of Evocators can attempt to cast Empower in the same hero phase.",       },
+           magicDescription: "This unit is a Wizard while it has 2 or more models. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Empower spell. It cannot attempt to cast any spells other than Empower, but any number of units of Evocators can attempt to cast Empower in the same hero phase.",
+       },
        castigators: {
             id: "castigators",
             model: this.models.castigators,
@@ -61498,6 +61713,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.mutalithVortexBeastOfTzeentchAuraOfMutation, this.abilities.mutalithVortexBeastOfTzeentchMutantRegeneration],
            attacks: [this.attacks.mutalithVortexBeastOfTzeentchCrushingClaws, this.attacks.mutalithVortexBeastOfTzeentchBetentacledMaw],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.mutalithVortexBeastOfTzeentch,
        },
        slaughterbruteOfKhorne: {
             id: "slaughterbruteOfKhorne",
@@ -61519,6 +61735,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.slaughterbruteOfKhorneRunesOfBinding, this.abilities.slaughterbruteOfKhorneBeastUnbound],
            attacks: [this.attacks.slaughterbruteOfKhorneRazorTippedClaws, this.attacks.slaughterbruteOfKhorneMightyJaws, this.attacks.slaughterbruteOfKhorneLesserClaws],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.slaughterbruteOfKhorne,
        },
        ladyOlynder: {
             id: "ladyOlynder",
@@ -61541,7 +61758,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.ladyOlynderNoRestForTheWicked],
            attacks: [this.attacks.ladyOlynderStaffOfMidnight, this.attacks.ladyOlynderBansheeHandmaidensSpectralClaws],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Lady Olynder is a Wizard. She can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Grief-stricken spells.",       },
+           magicDescription: "Lady Olynder is a Wizard. She can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Grief-stricken spells.",
+       },
        kurdossValentianTheCravenKing: {
             id: "kurdossValentianTheCravenKing",
             model: this.models.kurdossValentianTheCravenKing,
@@ -61583,7 +61801,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.reikenorTheGrimhailerCorpseCandles, this.abilities.reikenorTheGrimhailerEthereal, this.abilities.reikenorTheGrimhailerFrightfulTouch, this.abilities.reikenorTheGrimhailerReapedLikeCorn, this.abilities.reikenorTheGrimhailerMount, this.abilities.reikenorTheGrimhailerFly, this.abilities.reikenorTheGrimhailerWraithstorm],
            attacks: [this.attacks.reikenorTheGrimhailerFellreaper, this.attacks.reikenorTheGrimhailerGhostlyHoovesAndTeeth],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Reikenor the Grimhailer is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Wraithstorm spells.",       },
+           magicDescription: "Reikenor the Grimhailer is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Wraithstorm spells.",
+       },
        chainghasts: {
             id: "chainghasts",
             model: this.models.chainghasts,
@@ -61706,7 +61925,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.aventisFirestrikeFieryOrator],
            attacks: [this.attacks.aventisFirestrikeStaffOfHammerhal, this.attacks.aventisFirestrikeHornsAndStampingHooves],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Aventis Firestrike is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Pyroelectric Blast spells. In addition, the Arcane Bolts that he unleashes are fuelled by Prime Electrids.",       },
+           magicDescription: "Aventis Firestrike is a Wizard. He can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Pyroelectric Blast spells. In addition, the Arcane Bolts that he unleashes are fuelled by Prime Electrids.",
+       },
        astreiaSolbright: {
             id: "astreiaSolbright",
             model: this.models.astreiaSolbright,
@@ -61728,7 +61948,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.astreiaSolbrightSoulEnergyOfTheFirstHost],
            attacks: [this.attacks.astreiaSolbrightAetherstave, this.attacks.astreiaSolbrightMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Astreia Solbright is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Lightning Pulse spells. In addition, the Arcane Bolts that she unleashes are fuelled by Prime Electrids.",       },
+           magicDescription: "Astreia Solbright is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Lightning Pulse spells. In addition, the Arcane Bolts that she unleashes are fuelled by Prime Electrids.",
+       },
        vandusHammerhand: {
             id: "vandusHammerhand",
             model: this.models.vandusHammerhand,
@@ -61794,7 +62015,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.lordArcanumSwiftOfWing],
            attacks: [this.attacks.lordArcanumAetherstave, this.attacks.lordArcanumHornsAndStampingHooves],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Lightning Orb spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Lightning Orb spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",
+       },
        lordArcanum: {
             id: "lordArcanum",
             model: this.models.lordArcanum,
@@ -61816,7 +62038,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.lordArcanumAethericManipulation],
            attacks: [this.attacks.lordArcanumAetherstave],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Thunderclap spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Thunderclap spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",
+       },
        lordArcanumOnCelestialDracoline: {
             id: "lordArcanumOnCelestialDracoline",
             model: this.models.lordArcanumOnCelestialDracoline,
@@ -61838,7 +62061,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.lordArcanumPackAlpha],
            attacks: [this.attacks.lordArcanumAetherstave, this.attacks.lordArcanumMonstrousClaws],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Storm Lance spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Storm Lance spells. In addition, the Arcane Bolts that this model unleashes are fuelled by Prime Electrids.",
+       },
        lordExorcist: {
             id: "lordExorcist",
             model: this.models.lordExorcist,
@@ -61859,7 +62083,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.lordExorcistRedemptorCasket, this.abilities.lordExorcistPurifyingBlast],
            attacks: [this.attacks.lordExorcistRedemptionStave],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Purifying Blast spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Purifying Blast spells.",
+       },
        evocatorsOnCelestialDracolines: {
             id: "evocatorsOnCelestialDracolines",
             model: this.models.evocatorsOnCelestialDracolines,
@@ -61879,7 +62104,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            options: [],
            abilities: [this.abilities.evocatorsCelestialLightningArc, this.abilities.evocatorsSupernaturalRoar, this.abilities.evocatorsThunderousPounce, this.abilities.evocatorsMount, this.abilities.evocatorsEvocatorPrime, this.abilities.evocatorsEmpower],
            attacks: [this.attacks.evocatorsTempestBladeAndStormstave, this.attacks.evocatorsGrandstave, this.attacks.evocatorsMonstrousClaws],
-           magicDescription: "This unit is a Wizard while it has 2 or more models. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Empower spell. It cannot attempt to cast any spells other than Empower, but any number of units of Evocators can attempt to cast Empower in the same hero phase.",       },
+           magicDescription: "This unit is a Wizard while it has 2 or more models. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Empower spell. It cannot attempt to cast any spells other than Empower, but any number of units of Evocators can attempt to cast Empower in the same hero phase.",
+       },
        slambo: {
             id: "slambo",
             model: this.models.slambo,
@@ -61921,7 +62147,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.screamingSkullCatapultCrewedWarMachine, this.abilities.screamingSkullCatapultArcingSkulls, this.abilities.screamingSkullCatapultScreamingAmmunition, this.abilities.screamingSkullCatapultDeathlessOverseer, this.abilities.screamingSkullCatapultRaiseSkeletonCrew],
            attacks: [this.attacks.screamingSkullCatapultCrewSTools],
            isArtillery: (ws: WarscrollInterface) => true,
-           magicDescription: "Death Wizards know the Skeleton Crew spell, in addition to any other spells they know.",       },
+           magicDescription: "Death Wizards know the Skeleton Crew spell, in addition to any other spells they know.",
+       },
        greatcannon: {
             id: "greatcannon",
             model: this.models.greatcannon,
@@ -62132,7 +62359,9 @@ The Ballista and its crew are treated as a single model, using the characteristi
            attacks: [this.attacks.drazhoathTheAshenGoutsOfFlame, this.attacks.drazhoathTheAshenTheGravenBrazier, this.attacks.drazhoathTheAshenBrazenHornsAndTeeth, this.attacks.drazhoathTheAshenBurningHooves],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Flames of Azgorh spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Flames of Azgorh spells.",
+           damageTable: this.damageTables.drazhoathTheAshen,
+       },
        daemonsmith: {
             id: "daemonsmith",
             model: this.models.daemonsmith,
@@ -62153,7 +62382,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.daemonsmithEnsorcelledArmour, this.abilities.daemonsmithBloodOfHashut, this.abilities.daemonsmithAshStorm],
            attacks: [this.attacks.daemonsmithBloodOfHashut, this.attacks.daemonsmithDarkforgedWeapon, this.attacks.daemonsmithPyreRuneStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield, and Ash Storm spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield, and Ash Storm spells.",
+       },
        sharTorTheExecutioner: {
             id: "sharTorTheExecutioner",
             model: this.models.sharTorTheExecutioner,
@@ -62365,6 +62595,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.ironDaemonWarEngineCarriageHauler, this.abilities.ironDaemonWarEngineMorePower],
            attacks: [this.attacks.ironDaemonWarEngineSteamCannonade, this.attacks.ironDaemonWarEngineCrushingBulk],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.ironDaemonWarEngine,
        },
        magmaCannon: {
             id: "magmaCannon",
@@ -62428,6 +62659,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.skullcrackerWarEngineBeatenIntoScrap, this.abilities.skullcrackerWarEngineCarriageHauler, this.abilities.skullcrackerWarEngineMorePower],
            attacks: [this.attacks.skullcrackerWarEngineHammersAndPicks, this.attacks.skullcrackerWarEngineCrushingBulk],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.skullcrackerWarEngine,
        },
        basilisk: {
             id: "basilisk",
@@ -62449,6 +62681,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.basiliskCorrosiveMiasma, this.abilities.basiliskMalignantGaze],
            attacks: [this.attacks.basiliskAcidicSpittle, this.attacks.basiliskVenomousBite, this.attacks.basiliskClutchingClaws],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.basilisk,
        },
        bonegrinderGargant: {
             id: "bonegrinderGargant",
@@ -62470,6 +62703,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.bonegrinderGargantILlBiteYourHeadOff, this.abilities.bonegrinderGargantJumpUpAndDown, this.abilities.bonegrinderGargantLongshanks, this.abilities.bonegrinderGargantTimber],
            attacks: [this.attacks.bonegrinderGargantHurledBoulder, this.attacks.bonegrinderGargantGargantuanClub, this.attacks.bonegrinderGargantThunderousStomp],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.bonegrinderGargant,
        },
        broodHorror: {
             id: "broodHorror",
@@ -62511,6 +62745,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.carmineDragonDeathlyDarkScales, this.abilities.carmineDragonSoulSheeringBlast, this.abilities.carmineDragonSpellDevourer, this.abilities.carmineDragonFly],
            attacks: [this.attacks.carmineDragonSoulSheeringBlast, this.attacks.carmineDragonRakingClaws, this.attacks.carmineDragonAmethystFangs],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.carmineDragon,
        },
        chaosSiegeGargant: {
             id: "chaosSiegeGargant",
@@ -62532,6 +62767,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.chaosSiegeGargantScalingSpikesAndChains, this.abilities.chaosSiegeGargantSiegeArmour, this.abilities.chaosSiegeGargantTimber],
            attacks: [this.attacks.chaosSiegeGargantColossalHookBlades, this.attacks.chaosSiegeGargantLashingChains],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.chaosSiegeGargant,
        },
        chaosWarMammoth: {
             id: "chaosWarMammoth",
@@ -62553,6 +62789,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.chaosWarMammothCrushingFall, this.abilities.chaosWarMammothEarthShakingCharge, this.abilities.chaosWarMammothGoringTusks, this.abilities.chaosWarMammothMarkOfChaos, this.abilities.chaosWarMammothCrew],
            attacks: [this.attacks.chaosWarMammothMarauderJavelinsAndAxes, this.attacks.chaosWarMammothGoringTusks, this.attacks.chaosWarMammothTramplingFeet],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.chaosWarMammoth,
        },
        colossalSquig: {
             id: "colossalSquig",
@@ -62574,6 +62811,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.colossalSquigCrazedCharge, this.abilities.colossalSquigFungoidSquigExplosion, this.abilities.colossalSquigPuffSpores, this.abilities.colossalSquigSwallowedWhole],
            attacks: [this.attacks.colossalSquigPuffSpores, this.attacks.colossalSquigEnormousJaws, this.attacks.colossalSquigTramplingFeet],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.colossalSquig,
        },
        cursDEttin: {
             id: "cursDEttin",
@@ -62595,6 +62833,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.cursDEttinCannibalFeast, this.abilities.cursDEttinGibberingCurse, this.abilities.cursDEttinTwoHeadedHorror],
            attacks: [this.attacks.cursDEttinCrushingFist, this.attacks.cursDEttinStomp],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.cursDEttin,
        },
        dreadMaw: {
             id: "dreadMaw",
@@ -62616,6 +62855,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.dreadMawDevourerFromBelow, this.abilities.dreadMawImpenetrableHide, this.abilities.dreadMawTunnelWorm, this.abilities.dreadMawYawningMaw],
            attacks: [this.attacks.dreadMawSlimeSpray, this.attacks.dreadMawCavernousMaw, this.attacks.dreadMawWrithingCoils],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.dreadMaw,
        },
        dreadSaurian: {
             id: "dreadSaurian",
@@ -62637,6 +62877,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.dreadSaurianDevourerOfBeasts, this.abilities.dreadSaurianArcaneGlyphs, this.abilities.dreadSaurianPrimalPresence, this.abilities.dreadSaurianRoarOfRuin, this.abilities.dreadSaurianCelestialConjuration],
            attacks: [this.attacks.dreadSaurianGargantuanJaws, this.attacks.dreadSaurianRakingClaws, this.attacks.dreadSaurianArmouredTail],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.dreadSaurian,
        },
        exaltedGreaterDaemonOfKhorne: {
             id: "exaltedGreaterDaemonOfKhorne",
@@ -62660,6 +62901,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            attacks: [this.attacks.exaltedGreaterDaemonOfKhorneLashOfKhorne, this.attacks.exaltedGreaterDaemonOfKhorneMightyAxeOfKhorne],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.exaltedGreaterDaemonOfKhorne,
        },
        exaltedGreaterDaemonOfNurgle: {
             id: "exaltedGreaterDaemonOfNurgle",
@@ -62683,7 +62925,9 @@ The Ballista and its crew are treated as a single model, using the characteristi
            attacks: [this.attacks.exaltedGreaterDaemonOfNurgleNoxiousBile, this.attacks.exaltedGreaterDaemonOfNurgleMassiveBilesword],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "An Exalted Greater Daemon of Nurgle is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Wind spells.",       },
+           magicDescription: "An Exalted Greater Daemon of Nurgle is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Plague Wind spells.",
+           damageTable: this.damageTables.exaltedGreaterDaemonOfNurgle,
+       },
        exaltedGreaterDaemonOfSlaanesh: {
             id: "exaltedGreaterDaemonOfSlaanesh",
             model: this.models.exaltedGreaterDaemonOfSlaanesh,
@@ -62706,7 +62950,9 @@ The Ballista and its crew are treated as a single model, using the characteristi
            attacks: [this.attacks.exaltedGreaterDaemonOfSlaaneshRazorSharpClaws, this.attacks.exaltedGreaterDaemonOfSlaaneshElegantGreatblade],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cacophonic Choir spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Cacophonic Choir spells.",
+           damageTable: this.damageTables.exaltedGreaterDaemonOfSlaanesh,
+       },
        exaltedGreaterDaemonOfTzeentch: {
             id: "exaltedGreaterDaemonOfTzeentch",
             model: this.models.exaltedGreaterDaemonOfTzeentch,
@@ -62729,7 +62975,9 @@ The Ballista and its crew are treated as a single model, using the characteristi
            attacks: [this.attacks.exaltedGreaterDaemonOfTzeentchStaffOfTzeentch, this.attacks.exaltedGreaterDaemonOfTzeentchCurvedBeakAndWickedTalons],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Infernal Gateway spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Infernal Gateway spells.",
+           damageTable: this.damageTables.exaltedGreaterDaemonOfTzeentch,
+       },
        fimirachNoble: {
             id: "fimirachNoble",
             model: this.models.fimirachNoble,
@@ -62793,6 +63041,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.incarnateElementalOfBeastsSavageFrenzy, this.abilities.incarnateElementalOfBeastsHowlOfTheGreatBeast, this.abilities.incarnateElementalOfBeastsIncarnateOfGhur, this.abilities.incarnateElementalOfBeastsTheLureOfSpiltBlood],
            attacks: [this.attacks.incarnateElementalOfBeastsAmberBreath, this.attacks.incarnateElementalOfBeastsSavageTalons, this.attacks.incarnateElementalOfBeastsImpalingHorns],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.incarnateElementalOfBeasts,
        },
        incarnateElementalOfFire: {
             id: "incarnateElementalOfFire",
@@ -62814,6 +63063,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.incarnateElementalOfFireAshesToAshes, this.abilities.incarnateElementalOfFireGiftOfElementalFire, this.abilities.incarnateElementalOfFireIncarnateOfAqshy],
            attacks: [this.attacks.incarnateElementalOfFireFieryBolts, this.attacks.incarnateElementalOfFireTendrilsOfFire, this.attacks.incarnateElementalOfFireBurningLance],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.incarnateElementalOfFire,
        },
        giganticChaosSpawn: {
             id: "giganticChaosSpawn",
@@ -62835,6 +63085,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.giganticChaosSpawnCurseOfTheDarkGods, this.abilities.giganticChaosSpawnPlaythingOfTheDarkGods, this.abilities.giganticChaosSpawnWrithingTentacles],
            attacks: [this.attacks.giganticChaosSpawnFreakishMutations, this.attacks.giganticChaosSpawnSlaveringMaws],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.giganticChaosSpawn,
        },
        magmaDragon: {
             id: "magmaDragon",
@@ -62856,6 +63107,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.magmaDragonBrimstoneDragonfire, this.abilities.magmaDragonBurningBlood, this.abilities.magmaDragonFly],
            attacks: [this.attacks.magmaDragonBrimstoneDragonfire, this.attacks.magmaDragonFurnaceHotJaws, this.attacks.magmaDragonCrushingClaws],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.magmaDragon,
        },
        mazarallTheButcher: {
             id: "mazarallTheButcher",
@@ -62878,6 +63130,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            commandAbilities: [this.abilities.mazarallTheButcherTheButcherSDue],
            attacks: [this.attacks.mazarallTheButcherAncyteShieldSWrath, this.attacks.mazarallTheButcherHarrowMeat, this.attacks.mazarallTheButcherAncyteShieldSBlades],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.mazarallTheButcher,
        },
        merwyrm: {
             id: "merwyrm",
@@ -62899,6 +63152,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.merwyrmAbyssalPredator, this.abilities.merwyrmStenchOfTheDeep, this.abilities.merwyrmUnnaturalMetabolism],
            attacks: [this.attacks.merwyrmChillBreath, this.attacks.merwyrmHideousJaws, this.attacks.merwyrmPowerfulTail],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.merwyrm,
        },
        mourngul: {
             id: "mourngul",
@@ -62920,6 +63174,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.mourngulDevourerOfFleshAndSouls, this.abilities.mourngulEthereal, this.abilities.mourngulFrightfulTouch, this.abilities.mourngulGhastlyApparition, this.abilities.mourngulFly],
            attacks: [this.attacks.mourngulNightmarishClawsAndFangs],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.mourngul,
        },
        preyton: {
             id: "preyton",
@@ -62961,6 +63216,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.rogueIdolAvalanche, this.abilities.rogueIdolDaBigUn, this.abilities.rogueIdolLivinIdol, this.abilities.rogueIdolRubbleAndRuin, this.abilities.rogueIdolSpiritOfTheWaaagh],
            attacks: [this.attacks.rogueIdolBoulderFists, this.attacks.rogueIdolStompinFeet],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.rogueIdol,
        },
        skaaracTheBloodborn: {
             id: "skaaracTheBloodborn",
@@ -62984,6 +63240,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            attacks: [this.attacks.skaaracTheBloodbornBurningBlood, this.attacks.skaaracTheBloodbornBrutalBlades, this.attacks.skaaracTheBloodbornThunderousHooves],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.skaaracTheBloodborn,
        },
        skavenClawlordOnBroodHorror: {
             id: "skavenClawlordOnBroodHorror",
@@ -63089,7 +63346,9 @@ The Ballista and its crew are treated as a single model, using the characteristi
            attacks: [this.attacks.troggothHagCopiousVomit, this.attacks.troggothHagDeadwoodStaff, this.attacks.troggothHagCrushingBulk],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Hag Curse spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Hag Curse spells.",
+           damageTable: this.damageTables.troggothHag,
+       },
        warpfireDragon: {
             id: "warpfireDragon",
             model: this.models.warpfireDragon,
@@ -63110,6 +63369,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.warpfireDragonDeadlyDemise, this.abilities.warpfireDragonWarpfire, this.abilities.warpfireDragonFly],
            attacks: [this.attacks.warpfireDragonWarpfire, this.attacks.warpfireDragonSnappingJaws, this.attacks.warpfireDragonTwistedClaws],
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.warpfireDragon,
        },
        warpgnawVerminlord: {
             id: "warpgnawVerminlord",
@@ -63131,7 +63391,9 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.warpgnawVerminlordProtectionOfTheHornedRat, this.abilities.warpgnawVerminlordRealmGuide, this.abilities.warpgnawVerminlordTerrifying, this.abilities.warpgnawVerminlordSplinterScreech],
            attacks: [this.attacks.warpgnawVerminlordPrehensileTail, this.attacks.warpgnawVerminlordGnawGlaive],
            isBehemoth: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Splinter-screech spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Splinter-screech spells.",
+           damageTable: this.damageTables.warpgnawVerminlord,
+       },
        darkoathChieftain: {
             id: "darkoathChieftain",
             model: this.models.darkoathChieftain,
@@ -63215,7 +63477,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.gauntSummonerAndChaosFamiliarsBookOfProfaneSecrets, this.abilities.gauntSummonerAndChaosFamiliarsChaosFamiliars, this.abilities.gauntSummonerAndChaosFamiliarsWarptongueBlade, this.abilities.gauntSummonerAndChaosFamiliarsInfernalFlames],
            attacks: [this.attacks.gauntSummonerAndChaosFamiliarsChangestaff, this.attacks.gauntSummonerAndChaosFamiliarsWarptongueBlade],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Gaunt Summoner of Tzeentch is a wizard. He can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. A Gaunt Summoner knows the Arcane Bolt, Mystic Shield, and Infernal Flames spells.",       },
+           magicDescription: "A Gaunt Summoner of Tzeentch is a wizard. He can attempt to cast two different spells in each of your hero phases, and attempt to unbind two spells in each enemy hero phase. A Gaunt Summoner knows the Arcane Bolt, Mystic Shield, and Infernal Flames spells.",
+       },
        bileTroggoths: {
             id: "bileTroggoths",
             model: this.models.bileTroggoths,
@@ -63256,7 +63519,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.mistweaverSaihGlimmermist, this.abilities.mistweaverSaihIllusoryAssault],
            attacks: [this.attacks.mistweaverSaihAelvenBlade, this.attacks.mistweaverSaihMistweaverSStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "A Mistweaver Saih is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. A Mistweaver Saih knows the Arcane Bolt, Mystic Shield and Illusory Assault spells.",       },
+           magicDescription: "A Mistweaver Saih is a wizard. She can attempt to cast one spell in each of your hero phases, and attempt to unbind one spell in each enemy hero phase. A Mistweaver Saih knows the Arcane Bolt, Mystic Shield and Illusory Assault spells.",
+       },
        webspinnerShaman: {
             id: "webspinnerShaman",
             model: this.models.webspinnerShaman,
@@ -63277,7 +63541,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.webspinnerShamanTouchedByTheSpiderGod, this.abilities.webspinnerShamanSpeedOfTheSpiderGod],
            attacks: [this.attacks.webspinnerShamanSpiderGodStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Speed of the Spider God spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Speed of the Spider God spells.",
+       },
        tenebraelShard: {
             id: "tenebraelShard",
             model: this.models.tenebraelShard,
@@ -63321,6 +63586,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            attacks: [this.attacks.highWardenStarwoodLance, this.attacks.highWardenStarblade, this.attacks.highWardenGriffonSRazorSharpBeak, this.attacks.highWardenGriffonSWickedTalons],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.highWarden,
        },
        spireguard: {
             id: "spireguard",
@@ -63386,6 +63652,7 @@ The Ballista and its crew are treated as a single model, using the characteristi
            attacks: [this.attacks.tamurkhanTheMaggotLordLashingTongue, this.attacks.tamurkhanTheMaggotLordTheBlackCleaver, this.attacks.tamurkhanTheMaggotLordCrushingJaws, this.attacks.tamurkhanTheMaggotLordBefouledBulk],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.tamurkhanTheMaggotLord,
        },
        kazykTheBefouled: {
             id: "kazykTheBefouled",
@@ -63491,7 +63758,8 @@ The Ballista and its crew are treated as a single model, using the characteristi
            abilities: [this.abilities.saylTheFaithlessMutantSight, this.abilities.saylTheFaithlessNightmawMyPetProtectMe, this.abilities.saylTheFaithlessSchalkainSTeeth, this.abilities.saylTheFaithlessTraitorSMist],
            attacks: [this.attacks.saylTheFaithlessTheViperousStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Traitor’s Mist spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Traitor’s Mist spells.",
+       },
        nightmaw: {
             id: "nightmaw",
             model: this.models.nightmaw,
@@ -63616,7 +63884,8 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            abilities: [this.abilities.theBriarQueenEthereal, this.abilities.theBriarQueenFly, this.abilities.theBriarQueenHowlingVortex],
            attacks: [this.attacks.theBriarQueenRendingScream, this.attacks.theBriarQueenBriarWhip],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "The Briar Queen is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Howling Vortex spells.",       },
+           magicDescription: "The Briar Queen is a Wizard. She can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. She knows the Arcane Bolt, Mystic Shield and Howling Vortex spells.",
+       },
        thornsOfTheBriarQueen: {
             id: "thornsOfTheBriarQueen",
             model: this.models.thornsOfTheBriarQueen,
@@ -63657,7 +63926,8 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            abilities: [this.abilities.averonStormsireSpiritFlask, this.abilities.averonStormsireVoidstormScroll, this.abilities.averonStormsireStormsire],
            attacks: [this.attacks.averonStormsireIncantorSStaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Averon Stormsire is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Stormsire spells.",       },
+           magicDescription: "Averon Stormsire is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Stormsire spells.",
+       },
        stormsireSCursebreakers: {
             id: "stormsireSCursebreakers",
             model: this.models.stormsireSCursebreakers,
@@ -63677,7 +63947,8 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            options: [],
            abilities: [this.abilities.stormsireSCursebreakersBlessedBanishment, this.abilities.stormsireSCursebreakersCelestialLightningArc, this.abilities.stormsireSCursebreakersEmpower],
            attacks: [this.attacks.stormsireSCursebreakersTempestBladeAndStormstave],
-           magicDescription: "This unit is a Wizard while it has 2 models. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Empower spell. It cannot attempt to cast any spells other than Empower, but any number of units of Evocators can attempt to cast Empower in the same hero phase.",       },
+           magicDescription: "This unit is a Wizard while it has 2 models. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Empower spell. It cannot attempt to cast any spells other than Empower, but any number of units of Evocators can attempt to cast Empower in the same hero phase.",
+       },
        vortemisTheAllSeeing: {
             id: "vortemisTheAllSeeing",
             model: this.models.vortemisTheAllSeeing,
@@ -63698,7 +63969,8 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            abilities: [this.abilities.vortemisTheAllSeeingMagicTouched, this.abilities.vortemisTheAllSeeingSorcerousInsight],
            attacks: [this.attacks.vortemisTheAllSeeingTzeentchianRunestaff, this.attacks.vortemisTheAllSeeingTzeentchianRunestaff],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "Vortemis the All-seeing is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Sorcerous Insight spells.",       },
+           magicDescription: "Vortemis the All-seeing is a Wizard. He can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. He knows the Arcane Bolt, Mystic Shield and Sorcerous Insight spells.",
+       },
        eyesOfTheNine: {
             id: "eyesOfTheNine",
             model: this.models.eyesOfTheNine,
@@ -63739,7 +64011,8 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            abilities: [this.abilities.zarbagSnifferSpite, this.abilities.zarbagFaceOfDaBadMoon],
            attacks: [this.attacks.zarbagCursedSickle],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Face of Da Bad Moon spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Face of Da Bad Moon spells.",
+       },
        zarbagSGitz: {
             id: "zarbagSGitz",
             model: this.models.zarbagSGitz,
@@ -63781,6 +64054,7 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            attacks: [this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneWhiteHotBalefire, this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneSkullCleaverAxeOfKhorne, this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneEvisceratingClaws, this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneCavernousJaws, this.attacks.vorgarothTheScarredSkalokTheSkullHostOfKhorneBrassPlatedTail],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.vorgarothTheScarredSkalokTheSkullHostOfKhorne,
        },
        infernalEnrapturessHeraldOfSlaanesh: {
             id: "infernalEnrapturessHeraldOfSlaanesh",
@@ -63824,7 +64098,8 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            commandAbilities: [this.abilities.skragrottTheLoonkingTheLoonkingSEntreaty],
            attacks: [this.attacks.skragrottTheLoonkingDaMoonOnnaStikk, this.attacks.skragrottTheLoonkingDaMoonOnnaStikk],
            isLeader: (ws: WarscrollInterface) => true,
-           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Nikkit! Nikkit! spells.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast two spells in your hero phase, and attempt to unbind two spells in the enemy hero phase. It knows the Arcane Bolt, Mystic Shield and Nikkit! Nikkit! spells.",
+       },
        squigHerd: {
             id: "squigHerd",
             model: this.models.squigHerd,
@@ -63925,7 +64200,8 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            options: [],
            abilities: [this.abilities.boggleyeHallucinogenicFungusBrews, this.abilities.boggleyeSlipperyGit, this.abilities.boggleyeMesmerise],
            attacks: [this.attacks.boggleyeMesmerisingStaff],
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase and attempt to unbind one spell in the enemy hero phase. It knows the Mesmerise spell.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase and attempt to unbind one spell in the enemy hero phase. It knows the Mesmerise spell.",
+       },
        shroomancer: {
             id: "shroomancer",
             model: this.models.shroomancer,
@@ -63945,7 +64221,8 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            options: [],
            abilities: [this.abilities.shroomancerHallucinogenicFungusBrews, this.abilities.shroomancerSlipperyGit, this.abilities.shroomancerFungoidCloud],
            attacks: [this.attacks.shroomancerMoonStaffAndJaggedyKnife],
-           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase and attempt to unbind one spell in the enemy hero phase. It knows the Fungoid Cloud spell.",       },
+           magicDescription: "This model is a Wizard. It can attempt to cast one spell in your hero phase and attempt to unbind one spell in the enemy hero phase. It knows the Fungoid Cloud spell.",
+       },
        loonbossOnManglerSquigs: {
             id: "loonbossOnManglerSquigs",
             model: this.models.loonbossOnManglerSquigs,
@@ -63968,6 +64245,7 @@ Korghus Khul leads the Goretide, and always wears their colours in battle. If yo
            attacks: [this.attacks.loonbossMoonCutta, this.attacks.loonbossHugeFangFilledGobs, this.attacks.loonbossBallsAndChains, this.attacks.loonbossGrotsBashinStikks],
            isLeader: (ws: WarscrollInterface) => true,
            isBehemoth: (ws: WarscrollInterface) => true,
+           damageTable: this.damageTables.loonbossOnManglerSquigs,
        },
        loonbossWithGiantCaveSquig: {
             id: "loonbossWithGiantCaveSquig",
