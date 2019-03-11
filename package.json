@@ -16,7 +16,8 @@
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-router-dom": "^4.3.1",
-    "semantic-ui-react": "^0.85.0"
+    "semantic-ui-react": "^0.85.0",
+    "node-static": "^0.7.11"
   },
   "devDependencies": {
     "ava": "^1.2.1",
@@ -41,6 +42,7 @@
     "watch-tools": "tsc -w -p tsconfig.tools.json",
     "database": "node dist/src/tools/database.js",
     "test": "ava dist/test",
-    "watch-test": "ava -w dist/test"
+    "watch-test": "ava -w dist/test",
+    "start": "node index.js"
   }
 }
