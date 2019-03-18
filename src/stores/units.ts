@@ -70,6 +70,10 @@ export interface TargetCondition {
     hasMoved?: boolean;
     hasNotMoved?: boolean;
     inCover?: boolean;
+    // weaponId?: string;
+    // meleeWeapon?: boolean;
+    // rangedWeapon?: boolean;
+    // modelId?: string;
 }
 
 export interface AttackCondition {
@@ -89,25 +93,17 @@ export interface AttackAuraValues {
     bonusRend?: Value;
 }
 
-type AttackAuraValueKey = keyof AttackAuraValues;
-const attackAuraValueKeys: AttackAuraValueKey[] = ["bonusHitRoll", "bonusAttacks", "numberOfHitsOnUnmodified6", "numberOfHitsOnHit", "mortalWoundsOnHitUnmodified6", "mortalWounds", "damageOnWoundUnmodified6", "bonusRend"];
-
 export interface AttackAuraNumbers {
     rerollHitsOn?: number;
 }
-
-const attackAuraNumberKeys: (keyof AttackAuraNumbers)[] = ["rerollHitsOn"];
 
 export interface AttackAuraBooleans {
     rerollFailedHits?: boolean;
 }
 
-const attackAuraBooleanKeys: (keyof AttackAuraBooleans)[] = ["rerollFailedHits"];
-
 export interface AttackAuraAbilityEffects {
     effectsOnHitUnmodified6?: AbilityEffect[];
 }
-const attackAuraAbilityEffectKeys: (keyof AttackAuraAbilityEffects)[] = ["effectsOnHitUnmodified6"];
 
 export interface AttackAura extends AttackAuraValues, AttackAuraNumbers, AttackAuraAbilityEffects, AttackAuraBooleans {
     
@@ -119,71 +115,6 @@ export const enum SubPhase {
     Before,
     While,
     After
-}
-
-export interface AuraState<T> {
-    aura: T;
-    effectRatio?: number;
-    duration?: number;
-}
-
-export interface States {
-    attackAuras: AuraState<AttackAura>[];
-    attackAura: AttackAura;
-    defenseAura: AuraState<DefenseAura>[];
-    debuffAuras: AuraState<DebuffAura>[];
-}
-
-export class ModelState implements States {
-    attackAuras: AuraState<AttackAura>[] = [];
-    attackAura: AttackAura = {};
-    defenseAura: AuraState<DefenseAura>[] = [];
-    debuffAuras: AuraState<DebuffAura>[] = [];
-
-    constructor(public model: ModelOption) {
-    }
-}
-
-export class UnitState implements States {
-    attackAuras: AuraState<AttackAura>[] = [];
-    attackAura: AttackAura = {};
-    defenseAura: AuraState<DefenseAura>[] = [];
-    debuffAuras: AuraState<DebuffAura>[] = [];
-
-    hasCharged: boolean = false;
-    hasMoved: boolean = false;
-    wounds: number = 0;
-    models: ModelState[] = [];
-    constructor(public unit: Unit) {
-    }
-
-    addAttackAura(auraState: AuraState<AttackAura>) {
-        this.attackAuras.push(auraState);
-        const aura = auraState.aura;
-        const sum = this.attackAura;
-        for (const key of attackAuraValueKeys) {
-            if (aura[key]) {
-                sum[key] = getSumValues(sum[key], getValueRatio(aura[key], auraState.effectRatio));
-            }
-        }
-        for (const key of attackAuraNumberKeys) {
-            const a = aura[key];
-            if (a) {
-                sum[key] = a * (auraState.effectRatio || 1);
-            }
-        }
-        for (const key of attackAuraBooleanKeys) {
-            if (aura[key]) sum[key] = true;
-        }
-        for (const key of attackAuraAbilityEffectKeys) {
-            const a = aura[key]
-            if (a) {
-                // TODO ratio?
-                const effects = sum[key] || [];
-                sum[key] = effects.concat(a);
-            }
-        }
-    }
 }
 
 export interface DebuffAura {
@@ -199,6 +130,9 @@ export interface AbilityEffect {
     targetRange?: Value;
     targetRadius?: Value;
     whollyWithin?: boolean;
+    // Implicit if targetEnemy is false and targetRange or targetRadius
+    // if explicitly true, it means it targets the whole unit instead of the caster only
+    targetFriend?: boolean;
     targetEnemy?: boolean;
     targetArea?: boolean;
     targetKeyword?: string;

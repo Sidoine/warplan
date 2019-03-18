@@ -1,5 +1,6 @@
-import { Attack, Value, UnitState, AbilityEffect, isRatioValue, isSumValue } from "./units";
+import { Attack, Value, AbilityEffect, isRatioValue, isSumValue } from "./units";
 import { targetEnemy, checkCondition } from "./stats";
+import { UnitState, addAttackAura } from "./unit-state";
 
 export function getValue(formula: Value): number {
     if (formula === undefined ||formula === "-" || formula === "✹" || formula === "👁") return 0;
@@ -187,7 +188,7 @@ export abstract class Combat {
         if (effect.targetCondition && !checkCondition(effect.targetCondition, target)) return false;
          
         if (effect.attackAura) {
-            target.addAttackAura({ aura: effect.attackAura });
+            addAttackAura(target, { aura: effect.attackAura });
         }
         if (effect.mortalWounds) {
             const mortalWounds = await this.valueRoller(effect.mortalWounds, multiplier);

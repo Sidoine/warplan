@@ -1,8 +1,8 @@
 import { default as test, ExecutionContext } from "ava";
-import { Unit, Attack, Ability, AttackAura, UnitState } from "../../src/stores/units";
+import { Unit, Attack, Ability, AttackAura } from "../../src/stores/units";
 import { RandomCombat } from "../../src/stores/combat";
 import { getUnitStats } from "../../src/stores/stats";
-
+import { UnitState } from "../../src/stores/unit-state";
 const randomCombat = new RandomCombat();
 
 async function computeUnitDamage(unit: Unit, melee?: boolean) {

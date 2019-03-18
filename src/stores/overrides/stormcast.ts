@@ -293,7 +293,7 @@ function fixUnits(data: DataStoreImpl):void {
         const prime = setAbilityAsOption(liberator, data.abilities.liberatorsLiberatorPrime, oneModelOption);
         addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, { attackAura: { bonusHitRoll: 1, targetCondition: { minWounds: 5 } } });
         addAbilityEffect(data.abilities.liberatorsLiberatorPrime, { attackAura: { bonusAttacks: 1 } });
-        addAbilityEffect(data.abilities.liberatorsSigmariteShields, { defenseAura: { rerollSavesOn: 1 } });
+        addAbilityEffect(data.abilities.liberatorsSigmariteShields, { defenseAura: { rerollSavesOn: 1 }, targetFriend: true });
         addAbilityEffect(data.abilities.liberatorsPairedWeapons, { attackAura: { numberOfHitsOnUnmodified6: 2 } });
         
         liberator.modelStats = [
@@ -1653,8 +1653,6 @@ function fixUnits(data: DataStoreImpl):void {
         addAbilityEffect(data.abilities.castigatorsBurstOfCelestialEnergy, { targetCondition: { anyKeyword: ["DAEMON", "NIGHTHAUNT"]}, attackAura: { numberOfHitsOnUnmodified6: "D3" } });
         addAbilityEffect(data.abilities.castigatorsCastigatorPrime, { attackAura: { bonusHitRoll: 1 } }); 
         // TODO add condition on current attack (works only on the ranged weapon)
-        // TODO most spell effects that targets the caster apply only to the caster model and not to the whole unit (it is the case here)
-        // TODO j'ai commencé à rajouter un tableau de ModelState dans UnitState pour gérer ça
         addAbilityEffect(data.abilities.castigatorsCastigatorAethericChannelling, { choice: "Accuracy", phase: Phase.Shooting, attackAura: { rerollHitsOn: 1 } });
         addAbilityEffect(data.abilities.castigatorsCastigatorAethericChannelling, { choice: "Power", phase: Phase.Shooting, attackAura: { bonusRend: -1 } });
         unit.modelStats = [
