@@ -22,6 +22,8 @@ import "./index.less";
 import { MarkersStore } from "./stores/markers";
 import { Stats } from "./components/stats";
 import { WarscrollView } from "./components/warscroll-view";
+import { Cards } from "./components/cards";
+import { CardsStore } from "./stores/cards";
 
 const root = document.getElementById("root");
 
@@ -32,9 +34,10 @@ const warscrollStore = new WarscrollStore(unitsStore);
 const ownedStore = new OwnedStore(unitsStore);
 const basketStore = new BasketStore(unitsStore, warscrollStore, ownedStore);
 const markersStore = new MarkersStore();
+const cardsStore = new CardsStore();
 
 ReactDOM.render(
-    <Provider ownedStore={ownedStore} unitsStore={unitsStore} uiStore={uiStore} basketStore={basketStore} warscrollStore={warscrollStore} markersStore={markersStore}>
+    <Provider ownedStore={ownedStore} cardsStore={cardsStore} unitsStore={unitsStore} uiStore={uiStore} basketStore={basketStore} warscrollStore={warscrollStore} markersStore={markersStore}>
         <HashRouter>
             <Container>
                 <Popins/>    
@@ -47,7 +50,8 @@ ReactDOM.render(
                     <Route exact path="/warscroll" component={Warscroll} />
                     <Route exact path="/markers" component={Markers}/>
                     <Route exact path="/stats" component={Stats}/>
-                    <Route exact path="/list" component={WarscrollView}/>
+                    <Route exact path="/list" component={WarscrollView} />
+                    <Route exact path="/cards" component={Cards} />
                 </Switch>
             </Container>
         </HashRouter>

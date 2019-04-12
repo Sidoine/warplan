@@ -1,0 +1,69 @@
+.ability-card {
+    break-inside: avoid;
+    display: inline-block;
+    margin: 2mm;
+    width: 63mm;
+    height: 88mm;
+    position: relative;
+    border-radius: 3mm;
+    border: 2px solid black;
+    font-family: serif;
+    padding: 2mm;
+    padding-left: 8mm;
+    font-size: 3.5mm;
+    overflow: hidden;
+    &__image {
+        position: absolute;
+        z-index: -1;
+        width:100%;
+        top:0;
+        left:0;
+    }
+    &__title {
+        font-size: 5mm;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 1mm;
+        border-bottom: 1px solid black;
+    }
+    &__description {
+        padding: 1mm;
+        background-color: rgba(220, 200, 120, 0.9);
+        line-height: 100%;
+    }
+    &__flavor {
+        font-style: italic;
+        font-size: 3mm;
+        line-height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+    &__category {
+        font-size: 3mm;
+        font-weight: bold;
+    }
+    &__keywords {
+        position: absolute;
+        left: 8mm;
+        bottom: 0;
+        padding: 1mm;
+        border-top: 2px solid #b5ad82;
+        width: 55mm;
+        background-color: white;
+    }
+    &__values {
+        position: absolute;
+        left:0mm;
+        height: 100%;
+        border-right: 2px solid #b5ad82;
+        top: 0;
+        div {
+            padding-left: 1mm;
+        }
+        div:nth-child(even) {
+            background-color: #b5ad82;
+        }
+        div:nth-child(odd) {
+            background-color: white;
+        }
+    }
+}

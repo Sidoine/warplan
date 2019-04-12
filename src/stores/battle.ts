@@ -1,17 +1,6 @@
 import { observable } from "mobx";
 import { Warscroll, WarscrollUnit } from "./warscroll";
-import { Ability, Phase } from "./units";
-
-export interface UnitAura {
-    ability: Ability;
-}
-
-export class UnitState {
-    @observable wounds = 0;
-
-    public (unit: WarscrollUnit) {
-    }
-}
+import { Phase, UnitsStore } from "./units";
 
 export interface Player {
     name: string;
@@ -25,7 +14,15 @@ export class BattleStore {
 
     @observable players = new Array<Player>();
 
-    @observable player: Player | null = null;
-
+    @observable player: Player | null = null; 
     
+    constructor(units: UnitsStore) {
+        const stormcastWarcroll = new Warscroll(units);
+        stormcastWarcroll.allegiance = units.getAllegiance("stormcastEternals");
+        stormcastWarcroll.units.push(new WarscrollUnit(stormcastWarcroll, units.getUnit("toto")))
+        // const stormcast: Player = {
+        //     name: "Stormcast",
+        //     warscroll: stormcastWarcroll
+        // }
+    }
 }

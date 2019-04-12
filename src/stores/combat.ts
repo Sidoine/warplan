@@ -1,4 +1,4 @@
-import { Attack, Value, AbilityEffect, isRatioValue, isSumValue } from "./units";
+import { Attack, Value, AbilityEffect, isRatioValue, isSumValue, isConditionValue } from "./units";
 import { targetEnemy, checkCondition } from "./stats";
 import { UnitState, addAttackAura } from "./unit-state";
 
@@ -21,6 +21,8 @@ export function getValue(formula: Value): number {
         return getValue(formula.value) * formula.ratio;
     } else if (isSumValue(formula)) {
         return getValue(formula.value1) + getValue(formula.value2);
+    } else if (isConditionValue(formula)) {
+        return getValue(formula.value);
     }
 
     return getValue(formula.values[0]);
@@ -46,6 +48,8 @@ export function rollValue(formula: Value, howMany: number): number {
         return rollValue(formula.value, howMany) * formula.ratio;
     } else if (isSumValue(formula)) {
         return rollValue(formula.value1, howMany) + rollValue(formula.value2, howMany);
+    } else if (isConditionValue(formula)) {
+        return rollValue(formula.value, howMany);
     }
 
     return rollValue(formula.values[0], howMany);
@@ -105,8 +109,8 @@ export abstract class Combat {
         }
 
         let hitRolls = await this.diceRoller(attacks, [toHit]);
-        if (attackAura.rerollHitsOn) {
-            hitRolls = await this.reroll(hitRolls, attackAura.rerollHitsOn, [toHit]);
+        if (attackAura.rerollHitsOn1) {
+            hitRolls = await this.reroll(hitRolls, 1, [toHit]);
         }
 
         const bonusHit = await this.valueRoller(attackAura.bonusHitRoll, 1) || 0;

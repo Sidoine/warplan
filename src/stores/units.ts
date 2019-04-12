@@ -38,9 +38,17 @@ export interface Faction {
 
 export const enum AbilityCategory {
     None,
-    Magic,
+    Spell,
     SpecialRule,
-    Command
+    Command,
+    Prayer,
+    Artefact,
+    Mount,
+    CommandTrait,
+    Army,
+    Unit,
+    MeleeAttack,
+    RangedAttack
 }
 
 export const enum Phase {
@@ -70,16 +78,9 @@ export interface TargetCondition {
     hasMoved?: boolean;
     hasNotMoved?: boolean;
     inCover?: boolean;
-    // weaponId?: string;
-    // meleeWeapon?: boolean;
-    // rangedWeapon?: boolean;
-    // modelId?: string;
-}
-
-export interface AttackCondition {
-    attack?: Attack;
-    onlyMeleeAttacks?: boolean;
-    onlyMissileAttacks?: boolean;
+    weaponId?: string;
+    meleeWeapon?: boolean;
+    rangedWeapon?: boolean;
 }
 
 export interface AttackAuraValues {
@@ -91,10 +92,10 @@ export interface AttackAuraValues {
     mortalWounds?: Value;
     damageOnWoundUnmodified6?: Value;
     bonusRend?: Value;
+    rerollHitsOn1?: Value;
 }
 
 export interface AttackAuraNumbers {
-    rerollHitsOn?: number;
 }
 
 export interface AttackAuraBooleans {
@@ -106,9 +107,6 @@ export interface AttackAuraAbilityEffects {
 }
 
 export interface AttackAura extends AttackAuraValues, AttackAuraNumbers, AttackAuraAbilityEffects, AttackAuraBooleans {
-    
-    targetCondition?: TargetCondition;
-    attackCondition?: AttackCondition;
 }
 
 export const enum SubPhase {
@@ -121,6 +119,15 @@ export interface DebuffAura {
     noPileIn?: boolean;
 }
 
+export const enum TargetType {
+    Unit = 0,
+    Friend = 0,
+    Model = 1,
+    Weapon = 2,
+    Mount = 4,
+    Enemy = 8
+}
+
 export interface AbilityEffect {
     name?: string;
 
@@ -130,12 +137,8 @@ export interface AbilityEffect {
     targetRange?: Value;
     targetRadius?: Value;
     whollyWithin?: boolean;
-    // Implicit if targetEnemy is false and targetRange or targetRadius
-    // if explicitly true, it means it targets the whole unit instead of the caster only
-    targetFriend?: boolean;
-    targetEnemy?: boolean;
+    targetType: TargetType;
     targetArea?: boolean;
-    targetKeyword?: string;
     targetCondition?: TargetCondition;
     effectRange?: number;
     phase?: Phase;
@@ -159,9 +162,11 @@ export interface Ability {
     category?: AbilityCategory;
     effects?: AbilityEffect[];
     randomEffectDices?: string;
+    keywords?: string[][];
 }
 
 export interface Attack {
+    id: string;
     melee: boolean;
     name: string;
     range: Value;
@@ -203,7 +208,7 @@ export interface ModelOption {
     isOptionValid?: (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => boolean;
 }
 
-export type Value = number | string | DamageColumn | undefined | RatioValue | SumValue;
+export type Value = number | string | DamageColumn | undefined | RatioValue | SumValue | ConditionValue;
 
 export function getValueRatio(value: Value, ratio?: number): Value {
     if (ratio !== undefined && value !== undefined) {
@@ -233,7 +238,8 @@ export interface DamageTable {
 export const enum ValueType {
     DamageColumn,
     SumValue,
-    RatioValue
+    RatioValue,
+    Condition
 }
 
 export interface DamageColumn {
@@ -254,6 +260,12 @@ export interface RatioValue {
     ratio: number;
 }
 
+export interface ConditionValue {
+    type: ValueType.Condition;
+    value: Value;
+    targetCondition: TargetCondition;
+}
+
 export function isRatioValue(v: Value): v is RatioValue {
     return typeof(v) === "object" && v.type === ValueType.RatioValue;
 }
@@ -264,6 +276,14 @@ export function isSumValue(v: Value): v is SumValue {
 
 export function isDamageColumn(v: Value): v is DamageColumn {
     return typeof(v) === "object" && (v.type === ValueType.DamageColumn || v.type === undefined);
+}
+
+export function isConditionValue(v: Value): v is ConditionValue {
+    return typeof (v) === "object" && v.type === ValueType.Condition;
+}
+
+export function conditionValue(targetCondition: TargetCondition, value: Value) : ConditionValue {
+    return { type: ValueType.Condition, value: value, targetCondition: targetCondition };
 }
 
 export interface UnitInfos {
@@ -370,6 +390,9 @@ export interface WarscrollInterface {
     general: WarscrollUnitInterface | undefined;
     extraAbilities: ExtraAbility[];
     allegiance: Allegiance;
+    maxArtifacts: number;
+    numberOfArtifacts: number;
+    armyOption: ArmyOption | null;
 }
 
 export interface DataStore {
@@ -383,6 +406,8 @@ export interface Allegiance {
     grandAlliance: GrandAlliance;
     name: string;
     keyword: string;
+    armyOptions?: ArmyOptions;
+    battleTraits?: Ability[];
 }
 
 export type ExtraAbilityTest = (unit: WarscrollUnitInterface, warscroll: WarscrollInterface) => boolean;
@@ -390,14 +415,26 @@ export type ExtraAbilityTest = (unit: WarscrollUnitInterface, warscroll: Warscro
 export interface ExtraAbility {
     id: string;
     ability: Ability;
-    allegiance?: Allegiance;
+    allegianceKeyword?: string;
     category: string;
     isAvailable: ExtraAbilityTest;
 }
 
+export interface ArmyOption {
+    id: string;
+    name: string;
+    keyword?: string;
+    requiredArtifact?: Ability;
+    requiredArtifactKeyword?: string;
+    requiredCommandTrait?: Ability;
+    requiredCommandTraitKeyword?: string;
+    abilities?: Ability[];
+    commandAbilities?: Ability[];
+}
+
 export interface ArmyOptions {
     name: string;
-    values: string[];
+    values: ArmyOption[];
 }
 
 export class UnitsStore {
@@ -411,7 +448,6 @@ export class UnitsStore {
     factions: { [key: string]: Faction };
     factionsList: Faction[] = [];
     allegianceList: Allegiance[] = [];
-    armyOptions: Map<string, ArmyOptions>;
     sceneryList: Scenery[] = [];
     
     constructor(data: DataStoreImpl) {   
@@ -459,7 +495,7 @@ export class UnitsStore {
             this.extraAbilities.push(extraAbilities[key]);
         }
 
-        this.armyOptions = data.armyOptions;
+        // this.armyOptions = data.armyOptions;
 
         const sceneries: {[key: string]: Scenery} = data.sceneries;
         for (const key in sceneries) {
@@ -469,8 +505,20 @@ export class UnitsStore {
         this.addAlliances(data);
     }
 
-    getUnit(id: string) {
+    findUnit(id: string) {
         return this.unitList.find(x => x.id === id);
+    }
+
+    getUnit(id: string) {
+        const unit = this.findUnit(id);
+        if (!unit) throw Error(`Unit ${id} does not exist`);
+        return unit;
+    }
+
+    getAllegiance(id: string) {
+        const allegiance = this.allegianceList.find(x => x.id === id);
+        if (!allegiance) throw Error(`Allegiance ${id} does not exist`);
+        return allegiance;
     }
 
     getExtraAbility(id: string) {

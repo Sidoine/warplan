@@ -2,9 +2,9 @@ import React = require("react");
 import { inject, observer } from "mobx-react";
 import { WarscrollStore, PointMode } from "../stores/warscroll";
 import { Dropdown, Segment, Grid, Icon, DropdownProps } from "semantic-ui-react";
-import { UnitsStore } from "../stores/units";
+import { UnitsStore, ArmyOption } from "../stores/units";
 import { UiStore } from "../stores/ui";
-import { DropdownValues } from "./dropdown-list";
+import { DropdownValues, DropdownObjects } from "./dropdown-list";
 
 interface WarscrollSummaryProps {
     warscrollStore?: WarscrollStore;
@@ -26,7 +26,7 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
         const allegianceOptions = this.props.unitsStore!.allegianceList.filter(x => x.grandAlliance === this.props.uiStore!.grandAlliance)
             .map(x => { return { key: x.id, value: x.id, text: x.name }});
         const armyOptions = this.props.warscrollStore!.armyOptions;
-        const armyOptionsValues = armyOptions && armyOptions.values.map(x => { return { key: x, value: x, text: x} });
+        // const armyOptionsValues = armyOptions && armyOptions.values.map(x => { return { key: x, value: x, text: x} });
 
         return <Segment>
             <Grid>
@@ -38,7 +38,7 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
                     { armyOptions && 
                         <Grid.Column width={5}>
                             {armyOptions.name}:
-                            <Dropdown selection options={armyOptionsValues} value={this.props.warscrollStore!.warscroll.armyOption} onChange={this.setArmyOption} />    
+                            <DropdownObjects<ArmyOption> getText={x => x.name} options={armyOptions.values} value={this.props.warscrollStore!.warscroll.armyOption} onChange={this.setArmyOption} />    
                         </Grid.Column>
                     }
                     <Grid.Column width={5}>
@@ -64,7 +64,7 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
         }
     }
 
-    private setArmyOption = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-        this.props.warscrollStore!.setArmyOption(data.value as string);
+    private setArmyOption = (x: ArmyOption) => {
+        this.props.warscrollStore!.setArmyOption(x);
     }
 }

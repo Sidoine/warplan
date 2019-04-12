@@ -8,7 +8,7 @@ export interface HasId {
 }
 
 export interface DropdownObjectsProps<T extends HasId> {
-    value: T;
+    value: T | null;
     options: T[];
     onChange: (value: T) => void;
     getText: (value: T) => string;
@@ -27,7 +27,7 @@ export class DropdownObjects<T extends HasId> extends React.Component<DropdownOb
     }
 
     render() {
-        return <Dropdown selection options={this.options} value={this.props.value.id} onChange={this.handleChange} />;
+        return <Dropdown selection options={this.options} value={(this.props.value && this.props.value.id) || undefined} onChange={this.handleChange} />;
     }
 }
 

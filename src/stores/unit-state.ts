@@ -1,8 +1,8 @@
-import { AttackAura, DefenseAura, DebuffAura, ModelOption, Unit, AttackAuraValues, AttackAuraNumbers, AttackAuraBooleans, AttackAuraAbilityEffects, getSumValues, getValueRatio, Attack } from "./units";
+import { AttackAura, DefenseAura, DebuffAura, ModelOption, Unit, AttackAuraValues, AttackAuraBooleans, AttackAuraAbilityEffects, getSumValues, getValueRatio, Attack } from "./units";
 
 type AttackAuraValueKey = keyof AttackAuraValues;
 const attackAuraValueKeys: AttackAuraValueKey[] = ["bonusHitRoll", "bonusAttacks", "numberOfHitsOnUnmodified6", "numberOfHitsOnHit", "mortalWoundsOnHitUnmodified6", "mortalWounds", "damageOnWoundUnmodified6", "bonusRend"];
-const attackAuraNumberKeys: (keyof AttackAuraNumbers)[] = ["rerollHitsOn"];
+// const attackAuraNumberKeys: (keyof AttackAuraNumbers)[] = [];
 const attackAuraBooleanKeys: (keyof AttackAuraBooleans)[] = ["rerollFailedHits"];
 const attackAuraAbilityEffectKeys: (keyof AttackAuraAbilityEffects)[] = ["effectsOnHitUnmodified6"];
 
@@ -57,21 +57,18 @@ export class UnitState implements States {
     }
 }
 
-export function addAttackAura(states: States, auraState: AuraState<AttackAura>) {
-    states.attackAuras.push(auraState);
-    const aura = auraState.aura;
-    const sum = states.attackAura;
+export function sumAttackAura(sum: AttackAura, aura: AttackAura, ratio?: number) {
     for (const key of attackAuraValueKeys) {
         if (aura[key]) {
-            sum[key] = getSumValues(sum[key], getValueRatio(aura[key], auraState.effectRatio));
+            sum[key] = getSumValues(sum[key], getValueRatio(aura[key], ratio));
         }
     }
-    for (const key of attackAuraNumberKeys) {
-        const a = aura[key];
-        if (a) {
-            sum[key] = a * (auraState.effectRatio || 1);
-        }
-    }
+    // for (const key of attackAuraNumberKeys) {
+    //     const a = aura[key];
+    //     if (a) {
+    //         sum[key] = a * (ratio || 1);
+    //     }
+    // }
     for (const key of attackAuraBooleanKeys) {
         if (aura[key]) sum[key] = true;
     }
@@ -83,4 +80,10 @@ export function addAttackAura(states: States, auraState: AuraState<AttackAura>) 
             sum[key] = effects.concat(a);
         }
     }
+    return sum;
+}
+
+export function addAttackAura(states: States, auraState: AuraState<AttackAura>) {
+    states.attackAuras.push(auraState);
+    sumAttackAura(states.attackAura, auraState.aura, auraState.effectRatio);
 }

@@ -5,6 +5,7 @@ import { Header, Table, Icon, Segment } from "semantic-ui-react";
 import { Attack, Ability, WarscrollBattalionInterface, DamageTable, ModelOption, AbilityCategory } from "../stores/units";
 import { toJS } from "mobx";
 import { value } from "../helpers/react";
+import "./warscroll.less";
 
 export interface WarscrollProps {
     warscrollStore?: WarscrollStore;
@@ -24,7 +25,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
         const w = this.props.warscrollStore!.warscroll;
         return <div>
             <div>Allegiance: {w.allegiance.name}</div>
-            {store.armyOptions && w.armyOption && <div>{store.armyOptions.name}: {w.armyOption}</div>}
+            {store.armyOptions && w.armyOption && <div>{store.armyOptions.name}: {w.armyOption.name}</div>}
             <div>{w.totalPoints} points</div>
             <Header as="h1">Leaders</Header>
                 {
@@ -117,7 +118,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
         }
         const normalAbilities = abilities.filter(x => x.category === undefined);
         const specialRules = abilities.filter(x => x.category === AbilityCategory.SpecialRule);
-        const magicAbilites = abilities.filter(x => x.category === AbilityCategory.Magic);
+        const magicAbilites = abilities.filter(x => x.category === AbilityCategory.Spell);
 
         return <div key={unit.id} className="unit">
         <div className="unit__header">

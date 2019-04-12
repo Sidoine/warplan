@@ -1,5 +1,5 @@
 import { action, computed, observable, toJS } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, ExtraAbility, WarscrollBattalionInterface, WarscrollModelInterface, Scenery, ModelOption } from "./units";
+import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, ExtraAbility, WarscrollBattalionInterface, WarscrollModelInterface, Scenery, ModelOption, ArmyOption, AbilityCategory } from "./units";
 import { deflate, inflate } from "pako";
 
 function areAllied(unit1: Unit, unit2: Unit) {
@@ -120,7 +120,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed
     get availableExtraAbilities() {
-        return this.warscroll.unitsStore.extraAbilities.filter(x => (x.allegiance === undefined || x.allegiance.id === this.warscroll.allegiance.id)
+        return this.warscroll.unitsStore.extraAbilities.filter(x => (x.allegianceKeyword === undefined || x.allegianceKeyword === this.warscroll.allegiance.keyword)
             && x.isAvailable(this, this.warscroll));
     }
     
@@ -188,7 +188,7 @@ export class Warscroll implements WarscrollInterface {
     allegiance: Allegiance = this.unitsStore.allegianceList[0];
 
     @observable
-    armyOption: string = "";
+    armyOption: ArmyOption | null = null;
 
     @observable
     name = "New Warscroll";
@@ -319,6 +319,16 @@ export class Warscroll implements WarscrollInterface {
     }
 
     @observable pointMode = PointMode.MatchedPlay;   
+
+    @computed
+    get maxArtifacts() {
+        return 1 + this.battalions.length;
+    }
+
+    @computed
+    get numberOfArtifacts() {
+        return this.extraAbilities.reduce((x, a) => x + (a.ability.category === AbilityCategory.Artefact ? 1 : 0), 0);
+    }
 }
 
 interface SerializedWarscroll {
@@ -334,7 +344,7 @@ interface SerializedWarscroll {
         battalionId: string;
     }[];
     allegiance: string;
-    armyOption: string;
+    armyOption?: string;
     sceneries?: string[];
     pointMode?: PointMode;
 }
@@ -408,11 +418,11 @@ export class WarscrollStore {
 
     @computed
     get armyOptions() {
-        return this.unitsStore.armyOptions.get(this.warscroll.allegiance.id);
+        return this.warscroll.allegiance.armyOptions;
     }
 
     @action
-    setArmyOption(option: string){
+    setArmyOption(option: ArmyOption){
         this.warscroll.armyOption = option;
         this.saveWarscroll();
     }
@@ -436,7 +446,8 @@ export class WarscrollStore {
         this.warscroll.units.splice(0);
         this.warscroll.battalions.splice(0);
         this.warscroll.allegiance = this.unitsStore.allegianceList.find(x => x.id === warscroll.allegiance) || this.unitsStore.allegianceList[0];
-        this.warscroll.armyOption = warscroll.armyOption;
+        const armyOptions = this.warscroll.allegiance.armyOptions;
+        if (armyOptions) this.warscroll.armyOption = armyOptions.values.find(x => x.name == warscroll.armyOption) || null;
         this.warscroll.pointMode = warscroll.pointMode || PointMode.MatchedPlay;
         
         for (const ba of warscroll.battalions) {
@@ -454,7 +465,7 @@ export class WarscrollStore {
         }
         
         for (const wu of warscroll.units) {
-            const unit = this.unitsStore.getUnit(wu.unitId);
+            const unit = this.unitsStore.findUnit(wu.unitId);
             if (unit === undefined) continue;
             const newUnit = new WarscrollUnit(this.warscroll, unit);
             if (wu.isGeneral) {
@@ -506,7 +517,7 @@ export class WarscrollStore {
                 };
             }),
             allegiance: this.warscroll.allegiance.id,
-            armyOption: this.warscroll.armyOption,
+            armyOption: (this.warscroll.armyOption && this.warscroll.armyOption.name) || undefined,
             sceneries: this.warscroll.sceneries.map(x => x.scenery.id),
             pointMode: this.warscroll.pointMode
         };
