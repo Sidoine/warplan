@@ -3,7 +3,7 @@ import * as model from "./en-schemas/en-model";
 import * as fs from "fs";
 import * as def from "./definitions";
 
-const schemaVersion = 42;
+const schemaVersion = 44;
 
 function toCamelCase(name: string) {
     return name.toLowerCase().replace(/[^\w]+(\w)/g, (p,x) => x.toUpperCase()).replace(/^(.)/, (p,x) => x.toLowerCase()).replace(/[^A-Za-z0-9]/g, '').replace(/^[0-9]/g, '_');

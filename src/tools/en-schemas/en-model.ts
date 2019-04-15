@@ -143,6 +143,7 @@ export const EndlessSpell = {
     magicAbilities: 'Ability[]',
     blurb: 'string',
     keywords: 'string[]',
+    category: 'string',
     unitSizeMin: 'int',
     unitSizeMax: 'int',
     points: 'int',

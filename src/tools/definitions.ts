@@ -100,6 +100,7 @@ export interface EndlessSpell {
     magicAbilities: Ability[];
     blurb: string;
     keywords: string[];
+    category: string;
     unitSizeMin: number;
     unitSizeMax: number;
     points: number;
