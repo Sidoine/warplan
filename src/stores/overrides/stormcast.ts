@@ -296,7 +296,7 @@ function fixUnits(data: DataStoreImpl):void {
         addAbilityEffect(data.abilities.liberatorsSigmariteShields, { defenseAura: { rerollSavesOn: 1 }, targetType: TargetType.Unit });
         addAbilityEffect(data.abilities.liberatorsPairedWeapons, { attackAura: { numberOfHitsOnUnmodified6: 2 }, targetType: TargetType.Model });
         
-        liberator.modelStats = [
+        liberator.optionStats = [
             { name: "Warhammers, prime with Grandhammer", models: [{ options: [wh], count: 4 }, { options: [gh, prime], count: 1 }] },
             { name: "Warhammer and Shield, prime with Grandhammer", models: [{ options: [whs], count: 4 }, { options: [gh, prime], count: 1 }] },
             { name: "Warblades, prime with Grandblade", models: [{ options: [wb], count: 4 }, { options: [gb, prime], count: 1 }] },
@@ -321,7 +321,7 @@ function fixUnits(data: DataStoreImpl):void {
         addAbilityEffect(data.abilities.judicatorsThunderboltCrossbow, { targetType: TargetType.Enemy, targetCondition: { minModels: "D6" }, mortalWounds: "D3", phase: Phase.Shooting });
         addAbilityEffect(data.abilities.judicatorsJudicatorPrime, { targetType: TargetType.Model, attackAura: { bonusHitRoll: 1 } });
 
-        judicator.modelStats = [
+        judicator.optionStats = [
             { name: "Skybolt Bows and prime with Shockbolt Bow", models: [{ count: 4, options: [skyboltBow] }, { count: 1, options: [shockboltBow, judicatorPrime] }] },
             { name: "Boltstorm Crossbows and prime with Thunderbolt Crossbow", models: [{ count: 4, options: [boltstormCrossbow] } , { count: 1, options: [thunderboltCrossbow, judicatorPrime] } ] }
         ]
@@ -401,7 +401,7 @@ function fixUnits(data: DataStoreImpl):void {
         ssm.randomEffectDices = "D6";
         addAbilityEffect(ssm, { targetType: TargetType.Model, attackAura: { mortalWounds: "D3" }, randomEffectRange: { min: 2, max: 5 } });
         addAbilityEffect(ssm, { targetType: TargetType.Model, attackAura: { mortalWounds: "D3+1"}, randomEffectRange: { min: 6, max: 6 }});
-        paladinRetributors.modelStats = [
+        paladinRetributors.optionStats = [
             { name: "Lightning Hammer and Starsoul Mace", models: [{ count: 2, options: [starsoulMaceOption] }, { count: 1, options: [lightningHammerOption, prime] }, { count: 2, options: [lightningHammerOption] }] }
         ] 
     }
@@ -1622,7 +1622,7 @@ function fixUnits(data: DataStoreImpl):void {
         addAbilityEffect(data.abilities.sequitorsSequitorAethericChannelling, { targetType: TargetType.Unit, phase: Phase.Combat, choice: "Shields", defenseAura: { rerollFailedSaves: true }});
         addAbilityEffect(data.abilities.sequitorsSequitorPrime, { targetType: TargetType.Model, attackAura: { bonusAttacks: 1 }});
         addAbilityEffect(data.abilities.sequitorsSoulshields, { targetType: TargetType.Unit, defenseAura: { rerollSavesOn: 1 }});
-        sequitor.modelStats = [
+        sequitor.optionStats = [
             { name: "Maul and Shield, Greatmaces, and prime with Greatmace (channeling shields)", models: [{ count: 2, options: [greatMaceOption] }, { count: 2, options: [maulAndShieldOption] }, { count: 1, options: [greatMaceOption, sequitorPrimeOption] }], choice: "Shields" },
             { name: "Maul and Shield and Greatmaces (channeling shields)", models: [{ count: 2, options: [greatMaceOption] }, { count: 2, options: [maulAndShieldOption] }, { count: 1, options: [maulAndShieldOption, redemptionCacheOption, sequitorPrimeOption] }], choice: "Shields" },
             { name: "Tempest Blade and Shield, Greatmaces, and prime with Greatmace (channeling shields)", models: [{ count: 2, options: [greatMaceOption] }, { count: 2, options: [tempestBladeAndShieldOption] }, { count: 1, options: [greatMaceOption, sequitorPrimeOption] }], choice: "Shields" },
@@ -1640,7 +1640,7 @@ function fixUnits(data: DataStoreImpl):void {
         addAbilityEffect(data.abilities.celestarBallistaChainedLightning, { targetType: TargetType.Unit, attackAura: { numberOfHitsOnUnmodified6: "D6" } });
         overrideAttack(data.attacks.celestarBallistaCelestarStormboltsRapidFire, x => x.choice = "Rapid Fire");
         overrideAttack(data.attacks.celestarBallistaCelestarStormboltsSingleShot, x => x.choice = "Single Shot");
-        unit.modelStats = [
+        unit.optionStats = [
             { name: "Rapid Fire", models: [{ count: 1, options: [] }], choice: "Rapid Fire"},
             { name: "Single Shot", models: [{ count: 1, options: [] }], choice: "Single Shot"},
         ]       
@@ -1654,7 +1654,7 @@ function fixUnits(data: DataStoreImpl):void {
         // TODO add condition on current attack (works only on the ranged weapon)
         addAbilityEffect(data.abilities.castigatorsCastigatorAethericChannelling, { targetType: TargetType.Unit, choice: "Accuracy", phase: Phase.Shooting, attackAura: { rerollHitsOn1: 1 } });
         addAbilityEffect(data.abilities.castigatorsCastigatorAethericChannelling, { targetType: TargetType.Unit, choice: "Power", phase: Phase.Shooting, attackAura: { bonusRend: -1 } });
-        unit.modelStats = [
+        unit.optionStats = [
             { name: "One prime and Accuracy", models: [{ count: 1, options: [primeOption]}, { count: 2, options: []}], choice: "Accuracy"},
             { name: "One prime and Power", models: [{ count: 1, options: [primeOption]}, { count: 2, options: []}], choice: "Power"}
         ];
@@ -1667,9 +1667,9 @@ function fixUnits(data: DataStoreImpl):void {
         const bladeOption = setAttackAsOption(unit, data.attacks.evocatorsTempestBladeAndStormstave, undefined, undefined, UnitCategoryMain);
         addAbilityEffect(data.abilities.evocatorsEvocatorPrime, { targetType: TargetType.Model, attackAura: { bonusAttacks: 1} });
         addAbilityEffect(data.abilities.evocatorsCelestialLightningArc, { targetType: TargetType.Unit, phase: Phase.Shooting, defenseAura: { rerollSavesOn: 1 } });
-        addAbilityEffect(data.abilities.evocatorsCelestialLightningArc, { targetType: TargetType.Unit, phase: Phase.Combat, subPhase: SubPhase.After, targetRange: 3 });
+        addAbilityEffect(data.abilities.evocatorsCelestialLightningArc, { targetType: TargetType.Unit, phase: Phase.Combat, subPhase: SubPhase.WhileAfter, targetRange: 3, mortalWoundsPerModel: "2D(4+)" });
         // TODo spells addAbilityEffect(data.abilities.evocatorsEmpower, )
-        unit.modelStats = [
+        unit.optionStats = [
             { name: "Grand stave", models: [{ count: 4, options: [staveOption]}, {count:1, options: [staveOption, primeOption]}]},
             { name: "Tempest Blade and Stormstave", models: [{ count: 4, options: [bladeOption]}, {count:1, options: [bladeOption, primeOption]}]},
         ]        

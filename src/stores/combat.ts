@@ -16,6 +16,12 @@ export function getValue(formula: Value): number {
             const bonus = dices[3] ? parseInt(dices[3]) : 0;
             return ((numberOfSides + 1) / 2) * numberOfDices + bonus;
         }
+        const someDices = formula.match(/^(\d*)D\((\d)\+\)$/);
+        if (someDices) {
+            const numberOfDices = someDices[1] ? parseInt(someDices[1]) : 1;
+            const minValue = someDices[2] ? parseInt(someDices[2]) : 6;
+            return numberOfDices * (minValue - 1) / 6;
+        }
         throw Error(`Unable to parse ${formula}`)
     } else if (isRatioValue(formula)) {
         return getValue(formula.value) * formula.ratio;

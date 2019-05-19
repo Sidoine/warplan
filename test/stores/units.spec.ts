@@ -1,7 +1,7 @@
 import { default as test, ExecutionContext } from "ava";
 import { Unit, Attack, Ability, AttackAura, TargetType } from "../../src/stores/units";
 import { RandomCombat } from "../../src/stores/combat";
-import { getUnitStats } from "../../src/stores/stats";
+import { getUnitOptionsStats } from "../../src/stores/stats";
 import { UnitState } from "../../src/stores/unit-state";
 const randomCombat = new RandomCombat();
 
@@ -59,7 +59,7 @@ test("stat of simple unit without damage", t => {
     const unit = createFakeUnit();
 
     // Act
-    const unitStats = getUnitStats(unit);
+    const unitStats = getUnitOptionsStats(unit);
 
     // Assert
     t.is(unitStats.length, 1);
@@ -72,7 +72,7 @@ test("stat of simple unit without any ability", async t => {
     const unit = createFakeUnit([createFakeAttack()]);
     
     // Act
-    const unitStats = getUnitStats(unit);
+    const unitStats = getUnitOptionsStats(unit);
 
     // Assert
     t.is(unitStats.length, 1);
@@ -86,7 +86,7 @@ function testattackaura(attackAura: AttackAura, expected?: number) {
         const unit = createFakeUnit([createFakeAttack()], [{ effects: [{ targetType: TargetType.Unit, attackAura: attackAura }], name: "Fake" }]);
 
         // Act
-        const unitStats = getUnitStats(unit);
+        const unitStats = getUnitOptionsStats(unit);
 
         // Assert
         t.is(unitStats.length, 1);

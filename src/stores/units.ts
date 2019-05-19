@@ -112,6 +112,7 @@ export interface AttackAura extends AttackAuraValues, AttackAuraNumbers, AttackA
 export const enum SubPhase {
     Before,
     While,
+    WhileAfter,
     After
 }
 
@@ -150,6 +151,7 @@ export interface AbilityEffect {
 
     mortalWounds?: Value;
     setUpAwayFromEnemy?: Value; // The distance to the enemy
+    mortalWoundsPerModel?: Value;
 
     /** In case of random effects, the dice value must be in this range  */
     randomEffectRange?: { min: number; max: number };
@@ -325,7 +327,7 @@ export interface Unit extends UnitInfos {
     options?: ModelOption[];
     pictureUrl?: string;
 
-    modelStats?: UnitStatModels[];
+    optionStats?: UnitStatModels[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
     isBattleline?: (warscroll: WarscrollInterface) => (boolean | undefined);
@@ -449,7 +451,8 @@ export class UnitsStore {
     factionsList: Faction[] = [];
     allegianceList: Allegiance[] = [];
     sceneryList: Scenery[] = [];
-    
+    baseAbilities: Ability[] = [];
+        
     constructor(data: DataStoreImpl) {   
         overrideStormcast(data);   
         overrideNurgle(data);
@@ -495,6 +498,7 @@ export class UnitsStore {
             this.extraAbilities.push(extraAbilities[key]);
         }
 
+        this.fillBaseAbilities();
         // this.armyOptions = data.armyOptions;
 
         const sceneries: {[key: string]: Scenery} = data.sceneries;
@@ -503,6 +507,44 @@ export class UnitsStore {
         }
 
         this.addAlliances(data);
+    }
+
+    private fillBaseAbilities() {
+        this.baseAbilities.push({
+            name: "At the double",
+            category: AbilityCategory.Command,
+            description: "You can use this command ability after you make a run roll for a friendly unit that is within 6\" of a friendly Hero, or 12\" of a friendly Hero that is a general. If you do so, the run roll is treated as being a 6."
+        });
+        this.baseAbilities.push({
+            name: "Forward to Victory",
+            category: AbilityCategory.Command,
+            description: "You can use this command ability after you make a charge roll for a friendly unit that is within 6\" of a friendly Hero, or 12\" of a friendly Hero that is a general. If you do so, re-roll the charge roll."
+        });
+        this.baseAbilities.push({
+            name: "Inspiring Presence",
+            category: AbilityCategory.Command,
+            description: "You can use this command ability at the start of the battleshock phase. If you do so, pick a friendly unit that is within 6\" of friendly Hero, or 12\" of a friendly Hero that is a general. That unit does not have to take battleshock tests in that phase."
+        });
+        this.baseAbilities.push({
+            name: "Look out, Sir!",
+            category: AbilityCategory.Army,
+            description: "You must subtract 1 from hit rolls made for missile weapons if the target of the attack is an enemy Hero that is within 3\" of an enemy unit that has 3 or more models. The Look Out, Sir! rule does not apply if the target Hero is a Monster."
+        });
+        this.baseAbilities.push({
+            name: "Cover",
+            category: AbilityCategory.Army,
+            description: "Add 1 to save rolls for a unit if all of its models are wholly on or within a terrain feature when the rolls are made. This modifier does not apply in the combat phase if the unit you are making save rolls for made a charge move in the same turn, and never applies to units containing models with the Monster or War Machinekeyword that have a Wounds characteristic of 8 or more."
+        });
+        this.baseAbilities.push({
+            name: "Arcane Bolt",
+            category: AbilityCategory.Spell,
+            description: "Arcane Bolt has a casting value of 5. If successfully cast, pick an enemy unit within 18\" of the caster that is visible to them. That unit suffers 1 mortal wound. If the casting roll was 10 or more, the unit suffers D3 mortal wounds instead."
+        });
+        this.baseAbilities.push({
+            name: "Mystic Shield",
+            category: AbilityCategory.Spell,
+            description: "Mystic Shield has a casting value of 6. If successfully cast, pick a friendly unit within 18\" of the caster that is visible to them. Re-roll save rolls of 1 for that unit until your next hero phase."
+        });
     }
 
     findUnit(id: string) {

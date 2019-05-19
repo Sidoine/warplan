@@ -47,6 +47,14 @@ function applyEffect(caster: States, target: States, effect: AbilityEffect, stat
             stats.meleeDamage += mortalWounds;
         }
     }
+    if (effect.mortalWoundsPerModel) {
+        const mortalWounds = getValue(effect.mortalWounds) * (ratio || 1) * target.unitState.models.length;
+        if (effect.targetRange) {
+            stats.rangedDamage += mortalWounds;
+        } else {
+            stats.meleeDamage += mortalWounds;
+        }
+    }
     return true;
 }
 
@@ -66,7 +74,7 @@ export function targetEnemy(effect: AbilityEffect) {
     return (effect.targetType & TargetType.Enemy) > 0;
 }
 
-function computeWeaponStats(weaponState: WeaponState, enemyState: UnitState, stats: UnitStats, choice: string | undefined) {
+function applyWeaponAttack(weaponState: WeaponState, enemyState: UnitState, stats: UnitStats, choice: string | undefined) {
     const attack = weaponState.attack;
     if (attack.choice && attack.choice !== choice) return;
     const attackAura = sumAttackAura(sumAttackAura(sumAttackAura({}, weaponState.attackAura), weaponState.modelState.attackAura), weaponState.modelState.unitState.attackAura);
@@ -155,13 +163,13 @@ function applyModelAbility(ability: Ability, modelState: ModelState, enemyState:
     }
 }
 
-function computeModelStats(myState: ModelState, enemyState: UnitState, stats: UnitStats, choice: string | undefined) {
+function applyModelAttacks(myState: ModelState, enemyState: UnitState, stats: UnitStats, choice: string | undefined) {
     for (const weaponState of myState.weaponStates) {
-        computeWeaponStats(weaponState, enemyState, stats, choice);
+        applyWeaponAttack(weaponState, enemyState, stats, choice);
     }
 }
 
-function computeUnitStats(stats: UnitStats, unit: Unit, models: UnitStatModel[], choice: string | undefined) {
+function getUnitOptionStats(stats: UnitStats, unit: Unit, models: UnitStatModel[], choice: string | undefined) {
     // Create states
     const unitState = new UnitState(unit);
     const enemyState = new UnitState({ id: "enemy", model: { id: "enemy", name: "Enemy" }, size: 1, points: 0, wounds: 2, factions: [], keywords: [], save: 5 });
@@ -203,15 +211,15 @@ function computeUnitStats(stats: UnitStats, unit: Unit, models: UnitStatModel[],
     
     // Compute stats
     for (const model of unitState.models) {
-        computeModelStats(model, enemyState, stats, choice);
+        applyModelAttacks(model, enemyState, stats, choice);
     }
 }
 
 export function getUnitStats(unit: Unit): UnitStats[] {
-    let modelStats = unit.modelStats;
-    if (!modelStats) {
+    let optionStats = unit.optionStats;
+    if (!optionStats) {
         if (unit.options && unit.options.length > 0) {
-            modelStats = unit.options.filter(x => x.unitCategory === "main").map<UnitStatModels>(x => {
+            optionStats = unit.options.filter(x => x.unitCategory === "main").map<UnitStatModels>(x => {
                 return {
                     name: x.name,
                     models: [{ count: unit.size, options: [x] }]
@@ -219,11 +227,11 @@ export function getUnitStats(unit: Unit): UnitStats[] {
             });
         }
         else {
-            modelStats = [{ name: "Main", models: [{ count: unit.size, options: [] }] }]
+            optionStats = [{ name: "Main", models: [{ count: unit.size, options: [] }] }]
         }
     }
 
-    return modelStats.map(x => {
+    return optionStats.map(x => {
         const result: UnitStats = {
             name: x.name,
             meleeDamage: 0,
@@ -234,7 +242,7 @@ export function getUnitStats(unit: Unit): UnitStats[] {
             totalDamage: 0,
             ignoredAbilities: []
         };
-        computeUnitStats(result, unit, x.models, x.choice);
+        getUnitOptionStats(result, unit, x.models, x.choice);
         result.totalDamage = result.meleeDamage * 1.5 + result.rangedDamage;
         return result;
     });
