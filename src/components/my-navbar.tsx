@@ -29,6 +29,7 @@ export class MyNavbar extends React.Component<MyNavbarProps, {}> {
             <Menu.Item active={pathname === "/cards"}  href="#/cards">Cards</Menu.Item>
             <Menu.Item active={pathname === "/markers"}  href="#/markers">Markers</Menu.Item>
             <Menu.Item active={pathname === "/stats"}  href="#/stats">Stats</Menu.Item>
+            <Menu.Item active={pathname === "/cl"} href="#/cl">Checklist</Menu.Item>
         </Menu>
     }
 }

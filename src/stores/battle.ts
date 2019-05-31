@@ -7,6 +7,28 @@ export interface Player {
     warscroll: Warscroll;
 }
 
+export const phases = [ Phase.Setup, Phase.Hero, Phase.Movement, Phase.Shooting, Phase.Charge, Phase.Combat, Phase.Battleshock ];
+
+export function getPhaseName(phase: Phase) {
+    switch (phase) {
+        case Phase.Setup:
+            return "Setup";
+        case Phase.Hero:
+            return "Hero";
+        case Phase.Movement:
+            return "Movement";
+        case Phase.Shooting:
+            return "Shooting";
+        case Phase.Charge:
+            return "Charge";
+        case Phase.Combat:
+            return "Combat";
+        case Phase.Battleshock:
+            return "Battleshock";
+    }
+    return "Unknown phase";
+}
+
 export class BattleStore {
     @observable turn = 0;
 

@@ -24,6 +24,7 @@ import { Stats } from "./components/stats";
 import { WarscrollView } from "./components/warscroll-view";
 import { Cards } from "./components/cards";
 import { CardsStore } from "./stores/cards";
+import { CheckList } from "./components/check-list";
 
 const root = document.getElementById("root");
 
@@ -52,6 +53,7 @@ ReactDOM.render(
                     <Route exact path="/stats" component={Stats}/>
                     <Route exact path="/list" component={WarscrollView} />
                     <Route exact path="/cards" component={Cards} />
+                    <Route exact path="/cl" component={CheckList}/>
                 </Switch>
             </Container>
         </HashRouter>

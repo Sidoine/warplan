@@ -142,6 +142,41 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         return this.unit.options;
     }
 
+    @computed
+    get attacks() {
+        const attacks = this.unit.attacks ? this.unit.attacks.map(x => ({ count: this.unit.size, attack: x })) : [];
+        for (const model of this.models) {
+            for (const option of model.options) {
+                if (option.attacks) {
+                    for (const attack of option.attacks) {
+                        const exisiting = attacks.find(x => x.attack.id === attack.id);
+                        if (exisiting) {
+                            exisiting.count+= model.count;
+                        } else {
+                            attacks.push({ count: model.count, attack: attack });
+                        }    
+                    }
+                }
+            }
+        }
+        return attacks;
+    }
+
+    @computed get abilities() {
+        let abilities = this.unit.abilities || [];
+        if (this.extraAbilities) {
+            abilities = abilities.concat(this.extraAbilities.map(x => x.ability));
+        }
+        for (const model of this.models) {
+            for (const option of model.options) {
+                if (option.abilities) {
+                    abilities = abilities.concat(option.abilities);
+                }
+            }
+        }
+        return abilities;
+    }
+
     constructor(protected warscroll: Warscroll, public unit: Unit) {
         this.id = warscroll.serial++;
     }     

@@ -23,6 +23,13 @@ export function addOption(unit: Unit, option: ModelOption) {
     return option;
 }
 
+export function addAttackToOption(option: ModelOption, unit: Unit, attack: Attack) {
+    if (!option.attacks) return;
+    removeAttack(unit, attack);
+    option.attacks.push(attack);
+    return attack;
+}
+
 export function setAttackAsOption(unit: Unit, attack: Attack, condition?: (option: ModelOption) => ModelCondition, abilities?: Ability[], unitCategory?: string) {
     if (unit.attacks) {
         unit.attacks.splice(unit.attacks.indexOf(attack), 1);
@@ -37,6 +44,14 @@ export function setAttackAsOption(unit: Unit, attack: Attack, condition?: (optio
     });
     if (condition) option.isOptionValid = condition(option);
     return option;
+}
+
+export function removeAttack(unit: Unit, attack: Attack) {
+    if (unit.attacks) {
+        const index = unit.attacks.indexOf(attack);
+        if (index >= 0) unit.attacks.splice(index, 1);
+    }
+    return attack;
 }
 
 export function removeAbility(unit: Unit, ability: Ability) {

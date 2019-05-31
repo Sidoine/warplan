@@ -1,7 +1,7 @@
 import { Unit, ExtraAbilityTest, AbilityCategory, Allegiance, WarscrollUnitInterface, WarscrollInterface } from "./units";
 
 export function hasKeywords(unit: Unit, keywords?: string[][]) {
-    return keywords === undefined || keywords.some(x => x.every(y => unit.keywords.indexOf(y) >= 0));
+    return keywords === undefined || keywords.length === 0 || keywords.some(x => x.every(y => unit.keywords.indexOf(y) >= 0));
 }
 
 export function hasKeyword(unit: Unit, keyword: string) {
@@ -49,7 +49,7 @@ function canUseAbilityCategory(unit: WarscrollUnitInterface, ws: WarscrollInterf
 }
 
 export function canUseAbility(name: string, category: AbilityCategory, allegianceKeyword: string, keywords?: string[][]): ExtraAbilityTest {
-    return (unit, ws) => unit.extraAbilities.every(x => x.ability.category !== category) && canUseAbilityCategory(unit, ws, category, name) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && hasKeywords(unit.unit, keywords);
+    return (unit, ws) => unit.extraAbilities.every(x => x.ability.category !== category)  && canUseAbilityCategory(unit, ws, category, name) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && hasKeywords(unit.unit, keywords);
 }
  
 export function canUseArmyOptionAbility(name: string, category: AbilityCategory, allegianceKeyword: string, armyOptionName: string, keywords?: string[][]): ExtraAbilityTest {

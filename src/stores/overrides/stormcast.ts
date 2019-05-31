@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
-import { Unit, Material, Phase, SubPhase, TargetType, conditionValue, Allegiance, Ability, ArmyOption, AbilityCategory } from "../units";
-import { overrideModel,setAbilityAsOption, setAttackAsOption, removeAbility, addOption, ModelCategoryWeapon, UnitCategoryMain, oneModelOption, ratioModelOption, override, addAbilityEffect, hasOption, overrideAttack } from "./tools";
+import { Unit, Material, Phase, SubPhase, TargetType, conditionValue, Allegiance, Ability, ArmyOption, AbilityCategory, ExtraAbility } from "../units";
+import { overrideModel,setAbilityAsOption, setAttackAsOption, removeAbility, addOption, ModelCategoryWeapon, UnitCategoryMain, oneModelOption, ratioModelOption, override, addAbilityEffect, hasOption, overrideAttack, addAttackToOption } from "./tools";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -291,10 +291,10 @@ function fixUnits(data: DataStoreImpl):void {
             unitCategory: UnitCategoryMain
         });
         const prime = setAbilityAsOption(liberator, data.abilities.liberatorsLiberatorPrime, oneModelOption);
-        addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, { targetType: TargetType.Unit, attackAura: { bonusHitRoll: conditionValue({ minWounds: 5 }, 1) } });
-        addAbilityEffect(data.abilities.liberatorsLiberatorPrime, { targetType: TargetType.Model, attackAura: { bonusAttacks: 1 } });
-        addAbilityEffect(data.abilities.liberatorsSigmariteShields, { defenseAura: { rerollSavesOn: 1 }, targetType: TargetType.Unit });
-        addAbilityEffect(data.abilities.liberatorsPairedWeapons, { attackAura: { numberOfHitsOnUnmodified6: 2 }, targetType: TargetType.Model });
+        addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, { phase: Phase.Combat, targetType: TargetType.Unit, attackAura: { bonusHitRoll: conditionValue({ minWounds: 5 }, 1) } });
+        addAbilityEffect(data.abilities.liberatorsLiberatorPrime, { phase: Phase.Combat, targetType: TargetType.Model, attackAura: { bonusAttacks: 1 } });
+        addAbilityEffect(data.abilities.liberatorsSigmariteShields, { phase: Phase.Combat | Phase.Shooting, defenseAura: { rerollSavesOn1: true }, targetType: TargetType.Unit });
+        addAbilityEffect(data.abilities.liberatorsPairedWeapons, { phase: Phase.Combat, attackAura: { numberOfHitsOnUnmodified6: 2 }, targetType: TargetType.Model });
         
         liberator.optionStats = [
             { name: "Warhammers, prime with Grandhammer", models: [{ options: [wh], count: 4 }, { options: [gh, prime], count: 1 }] },
@@ -314,12 +314,12 @@ function fixUnits(data: DataStoreImpl):void {
         const shockboltBow = setAttackAsOption(judicator, data.attacks.judicatorsShockboltBow, ratioModelOption(1, 5), [chainedLightning]);
         const thunderboltCrossbow = setAttackAsOption(judicator, data.attacks.judicatorsThunderboltCrossbowRanged, ratioModelOption(1, 5), [thunderboltCrossbowAbility]);
         const judicatorPrime = setAbilityAsOption(judicator, data.abilities.judicatorsJudicatorPrime, oneModelOption);
-        addAbilityEffect(data.abilities.judicatorsChainedLightning, { targetType: TargetType.Model, attackAura: { numberOfHitsOnHit: "D6" }, targetCondition: { weaponId: data.attacks.judicatorsShockboltBow.id } });
-        addAbilityEffect(data.abilities.judicatorsRapidFire, { targetType: TargetType.Model, targetCondition: { hasNotMoved: true, weaponId: data.attacks.judicatorsBoltstormCrossbow.id }, attackAura: { bonusAttacks: 1 }});
-        addAbilityEffect(data.abilities.judicatorsEternalJudgement, { targetType: TargetType.Weapon, targetCondition: { rangedWeapon: true }, attackAura: { rerollHitsOn1: conditionValue({ keyword: "CHAOS"}, 1) }})
-        addAbilityEffect(data.abilities.judicatorsThunderboltCrossbow, { targetType: TargetType.Enemy, targetCondition: { keyword: "MONSTER", minModels: "D6-1" }, mortalWounds: "D3", phase: Phase.Shooting, ignoreOtherEffects: true });
-        addAbilityEffect(data.abilities.judicatorsThunderboltCrossbow, { targetType: TargetType.Enemy, targetCondition: { minModels: "D6" }, mortalWounds: "D3", phase: Phase.Shooting });
-        addAbilityEffect(data.abilities.judicatorsJudicatorPrime, { targetType: TargetType.Model, attackAura: { bonusHitRoll: 1 } });
+        addAbilityEffect(data.abilities.judicatorsChainedLightning, { phase: Phase.Shooting, targetType: TargetType.Model, attackAura: { numberOfHitsOnHit: "D6" }, targetCondition: { weaponId: data.attacks.judicatorsShockboltBow.id } });
+        addAbilityEffect(data.abilities.judicatorsRapidFire, { phase: Phase.Shooting, targetType: TargetType.Model, targetCondition: { hasNotMoved: true, weaponId: data.attacks.judicatorsBoltstormCrossbow.id }, attackAura: { bonusAttacks: 1 }});
+        addAbilityEffect(data.abilities.judicatorsEternalJudgement, { phase: Phase.Shooting, targetType: TargetType.Weapon, targetCondition: { rangedWeapon: true }, attackAura: { rerollHitsOn1: conditionValue({ keyword: "CHAOS"}, 1) }})
+        addAbilityEffect(data.abilities.judicatorsThunderboltCrossbow, { phase: Phase.Shooting,targetType: TargetType.Enemy, targetCondition: { keyword: "MONSTER", minModels: "D6-1" }, mortalWounds: "D3", ignoreOtherEffects: true });
+        addAbilityEffect(data.abilities.judicatorsThunderboltCrossbow, { phase: Phase.Shooting,targetType: TargetType.Enemy, targetCondition: { minModels: "D6" }, mortalWounds: "D3" });
+        addAbilityEffect(data.abilities.judicatorsJudicatorPrime, { phase: Phase.Shooting | Phase.Combat, targetType: TargetType.Model, attackAura: { bonusHitRoll: 1 } });
 
         judicator.optionStats = [
             { name: "Skybolt Bows and prime with Shockbolt Bow", models: [{ count: 4, options: [skyboltBow] }, { count: 1, options: [shockboltBow, judicatorPrime] }] },
@@ -396,11 +396,11 @@ function fixUnits(data: DataStoreImpl):void {
         const ssm = removeAbility(paladinRetributors, data.abilities.retributorsStarsoulMace);
         const starsoulMaceOption = setAttackAsOption(paladinRetributors, data.attacks.retributorsStarsoulMaceMelee, ratioModelOption(2, 5), [ssm]);
         const prime = setAbilityAsOption(paladinRetributors, data.abilities.retributorsRetributorPrime, oneModelOption);
-        addAbilityEffect(bta, { targetType: TargetType.Model, attackAura: { mortalWoundsOnHitUnmodified6: 2 } });
-        addAbilityEffect(data.abilities.retributorsRetributorPrime, { targetType: TargetType.Model, attackAura: { bonusAttacks: 1 } });
+        addAbilityEffect(bta, { phase: Phase.Combat, targetType: TargetType.Model, attackAura: { mortalWoundsOnHitUnmodified6: 2 } });
+        addAbilityEffect(data.abilities.retributorsRetributorPrime, { phase: Phase.Combat, targetType: TargetType.Model, attackAura: { bonusAttacks: 1 } });
         ssm.randomEffectDices = "D6";
-        addAbilityEffect(ssm, { targetType: TargetType.Model, attackAura: { mortalWounds: "D3" }, randomEffectRange: { min: 2, max: 5 } });
-        addAbilityEffect(ssm, { targetType: TargetType.Model, attackAura: { mortalWounds: "D3+1"}, randomEffectRange: { min: 6, max: 6 }});
+        addAbilityEffect(ssm, { phase: Phase.Combat, targetType: TargetType.Model, attackAura: { mortalWounds: "D3" }, randomEffectRange: { min: 2, max: 5 } });
+        addAbilityEffect(ssm, { phase: Phase.Combat, targetType: TargetType.Model, attackAura: { mortalWounds: "D3+1"}, randomEffectRange: { min: 6, max: 6 }});
         paladinRetributors.optionStats = [
             { name: "Lightning Hammer and Starsoul Mace", models: [{ count: 2, options: [starsoulMaceOption] }, { count: 1, options: [lightningHammerOption, prime] }, { count: 2, options: [lightningHammerOption] }] }
         ] 
@@ -539,64 +539,7 @@ function fixUnits(data: DataStoreImpl):void {
     }
 
     {
-        // const unit: Unit = data.units.prosecutors;
-        // unit.move = 12;
-        // unit.save = "4+";
-        // unit.bravery = 6;
-        // unit.wounds = 2;
-        // unit.keywords.push("CELESTIAL", "HUMAN", "ANGELOS", "PROSECUTORS");
-        // unit.description = "A unit of Prosecutors has 3 or more models. They are armed with Stormcall Javelins and carry Sigmarite Shields. 1 in every 3 models may wield a Stormsurge Trident in place of their Stormcall Javelins.";
-
-        // const stormcallJavelin: Attack = { melee: false, name: "Stormcall Javelin", range: "18", attacks: "1", toHit: "3+", toWound: "3+", damage: "1"};
-        // const stormsurgeTrident: Attack=  {melee: false, name: "Stormsurge Trident", range: "18", attacks: "1", toHit: "3+", toWound: "3+", rend: "-1", damage: "2"};
-        // const stormcallJavelinMelee: Attack = {melee: true, name: "Stormcall Javelin", range: "2", attacks: "1", toHit: "4+", toWound: "4+", damage: "1"};
-        // const stormsurgeTridentMelee: Attack = {melee: true, name: "Stormsurge Trident", range: "2", attacks: "1", toHit: "4+", toWound: "4+", rend: "-1", damage: "2"};
-        // const fly: Ability = { name: "Fly", description: "Prosecutors can fly."};
-        // const prosecutorPrime: Ability = { 
-        //     name: "Prosecutor-Prime", 
-        //     description: "The leader of this unit is the Prosecutor-Prime. Raining death from afar, this model makes 2 attacks rather than 1 in the shooting phase.",
-        //     getWounds: (models, melee, attack) => !melee && attack ? getWoundsForExtraAttack(attack) : 0
-        // };
-        // const stormcallJavelinAbility: Ability = { 
-        //     name: "Stormcall Javelin", 
-        //     description: "If a Prosecutor throws a Stormcall Javelin at a unit over 9\" away, the javelin calls down a bolt of lightning; that attack has Damage 2 instead of 1.",
-        //     getWounds: (models, melee, attack) => attack === stormcallJavelin ? frequentRate * getAttackDamage(attack) : 0
-        // };
-        // const heraldsOfRightouness: Ability=  {name: "Heralds of Righteousness", description: "Roll 3 dice instead of 2 dice when determining the charge move for this unit. In addition, you can declare a charge with this unit if it is within 18\" of the enemy rather than 12\"."};
-        // const sigmariteShield: Ability = {
-        //     name: "Sigmarite Shields", 
-        //     description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields.",
-        //     getSavedWounds: getSavedWoundReroll1
-        // };
-
-        // const stormcallJavelinOption: ModelOption = {
-        //     id: "javelin",
-        //     name: "Stormcall Javelins",
-        //     abilities: [stormcallJavelinAbility, sigmariteShield],
-        //     attacks: [stormcallJavelin, stormcallJavelinMelee],
-        //     unitCategory: "main",
-        //     modelCategory: "weapon"
-        // };
-        // const stormsurgeTridentOption: ModelOption = {
-        //     id: "trident",
-        //     name: "Stormsurge Trident",
-        //     attacks: [stormsurgeTrident, stormsurgeTridentMelee],
-        //     abilities: [sigmariteShield],
-        //     modelCategory: "weapon",
-        //     isOptionValid: (unit, model) => isRatioCorrect(unit, stormsurgeTridentOption, 1, 3)
-        // }
-        // const primeOption: ModelOption = {
-        //     id: "prime",
-        //     name: "Prosecutor-Prime",
-        //     isOptionValid: (unit, model) => getUnitModelsWithOptionCount(unit, primeOption) <= 0,
-        //     abilities: [prosecutorPrime]
-        // }
-
-        // unit.abilities= [fly, stormcallJavelinAbility, heraldsOfRightouness];
-        // unit.options = [stormcallJavelinOption, stormsurgeTridentOption, primeOption];
-        // unit.modelStats = [
-        //     { name: "Stormcall Javelins and prime with Stormsurge Trident", models: [{ count: 1, options: [primeOption, stormsurgeTridentOption] }, { count: 2, options: [stormcallJavelinOption] }] }
-        // ];
+        
     }
 
     {
@@ -656,88 +599,39 @@ function fixUnits(data: DataStoreImpl):void {
     }
 
     {
-        // const unit: Unit = data.units.prosecutors;
-        // unit.move = 12;
-        // unit.bravery = 6;
-        // unit.save = "4+";
-        // unit.keywords.push("CELESTIAL", "HUMAN", "ANGELOS", "PROSECUTORS");
-        // const celestialHammers: Attack = { melee: false, name: "Celestial Hammers", range: "18", attacks: "2", toHit: "4+", toWound: "4+", damage: "1"};
-        // const celestialHammersMelee: Attack = { melee: true, name: "Celestial Hammers", range: "1", attacks: "2", toHit: "3+", toWound: "3+", damage: "1" };
-        // const grandaxe: Attack = { melee: true, name: "Grandaxe", range: "1", toHit: "3+", toWound: "3+", rend: "-1", damage: "1"};
-        // const grandblade: Attack = {melee: true, name: "Grandblade", range: "1", attacks: "2", toHit: "3+", toWound: "4+", rend: "-1", damage: "2"};
-        // const grandhammer: Attack = { melee: true, name: "Grandhammer", range: "1", attacks: "2", toHit: "4+", toWound: "3+", rend: "-1", damage: "2"};
-        // const fly: Ability = { name: "Fly", description: "Prosecutors can fly."};
-        // const prosecutorPrime: Ability = {
-        //     name: "Prosecutor-Prime",
-        //     description: "The leader of this unit is the Prosecutor-Prime. Trained for brutal melee, this model makes 3 attacks rather than 2 in the combat phase.",
-        //     getWounds: (models, melee, attack) => melee && attack ? getWoundsForExtraAttack(attack, 1) : 0
-        // };
-        // const heraldsOfRightouness: Ability = { name: "Heralds of Righteousness", description: "Roll 3 dice instead of 2 when determining the charge move for this unit. In addition, you can declare a charge with this unit if it is within 18\" of the enemy rather than 12\"."};
-        // const cleavingBlow: Ability = {
-        //     name: "Cleaving Blow",
-        //     description: "When a model attacks with a Grandaxe, select a target unit and make one attack against it for each model it has within range.",
-        //     getWounds: (models, melee, attack) => attack === grandaxe ? models * getAttackDamageEx(attack, { attacks: enemyModelsInRange.toString() }) : 0
-        // };
-        // const pairedCelestialHammers: Ability = {
-        //     name: "Paired Celestial Hammers",
-        //     description: "You can re-roll hit rolls of 1 for models armed with more than one Celestial Hammer.",
-        //     getWounds: (models, melee, attack) => attack === celestialHammers ? getWoundsForAbilityReroll1OnHit(models, attack) : 0
-        // };
-        // const sigmariteShield: Ability = {
-        //     name: "Sigmarite Shields",
-        //     description: "You can re-roll save rolls of 1 for this unit if any models from the unit are carrying Sigmarite Shields.",
-        //     getSavedWounds: getSavedWoundReroll1
-        // };
-        // unit.abilities = [fly, heraldsOfRightouness];
-        // unit.attacks = [];
-        // const pairOfCelestialHammers: ModelOption = {
-        //     id: "celestialHammerDual",
-        //     abilities: [pairedCelestialHammers],
-        //     attacks: [celestialHammers, celestialHammersMelee],
-        //     name: "Pair of Celestial Hammers",
-        //     unitCategory: "main",
-        //     modelCategory: "weapon"
-        // }
-        // const celestialHammerAndShield: ModelOption = {
-        //     id: "celestialHammerAndShield",
-        //     name: "Celestial Hammer and Sigmarite Shield",
-        //     abilities: [sigmariteShield],
-        //     attacks: [celestialHammers, celestialHammersMelee],
-        //     unitCategory: "main",
-        //     modelCategory: "weapon"
-        // }
-        // const grandaxeOption: ModelOption = {
-        //     id: "grandaxe",
-        //     name: "Grandaxe",
-        //     abilities: [cleavingBlow],
-        //     attacks: [grandaxe],
-        //     modelCategory: "weapon"
-        // }
-        // const grandbladeOption: ModelOption = {
-        //     id: "grandblade",
-        //     name: "Grandblade",
-        //     attacks: [grandblade],
-        //     modelCategory: "weapon"
-        // }
-        // const grandhammerOption: ModelOption = {
-        //     id: "grandhammer",
-        //     name: "Grandhammer",
-        //     attacks: [grandhammer],
-        //     modelCategory: "weapon"
-        // }
-        // const primeOption: ModelOption = {
-        //     id: "prime",
-        //     name: "Prosecutor-Prime",
-        //     abilities: [prosecutorPrime],
-        //     isOptionValid: (unit, model) => getUnitModelsWithOptionCount(unit, primeOption) <= 1
-        // }
-        // unit.options = [pairOfCelestialHammers, celestialHammerAndShield, grandbladeOption, grandhammerOption, grandaxeOption, primeOption];
-        // unit.modelStats = [
-        //     { name: "Celestial Hammers and prime with Grandhammer", models: [{ count: 1, options: [primeOption, grandhammerOption] }, { count: 2, options: [pairOfCelestialHammers] }] },
-        //     { name: "Celestial Hammer and Shield and prime with Grandhammer", models: [{ count: 1, options: [primeOption, grandhammerOption] }, { count: 2, options: [celestialHammerAndShield] }] },
-        //     { name: "Celestial Hammer and Shield and prime with Grandblade", models: [{ count: 1, options: [primeOption, grandbladeOption] }, { count: 2, options: [celestialHammerAndShield] }] },
-        //     { name: "Celestial Hammer and Shield and prime with Grandaxe", models: [{ count: 1, options: [primeOption, grandaxeOption] }, { count: 2, options: [celestialHammerAndShield] }] },
-        // ]
+        const unit: Unit = data.units.prosecutors;
+        addAbilityEffect(data.abilities.prosecutorsHeraldsOfRighteousness, { targetType: TargetType.Unit, chargeAura: {}});
+        addAbilityEffect(data.abilities.prosecutorsFly, {targetType: TargetType.Unit, movementAura: { fly: true } }); 
+
+        setAbilityAsOption(unit, data.abilities.prosecutorsProsecutorPrime, oneModelOption);
+        addAbilityEffect(data.abilities.prosecutorsProsecutorPrime, { targetType: TargetType.Model, attackAura: { bonusAttacks: 1 } }); 
+
+        const prosecutorsCleavingBlow = removeAbility(unit, data.abilities.prosecutorsCleavingBlow);
+        addAbilityEffect(data.abilities.prosecutorsCleavingBlow, { targetType: TargetType.Weapon, attackAura: {} });
+        setAttackAsOption(unit, data.attacks.prosecutorsGrandaxe, undefined, [prosecutorsCleavingBlow]);
+
+        const sigmariteShields = removeAbility(unit, data.abilities.prosecutorsSigmariteShields);
+        addAbilityEffect(data.abilities.prosecutorsSigmariteShields, { targetType: TargetType.Unit, defenseAura: { rerollSavesOn1: true}});
+        
+        const stormcallJavelinAbility = removeAbility(unit, data.abilities.prosecutorsStormcallJavelin);
+        addAbilityEffect(data.abilities.prosecutorsStormcallJavelin, { targetType: TargetType.Weapon, phase: Phase.Shooting, attackAura: {}});
+        const stormcallJavalinOption = setAttackAsOption(unit, data.attacks.prosecutorsStormcallJavelinRanged, undefined, [stormcallJavelinAbility, sigmariteShields]);
+        addAttackToOption(stormcallJavalinOption, unit, data.attacks.prosecutorsStormcallJavelinMelee);
+
+        const pairedHammersAbility = removeAbility(unit, data.abilities.prosecutorsPairedCelestialHammers);
+        const pairedHammersOption = setAttackAsOption(unit, data.attacks.prosecutorsCelestialHammerSMelee, undefined, [pairedHammersAbility]);
+        addAttackToOption(pairedHammersOption, unit, data.attacks.prosecutorsCelestialHammerS);
+        
+        const tridentOption = setAttackAsOption(unit, data.attacks.prosecutorsStormsurgeTrident, oneModelOption, [sigmariteShields]);
+        addAttackToOption(tridentOption, unit, data.attacks.prosecutorsStormsurgeTridentMelee);
+
+        setAttackAsOption(unit, data.attacks.prosecutorsGrandblade, oneModelOption);
+        setAttackAsOption(unit, data.attacks.prosecutorsGrandhammer, oneModelOption);
+
+        // unit.optionStats = [
+        //     { name: "One prime and Accuracy", models: [{ count: 1, options: [primeOption]}, { count: 2, options: []}], choice: "Accuracy"},
+        //     { name: "One prime and Power", models: [{ count: 1, options: [primeOption]}, { count: 2, options: []}], choice: "Power"}
+        // ];
     }
 
     {
@@ -910,8 +804,8 @@ function fixUnits(data: DataStoreImpl):void {
     }
 
     {
-        addAbilityEffect(data.abilities.concussorsBlastToAshes, { targetType: TargetType.Unit, attackAura: { effectsOnHitUnmodified6: [{ mortalWounds: 1, targetType: TargetType.Enemy }, { targetAura: { noPileIn: true }, targetType: TargetType.Enemy }] } });
-        addAbilityEffect(data.abilities.concussorsIntolerableDamage, { attackAura: { damageOnWoundUnmodified6: "D6" }, targetType: TargetType.Weapon, targetCondition: { weaponId: data.attacks.concussorsClawsAndFangs.id } });
+        addAbilityEffect(data.abilities.concussorsBlastToAshes, { phase: Phase.Shooting, targetType: TargetType.Unit, attackAura: { effectsOnHitUnmodified6: [{ mortalWounds: 1, targetType: TargetType.Enemy, phase: Phase.Shooting }, { targetAura: { noPileIn: true }, targetType: TargetType.Enemy, phase: Phase.Combat }] } });
+        addAbilityEffect(data.abilities.concussorsIntolerableDamage, { phase: Phase.Combat, attackAura: { damageOnWoundUnmodified6: "D6" }, targetType: TargetType.Weapon, targetCondition: { weaponId: data.attacks.concussorsClawsAndFangs.id } });
         // const stormBlast: Attack = { melee: false, name: "Storm Blast", range: "12", attacks: "1", toHit: "4+" };
         // const lightningHammer: Attack = { melee: true, name: "Lightning Hammer", range: "1", attacks: "3", toHit: "3+", toWound: "3+", rend: "-1", damage: "2" };
         // const dracothsClawsAndFangs: Attack = { melee: true, name: "Dracoth's Claws and Fangs", range: "1", attacks: "3", toHit: "3+", toWound: '3+', rend: "-1", damage: "1" };
@@ -1044,25 +938,9 @@ function fixUnits(data: DataStoreImpl):void {
     }
     
     {
-        // const unit: Unit = data.units.knightAzyros;
-        // unit.move = 12;
-        // unit.wounds = 5;
-        // unit.save = "3+";
-        // unit.bravery = 9;
-        // unit.keywords.push("CELESTIAL", "HUMAN", "KNIGHT-AZYROS");
-
-        // const starblade: Attack = { melee: true, name: "Starblade", range: "1", attacks: "4", toHit: "3+", toWound: "3+", rend: "-1", damage: "1"};
-        // const fly: Ability = { name: "Fly", description: "A Knight-Azyros can fly"};
-        // const illuminatorOfTheLost: Ability = { 
-        //     name: "Illuminator of the Lost", 
-        //     description: "In the shooting phase, you can re-roll hit rolls of 1 for attacks made against enemy units that are within 10\" of a Knight-Azyros."
-        // };
-        // const theLightOfSigmar: Ability = { 
-        //     name: "The Light of Sigmar",
-        //     description: "Once per battle, in your hero phase, you can declare that this model will unleash the searing light of its Celestial Beacon. If you do so, it cannot move, charge or pile in during your turn. However, each enemy unit within 8\" of the Knight-Azyros when the searing light is unleashed suffers D3 mortal wounds as they are blinded and driven from the battlefield. The light is anathema to Chao  units, so they suffer D6 mortal wounds instead. "
-        // }
-        // unit.attacks = [starblade];
-        // unit.abilities = [illuminatorOfTheLost, theLightOfSigmar, fly];
+        addAbilityEffect(data.abilities.knightAzyrosFly, { targetType: TargetType.Unit, movementAura: { fly: true } });
+        addAbilityEffect(data.abilities.knightAzyrosIlluminatorOfTheLost, { targetType: TargetType.Enemy, targetRadius: 10, attackAura: {} })
+        addAbilityEffect(data.abilities.knightAzyrosTheLightOfSigmar, { targetType: TargetType.Enemy, phase: Phase.Hero });
     }
 
     {
@@ -1367,29 +1245,15 @@ function fixUnits(data: DataStoreImpl):void {
         const meteoricStandard = data.abilities.knightVexillorMeteoricStandard;
         const penantOfTheStormbringer = data.abilities.knightVexillorPennantOfTheStormbringer;
         addAbilityEffect(meteoricStandard, { targetType: TargetType.Enemy, targetRange: 24, targetArea: true, targetRadius: "2D6", mortalWounds: "D3", timesPerBattle: 1, phase: Phase.Hero });
-        addAbilityEffect(data.abilities.knightVexillorIconOfWar, { targetType: TargetType.Friend, targetCondition: { keyword: data.allegiances.stormcastEternals.keyword }, targetRadius: 18, whollyWithin: true, defenseAura: { rerollCharge: true } });
-        addAbilityEffect(penantOfTheStormbringer, { targetType: TargetType.Friend, targetCondition: { keyword: data.allegiances.stormcastEternals.keyword }, setUpAwayFromEnemy: 9, timesPerBattle: 1, phase: Phase.Movement, subPhase: SubPhase.After });
+        addAbilityEffect(data.abilities.knightVexillorIconOfWar, { phase: Phase.Charge, targetType: TargetType.Friend, targetCondition: { keyword: data.allegiances.stormcastEternals.keyword }, targetRadius: 18, whollyWithin: true, chargeAura: { rerollCharge: true } });
+        addAbilityEffect(penantOfTheStormbringer, { phase: Phase.Movement, subPhase: SubPhase.After, targetType: TargetType.Friend, targetCondition: { keyword: data.allegiances.stormcastEternals.keyword }, setUpAwayFromEnemy: 9, timesPerBattle: 1 });
         setAbilityAsOption(unit, meteoricStandard, undefined, "main");
         setAbilityAsOption(unit, penantOfTheStormbringer, undefined, "main");
     }
 
     {
-//         const unit: Unit = data.units.lordCastellant;
-//         unit.keywords.push("CELESTIAL", "HUMAN", "LORD-CASTELLANT");
-//         unit.move = 5;
-//         unit.save = '3+';
-//         unit.bravery = 9;
-//         const halberd: Attack = { melee: true, name: "Castellant's Halberd", range: 2, attacks: 3, toHit: "3+", toWound: "3+", rend: -1, damage: 2 };
-//         const wardingLantern: Ability = {
-//             name: "Warding Lantern",
-//             description: `In your hero phase the Lord-Castellant may unleash the magical energies of their Warding Lantern. If they do so, pick either a CHAOS unit or a STORMCAST ETERNAL unit that is within 12" of the Lord-Castellant.
-            
-// If a CHAOS unit is chosen, it is struck by the searing light of the Celestial Realm and suffers a mortal wound. CHAOS DAEMON units cannot abide the touch of this light and suffer D3 mortal wounds instead.
-
-// If a STORMCAST ETERNAL unit is chosen, it is bathed in the healing energies of the lantern and you can add 1 to all save rolls it has to make until your next hero phase. In addition, until your next hero phase, each time you make a save roll of 7 or more for that unit, one model in the unit heals a wound.`
-//         }
-//         unit.attacks = [halberd];
-//         unit.abilities = [wardingLantern];
+        addAbilityEffect(data.abilities.lordCastellantWardingLantern, { targetType: TargetType.Enemy, phase: Phase.Hero });
+        addAbilityEffect(data.abilities.lordCastellantFaithfulGryphHound, { targetType: TargetType.Friend, phase: Phase.Setup });
     }
 
     {
@@ -1613,15 +1477,15 @@ function fixUnits(data: DataStoreImpl):void {
         const souldShield = removeAbility(sequitor, data.abilities.sequitorsSoulshields);
         const greatMaceOption = setAttackAsOption(sequitor, data.attacks.sequitorsStormsmiteGreatmace, ratioModelOption(2, 5), [greatmaceBlast]);
         const tempestBladeAndShieldOption = setAttackAsOption(sequitor, data.attacks.sequitorsTempestBlade, undefined, [souldShield]);
-        const maulAndShieldOption = setAttackAsOption(sequitor, data.attacks.sequitorsStormsmiteMaul);
+        const maulAndShieldOption = setAttackAsOption(sequitor, data.attacks.sequitorsStormsmiteMaul, undefined, [souldShield]);
         const sequitorPrimeOption = setAbilityAsOption(sequitor, data.abilities.sequitorsSequitorPrime, oneModelOption);
         const redemptionCacheOption = setAbilityAsOption(sequitor, data.abilities.sequitorsRedemptionCache, option => ((unit, model) => !hasOption(model, greatMaceOption) && hasOption(model, sequitorPrimeOption)));
-        addAbilityEffect(data.abilities.sequitorsGreatmaceBlast, { targetType: TargetType.Enemy, targetCondition: { anyKeyword: ["DAEMON", "NIGHTHAUT"] }, attackAura: { numberOfHitsOnUnmodified6: "D3" }});
+        addAbilityEffect(data.abilities.sequitorsGreatmaceBlast, { phase: Phase.Combat, targetType: TargetType.Enemy, targetCondition: { anyKeyword: ["DAEMON", "NIGHTHAUT"] }, attackAura: { numberOfHitsOnUnmodified6: "D3" }});
         addAbilityEffect(data.abilities.sequitorsRedemptionCache, { targetType: TargetType.Enemy, phase: Phase.Shooting, targetRange: 6, targetCondition: { anyKeyword: ["CHAOS", "DEATH"] }, randomEffectRange: { min: 4, max: 6 }, mortalWounds: 1 });
         addAbilityEffect(data.abilities.sequitorsSequitorAethericChannelling, { targetType: TargetType.Unit, phase: Phase.Combat, choice: "Weapons", attackAura: { rerollFailedHits: true }});
         addAbilityEffect(data.abilities.sequitorsSequitorAethericChannelling, { targetType: TargetType.Unit, phase: Phase.Combat, choice: "Shields", defenseAura: { rerollFailedSaves: true }});
         addAbilityEffect(data.abilities.sequitorsSequitorPrime, { targetType: TargetType.Model, attackAura: { bonusAttacks: 1 }});
-        addAbilityEffect(data.abilities.sequitorsSoulshields, { targetType: TargetType.Unit, defenseAura: { rerollSavesOn: 1 }});
+        addAbilityEffect(data.abilities.sequitorsSoulshields, { targetType: TargetType.Unit, defenseAura: { rerollSavesOn1: true }});
         sequitor.optionStats = [
             { name: "Maul and Shield, Greatmaces, and prime with Greatmace (channeling shields)", models: [{ count: 2, options: [greatMaceOption] }, { count: 2, options: [maulAndShieldOption] }, { count: 1, options: [greatMaceOption, sequitorPrimeOption] }], choice: "Shields" },
             { name: "Maul and Shield and Greatmaces (channeling shields)", models: [{ count: 2, options: [greatMaceOption] }, { count: 2, options: [maulAndShieldOption] }, { count: 1, options: [maulAndShieldOption, redemptionCacheOption, sequitorPrimeOption] }], choice: "Shields" },
@@ -1636,8 +1500,8 @@ function fixUnits(data: DataStoreImpl):void {
 
     {
         const unit: Unit = data.units.celestarBallista;
-        addAbilityEffect(data.abilities.celestarBallistaBastionsOfDeath, { targetType: TargetType.Unit, condition: { inCover: true }, defenseAura: { bonusSave: 1 } });
-        addAbilityEffect(data.abilities.celestarBallistaChainedLightning, { targetType: TargetType.Unit, attackAura: { numberOfHitsOnUnmodified6: "D6" } });
+        addAbilityEffect(data.abilities.celestarBallistaBastionsOfDeath, { phase: Phase.Shooting, targetType: TargetType.Unit, condition: { inCover: true }, defenseAura: { bonusSave: 1 } });
+        addAbilityEffect(data.abilities.celestarBallistaChainedLightning, { phase: Phase.Shooting, targetType: TargetType.Unit, attackAura: { numberOfHitsOnUnmodified6: "D6" } });
         overrideAttack(data.attacks.celestarBallistaCelestarStormboltsRapidFire, x => x.choice = "Rapid Fire");
         overrideAttack(data.attacks.celestarBallistaCelestarStormboltsSingleShot, x => x.choice = "Single Shot");
         unit.optionStats = [
@@ -1649,8 +1513,8 @@ function fixUnits(data: DataStoreImpl):void {
     {
         const unit: Unit = data.units.castigators;
         const primeOption = setAbilityAsOption(unit, data.abilities.castigatorsCastigatorPrime, oneModelOption);
-        addAbilityEffect(data.abilities.castigatorsBurstOfCelestialEnergy, { targetType: TargetType.Unit, attackAura: { numberOfHitsOnUnmodified6: conditionValue({ anyKeyword: ["DAEMON", "NIGHTHAUNT"] }, "D3") } }); 
-        addAbilityEffect(data.abilities.castigatorsCastigatorPrime, { targetType: TargetType.Model, attackAura: { bonusHitRoll: 1 } }); 
+        addAbilityEffect(data.abilities.castigatorsBurstOfCelestialEnergy, { phase: Phase.Shooting, targetType: TargetType.Unit, attackAura: { numberOfHitsOnUnmodified6: conditionValue({ anyKeyword: ["DAEMON", "NIGHTHAUNT"] }, "D3") } }); 
+        addAbilityEffect(data.abilities.castigatorsCastigatorPrime, { phase: Phase.Shooting, targetType: TargetType.Model, attackAura: { bonusHitRoll: 1 } }); 
         // TODO add condition on current attack (works only on the ranged weapon)
         addAbilityEffect(data.abilities.castigatorsCastigatorAethericChannelling, { targetType: TargetType.Unit, choice: "Accuracy", phase: Phase.Shooting, attackAura: { rerollHitsOn1: 1 } });
         addAbilityEffect(data.abilities.castigatorsCastigatorAethericChannelling, { targetType: TargetType.Unit, choice: "Power", phase: Phase.Shooting, attackAura: { bonusRend: -1 } });
@@ -1665,14 +1529,25 @@ function fixUnits(data: DataStoreImpl):void {
         const primeOption = setAbilityAsOption(unit, data.abilities.evocatorsEvocatorPrime, oneModelOption);
         const staveOption = setAttackAsOption(unit, data.attacks.evocatorsGrandstave, undefined, undefined, UnitCategoryMain);
         const bladeOption = setAttackAsOption(unit, data.attacks.evocatorsTempestBladeAndStormstave, undefined, undefined, UnitCategoryMain);
-        addAbilityEffect(data.abilities.evocatorsEvocatorPrime, { targetType: TargetType.Model, attackAura: { bonusAttacks: 1} });
-        addAbilityEffect(data.abilities.evocatorsCelestialLightningArc, { targetType: TargetType.Unit, phase: Phase.Shooting, defenseAura: { rerollSavesOn: 1 } });
+        addAbilityEffect(data.abilities.evocatorsEvocatorPrime, { phase: Phase.Combat, targetType: TargetType.Model, attackAura: { bonusAttacks: 1} });
+        addAbilityEffect(data.abilities.evocatorsCelestialLightningArc, { targetType: TargetType.Unit, phase: Phase.Shooting, defenseAura: { rerollSavesOn1: true } });
         addAbilityEffect(data.abilities.evocatorsCelestialLightningArc, { targetType: TargetType.Unit, phase: Phase.Combat, subPhase: SubPhase.WhileAfter, targetRange: 3, mortalWoundsPerModel: "2D(4+)" });
         // TODo spells addAbilityEffect(data.abilities.evocatorsEmpower, )
         unit.optionStats = [
             { name: "Grand stave", models: [{ count: 4, options: [staveOption]}, {count:1, options: [staveOption, primeOption]}]},
             { name: "Tempest Blade and Stormstave", models: [{ count: 4, options: [bladeOption]}, {count:1, options: [bladeOption, primeOption]}]},
         ]        
+    }
+
+    {
+        addAbilityEffect(data.abilities.lordArcanumOnGryphChargerAetherealStrike, { targetType: TargetType.Friend, attackAura: { mortalWoundsOnHitUnmodified6: 1 } });
+        addAbilityEffect(data.abilities.lordArcanumOnGryphChargerCycleOfTheStorm, { targetType: TargetType.Friend, defenseAura: {}});
+        addAbilityEffect(data.abilities.lordArcanumOnGryphChargerRideTheWindsAetheric, { targetType: TargetType.Friend, movementAura: {}});
+        addAbilityEffect(data.abilities.lordArcanumOnGryphChargerSpiritFlask, { targetType: TargetType.Friend, phase: Phase.Combat, subPhase: SubPhase.Before});
+        addAbilityEffect(data.abilities.lordArcanumOnGryphChargerMount, { targetType: TargetType.Friend, phase: Phase.Combat });
+        addAbilityEffect(data.abilities.lordArcanumOnGryphChargerHealingLight, { targetType: TargetType.Friend, phase: Phase.Hero });
+        addAbilityEffect(data.abilities.lordArcanumOnGryphChargerPrimeElectrids, { targetType: TargetType.Friend, phase: Phase.Hero });
+        addAbilityEffect(data.abilities.evocatorsEmpower, { targetType: TargetType.Friend, phase: Phase.Hero, targetRange: 12 });
     }
 }
 
@@ -1682,7 +1557,10 @@ function fixExtraAbilities(data: DataStoreImpl): void {
     data.extraAbilities.stormcastEternalsAspectsOfAzyrConsummateCommander.ability.description = "Choose one other HERO in your army. While your general is alive, the model you chose can also use any command abilities it may have, as if it were your general.";
     data.extraAbilities.stormcastEternalsAspectsOfAzyrCunningStrategist.ability.description = "Once both armies are set up, but before the first battle round begins, select D3 friendly STORMCAST ETERNALS units. They can each make a move of up to 5\".";
     data.extraAbilities.stormcastEternalsAspectsOfAzyrZealousCrusader.ability.description = "Your general can re-roll their charge distance.";
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrStaunchDefender.ability.description = "Your general and all friendly STORMCAST ETERNALS units within 6\" add 1 to their save rolls if they have not charged this turn. This modifier does not stack with the save roll modifier for being within or on a terrain feature.";
+    override<ExtraAbility>(data.extraAbilities.stormcastEternalsAspectsOfAzyrStaunchDefender, x => {
+        x.ability.description = "Your general and all friendly STORMCAST ETERNALS units within 6\" add 1 to their save rolls if they have not charged this turn. This modifier does not stack with the save roll modifier for being within or on a terrain feature.";
+        x.ability.effects = [{ targetType: TargetType.Friend, defenseAura: { bonusSave: 1 } }];
+    });
     data.extraAbilities.stormcastEternalsAspectsOfAzyrChampionOfTheRealms.ability.description = "Choose one of your general’s weapon profiles (it cannot be a weapon used by a mount if they have one) and increase its Attacks characteristic by 1.";
 
     // // Artifacts
@@ -1707,6 +1585,11 @@ function fixExtraAbilities(data: DataStoreImpl): void {
     data.extraAbilities.stormcastEternalsArtefactsOfTheTempestSigmaritePendant.ability.description = "This pendant is imbued with spells of vengeance – woe betide they who lay low its wielder. When this HERO is slain, roll a dice. On a 4 or more the unit that slew them suffers D6 mortal wounds.";
     data.extraAbilities.stormcastEternalsArtefactsOfTheTempestQuicksilverDraught.ability.description = "Taken from the river of Anvrok, this potion lends uncanny speed to those who imbibe it. Once per battle, this HERO may pile in and make attacks in the combat phase before any other units, even if it is your opponent’s turn.";
     
+    override<ExtraAbility>(data.extraAbilities.stormcastEternalsMysticLightsShrivingLightArtefactx, x => {
+        x.ability.description= "Subtract 1 from the Bravery characteristic of enemy units while they are within 6\" of the bearer. Subtract 2 from the unit’s Bravery characteristic instead if it has the CHAOS keyword.";
+        x.ability.effects = [{ phase: Phase.Battleshock, targetType: TargetType.Enemy }];
+    });
+
     //const treasuredStandard = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["TOTEM"]);
     override(data.extraAbilities.stormcastEternalsTreasuredStandardsHurricaneStandard, x => {
         //x.isAvailable = treasuredStandard;
@@ -1753,24 +1636,34 @@ function fixExtraAbilities(data: DataStoreImpl): void {
     data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastSavageLoyalty.ability.description = "This mount feels a keen hatred for the enemies of Order, and fights through the most horrendous injuries to wreak its vengeance before death claims it. Roll a dice if this HERO is slain in the combat phase. On a roll of 4 or more, the unit that slew them suffers D3 mortal wounds.";
     data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastKeenClawed.ability.description = "Sharp of claw and of fang, this steed is undaunted by the thickest armour. Any wound rolls of 6 or more in the combat phase for this HERO’s mount are resolved with a Rend characteristic of -3.";
     override<Ability>(data.extraAbilities.stormcastEternalsAethericAspectsAetherealStalker.ability, x => {
+        x.effects = [{ targetType: TargetType.Enemy,  phase: Phase.Setup, attackAura: { rerollFailedHits: true, rerollFailedWounds: true } }];
         x.description = "When this model is set up, choose an enemy unit. You can re-roll failed hit and wound rolls for attacks made with this model’s Gryph-charger’s Razor Beak and Claws that target that enemy unit.";
         x.flavor = "This Gryph-charger has a hatred for the enemies of Order that burns as hot as that of their rider";
     });
 
     // spells
     override<Ability>(data.extraAbilities.stormcastEternalsLoreOfTheStormAzyriteHalo.ability, x => {
+        x.effects = [{ targetType: TargetType.Enemy,  phase: Phase.Hero }];
         x.description = "Azyrite Halo has a casting value of 5. If successfully cast, pick a friendly STORMCAST ETERNAL unit wholly within 12\" of the caster that is visible to them. Until your next hero phase, each time you make an unmodified save roll of 6 for that unit, the attacking unit suffers 1 mortal wound after all of its attacks have been resolved.";
         x.flavor = "This circlet of Azyrite power lashes out at the enemies of the faithful.";
     });
     override<Ability>(data.extraAbilities.stormcastEternalsLoreOfTheStormThundershock.ability, x => {
+        x.effects = [{ targetType: TargetType.Enemy,  phase: Phase.Hero }];
         x.description = "Thundershock has a casting value of 6. If successfully cast, roll a dice for each enemy unit within 6\" of the caster that is visible to them. On a 4+ that unit suffers 1 mortal wound. In addition, subtract 1 from hit rolls for attacks made by that unit until your next hero phase.";
         x.flavor = "Gathering the power of Sigmar’s storm into themselves, the wizard unleashes this energy as a roiling wave of pure force."
     });
+    override<Ability>(data.extraAbilities.stormcastEternalsLoreOfTheStormStormcaller.ability, x => {
+        x.effects = [{ targetType: TargetType.Enemy,  phase: Phase.Hero }];
+        x.description = "Stormcaller has a casting value of 7. If successfully cast, roll a dice for each enemy unit on the battlefield. On a 6+ that unit suffers D3 mortal wounds.";
+        x.flavor = "The storm overhead thickens, bolts of lightning crashing down into the enemy ranks."
+    });
     override<Ability>(data.extraAbilities.stormcastEternalsLoreOfInvigorationCelestialBlades.ability, x => {
+        x.effects = [{ targetType: TargetType.Enemy,  phase: Phase.Hero }];
         x.description = "Celestial Blades has a casting value of 5. If successfully cast, pick a friendly STORMCAST ETERNAL unit wholly within 18\" of the caster that is visible to them. Add 1 to wound rolls for attacks made with that unit’s melee weapons until your next hero phase.";
         x.flavor = "The wizard imbues the blades of their allies with power.";
     })
     override<Ability>(data.extraAbilities.stormcastEternalsLoreOfInvigorationSpeedOfLightning.ability, x => {
+        x.effects = [{ targetType: TargetType.Enemy,  phase: Phase.Hero }];
         x.description = "Speed of Lightning has a casting value of 5. If successfully cast, pick a friendly STORMCAST ETERNAL unit wholly within 9\" of the caster that is visible to them. You can re-roll charge rolls for that unit until your next hero phase.";
         x.flavor = "The Wizard’s allies are filled with Azyrite power.";
     })
@@ -1848,13 +1741,15 @@ function fixAllegiance(data: DataStoreImpl) {
         name: "Scions of the Storm",
         flavor: "Sigmar’s finest warriors strike as if from nowhere, the building storm heralding their arrival.",
         description: "Instead of setting up a STORMCAST ETERNAL unit on the battlefield, you can place it to one side and say that it is set up in the Celestial Realm as a reserve unit. You can set up one reserve unit in the Celestial Realm for each unit you have set up on the battlefield. At the end of your movement phase, you can set up one or more of the reserve units in the Celestial Realm on the battlefield, more than 9\" from any enemy units. Any reserve units in the Celestial Realm that are not set up on the battlefield before the start of the fourth battle round are slain.",
-        category: AbilityCategory.Army
+        category: AbilityCategory.Army,
+        effects: [{ targetType: TargetType.Friend, phase: Phase.Setup }]
     }
     const shockAndAwe: Ability = {
         name: "Shock and Awe",
         flavor: "When the Stormcast Eternals arrive to reinforce their allies, their sudden appearance strikes terror into the hearts of the enemies of Sigmar.",
         description: "Subtract 1 from hit rolls for attacks that target friendly STORMCAST ETERNAL units that were set up on the battlefield during the same turn.",
-        category: AbilityCategory.Army
+        category: AbilityCategory.Army,
+        effects: [{ targetType: TargetType.Friend, defenseAura: {} }]
     };
     override<Allegiance>(data.allegiances.stormcastEternals, x => x.battleTraits = [scionsOfTheStorm, shockAndAwe]);
 }
