@@ -173,6 +173,17 @@ export const KharadronCode = {
   }
 }
 
+export const Mercenary = {
+  name: 'Mercenary',
+  primaryKey: 'id',
+  properties: {
+    id: 'string',
+    name: 'string',
+    exclusionKeywords: 'CompoundKeyword[]',
+    organisation: 'BattalionOrganisation[]'
+  }
+}
+
 export const RealmAllegiance = {
   name: 'RealmAllegiance',
   primaryKey: 'id',
@@ -180,7 +191,8 @@ export const RealmAllegiance = {
     id: 'string',
     name: 'string',
     allies: 'CompoundKeyword[]',
-    keyword: 'string',
+    keywords: 'string[]',
+    exclusionKeywords: 'string[]',
     grandAlliance: 'string?',
     commandTraitGroups: 'CommandTraitGroup[]',
     artefactGroups: 'ArtefactGroup[]',
@@ -240,7 +252,11 @@ export const SceneryWarscroll = {
     sceneryRules: 'Ability[]',
     keywords: 'string[]',
     productURL: 'string?',
-    lastUpdated: 'double'
+    lastUpdated: 'double',
+    unitSizeMin: 'int',
+    unitSizeMax: 'int',
+    points: 'int',
+    notes: 'string?'
   }
 }
 

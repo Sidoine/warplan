@@ -125,7 +125,8 @@ export interface RealmAllegiance {
     id: string;
     name: string;
     allies: CompoundKeyword[];
-    keyword: string;
+    keywords: string[];
+    exclusionKeywords: string[];
     grandAlliance: string | null;
     commandTraitGroups: CommandTraitGroup[];
     artefactGroups: ArtefactGroup[];

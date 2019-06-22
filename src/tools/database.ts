@@ -3,7 +3,7 @@ import * as model from "./en-schemas/en-model";
 import * as fs from "fs";
 import * as def from "./definitions";
 
-const schemaVersion = 44;
+const schemaVersion = 47;
 
 function toCamelCase(name: string) {
     return name.toLowerCase().replace(/[^\w]+(\w)/g, (p,x) => x.toUpperCase()).replace(/^(.)/, (p,x) => x.toLowerCase()).replace(/[^A-Za-z0-9]/g, '').replace(/^[0-9]/g, '_');
@@ -290,12 +290,13 @@ function getAllegiance(db: realm) {
     `;
     for (const allegiance of db.objects<def.RealmAllegiance>(model.RealmAllegiance.name)) {
         const id = gid(allegiance);
-        allegianceIdByKeyword.set(allegiance.keyword.toUpperCase(), id);
+        const keyword = allegiance.keywords[0];
+        allegianceIdByKeyword.set(keyword.toUpperCase(), id);
         result += 
 `           ${id}: {
             id: "${id}",
             name: "${escapeString(allegiance.name)}",
-            keyword: "${allegiance.keyword.toUpperCase()}",
+            keyword: "${keyword.toUpperCase()}",
 `;
         if (allegiance.grandAlliance) {
             result += `${tab}${tab}${tab}grandAlliance: GrandAlliance.${allegiance.grandAlliance.toLowerCase()},
@@ -577,26 +578,26 @@ type AbilityCategories = "Spell" | "CommandTrait" | "Mount" | "Prayer" | "Artefa
 
 function getExceptionalTraits<T extends AbilityGroup>(allegiance: def.RealmAllegiance, groups: T[], traits: (t: T) => string[], category: AbilityCategories, usedNames: Map<string, boolean>) {
     let result = "";
-    for (const artefactGroup of groups) {
-        const groupTitle = artefactGroup.groupTitle.toLowerCase();
+    const allegianceKeyword = allegiance.keywords[0];for (const artefactGroup of groups) {
+    const groupTitle = artefactGroup.groupTitle.toLowerCase();
         let i = 0;
         for (const trait of traits(artefactGroup)) {
             const id = gid({ id: `${artefactGroup.id} ${i++}` });
             result += 
 `               ${id}: {
                 id: "${id}",
-                allegianceKeyword: ${escapeQuotedString(allegiance.keyword.toUpperCase())},
+                allegianceKeyword: ${escapeQuotedString(allegianceKeyword.toUpperCase())},
                 category: "${groupTitle}",
 `;
             if (artefactGroup.keywords) {
                 result += 
 `                ability: { id: "${id}", name: "${trait}", description: "", category: AbilityCategory.${category}, keywords: ${compoundKeywordsToString(artefactGroup.keywords)} },
-                isAvailable: canUseAbility(${escapeQuotedString(trait || "Unknown")}, AbilityCategory.${category}, ${escapeQuotedString(allegiance.keyword.toUpperCase())}, ${compoundKeywordsToString(artefactGroup.keywords)}),
+                isAvailable: canUseAbility(${escapeQuotedString(trait || "Unknown")}, AbilityCategory.${category}, ${escapeQuotedString(allegianceKeyword.toUpperCase())}, ${compoundKeywordsToString(artefactGroup.keywords)}),
 `
             } else {
                 result +=
 `                ability: { id: "${id}", name: "${trait}", description: "", category: AbilityCategory.${category} },
-                isAvailable: canUseAbility(${escapeQuotedString(trait || "Unknown")}, AbilityCategory.${category}, ${escapeQuotedString(allegiance.keyword.toUpperCase())}),
+                isAvailable: canUseAbility(${escapeQuotedString(trait || "Unknown")}, AbilityCategory.${category}, ${escapeQuotedString(allegianceKeyword.toUpperCase())}),
 `;
             }
             result += 
@@ -608,23 +609,24 @@ function getExceptionalTraits<T extends AbilityGroup>(allegiance: def.RealmAlleg
 }
 
 function getExtraAbilitiesWithDivision(allegiance: def.RealmAllegiance, division: def.Division, ability: string, category: AbilityCategories, keyword?: string) {
-        const id = gid({ id: `${division.id}.required${category}` });
+    const id = gid({ id: `${division.id}.required${category}` });
+    const allegianceKeyword = allegiance.keywords[0];
         let result = 
 `
     ${id}: {
         id: "${id}",
         ability: { id: "${id}", name: "${ability}", category: AbilityCategory.${category} },
-        allegianceKeyword: ${escapeQuotedString(allegiance.keyword.toUpperCase())},
+        allegianceKeyword: ${escapeQuotedString(allegianceKeyword.toUpperCase())},
         category: "${category}",
 `;
         if (keyword) {
             result +=            
-`            isAvailable: canUseArmyOptionAbility(${escapeQuotedString(ability)}, AbilityCategory.${category}, ${escapeQuotedString(allegiance.keyword.toUpperCase())}, ${escapeQuotedString(division.name)}, [[${escapeQuotedString(keyword)}]]),
+`            isAvailable: canUseArmyOptionAbility(${escapeQuotedString(ability)}, AbilityCategory.${category}, ${escapeQuotedString(allegianceKeyword.toUpperCase())}, ${escapeQuotedString(division.name)}, [[${escapeQuotedString(keyword)}]]),
 `;
         }
         else {
             result +=            
-`            isAvailable: canUseArmyOptionAbility(${escapeQuotedString(ability)}, AbilityCategory.${category}, ${escapeQuotedString(allegiance.keyword.toUpperCase())}, ${escapeQuotedString(division.name)}),
+`            isAvailable: canUseArmyOptionAbility(${escapeQuotedString(ability)}, AbilityCategory.${category}, ${escapeQuotedString(allegianceKeyword.toUpperCase())}, ${escapeQuotedString(division.name)}),
 `;
         }
         result +=            

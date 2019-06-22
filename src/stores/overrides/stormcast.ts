@@ -18,7 +18,7 @@ function addBoxes(data: DataStoreImpl):void {
         id: "warhammerAgeOfSigmarStarterSet",
         name: "Warhammer Age of Sigmar Starter Set",
         units: [
-            { count: 1, models: [data.models.lordCelestantOnDracothOnDracoth]},
+            { count: 1, models: [data.models.lordCelestantOnDracoth]},
             {count: 1, models: [data.models.lordRelictor]},
             {count: 3, models: [data.models.retributors]},
             {count: 10, models: [data.models.liberators]},
@@ -1713,7 +1713,7 @@ function fixModels(data: DataStoreImpl) {
     overrideModel(models.lordAquilor, 2017, Material.Plastic);
     overrideModel(models.lordCastellant, 2014, Material.Plastic);
     overrideModel(models.lordCelestant, 2014, Material.Plastic);
-    overrideModel(models.lordCelestantOnDracothOnDracoth, 2016, Material.Plastic);
+    overrideModel(models.lordCelestantOnDracoth, 2016, Material.Plastic);
     overrideModel(models.lordCelestantOnStardrake, 2016, Material.Plastic);
     overrideModel(models.lordOrdinator, 2018, Material.Plastic);
     overrideModel(models.lordRelictor, 2014, Material.Plastic);

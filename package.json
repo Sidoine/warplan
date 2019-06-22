@@ -40,7 +40,7 @@
     "watch": "webpack -w",
     "debug": "webpack-dev-server --content-base wwwroot/",
     "watch-tools": "tsc -w -p tsconfig.tools.json",
-    "database": "node dist/src/tools/database.js",
+    "database": "node dist/tools/database.js",
     "test": "ava dist/test",
     "watch-test": "ava -w dist/test",
     "start": "node index.js"
