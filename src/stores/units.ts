@@ -7,6 +7,7 @@ import { overrideWanderers } from "./overrides/wanderers";
 import { overrideIdonethDeepkins } from "./overrides/idoneth-deepkins";
 import { overrideEverchosen } from "./overrides/everchosen";
 import { overrideSylvaneth } from "./overrides/sylvaneth";
+import { overrideNighthaunt } from "./overrides/nighthaunt";
 
 export const enum Material {
     Metal,
@@ -475,6 +476,7 @@ export class UnitsStore {
         overrideDevotedOfSigmar(data);
         overrideWanderers(data);
         overrideIdonethDeepkins(data);
+        overrideNighthaunt(data);
 
         const models: {[key: string]: Model} = data.models;  
         for (const key in models) {
@@ -541,6 +543,21 @@ export class UnitsStore {
             description: "You can use this command ability at the start of the battleshock phase. If you do so, pick a friendly unit that is within 6\" of friendly Hero, or 12\" of a friendly Hero that is a general. That unit does not have to take battleshock tests in that phase.",
             effects: [{ targetType: TargetType.Friend, phase: Phase.Battleshock }]
         });
+        this.baseAbilities.push({
+            name: 'All-out Attack',
+            category: AbilityCategory.Command,
+            description: 'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.',
+        });
+        this.baseAbilities.push({
+            name: 'All-out Defence',
+            category: AbilityCategory.Command,
+            description: 'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll save rolls of 1 for attacks that target that unit until the end of that phase.'
+        });
+        this.baseAbilities.push({
+            name: 'Volley Fire',
+            category: AbilityCategory.Command,
+            description: 'You can use this command ability at the start of your shooting phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.'
+        })
         this.baseAbilities.push({
             name: "Look out, Sir!",
             category: AbilityCategory.Army,

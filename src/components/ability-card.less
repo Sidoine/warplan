@@ -1,15 +1,16 @@
 .ability-card {
+    background: url('../assets/fond.png');
+    background-size: 100% 100%;
     break-inside: avoid;
     display: inline-block;
-    margin: 2mm;
+    margin: 0;
     width: 63mm;
     height: 88mm;
     position: relative;
-    border-radius: 3mm;
-    border: 2px solid black;
+    border: 2px solid #a29966;
     font-family: serif;
     padding: 2mm;
-    padding-left: 8mm;
+    // padding-left: 8mm;
     font-size: 3.5mm;
     overflow: hidden;
     &__image {
@@ -19,36 +20,54 @@
         top:0;
         left:0;
     }
+
+    &__header {
+        border: 2px solid #a29966;
+        border-radius: 0.3rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 0.2rem;
+        margin-left: 0.1rem;
+        margin-right: 0.1rem;
+        margin-bottom: 0.4rem;
+    }
     &__title {
         font-size: 5mm;
         font-weight: bold;
         text-align: center;
-        padding-bottom: 1mm;
-        border-bottom: 1px solid black;
+        font-variant: small-caps;
     }
     &__description {
-        padding: 1mm;
-        background-color: rgba(220, 200, 120, 0.9);
+        padding: 2mm;
+        background-color: rgba(220, 200, 120, 0.7);
         line-height: 100%;
+        text-align: justify;
+        border-radius: 0.2rem;
     }
     &__flavor {
+        border-radius: 0.2rem;
         font-style: italic;
         font-size: 3mm;
         line-height: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
+        color: white;
+        padding: 2mm;
+        margin-top: 2mm;
+        background-color: rgba(0, 0, 0, 0.8);
     }
     &__category {
         font-size: 3mm;
         font-weight: bold;
+        text-align: center;
     }
     &__keywords {
         position: absolute;
-        left: 8mm;
+        left: 0;
         bottom: 0;
         padding: 1mm;
-        border-top: 2px solid #b5ad82;
-        width: 55mm;
-        background-color: white;
+        width: 63mm;
+        font-weight: bold;
+        color: #555;
+        background-color: rgba(255, 255, 255, 0.5);
+        text-align: center;
     }
     &__values {
         position: absolute;

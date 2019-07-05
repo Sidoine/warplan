@@ -23,12 +23,14 @@ export class AbilityCard extends React.Component<AbilityCardProps> {
         const ability = this.props.ability;
         return <div className="ability-card" onClick={() => this.props.onClick(ability.group || ability.name)}>
             {!ability.description && !ability.flavor && ability.imageUrl && <img className="ability-card__image" src={ability.imageUrl}/>}
+            <div className="ability-card__header">
+            {ability.category && <div className="ability-card__category">· {this.getAbilityCategory(ability.category)} ·</div>}
             <div className="ability-card__title">{ability.name}</div>
+            </div>
             {ability.values && <div className="ability-card__values">{ability.values.map(x => <React.Fragment key={x.key}><div>{x.key}</div><div>{x.value}</div></React.Fragment>)}</div>}
-            {ability.category && <div className="ability-card__category">{this.getAbilityCategory(ability.category)}</div>}
             {ability.description && <div className="ability-card__description">{ability.description}</div>}
             {ability.flavor && <div className="ability-card__flavor">{ability.flavor}</div>}
-            {ability.keywords && <div className="ability-card__keywords">{ability.keywords.map(x => x.join(', ')).join(' or ')}</div>}
+            {ability.keywords && ability.keywords.length > 0 && <div className="ability-card__keywords">{ability.keywords.map(x => x.join(', ')).join(' or ')}</div>}
         </div>;
     }
 

@@ -364,6 +364,11 @@ export class Warscroll implements WarscrollInterface {
     get numberOfArtifacts() {
         return this.extraAbilities.reduce((x, a) => x + (a.ability.category === AbilityCategory.Artefact ? 1 : 0), 0);
     }
+
+    @computed
+    get availableExtraAbilities() {
+        return this.unitsStore.extraAbilities.filter(x => (x.allegianceKeyword === undefined || x.allegianceKeyword === this.allegiance.keyword)).map(x => x.ability);
+    }
 }
 
 interface SerializedWarscroll {

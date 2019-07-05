@@ -52,7 +52,12 @@ export class Cards extends React.Component<CardsProps> {
             if (w.armyOption.abilities) result = result.concat(w.armyOption.abilities);
         }        
         if (w.allegiance.battleTraits) result = result.concat(w.allegiance.battleTraits);
-
+        result = result.concat(w.availableExtraAbilities);
+        for (const battalion of w.battalions) {
+            if (battalion.battalion.abilities) {
+                result = result.concat(battalion.battalion.abilities);
+            }
+        }
         for (const unit of w.units) {
             if (unit.extraAbilities) result = result.concat(unit.extraAbilities.map(x => x.ability));
             // const u = unit.unit;
