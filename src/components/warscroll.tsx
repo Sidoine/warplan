@@ -43,16 +43,11 @@ export class Warscroll extends React.Component<WarscrollProps>{
             }
             
         {w.battalions.length > 0 &&
-           <Segment> 
-                <Header>Battalions</Header>
-                <Table>
-                    <Table.Body>
-                        {
-                            w.battalions.map(x => this.renderBattalion(x))
-                        }
-                    </Table.Body>
-                </Table>
-            </Segment>}    
+            <><Header>Battalions</Header>
+                    {
+                        w.battalions.map(x => this.renderBattalion(x))
+                    }
+            </>}    
 
         {w.sceneries.length > 0 &&
            <Segment> 
@@ -69,13 +64,22 @@ export class Warscroll extends React.Component<WarscrollProps>{
     }
 
     renderBattalion(battalion: WarscrollBattalionInterface) {
-        return <Table.Row key={battalion.id}>
-            <Table.Cell>{battalion.battalion.name}</Table.Cell>    
-            <Table.Cell>{battalion.battalion.description}</Table.Cell>
-            <Table.Cell>
-                { battalion.battalion.abilities && this.renderAllAbilities("Abilities", battalion.battalion.abilities)}
-            </Table.Cell>
-        </Table.Row>    
+        return <div key={battalion.id} className="warscroll">
+            <div className="warscroll__header">
+                <div className="warscroll__title battalion">
+                    <div>{battalion.battalion.name}</div>
+                    <div className="warscroll__count">{battalion.battalion.points} points</div>
+                </div>
+            </div>
+            <div className="warscroll__flavor">{battalion.battalion.description}</div>
+            <div className="warscroll__abilities">
+            { battalion.battalion.abilities && this.renderAllAbilities("Abilities", battalion.battalion.abilities)}
+            </div>
+            <div className="warscroll__keywords">
+            <div className="warscroll__keywords__header">Units</div>
+            <div>{battalion.battalion.units.map(x => `${x.countMin}${x.countMax > x.countMin ? `-${x.countMax}`: ''} ${x.units.map(y => y.join(' - ')).join('/')}`).join(", ")}</div>
+            </div>
+        </div>    
     }
 
     renderScenery(scenery: WarscrollScenery) {
@@ -120,21 +124,21 @@ export class Warscroll extends React.Component<WarscrollProps>{
         const specialRules = abilities.filter(x => x.category === AbilityCategory.SpecialRule);
         const magicAbilites = abilities.filter(x => x.category === AbilityCategory.Spell);
 
-        return <div key={unit.id} className="unit">
-        <div className="unit__header">
-            <div className="unit__stats">
+        return <div key={unit.id} className="warscroll">
+        <div className="warscroll__header">
+            <div className="warscroll__stats">
                 <div className="move">{u.move && <>{value(u.move)}"</>}</div>
                 <div className="wounds">{u.wounds}</div>
                 <div className="save">{u.save && <> {value(u.save)}</>}</div>
                 <div className="bravery">{u.bravery && <> {value(u.bravery)}</>}</div>
             </div>
-            <div className="unit__title">
-                <div>{ unit.isGeneral && <Icon name="star"/> } {u.model.name}</div> {models.length > 0 && <div className="unit__title__option"> {mainOption && mainOption.name}</div>}
-                <div className="unit__count">{unit.modelCount} <Icon name="user"/> {unit.points} points</div>
+            <div className="warscroll__title">
+                <div>{ unit.isGeneral && <Icon name="star"/> } {u.model.name}</div> {models.length > 0 && <div className="warscroll__title__option"> {mainOption && mainOption.name}</div>}
+                <div className="warscroll__count">{unit.modelCount} <Icon name="user"/> {unit.points} points</div>
             </div>
-            <div className="unit__image"><img src={unit.unit.pictureUrl}/></div>
+            <div className="warscroll__image"><img src={unit.unit.pictureUrl}/></div>
         </div>
-        {unit.unit.flavor && <div className="unit__flavor">{unit.unit.flavor}</div>}
+        {unit.unit.flavor && <div className="warscroll__flavor">{unit.unit.flavor}</div>}
                 {attacks.length > 0 && this.renderAllAttacks(attacks)}
                 {unit.unit.damageTable && this.renderWoundEffects(unit.unit.damageTable)}
                 <div className="warscroll__abilities">
@@ -193,7 +197,7 @@ export class Warscroll extends React.Component<WarscrollProps>{
 
     renderWoundEffects(damageTable: DamageTable) {
         const ranges = damageTable.ranges;
-        return <Table className="wound-table">
+        return <Table className="warscroll__wound-table">
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Wounds Suffered</Table.HeaderCell>

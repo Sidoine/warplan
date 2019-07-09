@@ -18,6 +18,10 @@ export interface AbilityCardProps {
     onClick: (group: string) => void;
 }
 
+function capitalizeFirst(name: string) {
+    return name[0].toLocaleUpperCase() + name.substring(1);
+}
+
 export class AbilityCard extends React.Component<AbilityCardProps> {
     render() {
         const ability = this.props.ability;
@@ -26,6 +30,7 @@ export class AbilityCard extends React.Component<AbilityCardProps> {
             <div className="ability-card__header">
             {ability.category && <div className="ability-card__category">· {this.getAbilityCategory(ability.category)} ·</div>}
             <div className="ability-card__title">{ability.name}</div>
+            {ability.group && <div className="ability-card__group">{capitalizeFirst(ability.group)}</div>}
             </div>
             {ability.values && <div className="ability-card__values">{ability.values.map(x => <React.Fragment key={x.key}><div>{x.key}</div><div>{x.value}</div></React.Fragment>)}</div>}
             {ability.description && <div className="ability-card__description">{ability.description}</div>}
@@ -56,7 +61,8 @@ export class AbilityCard extends React.Component<AbilityCardProps> {
                 return "Unit";
             case AbilityCategory.MeleeAttack:
                 return "Melee attack";
-            
+            case AbilityCategory.BattleTrait:
+                return "Battle Trait";
         }
     }
 }

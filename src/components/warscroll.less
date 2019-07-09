@@ -2,10 +2,9 @@
     white-space: nowrap;
 }
 
-.unit {
+.warscroll {
     page-break-inside: avoid;
-}
-.unit {
+
     margin: 10px;
     padding: 10px;
     border-radius: 25px;
@@ -15,6 +14,11 @@
 
     &__count {
         font-size: 15px;
+    }
+
+    &__flavor {
+        font-weight: bold;
+        text-align: center;
     }
 
     &__title {
@@ -34,7 +38,17 @@
             font-size: 25px;
             font-style: italic;
         }
+
+        
     }
+
+    .battalion {
+        height: 100px;
+        background-position-y: -20px;
+        background-size: 100% 160px;
+        padding-top: 20px;
+    }
+
     &__stats {
         background-image: url('./warscroll-left.png');
         width: 160px;
@@ -72,6 +86,7 @@
     &__header {
         display: flex;
         flex-direction: row;
+        font-variant: small-caps;
     }    
     &__image {
         width: 160px;
@@ -90,9 +105,7 @@
             border-radius: 100px;
         }
     }
-}
 
-.warscroll {
     &__section-header {
         font-variant: small-caps;
         font-size: 1.4rem;
@@ -140,7 +153,7 @@
         border-top: 2px solid #b5ad82;
         border-bottom: 2px solid #b5ad82;
         margin-top: 5px;
-
+        
         div {
             padding: 5px;
         }
@@ -149,12 +162,8 @@
             text-transform: uppercase;
         }
     }
-}
 
-.ui.table.wound-table {
-    text-align: center;
-}
-
-.keywords {
-    padding-top: 25px;
+    &__wound-table {
+        text-align: center;
+    }
 }

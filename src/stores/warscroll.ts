@@ -367,7 +367,7 @@ export class Warscroll implements WarscrollInterface {
 
     @computed
     get availableExtraAbilities() {
-        return this.unitsStore.extraAbilities.filter(x => (x.allegianceKeyword === undefined || x.allegianceKeyword === this.allegiance.keyword)).map(x => x.ability);
+        return this.unitsStore.extraAbilities.filter(x => (x.allegianceKeyword === undefined || x.allegianceKeyword === this.allegiance.keyword));
     }
 }
 

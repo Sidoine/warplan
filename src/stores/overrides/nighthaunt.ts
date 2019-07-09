@@ -1,5 +1,5 @@
 import { DataStoreImpl } from "../imported-data";
-import { Ability, AbilityCategory, Allegiance } from "../units";
+import { Ability, AbilityCategory, Allegiance, TargetType } from "../units";
 import { override } from "./tools";
 
 function addBattleTraits(data: DataStoreImpl) {
@@ -7,31 +7,31 @@ function addBattleTraits(data: DataStoreImpl) {
         flavor: 'The very existence of the Nighthaunts is a stark reminder of the terrible fate that awaits those that have displeased Nagash upon death. To face them in battle is to witness these darkest fears made manifest, and can chill the soul of even the most stoic warrior.',
         description: 'Subtract 1 from the Bravery characteristic of enemy units while they are within 6" of any friendly NIGHTHAUNT units.',
         name: 'Aura of Dread',
-        category: AbilityCategory.Army
+        category: AbilityCategory.BattleTrait
     };
     const deathlessSprits: Ability = {
         name: 'Deathless Spirits',
         flavor: 'The spirit forms of Nighthaunt warriors are made more formidable by the presence of their lords and masters.',
         description: 'Roll a dice each time you allocate a wound or mortal wound to a friendly NIGHTHAUNT model from a unit wholly within 12" of your general or a friendly NIGHTHAUNT HERO. On a 6+, that wound or mortal wound is negated.',
-        category: AbilityCategory.Army
+        category: AbilityCategory.BattleTrait
     };
     const fromTheUnderworldsTheyCome: Ability = {
         name: 'From the underworlds they come',
         flavor: 'None is safe from Nagash’s vengeance, for the Nighthaunts can be summoned forth from the underworlds by their spectral overseers, appearing as if from nowhere to assail their prey.',
         description: 'Instead of setting up a NIGHTHAUNT unit on the battlefield, you can place it to one side and say that it is set up in the underworlds as a reserve unit. You can set up one unit in the underworlds for each unit you set up on the battlefield. At the end of your movement phase you can set up any of these units more than 9" from any enemy models. This counts as their move for that turn. Any units which are not set up on the battlefield before the start of the fourth battle round are slain.',
-        category: AbilityCategory.Army
+        category: AbilityCategory.BattleTrait
     };
     const feedOnTerror: Ability = {
         name: 'Feed on terror',
         flavor: 'The lords of the Nighthaunts are strengthened by the fear they sow, and can drink deep of this uncontrolled emotion and siphon fresh strength.',
         description: 'Each time an enemy unit fails a battleshock test, pick one friendly NIGHTHAUNT HERO within 6" of that enemy unit. Heal 1 wound that has been allocated to that HERO.',
-        category: AbilityCategory.Army
+        category: AbilityCategory.BattleTrait
     };
     const waveOfTerror: Ability = {
         name: 'Wave of terror',
         flavor: 'On many occasions, entire battlelines have been overrun by a swarming Nighthaunt host without even raising a blade in their own defence.',
         description: 'If you make an unmodified charge roll of 10+ for a friendly NIGHTHAUNT unit, it can fight immediately after you complete the charge move. This does not stop the unit from being picked to fight in the combat phase of the same turn.',
-        category: AbilityCategory.Army
+        category: AbilityCategory.BattleTrait
     };
 
     const spectralSummons: Ability = {
@@ -159,7 +159,13 @@ function overrideAbilities(data: DataStoreImpl) {
     });
 }
 
+function overrideUnits(data: DataStoreImpl) {
+    override<Ability>(data.abilities.knightOfShroudsEthereal, x => x.effects = [{defenseAura:{}, targetType: TargetType.Model}]);
+    override<Ability>(data.abilities.knightOfShroudsStolenHours, x => x.effects = [{ attackAura:{}, targetType: TargetType.Model }]);
+}
+
 export function overrideNighthaunt(data: DataStoreImpl): void {
     addBattleTraits(data);
     overrideAbilities(data);
+    overrideUnits(data);
 }

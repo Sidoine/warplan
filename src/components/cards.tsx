@@ -5,12 +5,23 @@ import { computed } from "mobx";
 import { AbilityCard, CardContent } from "./ability-card";
 import { CardsStore } from "../stores/cards";
 import { HiddenCard } from "./hidden-card";
-import { UnitsStore } from "../stores/units";
+import { UnitsStore, ExtraAbility } from "../stores/units";
 
 export interface CardsProps {
     warscrollStore?: WarscrollStore;
     cardsStore?: CardsStore;
     unitsStore?: UnitsStore;
+}
+
+function extraAbility(x: ExtraAbility): CardContent {
+    return {
+        name: x.ability.name,
+        category: x.ability.category,
+        flavor: x.ability.flavor,
+        description: x.ability.description,
+        keywords: x.ability.keywords,
+        group: x.category
+    };
 }
 
 @inject("warscrollStore", "cardsStore", "unitsStore")
@@ -52,14 +63,9 @@ export class Cards extends React.Component<CardsProps> {
             if (w.armyOption.abilities) result = result.concat(w.armyOption.abilities);
         }        
         if (w.allegiance.battleTraits) result = result.concat(w.allegiance.battleTraits);
-        result = result.concat(w.availableExtraAbilities);
-        for (const battalion of w.battalions) {
-            if (battalion.battalion.abilities) {
-                result = result.concat(battalion.battalion.abilities);
-            }
-        }
-        for (const unit of w.units) {
-            if (unit.extraAbilities) result = result.concat(unit.extraAbilities.map(x => x.ability));
+        result = result.concat(w.availableExtraAbilities.map(extraAbility));
+        
+        // for (const unit of w.units) {
             // const u = unit.unit;
             // if (result.every(x => x.name !== u.model.name)) {
             //     result.push({
@@ -79,7 +85,7 @@ export class Cards extends React.Component<CardsProps> {
             //         }
             //     }
             // }            
-        }
+        //}
         return result;
     }
 

@@ -49,7 +49,8 @@ export const enum AbilityCategory {
     Army,
     Unit,
     MeleeAttack,
-    RangedAttack
+    RangedAttack,
+    BattleTrait
 }
 
 export const enum Phase {

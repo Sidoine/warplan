@@ -11,8 +11,8 @@ export function join(e: JSX.Element[], separator: string) {
     return ret;
 }
 
-export function value(val: Value) {
-    if (val === undefined) return undefined;
+export function value(val: Value, defaut?: string) {
+    if (val === undefined) return defaut;
     if (typeof(val) === "string" || typeof(val) === "number") {
         return val;
     }
