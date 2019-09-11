@@ -1,7 +1,7 @@
 import * as React from "react";
 import { WarscrollStore, WarscrollUnit, WarscrollScenery } from "../stores/warscroll";
 import { inject, observer } from "mobx-react";
-import { Phase, Ability, Attack, AbilityEffect, UnitsStore, Value } from "../stores/units";
+import { Phase, Ability, Attack, AbilityEffect, UnitsStore, Value, TargetType } from "../stores/units";
 import { computed } from "mobx";
 import { getPhaseName, phases } from "../stores/battle";
 import "./check-list.less";
@@ -63,13 +63,19 @@ export class CheckList extends React.Component<CheckListProps> {
         if (phase === Phase.Combat || phase === Phase.Shooting) {
             if (effect.phase !== undefined && effect.phase !== phase) return false;
             if (effect.defenseAura && side === PhaseSide.Defense) return true;
-            if (effect.attackAura && side === PhaseSide.Attack) {
+            if (effect.attackAura && effect.targetType !== TargetType.Enemy && side === PhaseSide.Attack) {
                 if (!unit) return false;
                 if (phase === Phase.Combat && unit.attacks.some(x => x.attack.melee)) return true;
                 if (phase === Phase.Shooting && unit.attacks.some(x => !x.attack.melee)) return true;
             }
+            if (effect.attackAura && effect.targetType === TargetType.Enemy && side === PhaseSide.Defense) {
+                if (!unit) return false;
+                return true;
+            }
+            if (effect.mortalWounds && side === PhaseSide.Attack) return true;
             return false;
         }
+        if (phase === Phase.Battleshock && effect.battleShockAura) return true;
         if (phase === Phase.Movement && effect.movementAura) return true;
         if (phase === Phase.Charge && effect.chargeAura) return true;
         if (effect.phase !== undefined) return effect.phase === phase && side !== PhaseSide.Defense;
@@ -169,7 +175,7 @@ export class CheckList extends React.Component<CheckListProps> {
         return <section>
             <h1>Abilities without effect</h1>
             {this.abilities.filter(x => !x.effects).map((x,i) => <div key={i}><strong>{x.name}</strong> {x.description}</div>)}
-            {this.units.reduce((prev, x) => prev.concat(x.abilities.filter(x => !x.effects)), new Array<Ability>()).map((x,i) => <div key={i}><strong>{x.name}</strong> {x.description}</div>)}
+            {this.units.reduce((prev, x) => prev.concat(x.abilities.filter(y => !y.effects).map(y => [x, y])), new Array<[WarscrollUnit, Ability]>()).map((x,i) => <div key={i}><i>{x[0].unit.model.name}</i><strong>{x[1].name}</strong> {x[1].description}</div>)}
         </section>
     }
 

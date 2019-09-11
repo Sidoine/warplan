@@ -164,6 +164,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed get abilities() {
         let abilities = this.unit.abilities || [];
+        if (this.unit.commandAbilities) abilities = abilities.concat(this.unit.commandAbilities);
         if (this.extraAbilities) {
             abilities = abilities.concat(this.extraAbilities.map(x => x.ability));
         }

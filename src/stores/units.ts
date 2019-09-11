@@ -65,19 +65,30 @@ export const enum Phase {
 
 export interface DefenseAura {
     rerollSavesOn1?: boolean;
+    mortalWoundsOnSucessfulSaveReroll?: Value; // In a 3" radius
     rerollFailedSaves?: boolean;
     bonusSave?: number;
+    negateWoundsOrMortalWoundsOn6?: boolean;
+    changeSaveRoll?: boolean;
+}
+
+export interface BattleshockAura {
+    bonusBravery?: Value;
 }
 
 export interface MovementAura {
     rideTheWindDistance?: Value;
     fly?: boolean;
+    allowChargeAfterRunOrRetreat?: boolean;
+    changeRunRoll?: boolean;
 }
 
 export interface ChargeAura {
     rerollCharge?: boolean;
+    changeChargeRoll?: boolean;
     chargeDistance?: Value;
     chargeDices?: Value;
+    bonus?: Value;
 }
 
 export interface TargetCondition {
@@ -98,13 +109,17 @@ export interface TargetCondition {
 export interface AttackAuraValues {
     bonusHitRoll?: Value;
     bonusAttacks?: Value;
+    retreatAfterAttack?: Value;
     numberOfHitsOnUnmodified6?: Value;
     numberOfHitsOnHit?: Value;
     mortalWoundsOnHitUnmodified6?: Value;
     mortalWounds?: Value;
     damageOnWoundUnmodified6?: Value;
+    mortalWoundsOnHit?: Value;
+    bonusDamageOnHitUnmodified6?: Value;
     bonusRend?: Value;
     rerollHitsOn1?: Value;
+    bonusRendOnWound6OrMore?: Value;
 }
 
 export interface AttackAuraNumbers {
@@ -113,6 +128,9 @@ export interface AttackAuraNumbers {
 export interface AttackAuraBooleans {
     rerollFailedHits?: boolean;
     rerollFailedWounds?: boolean;
+    changeHitRoll?: boolean;
+    changeWoundRoll?: boolean;
+    shootAfterRun?: boolean;
 }
 
 export interface AttackAuraAbilityEffects {
@@ -147,6 +165,7 @@ export interface AbilityEffect {
 
     attackAura?: AttackAura;
     defenseAura?: DefenseAura;
+    battleShockAura?: BattleshockAura;
     movementAura?: MovementAura;
     chargeAura?: ChargeAura;
     targetAura?: DebuffAura;
@@ -548,16 +567,19 @@ export class UnitsStore {
             name: 'All-out Attack',
             category: AbilityCategory.Command,
             description: 'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.',
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat}]
         });
         this.baseAbilities.push({
             name: 'All-out Defence',
             category: AbilityCategory.Command,
-            description: 'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll save rolls of 1 for attacks that target that unit until the end of that phase.'
+            description: 'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll save rolls of 1 for attacks that target that unit until the end of that phase.',
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat}]
         });
         this.baseAbilities.push({
             name: 'Volley Fire',
             category: AbilityCategory.Command,
-            description: 'You can use this command ability at the start of your shooting phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.'
+            description: 'You can use this command ability at the start of your shooting phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.',
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Shooting}]
         })
         this.baseAbilities.push({
             name: "Look out, Sir!",

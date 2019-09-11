@@ -119,7 +119,8 @@ export class Stats extends React.Component<StatsProps> {
                     this.sortedData.map(x => this.renderCombination(x))
                 }
             </Table.Body>
-        </Table></>;
+        </Table>
+        </>;
     }
 
     renderCombination(unitStats: UnitStats) {
