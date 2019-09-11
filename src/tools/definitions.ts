@@ -87,6 +87,7 @@ export interface Division {
     requiredArtefactKeyword: string | null;
     requiredCommandTrait: string | null;
     requiredCommandTraitKeyword: string | null;
+    addedAllies: CompoundKeyword[];
 }
 
 export interface EndlessSpell {

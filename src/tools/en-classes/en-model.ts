@@ -125,7 +125,8 @@ export const Division = {
     requiredArtefact: 'string?',
     requiredArtefactKeyword: 'string?',
     requiredCommandTrait: 'string?',
-    requiredCommandTraitKeyword: 'string?'
+    requiredCommandTraitKeyword: 'string?',
+    addedAllies: 'CompoundKeyword[]'
   }
 }
 
