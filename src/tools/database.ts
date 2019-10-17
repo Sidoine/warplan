@@ -3,7 +3,7 @@ import * as model from "./en-classes/en-model";
 import * as fs from "fs";
 import * as def from "./definitions";
 
-const schemaVersion = 48;
+const schemaVersion = 49;
 
 function toCamelCase(name: string) {
     return name.toLowerCase().replace(/[^\w]+(\w)/g, (p,x) => x.toUpperCase()).replace(/^(.)/, (p,x) => x.toLowerCase()).replace(/[^A-Za-z0-9]/g, '').replace(/^[0-9]/g, '_');
@@ -534,8 +534,8 @@ function getUnits(db: realm) {
             for (const role of unit.overriddenRoles) {
                 if (unit.battlefieldRoles.some(x => x === role)) continue;
                 const conditions: string[] = [];
-                if (unit.overrideAllegiance) {
-                    conditions.push(`ws.allegiance.id === ${escapeQuotedString(toAllegianceId(unit.overrideAllegiance))}`);
+                if (unit.overrideAllegiances && unit.overrideAllegiances.length > 0) {
+                    conditions.push(unit.overrideAllegiances.map(x => `ws.allegiance.id === ${escapeQuotedString(toAllegianceId(x))}`).join(' || '));
                 }
                 if (unit.overrideGeneralKeywords && unit.overrideGeneralKeywords.length) {
                     conditions.push(`ws.general && hasKeywords(ws.general.unit, ${compoundKeywordsToString(unit.overrideGeneralKeywords)})`);

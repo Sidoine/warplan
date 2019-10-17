@@ -126,7 +126,9 @@ export const Division = {
     requiredArtefactKeyword: 'string?',
     requiredCommandTrait: 'string?',
     requiredCommandTraitKeyword: 'string?',
-    addedAllies: 'CompoundKeyword[]'
+    addedAllies: 'CompoundKeyword[]',
+    restrictedRealms: 'RealmOfBattle[]',
+    fourthAddedKeyword: 'CompoundKeyword'
   }
 }
 
@@ -203,7 +205,9 @@ export const RealmAllegiance = {
     spellGroups: 'ExceptionalTraitGroup[]',
     prayerGroups: 'ExceptionalTraitGroup[]',
     generalSpecificTraitGroups: 'ExceptionalTraitGroup[]',
-    mountTraitGroups: 'ExceptionalTraitGroup[]'
+    mountTraitGroups: 'ExceptionalTraitGroup[]',
+    warchanterWarbeatGroups: 'ExceptionalTraitGroup[]',
+    fourthAddedKeyword: 'CompoundKeyword'
   }
 }
 
@@ -309,9 +313,10 @@ export const UnitWarscroll = {
     battlefieldRoles: 'string[]',
     additionalNotes: 'string?',
     overriddenRoles: 'string[]',
-    overrideAllegiance: 'string?',
+    overrideAllegiances: 'string[]',
     overrideGeneralKeywords: 'CompoundKeyword[]',
     nonGeneralCommonOverrideKeyword: 'string?',
+    overrideUnitSizeMin: 'int',
     maxCount: 'int',
     maxAppliesToKeyword: 'string?',
     requiredIncludedKeyword: 'string?',

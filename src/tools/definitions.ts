@@ -88,6 +88,8 @@ export interface Division {
     requiredCommandTrait: string | null;
     requiredCommandTraitKeyword: string | null;
     addedAllies: CompoundKeyword[];
+    restrictedRealms: RealmOfBattle[];
+    fourthAddedKeyword: CompoundKeyword;
 }
 
 export interface EndlessSpell {
@@ -138,6 +140,8 @@ export interface RealmAllegiance {
     prayerGroups: ExceptionalTraitGroup[];
     generalSpecificTraitGroups: ExceptionalTraitGroup[];
     mountTraitGroups: ExceptionalTraitGroup[];
+    warchanterWarbeatGroups: ExceptionalTraitGroup[];
+    fourthAddedKeyword: CompoundKeyword;
 }
 
 export interface RealmOfBattle {
@@ -203,9 +207,10 @@ export interface UnitWarscroll {
     battlefieldRoles: string[];
     additionalNotes: string | null;
     overriddenRoles: string[];
-    overrideAllegiance: string | null;
+    overrideAllegiances: string[];
     overrideGeneralKeywords: CompoundKeyword[];
     nonGeneralCommonOverrideKeyword: string | null;
+    overrideUnitSizeMin: number;
     maxCount: number;
     maxAppliesToKeyword: string | null;
     requiredIncludedKeyword: string | null;
