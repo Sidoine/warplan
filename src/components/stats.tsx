@@ -1,7 +1,7 @@
 import * as React from "react";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
-import { Table, Icon } from "semantic-ui-react";
+import { Table, Icon, Menu, Input, InputOnChangeData } from "semantic-ui-react";
 import { UnitStats } from "../stores/stats";
 import { observable, action, computed } from "mobx";
 import { join, value } from "../helpers/react";
@@ -93,10 +93,21 @@ export class Stats extends React.Component<StatsProps> {
         return data;
     }
 
+    @action
+    private handleEnemySaveChange = (event: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => {
+        this.props.uiStore!.enemy.save = parseInt(data.value);
+    }
+
     render() {
 
         return <>
             <Filter/>
+            <Menu>
+                <Menu.Item header>Enemy</Menu.Item>
+                <Menu.Item>
+                    Save <Input value={this.props.uiStore!.enemy.save} onChange={this.handleEnemySaveChange} />
+                </Menu.Item>
+            </Menu>
             <Table sortable>
             <Table.Header>
                 <Table.Row>

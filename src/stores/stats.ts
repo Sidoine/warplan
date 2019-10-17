@@ -1,4 +1,4 @@
-import { UnitStatModels, Unit, UnitStatModel, Attack, TargetCondition, AbilityEffect, Ability, TargetType } from "./units";
+import { UnitStatModels, Unit, UnitStatModel, Attack, TargetCondition, AbilityEffect, Ability, TargetType, Phase } from "./units";
 import { getValue } from "./combat";
 import { States, UnitState, ModelState, WeaponState, sumAttackAura } from "./unit-state";
 
@@ -41,15 +41,15 @@ function applyEffect(caster: States, target: States, effect: AbilityEffect, stat
     }    
     if (effect.mortalWounds) {
         const mortalWounds = getValue(effect.mortalWounds) * (ratio || 1);
-        if (effect.targetRange) {
+        if (effect.phase !== Phase.Combat) {
             stats.rangedDamage += mortalWounds;
         } else {
             stats.meleeDamage += mortalWounds;
         }
     }
     if (effect.mortalWoundsPerModel) {
-        const mortalWounds = getValue(effect.mortalWounds) * (ratio || 1) * target.unitState.models.length;
-        if (effect.targetRange) {
+        const mortalWounds = getValue(effect.mortalWoundsPerModel) * (ratio || 1) * caster.unitState.unit.size;
+        if (effect.phase !== Phase.Combat) {
             stats.rangedDamage += mortalWounds;
         } else {
             stats.meleeDamage += mortalWounds;
@@ -169,10 +169,10 @@ function applyModelAttacks(myState: ModelState, enemyState: UnitState, stats: Un
     }
 }
 
-function getUnitOptionStats(stats: UnitStats, unit: Unit, models: UnitStatModel[], choice: string | undefined) {
+function getUnitOptionStats(stats: UnitStats, unit: Unit, models: UnitStatModel[], choice: string | undefined, enemy: { save: number }) {
     // Create states
     const unitState = new UnitState(unit);
-    const enemyState = new UnitState({ id: "enemy", model: { id: "enemy", name: "Enemy" }, size: 1, points: 0, wounds: 2, factions: [], keywords: [], save: 5 });
+    const enemyState = new UnitState({ id: "enemy", model: { id: "enemy", name: "Enemy" }, size: 1, points: 0, wounds: 2, factions: [], keywords: [], save: enemy.save });
     enemyState.models.push(new ModelState([], enemyState, 1));
 
     for (const model of models) {
@@ -215,7 +215,7 @@ function getUnitOptionStats(stats: UnitStats, unit: Unit, models: UnitStatModel[
     }
 }
 
-export function getUnitStats(unit: Unit): UnitStats[] {
+export function getUnitStats(unit: Unit, enemy: { save: number }): UnitStats[] {
     let optionStats = unit.optionStats;
     if (!optionStats) {
         if (unit.options && unit.options.length > 0) {
@@ -242,7 +242,7 @@ export function getUnitStats(unit: Unit): UnitStats[] {
             totalDamage: 0,
             ignoredAbilities: []
         };
-        getUnitOptionStats(result, unit, x.models, x.choice);
+        getUnitOptionStats(result, unit, x.models, x.choice, enemy);
         result.totalDamage = result.meleeDamage * 1.5 + result.rangedDamage;
         return result;
     });

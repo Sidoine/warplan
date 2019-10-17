@@ -5,7 +5,6 @@ import { UnitsStore } from "../stores/units";
 import { observable } from "mobx";
 import { Modal, Button, Input, Icon } from "semantic-ui-react";
 import { WarscrollStore } from "../stores/warscroll";
-import { groupBy } from "../helpers/react";
 
 export interface WarscrollPopinProps {
     uiStore?: UiStore;
@@ -17,8 +16,7 @@ export interface WarscrollPopinProps {
 @observer    
 export class WarscrollPopin extends React.Component<WarscrollPopinProps, {}> {
     @observable
-    warscrollName: string = Array.from(groupBy(this.props.warscrollStore!.warscroll.units, x => x.unit.model.name))
-        .map(([key, values]) =>  `${values.reduce((p, v) => p + v.count, 0)}x${key}`).join(', ');
+    warscrollName: string = this.props.warscrollStore!.warscroll.description;
 
     render() {
         return <Modal onClose={this.handleClose} open={true}>

@@ -1,6 +1,7 @@
 import { action, computed, observable, toJS } from "mobx";
 import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, ExtraAbility, WarscrollBattalionInterface, WarscrollModelInterface, Scenery, ModelOption, ArmyOption, AbilityCategory } from "./units";
 import { deflate, inflate } from "pako";
+import { groupBy } from "../helpers/react";
 
 function areAllied(unit1: Unit, unit2: Unit) {
     for (const faction1 of unit1.factions) {
@@ -231,6 +232,13 @@ export class Warscroll implements WarscrollInterface {
 
     @observable
     units: WarscrollUnit[] = [];
+
+    @computed
+    get description() {
+        return Array.from(groupBy(this.units, x => x.unit.model.name))
+        .map(([key, values]) =>  `${values.reduce((p, v) => p + v.count, 0)}x${key} ${values.some(x => x.modelCount > 1) ? ` [${values.map(x => x.modelCount).join(', ')}]` : ''}`).join(', ');
+    }
+
 
     @observable
     battalions: WarscrollBattalion[] = [];

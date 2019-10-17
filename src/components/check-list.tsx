@@ -72,7 +72,7 @@ export class CheckList extends React.Component<CheckListProps> {
                 if (!unit) return false;
                 return true;
             }
-            if (effect.mortalWounds && side === PhaseSide.Attack) return true;
+            if ((effect.mortalWounds || effect.mortalWoundsPerModel) && side === PhaseSide.Attack) return true;
             return false;
         }
         if (phase === Phase.Battleshock && effect.battleShockAura) return true;
@@ -166,6 +166,7 @@ export class CheckList extends React.Component<CheckListProps> {
 
     private renderPhase(phase: Phase) {
         return <section key={phase}><h1>{getPhaseName(phase)}</h1>
+            { phase === Phase.Setup && <div>{this.props.warscrollStore!.warscroll.description}</div>}
             {(phase === Phase.Shooting || phase === Phase.Combat) && <>{this.renderSubPhase(phase, PhaseSide.Attack)} {this.renderSubPhase(phase, PhaseSide.Defense)}</>}
             {(phase !== Phase.Shooting && phase !== Phase.Combat) && this.renderSubPhase(phase)}
         </section>;        
@@ -180,6 +181,6 @@ export class CheckList extends React.Component<CheckListProps> {
     }
 
     render(){
-        return <div className="check-list">{phases.map(x => this.renderPhase(x))} { this.renderOutOfPhaseAbilities() }</div>;
+        return <div className="check-list"> {phases.map(x => this.renderPhase(x))} { this.renderOutOfPhaseAbilities() }</div>;
     }
 }

@@ -38,11 +38,13 @@ export class UiStore {
         return this.unitsStore.unitList.filter(x => x.factions.some(x => x.id === this.faction.id));
     }
 
+    @observable enemy = { save: 5 };
+
     @computed
     get unitStats() {
         const result: UnitStats[] = [];
         for (const unit of this.units) {
-            const stats = getUnitStats(unit);
+            const stats = getUnitStats(unit, this.enemy);
             for (const stat of stats) {
                 result.push(stat);
             }
