@@ -1,6 +1,10 @@
 .check-list {
-    h1 {
+    section {
+        break-before: right;
+    }
 
+    section:first-of-type {
+        break-before: avoid;
     }
 
     &__unit {
@@ -11,6 +15,11 @@
     }
 }
 
+@media print {
+    .check-list__out { 
+        display: none;
+    }
+}
 .stats {
     display: flex;
 

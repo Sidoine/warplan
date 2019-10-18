@@ -24,10 +24,18 @@ export function addOption(unit: Unit, option: ModelOption) {
 }
 
 export function addAttackToOption(option: ModelOption, unit: Unit, attack: Attack) {
-    if (!option.attacks) return;
+    if (!option.attacks) option.attacks = [];
     removeAttack(unit, attack);
     option.attacks.push(attack);
     return attack;
+}
+
+export function addAbilityToOption(option: ModelOption, unit: Unit, ability: Ability, effect?: AbilityEffect) {
+    if (!option.abilities) option.abilities = [];
+    removeAbility(unit, ability);
+    option.abilities.push(ability);
+    if (effect) addAbilityEffect(ability, effect);
+    return ability;
 }
 
 export function setAttackAsOption(unit: Unit, attack: Attack, condition?: (option: ModelOption) => ModelCondition, abilities?: Ability[], unitCategory?: string) {

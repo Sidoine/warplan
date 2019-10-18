@@ -74,6 +74,7 @@ export interface DefenseAura {
 
 export interface BattleshockAura {
     bonusBravery?: Value;
+    immune?: boolean;
 }
 
 export interface MovementAura {
@@ -81,6 +82,7 @@ export interface MovementAura {
     fly?: boolean;
     allowChargeAfterRunOrRetreat?: boolean;
     changeRunRoll?: boolean;
+    windrider?: boolean;
 }
 
 export interface ChargeAura {
@@ -109,6 +111,7 @@ export interface TargetCondition {
 export interface AttackAuraValues {
     bonusHitRoll?: Value;
     bonusAttacks?: Value;
+    bonusDamage?: Value;
     retreatAfterAttack?: Value;
     numberOfHitsOnUnmodified6?: Value;
     numberOfHitsOnHit?: Value;
@@ -120,6 +123,7 @@ export interface AttackAuraValues {
     bonusRend?: Value;
     rerollHitsOn1?: Value;
     bonusRendOnWound6OrMore?: Value;
+    rangeBonus?: Value;
 }
 
 export interface AttackAuraNumbers {
@@ -131,6 +135,8 @@ export interface AttackAuraBooleans {
     changeHitRoll?: boolean;
     changeWoundRoll?: boolean;
     shootAfterRun?: boolean;
+    
+    changeHitWoundSaveOrDamageRoll?: boolean;
 }
 
 export interface AttackAuraAbilityEffects {
@@ -149,6 +155,12 @@ export const enum SubPhase {
 
 export interface DebuffAura {
     noPileIn?: boolean;
+}
+
+export interface SpellAura {
+    bonusUnbind?: Value;
+    bonusToUnbind?: Value;
+    autoUnbinds?: number;
 }
 
 export const enum TargetType {
@@ -177,6 +189,7 @@ export interface AbilityEffect {
     targetCondition?: TargetCondition;
     effectRange?: number;
     phase?: Phase;
+    spellAura?: SpellAura;
     subPhase?: SubPhase;
     condition?: TargetCondition;
     timesPerBattle?: number;

@@ -73,11 +73,13 @@ export class CheckList extends React.Component<CheckListProps> {
                 return true;
             }
             if ((effect.mortalWounds || effect.mortalWoundsPerModel) && side === PhaseSide.Attack) return true;
+            if (effect.phase === phase) return true;
             return false;
         }
         if (phase === Phase.Battleshock && effect.battleShockAura) return true;
         if (phase === Phase.Movement && effect.movementAura) return true;
         if (phase === Phase.Charge && effect.chargeAura) return true;
+        if (phase === Phase.Hero && effect.spellAura) return true;
         if (effect.phase !== undefined) return effect.phase === phase && side !== PhaseSide.Defense;
         return false;
     }
@@ -173,7 +175,7 @@ export class CheckList extends React.Component<CheckListProps> {
     }
 
     private renderOutOfPhaseAbilities() {
-        return <section>
+        return <section className="check-list__out">
             <h1>Abilities without effect</h1>
             {this.abilities.filter(x => !x.effects).map((x,i) => <div key={i}><strong>{x.name}</strong> {x.description}</div>)}
             {this.units.reduce((prev, x) => prev.concat(x.abilities.filter(y => !y.effects).map(y => [x, y])), new Array<[WarscrollUnit, Ability]>()).map((x,i) => <div key={i}><i>{x[0].unit.model.name}</i><strong>{x[1].name}</strong> {x[1].description}</div>)}
