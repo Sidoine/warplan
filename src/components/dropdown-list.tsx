@@ -10,7 +10,7 @@ export interface HasId {
 export interface DropdownObjectsProps<T extends HasId> {
     value: T | null;
     options: T[];
-    onChange: (value: T) => void;
+    onChange: (value: T | null) => void;
     getText: (value: T) => string;
 }
 
@@ -22,12 +22,12 @@ export class DropdownObjects<T extends HasId> extends React.Component<DropdownOb
     }
 
     private handleChange = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-        const item = this.props.options.find(x => x.id === data.value);
-        if (item) this.props.onChange(item);
+        const item = data.value && this.props.options.find(x => x.id === data.value);
+        if (item) this.props.onChange(item); else this.props.onChange(null);
     }
 
     render() {
-        return <Dropdown selection options={this.options} value={(this.props.value && this.props.value.id) || undefined} onChange={this.handleChange} />;
+        return <Dropdown clearable selection options={this.options} value={(this.props.value && this.props.value.id) || ""} onChange={this.handleChange} />;
     }
 }
 

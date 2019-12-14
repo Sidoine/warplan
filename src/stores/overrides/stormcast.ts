@@ -1261,30 +1261,80 @@ function fixExtraAbilities(data: DataStoreImpl): void {
     data.extraAbilities.stormcastEternalsAspectsOfAzyrChampionOfTheRealms.ability.description = "Choose one of your general’s weapon profiles (it cannot be a weapon used by a mount if they have one) and increase its Attacks characteristic by 1.";
 
     // // Artifacts
-    data.extraAbilities.stormcastEternalsStormForgedWeaponsStrifeEnder.ability.description = "This sigmarite weapon has been energised with runes of emancipation and liberation from evil. Pick one of this HERO’s melee weapons to be a Strife-ender. Add 1 to the Attacks characteristic of this weapon. Add 2 instead if all of the weapon’s attacks are directed against a CHAOS unit.";
-    data.extraAbilities.stormcastEternalsStormForgedWeaponsBladeOfHeroes.ability.description = "This shining blade glows bright in the presence of a truly dire threat, bolstering the warrior spirit of the wielder until no task seems insurmountable. Pick one of this HERO’s melee weapons to be a Blade of Heroes. Re-roll failed hit rolls made with this weapon that target HEROES or MONSTERS.";
-    data.extraAbilities.stormcastEternalsStormForgedWeaponsHammerOfMight.ability.description = "When the bearer strikes true, this noble weapon unleashes a thunderclap of energy that can shatter every bone in the victim’s body. Pick one of this HERO’s melee weapons to be a Hammer of Might. Wound rolls of 6 or more for this weapon cause double damage.";
-    data.extraAbilities.stormcastEternalsStormForgedWeaponsFangOfDracothion.ability.description = "Blessed by the stormy breath of the zodiacal godbeast Dracothion, this weapon’s void-cold bite is so fierce that even a slight slash can be fatal. Pick one of this HERO’s melee weapons to be a Fang of Dracothion. Re-roll any wound rolls of 1 for this weapon.";
-    data.extraAbilities.stormcastEternalsStormForgedWeaponsObsidianBlade.ability.description = "In the lightning-spewing volcanoes of the Sicklestar Peaks, the Obsidian Blades are forged. Their edges are so sharp they can cut bone like butter. Pick one of this HERO’s melee weapons to be an Obsidian Blade. Improve the Rend characteristic of this weapon by 1 (if it has a Rend characteristic of ‘-’ it becomes -1).";
-    data.extraAbilities.stormcastEternalsStormForgedWeaponsGiftOfTheSixSmiths.ability.description = "Some Stormcast Eternals, when reforged after a truly valorous death, will find their weapons remade as well, perfect examples of the Six Smiths’ craft that guide the bearer to his kill. Pick one of this HERO’s melee weapons to be a Gift of the Six Smiths. In each turn you can re-roll one hit, wound or damage roll for an attack made with this weapon.";
+    override<Ability>(data.extraAbilities.stormcastEternalsStormForgedWeaponsStrifeEnder.ability, x => {
+        x.flavor = "This sigmarite weapon has been energised with runes of emancipation and liberation from evil. Pick one of this HERO’s melee weapons to be a Strife-ender.";
+        x.description = "Add 1 to the Attacks characteristic of this weapon.Add 2 instead if all of the weapon’s attacks are directed against a CHAOS unit.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsStormForgedWeaponsBladeOfHeroes.ability, x => {
+        x.flavor = "This shining blade glows bright in the presence of a truly dire threat, bolstering the warrior spirit of the wielder until no task seems insurmountable.";
+        x.description = "Pick one of this HERO’s melee weapons to be a Blade of Heroes.Re - roll failed hit rolls made with this weapon that target HEROES or MONSTERS.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsStormForgedWeaponsHammerOfMight.ability, x => {
+        x.flavor = "When the bearer strikes true, this noble weapon unleashes a thunderclap of energy that can shatter every bone in the victim’s body.";
+        x.description = "Pick one of this HERO’s melee weapons to be a Hammer of Might.Wound rolls of 6 or more for this weapon cause double damage.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsStormForgedWeaponsFangOfDracothion.ability, x => {
+        x.flavor = "Blessed by the stormy breath of the zodiacal godbeast Dracothion, this weapon’s void-cold bite is so fierce that even a slight slash can be fatal.";
+        x.description = "Pick one of this HERO’s melee weapons to be a Fang of Dracothion.Re - roll any wound rolls of 1 for this weapon.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsStormForgedWeaponsObsidianBlade.ability, x => {
+        x.flavor = "In the lightning-spewing volcanoes of the Sicklestar Peaks, the Obsidian Blades are forged. Their edges are so sharp they can cut bone like butter.";
+        x.description = "Pick one of this HERO’s melee weapons to be an Obsidian Blade.Improve the Rend characteristic of this weapon by 1(if it has a Rend characteristic of ‘-’ it becomes - 1).";
+        x.effects = [{ targetType: TargetType.Weapon, attackAura: { bonusRend: -1 } }];
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsStormForgedWeaponsGiftOfTheSixSmiths.ability, x => {
+        x.flavor = "Some Stormcast Eternals, when reforged after a truly valorous death, will find their weapons remade as well, perfect examples of the Six Smiths’ craft that guide the bearer to his kill.";
+        x.description = "Pick one of this HERO’s melee weapons to be a Gift of the Six Smiths.In each turn you can re - roll one hit, wound or damage roll for an attack made with this weapon.";
+    });
 
-    data.extraAbilities.stormcastEternalsHeavenWroughtArmourArmourOfDestiny.ability.description = "This plate mail is blessed by fate. When this HERO suffers an unsaved wound or mortal wound, roll a dice. On a roll of 6 that wound or mortal wound is ignored.";
-    data.extraAbilities.stormcastEternalsHeavenWroughtArmourArmourOfSilveredSigmarite.ability.description = "Shining and sacred, this armour gleams so bright it can dazzle the enemy. Subtract 1 from any hit rolls for melee weapon attacks directed against this HERO.";
-    data.extraAbilities.stormcastEternalsHeavenWroughtArmourDrakescaleArmour.ability.description = "A guardian spirit lives on in this armour’s iron-hard drake scales. Re-roll failed save rolls for this HERO against weapons with a Damage characteristic greater than 1.";
-    data.extraAbilities.stormcastEternalsHeavenWroughtArmourMirrorshield.ability.description = "This shield reflects the sun’s rays in questing beams that seek out the eyes of enemy archers. Subtract 2 from any hit rolls for missile weapon attacks directed at this HERO.";
-    data.extraAbilities.stormcastEternalsHeavenWroughtArmourSpellshield.ability.description = "The bearer of this shield can use it to smash aside eldritch energies as if they were physical blows. This HERO may attempt to unbind a single spell in each enemy hero phase in the same manner as a Wizard.";
-    data.extraAbilities.stormcastEternalsHeavenWroughtArmourFeatherfoeTorc.ability.description = "Forged in the image of a coiled raptordrake, this torc strikes primal fear into winged enemies. Units that can fly must re-roll successful hit rolls for attacks directed against this HERO.";
-    
-    data.extraAbilities.stormcastEternalsArtefactsOfTheTempestTalismanOfEndurance.ability.description = "The bearer of this powerful item never tires in the execution of the God-King’s will. Add 1 to this HERO’s Wounds characteristic.";
-    data.extraAbilities.stormcastEternalsArtefactsOfTheTempestObsidianAmulet.ability.description = "This amulet absorbs magical energy, drinking it in as a surgeon’s sponge soaks up blood. Roll a dice whenever this HERO is affected by a spell. On a roll of 4 or more, ignore the effects of the spell on this HERO. Other units are affected as normal.";
-    override<ExtraAbility>(data.extraAbilities.stormcastEternalsArtefactsOfTheTempestLuckstone,x => {
+    override<Ability>(data.extraAbilities.stormcastEternalsHeavenWroughtArmourArmourOfDestiny.ability, x => {
+        x.flavor = "This plate mail is blessed by fate.";
+     }) ;
+   override<ExtraAbility>(data.extraAbilities.stormcastEternalsArtefactsOfTheTempestLuckstone,x => {
         x.ability.flavor = "Some say the Luckstone is so redolent with fortune it survived the death of the world-that-was.";
         x.ability.description = "Once per battle, you can change one hit, wound or save roll, or one roll that randomly determines a Damage characteristic, to the roll of your choice. The roll must be for an attack made by the bearer, or a save roll for an attack that targets the bearer.";
         x.ability.effects = [{ targetType: TargetType.Unit, timesPerBattle: 1, attackAura: { changeHitWoundSaveOrDamageRoll: true }  }]
-    }) ;
-    data.extraAbilities.stormcastEternalsArtefactsOfTheTempestSeedOfRebirth.ability.description = "A gift from the goddess Alarielle, this seed-shaped gem can heal the bearer, body and soul. Roll a D6 for this HERO in each of your hero phases. On a roll of 4 or more they heal 1 wound.";
-    data.extraAbilities.stormcastEternalsArtefactsOfTheTempestSigmaritePendant.ability.description = "This pendant is imbued with spells of vengeance – woe betide they who lay low its wielder. When this HERO is slain, roll a dice. On a 4 or more the unit that slew them suffers D6 mortal wounds.";
-    data.extraAbilities.stormcastEternalsArtefactsOfTheTempestQuicksilverDraught.ability.description = "Taken from the river of Anvrok, this potion lends uncanny speed to those who imbibe it. Once per battle, this HERO may pile in and make attacks in the combat phase before any other units, even if it is your opponent’s turn.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsHeavenWroughtArmourDrakescaleArmour.ability, x => {
+        x.flavor = "A guardian spirit lives on in this armour’s iron-hard drake scales.";
+        x.description = "Re - roll failed save rolls for this HERO against weapons with a Damage characteristic greater than 1.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsHeavenWroughtArmourMirrorshield.ability, x => {
+        x.flavor = "This shield reflects the sun’s rays in questing beams that seek out the eyes of enemy archers.";
+        x.description = "Subtract 2 from any hit rolls for missile weapon attacks directed at this HERO.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsHeavenWroughtArmourSpellshield.ability, x => {
+        x.flavor = "The bearer of this shield can use it to smash aside eldritch energies as if they were physical blows.";
+        x.description = "This HERO may attempt to unbind a single spell in each enemy hero phase in the same manner as a Wizard.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsHeavenWroughtArmourFeatherfoeTorc.ability, x => {
+        x.flavor = "Forged in the image of a coiled raptordrake, this torc strikes primal fear into winged enemies.";
+        x.description = "Units that can fly must re - roll successful hit rolls for attacks directed against this HERO.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsArtefactsOfTheTempestTalismanOfEndurance.ability, x => {
+        x.flavor = "The bearer of this powerful item never tires in the execution of the God-King’s will.";
+        x.description = "Add 1 to this HERO’s Wounds characteristic.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsArtefactsOfTheTempestObsidianAmulet.ability, x => {
+        x.flavor = "This amulet absorbs magical energy, drinking it in as a surgeon’s sponge soaks up blood.";
+        x.description = "Roll a dice whenever this HERO is affected by a spell.On a roll of 4 or more, ignore the effects of the spell on this HERO.Other units are affected as normal.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsArtefactsOfTheTempestLuckstone.ability, x => {
+        x.flavor = "Some say the Luckstone is so redolent with fortune it survived the death of the world-that-was.";
+        x.description = "Once per battle, you can change the result of one hit, wound, damage or save roll for this HERO to the result of your choice.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsArtefactsOfTheTempestSeedOfRebirth.ability, x => {
+        x.flavor = "A gift from the goddess Alarielle, this seed-shaped gem can heal the bearer, body and soul.";
+        x.description = "Roll a D6 for this HERO in each of your hero phases.On a roll of 4 or more they heal 1 wound.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsArtefactsOfTheTempestSigmaritePendant.ability, x => {
+        x.flavor = "This pendant is imbued with spells of vengeance – woe betide they who lay low its wielder.";
+        x.description = "When this HERO is slain, roll a dice.On a 4 or more the unit that slew them suffers D6 mortal wounds.";
+    });
+    override<Ability>(data.extraAbilities.stormcastEternalsArtefactsOfTheTempestQuicksilverDraught.ability, x => {
+        x.flavor = "Taken from the river of Anvrok, this potion lends uncanny speed to those who imbibe it.";
+        x.description  = "Once per battle, this HERO may pile in and make attacks in the combat phase before any other units, even if it is your opponent’s turn.";
+    });
     
     override<ExtraAbility>(data.extraAbilities.stormcastEternalsMysticLightsShrivingLightArtefactx, x => {
         x.ability.description= "Subtract 1 from the Bravery characteristic of enemy units while they are within 6\" of the bearer. Subtract 2 from the unit’s Bravery characteristic instead if it has the CHAOS keyword.";

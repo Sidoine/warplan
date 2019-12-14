@@ -8,9 +8,11 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome",
-            "url": "http://localhost:8081",
-            "webRoot": "${workspaceFolder}"
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}",
+            "skipFiles": ["node_modules/**/*.js"]
         },
+
 
         {
             "type": "node",

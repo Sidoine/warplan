@@ -1,4 +1,4 @@
-import React = require("react");
+import * as React from "react";
 import { inject, observer } from "mobx-react";
 import { WarscrollStore, PointMode } from "../stores/warscroll";
 import { Dropdown, Segment, Grid, Icon, DropdownProps } from "semantic-ui-react";
@@ -64,7 +64,7 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
         }
     }
 
-    private setArmyOption = (x: ArmyOption) => {
+    private setArmyOption = (x: ArmyOption | null) => {
         this.props.warscrollStore!.setArmyOption(x);
     }
 }

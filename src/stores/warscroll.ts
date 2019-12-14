@@ -471,7 +471,7 @@ export class WarscrollStore {
     }
 
     @action
-    setArmyOption(option: ArmyOption){
+    setArmyOption(option: ArmyOption | null){
         this.warscroll.armyOption = option;
         this.saveWarscroll();
     }

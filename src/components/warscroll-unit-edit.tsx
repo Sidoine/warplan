@@ -2,9 +2,12 @@ import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { NumberControl } from "../atoms/number-control";
 import { WarscrollStore, WarscrollUnit, WarscrollModel } from "../stores/warscroll";
-import { Dropdown, Button, Table, Icon, Checkbox, CheckboxProps, DropdownProps, Popup, Segment } from "semantic-ui-react";
+import { Dropdown, Button, Table, Icon, Checkbox, CheckboxProps, DropdownProps, Popup, Segment, Modal } from "semantic-ui-react";
 import { join } from "../helpers/react";
 import { ModelOption } from "../stores/units";
+import { UnitWarscroll } from "./unit-warscoll";
+import { observable, action } from "mobx";
+import "./warscroll-unit-edit.less";
 
 export interface WarscrollUnitEditProps {
     unit: WarscrollUnit;
@@ -20,11 +23,18 @@ interface Option {
 @inject("warscrollStore")
 @observer
 export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {}> {
+    @observable private warscrollOpen = false;
+    @action private handleOpenWarscroll = () => this.warscrollOpen = true;
+    @action private handleCloseWarscroll = () => this.warscrollOpen = false;
+
     render() {
         const unit = this.props.unit;
-                return <Table.Row>
+        return <Table.Row>
             <Table.Cell>
-                <div>{unit.unit.model.name}</div>
+                <div>{unit.unit.model.name} <Modal open={this.warscrollOpen} onClose={this.handleCloseWarscroll}
+                    trigger={<Button onClick={this.handleOpenWarscroll} icon="eye" />}>
+                    <UnitWarscroll unit={unit}/>
+                </Modal> </div>
                 <div>{ unit.unit.size } <Icon name="user"/>
                     {unit.unit.warscroll && <a target="_blank" href={unit.unit.warscroll}><Icon name="help circle" /></a>}
                     {unit.nonAlliedUnits.length > 0 && <Icon name="warning" title={`Can't be allied with ${unit.nonAlliedUnits.map(x => x.unit.model.name).join(', ')}`}/>}            
@@ -100,7 +110,7 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
     }
 
     private renderExtraAbilities(unit: WarscrollUnit) {
-        const options:Option[] = unit.availableExtraAbilities.map(x => { return { key: x.id, text: x.ability.name, value: x.id }});
+        const options: Option[] = unit.availableExtraAbilities.map(x => { return { key: x.id, text: x.ability.name, value: x.id, content: <><div>{x.ability.name}</div><div className="warscroll_unit_edit__description">{x.ability.description}</div></> }});
         return unit.availableExtraAbilities.length > 0 && <Dropdown className="icon" icon="plus" button options={options} onChange={this.handleExtraAbilityChange(unit)} />;
     }
 
