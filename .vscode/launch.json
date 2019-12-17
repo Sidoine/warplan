@@ -17,8 +17,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Lancer le programme",
-            "program": "${workspaceFolder}\\dist\\tools\\gw-data.js",
+            "name": "Lancer database",
+            "program": "${workspaceFolder}\\dist\\tools\\database.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

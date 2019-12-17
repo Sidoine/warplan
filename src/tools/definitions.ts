@@ -216,7 +216,8 @@ export interface UnitWarscroll {
     requiredIncludedKeyword: string | null;
     legacyID: string | null;
     productURL: string | null;
-    markOfChaos: boolean;
+    availableMarksOfChaos: string[];
+    markOfChaosRequired: boolean;
     legionOfNagash: boolean;
     damageTable: DamageColumn[];
     warMachine: WarMachine;
