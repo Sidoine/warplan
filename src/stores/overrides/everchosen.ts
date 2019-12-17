@@ -5,7 +5,7 @@ function addBoxes(data: DataStoreImpl):void {
         id: "archaon",
         name: "Archaon Everchosen",
         units: [
-            { count: 1, models: [data.models.archaon] }
+            { count: 1, models: [data.models.archaonTheEverchosen] }
         ],
         price: 130
     });
