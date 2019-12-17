@@ -290,13 +290,13 @@ function getAllegiance(db: realm) {
     `;
     for (const allegiance of db.objects<def.RealmAllegiance>(model.RealmAllegiance.name)) {
         const id = gid(allegiance);
-        const keyword = allegiance.keywords[0];
-        allegianceIdByKeyword.set(keyword.toUpperCase(), id);
+        const keywords = allegiance.keywords;
+        allegianceIdByKeyword.set(keywords[0].toUpperCase(), id);
         result += 
 `           ${id}: {
             id: "${id}",
             name: "${escapeString(allegiance.name)}",
-            keyword: "${keyword.toUpperCase()}",
+            keywords: ["${keywords.map(x => x.toUpperCase()).join('", "')}"],
 `;
         if (allegiance.grandAlliance) {
             result += `${tab}${tab}${tab}grandAlliance: GrandAlliance.${allegiance.grandAlliance.toLowerCase()},

@@ -25,7 +25,7 @@ module.exports = {
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
 
-            { test: /\.less$/, use: [{ loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }, { loader: "less-loader" }] },
+            { test: /\.less$/, use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"] },
             { test: /\.(woff|woff2|ttf|eot|svg|gif|png|jpg)(\?.*)?$/, loader: 'file-loader', options: { name: "files/[name].[hash].[ext]" } }
         ]
     },

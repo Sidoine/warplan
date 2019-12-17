@@ -959,8 +959,8 @@ function fixUnits(data: DataStoreImpl):void {
         const meteoricStandard = data.abilities.knightVexillorMeteoricStandard;
         const penantOfTheStormbringer = data.abilities.knightVexillorPennantOfTheStormbringer;
         addAbilityEffect(meteoricStandard, { targetType: TargetType.Enemy, targetRange: 24, targetArea: true, targetRadius: "2D6", mortalWounds: "D3", timesPerBattle: 1, phase: Phase.Hero });
-        addAbilityEffect(data.abilities.knightVexillorIconOfWar, { phase: Phase.Charge, targetType: TargetType.Friend, targetCondition: { keyword: data.allegiances.stormcastEternals.keyword }, targetRadius: 18, whollyWithin: true, chargeAura: { rerollCharge: true } });
-        addAbilityEffect(penantOfTheStormbringer, { phase: Phase.Movement, subPhase: SubPhase.After, targetType: TargetType.Friend, targetCondition: { keyword: data.allegiances.stormcastEternals.keyword }, setUpAwayFromEnemy: 9, timesPerBattle: 1 });
+        addAbilityEffect(data.abilities.knightVexillorIconOfWar, { phase: Phase.Charge, targetType: TargetType.Friend, targetCondition: { keyword: data.allegiances.stormcastEternals.keywords[0] }, targetRadius: 18, whollyWithin: true, chargeAura: { rerollCharge: true } });
+        addAbilityEffect(penantOfTheStormbringer, { phase: Phase.Movement, subPhase: SubPhase.After, targetType: TargetType.Friend, targetCondition: { keyword: data.allegiances.stormcastEternals.keywords[0] }, setUpAwayFromEnemy: 9, timesPerBattle: 1 });
         setAbilityAsOption(unit, meteoricStandard, undefined, "main");
         setAbilityAsOption(unit, penantOfTheStormbringer, undefined, "main");
     }

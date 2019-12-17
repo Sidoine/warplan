@@ -21,7 +21,7 @@
   "devDependencies": {
     "ava": "^2.4.0",
     "ts-loader": "^6.2.1",
-    "css-loader": "^3.0.0",
+    "css-loader": "^3.3.2",
     "mini-css-extract-plugin": "^0.8.0",
     "file-loader": "^5.0.2",
     "less": "^3.10.3",

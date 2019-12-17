@@ -1,6 +1,6 @@
 import { Unit, ExtraAbilityTest, AbilityCategory, Allegiance, WarscrollUnitInterface, WarscrollInterface } from "./units";
 
-export function hasKeywords(unit: Unit, keywords?: string[][]) {
+export function hasKeywords(unit: { keywords: string[] }, keywords?: string[][]) {
     return keywords === undefined || keywords.length === 0 || keywords.some(x => x.every(y => unit.keywords.indexOf(y) >= 0));
 }
 
@@ -9,7 +9,7 @@ export function hasKeyword(unit: Unit, keyword: string) {
 }
 
 export function hasAllegiance(unit: Unit, allegiance: Allegiance) {
-    return unit.keywords.indexOf(allegiance.keyword) >= 0;
+    return allegiance.keywords.some(x => unit.keywords.indexOf(x) >= 0);
 }
 
 export function isAloneInCategory(unit: WarscrollUnitInterface, category: AbilityCategory) {
@@ -49,11 +49,11 @@ function canUseAbilityCategory(unit: WarscrollUnitInterface, ws: WarscrollInterf
 }
 
 export function canUseAbility(name: string, category: AbilityCategory, allegianceKeyword: string, keywords?: string[][]): ExtraAbilityTest {
-    return (unit, ws) => unit.extraAbilities.every(x => x.ability.category !== category)  && canUseAbilityCategory(unit, ws, category, name) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && hasKeywords(unit.unit, keywords);
+    return (unit, ws) => unit.extraAbilities.every(x => x.ability.category !== category)  && canUseAbilityCategory(unit, ws, category, name) && unit.keywords.indexOf(allegianceKeyword) >= 0 && hasKeywords(unit, keywords);
 }
  
 export function canUseArmyOptionAbility(name: string, category: AbilityCategory, allegianceKeyword: string, armyOptionName: string, keywords?: string[][]): ExtraAbilityTest {
-    return (unit, ws) => ws.armyOption !== null && ws.armyOption.name === armyOptionName && unit.extraAbilities.every(x => x.ability.category !== category) && canUseAbilityCategory(unit, ws, category, name) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && hasKeywords(unit.unit, keywords);
+    return (unit, ws) => ws.armyOption !== null && ws.armyOption.name === armyOptionName && unit.extraAbilities.every(x => x.ability.category !== category) && canUseAbilityCategory(unit, ws, category, name) && unit.keywords.indexOf(allegianceKeyword) >= 0 && hasKeywords(unit, keywords);
 }
 
 // function keywordAvailable(category: string, allegianceKeyword: string, keyword: string): ExtraAbilityTest {

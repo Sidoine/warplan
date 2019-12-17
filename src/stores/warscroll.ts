@@ -81,6 +81,21 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     @observable
     battalion: WarscrollBattalionInterface | null = null;
 
+    @computed get keywords() {
+        if (!this.isAllied) {
+            let addAllegianceKeyword = this.unit.keywords.indexOf(this.warscroll.allegiance.keywords[0]) < 0;
+            let addHostKeyword = this.warscroll.armyOption !== null && this.warscroll.allegiance.armyOptions
+                && this.warscroll.allegiance.armyOptions.values.every(x => !x.keyword || this.unit.keywords.indexOf(x.keyword) < 0);
+            if (addAllegianceKeyword || addHostKeyword) {
+                const keywords = this.unit.keywords.concat();
+                if (addAllegianceKeyword) keywords.push(this.warscroll.allegiance.keywords[0]);
+                if (addHostKeyword && this.warscroll.armyOption && this.warscroll.armyOption.keyword) keywords.push(this.warscroll.armyOption.keyword);
+                return keywords;
+            }
+        }
+        return this.unit.keywords;
+    }
+
     @computed
     get count() {
         return Math.ceil(this.modelCount / this.unit.size);
@@ -96,7 +111,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed
     get isAllied() {
-        return !this.unit.keywords || this.unit.keywords.indexOf(this.warscroll.allegiance.keyword) < 0;
+        return !this.unit.keywords || this.warscroll.allegiance.keywords.every(x => this.unit.keywords.indexOf(x) < 0);
     }
 
     get isArtillery() {
@@ -121,7 +136,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed
     get availableExtraAbilities() {
-        return this.warscroll.unitsStore.extraAbilities.filter(x => (x.allegianceKeyword === undefined || x.allegianceKeyword === this.warscroll.allegiance.keyword)
+        return this.warscroll.unitsStore.extraAbilities.filter(x => (x.allegianceKeyword === undefined || this.warscroll.allegiance.keywords[0] === x.allegianceKeyword)
             && x.isAvailable(this, this.warscroll));
     }
     
@@ -376,7 +391,7 @@ export class Warscroll implements WarscrollInterface {
 
     @computed
     get availableExtraAbilities() {
-        return this.unitsStore.extraAbilities.filter(x => (x.allegianceKeyword === undefined || x.allegianceKeyword === this.allegiance.keyword));
+        return this.unitsStore.extraAbilities.filter(x => (x.allegianceKeyword === undefined || this.allegiance.keywords.indexOf(x.allegianceKeyword) >= 0));
     }
 }
 
@@ -410,7 +425,11 @@ export class WarscrollStore {
     @action
     addUnit(unit: Unit) {
         const warscroll = this.warscroll;
-        warscroll.units.push(new WarscrollUnit(warscroll, unit));
+        const warscrollUnit = new WarscrollUnit(warscroll, unit);
+        const model = new WarscrollModel(warscrollUnit, warscroll);
+        model.count = unit.size;
+        warscrollUnit.models.push(model);
+        warscroll.units.push(warscrollUnit);
         this.saveWarscroll();
     }
 

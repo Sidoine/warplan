@@ -8,6 +8,7 @@ import { overrideIdonethDeepkins } from "./overrides/idoneth-deepkins";
 import { overrideEverchosen } from "./overrides/everchosen";
 import { overrideSylvaneth } from "./overrides/sylvaneth";
 import { overrideNighthaunt } from "./overrides/nighthaunt";
+import { overrideLegionOfGrief } from "./overrides/legion-of-grief";
 
 export const enum Material {
     Metal,
@@ -426,6 +427,7 @@ export interface WarscrollUnitInterface {
     extraAbilities: ExtraAbility[];
     models: WarscrollModelInterface[];
     modelCount: number;
+    keywords: string[];
 }
 
 export interface WarscrollModelInterface {
@@ -454,7 +456,7 @@ export interface Allegiance {
     id: string;
     grandAlliance: GrandAlliance;
     name: string;
-    keyword: string;
+    keywords: string[];
     armyOptions?: ArmyOptions;
     battleTraits?: Ability[];
 }
@@ -510,6 +512,7 @@ export class UnitsStore {
         overrideWanderers(data);
         overrideIdonethDeepkins(data);
         overrideNighthaunt(data);
+        overrideLegionOfGrief(data);
 
         const models: {[key: string]: Model} = data.models;  
         for (const key in models) {

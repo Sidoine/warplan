@@ -111,7 +111,7 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
 
     private renderExtraAbilities(unit: WarscrollUnit) {
         const options: Option[] = unit.availableExtraAbilities.map(x => { return { key: x.id, text: x.ability.name, value: x.id, content: <><div>{x.ability.name}</div><div className="warscroll_unit_edit__description">{x.ability.description}</div></> }});
-        return unit.availableExtraAbilities.length > 0 && <Dropdown className="icon" icon="plus" button options={options} onChange={this.handleExtraAbilityChange(unit)} />;
+        return unit.availableExtraAbilities.length > 0 && <Dropdown search clearable value="" className="icon" icon="plus" button options={options} onChange={this.handleExtraAbilityChange(unit)} />;
     }
 
     private handleExtraAbilityChange(unit: WarscrollUnit) {

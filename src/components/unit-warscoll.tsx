@@ -61,6 +61,6 @@ export function UnitWarscroll({unit}: {unit: WarscrollUnit}) {
             {u.commandAbilities && <AllAbilities title="Command abilities" abilities={u.commandAbilities}/>}
             {u.magicDescription && <AllAbilities title="Magic" abilities={magicAbilites} description={u.magicDescription}/>}
             </div>
-            <div className="warscroll__keywords"><div className="warscroll__keywords__header">Keywords</div><div>{u.keywords && u.keywords.join(", ")}</div></div>
+            <div className="warscroll__keywords"><div className="warscroll__keywords__header">Keywords</div><div>{unit.keywords && unit.keywords.join(", ")}</div></div>
     </div>;
 }

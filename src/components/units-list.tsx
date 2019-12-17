@@ -17,7 +17,7 @@ export interface UnitsListProps {
 export class UnitsList extends React.Component<UnitsListProps, {}> {
     render() {
         const options = this.props.uiStore!.units.map(x => { return { key: x.id, value: x.id, text: x.model.name, description: x.points }});
-        return <Dropdown search selection placeholder={this.props.title} options={options} onChange={this.onChange}></Dropdown>;
+        return <Dropdown search selection clearable placeholder={this.props.title} options={options} onChange={this.onChange} value=""></Dropdown>;
     }    
 
     private onChange = (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
