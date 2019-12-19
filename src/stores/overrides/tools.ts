@@ -54,6 +54,11 @@ export function setAttackAsOption(unit: Unit, attack: Attack, condition?: (optio
     return option;
 }
 
+export function setAttackAsUpgrade(unit: Unit, attack: Attack, upgradeTo: Attack,  condition?: (option: ModelOption) => ModelCondition, abilities?: Ability[], unitCategory?: string) {
+    setAttackAsOption(unit, upgradeTo, undefined, undefined, UnitCategoryMain);
+    setAttackAsOption(unit, attack, condition, abilities, unitCategory);
+}
+
 export function removeAttack(unit: Unit, attack: Attack) {
     if (unit.attacks) {
         const index = unit.attacks.indexOf(attack);

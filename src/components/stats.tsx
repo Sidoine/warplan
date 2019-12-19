@@ -1,13 +1,15 @@
 import * as React from "react";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
-import { Table, Icon, Menu, Input, InputOnChangeData } from "semantic-ui-react";
+import { Table, Icon, Menu, Input, InputOnChangeData, Modal } from "semantic-ui-react";
 import { UnitStats } from "../stores/stats";
 import { observable, action, computed } from "mobx";
 import { join, value } from "../helpers/react";
 import { Filter } from "./filter";
 import { WarscrollStore } from "../stores/warscroll";
 import { getValue } from "../stores/combat";
+import { UnitWarscroll } from "./unit-warscoll";
+import { Unit } from "../stores/units";
 
 export interface StatsProps {
     uiStore?: UiStore;
@@ -35,6 +37,9 @@ export class Stats extends React.Component<StatsProps> {
 
     @observable
     direction: "ascending" | "descending" = "ascending";
+    @observable private warscrollOpen: Unit | null = null;
+    @action private handleOpenWarscroll = (unit: Unit) => this.warscrollOpen = unit;
+    @action private handleCloseWarscroll = () => this.warscrollOpen = null;
 
     @action
     handleSort(column: Columns) {
@@ -108,6 +113,10 @@ export class Stats extends React.Component<StatsProps> {
                     Save <Input value={this.props.uiStore!.enemy.save} onChange={this.handleEnemySaveChange} />
                 </Menu.Item>
             </Menu>
+            { this.warscrollOpen && <Modal open onClose={this.handleCloseWarscroll}>
+                <UnitWarscroll unit={this.warscrollOpen}/>
+            </Modal>}
+            
             <Table sortable>
             <Table.Header>
                 <Table.Row>
@@ -140,7 +149,10 @@ export class Stats extends React.Component<StatsProps> {
         const points = unit.points / 100;
         const count = this.props.warscrollStore!.warscroll.units.reduce((c, x) => x.unit.id === unit.id ? x.count + c : c, 0);
         return <Table.Row key={unit.id + unitStats.name}>
-            <Table.HeaderCell>{unit.model.name} { count > 0 && `(${count})`} <Icon name="add circle" onClick={() => this.props.warscrollStore!.addUnit(unit)}/> { unit.warscroll && <a href={unit.warscroll}><Icon name="help circle"/></a> }</Table.HeaderCell>
+            <Table.HeaderCell>{unit.model.name} { count > 0 && `(${count})`} 
+                <Icon name="add circle" onClick={() => this.props.warscrollStore!.addUnit(unit)}/>
+                <Icon name="help circle"onClick={() => this.handleOpenWarscroll(unit)} />
+                </Table.HeaderCell>
             <Table.Cell>{unitStats.name}</Table.Cell>
             <Table.Cell>{unit.points}</Table.Cell>
             <Table.Cell>{value(unit.move)}</Table.Cell>

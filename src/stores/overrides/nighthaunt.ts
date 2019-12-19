@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
-import { Ability, AbilityCategory, Allegiance, TargetType } from "../units";
-import { override } from "./tools";
+import { Ability, AbilityCategory, Allegiance, TargetType, Phase, SubPhase } from "../units";
+import { override, overrideAbility, setAttackAsUpgrade } from "./tools";
 
 function addBattleTraits(data: DataStoreImpl) {
     const auraOfDread: Ability = {
@@ -160,8 +160,40 @@ function overrideAbilities(data: DataStoreImpl) {
 }
 
 function overrideUnits(data: DataStoreImpl) {
+    // Knight of Shrouds    
     override<Ability>(data.abilities.knightOfShroudsEthereal, x => x.effects = [{defenseAura:{}, targetType: TargetType.Model}]);
     override<Ability>(data.abilities.knightOfShroudsStolenHours, x => x.effects = [{ attackAura:{}, targetType: TargetType.Model }]);
+
+    // Chainrasps
+    overrideAbility(data.abilities.chainraspHordeEthereal, x => x.effects = [{targetType: TargetType.Model, defenseAura: { ignoreRend: true }}]);
+    overrideAbility(data.abilities.chainraspHordeChillingHorde, x => x.effects = [ { targetType: TargetType.Model, attackAura: { rerollWoundsOn1: 1 }}]);
+    overrideAbility(data.abilities.chainraspHordeDreadwarden, x => x.effects = [{ targetType: TargetType.Model, attackAura: { bonusAttacks: 1 }, battleShockAura: { bonusBravery: 4 }}]);
+    overrideAbility(data.abilities.chainraspHordeFly, x => x.effects = [{targetType: TargetType.Model, movementAura: { fly: true }}]);
+
+    // Spirit Torment
+    overrideAbility(data.abilities.spiritTormentEthereal, x => x.effects = [{targetType: TargetType.Model, defenseAura: { ignoreRend: true }}]);
+    overrideAbility(data.abilities.spiritTormentFly, x => x.effects = [{targetType: TargetType.Model, movementAura: { fly: true }}]);
+    overrideAbility(data.abilities.spiritTormentNagashSBidding, x => x.effects = [{targetType: TargetType.Friend, attackAura: { rerollHitsOn1: 1 }}]);
+    overrideAbility(data.abilities.spiritTormentCapturedSoulEnergy, x => x.effects = [{targetType: TargetType.Friend, phase: Phase.Battleshock, subPhase: SubPhase.Before }]);
+
+    // Guardian of souls with nightmare lanter
+    overrideAbility(data.abilities.guardianOfSoulsWithNightmareLanternEthereal, x => x.effects = [{targetType: TargetType.Model, defenseAura: { ignoreRend: true }}]);
+    overrideAbility(data.abilities.guardianOfSoulsWithNightmareLanternFly, x => x.effects = [{targetType: TargetType.Model, movementAura: { fly: true }}]);
+    overrideAbility(data.abilities.guardianOfSoulsWithNightmareLanternNightmareLantern, x => x.effects = [{targetType: TargetType.Friend, attackAura: { bonusWoundRoll: 1 }}]);
+    overrideAbility(data.abilities.guardianOfSoulsWithNightmareLanternSpectralLure, x => {
+        x.category = AbilityCategory.Spell;
+        x.spellCastingValue = 6;
+        x.effects = [{targetType: TargetType.Friend, phase: Phase.Hero }];
+    });
+
+    // Bladegheist Revenants
+    overrideAbility(data.abilities.bladegheistRevenantsEthereal, x => x.effects = [{targetType: TargetType.Model, defenseAura: { ignoreRend: true }}]);
+    overrideAbility(data.abilities.bladegheistRevenantsFly, x => x.effects = [{targetType: TargetType.Model, movementAura: { fly: true }}]);
+    overrideAbility(data.abilities.bladegheistRevenantsFearfulFrenzy, x => x.effects = [{targetType: TargetType.Unit, condition: { inRangeOf: { friendly: true, range: 12, keyword: ["CHAINGHAST", "SPIRIT TORMENT"] } }, attackAura: { rerollFailedHits: true }}]);
+    overrideAbility(data.abilities.bladegheistRevenantsWhirlingDeath, x => x.effects = [{targetType: TargetType.Unit, movementAura: { allowChargeAfterRunOrRetreat: true }}, { targetType: TargetType.Unit, attackAura: { bonusAttacks: 1 }, condition: { hasCharged: true } }]);
+    
+    // Grimghast Reapers
+    setAttackAsUpgrade(data.units.grimghastReapers, data.attacks.grimghastReapersDeathKnell, data.attacks.grimghastReapersSlasherScythe, undefined, [data.abilities.grimghastReapersForWhomTheBellTolls]);
 }
 
 export function overrideNighthaunt(data: DataStoreImpl): void {

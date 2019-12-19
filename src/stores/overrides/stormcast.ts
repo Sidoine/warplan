@@ -1453,7 +1453,7 @@ function fixStormhosts(data: DataStoreImpl) {
     const soulOfTheStormhost: Ability = {
         name: "Soul of the Stormhost",
         flavor: "The Redeemers of the Hammers of Sigmar break the enemy force with waves of reinforcements that never seem to end.",
-        description: "You can use this command ability when a friendly HAMMERS OF SIGMAR REDEEMER unit is destroyed. If you do so, roll a dice. On a 5+ a new unit identical to the one that was destroyed is added to your army. Set up the new unit anywhere on the battlefield, more than 9\" from any enemy models.",
+        description: "You can use this command ability when a friendly HAMMERS OF SIGMAR REDEEMER unit is destroyed. If you do so, roll a dice. On a 5+ a new unit identical to the one that was destroyed is added to your army. Set up the new unit anywhere on the battlefield, more than 9\" from any enemy models. You cannot use this command ability more than once per phase.",
         category: AbilityCategory.Command,
         effects: [{ targetType: TargetType.Friend, targetCondition: { keyword: "REDEEMER" }, defenseAura: {  }}]
     };

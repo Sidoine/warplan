@@ -61,7 +61,8 @@ export const enum Phase {
     Shooting = 8,
     Charge = 16,
     Combat = 32,
-    Battleshock = 64
+    Battleshock = 64,
+    Any = 127
 }
 
 export interface DefenseAura {
@@ -71,6 +72,7 @@ export interface DefenseAura {
     bonusSave?: number;
     negateWoundsOrMortalWoundsOn6?: boolean;
     changeSaveRoll?: boolean;
+    ignoreRend?: boolean;
 }
 
 export interface BattleshockAura {
@@ -107,10 +109,12 @@ export interface TargetCondition {
     weaponId?: string;
     meleeWeapon?: boolean;
     rangedWeapon?: boolean;
+    inRangeOf?: { friendly: boolean, keyword: string[], range: number };
 }
 
 export interface AttackAuraValues {
     bonusHitRoll?: Value;
+    bonusWoundRoll?: Value;
     bonusAttacks?: Value;
     bonusDamage?: Value;
     retreatAfterAttack?: Value;
@@ -123,6 +127,7 @@ export interface AttackAuraValues {
     bonusDamageOnHitUnmodified6?: Value;
     bonusRend?: Value;
     rerollHitsOn1?: Value;
+    rerollWoundsOn1?: Value;
     bonusRendOnWound6OrMore?: Value;
     rangeBonus?: Value;
 }
@@ -191,6 +196,7 @@ export interface AbilityEffect {
     effectRange?: number;
     phase?: Phase;
     spellAura?: SpellAura;
+    commandAura?: {};
     subPhase?: SubPhase;
     condition?: TargetCondition;
     timesPerBattle?: number;
@@ -198,6 +204,7 @@ export interface AbilityEffect {
     choice?: string;
 
     mortalWounds?: Value;
+    heal?: Value;
     setUpAwayFromEnemy?: Value; // The distance to the enemy
     mortalWoundsPerModel?: Value;
 
@@ -210,6 +217,7 @@ export interface Ability {
     flavor?: string;
     description?: string;
     category?: AbilityCategory;
+    spellCastingValue?: Value;
     effects?: AbilityEffect[];
     randomEffectDices?: string;
     keywords?: string[][];

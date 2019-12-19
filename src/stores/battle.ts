@@ -7,10 +7,12 @@ export interface Player {
     warscroll: Warscroll;
 }
 
-export const phases = [ Phase.Setup, Phase.Hero, Phase.Movement, Phase.Shooting, Phase.Charge, Phase.Combat, Phase.Battleshock ];
+export const phases = [ Phase.Any, Phase.Setup, Phase.Hero, Phase.Movement, Phase.Shooting, Phase.Charge, Phase.Combat, Phase.Battleshock ];
 
 export function getPhaseName(phase: Phase) {
     switch (phase) {
+        case Phase.Any:
+            return "Any";
         case Phase.Setup:
             return "Setup";
         case Phase.Hero:

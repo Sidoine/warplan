@@ -33,7 +33,7 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
             <Table.Cell>
                 <div>{unit.unit.model.name} <Modal open={this.warscrollOpen} onClose={this.handleCloseWarscroll}
                     trigger={<Button onClick={this.handleOpenWarscroll} icon="eye" />}>
-                    <UnitWarscroll unit={unit}/>
+                    <UnitWarscroll wu={unit}/>
                 </Modal> </div>
                 <div>{ unit.unit.size } <Icon name="user"/>
                     {unit.unit.warscroll && <a target="_blank" href={unit.unit.warscroll}><Icon name="help circle" /></a>}

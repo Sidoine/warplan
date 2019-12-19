@@ -80,6 +80,7 @@ export class CheckList extends React.Component<CheckListProps> {
         if (phase === Phase.Movement && effect.movementAura) return true;
         if (phase === Phase.Charge && effect.chargeAura) return true;
         if (phase === Phase.Hero && effect.spellAura) return true;
+        if (phase === Phase.Any && effect.commandAura) return true;
         if (effect.phase !== undefined) return effect.phase === phase && side !== PhaseSide.Defense;
         return false;
     }
@@ -166,7 +167,20 @@ export class CheckList extends React.Component<CheckListProps> {
         <ul>{phase === Phase.Hero && this.props.warscrollStore!.warscroll.sceneries.map(x => this.renderScenery(x)) }</ul></section>;
     }
 
+    private hasSomethingIsSubPhase(phase: Phase, side?: PhaseSide) {
+        return this.abilities.some(x => this.isAbilityInPhase(x, phase, undefined, side))
+            || this.getPhaseUnits(phase, side).length > 0
+            || phase === Phase.Hero && this.props.warscrollStore!.warscroll.sceneries.length > 0;
+    }
+
     private renderPhase(phase: Phase) {
+        if (phase !== Phase.Setup) {
+            if (phase === Phase.Shooting || phase === Phase.Combat) {
+                if (!this.hasSomethingIsSubPhase(phase, PhaseSide.Attack) && !this.hasSomethingIsSubPhase(phase, PhaseSide.Defense)) return;
+            } else {
+                if (!this.hasSomethingIsSubPhase(phase)) return;
+            }
+        }
         return <section key={phase}><h1>{getPhaseName(phase)}</h1>
             { phase === Phase.Setup && <div>{this.props.warscrollStore!.warscroll.description}</div>}
             {(phase === Phase.Shooting || phase === Phase.Combat) && <>{this.renderSubPhase(phase, PhaseSide.Attack)} {this.renderSubPhase(phase, PhaseSide.Defense)}</>}

@@ -23,17 +23,17 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <div>{w.totalPoints} points</div>
             <Header as="h1">Leaders</Header>
                 {
-                w.units.filter(x => x.isLeader).sort((a, b) => (a.isGeneral ? 1 : 0) - (b.isGeneral ? 1 : 0)).map(x => <UnitWarscroll unit={x} key={x.id} />)
+                w.units.filter(x => x.isLeader).sort((a, b) => (a.isGeneral ? 1 : 0) - (b.isGeneral ? 1 : 0)).map(x => <UnitWarscroll wu={x} key={x.id} />)
                 }
             
             <Header as="h1">Battelines</Header>
                 {
-                w.units.filter(x => x.isBattleline).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => <UnitWarscroll unit={x} key={x.id}/>)
+                w.units.filter(x => x.isBattleline).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => <UnitWarscroll wu={x} key={x.id}/>)
                 }
             
             <Header as="h1">Units</Header>
             {
-                w.units.filter(x => !x.isBattleline && !x.isLeader).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => <UnitWarscroll unit={x} key={x.id}/>)
+                w.units.filter(x => !x.isBattleline && !x.isLeader).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => <UnitWarscroll wu={x} key={x.id}/>)
             }
             
         {w.battalions.length > 0 &&

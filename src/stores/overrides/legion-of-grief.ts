@@ -1,26 +1,31 @@
 import { DataStoreImpl } from "../imported-data";
 import { overrideAbility, override } from "./tools";
-import { Ability, Allegiance, AbilityCategory } from "../units";
+import { Ability, Allegiance, AbilityCategory, TargetType, Phase, SubPhase } from "../units";
 
 export function overrideLegionOfGrief(data: DataStoreImpl) {
     // Command traits
     overrideAbility(data.extraAbilities.legionOfGriefAspectsOfGriefAmethystGlow.ability, x => {
         x.flavor = "Shyishan magic suffuses this general";
         x.description = "This general is a WIZARD. They can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. They know the Arcane Bolt and Mystic Shield spells. If this general is already a WIZARD, they know one extra spell from the Lore of Sorrows.";
+        x.effects = [{ targetType: TargetType.Unit, spellAura: { bonusUnbind: 1 } }];
     });
     overrideAbility(data.extraAbilities.legionOfGriefAspectsOfGriefVassalOfTheCravenKing.ability, x => {
         x.flavor = "The general is one of Kurdoss Valentian's trusted lords.";
         x.description = "If this general is on the battlefield, each time you spend a command point, roll a dice. On a 5+, you receive 1 extra command point.";
+        x.effects = [{ targetType: TargetType.Unit, commandAura: {}}]
     });
     overrideAbility(data.extraAbilities.legionOfGriefAspectsOfGriefTragicEmanations.ability, x => {
         x.flavor = "This leader radiates an aura of crippling sorrow.";
         x.description = "Subtract 2 from the Bravery characteristic of enemy units while they are within 12\" of this general";
+        x.effects = [{ targetType: TargetType.Enemy, battleShockAura: { bonusBravery: -2 }}]
     });
 
     // Artefacts of power
     overrideAbility(data.extraAbilities.legionOfGriefRelicsOfAnguishGraveSandGem.ability, x =>  {
         x.flavor = "This gem has the power to unmake flesh or stitch it together.";
         x.description = "In your hero phase, you can inflict 1 mortal wound on 1 enemy HERO within 6\" of the bearer, or you can heal 1 wound that has been allocated to the bearer.";
+        x.effects = [{ targetType: TargetType.Enemy, mortalWounds: 1, phase: Phase.Hero, choice: "damage" },
+            { targetType: TargetType.Friend, heal: 1, phase: Phase.Hero, choice: "heal"}]
     });
     overrideAbility(data.extraAbilities.legionOfGriefRelicsOfAnguishGothizzariMortuaryCandle.ability, x => {
         x.flavor = "This cursed candle of Gothizzar radiates sickening corps-light.";
@@ -51,31 +56,36 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
         flavor: "The dead stir in every corner of the realms, rising up from unhallowed grave-pits and corpse-strewn battlefields to prey upon the living.",
         description: "After territories have been determined, but before any units have been set up, you can pick up to 2 points in your territory and up to 2 points anywhere on the battlefield to be gravesites. You may wish to place suitable markers on these points. Then, instead of setting up a SUMMONABLE unit from your army on the battlefield, you can place it to one side and say that it is set up in the grave. You can do this with as many of your SUMMONABLE units as you wish. At the end of your movement phase, for each friendly DEATH HERO within 9\" of a gravesite, you can pick a single friendly unitin the grave and set it up wholly within 9\" of the gravesite and more than 9\" from any enemy models. Any model that is unable to be set up in this way is slain. If a unit is still in the grave at the end of the battle, it is considered to be slain.",
         category: AbilityCategory.BattleTrait,
+        effects: [{ targetType: TargetType.Friend, phase: Phase.Setup }]
     };
 
     const invigoratingAura: Ability = {
         name: "Invigorating Aura",
         flavor: "The power of death magic swells, empowering the restless dead an drawing more forth from their graves.",
-        description: "At the start of your hero phase, pick a friendly SUMMONABLE unit within 9\" of a gravesite (see 'The Unquiet Dead'). You can either heal D3 wounds that have been allocated to models in that unit or, if no wounds are currently allocated to any models in the unit, you can return a number of slain models to the unit that have a combined Wounds characteristic equal or less thant the roll of a D3.",
+        description: "Gravesites have the following ability: At the start of your hero phase, pick 1 friendly Summonable unit within 9\" of this gravesite (see ‘The Unquiet Dead’). You can either heal D3 wounds that have been allocated to models in that unit or, if no wounds are currently allocated to any models in the unit, you can return a number of slain models to the unit that have a combined Wounds characteristics equal to or less than the roll of a D3.",
         category: AbilityCategory.BattleTrait,
+        effects: [{ targetType: TargetType.Friend, phase: Phase.Hero, subPhase: SubPhase.Before }]
     };
     const deathlessMinions: Ability = {
         name: "Deathless Minions",
         flavor: "The powerful death magic that binds the undead grows stronger when these minions are in close proximity of their masters.",
         description: "Roll a dice each time you allocate a wound or mortal wound to a friendly LEGION OF GRIEF unit within 6\" of you general or another friendly LEGION OF GRIEF HERO. On a 6+ the wound or mortal wound is negated.",
         category: AbilityCategory.BattleTrait,
+        effects: [{ targetType: TargetType.Friend, defenseAura: { negateWoundsOrMortalWoundsOn6: true }}]
     };
     const auraOfGrief: Ability = {
         name: "Aura of Grief",
         flavor: "To face the Legion of Grief in battle is to be overcome by waves of crushing sorrow.",
         description: "Subtract 1 from the Bravery characteristic of enemy units while they are within 6\" of any friendly LEGION OF GRIEF units.",
         category: AbilityCategory.BattleTrait,
+        effects: [{ targetType: TargetType.Enemy, battleShockAura: { bonusBravery: - 1 }}]
     };
     const endlessLegions: Ability = {
         name: "Endless Legions",
         flavor: "The souls of the deceased are innumerable, a bottomless well of sorrow and bitter hatred from which the lords of death magic can fashion their conquering armies.",
         description: "You can use this command ability at the end of your movement phase. If you do so, pick a gravesite (see 'The Unquiet Dead') that is within 9\" of your general, and then pick a friendly SUMMONABLE unit that has been destroyed. Set up that unit wholly within 9\" of that gravesite and more than 9\" from any enemy units.",
         category: AbilityCategory.Command,
+        effects: [{ targetType: TargetType.Friend, phase: Phase.Movement, subPhase: SubPhase.After }]
     }
 
     override<Allegiance>(data.allegiances.legionOfGrief, x => x.battleTraits = [theUnquietDead, invigoratingAura, deathlessMinions, auraOfGrief, endlessLegions]);
