@@ -10,7 +10,7 @@ export interface WarscrollViewProps {
 @observer
 export class WarscrollView extends React.Component<WarscrollViewProps>{
     private renderUnit(unit: WarscrollUnit, includeCount: boolean) {
-        return <li>{ includeCount && <>{unit.modelCount} × </>} {unit.unit.model.name} ({unit.points})
+        return <li key={unit.id} >{ includeCount && <>{unit.modelCount} × </>} {unit.unit.model.name} ({unit.points})
         {unit.isGeneral && <><br/>- <em>General</em></>}
         {unit.extraAbilities.map(x =>  <><br/>- <em>{x.ability.name}</em></>)}
         </li>

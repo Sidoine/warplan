@@ -15,7 +15,6 @@ import { BasketStore } from "./stores/basket";
 import { WarscrollStore } from "./stores/warscroll";
 import { OwnedStore } from "./stores/owned";
 import { DataStoreImpl } from "./stores/imported-data";
-import { Container } from "semantic-ui-react";
 import { Warscroll } from "./components/warscroll";
 import { Markers } from "./components/markers";
 import "./index.less";
@@ -25,6 +24,8 @@ import { WarscrollView } from "./components/warscroll-view";
 import { Cards } from "./components/cards";
 import { CardsStore } from "./stores/cards";
 import { CheckList } from "./components/check-list";
+import { BattlePlay } from "./components/battle-play";
+import { BattleStore } from "./stores/battle";
 
 const root = document.getElementById("root");
 
@@ -36,13 +37,13 @@ const ownedStore = new OwnedStore(unitsStore);
 const basketStore = new BasketStore(unitsStore, warscrollStore, ownedStore);
 const markersStore = new MarkersStore();
 const cardsStore = new CardsStore();
+const battleStore = new BattleStore(unitsStore);
 
 ReactDOM.render(
-    <Provider ownedStore={ownedStore} cardsStore={cardsStore} unitsStore={unitsStore} uiStore={uiStore} basketStore={basketStore} warscrollStore={warscrollStore} markersStore={markersStore}>
+    <Provider ownedStore={ownedStore} cardsStore={cardsStore} unitsStore={unitsStore} uiStore={uiStore} basketStore={basketStore} warscrollStore={warscrollStore} markersStore={markersStore} battleStore={battleStore}>
         <HashRouter>
-            <Container>
                 <Popins/>    
-                <Route render={ x => <MyNavbar route={x} /> }/>
+                <Route render={ x => <MyNavbar route={x}>
                 <Switch>
                     <Route exact path="/" component={OwnedModelsList}/>
                     <Route exact path="/wb" component={WarscrollBuilder} />
@@ -54,8 +55,10 @@ ReactDOM.render(
                     <Route exact path="/list" component={WarscrollView} />
                     <Route exact path="/cards" component={Cards} />
                     <Route exact path="/cl" component={CheckList}/>
+                    <Route exact path="/battle" component={BattlePlay}/>
                 </Switch>
-            </Container>
+                </MyNavbar> }/>
+                
         </HashRouter>
     </Provider>    
     ,
