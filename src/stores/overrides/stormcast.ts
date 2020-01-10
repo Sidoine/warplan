@@ -508,7 +508,7 @@ function fixUnits(data: DataStoreImpl):void {
     {
         addAbilityEffect(data.abilities.vanguardRaptorsWithLongstrikeCrossbowsLongshot, { targetType: TargetType.Weapon, attackAura: { rangeBonus: 6 }, targetCondition: { hasNotMoved: true,  weaponId: "Longstrike Crossbow" } });
         addAbilityEffect(data.abilities.vanguardRaptorsWithLongstrikeCrossbowsHeadshot, { targetType: TargetType.Weapon, attackAura: { mortalWoundsOnHitUnmodified6: 2 }, targetCondition: { weaponId: "Longstrike Crossbow" }});
-        addAbilityEffect(data.abilities.vanguardRaptorsWithLongstrikeCrossbowsHuntingCall, { targetType: TargetType.Enemy, phase: Phase.Charge, mortalWoundsPerModel: "2(6+)"});
+        addAbilityEffect(data.abilities.vanguardRaptorsWithLongstrikeCrossbowsHuntingCall, { targetType: TargetType.Enemy, phase: Phase.Charge}); //, mortalWoundsPerModel: "2(6+)"
         addAbilityEffect(data.abilities.vanguardRaptorsWithLongstrikeCrossbowsRaptorPrime, { targetType: TargetType.Unit, phase: Phase.Setup});
     }
 

@@ -20,7 +20,13 @@ export function getValue(formula: Value): number {
         if (someDices) {
             const numberOfDices = someDices[1] ? parseInt(someDices[1]) : 1;
             const minValue = someDices[2] ? parseInt(someDices[2]) : 6;
-            return numberOfDices * (minValue - 1) / 6;
+            return numberOfDices * 3.5 * (minValue - 1) / 6;
+        }
+        const valueOnChance = formula.match(/^(\d+)\((\d)\+\)$/);
+        if (valueOnChance) {
+            const valueToReturn = valueOnChance[1] ? parseInt(valueOnChance[1]) : 1;
+            const minValue = valueOnChance[2] ? parseInt(valueOnChance[2]) : 6;
+            return valueToReturn * (minValue - 1) / 6;
         }
         throw Error(`Unable to parse ${formula}`)
     } else if (isRatioValue(formula)) {
