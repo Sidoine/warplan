@@ -1,6 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
 import { Unit, Material, Phase, SubPhase, TargetType, conditionValue, Allegiance, Ability, ArmyOption, AbilityCategory, ExtraAbility } from "../units";
-import { overrideModel,setAbilityAsOption, setAttackAsOption, removeAbility, addOption, ModelCategoryWeapon, UnitCategoryMain, oneModelOption, ratioModelOption, override, addAbilityEffect, hasOption, overrideAttack, addAttackToOption, addAbilityToOption } from "./tools";
+import { overrideModel,setAbilityAsOption, setAttackAsOption, removeAbility, addOption, ModelCategoryWeapon, UnitCategoryMain, oneModelOption, ratioModelOption, override, addAbilityEffect, hasOption, overrideAttack, addAttackToOption, addAbilityToOption, overrideAbility } from "./tools";
 
 function addBoxes(data: DataStoreImpl):void {
     data.boxes.push({
@@ -1246,6 +1246,20 @@ function fixUnits(data: DataStoreImpl):void {
         addAbilityEffect(data.abilities.lordArcanumOnGryphChargerSoulEnergy, { targetType: TargetType.Friend, phase: Phase.Shooting, targetCondition: { keyword: "CASTIGATORS" } });
         addAbilityEffect(data.abilities.lordArcanumOnGryphChargerSoulEnergy, { targetType: TargetType.Friend, phase: Phase.Combat, targetCondition: { keyword: "SEQUITORS" } });
     }
+
+    {
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalCometTrail, { targetType: TargetType.Enemy, phase: Phase.Movement, subPhase: SubPhase.After });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalCycleOfTheStorm, { targetType: TargetType.Friend, phase: Phase.Any });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalFieryOrator, { targetType: TargetType.Friend, targetCondition: { keyword: "HAMMER OF SIGMAR"}, targetRange: 12, attackAura: {  bonusWoundRoll: 1 }, phase: Phase.Combat, subPhase: SubPhase.Before });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalFly, { targetType: TargetType.Model, movementAura: { fly: true } });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalMeteoricStrike, { targetType: TargetType.Enemy, phase: Phase.Charge, targetRange: 1, mortalWounds: "1(2+)" });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalMount, { targetType: TargetType.Mount });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalPrimeElectrids, { targetType: TargetType.Model, phase: Phase.Hero });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalPyroelectricBlast, { targetType: TargetType.Enemy, phase: Phase.Hero });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalSpiritFlask, { targetType: TargetType.Enemy, phase: Phase.Combat, subPhase: SubPhase.Before });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalThunderheadCrown, { targetType: TargetType.Model, phase: Phase.Hero });
+        addAbilityEffect(data.abilities.aventisFirestrikeMagisterOfHammerhalRighteousIndignation, { targetType: TargetType.Model, phase: Phase.Combat, defenseAura: { mortalWoundsOnWound: "1(5+)" }})
+    }
 }
 
 function fixExtraAbilities(data: DataStoreImpl): void {
@@ -1401,7 +1415,12 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         x.flavor = "This Dracoth is stronger when leading packs of its closest kin into battle.";
         x.description = "Add 2 to the Attacks characteristic of this model’s Claws and Fangs while this model is within 6\" of any friendly DRACOTHIAN GUARD models.";
         x.effects = [ { targetType: TargetType.Weapon, attackAura: { bonusAttacks: 2 }}];
-    })
+    });
+    overrideAbility(data.extraAbilities.stormcastEternalsStarchaserFormsSteelPinions.ability, x => {
+        x.flavor = "The pinions of this creature are deceptively strong, able to shield their rider from enemy attacks.";
+        x.description = "Roll a dice each time a wound or mortal wound is allocated to this model. On a 6+ that wound or mortal wound is negated.";
+        x.effects = [ { targetType: TargetType.Model, defenseAura: { negateWoundsOrMortalWoundsOn6: true }}]
+    });
 
     // spells
     override<Ability>(data.extraAbilities.stormcastEternalsLoreOfTheStormAzyriteHalo.ability, x => {
@@ -1428,7 +1447,12 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         x.effects = [{ targetType: TargetType.Enemy,  phase: Phase.Hero }];
         x.description = "Speed of Lightning has a casting value of 5. If successfully cast, pick a friendly STORMCAST ETERNAL unit wholly within 9\" of the caster that is visible to them. You can re-roll charge rolls for that unit until your next hero phase.";
         x.flavor = "The Wizard’s allies are filled with Azyrite power.";
-    })
+    });
+    overrideAbility(data.extraAbilities.stormcastEternalsLoreOfTheStormChainLightning.ability, x => {
+        x.description = "Chain Lightning has a casting value of 7. If successfully cast, pick an enemy unit within 24\" of the caster that is visible to them. That unit suffers D3 mortal wounds. Then, roll a dice for each enemy unit within 3\" of the first. On a 4+, that unit suffers 1 mortal wound.";
+        x.flavor = "The wizard channels a torrent of lightning that leaps from foe to foe.";
+        x.effects = [{ phase: Phase.Hero, targetType: TargetType.Enemy }];
+    });
 }
 
 function fixStormhosts(data: DataStoreImpl) {

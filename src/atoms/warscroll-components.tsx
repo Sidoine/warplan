@@ -1,7 +1,7 @@
 import { Attack, DamageTable, Ability } from "../stores/units";
 import * as React from "react";
 import { value } from "../helpers/react";
-import { Table } from "semantic-ui-react";
+import { Table, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
 
 export interface AttackWithCount {
     attack: Attack;
@@ -55,18 +55,18 @@ export function AllAbilities({ title, abilities, description }: { title: string,
 export function WoundEffects({ damageTable }: { damageTable: DamageTable }) {
     const ranges = damageTable.ranges;
     return <Table className="warscroll__wound-table">
-        <Table.Header>
-            <Table.Row>
-                <Table.HeaderCell>Wounds Suffered</Table.HeaderCell>
-                {damageTable.columns.map(x => <Table.HeaderCell key={x.name}>{x.name}</Table.HeaderCell>)}
-            </Table.Row>
-        </Table.Header>
-        <Table.Body>
+        <TableHead>
+            <TableRow>
+                <TableCell>Wounds Suffered</TableCell>
+                {damageTable.columns.map(x => <TableCell key={x.name}>{x.name}</TableCell>)}
+            </TableRow>
+        </TableHead>
+        <TableBody>
         {ranges.map((x, index) =>
-        <Table.Row key={x}>
-             <Table.HeaderCell>{x}</Table.HeaderCell>
-            {damageTable.columns.map(x => <Table.Cell key={x.name}> { x.values[index] } </Table.Cell>)}
-        </Table.Row>)}
-        </Table.Body>
+        <TableRow key={x}>
+             <TableCell>{x}</TableCell>
+            {damageTable.columns.map(x => <TableCell key={x.name}> { x.values[index] } </TableCell>)}
+        </TableRow>)}
+        </TableBody>
     </Table>
 }

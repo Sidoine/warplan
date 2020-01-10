@@ -1,62 +1,70 @@
 import * as React from "react";
-import { Dropdown, DropdownProps, Menu, Input, InputOnChangeData } from "semantic-ui-react";
-import { GrandAlliance, UnitsStore } from "../stores/units";
+import { UnitsStore, GrandAlliance, Faction } from "../stores/units";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
-import { action } from "mobx";
+import { action, computed } from "mobx";
+import { Grid, Input } from "@material-ui/core";
+import { DropdownObjects, HasId } from "./dropdown-list";
 
 export interface FilterProps {
     unitsStore?: UnitsStore;
     uiStore?: UiStore;
 }
 
+interface GrandAllianceInfo extends HasId {
+    text: string;
+    value: GrandAlliance;
+}
+
+const grandAlliances: GrandAllianceInfo[] = [{
+    id: "GrandAlliance.chaos",
+    text: "Chaos",
+    value: GrandAlliance.chaos
+}, {
+    id: "GrandAlliance.order",
+    text: "Order",
+    value: GrandAlliance.order
+}, {
+    id: "GrandAlliance.death",
+    text: "Death",
+    value: GrandAlliance.death
+}, {
+    id: "GrandAlliance.destruction",
+    text: "Destruction",
+    value: GrandAlliance.destruction
+    }];
+
 @inject("unitsStore", "uiStore")
 @observer    
 export class Filter extends React.Component<FilterProps> {
-    render() {
-        const grandAllianceOptions = [{
-            key: GrandAlliance.chaos,
-            text: "Chaos",
-            value: GrandAlliance.chaos
-        }, {
-            key: GrandAlliance.order,
-            text: "Order",
-            value: GrandAlliance.order
-        }, {
-            key: GrandAlliance.death,
-            text: "Death",
-            value: GrandAlliance.death
-        }, {
-            key: GrandAlliance.destruction,
-            text: "Destruction",
-            value: GrandAlliance.destruction
-            }];
+
+    @computed get grandAlliance() {
+        return grandAlliances.find(x => x.value === this.props.uiStore!.grandAlliance) ||null;
+    }
+    render() {        
+        const factionOptions = this.props.unitsStore!.factionsList.filter(x => x.grandAlliance === this.props.uiStore!.grandAlliance);
         
-        const factionOptions = this.props.unitsStore!.factionsList.filter(x => x.grandAlliance === this.props.uiStore!.grandAlliance).map(x => { return { key: x.id, text: x.name, value: x.id } });
-        
-        return <Menu>
-            <Menu.Item header>Filter</Menu.Item>
-            <Menu.Item><Dropdown selection options={grandAllianceOptions} value={this.props.uiStore!.grandAlliance} onChange={this.setGrandAlliance}/></Menu.Item>
-            <Menu.Item><Dropdown selection options={factionOptions} value={this.props.uiStore!.faction.id} onChange={this.setFaction} /></Menu.Item>
-            <Menu.Item>
-                <Input value={this.props.uiStore!.keywordFilter} onChange={this.handleSearch} className="icon" icon="search" placeholder="Filter by keyword..." />
-            </Menu.Item>
-        </Menu>;
+        return <Grid container>
+            <Grid item>Filter</Grid>
+            <Grid item><DropdownObjects getText={x => x.text} options={grandAlliances} value={this.grandAlliance} onChange={this.setGrandAlliance}/></Grid>
+            <Grid item><DropdownObjects getText={x => x.name} options={factionOptions} value={this.props.uiStore!.faction} onChange={this.setFaction} /></Grid>
+            <Grid item>
+                <Input value={this.props.uiStore!.keywordFilter} onChange={this.handleSearch} className="icon" placeholder="Filter by keyword..." />
+            </Grid>
+        </Grid>;
     }
 
     @action
-    private handleSearch = (x: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => {
-        this.props.uiStore!.setKeywordFilter(data.value);
+    private handleSearch = (x: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        this.props.uiStore!.setKeywordFilter(x.target.value);
     }
 
-    private setGrandAlliance = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-        this.props.uiStore!.setGrandAlliance(data.value as GrandAlliance);
+    private setGrandAlliance = (x: GrandAllianceInfo | null) => {
+        if (x) this.props.uiStore!.setGrandAlliance(x.value);
     }
 
     @action
-    private setFaction = (x: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-        if (typeof (data.value) === "string") {
-            this.props.uiStore!.setFaction(data.value);
-        }
+    private setFaction = (faction: Faction | null) => {
+        if (faction) this.props.uiStore!.setFaction(faction.id);
     }
 }

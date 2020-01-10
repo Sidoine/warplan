@@ -9,6 +9,7 @@ import { overrideEverchosen } from "./overrides/everchosen";
 import { overrideSylvaneth } from "./overrides/sylvaneth";
 import { overrideNighthaunt } from "./overrides/nighthaunt";
 import { overrideLegionOfGrief } from "./overrides/legion-of-grief";
+import { overrideOrder } from "./overrides/order";
 
 export const enum Material {
     Metal,
@@ -68,8 +69,10 @@ export const enum Phase {
 export interface DefenseAura {
     rerollSavesOn1?: boolean;
     mortalWoundsOnSucessfulSaveReroll?: Value; // In a 3" radius
+    mortalWoundsOnWound?: Value;
     rerollFailedSaves?: boolean;
     bonusSave?: number;
+    negateWoundsOrMortalWoundsOn3?: boolean;
     negateWoundsOrMortalWoundsOn6?: boolean;
     changeSaveRoll?: boolean;
     ignoreRend?: boolean;
@@ -521,6 +524,7 @@ export class UnitsStore {
         overrideIdonethDeepkins(data);
         overrideNighthaunt(data);
         overrideLegionOfGrief(data);
+        overrideOrder(data);
 
         const models: {[key: string]: Model} = data.models;  
         for (const key in models) {

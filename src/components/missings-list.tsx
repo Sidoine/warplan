@@ -3,7 +3,7 @@ import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { BoxesList } from "./boxes-list";
 import { BasketStore } from "../stores/basket";
-import { Header, Table } from "semantic-ui-react";
+import { Table, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
 
 export interface MissingsListProps {
     unitsStore?: UnitsStore;
@@ -18,26 +18,26 @@ export class MissingsList extends React.Component<MissingsListProps, {}> {
         const neededModels = this.props.basketStore!.missingModels;        
 
         return <div>
-            <Header>Missings list</Header>
+            <h1>Missings list</h1>
             <Table>
-                <Table.Header>
-                    <Table.Row>
-                    <Table.HeaderCell>Name</Table.HeaderCell>
-                    <Table.HeaderCell>Count</Table.HeaderCell>
-                    <Table.HeaderCell>In basket</Table.HeaderCell>
-                    <Table.HeaderCell>Buy</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
+                <TableHead>
+                    <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Count</TableCell>
+                    <TableCell>In basket</TableCell>
+                    <TableCell>Buy</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
             {
-                neededModels.map(x => <Table.Row key={x.id}>
-                    <Table.Cell>{x.model.name}</Table.Cell>
-                    <Table.Cell>{x.count}</Table.Cell>
-                    <Table.Cell>{x.inBasket}</Table.Cell>
-                    <Table.Cell><BoxesList model={x.model} title="Buy" /></Table.Cell>
-                </Table.Row>)
+                neededModels.map(x => <TableRow key={x.id}>
+                    <TableCell>{x.model.name}</TableCell>
+                    <TableCell>{x.count}</TableCell>
+                    <TableCell>{x.inBasket}</TableCell>
+                    <TableCell><BoxesList model={x.model} title="Buy" /></TableCell>
+                </TableRow>)
             }
-                </Table.Body>
+                </TableBody>
             </Table>
             </div>;
     }

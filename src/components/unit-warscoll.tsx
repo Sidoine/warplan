@@ -3,8 +3,8 @@ import * as React from "react";
 import { toJS } from "mobx";
 import { ModelOption, AbilityCategory, Unit } from "../stores/units";
 import { value } from "../helpers/react";
-import { Icon } from "semantic-ui-react";
 import { AttackWithCount, AllAttacks, WoundEffects, AllAbilities } from "../atoms/warscroll-components";
+import { Icon } from "@material-ui/core";
 
 export function UnitWarscroll({wu, unit }: {wu?: WarscrollUnit, unit?: Unit}) {
     const u = unit || wu?.unit;
@@ -53,8 +53,8 @@ export function UnitWarscroll({wu, unit }: {wu?: WarscrollUnit, unit?: Unit}) {
             <div className="bravery">{u.bravery && <> {value(u.bravery)}</>}</div>
         </div>
         <div className="warscroll__title">
-            <div>{ wu?.isGeneral && <Icon name="star"/> } {u.model.name}</div> { models && models.length > 0 && <div className="warscroll__title__option"> {mainOption && mainOption.name}</div>}
-            <div className="warscroll__count">{wu?.modelCount} <Icon name="user"/> {wu?.points} points</div>
+            <div>{ wu?.isGeneral && <Icon className="fa fa-star"/> } {u.model.name}</div> { models && models.length > 0 && <div className="warscroll__title__option"> {mainOption && mainOption.name}</div>}
+            <div className="warscroll__count">{wu?.modelCount} <Icon className="fa fa-user"/> {wu?.points} points</div>
         </div>
         <div className="warscroll__image"><img src={u.pictureUrl}/></div>
     </div>

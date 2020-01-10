@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Input, Button, InputOnChangeData } from "semantic-ui-react";
+import { Input, IconButton, Icon } from "@material-ui/core";
 
 export interface NumberControlProps {
     value: number;
@@ -9,15 +9,19 @@ export interface NumberControlProps {
 
 export class NumberControl extends React.Component<NumberControlProps, {}> {
     render() {
-        return <Input type="text" action onChange={this.onCountChange} value={this.props.value} size="mini">
-                    <input size={2} />    
-                    <Button onClick={this.plus} size="tiny" icon="plus"/>
-                    <Button onClick={this.minus} size="tiny" icon="minus"/>
-                </Input>;
+        return <Input type="text" onChange={this.onCountChange} value={this.props.value}
+        endAdornment={
+                    <><IconButton onClick={this.plus}><Icon className="fa fa-plus"/></IconButton>
+                    <IconButton onClick={this.minus}><Icon className="fa fa-minus"/></IconButton></>
+        }>
+                </Input                >;
+                /*                     <input size={2} />    
+                    
+*/
     }
 
-    private onCountChange = (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => {
-        const value = parseInt(data.value);
+    private onCountChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const value = parseInt(event.target.value);
         if (this.props.min === undefined || value >= this.props.min) this.props.onChange(value);
     }
 

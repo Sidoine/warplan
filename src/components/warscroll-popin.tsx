@@ -3,8 +3,8 @@ import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
 import { UnitsStore } from "../stores/units";
 import { observable } from "mobx";
-import { Modal, Button, Input, Icon } from "semantic-ui-react";
 import { WarscrollStore } from "../stores/warscroll";
+import { Button, Icon, Dialog, DialogTitle, DialogContentText, DialogActions, Input } from "@material-ui/core";
 
 export interface WarscrollPopinProps {
     uiStore?: UiStore;
@@ -19,25 +19,25 @@ export class WarscrollPopin extends React.Component<WarscrollPopinProps, {}> {
     warscrollName: string = this.props.warscrollStore!.warscroll.description;
 
     render() {
-        return <Modal onClose={this.handleClose} open={true}>
-            <Modal.Header>Warscolls</Modal.Header>
+        return <Dialog onClose={this.handleClose} open={true}>
+            <DialogTitle>Warscolls</DialogTitle>
 
-            <Modal.Content>
+            <DialogContentText>
                 {
                     this.props.warscrollStore!.warscrolls.map(x => <div>{x}
                         <Button onClick={() => this.props.warscrollStore!.saveWarscroll(x)}>Update</Button>
                         <Button onClick={() => { this.props.warscrollStore!.loadWarscroll(x); this.handleClose(); }}>Load</Button>
-                        <Button onClick={() => this.props.warscrollStore!.removeWarscroll(x)}><Icon name="remove"/></Button>
+                        <Button onClick={() => this.props.warscrollStore!.removeWarscroll(x)}><Icon className="fa fa-remove"/></Button>
                     </div>)
                 }
-                    <Input type="text" value={this.warscrollName} onChange={(x,d) => this.warscrollName = d.value } />
+                    <Input type="text" value={this.warscrollName} onChange={(x) => this.warscrollName = x.target.value } />
                     <Button onClick={() => this.props.warscrollStore!.saveWarscroll(this.warscrollName)}>Add</Button>
-            </Modal.Content>
+            </DialogContentText>
 
-            <Modal.Actions>
+            <DialogActions>
                 <Button onClick={this.handleClose}>Close</Button>
-            </Modal.Actions>
-        </Modal>
+            </DialogActions>
+        </Dialog>
     }
 
     private handleClose = () => this.props.uiStore!.closeWarscrollPopin();

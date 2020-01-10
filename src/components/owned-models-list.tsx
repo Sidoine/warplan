@@ -3,7 +3,7 @@ import { observer, inject } from "mobx-react";
 import { OwnedModelEdit } from "./owned-model-edit";
 import { ModelsList } from "./models-list";
 import { OwnedStore } from "../stores/owned";
-import { Header, Table } from "semantic-ui-react";
+import { Table, TableCell, TableRow, TableHead, TableBody } from "@material-ui/core";
 
 export interface OwnedModelsListProps {
     ownedStore?: OwnedStore;
@@ -14,20 +14,20 @@ export interface OwnedModelsListProps {
 export class OwnedModelsList extends React.Component<OwnedModelsListProps, {}> {
     render() {
         return <div>
-            <Header>Possessions</Header>
+            <h1>Possessions</h1>
             <Table>
-                <Table.Header>
-                    <Table.Row>
-                    <Table.HeaderCell>Name</Table.HeaderCell>
-                    <Table.HeaderCell>Count</Table.HeaderCell>
-                    <Table.HeaderCell></Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
+                <TableHead>
+                    <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Count</TableCell>
+                    <TableCell></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                 {
                     this.props.ownedStore!.ownedModels.map(x => <OwnedModelEdit key={x.id} model={x}/>)
                 }
-                </Table.Body>
+                </TableBody>
             </Table>
             <ModelsList title="Add..."/>
         </div>;

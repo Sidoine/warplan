@@ -2,8 +2,8 @@ import * as React from "react";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
 import { UnitsStore } from "../stores/units";
-import { Modal, Button, Input } from "semantic-ui-react";
 import { WarscrollStore } from "../stores/warscroll";
+import { Dialog, DialogActions, Button, DialogContent, DialogTitle, Input } from "@material-ui/core";
 
 export interface ExportPopinProps {
     uiStore?: UiStore;
@@ -16,10 +16,10 @@ export interface ExportPopinProps {
 export class ExportPopin extends React.Component<ExportPopinProps, {}> {
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;
-        return <Modal onClose={this.handleClose} open={true}>
-            <Modal.Header>Warscolls</Modal.Header>
+        return <Dialog onClose={this.handleClose} open={true}>
+            <DialogTitle>Warscolls</DialogTitle>
 
-            <Modal.Content>
+            <DialogContent>
                 <div><b>Allegiance: { warscroll.allegiance.name}</b></div>
                 { warscroll.units.map(x => <div key={x.id}>
                 <b>{ x.modelCount > 1 ? <>{x.modelCount} x</> : <></> } {x.unit.model.name}</b>  
@@ -30,13 +30,13 @@ export class ExportPopin extends React.Component<ExportPopinProps, {}> {
                 
                 { warscroll.battalions.map(x => <div key={x.id}><b>{x.battalion.name}</b></div>)}
 
-                <Input type="text" value={this.props.warscrollStore!.link} fluid/>
-            </Modal.Content>
+                <Input type="text" value={this.props.warscrollStore!.link} />
+            </DialogContent>
 
-            <Modal.Actions>
+            <DialogActions>
                 <Button onClick={this.handleClose}>Close</Button>
-            </Modal.Actions>
-        </Modal>
+            </DialogActions>
+        </Dialog>
     }
 
     private handleClose = () => this.props.uiStore!.closeExportPopin();

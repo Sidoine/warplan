@@ -1,9 +1,9 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import './markers.less';
-import { Input, InputOnChangeData, Button } from "semantic-ui-react";
 import { MarkersStore, Marker, MarkerType } from "../stores/markers";
 import { observable } from "mobx";
+import { Button, Icon } from "@material-ui/core";
 
 export interface MarkersProps {
     markersStore?: MarkersStore;
@@ -42,8 +42,8 @@ export class Markers extends React.Component<MarkersProps> {
         return <div className={`marker marker--${className}`} key={marker.id} onClick={this.edited.id === marker.id ? undefined : this.handleClick(marker)}>
             {
                 this.edited.id === marker.id && <>
-                    <Button icon="remove" onClick={() => this.props.markersStore!.delete(marker)}></Button>    
-                    <Input type="text" value={marker.text} action={{ content: "OK", onClick: this.handleClick(marker) }} placeholder="Text..." onChange={this.handleChange(marker)} />
+                    <Button onClick={() => this.props.markersStore!.delete(marker)}><Icon className="fa fa-remove"/> </Button>    
+                    {/* <Input type="text" value={marker.text} action={{ content: "OK", onClick: this.handleClick(marker) }} placeholder="Text..." onChange={this.handleChange(marker)} /> */}
                 </>    
             }
             {this.edited.id === marker.id || <>
@@ -60,8 +60,8 @@ export class Markers extends React.Component<MarkersProps> {
     }
 
     handleChange(marker: Marker) {
-        return (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => {
-            this.props.markersStore!.setText(marker, data.value);
+        return (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            this.props.markersStore!.setText(marker, event.target.value);
         };
     }
 }

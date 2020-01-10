@@ -4,10 +4,10 @@ import { observer, inject } from "mobx-react";
 import { WarscrollUnitsList } from "./warscroll-units-list";
 import { WarscrollBattalionsList } from "./warscroll-battalions-list";
 import { WarscrollSummary } from "./warscroll-summary";
-import { Button } from "semantic-ui-react";
 import { UiStore } from "../stores/ui";
 import { Filter } from "./filter";
 import { WarscrollSceneriesList } from "./warscroll-sceneries-list";
+import { Button } from "@material-ui/core";
 
 export interface WarscrollBuilderProps {
     unitsStore?: UnitsStore;

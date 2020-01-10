@@ -2,9 +2,9 @@ import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { BattalionsList } from "./battalions-list";
 import { WarscrollStore } from "../stores/warscroll";
-import { Header, Table, Button, Icon } from "semantic-ui-react";
 import { BattalionUnit } from "../stores/units";
 import { join } from "../helpers/react";
+import { Table, TableHead, TableRow, TableCell, TableBody, Button, Icon } from "@material-ui/core";
 
 export interface WarscrollBattalionsListProps {
     warscrollStore?: WarscrollStore;
@@ -31,26 +31,26 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
         // }
 
         return <div>
-            <Header>Battalions</Header>
+            <h1>Battalions</h1>
             <Table>
-                <Table.Header>
-                    <Table.Row>
-                    <Table.HeaderCell>Name</Table.HeaderCell>
-                    <Table.HeaderCell>Units</Table.HeaderCell>
-                    <Table.HeaderCell>Points</Table.HeaderCell>
-                    <Table.HeaderCell></Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
-                <tbody>
+                <TableHead>
+                    <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Units</TableCell>
+                    <TableCell>Points</TableCell>
+                    <TableCell></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
             {
-                warscroll.battalions.map(x => <tr key={x.id}>
-                    <td>{x.battalion.name}</td>
-                    <td>{join(x.battalion.units.map(y => this.renderUnit(y, counts)), ", ")}</td>
-                    <td>{x.battalion.points}</td>
-                    <td><Button onClick={() => this.props.warscrollStore!.removeBattalion(x)}><Icon name="remove"/></Button></td>
-                </tr>)
+                warscroll.battalions.map(x => <TableRow key={x.id}>
+                    <TableCell>{x.battalion.name}</TableCell>
+                    <TableCell>{join(x.battalion.units.map(y => this.renderUnit(y, counts)), ", ")}</TableCell>
+                    <TableCell>{x.battalion.points}</TableCell>
+                    <TableCell><Button onClick={() => this.props.warscrollStore!.removeBattalion(x)}><Icon className="fa fa-remove"/></Button></TableCell>
+                </TableRow>)
             }
-                </tbody>
+                </TableBody>
             </Table>
 
                 <span>{warscroll.battalionsPoints} points</span>

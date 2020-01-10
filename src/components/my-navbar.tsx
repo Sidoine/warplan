@@ -4,9 +4,8 @@ import { observer, inject } from "mobx-react";
 import { RouteComponentProps } from "react-router";
 import { BasketStore } from "../stores/basket";
 import { WarscrollStore } from "../stores/warscroll";
-import { Label, Menu, Sidebar, Container, Button, Icon } from 'semantic-ui-react';
 import "./my-navbar.less";
-import { observable, action } from "mobx";
+import { Drawer, List,ListItem, Badge } from "@material-ui/core";
 
 export interface MyNavbarProps {
     unitsStore?: UnitsStore;
@@ -18,43 +17,31 @@ export interface MyNavbarProps {
 @inject("unitsStore", "basketStore", "warscrollStore")
 @observer
 export class MyNavbar extends React.Component<MyNavbarProps, {}> {
-    @observable
-    private visibleSidebar = true;
-
-    // @action
-    // private handleHideSidebar = () => {
-    //     this.visibleSidebar = false;
-    // }
-
-    @action
-    private handleBurgerClick = () => {
-        this.visibleSidebar = true;
+    private renderDrawer() {
+        const pathname = this.props.route.location.pathname;
+        return <List>
+        <ListItem component="a" button selected={pathname === "/wb"}  href="#/wb"><Badge badgeContent={ this.props.warscrollStore!.warscroll.totalPoints }>Warscroll Builder </Badge></ListItem>
+        <ListItem component="a" button selected={pathname === "/warscroll"} href="#/warscroll">Warscroll</ListItem>
+        <ListItem component="a" button selected={pathname === "/battle"} href="#/battle">Battle</ListItem>
+        <ListItem component="a" button selected={pathname === "/list"} href="#/list">List</ListItem>
+        <ListItem component="a" button selected={pathname === "/cards"}  href="#/cards">Cards</ListItem>
+        <ListItem component="a" button selected={pathname === "/markers"}  href="#/markers">Markers</ListItem>
+        <ListItem component="a" button selected={pathname === "/stats"}  href="#/stats">Stats</ListItem>
+        <ListItem component="a" button selected={pathname === "/cl"} href="#/cl">Checklist</ListItem>
+        <ListItem component="a" button selected={pathname === "/"} href="#/">Owned</ListItem>
+        <ListItem component="a" button selected={pathname === "/missing"}  href="#/missing"><Badge badgeContent={ this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length }>Missing </Badge></ListItem>
+        <ListItem component="a" button selected={pathname === "/basket"}  href="#/basket"><Badge badgeContent={ this.props.basketStore!.basket.length }>Basket</Badge></ListItem>
+        </List>;
     }
 
     render() {
-        const pathname = this.props.route.location.pathname;
-        return <Sidebar.Pushable>
-            <Sidebar as={Menu} visible={this.visibleSidebar} inverted vertical width="thin"> 
-            {/* { onHide={this.handleHideSidebar}} */}
-            
-            <Menu.Item active={pathname === "/wb"}  href="#/wb">Warscroll Builder <Label>{ this.props.warscrollStore!.warscroll.totalPoints }</Label></Menu.Item>
-            <Menu.Item active={pathname === "/warscroll"} href="#/warscroll">Warscroll</Menu.Item>
-            <Menu.Item active={pathname === "/battle"} href="#/battle">Battle</Menu.Item>
-            <Menu.Item active={pathname === "/list"} href="#/list">List</Menu.Item>
-            <Menu.Item active={pathname === "/cards"}  href="#/cards">Cards</Menu.Item>
-            <Menu.Item active={pathname === "/markers"}  href="#/markers">Markers</Menu.Item>
-            <Menu.Item active={pathname === "/stats"}  href="#/stats">Stats</Menu.Item>
-            <Menu.Item active={pathname === "/cl"} href="#/cl">Checklist</Menu.Item>
-            <Menu.Item active={pathname === "/"} href="#/">Owned</Menu.Item>
-            <Menu.Item active={pathname === "/missing"}  href="#/missing">Missing <Label>{ this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length }</Label></Menu.Item>
-            <Menu.Item active={pathname === "/basket"}  href="#/basket">Basket { this.props.basketStore!.basket.length > 0 && <Label>{ this.props.basketStore!.basket.length }</Label> }</Menu.Item>
-        </Sidebar>
-        <Sidebar.Pusher>
-            <Container className="my-navbar__container">
-                {!this.visibleSidebar && <Button onClick={this.handleBurgerClick}><Icon name="bars"/></Button>}
-            {this.props.children}
-            </Container>
-        </Sidebar.Pusher>
-        </Sidebar.Pushable> ;
+        return  <><Drawer variant="permanent" >
+                {this.renderDrawer()}
+                </Drawer>
+                <main>
+                {this.props.children}
+                </main>
+        </>;
+        
     }
 }

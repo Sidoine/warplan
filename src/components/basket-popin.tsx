@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react";
 import { UnitsStore } from "../stores/units";
 import { observable } from "mobx";
 import { BasketStore } from "../stores/basket";
-import { Modal, Button, Input, Icon } from "semantic-ui-react";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Icon, Input } from "@material-ui/core";
 
 export interface BasketPopinProps {
     uiStore?: UiStore;
@@ -19,25 +19,25 @@ export class BasketPopin extends React.Component<BasketPopinProps, {}> {
     basketName: string = "New basket";
 
     render() {
-        return <Modal onClose={this.handleClose} open={true}>
-            <Modal.Header closeButton>Baskets</Modal.Header>
+        return <Dialog onClose={this.handleClose} open={true}>
+            <DialogTitle>Baskets</DialogTitle>
 
-            <Modal.Content>
+            <DialogContent>
                 {
                     this.props.basketStore!.baskets.map(x => <div>{x}
                         <Button onClick={() => this.props.basketStore!.saveBasket(x)}>Update</Button>
                         <Button onClick={() => this.props.basketStore!.loadBasket(x)}>Load</Button>
-                        <Button onClick={() => this.props.basketStore!.removeBasket(x)}><Icon name="remove"/></Button>
+                        <Button onClick={() => this.props.basketStore!.removeBasket(x)}><Icon className="fa fa-remove"/></Button>
                     </div>)
                 }
-                    <Input type="text" value={this.basketName} onChange={(x,d) => this.basketName = d.value } />
+                    <Input type="text" value={this.basketName} onChange={x => this.basketName = x.target.value } />
                     <Button onClick={() => this.props.basketStore!.saveBasket(this.basketName)}>Add</Button>
-            </Modal.Content>
+            </DialogContent>
 
-            <Modal.Actions>
+            <DialogActions>
                 <Button onClick={this.handleClose}>Close</Button>
-            </Modal.Actions>
-        </Modal>
+            </DialogActions>
+        </Dialog>
     }
 
     private handleClose = () => this.props.uiStore!.closeBasketPopin();

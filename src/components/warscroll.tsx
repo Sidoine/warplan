@@ -1,12 +1,11 @@
 import * as React from "react";
 import { WarscrollStore, WarscrollScenery } from "../stores/warscroll";
 import { observer, inject } from "mobx-react";
-import { Header, Table, Segment } from "semantic-ui-react";
 import { WarscrollBattalionInterface } from "../stores/units";
 import "./warscroll.less";
 import { AllAbilities } from "../atoms/warscroll-components";
 import { UnitWarscroll } from "./unit-warscoll";
-
+import { Table, TableRow, TableCell, TableBody  } from "@material-ui/core";
 export interface WarscrollProps {
     warscrollStore?: WarscrollStore;
 }
@@ -21,39 +20,39 @@ export class Warscroll extends React.Component<WarscrollProps>{
             <div>Allegiance: {w.allegiance.name}</div>
             {store.armyOptions && w.armyOption && <div>{store.armyOptions.name}: {w.armyOption.name}</div>}
             <div>{w.totalPoints} points</div>
-            <Header as="h1">Leaders</Header>
+            <h1>Leaders</h1>
                 {
                 w.units.filter(x => x.isLeader).sort((a, b) => (a.isGeneral ? 1 : 0) - (b.isGeneral ? 1 : 0)).map(x => <UnitWarscroll wu={x} key={x.id} />)
                 }
             
-            <Header as="h1">Battelines</Header>
+            <h1>Battelines</h1>
                 {
                 w.units.filter(x => x.isBattleline).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => <UnitWarscroll wu={x} key={x.id}/>)
                 }
             
-            <Header as="h1">Units</Header>
+            <h1>Units</h1>
             {
                 w.units.filter(x => !x.isBattleline && !x.isLeader).sort((a, b) => a.unit.model.name > b.unit.model.name ? 1 : -1).map(x => <UnitWarscroll wu={x} key={x.id}/>)
             }
             
         {w.battalions.length > 0 &&
-            <><Header>Battalions</Header>
+            <><h1>Battalions</h1>
                     {
                         w.battalions.map(x => this.renderBattalion(x))
                     }
             </>}    
 
         {w.sceneries.length > 0 &&
-           <Segment> 
-                <Header>Sceneries</Header>
+           <section> 
+                <h1>Sceneries</h1>
                 <Table>
-                    <Table.Body>
+                    <TableBody>
                         {
                             w.sceneries.map(x => this.renderScenery(x))
                         }
-                    </Table.Body>
+                    </TableBody>
                 </Table>
-            </Segment>}    
+            </section>}    
         </div>;
     }
 
@@ -77,13 +76,13 @@ export class Warscroll extends React.Component<WarscrollProps>{
     }
 
     renderScenery(scenery: WarscrollScenery) {
-        return <Table.Row key={scenery.id}>
-            <Table.Cell>{scenery.scenery.name}</Table.Cell>    
-            <Table.Cell>{scenery.scenery.description}</Table.Cell>
-            <Table.Cell>
+        return <TableRow key={scenery.id}>
+            <TableCell>{scenery.scenery.name}</TableCell>    
+            <TableCell>{scenery.scenery.description}</TableCell>
+            <TableCell>
                 {scenery.scenery.abilities && <AllAbilities title="Abilities" abilities={scenery.scenery.abilities}/>}
-            </Table.Cell>
-        </Table.Row>    
+            </TableCell>
+        </TableRow>    
     }
 
 }

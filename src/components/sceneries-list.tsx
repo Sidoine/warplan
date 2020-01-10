@@ -1,9 +1,9 @@
 import * as React from "react";
-import { UnitsStore } from "../stores/units";
+import { UnitsStore, Scenery } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { WarscrollStore } from "../stores/warscroll";
 import { UiStore } from "../stores/ui";
-import { Dropdown, DropdownProps } from "semantic-ui-react";
+import { AddButton } from "./dropdown-list";
 
 export interface SceneriesListProps {
     unitsStore?: UnitsStore;
@@ -16,12 +16,10 @@ export interface SceneriesListProps {
 @observer
 export class SceneriesList extends React.Component<SceneriesListProps, {}> {
     render() {
-        const options = this.props.unitsStore!.sceneryList.map(x => { return { key: x.id, value: x.id, text: x.name, description: x.points }});
-        return <Dropdown search selection placeholder={this.props.title} options={options} onChange={this.onChange}></Dropdown>;
+        return <AddButton placeholder={this.props.title} options={this.props.unitsStore!.sceneryList} onChange={this.onChange}/>;
     }    
 
-    private onChange = (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => {
-        const scenery  = this.props.unitsStore!.sceneryList.find(x => x.id === props.value);
-        if (scenery) this.props.warscrollStore!.addScenery(scenery);
+    private onChange = (scenery: Scenery) => {
+        this.props.warscrollStore!.addScenery(scenery);
     }
 }
