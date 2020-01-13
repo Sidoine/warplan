@@ -2,7 +2,7 @@ import * as React from "react";
 import { UnitsStore, Model, Box } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { BasketStore } from "../stores/basket";
-import  { DropdownObjects } from "./dropdown-list";
+import  { DropdownObjects } from "../atoms/dropdown-list";
 
 export interface BoxesListProps {
     unitsStore?: UnitsStore;

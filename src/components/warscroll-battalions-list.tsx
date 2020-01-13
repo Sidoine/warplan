@@ -4,7 +4,7 @@ import { BattalionsList } from "./battalions-list";
 import { WarscrollStore } from "../stores/warscroll";
 import { BattalionUnit } from "../stores/units";
 import { join } from "../helpers/react";
-import { Table, TableHead, TableRow, TableCell, TableBody, Button, Icon } from "@material-ui/core";
+import { Table, TableHead, TableRow, TableCell, TableBody, Button, Icon, Card, CardHeader, CardContent, CardActions } from "@material-ui/core";
 
 export interface WarscrollBattalionsListProps {
     warscrollStore?: WarscrollStore;
@@ -30,8 +30,9 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
         //     }
         // }
 
-        return <div>
-            <h1>Battalions</h1>
+        return <Card>
+            <CardHeader title="Battalions" />
+            <CardContent>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -52,11 +53,12 @@ export class WarscrollBattalionsList extends React.Component<WarscrollBattalions
             }
                 </TableBody>
             </Table>
-
+            </CardContent>
+            <CardActions>
                 <span>{warscroll.battalionsPoints} points</span>
                 <BattalionsList title="Add..."/>
-
-            </div>;
+            </CardActions>
+            </Card>;
     }
 
     private renderUnit(bu: BattalionUnit, counts: Map<string, { count: number }>) {

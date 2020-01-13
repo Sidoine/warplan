@@ -2,18 +2,31 @@ import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { NumberControl } from "../atoms/number-control";
 import { WarscrollStore, WarscrollUnit, WarscrollModel } from "../stores/warscroll";
-import { Button, IconButton, Icon, Checkbox, Modal, TableRow, TableCell, Tooltip } from "@material-ui/core";
+import { IconButton, Checkbox, Modal, TableRow, TableCell, Tooltip } from "@material-ui/core";
 import { join } from "../helpers/react";
-import { ModelOption, ExtraAbility } from "../stores/units";
+import { ModelOption, ExtraAbility, Model } from "../stores/units";
 import { UnitWarscroll } from "./unit-warscoll";
 import { observable, action } from "mobx";
 import "./warscroll-unit-edit.less";
-import { AddButton } from "./dropdown-list";
+import { AddButton, TableColumn } from "../atoms/dropdown-list";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import PeopleIcon from '@material-ui/icons/People';
+import ClearIcon from '@material-ui/icons/Clear';
+import WarningIcon from '@material-ui/icons/Warning';
 
 export interface WarscrollUnitEditProps {
     unit: WarscrollUnit;
     warscrollStore?: WarscrollStore;
 }
+
+const modelColumns: TableColumn<Model>[] = [
+    { name: "Name", text: x => x.name }
+];
+
+const extraAbilityColumns: TableColumn<ExtraAbility>[] = [
+    { name: "Name", text: x => x.ability.name },
+    { name: "Description", text: x => x.ability.description }
+]
 
 @inject("warscrollStore")
 @observer
@@ -27,13 +40,12 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
         return <TableRow>
             <TableCell>
                 <div>{unit.unit.model.name} 
-                <IconButton onClick={this.handleOpenWarscroll}><Icon className="fa fa-eye"></Icon></IconButton>
+                <IconButton onClick={this.handleOpenWarscroll} size="small"><VisibilityIcon/></IconButton>
                 <Modal open={this.warscrollOpen} onClose={this.handleCloseWarscroll}>
                     <UnitWarscroll wu={unit}/>
                 </Modal> </div>
-                <div>{ unit.unit.size } <Icon className="fa fa-user"/>
-                    {unit.unit.warscroll && <a target="_blank" href={unit.unit.warscroll}><Icon className="fa fa-help-circle" /></a>}
-                    {unit.nonAlliedUnits.length > 0 && <Icon className="fa fa-warning" title={`Can't be allied with ${unit.nonAlliedUnits.map(x => x.unit.model.name).join(', ')}`}/>}            
+                <div>{ unit.unit.size } <PeopleIcon/>
+                    {unit.nonAlliedUnits.length > 0 && <Tooltip title={`Can't be allied with ${unit.nonAlliedUnits.map(x => x.unit.model.name).join(', ')}`}><WarningIcon /></Tooltip>}            
                  </div>
                 <div>
                     <div><em>{unit.unit.subType}</em></div>
@@ -47,13 +59,13 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
             </TableCell>
             <TableCell>{ join(unit.extraAbilities.map(x => <span key={x.id}>
                         <Tooltip title={x.ability.description}><span>{x.ability.name}</span></Tooltip>
-                        <Button onClick={() => this.props.warscrollStore!.removeExtraAbility(unit, x)} ><Icon className="fa fa-remove"/> </Button></span>),
+                        <IconButton onClick={() => this.props.warscrollStore!.removeExtraAbility(unit, x)} ><ClearIcon/> </IconButton></span>),
                          ", ") }
                 { this.renderExtraAbilities(unit)}
             </TableCell>
             <TableCell>{unit.points}</TableCell>
             <TableCell>
-                <Button onClick={() => this.props.warscrollStore!.removeUnit(this.props.unit)}><Icon className="fa fa-remove"/></Button>
+                <IconButton onClick={() => this.props.warscrollStore!.removeUnit(this.props.unit)}><ClearIcon/></IconButton>
             </TableCell></TableRow>;
     }
 
@@ -64,7 +76,7 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
     private renderModelOptions() {
         const unit = this.props.unit;
         return <> {this.props.unit.models.map(x => this.renderModel(x))}
-            {unit.availableOptions.length > 0 && <AddButton options={unit.availableOptions} onChange={this.handleAddModel} />}
+            {unit.availableOptions.length > 0 && <AddButton columns={modelColumns} options={unit.availableOptions} onChange={this.handleAddModel} />}
         </>;
     }
 
@@ -93,13 +105,13 @@ export class WarscrollUnitEdit extends React.Component<WarscrollUnitEditProps, {
     private renderModel(model: WarscrollModel) {
         return <div key={model.id}>
             <NumberControl value={model.count} onChange={this.handleModelCountChange(model)}/>
-            {join(model.options.map(x => <span key={x.id}>{model.isOptionValid(x) || <Icon className="fa fa-warning" />} {x.name} <Button onClick={this.handleRemoveModelOption(model, x)}><Icon className="fa fa-remove" /></Button></span>), ', ')}
-            {model.availableOptions.length > 0 && <AddButton options={model.availableOptions} onChange={this.handleAddModelOption(model)} />}
+            {join(model.options.map(x => <span key={x.id}>{model.isOptionValid(x) || <WarningIcon />} {x.name} <IconButton onClick={this.handleRemoveModelOption(model, x)}><ClearIcon /></IconButton></span>), ', ')}
+            {model.availableOptions.length > 0 && <AddButton columns={modelColumns} options={model.availableOptions} onChange={this.handleAddModelOption(model)} />}
         </div>;
     }
 
     private renderExtraAbilities(unit: WarscrollUnit) {
-        return unit.availableExtraAbilities.length > 0 && <AddButton content={x => <><div>{x.ability.name}</div><div className="warscroll_unit_edit__description">{x.ability.description}</div></>}  options={unit.availableExtraAbilities} onChange={this.handleExtraAbilityChange(unit)} />;
+        return unit.availableExtraAbilities.length > 0 && <AddButton columns={extraAbilityColumns} content={x => <><div>{x.ability.name}</div><div className="warscroll_unit_edit__description">{x.ability.description}</div></>}  options={unit.availableExtraAbilities} onChange={this.handleExtraAbilityChange(unit)} />;
     }
 
     private handleExtraAbilityChange(unit: WarscrollUnit) {

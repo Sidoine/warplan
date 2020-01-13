@@ -3,8 +3,8 @@ import { UnitsStore, GrandAlliance, Faction } from "../stores/units";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
 import { action, computed } from "mobx";
-import { Grid, Input } from "@material-ui/core";
-import { DropdownObjects, HasId } from "./dropdown-list";
+import { Grid, Input, CardContent, Card } from "@material-ui/core";
+import { DropdownObjects, HasId } from "../atoms/dropdown-list";
 
 export interface FilterProps {
     unitsStore?: UnitsStore;
@@ -44,14 +44,14 @@ export class Filter extends React.Component<FilterProps> {
     render() {        
         const factionOptions = this.props.unitsStore!.factionsList.filter(x => x.grandAlliance === this.props.uiStore!.grandAlliance);
         
-        return <Grid container>
+        return <Card style={{maxWidth: 'calc(100vw - 48px)'}}><CardContent> <Grid container wrap="wrap" spacing={2}>
             <Grid item>Filter</Grid>
             <Grid item><DropdownObjects getText={x => x.text} options={grandAlliances} value={this.grandAlliance} onChange={this.setGrandAlliance}/></Grid>
             <Grid item><DropdownObjects getText={x => x.name} options={factionOptions} value={this.props.uiStore!.faction} onChange={this.setFaction} /></Grid>
             <Grid item>
                 <Input value={this.props.uiStore!.keywordFilter} onChange={this.handleSearch} className="icon" placeholder="Filter by keyword..." />
             </Grid>
-        </Grid>;
+        </Grid></CardContent></Card>;
     }
 
     @action

@@ -1,4 +1,4 @@
-import * as realm from "realm";
+import realm from "realm";
 import * as model from "./en-classes/en-model";
 import * as fs from "fs";
 import * as def from "./definitions";

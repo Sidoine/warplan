@@ -2,7 +2,7 @@ import * as React from "react";
 import { UnitsStore, Battalion } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { WarscrollStore } from "../stores/warscroll";
-import { AddButton } from "./dropdown-list";
+import { AddButton, TableColumn } from "../atoms/dropdown-list";
 
 export interface BattalionsListProps {
     unitsStore?: UnitsStore;
@@ -10,12 +10,17 @@ export interface BattalionsListProps {
     warscrollStore?: WarscrollStore;
 }
 
+const columns: TableColumn<Battalion>[] = [
+    { name: "Name", text: x => x.name },
+    { name: "Description", text: x => x.description }
+]
+
 @inject('unitsStore', "warscrollStore")
 @observer
 export class BattalionsList extends React.Component<BattalionsListProps, {}> {
     render() {
         const items = this.props.warscrollStore!.availableBattalions;
-        return <AddButton placeholder={this.props.title} options={items} onChange={this.onChange} />;
+        return <AddButton placeholder={this.props.title} columns={columns} options={items} onChange={this.onChange} />;
     }
 
     private onChange = (model: Battalion) => {

@@ -7,7 +7,7 @@ import { WarscrollSummary } from "./warscroll-summary";
 import { UiStore } from "../stores/ui";
 import { Filter } from "./filter";
 import { WarscrollSceneriesList } from "./warscroll-sceneries-list";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 
 export interface WarscrollBuilderProps {
     unitsStore?: UnitsStore;
@@ -18,14 +18,14 @@ export interface WarscrollBuilderProps {
 @observer
 export class WarscrollBuilder extends React.Component<WarscrollBuilderProps, {}> {
     render() {
-        return <>
-            <Filter/>    
-            <WarscrollSummary/>
-            <WarscrollBattalionsList/>
-            <WarscrollUnitsList/>
-            <WarscrollSceneriesList/>
-            <Button onClick={() => this.props.uiStore!.showWarscrollPopin()}>Manage warscrolls</Button>
-            <Button onClick={() => this.props.uiStore!.showExportPopin()}>Export</Button>
-        </>;
+        return <Grid container direction="column" spacing={2}>
+            <Grid item> <Filter/></Grid>    
+            <Grid item> <WarscrollSummary/></Grid>
+            <Grid item> <WarscrollBattalionsList/></Grid>
+            <Grid item> <WarscrollUnitsList/></Grid>
+            <Grid item> <WarscrollSceneriesList/></Grid>
+            <Grid item> <Button onClick={() => this.props.uiStore!.showWarscrollPopin()}>Manage warscrolls</Button>
+            <Button onClick={() => this.props.uiStore!.showExportPopin()}>Export</Button></Grid>
+        </Grid>;
     }
 }

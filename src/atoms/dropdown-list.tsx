@@ -1,8 +1,8 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import AddIcon from "@material-ui/icons/Add";
-import { Select, MenuItem } from "@material-ui/core";
-import { observable } from "mobx";
+import { Select, MenuItem, IconButton, Dialog, Table, TableBody, TableRow, TableCell, TableHead, DialogContent, DialogTitle } from "@material-ui/core";
+import { observable, action } from "mobx";
 
 export interface HasId {
     id: string;
@@ -54,17 +54,46 @@ export class DropdownValues<T extends Value> extends React.Component<DropdownVal
     }
 }
 
+export interface TableColumn<T> {
+    text: (x: T) => (string | undefined | null | number);
+    name: string;
+}
+
 export interface AddButtonProps<T extends HasId> {
     options: T[];
     content?: (t: T) => JSX.Element;
     onChange: (t: T) => void;
     placeholder?: string;
+    columns: TableColumn<T>[];
 }
 
 @observer
 export class AddButton<T extends HasId> extends React.Component<AddButtonProps<T>> {
     @observable open = false;
     render() {
-        return <AddIcon />;
+        return <><IconButton color="primary" onClick={this.handleOpen}><AddIcon /></IconButton>
+            <Dialog open={this.open} onClose={this.handleClose}>
+                {this.props.placeholder && <DialogTitle>{this.props.placeholder}</DialogTitle>}
+                <DialogContent>
+                <Table>
+                    <TableHead>
+                        <TableRow> {this.props.columns.map(x => <TableCell>{x.name}</TableCell>)}</TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {this.props.options.map(x => <TableRow hover onClick={() => { this.open = false; this.props.onChange(x) }}>
+                            {this.props.columns.map(y => <TableCell>{y.text(x)}</TableCell>)}
+                       </TableRow>)} 
+                    </TableBody>
+                    </Table>
+                    </DialogContent>
+            </Dialog>
+        </>;
+        }
+    
+    @action
+    private handleOpen = (e: React.MouseEvent) => {
+        this.open = true;
     }
+    @action private handleClose = () => this.open = false;
+
 }

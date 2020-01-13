@@ -3,7 +3,7 @@ import { UnitsStore, Unit } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { WarscrollStore } from "../stores/warscroll";
 import { UiStore } from "../stores/ui";
-import { AddButton } from "./dropdown-list";
+import { AddButton, TableColumn } from "../atoms/dropdown-list";
 
 export interface UnitsListProps {
     unitsStore?: UnitsStore;
@@ -12,11 +12,16 @@ export interface UnitsListProps {
     uiStore?: UiStore;
 }
 
+const columns: TableColumn<Unit>[] = [
+    { name: "Name", text: x => x.model.name },
+    { name: "Points", text: x => x.points }
+]
+
 @inject('unitsStore', "warscrollStore", "uiStore")
 @observer
 export class UnitsList extends React.Component<UnitsListProps, {}> {
     render() {
-        return <AddButton options={this.props.uiStore!.units} onChange={this.onChange} />;
+        return <AddButton columns={columns} options={this.props.uiStore!.units} onChange={this.onChange} />;
     }    
 
     private onChange = (unit: Unit) => {

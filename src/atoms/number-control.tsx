@@ -1,5 +1,7 @@
 import * as React from "react";
-import { Input, IconButton, Icon } from "@material-ui/core";
+import { Input, IconButton } from "@material-ui/core";
+import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
+import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 
 export interface NumberControlProps {
     value: number;
@@ -11,10 +13,10 @@ export class NumberControl extends React.Component<NumberControlProps, {}> {
     render() {
         return <Input type="text" onChange={this.onCountChange} value={this.props.value}
         endAdornment={
-                    <><IconButton onClick={this.plus}><Icon className="fa fa-plus"/></IconButton>
-                    <IconButton onClick={this.minus}><Icon className="fa fa-minus"/></IconButton></>
+                    <><IconButton color="primary" size="small" onClick={this.plus}><ArrowDropUp/></IconButton>
+                    <IconButton color="secondary" size="small" onClick={this.minus}><ArrowDropDown/></IconButton></>
         }>
-                </Input                >;
+                </Input>;
                 /*                     <input size={2} />    
                     
 */

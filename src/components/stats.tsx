@@ -9,7 +9,7 @@ import { WarscrollStore } from "../stores/warscroll";
 import { getValue } from "../stores/combat";
 import { UnitWarscroll } from "./unit-warscoll";
 import { Unit } from "../stores/units";
-import { Input, Table, TableHead, TableRow, TableCell, TableBody, Icon, Dialog, Paper } from "@material-ui/core";
+import { Table, TableHead, TableRow, TableCell, TableBody, Icon, Dialog, TableSortLabel, Card, CardContent, TextField, Grid, TableContainer } from "@material-ui/core";
 
 export interface StatsProps {
     uiStore?: UiStore;
@@ -103,34 +103,43 @@ export class Stats extends React.Component<StatsProps> {
         this.props.uiStore!.enemy.save = parseInt(e.target.value);
     }
 
+    renderTableHeaderCell(column: Columns, title: string) {
+        return <TableCell onClick={this.handleSort(column)} sortDirection={this.sorted === column ? this.direction : undefined}>
+            <TableSortLabel active={this.sorted === column} direction={this.sorted === column ? this.direction: undefined}>{title}</TableSortLabel>
+                            </TableCell>
+    }
+
     render() {
 
-        return <>
-            <Filter/>
-            <Paper>
-                <div>Enemy</div>
-                <div>
-                    Save <Input value={this.props.uiStore!.enemy.save} onChange={this.handleEnemySaveChange} />
-                </div>
-            </Paper>
+        return <Grid container spacing={2} direction="column">
+            <Grid item> <Filter/></Grid>
+            <Grid item> <Card>
+                <CardContent>
+                    <Grid container spacing={2}>
+                        <Grid item>Enemy</Grid>
+                        <Grid item> <TextField label="Save" value={this.props.uiStore!.enemy.save} onChange={this.handleEnemySaveChange} /></Grid>
+                        </Grid>
+                </CardContent>
+            </Card></Grid>
             { <Dialog open={this.warscrollOpen !== null} onClose={this.handleCloseWarscroll}>
                 { this.warscrollOpen && <UnitWarscroll unit={this.warscrollOpen}/>}
             </Dialog>}
-            
-            <Table>
+            <Grid item>
+                <TableContainer>
+            <Table style={{minWidth: 650}}>
             <TableHead>
-                <TableRow>
-                    <TableCell onClick={this.handleSort(Columns.Name)} sortDirection={this.sorted === Columns.Name ? this.direction : undefined}>Name</TableCell>
-                    <TableCell>Option</TableCell>
-                    <TableCell onClick={this.handleSort(Columns.Points)} sortDirection={this.sorted === Columns.Points ? this.direction : undefined}>Points</TableCell>
-                    <TableCell onClick={this.handleSort(Columns.Move)} sortDirection={this.sorted === Columns.Move ? this.direction : undefined}>Move</TableCell>
-                    <TableCell onClick={this.handleSort(Columns.Bravery)} sortDirection={this.sorted === Columns.Bravery ? this.direction : undefined}>Bravery</TableCell>
-                    <TableCell onClick={this.handleSort(Columns.Wounds)} sortDirection={this.sorted === Columns.Wounds ? this.direction : undefined}>Wounds</TableCell>
-                    <TableCell onClick={this.handleSort(Columns.Save)} sortDirection={this.sorted === Columns.Save ? this.direction : undefined}>Save</TableCell>
-                    <TableCell onClick={this.handleSort(Columns.SavedWounds)} sortDirection={this.sorted === Columns.SavedWounds ? this.direction : undefined}>Saved wounds</TableCell>
-                    <TableCell onClick={this.handleSort(Columns.MeleeDamage)} sortDirection={this.sorted === Columns.MeleeDamage ? this.direction : undefined}>Melee Damage</TableCell>
-                    <TableCell onClick={this.handleSort(Columns.RangedDamage)} sortDirection={this.sorted === Columns.RangedDamage ? this.direction : undefined}>Ranged Damage</TableCell>
-                    <TableCell onClick={this.handleSort(Columns.TotalDamage)} sortDirection={this.sorted === Columns.TotalDamage ? this.direction : undefined}>Melee x 1.5 + Ranged</TableCell>
+                    <TableRow>
+                        {this.renderTableHeaderCell(Columns.Name, 'Name')}
+                        <TableCell>Option</TableCell>
+                        {this.renderTableHeaderCell(Columns.Points, 'Points')}
+                        {this.renderTableHeaderCell(Columns.Move, 'Move')}
+                        {this.renderTableHeaderCell(Columns.Bravery, 'Bravery')}
+                        {this.renderTableHeaderCell(Columns.Wounds, 'Wounds')}
+                        {this.renderTableHeaderCell(Columns.Save, 'Save')}
+                        {this.renderTableHeaderCell(Columns.SavedWounds, 'Saved wounds')}
+                        {this.renderTableHeaderCell(Columns.MeleeDamage, 'Melee Damage')}
+                        {this.renderTableHeaderCell(Columns.RangedDamage, 'Ranged Damage')}
+                        {this.renderTableHeaderCell(Columns.TotalDamage, 'Melee x 1.5 + Ranged')}
                     <TableCell>Other abilities</TableCell>
                 </TableRow>
             </TableHead>
@@ -139,8 +148,10 @@ export class Stats extends React.Component<StatsProps> {
                     this.sortedData.map(x => this.renderCombination(x))
                 }
             </TableBody>
-        </Table>
-        </>;
+                    </Table>
+                    </TableContainer>
+        </Grid>            
+        </Grid>;
     }
 
     renderCombination(unitStats: UnitStats) {
