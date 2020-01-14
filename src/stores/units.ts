@@ -428,7 +428,7 @@ export interface Battalion {
 }
 
 export interface WarscrollBattalionInterface {
-    id: number;
+    id: string;
     battalion: Battalion; 
 }
 

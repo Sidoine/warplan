@@ -111,7 +111,7 @@ export class Stats extends React.Component<StatsProps> {
 
     render() {
 
-        return <Grid container spacing={2} direction="column">
+        return <Grid container spacing={2} direction="column" wrap="nowrap">
             <Grid item> <Filter/></Grid>
             <Grid item> <Card>
                 <CardContent>
@@ -123,6 +123,7 @@ export class Stats extends React.Component<StatsProps> {
             </Card></Grid>
             { <Dialog open={this.warscrollOpen !== null} onClose={this.handleCloseWarscroll}>
                 { this.warscrollOpen && <UnitWarscroll unit={this.warscrollOpen}/>}
+                { !this.warscrollOpen && <></>}
             </Dialog>}
             <Grid item>
                 <TableContainer>

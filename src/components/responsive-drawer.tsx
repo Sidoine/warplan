@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -42,10 +41,16 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`
+    }
   },
 }));
 
-export function ResponsiveDrawer({ children, menu }: { children: React.ReactNode, menu: JSX.Element }) {
+export function ResponsiveDrawer({ children, menu, title }: { children: React.ReactNode, menu: JSX.Element, title: string }) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -57,24 +62,7 @@ export function ResponsiveDrawer({ children, menu }: { children: React.ReactNode
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <Divider />
-      {/* <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List> */}
+      <Divider />      
       { menu }
     </div>
   );
@@ -94,7 +82,7 @@ export function ResponsiveDrawer({ children, menu }: { children: React.ReactNode
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Warplan
+            { title }
           </Typography>
         </Toolbar>
       </AppBar>
@@ -102,7 +90,6 @@ export function ResponsiveDrawer({ children, menu }: { children: React.ReactNode
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
-          //  container={container}
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
@@ -137,10 +124,3 @@ export function ResponsiveDrawer({ children, menu }: { children: React.ReactNode
   );
 }
 
-ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
-};

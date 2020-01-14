@@ -18,7 +18,7 @@ export interface WarscrollBuilderProps {
 @observer
 export class WarscrollBuilder extends React.Component<WarscrollBuilderProps, {}> {
     render() {
-        return <Grid container direction="column" spacing={2}>
+        return <Grid container direction="column" spacing={2} wrap="nowrap">
             <Grid item> <Filter/></Grid>    
             <Grid item> <WarscrollSummary/></Grid>
             <Grid item> <WarscrollBattalionsList/></Grid>

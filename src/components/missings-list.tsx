@@ -2,14 +2,29 @@ import * as React from "react";
 import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { BoxesList } from "./boxes-list";
-import { BasketStore } from "../stores/basket";
-import { Table, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
+import { BasketStore, Missing } from "../stores/basket";
+import { ResponsiveTableColumn, ResponsiveTable } from "../atoms/responsive-table";
 
 export interface MissingsListProps {
     unitsStore?: UnitsStore;
     basketStore?: BasketStore;
 }
 
+const columns: ResponsiveTableColumn<Missing>[] = [
+    {
+        name: 'Name',
+        text: x => x.model.name
+    }, {
+        name: 'Count',
+        text: x => x.count
+    }, {
+        name: 'In basket',
+        text: x => x.inBasket
+    }, {
+        name: 'Buy',
+        text: x => <BoxesList model={x.model} title="Buy" />
+    }
+]
 
 @inject('unitsStore', "basketStore")
 @observer
@@ -17,28 +32,6 @@ export class MissingsList extends React.Component<MissingsListProps, {}> {
     render() {
         const neededModels = this.props.basketStore!.missingModels;        
 
-        return <div>
-            <h1>Missings list</h1>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Count</TableCell>
-                    <TableCell>In basket</TableCell>
-                    <TableCell>Buy</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-            {
-                neededModels.map(x => <TableRow key={x.id}>
-                    <TableCell>{x.model.name}</TableCell>
-                    <TableCell>{x.count}</TableCell>
-                    <TableCell>{x.inBasket}</TableCell>
-                    <TableCell><BoxesList model={x.model} title="Buy" /></TableCell>
-                </TableRow>)
-            }
-                </TableBody>
-            </Table>
-            </div>;
+        return <ResponsiveTable columns={columns} rows={neededModels}/>;
     }
 }

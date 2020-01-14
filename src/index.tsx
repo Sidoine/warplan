@@ -45,8 +45,8 @@ ReactDOM.render(
                 <Popins/>    
                 <Route render={ x => <MyNavbar route={x}>
                 <Switch>
-                    <Route exact path="/" component={OwnedModelsList}/>
-                    <Route exact path="/wb" component={WarscrollBuilder} />
+                    <Route exact path="/owned" component={OwnedModelsList}/>
+                    <Route exact path="/" component={WarscrollBuilder} />
                     <Route exact path="/missing" component={MissingsList}/>
                     <Route exact path="/basket" component={Basket}/>
                     <Route exact path="/warscroll" component={Warscroll} />

@@ -77,11 +77,11 @@ export class AddButton<T extends HasId> extends React.Component<AddButtonProps<T
                 <DialogContent>
                 <Table>
                     <TableHead>
-                        <TableRow> {this.props.columns.map(x => <TableCell>{x.name}</TableCell>)}</TableRow>
+                        <TableRow> {this.props.columns.map(x => <TableCell key={x.name}>{x.name}</TableCell>)}</TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.props.options.map(x => <TableRow hover onClick={() => { this.open = false; this.props.onChange(x) }}>
-                            {this.props.columns.map(y => <TableCell>{y.text(x)}</TableCell>)}
+                        {this.props.options.map(x => <TableRow key={x.id} hover onClick={() => { this.open = false; this.props.onChange(x) }}>
+                            {this.props.columns.map(y => <TableCell key={y.name}>{y.text(x)}</TableCell>)}
                        </TableRow>)} 
                     </TableBody>
                     </Table>

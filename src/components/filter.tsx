@@ -44,7 +44,7 @@ export class Filter extends React.Component<FilterProps> {
     render() {        
         const factionOptions = this.props.unitsStore!.factionsList.filter(x => x.grandAlliance === this.props.uiStore!.grandAlliance);
         
-        return <Card style={{maxWidth: 'calc(100vw - 48px)'}}><CardContent> <Grid container wrap="wrap" spacing={2}>
+        return <Card><CardContent> <Grid container wrap="wrap" spacing={2}>
             <Grid item>Filter</Grid>
             <Grid item><DropdownObjects getText={x => x.text} options={grandAlliances} value={this.grandAlliance} onChange={this.setGrandAlliance}/></Grid>
             <Grid item><DropdownObjects getText={x => x.name} options={factionOptions} value={this.props.uiStore!.faction} onChange={this.setFaction} /></Grid>

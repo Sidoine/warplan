@@ -32,20 +32,20 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
         return <Card>
             <CardContent>
                 <Grid container spacing={2} wrap="wrap">
-                    <Grid item xs={4}>
+                    <Grid item>
                         <FormControl><InputLabel> Allegiance</InputLabel>
                         <DropdownObjects getText={x => x.name} options={allegianceOptions} value={this.props.warscrollStore!.warscroll.allegiance} onChange={this.setAllegiance} />    
                         </FormControl>
                     </Grid>
                     { armyOptions && 
-                        <Grid item xs={4}>
+                        <Grid item>
                         <FormControl>
                             <InputLabel> {armyOptions.name}</InputLabel>
                             <DropdownObjects<ArmyOption> getText={x => x.name} options={armyOptions.values} value={this.props.warscrollStore!.warscroll.armyOption} onChange={this.setArmyOption} />    
                             </FormControl>
                         </Grid>
                     }
-                    <Grid xs={4}>
+                    <Grid item>
                         <FormControl>
                             <InputLabel>Mode</InputLabel>
                             <DropdownValues value={warscroll.pointMode} options={[PointMode.MatchedPlay, PointMode.OpenPlay]} getText={(v) => v === PointMode.MatchedPlay ? "Matched play" : "Open play"} onChange={this.handlePointsModeChange} />
@@ -54,12 +54,12 @@ export class WarscrollSummary extends React.Component<WarscrollSummaryProps, {}>
                     </Grid>
                 </CardContent>
                 <CardActions>
-                <Grid container>
-                    <Grid item xs={3} >{totalPoints} points { alliedPoints > 0 && <>({ !warscroll.isAlliedValid && <WarningIcon fontSize="small" /> } { alliedPoints} allied)</> } </Grid>
-                    <Grid item xs={3}>{ !warscroll.isLeadersValid && <WarningIcon fontSize="small" /> } {warscroll.numberOfLeaders} leaders ({warscroll.minLeaders} - {warscroll.maxLeaders})</Grid>
-                    <Grid item xs={2}>{ !warscroll.isBattelinesValid && <WarningIcon fontSize="small"/> }{warscroll.numberOfBattelines} battlelines ({warscroll.minBattlelines} - {warscroll.maxBattlelines})</Grid>
-                    <Grid item xs={2}>{ !warscroll.isBehemotsValid && <WarningIcon fontSize="small" /> }{warscroll.numberOfBehemots} behemoths (0 - {warscroll.maxBehemots})</Grid>
-                    <Grid item xs={2}>{!warscroll.isArtilleryValid && <WarningIcon fontSize="small"/>}{warscroll.numberOfArtillery} artillery (0 - {warscroll.maxArtillery})</Grid>
+                <Grid container spacing={2}>
+                    <Grid item>{totalPoints} points { alliedPoints > 0 && <>({ !warscroll.isAlliedValid && <WarningIcon fontSize="small" /> } { alliedPoints} allied)</> } </Grid>
+                    <Grid item>{ !warscroll.isLeadersValid && <WarningIcon fontSize="small" /> } {warscroll.numberOfLeaders} leaders ({warscroll.minLeaders} - {warscroll.maxLeaders})</Grid>
+                    <Grid item>{ !warscroll.isBattelinesValid && <WarningIcon fontSize="small"/> }{warscroll.numberOfBattelines} battlelines ({warscroll.minBattlelines} - {warscroll.maxBattlelines})</Grid>
+                    <Grid item>{ !warscroll.isBehemotsValid && <WarningIcon fontSize="small" /> }{warscroll.numberOfBehemots} behemoths (0 - {warscroll.maxBehemots})</Grid>
+                    <Grid item>{!warscroll.isArtilleryValid && <WarningIcon fontSize="small"/>}{warscroll.numberOfArtillery} artillery (0 - {warscroll.maxArtillery})</Grid>
                     </Grid>
                 </CardActions>
             </Card>;

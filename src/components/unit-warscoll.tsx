@@ -6,10 +6,10 @@ import { value } from "../helpers/react";
 import { AttackWithCount, AllAttacks, WoundEffects, AllAbilities } from "../atoms/warscroll-components";
 import { Icon } from "@material-ui/core";
 
-export function UnitWarscroll({wu, unit }: {wu?: WarscrollUnit, unit?: Unit}) {
+export function UnitWarscroll({wu, unit }: {wu?: WarscrollUnit | null, unit?: Unit}) {
     const u = unit || wu?.unit;
     const models = wu?.models;
-    if (!u) return <></>;
+    if (!u) return <div></div>;
     let attacks:AttackWithCount[] = (u.attacks && u.attacks.map(x => { return { count: undefined, attack: x }} )) ||[];
     let abilities = toJS(u.abilities || []).concat();
     let mainOption: ModelOption | undefined;

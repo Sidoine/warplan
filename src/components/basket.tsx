@@ -17,8 +17,7 @@ export interface BasketProps {
 export class Basket extends React.Component<BasketProps, {}> {
     render() {
         const basket = this.props.basketStore!.basket;
-        return <div>
-            <h1>Basket</h1>
+        return <>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -35,6 +34,6 @@ export class Basket extends React.Component<BasketProps, {}> {
             </Table>
             <span>{basket.reduce((p, x) => x.count * x.box.price + p, 0)} €</span>
             <Button onClick={() => this.props.uiStore!.showBasketPopin()}>Manage baskets</Button>
-        </div>;
+        </>;
     }
 }

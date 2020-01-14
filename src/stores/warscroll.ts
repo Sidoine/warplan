@@ -73,7 +73,7 @@ export class WarscrollModel implements WarscrollModelInterface {
 }
 
 export class WarscrollUnit implements WarscrollUnitInterface {
-    id: number;
+    id: string;
     
     @observable
     models: WarscrollModel[] = [];
@@ -195,7 +195,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     }
 
     constructor(protected warscroll: Warscroll, public unit: Unit) {
-        this.id = warscroll.serial++;
+        this.id = (warscroll.serial++).toString();
     }     
 }
 
@@ -208,10 +208,10 @@ export class WarscrollScenery {
 }
 
 export class WarscrollBattalion implements WarscrollBattalionInterface {
-    id: number;
+    id: string;
 
     constructor(public warscroll: Warscroll, public battalion: Battalion) {
-        this.id = warscroll.serial++;
+        this.id = (warscroll.serial++).toString();
     }
 
     @computed get units() {

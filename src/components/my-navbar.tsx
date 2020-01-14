@@ -7,6 +7,7 @@ import { WarscrollStore } from "../stores/warscroll";
 import "./my-navbar.less";
 import { List,ListItem, Badge } from "@material-ui/core";
 import { ResponsiveDrawer } from "./responsive-drawer";
+import { computed } from "mobx";
 
 export interface MyNavbarProps {
     unitsStore?: UnitsStore;
@@ -15,31 +16,49 @@ export interface MyNavbarProps {
     warscrollStore?: WarscrollStore;
 }
 
+interface MenuItem {
+    title: string;
+    badge?: number;
+    path: string;
+}
+
 @inject("unitsStore", "basketStore", "warscrollStore")
 @observer
 export class MyNavbar extends React.Component<MyNavbarProps, {}> {
+
+    @computed
+    private get columns() :MenuItem[] {
+        return [
+            { title: "Warscroll Builder", badge: this.props.warscrollStore!.warscroll.totalPoints, path: '' },
+            { title: "Warscrolls", path: "warscroll"},
+            { title: "Battle", path: "battle"},
+            { title: "List", path: "list"},
+            { title: "Cards", path: "cards"},
+            { title: 'Markers', path: 'markers'},
+            { title: "Statistics", path: "stats"},
+            { title: "Checklist", path: "cl"},
+            { title: "Owned", path: "owned"},
+            { title: "Missing", path: "missing", badge: this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length },
+            {title: "Basket", path: "basket", badge: this.props.basketStore!.basket.length }
+        ]
+    }
+
     private renderDrawer() {
         const pathname = this.props.route.location.pathname;
         return <List>
-        <ListItem component="a" button selected={pathname === "/wb"}  href="#/wb"><Badge color="primary" badgeContent={ this.props.warscrollStore!.warscroll.totalPoints } max={9999}>Warscroll Builder </Badge></ListItem>
-        <ListItem component="a" button selected={pathname === "/warscroll"} href="#/warscroll">Warscroll</ListItem>
-        <ListItem component="a" button selected={pathname === "/battle"} href="#/battle">Battle</ListItem>
-        <ListItem component="a" button selected={pathname === "/list"} href="#/list">List</ListItem>
-        <ListItem component="a" button selected={pathname === "/cards"}  href="#/cards">Cards</ListItem>
-        <ListItem component="a" button selected={pathname === "/markers"}  href="#/markers">Markers</ListItem>
-        <ListItem component="a" button selected={pathname === "/stats"}  href="#/stats">Stats</ListItem>
-        <ListItem component="a" button selected={pathname === "/cl"} href="#/cl">Checklist</ListItem>
-        <ListItem component="a" button selected={pathname === "/"} href="#/">Owned</ListItem>
-        <ListItem component="a" button selected={pathname === "/missing"}  href="#/missing"><Badge color="primary" badgeContent={ this.props.basketStore!.missingModels.filter(x => x.inBasket < x.count).length }>Missing </Badge></ListItem>
-        <ListItem component="a" button selected={pathname === "/basket"}  href="#/basket"><Badge  color="primary" badgeContent={ this.props.basketStore!.basket.length }>Basket</Badge></ListItem>
+            {this.columns.map(x => <ListItem key={x.path} component="a" button selected={pathname === `/${x.path}`} href={`#/${x.path}`}>
+                {x.badge !== undefined && x.badge > 0 && <Badge color="primary" badgeContent={x.badge} max={9999} >{x.title}</Badge>}
+                {!x.badge && x.title}
+            </ListItem>)}
         </List>;
     }
 
     render() {
-        return  <ResponsiveDrawer menu={this.renderDrawer()}>
+        const pathname = this.props.route.location.pathname;
+        const title = this.columns.find(x => `/${x.path}` === pathname)?.title ?? "Warplan";
+        return <ResponsiveDrawer title={title} menu={this.renderDrawer()}>
                 {this.props.children}
-                </ResponsiveDrawer>
-        ;
+                </ResponsiveDrawer>;
         
     }
 }

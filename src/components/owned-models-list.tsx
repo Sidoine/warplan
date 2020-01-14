@@ -13,8 +13,7 @@ export interface OwnedModelsListProps {
 @observer
 export class OwnedModelsList extends React.Component<OwnedModelsListProps, {}> {
     render() {
-        return <div>
-            <h1>Possessions</h1>
+        return <>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -30,6 +29,6 @@ export class OwnedModelsList extends React.Component<OwnedModelsListProps, {}> {
                 </TableBody>
             </Table>
             <ModelsList title="Add..."/>
-        </div>;
+        </>;
     }
 }

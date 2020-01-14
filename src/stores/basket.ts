@@ -16,7 +16,7 @@ interface SerializedBasket {
     }[];
 }
 
-interface Missing {
+export interface Missing {
     model: Model;
     count: number;
     inBasket: number;

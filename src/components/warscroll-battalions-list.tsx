@@ -1,11 +1,13 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { BattalionsList } from "./battalions-list";
-import { WarscrollStore } from "../stores/warscroll";
+import { WarscrollStore, WarscrollBattalion } from "../stores/warscroll";
 import { BattalionUnit } from "../stores/units";
 import { join } from "../helpers/react";
-import { Table, TableHead, TableRow, TableCell, TableBody, Button, Icon, Card, CardHeader, CardContent, CardActions } from "@material-ui/core";
-
+import { Button, Card, CardHeader, CardContent, CardActions } from "@material-ui/core";
+import { ResponsiveTableColumn, ResponsiveTable } from "../atoms/responsive-table";
+import { computed } from "mobx";
+import ClearIcon from '@material-ui/icons/Clear';
 export interface WarscrollBattalionsListProps {
     warscrollStore?: WarscrollStore;
 }
@@ -13,46 +15,33 @@ export interface WarscrollBattalionsListProps {
 @inject('warscrollStore')
 @observer
 export class WarscrollBattalionsList extends React.Component<WarscrollBattalionsListProps, {}> {
+    @computed
+    get columns(): ResponsiveTableColumn<WarscrollBattalion>[] {
+        const counts = new Map<string, { count: number }>();
+        return [
+            {
+                name: "Name",
+                text: x => x.battalion.name,
+            }, {
+                name: "Units",
+                text: x => join(x.battalion.units.map(y => this.renderUnit(y, counts)), ", ")
+            }, {
+                name: "Points",
+                text: x => x.battalion.points
+            }, {
+                name: "Actions",
+                text: x => <Button onClick={() => this.props.warscrollStore!.removeBattalion(x)}><ClearIcon/></Button>
+            }
+        ];    
+    }
+
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;
-        // const missingUnits = new Map<string, { count: number }[]>();
-        const counts = new Map<string, { count: number }>();
-
-        // for (const battalion of warscroll.battalions) {
-        //     const warscrollUnits = warscroll.units.filter(x => x.battalion !== null && x.battalion.id === battalion.id);
-        //     for (const battalionUnit of battalion.battalion.units) {
-        //         let count = 0;
-        //         for (const warscrollUnit of warscrollUnits) {
-        //             if (battalionUnit.unit.find(x => x.id === warscrollUnit.unit.id)) {
-        //                 count++;
-        //             }
-        //         }
-        //     }
-        // }
-
+        
         return <Card>
             <CardHeader title="Battalions" />
             <CardContent>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Units</TableCell>
-                    <TableCell>Points</TableCell>
-                    <TableCell></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-            {
-                warscroll.battalions.map(x => <TableRow key={x.id}>
-                    <TableCell>{x.battalion.name}</TableCell>
-                    <TableCell>{join(x.battalion.units.map(y => this.renderUnit(y, counts)), ", ")}</TableCell>
-                    <TableCell>{x.battalion.points}</TableCell>
-                    <TableCell><Button onClick={() => this.props.warscrollStore!.removeBattalion(x)}><Icon className="fa fa-remove"/></Button></TableCell>
-                </TableRow>)
-            }
-                </TableBody>
-            </Table>
+                <ResponsiveTable rows={warscroll.battalions} columns={this.columns}></ResponsiveTable>
             </CardContent>
             <CardActions>
                 <span>{warscroll.battalionsPoints} points</span>
