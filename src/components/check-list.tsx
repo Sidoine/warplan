@@ -133,7 +133,7 @@ export class CheckList extends React.Component<CheckListProps> {
     }
 
     private renderAbility(index: number, ability: Ability, phase: Phase, unit?: WarscrollUnit) {
-        return <div key={index}><i>{ability.name} </i> { ability.description}
+        return <div key={index}><i className="check-list__ability__name">{ability.name}</i> : { ability.description}
             {ability.effects && ability.effects.filter(x => this.isEffectInPhase(x, phase, unit)).map((x, index) => this.renderAbilityEffect(x, index))}
         </div>;
     }
