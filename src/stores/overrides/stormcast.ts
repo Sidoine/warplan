@@ -1372,10 +1372,10 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         x.ability.description = "If a friendly STORMCAST ETERNAL unit wholly within 24\" of the bearer fails a battleshock test, roll a dice. On a 2+ only one model flees from that unit."
     });
     //const mysticLight = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["LORD-CASTELLANT", "LORD-VERITANT", "KNIGHT-AZYROS"])
-    override(data.extraAbilities.stormcastEternalsMysticLightsFuryBrand, x => {
-        //x.isAvailable = mysticLight;
-        //x.category = "artifact" ;
-        x.ability.description = "The fiery light that spills from this item can ignite a deep and righteous rage in those nearby. In your hero phase, this HERO can infuse themselves or another friendly STORMCAST ETERNALS HERO within 6\" with fury – add 1 to the Attacks characteristic of one weapon for that HERO until your next hero phase."
+    overrideAbility(data.extraAbilities.stormcastEternalsMysticLightsFuryBrand.ability, x => {
+        x.flavor = "The fiery light that spills from this item can ignite a deep and righteous rage in those nearby.";
+        x.description = "In your hero phase, you can pick 1 melee weapon used by a STORMCAST ETERNAL HERO within 6\" of the bearer. Add 1 to the Attacks characteristic of that melee weapon until your next hero phase.";
+        x.effects = [{ phase: Phase.Hero, targetType: TargetType.Friend }];
     });
     override(data.extraAbilities.stormcastEternalsMysticLightsShrivingLight, x => {
         //x.isAvailable = mysticLight;

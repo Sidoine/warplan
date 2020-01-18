@@ -118,7 +118,7 @@ export class BattleStore {
             name: "Player",
             warscroll: warscroll
         }
-        this.phase = Phase.Combat;
+        this.phase = Phase.Setup;
         this.side = PhaseSide.Attack;
     }
 
