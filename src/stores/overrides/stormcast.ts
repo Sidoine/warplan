@@ -1468,6 +1468,7 @@ function fixStormhosts(data: DataStoreImpl) {
         x.effects = [{ targetCondition: { keyword: "HAMMERS OF SIGMAR"}, targetType: TargetType.Friend, effectRange: 9, defenseAura: { negateWoundsOrMortalWoundsOn6: true } }]
     });
     const firstToBeForged: Ability = {
+        id: "stormcast_firstToBeForged",
         description: "Add 1 to the Bravery characteristic of friendly HAMMERS OF SIGMAR units.",
         flavor: "The Hammers of Sigmar were at the forefront of Sigmar’s war against Chaos, and have stared down the greatest of horrors.",
         name: "First to be Forged",
@@ -1475,6 +1476,7 @@ function fixStormhosts(data: DataStoreImpl) {
         effects: [{ targetType: TargetType.Friend, battleShockAura: { bonusBravery: 1 } }]
     };
     const soulOfTheStormhost: Ability = {
+        id: "stormcast_soulOfTheStormhost",
         name: "Soul of the Stormhost",
         flavor: "The Redeemers of the Hammers of Sigmar break the enemy force with waves of reinforcements that never seem to end.",
         description: "You can use this command ability when a friendly HAMMERS OF SIGMAR REDEEMER unit is destroyed. If you do so, roll a dice. On a 5+ a new unit identical to the one that was destroyed is added to your army. Set up the new unit anywhere on the battlefield, more than 9\" from any enemy models. You cannot use this command ability more than once per phase.",
@@ -1528,6 +1530,7 @@ function fixModels(data: DataStoreImpl) {
 
 function fixAllegiance(data: DataStoreImpl) {
     const scionsOfTheStorm: Ability = {
+        id: "stormcast_scionsOfTheStorm",
         name: "Scions of the Storm",
         flavor: "Sigmar’s finest warriors strike as if from nowhere, the building storm heralding their arrival.",
         description: "Instead of setting up a STORMCAST ETERNAL unit on the battlefield, you can place it to one side and say that it is set up in the Celestial Realm as a reserve unit. You can set up one reserve unit in the Celestial Realm for each unit you have set up on the battlefield. At the end of your movement phase, you can set up one or more of the reserve units in the Celestial Realm on the battlefield, more than 9\" from any enemy units. Any reserve units in the Celestial Realm that are not set up on the battlefield before the start of the fourth battle round are slain.",
@@ -1535,6 +1538,7 @@ function fixAllegiance(data: DataStoreImpl) {
         effects: [{ targetType: TargetType.Friend, phase: Phase.Setup }]
     }
     const shockAndAwe: Ability = {
+        id: "stormcast_shockAndAwe",
         name: "Shock and Awe",
         flavor: "When the Stormcast Eternals arrive to reinforce their allies, their sudden appearance strikes terror into the hearts of the enemies of Sigmar.",
         description: "Subtract 1 from hit rolls for attacks that target friendly STORMCAST ETERNAL units that were set up on the battlefield during the same turn.",

@@ -4,30 +4,35 @@ import { override, overrideAbility, setAttackAsUpgrade } from "./tools";
 
 function addBattleTraits(data: DataStoreImpl) {
     const auraOfDread: Ability = {
+        id: "nighthaunt_auraofdead",
         flavor: 'The very existence of the Nighthaunts is a stark reminder of the terrible fate that awaits those that have displeased Nagash upon death. To face them in battle is to witness these darkest fears made manifest, and can chill the soul of even the most stoic warrior.',
         description: 'Subtract 1 from the Bravery characteristic of enemy units while they are within 6" of any friendly NIGHTHAUNT units.',
         name: 'Aura of Dread',
         category: AbilityCategory.BattleTrait
     };
     const deathlessSprits: Ability = {
+        id: "nighthaunt_deathlessspritis",
         name: 'Deathless Spirits',
         flavor: 'The spirit forms of Nighthaunt warriors are made more formidable by the presence of their lords and masters.',
         description: 'Roll a dice each time you allocate a wound or mortal wound to a friendly NIGHTHAUNT model from a unit wholly within 12" of your general or a friendly NIGHTHAUNT HERO. On a 6+, that wound or mortal wound is negated.',
         category: AbilityCategory.BattleTrait
     };
     const fromTheUnderworldsTheyCome: Ability = {
+        id: "nighthaunt_fromtheunderworldstheycome",
         name: 'From the underworlds they come',
         flavor: 'None is safe from Nagash’s vengeance, for the Nighthaunts can be summoned forth from the underworlds by their spectral overseers, appearing as if from nowhere to assail their prey.',
         description: 'Instead of setting up a NIGHTHAUNT unit on the battlefield, you can place it to one side and say that it is set up in the underworlds as a reserve unit. You can set up one unit in the underworlds for each unit you set up on the battlefield. At the end of your movement phase you can set up any of these units more than 9" from any enemy models. This counts as their move for that turn. Any units which are not set up on the battlefield before the start of the fourth battle round are slain.',
         category: AbilityCategory.BattleTrait
     };
     const feedOnTerror: Ability = {
+        id: "nighthaunt_feedonterror",
         name: 'Feed on terror',
         flavor: 'The lords of the Nighthaunts are strengthened by the fear they sow, and can drink deep of this uncontrolled emotion and siphon fresh strength.',
         description: 'Each time an enemy unit fails a battleshock test, pick one friendly NIGHTHAUNT HERO within 6" of that enemy unit. Heal 1 wound that has been allocated to that HERO.',
         category: AbilityCategory.BattleTrait
     };
     const waveOfTerror: Ability = {
+        id: "nighthaunt_waveofterror",
         name: 'Wave of terror',
         flavor: 'On many occasions, entire battlelines have been overrun by a swarming Nighthaunt host without even raising a blade in their own defence.',
         description: 'If you make an unmodified charge roll of 10+ for a friendly NIGHTHAUNT unit, it can fight immediately after you complete the charge move. This does not stop the unit from being picked to fight in the combat phase of the same turn.',
@@ -35,6 +40,7 @@ function addBattleTraits(data: DataStoreImpl) {
     };
 
     const spectralSummons: Ability = {
+        id: "nighthaunt_spectralsummons",
         name: "Spectral Summons",
         flavor: 'Nighthaunt commander can call his ghostly minions to his side in an instant, wherever they may be.',
         description: 'You can use this command ability at the start of your movement phase. If you do so, pick a friendly NIGHTHAUNT unit that is on the battlefield. Remove that unit from the battlefield, and then set it up wholly within 12" of your general and more than 9" from any enemy models. This counts as their move for that movement phase.',

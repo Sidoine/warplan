@@ -52,6 +52,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
 
     // Battle traits
     const theUnquietDead: Ability = {
+        id :"legionofgrief_theunquietdead",
         name: "The Unquiet Dead",
         flavor: "The dead stir in every corner of the realms, rising up from unhallowed grave-pits and corpse-strewn battlefields to prey upon the living.",
         description: "After territories have been determined, but before any units have been set up, you can pick up to 2 points in your territory and up to 2 points anywhere on the battlefield to be gravesites. You may wish to place suitable markers on these points. Then, instead of setting up a SUMMONABLE unit from your army on the battlefield, you can place it to one side and say that it is set up in the grave. You can do this with as many of your SUMMONABLE units as you wish. At the end of your movement phase, for each friendly DEATH HERO within 9\" of a gravesite, you can pick a single friendly unitin the grave and set it up wholly within 9\" of the gravesite and more than 9\" from any enemy models. Any model that is unable to be set up in this way is slain. If a unit is still in the grave at the end of the battle, it is considered to be slain.",
@@ -60,6 +61,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
     };
 
     const invigoratingAura: Ability = {
+        id : "legionofgrief_invigoratingaura",
         name: "Invigorating Aura",
         flavor: "The power of death magic swells, empowering the restless dead an drawing more forth from their graves.",
         description: "Gravesites have the following ability: At the start of your hero phase, pick 1 friendly Summonable unit within 9\" of this gravesite (see ‘The Unquiet Dead’). You can either heal D3 wounds that have been allocated to models in that unit or, if no wounds are currently allocated to any models in the unit, you can return a number of slain models to the unit that have a combined Wounds characteristics equal to or less than the roll of a D3.",
@@ -67,6 +69,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
         effects: [{ targetType: TargetType.Friend, phase: Phase.Hero, subPhase: SubPhase.Before }]
     };
     const deathlessMinions: Ability = {
+        id:"legionofgrief_deathlessminions",
         name: "Deathless Minions",
         flavor: "The powerful death magic that binds the undead grows stronger when these minions are in close proximity of their masters.",
         description: "Roll a dice each time you allocate a wound or mortal wound to a friendly LEGION OF GRIEF unit within 6\" of you general or another friendly LEGION OF GRIEF HERO. On a 6+ the wound or mortal wound is negated.",
@@ -74,6 +77,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
         effects: [{ targetType: TargetType.Friend, defenseAura: { negateWoundsOrMortalWoundsOn6: true }}]
     };
     const auraOfGrief: Ability = {
+        id: "legionofgrief_auraofgrief",
         name: "Aura of Grief",
         flavor: "To face the Legion of Grief in battle is to be overcome by waves of crushing sorrow.",
         description: "Subtract 1 from the Bravery characteristic of enemy units while they are within 6\" of any friendly LEGION OF GRIEF units.",
@@ -81,6 +85,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
         effects: [{ targetType: TargetType.Enemy, battleShockAura: { bonusBravery: - 1 }}]
     };
     const endlessLegions: Ability = {
+        id: "legionofgrief_endlesslegions",
         name: "Endless Legions",
         flavor: "The souls of the deceased are innumerable, a bottomless well of sorrow and bitter hatred from which the lords of death magic can fashion their conquering armies.",
         description: "You can use this command ability at the end of your movement phase. If you do so, pick a gravesite (see 'The Unquiet Dead') that is within 9\" of your general, and then pick a friendly SUMMONABLE unit that has been destroyed. Set up that unit wholly within 9\" of that gravesite and more than 9\" from any enemy units.",

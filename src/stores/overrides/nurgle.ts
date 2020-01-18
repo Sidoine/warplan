@@ -5,11 +5,11 @@ import { override, artifactWithKeywordAvailable, overrideAbility, addAbilityEffe
 function addEndlessSpells(data: DataStoreImpl):void {
     const burningHeaad: Scenery = data.sceneries.theBurningHead;
 
-    const summon: Ability = { name: "Summoning Burning Head", description: "Summoning the Burning Head has a casting value of 7. If successful, place the Burning Head model entirely within 3\" of the summoner." };
-    const fiery: Ability = { name: "Fiery Missile", description: "When this model is set up, the player who set it up can immediately make a move with it." };
-    const flaming: Ability = { name: "Flaming Skull", description: "After this model has moved, each unit that has any models it passed across, and each other unit that is within 1\" of it at the end of its move, suffers D3 mortal wounds." };
-    const aura: Ability = { name: "Wrathful Aura", description: "Re-roll hit rolls of 1 for attacks made by this unit while they are wholly within 9\" of this model." };
-    const aqshy: Ability = { name: "Empowered by Aqshy", description: "If your battle is taking place in the Realm of Fire, add 1 to the number of mortal wounds inflicted by the Flaming Skull ability" };
+    const summon: Ability = { id: "nurgle_summon", name: "Summoning Burning Head", description: "Summoning the Burning Head has a casting value of 7. If successful, place the Burning Head model entirely within 3\" of the summoner." };
+    const fiery: Ability = {  id: "nurgle_fiery", name: "Fiery Missile", description: "When this model is set up, the player who set it up can immediately make a move with it." };
+    const flaming: Ability = { id: "nurgle_flaming", name: "Flaming Skull", description: "After this model has moved, each unit that has any models it passed across, and each other unit that is within 1\" of it at the end of its move, suffers D3 mortal wounds." };
+    const aura: Ability = { id: "nurgle_aura", name: "Wrathful Aura", description: "Re-roll hit rolls of 1 for attacks made by this unit while they are wholly within 9\" of this model." };
+    const aqshy: Ability = { id: "nurgle_aqshy", name: "Empowered by Aqshy", description: "If your battle is taking place in the Realm of Fire, add 1 to the number of mortal wounds inflicted by the Flaming Skull ability" };
 
     burningHeaad.abilities = [summon, fiery, flaming, aura, aqshy];
 }

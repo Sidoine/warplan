@@ -8,12 +8,14 @@ import "./my-navbar.less";
 import { List,ListItem, Badge } from "@material-ui/core";
 import { ResponsiveDrawer } from "./responsive-drawer";
 import { computed } from "mobx";
+import { BattleStore, getPhaseName } from "../stores/battle";
 
 export interface MyNavbarProps {
     unitsStore?: UnitsStore;
     basketStore?: BasketStore;
     route: RouteComponentProps<any>;
     warscrollStore?: WarscrollStore;
+    battleStore?: BattleStore;
 }
 
 interface MenuItem {
@@ -22,7 +24,7 @@ interface MenuItem {
     path: string;
 }
 
-@inject("unitsStore", "basketStore", "warscrollStore")
+@inject("unitsStore", "basketStore", "warscrollStore", "battleStore")
 @observer
 export class MyNavbar extends React.Component<MyNavbarProps, {}> {
 
@@ -31,7 +33,7 @@ export class MyNavbar extends React.Component<MyNavbarProps, {}> {
         return [
             { title: "Warscroll Builder", badge: this.props.warscrollStore!.warscroll.totalPoints, path: '' },
             { title: "Warscrolls", path: "warscroll"},
-            { title: "Battle", path: "battle"},
+            { title: getPhaseName(this.props.battleStore!.phase), path: "battle"},
             { title: "List", path: "list"},
             { title: "Cards", path: "cards"},
             { title: 'Markers', path: 'markers'},

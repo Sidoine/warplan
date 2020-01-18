@@ -1,9 +1,9 @@
 import * as React from "react";
 import { WarscrollStore, WarscrollUnit, WarscrollScenery } from "../stores/warscroll";
 import { inject, observer } from "mobx-react";
-import { Phase, Ability, Attack, AbilityEffect, UnitsStore, Value, TargetType } from "../stores/units";
+import { Phase, Ability, Attack, AbilityEffect, UnitsStore, Value } from "../stores/units";
 import { computed } from "mobx";
-import { getPhaseName, phases } from "../stores/battle";
+import { getPhaseName, phases, PhaseSide, isUnitInPhase, isEffectInPhase, isAttackInPhase, isAbilityInPhase } from "../stores/battle";
 import "./check-list.less";
 import { value } from "../helpers/react";
 
@@ -19,14 +19,8 @@ function someFrom<T>(array: T[], from: number, condition: (x:T) => boolean) {
     return false;
 }
 
-function distinct(array: {name: string}[]) {
-    return array.filter((x, i) => !someFrom(array, i + 1, y => x.name === y.name));
-}
-
-const enum PhaseSide {
-    Attack,
-    Defense,
-    None
+function distinct<T extends {id: string}>(array: T[]) {
+    return array.filter((x, i) => !someFrom(array, i + 1, y => x.id === y.id));
 }
 
 function Stats(props: { name?: string, children: React.ReactNode}) {
@@ -59,61 +53,8 @@ export class CheckList extends React.Component<CheckListProps> {
         return result;
     }
 
-    private isEffectInPhase(effect: AbilityEffect, phase: Phase, unit?: WarscrollUnit, side?: PhaseSide) {
-        if (phase === Phase.Combat || phase === Phase.Shooting) {
-            if (effect.phase !== undefined && effect.phase !== phase) return false;
-            if (effect.defenseAura && side === PhaseSide.Defense) return true;
-            if (effect.attackAura && effect.targetType !== TargetType.Enemy && side === PhaseSide.Attack) {
-                if (!unit) return false;
-                if (phase === Phase.Combat && unit.attacks.some(x => x.attack.melee)) return true;
-                if (phase === Phase.Shooting && unit.attacks.some(x => !x.attack.melee)) return true;
-            }
-            if (effect.attackAura && effect.targetType === TargetType.Enemy && side === PhaseSide.Defense) {
-                if (!unit) return false;
-                return true;
-            }
-            if ((effect.mortalWounds || effect.mortalWoundsPerModel) && side === PhaseSide.Attack) return true;
-            if (effect.phase === phase) return true;
-            return false;
-        }
-        if (phase === Phase.Battleshock && effect.battleShockAura) return true;
-        if (phase === Phase.Movement && effect.movementAura) return true;
-        if (phase === Phase.Charge && effect.chargeAura) return true;
-        if (phase === Phase.Hero && effect.spellAura) return true;
-        if (phase === Phase.Any && effect.commandAura) return true;
-        if (effect.phase !== undefined) return effect.phase === phase && side !== PhaseSide.Defense;
-        return false;
-    }
-
-    private isAbilityInPhase(ability: Ability, phase: Phase, unit?: WarscrollUnit, side?: PhaseSide) {
-        if (ability.effects) {
-            for (const effect of ability.effects) {
-                if (this.isEffectInPhase(effect, phase, unit, side)) return true;
-            }
-        }
-        return false;
-    }
-
-    private isAttackInPhase(attack: Attack, phase: Phase) {
-        if (phase === Phase.Shooting && !attack.melee) return true;
-        if (phase === Phase.Combat && attack.melee) return true;
-        return false;
-    }
-
-    private isUnitInPhase(unit: WarscrollUnit, phase: Phase, side?: PhaseSide) {
-        if (phase === Phase.Movement || phase === Phase.Battleshock) return true;
-        if (phase === Phase.Shooting && unit.attacks.some(x => !x.attack.melee)) {
-            return true;
-        }
-        if (phase === Phase.Combat && unit.attacks.some(x => x.attack.melee)) {
-            return true;
-        }
-        if (unit.abilities.some(x => this.isAbilityInPhase(x, phase, unit, side))) return true;
-        return false;
-    }
-
     private getPhaseUnits(phase: Phase, side?: PhaseSide) {
-        return this.units.filter(x => this.isUnitInPhase(x, phase, side));
+        return this.units.filter(x => isUnitInPhase(x, phase, side));
     }
 
     private renderAttack(attack: Attack, count: number) {
@@ -134,7 +75,7 @@ export class CheckList extends React.Component<CheckListProps> {
 
     private renderAbility(index: number, ability: Ability, phase: Phase, unit?: WarscrollUnit) {
         return <div key={index}><i className="check-list__ability__name">{ability.name}</i> : { ability.description}
-            {ability.effects && ability.effects.filter(x => this.isEffectInPhase(x, phase, unit)).map((x, index) => this.renderAbilityEffect(x, index))}
+            {ability.effects && ability.effects.filter(x => isEffectInPhase(x, phase, unit)).map((x, index) => this.renderAbilityEffect(x, index))}
         </div>;
     }
 
@@ -147,8 +88,8 @@ export class CheckList extends React.Component<CheckListProps> {
             { phase === Phase.Battleshock && <Stat name="Bv" value={unit.unit.bravery}/>}
             </Stats>
             
-            { side === PhaseSide.Attack && unit.attacks.filter(x => this.isAttackInPhase(x.attack, phase)).map(x => this.renderAttack(x.attack, x.count))}
-            { distinct(unit.abilities.filter(x => this.isAbilityInPhase(x, phase, unit, side))).map((x,i) => this.renderAbility(i, x, phase, unit))}
+            { side === PhaseSide.Attack && unit.attacks.filter(x => isAttackInPhase(x.attack, phase)).map(x => this.renderAttack(x.attack, x.count))}
+            { distinct(unit.abilities.filter(x => isAbilityInPhase(x, phase, unit, side))).map((x,i) => this.renderAbility(i, x, phase, unit))}
         </div>
     }
 
@@ -162,13 +103,13 @@ export class CheckList extends React.Component<CheckListProps> {
         return <section>
             { side === PhaseSide.Defense === true && <h2>Defense</h2>}
             { side === PhaseSide.Attack && <h2>Attack</h2>}
-            <ul>{this.abilities.filter(x => this.isAbilityInPhase(x, phase, undefined, side)).map((x,i) => this.renderAbility(i, x, phase))}</ul>
+            <ul>{this.abilities.filter(x => isAbilityInPhase(x, phase, undefined, side)).map((x,i) => this.renderAbility(i, x, phase))}</ul>
         <div>{this.getPhaseUnits(phase, side).map(x => this.renderUnit(x, phase, side))}</div>
         <ul>{phase === Phase.Hero && this.props.warscrollStore!.warscroll.sceneries.map(x => this.renderScenery(x)) }</ul></section>;
     }
 
     private hasSomethingIsSubPhase(phase: Phase, side?: PhaseSide) {
-        return this.abilities.some(x => this.isAbilityInPhase(x, phase, undefined, side))
+        return this.abilities.some(x => isAbilityInPhase(x, phase, undefined, side))
             || this.getPhaseUnits(phase, side).length > 0
             || phase === Phase.Hero && this.props.warscrollStore!.warscroll.sceneries.length > 0;
     }
