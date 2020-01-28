@@ -38,7 +38,7 @@ export const enum PhaseSide {
 }
 
 export function isEffectInPhase(effect: AbilityEffect, phase: Phase, unit?: WarscrollUnit, side?: PhaseSide) {
-    if (phase === Phase.Combat || phase === Phase.Shooting) {
+    if ((phase & Phase.Combat) || (phase & Phase.Shooting)) {
         if (effect.phase !== undefined && effect.phase !== phase) return false;
         if (effect.defenseAura && side === PhaseSide.Defense) return true;
         if (effect.attackAura && effect.targetType !== TargetType.Enemy && side === PhaseSide.Attack) {
@@ -54,11 +54,11 @@ export function isEffectInPhase(effect: AbilityEffect, phase: Phase, unit?: Wars
         if (effect.phase === phase) return true;
         return false;
     }
-    if (phase === Phase.Battleshock && effect.battleShockAura) return true;
-    if (phase === Phase.Movement && effect.movementAura) return true;
-    if (phase === Phase.Charge && effect.chargeAura) return true;
-    if (phase === Phase.Hero && effect.spellAura) return true;
-    if (phase === Phase.Any && effect.commandAura) return true;
+    if ((phase & Phase.Battleshock) && effect.battleShockAura) return true;
+    if ((phase & Phase.Movement) && effect.movementAura) return true;
+    if ((phase & Phase.Charge) && effect.chargeAura) return true;
+    if ((phase & Phase.Hero) && effect.spellAura) return true;
+    if ((phase & Phase.Any) && effect.commandAura) return true;
     if (effect.phase !== undefined) return effect.phase === phase && side !== PhaseSide.Defense;
     return false;
 }

@@ -291,10 +291,10 @@ function fixUnits(data: DataStoreImpl):void {
             unitCategory: UnitCategoryMain
         });
         const prime = setAbilityAsOption(liberator, data.abilities.liberatorsLiberatorPrime, oneModelOption);
-        addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, { phase: Phase.Combat, targetType: TargetType.Unit, attackAura: { bonusHitRoll: conditionValue({ minWounds: 5 }, 1) } });
-        addAbilityEffect(data.abilities.liberatorsLiberatorPrime, { phase: Phase.Combat, targetType: TargetType.Model, attackAura: { bonusAttacks: 1 } });
-        addAbilityEffect(data.abilities.liberatorsSigmariteShields, { phase: Phase.Combat | Phase.Shooting, defenseAura: { rerollSavesOn1: true }, targetType: TargetType.Unit });
-        addAbilityEffect(data.abilities.liberatorsPairedWeapons, { phase: Phase.Combat, attackAura: { numberOfHitsOnUnmodified6: 2 }, targetType: TargetType.Model });
+        addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, { targetType: TargetType.Unit, attackAura: { bonusHitRoll: conditionValue({ minWounds: 5 }, 1) } });
+        addAbilityEffect(data.abilities.liberatorsLiberatorPrime, { targetType: TargetType.Model, attackAura: { bonusAttacks: 1 } });
+        addAbilityEffect(data.abilities.liberatorsSigmariteShields, { defenseAura: { rerollSavesOn1: true }, targetType: TargetType.Unit });
+        addAbilityEffect(data.abilities.liberatorsPairedWeapons, { attackAura: { numberOfHitsOnUnmodified6: 2 }, targetType: TargetType.Model });
         
         liberator.optionStats = [
             { name: "Warhammers, prime with Grandhammer", models: [{ options: [wh], count: 4 }, { options: [gh, prime], count: 1 }] },
@@ -1264,15 +1264,15 @@ function fixUnits(data: DataStoreImpl):void {
 
 function fixExtraAbilities(data: DataStoreImpl): void {
     // Command traits
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrShieldedByFaith.ability.description = "When your general suffers a mortal wound, roll a dice. On a roll of 5 or more, that mortal wound is ignored.";
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrConsummateCommander.ability.description = "Choose one other HERO in your army. While your general is alive, the model you chose can also use any command abilities it may have, as if it were your general.";
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrCunningStrategist.ability.description = "Once both armies are set up, but before the first battle round begins, select D3 friendly STORMCAST ETERNALS units. They can each make a move of up to 5\".";
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrZealousCrusader.ability.description = "Your general can re-roll their charge distance.";
+    data.extraAbilities.stormcastEternalsAspectsOfAzyrShieldedByFaith.ability.description = "Roll a dice each time you allocate a mortal wound to this general. On a 5+ that mortal wound is negated.";
+    data.extraAbilities.stormcastEternalsAspectsOfAzyrConsummateCommander.ability.description = "If this general is on the battlefield at the start of your hero phase, roll a dice. On a 4+ you receive 1 extra command point.";
+    data.extraAbilities.stormcastEternalsAspectsOfAzyrCunningStrategist.ability.description = "After set-up is complete, but before the battle begins, D3 friendly STORMCAST ETERNAL units can move up to 5\".";
+    data.extraAbilities.stormcastEternalsAspectsOfAzyrZealousCrusader.ability.description = "You can re-roll charge rolls for this general.";
     override<ExtraAbility>(data.extraAbilities.stormcastEternalsAspectsOfAzyrStaunchDefender, x => {
-        x.ability.description = "Your general and all friendly STORMCAST ETERNALS units within 6\" add 1 to their save rolls if they have not charged this turn. This modifier does not stack with the save roll modifier for being within or on a terrain feature.";
+        x.ability.description = "Add 1 to save rolls for attacks that target friendly STORMCAST ETERNAL units wholly within 9\" of this general if that STORMCAST ETERNAL unit has not made a charge move in the same turn.";
         x.ability.effects = [{ targetType: TargetType.Friend, defenseAura: { bonusSave: 1 } }];
     });
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrChampionOfTheRealms.ability.description = "Choose one of your general’s weapon profiles (it cannot be a weapon used by a mount if they have one) and increase its Attacks characteristic by 1.";
+    data.extraAbilities.stormcastEternalsAspectsOfAzyrChampionOfTheRealms.ability.description = "Pick one of this general’s melee weapons. Add 1 to the Attacks characteristic of that weapon.";
 
     // // Artifacts
     override<Ability>(data.extraAbilities.stormcastEternalsStormForgedWeaponsStrifeEnder.ability, x => {
@@ -1457,6 +1457,8 @@ function fixExtraAbilities(data: DataStoreImpl): void {
 
 function fixStormhosts(data: DataStoreImpl) {
     const abilities = data.extraAbilities;
+
+    // Hammers of Sigmar
     override<Ability>(abilities.stormcastEternalsHammersOfSigmarGodForgedBlade.ability, x => {
         x.description = "Pick one of the bearer’s melee weapons. If the unmodified hit roll for an attack made with the Godforged Blade is 6, add 1 to the Damage characteristic of that attack.";
         x.flavor = "Wrought by Grungni himself for the first Stormhost, this weapon strikes with explosive power.";
@@ -1484,6 +1486,31 @@ function fixStormhosts(data: DataStoreImpl) {
         effects: [{ targetType: TargetType.Friend, targetCondition: { keyword: "REDEEMER" }, defenseAura: {  }}]
     };
     override<ArmyOption>(data.armyOptions.stormcastEternalsHammersOfSigmar, x => x.abilities = [firstToBeForged, soulOfTheStormhost]);
+
+    // Anvils of the Heldenhammer
+    overrideAbility(abilities.stormcastEternalsAnvilsOfTheHeldenhammerDeathlyAura.ability, x => {
+        x.description = "Subtract 1 from the Bravery characteristic of enemy units while they are within 6\" of this general.";
+        x.flavor = "The leaders of the Anvils of the Heldenhammer embody their Stormhost’s sinister reputation.";
+    });
+    overrideAbility(abilities.stormcastEternalsAnvilsOfTheHeldenhammerSoulthief.ability, x => {
+        x.description = "Pick one of the bearer’s melee weapons. At the end of the combat phase, roll a dice for each enemy model that was allocated any wounds caused by this weapon in that combat phase. On a 3+ that model suffers 1 mortal wound.";
+        x.flavor = "The Soulthief is a powerful artefact, each blow striking the victim’s very spirit.";
+    })
+    const noTrueDeath: Ability = {
+        id: "stormcast_noTrueDeath",
+        description : "You can re-roll failed battleshock tests for friendly ANVILS OF THE HELDENHAMMER units.",
+        flavor: "The Anvils of the Heldenhammer know that if slain, they will return to fight again.",
+        name: "No True Death",
+        category: AbilityCategory.Army,
+    };
+    const heroesOfAnotherAge: Ability = {
+        id: "stormcast_heroesOfAnotherAge",
+        description: "You can use this command ability in your hero phase. If you do so, pick a friendly ANVILS OF THE HELDENHAMMER unit wholly within 9\" of a friendly ANVILS OF THE HELDENHAMMER HERO, or wholly within 18\" of a friendly ANVILS OF THE HELDENHAMMER HERO that is a general. That unit can attack with all of the missile weapons it is armed with, or make a pile-in move and attack with all of the melee weapons it is armed with.",
+        flavor: "The Anvils of the Heldenhammer use ancient and revered codes of battle.",
+        category: AbilityCategory.Command,
+        name: "Heroes of Another Age"
+    }
+    override<ArmyOption>(data.armyOptions.stormcastEternalsAnvilsOfTheHeldenhammer, x => x.abilities = [noTrueDeath, heroesOfAnotherAge]);
 }
 
 function fixModels(data: DataStoreImpl) {

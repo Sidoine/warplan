@@ -1,67 +1,95 @@
 import * as React from "react";
-import { observer, inject } from "mobx-react";
-import './markers.less';
 import { MarkersStore, Marker, MarkerType } from "../stores/markers";
-import { observable } from "mobx";
-import { Button, Icon } from "@material-ui/core";
+import { useStores } from "../stores";
+import { makeStyles } from "@material-ui/core";
+import terrainImage from "../assets/objective.png";
+import spellImage from "../assets/gambitspell.png";
+import commandImage from "../assets/ploy.png";
+import { CSSProperties } from "@material-ui/core/styles/withStyles";
 
 export interface MarkersProps {
     markersStore?: MarkersStore;
 }
 
-@inject("markersStore")
-@observer
-export class Markers extends React.Component<MarkersProps> {
-    @observable
-    edited: Marker = { id: 0, text: "", description:'', type: MarkerType.Terrain };    
+const textContent: CSSProperties = {
+    display: "flex",
+    textAlign: "center",
+    textShadow: "0px 0px 4px white, 0px 0px 8px white, 0px 0px 4px white, 0px 0px 4px white, 0px 0px 10px white",
+    fontWeight: "bold"
+}
 
-    render() {
-        return <div className="markers"> {
-            this.props.markersStore!.markers.map(x => this.renderMarker(x))
-        }{
-            this.props.markersStore!.markers.map(x => this.renderMarker(x))
-        }
-            {/* <Button icon="plus" onClick={() => this.props.markersStore!.add()} /> */}
+const useStyle = makeStyles({
+    markers: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        display: "flex",
+        breakInside: "avoid"
+    },
+    marker: {
+        fontFamily: "droid_serifregular",
+        width: "100px",
+        height: "100px",
+        borderRadius: "50px",
+        border: "2px solid #EEE",
+        boxShadow: "0px 0px 5px black",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "10px"
+    },
+    terrain: {
+        backgroundImage: `url(${terrainImage})`
+    },
+    spell: {
+        backgroundImage: `url(${spellImage})`
+    },
+    command: {
+        backgroundImage: `url(${commandImage})`
+    },
+    text: Object.assign({
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        fontSize: "12px", 
+    }, textContent),
+    condition: Object.assign({
+        fontWeight: "bold",
+        fontSize: "10px",
+        fontStyle: "italic"
+    }, textContent),
+    description: textContent
+})
+
+function MarkerView({ marker} : {marker: Marker }) {
+    let className: string;
+    const classes = useStyle();
+    switch (marker.type) {
+        default:
+        case MarkerType.Terrain:
+            className = classes.terrain;
+            break;
+        case MarkerType.Spell:
+            className  = classes.terrain;
+            break;
+        case MarkerType.Command:
+            className = classes.command;
+            break;
+    } 
+    return <div className={`${classes.marker} ${className}`}>
+    
+        <div className={classes.text}>{marker.text}</div>
+        { marker.condition && <div className={classes.condition}>{marker.condition}</div> }
+        <div className={classes.description}>{marker.description}</div>
+    </div>;
+}
+
+export function Markers() {
+    const { markersStore } = useStores();
+    const classes = useStyle();
+    return <div className={classes.markers}> {
+        markersStore.markers.map(x => <MarkerView key={x.id} marker={x} />)
+    }{
+        markersStore.markers.map(x => <MarkerView key={x.id} marker={x} />)
+    }
         </div>;
-    }
-
-    private renderMarker(marker: Marker) {
-        let className: string;
-        switch (marker.type) {
-            default:
-            case MarkerType.Terrain:
-                className = "terrain";
-                break;
-            case MarkerType.Spell:
-                className  = 'spell';
-                break;
-            case MarkerType.Command:
-                className = 'command';
-                break;
-        } 
-        return <div className={`marker marker--${className}`} key={marker.id} onClick={this.edited.id === marker.id ? undefined : this.handleClick(marker)}>
-            {
-                this.edited.id === marker.id && <>
-                    <Button onClick={() => this.props.markersStore!.delete(marker)}><Icon className="fa fa-remove"/> </Button>    
-                    {/* <Input type="text" value={marker.text} action={{ content: "OK", onClick: this.handleClick(marker) }} placeholder="Text..." onChange={this.handleChange(marker)} /> */}
-                </>    
-            }
-            {this.edited.id === marker.id || <>
-                <div className="marker__text">{marker.text}</div>
-                { marker.condition && <div className="marker__condition">{marker.condition}</div> }
-                <div className="marker__description">{marker.description}</div>
-            </>}
-        </div>;
-    }
-
-    handleClick(marker: Marker) {
-       return () => {};
-        //  return () => this.edited.id === marker.id ? this.edited = { id: 0, text: "", description: ''} : this.edited = marker;
-    }
-
-    handleChange(marker: Marker) {
-        return (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            this.props.markersStore!.setText(marker, event.target.value);
-        };
-    }
 }

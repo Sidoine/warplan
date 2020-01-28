@@ -49,7 +49,7 @@ export class Filter extends React.Component<FilterProps> {
             <Grid item><DropdownObjects getText={x => x.text} options={grandAlliances} value={this.grandAlliance} onChange={this.setGrandAlliance}/></Grid>
             <Grid item><DropdownObjects getText={x => x.name} options={factionOptions} value={this.props.uiStore!.faction} onChange={this.setFaction} /></Grid>
             <Grid item>
-                <Input value={this.props.uiStore!.keywordFilter} onChange={this.handleSearch} className="icon" placeholder="Filter by keyword..." />
+                <Input value={this.props.uiStore!.keywordFilter} onChange={this.handleSearch} placeholder="Filter by keyword..." />
             </Grid>
         </Grid></CardContent></Card>;
     }

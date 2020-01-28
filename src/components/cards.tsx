@@ -92,8 +92,8 @@ export class Cards extends React.Component<CardsProps> {
 
     render() {
         const cardsStore = this.props.cardsStore!;
-        return <div className="cards"><div className="cards__visible">{this.abilities.filter(x => !cardsStore.isHidden(x.group || x.name)).map((x,i) => <AbilityCard key={i} onClick={this.handleShownAbilityClick} ability={x} />)}</div>
-        <div className="cards__hidden">{Array.from(cardsStore.names).filter(x => x[1]).map(([name]) => <HiddenCard key={name} name={name} onClick={this.handleHiddenAbilityClick} />)}</div></div>;
+        return <div><div>{this.abilities.filter(x => !cardsStore.isHidden(x.group || x.name)).map((x,i) => <AbilityCard key={i} onClick={this.handleShownAbilityClick} ability={x} />)}</div>
+        <div>{Array.from(cardsStore.names).filter(x => x[1]).map(([name]) => <HiddenCard key={name} name={name} onClick={this.handleHiddenAbilityClick} />)}</div></div>;
     }
 
     private handleShownAbilityClick = (name: string) => {

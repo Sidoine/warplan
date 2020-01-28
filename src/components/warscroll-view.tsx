@@ -28,7 +28,7 @@ export class WarscrollView extends React.Component<WarscrollViewProps>{
             <ul>
             { warscroll.units.filter(x => x.isBattleline).map(x => this.renderUnit(x, true))}
             </ul>
-            { warscroll.numberOfArtillery > 0 && <><h3>Artillery</h3>
+            { warscroll.numberOfArtilleries > 0 && <><h3>Artillery</h3>
             <ul>
             { warscroll.units.filter(x => x.isArtillery).map(x => this.renderUnit(x, true))}
             </ul></>}
@@ -47,7 +47,7 @@ export class WarscrollView extends React.Component<WarscrollViewProps>{
                 </dl>
                 <dl>
                     <dt>Extra Command Points</dt>
-                    <dd>{warscroll.extraCommandPoints}</dd>
+                    <dd>{warscroll.commandPoints}</dd>
                 </dl>
             </div>
             </div>;

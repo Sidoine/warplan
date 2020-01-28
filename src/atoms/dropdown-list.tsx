@@ -61,7 +61,6 @@ export interface TableColumn<T> {
 
 export interface AddButtonProps<T extends HasId> {
     options: T[];
-    content?: (t: T) => JSX.Element;
     onChange: (t: T) => void;
     placeholder?: string;
     columns: TableColumn<T>[];
@@ -77,7 +76,7 @@ export class AddButton<T extends HasId> extends React.Component<AddButtonProps<T
                 <DialogContent>
                 <Table>
                     <TableHead>
-                        <TableRow> {this.props.columns.map(x => <TableCell key={x.name}>{x.name}</TableCell>)}</TableRow>
+                        <TableRow>{this.props.columns.map(x => <TableCell key={x.name}>{x.name}</TableCell>)}</TableRow>
                     </TableHead>
                     <TableBody>
                         {this.props.options.map(x => <TableRow key={x.id} hover onClick={() => { this.open = false; this.props.onChange(x) }}>

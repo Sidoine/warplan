@@ -3,10 +3,14 @@ import * as React from "react";
 import { toJS } from "mobx";
 import { ModelOption, AbilityCategory, Unit } from "../stores/units";
 import { value } from "../helpers/react";
-import { AttackWithCount, AllAttacks, WoundEffects, AllAbilities } from "../atoms/warscroll-components";
-import { Icon } from "@material-ui/core";
+import { AttackWithCount, AllAttacks, WoundEffects, AllAbilities, useWarscrollStyles } from "../atoms/warscroll-components";
+import StarIcon from '@material-ui/icons/Star';
+import PeopleIcon from '@material-ui/icons/People';
+
+
 
 export function UnitWarscroll({wu, unit }: {wu?: WarscrollUnit | null, unit?: Unit}) {
+    const classes = useWarscrollStyles();
     const u = unit || wu?.unit;
     const models = wu?.models;
     if (!u) return <div></div>;
@@ -44,29 +48,29 @@ export function UnitWarscroll({wu, unit }: {wu?: WarscrollUnit | null, unit?: Un
     const magicAbilites = abilities.filter(x => x.category === AbilityCategory.Spell);
     const keywords = wu?.keywords || u.keywords;
 
-    return <div className="warscroll">
-    <div className="warscroll__header">
-        <div className="warscroll__stats">
-            <div className="move">{u.move && <>{value(u.move)}"</>}</div>
-            <div className="wounds">{u.wounds}</div>
-            <div className="save">{u.save && <> {value(u.save)}</>}</div>
-            <div className="bravery">{u.bravery && <> {value(u.bravery)}</>}</div>
+    return <div className={classes.warscroll}>
+    <div className={classes.header}>
+        <div className={classes.stats}>
+            <div className={classes.moveStat}>{u.move && <>{value(u.move)}"</>}</div>
+            <div className={classes.woundsStat}>{u.wounds}</div>
+            <div className={classes.saveStat}>{u.save && <> {value(u.save)}</>}</div>
+            <div className={classes.braveryStat}>{u.bravery && <> {value(u.bravery)}</>}</div>
         </div>
-        <div className="warscroll__title">
-            <div>{ wu?.isGeneral && <Icon className="fa fa-star"/> } {u.model.name}</div> { models && models.length > 0 && <div className="warscroll__title__option"> {mainOption && mainOption.name}</div>}
-            <div className="warscroll__count">{wu?.modelCount} <Icon className="fa fa-user"/> {wu?.points} points</div>
+        <div className={classes.title}>
+            <div>{ wu?.isGeneral && <StarIcon/> } {u.model.name}</div> { models && models.length > 0 && <div className={classes.option}> {mainOption && mainOption.name}</div>}
+            <div className={classes.count}>{wu?.modelCount} <PeopleIcon/> {wu?.points} points</div>
         </div>
-        <div className="warscroll__image"><img src={u.pictureUrl}/></div>
+        <div className={classes.image}><img src={u.pictureUrl}/></div>
     </div>
-    {u.flavor && <div className="warscroll__flavor">{u.flavor}</div>}
+    {u.flavor && <div className={classes.flavor}>{u.flavor}</div>}
         {attacks.length > 0 && <AllAttacks attacks={attacks}/>}
         {u.damageTable && <WoundEffects damageTable={u.damageTable}/>}
-            <div className="warscroll__abilities">
+            <div className={classes.abilities}>
             <AllAbilities title="Description" abilities={specialRules} description={u.description}/>
             {normalAbilities.length > 0 && <AllAbilities title="Abilities" abilities={normalAbilities}/>}
             {u.commandAbilities && <AllAbilities title="Command abilities" abilities={u.commandAbilities}/>}
             {u.magicDescription && <AllAbilities title="Magic" abilities={magicAbilites} description={u.magicDescription}/>}
             </div>
-            <div className="warscroll__keywords"><div className="warscroll__keywords__header">Keywords</div><div>{keywords && keywords.join(", ")}</div></div>
+            <div className={classes.keywords}><div className={classes.keywordsHeader}>Keywords</div><div>{keywords && keywords.join(", ")}</div></div>
     </div>;
 }

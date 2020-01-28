@@ -433,6 +433,23 @@ export interface WarscrollBattalionInterface {
     battalion: Battalion; 
 }
 
+export enum Contingent {
+    Spearhead,
+    Main,
+    Rearguard
+}
+
+export const contingentName = (contingent: Contingent) => {
+    switch (contingent) {
+        case Contingent.Spearhead:
+            return "Spearhead";
+            case Contingent.Rearguard:
+                return "Rearguard";
+    }
+    return "Main body";
+}
+
+
 export interface WarscrollUnitInterface {
     unit: Unit;
     isGeneral: boolean;
@@ -440,6 +457,7 @@ export interface WarscrollUnitInterface {
     models: WarscrollModelInterface[];
     modelCount: number;
     keywords: string[];
+    contingent: Contingent;
 }
 
 export interface WarscrollModelInterface {

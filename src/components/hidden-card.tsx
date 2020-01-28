@@ -1,13 +1,20 @@
 import * as React from "react";
-import "./hidden-card.less";
+import { makeStyles } from '@material-ui/core/styles';
 
 export interface HiddenCardProps {
     name: string;
     onClick: (name: string) => void;
 }
 
-export class HiddenCard extends React.Component<HiddenCardProps> {
-    render() {
-        return <div className="hidden-card" onClick={() => this.props.onClick(this.props.name)}>{this.props.name}</div>
+const useStyles = makeStyles({
+    card: {},
+    '@media print': {
+        card: {
+            display: "none !important"
+        }
     }
+})
+export function HiddenCard({name, onClick}: HiddenCardProps) {
+    const classes = useStyles();
+    return <div className={classes.card} onClick={() => onClick(name)}>{name}</div>
 }

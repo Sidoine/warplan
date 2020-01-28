@@ -2,7 +2,9 @@ import * as React from "react";
 import { observer, inject } from "mobx-react";
 import { NumberControl } from "../atoms/number-control";
 import { OwnedStore, OwnedModel } from "../stores/owned";
-import { Button, Icon } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 export interface OwnedModelEditProps {
     model: OwnedModel;
@@ -20,7 +22,7 @@ export class OwnedModelEdit extends React.Component<OwnedModelEditProps, {}> {
                 <NumberControl value={model.count} min={0} onChange={x => this.props.ownedStore!.setOwnedCount(this.props.model, x)} />
             </td>
             <td>
-                <Button onClick={() => this.props.ownedStore!.removeOwned(this.props.model)}><Icon className="fa fa-remove"/></Button>
+                <IconButton onClick={() => this.props.ownedStore!.removeOwned(this.props.model)}><DeleteIcon/></IconButton>
             </td>
         </tr>;
     }

@@ -11,7 +11,6 @@ import { MyNavbar } from "./components/my-navbar";
 import { Popins } from "./components/popins";
 import { Warscroll } from "./components/warscroll";
 import { Markers } from "./components/markers";
-import "./index.less";
 import { Stats } from "./components/stats";
 import { WarscrollView } from "./components/warscroll-view";
 import { Cards } from "./components/cards";

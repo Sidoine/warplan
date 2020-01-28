@@ -1,8 +1,8 @@
 import * as React from "react";
-import { UnitsStore, Model, ExtraAbility, ModelOption } from "../stores/units";
+import { UnitsStore, Model, ExtraAbility, ModelOption, Contingent, contingentName } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { UnitsList } from "./units-list";
-import { WarscrollStore, WarscrollUnit, WarscrollModel } from "../stores/warscroll";
+import { WarscrollStore, WarscrollUnit, WarscrollModel, PointMode } from "../stores/warscroll";
 import { Card, CardContent, CardActions, CardHeader, IconButton, Tooltip, Checkbox, Modal } from "@material-ui/core";
 import { computed, observable, action } from "mobx";
 import { ResponsiveTableColumn, ResponsiveTable } from "../atoms/responsive-table";
@@ -11,9 +11,10 @@ import PeopleIcon from '@material-ui/icons/People';
 import ClearIcon from '@material-ui/icons/Clear';
 import { UnitWarscroll } from "./unit-warscoll";
 import WarningIcon from '@material-ui/icons/Warning';
-import { AddButton, TableColumn } from "../atoms/dropdown-list";
+import { AddButton, TableColumn, DropdownValues } from "../atoms/dropdown-list";
 import { NumberControl } from "../atoms/number-control";
 import { join } from "../helpers/react";
+import { useStores } from "../stores";
 
 export interface WarscrollUnitsListProps {
     unitsStore?: UnitsStore;
@@ -29,6 +30,16 @@ const extraAbilityColumns: TableColumn<ExtraAbility>[] = [
     { name: "Description", text: x => x.ability.description }
 ]
 
+const ContingentList = observer(({ unit }: { unit: WarscrollUnit}) => {
+    const { warscrollStore } = useStores();
+    return <DropdownValues options={[Contingent.Rearguard, Contingent.Main, Contingent.Spearhead]}
+        getText={contingentName} onChange={x => warscrollStore.setContingent(unit, x)} value={unit.contingent}  />;
+});
+
+function ExtraAbilitiesView({ unit, onChange } : { unit: WarscrollUnit, onChange: (unit: WarscrollUnit, t: ExtraAbility) => void }) {
+    return unit.availableExtraAbilities.length > 0 ? <AddButton columns={extraAbilityColumns} options={unit.availableExtraAbilities} onChange={t => onChange(unit, t)} /> : <></>;
+}
+
 @inject('unitsStore', "warscrollStore")
 @observer
 export class WarscrollUnitsList extends React.Component<WarscrollUnitsListProps, {}> {
@@ -37,7 +48,7 @@ export class WarscrollUnitsList extends React.Component<WarscrollUnitsListProps,
     @action private handleCloseWarscroll = () => this.warscrollOpen = null;
 
     @computed get columns(): ResponsiveTableColumn<WarscrollUnit>[] {
-        return [{
+        const columns:ResponsiveTableColumn<WarscrollUnit>[] = [{
             name: "Name",
             text: this.renderModelName
         },{
@@ -52,10 +63,18 @@ export class WarscrollUnitsList extends React.Component<WarscrollUnitsListProps,
         }, {
             name: "Points",
             text: unit => unit.points
-        }, {
+        }];
+        if (this.props.warscrollStore!.warscroll.pointMode === PointMode.MeetingEngagements) {
+            columns.push({
+                name: "Contingent",
+                text: unit => <ContingentList unit={unit} />
+            })
+        }
+        columns.push({
             name: "Actions",
             text: unit => <IconButton onClick={() => this.props.warscrollStore!.removeUnit(unit)}><ClearIcon/></IconButton>
-        }];
+        });
+        return columns;
     }
 
     private renderModelName = (unit: WarscrollUnit) => {
@@ -118,15 +137,10 @@ export class WarscrollUnitsList extends React.Component<WarscrollUnitsListProps,
             <Tooltip title={x.ability.description}><span>{x.ability.name}</span></Tooltip>
             <IconButton onClick={() => this.props.warscrollStore!.removeExtraAbility(unit, x)} ><ClearIcon/> </IconButton></span>),
              ", ") }
-    { this.renderExtraAbilities(unit)}</>
+             <ExtraAbilitiesView unit={unit} onChange={this.handleExtraAbilityChange}/></>
     }
-    private renderExtraAbilities(unit: WarscrollUnit) {
-        return unit.availableExtraAbilities.length > 0 && <AddButton columns={extraAbilityColumns} content={x => <><div>{x.ability.name}</div><div className="warscroll_unit_edit__description">{x.ability.description}</div></>}  options={unit.availableExtraAbilities} onChange={this.handleExtraAbilityChange(unit)} />;
-    }
-    private handleExtraAbilityChange(unit: WarscrollUnit) {
-        return (extraAbility: ExtraAbility) => {
-            if (extraAbility) this.props.warscrollStore!.addExtraAbility(unit, extraAbility);
-        }
+    private handleExtraAbilityChange = (unit: WarscrollUnit, extraAbility: ExtraAbility) => {
+        this.props.warscrollStore!.addExtraAbility(unit, extraAbility);
     }
 
     render() {

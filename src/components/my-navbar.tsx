@@ -4,7 +4,6 @@ import { observer, inject } from "mobx-react";
 import { RouteComponentProps } from "react-router";
 import { BasketStore } from "../stores/basket";
 import { WarscrollStore } from "../stores/warscroll";
-import "./my-navbar.less";
 import { List,ListItem, Badge } from "@material-ui/core";
 import { ResponsiveDrawer } from "./responsive-drawer";
 import { computed } from "mobx";

@@ -9,7 +9,11 @@ import { WarscrollStore } from "../stores/warscroll";
 import { getValue } from "../stores/combat";
 import { UnitWarscroll } from "./unit-warscoll";
 import { Unit } from "../stores/units";
-import { Table, TableHead, TableRow, TableCell, TableBody, Icon, Dialog, TableSortLabel, Card, CardContent, TextField, Grid, TableContainer } from "@material-ui/core";
+import { Table, TableHead, TableRow, TableCell, TableBody, Dialog, TableSortLabel, Card, CardContent, TextField, Grid, TableContainer, IconButton } from "@material-ui/core";
+import AddIcon from '@material-ui/icons/Add';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+
+
 
 export interface StatsProps {
     uiStore?: UiStore;
@@ -162,8 +166,8 @@ export class Stats extends React.Component<StatsProps> {
         const count = this.props.warscrollStore!.warscroll.units.reduce((c, x) => x.unit.id === unit.id ? x.count + c : c, 0);
         return <TableRow key={unit.id + unitStats.name}>
             <TableCell>{unit.model.name} { count > 0 && `(${count})`} 
-                <Icon className="fa fa-add fa-circle" onClick={() => this.props.warscrollStore!.addUnit(unit)}/>
-                <Icon className="fa fa-help fa-circle"onClick={() => this.handleOpenWarscroll(unit)} />
+                <IconButton  onClick={() => this.props.warscrollStore!.addUnit(unit)}> <AddIcon/></IconButton>
+                <IconButton onClick={() => this.handleOpenWarscroll(unit)}><HelpOutlineIcon/></IconButton>
                 </TableCell>
             <TableCell>{unitStats.name}</TableCell>
             <TableCell>{unit.points}</TableCell>

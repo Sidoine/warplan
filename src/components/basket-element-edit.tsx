@@ -3,7 +3,9 @@ import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { NumberControl } from "../atoms/number-control";
 import { BasketStore, BasketElement } from "../stores/basket";
-import { IconButton, Icon } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 export interface BasketElementEditProps {
     unitsStore?: UnitsStore;
@@ -21,7 +23,7 @@ export class BasketElementEdit extends React.Component<BasketElementEditProps, {
             <td><NumberControl value={basketElement.count} onChange={this.onCountChange} /></td>
             <td>{basketElement.box.price * basketElement.count}</td>
             <td>
-            <IconButton onClick={() => this.props.basketStore!.removeBasketElement(this.props.basketElement)}><Icon className="fa fa-remove"/></IconButton>
+            <IconButton onClick={() => this.props.basketStore!.removeBasketElement(this.props.basketElement)}><DeleteIcon/></IconButton>
             </td></tr>;
     }
 

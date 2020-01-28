@@ -1,5 +1,5 @@
 import { action, computed, observable, toJS } from "mobx";
-import { Battalion, Unit, UnitsStore, WarscrollUnitInterface, WarscrollInterface, Allegiance, ExtraAbility, WarscrollBattalionInterface, WarscrollModelInterface, Scenery, ModelOption, ArmyOption, AbilityCategory } from "./units";
+import { Battalion, Unit, UnitsStore, Contingent, WarscrollUnitInterface, WarscrollInterface, Allegiance, ExtraAbility, WarscrollBattalionInterface, WarscrollModelInterface, Scenery, ModelOption, ArmyOption, AbilityCategory, Ability } from "./units";
 import { deflate, inflate } from "pako";
 import { groupBy } from "../helpers/react";
 
@@ -15,7 +15,8 @@ function areAllied(unit1: Unit, unit2: Unit) {
 
 export const enum PointMode {
     MatchedPlay,
-    OpenPlay
+    OpenPlay,
+    MeetingEngagements
 }
 
 export class WarscrollModel implements WarscrollModelInterface {
@@ -80,6 +81,8 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @observable
     battalion: WarscrollBattalionInterface | null = null;
+    @observable
+    contingent = Contingent.Main;
 
     @computed get keywords() {
         if (!this.isAllied) {
@@ -128,6 +131,10 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     get isBattleline() {
         return this.unit.isBattleline && this.unit.isBattleline(this.warscroll);
+    }
+
+    get isOther() {
+        return !this.isArtillery && !this.isBehemot && !this.isLeader && !this.isBattleline;
     }
 
     get isGeneral() {
@@ -219,7 +226,99 @@ export class WarscrollBattalion implements WarscrollBattalionInterface {
     }
 }
 
-export class Warscroll implements WarscrollInterface {
+export interface WarscrollLimits {
+    numberOfLeaders: number;
+    minLeaders: number | undefined;
+    maxLeaders: number | undefined;
+    numberOfBehemots: number;
+    minBehemots: number | undefined;
+    maxBehemots: number | undefined;
+    numberOfArtilleries: number;
+    minArtilleries: number | undefined;
+    maxArtilleries: number | undefined;
+    numberOfBattlelines: number;
+    minBattlelines: number | undefined;
+    maxBattlelines: number | undefined;
+    numberOfOtherUnits: number;
+    minOtherUnits: number | undefined;
+    maxOtherUnits: number | undefined;
+}
+
+export class WarscrollContingent implements WarscrollLimits {
+    constructor(private warscroll: Warscroll, public contingent: Contingent) {
+    }
+
+    @computed get totalNumberOfUnits() {
+        return this.warscroll.units.reduce((prev, curr) => curr.contingent === this.contingent ? prev + 1 : prev, 0);
+    }
+
+    @computed get numberOfLeaders() {
+        return this.count("isLeader");
+    }
+
+    @computed get minLeaders() {
+        return this.contingent === Contingent.Main ? 1 : 0;
+    }
+
+    @computed get maxLeaders() {
+        return this.contingent === Contingent.Main ? 2 : 1;
+    }
+
+    @computed get numberOfBehemots() {
+        return this.count("isBehemot");
+    }
+
+    @computed get minBehemots() {
+        return 0;
+    }
+
+    @computed get maxBehemots() {
+        return this.contingent !== Contingent.Spearhead ? 1 : 0;
+    }
+
+    @computed get numberOfArtilleries() {
+        return this.count("isArtillery");
+    }    
+
+    @computed get minArtilleries() {
+        return 0;
+    }
+
+    @computed get maxArtilleries() {
+        return this.contingent === Contingent.Rearguard ? 2 : 0;
+    }
+
+    @computed get numberOfBattlelines() {
+        return this.count("isBattleline");
+    }
+
+    @computed get minBattlelines() {
+        return this.contingent === Contingent.Main ? 1 : 0;
+    }
+
+    @computed get maxBattlelines() {
+        return this.contingent === Contingent.Rearguard ? 1 :
+            this.contingent === Contingent.Main ? undefined : 2;
+    }
+
+    @computed get numberOfOtherUnits() {
+        return this.count("isOther");
+    }
+
+    @computed get minOtherUnits() {
+        return 0;
+    }
+
+    @computed get maxOtherUnits() {
+        return this.contingent === Contingent.Main ? undefined : 2;
+    }
+
+    count(key: keyof WarscrollUnit) {
+        return this.warscroll.units.reduce((prev, curr) => curr[key] && curr.contingent === this.contingent ? prev + 1 : prev, 0);
+    }
+}
+
+export class Warscroll implements WarscrollInterface, WarscrollLimits {
     serial = 0;
 
     constructor(public unitsStore: UnitsStore) {
@@ -248,6 +347,12 @@ export class Warscroll implements WarscrollInterface {
     @observable
     units: WarscrollUnit[] = [];
 
+    contingents = [
+        new WarscrollContingent(this, Contingent.Spearhead),
+        new WarscrollContingent(this, Contingent.Main),
+        new WarscrollContingent(this, Contingent.Rearguard)
+    ]
+
     @computed
     get description() {
         return Array.from(groupBy(this.units, x => x.unit.model.name))
@@ -262,7 +367,10 @@ export class Warscroll implements WarscrollInterface {
     general: WarscrollUnit | undefined = undefined;   
     
     @observable
-    sceneries: WarscrollScenery[] = [];
+    endlessSpells: WarscrollScenery[] = [];
+
+    @observable
+    commandPoints = 0;
 
     @computed
     get unitsPoints() {
@@ -271,7 +379,7 @@ export class Warscroll implements WarscrollInterface {
 
     @computed
     get sceneryPoints() {
-        return this.sceneries.reduce((p, x) => x.scenery.points + p, 0);
+        return this.endlessSpells.reduce((p, x) => x.scenery.points + p, 0);
     }
 
     @computed
@@ -281,7 +389,7 @@ export class Warscroll implements WarscrollInterface {
 
     @computed
     get totalPoints() {
-        return this.unitsPoints + this.battalionsPoints + this.sceneryPoints;
+        return this.unitsPoints + this.battalionsPoints + this.sceneryPoints + 50 * this.commandPoints;
     }
 
     @computed
@@ -295,7 +403,7 @@ export class Warscroll implements WarscrollInterface {
     }
 
     @computed
-    get numberOfBattelines() {
+    get numberOfBattlelines() {
         return this.units.reduce((p, x) => x.isBattleline ? p + 1 : p, 0);
     }
     
@@ -305,20 +413,26 @@ export class Warscroll implements WarscrollInterface {
     }
     
     @computed
-    get numberOfArtillery() {
+    get numberOfArtilleries() {
         return this.units.reduce((p, x) => x.isArtillery ? p + 1 : p, 0);
+    }
+
+    @computed
+    get numberOfOtherUnits() {
+        return this.units.reduce((p, x) => x.isOther ? p +1 : p, 0);
     }
 
     minLeaders = 1;
     
     @computed
     get maxPoints() {
-        return this.totalPoints <= 1000 ? 1000 : (this.totalPoints <= 2000 ? 2000: 2500);
+        return this.pointMode === PointMode.MeetingEngagements ? 1000 :  (this.totalPoints <= 1000 ? 1000 : (this.totalPoints <= 2000 ? 2000: 2500));
     }    
     
     @computed 
-    get extraCommandPoints() {
-        return Math.floor((this.maxPoints - this.totalPoints) / 50);
+    get maxCommandPoints() {
+        if (this.pointMode === PointMode.OpenPlay) return undefined;
+        return 1;
     }
 
     @computed
@@ -337,19 +451,36 @@ export class Warscroll implements WarscrollInterface {
     }
 
     @computed
+    get maxBattalions() {
+        return this.pointMode === PointMode.MeetingEngagements ? 1 : undefined;
+    }
+
+    minBehemots = 0;
+
+    @computed
     get maxBehemots()
     {
         return this.totalPoints <= 1000 ? 2 : (this.totalPoints <= 2000 ? 4 : 5);
     }
 
+    minOtherUnits = 0;
+    maxOtherUnits = undefined;
+
+    minArtilleries = 0;
+
     @computed
-    get maxArtillery() {
+    get maxArtilleries() {
         return this.totalPoints <= 1000 ? 2 : (this.totalPoints <= 2000 ? 4 : 5);
     }
     
     @computed
     get maxAlliedPoints() {
         return this.totalPoints <= 1000 ? 200 : (this.totalPoints <= 2000 ? 400 : 500);
+    }
+
+    @computed
+    get maxEndlessSpells() {
+        return this.pointMode === PointMode.MeetingEngagements ? 1 : undefined;
     }
 
     @computed
@@ -364,7 +495,7 @@ export class Warscroll implements WarscrollInterface {
 
     @computed
     get isBattelinesValid() {
-        return this.numberOfBattelines === this.minBattlelines;
+        return this.numberOfBattlelines === this.minBattlelines;
     }
 
     @computed
@@ -374,7 +505,12 @@ export class Warscroll implements WarscrollInterface {
 
     @computed
     get isArtilleryValid() {
-        return this.numberOfArtillery <= this.maxArtillery;
+        return this.numberOfArtilleries <= this.maxArtilleries;
+    }
+
+    @computed
+    get isEndlessSpellsValid() {
+        return this.maxEndlessSpells === undefined || this.endlessSpells.length <= this.maxEndlessSpells;
     }
 
     @observable pointMode = PointMode.MatchedPlay;   
@@ -393,6 +529,17 @@ export class Warscroll implements WarscrollInterface {
     get availableExtraAbilities() {
         return this.unitsStore.extraAbilities.filter(x => (x.allegianceKeyword === undefined || this.allegiance.keywords.indexOf(x.allegianceKeyword) >= 0));
     }
+
+    
+    @computed
+    get abilities() {
+        let result: Ability[] = this.unitsStore.baseAbilities;
+        if (this.armyOption) {
+            if (this.armyOption.abilities) result = result.concat(this.armyOption.abilities);
+        }        
+        if (this.allegiance.battleTraits) result = result.concat(this.allegiance.battleTraits);
+        return result;
+    }
 }
 
 interface SerializedWarscroll {
@@ -403,6 +550,7 @@ interface SerializedWarscroll {
         extraAbilities?: string[];
         models?: { count: number, options: string[] }[];
         battalionIndex?:number;
+        contingent?: Contingent;
     }[];
     battalions: {
         battalionId: string;
@@ -411,6 +559,7 @@ interface SerializedWarscroll {
     armyOption?: string;
     sceneries?: string[];
     pointMode?: PointMode;
+    commandPoints?: number;
 }
 
 export class WarscrollStore {
@@ -435,13 +584,13 @@ export class WarscrollStore {
 
     @action
     addScenery(scenery: Scenery) {
-        this.warscroll.sceneries.push(new WarscrollScenery(this.warscroll, scenery));
+        this.warscroll.endlessSpells.push(new WarscrollScenery(this.warscroll, scenery));
         this.saveWarscroll();
     }
 
     @action
     removeScenery(scenery: WarscrollScenery) {
-        const sceneries = this.warscroll.sceneries;
+        const sceneries = this.warscroll.endlessSpells;
         sceneries.splice(sceneries.indexOf(scenery), 1);
         this.saveWarscroll();
     }
@@ -517,6 +666,7 @@ export class WarscrollStore {
         const armyOptions = this.warscroll.allegiance.armyOptions;
         if (armyOptions) this.warscroll.armyOption = armyOptions.values.find(x => x.name == warscroll.armyOption) || null;
         this.warscroll.pointMode = warscroll.pointMode || PointMode.MatchedPlay;
+        this.warscroll.commandPoints = warscroll.commandPoints || 0;
         
         for (const ba of warscroll.battalions) {
             const battalion = this.unitsStore.battalions.find(x => x.id === ba.battalionId);
@@ -528,7 +678,7 @@ export class WarscrollStore {
             for (const id of warscroll.sceneries) {
                 const scenery = this.unitsStore.sceneryList.find(x => x.id === id);
                 if (scenery === undefined) continue;
-                this.warscroll.sceneries.push(new WarscrollScenery(this.warscroll, scenery));
+                this.warscroll.endlessSpells.push(new WarscrollScenery(this.warscroll, scenery));
             }
         }
         
@@ -539,6 +689,7 @@ export class WarscrollStore {
             if (wu.isGeneral) {
                 this.warscroll.general = newUnit;
             }
+            if (wu.contingent !== undefined) newUnit.contingent = wu.contingent;
             if (wu.extraAbilities) {
                 for (const e of wu.extraAbilities) {
                     const ability = this.unitsStore.getExtraAbility(e);
@@ -577,7 +728,8 @@ export class WarscrollStore {
                 isGeneral: x === this.warscroll.general,
                 extraAbilities: x.extraAbilities.map(x => x.id),
                 models: x.models.map(x => { return { count: x.count, options: x.options.map(y => y.id) } }),
-                battalionIndex: x.battalion === null ? undefined : this.warscroll.battalions.findIndex(y => x.battalion !== null && y.id === x.battalion.id)
+                battalionIndex: x.battalion === null ? undefined : this.warscroll.battalions.findIndex(y => x.battalion !== null && y.id === x.battalion.id),
+                contingent: x.contingent
             }}),
             battalions: this.warscroll.battalions.map(x => {
                 return {
@@ -586,8 +738,9 @@ export class WarscrollStore {
             }),
             allegiance: this.warscroll.allegiance.id,
             armyOption: (this.warscroll.armyOption && this.warscroll.armyOption.name) || undefined,
-            sceneries: this.warscroll.sceneries.map(x => x.scenery.id),
-            pointMode: this.warscroll.pointMode
+            sceneries: this.warscroll.endlessSpells.map(x => x.scenery.id),
+            pointMode: this.warscroll.pointMode,
+            commandPoints: this.warscroll.commandPoints
         };
     }
 
@@ -675,6 +828,18 @@ export class WarscrollStore {
     @action
     removeModel(unit: WarscrollUnit, model: WarscrollModel) {
         unit.models.splice(unit.models.indexOf(model), 1);
+        this.saveWarscroll();
+    }
+
+    @action
+    setCommandPoints(commandPoints: number) {
+        this.warscroll.commandPoints = commandPoints;
+        this.saveWarscroll();
+    }
+
+    @action
+    setContingent(unit: WarscrollUnit, x: Contingent): void {
+        unit.contingent = x;
         this.saveWarscroll();
     }
 }

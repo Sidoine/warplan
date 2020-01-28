@@ -29,7 +29,7 @@ export class WarscrollSceneriesList extends React.Component<WarscrollSceneriesLi
                 </TableHead>
                 <TableBody>
             {
-                warscroll.sceneries.map(x => <WarscrollSceneryEdit key={x.id} scenery={x}/>)
+                warscroll.endlessSpells.map(x => <WarscrollSceneryEdit key={x.id} scenery={x}/>)
             }
                 </TableBody>
                 </Table>

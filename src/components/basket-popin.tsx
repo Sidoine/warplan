@@ -4,7 +4,9 @@ import { inject, observer } from "mobx-react";
 import { UnitsStore } from "../stores/units";
 import { observable } from "mobx";
 import { BasketStore } from "../stores/basket";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Icon, Input } from "@material-ui/core";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Input, IconButton } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 export interface BasketPopinProps {
     uiStore?: UiStore;
@@ -27,7 +29,7 @@ export class BasketPopin extends React.Component<BasketPopinProps, {}> {
                     this.props.basketStore!.baskets.map(x => <div>{x}
                         <Button onClick={() => this.props.basketStore!.saveBasket(x)}>Update</Button>
                         <Button onClick={() => this.props.basketStore!.loadBasket(x)}>Load</Button>
-                        <Button onClick={() => this.props.basketStore!.removeBasket(x)}><Icon className="fa fa-remove"/></Button>
+                        <IconButton onClick={() => this.props.basketStore!.removeBasket(x)}><DeleteIcon/></IconButton>
                     </div>)
                 }
                     <Input type="text" value={this.basketName} onChange={x => this.basketName = x.target.value } />

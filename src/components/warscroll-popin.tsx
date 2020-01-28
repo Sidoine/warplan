@@ -4,7 +4,9 @@ import { inject, observer } from "mobx-react";
 import { UnitsStore } from "../stores/units";
 import { observable } from "mobx";
 import { WarscrollStore } from "../stores/warscroll";
-import { Button, Icon, Dialog, DialogTitle, DialogContentText, DialogActions, Input } from "@material-ui/core";
+import { Button, Dialog, DialogTitle, DialogContentText, DialogActions, Input } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 export interface WarscrollPopinProps {
     uiStore?: UiStore;
@@ -27,7 +29,7 @@ export class WarscrollPopin extends React.Component<WarscrollPopinProps, {}> {
                     this.props.warscrollStore!.warscrolls.map(x => <div>{x}
                         <Button onClick={() => this.props.warscrollStore!.saveWarscroll(x)}>Update</Button>
                         <Button onClick={() => { this.props.warscrollStore!.loadWarscroll(x); this.handleClose(); }}>Load</Button>
-                        <Button onClick={() => this.props.warscrollStore!.removeWarscroll(x)}><Icon className="fa fa-remove"/></Button>
+                        <Button onClick={() => this.props.warscrollStore!.removeWarscroll(x)}><DeleteIcon/></Button>
                     </div>)
                 }
                     <Input type="text" value={this.warscrollName} onChange={(x) => this.warscrollName = x.target.value } />
