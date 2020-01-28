@@ -24,25 +24,51 @@ const stores = newStores();
 ReactDOM.render(
     <Provider {...stores}>
         <HashRouter>
-                <Popins/>    
-                <Route render={ x => <MyNavbar route={x}>
-                <Switch>
-                    <Route exact path="/owned" component={OwnedModelsList}/>
-                    <Route exact path="/" component={WarscrollBuilder} />
-                    <Route exact path="/missing" component={MissingsList}/>
-                    <Route exact path="/basket" component={Basket}/>
-                    <Route exact path="/warscroll" component={Warscroll} />
-                    <Route exact path="/markers" component={Markers}/>
-                    <Route exact path="/stats" component={Stats}/>
-                    <Route exact path="/list" component={WarscrollView} />
-                    <Route exact path="/cards" component={Cards} />
-                    <Route exact path="/cl" component={CheckList}/>
-                    <Route exact path="/battle" component={BattlePlay}/>
-                </Switch>
-                </MyNavbar> }/>
-                
+            <Popins />
+            <Route
+                render={x => (
+                    <MyNavbar route={x}>
+                        <Switch>
+                            <Route
+                                exact
+                                path="/owned"
+                                component={OwnedModelsList}
+                            />
+                            <Route
+                                exact
+                                path="/"
+                                component={WarscrollBuilder}
+                            />
+                            <Route
+                                exact
+                                path="/missing"
+                                component={MissingsList}
+                            />
+                            <Route exact path="/basket" component={Basket} />
+                            <Route
+                                exact
+                                path="/warscroll"
+                                component={Warscroll}
+                            />
+                            <Route exact path="/markers" component={Markers} />
+                            <Route exact path="/stats" component={Stats} />
+                            <Route
+                                exact
+                                path="/list"
+                                component={WarscrollView}
+                            />
+                            <Route exact path="/cards" component={Cards} />
+                            <Route exact path="/cl" component={CheckList} />
+                            <Route
+                                exact
+                                path="/battle"
+                                component={BattlePlay}
+                            />
+                        </Switch>
+                    </MyNavbar>
+                )}
+            />
         </HashRouter>
-    </Provider>    
-    ,
+    </Provider>,
     root
 );

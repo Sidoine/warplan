@@ -10,13 +10,15 @@ export interface PopinsProps {
 }
 
 @inject("uiStore")
-@observer    
+@observer
 export class Popins extends React.Component<PopinsProps, {}> {
     render() {
-        return <>
-            { this.props.uiStore!.basketPopin && <BasketPopin/> }   
-            { this.props.uiStore!.warscrollPopin && <WarscrollPopin/> }   
-            { this.props.uiStore!.exportPopin && <ExportPopin/> }
-        </>;
+        return (
+            <>
+                {this.props.uiStore!.basketPopin && <BasketPopin />}
+                {this.props.uiStore!.warscrollPopin && <WarscrollPopin />}
+                {this.props.uiStore!.exportPopin && <ExportPopin />}
+            </>
+        );
     }
 }

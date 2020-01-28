@@ -13,17 +13,24 @@ export interface BattalionsListProps {
 const columns: TableColumn<Battalion>[] = [
     { name: "Name", text: x => x.name },
     { name: "Description", text: x => x.description }
-]
+];
 
-@inject('unitsStore', "warscrollStore")
+@inject("unitsStore", "warscrollStore")
 @observer
 export class BattalionsList extends React.Component<BattalionsListProps, {}> {
     render() {
         const items = this.props.warscrollStore!.availableBattalions;
-        return <AddButton placeholder={this.props.title} columns={columns} options={items} onChange={this.onChange} />;
+        return (
+            <AddButton
+                placeholder={this.props.title}
+                columns={columns}
+                options={items}
+                onChange={this.onChange}
+            />
+        );
     }
 
     private onChange = (model: Battalion) => {
         this.props.warscrollStore!.addBattalion(model);
-    }
+    };
 }

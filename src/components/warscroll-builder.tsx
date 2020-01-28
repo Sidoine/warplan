@@ -14,18 +14,49 @@ export interface WarscrollBuilderProps {
     uiStore?: UiStore;
 }
 
-@inject('unitsStore', 'uiStore')
+@inject("unitsStore", "uiStore")
 @observer
-export class WarscrollBuilder extends React.Component<WarscrollBuilderProps, {}> {
+export class WarscrollBuilder extends React.Component<
+    WarscrollBuilderProps,
+    {}
+> {
     render() {
-        return <Grid container direction="column" spacing={2} wrap="nowrap">
-            <Grid item> <Filter/></Grid>    
-            <Grid item> <WarscrollSummary/></Grid>
-            <Grid item> <WarscrollBattalionsList/></Grid>
-            <Grid item> <WarscrollUnitsList/></Grid>
-            <Grid item> <WarscrollSceneriesList/></Grid>
-            <Grid item> <Button onClick={() => this.props.uiStore!.showWarscrollPopin()}>Manage warscrolls</Button>
-            <Button onClick={() => this.props.uiStore!.showExportPopin()}>Export</Button></Grid>
-        </Grid>;
+        return (
+            <Grid container direction="column" spacing={2} wrap="nowrap">
+                <Grid item>
+                    {" "}
+                    <Filter />
+                </Grid>
+                <Grid item>
+                    {" "}
+                    <WarscrollSummary />
+                </Grid>
+                <Grid item>
+                    {" "}
+                    <WarscrollBattalionsList />
+                </Grid>
+                <Grid item>
+                    {" "}
+                    <WarscrollUnitsList />
+                </Grid>
+                <Grid item>
+                    {" "}
+                    <WarscrollSceneriesList />
+                </Grid>
+                <Grid item>
+                    {" "}
+                    <Button
+                        onClick={() => this.props.uiStore!.showWarscrollPopin()}
+                    >
+                        Manage warscrolls
+                    </Button>
+                    <Button
+                        onClick={() => this.props.uiStore!.showExportPopin()}
+                    >
+                        Export
+                    </Button>
+                </Grid>
+            </Grid>
+        );
     }
 }

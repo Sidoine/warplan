@@ -1,12 +1,8 @@
 import { DataStoreImpl } from "../imported-data";
 
-function addBoxes(data: DataStoreImpl) {
+function addBoxes(data: DataStoreImpl) {}
 
-}
-
-function fixBattalions(data: DataStoreImpl) {
-
-}
+function fixBattalions(data: DataStoreImpl) {}
 
 function fixUnits(data: DataStoreImpl) {
     {
@@ -19,7 +15,6 @@ function fixUnits(data: DataStoreImpl) {
         // const blackbriarJavelin: Attack = { melee: false, name: "Blackbriar Javelin", range: 9, attacks: 2, toHit: "4+", toWound: '4+', rend: -1, damage: 1 };
         // const deepwoodCovenStaff: Attack = { melee: true, name: "Deepwood Coven Staff", range: 2, attacks: 1, toHit: "4+", toWound: '4+', damage: 1 };
         // const antlers: Attack = { melee: true, name: "Steeds' Antlers and Thrashing Hooves", range: 1, attacks: 2, toHit: "4+", toWound: '4+', damage: 1 };
-        
         // const handmaidenOfTheThorn: Ability = {
         //     name: "Handmaiden of the Thorn",
         //     description: "The leader of this unit is the Handmaiden of the Thorn. A Handmaiden of the Thorn makes 2 attacks with her Deepwood Coven Staff rather than 1",
@@ -45,9 +40,7 @@ function fixUnits(data: DataStoreImpl) {
     }
 }
 
-function addExtraAbilities(data: DataStoreImpl) {
-
-}
+function addExtraAbilities(data: DataStoreImpl) {}
 
 export function overrideWanderers(data: DataStoreImpl): void {
     addBoxes(data);

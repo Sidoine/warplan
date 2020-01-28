@@ -22,7 +22,7 @@ export class MarkersStore {
     serial = 1;
 
     @observable
-    markers: Marker[] = [];   
+    markers: Marker[] = [];
 
     constructor() {
         this.load();
@@ -39,138 +39,138 @@ export class MarkersStore {
         this.markers = [
             {
                 id: this.serial++,
-                text: 'Damned',
-                condition: 'Sacrifice',
-                description: 'D3 MW/RR1 hit',
+                text: "Damned",
+                condition: "Sacrifice",
+                description: "D3 MW/RR1 hit",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Arcane',
-                description: '+1 casting',
+                text: "Arcane",
+                description: "+1 casting",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Inspiring',
-                description: '+1 bravery',
+                text: "Inspiring",
+                description: "+1 bravery",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Deadly',
-                condition: 'Move',
-                description: '1: D3 MW',
+                text: "Deadly",
+                condition: "Move",
+                description: "1: D3 MW",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Mystical',
-                condition: 'W/MW',
-                description: '6+: negated',
+                text: "Mystical",
+                condition: "W/MW",
+                description: "6+: negated",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Overgrown',
-                condition: 'On ground',
-                description: 'Cut visibility',
+                text: "Overgrown",
+                condition: "On ground",
+                description: "Cut visibility",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Entangling',
-                description: '-2 run/charge',
+                text: "Entangling",
+                description: "-2 run/charge",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Volcalnic',
-                description: '6: D3 MW',
+                text: "Volcalnic",
+                description: "6: D3 MW",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Commanding',
-                description: '+1 CP',
+                text: "Commanding",
+                description: "+1 CP",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Healing',
-                description: '6: D3 heal',
+                text: "Healing",
+                description: "6: D3 heal",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Nullification',
-                condition: 'HEROES',
-                description: '+1 unbind',
+                text: "Nullification",
+                condition: "HEROES",
+                description: "+1 unbind",
                 type: MarkerType.Terrain
             },
             {
                 id: this.serial++,
-                text: 'Mystic shield',
-                description: 'RR1 Save',
+                text: "Mystic shield",
+                description: "RR1 Save",
                 type: MarkerType.Spell
             },
             {
                 id: this.serial++,
-                text: 'All-out Attack',
-                description: 'RR1 Hit',
+                text: "All-out Attack",
+                description: "RR1 Hit",
                 type: MarkerType.Command
             },
             {
                 id: this.serial++,
-                text: 'All-out Defence',
-                description: 'RR1 Save',
+                text: "All-out Defence",
+                description: "RR1 Save",
                 type: MarkerType.Command
             },
             {
                 id: this.serial++,
-                text: 'Volley Fire',
-                description: 'RR1 Hit',
+                text: "Volley Fire",
+                description: "RR1 Hit",
                 type: MarkerType.Command
             },
             {
                 id: this.serial++,
-                text: 'Lightshard',
+                text: "Lightshard",
                 condition: '12"',
-                description: 'RR Hit',
+                description: "RR Hit",
                 type: MarkerType.Spell
             },
             {
                 id: this.serial++,
-                text: 'Soul Cage',
-                description: 'Fight last/No retreat',
+                text: "Soul Cage",
+                description: "Fight last/No retreat",
                 type: MarkerType.Spell
             },
             {
                 id: this.serial++,
-                text: 'Reaping Scythe',
-                description: 'RR Hit/RR Wound',
+                text: "Reaping Scythe",
+                description: "RR Hit/RR Wound",
                 type: MarkerType.Spell
             },
             {
                 id: this.serial++,
-                text: 'Shademist',
-                description: '-1 Wound',
+                text: "Shademist",
+                description: "-1 Wound",
                 type: MarkerType.Spell
             },
             {
                 id: this.serial++,
-                text: 'Spectral Overseer',
+                text: "Spectral Overseer",
                 condition: '12"',
-                description: '+1 Hit',
+                description: "+1 Hit",
                 type: MarkerType.Command
             },
             {
                 id: this.serial++,
-                text: 'Lord of Gheists',
-                description: '+1 Attacks',
+                text: "Lord of Gheists",
+                description: "+1 Attacks",
                 type: MarkerType.Command
             }
-        ]
+        ];
         // const serialized = localStorage.getItem("markers");
         // if (serialized === null) return;
 

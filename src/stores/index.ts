@@ -19,7 +19,7 @@ interface Stores {
     basketStore: BasketStore;
     markersStore: MarkersStore;
     cardsStore: CardsStore;
-    battleStore: BattleStore;    
+    battleStore: BattleStore;
 }
 
 export function newStores(): Stores {
@@ -32,7 +32,17 @@ export function newStores(): Stores {
     const markersStore = new MarkersStore();
     const cardsStore = new CardsStore();
     const battleStore = new BattleStore(unitsStore);
-    return { dataStore, unitsStore, uiStore, warscrollStore, ownedStore, basketStore, markersStore, cardsStore, battleStore };
+    return {
+        dataStore,
+        unitsStore,
+        uiStore,
+        warscrollStore,
+        ownedStore,
+        basketStore,
+        markersStore,
+        cardsStore,
+        battleStore
+    };
 }
 
 export function useStores(): Stores {

@@ -3,7 +3,10 @@ import { UnitsStore } from "../stores/units";
 import { observer, inject } from "mobx-react";
 import { BoxesList } from "./boxes-list";
 import { BasketStore, Missing } from "../stores/basket";
-import { ResponsiveTableColumn, ResponsiveTable } from "../atoms/responsive-table";
+import {
+    ResponsiveTableColumn,
+    ResponsiveTable
+} from "../atoms/responsive-table";
 
 export interface MissingsListProps {
     unitsStore?: UnitsStore;
@@ -12,26 +15,29 @@ export interface MissingsListProps {
 
 const columns: ResponsiveTableColumn<Missing>[] = [
     {
-        name: 'Name',
+        name: "Name",
         text: x => x.model.name
-    }, {
-        name: 'Count',
+    },
+    {
+        name: "Count",
         text: x => x.count
-    }, {
-        name: 'In basket',
+    },
+    {
+        name: "In basket",
         text: x => x.inBasket
-    }, {
-        name: 'Buy',
+    },
+    {
+        name: "Buy",
         text: x => <BoxesList model={x.model} title="Buy" />
     }
-]
+];
 
-@inject('unitsStore', "basketStore")
+@inject("unitsStore", "basketStore")
 @observer
 export class MissingsList extends React.Component<MissingsListProps, {}> {
     render() {
-        const neededModels = this.props.basketStore!.missingModels;        
+        const neededModels = this.props.basketStore!.missingModels;
 
-        return <ResponsiveTable columns={columns} rows={neededModels}/>;
+        return <ResponsiveTable columns={columns} rows={neededModels} />;
     }
 }

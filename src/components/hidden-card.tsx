@@ -1,5 +1,5 @@
 import * as React from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export interface HiddenCardProps {
     name: string;
@@ -8,13 +8,17 @@ export interface HiddenCardProps {
 
 const useStyles = makeStyles({
     card: {},
-    '@media print': {
+    "@media print": {
         card: {
             display: "none !important"
         }
     }
-})
-export function HiddenCard({name, onClick}: HiddenCardProps) {
+});
+export function HiddenCard({ name, onClick }: HiddenCardProps) {
     const classes = useStyles();
-    return <div className={classes.card} onClick={() => onClick(name)}>{name}</div>
+    return (
+        <div className={classes.card} onClick={() => onClick(name)}>
+            {name}
+        </div>
+    );
 }

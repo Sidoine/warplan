@@ -1,11 +1,30 @@
-import { Attack, Ability, Unit, ExtraAbilityTest, Model, Material, WarscrollModelInterface, ModelOption, WarscrollUnitInterface, AbilityEffect } from "../units";
+import {
+    Attack,
+    Ability,
+    Unit,
+    ExtraAbilityTest,
+    Model,
+    Material,
+    WarscrollModelInterface,
+    ModelOption,
+    WarscrollUnitInterface,
+    AbilityEffect
+} from "../units";
 import { getAttackDamageEx, getValue, getAttackDamage } from "../combat";
 
 export const ModelCategoryWeapon = "weapon";
 export const UnitCategoryMain = "main";
 
-type ModelCondition = (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => boolean;
-export function setAbilityAsOption(unit: Unit, ability: Ability, condition?: (option: ModelOption) => ModelCondition, unitCategory?: string) {
+type ModelCondition = (
+    unit: WarscrollUnitInterface,
+    model: WarscrollModelInterface
+) => boolean;
+export function setAbilityAsOption(
+    unit: Unit,
+    ability: Ability,
+    condition?: (option: ModelOption) => ModelCondition,
+    unitCategory?: string
+) {
     removeAbility(unit, ability);
     const option: ModelOption = {
         id: ability.name,
@@ -23,14 +42,23 @@ export function addOption(unit: Unit, option: ModelOption) {
     return option;
 }
 
-export function addAttackToOption(option: ModelOption, unit: Unit, attack: Attack) {
+export function addAttackToOption(
+    option: ModelOption,
+    unit: Unit,
+    attack: Attack
+) {
     if (!option.attacks) option.attacks = [];
     removeAttack(unit, attack);
     option.attacks.push(attack);
     return attack;
 }
 
-export function addAbilityToOption(option: ModelOption, unit: Unit, ability: Ability, effect?: AbilityEffect) {
+export function addAbilityToOption(
+    option: ModelOption,
+    unit: Unit,
+    ability: Ability,
+    effect?: AbilityEffect
+) {
     if (!option.abilities) option.abilities = [];
     removeAbility(unit, ability);
     option.abilities.push(ability);
@@ -38,7 +66,13 @@ export function addAbilityToOption(option: ModelOption, unit: Unit, ability: Abi
     return ability;
 }
 
-export function setAttackAsOption(unit: Unit, attack: Attack, condition?: (option: ModelOption) => ModelCondition, abilities?: Ability[], unitCategory?: string) {
+export function setAttackAsOption(
+    unit: Unit,
+    attack: Attack,
+    condition?: (option: ModelOption) => ModelCondition,
+    abilities?: Ability[],
+    unitCategory?: string
+) {
     if (unit.attacks) {
         unit.attacks.splice(unit.attacks.indexOf(attack), 1);
     }
@@ -48,13 +82,20 @@ export function setAttackAsOption(unit: Unit, attack: Attack, condition?: (optio
         attacks: [attack],
         modelCategory: "weapon",
         abilities: abilities,
-        unitCategory: unitCategory        
+        unitCategory: unitCategory
     });
     if (condition) option.isOptionValid = condition(option);
     return option;
 }
 
-export function setAttackAsUpgrade(unit: Unit, attack: Attack, upgradeTo: Attack,  condition?: (option: ModelOption) => ModelCondition, abilities?: Ability[], unitCategory?: string) {
+export function setAttackAsUpgrade(
+    unit: Unit,
+    attack: Attack,
+    upgradeTo: Attack,
+    condition?: (option: ModelOption) => ModelCondition,
+    abilities?: Ability[],
+    unitCategory?: string
+) {
     setAttackAsOption(unit, upgradeTo, undefined, undefined, UnitCategoryMain);
     setAttackAsOption(unit, attack, condition, abilities, unitCategory);
 }
@@ -83,7 +124,7 @@ export function overrideAttack(ability: Attack, f: (x: Attack) => void) {
     override(ability, f);
 }
 
-export function override<T>(value:T, f: (x: T) => void) {
+export function override<T>(value: T, f: (x: T) => void) {
     f(value);
 }
 
@@ -96,85 +137,166 @@ export function getBaseModelOption(id: string, options: ModelOption[]) {
     return options.find(x => x.id === id);
 }
 
-export function setBaseModelOption(unit: Unit, id: string, attacks: Attack[], abilities: Ability[]) {
+export function setBaseModelOption(
+    unit: Unit,
+    id: string,
+    attacks: Attack[],
+    abilities: Ability[]
+) {
     const option = getBaseModelOption(id, unit.options!)!;
     option.attacks = attacks;
     option.abilities = abilities;
     return option;
 }
 
-export function getWoundsForAbility6OnHitIsMortalWound(models: number, attack: Attack, mortalWounds: number) {
-    return models * (mortalWounds/6 - getAttackDamageEx(attack, { toHit: "6"}));
+export function getWoundsForAbility6OnHitIsMortalWound(
+    models: number,
+    attack: Attack,
+    mortalWounds: number
+) {
+    return (
+        models * (mortalWounds / 6 - getAttackDamageEx(attack, { toHit: "6" }))
+    );
 }
 
 export function getWoundsForAbilityBonus1OnHit(models: number, attack: Attack) {
-    return models * 1/6 * getAttackDamageEx(attack, {});
+    return ((models * 1) / 6) * getAttackDamageEx(attack, {});
 }
 
-export function getWoundsForAbilityReroll1OnHit(models: number, attack: Attack) {
-    return models * 1/6 * getAttackDamageEx(attack, {});
+export function getWoundsForAbilityReroll1OnHit(
+    models: number,
+    attack: Attack
+) {
+    return ((models * 1) / 6) * getAttackDamageEx(attack, {});
 }
 
 export function getWoundsForExtraAttack(attack: Attack, count: number = 1) {
     return getAttackDamageEx(attack, { attacks: count.toString() });
 }
 
-export function getWoundsForSpecialDamageIf6OnWound(attack: Attack, wounds: number) {
-    return getAttackDamageEx(attack, { toWound: "6", damage: (wounds - getValue(attack.damage)).toString() });
+export function getWoundsForSpecialDamageIf6OnWound(
+    attack: Attack,
+    wounds: number
+) {
+    return getAttackDamageEx(attack, {
+        toWound: "6",
+        damage: (wounds - getValue(attack.damage)).toString()
+    });
 }
 
 export function getSavedWoundReroll1(save?: number) {
-    return save ? 1/6 * 6 / (7 - save) : 0;
+    return save ? ((1 / 6) * 6) / (7 - save) : 0;
 }
 
-export function getWoundsForExtraWoundsRollsOn6OnHit(attack: Attack, extraWoundRolls: number) {
+export function getWoundsForExtraWoundsRollsOn6OnHit(
+    attack: Attack,
+    extraWoundRolls: number
+) {
     return getAttackDamageEx(attack, { toHit: 6 }) * extraWoundRolls;
 }
 
-
-export function getWoundsForExtraWoundsRollsOnHit(attack: Attack, extraWoundRolls: number) {
+export function getWoundsForExtraWoundsRollsOnHit(
+    attack: Attack,
+    extraWoundRolls: number
+) {
     return getAttackDamage(attack) * extraWoundRolls;
 }
 
-export function getWoundsForSpecialRendIf6OnWound(attack: Attack, rend: number) {
-    return getAttackDamageEx(attack, { toWound: "6", rend: rend }) - getAttackDamageEx(attack, { toWound: "6" });
+export function getWoundsForSpecialRendIf6OnWound(
+    attack: Attack,
+    rend: number
+) {
+    return (
+        getAttackDamageEx(attack, { toWound: "6", rend: rend }) -
+        getAttackDamageEx(attack, { toWound: "6" })
+    );
 }
 
-export function keywordAvailable(category: string, keyword: string, alts: string[]): ExtraAbilityTest {
-    return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(keyword) >= 0 && alts.some(x => x === "ALL" || unit.unit.model.name.toUpperCase() === x || unit.unit.keywords.indexOf(x) >= 0);
+export function keywordAvailable(
+    category: string,
+    keyword: string,
+    alts: string[]
+): ExtraAbilityTest {
+    return (unit, ws) =>
+        unit.extraAbilities.every(x => x.category !== category) &&
+        unit.unit.keywords.indexOf(keyword) >= 0 &&
+        alts.some(
+            x =>
+                x === "ALL" ||
+                unit.unit.model.name.toUpperCase() === x ||
+                unit.unit.keywords.indexOf(x) >= 0
+        );
 }
 
-export const artifactAvailable: ExtraAbilityTest = (unit, ws) => !!unit.unit.isLeader && unit.extraAbilities.every(x => x.category !== "artifact")  
-         && ws.extraAbilities.filter(x => x.category === "artifact").length < 1 + ws.battalions.length;
+export const artifactAvailable: ExtraAbilityTest = (unit, ws) =>
+    !!unit.unit.isLeader &&
+    unit.extraAbilities.every(x => x.category !== "artifact") &&
+    ws.extraAbilities.filter(x => x.category === "artifact").length <
+        1 + ws.battalions.length;
 
-export function artifactWithKeywordAvailable(keyword: string, alts: string[]): ExtraAbilityTest {
-    return (unit, ws) => artifactAvailable(unit, ws) && unit.unit.keywords.indexOf(keyword) >= 0 && alts.some(x => x === "ALL" || unit.unit.model.name.toUpperCase() === x || unit.unit.keywords.indexOf(x) >= 0);
+export function artifactWithKeywordAvailable(
+    keyword: string,
+    alts: string[]
+): ExtraAbilityTest {
+    return (unit, ws) =>
+        artifactAvailable(unit, ws) &&
+        unit.unit.keywords.indexOf(keyword) >= 0 &&
+        alts.some(
+            x =>
+                x === "ALL" ||
+                unit.unit.model.name.toUpperCase() === x ||
+                unit.unit.keywords.indexOf(x) >= 0
+        );
 }
-         
+
 export function hasOption(model: WarscrollModelInterface, option: ModelOption) {
     return !model || model.options.some(x => x.id === option.id);
 }
 
-export function getUnitModelsWithOptionCount(unit: WarscrollUnitInterface, option: ModelOption) {
-    return unit.models.reduce((p,x) => hasOption(x, option) ? p + x.count : p, 0);
+export function getUnitModelsWithOptionCount(
+    unit: WarscrollUnitInterface,
+    option: ModelOption
+) {
+    return unit.models.reduce(
+        (p, x) => (hasOption(x, option) ? p + x.count : p),
+        0
+    );
 }
 
-export function getUnitModelsWithOptionsCount(unit: WarscrollUnitInterface, option1: ModelOption, option2: ModelOption) {
-    return unit.models.reduce((p,x) => hasOption(x, option1) && hasOption(x, option2) ? p + x.count : p, 0);
+export function getUnitModelsWithOptionsCount(
+    unit: WarscrollUnitInterface,
+    option1: ModelOption,
+    option2: ModelOption
+) {
+    return unit.models.reduce(
+        (p, x) =>
+            hasOption(x, option1) && hasOption(x, option2) ? p + x.count : p,
+        0
+    );
 }
 
-export function isRatioCorrect(unit: WarscrollUnitInterface, option: ModelOption, howMany: number, forHowMany: number) {
-    return getUnitModelsWithOptionCount(unit, option) <= unit.modelCount * howMany / forHowMany;
+export function isRatioCorrect(
+    unit: WarscrollUnitInterface,
+    option: ModelOption,
+    howMany: number,
+    forHowMany: number
+) {
+    return (
+        getUnitModelsWithOptionCount(unit, option) <=
+        (unit.modelCount * howMany) / forHowMany
+    );
 }
 
 export function oneModelOption(option: ModelOption) {
-    return (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => getUnitModelsWithOptionCount(unit, option) <= 1;
+    return (unit: WarscrollUnitInterface, model: WarscrollModelInterface) =>
+        getUnitModelsWithOptionCount(unit, option) <= 1;
 }
 
 export function ratioModelOption(howMany: number, forHowMany: number) {
     return (option: ModelOption) => {
-        return (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => isRatioCorrect(unit, option, howMany, forHowMany);
-    }
+        return (unit: WarscrollUnitInterface, model: WarscrollModelInterface) =>
+            isRatioCorrect(unit, option, howMany, forHowMany);
+    };
 }
 
 export const frequentRate = 0.75;

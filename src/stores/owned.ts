@@ -41,8 +41,8 @@ export class OwnedStore {
     setOwnedCount(ownedModel: OwnedModel, value: number) {
         ownedModel.count = value;
         this.saveOwned();
-    } 
-    
+    }
+
     @action
     loadOwned() {
         const serialized = localStorage.getItem("owned");
@@ -51,7 +51,9 @@ export class OwnedStore {
         this.ownedModels.splice(0);
         const owned: SerializedOwned = JSON.parse(serialized);
         for (const model of owned.models) {
-            const m = this.unitsStore.modelsList.find(x => x.id === model.modelId);
+            const m = this.unitsStore.modelsList.find(
+                x => x.id === model.modelId
+            );
             if (m === undefined) continue;
             this.ownedModels.push({
                 id: this.serial++,
@@ -69,7 +71,7 @@ export class OwnedStore {
                     count: x.count
                 };
             })
-        }
+        };
         localStorage.setItem("owned", JSON.stringify(serialized));
     }
 

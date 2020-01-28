@@ -14,16 +14,23 @@ export interface SceneriesListProps {
 const columns: TableColumn<Scenery>[] = [
     { name: "Name", text: x => x.name },
     { name: "Description", text: x => x.description }
-]
+];
 
-@inject('unitsStore', "warscrollStore", "uiStore")
+@inject("unitsStore", "warscrollStore", "uiStore")
 @observer
 export class SceneriesList extends React.Component<SceneriesListProps, {}> {
     render() {
-        return <AddButton columns={columns} placeholder={this.props.title} options={this.props.unitsStore!.sceneryList} onChange={this.onChange}/>;
-    }    
+        return (
+            <AddButton
+                columns={columns}
+                placeholder={this.props.title}
+                options={this.props.unitsStore!.sceneryList}
+                onChange={this.onChange}
+            />
+        );
+    }
 
     private onChange = (scenery: Scenery) => {
         this.props.warscrollStore!.addScenery(scenery);
-    }
+    };
 }

@@ -112,7 +112,7 @@ export interface TargetCondition {
     weaponId?: string;
     meleeWeapon?: boolean;
     rangedWeapon?: boolean;
-    inRangeOf?: { friendly: boolean, keyword: string[], range: number };
+    inRangeOf?: { friendly: boolean; keyword: string[]; range: number };
 }
 
 export interface AttackAuraValues {
@@ -135,8 +135,7 @@ export interface AttackAuraValues {
     rangeBonus?: Value;
 }
 
-export interface AttackAuraNumbers {
-}
+export interface AttackAuraNumbers {}
 
 export interface AttackAuraBooleans {
     rerollFailedHits?: boolean;
@@ -144,7 +143,7 @@ export interface AttackAuraBooleans {
     changeHitRoll?: boolean;
     changeWoundRoll?: boolean;
     shootAfterRun?: boolean;
-    
+
     changeHitWoundSaveOrDamageRoll?: boolean;
 }
 
@@ -152,8 +151,11 @@ export interface AttackAuraAbilityEffects {
     effectsOnHitUnmodified6?: AbilityEffect[];
 }
 
-export interface AttackAura extends AttackAuraValues, AttackAuraNumbers, AttackAuraAbilityEffects, AttackAuraBooleans {
-}
+export interface AttackAura
+    extends AttackAuraValues,
+        AttackAuraNumbers,
+        AttackAuraAbilityEffects,
+        AttackAuraBooleans {}
 
 export const enum SubPhase {
     Before,
@@ -267,14 +269,24 @@ export interface ModelOption {
 
     // An unit can't select another option of this category
     unitCategory?: string;
-    isOptionValid?: (unit: WarscrollUnitInterface, model: WarscrollModelInterface) => boolean;
+    isOptionValid?: (
+        unit: WarscrollUnitInterface,
+        model: WarscrollModelInterface
+    ) => boolean;
 }
 
-export type Value = number | string | DamageColumn | undefined | RatioValue | SumValue | ConditionValue;
+export type Value =
+    | number
+    | string
+    | DamageColumn
+    | undefined
+    | RatioValue
+    | SumValue
+    | ConditionValue;
 
 export function getValueRatio(value: Value, ratio?: number): Value {
     if (ratio !== undefined && value !== undefined) {
-        if (typeof(value) === "number") {
+        if (typeof value === "number") {
             return value * ratio;
         } else {
             return { ratio, value, type: ValueType.RatioValue };
@@ -286,7 +298,7 @@ export function getValueRatio(value: Value, ratio?: number): Value {
 export function getSumValues(value1: Value, value2: Value): Value {
     if (value1 === undefined) return value2;
     if (value2 === undefined) return value1;
-    if (typeof (value1) === "number" && typeof (value2) === "number") {
+    if (typeof value1 === "number" && typeof value2 === "number") {
         return value1 + value2;
     }
     return { value1, value2, type: ValueType.SumValue };
@@ -329,23 +341,33 @@ export interface ConditionValue {
 }
 
 export function isRatioValue(v: Value): v is RatioValue {
-    return typeof(v) === "object" && v.type === ValueType.RatioValue;
+    return typeof v === "object" && v.type === ValueType.RatioValue;
 }
 
 export function isSumValue(v: Value): v is SumValue {
-    return typeof(v) === "object" && v.type === ValueType.SumValue;
+    return typeof v === "object" && v.type === ValueType.SumValue;
 }
 
 export function isDamageColumn(v: Value): v is DamageColumn {
-    return typeof(v) === "object" && (v.type === ValueType.DamageColumn || v.type === undefined);
+    return (
+        typeof v === "object" &&
+        (v.type === ValueType.DamageColumn || v.type === undefined)
+    );
 }
 
 export function isConditionValue(v: Value): v is ConditionValue {
-    return typeof (v) === "object" && v.type === ValueType.Condition;
+    return typeof v === "object" && v.type === ValueType.Condition;
 }
 
-export function conditionValue(targetCondition: TargetCondition, value: Value) : ConditionValue {
-    return { type: ValueType.Condition, value: value, targetCondition: targetCondition };
+export function conditionValue(
+    targetCondition: TargetCondition,
+    value: Value
+): ConditionValue {
+    return {
+        type: ValueType.Condition,
+        value: value,
+        targetCondition: targetCondition
+    };
 }
 
 export interface UnitInfos {
@@ -390,11 +412,11 @@ export interface Unit extends UnitInfos {
     optionStats?: UnitStatModels[];
 
     isLeader?: (warscroll: WarscrollInterface) => boolean;
-    isBattleline?: (warscroll: WarscrollInterface) => (boolean | undefined);
+    isBattleline?: (warscroll: WarscrollInterface) => boolean | undefined;
     isBehemot?: (warscroll: WarscrollInterface) => boolean;
     isArtillery?: (warscroll: WarscrollInterface) => boolean;
 }
-            
+
 export interface BoxedModel {
     /** Un élément par type de modèle possible (en conversion) */
     models: Model[];
@@ -408,7 +430,6 @@ export interface Box {
     name: string;
     url?: string;
 }
-
 
 export interface BattalionUnit {
     id: string;
@@ -430,7 +451,7 @@ export interface Battalion {
 
 export interface WarscrollBattalionInterface {
     id: string;
-    battalion: Battalion; 
+    battalion: Battalion;
 }
 
 export enum Contingent {
@@ -443,12 +464,11 @@ export const contingentName = (contingent: Contingent) => {
     switch (contingent) {
         case Contingent.Spearhead:
             return "Spearhead";
-            case Contingent.Rearguard:
-                return "Rearguard";
+        case Contingent.Rearguard:
+            return "Rearguard";
     }
     return "Main body";
-}
-
+};
 
 export interface WarscrollUnitInterface {
     unit: Unit;
@@ -477,9 +497,9 @@ export interface WarscrollInterface {
 }
 
 export interface DataStore {
-    models: {[key:string]: Model};
-    units: {[key:string]: Unit};
-    factions: {[key:string]: Faction};
+    models: { [key: string]: Model };
+    units: { [key: string]: Unit };
+    factions: { [key: string]: Faction };
 }
 
 export interface Allegiance {
@@ -491,7 +511,10 @@ export interface Allegiance {
     battleTraits?: Ability[];
 }
 
-export type ExtraAbilityTest = (unit: WarscrollUnitInterface, warscroll: WarscrollInterface) => boolean;
+export type ExtraAbilityTest = (
+    unit: WarscrollUnitInterface,
+    warscroll: WarscrollInterface
+) => boolean;
 
 export interface ExtraAbility {
     id: string;
@@ -531,9 +554,9 @@ export class UnitsStore {
     allegianceList: Allegiance[] = [];
     sceneryList: Scenery[] = [];
     baseAbilities: Ability[] = [];
-        
-    constructor(data: DataStoreImpl) {   
-        overrideStormcast(data);   
+
+    constructor(data: DataStoreImpl) {
+        overrideStormcast(data);
         overrideNurgle(data);
         overrideSylvaneth(data);
         overrideEverchosen(data);
@@ -545,17 +568,21 @@ export class UnitsStore {
         overrideLegionOfGrief(data);
         overrideOrder(data);
 
-        const models: {[key: string]: Model} = data.models;  
+        const models: { [key: string]: Model } = data.models;
         for (const key in models) {
             this.modelsList.push(models[key]);
         }
-        this.modelsList = this.modelsList.sort((a, b) => a.name > b.name ? 1 : -1);
+        this.modelsList = this.modelsList.sort((a, b) =>
+            a.name > b.name ? 1 : -1
+        );
 
         const units: { [key: string]: Unit } = data.units;
         for (const key in units) {
             this.unitList.push(units[key]);
         }
-        this.unitList = this.unitList.sort((a, b) => a.model.name > b.model.name ? 1: -1);
+        this.unitList = this.unitList.sort((a, b) =>
+            a.model.name > b.model.name ? 1 : -1
+        );
 
         const battalions: { [key: string]: Battalion } = <any>data.battalions;
         for (const key in battalions) {
@@ -569,13 +596,16 @@ export class UnitsStore {
             this.factionsList.push(this.factions[key]);
         }
 
-        const allegiances: {[key: string]: Allegiance} = data.allegiances;
+        const allegiances: { [key: string]: Allegiance } = data.allegiances;
         for (const key in allegiances) {
             this.allegianceList.push(allegiances[key]);
         }
-        this.allegianceList = this.allegianceList.sort((a, b) => a.name > b.name ? 1 : -1);
+        this.allegianceList = this.allegianceList.sort((a, b) =>
+            a.name > b.name ? 1 : -1
+        );
 
-        const extraAbilities: {[key: string]: ExtraAbility} = data.extraAbilities;
+        const extraAbilities: { [key: string]: ExtraAbility } =
+            data.extraAbilities;
         for (const key in extraAbilities) {
             this.extraAbilities.push(extraAbilities[key]);
         }
@@ -583,7 +613,7 @@ export class UnitsStore {
         this.fillBaseAbilities();
         // this.armyOptions = data.armyOptions;
 
-        const sceneries: {[key: string]: Scenery} = data.sceneries;
+        const sceneries: { [key: string]: Scenery } = data.sceneries;
         for (const key in sceneries) {
             this.sceneryList.push(sceneries[key]);
         }
@@ -596,71 +626,94 @@ export class UnitsStore {
             id: "at_the_double",
             name: "At the double",
             category: AbilityCategory.Command,
-            description: "You can use this command ability after you make a run roll for a friendly unit that is within 6\" of a friendly Hero, or 12\" of a friendly Hero that is a general. If you do so, the run roll is treated as being a 6.",
+            description:
+                'You can use this command ability after you make a run roll for a friendly unit that is within 6" of a friendly Hero, or 12" of a friendly Hero that is a general. If you do so, the run roll is treated as being a 6.',
             effects: [{ targetType: TargetType.Friend, phase: Phase.Movement }]
         });
         this.baseAbilities.push({
             id: "forward_to_victory",
             name: "Forward to Victory",
             category: AbilityCategory.Command,
-            description: "You can use this command ability after you make a charge roll for a friendly unit that is within 6\" of a friendly Hero, or 12\" of a friendly Hero that is a general. If you do so, re-roll the charge roll.",
+            description:
+                'You can use this command ability after you make a charge roll for a friendly unit that is within 6" of a friendly Hero, or 12" of a friendly Hero that is a general. If you do so, re-roll the charge roll.',
             effects: [{ targetType: TargetType.Friend, phase: Phase.Charge }]
         });
         this.baseAbilities.push({
             id: "inspiring_presence",
             name: "Inspiring Presence",
             category: AbilityCategory.Command,
-            description: "You can use this command ability at the start of the battleshock phase. If you do so, pick a friendly unit that is within 6\" of friendly Hero, or 12\" of a friendly Hero that is a general. That unit does not have to take battleshock tests in that phase.",
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Battleshock }]
+            description:
+                'You can use this command ability at the start of the battleshock phase. If you do so, pick a friendly unit that is within 6" of friendly Hero, or 12" of a friendly Hero that is a general. That unit does not have to take battleshock tests in that phase.',
+            effects: [
+                { targetType: TargetType.Friend, phase: Phase.Battleshock }
+            ]
         });
         this.baseAbilities.push({
             id: "allout_attack",
-            name: 'All-out Attack',
+            name: "All-out Attack",
             category: AbilityCategory.Command,
-            description: 'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.',
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat}]
+            description:
+                'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.',
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat }]
         });
         this.baseAbilities.push({
             id: "allout_defence",
-            name: 'All-out Defence',
+            name: "All-out Defence",
             category: AbilityCategory.Command,
-            description: 'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll save rolls of 1 for attacks that target that unit until the end of that phase.',
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat}]
+            description:
+                'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll save rolls of 1 for attacks that target that unit until the end of that phase.',
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat }]
         });
         this.baseAbilities.push({
             id: "volleyfire",
-            name: 'Volley Fire',
+            name: "Volley Fire",
             category: AbilityCategory.Command,
-            description: 'You can use this command ability at the start of your shooting phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.',
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Shooting}]
-        })
+            description:
+                'You can use this command ability at the start of your shooting phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.',
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Shooting }]
+        });
         this.baseAbilities.push({
             id: "lookoutsir",
             name: "Look out, Sir!",
             category: AbilityCategory.Army,
-            description: "You must subtract 1 from hit rolls made for missile weapons if the target of the attack is an enemy Hero that is within 3\" of an enemy unit that has 3 or more models. The Look Out, Sir! rule does not apply if the target Hero is a Monster.",
+            description:
+                'You must subtract 1 from hit rolls made for missile weapons if the target of the attack is an enemy Hero that is within 3" of an enemy unit that has 3 or more models. The Look Out, Sir! rule does not apply if the target Hero is a Monster.',
             effects: [{ targetType: TargetType.Friend, phase: Phase.Shooting }]
         });
         this.baseAbilities.push({
             id: "cover",
             name: "Cover",
             category: AbilityCategory.Army,
-            description: "Add 1 to save rolls for a unit if all of its models are wholly on or within a terrain feature when the rolls are made. This modifier does not apply in the combat phase if the unit you are making save rolls for made a charge move in the same turn, and never applies to units containing models with the Monster or War Machinekeyword that have a Wounds characteristic of 8 or more.",
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Shooting | Phase.Combat }]
+            description:
+                "Add 1 to save rolls for a unit if all of its models are wholly on or within a terrain feature when the rolls are made. This modifier does not apply in the combat phase if the unit you are making save rolls for made a charge move in the same turn, and never applies to units containing models with the Monster or War Machinekeyword that have a Wounds characteristic of 8 or more.",
+            effects: [
+                {
+                    targetType: TargetType.Friend,
+                    phase: Phase.Shooting | Phase.Combat
+                }
+            ]
         });
         this.baseAbilities.push({
             id: "arcanebolt",
             name: "Arcane Bolt",
             category: AbilityCategory.Spell,
-            description: "Arcane Bolt has a casting value of 5. If successfully cast, pick an enemy unit within 18\" of the caster that is visible to them. That unit suffers 1 mortal wound. If the casting roll was 10 or more, the unit suffers D3 mortal wounds instead.",
+            description:
+                'Arcane Bolt has a casting value of 5. If successfully cast, pick an enemy unit within 18" of the caster that is visible to them. That unit suffers 1 mortal wound. If the casting roll was 10 or more, the unit suffers D3 mortal wounds instead.',
             effects: [{ targetType: TargetType.Enemy, phase: Phase.Hero }]
         });
         this.baseAbilities.push({
             id: "mysticshield",
             name: "Mystic Shield",
             category: AbilityCategory.Spell,
-            description: "Mystic Shield has a casting value of 6. If successfully cast, pick a friendly unit within 18\" of the caster that is visible to them. Re-roll save rolls of 1 for that unit until your next hero phase.",
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Hero, defenseAura: {  rerollSavesOn1: true} }]
+            description:
+                'Mystic Shield has a casting value of 6. If successfully cast, pick a friendly unit within 18" of the caster that is visible to them. Re-roll save rolls of 1 for that unit until your next hero phase.',
+            effects: [
+                {
+                    targetType: TargetType.Friend,
+                    phase: Phase.Hero,
+                    defenseAura: { rerollSavesOn1: true }
+                }
+            ]
         });
     }
 
@@ -684,6 +737,5 @@ export class UnitsStore {
         return this.extraAbilities.find(x => x.id === id);
     }
 
-    private addAlliances(data: DataStoreImpl) {
-    }
+    private addAlliances(data: DataStoreImpl) {}
 }

@@ -1,12 +1,8 @@
 import { DataStoreImpl } from "../imported-data";
 
-function addBoxes(data: DataStoreImpl) {
+function addBoxes(data: DataStoreImpl) {}
 
-}
-
-function fixBattalions(data: DataStoreImpl) {
-
-}
+function fixBattalions(data: DataStoreImpl) {}
 
 function fixUnits(data: DataStoreImpl) {
     {
@@ -34,9 +30,7 @@ function fixUnits(data: DataStoreImpl) {
     }
 }
 
-function addExtraAbilities(data: DataStoreImpl) {
-
-}
+function addExtraAbilities(data: DataStoreImpl) {}
 
 export function overrideDevotedOfSigmar(data: DataStoreImpl): void {
     addBoxes(data);

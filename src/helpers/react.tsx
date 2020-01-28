@@ -5,7 +5,8 @@ export function join(e: JSX.Element[], separator: string) {
     const ret: JSX.Element[] = [];
     let index = 0;
     for (const el of e) {
-        if (ret.length) ret.push(<span key={`sep${index++}`}>{separator}</span>);
+        if (ret.length)
+            ret.push(<span key={`sep${index++}`}>{separator}</span>);
         ret.push(el);
     }
     return ret;
@@ -13,7 +14,7 @@ export function join(e: JSX.Element[], separator: string) {
 
 export function value(val: Value, defaut?: string) {
     if (val === undefined) return defaut;
-    if (typeof(val) === "string" || typeof(val) === "number") {
+    if (typeof val === "string" || typeof val === "number") {
         return val;
     }
     return "*";
@@ -21,7 +22,7 @@ export function value(val: Value, defaut?: string) {
 
 export function groupBy<TKey, T>(list: T[], keyGetter: (value: T) => TKey) {
     const map = new Map<TKey, T[]>();
-    list.forEach((item) => {
+    list.forEach(item => {
         const key = keyGetter(item);
         const collection = map.get(key);
         if (!collection) {

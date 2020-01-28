@@ -45,6 +45,6 @@
     "test": "ava dist/test",
     "watch-test": "ava -w dist/test",
     "start": "node index.js",
-    "prettier": "prettier"
+    "prettier": "prettier --write \"src/**/*.{ts,tsx}\""
   }
 }

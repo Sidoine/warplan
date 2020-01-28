@@ -1,12 +1,8 @@
 import { DataStoreImpl } from "../imported-data";
 
-function addBoxes(data: DataStoreImpl) {
+function addBoxes(data: DataStoreImpl) {}
 
-}
-
-function fixBattalions(data: DataStoreImpl) {
-
-}
+function fixBattalions(data: DataStoreImpl) {}
 
 function fixUnits(data: DataStoreImpl) {
     {
@@ -20,12 +16,10 @@ function fixUnits(data: DataStoreImpl) {
         // const barbedHooksAndBlades: Attack = { melee: true, name: "Barbed Hooks and Blades", range: 1, attacks: 5, toHit: "3+", toWound: '4+', damage: 1 };
         // const ferociousBite: Attack = { melee: true, name: "Allopex's Ferocious Bite", range: 1, attacks: 1, toHit: "3+", toWound: '3+', rend: -2, damage: 3 };
         // const scythedFins: Attack = { melee: true, name: "Allopex's Scythed Fins", range: 1, attacks: 4, toHit: "3+", toWound: '3+', rend: -1, damage: 1 };
-        
         // const fly: Ability = {
         //     name: "Fly",
         //     description: "Akhelian Allopexes can fly."
         // };
-
         // const predators: Ability = {
         //     name: "Bloodthirsty Predators",
         //     description: "Allopexes are ferocious beasts drawn towards the scent of freshly spilt blood. At the start of your charge phase, if this unit is within 12\" of any enemy models that have been allocated any wounds, you can re-roll charge rolls for this unit in that charge phase."
@@ -35,9 +29,7 @@ function fixUnits(data: DataStoreImpl) {
     }
 }
 
-function addExtraAbilities(data: DataStoreImpl) {
-
-}
+function addExtraAbilities(data: DataStoreImpl) {}
 
 export function overrideIdonethDeepkins(data: DataStoreImpl): void {
     addBoxes(data);

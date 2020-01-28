@@ -60,47 +60,72 @@ export class Cards extends React.Component<CardsProps> {
         let result: CardContent[] = this.props.unitsStore!.baseAbilities;
         const w = this.props.warscrollStore!.warscroll;
         if (w.armyOption) {
-            if (w.armyOption.abilities) result = result.concat(w.armyOption.abilities);
-        }        
-        if (w.allegiance.battleTraits) result = result.concat(w.allegiance.battleTraits);
+            if (w.armyOption.abilities)
+                result = result.concat(w.armyOption.abilities);
+        }
+        if (w.allegiance.battleTraits)
+            result = result.concat(w.allegiance.battleTraits);
         result = result.concat(w.availableExtraAbilities.map(extraAbility));
-        
+
         // for (const unit of w.units) {
-            // const u = unit.unit;
-            // if (result.every(x => x.name !== u.model.name)) {
-            //     result.push({
-            //         name: u.model.name,
-            //         category: AbilityCategory.Unit,
-            //         description: u.description,
-            //         flavor: u.flavor,
-            //         keywords: [u.keywords],
-            //         values: [{ key: "MV", value: value(u.move) }, { key: "WO", value: value(u.wounds) }, { key: "SV", value: value(u.save)+"+" }, { key: "BR", value: value(u.bravery) }],
-            //         imageUrl: u.pictureUrl,
-            //         group: u.model.name,
-            //     } as CardContent);
-            //     result = this.getUnitAbilities(u, u.attacks, u.abilities, result);
-            //     if (u.options) {
-            //         for (const option of u.options) {
-            //             result = this.getUnitAbilities(u, option.attacks, option.abilities, result);
-            //         }
-            //     }
-            // }            
+        // const u = unit.unit;
+        // if (result.every(x => x.name !== u.model.name)) {
+        //     result.push({
+        //         name: u.model.name,
+        //         category: AbilityCategory.Unit,
+        //         description: u.description,
+        //         flavor: u.flavor,
+        //         keywords: [u.keywords],
+        //         values: [{ key: "MV", value: value(u.move) }, { key: "WO", value: value(u.wounds) }, { key: "SV", value: value(u.save)+"+" }, { key: "BR", value: value(u.bravery) }],
+        //         imageUrl: u.pictureUrl,
+        //         group: u.model.name,
+        //     } as CardContent);
+        //     result = this.getUnitAbilities(u, u.attacks, u.abilities, result);
+        //     if (u.options) {
+        //         for (const option of u.options) {
+        //             result = this.getUnitAbilities(u, option.attacks, option.abilities, result);
+        //         }
+        //     }
+        // }
         //}
         return result;
     }
 
-
     render() {
         const cardsStore = this.props.cardsStore!;
-        return <div><div>{this.abilities.filter(x => !cardsStore.isHidden(x.group || x.name)).map((x,i) => <AbilityCard key={i} onClick={this.handleShownAbilityClick} ability={x} />)}</div>
-        <div>{Array.from(cardsStore.names).filter(x => x[1]).map(([name]) => <HiddenCard key={name} name={name} onClick={this.handleHiddenAbilityClick} />)}</div></div>;
+        return (
+            <div>
+                <div>
+                    {this.abilities
+                        .filter(x => !cardsStore.isHidden(x.group || x.name))
+                        .map((x, i) => (
+                            <AbilityCard
+                                key={i}
+                                onClick={this.handleShownAbilityClick}
+                                ability={x}
+                            />
+                        ))}
+                </div>
+                <div>
+                    {Array.from(cardsStore.names)
+                        .filter(x => x[1])
+                        .map(([name]) => (
+                            <HiddenCard
+                                key={name}
+                                name={name}
+                                onClick={this.handleHiddenAbilityClick}
+                            />
+                        ))}
+                </div>
+            </div>
+        );
     }
 
     private handleShownAbilityClick = (name: string) => {
         this.props.cardsStore!.setAbilityHidden(name, true);
-    }
+    };
 
     private handleHiddenAbilityClick = (name: string) => {
         this.props.cardsStore!.setAbilityHidden(name, false);
-    }
+    };
 }

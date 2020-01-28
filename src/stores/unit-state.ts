@@ -1,10 +1,35 @@
-import { AttackAura, DefenseAura, DebuffAura, ModelOption, Unit, AttackAuraValues, AttackAuraBooleans, AttackAuraAbilityEffects, getSumValues, getValueRatio, Attack } from "./units";
+import {
+    AttackAura,
+    DefenseAura,
+    DebuffAura,
+    ModelOption,
+    Unit,
+    AttackAuraValues,
+    AttackAuraBooleans,
+    AttackAuraAbilityEffects,
+    getSumValues,
+    getValueRatio,
+    Attack
+} from "./units";
 
 type AttackAuraValueKey = keyof AttackAuraValues;
-const attackAuraValueKeys: AttackAuraValueKey[] = ["bonusHitRoll", "bonusAttacks", "numberOfHitsOnUnmodified6", "numberOfHitsOnHit", "mortalWoundsOnHitUnmodified6", "mortalWounds", "damageOnWoundUnmodified6", "bonusRend"];
+const attackAuraValueKeys: AttackAuraValueKey[] = [
+    "bonusHitRoll",
+    "bonusAttacks",
+    "numberOfHitsOnUnmodified6",
+    "numberOfHitsOnHit",
+    "mortalWoundsOnHitUnmodified6",
+    "mortalWounds",
+    "damageOnWoundUnmodified6",
+    "bonusRend"
+];
 // const attackAuraNumberKeys: (keyof AttackAuraNumbers)[] = [];
-const attackAuraBooleanKeys: (keyof AttackAuraBooleans)[] = ["rerollFailedHits"];
-const attackAuraAbilityEffectKeys: (keyof AttackAuraAbilityEffects)[] = ["effectsOnHitUnmodified6"];
+const attackAuraBooleanKeys: (keyof AttackAuraBooleans)[] = [
+    "rerollFailedHits"
+];
+const attackAuraAbilityEffectKeys: (keyof AttackAuraAbilityEffects)[] = [
+    "effectsOnHitUnmodified6"
+];
 
 export interface AuraState<T> {
     aura: T;
@@ -38,9 +63,12 @@ export class ModelState implements States {
     defenseAura: AuraState<DefenseAura>[] = [];
     debuffAuras: AuraState<DebuffAura>[] = [];
     weaponStates: WeaponState[] = [];
-    
-    constructor(public options: ModelOption[], public unitState: UnitState, public size: number) {
-    }
+
+    constructor(
+        public options: ModelOption[],
+        public unitState: UnitState,
+        public size: number
+    ) {}
 }
 
 export class UnitState implements States {
@@ -53,11 +81,14 @@ export class UnitState implements States {
     wounds: number = 0;
     models: ModelState[] = [];
     unitState = this;
-    constructor(public unit: Unit) {
-    }
+    constructor(public unit: Unit) {}
 }
 
-export function sumAttackAura(sum: AttackAura, aura: AttackAura, ratio?: number) {
+export function sumAttackAura(
+    sum: AttackAura,
+    aura: AttackAura,
+    ratio?: number
+) {
     for (const key of attackAuraValueKeys) {
         if (aura[key]) {
             sum[key] = getSumValues(sum[key], getValueRatio(aura[key], ratio));
@@ -73,7 +104,7 @@ export function sumAttackAura(sum: AttackAura, aura: AttackAura, ratio?: number)
         if (aura[key]) sum[key] = true;
     }
     for (const key of attackAuraAbilityEffectKeys) {
-        const a = aura[key]
+        const a = aura[key];
         if (a) {
             // TODO ratio?
             const effects = sum[key] || [];
@@ -83,7 +114,10 @@ export function sumAttackAura(sum: AttackAura, aura: AttackAura, ratio?: number)
     return sum;
 }
 
-export function addAttackAura(states: States, auraState: AuraState<AttackAura>) {
+export function addAttackAura(
+    states: States,
+    auraState: AuraState<AttackAura>
+) {
     states.attackAuras.push(auraState);
     sumAttackAura(states.attackAura, auraState.aura, auraState.effectRatio);
 }

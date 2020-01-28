@@ -9,7 +9,7 @@ export interface CardContent {
     flavor?: string;
     description?: string;
     keywords?: string[][];
-    values?: { key: string, value: string | number | undefined }[];
+    values?: { key: string; value: string | number | undefined }[];
     imageUrl?: string;
     group?: string;
 }
@@ -37,14 +37,14 @@ const useStyle = makeStyles({
         fontFamily: "serif",
         padding: "2mm",
         fontSize: "3.5mm",
-        overflow: "hidden",
+        overflow: "hidden"
     },
     image: {
         position: "absolute",
         zIndex: -1,
         width: "100%",
-        top:0,
-        left:0
+        top: 0,
+        left: 0
     },
     header: {
         border: "2px solid #a29966",
@@ -53,20 +53,20 @@ const useStyle = makeStyles({
         padding: "0.2rem",
         marginLeft: "0.1rem",
         marginRight: "0.1rem",
-        marginBottom: "0.4rem",
+        marginBottom: "0.4rem"
     },
     title: {
         fontSize: "5mm",
         fontWeight: "bold",
         textAlign: "center",
-        fontVariant: "small-caps",
+        fontVariant: "small-caps"
     },
     description: {
         padding: "2mm",
         backgroundColor: "rgba(220, 200, 120, 0.7)",
         lineHeight: "100%",
         textAlign: "justify",
-        borderRadius: "0.2rem",
+        borderRadius: "0.2rem"
     },
     group: {
         textAlign: "center",
@@ -80,12 +80,12 @@ const useStyle = makeStyles({
         color: "white",
         padding: "2mm",
         marginTop: "2mm",
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        backgroundColor: "rgba(0, 0, 0, 0.8)"
     },
     category: {
         fontSize: "3mm",
         fontWeight: "bold",
-        textAlign: "center",
+        textAlign: "center"
     },
     keywords: {
         position: "absolute",
@@ -96,7 +96,7 @@ const useStyle = makeStyles({
         fontWeight: "bold",
         color: "#555",
         backgroundColor: "rgba(255, 255, 255, 0.5)",
-        textAlign: "center",
+        textAlign: "center"
     },
     values: {
         position: "absolute",
@@ -105,18 +105,18 @@ const useStyle = makeStyles({
         borderRight: "2px solid #b5ad82",
         top: 0,
         div: {
-            paddingLeft: "1mm",
+            paddingLeft: "1mm"
         },
         ["div:nth-child(even)"]: {
-            backgroundColor: "#b5ad82",
+            backgroundColor: "#b5ad82"
         },
         ["div:nth-child(odd)"]: {
-            backgroundColor: "white",
-        },
+            backgroundColor: "white"
+        }
     }
 });
 
-function  getAbilityCategory(type: AbilityCategory | undefined) {
+function getAbilityCategory(type: AbilityCategory | undefined) {
     switch (type) {
         case AbilityCategory.Command:
             return "Command ability";
@@ -131,7 +131,7 @@ function  getAbilityCategory(type: AbilityCategory | undefined) {
         case AbilityCategory.Artefact:
             return "Artefact";
         case AbilityCategory.Prayer:
-            return "Prayer";  
+            return "Prayer";
         case AbilityCategory.RangedAttack:
             return "Ranged attack";
         case AbilityCategory.Unit:
@@ -145,17 +145,48 @@ function  getAbilityCategory(type: AbilityCategory | undefined) {
 
 export function AbilityCard({ ability, onClick }: AbilityCardProps) {
     const classes = useStyle();
-    return <div className={classes.abilityCard} onClick={() => onClick(ability.group || ability.name)}>
-        {!ability.description && !ability.flavor && ability.imageUrl && <img className={classes.image} src={ability.imageUrl}/>}
-        <div className={classes.header}>
-        {ability.category && <div className={classes.category}>· {getAbilityCategory(ability.category)} ·</div>}
-        <div className={classes.title}>{ability.name}</div>
-        {ability.group && <div className={classes.group}>{capitalizeFirst(ability.group)}</div>}
+    return (
+        <div
+            className={classes.abilityCard}
+            onClick={() => onClick(ability.group || ability.name)}
+        >
+            {!ability.description && !ability.flavor && ability.imageUrl && (
+                <img className={classes.image} src={ability.imageUrl} />
+            )}
+            <div className={classes.header}>
+                {ability.category && (
+                    <div className={classes.category}>
+                        · {getAbilityCategory(ability.category)} ·
+                    </div>
+                )}
+                <div className={classes.title}>{ability.name}</div>
+                {ability.group && (
+                    <div className={classes.group}>
+                        {capitalizeFirst(ability.group)}
+                    </div>
+                )}
+            </div>
+            {ability.values && (
+                <div className={classes.values}>
+                    {ability.values.map(x => (
+                        <React.Fragment key={x.key}>
+                            <div>{x.key}</div>
+                            <div>{x.value}</div>
+                        </React.Fragment>
+                    ))}
+                </div>
+            )}
+            {ability.description && (
+                <div className={classes.description}>{ability.description}</div>
+            )}
+            {ability.flavor && (
+                <div className={classes.flavor}>{ability.flavor}</div>
+            )}
+            {ability.keywords && ability.keywords.length > 0 && (
+                <div className={classes.keywords}>
+                    {ability.keywords.map(x => x.join(", ")).join(" or ")}
+                </div>
+            )}
         </div>
-        {ability.values && <div className={classes.values}>{ability.values.map(x => <React.Fragment key={x.key}><div>{x.key}</div><div>{x.value}</div></React.Fragment>)}</div>}
-        {ability.description && <div className={classes.description}>{ability.description}</div>}
-        {ability.flavor && <div className={classes.flavor}>{ability.flavor}</div>}
-        {ability.keywords && ability.keywords.length > 0 && <div className={classes.keywords}>{ability.keywords.map(x => x.join(', ')).join(' or ')}</div>}
-    </div>;
+    );
 }
-

@@ -23,8 +23,10 @@ export class CardsStore {
 
     private serialize() {
         const serialized: CardsSerialized = {
-            names: Array.from(this.names.entries()).filter(x => x[1]).map(x => x[0])
-        } 
+            names: Array.from(this.names.entries())
+                .filter(x => x[1])
+                .map(x => x[0])
+        };
         localStorage.setItem("cards", JSON.stringify(serialized));
     }
 

@@ -14,9 +14,10 @@ export interface MarkersProps {
 const textContent: CSSProperties = {
     display: "flex",
     textAlign: "center",
-    textShadow: "0px 0px 4px white, 0px 0px 8px white, 0px 0px 4px white, 0px 0px 4px white, 0px 0px 10px white",
+    textShadow:
+        "0px 0px 4px white, 0px 0px 8px white, 0px 0px 4px white, 0px 0px 4px white, 0px 0px 10px white",
     fontWeight: "bold"
-}
+};
 
 const useStyle = makeStyles({
     markers: {
@@ -47,20 +48,26 @@ const useStyle = makeStyles({
     command: {
         backgroundImage: `url(${commandImage})`
     },
-    text: Object.assign({
-        textTransform: "uppercase",
-        fontWeight: "bold",
-        fontSize: "12px", 
-    }, textContent),
-    condition: Object.assign({
-        fontWeight: "bold",
-        fontSize: "10px",
-        fontStyle: "italic"
-    }, textContent),
+    text: Object.assign(
+        {
+            textTransform: "uppercase",
+            fontWeight: "bold",
+            fontSize: "12px"
+        },
+        textContent
+    ),
+    condition: Object.assign(
+        {
+            fontWeight: "bold",
+            fontSize: "10px",
+            fontStyle: "italic"
+        },
+        textContent
+    ),
     description: textContent
-})
+});
 
-function MarkerView({ marker} : {marker: Marker }) {
+function MarkerView({ marker }: { marker: Marker }) {
     let className: string;
     const classes = useStyle();
     switch (marker.type) {
@@ -69,27 +76,35 @@ function MarkerView({ marker} : {marker: Marker }) {
             className = classes.terrain;
             break;
         case MarkerType.Spell:
-            className  = classes.terrain;
+            className = classes.terrain;
             break;
         case MarkerType.Command:
             className = classes.command;
             break;
-    } 
-    return <div className={`${classes.marker} ${className}`}>
-    
-        <div className={classes.text}>{marker.text}</div>
-        { marker.condition && <div className={classes.condition}>{marker.condition}</div> }
-        <div className={classes.description}>{marker.description}</div>
-    </div>;
+    }
+    return (
+        <div className={`${classes.marker} ${className}`}>
+            <div className={classes.text}>{marker.text}</div>
+            {marker.condition && (
+                <div className={classes.condition}>{marker.condition}</div>
+            )}
+            <div className={classes.description}>{marker.description}</div>
+        </div>
+    );
 }
 
 export function Markers() {
     const { markersStore } = useStores();
     const classes = useStyle();
-    return <div className={classes.markers}> {
-        markersStore.markers.map(x => <MarkerView key={x.id} marker={x} />)
-    }{
-        markersStore.markers.map(x => <MarkerView key={x.id} marker={x} />)
-    }
-        </div>;
+    return (
+        <div className={classes.markers}>
+            {" "}
+            {markersStore.markers.map(x => (
+                <MarkerView key={x.id} marker={x} />
+            ))}
+            {markersStore.markers.map(x => (
+                <MarkerView key={x.id} marker={x} />
+            ))}
+        </div>
+    );
 }

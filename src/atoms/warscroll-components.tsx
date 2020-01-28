@@ -1,8 +1,15 @@
 import { Attack, DamageTable, Ability } from "../stores/units";
 import * as React from "react";
 import { value } from "../helpers/react";
-import { Table, TableHead, TableRow, TableCell, TableBody, makeStyles } from "@material-ui/core";
-import warscrollMiddle from '../assets/warscroll-middle.png';
+import {
+    Table,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
+    makeStyles
+} from "@material-ui/core";
+import warscrollMiddle from "../assets/warscroll-middle.png";
 import warscrollLeft from "../assets/warscroll-left.png";
 import warscrollRight from "../assets/warscroll-right.png";
 
@@ -18,7 +25,7 @@ export const useWarscrollStyles = makeStyles({
         border: "2px solid black",
         fontFamily: "serif",
         maxWidth: "900px",
-        backgroundColor: "white",
+        backgroundColor: "white"
     },
     count: {
         fontSize: "15px"
@@ -39,7 +46,7 @@ export const useWarscrollStyles = makeStyles({
         lineHeight: "40px",
         fontSize: "30px",
         fontWeight: "bold",
-        textAlign: "center",
+        textAlign: "center"
     },
     option: {
         fontSize: "25px",
@@ -59,7 +66,7 @@ export const useWarscrollStyles = makeStyles({
         position: "relative",
         fontSize: "1.2em",
         fontWeight: "bold",
-        textAlign: "center",
+        textAlign: "center"
     },
     woundsStat: {
         position: "absolute",
@@ -148,7 +155,7 @@ export const useWarscrollStyles = makeStyles({
     woundTable: {
         textAlign: "center"
     }
-})
+});
 
 export interface AttackWithCount {
     attack: Attack;
@@ -156,67 +163,118 @@ export interface AttackWithCount {
 }
 
 export function AllAttacks({ attacks }: { attacks: AttackWithCount[] }) {
-    return <>
-        {attacks.some(x => x.attack.melee) && <Attacks attacks={attacks.filter(x => x.attack.melee)} name="Melee Weapons"/>}
-        {attacks.some(x => !x.attack.melee) && <Attacks attacks={attacks.filter(x => !x.attack.melee)} name="Missile Weapons"/>}
-    </>;    
+    return (
+        <>
+            {attacks.some(x => x.attack.melee) && (
+                <Attacks
+                    attacks={attacks.filter(x => x.attack.melee)}
+                    name="Melee Weapons"
+                />
+            )}
+            {attacks.some(x => !x.attack.melee) && (
+                <Attacks
+                    attacks={attacks.filter(x => !x.attack.melee)}
+                    name="Missile Weapons"
+                />
+            )}
+        </>
+    );
 }
 
-export function Attacks({ attacks, name }: { attacks: AttackWithCount[], name: string }) {
+export function Attacks({
+    attacks,
+    name
+}: {
+    attacks: AttackWithCount[];
+    name: string;
+}) {
     const classes = useWarscrollStyles();
-    return <table className={classes.attack}>
-        <thead>
-            <tr>
-                <td className={classes.attackName}>{name}</td>
-                <td>Range</td>
-                <td>Attacks</td>
-                <td>To Hit</td>
-                <td>To Wound</td>
-                <td>Rend</td>
-                <td>Damage</td>
-            </tr>
-        </thead>
-        <tbody>
-            {attacks.map((x, index) => <tr key={index} >
-                <td>{x.attack.name} { x.count !== undefined && <>(x{x.count})</> }</td>
-                <td>{value(x.attack.range)}" </td>
-                <td>{value(x.attack.attacks)} </td>
-                <td>{value(x.attack.toHit)} </td>
-                <td>{value(x.attack.toWound)} </td>
-                <td>{value(x.attack.rend) || "-"} </td>
-                <td>{value(x.attack.damage)} </td>
-            </tr>)}
-        </tbody>
-    </table>;
+    return (
+        <table className={classes.attack}>
+            <thead>
+                <tr>
+                    <td className={classes.attackName}>{name}</td>
+                    <td>Range</td>
+                    <td>Attacks</td>
+                    <td>To Hit</td>
+                    <td>To Wound</td>
+                    <td>Rend</td>
+                    <td>Damage</td>
+                </tr>
+            </thead>
+            <tbody>
+                {attacks.map((x, index) => (
+                    <tr key={index}>
+                        <td>
+                            {x.attack.name}{" "}
+                            {x.count !== undefined && <>(x{x.count})</>}
+                        </td>
+                        <td>{value(x.attack.range)}" </td>
+                        <td>{value(x.attack.attacks)} </td>
+                        <td>{value(x.attack.toHit)} </td>
+                        <td>{value(x.attack.toWound)} </td>
+                        <td>{value(x.attack.rend) || "-"} </td>
+                        <td>{value(x.attack.damage)} </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
 }
 
-export function AllAbilities({ title, abilities, description }: { title: string, abilities: Ability[], description?: string }) {
+export function AllAbilities({
+    title,
+    abilities,
+    description
+}: {
+    title: string;
+    abilities: Ability[];
+    description?: string;
+}) {
     const classes = useWarscrollStyles();
-    return <div><header className={classes.sectionHeader}>{title}</header>
-            { description && <div>{description}</div>}  
-            { abilities.map((x, index) => <div key={index}>
-                <span className={classes.abilityName}>{x.name}:</span>
-                { x.flavor && <span className={classes.flavor}> {x.flavor}</span>}
-                <div>{x.description}</div>    
-    </div>) }</div>;
+    return (
+        <div>
+            <header className={classes.sectionHeader}>{title}</header>
+            {description && <div>{description}</div>}
+            {abilities.map((x, index) => (
+                <div key={index}>
+                    <span className={classes.abilityName}>{x.name}:</span>
+                    {x.flavor && (
+                        <span className={classes.flavor}> {x.flavor}</span>
+                    )}
+                    <div>{x.description}</div>
+                </div>
+            ))}
+        </div>
+    );
 }
 
 export function WoundEffects({ damageTable }: { damageTable: DamageTable }) {
     const ranges = damageTable.ranges;
     const classes = useWarscrollStyles();
-    return <Table className={classes.woundTable}>
-        <TableHead>
-            <TableRow>
-                <TableCell>Wounds Suffered</TableCell>
-                {damageTable.columns.map(x => <TableCell key={x.name}>{x.name}</TableCell>)}
-            </TableRow>
-        </TableHead>
-        <TableBody>
-        {ranges.map((x, index) =>
-        <TableRow key={x}>
-             <TableCell>{x}</TableCell>
-            {damageTable.columns.map(x => <TableCell key={x.name}> { x.values[index] } </TableCell>)}
-        </TableRow>)}
-        </TableBody>
-    </Table>
+    return (
+        <Table className={classes.woundTable}>
+            <TableHead>
+                <TableRow>
+                    <TableCell>Wounds Suffered</TableCell>
+                    {damageTable.columns.map(x => (
+                        <TableCell key={x.name}>{x.name}</TableCell>
+                    ))}
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {ranges.map((x, index) => (
+                    <TableRow key={x}>
+                        <TableCell>{x}</TableCell>
+                        {damageTable.columns.map(x => (
+                            <TableCell key={x.name}>
+                                {" "}
+                                {x.values[index]}{" "}
+                            </TableCell>
+                        ))}
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>
+    );
 }

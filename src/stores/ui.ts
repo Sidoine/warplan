@@ -9,9 +9,8 @@ interface SerializedUi {
 }
 
 export class UiStore {
-
     @observable
-    keywordFilter = "";    
+    keywordFilter = "";
 
     @observable
     basketPopin: boolean = false;
@@ -33,9 +32,16 @@ export class UiStore {
         const keywordFilter = this.keywordFilter.toUpperCase();
         if (keywordFilter.length > 2) {
             const grandAlliance = this.grandAlliance;
-            return this.unitsStore.unitList.filter(x => x.factions.some(x => x.grandAlliance === grandAlliance) && (x.model.name.toUpperCase().indexOf(keywordFilter) >= 0 || x.keywords.some(x => x.indexOf(keywordFilter) >= 0)));
+            return this.unitsStore.unitList.filter(
+                x =>
+                    x.factions.some(x => x.grandAlliance === grandAlliance) &&
+                    (x.model.name.toUpperCase().indexOf(keywordFilter) >= 0 ||
+                        x.keywords.some(x => x.indexOf(keywordFilter) >= 0))
+            );
         }
-        return this.unitsStore.unitList.filter(x => x.factions.some(x => x.id === this.faction.id));
+        return this.unitsStore.unitList.filter(x =>
+            x.factions.some(x => x.id === this.faction.id)
+        );
     }
 
     @observable enemy = { save: 5 };
@@ -53,7 +59,7 @@ export class UiStore {
     }
 
     constructor(private unitsStore: UnitsStore) {
-        const ui: string | null = localStorage.getItem('ui');
+        const ui: string | null = localStorage.getItem("ui");
         if (ui) {
             const serialized: SerializedUi = JSON.parse(ui);
             this.grandAlliance = serialized.grandAlliance;
@@ -64,7 +70,7 @@ export class UiStore {
             this.keywordFilter = serialized.keywordFilter || "";
         }
     }
-    
+
     @action
     showWarscrollPopin() {
         this.warscrollPopin = true;
@@ -94,7 +100,7 @@ export class UiStore {
     closeBasketPopin() {
         this.basketPopin = false;
     }
-    
+
     @action
     setKeywordFilter(keyword: string) {
         this.keywordFilter = keyword;
@@ -103,14 +109,14 @@ export class UiStore {
 
     @action
     setFaction(factionId: string) {
-        const faction = this.unitsStore!.factions[factionId]
+        const faction = this.unitsStore!.factions[factionId];
         if (faction) {
             this.faction = faction;
             this.keywordFilter = "";
             this.saveUi();
         }
     }
-    
+
     @action
     setGrandAlliance(grandAlliance: GrandAlliance) {
         this.grandAlliance = grandAlliance;
@@ -122,7 +128,7 @@ export class UiStore {
             faction: this.faction.id,
             grandAlliance: this.grandAlliance,
             keywordFilter: this.keywordFilter
-        }
-        localStorage.setItem('ui', JSON.stringify(serialized));
+        };
+        localStorage.setItem("ui", JSON.stringify(serialized));
     }
 }

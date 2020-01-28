@@ -15,16 +15,22 @@ export interface UnitsListProps {
 const columns: TableColumn<Unit>[] = [
     { name: "Name", text: x => x.model.name },
     { name: "Points", text: x => x.points }
-]
+];
 
-@inject('unitsStore', "warscrollStore", "uiStore")
+@inject("unitsStore", "warscrollStore", "uiStore")
 @observer
 export class UnitsList extends React.Component<UnitsListProps, {}> {
     render() {
-        return <AddButton columns={columns} options={this.props.uiStore!.units} onChange={this.onChange} />;
-    }    
+        return (
+            <AddButton
+                columns={columns}
+                options={this.props.uiStore!.units}
+                onChange={this.onChange}
+            />
+        );
+    }
 
     private onChange = (unit: Unit) => {
         this.props.warscrollStore!.addUnit(unit);
-    }
+    };
 }

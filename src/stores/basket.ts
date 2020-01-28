@@ -54,7 +54,6 @@ export class BasketStore {
         basketElement.count = count;
         this.saveBasket();
     }
-    
 
     saveBasket(name?: string) {
         const serializedBasket: SerializedBasket = {
@@ -65,7 +64,10 @@ export class BasketStore {
                 };
             })
         };
-        localStorage.setItem(this.getBasketItem(name), JSON.stringify(serializedBasket));
+        localStorage.setItem(
+            this.getBasketItem(name),
+            JSON.stringify(serializedBasket)
+        );
 
         if (name !== undefined) {
             if (this.baskets.indexOf(name) < 0) {
@@ -105,12 +107,12 @@ export class BasketStore {
         localStorage.removeItem(this.getBasketItem(name));
         this.baskets.splice(this.baskets.indexOf(name), 1);
         this.saveBaskets();
-    }    
-    
+    }
+
     @computed
     get missingModels() {
-        const neededModels:Missing[] = [];
-        
+        const neededModels: Missing[] = [];
+
         const modelsInBasket = new Map<string, { count: number }[]>();
 
         for (const element of this.basket) {
@@ -121,8 +123,7 @@ export class BasketStore {
                     const m = modelsInBasket.get(model.id);
                     if (m) {
                         m.push(count);
-                    }
-                    else {
+                    } else {
                         modelsInBasket.set(model.id, [count]);
                     }
                 }
@@ -141,12 +142,14 @@ export class BasketStore {
                 }
             }
 
-            const existings = neededModels.find(x => x.model.id === unit.unit.model.id);
+            const existings = neededModels.find(
+                x => x.model.id === unit.unit.model.id
+            );
             if (existings === undefined) {
-                neededModels.push({ 
-                    model: unit.unit.model, 
-                    count: count, 
-                    id: unit.unit.model.id, 
+                neededModels.push({
+                    model: unit.unit.model,
+                    count: count,
+                    id: unit.unit.model.id,
                     inBasket: basketCount
                 });
             } else {
@@ -156,15 +159,21 @@ export class BasketStore {
         }
 
         for (const model of this.ownedStore.ownedModels) {
-            const neededModel = neededModels.find(x => x.model.id === model.model.id);
+            const neededModel = neededModels.find(
+                x => x.model.id === model.model.id
+            );
             if (neededModel !== undefined) {
                 neededModel.count -= model.count;
             }
         }
         return neededModels.filter(x => x.count > 0);
     }
-    
-    constructor(private unitsStore: UnitsStore, private warscrollStore: WarscrollStore, private ownedStore: OwnedStore) {        
+
+    constructor(
+        private unitsStore: UnitsStore,
+        private warscrollStore: WarscrollStore,
+        private ownedStore: OwnedStore
+    ) {
         const baskets = localStorage.getItem("baskets");
         if (baskets !== null) {
             this.baskets = JSON.parse(baskets);
