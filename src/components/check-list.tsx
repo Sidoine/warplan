@@ -2,8 +2,8 @@ import * as React from "react";
 import {
     WarscrollStore,
     WarscrollUnit,
-    WarscrollScenery,
-    Warscroll
+    Warscroll,
+    WarscrollItem
 } from "../stores/warscroll";
 import {
     Phase,
@@ -19,17 +19,23 @@ import {
     phases,
     PhaseSide,
     isUnitInPhase,
-    isEffectInPhase,
     isAttackInPhase,
     isAbilityInPhase
 } from "../stores/battle";
 import { value } from "../helpers/react";
-import { Chip, SvgIcon, makeStyles } from "@material-ui/core";
+import {
+    Chip,
+    SvgIcon,
+    makeStyles,
+    Badge,
+    SvgIconProps
+} from "@material-ui/core";
 import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
 import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from "@material-ui/icons/Group";
 import ReplayIcon from "@material-ui/icons/Replay";
 import { useStores } from "../stores";
+import VerticalAlignTopIcon from "@material-ui/icons/VerticalAlignTop";
 
 const useStyle = makeStyles({
     section: {
@@ -48,7 +54,7 @@ const useStyle = makeStyles({
         color: "darkblue"
     },
     out: {},
-    "@media": {
+    "@media print": {
         out: {
             display: "none"
         }
@@ -70,6 +76,30 @@ const useStyle = makeStyles({
         border: "1px solid #e6dccb"
     }
 });
+
+function SaveIcon() {
+    return (
+        <SvgIcon>
+            <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z" />
+        </SvgIcon>
+    );
+}
+
+function SkullIcon(props: SvgIconProps) {
+    return (
+        <SvgIcon {...props}>
+            <path d="M12,2A9,9 0 0,0 3,11C3,14.03 4.53,16.82 7,18.47V22H9V19H11V22H13V19H15V22H17V18.46C19.47,16.81 21,14 21,11A9,9 0 0,0 12,2M8,11A2,2 0 0,1 10,13A2,2 0 0,1 8,15A2,2 0 0,1 6,13A2,2 0 0,1 8,11M16,11A2,2 0 0,1 18,13A2,2 0 0,1 16,15A2,2 0 0,1 14,13A2,2 0 0,1 16,11M12,14L13.5,17H10.5L12,14Z" />
+        </SvgIcon>
+    );
+}
+
+function SpellIcon() {
+    return (
+        <SvgIcon>
+            <path d="M7.5,5.6L5,7L6.4,4.5L5,2L7.5,3.4L10,2L8.6,4.5L10,7L7.5,5.6M19.5,15.4L22,14L20.6,16.5L22,19L19.5,17.6L17,19L18.4,16.5L17,14L19.5,15.4M22,2L20.6,4.5L22,7L19.5,5.6L17,7L18.4,4.5L17,2L19.5,3.4L22,2M13.34,12.78L15.78,10.34L13.66,8.22L11.22,10.66L13.34,12.78M14.37,7.29L16.71,9.63C17.1,10 17.1,10.65 16.71,11.04L5.04,22.71C4.65,23.1 4,23.1 3.63,22.71L1.29,20.37C0.9,20 0.9,19.35 1.29,18.96L12.96,7.29C13.35,6.9 14,6.9 14.37,7.29Z" />
+        </SvgIcon>
+    );
+}
 
 export interface CheckListProps {
     warscrollStore?: WarscrollStore;
@@ -109,28 +139,22 @@ function Stat(props: { name: string; value: Value }) {
     );
 }
 
-function SaveIcon() {
-    return (
-        <SvgIcon>
-            <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z" />
-        </SvgIcon>
-    );
-}
-
 function TargetView({ targetType }: { targetType: TargetType }) {
     const isUnit =
         (targetType &
             (TargetType.Model | TargetType.Mount | TargetType.Weapon)) ==
         0;
     return (
-        <>
+        <Badge
+            badgeContent={(targetType & TargetType.Enemy) > 0 && <SkullIcon />}
+        >
             {isUnit && <GroupIcon />}
             {(targetType & TargetType.Model) > 0 && <PersonIcon />}
-        </>
+        </Badge>
     );
 }
 
-function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
+export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
     return (
         <>
             <Chip
@@ -139,7 +163,18 @@ function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
                         <TargetView targetType={effect.targetType} />
                         {effect.targetRange && (
                             <>
-                                <SignalWifi2BarIcon /> {effect.targetRange}"
+                                <VerticalAlignTopIcon />
+                                {effect.targetRange}"
+                            </>
+                        )}
+                        {effect.targetRadius && (
+                            <>
+                                <SignalWifi2BarIcon /> {effect.targetRadius}""
+                            </>
+                        )}
+                        {effect.spellCastingValue && (
+                            <>
+                                <SpellIcon /> {effect.spellCastingValue}+
                             </>
                         )}
                     </>
@@ -194,12 +229,12 @@ function AbilityInfo({
         <div>
             <i className={classes.abilityName}>{ability.name}</i> :{" "}
             {ability.description}
-            {ability.effects &&
+            {/* {ability.effects &&
                 ability.effects
                     .filter(x => isEffectInPhase(x, phase, unit, side))
                     .map((x, index) => (
                         <AbilityEffectView key={index} effect={x} />
-                    ))}
+                    ))} */}
         </div>
     );
 }
@@ -209,30 +244,39 @@ function UnitInfo({
     phase,
     side
 }: {
-    unit: WarscrollUnit;
+    unit: WarscrollItem;
     phase: Phase;
     side?: PhaseSide;
 }) {
     const classes = useStyle();
     return (
         <div className={classes.unit}>
-            <div className={classes.unitTitle}>{unit.unit.model.name}</div>
-            <Stats>
-                {phase === Phase.Movement && (
-                    <Stat name="Mv" value={unit.unit.move} />
-                )}
-                {side === PhaseSide.Defense && (
-                    <>
-                        <Stat name="Wd" value={unit.unit.wounds} />
-                        <Stat name="Sv" value={unit.unit.save} />
-                    </>
-                )}
-                {phase === Phase.Battleshock && (
-                    <Stat name="Bv" value={unit.unit.bravery} />
-                )}
-            </Stats>
+            <div className={classes.unitTitle}>{unit.definition.name}</div>
+            {unit.type === "unit" && (
+                <Stats>
+                    {phase === Phase.Movement && (
+                        <Stat name="Mv" value={unit.definition.move} />
+                    )}
+                    {side === PhaseSide.Defense && (
+                        <>
+                            <Stat name="Wd" value={unit.definition.wounds} />
+                            <Stat name="Sv" value={unit.definition.save} />
+                        </>
+                    )}
+                    {phase === Phase.Battleshock && (
+                        <Stat name="Bv" value={unit.definition.bravery} />
+                    )}
+                </Stats>
+            )}
 
-            {side === PhaseSide.Attack &&
+            {unit.type === "unit" &&
+                phase === Phase.Hero &&
+                unit.definition.magicDescription && (
+                    <div>{unit.definition.magicDescription}</div>
+                )}
+
+            {unit.type === "unit" &&
+                side === PhaseSide.Attack &&
                 unit.attacks
                     .filter(x => isAttackInPhase(x.attack, phase))
                     .map(x => (
@@ -253,17 +297,10 @@ function UnitInfo({
     );
 }
 
-function SceneryInfo({ scenery }: { scenery: WarscrollScenery }) {
-    return (
-        <li>
-            <strong>{scenery.scenery.name}</strong>
-            {scenery.scenery.description}
-        </li>
-    );
-}
-
-function getPhaseUnits(units: WarscrollUnit[], phase: Phase, side?: PhaseSide) {
-    return units.filter(x => isUnitInPhase(x, phase, side));
+function getPhaseUnits(units: WarscrollItem[], phase: Phase, side?: PhaseSide) {
+    return units
+        .filter(x => isUnitInPhase(x, phase, side))
+        .sort((a, b) => (a.definition.name > b.definition.name ? 1 : -1));
 }
 
 function SubPhaseInfo({
@@ -292,16 +329,10 @@ function SubPhaseInfo({
                     ))}
             </ul>
             <div>
-                {getPhaseUnits(warscroll.units, phase, side).map(x => (
+                {getPhaseUnits(warscroll.items, phase, side).map(x => (
                     <UnitInfo key={x.id} unit={x} phase={phase} side={side} />
                 ))}
             </div>
-            <ul>
-                {phase === Phase.Hero &&
-                    warscroll.endlessSpells.map(x => (
-                        <SceneryInfo scenery={x} key={x.id} />
-                    ))}
-            </ul>
         </section>
     );
 }
@@ -376,17 +407,17 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: Warscroll }) {
                         <strong>{x.name}</strong> {x.description}
                     </div>
                 ))}
-            {warscroll.units
+            {warscroll.items
                 .reduce(
                     (prev, x) =>
                         prev.concat(
                             x.abilities.filter(y => !y.effects).map(y => [x, y])
                         ),
-                    new Array<[WarscrollUnit, Ability]>()
+                    new Array<[WarscrollItem, Ability]>()
                 )
                 .map((x, i) => (
                     <div key={i}>
-                        <i>{x[0].unit.model.name}</i>
+                        <i>{x[0].definition.name}</i>
                         <strong>{x[1].name}</strong> {x[1].description}
                     </div>
                 ))}
@@ -398,7 +429,6 @@ export function CheckList() {
     const { warscrollStore } = useStores();
     return (
         <div>
-            {" "}
             {phases.map(x => (
                 <PhaseInfo
                     warscroll={warscrollStore.warscroll}

@@ -6,3 +6,4 @@ dist
 *.orig
 /yarn-error.log
 en.realm*
+/.vscode/settings.json

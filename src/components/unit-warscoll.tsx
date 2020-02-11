@@ -21,7 +21,7 @@ export function UnitWarscroll({
     unit?: Unit;
 }) {
     const classes = useWarscrollStyles();
-    const u = unit || wu?.unit;
+    const u = unit || wu?.definition;
     const models = wu?.models;
     if (!u) return <div></div>;
     let attacks: AttackWithCount[] =

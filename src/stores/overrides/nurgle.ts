@@ -1,7 +1,7 @@
 import { DataStoreImpl } from "../imported-data";
 import {
     Ability,
-    Scenery,
+    EndlessSpell,
     TargetType,
     Phase,
     SubPhase,
@@ -15,7 +15,7 @@ import {
 } from "./tools";
 
 function addEndlessSpells(data: DataStoreImpl): void {
-    const burningHeaad: Scenery = data.sceneries.theBurningHead;
+    const burningHeaad: EndlessSpell = data.sceneries.theBurningHead;
 
     const summon: Ability = {
         id: "nurgle_summon",

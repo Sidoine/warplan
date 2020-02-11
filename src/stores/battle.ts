@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { Warscroll, WarscrollUnit } from "./warscroll";
+import { Warscroll, WarscrollItem } from "./warscroll";
 import {
     Phase,
     AbilityEffect,
@@ -56,7 +56,7 @@ export const enum PhaseSide {
 export function isEffectInPhase(
     effect: AbilityEffect,
     phase: Phase,
-    unit?: WarscrollUnit,
+    unit?: WarscrollItem,
     side?: PhaseSide
 ) {
     if (phase & Phase.Combat || phase & Phase.Shooting) {
@@ -67,7 +67,7 @@ export function isEffectInPhase(
             effect.targetType !== TargetType.Enemy &&
             side === PhaseSide.Attack
         ) {
-            if (!unit) return false;
+            if (!unit || unit.type !== "unit") return false;
             if (
                 phase === Phase.Combat &&
                 unit.attacks.some(x => x.attack.melee)
@@ -108,7 +108,7 @@ export function isEffectInPhase(
 export function isAbilityInPhase(
     ability: Ability,
     phase: Phase,
-    unit?: WarscrollUnit,
+    unit?: WarscrollItem,
     side?: PhaseSide
 ) {
     if (ability.effects) {
@@ -126,15 +126,27 @@ export function isAttackInPhase(attack: Attack, phase: Phase) {
 }
 
 export function isUnitInPhase(
-    unit: WarscrollUnit,
+    unit: WarscrollItem,
     phase: Phase,
     side?: PhaseSide
 ) {
-    if (phase === Phase.Movement || phase === Phase.Battleshock) return true;
-    if (phase === Phase.Shooting && unit.attacks.some(x => !x.attack.melee)) {
+    if (
+        (phase === Phase.Movement || phase === Phase.Battleshock) &&
+        unit.type === "unit"
+    )
+        return true;
+    if (
+        phase === Phase.Shooting &&
+        unit.type === "unit" &&
+        unit.attacks.some(x => !x.attack.melee)
+    ) {
         return true;
     }
-    if (phase === Phase.Combat && unit.attacks.some(x => x.attack.melee)) {
+    if (
+        phase === Phase.Combat &&
+        unit.type === "unit" &&
+        unit.attacks.some(x => x.attack.melee)
+    ) {
         return true;
     }
     if (unit.abilities.some(x => isAbilityInPhase(x, phase, unit, side)))

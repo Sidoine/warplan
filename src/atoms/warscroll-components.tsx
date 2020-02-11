@@ -33,7 +33,8 @@ export const useWarscrollStyles = makeStyles({
     flavor: {
         fontWeight: "bold",
         textAlign: "center",
-        fontStyle: "italic"
+        fontStyle: "italic",
+        marginBottom: "8px"
     },
     title: {
         backgroundImage: `url(${warscrollMiddle})`,

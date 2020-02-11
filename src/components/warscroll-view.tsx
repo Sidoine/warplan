@@ -13,7 +13,7 @@ export class WarscrollView extends React.Component<WarscrollViewProps> {
         return (
             <li key={unit.id}>
                 {includeCount && <>{unit.modelCount} × </>}{" "}
-                {unit.unit.model.name} ({unit.points})
+                {unit.definition.model.name} ({unit.points})
                 {unit.isGeneral && (
                     <>
                         <br />- <em>General</em>

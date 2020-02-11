@@ -128,7 +128,9 @@ export const Division = {
         requiredCommandTraitKeyword: "string?",
         addedAllies: "CompoundKeyword[]",
         restrictedRealms: "RealmOfBattle[]",
-        fourthAddedKeyword: "CompoundKeyword"
+        fourthAddedKeyword: "CompoundKeyword",
+        skyportCode: "SkyportCode",
+        childDivision: "Division"
     }
 };
 
@@ -201,7 +203,6 @@ export const RealmAllegiance = {
         artefactGroups: "ArtefactGroup[]",
         divisionName: "string?",
         divisions: "Division[]",
-        skyports: "Skyport[]",
         spellGroups: "ExceptionalTraitGroup[]",
         prayerGroups: "ExceptionalTraitGroup[]",
         generalSpecificTraitGroups: "ExceptionalTraitGroup[]",
@@ -265,15 +266,11 @@ export const SceneryWarscroll = {
     }
 };
 
-export const Skyport = {
-    name: "Skyport",
+export const SkyportCode = {
+    name: "SkyportCode",
     primaryKey: "id",
     properties: {
         id: "string",
-        name: "string",
-        artefact: "string?",
-        commandTrait: "string?",
-        keyword: "string?",
         artycle: "KharadronCode",
         amendment: "KharadronCode",
         footnote: "KharadronCode"

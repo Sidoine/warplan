@@ -90,6 +90,8 @@ export interface Division {
     addedAllies: CompoundKeyword[];
     restrictedRealms: RealmOfBattle[];
     fourthAddedKeyword: CompoundKeyword;
+    skyportCode: SkyportCode;
+    childDivision: Division;
 }
 
 export interface EndlessSpell {
@@ -135,7 +137,6 @@ export interface RealmAllegiance {
     artefactGroups: ArtefactGroup[];
     divisionName: string | null;
     divisions: Division[];
-    skyports: Skyport[];
     spellGroups: ExceptionalTraitGroup[];
     prayerGroups: ExceptionalTraitGroup[];
     generalSpecificTraitGroups: ExceptionalTraitGroup[];
@@ -166,12 +167,8 @@ export interface Rule {
     blurb: string;
 }
 
-export interface Skyport {
+export interface SkyportCode {
     id: string;
-    name: string;
-    artefact: string | null;
-    commandTrait: string | null;
-    keyword: string | null;
     artycle: KharadronCode;
     amendment: KharadronCode;
     footnote: KharadronCode;

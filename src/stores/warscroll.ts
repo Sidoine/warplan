@@ -10,7 +10,7 @@ import {
     ExtraAbility,
     WarscrollBattalionInterface,
     WarscrollModelInterface,
-    Scenery,
+    EndlessSpell,
     ModelOption,
     ArmyOption,
     AbilityCategory,
@@ -51,7 +51,7 @@ export class WarscrollModel implements WarscrollModelInterface {
 
     @computed
     get availableOptions() {
-        const options = this.warscrollUnit.unit.options;
+        const options = this.warscrollUnit.definition.options;
         if (!options) return [];
         return options.filter(x => this.isOptionAvailable(x));
     }
@@ -106,7 +106,9 @@ export class WarscrollModel implements WarscrollModelInterface {
     }
 }
 
+export type WarscrollItem = WarscrollUnit | WarscrollEndlessSpell;
 export class WarscrollUnit implements WarscrollUnitInterface {
+    type: "unit" = "unit";
     id: string;
 
     @observable
@@ -120,17 +122,19 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     @computed get keywords() {
         if (!this.isAllied) {
             let addAllegianceKeyword =
-                this.unit.keywords.indexOf(
+                this.definition.keywords.indexOf(
                     this.warscroll.allegiance.keywords[0]
                 ) < 0;
             let addHostKeyword =
                 this.warscroll.armyOption !== null &&
                 this.warscroll.allegiance.armyOptions &&
                 this.warscroll.allegiance.armyOptions.values.every(
-                    x => !x.keyword || this.unit.keywords.indexOf(x.keyword) < 0
+                    x =>
+                        !x.keyword ||
+                        this.definition.keywords.indexOf(x.keyword) < 0
                 );
             if (addAllegianceKeyword || addHostKeyword) {
-                const keywords = this.unit.keywords.concat();
+                const keywords = this.definition.keywords.concat();
                 if (addAllegianceKeyword)
                     keywords.push(this.warscroll.allegiance.keywords[0]);
                 if (
@@ -142,12 +146,12 @@ export class WarscrollUnit implements WarscrollUnitInterface {
                 return keywords;
             }
         }
-        return this.unit.keywords;
+        return this.definition.keywords;
     }
 
     @computed
     get count() {
-        return Math.ceil(this.modelCount / this.unit.size);
+        return Math.ceil(this.modelCount / this.definition.size);
     }
 
     @computed
@@ -161,27 +165,38 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     @computed
     get isAllied() {
         return (
-            !this.unit.keywords ||
+            !this.definition.keywords ||
             this.warscroll.allegiance.keywords.every(
-                x => this.unit.keywords.indexOf(x) < 0
+                x => this.definition.keywords.indexOf(x) < 0
             )
         );
     }
 
     get isArtillery() {
-        return this.unit.isArtillery && this.unit.isArtillery(this.warscroll);
+        return (
+            this.definition.isArtillery &&
+            this.definition.isArtillery(this.warscroll)
+        );
     }
 
     get isLeader() {
-        return this.unit.isLeader && this.unit.isLeader(this.warscroll);
+        return (
+            this.definition.isLeader && this.definition.isLeader(this.warscroll)
+        );
     }
 
     get isBehemot() {
-        return this.unit.isBehemot && this.unit.isBehemot(this.warscroll);
+        return (
+            this.definition.isBehemot &&
+            this.definition.isBehemot(this.warscroll)
+        );
     }
 
     get isBattleline() {
-        return this.unit.isBattleline && this.unit.isBattleline(this.warscroll);
+        return (
+            this.definition.isBattleline &&
+            this.definition.isBattleline(this.warscroll)
+        );
     }
 
     get isOther() {
@@ -212,30 +227,36 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     get points(): number {
         const points =
             this.warscroll.pointMode === PointMode.MatchedPlay
-                ? this.count * this.unit.points
+                ? this.count * this.definition.points
                 : Math.ceil(
-                      (this.modelCount * this.unit.points) / this.unit.size
+                      (this.modelCount * this.definition.points) /
+                          this.definition.size
                   );
-        if (this.unit.maxPoints && points > this.unit.maxPoints)
-            return this.unit.maxPoints;
+        if (this.definition.maxPoints && points > this.definition.maxPoints)
+            return this.definition.maxPoints;
         return points;
     }
 
     @computed
     get nonAlliedUnits() {
-        return this.warscroll.units.filter(x => !areAllied(this.unit, x.unit));
+        return this.warscroll.units.filter(
+            x => !areAllied(this.definition, x.definition)
+        );
     }
 
     @computed
     get availableOptions() {
-        if (!this.unit.options) return [];
-        return this.unit.options;
+        if (!this.definition.options) return [];
+        return this.definition.options;
     }
 
     @computed
     get attacks() {
-        const attacks = this.unit.attacks
-            ? this.unit.attacks.map(x => ({ count: this.unit.size, attack: x }))
+        const attacks = this.definition.attacks
+            ? this.definition.attacks.map(x => ({
+                  count: this.definition.size,
+                  attack: x
+              }))
             : [];
         for (const model of this.models) {
             for (const option of model.options) {
@@ -260,9 +281,9 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     }
 
     @computed get abilities() {
-        let abilities = this.unit.abilities || [];
-        if (this.unit.commandAbilities)
-            abilities = abilities.concat(this.unit.commandAbilities);
+        let abilities = this.definition.abilities || [];
+        if (this.definition.commandAbilities)
+            abilities = abilities.concat(this.definition.commandAbilities);
         if (this.extraAbilities) {
             abilities = abilities.concat(
                 this.extraAbilities.map(x => x.ability)
@@ -278,16 +299,19 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         return abilities;
     }
 
-    constructor(protected warscroll: Warscroll, public unit: Unit) {
+    constructor(protected warscroll: Warscroll, public definition: Unit) {
         this.id = (warscroll.serial++).toString();
     }
 }
 
-export class WarscrollScenery {
+export class WarscrollEndlessSpell {
     id: number;
+    type: "endless" = "endless";
+    abilities: Ability[];
 
-    constructor(public warscroll: Warscroll, public scenery: Scenery) {
+    constructor(public warscroll: Warscroll, public definition: EndlessSpell) {
         this.id = warscroll.serial++;
+        this.abilities = definition.abilities || [];
     }
 }
 
@@ -437,6 +461,12 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     @observable
     units: WarscrollUnit[] = [];
 
+    @computed
+    get items(): WarscrollItem[] {
+        const result: WarscrollItem[] = [];
+        return result.concat(this.units).concat(this.endlessSpells);
+    }
+
     contingents = [
         new WarscrollContingent(this, Contingent.Spearhead),
         new WarscrollContingent(this, Contingent.Main),
@@ -445,10 +475,10 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
 
     @computed
     get description() {
-        return Array.from(groupBy(this.units, x => x.unit.model.name))
+        return Array.from(groupBy(this.units, x => x.definition.model.name))
             .map(
                 ([key, values]) =>
-                    `${values.reduce((p, v) => p + v.count, 0)}x${key} ${
+                    `${values.reduce((p, v) => p + 1, 0)}x${key} ${
                         values.some(x => x.modelCount > 1)
                             ? ` [${values.map(x => x.modelCount).join(", ")}]`
                             : ""
@@ -464,7 +494,7 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     general: WarscrollUnit | undefined = undefined;
 
     @observable
-    endlessSpells: WarscrollScenery[] = [];
+    endlessSpells: WarscrollEndlessSpell[] = [];
 
     @observable
     commandPoints = 0;
@@ -476,7 +506,7 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
 
     @computed
     get sceneryPoints() {
-        return this.endlessSpells.reduce((p, x) => x.scenery.points + p, 0);
+        return this.endlessSpells.reduce((p, x) => x.definition.points + p, 0);
     }
 
     @computed
@@ -498,7 +528,7 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     get alliedPoints() {
         return this.units
             .filter(x => x.isAllied)
-            .reduce((p, x) => x.count * x.unit.points + p, 0);
+            .reduce((p, x) => x.count * x.definition.points + p, 0);
     }
 
     @computed
@@ -713,15 +743,15 @@ export class WarscrollStore {
     }
 
     @action
-    addScenery(scenery: Scenery) {
+    addScenery(scenery: EndlessSpell) {
         this.warscroll.endlessSpells.push(
-            new WarscrollScenery(this.warscroll, scenery)
+            new WarscrollEndlessSpell(this.warscroll, scenery)
         );
         this.saveWarscroll();
     }
 
     @action
-    removeScenery(scenery: WarscrollScenery) {
+    removeScenery(scenery: WarscrollEndlessSpell) {
         const sceneries = this.warscroll.endlessSpells;
         sceneries.splice(sceneries.indexOf(scenery), 1);
         this.saveWarscroll();
@@ -830,7 +860,7 @@ export class WarscrollStore {
                 );
                 if (scenery === undefined) continue;
                 this.warscroll.endlessSpells.push(
-                    new WarscrollScenery(this.warscroll, scenery)
+                    new WarscrollEndlessSpell(this.warscroll, scenery)
                 );
             }
         }
@@ -885,7 +915,7 @@ export class WarscrollStore {
             name: this.warscroll.name,
             units: this.warscroll.units.map(x => {
                 return {
-                    unitId: x.unit.id,
+                    unitId: x.definition.id,
                     isGeneral: x === this.warscroll.general,
                     extraAbilities: x.extraAbilities.map(x => x.id),
                     models: x.models.map(x => {
@@ -914,7 +944,7 @@ export class WarscrollStore {
             armyOption:
                 (this.warscroll.armyOption && this.warscroll.armyOption.name) ||
                 undefined,
-            sceneries: this.warscroll.endlessSpells.map(x => x.scenery.id),
+            sceneries: this.warscroll.endlessSpells.map(x => x.definition.id),
             pointMode: this.warscroll.pointMode,
             commandPoints: this.warscroll.commandPoints
         };

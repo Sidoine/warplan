@@ -1,13 +1,12 @@
 import * as React from "react";
-import { WarscrollScenery } from "../stores/warscroll";
 import { WarscrollBattalionInterface } from "../stores/units";
 import {
     AllAbilities,
     useWarscrollStyles
 } from "../atoms/warscroll-components";
 import { UnitWarscroll } from "./unit-warscoll";
-import { Table, TableRow, TableCell, TableBody } from "@material-ui/core";
 import { useStores } from "../stores";
+import { EndlessSpellWarscroll } from "./endless-spell-warscroll";
 
 function BattalionView({
     battalion
@@ -56,23 +55,6 @@ function BattalionView({
     );
 }
 
-function EndlessSpellView({ scenery }: { scenery: WarscrollScenery }) {
-    return (
-        <TableRow>
-            <TableCell>{scenery.scenery.name}</TableCell>
-            <TableCell>{scenery.scenery.description}</TableCell>
-            <TableCell>
-                {scenery.scenery.abilities && (
-                    <AllAbilities
-                        title="Abilities"
-                        abilities={scenery.scenery.abilities}
-                    />
-                )}
-            </TableCell>
-        </TableRow>
-    );
-}
-
 export function Warscroll() {
     const { warscrollStore } = useStores();
     const w = warscrollStore.warscroll;
@@ -97,7 +79,7 @@ export function Warscroll() {
             {w.units
                 .filter(x => x.isBattleline)
                 .sort((a, b) =>
-                    a.unit.model.name > b.unit.model.name ? 1 : -1
+                    a.definition.model.name > b.definition.model.name ? 1 : -1
                 )
                 .map(x => (
                     <UnitWarscroll wu={x} key={x.id} />
@@ -107,7 +89,7 @@ export function Warscroll() {
             {w.units
                 .filter(x => !x.isBattleline && !x.isLeader)
                 .sort((a, b) =>
-                    a.unit.model.name > b.unit.model.name ? 1 : -1
+                    a.definition.model.name > b.definition.model.name ? 1 : -1
                 )
                 .map(x => (
                     <UnitWarscroll wu={x} key={x.id} />
@@ -123,16 +105,12 @@ export function Warscroll() {
             )}
 
             {w.endlessSpells.length > 0 && (
-                <section>
+                <>
                     <h1>Sceneries</h1>
-                    <Table>
-                        <TableBody>
-                            {w.endlessSpells.map(x => (
-                                <EndlessSpellView scenery={x} key={x.id} />
-                            ))}
-                        </TableBody>
-                    </Table>
-                </section>
+                    {w.endlessSpells.map(x => (
+                        <EndlessSpellWarscroll wes={x} key={x.id} />
+                    ))}
+                </>
             )}
         </div>
     );

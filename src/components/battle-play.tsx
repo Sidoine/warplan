@@ -110,7 +110,7 @@ function AttackTable({ attack, count }: { attack: Attack; count: number }) {
 }
 
 const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
-    const unit = wu.unit;
+    const unit = wu.definition;
     const { battleStore } = useStores();
     const store = useLocalStore(() => ({
         get abilities() {

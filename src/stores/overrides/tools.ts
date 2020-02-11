@@ -219,17 +219,17 @@ export function keywordAvailable(
 ): ExtraAbilityTest {
     return (unit, ws) =>
         unit.extraAbilities.every(x => x.category !== category) &&
-        unit.unit.keywords.indexOf(keyword) >= 0 &&
+        unit.definition.keywords.indexOf(keyword) >= 0 &&
         alts.some(
             x =>
                 x === "ALL" ||
-                unit.unit.model.name.toUpperCase() === x ||
-                unit.unit.keywords.indexOf(x) >= 0
+                unit.definition.model.name.toUpperCase() === x ||
+                unit.definition.keywords.indexOf(x) >= 0
         );
 }
 
 export const artifactAvailable: ExtraAbilityTest = (unit, ws) =>
-    !!unit.unit.isLeader &&
+    !!unit.definition.isLeader &&
     unit.extraAbilities.every(x => x.category !== "artifact") &&
     ws.extraAbilities.filter(x => x.category === "artifact").length <
         1 + ws.battalions.length;
@@ -240,12 +240,12 @@ export function artifactWithKeywordAvailable(
 ): ExtraAbilityTest {
     return (unit, ws) =>
         artifactAvailable(unit, ws) &&
-        unit.unit.keywords.indexOf(keyword) >= 0 &&
+        unit.definition.keywords.indexOf(keyword) >= 0 &&
         alts.some(
             x =>
                 x === "ALL" ||
-                unit.unit.model.name.toUpperCase() === x ||
-                unit.unit.keywords.indexOf(x) >= 0
+                unit.definition.model.name.toUpperCase() === x ||
+                unit.definition.keywords.indexOf(x) >= 0
         );
 }
 

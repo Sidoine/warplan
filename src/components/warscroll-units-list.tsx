@@ -148,7 +148,7 @@ export class WarscrollUnitsList extends React.Component<
         return (
             <>
                 <div>
-                    {unit.unit.model.name}
+                    {unit.definition.model.name}
                     <IconButton
                         onClick={() => this.handleOpenWarscroll(unit)}
                         size="small"
@@ -157,11 +157,11 @@ export class WarscrollUnitsList extends React.Component<
                     </IconButton>
                 </div>
                 <div>
-                    {unit.unit.size} <PeopleIcon />
+                    {unit.definition.size} <PeopleIcon />
                     {unit.nonAlliedUnits.length > 0 && (
                         <Tooltip
                             title={`Can't be allied with ${unit.nonAlliedUnits
-                                .map(x => x.unit.model.name)
+                                .map(x => x.definition.model.name)
                                 .join(", ")}`}
                         >
                             <WarningIcon />
@@ -170,7 +170,7 @@ export class WarscrollUnitsList extends React.Component<
                 </div>
                 <div>
                     <div>
-                        <em>{unit.unit.subType}</em>
+                        <em>{unit.definition.subType}</em>
                     </div>
                     <div>
                         {!unit.isAllied && unit.isLeader && (

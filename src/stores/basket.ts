@@ -131,8 +131,8 @@ export class BasketStore {
         }
 
         for (const unit of this.warscrollStore.warscroll.units) {
-            const count = unit.unit.size * unit.count;
-            const basket = modelsInBasket.get(unit.unit.model.id);
+            const count = unit.definition.size * unit.count;
+            const basket = modelsInBasket.get(unit.definition.model.id);
             let basketCount = 0;
             if (basket) {
                 for (const models of basket) {
@@ -143,13 +143,13 @@ export class BasketStore {
             }
 
             const existings = neededModels.find(
-                x => x.model.id === unit.unit.model.id
+                x => x.model.id === unit.definition.model.id
             );
             if (existings === undefined) {
                 neededModels.push({
-                    model: unit.unit.model,
+                    model: unit.definition.model,
                     count: count,
-                    id: unit.unit.model.id,
+                    id: unit.definition.model.id,
                     inBasket: basketCount
                 });
             } else {

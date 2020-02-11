@@ -290,6 +290,7 @@ function getUnitOptionStats(
     const unitState = new UnitState(unit);
     const enemyState = new UnitState({
         id: "enemy",
+        name: "Enemy",
         model: { id: "enemy", name: "Enemy" },
         size: 1,
         points: 0,

@@ -3,7 +3,7 @@ import * as model from "./en-classes/en-model";
 import * as fs from "fs";
 import * as def from "./definitions";
 
-const schemaVersion = 50;
+const schemaVersion = 52;
 
 function toCamelCase(name: string) {
     return name
@@ -50,7 +50,7 @@ const models: realm.ObjectSchema[] = [
     model.RealmOfBattle,
     model.RealmscapeFeature,
     model.Rule,
-    model.Skyport,
+    model.SkyportCode,
     model.UnitWarscroll,
     model.UnitWeapon,
     model.WarMachine
@@ -227,6 +227,20 @@ function fixIds(db: Realm) {
         getId(endlessSpell.id, endlessSpell.name, "EndlessSpell");
 
         for (const ability of endlessSpell.abilities) {
+            getId(
+                ability.id,
+                `${endlessSpell.name} ${ability.name}`,
+                undefined
+            );
+        }
+        for (const ability of endlessSpell.magicAbilities) {
+            getId(
+                ability.id,
+                `${endlessSpell.name} ${ability.name}`,
+                undefined
+            );
+        }
+        for (const ability of endlessSpell.commandAbilities) {
             getId(
                 ability.id,
                 `${endlessSpell.name} ${ability.name}`,
@@ -540,6 +554,33 @@ function getAbilities(db: realm) {
         }
     }
 
+    for (const endlessSpell of db.objects<def.EndlessSpell>(
+        model.EndlessSpell.name
+    )) {
+        result += getUnitAbilities(endlessSpell, endlessSpell.abilities);
+        result += getUnitAbilities(
+            endlessSpell,
+            endlessSpell.magicAbilities,
+            "Spell"
+        );
+        result += getUnitAbilities(
+            endlessSpell,
+            endlessSpell.commandAbilities,
+            "Command"
+        );
+        for (const ability of endlessSpell.specialRules) {
+            const id = gid(ability);
+            result += `
+        ${id}: {
+            id: "${id}",
+            name: "${ability.name}",
+            description: ${escapeQuotedString(ability.blurb)},
+            category: AbilityCategory.SpecialRule,
+        },
+`;
+        }
+    }
+
     for (const battalion of db.objects<def.BattalionWarscroll>(
         model.BattalionWarscroll.name
     )) {
@@ -652,6 +693,7 @@ function getUnits(db: realm) {
         if (!id) continue;
         result += `       ${id}: {
             id: "${id}",
+            name: ${escapeQuotedString(unit.name)},
             model: this.models.${id},
             description: ${escapeQuotedString(unit.blurb)},
             flavor: ${escapeQuotedString(unit.about)},
@@ -733,7 +775,7 @@ function getUnits(db: realm) {
                     unit.overrideGeneralKeywords.length
                 ) {
                     conditions.push(
-                        `ws.general && hasKeywords(ws.general.unit, ${compoundKeywordsToString(
+                        `ws.general && hasKeywords(ws.general.definition, ${compoundKeywordsToString(
                             unit.overrideGeneralKeywords
                         )})`
                     );
@@ -998,10 +1040,34 @@ function getEndlessSpells(db: realm) {
             id: "${id}",
             name: ${escapeQuotedString(endlessSpell.name)},
             points: ${endlessSpell.points},
-            description: ${escapeQuotedString(endlessSpell.about)},
+            description: ${escapeQuotedString(endlessSpell.blurb)},
+            flavor: ${escapeQuotedString(endlessSpell.about)},
+            keywords: [${endlessSpell.keywords.map(x => `"${x}"`).join(", ")}],
+            pictureUrl: ${escapeQuotedString(endlessSpell.imageUrl)},
 `;
+        if (
+            endlessSpell.abilities.length > 0 ||
+            endlessSpell.specialRules.length > 0 ||
+            endlessSpell.magicAbilities.length > 0
+        ) {
+            const abilityIds = endlessSpell.abilities
+                .map(x => gid(x))
+                .concat(endlessSpell.specialRules.map(x => gid(x)))
+                .concat(endlessSpell.magicAbilities.map(x => gid(x)));
+            result += `           abilities: [${abilityIds
+                .map(x => `this.abilities.${x}`)
+                .join(", ")}],
+`;
+        }
+        if (endlessSpell.commandAbilities.length > 0) {
+            const abilityIds = endlessSpell.commandAbilities.map(x => gid(x));
+            result += `           commandAbilities: [${abilityIds
+                .map(x => `this.abilities.${x}`)
+                .join(", ")}],
+`;
+        }
         result += `
-        },`;
+    },`;
     }
     result += `${tab}}
 `;

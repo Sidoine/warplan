@@ -39,7 +39,7 @@ export class ExportPopin extends React.Component<ExportPopinProps, {}> {
                                 ) : (
                                     <></>
                                 )}{" "}
-                                {x.unit.model.name}
+                                {x.definition.model.name}
                             </b>
                             ({x.points})
                             {x.isGeneral && (

@@ -10,6 +10,7 @@ import { overrideSylvaneth } from "./overrides/sylvaneth";
 import { overrideNighthaunt } from "./overrides/nighthaunt";
 import { overrideLegionOfGrief } from "./overrides/legion-of-grief";
 import { overrideOrder } from "./overrides/order";
+import { overrideCommon } from "./overrides/common";
 
 export const enum Material {
     Metal,
@@ -207,7 +208,7 @@ export interface AbilityEffect {
     timesPerBattle?: number;
     ignoreOtherEffects?: boolean;
     choice?: string;
-
+    spellCastingValue?: number;
     mortalWounds?: Value;
     heal?: Value;
     setUpAwayFromEnemy?: Value; // The distance to the enemy
@@ -250,12 +251,16 @@ export interface WeaponOption {
     attacks?: Attack[];
 }
 
-export interface Scenery {
+export interface EndlessSpell {
     id: string;
     name: string;
     points: number;
     description?: string;
     abilities?: Ability[];
+    commandAbilities?: Ability[];
+    keywords?: string[];
+    pictureUrl?: string;
+    flavor?: string;
 }
 
 export interface ModelOption {
@@ -389,6 +394,7 @@ export interface UnitStatModels {
 
 export interface Unit extends UnitInfos {
     id: string;
+    name: string;
     model: Model;
     size: number;
     maxSize?: number;
@@ -471,7 +477,7 @@ export const contingentName = (contingent: Contingent) => {
 };
 
 export interface WarscrollUnitInterface {
-    unit: Unit;
+    definition: Unit;
     isGeneral: boolean;
     extraAbilities: ExtraAbility[];
     models: WarscrollModelInterface[];
@@ -552,7 +558,7 @@ export class UnitsStore {
     factions: { [key: string]: Faction };
     factionsList: Faction[] = [];
     allegianceList: Allegiance[] = [];
-    sceneryList: Scenery[] = [];
+    sceneryList: EndlessSpell[] = [];
     baseAbilities: Ability[] = [];
 
     constructor(data: DataStoreImpl) {
@@ -567,6 +573,7 @@ export class UnitsStore {
         overrideNighthaunt(data);
         overrideLegionOfGrief(data);
         overrideOrder(data);
+        overrideCommon(data);
 
         const models: { [key: string]: Model } = data.models;
         for (const key in models) {
@@ -613,7 +620,7 @@ export class UnitsStore {
         this.fillBaseAbilities();
         // this.armyOptions = data.armyOptions;
 
-        const sceneries: { [key: string]: Scenery } = data.sceneries;
+        const sceneries: { [key: string]: EndlessSpell } = data.sceneries;
         for (const key in sceneries) {
             this.sceneryList.push(sceneries[key]);
         }
@@ -699,7 +706,14 @@ export class UnitsStore {
             category: AbilityCategory.Spell,
             description:
                 'Arcane Bolt has a casting value of 5. If successfully cast, pick an enemy unit within 18" of the caster that is visible to them. That unit suffers 1 mortal wound. If the casting roll was 10 or more, the unit suffers D3 mortal wounds instead.',
-            effects: [{ targetType: TargetType.Enemy, phase: Phase.Hero }]
+            effects: [
+                {
+                    spellCastingValue: 5,
+                    targetRange: 18,
+                    targetType: TargetType.Enemy,
+                    phase: Phase.Hero
+                }
+            ]
         });
         this.baseAbilities.push({
             id: "mysticshield",
@@ -710,6 +724,8 @@ export class UnitsStore {
             effects: [
                 {
                     targetType: TargetType.Friend,
+                    spellCastingValue: 6,
+                    targetRange: 18,
                     phase: Phase.Hero,
                     defenseAura: { rerollSavesOn1: true }
                 }

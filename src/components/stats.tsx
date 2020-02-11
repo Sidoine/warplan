@@ -276,7 +276,7 @@ export class Stats extends React.Component<StatsProps> {
         const wounds = getValue(unit.wounds) * unit.size;
         const points = unit.points / 100;
         const count = this.props.warscrollStore!.warscroll.units.reduce(
-            (c, x) => (x.unit.id === unit.id ? x.count + c : c),
+            (c, x) => (x.definition.id === unit.id ? x.count + c : c),
             0
         );
         return (

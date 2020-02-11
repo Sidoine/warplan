@@ -40,11 +40,12 @@ export function commandTraitWithKeywordAvailable(
     keywords: string[][]
 ): ExtraAbilityTest {
     return (unit, ws) =>
-        commandTraitAvailable(unit, ws) && hasKeywords(unit.unit, keywords);
+        commandTraitAvailable(unit, ws) &&
+        hasKeywords(unit.definition, keywords);
 }
 
 export const artifactAvailable: ExtraAbilityTest = (unit, ws) =>
-    !!unit.unit.isLeader &&
+    !!unit.definition.isLeader &&
     isAloneInCategory(unit, AbilityCategory.Artefact) &&
     ws.numberOfArtifacts < ws.maxArtifacts;
 
@@ -61,20 +62,24 @@ function canUseAbilityCategory(
     switch (ability) {
         case AbilityCategory.Artefact:
             return (
-                (unit.unit.isLeader ? unit.unit.isLeader(ws) : false) &&
+                (unit.definition.isLeader
+                    ? unit.definition.isLeader(ws)
+                    : false) &&
                 ws.numberOfArtifacts < ws.maxArtifacts &&
                 notUsed(ws, name)
             );
         case AbilityCategory.CommandTrait:
             return unit.isGeneral;
         case AbilityCategory.Command:
-            return unit.unit.isLeader ? unit.unit.isLeader(ws) : false;
+            return unit.definition.isLeader
+                ? unit.definition.isLeader(ws)
+                : false;
         case AbilityCategory.Mount:
             return notUsed(ws, name);
         case AbilityCategory.Prayer:
-            return hasKeyword(unit.unit, "PRIEST") && notUsed(ws, name);
+            return hasKeyword(unit.definition, "PRIEST") && notUsed(ws, name);
         case AbilityCategory.Spell:
-            return hasKeyword(unit.unit, "WIZARD") && notUsed(ws, name);
+            return hasKeyword(unit.definition, "WIZARD") && notUsed(ws, name);
         default:
             return true;
     }
