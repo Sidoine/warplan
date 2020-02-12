@@ -2,10 +2,10 @@ import * as React from "react";
 import { WarscrollStore } from "../stores/warscroll";
 import { inject, observer } from "mobx-react";
 import { computed } from "mobx";
-import { AbilityCard, CardContent } from "./ability-card";
+import { AbilityCard, CardContent, CardColor } from "./ability-card";
 import { CardsStore } from "../stores/cards";
 import { HiddenCard } from "./hidden-card";
-import { UnitsStore, ExtraAbility } from "../stores/units";
+import { UnitsStore, ExtraAbility, ArmyOption, Ability } from "../stores/units";
 
 export interface CardsProps {
     warscrollStore?: WarscrollStore;
@@ -13,14 +13,39 @@ export interface CardsProps {
     unitsStore?: UnitsStore;
 }
 
-function extraAbility(x: ExtraAbility): CardContent {
+function mapAbility(x: Ability, color: CardColor): CardContent {
+    return {
+        name: x.name,
+        category: x.category,
+        flavor: x.flavor,
+        description: x.description,
+        color
+    };
+}
+
+function extraAbility(x: ExtraAbility, color: CardColor): CardContent {
     return {
         name: x.ability.name,
         category: x.ability.category,
         flavor: x.ability.flavor,
         description: x.ability.description,
-        keywords: x.ability.keywords,
-        group: x.category
+        keywords: x.keywords,
+        group:
+            x.category === "CommandTrait" || x.category === "Artefact"
+                ? undefined
+                : x.category,
+        color
+    };
+}
+
+function mapArmyOption(x: Ability, o: ArmyOption): CardContent {
+    return {
+        name: x.name,
+        category: x.category,
+        flavor: x.flavor,
+        description: x.description,
+        keywords: [[o.name]],
+        color: "armyOption"
     };
 }
 
@@ -57,15 +82,27 @@ export class Cards extends React.Component<CardsProps> {
 
     @computed
     get abilities() {
-        let result: CardContent[] = this.props.unitsStore!.baseAbilities;
+        let result: CardContent[] = this.props.unitsStore!.baseAbilities.map(
+            x => mapAbility(x, "common")
+        );
         const w = this.props.warscrollStore!.warscroll;
-        if (w.armyOption) {
-            if (w.armyOption.abilities)
-                result = result.concat(w.armyOption.abilities);
+        if (w.allegiance.armyOptions) {
+            for (const armyOption of w.allegiance.armyOptions.values) {
+                if (armyOption.abilities)
+                    result = result.concat(
+                        armyOption.abilities.map(x =>
+                            mapArmyOption(x, armyOption)
+                        )
+                    );
+            }
         }
         if (w.allegiance.battleTraits)
-            result = result.concat(w.allegiance.battleTraits);
-        result = result.concat(w.availableExtraAbilities.map(extraAbility));
+            result = result.concat(
+                w.allegiance.battleTraits.map(x => mapAbility(x, "allegiance"))
+            );
+        result = result.concat(
+            w.availableExtraAbilities.map(x => extraAbility(x, "allegiance"))
+        );
 
         // for (const unit of w.units) {
         // const u = unit.unit;

@@ -843,9 +843,10 @@ function getExceptionalTraits<T extends AbilityGroup>(
                 category: "${groupTitle}",
 `;
             if (artefactGroup.keywords) {
-                result += `                ability: { id: "${id}", name: "${trait}", description: "", category: AbilityCategory.${category}, keywords: ${compoundKeywordsToString(
+                result += `                keywords: ${compoundKeywordsToString(
                     artefactGroup.keywords
-                )} },
+                )}, 
+                ability: { id: "${id}", name: "${trait}", description: "", category: AbilityCategory.${category} },
                 isAvailable: canUseAbility(${escapeQuotedString(
                     trait || "Unknown"
                 )}, AbilityCategory.${category}, ${escapeQuotedString(
@@ -887,7 +888,8 @@ function getExtraAbilitiesWithDivision(
         category: "${category}",
 `;
     if (keyword) {
-        result += `            isAvailable: canUseArmyOptionAbility(${escapeQuotedString(
+        result += `            keywords: [[${escapeQuotedString(keyword)}]],
+        isAvailable: canUseArmyOptionAbility(${escapeQuotedString(
             ability
         )}, AbilityCategory.${category}, ${escapeQuotedString(
             allegianceKeyword.toUpperCase()
@@ -937,14 +939,16 @@ function getExtraAbilities(db: realm) {
                     allegiance,
                     division,
                     division.requiredCommandTrait,
-                    "CommandTrait"
+                    "CommandTrait",
+                    division.name
                 );
             if (division.requiredArtefact)
                 result += getExtraAbilitiesWithDivision(
                     allegiance,
                     division,
                     division.requiredArtefact,
-                    "Artefact"
+                    "Artefact",
+                    division.name
                 );
         }
 

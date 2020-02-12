@@ -1,11 +1,18 @@
-import * as React from "react";
+import React, { useState, ReactNode } from "react";
 import { MarkersStore, Marker, MarkerType } from "../stores/markers";
 import { useStores } from "../stores";
-import { makeStyles } from "@material-ui/core";
+import {
+    makeStyles,
+    Card,
+    CardContent,
+    Switch,
+    FormControlLabel
+} from "@material-ui/core";
 import terrainImage from "../assets/objective.png";
 import spellImage from "../assets/gambitspell.png";
 import commandImage from "../assets/ploy.png";
 import { CSSProperties } from "@material-ui/core/styles/withStyles";
+import { NumberControl } from "../atoms/number-control";
 
 export interface MarkersProps {
     markersStore?: MarkersStore;
@@ -76,14 +83,17 @@ function MarkerView({ marker }: { marker: Marker }) {
             className = classes.terrain;
             break;
         case MarkerType.Spell:
-            className = classes.terrain;
+            className = classes.spell;
             break;
         case MarkerType.Command:
             className = classes.command;
             break;
     }
     return (
-        <div className={`${classes.marker} ${className}`}>
+        <div
+            className={`${classes.marker} ${className}`}
+            title={marker.tooltip}
+        >
             <div className={classes.text}>{marker.text}</div>
             {marker.condition && (
                 <div className={classes.condition}>{marker.condition}</div>
@@ -93,18 +103,85 @@ function MarkerView({ marker }: { marker: Marker }) {
     );
 }
 
+function Repeat({ children, count }: { children: ReactNode; count: number }) {
+    const result: ReactNode[] = [];
+    for (let i = 0; i < count; i++) {
+        result.push(<React.Fragment key={i}>{children}</React.Fragment>);
+    }
+    return <>{result}</>;
+}
+
 export function Markers() {
     const { markersStore } = useStores();
     const classes = useStyle();
+    const [repeat, setRepeat] = useState(1);
+    const [terrain, setTerrain] = useState(true);
+    const [generic, setGeneric] = useState(true);
+    const [warscroll, setWarscroll] = useState(true);
     return (
-        <div className={classes.markers}>
-            {" "}
-            {markersStore.markers.map(x => (
-                <MarkerView key={x.id} marker={x} />
-            ))}
-            {markersStore.markers.map(x => (
-                <MarkerView key={x.id} marker={x} />
-            ))}
-        </div>
+        <>
+            <Card>
+                <CardContent>
+                    <NumberControl
+                        label="Repeat"
+                        value={repeat}
+                        onChange={setRepeat}
+                    />
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={terrain}
+                                onChange={x =>
+                                    setTerrain(x.currentTarget.checked)
+                                }
+                            />
+                        }
+                        label="Terrains"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={generic}
+                                onChange={x =>
+                                    setGeneric(x.currentTarget.checked)
+                                }
+                            />
+                        }
+                        label="Generic abilities"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={warscroll}
+                                onChange={x =>
+                                    setWarscroll(x.currentTarget.checked)
+                                }
+                            />
+                        }
+                        label="Warscroll abilities"
+                    />
+                </CardContent>
+            </Card>
+            <div className={classes.markers}>
+                {terrain &&
+                    markersStore.terrainMarkers.map(x => (
+                        <Repeat count={repeat}>
+                            <MarkerView key={x.id} marker={x} />
+                        </Repeat>
+                    ))}
+                {generic &&
+                    markersStore.genericMarkers.map(x => (
+                        <Repeat count={repeat}>
+                            <MarkerView key={x.id} marker={x} />
+                        </Repeat>
+                    ))}
+                {warscroll &&
+                    markersStore.markers.map(x => (
+                        <Repeat count={repeat}>
+                            <MarkerView key={x.id} marker={x} />
+                        </Repeat>
+                    ))}
+            </div>
+        </>
     );
 }

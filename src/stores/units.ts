@@ -68,6 +68,7 @@ export const enum Phase {
 }
 
 export interface DefenseAura {
+    phase?: Phase.Combat | Phase.Shooting;
     rerollSavesOn1?: boolean;
     mortalWoundsOnSucessfulSaveReroll?: Value; // In a 3" radius
     mortalWoundsOnWound?: Value;
@@ -77,6 +78,9 @@ export interface DefenseAura {
     negateWoundsOrMortalWoundsOn6?: boolean;
     changeSaveRoll?: boolean;
     ignoreRend?: boolean;
+    healOnSave7?: number;
+    bonusHitRoll?: number;
+    malusHitRoll?: number;
 }
 
 export interface BattleshockAura {
@@ -118,6 +122,7 @@ export interface TargetCondition {
 
 export interface AttackAuraValues {
     bonusHitRoll?: Value;
+    malusHitRoll?: Value;
     bonusWoundRoll?: Value;
     bonusAttacks?: Value;
     bonusDamage?: Value;
@@ -156,7 +161,9 @@ export interface AttackAura
     extends AttackAuraValues,
         AttackAuraNumbers,
         AttackAuraAbilityEffects,
-        AttackAuraBooleans {}
+        AttackAuraBooleans {
+    phase?: Phase.Combat | Phase.Shooting;
+}
 
 export const enum SubPhase {
     Before,
@@ -186,7 +193,7 @@ export const enum TargetType {
 
 export interface AbilityEffect {
     name?: string;
-
+    castMode?: "passive" | "skill" | "prayer" | "spell" | "command"; // default is passive
     attackAura?: AttackAura;
     defenseAura?: DefenseAura;
     battleShockAura?: BattleshockAura;
@@ -200,6 +207,7 @@ export interface AbilityEffect {
     targetArea?: boolean;
     targetCondition?: TargetCondition;
     effectRange?: number;
+    /** At which phase the ability is *used* to add the effect */
     phase?: Phase;
     spellAura?: SpellAura;
     commandAura?: {};
@@ -209,6 +217,7 @@ export interface AbilityEffect {
     ignoreOtherEffects?: boolean;
     choice?: string;
     spellCastingValue?: number;
+    prayerValue?: number;
     mortalWounds?: Value;
     heal?: Value;
     setUpAwayFromEnemy?: Value; // The distance to the enemy
@@ -227,7 +236,6 @@ export interface Ability {
     spellCastingValue?: Value;
     effects?: AbilityEffect[];
     randomEffectDices?: string;
-    keywords?: string[][];
 }
 
 export interface Attack {
@@ -528,6 +536,7 @@ export interface ExtraAbility {
     allegianceKeyword?: string;
     category: string;
     isAvailable: ExtraAbilityTest;
+    keywords?: string[][];
 }
 
 export interface ArmyOption {

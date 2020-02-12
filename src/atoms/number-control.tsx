@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Input, IconButton } from "@material-ui/core";
+import { IconButton, TextField, InputAdornment } from "@material-ui/core";
 import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import { observer } from "mobx-react";
@@ -7,6 +7,7 @@ import { observer } from "mobx-react";
 export interface NumberControlProps {
     value: number;
     onChange: (value: number) => void;
+    label?: string;
     min?: number;
     max?: number;
 }
@@ -15,29 +16,32 @@ export interface NumberControlProps {
 export class NumberControl extends React.Component<NumberControlProps, {}> {
     render() {
         return (
-            <Input
+            <TextField
                 type="text"
+                label={this.props.label}
                 onChange={this.onCountChange}
                 value={this.props.value}
-                endAdornment={
-                    <>
-                        <IconButton
-                            color="primary"
-                            size="small"
-                            onClick={this.plus}
-                        >
-                            <ArrowDropUp />
-                        </IconButton>
-                        <IconButton
-                            color="secondary"
-                            size="small"
-                            onClick={this.minus}
-                        >
-                            <ArrowDropDown />
-                        </IconButton>
-                    </>
-                }
-            ></Input>
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                color="primary"
+                                size="small"
+                                onClick={this.plus}
+                            >
+                                <ArrowDropUp />
+                            </IconButton>
+                            <IconButton
+                                color="secondary"
+                                size="small"
+                                onClick={this.minus}
+                            >
+                                <ArrowDropDown />
+                            </IconButton>
+                        </InputAdornment>
+                    )
+                }}
+            />
         );
     }
 

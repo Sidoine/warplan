@@ -6,7 +6,8 @@ import {
     TargetType,
     Ability,
     Attack,
-    UnitsStore
+    UnitsStore,
+    AbilityCategory
 } from "./units";
 
 export interface Player {
@@ -52,7 +53,37 @@ export const enum PhaseSide {
     Defense,
     None
 }
+export function getEffectPhases(effect: AbilityEffect) {
+    let phase = 0;
+    if (effect.defenseAura) {
+        if (effect.defenseAura.phase) phase |= effect.defenseAura.phase;
+        else phase |= Phase.Combat | Phase.Shooting;
+    }
+    if (effect.attackAura) {
+        if (effect.attackAura.phase) phase |= effect.attackAura.phase;
+        else phase |= Phase.Combat | Phase.Shooting;
+    }
+    if (effect.commandAura || effect.spellAura) phase |= Phase.Hero;
+    if (effect.movementAura) phase |= Phase.Movement;
+    if (effect.chargeAura) phase |= Phase.Charge;
+    if (effect.battleShockAura) phase |= Phase.Battleshock;
+    return phase;
+}
 
+export function getAbilityPhases(ability: Ability) {
+    let phase = 0;
+    if (
+        ability.category === AbilityCategory.Prayer ||
+        ability.category === AbilityCategory.Spell
+    )
+        phase |= Phase.Hero;
+    if (ability.effects) {
+        for (const effect of ability.effects) {
+            if (effect.phase) phase |= effect.phase;
+        }
+    }
+    return phase;
+}
 export function isEffectInPhase(
     effect: AbilityEffect,
     phase: Phase,

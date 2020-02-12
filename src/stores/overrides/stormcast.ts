@@ -1643,6 +1643,11 @@ function fixUnits(data: DataStoreImpl): void {
             targetType: TargetType.Enemy,
             phase: Phase.Hero
         });
+        addAbilityEffect(data.abilities.lordCastellantWardingLantern, {
+            targetType: TargetType.Friend,
+            phase: Phase.Hero,
+            defenseAura: { bonusSave: 1, healOnSave7: 1 }
+        });
         addAbilityEffect(data.abilities.lordCastellantFaithfulGryphHound, {
             targetType: TargetType.Friend,
             phase: Phase.Setup
@@ -1892,7 +1897,6 @@ function fixUnits(data: DataStoreImpl): void {
                 hasOption(model, sequitorPrimeOption)
         );
         addAbilityEffect(data.abilities.sequitorsGreatmaceBlast, {
-            phase: Phase.Combat,
             targetType: TargetType.Enemy,
             targetCondition: { anyKeyword: ["DAEMON", "NIGHTHAUT"] },
             attackAura: { numberOfHitsOnUnmodified6: "D3" }
@@ -2169,7 +2173,6 @@ function fixUnits(data: DataStoreImpl): void {
             UnitCategoryMain
         );
         addAbilityEffect(data.abilities.evocatorsEvocatorPrime, {
-            phase: Phase.Combat,
             targetType: TargetType.Model,
             attackAura: { bonusAttacks: 1 }
         });
@@ -2184,6 +2187,14 @@ function fixUnits(data: DataStoreImpl): void {
             subPhase: SubPhase.WhileAfter,
             targetRange: 3,
             mortalWoundsPerModel: "2D(4+)"
+        });
+        addAbilityEffect(data.abilities.evocatorsEmpower, {
+            targetType: TargetType.Unit,
+            spellCastingValue: 6,
+            targetRange: 12,
+            attackAura: {
+                rerollFailedWounds: true
+            }
         });
         // TODo spells addAbilityEffect(data.abilities.evocatorsEmpower, )
         unit.optionStats = [
@@ -2265,7 +2276,11 @@ function fixUnits(data: DataStoreImpl): void {
             {
                 targetType: TargetType.Enemy,
                 phase: Phase.Movement,
-                subPhase: SubPhase.After
+                subPhase: SubPhase.After,
+                defenseAura: {
+                    phase: Phase.Shooting,
+                    bonusHitRoll: 1
+                }
             }
         );
         addAbilityEffect(
@@ -2326,8 +2341,11 @@ function fixUnits(data: DataStoreImpl): void {
                 .aventisFirestrikeMagisterOfHammerhalRighteousIndignation,
             {
                 targetType: TargetType.Model,
-                phase: Phase.Combat,
-                defenseAura: { mortalWoundsOnWound: "1(5+)" }
+
+                defenseAura: {
+                    phase: Phase.Combat,
+                    mortalWoundsOnWound: "1(5+)"
+                }
             }
         );
     }
@@ -2335,26 +2353,67 @@ function fixUnits(data: DataStoreImpl): void {
 
 function fixExtraAbilities(data: DataStoreImpl): void {
     // Command traits
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrShieldedByFaith.ability.description =
-        "Roll a dice each time you allocate a mortal wound to this general. On a 5+ that mortal wound is negated.";
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrConsummateCommander.ability.description =
-        "If this general is on the battlefield at the start of your hero phase, roll a dice. On a 4+ you receive 1 extra command point.";
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrCunningStrategist.ability.description =
-        'After set-up is complete, but before the battle begins, D3 friendly STORMCAST ETERNAL units can move up to 5".';
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrZealousCrusader.ability.description =
-        "You can re-roll charge rolls for this general.";
-    override<ExtraAbility>(
-        data.extraAbilities.stormcastEternalsAspectsOfAzyrStaunchDefender,
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAspectsOfAzyrShieldedByFaith
+            .ability,
         x => {
-            x.ability.description =
-                'Add 1 to save rolls for attacks that target friendly STORMCAST ETERNAL units wholly within 9" of this general if that STORMCAST ETERNAL unit has not made a charge move in the same turn.';
-            x.ability.effects = [
-                { targetType: TargetType.Friend, defenseAura: { bonusSave: 1 } }
-            ];
+            x.description =
+                "Roll a dice each time you allocate a mortal wound to this general. On a 5+ that mortal wound is negated.";
+            x.flavor =
+                "This warrior’s faith allows them to shrug off the most grievous injuries.";
         }
     );
-    data.extraAbilities.stormcastEternalsAspectsOfAzyrChampionOfTheRealms.ability.description =
-        "Pick one of this general’s melee weapons. Add 1 to the Attacks characteristic of that weapon.";
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAspectsOfAzyrConsummateCommander
+            .ability,
+        x => {
+            x.description =
+                "If this general is on the battlefield at the start of your hero phase, roll a dice. On a 4+ you receive 1 extra command point.";
+            x.flavor =
+                "This general directs their forces with supernatural flair";
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAspectsOfAzyrCunningStrategist
+            .ability,
+        x => {
+            x.description =
+                'After set-up is complete, but before the battle begins, D3 friendly STORMCAST ETERNAL units can move up to 5".';
+            x.flavor =
+                "This general primes their forces to strike at just the right moment.";
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAspectsOfAzyrZealousCrusader
+            .ability,
+        x => {
+            x.description = "You can re-roll charge rolls for this general.";
+            x.flavor =
+                "There is very little that can stand between this general and their hated foe.";
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAspectsOfAzyrStaunchDefender
+            .ability,
+        x => {
+            x.description =
+                'Add 1 to save rolls for attacks that target friendly STORMCAST ETERNAL units wholly within 9" of this general if that STORMCAST ETERNAL unit has not made a charge move in the same turn.';
+            x.effects = [
+                { targetType: TargetType.Friend, defenseAura: { bonusSave: 1 } }
+            ];
+            x.flavor =
+                "The general holds their ground, never taking a backward step.";
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAspectsOfAzyrChampionOfTheRealms
+            .ability,
+        x => {
+            x.description =
+                "Pick one of this general’s melee weapons. Add 1 to the Attacks characteristic of that weapon.";
+            x.flavor = "This general is deadly with their favoured weapon.";
+        }
+    );
 
     // // Artifacts
     override<Ability>(
@@ -2426,8 +2485,22 @@ function fixExtraAbilities(data: DataStoreImpl): void {
             .ability,
         x => {
             x.flavor = "This plate mail is blessed by fate.";
+            x.description =
+                "Roll a dice each time you allocate a wound or mortal wound to the bearer. On a 6+, that wound or mortal wound is negated.";
         }
     );
+    overrideAbility(
+        data.extraAbilities
+            .stormcastEternalsHeavenWroughtArmourArmourOfSilveredSigmarite
+            .ability,
+        x => {
+            x.flavor =
+                "Shining with a sacred aura, this armour gleams so bright it can dazzle the enemy";
+            x.description =
+                "Subtract 1 from hit rolls for attacks made with melee weapons that target the bearer.";
+        }
+    );
+
     override<ExtraAbility>(
         data.extraAbilities.stormcastEternalsArtefactsOfTheTempestLuckstone,
         x => {
@@ -2556,33 +2629,33 @@ function fixExtraAbilities(data: DataStoreImpl): void {
     );
 
     //const treasuredStandard = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["TOTEM"]);
-    override(
-        data.extraAbilities
-            .stormcastEternalsTreasuredStandardsHurricaneStandard,
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsTreasuredStandardsHurricaneStandard
+            .ability,
         x => {
-            //x.isAvailable = treasuredStandard;
-            //x.category = "artifact";
-            x.ability.description =
+            x.flavor =
+                "The bearer of this potent item always has the wind at their back. They and their kin are driven towards victory by the fury of the tempest.";
+            x.description =
                 'You can re-roll run and charge rolls for friendly STORMCAST ETERNAL units wholly within 12" of the bearer at the start of the phase in which the roll is made.';
         }
     );
-    override(
-        data.extraAbilities
-            .stormcastEternalsTreasuredStandardsLicheboneStandard,
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsTreasuredStandardsLicheboneStandard
+            .ability,
         x => {
-            //x.isAvailable = treasuredStandard;
-            //x.category = "artifact";
-            x.ability.description =
+            x.flavor =
+                "Incorporating a femur blessed by the Great Necromancer, this banner can instil vigour in even a mortally wounded warrior.";
+            x.description =
                 'At the start of your hero phase, you can heal 1 wound allocated to each friendly STORMCAST ETERNAL unit wholly within 9" of the bearer.';
         }
     );
-    override(
-        data.extraAbilities
-            .stormcastEternalsTreasuredStandardsPennantOfSigmaron,
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsTreasuredStandardsPennantOfSigmaron
+            .ability,
         x => {
-            //x.isAvailable = treasuredStandard;
-            //x.category = "artifact";
-            x.ability.description =
+            x.flavor =
+                "The steel in the soul of those near this standard is all but unbending, even in dire peril.";
+            x.description =
                 'If a friendly STORMCAST ETERNAL unit wholly within 24" of the bearer fails a battleshock test, roll a dice. On a 2+ only one model flees from that unit.';
         }
     );
@@ -2597,32 +2670,35 @@ function fixExtraAbilities(data: DataStoreImpl): void {
             x.effects = [{ phase: Phase.Hero, targetType: TargetType.Friend }];
         }
     );
-    override(
-        data.extraAbilities.stormcastEternalsMysticLightsShrivingLight,
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsMysticLightsShrivingLight.ability,
         x => {
-            //x.isAvailable = mysticLight;
-            //x.category = "artifact" ;
-            x.ability.description =
-                'The redemptive light of the High Star Sigendil beams outwards, sapping the will of evil men. Any enemy units that take a battleshock test within 6" of this HERO add 1 to the result. CHAOS units instead add D3 to the result.';
+            x.flavor =
+                "The redemptive light of Sigendil beams outwards, sapping the will of evil men.";
+            x.description =
+                'Subtract 1 from the Bravery characteristic of enemy units while they are within 6" of the bearer. Subtract 2 from the unit’s Bravery characteristic instead if it has the CHAOS keyword.';
         }
     );
-    override(
-        data.extraAbilities.stormcastEternalsMysticLightsLanternOfTheTempest,
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsMysticLightsLanternOfTheTempest
+            .ability,
         x => {
-            //x.isAvailable = mysticLight;
-            //x.category = "artifact" ;
-            x.ability.description =
-                'This lantern emits the flickering, blinding glare of a caged lightning storm. Enemy units that direct missile weapon attacks against this HERO or friendly STORMCAST ETERNALS units within 6" of this HERO must re-roll hit rolls of 6 or more.';
+            x.flavor =
+                "This lantern emits the crackling, blinding glare of a caged lightning storm.";
+            x.description =
+                'Re-roll unmodified hit rolls of 6 for attacks made with missile weapons that target friendly STORMCAST ETERNAL units wholly within 12" of the bearer.';
         }
     );
 
     // Prayers
-    override<Ability>(
+    overrideAbility(
         data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsDivineLight
             .ability,
         x => {
+            x.flavor =
+                "The priest parts the storm clouds and a ray of Sigmar’s divine light illuminates the battlefield.";
             x.description =
-                'In your hero phase, you can declare that this model is going to pray for Sigmar to illuminate the battlefield. If you do so, pick a unit within 12" and roll a dice. On a roll of 3 or more the prayer is heard – if you chose an enemy unit, friendly units re-roll hit rolls of 1 when attacking that unit until your next hero phase. If you instead chose a friendly unit, enemy units re-roll hit rolls of 6 or more when attacking that unit until your next hero phase.';
+                'In your hero phase, pick a unit wholly within 18" of this PRIEST and roll a dice. On a 3+ the prayer is successful. If the prayer is successful and you chose an enemy unit, you can re-roll hit rolls of 1 for attacks that target that unit until your next hero phase. If the prayer is successful and you chose a friendly unit, re-roll unmodified hit rolls of 6 for attacks that target that unit until your next hero phase.';
             x.effects = [
                 {
                     phase: Phase.Hero,
@@ -2632,16 +2708,56 @@ function fixExtraAbilities(data: DataStoreImpl): void {
             ];
         }
     );
-    data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsBlessWeapons.ability.description =
-        'In your hero phase, you can declare that this model is going to pray for Sigmar to bless the weapons of his chosen warriors. If you do so, pick the PRIEST or a unit within 12" of them and roll a dice. On a roll of 4 or more the prayer is heard – until your next hero phase, for any hit rolls of 6 or more made for that unit, you can immediately roll another attack.';
-    data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsBolsterFaith.ability.description =
-        'In your hero phase, you can declare that this model is going to pray for courage. If you do so roll a dice. On a roll of 4 or more the prayer is heard – the PRIEST and friendly units within 12" do not have to take battleshock tests until your next hero phase.';
-    data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsTranslocation.ability.description =
-        'In your hero phase, pick a friendly STORMCASTETERNAL unit wholly within 9" of this PRIEST and roll a dice. On a 3+ the prayer is successful. If the prayer is successful, remove that unit fromthe battlefield and then set it up again anywhere on the battlefield more than 9" from any enemy units. It may not move in the subsequent movement phase.';
-    data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsAbjuration.ability.description =
-        "In your hero phase, you can declare that this model will pray for Sigmar to banish vile sorceries. If you do so roll a dice. On a roll of 2 or more the prayer is heard – the PRIEST can attempt to unbind a single spell in each enemy hero phase until your next hero phase in the same manner as a Wizard.";
-    data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsGodKingSAspect.ability.description =
-        'In your hero phase, you can declare that this model is going to pray for Sigmar to open the conduit between them and show forth his true glory. If you do so roll a dice. On a roll of 4 or more the prayer is heard – enemy units within 12" of the PRIEST add 2 to any battleshock tests they have to take until your next hero phase. On a roll of 1 the strain of attempting to channel such might is too great, and the PRIEST suffers a mortal wound.';
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsBlessWeapons
+            .ability,
+        x => {
+            x.flavor =
+                "The priest imbues the weapons of those nearby with the pure essence of the storm.";
+            x.description =
+                'In your hero phase, pick a friendly unit wholly within 18" of this PRIEST and roll a dice. On a roll of 4+ the prayer is successful. If the prayer is successful, until your next hero phase, each unmodified hit roll of 6 for an attack made by that unit inflicts 1 extra hit on the target (usually this will be 2 hits instead of 1). Make a wound and save roll for each hit.';
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsBolsterFaith
+            .ability,
+        x => {
+            x.flavor =
+                "The priest bestows a calming aura upon his allies, strengthening their will.";
+            x.description =
+                'In your hero phase, pick a friendly STORMCAST ETERNAL unit within 9" of this PRIEST and roll a dice. On a 3+ the prayer is successful. If the prayer is successful, until your next hero phase that unit does not take battleshock tests.';
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsTranslocation
+            .ability,
+        x => {
+            x.flavor =
+                "The priest drops to one knee, praying to Sigmar to banish vile sorceries.";
+            x.description =
+                'At the start of the enemy hero phase, pick an enemy WIZARD within 12" of this PRIEST and roll a dice. On a 3+ the prayer is successful. If the prayer is successful this PRIEST can attempt to unbind 1 spell cast by that enemy WIZARD in that hero phase in the same manner as a WIZARD.';
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsAbjuration
+            .ability,
+        x => {
+            x.flavor =
+                "The priest’s appearance shifts to resemble Sigmar himself.";
+            x.description =
+                'In your hero phase, this PRIEST can take on Sigmar’s appearance. If they do so, roll a dice. On a 3+ the prayer is successful. If the prayer is successful, until your next hero phase, subtract 1 from the Bravery characteristic of enemy units while they are within 6" of this PRIEST.';
+        }
+    );
+    overrideAbility(
+        data.extraAbilities
+            .stormcastEternalsPrayersOfTheStormhostsGodKingSAspect.ability,
+        x => {
+            x.flavor =
+                "Calling to Sigmar’s storm above, the priest summons bolts of lightning to transport nearby warriors across the field of battle.";
+            x.description =
+                'In your hero phase, pick a friendly STORMCAST ETERNAL unit wholly within 9" of this PRIEST and roll a dice. On a 3+ the prayer is successful. If the prayer is successful, remove that unit from the battlefield and then set it up again anywhere on the battlefield more than 9" from any enemy units. It may not move in the subsequent movement phase.';
+        }
+    );
 
     // Mounts
     data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastLitheLimbed.ability.description =
@@ -2729,7 +2845,14 @@ function fixExtraAbilities(data: DataStoreImpl): void {
     override<Ability>(
         data.extraAbilities.stormcastEternalsLoreOfTheStormThundershock.ability,
         x => {
-            x.effects = [{ targetType: TargetType.Enemy, phase: Phase.Hero }];
+            x.effects = [
+                {
+                    targetType: TargetType.Enemy,
+                    phase: Phase.Hero,
+                    mortalWounds: "1(4+)",
+                    attackAura: { malusHitRoll: 1 }
+                }
+            ];
             x.description =
                 'Thundershock has a casting value of 6. If successfully cast, roll a dice for each enemy unit within 6" of the caster that is visible to them. On a 4+ that unit suffers 1 mortal wound. In addition, subtract 1 from hit rolls for attacks made by that unit until your next hero phase.';
             x.flavor =
@@ -2968,7 +3091,13 @@ function fixAllegiance(data: DataStoreImpl) {
         description:
             "Subtract 1 from hit rolls for attacks that target friendly STORMCAST ETERNAL units that were set up on the battlefield during the same turn.",
         category: AbilityCategory.Army,
-        effects: [{ targetType: TargetType.Friend, defenseAura: {} }]
+        effects: [
+            {
+                phase: Phase.Movement,
+                targetType: TargetType.Friend,
+                defenseAura: { malusHitRoll: 1 }
+            }
+        ]
     };
     override<Allegiance>(
         data.allegiances.stormcastEternals,

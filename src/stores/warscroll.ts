@@ -689,13 +689,30 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
 
     @computed
     get abilities() {
-        let result: Ability[] = this.unitsStore.baseAbilities;
+        return this.unitsStore.baseAbilities.concat(this.allegianceAbilities);
+    }
+
+    @computed
+    get allegianceAbilities() {
+        let result: Ability[] = [];
         if (this.armyOption) {
             if (this.armyOption.abilities)
                 result = result.concat(this.armyOption.abilities);
         }
         if (this.allegiance.battleTraits)
             result = result.concat(this.allegiance.battleTraits);
+        return result;
+    }
+
+    @computed
+    get unitAbilities() {
+        let result: Ability[] = [];
+        for (const unit of this.items) {
+            for (const ability of unit.abilities) {
+                if (!result.find(x => x.id === ability.id))
+                    result.push(ability);
+            }
+        }
         return result;
     }
 }

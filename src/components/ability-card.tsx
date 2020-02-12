@@ -3,6 +3,8 @@ import { AbilityCategory } from "../stores/units";
 import { makeStyles } from "@material-ui/core";
 import background from "../assets/fond.png";
 
+export type CardColor = "allegiance" | "common" | "armyOption";
+
 export interface CardContent {
     name: string;
     category?: AbilityCategory;
@@ -12,6 +14,7 @@ export interface CardContent {
     values?: { key: string; value: string | number | undefined }[];
     imageUrl?: string;
     group?: string;
+    color: CardColor;
 }
 
 export interface AbilityCardProps {
@@ -95,7 +98,7 @@ const useStyle = makeStyles({
         width: "63mm",
         fontWeight: "bold",
         color: "#555",
-        backgroundColor: "rgba(255, 255, 255, 0.5)",
+        backgroundColor: "rgba(255, 255, 255, 0.6)",
         textAlign: "center"
     },
     values: {
@@ -143,6 +146,17 @@ function getAbilityCategory(type: AbilityCategory | undefined) {
     }
 }
 
+function color(c: CardColor) {
+    switch (c) {
+        case "common":
+            return "rgba(255, 255, 255, 0.8)";
+        case "allegiance":
+            return "rgba(230, 230, 255, 0.8)";
+        case "armyOption":
+            return "rgba(255, 220, 230, 0.8)";
+    }
+}
+
 export function AbilityCard({ ability, onClick }: AbilityCardProps) {
     const classes = useStyle();
     return (
@@ -153,7 +167,10 @@ export function AbilityCard({ ability, onClick }: AbilityCardProps) {
             {!ability.description && !ability.flavor && ability.imageUrl && (
                 <img className={classes.image} src={ability.imageUrl} />
             )}
-            <div className={classes.header}>
+            <div
+                className={classes.header}
+                style={{ backgroundColor: color(ability.color) }}
+            >
                 {ability.category && (
                     <div className={classes.category}>
                         · {getAbilityCategory(ability.category)} ·

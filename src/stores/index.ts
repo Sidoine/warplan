@@ -29,7 +29,7 @@ export function newStores(): Stores {
     const warscrollStore = new WarscrollStore(unitsStore);
     const ownedStore = new OwnedStore(unitsStore);
     const basketStore = new BasketStore(unitsStore, warscrollStore, ownedStore);
-    const markersStore = new MarkersStore();
+    const markersStore = new MarkersStore(warscrollStore);
     const cardsStore = new CardsStore();
     const battleStore = new BattleStore(unitsStore);
     return {
