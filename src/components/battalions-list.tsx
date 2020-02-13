@@ -12,7 +12,13 @@ export interface BattalionsListProps {
 
 const columns: TableColumn<Battalion>[] = [
     { name: "Name", text: x => x.name },
-    { name: "Description", text: x => x.description }
+    {
+        name: "Description",
+        text: b =>
+            b.units
+                .map(y => y.units.map(x => x.join("-")).join("/"))
+                .join(" ― ")
+    }
 ];
 
 @inject("unitsStore", "warscrollStore")

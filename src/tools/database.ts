@@ -57,8 +57,6 @@ const models: realm.ObjectSchema[] = [
 ];
 const tab = "    ";
 const allegianceIdByKeyword = new Map<string, string>();
-allegianceIdByKeyword.set("SKAVEN PESTILENS", "clansPestilens");
-allegianceIdByKeyword.set("CLAN SKRYRE", "clansSkryre");
 async function load() {
     try {
         let definitions: string[] = [];
@@ -993,7 +991,7 @@ function getBattalions(db: realm) {
             id: "${id}",
             name: ${escapeQuotedString(battalion.name)},
             allegiances: [${battalion.allegiance
-                .map(x => allegianceIdByKeyword.get(x))
+                .map(x => allegianceIdByKeyword.get(x.toUpperCase()))
                 .filter(x => x !== undefined)
                 .map(x => `this.allegiances.${x}`)}],
             description: ${escapeQuotedString(battalion.about)},

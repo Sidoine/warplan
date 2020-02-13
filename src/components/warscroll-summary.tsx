@@ -209,15 +209,13 @@ export class WarscrollSummary extends React.Component<
                             </FormControl>
                         </Grid>
                         <Grid item>
-                            <FormControl>
-                                <InputLabel>Command points</InputLabel>
-                                <NumberControl
-                                    min={0}
-                                    max={warscroll.maxCommandPoints}
-                                    value={warscroll.commandPoints}
-                                    onChange={this.setCommandPoints}
-                                />
-                            </FormControl>
+                            <NumberControl
+                                label="Command points"
+                                min={0}
+                                max={warscroll.maxCommandPoints}
+                                value={warscroll.commandPoints}
+                                onChange={this.setCommandPoints}
+                            />
                         </Grid>
                     </Grid>
                 </CardContent>
