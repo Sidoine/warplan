@@ -537,15 +537,16 @@ export interface ExtraAbility {
     category: string;
     isAvailable: ExtraAbilityTest;
     keywords?: string[][];
+    requiredByArmyOption?: boolean;
 }
 
 export interface ArmyOption {
     id: string;
     name: string;
     keyword?: string;
-    requiredArtifact?: Ability;
+    requiredArtifact?: ExtraAbility;
     requiredArtifactKeyword?: string;
-    requiredCommandTrait?: Ability;
+    requiredCommandTrait?: ExtraAbility;
     requiredCommandTraitKeyword?: string;
     abilities?: Ability[];
     commandAbilities?: Ability[];

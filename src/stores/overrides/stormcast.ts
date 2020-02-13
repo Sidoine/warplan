@@ -9,8 +9,7 @@ import {
     Allegiance,
     Ability,
     ArmyOption,
-    AbilityCategory,
-    ExtraAbility
+    AbilityCategory
 } from "../units";
 import {
     overrideModel,
@@ -28,7 +27,8 @@ import {
     overrideAttack,
     addAttackToOption,
     addAbilityToOption,
-    overrideAbility
+    overrideAbility,
+    overrideAbilities
 } from "./tools";
 
 function addBoxes(data: DataStoreImpl): void {
@@ -2415,7 +2415,7 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         }
     );
 
-    // // Artifacts
+    // Stormforged Weapons
     override<Ability>(
         data.extraAbilities.stormcastEternalsStormForgedWeaponsStrifeEnder
             .ability,
@@ -2480,6 +2480,7 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         }
     );
 
+    // Heaven wrought armours
     override<Ability>(
         data.extraAbilities.stormcastEternalsHeavenWroughtArmourArmourOfDestiny
             .ability,
@@ -2501,22 +2502,6 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         }
     );
 
-    override<ExtraAbility>(
-        data.extraAbilities.stormcastEternalsArtefactsOfTheTempestLuckstone,
-        x => {
-            x.ability.flavor =
-                "Some say the Luckstone is so redolent with fortune it survived the death of the world-that-was.";
-            x.ability.description =
-                "Once per battle, you can change one hit, wound or save roll, or one roll that randomly determines a Damage characteristic, to the roll of your choice. The roll must be for an attack made by the bearer, or a save roll for an attack that targets the bearer.";
-            x.ability.effects = [
-                {
-                    targetType: TargetType.Unit,
-                    timesPerBattle: 1,
-                    attackAura: { changeHitWoundSaveOrDamageRoll: true }
-                }
-            ];
-        }
-    );
     override<Ability>(
         data.extraAbilities.stormcastEternalsHeavenWroughtArmourDrakescaleArmour
             .ability,
@@ -2557,6 +2542,8 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 "Units that can fly must re - roll successful hit rolls for attacks directed against this HERO.";
         }
     );
+
+    // Artefacts of the tempest
     override<Ability>(
         data.extraAbilities
             .stormcastEternalsArtefactsOfTheTempestTalismanOfEndurance.ability,
@@ -2566,6 +2553,7 @@ function fixExtraAbilities(data: DataStoreImpl): void {
             x.description = "Add 1 to this HERO’s Wounds characteristic.";
         }
     );
+
     override<Ability>(
         data.extraAbilities.stormcastEternalsArtefactsOfTheTempestObsidianAmulet
             .ability,
@@ -2576,14 +2564,22 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 "Roll a dice whenever this HERO is affected by a spell.On a roll of 4 or more, ignore the effects of the spell on this HERO.Other units are affected as normal.";
         }
     );
-    override<Ability>(
+
+    overrideAbility(
         data.extraAbilities.stormcastEternalsArtefactsOfTheTempestLuckstone
             .ability,
         x => {
             x.flavor =
                 "Some say the Luckstone is so redolent with fortune it survived the death of the world-that-was.";
             x.description =
-                "Once per battle, you can change the result of one hit, wound, damage or save roll for this HERO to the result of your choice.";
+                "Once per battle, you can change one hit, wound or save roll, or one roll that randomly determines a Damage characteristic, to the roll of your choice. The roll must be for an attack made by the bearer, or a save roll for an attack that targets the bearer.";
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    timesPerBattle: 1,
+                    attackAura: { changeHitWoundSaveOrDamageRoll: true }
+                }
+            ];
         }
     );
     override<Ability>(
@@ -2617,18 +2613,7 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         }
     );
 
-    override<ExtraAbility>(
-        data.extraAbilities.stormcastEternalsMysticLightsShrivingLightArtefactx,
-        x => {
-            x.ability.description =
-                'Subtract 1 from the Bravery characteristic of enemy units while they are within 6" of the bearer. Subtract 2 from the unit’s Bravery characteristic instead if it has the CHAOS keyword.';
-            x.ability.effects = [
-                { phase: Phase.Battleshock, targetType: TargetType.Enemy }
-            ];
-        }
-    );
-
-    //const treasuredStandard = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["TOTEM"]);
+    //Treasured standards
     overrideAbility(
         data.extraAbilities.stormcastEternalsTreasuredStandardsHurricaneStandard
             .ability,
@@ -2659,35 +2644,122 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 'If a friendly STORMCAST ETERNAL unit wholly within 24" of the bearer fails a battleshock test, roll a dice. On a 2+ only one model flees from that unit.';
         }
     );
-    //const mysticLight = artifactWithKeywordAvailable("STORMCAST ETERNALS", ["LORD-CASTELLANT", "LORD-VERITANT", "KNIGHT-AZYROS"])
-    overrideAbility(
-        data.extraAbilities.stormcastEternalsMysticLightsFuryBrand.ability,
+
+    // Mystic lights
+    overrideAbilities(
         x => {
             x.flavor =
                 "The fiery light that spills from this item can ignite a deep and righteous rage in those nearby.";
             x.description =
                 'In your hero phase, you can pick 1 melee weapon used by a STORMCAST ETERNAL HERO within 6" of the bearer. Add 1 to the Attacks characteristic of that melee weapon until your next hero phase.';
             x.effects = [{ phase: Phase.Hero, targetType: TargetType.Friend }];
-        }
+        },
+        data.extraAbilities.stormcastEternalsMysticLightsFuryBrand.ability,
+        data.extraAbilities.stormcastEternalsMysticLightsFuryBrandArtefact
+            .ability,
+        data.extraAbilities.stormcastEternalsMysticLightsFuryBrandArtefactx
+            .ability
     );
-    overrideAbility(
-        data.extraAbilities.stormcastEternalsMysticLightsShrivingLight.ability,
+    overrideAbilities(
         x => {
             x.flavor =
                 "The redemptive light of Sigendil beams outwards, sapping the will of evil men.";
             x.description =
                 'Subtract 1 from the Bravery characteristic of enemy units while they are within 6" of the bearer. Subtract 2 from the unit’s Bravery characteristic instead if it has the CHAOS keyword.';
-        }
-    );
-    overrideAbility(
-        data.extraAbilities.stormcastEternalsMysticLightsLanternOfTheTempest
+        },
+        data.extraAbilities.stormcastEternalsMysticLightsShrivingLight.ability,
+        data.extraAbilities.stormcastEternalsMysticLightsShrivingLightArtefact
             .ability,
+        data.extraAbilities.stormcastEternalsMysticLightsShrivingLightArtefactx
+            .ability
+    );
+    overrideAbilities(
         x => {
             x.flavor =
                 "This lantern emits the crackling, blinding glare of a caged lightning storm.";
             x.description =
                 'Re-roll unmodified hit rolls of 6 for attacks made with missile weapons that target friendly STORMCAST ETERNAL units wholly within 12" of the bearer.';
-        }
+        },
+        data.extraAbilities.stormcastEternalsMysticLightsLanternOfTheTempest
+            .ability,
+        data.extraAbilities
+            .stormcastEternalsMysticLightsLanternOfTheTempestArtefact.ability,
+        data.extraAbilities
+            .stormcastEternalsMysticLightsLanternOfTheTempestArtefactx.ability
+    );
+
+    //Celestial Staves
+    overrideAbilities(
+        x => {
+            x.flavor =
+                "Imbued with the energies of Azyr, this staff assists its bearer in channelling the destructive power of the storm.";
+            x.description =
+                "Once per battle, in your hero phase, the bearer can use this artefact. If they do so, add 1 to casting rolls for the bearer until the end of that phase. In addition, if the bearer casts a spell that inflicts any mortal wounds during that phase, add 1 to the number of mortal wounds inflicted on each unit that the spell affects.";
+        },
+        data.extraAbilities.stormcastEternalsCelestialStavesStaffOfFocus
+            .ability,
+        data.extraAbilities.stormcastEternalsCelestialStavesStaffOfFocusArtefact
+            .ability
+    );
+    overrideAbilities(
+        x => {
+            x.flavor =
+                "The head of this stave can mesmerise enemy spellcasters, leaving them unable to formulate coherent thoughts.";
+            x.description =
+                'Once per battle, at the start of the enemy hero phase, you can pick an enemy WIZARD with 12" of the bearer. That WIZARD cannot cast any spells that phase.';
+        },
+        data.extraAbilities.stormcastEternalsCelestialStavesMindlockStaff
+            .ability,
+        data.extraAbilities
+            .stormcastEternalsCelestialStavesMindlockStaffArtefact.ability
+    );
+    overrideAbilities(
+        x => {
+            x.flavor =
+                "This staff glows brightly whenever celestial energy is channelled through it, blinding the enemies of Sigmar.";
+            x.description =
+                "In your hero phase, if the bearer successfully casts any spells that are not unbound, subtract 1 from hit rolls for attacks that target the bearer until your next hero phase.";
+        },
+        data.extraAbilities.stormcastEternalsCelestialStavesStaffOfAzyr.ability,
+        data.extraAbilities.stormcastEternalsCelestialStavesStaffOfAzyrArtefact
+            .ability
+    );
+
+    // Scrolls of power
+    overrideAbilities(
+        x => {
+            x.flavor =
+                "As the wizard reads from this scroll, enemy spellcasters find their spells unravelling.";
+            x.description =
+                "Once per battle, at the start of the enemy hero phase, the bearer can use this artefact. If they do so, in that hero phase, enemy casting rolls that are equal to the spell’s casting value are unsuccessful and the caster suffers D3 mortal wounds.";
+        },
+        data.extraAbilities.stormcastEternalsScrollsOfPowerScrollOfUnravelling
+            .ability,
+        data.extraAbilities
+            .stormcastEternalsScrollsOfPowerScrollOfUnravellingArtefact.ability
+    );
+    overrideAbilities(
+        x => {
+            x.flavor =
+                "This scroll lists the names of those who have been judged unworthy.";
+            x.description =
+                'Once per battle, in your hero phase, the bearer can use this artefact. If they do so, pick an enemy HERO within 12" of the bearer. Until the end of that turn, add 1 to wound rolls for attacks made by friendly STORMCAST ETERNALS that target that model.';
+        },
+        data.extraAbilities.stormcastEternalsScrollsOfPowerScrollOfCondemnation
+            .ability,
+        data.extraAbilities
+            .stormcastEternalsScrollsOfPowerScrollOfCondemnationArtefact.ability
+    );
+    overrideAbilities(
+        x => {
+            x.flavor =
+                "Reading aloud from the scroll, the wizard causes Sigmar’s storm to roil and lash out at the battlefield the ground with anger.";
+            x.description =
+                "Once per battle, in your hero phase, the bearer can use this artefact. If they do so, pick up to 6 different enemy units on the battlefield, and give each of them a different number from 1 to 6. Then roll a dice. If there is a unit whose number is the same as the roll, that unit suffers D6 mortal wounds.";
+        },
+        data.extraAbilities.stormcastEternalsScrollsOfPowerStormScroll.ability,
+        data.extraAbilities.stormcastEternalsScrollsOfPowerStormScrollArtefact
+            .ability
     );
 
     // Prayers
@@ -2758,80 +2830,47 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 'In your hero phase, pick a friendly STORMCAST ETERNAL unit wholly within 9" of this PRIEST and roll a dice. On a 3+ the prayer is successful. If the prayer is successful, remove that unit from the battlefield and then set it up again anywhere on the battlefield more than 9" from any enemy units. It may not move in the subsequent movement phase.';
         }
     );
+    overrideMounts(data);
+    overrideSpells(data);
+}
 
-    // Mounts
-    data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastLitheLimbed.ability.description =
-        "This steed is renowned for its swiftness, and is capable of putting on an incredible burst of speed to take its rider to the foe. This HERO adds 1 to their Move characteristic.";
-    data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastSavageLoyalty.ability.description =
-        "This mount feels a keen hatred for the enemies of Order, and fights through the most horrendous injuries to wreak its vengeance before death claims it. Roll a dice if this HERO is slain in the combat phase. On a roll of 4 or more, the unit that slew them suffers D3 mortal wounds.";
-    override<Ability>(
-        data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastKeenClawed
+function overrideMounts(data: DataStoreImpl) {
+    overrideTraitsOfTheNobleBeast(data);
+    overrideCelestialLineages(data);
+    overrideAncientPowers(data);
+    overrideAethericAspects(data);
+    overrideStarchaser(data);
+    overrideSavageTemperaments(data);
+}
+
+function overrideSpells(data: DataStoreImpl) {
+    // spells
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsLoreOfTheStormLightningBlast
             .ability,
         x => {
-            x.description =
-                "Sharp of claw and of fang, this steed is undaunted by the thickest armour. Any wound rolls of 6 or more in the combat phase for this HERO’s mount are resolved with a Rend characteristic of -3.";
-            x.effects = [
-                {
-                    attackAura: { bonusRendOnWound6OrMore: -3 },
-                    targetType: TargetType.Model
-                }
-            ];
-        }
-    );
-    override<Ability>(
-        data.extraAbilities.stormcastEternalsAethericAspectsAetherealStalker
-            .ability,
-        x => {
-            x.effects = [
-                {
-                    targetType: TargetType.Enemy,
-                    phase: Phase.Setup,
-                    attackAura: {
-                        rerollFailedHits: true,
-                        rerollFailedWounds: true
-                    }
-                }
-            ];
-            x.description =
-                "When this model is set up, choose an enemy unit. You can re-roll failed hit and wound rolls for attacks made with this model’s Gryph-charger’s Razor Beak and Claws that target that enemy unit.";
-            x.flavor =
-                "This Gryph-charger has a hatred for the enemies of Order that burns as hot as that of their rider";
-        }
-    );
-    override<Ability>(
-        data.extraAbilities.stormcastEternalsCelestialLineagesPackLeader
-            .ability,
-        x => {
-            x.flavor =
-                "This Dracoth is stronger when leading packs of its closest kin into battle.";
-            x.description =
-                'Add 2 to the Attacks characteristic of this model’s Claws and Fangs while this model is within 6" of any friendly DRACOTHIAN GUARD models.';
-            x.effects = [
-                {
-                    targetType: TargetType.Weapon,
-                    attackAura: { bonusAttacks: 2 }
-                }
-            ];
+            x.flavor = `The wizard unleashes pent-up
+        storm energy into the foes of Sigmar.`;
+            x.description = `Lightning Blast has a casting value of 5. If
+        successfully cast, the closest enemy unit that is
+        visible to the caster suffers D3 mortal wounds. If
+        more than one enemy unit visible to the caster is
+        equally close, you can pick which unit is affected.`;
         }
     );
     overrideAbility(
-        data.extraAbilities.stormcastEternalsStarchaserFormsSteelPinions
-            .ability,
+        data.extraAbilities.stormcastEternalsLoreOfTheStormStarfall.ability,
         x => {
-            x.flavor =
-                "The pinions of this creature are deceptively strong, able to shield their rider from enemy attacks.";
-            x.description =
-                "Roll a dice each time a wound or mortal wound is allocated to this model. On a 6+ that wound or mortal wound is negated.";
-            x.effects = [
-                {
-                    targetType: TargetType.Model,
-                    defenseAura: { negateWoundsOrMortalWoundsOn6: true }
-                }
-            ];
+            x.flavor = `Gazing to the Heavens, the wizard
+        drags fragments of its power down to rain upon
+        the enemy.`;
+            x.description = `Starfall has a casting value of 5. If successfully
+        cast, pick a point on the battlefield within 12" of
+        the caster that is visible to them. Roll a dice for
+        each enemy unit within 3" of that point. On a 4+
+        that unit suffers 1 mortal wound.`;
         }
     );
-
-    // spells
     override<Ability>(
         data.extraAbilities.stormcastEternalsLoreOfTheStormAzyriteHalo.ability,
         x => {
@@ -2869,6 +2908,26 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 "The storm overhead thickens, bolts of lightning crashing down into the enemy ranks.";
         }
     );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsLoreOfInvigorationTerrifyingAspect
+            .ability,
+        x => {
+            x.flavor = `The
+        enemy’s courage falters.`;
+            x.description = `Terrifying Aspect has
+        a casting value of 5. If
+        successfully cast, pick
+        a friendly STORMCAST
+        ETERNAL unit wholly
+        within 18" of the caster
+        that is visible to them.
+        Until your next hero phase,
+        subtract 1 from the Bravery
+        characteristic of enemy units
+        while they are within 3" of
+        that unit.`;
+        }
+    );
     override<Ability>(
         data.extraAbilities.stormcastEternalsLoreOfInvigorationCelestialBlades
             .ability,
@@ -2899,6 +2958,260 @@ function fixExtraAbilities(data: DataStoreImpl): void {
             x.flavor =
                 "The wizard channels a torrent of lightning that leaps from foe to foe.";
             x.effects = [{ phase: Phase.Hero, targetType: TargetType.Enemy }];
+        }
+    );
+}
+
+function overrideTraitsOfTheNobleBeast(data: DataStoreImpl) {
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastLitheLimbed
+            .ability,
+        x => {
+            x.description = `Add 1 to the Move characteristic of this model.`;
+            x.flavor = `This steed is renowned for its
+    swiftness, and is capable of putting on an
+    incredible burst of speed.`;
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastKeenClawed
+            .ability,
+        x => {
+            x.flavor = `Sharp of claw and fang, this steed
+is undaunted even by the thickest armour.`;
+            x.description = `If the unmodified wound roll for an attack
+    made with this mount’s melee weapons is 6, that
+    attack has a Rend characteristic of -3.`;
+
+            x.effects = [
+                {
+                    attackAura: { bonusRendOnWound6OrMore: -3 },
+                    targetType: TargetType.Model
+                }
+            ];
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastSavageLoyalty
+            .ability,
+        x => {
+            x.flavor = `This mount feels a keen hatred
+            for the enemies of Order, and fights through the
+            most horrendous injuries to wreak its vengeance
+            before death claims it.`;
+            x.description = `If this model is slain by wounds or mortal
+            wounds inflicted by an attack made with an
+            enemy unit’s melee weapons, roll a dice. On a
+            4+, that enemy unit suffers D3 mortal wounds.`;
+        }
+    );
+}
+
+function overrideCelestialLineages(data: DataStoreImpl) {
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsCelestialLineagesDrakeKin.ability,
+        x => {
+            x.flavor = `This mount is hardy enough to
+        withstand the worst their enemy can throw at
+        them without faltering.`;
+            x.description = `Before determining damage for an attack
+        that targets this model that has a Damage
+        characteristic of any value other than 1,
+        roll a dice. On a 5+ change the Damage
+        characteristic of that attack to 1.`;
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsCelestialLineagesThunderCaller
+            .ability,
+        x => {
+            x.flavor = `Lightning crackles in the
+        maw of this beast, even when it is at rest.`;
+            x.description = `This model’s Storm Breath ability has a range
+        of 16" rather than 12".`;
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsCelestialLineagesPackLeader
+            .ability,
+        x => {
+            x.flavor = `This Dracoth is stronger when
+        leading packs of its closest kin into battle.`;
+            x.description = `Add 2 to the Attacks characteristic of this
+        model’s Claws and Fangs while this model
+        is within 6" of any friendly DRACOTHIAN
+        GUARD models.`;
+            x.effects = [
+                {
+                    targetType: TargetType.Weapon,
+                    attackAura: { bonusAttacks: 2 }
+                }
+            ];
+        }
+    );
+}
+
+function overrideAncientPowers(data: DataStoreImpl) {
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAncientPowersStormWinged.ability,
+        x => {
+            x.flavor = `When this Stardrake
+            unfurls its wings, it buffets the enemy with a
+            powerful gale.`;
+            x.description = `After this model has moved, you can pick
+            1 enemy unit that has any models that this
+            model passed across, and roll a dice. On a 2+
+            that unit suffers D3 mortal wounds.`;
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAncientPowersThunderlord.ability,
+        x => {
+            x.flavor = `The storms that accompany this
+            Stardrake are particularly destructive.`;
+            x.description = `The Roiling Thunderhead from this model’s
+            Lord of the Heavens ability has a range of 24"
+            instead of 18".`;
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAncientPowersStarBranded.ability,
+        x => {
+            x.flavor = `This Stardrake is marked for
+            some great destiny.`;
+            x.description = `Subtract 1 from the number of wounds
+            allocated to this model (to a minimum of 0)
+            when determining which row on its damage
+            table to use.`;
+        }
+    );
+}
+
+function overrideAethericAspects(data: DataStoreImpl) {
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAethericAspectsWindRunner.ability,
+        x => {
+            x.flavor = `When this Gryph-charger
+            takes to the winds aetheric, it leaves all others
+            in its starry wake.`;
+            x.description = `When this model Rides the Winds Aetheric,
+            roll an extra dice when determining the
+            distance it can move.`;
+        }
+    );
+    override<Ability>(
+        data.extraAbilities.stormcastEternalsAethericAspectsAetherealStalker
+            .ability,
+        x => {
+            x.effects = [
+                {
+                    targetType: TargetType.Enemy,
+                    phase: Phase.Setup,
+                    attackAura: {
+                        rerollFailedHits: true,
+                        rerollFailedWounds: true
+                    }
+                }
+            ];
+            x.description =
+                "When this model is set up, choose an enemy unit. You can re-roll failed hit and wound rolls for attacks made with this model’s Gryph-charger’s Razor Beak and Claws that target that enemy unit.";
+            x.flavor =
+                "This Gryph-charger has a hatred for the enemies of Order that burns as hot as that of their rider";
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsAethericAspectsIndefatigable
+            .ability,
+        x => {
+            x.flavor = `The beast and its rider have
+            hunted together over countless leagues.`;
+            x.description = `You can re-roll run rolls for this model.`;
+        }
+    );
+}
+
+function overrideStarchaser(data: DataStoreImpl) {
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsStarchaserFormsSwiftwing.ability,
+        x => {
+            x.flavor = `This majestic creature swoops
+            across the battlefield at great speed.`;
+            x.description = `You can re-roll run rolls for this model.`;
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsStarchaserFormsLashingTail.ability,
+        x => {
+            x.flavor = `This creature uses its tail
+            defensively, smashing back nearby enemies.`;
+            x.description = `At the end of the combat phase, you can
+            pick an enemy unit within 3" of this model
+            and roll a dice. On a 4+ that unit suffers 1
+            mortal wound.`;
+        }
+    );
+
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsStarchaserFormsSteelPinions
+            .ability,
+        x => {
+            x.flavor =
+                "The pinions of this creature are deceptively strong, able to shield their rider from enemy attacks.";
+            x.description =
+                "Roll a dice each time a wound or mortal wound is allocated to this model. On a 6+ that wound or mortal wound is negated.";
+            x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    defenseAura: { negateWoundsOrMortalWoundsOn6: true }
+                }
+            ];
+        }
+    );
+}
+
+function overrideSavageTemperaments(data: DataStoreImpl) {
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsSavageTemperamentsBoundingLeap
+            .ability,
+        x => {
+            x.flavor = `This mighty
+            beast pounces into the midst
+            of the foe in great leaps.`;
+            x.description = `This model is eligible to fight
+            in the combat phase if it is
+            within 6" of an enemy unit
+            instead of 3", and it can move
+            an extra 3" when it piles in.`;
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsSavageTemperamentsPrideLeader
+            .ability,
+        x => {
+            x.flavor = `This Dracoline
+            holds its head high, directing
+            its kin with growls and roars.`;
+            x.description = `Add 1 to hit rolls for
+            attacks made by friendly
+            DRACOLINE units while
+            they are wholly within 9" of
+            this model.`;
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.stormcastEternalsSavageTemperamentsEarBurstingRoar
+            .ability,
+        x => {
+            x.flavor = `This
+            great beast’s bellow can
+            stagger even a mighty orruk.`;
+            x.description = `At the start of the combat
+            phase you can pick an enemy
+            unit within 3" of this model
+            and roll a dice. On a 4+
+            subtract 1 from hit rolls for
+            attacks made by that unit
+            until the end of that phase.`;
         }
     );
 }
@@ -2975,6 +3288,86 @@ function fixStormhosts(data: DataStoreImpl) {
         x => (x.abilities = [firstToBeForged, soulOfTheStormhost])
     );
 
+    // Hallowed knights
+    overrideAbility(
+        abilities.stormcastEternalsHallowedKnightsMartyrSStrength.ability,
+        x => {
+            x.description =
+                "Roll a dice if this general is slain in the combat phase. On a 2+ this general can make a pile-in move and then attack with all of the melee weapons it is armed with, before it is removed from play.";
+            x.flavor =
+                "The Hallowed Knights will not fall until their foe is slain.";
+        }
+    );
+    overrideAbility(
+        abilities.stormcastEternalsHallowedKnightsParchmentOfPurity.ability,
+        x => {
+            x.description =
+                "In your hero phase, heal 1 wound allocated to the bearer.";
+            x.flavor =
+                "The runes etched on this honour parchment glow with the restorative power of Azyr.";
+        }
+    );
+    const onlyTheFaithful: Ability = {
+        id: "stormcastEternalsAnvilsOfTheHeldenhammerOnlyTheFaithful",
+        name: "Only the Faithful",
+        description:
+            "If a friendly HALLOWED KNIGHTS unit is affected by a spell or endless spell, roll a dice. On a 6+ ignore the effects of that spell on that unit.",
+        flavor:
+            "The Hallowed Knights are so devout that they can deny even the magic of the realms."
+    };
+    const holyCrusaders: Ability = {
+        id: "stormcastEternalsAnvilsOfTheHeldenhammerHolyCrusaders",
+        name: "Holy Crusaders",
+        description:
+            'You can use this command ability at the start of your hero phase. If you do so, pick a friendly HALLOWED KNIGHTS unit wholly within 9" of a friendly HALLOWED KNIGHTS HERO, or wholly within 18" of a friendly HALLOWED KNIGHTS HERO that is a general. Add 1 to run rolls and charge rolls for that unit until your next hero phase. In addition, until your next hero phase, that unit can run and still charge later in the same turn.',
+        flavor:
+            "The Hallowed Knights are driven forward by their faith, always eager to bring Sigmar’s holy retribution to the enemies of the God-King."
+    };
+    override<ArmyOption>(
+        data.armyOptions.stormcastEternalsHallowedKnights,
+        x => (x.abilities = [onlyTheFaithful, holyCrusaders])
+    );
+
+    //Celestial Vindicators
+    overrideAbility(
+        abilities.stormcastEternalsCelestialVindicatorsSingleMindedFury.ability,
+        x => {
+            x.description =
+                "Each time you roll an unmodified hit roll of 6 for this general, add 1 to the Damage characteristic of that attack.";
+            x.flavor =
+                "The leaders of the Celestial Vindicators are always eager to go on the offensive.";
+        }
+    );
+    overrideAbility(
+        abilities.stormcastEternalsCelestialVindicatorsStormrageBlade.ability,
+        x => {
+            x.description =
+                "Pick one of the bearer’s melee weapons. At the start of the combat phase, you can add 2 to the Attacks characteristic of this weapon until the end of that phase. If you do so, subtract 1 from save rolls for attacks that target the bearer until the end of that phase.";
+            x.flavor =
+                "This blade stokes the rage of its bearer, driving them into such a killing frenzy they give no thought to their own defence.";
+        }
+    );
+    const drivenByVengeance: Ability = {
+        name: "Driven by Vengeance",
+        flavor:
+            "The Celestial Vindicators strike down their foes with a flurry of blows.",
+        description:
+            "You can re-roll hit rolls of 1 for attacks made by friendly CELESTIAL VINDICATORS units if they made a charge move in the same turn.",
+        id: "stormcastEternalsCelestialVindicatorsDrivenByVengeance"
+    };
+    const righteousHatred: Ability = {
+        name: "Righteous Hatred",
+        flavor:
+            "The Celestial Vindicators are relentless in their desire to slay the enemies of Sigmar.",
+        description:
+            'You can use this command ability the start of the combat phase. If you do so, you pick a friendly CELESTIAL VINDICATORS unit wholly within 9" of a friendly CELESTIAL VINDICATORS HERO, or wholly within 18" of a friendly CELESTIAL VINDICATORS HERO that is a general. Add 1 to the Attacks characteristic of that unit’s melee weapons until the end of that phase.',
+        id: "stormcastEternalsCelestialVindicatorsRighteousHatred"
+    };
+    override<ArmyOption>(
+        data.armyOptions.stormcastEternalsCelestialVindicators,
+        x => (x.abilities = [drivenByVengeance, righteousHatred])
+    );
+
     // Anvils of the Heldenhammer
     overrideAbility(
         abilities.stormcastEternalsAnvilsOfTheHeldenhammerDeathlyAura.ability,
@@ -3015,6 +3408,216 @@ function fixStormhosts(data: DataStoreImpl) {
     override<ArmyOption>(
         data.armyOptions.stormcastEternalsAnvilsOfTheHeldenhammer,
         x => (x.abilities = [noTrueDeath, heroesOfAnotherAge])
+    );
+
+    // Knight Excelsiors
+    overrideAbility(
+        abilities.stormcastEternalsKnightsExcelsiorChainsOfCelestialLightning
+            .ability,
+        x => {
+            x.description =
+                'Once per battle, in your hero phase, the bearer can attempt to bind an enemy HERO or MONSTER model within 3". If they do so, roll 3D6. Your opponent rolls 2D6 if the target is a HERO or 3D6 if it is a MONSTER or HERO MONSTER. If your roll is higher, until your next hero phase, halve the Move characteristic, run rolls and charge rolls for that enemy model, and halve the Attacks characteristic of its melee weapons. Round any fractions up.';
+            x.flavor =
+                "These enchanted chains can trap the unworthy in unbreakable bindings.";
+        }
+    );
+    overrideAbility(
+        abilities.stormcastEternalsKnightsExcelsiorDivineExecutioner.ability,
+        x => {
+            x.description = `Add 1 to the Damage characteristic of this general’s melee
+                weapons if the target is a HERO.`;
+            x.flavor = `Knights Excelsior commanders
+                seek out enemy leaders with aggressive focus.`;
+        }
+    );
+    const stormOfAnnihilation: Ability = {
+        id: "stormcastEternalsAnvilsOfTheHeldenhammerstormOfAnnihilation",
+        description: `If a friendly KNIGHTS EXCELSIOR unit makes an
+            attack that destroys an enemy unit, you can re-roll
+            hit rolls of 1 for attacks made by that KNIGHTS
+            EXCELSIOR unit for the rest of the battle.`,
+        flavor: `The Knights Excelsior take a
+        cold pleasure in the deaths of their foes.`,
+        category: AbilityCategory.Army,
+        name: "Storm of Annihilation"
+    };
+    const noMercy: Ability = {
+        id: "stormcastEternalsAnvilsOfTheHeldenhammernoMercy",
+        description: `You can use this command ability in your hero phase.
+        If you do so, pick a friendly KNIGHTS EXCELSIOR unit
+        wholly within 9" of a friendly KNIGHTS EXCELSIOR
+        HERO, or wholly within 18" of a friendly KNIGHTS
+        EXCELSIOR HERO that is a general. You can re-roll
+        wound rolls of 1 for attacks made by that unit until the
+        end of the turn.`,
+        flavor: `The Knights Excelsior are merciless in
+        prosecuting the enemies of the God-King.`,
+        category: AbilityCategory.Command,
+        name: "No Mercy"
+    };
+    override<ArmyOption>(
+        data.armyOptions.stormcastEternalsKnightsExcelsior,
+        x => (x.abilities = [stormOfAnnihilation, noMercy])
+    );
+
+    // Celestial Warbringers
+    overrideAbility(
+        abilities.stormcastEternalsCelestialWarbringersHammersOfAugury.ability,
+        x => {
+            x.description = `At the end of the combat phase, you can pick 1 enemy
+                unit within 3" of the bearer and roll a dice. On a
+                3+, that unit suffers 1 mortal wound and you can
+                roll another dice. On a 4+, that unit suffers 1 extra
+                mortal wound.`;
+            x.flavor = `These potent tools of divination
+                orbit their bearer, lashing out at nearby foes.`;
+        }
+    );
+    overrideAbility(
+        abilities.stormcastEternalsCelestialWarbringersPortentsAndOmens.ability,
+        x => {
+            x.description = `Once per turn, you can re-roll 1 failed hit roll or 1
+            failed wound roll for an attack made by this general, or
+            1 failed save roll for an attack that targets this general.`;
+            x.flavor = `The leaders of the Celestial
+            Warbringers receive guidance from the stars.`;
+        }
+    );
+    const fearlessForeseight: Ability = {
+        id: "stormcastEternalsCelestialWarbringersfearlessForeseight",
+        description: `At the start of the first battle round, after determining
+        who has the first turn but before the first turn
+        begins, you can pick up to D3 friendly CELESTIAL
+        WARBRINGERS units and set them up again (any
+        restrictions in the set-up instructions for the battleplan
+        being used still apply).`,
+        flavor: `The Celestial Warbringers use
+        portents to inform their strategies in battle.`,
+        category: AbilityCategory.Army,
+        name: "Fearless Foresight"
+    };
+    const astralConjunction: Ability = {
+        id: "stormcastEternalsCelestialWarbringersastralConjunction",
+        description: `You can use this command ability in your hero
+        phase. If you do so, pick a friendly CELESTIAL
+        WARBRINGERS WIZARD wholly within 9" of a
+        friendly CELESTIAL WARBRINGERS HERO, or wholly
+        within 18" of a friendly CELESTIAL WARBRINGERS
+        HERO that is a general. Add 1 to casting rolls for that
+        unit until the end of that phase.`,
+        flavor: `Celestial Warbringers read the
+        stars to boost their already potent magical powers.`,
+        category: AbilityCategory.Command,
+        name: "Astral Conjunction"
+    };
+    override<ArmyOption>(
+        data.armyOptions.stormcastEternalsCelestialWarbringers,
+        x => (x.abilities = [fearlessForeseight, astralConjunction])
+    );
+
+    // Tempest lords
+    overrideAbility(
+        abilities.stormcastEternalsTempestLordsBondsOfNobleDuty.ability,
+        x => {
+            x.description = `Add 1 to wound rolls for attacks made with this
+            general’s melee weapons while this general is within 6"
+            of any other friendly TEMPEST LORDS units.`;
+            x.flavor = `When surrounded by their
+            kin, the leaders of the Tempest Lords set a perfect
+            martial example.`;
+        }
+    );
+    overrideAbility(
+        abilities.stormcastEternalsTempestLordsPatricianSHelm.ability,
+        x => {
+            x.description = `If the bearer is on the battlefield, each time you spend
+            a command point, roll a dice. On a 5+ you receive 1
+            extra command point.`;
+            x.flavor = `The sacred relics of the Tempest
+            Lords are imbued with an aura of authority and
+            command that magnifies that of the wearer.`;
+        }
+    );
+    const grandStrategist: Ability = {
+        id: "stormcastEternalsTempestLordsgrandStrategist",
+        description: `At the start of your hero phase, roll a dice. On a 4+ you
+        receive 1 extra command point.`,
+        flavor: `The Tempest Lords have an innate
+        grasp of the flow of battle, allowing them to adapt to
+        any situation at great speed.`,
+        category: AbilityCategory.Army,
+        name: "Grand Strategists"
+    };
+    const rousingOratory: Ability = {
+        id: "stormcastEternalsTempestLordsrousingOratory",
+        description: `You can use this command ability at the start of the
+        combat phase. If you do so, pick a friendly TEMPEST
+        LORDS unit wholly within 9" of a friendly TEMPEST
+        LORDS HERO, or wholly within 18" of a friendly
+        TEMPEST LORDS HERO that is a general. You can reroll
+        wound rolls of 1 for attacks made by that unit until
+        your next hero phase.`,
+        flavor: `The inspiring speeches of the
+        Tempest Lords’ commanders drives their forces to ever
+        greater feats of arms.`,
+        category: AbilityCategory.Command,
+        name: "Rousing Oratory"
+    };
+    override<ArmyOption>(
+        data.armyOptions.stormcastEternalsTempestLords,
+        x => (x.abilities = [grandStrategist, rousingOratory])
+    );
+
+    // Astral Templars
+    overrideAbility(
+        abilities.stormcastEternalsAstralTemplarsDauntlessHunters.ability,
+        x => {
+            x.description = `After set-up is complete, but before the battle begins,
+            friendly ASTRAL TEMPLARS units wholly within 12"
+            of this general can move up to 6".`;
+            x.flavor = `The Astral Templars do not often
+            seek permission to rush headlong at the foe, but their
+            commanders relish giving it anyway`;
+        }
+    );
+    overrideAbility(
+        abilities.stormcastEternalsAstralTemplarsGodbeastPlate.ability,
+        x => {
+            x.description = `Subtract 1 from wound rolls for attacks made by a
+            MONSTER that target the bearer.`;
+            x.flavor = `This armour, quenched in the blood of
+            the mightiest beasts, is proof against the raking claws of
+            feral creatures.`;
+        }
+    );
+    const beastStalkers: Ability = {
+        id: "stormcastEternalsAstralTemplarsbeastStalkers",
+        description: `Add 1 to hit rolls for attacks made by ASTRAL
+        TEMPLARS units that target a MONSTER.`,
+        flavor: `The Astral Templars are experienced
+        hunters of the most horrific creatures the Mortal
+        Realms have to offer.`,
+        category: AbilityCategory.Army,
+        name: "Beast Stalkers"
+    };
+    const cuttOffTheHead: Ability = {
+        id: "stormcastEternalsAstralTemplarscuttOffTheHead",
+        description: `You can use this command ability at the start of
+        the combat phase. If you do so, pick an ASTRAL
+        TEMPLARS unit that is wholly within 9" of a friendly
+        ASTRAL TEMPLARS HERO, or wholly within 18" of a
+        friendly ASTRAL TEMPLARS HERO that is a general.
+        Until the end of that phase, add 1 to wound rolls for
+        attacks made by that unit that target a HERO.`,
+        flavor: `The Astral Templars are renowned
+        for seeking glory in the midst of battle, often neglecting
+        lesser foes in favour of a greater challenge.`,
+        category: AbilityCategory.Command,
+        name: "Cut off the Head"
+    };
+    override<ArmyOption>(
+        data.armyOptions.stormcastEternalsAstralTemplars,
+        x => (x.abilities = [beastStalkers, cuttOffTheHead])
     );
 }
 

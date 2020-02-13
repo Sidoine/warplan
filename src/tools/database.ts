@@ -886,6 +886,7 @@ function getExtraAbilitiesWithDivision(
             allegianceKeyword.toUpperCase()
         )},
         category: "${category}",
+        requiredByArmyOption: true,
 `;
     if (keyword) {
         result += `            keywords: [[${escapeQuotedString(keyword)}]],
@@ -1100,13 +1101,13 @@ function getArmyOptions(db: realm) {
                 if (division.requiredArtefact) {
                     result += `${tab}${tab}requiredArtifact: this.extraAbilities.${gid(
                         { id: `${division.id}.requiredArtefact` }
-                    )}.ability,
+                    )},
 `;
                 }
                 if (division.requiredCommandTrait) {
                     result += `${tab}${tab}requiredCommandTrait: this.extraAbilities.${gid(
                         { id: `${division.id}.requiredCommandTrait` }
-                    )}.ability,
+                    )},
                 `;
                 }
 

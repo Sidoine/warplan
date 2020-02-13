@@ -120,6 +120,13 @@ export function overrideAbility(ability: Ability, f: (x: Ability) => void) {
     override(ability, f);
 }
 
+export function overrideAbilities(
+    f: (x: Ability) => void,
+    ...abilities: Ability[]
+) {
+    for (const ability of abilities) override(ability, f);
+}
+
 export function overrideAttack(ability: Attack, f: (x: Attack) => void) {
     override(ability, f);
 }
