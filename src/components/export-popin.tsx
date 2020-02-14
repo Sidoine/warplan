@@ -60,7 +60,7 @@ export class ExportPopin extends React.Component<ExportPopinProps, {}> {
 
                     {warscroll.battalions.map(x => (
                         <div key={x.id}>
-                            <b>{x.battalion.name}</b>
+                            <b>{x.definition.name}</b>
                         </div>
                     ))}
 

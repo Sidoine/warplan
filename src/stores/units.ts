@@ -11,6 +11,8 @@ import { overrideNighthaunt } from "./overrides/nighthaunt";
 import { overrideLegionOfGrief } from "./overrides/legion-of-grief";
 import { overrideOrder } from "./overrides/order";
 import { overrideCommon } from "./overrides/common";
+import { overrideOrruks } from "./overrides/orruks";
+import { overrideGitz } from "./overrides/gitz";
 
 export const enum Material {
     Metal,
@@ -465,7 +467,7 @@ export interface Battalion {
 
 export interface WarscrollBattalionInterface {
     id: string;
-    battalion: Battalion;
+    definition: Battalion;
 }
 
 export enum Contingent {
@@ -584,6 +586,8 @@ export class UnitsStore {
         overrideLegionOfGrief(data);
         overrideOrder(data);
         overrideCommon(data);
+        overrideOrruks(data);
+        overrideGitz(data);
 
         const models: { [key: string]: Model } = data.models;
         for (const key in models) {

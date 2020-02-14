@@ -106,7 +106,10 @@ export class WarscrollModel implements WarscrollModelInterface {
     }
 }
 
-export type WarscrollItem = WarscrollUnit | WarscrollEndlessSpell;
+export type WarscrollItem =
+    | WarscrollUnit
+    | WarscrollEndlessSpell
+    | WarscrollBattalion;
 export class WarscrollUnit implements WarscrollUnitInterface {
     type: "unit" = "unit";
     id: string;
@@ -319,8 +322,13 @@ export class WarscrollEndlessSpell {
 
 export class WarscrollBattalion implements WarscrollBattalionInterface {
     id: string;
+    type: "battalion" = "battalion";
 
-    constructor(public warscroll: Warscroll, public battalion: Battalion) {
+    @computed get abilities() {
+        return this.definition.abilities || [];
+    }
+
+    constructor(public warscroll: Warscroll, public definition: Battalion) {
         this.id = (warscroll.serial++).toString();
     }
 
@@ -466,7 +474,10 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     @computed
     get items(): WarscrollItem[] {
         const result: WarscrollItem[] = [];
-        return result.concat(this.units).concat(this.endlessSpells);
+        return result
+            .concat(this.units)
+            .concat(this.endlessSpells)
+            .concat(this.battalions);
     }
 
     contingents = [
@@ -513,7 +524,7 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
 
     @computed
     get battalionsPoints() {
-        return this.battalions.reduce((p, x) => x.battalion.points + p, 0);
+        return this.battalions.reduce((p, x) => x.definition.points + p, 0);
     }
 
     @computed
@@ -978,7 +989,7 @@ export class WarscrollStore {
             }),
             battalions: this.warscroll.battalions.map(x => {
                 return {
-                    battalionId: x.battalion.id
+                    battalionId: x.definition.id
                 };
             }),
             allegiance: this.warscroll.allegiance.id,

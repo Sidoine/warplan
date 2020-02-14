@@ -19,27 +19,27 @@ function BattalionView({
         <div className={classes.warscroll}>
             <div className={classes.header}>
                 <div className={`${classes.title} ${classes.battalion}`}>
-                    <div>{battalion.battalion.name}</div>
+                    <div>{battalion.definition.name}</div>
                     <div className={classes.count}>
-                        {battalion.battalion.points} points
+                        {battalion.definition.points} points
                     </div>
                 </div>
             </div>
             <div className={classes.flavor}>
-                {battalion.battalion.description}
+                {battalion.definition.description}
             </div>
             <div className={classes.abilities}>
-                {battalion.battalion.abilities && (
+                {battalion.definition.abilities && (
                     <AllAbilities
                         title="Abilities"
-                        abilities={battalion.battalion.abilities}
+                        abilities={battalion.definition.abilities}
                     />
                 )}
             </div>
             <div className={classes.keywords}>
                 <div className={classes.keywordsHeader}>Units</div>
                 <div>
-                    {battalion.battalion.units
+                    {battalion.definition.units
                         .map(
                             x =>
                                 `${x.countMin}${

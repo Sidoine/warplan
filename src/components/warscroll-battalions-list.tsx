@@ -33,19 +33,19 @@ export class WarscrollBattalionsList extends React.Component<
         return [
             {
                 name: "Name",
-                text: x => x.battalion.name
+                text: x => x.definition.name
             },
             {
                 name: "Units",
                 text: x =>
                     join(
-                        x.battalion.units.map(y => this.renderUnit(y, counts)),
+                        x.definition.units.map(y => this.renderUnit(y, counts)),
                         ", "
                     )
             },
             {
                 name: "Points",
-                text: x => x.battalion.points
+                text: x => x.definition.points
             },
             {
                 name: "Actions",
