@@ -872,7 +872,7 @@ function getExtraAbilitiesWithDivision(
     division: def.Division,
     ability: string,
     category: AbilityCategories,
-    keyword?: string
+    keyword: string | null
 ) {
     const id = gid({ id: `${division.id}.required${category}` });
     const allegianceKeyword = allegiance.keywords[0];
@@ -885,23 +885,24 @@ function getExtraAbilitiesWithDivision(
         )},
         category: "${category}",
         requiredByArmyOption: true,
+        keywords: [[${escapeQuotedString(division.name.toUpperCase())}]],
 `;
     if (keyword) {
-        result += `            keywords: [[${escapeQuotedString(keyword)}]],
+        result += `
         isAvailable: canUseArmyOptionAbility(${escapeQuotedString(
             ability
         )}, AbilityCategory.${category}, ${escapeQuotedString(
             allegianceKeyword.toUpperCase()
-        )}, ${escapeQuotedString(division.name)}, [[${escapeQuotedString(
-            keyword
-        )}]]),
+        )}, ${escapeQuotedString(
+            division.name.toUpperCase()
+        )}, [[${escapeQuotedString(keyword)}]]),
 `;
     } else {
         result += `            isAvailable: canUseArmyOptionAbility(${escapeQuotedString(
             ability
         )}, AbilityCategory.${category}, ${escapeQuotedString(
             allegianceKeyword.toUpperCase()
-        )}, ${escapeQuotedString(division.name)}),
+        )}, ${escapeQuotedString(division.name.toUpperCase())}),
 `;
     }
     result += `        },
@@ -939,7 +940,7 @@ function getExtraAbilities(db: realm) {
                     division,
                     division.requiredCommandTrait,
                     "CommandTrait",
-                    division.name
+                    division.requiredCommandTraitKeyword
                 );
             if (division.requiredArtefact)
                 result += getExtraAbilitiesWithDivision(
@@ -947,7 +948,7 @@ function getExtraAbilities(db: realm) {
                     division,
                     division.requiredArtefact,
                     "Artefact",
-                    division.name
+                    division.requiredArtefactKeyword
                 );
         }
 
@@ -1089,6 +1090,7 @@ function getArmyOptions(db: realm) {
                 result += `${tab}${tab}${id}: {
             id: "${id}",
             name: ${escapeQuotedString(division.name)},
+            keyword: ${escapeQuotedString(division.name.toUpperCase())},
             requiredArtifactKeyword: ${escapeQuotedString(
                 division.requiredArtefactKeyword
             )},

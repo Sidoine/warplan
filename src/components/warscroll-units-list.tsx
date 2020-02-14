@@ -39,6 +39,7 @@ import { AddButton, TableColumn, DropdownValues } from "../atoms/dropdown-list";
 import { NumberControl } from "../atoms/number-control";
 import { join } from "../helpers/react";
 import { useStores } from "../stores";
+import { Warning } from "../atoms/warning";
 
 export interface WarscrollUnitsListProps {
     unitsStore?: UnitsStore;
@@ -88,6 +89,20 @@ function ExtraAbilitiesView({
     );
 }
 
+const ModelCount = observer(({ unit }: { unit: WarscrollUnit }) => {
+    return (
+        <>
+            {unit.definition.maxSize &&
+                unit.modelCount > unit.definition.maxSize && (
+                    <Warning
+                        label={`Max model count is ${unit.definition.maxSize}`}
+                    />
+                )}
+            {unit.modelCount}
+        </>
+    );
+});
+
 @inject("unitsStore", "warscrollStore")
 @observer
 export class WarscrollUnitsList extends React.Component<
@@ -107,7 +122,7 @@ export class WarscrollUnitsList extends React.Component<
             },
             {
                 name: "Count",
-                text: unit => unit.modelCount
+                text: unit => <ModelCount unit={unit} />
             },
             {
                 name: "Models",

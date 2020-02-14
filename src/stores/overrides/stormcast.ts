@@ -2160,17 +2160,11 @@ function fixUnits(data: DataStoreImpl): void {
         );
         const staveOption = setAttackAsOption(
             unit,
-            data.attacks.evocatorsGrandstave,
-            undefined,
-            undefined,
-            UnitCategoryMain
+            data.attacks.evocatorsGrandstave
         );
         const bladeOption = setAttackAsOption(
             unit,
-            data.attacks.evocatorsTempestBladeAndStormstave,
-            undefined,
-            undefined,
-            UnitCategoryMain
+            data.attacks.evocatorsTempestBladeAndStormstave
         );
         addAbilityEffect(data.abilities.evocatorsEvocatorPrime, {
             targetType: TargetType.Model,

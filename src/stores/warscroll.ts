@@ -214,13 +214,15 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed
     get availableExtraAbilities() {
-        return this.warscroll.unitsStore.extraAbilities.filter(
-            x =>
-                (x.allegianceKeyword === undefined ||
-                    this.warscroll.allegiance.keywords[0] ===
-                        x.allegianceKeyword) &&
-                x.isAvailable(this, this.warscroll)
-        );
+        return this.warscroll.unitsStore.extraAbilities
+            .filter(
+                x =>
+                    (x.allegianceKeyword === undefined ||
+                        this.warscroll.allegiance.keywords[0] ===
+                            x.allegianceKeyword) &&
+                    x.isAvailable(this, this.warscroll)
+            )
+            .sort((a, b) => (a.ability.name > b.ability.name ? 1 : -1));
     }
 
     @computed
@@ -587,7 +589,7 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
 
     @computed
     get maxBattlelines() {
-        return this.minBattlelines;
+        return undefined;
     }
 
     @computed
@@ -675,6 +677,28 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
             (x, a) =>
                 x + (a.ability.category === AbilityCategory.Artefact ? 1 : 0),
             0
+        );
+    }
+
+    hasAnyUnitExtraAbility(extraAbility: ExtraAbility) {
+        return this.units.some(x =>
+            x.extraAbilities.some(y => y.id === extraAbility.id)
+        );
+    }
+
+    @computed get hasRequiredArtifact() {
+        return (
+            !this.armyOption ||
+            !this.armyOption.requiredArtifact ||
+            this.hasAnyUnitExtraAbility(this.armyOption.requiredArtifact)
+        );
+    }
+
+    @computed get hasRequiredCommandTrait() {
+        return (
+            !this.armyOption ||
+            !this.armyOption.requiredCommandTrait ||
+            this.hasAnyUnitExtraAbility(this.armyOption.requiredCommandTrait)
         );
     }
 
