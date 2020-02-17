@@ -115,6 +115,22 @@ function addWarbeats(data: DataStoreImpl) {
 }
 
 function fixBattalion(data: DataStoreImpl) {
+    override<Battalion>(data.battalions.ironjawzBrawl, x => {
+        x.abilities = [
+            {
+                id: "bossWaagh",
+                name: "Boss Waaagh!",
+                flavor: `The Megaboss that leads a brawl is able to channel and direct the Waaagh! energygenerated
+                by the orruks under his command through his subordinate war leaders.`,
+                description: `Once per battle, if your general is from this battalion and is on the battlefield,
+                another ORRUK HERO from this battalion can use the Ironjawz Waaagh! commandability.
+                This does not stop the general from using the Ironjawz Waaagh! commandability, but 
+                you cannot use the command ability more than once in the same combat phase.`,
+                category: AbilityCategory.Command,
+                effects: [{ targetType: TargetType.Friend, defenseAura: {} }]
+            }
+        ];
+    });
     override<Battalion>(data.battalions.ironjawzArdfist, x => {
         x.abilities = [
             {
@@ -129,6 +145,76 @@ function fixBattalion(data: DataStoreImpl) {
             10 models is added to this battalion. Set up the new unit
             wholly within 6" of the edge of the battlefield and more
             than 9" from any enemy units.`,
+                category: AbilityCategory.Command,
+                effects: [{ targetType: TargetType.Friend, defenseAura: {} }]
+            }
+        ];
+    });
+    override<Battalion>(data.battalions.ironjawzBrutefist, x => {
+        x.abilities = [
+            {
+                id: "greenSkinnedBatteringRam",
+                name: "Green-skinned Battering Ram",
+                flavor: `A Brutefist is a tide of destruction that can pulverise even the toughest of foes.`,
+                description: `After a model from a unit in this battalion makes a charge move, you can pick 1 
+                enemy unit within 1" of that model and roll a dice. Ona 4+, that enemy unit suffers 1 mortal wound.
+                If that model’s unit has more than 1 model, roll to determine if a mortal wound is inflicted
+                each time a model from that unit completes its charge move, but do not allocate the mortal wounds
+                until all of the models in that unit have moved.`,
+                category: AbilityCategory.Command,
+                effects: [{ targetType: TargetType.Friend, defenseAura: {} }]
+            }
+        ];
+    });
+    override<Battalion>(data.battalions.ironjawzGorefist, x => {
+        x.abilities = [
+            {
+                id: "daBosssBigIdea",
+                name: "Da Boss's Big Idea",
+                flavor: `Urged on by their Big Boss, the mobs of
+                an Ironfist are forever rushing forwards to get stuck into
+                the fight.`,
+                description: `Once in each of your hero phases, the Big Boss from
+                this battalion can use the Mighty Destroyers command
+                ability as if they were a MEGABOSS and without
+                spending 1 command point.`,
+                category: AbilityCategory.Command,
+                effects: [{ targetType: TargetType.Friend, defenseAura: {} }]
+            }
+        ];
+    });
+    override<Battalion>(data.battalions.ironjawzIronfist, x => {
+        x.abilities = [
+            {
+                id: "upAndAtEm",
+                name: "Up and At ’Em",
+                flavor: `Gore-grunta Big Bosses often come
+                up with all manner of ‘kunnin’ taktikz’ to ensure their
+                lads can get into the scrap. Once the battle gets properly
+                underway, however, such formations invariably break
+                apart in all the excitement.`,
+                description: `In your first hero phase, each unit from this battalion
+                that is wholly within 18" of the Big Boss from the same
+                battalion at the start of that hero phase can make a
+                normal move, but cannot run.`,
+                category: AbilityCategory.Command,
+                effects: [{ targetType: TargetType.Friend, defenseAura: {} }]
+            }
+        ];
+    });
+    override<Battalion>(data.battalions.ironjawzWeirdfist, x => {
+        x.abilities = [
+            {
+                id: "weirdEnergy",
+                name: "Weird Energy",
+                flavor: `The focused Waaagh! energy absorbed by
+                a Weirdfist’s shaman has a tendency to overcharge their
+                spells and incantations.`,
+                description: `If the WEIRDNOB SHAMAN from this battalion is wholly
+                within 18" of 2 or more units from the same battalion that
+                each have 10 or more models, it can use its Brutal Power
+                ability to attempt to cast Green Puke twice, in addition to
+                any other spells it can cast, instead of only once.`,
                 category: AbilityCategory.Command,
                 effects: [{ targetType: TargetType.Friend, defenseAura: {} }]
             }
