@@ -72,6 +72,7 @@ export const enum Phase {
 export interface DefenseAura {
     phase?: Phase.Combat | Phase.Shooting;
     rerollSavesOn1?: boolean;
+    bonusWoundRoll?: Value;
     mortalWoundsOnSucessfulSaveReroll?: Value; // In a 3" radius
     mortalWoundsOnWound?: Value;
     rerollFailedSaves?: boolean;
@@ -83,6 +84,8 @@ export interface DefenseAura {
     healOnSave7?: number;
     bonusHitRoll?: number;
     malusHitRoll?: number;
+    rerollHitOn1?: boolean;
+    rerollHitOn6?: boolean;
 }
 
 export interface BattleshockAura {
@@ -151,7 +154,7 @@ export interface AttackAuraBooleans {
     changeHitRoll?: boolean;
     changeWoundRoll?: boolean;
     shootAfterRun?: boolean;
-
+    noPileIn?: boolean;
     changeHitWoundSaveOrDamageRoll?: boolean;
 }
 
@@ -174,14 +177,11 @@ export const enum SubPhase {
     After
 }
 
-export interface DebuffAura {
-    noPileIn?: boolean;
-}
-
 export interface SpellAura {
     bonusUnbind?: Value;
     bonusToUnbind?: Value;
     autoUnbinds?: number;
+    noCast?: boolean;
 }
 
 export const enum TargetType {
@@ -201,7 +201,6 @@ export interface AbilityEffect {
     battleShockAura?: BattleshockAura;
     movementAura?: MovementAura;
     chargeAura?: ChargeAura;
-    targetAura?: DebuffAura;
     targetRange?: Value;
     targetRadius?: Value;
     whollyWithin?: boolean;

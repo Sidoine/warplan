@@ -500,10 +500,10 @@ function fixUnits(data: DataStoreImpl): void {
             attackAura: { bonusAttacks: 1 }
         });
         addAbilityEffect(data.abilities.judicatorsEternalJudgement, {
-            phase: Phase.Shooting,
             targetType: TargetType.Weapon,
             targetCondition: { rangedWeapon: true },
             attackAura: {
+                phase: Phase.Shooting,
                 rerollHitsOn1: conditionValue({ keyword: "CHAOS" }, 1)
             }
         });
@@ -1065,8 +1065,7 @@ function fixUnits(data: DataStoreImpl): void {
 
     {
         addAbilityEffect(data.abilities.neaveBlacktalonTirelessHunter, {
-            attackAura: { shootAfterRun: true },
-            phase: Phase.Shooting,
+            attackAura: { phase: Phase.Shooting, shootAfterRun: true },
             targetType: TargetType.Model
         });
         addAbilityEffect(data.abilities.neaveBlacktalonLightningFastStrikes, {
@@ -1131,9 +1130,9 @@ function fixUnits(data: DataStoreImpl): void {
 
     {
         addAbilityEffect(data.abilities.concussorsBlastToAshes, {
-            phase: Phase.Shooting,
             targetType: TargetType.Unit,
             attackAura: {
+                phase: Phase.Shooting,
                 effectsOnHitUnmodified6: [
                     {
                         mortalWounds: 1,
@@ -1141,16 +1140,14 @@ function fixUnits(data: DataStoreImpl): void {
                         phase: Phase.Shooting
                     },
                     {
-                        targetAura: { noPileIn: true },
-                        targetType: TargetType.Enemy,
-                        phase: Phase.Combat
+                        attackAura: { noPileIn: true },
+                        targetType: TargetType.Enemy
                     }
                 ]
             }
         });
         addAbilityEffect(data.abilities.concussorsIntolerableDamage, {
-            phase: Phase.Combat,
-            attackAura: { damageOnWoundUnmodified6: "D6" },
+            attackAura: { phase: Phase.Combat, damageOnWoundUnmodified6: "D6" },
             targetType: TargetType.Weapon,
             targetCondition: {
                 weaponId: data.attacks.concussorsClawsAndFangs.id
@@ -1218,8 +1215,7 @@ function fixUnits(data: DataStoreImpl): void {
     {
         addAbilityEffect(data.abilities.fulminatorsGlaivewall, {
             targetType: TargetType.Unit,
-            phase: Phase.Shooting,
-            defenseAura: { bonusSave: 1 }
+            defenseAura: { phase: Phase.Shooting, bonusSave: 1 }
         });
         addAbilityEffect(data.abilities.fulminatorsImpalingStrikes, {
             targetType: TargetType.Weapon,
@@ -1897,7 +1893,7 @@ function fixUnits(data: DataStoreImpl): void {
                 hasOption(model, sequitorPrimeOption)
         );
         addAbilityEffect(data.abilities.sequitorsGreatmaceBlast, {
-            targetType: TargetType.Enemy,
+            targetType: TargetType.Model,
             targetCondition: { anyKeyword: ["DAEMON", "NIGHTHAUT"] },
             attackAura: { numberOfHitsOnUnmodified6: "D3" }
         });
@@ -2058,15 +2054,16 @@ function fixUnits(data: DataStoreImpl): void {
             targetType: TargetType.Model
         });
         addAbilityEffect(data.abilities.celestarBallistaBastionsOfDeath, {
-            phase: Phase.Shooting,
             targetType: TargetType.Unit,
             condition: { inCover: true },
-            defenseAura: { bonusSave: 1 }
+            defenseAura: { phase: Phase.Shooting, bonusSave: 1 }
         });
         addAbilityEffect(data.abilities.celestarBallistaChainedLightning, {
-            phase: Phase.Shooting,
             targetType: TargetType.Unit,
-            attackAura: { numberOfHitsOnUnmodified6: "D6" }
+            attackAura: {
+                phase: Phase.Shooting,
+                numberOfHitsOnUnmodified6: "D6"
+            }
         });
         overrideAttack(
             data.attacks.celestarBallistaCelestarStormboltsRapidFire,
@@ -2098,9 +2095,9 @@ function fixUnits(data: DataStoreImpl): void {
             oneModelOption
         );
         addAbilityEffect(data.abilities.castigatorsBurstOfCelestialEnergy, {
-            phase: Phase.Shooting,
             targetType: TargetType.Unit,
             attackAura: {
+                phase: Phase.Shooting,
                 numberOfHitsOnUnmodified6: conditionValue(
                     { anyKeyword: ["DAEMON", "NIGHTHAUNT"] },
                     "D3"
@@ -2172,8 +2169,7 @@ function fixUnits(data: DataStoreImpl): void {
         });
         addAbilityEffect(data.abilities.evocatorsCelestialLightningArc, {
             targetType: TargetType.Unit,
-            phase: Phase.Shooting,
-            defenseAura: { rerollSavesOn1: true }
+            defenseAura: { phase: Phase.Shooting, rerollSavesOn1: true }
         });
         addAbilityEffect(data.abilities.evocatorsCelestialLightningArc, {
             targetType: TargetType.Unit,
@@ -2646,7 +2642,14 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 "The fiery light that spills from this item can ignite a deep and righteous rage in those nearby.";
             x.description =
                 'In your hero phase, you can pick 1 melee weapon used by a STORMCAST ETERNAL HERO within 6" of the bearer. Add 1 to the Attacks characteristic of that melee weapon until your next hero phase.';
-            x.effects = [{ phase: Phase.Hero, targetType: TargetType.Friend }];
+            x.effects = [
+                {
+                    phase: Phase.Hero,
+                    targetType: TargetType.Friend,
+                    targetCondition: { keyword: "HERO" },
+                    attackAura: { bonusAttacks: 1 }
+                }
+            ];
         },
         data.extraAbilities.stormcastEternalsMysticLightsFuryBrand.ability,
         data.extraAbilities.stormcastEternalsMysticLightsFuryBrandArtefact
@@ -2701,6 +2704,14 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 "The head of this stave can mesmerise enemy spellcasters, leaving them unable to formulate coherent thoughts.";
             x.description =
                 'Once per battle, at the start of the enemy hero phase, you can pick an enemy WIZARD with 12" of the bearer. That WIZARD cannot cast any spells that phase.';
+            x.effects = [
+                {
+                    phase: Phase.Hero,
+                    subPhase: SubPhase.Before,
+                    targetType: TargetType.Enemy,
+                    spellAura: { noCast: true }
+                }
+            ];
         },
         data.extraAbilities.stormcastEternalsCelestialStavesMindlockStaff
             .ability,
@@ -2738,6 +2749,13 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 "This scroll lists the names of those who have been judged unworthy.";
             x.description =
                 'Once per battle, in your hero phase, the bearer can use this artefact. If they do so, pick an enemy HERO within 12" of the bearer. Until the end of that turn, add 1 to wound rolls for attacks made by friendly STORMCAST ETERNALS that target that model.';
+            x.effects = [
+                {
+                    targetType: TargetType.Enemy,
+                    phase: Phase.Hero,
+                    defenseAura: { bonusWoundRoll: 1 }
+                }
+            ];
         },
         data.extraAbilities.stormcastEternalsScrollsOfPowerScrollOfCondemnation
             .ability,
@@ -2769,7 +2787,18 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 {
                     phase: Phase.Hero,
                     targetType: TargetType.Enemy,
-                    choice: "enemy"
+                    choice: "enemy",
+                    defenseAura: {
+                        rerollHitOn1: true
+                    }
+                },
+                {
+                    phase: Phase.Hero,
+                    targetType: TargetType.Friend,
+                    choice: "friend",
+                    defenseAura: {
+                        rerollHitOn6: true
+                    }
                 }
             ];
         }

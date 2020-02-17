@@ -90,15 +90,30 @@ export function isEffectInPhase(
     unit?: WarscrollItem,
     side?: PhaseSide
 ) {
+    if (
+        effect.phase !== undefined &&
+        effect.phase === phase &&
+        side !== PhaseSide.Defense
+    )
+        return true;
+
     if (phase & Phase.Combat || phase & Phase.Shooting) {
-        if (effect.phase !== undefined && effect.phase !== phase) return false;
-        if (effect.defenseAura && side === PhaseSide.Defense) return true;
+        if (effect.defenseAura && side === PhaseSide.Defense) {
+            if (effect.defenseAura.phase !== undefined)
+                return effect.defenseAura.phase === phase;
+            return true;
+        }
         if (
             effect.attackAura &&
             effect.targetType !== TargetType.Enemy &&
             side === PhaseSide.Attack
         ) {
-            if (!unit || unit.type !== "unit") return false;
+            if (
+                effect.attackAura.phase !== undefined &&
+                effect.attackAura.phase !== phase
+            )
+                return false;
+            if (!unit || unit.type !== "unit") return true;
             if (
                 phase === Phase.Combat &&
                 unit.attacks.some(x => x.attack.melee)
@@ -111,6 +126,14 @@ export function isEffectInPhase(
                 return true;
         }
         if (
+            effect.defenseAura &&
+            effect.targetType === TargetType.Enemy &&
+            side === PhaseSide.Attack
+        ) {
+            if (!unit) return false;
+            return true;
+        }
+        if (
             effect.attackAura &&
             effect.targetType === TargetType.Enemy &&
             side === PhaseSide.Defense
@@ -118,12 +141,11 @@ export function isEffectInPhase(
             if (!unit) return false;
             return true;
         }
-        if (
-            (effect.mortalWounds || effect.mortalWoundsPerModel) &&
-            side === PhaseSide.Attack
-        )
-            return true;
-        if (effect.phase === phase) return true;
+        // if (
+        //     (effect.mortalWounds || effect.mortalWoundsPerModel) &&
+        //     side === PhaseSide.Attack
+        // )
+        //     return true;
         return false;
     }
     if (phase & Phase.Battleshock && effect.battleShockAura) return true;
@@ -131,8 +153,7 @@ export function isEffectInPhase(
     if (phase & Phase.Charge && effect.chargeAura) return true;
     if (phase & Phase.Hero && effect.spellAura) return true;
     if (phase & Phase.Any && effect.commandAura) return true;
-    if (effect.phase !== undefined)
-        return effect.phase === phase && side !== PhaseSide.Defense;
+
     return false;
 }
 
@@ -142,6 +163,13 @@ export function isAbilityInPhase(
     unit?: WarscrollItem,
     side?: PhaseSide
 ) {
+    if (
+        (ability.category === AbilityCategory.Spell ||
+            ability.category === AbilityCategory.Prayer) &&
+        phase === Phase.Hero
+    )
+        return true;
+
     if (ability.effects) {
         for (const effect of ability.effects) {
             if (isEffectInPhase(effect, phase, unit, side)) return true;

@@ -51,8 +51,7 @@ function mapArmyOption(x: Ability, o: ArmyOption): CardContent {
 
 const useStyles = makeStyles({
     root: {
-        display: "flex",
-        flexWrap: "wrap"
+        display: "block"
     }
 });
 

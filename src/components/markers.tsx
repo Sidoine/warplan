@@ -27,24 +27,38 @@ const textContent: CSSProperties = {
 };
 
 const useStyle = makeStyles({
+    filter: {
+        "@media print": {
+            display: "none"
+        }
+    },
     markers: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        display: "flex",
-        breakInside: "avoid"
+        display: "block"
+    },
+    wrapper: {
+        display: "inline-block",
+        width: "105px",
+        height: "105px",
+        position: "relative"
     },
     marker: {
+        top: 0,
+        left: 0,
+        position: "absolute",
         fontFamily: "droid_serifregular",
         width: "100px",
         height: "100px",
         borderRadius: "50px",
         border: "2px solid #EEE",
+        backgroundPositionX: "-2px",
+        backgroundPositionY: "-2px",
         boxShadow: "0px 0px 5px black",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        margin: "10px"
+        margin: "10px",
+        breakInside: "avoid"
     },
     terrain: {
         backgroundImage: `url(${terrainImage})`
@@ -90,15 +104,17 @@ function MarkerView({ marker }: { marker: Marker }) {
             break;
     }
     return (
-        <div
-            className={`${classes.marker} ${className}`}
-            title={marker.tooltip}
-        >
-            <div className={classes.text}>{marker.text}</div>
-            {marker.condition && (
-                <div className={classes.condition}>{marker.condition}</div>
-            )}
-            <div className={classes.description}>{marker.description}</div>
+        <div className={classes.wrapper}>
+            <div
+                className={`${classes.marker} ${className}`}
+                title={marker.tooltip}
+            >
+                <div className={classes.text}>{marker.text}</div>
+                {marker.condition && (
+                    <div className={classes.condition}>{marker.condition}</div>
+                )}
+                <div className={classes.description}>{marker.description}</div>
+            </div>
         </div>
     );
 }
@@ -120,7 +136,7 @@ export function Markers() {
     const [warscroll, setWarscroll] = useState(true);
     return (
         <>
-            <Card>
+            <Card className={classes.filter}>
                 <CardContent>
                     <NumberControl
                         label="Repeat"
@@ -162,23 +178,24 @@ export function Markers() {
                     />
                 </CardContent>
             </Card>
+
             <div className={classes.markers}>
                 {terrain &&
                     markersStore.terrainMarkers.map(x => (
-                        <Repeat count={repeat}>
-                            <MarkerView key={x.id} marker={x} />
+                        <Repeat key={x.id} count={repeat}>
+                            <MarkerView marker={x} />
                         </Repeat>
                     ))}
                 {generic &&
                     markersStore.genericMarkers.map(x => (
-                        <Repeat count={repeat}>
-                            <MarkerView key={x.id} marker={x} />
+                        <Repeat key={x.id} count={repeat}>
+                            <MarkerView marker={x} />
                         </Repeat>
                     ))}
                 {warscroll &&
                     markersStore.markers.map(x => (
-                        <Repeat count={repeat}>
-                            <MarkerView key={x.id} marker={x} />
+                        <Repeat key={x.id} count={repeat}>
+                            <MarkerView marker={x} />
                         </Repeat>
                     ))}
             </div>

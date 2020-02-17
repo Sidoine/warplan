@@ -1,7 +1,6 @@
 import {
     AttackAura,
     DefenseAura,
-    DebuffAura,
     ModelOption,
     Unit,
     AttackAuraValues,
@@ -41,7 +40,6 @@ export interface States {
     attackAuras: AuraState<AttackAura>[];
     attackAura: AttackAura;
     defenseAura: AuraState<DefenseAura>[];
-    debuffAuras: AuraState<DebuffAura>[];
     unitState: UnitState;
 }
 
@@ -49,7 +47,6 @@ export class WeaponState implements States {
     attackAuras: AuraState<AttackAura>[] = [];
     attackAura: AttackAura = {};
     defenseAura: AuraState<DefenseAura>[] = [];
-    debuffAuras: AuraState<DebuffAura>[] = [];
     unitState: UnitState;
 
     constructor(public attack: Attack, public modelState: ModelState) {
@@ -61,7 +58,6 @@ export class ModelState implements States {
     attackAuras: AuraState<AttackAura>[] = [];
     attackAura: AttackAura = {};
     defenseAura: AuraState<DefenseAura>[] = [];
-    debuffAuras: AuraState<DebuffAura>[] = [];
     weaponStates: WeaponState[] = [];
 
     constructor(
@@ -75,7 +71,6 @@ export class UnitState implements States {
     attackAuras: AuraState<AttackAura>[] = [];
     attackAura: AttackAura = {};
     defenseAura: AuraState<DefenseAura>[] = [];
-    debuffAuras: AuraState<DebuffAura>[] = [];
     hasCharged: boolean = false;
     hasMoved: boolean = false;
     wounds: number = 0;
