@@ -742,6 +742,9 @@ function getUnits(db: realm) {
                 .join(", ")}],
 `;
         }
+        if (unit.maxCount) {
+            result += `           maxCount: ${unit.maxCount},\n`;
+        }
         if (unit.battlefieldRoles) {
             for (const role of unit.battlefieldRoles) {
                 if (role === "Other") continue;

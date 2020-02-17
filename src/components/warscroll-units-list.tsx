@@ -347,7 +347,7 @@ export class WarscrollUnitsList extends React.Component<
                 </CardContent>
                 <CardActions>
                     <span>{warscroll.unitsPoints} points</span>
-                    <UnitsList title="Add..." />
+                    <UnitsList />
                 </CardActions>
             </Card>
         );

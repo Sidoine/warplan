@@ -5,7 +5,12 @@ import {
     WarscrollLimits,
     WarscrollContingent
 } from "../stores/warscroll";
-import { ArmyOption, Allegiance, contingentName } from "../stores/units";
+import {
+    ArmyOption,
+    Allegiance,
+    contingentName,
+    AbilityCategory
+} from "../stores/units";
 import { DropdownValues, DropdownObjects } from "../atoms/dropdown-list";
 import {
     Grid,
@@ -165,16 +170,23 @@ export const WarscrollSummary = observer(() => {
                         <Grid item>
                             {warscroll.armyOption &&
                                 warscroll.armyOption.requiredArtifact &&
+                                warscroll.numberOfArtifacts > 0 &&
                                 !warscroll.hasRequiredArtifact && (
                                     <Warning
-                                        label={`${warscroll.armyOption.requiredArtifact.ability.name} is missing`}
+                                        label={`${warscroll.armyOption.requiredArtifact.ability.name} must be the first artifact`}
                                     />
                                 )}
                             {warscroll.armyOption &&
                                 warscroll.armyOption.requiredCommandTrait &&
+                                warscroll.general &&
+                                warscroll.general.extraAbilities.some(
+                                    x =>
+                                        x.ability.category ===
+                                        AbilityCategory.CommandTrait
+                                ) &&
                                 !warscroll.hasRequiredCommandTrait && (
                                     <Warning
-                                        label={`${warscroll.armyOption.requiredCommandTrait.ability.name} is missing`}
+                                        label={`${warscroll.armyOption.requiredCommandTrait.ability.name} must be the command trait of your general`}
                                     />
                                 )}
                             <FormControl>

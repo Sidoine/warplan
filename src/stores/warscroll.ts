@@ -18,6 +18,7 @@ import {
 } from "./units";
 import { deflate, inflate } from "pako";
 import { groupBy } from "../helpers/react";
+import { UiStore } from "./ui";
 
 function areAllied(unit1: Unit, unit2: Unit) {
     for (const faction1 of unit1.factions) {
@@ -783,6 +784,18 @@ export class WarscrollStore {
         );
     }
 
+    @computed
+    get availableUnits() {
+        return this.uiStore.units.filter(
+            x =>
+                x.maxCount === undefined ||
+                this.warscroll.units.reduce(
+                    (p, y) => (y.definition.id === x.id ? p + 1 : p),
+                    0
+                ) < x.maxCount
+        );
+    }
+
     @action
     addUnit(unit: Unit) {
         const warscroll = this.warscroll;
@@ -1045,7 +1058,7 @@ export class WarscrollStore {
         this.saveWarscrolls();
     }
 
-    constructor(private unitsStore: UnitsStore) {
+    constructor(private unitsStore: UnitsStore, private uiStore: UiStore) {
         const warscrolls = localStorage.getItem("warscrolls");
         if (warscrolls !== null) {
             this.warscrolls = JSON.parse(warscrolls);

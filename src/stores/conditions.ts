@@ -65,11 +65,12 @@ function canUseAbilityCategory(
                 (unit.definition.isLeader
                     ? unit.definition.isLeader(ws)
                     : false) &&
+                unit.definition.maxCount !== 1 &&
                 ws.numberOfArtifacts < ws.maxArtifacts &&
                 notUsed(ws, name)
             );
         case AbilityCategory.CommandTrait:
-            return unit.isGeneral;
+            return unit.isGeneral && unit.definition.maxCount !== 1;
         case AbilityCategory.Command:
             return unit.definition.isLeader
                 ? unit.definition.isLeader(ws)

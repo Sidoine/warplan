@@ -26,7 +26,7 @@ export function newStores(): Stores {
     const dataStore = new DataStoreImpl();
     const unitsStore = new UnitsStore(dataStore);
     const uiStore = new UiStore(unitsStore);
-    const warscrollStore = new WarscrollStore(unitsStore);
+    const warscrollStore = new WarscrollStore(unitsStore, uiStore);
     const ownedStore = new OwnedStore(unitsStore);
     const basketStore = new BasketStore(unitsStore, warscrollStore, ownedStore);
     const markersStore = new MarkersStore(warscrollStore, unitsStore);

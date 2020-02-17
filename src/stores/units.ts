@@ -408,6 +408,7 @@ export interface Unit extends UnitInfos {
     size: number;
     maxSize?: number;
     maxPoints?: number;
+    maxCount?: number;
     points: number;
     factions: Faction[];
     subType?: string;
