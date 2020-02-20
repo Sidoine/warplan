@@ -294,6 +294,7 @@ function overrideUnits(data: DataStoreImpl) {
 }
 
 function overrideExtraAbilities(data: DataStoreImpl) {
+    // Megaboss
     overrideAbility(
         data.extraAbilities.ironjawzIroncladWarlordsHulkingMuscleBoundBrute
             .ability,
@@ -324,6 +325,91 @@ function overrideExtraAbilities(data: DataStoreImpl) {
                 {
                     targetType: TargetType.Model,
                     defenseAura: { phase: Phase.Combat }
+                }
+            ];
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.ironjawzIroncladWarlordsLiveToFight.ability,
+        x => {
+            x.flavor = `The only time this warrior is not
+            in combat is when they are charging headlong
+            into a fresh set of enemies.`;
+            x.description = `You can re-roll wound rolls for attacks made
+            by this general and their mount if they made a
+            charge move in the same turn.`;
+            x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    phase: Phase.Hero
+                }
+            ];
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.ironjawzIroncladWarlordsBrutishCunning.ability,
+        x => {
+            x.flavor = `After countless battles, this
+            general has learnt how to get his boys stuck into
+            the enemy as quickly as possible`;
+            x.description = `Once per battle round, this general can use the
+            Mighty Destroyers command ability without
+            spending 1 command point.`;
+            x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    attackAura: { phase: Phase.Combat }
+                }
+            ];
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.ironjawzIroncladWarlordsIronclad.ability,
+        x => {
+            x.flavor = `Incoming blows bounce harmlessly off
+            this general’s impressively robust armour.`;
+            x.description = `Add 1 to save rolls for attacks that target
+            this general.`;
+            x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    defenseAura: {
+                        bonusSave: 1
+                    }
+                }
+            ];
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.ironjawzIroncladWarlordsBestialCharisma.ability,
+        x => {
+            x.flavor = `With a deafening bellow, this
+            greenskin lets every orruk around know that no
+            one leaves the fight until it’s over`;
+            x.description = `Once per battle round, this general can use the
+            Inspiring Presence command ability without
+            spending 1 command point`;
+            x.effects = [
+                {
+                    targetType: TargetType.Model
+                }
+            ];
+        }
+    );
+    overrideAbility(
+        data.extraAbilities.ironjawzIroncladWarlordsMightyWaaagh.ability,
+        x => {
+            x.flavor = `Waves of greenskins flock to
+            the call of this bellicose orruk, knowing that they
+            will be led to a mighty fight.`;
+            x.description = `If this general has the Ironjawz Waaagh!
+            command ability, count the number of eligible
+            units within 24" of this general instead of 18". In
+            addition, if successful, the ability affects eligible
+            units within 24" of this general instead of 18".`;
+            x.effects = [
+                {
+                    targetType: TargetType.Model
                 }
             ];
         }
