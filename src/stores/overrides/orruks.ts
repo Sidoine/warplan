@@ -223,6 +223,57 @@ function fixBattalion(data: DataStoreImpl) {
 }
 
 function overrideUnits(data: DataStoreImpl) {
+    // Gordrakk
+    addAbilityEffect(data.abilities.gordrakkTheFistOfGorkMassivelyDestructiveBulk, {
+        targetType: TargetType.Enemy,
+        phase: Phase.Charge
+    });
+
+    addAbilityEffect(data.abilities.gordrakkTheFistOfGorkKunnin, {
+        targetType: TargetType.Enemy,
+        attackAura: { phase: Phase.Combat }
+    });
+
+    addAbilityEffect(data.abilities.gordrakkTheFistOfGorkSmasha, {
+        targetType: TargetType.Enemy,
+        attackAura: { phase: Phase.Combat }
+    });
+
+    addAbilityEffect(data.abilities.gordrakkTheFistOfGorkStrengthFromVictory, {
+        targetType: TargetType.Model,
+        phase: Phase.Combat
+    });
+
+    addAbilityEffect(data.abilities.gordrakkTheFistOfGorkVoiceOfGork, {
+        targetType: TargetType.Friend,
+        phase: Phase.Combat,
+        attackAura: { bonusHitRoll: 1 }
+    });
+
+    // Megaboss on Maw-Krusha
+    addAbilityEffect(data.abilities.megabossOnMawKrushaDestructiveBulk, {
+        targetType: TargetType.Enemy,
+        phase: Phase.Charge
+    });
+
+    addAbilityEffect(data.abilities.megabossOnMawKrushaRipToofFist, {
+        targetType: TargetType.Model,
+        defenseAura: { phase: Phase.Combat }
+    });
+
+    addAbilityEffect(data.abilities.megabossOnMawKrushaStrengthFromVictory, {
+        targetType: TargetType.Model,
+        phase: Phase.Combat
+    });
+
+    addAbilityEffect(data.abilities.megabossOnMawKrushaGoOnLadzGetStuckIn, {
+        targetType: TargetType.Friend,
+        phase: Phase.Combat,
+        subPhase: SubPhase.Before,
+        attackAura: { bonusHitRoll: 1 }
+    });
+
+    // Megaboss
     addAbilityEffect(data.abilities.orrukMegabossRipToofFist, {
         targetType: TargetType.Model,
         defenseAura: { phase: Phase.Combat }
@@ -240,11 +291,13 @@ function overrideUnits(data: DataStoreImpl) {
         attackAura: { bonusHitRoll: 1 }
     });
 
+    // Ardboyz
     addAbilityEffect(data.abilities.orrukArdboysOrrukForgedShields, {
         targetType: TargetType.Unit,
         defenseAura: {}
     });
 
+    // Ironskull's Boyz
     addAbilityEffect(data.abilities.ironskullSBoyzDeadArd, {
         targetType: TargetType.Unit,
         defenseAura: {}
@@ -258,11 +311,13 @@ function overrideUnits(data: DataStoreImpl) {
         attackAura: { bonusAttacks: 1 }
     });
 
+    // Brutes
     addAbilityEffect(data.abilities.orrukBrutesDuffUpDaBigThing, {
         targetType: TargetType.Model,
         attackAura: {}
     });
 
+    // Gore-gruntas
     addAbilityEffect(data.abilities.orrukGoreGruntasGoreGruntaCharge, {
         targetType: TargetType.Model,
         phase: Phase.Charge
@@ -271,6 +326,7 @@ function overrideUnits(data: DataStoreImpl) {
         targetType: TargetType.Mount
     });
 
+    // Warchanter
     addAbilityEffect(data.abilities.orrukWarchanterRhythmOfDestruction, {
         targetType: TargetType.Model,
         attackAura: {}
@@ -281,6 +337,7 @@ function overrideUnits(data: DataStoreImpl) {
         attackAura: {}
     });
 
+    // Weirdnob Shaman
     addAbilityEffect(data.abilities.orrukWeirdnobShamanBrutalPower, {
         targetType: TargetType.Model,
         phase: Phase.Hero,
@@ -294,6 +351,7 @@ function overrideUnits(data: DataStoreImpl) {
 }
 
 function overrideExtraAbilities(data: DataStoreImpl) {
+
     // Megaboss
     overrideAbility(
         data.extraAbilities.ironjawzIroncladWarlordsHulkingMuscleBoundBrute
