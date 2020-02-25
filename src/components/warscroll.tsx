@@ -4,7 +4,7 @@ import {
     AllAbilities,
     useWarscrollStyles
 } from "../atoms/warscroll-components";
-import { UnitWarscroll } from "./unit-warscoll";
+import { UnitWarscroll } from "./unit-warscroll";
 import { useStores } from "../stores";
 import { EndlessSpellWarscroll } from "./endless-spell-warscroll";
 

@@ -91,6 +91,7 @@ export interface DefenseAura {
 export interface BattleshockAura {
     bonusBravery?: Value;
     immune?: boolean;
+    rerollFails?: boolean;
 }
 
 export interface MovementAura {

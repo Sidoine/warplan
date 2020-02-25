@@ -13,6 +13,7 @@ import spellImage from "../assets/gambitspell.png";
 import commandImage from "../assets/ploy.png";
 import { CSSProperties } from "@material-ui/core/styles/withStyles";
 import { NumberControl } from "../atoms/number-control";
+import { observer } from "mobx-react";
 
 export interface MarkersProps {
     markersStore?: MarkersStore;
@@ -85,12 +86,19 @@ const useStyle = makeStyles({
         },
         textContent
     ),
-    description: textContent
+    description: textContent,
+    hiddenMarker: {
+        opacity: 0.5,
+        "@media print": {
+            display: "none"
+        }
+    }
 });
 
-function MarkerView({ marker }: { marker: Marker }) {
+const MarkerView = observer(({ marker }: { marker: Marker }) => {
     let className: string;
     const classes = useStyle();
+    const { markersStore } = useStores();
     switch (marker.type) {
         default:
         case MarkerType.Terrain:
@@ -104,7 +112,12 @@ function MarkerView({ marker }: { marker: Marker }) {
             break;
     }
     return (
-        <div className={classes.wrapper}>
+        <div
+            className={`${classes.wrapper} ${markersStore.hiddenMarkers.get(
+                marker.id
+            ) && classes.hiddenMarker}`}
+            onClick={() => markersStore.toggleMarker(marker)}
+        >
             <div
                 className={`${classes.marker} ${className}`}
                 title={marker.tooltip}
@@ -117,7 +130,7 @@ function MarkerView({ marker }: { marker: Marker }) {
             </div>
         </div>
     );
-}
+});
 
 function Repeat({ children, count }: { children: ReactNode; count: number }) {
     const result: ReactNode[] = [];

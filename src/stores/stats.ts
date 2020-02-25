@@ -15,7 +15,8 @@ import {
     UnitState,
     ModelState,
     WeaponState,
-    sumAttackAura
+    sumAttackAura,
+    addAttackAura
 } from "./unit-state";
 
 export interface UnitStats {
@@ -86,6 +87,9 @@ function applyEffect(
         } else {
             stats.meleeDamage += mortalWounds;
         }
+    }
+    if (effect.attackAura) {
+        addAttackAura(caster, { aura: effect.attackAura, effectRatio: ratio });
     }
     return true;
 }

@@ -33,7 +33,7 @@ import {
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import PeopleIcon from "@material-ui/icons/People";
 import ClearIcon from "@material-ui/icons/Clear";
-import { UnitWarscroll } from "./unit-warscoll";
+import { UnitWarscroll } from "./unit-warscroll";
 import WarningIcon from "@material-ui/icons/Warning";
 import { AddButton, TableColumn, DropdownValues } from "../atoms/dropdown-list";
 import { NumberControl } from "../atoms/number-control";

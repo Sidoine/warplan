@@ -7,7 +7,7 @@ import { join, value } from "../helpers/react";
 import { Filter } from "./filter";
 import { WarscrollStore } from "../stores/warscroll";
 import { getValue } from "../stores/combat";
-import { UnitWarscroll } from "./unit-warscoll";
+import { UnitWarscroll } from "./unit-warscroll";
 import { Unit } from "../stores/units";
 import {
     Table,

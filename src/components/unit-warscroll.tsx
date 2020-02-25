@@ -32,25 +32,30 @@ export function UnitWarscroll({
         [];
     let abilities = toJS(u.abilities || []).concat();
     let mainOption: ModelOption | undefined;
+    const modelOptions: [ModelOption, number?][] = [];
     if (models) {
         for (const model of models) {
             if (!model.count) continue;
             for (const option of model.options) {
-                if (option.unitCategory === "main") mainOption = option;
+                modelOptions.push([option, model.count]);
+            }
+        }
+    } else if (u.options) {
+        for (const option of u.options) {
+            modelOptions.push([option]);
+        }
+    }
+    for (const [option, count] of modelOptions) {
+        if (option.unitCategory === "main") mainOption = option;
 
-                if (option.attacks) {
-                    for (const a of option.attacks) {
-                        const count = model.count;
-                        if (count !== 0)
-                            attacks.push({ count: count, attack: a });
-                    }
-                }
-                if (option.abilities) {
-                    for (const a of option.abilities) {
-                        if (!abilities.some(x => x.name === a.name))
-                            abilities.push(a);
-                    }
-                }
+        if (option.attacks) {
+            for (const a of option.attacks) {
+                if (count !== 0) attacks.push({ count: count, attack: a });
+            }
+        }
+        if (option.abilities) {
+            for (const a of option.abilities) {
+                if (!abilities.some(x => x.name === a.name)) abilities.push(a);
             }
         }
     }

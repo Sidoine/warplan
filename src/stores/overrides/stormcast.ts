@@ -838,6 +838,48 @@ function fixUnits(data: DataStoreImpl): void {
     }
 
     {
+        const unit: Unit = data.units.vanguardHunters;
+        const handaxe = setAttackAsOption(
+            unit,
+            data.attacks.vanguardHuntersShockHandaxe,
+            undefined,
+            undefined,
+            UnitCategoryMain
+        );
+        const sabre = setAttackAsOption(
+            unit,
+            data.attacks.vanguardHuntersStormSabre,
+            undefined,
+            undefined,
+            UnitCategoryMain
+        );
+        const prime = setAbilityAsOption(
+            unit,
+            data.abilities.vanguardHuntersHunterPrime,
+            oneModelOption
+        );
+        unit.optionStats = [
+            {
+                name: "Handaxes",
+                models: [
+                    {
+                        count: 1,
+                        options: [handaxe, prime]
+                    },
+                    {
+                        count: 4,
+                        options: [handaxe]
+                    }
+                ]
+            },
+            {
+                name: "Sabres",
+                models: [
+                    { count: 1, options: [sabre, prime] },
+                    { count: 4, options: [sabre] }
+                ]
+            }
+        ];
     }
 
     {
@@ -1180,36 +1222,16 @@ function fixUnits(data: DataStoreImpl): void {
         // unit.abilities = [thunderstrike, intolerableDamage, sigmariteShields, stormBlastAbility];
     }
     {
-        // const unit: Unit = data.units.desolators;
-        // unit.keywords.push("CELESTIAL", "HUMAN", "DRACOTHIAN GUARD", "DESOLATORS");
-        // unit.move = 10;
-        // unit.save = "3+";
-        // unit.bravery = 7;
-        // unit.wounds = 5;
-        // const stormBlast: Attack = { melee: false, name: "Storm Blast", range: "12", attacks: "1", toHit: "4+" };
-        // const thunderaxe: Attack = { melee: true, name: "Thunderaxe", range: "2", attacks: "3", toHit: "4+", toWound: "3+", rend: "-1", damage: "2" };
-        // const dracothsClawsAndFangs: Attack = { melee: true, name: "Dracoth's Claws and Fangs", range: "1", attacks: "3", toHit: "3+", toWound: '3+', rend: "-1", damage: "1" };
-        // const thunderstrike: Ability = {
-        //     name: "Fury of the Storm",
-        //     description: " Lightning crackles between the heads of the Desolators’ axes when they attack as one. A Desolator makes 4 attacks with its Thunderaxe rather than 3 if there are at least 4 models in its unit, or 6 attacks if there are at least 6 models in its unit."
-        // }
-        // const intolerableDamage: Ability = {
-        //     name: "Intolerable Damage",
-        //     description: "If the wound roll for a Dracoth’s Claws and Fangs is 6 or more, then that attack causes D6 Damage rather than 1. ",
-        //     getWounds: (models, melee, attack) => attack === dracothsClawsAndFangs ? getWoundsForSpecialDamageIf6OnWound(attack, 3.5) : 0
-        // }
-        // const sigmariteShields: Ability = {
-        //     name: "Sigmarite Shields",
-        //     description: " You can re-roll save rolls of 1 for this unit",
-        //     getSavedWounds: getSavedWoundReroll1
-        // }
-        // const stormBlastAbility: Ability = {
-        //     name: "Storm Blast",
-        //     description: "Dracoths can spit devastating bolts of lightning which blast open amid the enemy ranks, leaving warriors maimed and reeling. When a unit is hit by a Storm Blast, do not make a wound roll; instead, the unit suffers D3 mortal wounds.",
-        //     getWounds: (models, melee, attack) => attack === stormBlast ? models * 3/6 * 2 : 0
-        // }
-        // unit.attacks = [stormBlast, thunderaxe, dracothsClawsAndFangs];
-        // unit.abilities = [thunderstrike, intolerableDamage, sigmariteShields, stormBlastAbility];
+        addAbilityEffect(data.abilities.desolatorsFuryOfTheStorm, {
+            targetType: TargetType.Unit,
+            targetCondition: { minModels: 4 },
+            attackAura: { bonusAttacks: 1 }
+        });
+        addAbilityEffect(data.abilities.desolatorsFuryOfTheStorm, {
+            targetType: TargetType.Unit,
+            targetCondition: { minModels: 6 },
+            attackAura: { bonusAttacks: 2 }
+        });
     }
 
     {
@@ -1707,43 +1729,35 @@ function fixUnits(data: DataStoreImpl): void {
     }
 
     {
-        // const unit: Unit = data.units.steelheartSChampions;
-        // unit.warscroll = "https://www.games-workshop.com/resources/PDF/Downloads/aos-warscroll-steelhearts-champions-en.pdf";
-        // unit.keywords.push("CELESTIAL", "HUMAN", "REDEEMER", "LIBERATOR", "STEELHEART'S CHAMPION");
-        // unit.move = 5;
-        // unit.save = "4+";
-        // unit.bravery = 7;
-        // const severinsBroadsword: Attack = { melee: true, name: "Severin's Broadsword", range: 1, attacks: 3, toHit: "3+", toWound: "4+", rend: -1, damage: 2};
-        // const obrynsGrandhammer: Attack = {melee: true, name: "Obryn's Grandhammer", range: 1, attacks: 2, toHit: "4+", toWound: "3+", rend: -1, damage: 3};
-        // const angharadsWarhammer: Attack = {melee: true, name: "Angharad's Warhammer", range: 1, attacks: 3, toHit: "3+", toWound: "3+", damage: 1};
-        // const severinSteelheart: Ability = { name: "Severin Steelheart", description: "The leader of this unit is Severin Steelheart. If a target unit has 5 or more models, you can re-roll failed hit rolls for Severin Steelheart’s Broadsword."};
-        // const heroicGuard: Ability = {name: "Heroic Guard", description: "Steelheart’s Champions stand impervious and unyielding in the face of the enemy, refusing to give an inch even against seemingly impossible odds.If an enemy unit finishes its charge move within ½\" of this unit, add 1 to this unit’s save rolls for the rest of the turn. However, this unit cannot also add 1 to its save rolls for being wholly on or within a terrain feature while this ability is being used."};
-        // const layLowTheTyrants: Ability = {name: "Lay Low the Tyrants", description:  "The Liberators’ task is to free the Mortal Realms from the yoke of oppression, and they do so by slaying tyrants, warlords and champions of ruin wherever they are found.If any model from this unit selects an enemy unit with a Wounds characteristic of 5 or more as the target for all of its attacks in a combat phase, add 1 to that model’s hit rolls in that combat phase."};
-        // const sigmariteShields: Ability = {
-        //     name: "Sigmarite Shields",
-        //     description: "Forged from the wondrous living metal known as sigmarite, the shields of the Stormcast Eternals form an impenetrable wall against the blades and spells of their foes.You can re-roll save rolls of 1 for this unit while it includes Angharad Brightshield.",
-        //     getSavedWounds: getSavedWoundReroll1
-        // };
-        // const severinSteelheartOption: ModelOption = {
-        //     abilities: [severinSteelheart],
-        //     attacks: [severinsBroadsword],
-        //     id: "severinSteelheartOption",
-        //     name: "Severin Steelheart"
-        // };
-        // const obrynOption: ModelOption = {
-        //     attacks: [obrynsGrandhammer],
-        //     id: "obryn",
-        //     name: "Obryn the Bold"
-        // };
-        // const angharadOption: ModelOption = {
-        //     attacks: [angharadsWarhammer],
-        //     abilities: [sigmariteShields],
-        //     id: "angharad",
-        //     name: "Angharad Brightshield"
-        // };
-        // unit.options = [severinSteelheartOption, obrynOption, angharadOption];
-        // unit.modelStats = [{ name: "Severin, Obryn, and Angharad", models: [{ count: 1, options: [severinSteelheartOption] }, { count: 1, options: [obrynOption] }, { count: 1, options: [angharadOption] }] }];
-        // unit.abilities = [heroicGuard, layLowTheTyrants];
+        const unit: Unit = data.units.steelheartSChampions;
+        const broadsword = setAttackAsOption(
+            unit,
+            data.attacks.steelheartSChampionsSeverinSBroadsword,
+            oneModelOption
+        );
+        const grandhammer = setAttackAsOption(
+            unit,
+            data.attacks.steelheartSChampionsObrynSGrandhammer,
+            oneModelOption
+        );
+        const warhammer = setAttackAsOption(
+            unit,
+            data.attacks.steelheartSChampionsAngharadSWarhammer,
+            oneModelOption
+        );
+        unit.optionStats = [
+            {
+                models: [
+                    {
+                        count: 1,
+                        options: [broadsword]
+                    },
+                    { count: 1, options: [grandhammer] },
+                    { count: 1, options: [warhammer] }
+                ],
+                name: "All champions"
+            }
+        ];
     }
 
     {
@@ -2176,7 +2190,7 @@ function fixUnits(data: DataStoreImpl): void {
             phase: Phase.Combat,
             subPhase: SubPhase.WhileAfter,
             targetRange: 3,
-            mortalWoundsPerModel: "2D(4+)"
+            mortalWoundsPerModel: "2(4+)"
         });
         addAbilityEffect(data.abilities.evocatorsEmpower, {
             targetType: TargetType.Unit,
@@ -2203,6 +2217,87 @@ function fixUnits(data: DataStoreImpl): void {
                 ]
             }
         ];
+    }
+
+    {
+        addAbilityEffect(
+            data.abilities.evocatorsOnCelestialDracolinesCelestialLightningArc,
+            {
+                targetType: TargetType.Unit,
+                defenseAura: {
+                    phase: Phase.Shooting,
+                    rerollSavesOn1: true
+                }
+            }
+        );
+        addAbilityEffect(
+            data.abilities.evocatorsOnCelestialDracolinesCelestialLightningArc,
+            {
+                targetType: TargetType.Enemy,
+                targetRange: 3,
+                mortalWoundsPerModel: "2(4+)"
+            }
+        );
+        addAbilityEffect(
+            data.abilities.evocatorsOnCelestialDracolinesEvocatorPrime,
+            {
+                targetType: TargetType.Model,
+                attackAura: {
+                    bonusAttacks: 1
+                }
+            }
+        );
+        const unit: Unit = data.units.evocatorsOnCelestialDracolines;
+        const bladeOption = setAttackAsOption(
+            unit,
+            data.attacks.evocatorsOnCelestialDracolinesTempestBladeAndStormstave
+        );
+        const staff = setAttackAsOption(
+            unit,
+            data.attacks.evocatorsOnCelestialDracolinesGrandstave,
+            ratioModelOption(2, 3)
+        );
+        const prime = setAbilityAsOption(
+            unit,
+            data.abilities.evocatorsOnCelestialDracolinesEvocatorPrime,
+            oneModelOption
+        );
+        unit.optionStats = [
+            {
+                name: "2 grand staves and 1 blade",
+                models: [
+                    { count: 2, options: [staff] },
+                    { count: 1, options: [bladeOption, prime] }
+                ]
+            }
+        ];
+    }
+
+    {
+        addAbilityEffect(data.abilities.lordArcanumCycleOfTheStorm, {
+            targetType: TargetType.Friend,
+            defenseAura: {}
+        });
+        addAbilityEffect(data.abilities.lordArcanumSpiritFlask, {
+            targetType: TargetType.Friend,
+            phase: Phase.Combat,
+            subPhase: SubPhase.Before
+        });
+        addAbilityEffect(data.abilities.lordArcanumThunderclap, {
+            targetType: TargetType.Enemy,
+            phase: Phase.Hero,
+            attackAura: {
+                malusHitRoll: 1
+            }
+        });
+        addAbilityEffect(data.abilities.lordArcanumPrimeElectrids, {
+            targetType: TargetType.Friend,
+            phase: Phase.Hero
+        });
+        addAbilityEffect(data.abilities.lordArcanumAethericManipulation, {
+            targetType: TargetType.Unit,
+            phase: Phase.Hero
+        });
     }
 
     {
@@ -3399,6 +3494,13 @@ function fixStormhosts(data: DataStoreImpl) {
                 'Subtract 1 from the Bravery characteristic of enemy units while they are within 6" of this general.';
             x.flavor =
                 "The leaders of the Anvils of the Heldenhammer embody their Stormhost’s sinister reputation.";
+            x.effects = [
+                {
+                    targetType: TargetType.Enemy,
+                    effectRange: 6,
+                    battleShockAura: { bonusBravery: -1 }
+                }
+            ];
         }
     );
     overrideAbility(
@@ -3408,6 +3510,14 @@ function fixStormhosts(data: DataStoreImpl) {
                 "Pick one of the bearer’s melee weapons. At the end of the combat phase, roll a dice for each enemy model that was allocated any wounds caused by this weapon in that combat phase. On a 3+ that model suffers 1 mortal wound.";
             x.flavor =
                 "The Soulthief is a powerful artefact, each blow striking the victim’s very spirit.";
+            x.effects = [
+                {
+                    targetType: TargetType.Weapon,
+                    phase: Phase.Combat,
+                    subPhase: SubPhase.After,
+                    mortalWounds: "1(3+)"
+                }
+            ];
         }
     );
     const noTrueDeath: Ability = {
@@ -3417,7 +3527,13 @@ function fixStormhosts(data: DataStoreImpl) {
         flavor:
             "The Anvils of the Heldenhammer know that if slain, they will return to fight again.",
         name: "No True Death",
-        category: AbilityCategory.Army
+        category: AbilityCategory.Army,
+        effects: [
+            {
+                targetType: TargetType.Unit,
+                battleShockAura: { rerollFails: true }
+            }
+        ]
     };
     const heroesOfAnotherAge: Ability = {
         id: "stormcast_heroesOfAnotherAge",
@@ -3426,7 +3542,8 @@ function fixStormhosts(data: DataStoreImpl) {
         flavor:
             "The Anvils of the Heldenhammer use ancient and revered codes of battle.",
         category: AbilityCategory.Command,
-        name: "Heroes of Another Age"
+        name: "Heroes of Another Age",
+        effects: [{ phase: Phase.Hero, targetType: TargetType.Friend }]
     };
     override<ArmyOption>(
         data.armyOptions.stormcastEternalsAnvilsOfTheHeldenhammer,
