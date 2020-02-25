@@ -20,17 +20,6 @@ import { deflate, inflate } from "pako";
 import { groupBy } from "../helpers/react";
 import { UiStore } from "./ui";
 
-function areAllied(unit1: Unit, unit2: Unit) {
-    for (const faction1 of unit1.factions) {
-        for (const faction2 of unit2.factions) {
-            if (faction1 === faction2) return true;
-            if (faction1.allied && faction1.allied.indexOf(faction2.id) >= 0)
-                return true;
-        }
-    }
-    return false;
-}
-
 export const enum PointMode {
     MatchedPlay,
     OpenPlay,
@@ -176,6 +165,16 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         );
     }
 
+    get canBeAllied() {
+        return (
+            this.definition.keywords &&
+            this.warscroll.allegiance.alliesKeywords &&
+            this.warscroll.allegiance.alliesKeywords.some(x =>
+                x.every(y => this.definition.keywords.includes(y))
+            )
+        );
+    }
+
     get isArtillery() {
         return (
             this.definition.isArtillery &&
@@ -241,13 +240,6 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         if (this.definition.maxPoints && points > this.definition.maxPoints)
             return this.definition.maxPoints;
         return points;
-    }
-
-    @computed
-    get nonAlliedUnits() {
-        return this.warscroll.units.filter(
-            x => !areAllied(this.definition, x.definition)
-        );
     }
 
     @computed

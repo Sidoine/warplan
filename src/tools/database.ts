@@ -458,6 +458,7 @@ function getAllegiance(db: realm) {
             id: "${id}",
             name: "${escapeString(allegiance.name)}",
             keywords: ["${keywords.map(x => x.toUpperCase()).join('", "')}"],
+            alliesKeywords: ${compoundKeywordsToString(allegiance.allies)},
 `;
         if (allegiance.grandAlliance) {
             result += `${tab}${tab}${tab}grandAlliance: GrandAlliance.${allegiance.grandAlliance.toLowerCase()},

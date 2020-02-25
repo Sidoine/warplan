@@ -33,7 +33,7 @@ export class WarscrollPopin extends React.Component<WarscrollPopinProps, {}> {
 
                 <DialogContentText>
                     {this.props.warscrollStore!.warscrolls.map(x => (
-                        <div>
+                        <div key={x}>
                             {x}
                             <Button
                                 onClick={() =>

@@ -526,6 +526,7 @@ export interface Allegiance {
     keywords: string[];
     armyOptions?: ArmyOptions;
     battleTraits?: Ability[];
+    alliesKeywords?: string[][];
 }
 
 export type ExtraAbilityTest = (

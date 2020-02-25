@@ -103,22 +103,79 @@ const ModelCount = observer(({ unit }: { unit: WarscrollUnit }) => {
     );
 });
 
+const ModelName = ({
+    unit,
+    onOpenWarscroll
+}: {
+    unit: WarscrollUnit;
+    onOpenWarscroll: (unit: WarscrollUnit) => void;
+}) => {
+    const { warscrollStore } = useStores();
+    const toggleGeneral = (checked: boolean) => {
+        warscrollStore.setGeneral(checked ? unit : undefined);
+    };
+
+    return (
+        <>
+            <div>
+                {unit.definition.model.name}
+                <IconButton onClick={() => onOpenWarscroll(unit)} size="small">
+                    <VisibilityIcon />
+                </IconButton>
+            </div>
+            <div>
+                {unit.definition.size} <PeopleIcon />
+                {unit.isAllied && !unit.canBeAllied && (
+                    <Tooltip title="Can't be allied">
+                        <WarningIcon />
+                    </Tooltip>
+                )}
+            </div>
+            <div>
+                <div>
+                    <em>{unit.definition.subType}</em>
+                </div>
+                <div>
+                    {!unit.isAllied && unit.isLeader && (
+                        <>
+                            <Checkbox
+                                checked={
+                                    unit === warscrollStore.warscroll.general
+                                }
+                                onChange={(_, c) => toggleGeneral(c)}
+                            ></Checkbox>
+                            General
+                        </>
+                    )}
+                    {unit.isAllied && <>Allied</>}
+                </div>
+            </div>
+        </>
+    );
+};
+
 @inject("unitsStore", "warscrollStore")
 @observer
 export class WarscrollUnitsList extends React.Component<
     WarscrollUnitsListProps,
     {}
 > {
-    @observable private warscrollOpen: WarscrollUnit | null = null;
     @action private handleOpenWarscroll = (unit: WarscrollUnit) =>
         (this.warscrollOpen = unit);
+
+    @observable private warscrollOpen: WarscrollUnit | null = null;
     @action private handleCloseWarscroll = () => (this.warscrollOpen = null);
 
     @computed get columns(): ResponsiveTableColumn<WarscrollUnit>[] {
         const columns: ResponsiveTableColumn<WarscrollUnit>[] = [
             {
                 name: "Name",
-                text: this.renderModelName
+                text: x => (
+                    <ModelName
+                        unit={x}
+                        onOpenWarscroll={this.handleOpenWarscroll}
+                    />
+                )
             },
             {
                 name: "Count",
@@ -158,57 +215,6 @@ export class WarscrollUnitsList extends React.Component<
         });
         return columns;
     }
-
-    private renderModelName = (unit: WarscrollUnit) => {
-        return (
-            <>
-                <div>
-                    {unit.definition.model.name}
-                    <IconButton
-                        onClick={() => this.handleOpenWarscroll(unit)}
-                        size="small"
-                    >
-                        <VisibilityIcon />
-                    </IconButton>
-                </div>
-                <div>
-                    {unit.definition.size} <PeopleIcon />
-                    {unit.nonAlliedUnits.length > 0 && (
-                        <Tooltip
-                            title={`Can't be allied with ${unit.nonAlliedUnits
-                                .map(x => x.definition.model.name)
-                                .join(", ")}`}
-                        >
-                            <WarningIcon />
-                        </Tooltip>
-                    )}
-                </div>
-                <div>
-                    <div>
-                        <em>{unit.definition.subType}</em>
-                    </div>
-                    <div>
-                        {!unit.isAllied && unit.isLeader && (
-                            <>
-                                <Checkbox
-                                    checked={
-                                        unit ===
-                                        this.props.warscrollStore!.warscroll
-                                            .general
-                                    }
-                                    onChange={(_, c) =>
-                                        this.toggleGeneral(unit, c)
-                                    }
-                                ></Checkbox>
-                                General
-                            </>
-                        )}
-                        {unit.isAllied && <>Allied</>}
-                    </div>
-                </div>
-            </>
-        );
-    };
 
     private renderModelOptions = (unit: WarscrollUnit) => {
         return (
@@ -352,8 +358,4 @@ export class WarscrollUnitsList extends React.Component<
             </Card>
         );
     }
-
-    private toggleGeneral = (unit: WarscrollUnit, checked: boolean) => {
-        this.props.warscrollStore!.setGeneral(checked ? unit : undefined);
-    };
 }
