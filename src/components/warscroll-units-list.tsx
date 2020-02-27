@@ -103,56 +103,62 @@ const ModelCount = observer(({ unit }: { unit: WarscrollUnit }) => {
     );
 });
 
-const ModelName = ({
-    unit,
-    onOpenWarscroll
-}: {
-    unit: WarscrollUnit;
-    onOpenWarscroll: (unit: WarscrollUnit) => void;
-}) => {
-    const { warscrollStore } = useStores();
-    const toggleGeneral = (checked: boolean) => {
-        warscrollStore.setGeneral(checked ? unit : undefined);
-    };
+const ModelName = observer(
+    ({
+        unit,
+        onOpenWarscroll
+    }: {
+        unit: WarscrollUnit;
+        onOpenWarscroll: (unit: WarscrollUnit) => void;
+    }) => {
+        const { warscrollStore } = useStores();
+        const toggleGeneral = (checked: boolean) => {
+            warscrollStore.setGeneral(checked ? unit : undefined);
+        };
 
-    return (
-        <>
-            <div>
-                {unit.definition.model.name}
-                <IconButton onClick={() => onOpenWarscroll(unit)} size="small">
-                    <VisibilityIcon />
-                </IconButton>
-            </div>
-            <div>
-                {unit.definition.size} <PeopleIcon />
-                {unit.isAllied && !unit.canBeAllied && (
-                    <Tooltip title="Can't be allied">
-                        <WarningIcon />
-                    </Tooltip>
-                )}
-            </div>
-            <div>
+        return (
+            <>
                 <div>
-                    <em>{unit.definition.subType}</em>
+                    {unit.definition.model.name}
+                    <IconButton
+                        onClick={() => onOpenWarscroll(unit)}
+                        size="small"
+                    >
+                        <VisibilityIcon />
+                    </IconButton>
                 </div>
                 <div>
-                    {!unit.isAllied && unit.isLeader && (
-                        <>
-                            <Checkbox
-                                checked={
-                                    unit === warscrollStore.warscroll.general
-                                }
-                                onChange={(_, c) => toggleGeneral(c)}
-                            ></Checkbox>
-                            General
-                        </>
+                    {unit.definition.size} <PeopleIcon />
+                    {unit.isAllied && !unit.canBeAllied && (
+                        <Tooltip title="Can't be allied">
+                            <WarningIcon />
+                        </Tooltip>
                     )}
-                    {unit.isAllied && <>Allied</>}
                 </div>
-            </div>
-        </>
-    );
-};
+                <div>
+                    <div>
+                        <em>{unit.definition.subType}</em>
+                    </div>
+                    <div>
+                        {!unit.isAllied && unit.isLeader && (
+                            <>
+                                <Checkbox
+                                    checked={
+                                        unit ===
+                                        warscrollStore.warscroll.general
+                                    }
+                                    onChange={(_, c) => toggleGeneral(c)}
+                                ></Checkbox>
+                                General
+                            </>
+                        )}
+                        {unit.isAllied && <>Allied</>}
+                    </div>
+                </div>
+            </>
+        );
+    }
+);
 
 @inject("unitsStore", "warscrollStore")
 @observer
