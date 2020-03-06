@@ -1,8 +1,6 @@
 import {
     Unit,
-    ExtraAbilityTest,
     AbilityCategory,
-    Allegiance,
     WarscrollUnitInterface,
     WarscrollInterface
 } from "./units";
@@ -22,42 +20,10 @@ export function hasKeyword(unit: Unit, keyword: string) {
     return unit.keywords.indexOf(keyword) >= 0;
 }
 
-export function hasAllegiance(unit: Unit, allegiance: Allegiance) {
-    return allegiance.keywords.some(x => unit.keywords.indexOf(x) >= 0);
-}
-
-export function isAloneInCategory(
-    unit: WarscrollUnitInterface,
-    category: AbilityCategory
-) {
-    return unit.extraAbilities.every(x => x.ability.category !== category);
-}
-
-export const commandTraitAvailable: ExtraAbilityTest = (unit, ws) =>
-    unit.isGeneral && ws.extraAbilities.every(x => x.category !== "command");
-
-export function commandTraitWithKeywordAvailable(
-    keywords: string[][]
-): ExtraAbilityTest {
-    return (unit, ws) =>
-        commandTraitAvailable(unit, ws) &&
-        hasKeywords(unit.definition, keywords);
-}
-
-export const artifactAvailable: ExtraAbilityTest = (unit, ws) =>
-    !!unit.definition.isLeader &&
-    isAloneInCategory(unit, AbilityCategory.Artefact) &&
-    ws.numberOfArtifacts < ws.maxArtifacts;
-
-function notUsed(ws: WarscrollInterface, abilityName: string) {
-    return ws.extraAbilities.every(x => x.ability.name !== abilityName);
-}
-
-function canUseAbilityCategory(
+export function canUseAbilityCategory(
     unit: WarscrollUnitInterface,
     ws: WarscrollInterface,
-    ability: AbilityCategory,
-    name: string
+    ability: AbilityCategory | undefined
 ): boolean {
     switch (ability) {
         case AbilityCategory.Artefact:
@@ -66,8 +32,7 @@ function canUseAbilityCategory(
                     ? unit.definition.isLeader(ws)
                     : false) &&
                 unit.definition.maxCount !== 1 &&
-                ws.numberOfArtifacts < ws.maxArtifacts &&
-                notUsed(ws, name)
+                ws.numberOfArtifacts < ws.maxArtifacts
             );
         case AbilityCategory.CommandTrait:
             return unit.isGeneral && unit.definition.maxCount !== 1;
@@ -76,45 +41,12 @@ function canUseAbilityCategory(
                 ? unit.definition.isLeader(ws)
                 : false;
         case AbilityCategory.Mount:
-            return notUsed(ws, name);
+            return true;
         case AbilityCategory.Prayer:
-            return hasKeyword(unit.definition, "PRIEST") && notUsed(ws, name);
+            return hasKeyword(unit.definition, "PRIEST");
         case AbilityCategory.Spell:
-            return hasKeyword(unit.definition, "WIZARD") && notUsed(ws, name);
+            return hasKeyword(unit.definition, "WIZARD");
         default:
             return true;
     }
 }
-
-export function canUseAbility(
-    name: string,
-    category: AbilityCategory,
-    allegianceKeyword: string,
-    keywords?: string[][]
-): ExtraAbilityTest {
-    return (unit, ws) =>
-        unit.extraAbilities.every(x => x.ability.category !== category) &&
-        canUseAbilityCategory(unit, ws, category, name) &&
-        unit.keywords.indexOf(allegianceKeyword) >= 0 &&
-        hasKeywords(unit, keywords);
-}
-
-export function canUseArmyOptionAbility(
-    name: string,
-    category: AbilityCategory,
-    allegianceKeyword: string,
-    armyOptionName: string,
-    keywords?: string[][]
-): ExtraAbilityTest {
-    return (unit, ws) =>
-        ws.armyOption !== null &&
-        ws.armyOption.name === armyOptionName &&
-        unit.extraAbilities.every(x => x.ability.category !== category) &&
-        canUseAbilityCategory(unit, ws, category, name) &&
-        unit.keywords.indexOf(allegianceKeyword) >= 0 &&
-        hasKeywords(unit, keywords);
-}
-
-// function keywordAvailable(category: string, allegianceKeyword: string, keyword: string): ExtraAbilityTest {
-//     return (unit, ws) => unit.extraAbilities.every(x => x.category !== category) && unit.unit.keywords.indexOf(allegianceKeyword) >= 0 && unit.unit.keywords.indexOf(keyword) >= 0;
-// }

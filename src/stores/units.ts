@@ -539,9 +539,17 @@ export interface ExtraAbility {
     ability: Ability;
     allegianceKeyword?: string;
     category: string;
-    isAvailable: ExtraAbilityTest;
+    armyOptionKeyword?: string;
+    realmId?: string;
     keywords?: string[][];
-    requiredByArmyOption?: boolean;
+}
+
+export interface RealmOfBattle {
+    id: string;
+    name: string;
+    realmName: string;
+    magic: Ability;
+    commands: Ability[];
 }
 
 export interface ArmyOption {
@@ -575,6 +583,7 @@ export class UnitsStore {
     sceneryList: EndlessSpell[] = [];
     baseAbilities: Ability[] = [];
 
+    realms: RealmOfBattle[] = [];
     constructor(data: DataStoreImpl) {
         overrideStormcast(data);
         overrideNurgle(data);
@@ -607,9 +616,14 @@ export class UnitsStore {
             a.model.name > b.model.name ? 1 : -1
         );
 
-        const battalions: { [key: string]: Battalion } = <any>data.battalions;
+        const battalions: { [key: string]: Battalion } = data.battalions;
         for (const key in battalions) {
             this.battalions.push(battalions[key]);
+        }
+
+        const realms: { [key: string]: RealmOfBattle } = data.realms;
+        for (const key in realms) {
+            this.realms.push(realms[key]);
         }
 
         this.boxes = [];

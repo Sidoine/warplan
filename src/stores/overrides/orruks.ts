@@ -7,7 +7,6 @@ import {
     Phase,
     SubPhase
 } from "../units";
-import { canUseAbility } from "../conditions";
 import { override, overrideAbility, addAbilityEffect } from "./tools";
 
 function addWarbeats(data: DataStoreImpl) {
@@ -36,13 +35,7 @@ function addWarbeats(data: DataStoreImpl) {
         },
         keywords: [["WARCHANTER"]],
         category: "Warchanter Warbeats",
-        allegianceKeyword: "IRONJAWZ",
-        isAvailable: canUseAbility(
-            "Get 'Em Beat",
-            AbilityCategory.Mount,
-            "IRONJAWZ",
-            [["WARCHANTER"]]
-        )
+        allegianceKeyword: "IRONJAWZ"
     };
     (<any>data.extraAbilities)[getEmBeat.id] = getEmBeat;
     const fixinBeat: ExtraAbility = {
@@ -65,13 +58,7 @@ function addWarbeats(data: DataStoreImpl) {
         },
         keywords: [["WARCHANTER"]],
         category: "Warchanter Warbeats",
-        allegianceKeyword: "IRONJAWZ",
-        isAvailable: canUseAbility(
-            "Fixin' Beat",
-            AbilityCategory.Mount,
-            "IRONJAWZ",
-            [["WARCHANTER"]]
-        )
+        allegianceKeyword: "IRONJAWZ"
     };
     (<any>data.extraAbilities)[fixinBeat.id] = fixinBeat;
     const killaBeat: ExtraAbility = {
@@ -103,13 +90,7 @@ function addWarbeats(data: DataStoreImpl) {
         },
         keywords: [["WARCHANTER"]],
         category: "Warchanter Warbeats",
-        allegianceKeyword: "IRONJAWZ",
-        isAvailable: canUseAbility(
-            "Killa Beat",
-            AbilityCategory.Mount,
-            "IRONJAWZ",
-            [["WARCHANTER"]]
-        )
+        allegianceKeyword: "IRONJAWZ"
     };
     (<any>data.extraAbilities)[killaBeat.id] = killaBeat;
 }
@@ -224,10 +205,13 @@ function fixBattalion(data: DataStoreImpl) {
 
 function overrideUnits(data: DataStoreImpl) {
     // Gordrakk
-    addAbilityEffect(data.abilities.gordrakkTheFistOfGorkMassivelyDestructiveBulk, {
-        targetType: TargetType.Enemy,
-        phase: Phase.Charge
-    });
+    addAbilityEffect(
+        data.abilities.gordrakkTheFistOfGorkMassivelyDestructiveBulk,
+        {
+            targetType: TargetType.Enemy,
+            phase: Phase.Charge
+        }
+    );
 
     addAbilityEffect(data.abilities.gordrakkTheFistOfGorkKunnin, {
         targetType: TargetType.Enemy,
@@ -351,7 +335,6 @@ function overrideUnits(data: DataStoreImpl) {
 }
 
 function overrideExtraAbilities(data: DataStoreImpl) {
-
     // Megaboss
     overrideAbility(
         data.extraAbilities.ironjawzIroncladWarlordsHulkingMuscleBoundBrute

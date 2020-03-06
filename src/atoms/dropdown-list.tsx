@@ -26,6 +26,7 @@ export interface DropdownObjectsProps<T extends HasId> {
     onChange: (value: T | null) => void;
     getText: (value: T) => string;
     placeholder?: string;
+    clearable?: boolean;
 }
 
 @observer
@@ -48,6 +49,7 @@ export class DropdownObjects<T extends HasId> extends React.Component<
                 value={(this.props.value && this.props.value.id) || ""}
                 onChange={this.handleChange}
             >
+                {this.props.clearable && <MenuItem value="">None</MenuItem>}
                 {this.props.options.map(x => (
                     <MenuItem value={x.id} key={x.id}>
                         {this.props.getText(x)}

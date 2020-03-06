@@ -7,12 +7,7 @@ import {
     SubPhase,
     AbilityCategory
 } from "../units";
-import {
-    override,
-    artifactWithKeywordAvailable,
-    overrideAbility,
-    addAbilityEffect
-} from "./tools";
+import { override, overrideAbility, addAbilityEffect } from "./tools";
 
 function addEndlessSpells(data: DataStoreImpl): void {
     const burningHeaad: EndlessSpell = data.sceneries.theBurningHead;
@@ -113,27 +108,22 @@ function addSpells(data: DataStoreImpl): void {
 }
 
 function addArtefact(data: DataStoreImpl): void {
-    const daemon = artifactWithKeywordAvailable("DAEMON", ["HERO"]);
     override(data.extraAbilities.nurgleDaemonicBoonsNoxiousNexus, x => {
-        x.isAvailable = daemon;
         x.category = "artifact";
         x.ability.description =
             'At the start of you hero phase, roll a dice for each enemy unit within 7" of the bearer. If the roll is equal to or less than the number of the current battle round, the unit being rolled for suffers 1 mortal wound. For example, in the second battle round, enemy units would suffers a mortal wounds on a 1 or 2.';
     });
     override(data.extraAbilities.nurgleDaemonicBoonsNurgleSNail, x => {
-        x.isAvailable = daemon;
         x.category = "artifact";
         x.ability.description =
             "Pick one of the bearer's melee weapons to be Nurgle's Nail. At the end of each combat phase, roll 2D6 for each enemy model that was allocated any wounds caused by Nurgle's Nail in that phase and was not slain. If the result is exactly 7, the model being rolled for is slain. Any other result has no effect.";
     });
     override(data.extraAbilities.nurgleDaemonicBoonsTheBountifulSwarm, x => {
-        x.isAvailable = daemon;
         x.category = "artifact";
         x.ability.description =
             'At the start of your hero phase, pick an enemy model within 3" of the bearer and then roll a dice. If the roll is greater than that model\'s Wounds characteristic, then it is slain. If a model with a Wounds characteristic of 4+ is slain by the Bountiful Swarm, before you remove the model, you can add a Beast of Nurgle to your army and set it up within 1" of the enemy model.';
     });
     override(data.extraAbilities.nurgleDaemonicBoonsTheWitherstave, x => {
-        x.isAvailable = daemon;
         x.category = "artifact";
         x.ability.description =
             'Re-roll hit rolls of 6 for enemy units while they are within 12" of the bearer.';
@@ -146,36 +136,30 @@ function addArtefact(data: DataStoreImpl): void {
         }
     );
     override(data.extraAbilities.nurgleDaemonicBoonsTomeOfAThousandPoxes, x => {
-        x.isAvailable = daemon;
         x.category = "artifact";
         x.ability.description =
             "If the bearer is a WIZARD, add 1 to the casting rolls for any spells from the Lore of Nurgle that they attempt to cast. If the bearer is not a WIZARD, they can attempt to cast the Sumptuous Pestilence spell in each of your hero phase (they cannot unbind spell).";
     });
     override(data.extraAbilities.nurgleDaemonicBoonsTheEndlessGift, x => {
-        x.isAvailable = daemon;
         x.category = "artifact";
         x.ability.description =
             "At the start of the battleshock phase, roll a dice for each wound that was allocated to this model during the same turn. On a 4+ the wound is healed.";
     });
 
-    const rotbringer = artifactWithKeywordAvailable("ROTBRINGER", ["HERO"]);
     override(
         data.extraAbilities.nurgleArtefactsOfContagionTheSplithornHelm,
         x => {
-            x.isAvailable = rotbringer;
             x.category = "artifact";
             x.ability.description =
                 "Roll a dice each time you allocate a wound or mortal wound to the bearer. On a 6+ the wound is negated.";
         }
     );
     override(data.extraAbilities.nurgleArtefactsOfContagionMuttergrub, x => {
-        x.isAvailable = rotbringer;
         x.category = "artifact";
         x.ability.description =
             "If the bearer is a WIZARDn they can attempt to cast one additionnal spell ineach of their hero phases. If the bearer is not a WIZARD, they can attempt to cast Foul Regenesis in each of their hero phases (this does not give them the ability to unbind spells).";
     });
     override(data.extraAbilities.nurgleArtefactsOfContagionRustfang, x => {
-        x.isAvailable = rotbringer;
         x.category = "artifact";
         x.ability.description =
             'At the start of the combat phase, pick one enemy unit within 3" of the bearer. Subtract 1 from its save rolls for the rest of the battle. You cannot use this ability more than once on the same enemy unit.';
@@ -188,13 +172,11 @@ function addArtefact(data: DataStoreImpl): void {
         }
     );
     override(data.extraAbilities.nurgleArtefactsOfContagionFleshPealer, x => {
-        x.isAvailable = rotbringer;
         x.category = "artifact";
         x.ability.description =
             'In your hero phase, roll a dice for each enemy unit that is within 6" of the bearer. On a 5+ the unit being rolled for suffers D3 mortal wounds.';
     });
     override(data.extraAbilities.nurgleArtefactsOfContagionTheBileheart, x => {
-        x.isAvailable = rotbringer;
         x.category = "artifact";
         x.ability.description =
             "Roll a dice each time you allocate a wound or mortal wound to the bearer in the combat phase (and it is not negated). On a 4+ the attacking unit suffers 1 mortal wound after all of its attacks have been made.";
@@ -202,22 +184,18 @@ function addArtefact(data: DataStoreImpl): void {
     override(
         data.extraAbilities.nurgleArtefactsOfContagionTheFecundFlask,
         x => {
-            x.isAvailable = rotbringer;
             x.category = "artifact";
             x.ability.description =
                 "You can use the fecund flask once per battle, at the start of your hero phase. If you do so, roll a dice. On a 2+ any wounds the bearer has suffered are healed. On a 1, the bearer is slain. If the bearer is slain by the fecund flask, before you remove the bearer's model, you can add a Beast of Nurgle to your army and set it up within 1\" of the bearer.";
         }
     );
 
-    const mortal = artifactWithKeywordAvailable("MORTAL", ["HERO"]);
     override(data.extraAbilities.nurglePlagueriddenGiftsTheVirulentBlade, x => {
-        x.isAvailable = mortal;
         x.category = "artifact";
         x.ability.description =
             "Pick one of the bearer's melee weapon to be the virulent blade. Add 1 to the Damage characteristic for attacks made with the Virulent Blade if the wound roll for the attack is 5+";
     });
     override(data.extraAbilities.nurglePlagueriddenGiftsTheFoetidShroud, x => {
-        x.isAvailable = mortal;
         x.category = "artifact";
         x.ability.description =
             "Re-roll hit rolls of 6+ or more for attacks that target the bearer in the combat phase.";
@@ -225,20 +203,17 @@ function addArtefact(data: DataStoreImpl): void {
     override(
         data.extraAbilities.nurglePlagueriddenGiftsSublucusStenchplate,
         x => {
-            x.isAvailable = mortal;
             x.category = "artifact";
             x.ability.description =
                 'Enemy units that are within 3" of the bearer at the end of their movement phase suffer D3 mortal wounds.';
         }
     );
     override(data.extraAbilities.nurglePlagueriddenGiftsTheEyeOfNurgle, x => {
-        x.isAvailable = mortal;
         x.category = "artifact";
         x.ability.description =
             'Once per battle, at the start of your hero phase, you can roll 2D6 if there are any enemy models within 12" of the bearer. If the result is exactly 7, then the closest enemy model to the bearer is slain.';
     });
     override(data.extraAbilities.nurglePlagueriddenGiftsTheCarrionDirge, x => {
-        x.isAvailable = mortal;
         x.category = "artifact";
         x.ability.description =
             'Subtract 2 from the Bravery characteristic of enemy units while they are within 12" of the bearer.';
@@ -246,7 +221,6 @@ function addArtefact(data: DataStoreImpl): void {
     override(
         data.extraAbilities.nurglePlagueriddenGiftsTheShieldOfGrowths,
         x => {
-            x.isAvailable = mortal;
             x.category = "artifact";
             x.ability.description =
                 "You can re-roll failed save rolls for the bearer if the roll is equal to or less than the number of wounds currently allocated to the bearer.";

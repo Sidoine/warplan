@@ -34,7 +34,7 @@ function mapExtraAbility(x: ExtraAbility): CardContent {
             x.category === "CommandTrait" || x.category === "Artefact"
                 ? undefined
                 : x.category,
-        color: x.requiredByArmyOption ? "armyOption" : "allegiance"
+        color: x.armyOptionKeyword ? "armyOption" : "allegiance"
     };
 }
 

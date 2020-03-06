@@ -9,6 +9,7 @@ import {
 } from "./units";
 import { getAbilityPhases, getEffectPhases } from "./battle";
 import { getValue } from "./combat";
+import elite from "../assets/elite.svg";
 
 export const enum MarkerType {
     Terrain,
@@ -21,8 +22,9 @@ export interface Marker {
     condition?: string;
     description: string;
     id: string;
-    type: MarkerType;
+    type?: MarkerType;
     tooltip?: string;
+    image?: string;
 }
 
 function getMarker(
@@ -257,25 +259,25 @@ export class MarkersStore {
             id: "Command Point 1",
             text: "Command Point",
             description: "",
-            type: MarkerType.Command
+            image: elite
         },
         {
             id: "Command Point 2",
             text: "Command Point",
             description: "",
-            type: MarkerType.Command
+            image: elite
         },
         {
             id: "Command Point 3",
             text: "Command Point",
             description: "",
-            type: MarkerType.Command
+            image: elite
         },
         {
             id: "Command Point 4",
             text: "Command Point",
             description: "",
-            type: MarkerType.Command
+            image: elite
         }
     ];
 

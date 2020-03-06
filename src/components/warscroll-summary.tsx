@@ -196,6 +196,7 @@ export const WarscrollSummary = observer(() => {
                                     options={armyOptions.values}
                                     value={warscroll.armyOption}
                                     onChange={store.setArmyOption}
+                                    clearable
                                 />
                             </FormControl>
                         </Grid>
@@ -218,6 +219,18 @@ export const WarscrollSummary = observer(() => {
                                         : "Meeting engagements"
                                 }
                                 onChange={store.handlePointsModeChange}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item>
+                        <FormControl>
+                            <InputLabel>Realm</InputLabel>
+                            <DropdownObjects
+                                value={warscroll.realm}
+                                options={unitsStore.realms}
+                                getText={x => x.name}
+                                onChange={warscrollStore.setRealm}
+                                clearable
                             />
                         </FormControl>
                     </Grid>

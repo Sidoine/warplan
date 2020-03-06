@@ -14,11 +14,13 @@ import {
     ModelOption,
     ArmyOption,
     AbilityCategory,
-    Ability
+    Ability,
+    RealmOfBattle
 } from "./units";
 import { deflate, inflate } from "pako";
 import { groupBy } from "../helpers/react";
 import { UiStore } from "./ui";
+import { canUseAbilityCategory, hasKeywords } from "./conditions";
 
 export const enum PointMode {
     MatchedPlay,
@@ -218,14 +220,30 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     @computed
     get availableExtraAbilities() {
         return this.warscroll.unitsStore.extraAbilities
-            .filter(
-                x =>
-                    (x.allegianceKeyword === undefined ||
-                        this.warscroll.allegiance.keywords[0] ===
-                            x.allegianceKeyword) &&
-                    x.isAvailable(this, this.warscroll)
-            )
+            .filter(x => this.isAvailableExtraAbility(x))
             .sort((a, b) => (a.ability.name > b.ability.name ? 1 : -1));
+    }
+
+    private isAvailableExtraAbility(extraAbility: ExtraAbility) {
+        return (
+            this.extraAbilities.every(
+                x => x.category !== extraAbility.category
+            ) &&
+            canUseAbilityCategory(
+                this,
+                this.warscroll,
+                extraAbility.ability.category
+            ) &&
+            (!extraAbility.allegianceKeyword ||
+                this.keywords.indexOf(extraAbility.allegianceKeyword) >= 0) &&
+            (!extraAbility.armyOptionKeyword ||
+                this.keywords.indexOf(extraAbility.armyOptionKeyword) >= 0) &&
+            (!extraAbility.keywords ||
+                hasKeywords(this, extraAbility.keywords)) &&
+            (!extraAbility.realmId ||
+                (this.warscroll.realm &&
+                    this.warscroll.realm.id === extraAbility.realmId))
+        );
     }
 
     @computed
@@ -457,6 +475,9 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
 
     @observable
     armyOption: ArmyOption | null = null;
+
+    @observable
+    realm: RealmOfBattle | null = null;
 
     @observable
     name = "New Warscroll";
@@ -763,6 +784,7 @@ interface SerializedWarscroll {
     sceneries?: string[];
     pointMode?: PointMode;
     commandPoints?: number;
+    realm?: string;
 }
 
 export class WarscrollStore {
@@ -964,12 +986,19 @@ export class WarscrollStore {
                 ];
             }
             this.warscroll.units.push(newUnit);
+            this.warscroll.realm =
+                (warscroll.realm &&
+                    this.unitsStore.realms.find(
+                        x => x.id === warscroll.realm
+                    )) ||
+                null;
         }
     }
 
     getSerializedWarscroll(): SerializedWarscroll {
         return {
             name: this.warscroll.name,
+            realm: this.warscroll.realm?.id ?? undefined,
             units: this.warscroll.units.map(x => {
                 return {
                     unitId: x.definition.id,
@@ -1111,6 +1140,11 @@ export class WarscrollStore {
         this.warscroll.commandPoints = commandPoints;
         this.saveWarscroll();
     }
+
+    @action setRealm = (realm: RealmOfBattle | null) => {
+        this.warscroll.realm = realm;
+        this.saveWarscroll();
+    };
 
     @action
     setContingent(unit: WarscrollUnit, x: Contingent): void {

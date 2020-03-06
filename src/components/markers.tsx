@@ -38,9 +38,12 @@ const useStyle = makeStyles({
     },
     wrapper: {
         display: "inline-block",
-        width: "105px",
-        height: "105px",
-        position: "relative"
+        width: "100px",
+        height: "100px",
+        position: "relative",
+        borderRadius: "50px",
+        backgroundColor: "gray",
+        margin: "10px"
     },
     marker: {
         top: 0,
@@ -58,7 +61,6 @@ const useStyle = makeStyles({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        margin: "10px",
         breakInside: "avoid"
     },
     terrain: {
@@ -70,6 +72,7 @@ const useStyle = makeStyles({
     command: {
         backgroundImage: `url(${commandImage})`
     },
+    custom: {},
     text: Object.assign(
         {
             textTransform: "uppercase",
@@ -92,15 +95,21 @@ const useStyle = makeStyles({
         "@media print": {
             display: "none"
         }
+    },
+    background: {
+        position: "absolute",
+        left: "5px",
+        top: "5px",
+        width: "90px",
+        height: "90px"
     }
 });
 
 const MarkerView = observer(({ marker }: { marker: Marker }) => {
-    let className: string;
+    let className = "";
     const classes = useStyle();
     const { markersStore } = useStores();
     switch (marker.type) {
-        default:
         case MarkerType.Terrain:
             className = classes.terrain;
             break;
@@ -110,6 +119,9 @@ const MarkerView = observer(({ marker }: { marker: Marker }) => {
         case MarkerType.Command:
             className = classes.command;
             break;
+        case undefined:
+            className = classes.custom;
+            break;
     }
     return (
         <div
@@ -118,6 +130,9 @@ const MarkerView = observer(({ marker }: { marker: Marker }) => {
             ) && classes.hiddenMarker}`}
             onClick={() => markersStore.toggleMarker(marker)}
         >
+            {marker.image && (
+                <img src={marker.image} className={classes.background} />
+            )}
             <div
                 className={`${classes.marker} ${className}`}
                 title={marker.tooltip}
