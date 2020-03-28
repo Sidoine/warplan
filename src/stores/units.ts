@@ -86,6 +86,7 @@ export interface DefenseAura {
     malusHitRoll?: number;
     rerollHitOn1?: boolean;
     rerollHitOn6?: boolean;
+    malusEnemyPileIn?: Value;
 }
 
 export interface BattleshockAura {
@@ -147,8 +148,6 @@ export interface AttackAuraValues {
     rangeBonus?: Value;
 }
 
-export interface AttackAuraNumbers {}
-
 export interface AttackAuraBooleans {
     rerollFailedHits?: boolean;
     rerollFailedWounds?: boolean;
@@ -165,7 +164,6 @@ export interface AttackAuraAbilityEffects {
 
 export interface AttackAura
     extends AttackAuraValues,
-        AttackAuraNumbers,
         AttackAuraAbilityEffects,
         AttackAuraBooleans {
     phase?: Phase.Combat | Phase.Shooting;
@@ -654,8 +652,6 @@ export class UnitsStore {
         for (const key in sceneries) {
             this.sceneryList.push(sceneries[key]);
         }
-
-        this.addAlliances(data);
     }
 
     private fillBaseAbilities() {
@@ -782,6 +778,4 @@ export class UnitsStore {
     getExtraAbility(id: string) {
         return this.extraAbilities.find(x => x.id === id);
     }
-
-    private addAlliances(data: DataStoreImpl) {}
 }

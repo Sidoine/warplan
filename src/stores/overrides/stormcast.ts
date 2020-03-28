@@ -1317,67 +1317,89 @@ function fixUnits(data: DataStoreImpl): void {
     }
 
     {
-        // const moveTable: DamageColumn = { name: "Move", values: ['12"', '11"', '10"', '8"', '6"'] };
-        // const greatClawsTable: DamageColumn = { name: "Great Claws", values: ['3+', '3+', '4+', '4+', '5+']};
-        // const cavernousJawsTable: DamageColumn = { name: "Cavernous Jaws", values: [3, 2, 2, 1, 1]};
-        // const unit: Unit = data.units.lordCelestantOnStardrake;
-        // unit.keywords.push("CELESTIAL", "HUMAN", "STARDRAKE", "MONSTER", "LORD-CELESTANT");
-        // unit.save = "3+";
-        // unit.move = moveTable;
-        // unit.bravery = 9;
-        // const celestineHammer: Attack = { melee: true, name: "Celestine Hammer", range: "2", attacks: "3", toHit: "3+", toWound: "2+", rend: "-1", damage: "D3"};
-        // const stormboundBlade: Attack = { melee: true, name: "Stormbound Blade", range: "2", attacks: "3", toHit: "3+", toWound: "4+", rend: "-1", damage: "2"};
-        // const stardrakesGreatClaws: Attack = {melee: true, name: "Stardrake's Great Claws", range: "1", attacks: "4", toHit: greatClawsTable, toWound: "3+", rend: "-1", damage: "D3"};
-        // const fly: Ability = { name: "Fly", description: "A Lord-Celestant on Stardrake can fly. "};
-        // const inescapableVengance: Ability = {
-        //     name: "Inescapable Vengeance",
-        //     description: "If this model has made a charge move this turn, it can make D3 extra attacks with its Celestine Hammer or Stormbound Blade.",
-        //     getWounds: (models, melee, attack) => attack === celestineHammer || attack === stormboundBlade ? 2 * getAttackDamage(attack) * rareRate : 0
-        // };
-        // const sigmariteThundershield: Ability = {
-        //     name: "Sigmarite Thundershield",
-        //     description: "You can re-roll save rolls of 1 for this model. If the re-rolled save is successful, the shield unleashes a deafening peal and each enemy unit within 3\" suffers a mortal wound.",
-        //     getSavedWounds: getSavedWoundReroll1
-        // }
-        // const stormboundBladeAbility: Ability = {
-        //     name: "Stormbound Blade",
-        //     description: " If the result of any hit roll for a Stormbound Blade is 6 or more, the target is wracked with the fury of the storm. Make three wound rolls against the target rather than one. ",
-        //     getWounds: (models, melee, attack) => attack === stormboundBlade ? models * getWoundsForExtraWoundsRollsOn6OnHit(attack, 2) : 0
-        // }
-        // const cavernousJawsAbility: Ability = {
-        //     name: "Cavernous Jaws",
-        //     description: "After this model piles in, but before it attacks, pick an enemy model within 3\" and roll a dice. If the result is greater than that model’s Wounds characteristic, it is swallowed whole and slain. You can do this as many times as shown on the damage table above.",
-        //     getWounds: (models, melee, attack) => melee && !attack ? 4 : 0// Random value
-        // }
-        // const sweepingTail: Ability = {
-        //     name: "Sweeping Tail",
-        //     description: "After this model has made all of its attacks in the combat phase, roll a dice for each enemy unit within 3\". If the result is less than the number of models in the unit, it suffers D3 mortal wounds. ",
-        //     getWounds: (models, melee, attack) => melee && !attack ? numberOfNeighborUnits * numberOfModelsPerUnit / 6 * 2 : 0
-        // }
-        // const lordOfTheHeavens: Ability = {
-        //     name: "Lord of The Heavens",
-        //     description: `In your shooting phase, a Stardrake can either breathe a Roiling Thunderhead or call a Rain of Stars down from the heavens.
-        //     Roiling Thunderhead: Pick an enemy unit to be engulfed in a furious storm cloud, then roll a dice for each of its models that is within 18" of the Stardrake and which it can see. For each result of 6, a bolt of lightning streaks out and the unit suffers a mortal wound.
-        //     Rain of Stars: Roll a dice and choose that many enemy units on the battlefield, then roll a dice for each. On a result of 4 or more, the unit is struck by a fragment of a falling star and suffers D3 mortal wounds.`,
-        //     getWounds: (models, melee, attack) => !melee && !attack ? Math.max(numberOfModelsPerUnit / 6, 3.5*0.5*2) / 2 : 0
-        // }
-        // const arcaneLineage: Ability = {
-        //     name: "Arcane Lineage",
-        //     description: "Each time a casting roll is made for a Wizard within 18\" of any Stardrakes in your army, you can choose to increase or decrease the result by 1."
-        // }
-        // const lordOfTheCelestialHost: Ability = {
-        //     name: "Lord of the Celestial Host",
-        //     description: "The Stardrake ridden by a Lord-Celestant is more than a mere mount; it is an intelligent and cunning hunter in its own right, a radiating beacon of power for its star-spawned kin. If a Lord-Celestant uses this ability, all Stardrakes, Dracothian Guard and Stormcast Eternal Heroes riding Dracoths in your army (including this one) are suffused with the power of Azyr. Until your next hero phase, you can re-roll failed wound rolls whenever those models attack with their Claws and Fangs or Great Claws. "
-        // }
-        // // setBaseModelOption(unit, data.units.lordCelestantOnStardrake.baseOptions.celestineHammer, [ celestineHammer, stardrakesGreatClaws ], []);
-        // // setBaseModelOption(unit, data.units.lordCelestantOnStardrake.baseOptions.stormboundBlade, [ stormboundBlade, stardrakesGreatClaws ], [stormboundBladeAbility]);
-        // unit.damageTable = {
-        //     columns: [moveTable, greatClawsTable, cavernousJawsTable],
-        //     ranges: [0, 5, 9, 12, 14]
-        // };
-        // unit.attacks = [stardrakesGreatClaws];
-        // unit.abilities = [fly, inescapableVengance, sigmariteThundershield, cavernousJawsAbility, sweepingTail, lordOfTheHeavens, arcaneLineage];
-        // unit.commandAbilities = [lordOfTheCelestialHost];
+        const unit: Unit = data.units.lordCelestantOnStardrake;
+        const hammer = setAttackAsOption(
+            unit,
+            data.attacks.lordCelestantOnStardrakeCelestineHammer
+        );
+        const blade = setAttackAsOption(
+            unit,
+            data.attacks.lordCelestantOnStardrakeStormboundBladeMelee,
+            undefined,
+            [data.abilities.lordCelestantOnStardrakeStormboundBlade]
+        );
+        addAbilityEffect(
+            data.abilities.lordCelestantOnStardrakeStormboundBlade,
+            {
+                targetType: TargetType.Weapon,
+                attackAura: { numberOfHitsOnUnmodified6: 3 }
+            }
+        );
+        unit.optionStats = [
+            {
+                name: "Celestine Hammer",
+                models: [{ count: 1, options: [hammer] }]
+            },
+            {
+                name: "Stormbound Blade",
+                models: [{ count: 1, options: [blade] }]
+            }
+        ];
+    }
+
+    {
+        const unit: Unit = data.units.drakeswornTemplar;
+        const axe = setAttackAsOption(
+            unit,
+            data.attacks.drakeswornTemplarTempestAxeMelee,
+            undefined,
+            [data.abilities.drakeswornTemplarTempestAxe]
+        );
+        const hammer = setAttackAsOption(
+            unit,
+            data.attacks.drakeswornTemplarArcHammerMelee,
+            undefined,
+            [data.abilities.drakeswornTemplarArcHammer]
+        );
+        const lance = setAttackAsOption(
+            unit,
+            data.attacks.drakeswornTemplarStormlanceMelee,
+            undefined,
+            [data.abilities.drakeswornTemplarStormlance]
+        );
+        addAbilityEffect(data.abilities.drakeswornTemplarArcHammer, {
+            targetType: TargetType.Weapon,
+            attackAura: { numberOfHitsOnUnmodified6: 2 }
+        });
+        addAbilityEffect(data.abilities.drakeswornTemplarStormlance, {
+            targetType: TargetType.Weapon,
+            attackAura: {
+                mortalWoundsOnHitUnmodified6: conditionValue(
+                    { keyword: "MONSTER" },
+                    "D6"
+                )
+            }
+        });
+        addAbilityEffect(data.abilities.drakeswornTemplarTempestAxe, {
+            targetType: TargetType.Model,
+            defenseAura: {
+                malusEnemyPileIn: 2
+            }
+        });
+        unit.optionStats = [
+            {
+                name: "Tempest Axe",
+                models: [{ count: 1, options: [axe] }]
+            },
+            {
+                name: "Arc Hammer",
+                models: [{ count: 1, options: [hammer] }]
+            },
+            {
+                name: "Stormlance",
+                models: [{ count: 1, options: [lance] }]
+            }
+        ];
     }
 
     {

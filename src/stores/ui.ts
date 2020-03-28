@@ -6,6 +6,13 @@ interface SerializedUi {
     grandAlliance: GrandAlliance;
     faction: string;
     keywordFilter?: string;
+    enemySave?: number;
+    enemyKeywords?: string;
+}
+
+export interface Enemy {
+    save: number;
+    keywords: string;
 }
 
 export class UiStore {
@@ -13,13 +20,13 @@ export class UiStore {
     keywordFilter = "";
 
     @observable
-    basketPopin: boolean = false;
+    basketPopin = false;
 
     @observable
-    warscrollPopin: boolean = false;
+    warscrollPopin = false;
 
     @observable
-    exportPopin: boolean = false;
+    exportPopin = false;
 
     @observable
     grandAlliance: GrandAlliance = GrandAlliance.order;
@@ -44,7 +51,7 @@ export class UiStore {
         );
     }
 
-    @observable enemy = { save: 5 };
+    @observable enemy: Enemy = { save: 5, keywords: "" };
 
     @computed
     get unitStats() {
@@ -58,6 +65,12 @@ export class UiStore {
         return result;
     }
 
+    @action
+    setEnemy<T extends keyof Enemy>(key: T, value: Enemy[T]) {
+        this.enemy[key] = value;
+        this.saveUi();
+    }
+
     constructor(private unitsStore: UnitsStore) {
         const ui: string | null = localStorage.getItem("ui");
         if (ui) {
@@ -68,6 +81,9 @@ export class UiStore {
                 this.faction = faction;
             }
             this.keywordFilter = serialized.keywordFilter || "";
+            if (serialized.enemySave) this.enemy.save = serialized.enemySave;
+            if (serialized.enemyKeywords)
+                this.enemy.keywords = serialized.enemyKeywords;
         }
     }
 
@@ -127,7 +143,9 @@ export class UiStore {
         const serialized: SerializedUi = {
             faction: this.faction.id,
             grandAlliance: this.grandAlliance,
-            keywordFilter: this.keywordFilter
+            keywordFilter: this.keywordFilter,
+            enemyKeywords: this.enemy.keywords,
+            enemySave: this.enemy.save
         };
         localStorage.setItem("ui", JSON.stringify(serialized));
     }

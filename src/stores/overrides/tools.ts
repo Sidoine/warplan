@@ -10,7 +10,6 @@ import {
     WarscrollUnitInterface,
     AbilityEffect
 } from "../units";
-import { getAttackDamageEx, getValue, getAttackDamage } from "../combat";
 
 export const ModelCategoryWeapon = "weapon";
 export const UnitCategoryMain = "main";
@@ -75,6 +74,11 @@ export function setAttackAsOption(
 ) {
     if (unit.attacks) {
         unit.attacks.splice(unit.attacks.indexOf(attack), 1);
+    }
+    if (abilities) {
+        for (const ability of abilities) {
+            removeAbility(unit, ability);
+        }
     }
     const option = addOption(unit, {
         id: attack.name,
@@ -150,89 +154,12 @@ export function setBaseModelOption(
     attacks: Attack[],
     abilities: Ability[]
 ) {
-    const option = getBaseModelOption(id, unit.options!)!;
-    option.attacks = attacks;
-    option.abilities = abilities;
-    return option;
-}
-
-export function getWoundsForAbility6OnHitIsMortalWound(
-    models: number,
-    attack: Attack,
-    mortalWounds: number
-) {
-    return (
-        models * (mortalWounds / 6 - getAttackDamageEx(attack, { toHit: "6" }))
-    );
-}
-
-export function getWoundsForAbilityBonus1OnHit(models: number, attack: Attack) {
-    return ((models * 1) / 6) * getAttackDamageEx(attack, {});
-}
-
-export function getWoundsForAbilityReroll1OnHit(
-    models: number,
-    attack: Attack
-) {
-    return ((models * 1) / 6) * getAttackDamageEx(attack, {});
-}
-
-export function getWoundsForExtraAttack(attack: Attack, count: number = 1) {
-    return getAttackDamageEx(attack, { attacks: count.toString() });
-}
-
-export function getWoundsForSpecialDamageIf6OnWound(
-    attack: Attack,
-    wounds: number
-) {
-    return getAttackDamageEx(attack, {
-        toWound: "6",
-        damage: (wounds - getValue(attack.damage)).toString()
-    });
-}
-
-export function getSavedWoundReroll1(save?: number) {
-    return save ? ((1 / 6) * 6) / (7 - save) : 0;
-}
-
-export function getWoundsForExtraWoundsRollsOn6OnHit(
-    attack: Attack,
-    extraWoundRolls: number
-) {
-    return getAttackDamageEx(attack, { toHit: 6 }) * extraWoundRolls;
-}
-
-export function getWoundsForExtraWoundsRollsOnHit(
-    attack: Attack,
-    extraWoundRolls: number
-) {
-    return getAttackDamage(attack) * extraWoundRolls;
-}
-
-export function getWoundsForSpecialRendIf6OnWound(
-    attack: Attack,
-    rend: number
-) {
-    return (
-        getAttackDamageEx(attack, { toWound: "6", rend: rend }) -
-        getAttackDamageEx(attack, { toWound: "6" })
-    );
-}
-
-export function keywordAvailable(
-    category: string,
-    keyword: string,
-    alts: string[]
-): ExtraAbilityTest {
-    return (unit, ws) =>
-        unit.extraAbilities.every(x => x.category !== category) &&
-        unit.definition.keywords.indexOf(keyword) >= 0 &&
-        alts.some(
-            x =>
-                x === "ALL" ||
-                unit.definition.model.name.toUpperCase() === x ||
-                unit.definition.keywords.indexOf(x) >= 0
-        );
+    const option = getBaseModelOption(id, unit.options || []);
+    if (option) {
+        option.attacks = attacks;
+        option.abilities = abilities;
+    }
+    return option || {};
 }
 
 export const artifactAvailable: ExtraAbilityTest = (unit, ws) =>

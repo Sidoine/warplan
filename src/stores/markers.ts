@@ -32,7 +32,7 @@ function getMarker(
     ability: Ability,
     effectIndex: number
 ): Marker {
-    let description: string[] = [];
+    const description: string[] = [];
     let condition: string | undefined;
     if (effect.attackAura) {
         if (effect.attackAura.phase) {

@@ -9,7 +9,19 @@ import {
 import { targetEnemy, checkCondition } from "./stats";
 import { UnitState, addAttackAura } from "./unit-state";
 
-export function getValue(formula: Value): number {
+export function roll(faces = 6) {
+    return 1 + Math.floor(Math.random() * faces);
+}
+
+export function rolls(faces: number, rolls: number) {
+    let result = 0;
+    for (let i = 0; i < rolls; i++) {
+        result += roll(faces);
+    }
+    return result;
+}
+
+export function getValue(formula: Value, target?: UnitState): number {
     if (
         formula === undefined ||
         formula === "-" ||
@@ -45,14 +57,18 @@ export function getValue(formula: Value): number {
         }
         throw Error(`Unable to parse ${formula}`);
     } else if (isRatioValue(formula)) {
-        return getValue(formula.value) * formula.ratio;
+        return getValue(formula.value, target) * formula.ratio;
     } else if (isSumValue(formula)) {
-        return getValue(formula.value1) + getValue(formula.value2);
+        return (
+            getValue(formula.value1, target) + getValue(formula.value2, target)
+        );
     } else if (isConditionValue(formula)) {
-        return getValue(formula.value);
+        if (target && checkCondition(formula.targetCondition, target))
+            return getValue(formula.value, target);
+        return 0;
     }
 
-    return getValue(formula.values[0]);
+    return getValue(formula.values[0], target);
 }
 
 export function rollValue(formula: Value, howMany: number): number {
@@ -90,37 +106,6 @@ export function rollValue(formula: Value, howMany: number): number {
     }
 
     return rollValue(formula.values[0], howMany);
-}
-
-const enemySave = 5;
-
-export function getAttackDamageEx(attack: Attack, override: Partial<Attack>) {
-    return getAttackDamage(Object.assign({}, attack, override));
-}
-
-export function getAttackDamage(attack: Attack) {
-    if (!attack.toHit || !attack.toWound) return 0;
-    return (
-        (((((7 - getValue(attack.toHit)) / 6) *
-            (7 - getValue(attack.toWound))) /
-            6) *
-            getValue(attack.damage) *
-            getValue(attack.attacks) *
-            (enemySave - getValue(attack.rend) - 1)) /
-        6
-    );
-}
-
-export function roll(faces: number = 6) {
-    return 1 + Math.floor(Math.random() * faces);
-}
-
-export function rolls(faces: number, rolls: number) {
-    let result = 0;
-    for (let i = 0; i < rolls; i++) {
-        result += roll(faces);
-    }
-    return result;
 }
 
 function count(array: number[], value: number) {
@@ -273,7 +258,7 @@ export abstract class Combat {
         caster: UnitState,
         target: UnitState,
         effect: AbilityEffect,
-        multiplier: number = 1
+        multiplier = 1
     ) {
         if (!targetEnemy(effect)) target = caster;
         if (effect.condition && !checkCondition(effect.condition, caster))

@@ -18,6 +18,7 @@ import {
     sumAttackAura,
     addAttackAura
 } from "./unit-state";
+import { Enemy } from "./ui";
 
 export interface UnitStats {
     name?: string;
@@ -141,26 +142,35 @@ function applyWeaponAttack(
         ),
         weaponState.modelState.unitState.attackAura
     );
-    let numberOfAttacks =
-        (getValue(attack.attacks) + getValue(attackAura.bonusAttacks)) *
+    const numberOfAttacks =
+        (getValue(attack.attacks, enemyState) +
+            getValue(attackAura.bonusAttacks, enemyState)) *
         weaponState.modelState.size;
-    let toHit = getValue(attack.toHit) - getValue(attackAura.bonusHitRoll);
-    let toWound = getValue(attack.toWound);
-    let damage = getValue(attack.damage);
-    let numberOfHitsOnUnmodified6 = getValue(
-        attackAura.numberOfHitsOnUnmodified6
+    const toHit =
+        getValue(attack.toHit, enemyState) -
+        getValue(attackAura.bonusHitRoll, enemyState);
+    const toWound = getValue(attack.toWound, enemyState);
+    let damage = getValue(attack.damage, enemyState);
+    const numberOfHitsOnUnmodified6 = getValue(
+        attackAura.numberOfHitsOnUnmodified6,
+        enemyState
     );
-    let numberOfHitsOnHit = getValue(attackAura.numberOfHitsOnHit) || 1;
-    let rerollHitsOn1 = getValue(attackAura.rerollHitsOn1);
-    let rend = getValue(attack.rend) + getValue(attackAura.bonusRend);
-    let enemySave = getValue(enemyState.unit.save);
-    let mortalWoundsOnHitIsUnmodifed6 = getValue(
-        attackAura.mortalWoundsOnHitUnmodified6
+    const numberOfHitsOnHit =
+        getValue(attackAura.numberOfHitsOnHit, enemyState) || 1;
+    const rerollHitsOn1 = getValue(attackAura.rerollHitsOn1, enemyState);
+    const rend =
+        getValue(attack.rend, enemyState) +
+        getValue(attackAura.bonusRend, enemyState);
+    const enemySave = getValue(enemyState.unit.save, enemyState);
+    const mortalWoundsOnHitIsUnmodifed6 = getValue(
+        attackAura.mortalWoundsOnHitUnmodified6,
+        enemyState
     );
-    let numberOfMortalWounds = getValue(attackAura.mortalWounds);
-    let effectsOnHitUnmodified6 = attackAura.effectsOnHitUnmodified6 || [];
-    let damageOnWoundUnmodified6 = getValue(
-        attackAura.damageOnWoundUnmodified6
+    let numberOfMortalWounds = getValue(attackAura.mortalWounds, enemyState);
+    const effectsOnHitUnmodified6 = attackAura.effectsOnHitUnmodified6 || [];
+    const damageOnWoundUnmodified6 = getValue(
+        attackAura.damageOnWoundUnmodified6,
+        enemyState
     );
 
     if (!toHit) return;
@@ -202,7 +212,7 @@ function applyWeaponAttack(
         damage =
             (damage * (6 - toWound) + damageOnWoundUnmodified6) / (7 - toWound);
     }
-    let numberOfWounds = (numberOfHits * (7 - toWound)) / 6;
+    const numberOfWounds = (numberOfHits * (7 - toWound)) / 6;
     numberOfMortalWounds +=
         damage *
         (enemySave - rend < 7
@@ -288,7 +298,7 @@ function getUnitOptionStats(
     unit: Unit,
     models: UnitStatModel[],
     choice: string | undefined,
-    enemy: { save: number }
+    enemy: Enemy
 ) {
     // Create states
     const unitState = new UnitState(unit);
@@ -300,7 +310,7 @@ function getUnitOptionStats(
         points: 0,
         wounds: 2,
         factions: [],
-        keywords: [],
+        keywords: enemy.keywords.split(" "),
         save: enemy.save
     });
     enemyState.models.push(new ModelState([], enemyState, 1));
@@ -359,7 +369,7 @@ function getUnitOptionStats(
     }
 }
 
-export function getUnitStats(unit: Unit, enemy: { save: number }): UnitStats[] {
+export function getUnitStats(unit: Unit, enemy: Enemy): UnitStats[] {
     let optionStats = unit.optionStats;
     if (!optionStats) {
         if (unit.options && unit.options.length > 0) {

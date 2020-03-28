@@ -71,9 +71,9 @@ export class UnitState implements States {
     attackAuras: AuraState<AttackAura>[] = [];
     attackAura: AttackAura = {};
     defenseAura: AuraState<DefenseAura>[] = [];
-    hasCharged: boolean = false;
-    hasMoved: boolean = false;
-    wounds: number = 0;
+    hasCharged = false;
+    hasMoved = false;
+    wounds = 0;
     models: ModelState[] = [];
     unitState = this;
     constructor(public unit: Unit) {}

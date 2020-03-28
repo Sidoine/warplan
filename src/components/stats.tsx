@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useCallback, ChangeEvent } from "react";
 import { UiStore } from "../stores/ui";
 import { inject, observer } from "mobx-react";
 import { UnitStats } from "../stores/stats";
@@ -26,11 +26,52 @@ import {
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import { useStores } from "../stores";
 
 export interface StatsProps {
     uiStore?: UiStore;
     warscrollStore?: WarscrollStore;
 }
+
+const EnemyConfiguration = observer(({}) => {
+    const { uiStore } = useStores();
+    const handleSave = useCallback(
+        (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+            uiStore.setEnemy("save", parseInt(e.target.value));
+        },
+        [uiStore]
+    );
+    const handleKeywords = useCallback(
+        (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+            uiStore.setEnemy("keywords", e.target.value);
+        },
+        [uiStore]
+    );
+
+    return (
+        <Card>
+            <CardContent>
+                <Grid container spacing={2}>
+                    <Grid item>Enemy</Grid>
+                    <Grid item>
+                        <TextField
+                            label="Save"
+                            value={uiStore.enemy.save}
+                            onChange={handleSave}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <TextField
+                            label="Keywords"
+                            value={uiStore.enemy.keywords}
+                            onChange={handleKeywords}
+                        />
+                    </Grid>
+                </Grid>
+            </CardContent>
+        </Card>
+    );
+});
 
 const enum Columns {
     Name,
@@ -147,13 +188,6 @@ export class Stats extends React.Component<StatsProps> {
         return data;
     }
 
-    @action
-    private handleEnemySaveChange = (
-        e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-    ) => {
-        this.props.uiStore!.enemy.save = parseInt(e.target.value);
-    };
-
     renderTableHeaderCell(column: Columns, title: string) {
         return (
             <TableCell
@@ -182,22 +216,7 @@ export class Stats extends React.Component<StatsProps> {
                     <Filter />
                 </Grid>
                 <Grid item>
-                    {" "}
-                    <Card>
-                        <CardContent>
-                            <Grid container spacing={2}>
-                                <Grid item>Enemy</Grid>
-                                <Grid item>
-                                    {" "}
-                                    <TextField
-                                        label="Save"
-                                        value={this.props.uiStore!.enemy.save}
-                                        onChange={this.handleEnemySaveChange}
-                                    />
-                                </Grid>
-                            </Grid>
-                        </CardContent>
-                    </Card>
+                    <EnemyConfiguration />
                 </Grid>
                 {
                     <Dialog
