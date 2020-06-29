@@ -43,6 +43,7 @@ export interface BattalionWarscroll {
     points: number;
     notes: string | null;
     legacyID: string | null;
+    requiredDivisionName: string | null;
     requiredProducts: string[];
     lastUpdated: number;
 }
@@ -89,9 +90,10 @@ export interface Division {
     requiredCommandTraitKeyword: string | null;
     addedAllies: CompoundKeyword[];
     restrictedRealms: RealmOfBattle[];
-    fourthAddedKeyword: CompoundKeyword;
-    skyportCode: SkyportCode;
-    childDivision: Division;
+    fourthAddedKeyword: CompoundKeyword | null;
+    skyportCode: SkyportCode | null;
+    childDivisionGroupName: string | null;
+    childDivisions: Division[];
 }
 
 export interface EndlessSpell {
@@ -126,6 +128,13 @@ export interface KharadronCode {
     type: string;
 }
 
+export interface Mercenary {
+    id: string;
+    name: string;
+    exclusionKeywords: CompoundKeyword[];
+    organisation: BattalionOrganisation[];
+}
+
 export interface RealmAllegiance {
     id: string;
     name: string;
@@ -142,14 +151,14 @@ export interface RealmAllegiance {
     generalSpecificTraitGroups: ExceptionalTraitGroup[];
     mountTraitGroups: ExceptionalTraitGroup[];
     warchanterWarbeatGroups: ExceptionalTraitGroup[];
-    fourthAddedKeyword: CompoundKeyword;
+    fourthAddedKeyword: CompoundKeyword | null;
 }
 
 export interface RealmOfBattle {
     id: string;
     name: string;
     realmName: string;
-    magic: Ability;
+    magic: Ability | null;
     commands: Ability[];
     features: RealmscapeFeature[];
     artefactGroups: ArtefactGroup[];
@@ -158,7 +167,7 @@ export interface RealmOfBattle {
 export interface RealmscapeFeature {
     id: string;
     roll: number;
-    feature: Ability;
+    feature: Ability | null;
 }
 
 export interface Rule {
@@ -167,11 +176,27 @@ export interface Rule {
     blurb: string;
 }
 
+export interface SceneryWarscroll {
+    id: string;
+    name: string;
+    about: string | null;
+    imageUrl: string;
+    blurb: string;
+    sceneryRules: Ability[];
+    keywords: string[];
+    productURL: string | null;
+    lastUpdated: number;
+    unitSizeMin: number;
+    unitSizeMax: number;
+    points: number;
+    notes: string | null;
+}
+
 export interface SkyportCode {
     id: string;
-    artycle: KharadronCode;
-    amendment: KharadronCode;
-    footnote: KharadronCode;
+    artycle: KharadronCode | null;
+    amendment: KharadronCode | null;
+    footnote: KharadronCode | null;
 }
 
 export interface UnitWarscroll {
@@ -217,7 +242,7 @@ export interface UnitWarscroll {
     markOfChaosRequired: boolean;
     legionOfNagash: boolean;
     damageTable: DamageColumn[];
-    warMachine: WarMachine;
+    warMachine: WarMachine | null;
     lastUpdated: number;
 }
 
@@ -244,3 +269,5 @@ export interface WarMachine {
     crewTable: DamageColumn[];
     keywords: string[];
 }
+
+export const modelNames = { Ability: "Ability", ArtefactGroup: "ArtefactGroup", BattalionOrganisation: "BattalionOrganisation", BattalionWarscroll: "BattalionWarscroll", Battleplan: "Battleplan", CommandTraitGroup: "CommandTraitGroup", CompoundKeyword: "CompoundKeyword", DamageColumn: "DamageColumn", DamagePair: "DamagePair", Division: "Division", EndlessSpell: "EndlessSpell", ExceptionalTraitGroup: "ExceptionalTraitGroup", KharadronCode: "KharadronCode", Mercenary: "Mercenary", RealmAllegiance: "RealmAllegiance", RealmOfBattle: "RealmOfBattle", RealmscapeFeature: "RealmscapeFeature", Rule: "Rule", SceneryWarscroll: "SceneryWarscroll", SkyportCode: "SkyportCode", UnitWarscroll: "UnitWarscroll", UnitWeapon: "UnitWeapon", WarMachine: "WarMachine" };

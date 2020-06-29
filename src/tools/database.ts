@@ -1,9 +1,9 @@
 import realm from "realm";
-import * as model from "./en-classes/en-model";
 import * as fs from "fs";
 import * as def from "./definitions";
+import { modelNames } from "./definitions";
 
-const schemaVersion = 52;
+//const schemaVersion = 54;
 
 function toCamelCase(name: string) {
     return name
@@ -32,35 +32,18 @@ function escapeQuotedString(text: string | null | undefined) {
     return '"' + text.replace(/[\n"]/g, s => `\\${s}`) + '"';
 }
 
-const models: realm.ObjectSchema[] = [
-    model.Ability,
-    model.ArtefactGroup,
-    model.BattalionOrganisation,
-    model.BattalionWarscroll,
-    model.Battleplan,
-    model.CommandTraitGroup,
-    model.CompoundKeyword,
-    model.DamageColumn,
-    model.DamagePair,
-    model.Division,
-    model.EndlessSpell,
-    model.ExceptionalTraitGroup,
-    model.KharadronCode,
-    model.RealmAllegiance,
-    model.RealmOfBattle,
-    model.RealmscapeFeature,
-    model.Rule,
-    model.SkyportCode,
-    model.UnitWarscroll,
-    model.UnitWeapon,
-    model.WarMachine
-];
 const tab = "    ";
 const allegianceIdByKeyword = new Map<string, string>();
 async function load() {
     try {
-        let definitions: string[] = [];
+        const db = await realm.open({
+            path: "src/tools/en.realm"
+        });
+        const models = db.schema;
+        const definitions: string[] = [];
+        const modelNames: string[] = [];
         for (const model of models) {
+            modelNames.push(model.name);
             definitions.push(`export interface ${model.name} {`);
             for (const propertyName in model.properties) {
                 let propertyType = model.properties[propertyName];
@@ -96,18 +79,43 @@ async function load() {
                             `${tab}${propertyName}: ${propertyType}${orNull};`
                         );
                     }
+                } else {
+                    const orNull = propertyType.optional ? " | null" : "";
+                    const itemType =
+                        propertyType.type === "list" ||
+                        propertyType.type === "object"
+                            ? propertyType.objectType
+                            : propertyType.type;
+                    let type: string;
+                    if (itemType === "string") {
+                        type = "string";
+                    } else if (
+                        itemType === "number" ||
+                        itemType === "int" ||
+                        itemType === "double"
+                    ) {
+                        type = "number";
+                    } else if (itemType === "bool") {
+                        type = "boolean";
+                    } else {
+                        type = itemType || "any";
+                    }
+                    const array = propertyType.type === "list" ? "[]" : "";
+                    definitions.push(
+                        `${tab}${propertyName}: ${type}${array}${orNull};`
+                    );
                 }
             }
             definitions.push("}");
             definitions.push("");
         }
+        definitions.push(
+            `export const modelNames = { ${modelNames
+                .map(x => `${x}: "${x}"`)
+                .join(", ")} };`
+        );
         fs.writeFileSync("src/tools/definitions.ts", definitions.join("\n"));
 
-        const db = await realm.open({
-            path: "src/tools/en.realm",
-            schema: models,
-            schemaVersion: schemaVersion
-        });
         let result = `import { DataStore, GrandAlliance, WarscrollInterface, Box, AbilityCategory } from "./units";
 import { hasKeywords } from "./conditions";
 
@@ -275,7 +283,7 @@ function fixIds(db: Realm) {
     }
 
     for (const battalionWarscroll of db.objects<def.BattalionWarscroll>(
-        model.BattalionWarscroll.name
+        modelNames.BattalionWarscroll
     )) {
         fixId(
             battalionWarscroll.id,
@@ -296,13 +304,13 @@ function fixIds(db: Realm) {
     }
 
     fixArrayId(
-        db.objects<def.Division>(model.Division.name),
+        db.objects<def.Division>(modelNames.Division),
         undefined,
         "Division"
     );
 
     for (const endlessSpell of db.objects<def.EndlessSpell>(
-        model.EndlessSpell.name
+        modelNames.EndlessSpell
     )) {
         fixId(endlessSpell.id, endlessSpell.name, "EndlessSpell");
         fixArrayId(endlessSpell.abilities, endlessSpell, "Ability");
@@ -312,7 +320,7 @@ function fixIds(db: Realm) {
     }
 
     for (const realmAllegiance of db.objects<def.RealmAllegiance>(
-        model.RealmAllegiance.name
+        modelNames.RealmAllegiance
     )) {
         fixId(realmAllegiance.id, realmAllegiance.name, "Allegiance");
         fixGroups(
@@ -366,7 +374,7 @@ function fixIds(db: Realm) {
     }
 
     for (const unitWarscroll of db.objects<def.UnitWarscroll>(
-        model.UnitWarscroll.name
+        modelNames.UnitWarscroll
     )) {
         const name = unitWarscroll.subName
             ? `${unitWarscroll.name} ${unitWarscroll.subName}`
@@ -418,7 +426,7 @@ function fixIds(db: Realm) {
     }
 
     for (const realmOfBattle of db.objects<def.RealmOfBattle>(
-        model.RealmOfBattle.name
+        modelNames.RealmOfBattle
     )) {
         fixObjectId(realmOfBattle, undefined, "Realm");
         fixGroups(
@@ -427,7 +435,8 @@ function fixIds(db: Realm) {
             realmOfBattle,
             "Artefact"
         );
-        fixObjectId(realmOfBattle.magic, realmOfBattle, "Magic");
+        if (realmOfBattle.magic)
+            fixObjectId(realmOfBattle.magic, realmOfBattle, "Magic");
         fixArrayId(realmOfBattle.commands, realmOfBattle, "Command");
     }
 }
@@ -435,7 +444,7 @@ function fixIds(db: Realm) {
 function getFactions(db: realm) {
     const factions: { id: string; grandAlliance: string; name: string }[] = [];
     for (const unit of db.objects<def.UnitWarscroll>(
-        model.UnitWarscroll.name
+        modelNames.UnitWarscroll
     )) {
         for (const faction of unit.factions) {
             if (factions.every(x => x.name !== faction)) {
@@ -467,7 +476,7 @@ function getModels(db: realm) {
     let result = `   models = {
 `;
     for (const unit of db.objects<def.UnitWarscroll>(
-        model.UnitWarscroll.name
+        modelNames.UnitWarscroll
     )) {
         const name = unit.subName ? `${unit.name} ${unit.subName}` : unit.name;
         const id = objectId(unit);
@@ -486,7 +495,7 @@ function getAllegiance(db: realm) {
     let result = `   allegiances = {
     `;
     for (const allegiance of db.objects<def.RealmAllegiance>(
-        model.RealmAllegiance.name
+        modelNames.RealmAllegiance
     )) {
         const id = objectId(allegiance);
         const keywords = allegiance.keywords;
@@ -522,7 +531,7 @@ function getOptions(db: realm) {
     let result = `   options = {
 `;
     for (const unit of db.objects<def.UnitWarscroll>(
-        model.UnitWarscroll.name
+        modelNames.UnitWarscroll
     )) {
         for (const option of unit.upgrades) {
             const id = objectId(option);
@@ -571,7 +580,7 @@ function getAbilities(db: realm) {
     let result = `   abilities = {
 `;
     for (const unit of db.objects<def.UnitWarscroll>(
-        model.UnitWarscroll.name
+        modelNames.UnitWarscroll
     )) {
         result += getUnitAbilities(unit.abilities);
         result += getUnitAbilities(unit.magicAbilities, "Spell");
@@ -590,7 +599,7 @@ function getAbilities(db: realm) {
     }
 
     for (const endlessSpell of db.objects<def.EndlessSpell>(
-        model.EndlessSpell.name
+        modelNames.EndlessSpell
     )) {
         result += getUnitAbilities(endlessSpell.abilities);
         result += getUnitAbilities(endlessSpell.magicAbilities, "Spell");
@@ -609,17 +618,18 @@ function getAbilities(db: realm) {
     }
 
     for (const battalion of db.objects<def.BattalionWarscroll>(
-        model.BattalionWarscroll.name
+        modelNames.BattalionWarscroll
     )) {
         result += getUnitAbilities(battalion.abilities);
         result += getUnitAbilities(battalion.commandAbilities, "Command");
     }
 
     for (const realmOfBattle of db.objects<def.RealmOfBattle>(
-        model.RealmOfBattle.name
+        modelNames.RealmOfBattle
     )) {
         result += getUnitAbilities(realmOfBattle.commands, "Command");
-        result += getUnitAbilities([realmOfBattle.magic], "Spell");
+        if (realmOfBattle.magic)
+            result += getUnitAbilities([realmOfBattle.magic], "Spell");
     }
 
     result += `   };
@@ -631,7 +641,7 @@ function getAttacks(db: realm) {
     let result = `   attacks = {
 `;
     for (const unit of db.objects<def.UnitWarscroll>(
-        model.UnitWarscroll.name
+        modelNames.UnitWarscroll
     )) {
         const unitId = objectId(unit);
         for (const weapon of unit.weapons) {
@@ -660,7 +670,7 @@ function getDamageTables(db: realm) {
     let result = `   damageTables = {
 `;
     for (const unit of db.objects<def.UnitWarscroll>(
-        model.UnitWarscroll.name
+        modelNames.UnitWarscroll
     )) {
         const id = objectId(unit);
         if (unit.damageTable.length === 0) continue;
@@ -717,7 +727,7 @@ function getUnits(db: realm) {
     let result = `   units = {
 `;
     for (const unit of db.objects<def.UnitWarscroll>(
-        model.UnitWarscroll.name
+        modelNames.UnitWarscroll
     )) {
         const id = objectId(unit);
         if (!id) continue;
@@ -903,7 +913,7 @@ function getExtraAbilitiesWithDivision(
         category === "Artefact" ? "requiredArtefact" : "requiredCommandTrait"
     );
     const allegianceKeyword = allegiance.keywords[0];
-    let result = `
+    const result = `
     ${id}: {
         id: "${id}",
         ability: { id: "${id}", name: "${ability}", category: AbilityCategory.${category} },
@@ -928,7 +938,7 @@ function getExtraAbilities(db: realm) {
         `;
 
     for (const allegiance of db.objects<def.RealmAllegiance>(
-        model.RealmAllegiance.name
+        modelNames.RealmAllegiance
     )) {
         const allegianceKeyword = allegiance.keywords[0].toUpperCase();
         result += getArtefactGroup(
@@ -984,7 +994,7 @@ function getExtraAbilities(db: realm) {
     }
 
     for (const realmOfBattle of db.objects<def.RealmOfBattle>(
-        model.RealmOfBattle.name
+        modelNames.RealmOfBattle
     )) {
         result += getArtefactGroup(
             realmOfBattle.artefactGroups,
@@ -1005,7 +1015,7 @@ function getBattalions(db: realm) {
     let result = `   battalions = {
 `;
     for (const battalion of db.objects<def.BattalionWarscroll>(
-        model.BattalionWarscroll.name
+        modelNames.BattalionWarscroll
     )) {
         const id = objectId(battalion);
         result += `       ${id}: {
@@ -1057,7 +1067,7 @@ function getEndlessSpells(db: realm) {
     let result = `   sceneries = {
     `;
     for (const endlessSpell of db.objects<def.EndlessSpell>(
-        model.EndlessSpell.name
+        modelNames.EndlessSpell
     )) {
         const id = objectId(endlessSpell);
         result += `${tab}${tab}${id}: {
@@ -1104,7 +1114,7 @@ function getArmyOptions(db: realm) {
     let result = `   armyOptions = {
     `;
     for (const allegiance of db.objects<def.RealmAllegiance>(
-        model.RealmAllegiance.name
+        modelNames.RealmAllegiance
     )) {
         if (allegiance.divisionName && allegiance.divisions.length > 0) {
             for (const division of allegiance.divisions) {
@@ -1146,7 +1156,7 @@ function getArmyOptions(db: realm) {
     return result;
 }
 
-function ability(ability?: def.Ability) {
+function ability(ability?: def.Ability | null) {
     if (!ability) return "undefined";
     return `this.abilities.${objectId(ability)}`;
 }
@@ -1158,7 +1168,7 @@ function abilities(abilities: def.Ability[]) {
 function getRealms(db: realm) {
     let result = `${tab}realms = {\n`;
     for (const realm of db.objects<def.RealmOfBattle>(
-        model.RealmOfBattle.name
+        modelNames.RealmOfBattle
     )) {
         const id = objectId(realm);
         result += `${tab}${tab}${id}: {
