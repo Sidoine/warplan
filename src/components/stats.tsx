@@ -22,7 +22,9 @@ import {
     TextField,
     Grid,
     TableContainer,
-    IconButton
+    IconButton,
+    Checkbox,
+    FormControlLabel
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
@@ -47,6 +49,12 @@ const EnemyConfiguration = observer(({}) => {
         },
         [uiStore]
     );
+    const handleCharged = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            uiStore.setEnemy("charged", e.target.checked);
+        },
+        [uiStore]
+    );
 
     return (
         <Card>
@@ -65,6 +73,17 @@ const EnemyConfiguration = observer(({}) => {
                             label="Keywords"
                             value={uiStore.enemy.keywords}
                             onChange={handleKeywords}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={uiStore.enemy.charged}
+                                    onChange={handleCharged}
+                                />
+                            }
+                            label="Charged"
                         />
                     </Grid>
                 </Grid>

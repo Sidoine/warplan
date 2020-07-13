@@ -247,10 +247,16 @@ export abstract class Combat {
         const mortalWounds = mortalWoundRolls.filter(x => x < save - rend)
             .length;
         if (mortalWounds === 0) return 0;
-        const damage = await this.valueRoller(
+        let damage = await this.valueRoller(
             attackDamage || attack.damage,
             mortalWounds
         );
+        if (caster.attackAura.bonusDamage) {
+            damage += await this.valueRoller(
+                caster.attackAura.bonusDamage,
+                mortalWounds
+            );
+        }
         target.wounds += damage;
     }
 

@@ -13,6 +13,7 @@ import { overrideOrder } from "./overrides/order";
 import { overrideCommon } from "./overrides/common";
 import { overrideOrruks } from "./overrides/orruks";
 import { overrideGitz } from "./overrides/gitz";
+import { updateGhb2020 } from "./overrides/ghb2020";
 
 export const enum Material {
     Metal,
@@ -189,7 +190,8 @@ export const enum TargetType {
     Model = 1,
     Weapon = 2,
     Mount = 4,
-    Enemy = 8
+    Enemy = 8,
+    NotUnit = Model | Weapon | Mount
 }
 
 export interface AbilityEffect {
@@ -597,6 +599,7 @@ export class UnitsStore {
         overrideCommon(data);
         overrideOrruks(data);
         overrideGitz(data);
+        updateGhb2020(data);
 
         const models: { [key: string]: Model } = data.models;
         for (const key in models) {

@@ -14,13 +14,23 @@ import {
 type AttackAuraValueKey = keyof AttackAuraValues;
 const attackAuraValueKeys: AttackAuraValueKey[] = [
     "bonusHitRoll",
+    "malusHitRoll",
+    "bonusWoundRoll",
     "bonusAttacks",
+    "bonusDamage",
+    "retreatAfterAttack",
     "numberOfHitsOnUnmodified6",
     "numberOfHitsOnHit",
     "mortalWoundsOnHitUnmodified6",
     "mortalWounds",
     "damageOnWoundUnmodified6",
-    "bonusRend"
+    "mortalWoundsOnHit",
+    "bonusDamageOnHitUnmodified6",
+    "bonusRend",
+    "rerollHitsOn1",
+    "rerollWoundsOn1",
+    "bonusRendOnWound6OrMore",
+    "rangeBonus"
 ];
 // const attackAuraNumberKeys: (keyof AttackAuraNumbers)[] = [];
 const attackAuraBooleanKeys: (keyof AttackAuraBooleans)[] = [
@@ -41,6 +51,7 @@ export interface States {
     attackAura: AttackAura;
     defenseAura: AuraState<DefenseAura>[];
     unitState: UnitState;
+    attack?: Attack;
 }
 
 export class WeaponState implements States {

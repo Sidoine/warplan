@@ -17,7 +17,7 @@ export function EndlessSpellWarscroll({
     const classes = useWarscrollStyles();
     const u = endlessSpell || wes?.definition;
     if (!u) return <div></div>;
-    let abilities = toJS(u.abilities || []);
+    const abilities = toJS(u.abilities || []);
 
     const normalAbilities = abilities.filter(x => x.category === undefined);
     const specialRules = abilities.filter(
@@ -29,16 +29,19 @@ export function EndlessSpellWarscroll({
     const keywords = u.keywords;
 
     return (
-        <div className={classes.warscroll}>
+        <div className={`${classes.warscroll} ${classes.endlessSpell}`}>
             <div className={classes.header}>
                 <div className={classes.title}>
-                    <div>{u.name}</div>{" "}
+                    <div className={classes.type}>Endless Spell Warscroll</div>
+                    <div className={classes.name}>{u.name}</div>
+                    {u.flavor && (
+                        <div className={classes.flavor}>{u.flavor}</div>
+                    )}
                 </div>
                 <div className={classes.image}>
                     <img src={u.pictureUrl} />
                 </div>
             </div>
-            {u.flavor && <div className={classes.flavor}>{u.flavor}</div>}
             <div className={classes.abilities}>
                 <AllAbilities
                     title="Description"

@@ -8,11 +8,13 @@ interface SerializedUi {
     keywordFilter?: string;
     enemySave?: number;
     enemyKeywords?: string;
+    enemyCharged?: boolean;
 }
 
 export interface Enemy {
     save: number;
     keywords: string;
+    charged: boolean;
 }
 
 export class UiStore {
@@ -51,7 +53,7 @@ export class UiStore {
         );
     }
 
-    @observable enemy: Enemy = { save: 5, keywords: "" };
+    @observable enemy: Enemy = { save: 5, keywords: "", charged: false };
 
     @computed
     get unitStats() {
@@ -84,6 +86,8 @@ export class UiStore {
             if (serialized.enemySave) this.enemy.save = serialized.enemySave;
             if (serialized.enemyKeywords)
                 this.enemy.keywords = serialized.enemyKeywords;
+            if (serialized.enemyCharged)
+                this.enemy.charged = serialized.enemyCharged;
         }
     }
 
@@ -145,7 +149,8 @@ export class UiStore {
             grandAlliance: this.grandAlliance,
             keywordFilter: this.keywordFilter,
             enemyKeywords: this.enemy.keywords,
-            enemySave: this.enemy.save
+            enemySave: this.enemy.save,
+            enemyCharged: this.enemy.charged
         };
         localStorage.setItem("ui", JSON.stringify(serialized));
     }

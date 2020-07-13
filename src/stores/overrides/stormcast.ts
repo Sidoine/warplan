@@ -890,7 +890,10 @@ function fixUnits(data: DataStoreImpl): void {
                 attackAura: { rangeBonus: 6 },
                 targetCondition: {
                     hasNotMoved: true,
-                    weaponId: "Longstrike Crossbow"
+                    weaponId:
+                        data.attacks
+                            .vanguardRaptorsWithLongstrikeCrossbowsLongstrikeCrossbow
+                            .id
                 }
             }
         );
@@ -899,7 +902,12 @@ function fixUnits(data: DataStoreImpl): void {
             {
                 targetType: TargetType.Weapon,
                 attackAura: { mortalWoundsOnHitUnmodified6: 2 },
-                targetCondition: { weaponId: "Longstrike Crossbow" }
+                targetCondition: {
+                    weaponId:
+                        data.attacks
+                            .vanguardRaptorsWithLongstrikeCrossbowsLongstrikeCrossbow
+                            .id
+                }
             }
         );
         addAbilityEffect(
@@ -1051,6 +1059,7 @@ function fixUnits(data: DataStoreImpl): void {
     }
 
     {
+        const unit: Unit = data.units.vanguardPalladors;
         addAbilityEffect(data.abilities.vanguardPalladorsAetherealStrike, {
             targetType: TargetType.Weapon,
             targetCondition: {
@@ -1076,6 +1085,51 @@ function fixUnits(data: DataStoreImpl): void {
             targetType: TargetType.Model,
             phase: Phase.Setup
         });
+        const prime = setAbilityAsOption(
+            data.units.vanguardPalladors,
+            data.abilities.vanguardPalladorsPalladorPrime,
+            oneModelOption
+        );
+        addAbilityToOption(
+            prime,
+            data.units.vanguardPalladors,
+            data.abilities.vanguardPalladorsLunarBlade
+        );
+        const handaxe = setAttackAsOption(
+            data.units.vanguardPalladors,
+            data.attacks.vanguardPalladorsShockHandaxe,
+            undefined,
+            undefined,
+            UnitCategoryMain
+        );
+        const javelinMissile = setAttackAsOption(
+            data.units.vanguardPalladors,
+            data.attacks.vanguardPalladorsStarstrikeJavelin,
+            undefined,
+            undefined,
+            UnitCategoryMain
+        );
+        addAttackToOption(
+            javelinMissile,
+            data.units.vanguardPalladors,
+            data.attacks.vanguardPalladorsStarstrikeJavelinMelee
+        );
+        unit.optionStats = [
+            {
+                name: "Shock Handaxe",
+                models: [
+                    { count: 1, options: [prime, handaxe] },
+                    { count: 2, options: [handaxe] }
+                ]
+            },
+            {
+                name: "Starstrike Javelin",
+                models: [
+                    { count: 1, options: [prime, javelinMissile] },
+                    { count: 2, options: [javelinMissile] }
+                ]
+            }
+        ];
     }
 
     {
@@ -1117,8 +1171,7 @@ function fixUnits(data: DataStoreImpl): void {
         });
         addAbilityEffect(data.abilities.neaveBlacktalonNemesis, {
             targetType: TargetType.Model,
-            targetCondition: { keyword: "HERO" },
-            attackAura: { bonusDamage: 1 }
+            attackAura: { bonusDamage: conditionValue({ keyword: "HERO" }, 1) }
         });
         addAbilityEffect(data.abilities.neaveBlacktalonWindrider, {
             targetType: TargetType.Model,
@@ -1172,20 +1225,21 @@ function fixUnits(data: DataStoreImpl): void {
 
     {
         addAbilityEffect(data.abilities.concussorsBlastToAshes, {
-            targetType: TargetType.Unit,
+            targetType: TargetType.Weapon,
             attackAura: {
-                phase: Phase.Shooting,
                 effectsOnHitUnmodified6: [
                     {
                         mortalWounds: 1,
-                        targetType: TargetType.Enemy,
-                        phase: Phase.Shooting
+                        targetType: TargetType.Enemy
                     },
                     {
                         attackAura: { noPileIn: true },
                         targetType: TargetType.Enemy
                     }
                 ]
+            },
+            targetCondition: {
+                weaponId: data.attacks.concussorsLightningHammer.id
             }
         });
         addAbilityEffect(data.abilities.concussorsIntolerableDamage, {

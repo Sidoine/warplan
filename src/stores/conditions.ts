@@ -41,7 +41,7 @@ export function canUseAbilityCategory(
                 ? unit.definition.isLeader(ws)
                 : false;
         case AbilityCategory.Mount:
-            return true;
+            return hasKeyword(unit.definition, "HERO");
         case AbilityCategory.Prayer:
             return hasKeyword(unit.definition, "PRIEST");
         case AbilityCategory.Spell:

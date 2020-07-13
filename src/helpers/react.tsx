@@ -17,7 +17,7 @@ export function value(val: Value, defaut?: string) {
     if (typeof val === "string" || typeof val === "number") {
         return val;
     }
-    return "*";
+    return "✹";
 }
 
 export function groupBy<TKey, T>(list: T[], keyGetter: (value: T) => TKey) {

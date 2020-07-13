@@ -17,58 +17,91 @@ import { Cards } from "./components/cards";
 import { CheckList } from "./components/check-list";
 import { BattlePlay } from "./components/battle-play";
 import { newStores } from "./stores";
-
+import pompeiRegular from "./assets/PompeiStd-Regular.woff2";
+import pompeiBold from "./assets/PompeiStd-Bold.woff2";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 const root = document.getElementById("root");
 const stores = newStores();
 
+const theme = createMuiTheme({
+    overrides: {
+        MuiCssBaseline: {
+            "@global": {
+                "@font-face": [
+                    {
+                        fontFamily: "Pompei",
+                        fontWeight: "normal",
+                        src: `url(${pompeiRegular}) format('woff2')`
+                    },
+                    {
+                        fontFamily: "Pompei",
+                        fontWeight: "bold",
+                        src: `url(${pompeiBold}) format('woff2')`
+                    }
+                ]
+            }
+        }
+    }
+});
+
 ReactDOM.render(
     <Provider {...stores}>
-        <HashRouter>
-            <Popins />
-            <Route
-                render={x => (
-                    <MyNavbar route={x}>
-                        <Switch>
-                            <Route
-                                exact
-                                path="/owned"
-                                component={OwnedModelsList}
-                            />
-                            <Route
-                                exact
-                                path="/"
-                                component={WarscrollBuilder}
-                            />
-                            <Route
-                                exact
-                                path="/missing"
-                                component={MissingsList}
-                            />
-                            <Route exact path="/basket" component={Basket} />
-                            <Route
-                                exact
-                                path="/warscroll"
-                                component={Warscroll}
-                            />
-                            <Route exact path="/markers" component={Markers} />
-                            <Route exact path="/stats" component={Stats} />
-                            <Route
-                                exact
-                                path="/list"
-                                component={WarscrollView}
-                            />
-                            <Route exact path="/cards" component={Cards} />
-                            <Route exact path="/cl" component={CheckList} />
-                            <Route
-                                exact
-                                path="/battle"
-                                component={BattlePlay}
-                            />
-                        </Switch>
-                    </MyNavbar>
-                )}
-            />
-        </HashRouter>
+        <ThemeProvider theme={theme}>
+            <HashRouter>
+                <Popins />
+                <Route
+                    render={x => (
+                        <MyNavbar route={x}>
+                            <Switch>
+                                <Route
+                                    exact
+                                    path="/owned"
+                                    component={OwnedModelsList}
+                                />
+                                <Route
+                                    exact
+                                    path="/"
+                                    component={WarscrollBuilder}
+                                />
+                                <Route
+                                    exact
+                                    path="/missing"
+                                    component={MissingsList}
+                                />
+                                <Route
+                                    exact
+                                    path="/basket"
+                                    component={Basket}
+                                />
+                                <Route
+                                    exact
+                                    path="/warscroll"
+                                    component={Warscroll}
+                                />
+                                <Route
+                                    exact
+                                    path="/markers"
+                                    component={Markers}
+                                />
+                                <Route exact path="/stats" component={Stats} />
+                                <Route
+                                    exact
+                                    path="/list"
+                                    component={WarscrollView}
+                                />
+                                <Route exact path="/cards" component={Cards} />
+                                <Route exact path="/cl" component={CheckList} />
+                                <Route
+                                    exact
+                                    path="/battle"
+                                    component={BattlePlay}
+                                />
+                            </Switch>
+                        </MyNavbar>
+                    )}
+                />
+            </HashRouter>
+        </ThemeProvider>
     </Provider>,
     root
 );

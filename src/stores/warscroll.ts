@@ -116,11 +116,11 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed get keywords() {
         if (!this.isAllied) {
-            let addAllegianceKeyword =
+            const addAllegianceKeyword =
                 this.definition.keywords.indexOf(
                     this.warscroll.allegiance.keywords[0]
                 ) < 0;
-            let addHostKeyword =
+            const addHostKeyword =
                 this.warscroll.armyOption !== null &&
                 this.warscroll.allegiance.armyOptions &&
                 this.warscroll.allegiance.armyOptions.values.every(
@@ -227,15 +227,18 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     private isAvailableExtraAbility(extraAbility: ExtraAbility) {
         return (
             this.extraAbilities.every(
-                x => x.category !== extraAbility.category
+                x => x.ability.category !== extraAbility.ability.category
             ) &&
+            !this.warscroll.hasAnyUnitExtraAbility(extraAbility) &&
             canUseAbilityCategory(
                 this,
                 this.warscroll,
                 extraAbility.ability.category
             ) &&
             (!extraAbility.allegianceKeyword ||
-                this.keywords.indexOf(extraAbility.allegianceKeyword) >= 0) &&
+                this.warscroll.allegiance.keywords.indexOf(
+                    extraAbility.allegianceKeyword
+                ) >= 0) &&
             (!extraAbility.armyOptionKeyword ||
                 this.keywords.indexOf(extraAbility.armyOptionKeyword) >= 0) &&
             (!extraAbility.keywords ||
@@ -755,7 +758,7 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
 
     @computed
     get unitAbilities() {
-        let result: Ability[] = [];
+        const result: Ability[] = [];
         for (const unit of this.items) {
             for (const ability of unit.abilities) {
                 if (!result.find(x => x.id === ability.id))

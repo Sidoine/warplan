@@ -1,17 +1,12 @@
 import { Attack, DamageTable, Ability } from "../stores/units";
 import * as React from "react";
 import { value } from "../helpers/react";
-import {
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
-    makeStyles
-} from "@material-ui/core";
-import warscrollMiddle from "../assets/warscroll-middle.png";
-import warscrollLeft from "../assets/warscroll-left.png";
-import warscrollRight from "../assets/warscroll-right.png";
+import { makeStyles } from "@material-ui/core";
+import warscrollMiddle from "../assets/ws-header.png";
+import warscrollLeft from "../assets/ws-left.png";
+import warscrollRight from "../assets/ws-right.png";
+import warscrollBackground from "../assets/ws-background.png";
+import warscrollSeparator from "../assets/ws-separator.png";
 
 export const useWarscrollStyles = makeStyles({
     wounds: {
@@ -21,43 +16,84 @@ export const useWarscrollStyles = makeStyles({
         pageBreakInside: "avoid",
         margin: "10px",
         padding: "10px",
-        borderRadius: "25px",
-        border: "2px solid black",
-        fontFamily: "serif",
         maxWidth: "900px",
-        backgroundColor: "white"
+        backgroundImage: `url(${warscrollBackground})`,
+        backgroundSize: "100%",
+        fontFamily: "Pompei",
+        fontSize: "0.6rem"
+    },
+    type: {
+        textTransform: "uppercase",
+        textAlign: "center",
+        marginBottom: "0.5rem",
+        "&::before": {
+            content: "' '",
+            backgroundImage: `url(${warscrollSeparator})`,
+            backgroundSize: "100%",
+            width: "6px",
+            height: "6px",
+            display: "inline-block",
+            marginRight: "5px",
+            marginBottom: "1px"
+        },
+        "&::after": {
+            content: "' '",
+            backgroundImage: `url(${warscrollSeparator})`,
+            backgroundSize: "100%",
+            width: "6px",
+            height: "6px",
+            display: "inline-block",
+            marginLeft: "5px",
+            marginBottom: "1px"
+        }
     },
     count: {
-        fontSize: "15px"
+        fontSize: "1rem"
     },
     flavor: {
         fontWeight: "bold",
         textAlign: "center",
-        fontStyle: "italic",
         marginBottom: "8px"
     },
     title: {
-        backgroundImage: `url(${warscrollMiddle})`,
-        backgroundRepeat: "repeat-x",
-        backgroundSize: "100% 100%",
-        height: "160px",
+        minHeight: "160px",
         /*width: 300px;*/
         flex: 1,
-        paddingTop: "40px",
-        lineHeight: "40px",
-        fontSize: "30px",
+        paddingTop: "20px"
+    },
+    name: {
+        backgroundImage: `url(${warscrollMiddle})`,
+        backgroundSize: "100% 100%",
+        marginLeft: "-4rem",
+        paddingLeft: "4rem",
+        marginRight: "-4rem",
+        paddingRight: "4rem",
+        marginBottom: "1rem",
+        border: "2px solid #8a7c32",
+        lineHeight: "1.6rem",
+        fontSize: "1.4rem",
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
+        fontVariant: "small-caps"
     },
     option: {
         fontSize: "25px",
         fontStyle: "italic"
     },
     battalion: {
-        height: "100px",
+        minHeight: "80px",
         backgroundPositionY: "-20px",
         backgroundSize: "100% 160px",
-        paddingTop: "20px"
+        paddingTop: "20px",
+        "& > $name": {
+            marginLeft: 0,
+            marginRight: 0
+        }
+    },
+    endlessSpell: {
+        "& $name": {
+            marginLeft: 0
+        }
     },
     stats: {
         backgroundImage: `url(${warscrollLeft})`,
@@ -65,7 +101,7 @@ export const useWarscrollStyles = makeStyles({
         height: "160px",
         backgroundSize: "100%",
         position: "relative",
-        fontSize: "1.2em",
+        fontSize: "1.4em",
         fontWeight: "bold",
         textAlign: "center"
     },
@@ -76,8 +112,9 @@ export const useWarscrollStyles = makeStyles({
     },
     moveStat: {
         position: "absolute",
-        left: "70px",
-        top: "40px"
+        left: "80px",
+        top: "40px",
+        transform: "translate(-50%)"
     },
     saveStat: {
         position: "absolute",
@@ -86,13 +123,13 @@ export const useWarscrollStyles = makeStyles({
     },
     braveryStat: {
         position: "absolute",
-        left: "75px",
-        top: "100px"
+        left: "80px",
+        top: "100px",
+        transform: "translate(-50%)"
     },
     header: {
         display: "flex",
-        flexDirection: "row",
-        fontVariant: "small-caps"
+        flexDirection: "row"
     },
     image: {
         width: "160px",
@@ -103,17 +140,20 @@ export const useWarscrollStyles = makeStyles({
         backgroundRepeat: "no-repeat",
         ["& > img"]: {
             position: "absolute",
-            left: "13px",
-            top: "13px",
-            width: "130px",
-            height: "130px",
+            left: "12px",
+            top: "28px",
+            width: "120px",
+            height: "121px",
             borderRadius: "100px"
         }
     },
     sectionHeader: {
         fontVariant: "small-caps",
-        fontSize: "1.4rem",
-        marginTop: "1rem"
+        fontSize: "1rem",
+        ["& + &"]: {
+            marginTop: "1rem"
+        },
+        breakAfter: "avoid-column"
     },
     abilities: {
         columnCount: 3,
@@ -123,6 +163,9 @@ export const useWarscrollStyles = makeStyles({
     },
     abilityName: {
         fontWeight: "bold"
+    },
+    abilityFlavor: {
+        fontStyle: "italic"
     },
     attack: {
         margin: "8px",
@@ -142,25 +185,27 @@ export const useWarscrollStyles = makeStyles({
     },
     keywords: {
         display: "flex",
-        borderTop: "2px solid #b5ad82",
-        borderBottom: "2px solid #b5ad82",
+        border: "2px solid #8a7c32",
         marginTop: "5px",
         ["& > div"]: {
             padding: "5px"
         }
     },
     keywordsHeader: {
-        backgroundColor: "#908149",
-        textTransform: "uppercase"
+        backgroundColor: "#8a7c32",
+        textTransform: "uppercase",
+        fontWeight: "bold"
     },
     woundTable: {
-        textAlign: "center"
+        textTransform: "uppercase",
+        backgroundColor: "#d0c89a"
     }
 });
 
 export interface AttackWithCount {
     attack: Attack;
     count?: number;
+    id: string;
 }
 
 export function AllAttacks({ attacks }: { attacks: AttackWithCount[] }) {
@@ -210,7 +255,7 @@ export function Attacks({
                             {x.attack.name}{" "}
                             {x.count !== undefined && <>(x{x.count})</>}
                         </td>
-                        <td>{value(x.attack.range)}" </td>
+                        <td>{value(x.attack.range)}&quot; </td>
                         <td>{value(x.attack.attacks)} </td>
                         <td>{value(x.attack.toHit)} </td>
                         <td>{value(x.attack.toWound)} </td>
@@ -241,7 +286,10 @@ export function AllAbilities({
                 <div key={index}>
                     <span className={classes.abilityName}>{x.name}:</span>
                     {x.flavor && (
-                        <span className={classes.flavor}> {x.flavor}</span>
+                        <span className={classes.abilityFlavor}>
+                            {" "}
+                            {x.flavor}
+                        </span>
                     )}
                     <div>{x.description}</div>
                 </div>
@@ -254,28 +302,33 @@ export function WoundEffects({ damageTable }: { damageTable: DamageTable }) {
     const ranges = damageTable.ranges;
     const classes = useWarscrollStyles();
     return (
-        <Table className={classes.woundTable}>
-            <TableHead>
-                <TableRow>
-                    <TableCell>Wounds Suffered</TableCell>
+        <table className={classes.attack}>
+            <thead>
+                <tr>
+                    <th
+                        colSpan={damageTable.columns.length + 1}
+                        className={classes.woundTable}
+                    >
+                        Damage Table
+                    </th>
+                </tr>
+                <tr>
+                    <th>Wounds Suffered</th>
                     {damageTable.columns.map(x => (
-                        <TableCell key={x.name}>{x.name}</TableCell>
+                        <th key={x.name}>{x.name}</th>
                     ))}
-                </TableRow>
-            </TableHead>
-            <TableBody>
+                </tr>
+            </thead>
+            <tbody>
                 {ranges.map((x, index) => (
-                    <TableRow key={x}>
-                        <TableCell>{x}</TableCell>
+                    <tr key={x}>
+                        <td>{x}</td>
                         {damageTable.columns.map(x => (
-                            <TableCell key={x.name}>
-                                {" "}
-                                {x.values[index]}{" "}
-                            </TableCell>
+                            <td key={x.name}>{x.values[index]} </td>
                         ))}
-                    </TableRow>
+                    </tr>
                 ))}
-            </TableBody>
-        </Table>
+            </tbody>
+        </table>
     );
 }

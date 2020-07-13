@@ -24,27 +24,21 @@ export class WarscrollBuilder extends React.Component<
         return (
             <Grid container direction="column" spacing={2} wrap="nowrap">
                 <Grid item>
-                    {" "}
                     <Filter />
                 </Grid>
                 <Grid item>
-                    {" "}
                     <WarscrollSummary />
                 </Grid>
                 <Grid item>
-                    {" "}
                     <WarscrollBattalionsList />
                 </Grid>
                 <Grid item>
-                    {" "}
                     <WarscrollUnitsList />
                 </Grid>
                 <Grid item>
-                    {" "}
                     <WarscrollSceneriesList />
                 </Grid>
                 <Grid item>
-                    {" "}
                     <Button
                         onClick={() => this.props.uiStore!.showWarscrollPopin()}
                     >

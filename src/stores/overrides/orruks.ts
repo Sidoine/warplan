@@ -9,7 +9,10 @@ import {
 } from "../units";
 import { override, overrideAbility, addAbilityEffect } from "./tools";
 
+type ExtraAbilities = { [key: string]: ExtraAbility };
+
 function addWarbeats(data: DataStoreImpl) {
+    const extraAbilities: ExtraAbilities = data.extraAbilities;
     const getEmBeat: ExtraAbility = {
         id: "orruksWarchanterWarbeatsGetEmBeat",
         ability: {
@@ -37,7 +40,7 @@ function addWarbeats(data: DataStoreImpl) {
         category: "Warchanter Warbeats",
         allegianceKeyword: "IRONJAWZ"
     };
-    (<any>data.extraAbilities)[getEmBeat.id] = getEmBeat;
+    extraAbilities[getEmBeat.id] = getEmBeat;
     const fixinBeat: ExtraAbility = {
         id: "orruksWarchanterWarbeatsfixinBeat",
         ability: {
@@ -60,7 +63,7 @@ function addWarbeats(data: DataStoreImpl) {
         category: "Warchanter Warbeats",
         allegianceKeyword: "IRONJAWZ"
     };
-    (<any>data.extraAbilities)[fixinBeat.id] = fixinBeat;
+    extraAbilities[fixinBeat.id] = fixinBeat;
     const killaBeat: ExtraAbility = {
         id: "orruksWarchanterWarbeatskillaBeat",
         ability: {
@@ -92,7 +95,7 @@ function addWarbeats(data: DataStoreImpl) {
         category: "Warchanter Warbeats",
         allegianceKeyword: "IRONJAWZ"
     };
-    (<any>data.extraAbilities)[killaBeat.id] = killaBeat;
+    extraAbilities[killaBeat.id] = killaBeat;
 }
 
 function fixBattalion(data: DataStoreImpl) {

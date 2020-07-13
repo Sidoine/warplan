@@ -36,6 +36,7 @@ import GroupIcon from "@material-ui/icons/Group";
 import ReplayIcon from "@material-ui/icons/Replay";
 import { useStores } from "../stores";
 import VerticalAlignTopIcon from "@material-ui/icons/VerticalAlignTop";
+import { distinct } from "../helpers/algo";
 
 const useStyle = makeStyles({
     section: {
@@ -106,17 +107,6 @@ export interface CheckListProps {
     unitsStore?: UnitsStore;
 }
 
-function someFrom<T>(array: T[], from: number, condition: (x: T) => boolean) {
-    for (let i = from; i < array.length; i++) {
-        if (condition(array[i])) return true;
-    }
-    return false;
-}
-
-function distinct<T extends { id: string }>(array: T[]) {
-    return array.filter((x, i) => !someFrom(array, i + 1, y => x.id === y.id));
-}
-
 function Stats(props: { name?: string; children: React.ReactNode }) {
     const classes = useStyle();
     return (
@@ -164,12 +154,13 @@ export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
                         {effect.targetRange && (
                             <>
                                 <VerticalAlignTopIcon />
-                                {effect.targetRange}"
+                                {effect.targetRange}&quot;
                             </>
                         )}
                         {effect.targetRadius && (
                             <>
-                                <SignalWifi2BarIcon /> {effect.targetRadius}""
+                                <SignalWifi2BarIcon /> {effect.targetRadius}
+                                &quot;
                             </>
                         )}
                         {effect.spellCastingValue && (

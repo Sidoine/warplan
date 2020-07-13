@@ -2,7 +2,6 @@ import {
     UnitStatModels,
     Unit,
     UnitStatModel,
-    Attack,
     TargetCondition,
     AbilityEffect,
     Ability,
@@ -45,21 +44,13 @@ function applyEffect(
     target: States,
     effect: AbilityEffect,
     stats: UnitStats,
-    ratio?: number,
-    attack?: Attack
+    ratio?: number
 ) {
-    if (!targetEnemy(effect)) {
-        if (effect.targetType & TargetType.Model) {
-            target = caster;
-        } else {
-            target = caster.unitState;
-        }
-    }
-    if (effect.condition && !checkCondition(effect.condition, caster.unitState))
+    if (effect.condition && !checkCondition(effect.condition, caster))
         return false;
     if (
         effect.targetCondition &&
-        !checkCondition(effect.targetCondition, target.unitState)
+        !checkCondition(effect.targetCondition, target)
     )
         return false;
     if (effect.randomEffectRange) {
@@ -90,12 +81,31 @@ function applyEffect(
         }
     }
     if (effect.attackAura) {
-        addAttackAura(caster, { aura: effect.attackAura, effectRatio: ratio });
+        addAttackAura(target, { aura: effect.attackAura, effectRatio: ratio });
     }
     return true;
 }
 
-export function checkCondition(condition: TargetCondition, target: UnitState) {
+export function checkCondition(
+    condition: TargetCondition,
+    targetState: States
+) {
+    if (
+        condition.weaponId &&
+        (!targetState.attack || targetState.attack.id !== condition.weaponId)
+    )
+        return false;
+    if (
+        condition.meleeWeapon &&
+        (!targetState.attack || !targetState.attack.melee)
+    )
+        return false;
+    if (
+        condition.rangedWeapon &&
+        (!targetState.attack || targetState.attack.melee)
+    )
+        return false;
+    const target = targetState.unitState;
     if (condition.hasCharged && !target.hasCharged) return false;
     if (condition.hasMoved && !target.hasMoved) return false;
     if (condition.hasNotCharged && target.hasCharged) return false;
@@ -150,7 +160,9 @@ function applyWeaponAttack(
         getValue(attack.toHit, enemyState) -
         getValue(attackAura.bonusHitRoll, enemyState);
     const toWound = getValue(attack.toWound, enemyState);
-    let damage = getValue(attack.damage, enemyState);
+    let damage =
+        getValue(attack.damage, enemyState) +
+        getValue(attackAura.bonusDamage, enemyState);
     const numberOfHitsOnUnmodified6 = getValue(
         attackAura.numberOfHitsOnUnmodified6,
         enemyState
@@ -164,6 +176,10 @@ function applyWeaponAttack(
     const enemySave = getValue(enemyState.unit.save, enemyState);
     const mortalWoundsOnHitIsUnmodifed6 = getValue(
         attackAura.mortalWoundsOnHitUnmodified6,
+        enemyState
+    );
+    const mortalWoundsOnHit = getValue(
+        attackAura.mortalWoundsOnHit,
         enemyState
     );
     let numberOfMortalWounds = getValue(attackAura.mortalWounds, enemyState);
@@ -208,6 +224,11 @@ function applyWeaponAttack(
     }
     numberOfHits *= numberOfHitsOnHit;
 
+    if (mortalWoundsOnHit) {
+        numberOfMortalWounds += numberOfHits * mortalWoundsOnHit;
+        numberOfHits = 0;
+    }
+
     if (damageOnWoundUnmodified6 > 0) {
         damage =
             (damage * (6 - toWound) + damageOnWoundUnmodified6) / (7 - toWound);
@@ -235,7 +256,28 @@ function applyUnitAbility(
     if (ability.effects) {
         for (const effect of ability.effects) {
             if (effect.choice && effect.choice !== choice) continue;
-            const applied = applyEffect(unitState, enemyState, effect, stats);
+            let applied: boolean;
+            if (targetEnemy(effect)) {
+                applied = applyEffect(unitState, enemyState, effect, stats);
+            } else if (effect.targetType === TargetType.Model) {
+                applied = false;
+                for (const model of unitState.models) {
+                    applied =
+                        applyEffect(unitState, model, effect, stats) || applied;
+                }
+            } else if (effect.targetType === TargetType.Weapon) {
+                applied = false;
+                for (const model of unitState.models) {
+                    for (const weapon of model.weaponStates) {
+                        applied =
+                            applyEffect(unitState, weapon, effect, stats) ||
+                            applied;
+                    }
+                }
+            } else {
+                applied = applyEffect(unitState, unitState, effect, stats);
+            }
+
             if (applied && effect.ignoreOtherEffects) break;
         }
     } else {
@@ -258,19 +300,28 @@ function applyModelAbility(
     if (ability.effects) {
         for (const effect of ability.effects) {
             if (effect.choice && effect.choice !== choice) continue;
-            const applied = applyEffect(modelState, enemyState, effect, stats);
-            if (applied && effect.ignoreOtherEffects) break;
-            if (!applied) {
+            let applied: boolean;
+            if (effect.targetType === TargetType.Model) {
+                applied = applyEffect(modelState, modelState, effect, stats);
+            } else if (effect.targetType === TargetType.Weapon) {
+                applied = false;
                 for (const weaponState of modelState.weaponStates) {
-                    const weaponApplied = applyEffect(
-                        weaponState,
-                        enemyState,
-                        effect,
-                        stats
-                    );
-                    if (weaponApplied) break;
+                    if (effect.targetType === TargetType.Weapon) {
+                        applied =
+                            applyEffect(
+                                modelState,
+                                weaponState,
+                                effect,
+                                stats
+                            ) || applied;
+                    }
                 }
+            } else if (targetEnemy(effect)) {
+                applied = applyEffect(modelState, enemyState, effect, stats);
+            } else {
+                applied = false;
             }
+            if (applied && effect.ignoreOtherEffects) break;
         }
     } else {
         if (
@@ -314,6 +365,9 @@ function getUnitOptionStats(
         save: enemy.save
     });
     enemyState.models.push(new ModelState([], enemyState, 1));
+    if (enemy.charged) {
+        unitState.hasCharged = true;
+    }
 
     for (const model of models) {
         const modelState = new ModelState(

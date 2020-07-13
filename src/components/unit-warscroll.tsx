@@ -12,6 +12,7 @@ import {
 } from "../atoms/warscroll-components";
 import StarIcon from "@material-ui/icons/Star";
 import PeopleIcon from "@material-ui/icons/People";
+import { distinct } from "../helpers/algo";
 
 export function UnitWarscroll({
     wu,
@@ -24,13 +25,13 @@ export function UnitWarscroll({
     const u = unit || wu?.definition;
     const models = wu?.models;
     if (!u) return <div></div>;
-    let attacks: AttackWithCount[] =
+    const attacks: AttackWithCount[] =
         (u.attacks &&
             u.attacks.map(x => {
-                return { count: undefined, attack: x };
+                return { count: undefined, attack: x, id: x.id };
             })) ||
         [];
-    let abilities = toJS(u.abilities || []).concat();
+    const abilities = toJS(u.abilities || []).concat();
     let mainOption: ModelOption | undefined;
     const modelOptions: [ModelOption, number?][] = [];
     if (models) {
@@ -50,7 +51,8 @@ export function UnitWarscroll({
 
         if (option.attacks) {
             for (const a of option.attacks) {
-                if (count !== 0) attacks.push({ count: count, attack: a });
+                if (count !== 0)
+                    attacks.push({ count: count, attack: a, id: a.id });
             }
         }
         if (option.abilities) {
@@ -79,18 +81,24 @@ export function UnitWarscroll({
             <div className={classes.header}>
                 <div className={classes.stats}>
                     <div className={classes.moveStat}>
-                        {u.move && <>{value(u.move)}"</>}
+                        {u.move && (
+                            <>
+                                {value(u.move)}
+                                {value(u.move) !== "✹" && <>&quot;</>}
+                            </>
+                        )}
                     </div>
                     <div className={classes.woundsStat}>{u.wounds}</div>
                     <div className={classes.saveStat}>
-                        {u.save && <> {value(u.save)}</>}
+                        {u.save && <> {value(u.save)}+</>}
                     </div>
                     <div className={classes.braveryStat}>
                         {u.bravery && <> {value(u.bravery)}</>}
                     </div>
                 </div>
                 <div className={classes.title}>
-                    <div>
+                    <div className={classes.type}>Unit warscroll</div>
+                    <div className={classes.name}>
                         {wu?.isGeneral && <StarIcon />} {u.model.name}
                     </div>{" "}
                     {models && models.length > 0 && (
@@ -100,15 +108,21 @@ export function UnitWarscroll({
                         </div>
                     )}
                     <div className={classes.count}>
-                        {wu?.modelCount} <PeopleIcon /> {wu?.points} points
+                        {wu && (
+                            <>
+                                {wu.modelCount} <PeopleIcon />
+                            </>
+                        )}{" "}
                     </div>
+                    {u.flavor && (
+                        <div className={classes.flavor}>{u.flavor}</div>
+                    )}
                 </div>
                 <div className={classes.image}>
                     <img src={u.pictureUrl} />
                 </div>
             </div>
-            {u.flavor && <div className={classes.flavor}>{u.flavor}</div>}
-            {attacks.length > 0 && <AllAttacks attacks={attacks} />}
+            {attacks.length > 0 && <AllAttacks attacks={distinct(attacks)} />}
             {u.damageTable && <WoundEffects damageTable={u.damageTable} />}
             <div className={classes.abilities}>
                 <AllAbilities
