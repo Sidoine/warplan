@@ -20,7 +20,12 @@ export const useWarscrollStyles = makeStyles({
         backgroundImage: `url(${warscrollBackground})`,
         backgroundSize: "100%",
         fontFamily: "Pompei",
-        fontSize: "0.6rem"
+        fontSize: "0.6rem",
+
+        "@media (max-width: 600px)": {
+            maxHeight: "95vh",
+            overflow: "auto"
+        }
     },
     type: {
         textTransform: "uppercase",
@@ -56,8 +61,6 @@ export const useWarscrollStyles = makeStyles({
         marginBottom: "8px"
     },
     title: {
-        minHeight: "160px",
-        /*width: 300px;*/
         flex: 1,
         paddingTop: "20px"
     },
@@ -74,7 +77,11 @@ export const useWarscrollStyles = makeStyles({
         fontSize: "1.4rem",
         fontWeight: "bold",
         textAlign: "center",
-        fontVariant: "small-caps"
+        fontVariant: "small-caps",
+        "@media (max-width: 600px)": {
+            marginLeft: 0,
+            marginRight: 0
+        }
     },
     option: {
         fontSize: "25px",
@@ -97,13 +104,20 @@ export const useWarscrollStyles = makeStyles({
     },
     stats: {
         backgroundImage: `url(${warscrollLeft})`,
+        backgroundRepeat: "no-repeat",
         width: "160px",
         height: "160px",
         backgroundSize: "100%",
         position: "relative",
         fontSize: "1.4em",
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
+        "@media (max-width: 600px)": {
+            display: "float",
+            transform: "scale(0.75)",
+            margin: "-40px",
+            marginTop: "-30px"
+        }
     },
     woundsStat: {
         position: "absolute",
@@ -129,7 +143,11 @@ export const useWarscrollStyles = makeStyles({
     },
     header: {
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        "@media (max-width: 600px)": {
+            flexDirection: "column",
+            alignItems: "center"
+        }
     },
     image: {
         width: "160px",
@@ -145,6 +163,9 @@ export const useWarscrollStyles = makeStyles({
             width: "120px",
             height: "121px",
             borderRadius: "100px"
+        },
+        "@media (max-width: 600px)": {
+            display: "none"
         }
     },
     sectionHeader: {
@@ -159,6 +180,9 @@ export const useWarscrollStyles = makeStyles({
         columnCount: 3,
         ["& > header"]: {
             fontWeight: "bold"
+        },
+        "@media (max-width: 600px)": {
+            columnCount: 1
         }
     },
     abilityName: {
@@ -271,11 +295,13 @@ export function Attacks({
 export function AllAbilities({
     title,
     abilities,
-    description
+    description,
+    noFlavor
 }: {
     title: string;
     abilities: Ability[];
     description?: string;
+    noFlavor?: boolean;
 }) {
     const classes = useWarscrollStyles();
     return (
@@ -285,7 +311,7 @@ export function AllAbilities({
             {abilities.map((x, index) => (
                 <div key={index}>
                     <span className={classes.abilityName}>{x.name}:</span>
-                    {x.flavor && (
+                    {x.flavor && !noFlavor && (
                         <span className={classes.abilityFlavor}>
                             {" "}
                             {x.flavor}

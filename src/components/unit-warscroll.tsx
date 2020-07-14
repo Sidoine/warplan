@@ -11,15 +11,16 @@ import {
     useWarscrollStyles
 } from "../atoms/warscroll-components";
 import StarIcon from "@material-ui/icons/Star";
-import PeopleIcon from "@material-ui/icons/People";
 import { distinct } from "../helpers/algo";
 
 export function UnitWarscroll({
     wu,
-    unit
+    unit,
+    noFlavor
 }: {
     wu?: WarscrollUnit | null;
     unit?: Unit;
+    noFlavor?: boolean;
 }) {
     const classes = useWarscrollStyles();
     const u = unit || wu?.definition;
@@ -107,14 +108,14 @@ export function UnitWarscroll({
                             {mainOption && mainOption.name}
                         </div>
                     )}
-                    <div className={classes.count}>
+                    {/* <div className={classes.count}>
                         {wu && (
                             <>
                                 {wu.modelCount} <PeopleIcon />
                             </>
                         )}{" "}
-                    </div>
-                    {u.flavor && (
+                    </div> */}
+                    {u.flavor && !noFlavor && (
                         <div className={classes.flavor}>{u.flavor}</div>
                     )}
                 </div>
@@ -129,17 +130,20 @@ export function UnitWarscroll({
                     title="Description"
                     abilities={specialRules}
                     description={u.description}
+                    noFlavor={noFlavor}
                 />
                 {normalAbilities.length > 0 && (
                     <AllAbilities
                         title="Abilities"
                         abilities={normalAbilities}
+                        noFlavor={noFlavor}
                     />
                 )}
                 {u.commandAbilities && (
                     <AllAbilities
                         title="Command abilities"
                         abilities={u.commandAbilities}
+                        noFlavor={noFlavor}
                     />
                 )}
                 {u.magicDescription && (
@@ -147,6 +151,7 @@ export function UnitWarscroll({
                         title="Magic"
                         abilities={magicAbilites}
                         description={u.magicDescription}
+                        noFlavor={noFlavor}
                     />
                 )}
             </div>

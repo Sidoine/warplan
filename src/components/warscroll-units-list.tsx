@@ -225,7 +225,6 @@ export class WarscrollUnitsList extends React.Component<
     private renderModelOptions = (unit: WarscrollUnit) => {
         return (
             <>
-                {" "}
                 {unit.models.map(x => this.renderModel(unit, x))}
                 {unit.availableOptions.length > 0 && (
                     <AddButton

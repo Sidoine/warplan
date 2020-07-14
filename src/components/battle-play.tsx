@@ -17,20 +17,38 @@ import {
     Avatar,
     Badge,
     IconButton,
-    Popover
+    BottomNavigation,
+    makeStyles,
+    BottomNavigationAction,
+    Modal
 } from "@material-ui/core";
 import { Ability, Attack, Value, Phase } from "../stores/units";
 import {
     isAbilityInPhase,
     isUnitInPhase,
     isAttackInPhase,
-    PhaseSide
+    PhaseSide,
+    getPhaseName
 } from "../stores/battle";
 import { WarscrollUnit } from "../stores/warscroll";
 import { value } from "../helpers/react";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { SwordIcon, SaveIcon } from "../atoms/icons";
+import { UnitWarscroll } from "./unit-warscroll";
 
-export interface BattlePlayProps {}
+const useStyles = makeStyles(x => ({
+    navigation: {
+        position: "fixed",
+        bottom: x.spacing(1),
+        left: "50%",
+        transform: "translatex(-50%)"
+    },
+    root: {
+        marginBottom: x.spacing(6)
+    }
+}));
 
 export const BattleStart = observer(() => {
     const { battleStore, warscrollStore } = useStores();
@@ -40,7 +58,6 @@ export const BattleStart = observer(() => {
             variant="contained"
             onClick={() => battleStore.start(warscrollStore.warscroll)}
         >
-            {" "}
             Start
         </Button>
     );
@@ -137,15 +154,9 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
     }));
     return (
         <Card>
-            <Popover
-                open={store.anchorEl !== null}
-                onClose={store.handleClose}
-                anchorEl={store.anchorEl}
-            >
-                {wu.keywords.map(x => (
-                    <Chip key={x} label={x} />
-                ))}
-            </Popover>
+            <Modal open={store.anchorEl !== null} onClose={store.handleClose}>
+                <UnitWarscroll noFlavor wu={wu} />
+            </Modal>
             <CardHeader
                 title={unit.model.name}
                 action={
@@ -227,29 +238,44 @@ const PhasePage = observer(() => {
                     <UnitCard wu={x} />
                 </Grid>
             ))}
-            <Grid item container spacing={1}>
-                <Grid item>
-                    {" "}
-                    <Button variant="contained" onClick={battleStore.previous}>
-                        Previous
-                    </Button>
-                </Grid>
-                <Grid item>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={battleStore.next}
-                    >
-                        Next
-                    </Button>
-                </Grid>
-            </Grid>
         </Grid>
     );
 });
 
-export const BattlePlay = observer((props: BattlePlayProps) => {
+export const BattlePlay = observer(() => {
     const { battleStore } = useStores();
+    const classes = useStyles();
     if (!battleStore.phase) return <BattleStart />;
-    return <PhasePage />;
+    return (
+        <div className={classes.root}>
+            <PhasePage />
+            <BottomNavigation showLabels className={classes.navigation}>
+                <BottomNavigationAction
+                    label={getPhaseName(battleStore.previousPhase)}
+                    icon={<ArrowBackIcon />}
+                    onClick={battleStore.previous}
+                />
+                <BottomNavigationAction
+                    label={getPhaseName(battleStore.nextPhase)}
+                    icon={<ArrowForwardIcon />}
+                    onClick={battleStore.next}
+                />
+                <BottomNavigationAction
+                    label={
+                        battleStore.side === PhaseSide.Attack
+                            ? "Attack"
+                            : "Defense"
+                    }
+                    icon={
+                        battleStore.side === PhaseSide.Attack ? (
+                            <SwordIcon />
+                        ) : (
+                            <SaveIcon />
+                        )
+                    }
+                    onClick={battleStore.toggleSide}
+                />
+            </BottomNavigation>
+        </div>
+    );
 });

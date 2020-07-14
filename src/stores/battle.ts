@@ -247,59 +247,60 @@ export class BattleStore {
     }
 
     @action
-    next = () => {
+    toggleSide = () => {
+        this.side =
+            this.side === PhaseSide.Attack
+                ? PhaseSide.Defense
+                : PhaseSide.Attack;
+    };
+
+    @computed
+    get nextPhase() {
         switch (this.phase) {
             case Phase.Setup:
-                this.phase = Phase.Hero;
-                break;
+                return Phase.Hero;
             case Phase.Hero:
-                this.phase = Phase.Movement;
-                break;
+                return Phase.Movement;
             case Phase.Movement:
-                this.phase = Phase.Shooting;
-                break;
+                return Phase.Shooting;
             case Phase.Shooting:
-                this.phase = Phase.Charge;
-                break;
+                return Phase.Charge;
             case Phase.Charge:
-                this.phase = Phase.Combat;
-                break;
+                return Phase.Combat;
             case Phase.Combat:
-                this.phase = Phase.Battleshock;
-                break;
+                return Phase.Battleshock;
             case Phase.Battleshock:
-                this.phase = Phase.Hero;
-                this.side = PhaseSide.Attack
-                    ? PhaseSide.Defense
-                    : PhaseSide.Attack;
-                break;
+                return Phase.Hero;
         }
+        return Phase.Setup;
+    }
+
+    @action
+    next = () => {
+        this.phase = this.nextPhase;
     };
 
     @action
     previous = () => {
+        this.phase = this.previousPhase;
+    };
+
+    @computed
+    get previousPhase() {
         switch (this.phase) {
             case Phase.Hero:
-                this.phase = Phase.Battleshock;
-                this.side = PhaseSide.Attack
-                    ? PhaseSide.Defense
-                    : PhaseSide.Attack;
-                break;
+                return Phase.Battleshock;
             case Phase.Movement:
-                this.phase = Phase.Hero;
-                break;
+                return Phase.Hero;
             case Phase.Shooting:
-                this.phase = Phase.Movement;
-                break;
+                return Phase.Movement;
             case Phase.Charge:
-                this.phase = Phase.Shooting;
-                break;
+                return Phase.Shooting;
             case Phase.Combat:
-                this.phase = Phase.Charge;
-                break;
+                return Phase.Charge;
             case Phase.Battleshock:
-                this.phase = Phase.Combat;
-                break;
+                return Phase.Combat;
         }
-    };
+        return Phase.Setup;
+    }
 }

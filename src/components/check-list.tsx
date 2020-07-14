@@ -23,13 +23,7 @@ import {
     isAbilityInPhase
 } from "../stores/battle";
 import { value } from "../helpers/react";
-import {
-    Chip,
-    SvgIcon,
-    makeStyles,
-    Badge,
-    SvgIconProps
-} from "@material-ui/core";
+import { Chip, makeStyles, Badge } from "@material-ui/core";
 import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
 import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from "@material-ui/icons/Group";
@@ -37,6 +31,7 @@ import ReplayIcon from "@material-ui/icons/Replay";
 import { useStores } from "../stores";
 import VerticalAlignTopIcon from "@material-ui/icons/VerticalAlignTop";
 import { distinct } from "../helpers/algo";
+import { SkullIcon, SpellIcon, SaveIcon } from "../atoms/icons";
 
 const useStyle = makeStyles({
     section: {
@@ -77,30 +72,6 @@ const useStyle = makeStyles({
         border: "1px solid #e6dccb"
     }
 });
-
-function SaveIcon() {
-    return (
-        <SvgIcon>
-            <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z" />
-        </SvgIcon>
-    );
-}
-
-function SkullIcon(props: SvgIconProps) {
-    return (
-        <SvgIcon {...props}>
-            <path d="M12,2A9,9 0 0,0 3,11C3,14.03 4.53,16.82 7,18.47V22H9V19H11V22H13V19H15V22H17V18.46C19.47,16.81 21,14 21,11A9,9 0 0,0 12,2M8,11A2,2 0 0,1 10,13A2,2 0 0,1 8,15A2,2 0 0,1 6,13A2,2 0 0,1 8,11M16,11A2,2 0 0,1 18,13A2,2 0 0,1 16,15A2,2 0 0,1 14,13A2,2 0 0,1 16,11M12,14L13.5,17H10.5L12,14Z" />
-        </SvgIcon>
-    );
-}
-
-function SpellIcon() {
-    return (
-        <SvgIcon>
-            <path d="M7.5,5.6L5,7L6.4,4.5L5,2L7.5,3.4L10,2L8.6,4.5L10,7L7.5,5.6M19.5,15.4L22,14L20.6,16.5L22,19L19.5,17.6L17,19L18.4,16.5L17,14L19.5,15.4M22,2L20.6,4.5L22,7L19.5,5.6L17,7L18.4,4.5L17,2L19.5,3.4L22,2M13.34,12.78L15.78,10.34L13.66,8.22L11.22,10.66L13.34,12.78M14.37,7.29L16.71,9.63C17.1,10 17.1,10.65 16.71,11.04L5.04,22.71C4.65,23.1 4,23.1 3.63,22.71L1.29,20.37C0.9,20 0.9,19.35 1.29,18.96L12.96,7.29C13.35,6.9 14,6.9 14.37,7.29Z" />
-        </SvgIcon>
-    );
-}
 
 export interface CheckListProps {
     warscrollStore?: WarscrollStore;
