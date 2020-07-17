@@ -1,7 +1,9 @@
 import * as React from "react";
 import { AbilityCategory } from "../stores/units";
 import { makeStyles } from "@material-ui/core";
-import background from "../assets/fond.png";
+import background from "../assets/ws-background.png";
+import header from "../assets/ws-header.png";
+import warscrollSeparator from "../assets/ws-separator.png";
 
 export type CardColor = "allegiance" | "common" | "armyOption";
 
@@ -37,10 +39,10 @@ const useStyle = makeStyles({
         height: "88mm",
         position: "relative",
         border: "2px solid #a29966",
-        fontFamily: "serif",
         padding: "2mm",
-        fontSize: "3.5mm",
-        overflow: "hidden"
+        fontSize: "3mm",
+        overflow: "hidden",
+        fontFamily: "Pompei"
     },
     image: {
         position: "absolute",
@@ -50,15 +52,16 @@ const useStyle = makeStyles({
         left: 0
     },
     header: {
-        border: "2px solid #a29966",
-        borderRadius: "0.3rem",
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        // borderRadius: "0.3rem",
         padding: "0.2rem",
         marginLeft: "0.1rem",
         marginRight: "0.1rem",
         marginBottom: "0.4rem"
     },
     title: {
+        border: "2px solid #8a7c32",
+        background: `url(${header})`,
+        backgroundSize: "100% 100%",
         fontSize: "5mm",
         fontWeight: "bold",
         textAlign: "center",
@@ -66,29 +69,52 @@ const useStyle = makeStyles({
     },
     description: {
         padding: "2mm",
-        backgroundColor: "rgba(220, 200, 120, 0.7)",
+        // backgroundColor: "rgba(220, 200, 120, 0.7)",
         lineHeight: "100%",
-        textAlign: "justify",
-        borderRadius: "0.2rem"
+        textAlign: "justify"
+        // borderRadius: "0.2rem"
     },
     group: {
         textAlign: "center",
         fontStyle: "italic"
     },
     flavor: {
-        borderRadius: "0.2rem",
+        // borderRadius: "0.2rem",
         fontStyle: "italic",
         fontSize: "3mm",
         lineHeight: "100%",
-        color: "white",
+        // color: "white",
         padding: "2mm",
         marginTop: "2mm",
-        backgroundColor: "rgba(0, 0, 0, 0.8)"
+        textAlign: "center"
+        // backgroundColor: "rgba(0, 0, 0, 0.8)"
     },
     category: {
         fontSize: "3mm",
         fontWeight: "bold",
-        textAlign: "center"
+        textTransform: "uppercase",
+        textAlign: "center",
+        marginBottom: "0.5rem",
+        "&::before": {
+            content: "' '",
+            backgroundImage: `url(${warscrollSeparator})`,
+            backgroundSize: "100%",
+            width: "6px",
+            height: "6px",
+            display: "inline-block",
+            marginRight: "5px",
+            marginBottom: "1px"
+        },
+        "&::after": {
+            content: "' '",
+            backgroundImage: `url(${warscrollSeparator})`,
+            backgroundSize: "100%",
+            width: "6px",
+            height: "6px",
+            display: "inline-block",
+            marginLeft: "5px",
+            marginBottom: "1px"
+        }
     },
     keywords: {
         position: "absolute",
@@ -146,16 +172,16 @@ function getAbilityCategory(type: AbilityCategory | undefined) {
     }
 }
 
-function color(c: CardColor) {
-    switch (c) {
-        case "common":
-            return "rgba(255, 255, 255, 0.8)";
-        case "allegiance":
-            return "rgba(230, 230, 255, 0.8)";
-        case "armyOption":
-            return "rgba(255, 220, 230, 0.8)";
-    }
-}
+// function color(c: CardColor) {
+//     switch (c) {
+//         case "common":
+//             return "rgba(255, 255, 255, 0.8)";
+//         case "allegiance":
+//             return "rgba(230, 230, 255, 0.8)";
+//         case "armyOption":
+//             return "rgba(255, 220, 230, 0.8)";
+//     }
+// }
 
 export function AbilityCard({ ability, onClick }: AbilityCardProps) {
     const classes = useStyle();
@@ -169,11 +195,11 @@ export function AbilityCard({ ability, onClick }: AbilityCardProps) {
             )}
             <div
                 className={classes.header}
-                style={{ backgroundColor: color(ability.color) }}
+                // style={{ backgroundColor: color(ability.color) }}
             >
                 {ability.category && (
                     <div className={classes.category}>
-                        · {getAbilityCategory(ability.category)} ·
+                        {getAbilityCategory(ability.category)}
                     </div>
                 )}
                 <div className={classes.title}>{ability.name}</div>

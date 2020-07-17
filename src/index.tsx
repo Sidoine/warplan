@@ -40,6 +40,11 @@ const theme = createMuiTheme({
                     }
                 ]
             }
+        },
+        MuiCardHeader: {
+            root: {
+                paddingBottom: 0
+            }
         }
     }
 });

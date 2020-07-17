@@ -44,7 +44,7 @@
         "tools": "tsc -p tsconfig.tools.json",
         "watch-tools": "tsc -w -p tsconfig.tools.json",
         "database": "node dist/tools/database.js",
-        "test": "ava",
+        "test": "yarn tools && ava",
         "watch-test": "ava -w",
         "start": "node index.js",
         "prettier": "prettier --write \"src/**/*.{ts,tsx}\""

@@ -174,20 +174,24 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
             <CardContent>
                 {!store.used && (
                     <List>
-                        <Stats>
-                            {battleStore.phase === Phase.Movement && (
-                                <Stat name="Mv" value={unit.move} />
-                            )}
-                            {battleStore.side === PhaseSide.Defense && (
-                                <>
-                                    <Stat name="Wd" value={unit.wounds} />
-                                    <Stat name="Sv" value={unit.save} />
-                                </>
-                            )}
-                            {battleStore.phase === Phase.Battleshock && (
-                                <Stat name="Bv" value={unit.bravery} />
-                            )}
-                        </Stats>
+                        {(battleStore.phase === Phase.Movement ||
+                            battleStore.side === PhaseSide.Defense ||
+                            battleStore.phase === Phase.Battleshock) && (
+                            <Stats>
+                                {battleStore.phase === Phase.Movement && (
+                                    <Stat name="Mv" value={unit.move} />
+                                )}
+                                {battleStore.side === PhaseSide.Defense && (
+                                    <>
+                                        <Stat name="Wd" value={unit.wounds} />
+                                        <Stat name="Sv" value={unit.save} />
+                                    </>
+                                )}
+                                {battleStore.phase === Phase.Battleshock && (
+                                    <Stat name="Bv" value={unit.bravery} />
+                                )}
+                            </Stats>
+                        )}
                         {battleStore.side === PhaseSide.Attack &&
                             store.attacks.map(x => (
                                 <AttackTable

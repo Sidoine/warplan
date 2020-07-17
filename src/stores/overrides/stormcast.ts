@@ -1383,12 +1383,98 @@ function fixUnits(data: DataStoreImpl): void {
             [data.abilities.lordCelestantOnStardrakeStormboundBlade]
         );
         addAbilityEffect(
+            data.abilities.lordCelestantOnStardrakeInescapableVengeance,
+            {
+                targetType: TargetType.Weapon,
+                attackAura: {
+                    bonusAttacks: "D3"
+                },
+                targetCondition: {
+                    weaponId:
+                        data.attacks.lordCelestantOnStardrakeCelestineHammer.id,
+                    hasCharged: true
+                }
+            }
+        );
+        addAbilityEffect(
+            data.abilities.lordCelestantOnStardrakeInescapableVengeance,
+            {
+                targetType: TargetType.Weapon,
+                attackAura: {
+                    bonusAttacks: "D3"
+                },
+                targetCondition: {
+                    weaponId:
+                        data.attacks
+                            .lordCelestantOnStardrakeStormboundBladeMelee.id,
+                    hasCharged: true
+                }
+            }
+        );
+        addAbilityEffect(
             data.abilities.lordCelestantOnStardrakeStormboundBlade,
             {
                 targetType: TargetType.Weapon,
                 attackAura: { numberOfHitsOnUnmodified6: 3 }
             }
         );
+        addAbilityEffect(
+            data.abilities.lordCelestantOnStardrakeSigmariteThundershield,
+            {
+                targetType: TargetType.Unit,
+                defenseAura: {
+                    rerollSavesOn1: true,
+                    mortalWoundsOnSucessfulSaveReroll: 1
+                }
+            }
+        );
+        addAbilityEffect(data.abilities.lordCelestantOnStardrakeCavernousJaws, {
+            targetType: TargetType.Enemy,
+            phase: Phase.Combat
+        });
+        addAbilityEffect(data.abilities.lordCelestantOnStardrakeSweepingTail, {
+            targetType: TargetType.Enemy,
+            phase: Phase.Combat
+        });
+        addAbilityEffect(
+            data.abilities.lordCelestantOnStardrakeLordOfTheHeavens,
+            {
+                phase: Phase.Shooting,
+                targetType: TargetType.Enemy
+            }
+        );
+        addAbilityEffect(data.abilities.lordCelestantOnStardrakeArcaneLineage, {
+            phase: Phase.Hero,
+            targetType: TargetType.Friend,
+            targetRadius: 18,
+            spellAura: {}
+        });
+        addAbilityEffect(data.abilities.lordCelestantOnStardrakeMount, {
+            phase: Phase.Setup,
+            targetType: TargetType.Unit
+        });
+        addAbilityEffect(data.abilities.lordCelestantOnStardrakeFly, {
+            phase: Phase.Movement,
+            targetType: TargetType.Unit,
+            movementAura: {
+                fly: true
+            }
+        });
+        addAbilityEffect(
+            data.abilities.lordCelestantOnStardrakeLordOfTheCelestialHost,
+            {
+                phase: Phase.Combat,
+                targetType: TargetType.Friend,
+                attackAura: {
+                    rerollFailedHits: true
+                },
+                targetCondition: {
+                    anyKeyword: ["DRACOTH", "STARDRAKE"]
+                },
+                targetRadius: Number.MAX_SAFE_INTEGER
+            }
+        );
+
         unit.optionStats = [
             {
                 name: "Celestine Hammer",
@@ -2649,6 +2735,12 @@ function fixExtraAbilities(data: DataStoreImpl): void {
             x.flavor = "This plate mail is blessed by fate.";
             x.description =
                 "Roll a dice each time you allocate a wound or mortal wound to the bearer. On a 6+, that wound or mortal wound is negated.";
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    defenseAura: { negateWoundsOrMortalWoundsOn6: true }
+                }
+            ];
         }
     );
     overrideAbility(
@@ -3050,6 +3142,13 @@ function overrideSpells(data: DataStoreImpl) {
         visible to the caster suffers D3 mortal wounds. If
         more than one enemy unit visible to the caster is
         equally close, you can pick which unit is affected.`;
+            x.effects = [
+                {
+                    targetType: TargetType.Enemy,
+                    mortalWounds: "D3",
+                    spellCastingValue: 5
+                }
+            ];
         }
     );
     overrideAbility(
@@ -3453,7 +3552,7 @@ function fixStormhosts(data: DataStoreImpl) {
         flavor:
             "The Hammers of Sigmar were at the forefront of Sigmar’s war against Chaos, and have stared down the greatest of horrors.",
         name: "First to be Forged",
-        category: AbilityCategory.Army,
+        category: AbilityCategory.BattleTrait,
         effects: [
             {
                 targetType: TargetType.Friend,
@@ -3507,7 +3606,8 @@ function fixStormhosts(data: DataStoreImpl) {
         description:
             "If a friendly HALLOWED KNIGHTS unit is affected by a spell or endless spell, roll a dice. On a 6+ ignore the effects of that spell on that unit.",
         flavor:
-            "The Hallowed Knights are so devout that they can deny even the magic of the realms."
+            "The Hallowed Knights are so devout that they can deny even the magic of the realms.",
+        category: AbilityCategory.BattleTrait
     };
     const holyCrusaders: Ability = {
         id: "stormcastEternalsAnvilsOfTheHeldenhammerHolyCrusaders",
@@ -3515,7 +3615,8 @@ function fixStormhosts(data: DataStoreImpl) {
         description:
             'You can use this command ability at the start of your hero phase. If you do so, pick a friendly HALLOWED KNIGHTS unit wholly within 9" of a friendly HALLOWED KNIGHTS HERO, or wholly within 18" of a friendly HALLOWED KNIGHTS HERO that is a general. Add 1 to run rolls and charge rolls for that unit until your next hero phase. In addition, until your next hero phase, that unit can run and still charge later in the same turn.',
         flavor:
-            "The Hallowed Knights are driven forward by their faith, always eager to bring Sigmar’s holy retribution to the enemies of the God-King."
+            "The Hallowed Knights are driven forward by their faith, always eager to bring Sigmar’s holy retribution to the enemies of the God-King.",
+        category: AbilityCategory.Command
     };
     override<ArmyOption>(
         data.armyOptions.stormcastEternalsHallowedKnights,
@@ -3547,7 +3648,8 @@ function fixStormhosts(data: DataStoreImpl) {
             "The Celestial Vindicators strike down their foes with a flurry of blows.",
         description:
             "You can re-roll hit rolls of 1 for attacks made by friendly CELESTIAL VINDICATORS units if they made a charge move in the same turn.",
-        id: "stormcastEternalsCelestialVindicatorsDrivenByVengeance"
+        id: "stormcastEternalsCelestialVindicatorsDrivenByVengeance",
+        category: AbilityCategory.BattleTrait
     };
     const righteousHatred: Ability = {
         name: "Righteous Hatred",
@@ -3555,7 +3657,8 @@ function fixStormhosts(data: DataStoreImpl) {
             "The Celestial Vindicators are relentless in their desire to slay the enemies of Sigmar.",
         description:
             'You can use this command ability the start of the combat phase. If you do so, you pick a friendly CELESTIAL VINDICATORS unit wholly within 9" of a friendly CELESTIAL VINDICATORS HERO, or wholly within 18" of a friendly CELESTIAL VINDICATORS HERO that is a general. Add 1 to the Attacks characteristic of that unit’s melee weapons until the end of that phase.',
-        id: "stormcastEternalsCelestialVindicatorsRighteousHatred"
+        id: "stormcastEternalsCelestialVindicatorsRighteousHatred",
+        category: AbilityCategory.Command
     };
     override<ArmyOption>(
         data.armyOptions.stormcastEternalsCelestialVindicators,
@@ -3603,7 +3706,7 @@ function fixStormhosts(data: DataStoreImpl) {
         flavor:
             "The Anvils of the Heldenhammer know that if slain, they will return to fight again.",
         name: "No True Death",
-        category: AbilityCategory.Army,
+        category: AbilityCategory.BattleTrait,
         effects: [
             {
                 targetType: TargetType.Unit,
@@ -3654,7 +3757,7 @@ function fixStormhosts(data: DataStoreImpl) {
             EXCELSIOR unit for the rest of the battle.`,
         flavor: `The Knights Excelsior take a
         cold pleasure in the deaths of their foes.`,
-        category: AbilityCategory.Army,
+        category: AbilityCategory.BattleTrait,
         name: "Storm of Annihilation"
     };
     const noMercy: Ability = {
@@ -3709,7 +3812,7 @@ function fixStormhosts(data: DataStoreImpl) {
         being used still apply).`,
         flavor: `The Celestial Warbringers use
         portents to inform their strategies in battle.`,
-        category: AbilityCategory.Army,
+        category: AbilityCategory.BattleTrait,
         name: "Fearless Foresight"
     };
     const astralConjunction: Ability = {
@@ -3761,7 +3864,7 @@ function fixStormhosts(data: DataStoreImpl) {
         flavor: `The Tempest Lords have an innate
         grasp of the flow of battle, allowing them to adapt to
         any situation at great speed.`,
-        category: AbilityCategory.Army,
+        category: AbilityCategory.BattleTrait,
         name: "Grand Strategists"
     };
     const rousingOratory: Ability = {
@@ -3813,7 +3916,7 @@ function fixStormhosts(data: DataStoreImpl) {
         flavor: `The Astral Templars are experienced
         hunters of the most horrific creatures the Mortal
         Realms have to offer.`,
-        category: AbilityCategory.Army,
+        category: AbilityCategory.BattleTrait,
         name: "Beast Stalkers"
     };
     const cuttOffTheHead: Ability = {
@@ -3899,7 +4002,7 @@ function fixAllegiance(data: DataStoreImpl) {
             "Sigmar’s finest warriors strike as if from nowhere, the building storm heralding their arrival.",
         description:
             'Instead of setting up a STORMCAST ETERNAL unit on the battlefield, you can place it to one side and say that it is set up in the Celestial Realm as a reserve unit. You can set up one reserve unit in the Celestial Realm for each unit you have set up on the battlefield. At the end of your movement phase, you can set up one or more of the reserve units in the Celestial Realm on the battlefield, more than 9" from any enemy units. Any reserve units in the Celestial Realm that are not set up on the battlefield before the start of the fourth battle round are slain.',
-        category: AbilityCategory.Army,
+        category: AbilityCategory.BattleTrait,
         effects: [{ targetType: TargetType.Friend, phase: Phase.Setup }]
     };
     const shockAndAwe: Ability = {
@@ -3909,7 +4012,7 @@ function fixAllegiance(data: DataStoreImpl) {
             "When the Stormcast Eternals arrive to reinforce their allies, their sudden appearance strikes terror into the hearts of the enemies of Sigmar.",
         description:
             "Subtract 1 from hit rolls for attacks that target friendly STORMCAST ETERNAL units that were set up on the battlefield during the same turn.",
-        category: AbilityCategory.Army,
+        category: AbilityCategory.BattleTrait,
         effects: [
             {
                 phase: Phase.Movement,
