@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {
     UnitsStore,
     Model,
@@ -40,6 +40,7 @@ import { NumberControl } from "../atoms/number-control";
 import { join } from "../helpers/react";
 import { useStores } from "../stores";
 import { Warning } from "../atoms/warning";
+import { useCallback } from "react";
 
 export interface WarscrollUnitsListProps {
     unitsStore?: UnitsStore;
@@ -71,23 +72,25 @@ const ContingentList = observer(({ unit }: { unit: WarscrollUnit }) => {
     );
 });
 
-function ExtraAbilitiesView({
-    unit,
-    onChange
-}: {
-    unit: WarscrollUnit;
-    onChange: (unit: WarscrollUnit, t: ExtraAbility) => void;
-}) {
-    return unit.availableExtraAbilities.length > 0 ? (
-        <AddButton
-            columns={extraAbilityColumns}
-            options={unit.availableExtraAbilities}
-            onChange={t => onChange(unit, t)}
-        />
-    ) : (
-        <></>
-    );
-}
+const ExtraAbilitiesView = observer(
+    ({
+        unit,
+        onChange
+    }: {
+        unit: WarscrollUnit;
+        onChange: (unit: WarscrollUnit, t: ExtraAbility) => void;
+    }) => {
+        return unit.availableExtraAbilities.length > 0 ? (
+            <AddButton
+                columns={extraAbilityColumns}
+                options={unit.availableExtraAbilities}
+                onChange={t => onChange(unit, t)}
+            />
+        ) : (
+            <></>
+        );
+    }
+);
 
 const ModelCount = observer(({ unit }: { unit: WarscrollUnit }) => {
     return (
@@ -160,6 +163,43 @@ const ModelName = observer(
     }
 );
 
+const RenderExtras = observer(({ unit }: { unit: WarscrollUnit }) => {
+    const { warscrollStore } = useStores();
+
+    const handleExtraAbilityChange = useCallback(
+        (unit: WarscrollUnit, extraAbility: ExtraAbility) => {
+            warscrollStore.addExtraAbility(unit, extraAbility);
+        },
+        [warscrollStore]
+    );
+
+    return (
+        <>
+            {join(
+                unit.extraAbilities.map(x => (
+                    <span key={x.id}>
+                        <Tooltip title={x.ability.description}>
+                            <span>{x.ability.name}</span>
+                        </Tooltip>
+                        <IconButton
+                            onClick={() =>
+                                warscrollStore.removeExtraAbility(unit, x)
+                            }
+                        >
+                            <ClearIcon />{" "}
+                        </IconButton>
+                    </span>
+                )),
+                ", "
+            )}
+            <ExtraAbilitiesView
+                unit={unit}
+                onChange={handleExtraAbilityChange}
+            />
+        </>
+    );
+});
+
 @inject("unitsStore", "warscrollStore")
 @observer
 export class WarscrollUnitsList extends React.Component<
@@ -193,7 +233,7 @@ export class WarscrollUnitsList extends React.Component<
             },
             {
                 name: "Extras",
-                text: this.renderExtras
+                text: unit => <RenderExtras unit={unit} />
             },
             {
                 name: "Points",
@@ -298,43 +338,6 @@ export class WarscrollUnitsList extends React.Component<
             this.props.warscrollStore!.addModel(unit, option);
         };
     }
-
-    private renderExtras = (unit: WarscrollUnit) => {
-        return (
-            <>
-                {join(
-                    unit.extraAbilities.map(x => (
-                        <span key={x.id}>
-                            <Tooltip title={x.ability.description}>
-                                <span>{x.ability.name}</span>
-                            </Tooltip>
-                            <IconButton
-                                onClick={() =>
-                                    this.props.warscrollStore!.removeExtraAbility(
-                                        unit,
-                                        x
-                                    )
-                                }
-                            >
-                                <ClearIcon />{" "}
-                            </IconButton>
-                        </span>
-                    )),
-                    ", "
-                )}
-                <ExtraAbilitiesView
-                    unit={unit}
-                    onChange={this.handleExtraAbilityChange}
-                />
-            </>
-        );
-    };
-    private handleExtraAbilityChange = (
-        unit: WarscrollUnit,
-        extraAbility: ExtraAbility
-    ) => {
-        this.props.warscrollStore!.addExtraAbility(unit, extraAbility);
-    };
 
     render() {
         const warscroll = this.props.warscrollStore!.warscroll;

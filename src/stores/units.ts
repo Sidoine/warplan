@@ -82,6 +82,7 @@ export interface DefenseAura {
     negateWoundsOrMortalWoundsOn6?: boolean;
     changeSaveRoll?: boolean;
     ignoreRend?: boolean;
+    ignoreRendOfMinus1?: boolean;
     healOnSave7?: number;
     bonusHitRoll?: number;
     malusHitRoll?: number;

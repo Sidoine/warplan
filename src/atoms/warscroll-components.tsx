@@ -25,6 +25,9 @@ export const useWarscrollStyles = makeStyles({
         "@media (max-width: 600px)": {
             maxHeight: "95vh",
             overflow: "auto"
+        },
+        "@media print": {
+            maxWidth: "15cm"
         }
     },
     type: {

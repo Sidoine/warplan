@@ -14,7 +14,10 @@ export function join(e: JSX.Element[], separator: string) {
 
 export function value(val: Value, defaut?: string) {
     if (val === undefined) return defaut;
-    if (typeof val === "string" || typeof val === "number") {
+    if (typeof val === "string") {
+        if (parseInt(val) + "" === val) return parseInt(val);
+        return val;
+    } else if (typeof val === "number") {
         return val;
     }
     return "✹";

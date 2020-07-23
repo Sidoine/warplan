@@ -30,9 +30,13 @@ export class OwnedModelsList extends React.Component<OwnedModelsListProps, {}> {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.props.ownedStore!.ownedModels.map(x => (
-                            <OwnedModelEdit key={x.id} model={x} />
-                        ))}
+                        {this.props
+                            .ownedStore!.ownedModels.sort((a, b) =>
+                                a.model.name > b.model.name ? 1 : -1
+                            )
+                            .map(x => (
+                                <OwnedModelEdit key={x.id} model={x} />
+                            ))}
                     </TableBody>
                 </Table>
                 <ModelsList title="Add..." />

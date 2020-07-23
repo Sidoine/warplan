@@ -91,7 +91,7 @@ export function UnitWarscroll({
                     </div>
                     <div className={classes.woundsStat}>{u.wounds}</div>
                     <div className={classes.saveStat}>
-                        {u.save && <> {value(u.save)}+</>}
+                        {(value(u.save) && <> {value(u.save)}+</>) || "-"}
                     </div>
                     <div className={classes.braveryStat}>
                         {u.bravery && <> {value(u.bravery)}</>}

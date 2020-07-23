@@ -3087,7 +3087,7 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         }
     );
     overrideAbility(
-        data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsTranslocation
+        data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsAbjuration
             .ability,
         x => {
             x.flavor =
@@ -3097,8 +3097,8 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         }
     );
     overrideAbility(
-        data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsAbjuration
-            .ability,
+        data.extraAbilities
+            .stormcastEternalsPrayersOfTheStormhostsGodKingSAspect.ability,
         x => {
             x.flavor =
                 "The priest’s appearance shifts to resemble Sigmar himself.";
@@ -3107,8 +3107,8 @@ function fixExtraAbilities(data: DataStoreImpl): void {
         }
     );
     overrideAbility(
-        data.extraAbilities
-            .stormcastEternalsPrayersOfTheStormhostsGodKingSAspect.ability,
+        data.extraAbilities.stormcastEternalsPrayersOfTheStormhostsTranslocation
+            .ability,
         x => {
             x.flavor =
                 "Calling to Sigmar’s storm above, the priest summons bolts of lightning to transport nearby warriors across the field of battle.";
@@ -3656,7 +3656,7 @@ function fixStormhosts(data: DataStoreImpl) {
         flavor:
             "The Celestial Vindicators are relentless in their desire to slay the enemies of Sigmar.",
         description:
-            'You can use this command ability the start of the combat phase. If you do so, you pick a friendly CELESTIAL VINDICATORS unit wholly within 9" of a friendly CELESTIAL VINDICATORS HERO, or wholly within 18" of a friendly CELESTIAL VINDICATORS HERO that is a general. Add 1 to the Attacks characteristic of that unit’s melee weapons until the end of that phase.',
+            'You can use this command ability the start of the combat phase. If you do so, you pick a friendly CELESTIAL VINDICATORS unit wholly within 9" of a friendly CELESTIAL VINDICATORS HERO, or wholly within 18" of a friendly CELESTIAL VINDICATORS HERO that is a general. Add 1 to the Attacks characteristic of that unit’s melee weapons until the end of that phase. You cannot pick the same unit to benefit from this command ability more than once per hero phase.',
         id: "stormcastEternalsCelestialVindicatorsRighteousHatred",
         category: AbilityCategory.Command
     };
@@ -3717,7 +3717,7 @@ function fixStormhosts(data: DataStoreImpl) {
     const heroesOfAnotherAge: Ability = {
         id: "stormcast_heroesOfAnotherAge",
         description:
-            'You can use this command ability in your hero phase. If you do so, pick a friendly ANVILS OF THE HELDENHAMMER unit wholly within 9" of a friendly ANVILS OF THE HELDENHAMMER HERO, or wholly within 18" of a friendly ANVILS OF THE HELDENHAMMER HERO that is a general. That unit can attack with all of the missile weapons it is armed with, or make a pile-in move and attack with all of the melee weapons it is armed with.',
+            'You can use this command ability in your hero phase. If you do so, pick a friendly ANVILS OF THE HELDENHAMMER unit wholly within 9" of a friendly ANVILS OF THE HELDENHAMMER HERO, or wholly within 18" of a friendly ANVILS OF THE HELDENHAMMER HERO that is a general. That unit can attack with all of the missile weapons it is armed with, or make a pile-in move and attack with all of the melee weapons it is armed with. You cannot pick the same unit to benefit from this command ability more than once per hero phase.',
         flavor:
             "The Anvils of the Heldenhammer use ancient and revered codes of battle.",
         category: AbilityCategory.Command,
