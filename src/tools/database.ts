@@ -734,7 +734,12 @@ function getUnits(db: realm) {
         result += `       ${id}: {
             id: "${id}",
             name: ${escapeQuotedString(unit.name)},
-            model: this.models.${id},
+${
+    unit.subName
+        ? `subName: ${escapeQuotedString(unit.subName)},
+            `
+        : ""
+}           model: this.models.${id},
             description: ${escapeQuotedString(unit.blurb)},
             flavor: ${escapeQuotedString(unit.about)},
             factions: [${unit.factions

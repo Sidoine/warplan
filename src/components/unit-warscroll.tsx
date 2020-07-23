@@ -100,7 +100,10 @@ export function UnitWarscroll({
                 <div className={classes.title}>
                     <div className={classes.type}>Unit warscroll</div>
                     <div className={classes.name}>
-                        {wu?.isGeneral && <StarIcon />} {u.model.name}
+                        {wu?.isGeneral && <StarIcon />} {u.name}
+                        {u.subName && (
+                            <div className={classes.subName}>{u.subName}</div>
+                        )}
                     </div>{" "}
                     {models && models.length > 0 && (
                         <div className={classes.option}>

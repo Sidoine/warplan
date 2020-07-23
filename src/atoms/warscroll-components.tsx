@@ -86,6 +86,10 @@ export const useWarscrollStyles = makeStyles({
             marginRight: 0
         }
     },
+    subName: {
+        fontSize: "1rem",
+        marginTop: "-0.5rem"
+    },
     option: {
         fontSize: "25px",
         fontStyle: "italic"

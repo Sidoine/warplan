@@ -406,6 +406,7 @@ export interface UnitStatModels {
 export interface Unit extends UnitInfos {
     id: string;
     name: string;
+    subName?: string;
     model: Model;
     size: number;
     maxSize?: number;
