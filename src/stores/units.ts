@@ -265,6 +265,7 @@ export interface WeaponOption {
 export interface EndlessSpell {
     id: string;
     name: string;
+    subName?: string;
     points: number;
     description?: string;
     abilities?: Ability[];
@@ -461,6 +462,7 @@ export interface BattalionUnit {
 export interface Battalion {
     id: string;
     name: string;
+    subName?: string;
     units: BattalionUnit[];
     description?: string;
     points: number;

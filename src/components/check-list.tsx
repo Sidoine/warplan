@@ -213,7 +213,9 @@ function UnitInfo({
     const classes = useStyle();
     return (
         <div className={classes.unit}>
-            <div className={classes.unitTitle}>{unit.definition.name}</div>
+            <div className={classes.unitTitle}>
+                {unit.definition.name} {unit.definition.subName}
+            </div>
             {unit.type === "unit" && (
                 <Stats>
                     {phase === Phase.Movement && (
