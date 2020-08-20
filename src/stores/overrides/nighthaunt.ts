@@ -217,6 +217,13 @@ function overrideAbilities(data: DataStoreImpl) {
                 "Life hangs upon but a slender thread; this incantation can sever that cord, causing healthy foes to drop like puppets shorn of their strings. Each such death increases the caster’s own vitality.";
             x.description =
                 'Lifestealer has a casting value of 7. If successfully cast, pick an enemy unit within 12" of the caster that is visible to them. That unit suffers D3 mortal wounds. For each mortal wound suffered by the enemy unit, you can heal 1 wound allocated to the caster.';
+            x.effects = [
+                {
+                    spellCastingValue: 7,
+                    targetType: TargetType.Enemy,
+                    mortalWounds: "D3"
+                }
+            ];
         }
     );
     override<Ability>(
@@ -291,6 +298,13 @@ function overrideAbilities(data: DataStoreImpl) {
                 "Forged from the shivs and cut-throat razors of a thousand serial killers, this dagger is murder made manifest.";
             x.description =
                 'After picking the bearer to fight, before they pile in you can pick one enemy model within 1" of the bearer and roll a dice; if the roll is greater than that model’s Wounds characteristic, it is slain.';
+            x.effects = [
+                {
+                    targetType: TargetType.Enemy,
+                    targetRange: 1,
+                    phase: Phase.Combat
+                }
+            ];
         }
     );
     override<Ability>(
@@ -429,6 +443,23 @@ function overrideUnits(data: DataStoreImpl) {
     overrideBladegheist(data);
     overrideGrimghastReapers(data);
     overrideGlaivewraithStalkers(data);
+    overrideMyrmournBanshees(data);
+}
+
+function overrideMyrmournBanshees(data: DataStoreImpl) {
+    addAbilityEffect(data.abilities.myrmournBansheesEthereal, {
+        targetType: TargetType.Unit,
+        defenseAura: { ignoreRend: true }
+    });
+    addAbilityEffect(data.abilities.myrmournBansheesSpellEaters, {
+        targetType: TargetType.Unit,
+        phase: Phase.Hero,
+        spellAura: {}
+    });
+    addAbilityEffect(data.abilities.myrmournBansheesFly, {
+        targetType: TargetType.Unit,
+        movementAura: { fly: true }
+    });
 }
 
 function overrideGlaivewraithStalkers(data: DataStoreImpl) {
@@ -491,6 +522,24 @@ function overrideGrimghastReapers(data: DataStoreImpl) {
         undefined,
         [data.abilities.grimghastReapersForWhomTheBellTolls]
     );
+    addAbilityEffect(data.abilities.grimghastReapersEthereal, {
+        defenseAura: { ignoreRend: true },
+        targetType: TargetType.Unit
+    });
+    addAbilityEffect(data.abilities.grimghastReapersReapedLikeCorn, {
+        targetType: TargetType.Unit,
+        attackAura: {
+            rerollFailedHits: targetConditionValue({ minModels: 5 }, 1)
+        }
+    });
+    addAbilityEffect(data.abilities.grimghastReapersExtollerOfShyish, {
+        targetType: TargetType.Unit,
+        phase: Phase.Setup
+    });
+    addAbilityEffect(data.abilities.grimghastReapersFly, {
+        targetType: TargetType.Unit,
+        movementAura: { fly: true }
+    });
 }
 
 function overrideBladegheist(data: DataStoreImpl) {
@@ -689,8 +738,25 @@ function overrideKnightOfShrouds(data: DataStoreImpl) {
     });
 }
 
+function overrideBatallion(data: DataStoreImpl) {
+    addAbilityEffect(data.abilities.shroudguardFrenziedFervour, {
+        targetType: TargetType.Friend,
+        targetRadius: 12,
+        whollyWithin: true,
+        defenseAura: {
+            negateWoundsOrMortalWoundsOn5: true
+        }
+    });
+
+    addAbilityEffect(data.abilities.chainguardHeartOfTheHorde, {
+        targetType: TargetType.Friend,
+        phase: Phase.Hero
+    });
+}
+
 export function overrideNighthaunt(data: DataStoreImpl): void {
     addBattleTraits(data);
     overrideAbilities(data);
     overrideUnits(data);
+    overrideBatallion(data);
 }

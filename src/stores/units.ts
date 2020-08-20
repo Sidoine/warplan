@@ -79,7 +79,9 @@ export interface DefenseAura {
     rerollFailedSaves?: boolean;
     bonusSave?: number;
     negateWoundsOrMortalWoundsOn3?: boolean;
+    negateWoundsOrMortalWoundsOn5?: boolean;
     negateWoundsOrMortalWoundsOn6?: boolean;
+    negateWoundsOn5?: boolean;
     changeSaveRoll?: boolean;
     ignoreRend?: boolean;
     ignoreRendOfMinus1?: boolean;
@@ -145,6 +147,7 @@ export interface AttackAuraValues {
     damageOnWoundUnmodified6?: Value;
     mortalWoundsOnHit?: Value;
     bonusDamageOnHitUnmodified6?: Value;
+    bonusDamageOnWoundUnmodified6?: Value;
     bonusRend?: Value;
     rerollHitsOn1?: Value;
     rerollWoundsOn1?: Value;

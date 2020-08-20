@@ -671,7 +671,7 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
 
     @computed
     get isBattelinesValid() {
-        return this.numberOfBattlelines === this.minBattlelines;
+        return this.numberOfBattlelines >= this.minBattlelines;
     }
 
     @computed

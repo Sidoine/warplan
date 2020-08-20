@@ -2,6 +2,14 @@ import realm from "realm";
 import * as fs from "fs";
 import * as def from "./definitions";
 import { modelNames } from "./definitions";
+import {
+    AbilityEffect,
+    TargetType,
+    Phase,
+    targetConditionValue,
+    Value,
+    SubPhase
+} from "../stores/units";
 
 //const schemaVersion = 54;
 
@@ -549,6 +557,137 @@ function getOptions(db: realm) {
     return result;
 }
 
+function getTargetCondition(blurb: string, value: Value) {
+    const match = blurb.match(/if the target unit has (\d+) or more models/);
+    if (match) {
+        return targetConditionValue({ minModels: parseInt(match[1]) }, value);
+    }
+    return value;
+}
+
+function getAbilityEffects(ability: def.Ability | def.Rule) {
+    const blurb = ability.blurb.toLowerCase();
+    let effect: AbilityEffect | undefined = undefined;
+
+    // Phase
+    if (blurb.indexOf("in your hero phase") >= 0) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Hero;
+    }
+    if (blurb.indexOf("at the start of a combat phase") >= 0) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.Before;
+    }
+
+    // Spells
+    let match = blurb.match(/has a casting value of (\d+)/);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.spellCastingValue = parseInt(match[1]);
+        effect.phase = Phase.Hero;
+    }
+
+    //Target
+    match = blurb.match(
+        /you can pick an enemy Hero within (\d+)" of this model/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Enemy };
+        effect.targetType = TargetType.Enemy;
+        effect.targetCondition = effect.targetCondition || {};
+        effect.targetCondition.keyword = "HERO";
+        effect.targetRange = parseInt(match[1]);
+    }
+
+    // Defense
+    if (blurb.indexOf("subtract 1 from hit rolls for attacks made by") >= 0) {
+        effect = effect || { targetType: TargetType.Enemy };
+        effect.attackAura = { malusHitRoll: 1 };
+    }
+
+    if (
+        blurb.indexOf(
+            "roll a d6 each time you allocate a mortal wound to this model. on a 5+, the wound is negated."
+        ) >= 0
+    ) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.defenseAura = { negateWoundsOn5: true };
+    }
+
+    if (
+        blurb.indexOf(
+            "ignore modifiers (positive or negative) when making save rolls for attacks that target this model"
+        ) >= 0
+    ) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.ignoreRend = true;
+    }
+    if (
+        blurb.indexOf(
+            "ignore modifiers (positive or negative) when making save rolls for attacks that target this unit"
+        ) >= 0
+    ) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.ignoreRend = true;
+    }
+    if (
+        blurb.indexOf(
+            "roll a D6 each time you allocate a mortal wound to this model. on a 5+, the wound is negated."
+        ) >= 0
+    ) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.negateWoundsOrMortalWoundsOn5 = true;
+    }
+
+    // Movement
+    if (ability.name === "Mount") {
+        effect = effect || { targetType: TargetType.Mount };
+    }
+    if (blurb.indexOf("this model can fly") >= 0) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.movementAura = effect.movementAura || {};
+        effect.movementAura = { fly: true };
+    }
+
+    // Attack
+    match = blurb.match(
+        /If the unmodified hit roll for an attack made with (.*) is 6, that attack inflicts (\d+) mortal wounds and the attack sequence ends \(do not make a wound or save roll\)/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetCondition = { weaponId: match[1] };
+        effect.attackAura = { mortalWoundsOnHitUnmodified6: match[2] };
+    }
+    match = blurb.match(
+        /You can re-roll failed hit rolls for attacks made with (\w+)/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetCondition = { weaponId: match[1] };
+        effect.attackAura = { rerollFailedHits: getTargetCondition(blurb, 1) };
+    }
+    match = blurb.match(
+        /If the unmodified wound roll for an attack made with a (.*) is 6, add (\d) to the Damage characteristic of that weapon for that attack/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetCondition = { weaponId: match[1] };
+        effect.attackAura = {
+            bonusDamageOnWoundUnmodified6: parseInt(match[2])
+        };
+    }
+
+    if (effect) {
+        return `            effects: [${JSON.stringify(effect)}],
+`;
+    }
+    return "";
+}
+
 function getUnitAbilities(
     abilities: def.Ability[],
     category?: AbilityCategories
@@ -570,7 +709,8 @@ function getUnitAbilities(
             result += `        category: AbilityCategory.${category},
 `;
         }
-        result += `        },
+
+        result += `${getAbilityEffects(ability)}        },
 `;
     }
     return result;
@@ -592,8 +732,8 @@ function getAbilities(db: realm) {
             id: "${id}",
             name: "${ability.name}",
             description: ${escapeQuotedString(ability.blurb)},
-            category: AbilityCategory.SpecialRule,
-        },
+            category: AbilityCategory.SpecialRule,            
+${getAbilityEffects(ability)}        },
 `;
         }
     }
@@ -612,7 +752,7 @@ function getAbilities(db: realm) {
             name: "${ability.name}",
             description: ${escapeQuotedString(ability.blurb)},
             category: AbilityCategory.SpecialRule,
-        },
+${getAbilityEffects(ability)}        },
 `;
         }
     }
