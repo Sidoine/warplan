@@ -20,7 +20,7 @@ export const useWarscrollStyles = makeStyles({
         backgroundImage: `url(${warscrollBackground})`,
         backgroundSize: "100%",
         fontFamily: "Pompei",
-        fontSize: "0.6rem",
+        fontSize: "0.8rem",
 
         "@media (max-width: 600px)": {
             maxHeight: "95vh",
@@ -60,6 +60,7 @@ export const useWarscrollStyles = makeStyles({
     },
     flavor: {
         fontWeight: "bold",
+        lineHeight: "0.9rem",
         textAlign: "center",
         marginBottom: "8px"
     },
@@ -74,10 +75,10 @@ export const useWarscrollStyles = makeStyles({
         paddingLeft: "4rem",
         marginRight: "-4rem",
         paddingRight: "4rem",
-        marginBottom: "1rem",
+        marginBottom: "0.6rem",
         border: "2px solid #8a7c32",
         lineHeight: "1.6rem",
-        fontSize: "1.4rem",
+        fontSize: "1.5rem",
         fontWeight: "bold",
         textAlign: "center",
         fontVariant: "small-caps",
@@ -91,7 +92,7 @@ export const useWarscrollStyles = makeStyles({
         marginTop: "-0.5rem"
     },
     option: {
-        fontSize: "25px",
+        fontSize: "1.1rem",
         fontStyle: "italic"
     },
     battalion: {
@@ -112,11 +113,11 @@ export const useWarscrollStyles = makeStyles({
     stats: {
         backgroundImage: `url(${warscrollLeft})`,
         backgroundRepeat: "no-repeat",
-        width: "160px",
-        height: "160px",
+        width: "128px",
+        height: "128px",
         backgroundSize: "100%",
         position: "relative",
-        fontSize: "1.4em",
+        fontSize: "14px",
         fontWeight: "bold",
         textAlign: "center",
         "@media (max-width: 600px)": {
@@ -128,24 +129,24 @@ export const useWarscrollStyles = makeStyles({
     },
     woundsStat: {
         position: "absolute",
-        left: "45px",
-        top: "70px"
+        left: "36px",
+        top: "56px"
     },
     moveStat: {
         position: "absolute",
-        left: "80px",
-        top: "40px",
+        left: "64px",
+        top: "28px",
         transform: "translate(-50%)"
     },
     saveStat: {
         position: "absolute",
-        left: "100px",
-        top: "70px"
+        left: "80px",
+        top: "56px"
     },
     braveryStat: {
         position: "absolute",
-        left: "80px",
-        top: "100px",
+        left: "64px",
+        top: "80px",
         transform: "translate(-50%)"
     },
     header: {
@@ -157,19 +158,19 @@ export const useWarscrollStyles = makeStyles({
         }
     },
     image: {
-        width: "160px",
-        height: "160px",
+        width: "128px",
+        height: "128px",
         background: `url(${warscrollRight})`,
         backgroundSize: "100%",
         position: "relative",
         backgroundRepeat: "no-repeat",
         ["& > img"]: {
             position: "absolute",
-            left: "12px",
-            top: "28px",
-            width: "120px",
-            height: "121px",
-            borderRadius: "100px"
+            left: "9px",
+            top: "22px",
+            width: "96px",
+            height: "96px",
+            borderRadius: "96px"
         },
         "@media (max-width: 600px)": {
             display: "none"
@@ -190,7 +191,8 @@ export const useWarscrollStyles = makeStyles({
         },
         "@media (max-width: 600px)": {
             columnCount: 1
-        }
+        },
+        fontSize: "0.75rem"
     },
     abilityName: {
         fontWeight: "bold"
@@ -218,6 +220,7 @@ export const useWarscrollStyles = makeStyles({
         display: "flex",
         border: "2px solid #8a7c32",
         marginTop: "5px",
+        fontSize: "0.75rem",
         ["& > div"]: {
             padding: "5px"
         }

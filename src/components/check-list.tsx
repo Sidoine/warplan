@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { ReactNode } from "react";
 import {
     WarscrollStore,
     WarscrollUnit,
@@ -20,10 +20,11 @@ import {
     PhaseSide,
     isUnitInPhase,
     isAttackInPhase,
-    isAbilityInPhase
+    isAbilityInPhase,
+    isEffectInPhase
 } from "../stores/battle";
 import { value } from "../helpers/react";
-import { Chip, makeStyles, Badge } from "@material-ui/core";
+import { Chip, makeStyles } from "@material-ui/core";
 import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
 import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from "@material-ui/icons/Group";
@@ -31,7 +32,14 @@ import ReplayIcon from "@material-ui/icons/Replay";
 import { useStores } from "../stores";
 import VerticalAlignTopIcon from "@material-ui/icons/VerticalAlignTop";
 import { distinct } from "../helpers/algo";
-import { SkullIcon, SpellIcon, SaveIcon } from "../atoms/icons";
+import {
+    SkullIcon,
+    SpellIcon,
+    SaveIcon,
+    BullseyeArrowIcon,
+    SwordIcon
+} from "../atoms/icons";
+import warscrollSeparator from "../assets/ws-separator.png";
 
 const useStyle = makeStyles({
     section: {
@@ -40,8 +48,23 @@ const useStyle = makeStyles({
             breakBefore: "avoid"
         }
     },
+    subSectionContent: {
+        columnCount: 2,
+        fontSize: "1rem"
+    },
     unitTitle: {
-        fontWeight: "bold"
+        fontWeight: "bold",
+        fontVariant: "small-caps",
+        "&::before": {
+            content: "' '",
+            backgroundImage: `url(${warscrollSeparator})`,
+            backgroundSize: "100%",
+            width: "6px",
+            height: "6px",
+            display: "inline-block",
+            marginRight: "5px",
+            marginBottom: "1px"
+        }
     },
     unit: {
         marginBottom: "0.5rem"
@@ -57,19 +80,39 @@ const useStyle = makeStyles({
     },
     stats: {
         display: "flex",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        "&:odd": {
+            backgroundColor: "#d0c89a"
+        }
     },
     statsTitle: {
-        width: "10rem"
+        width: "6rem",
+        backgroundColor: "#e6dccb",
+        padding: "0.05rem",
+        textAlign: "right",
+        fontVariant: "small-caps"
     },
     statKey: {
         backgroundColor: "#e6dccb",
-        width: "2rem",
-        border: "1px solid #e6dccb"
+        width: "1.2rem",
+        border: "1px solid #e6dccb",
+        padding: "0.05rem",
+        textAlign: "center",
+        fontSize: "0.8rem"
     },
     statValue: {
-        width: "2rem",
-        border: "1px solid #e6dccb"
+        width: "1.5rem",
+        border: "1px solid #e6dccb",
+        padding: "0.05rem",
+        textAlign: "center"
+    },
+    badgedIcon: {
+        fontSize: "75%",
+        verticalAlign: "baseline",
+        display: "inline-block"
+    },
+    badged: {
+        fontSize: "1rem"
     }
 });
 
@@ -100,25 +143,45 @@ function Stat(props: { name: string; value: Value }) {
     );
 }
 
+function BadgedIcon({
+    badge,
+    children
+}: {
+    badge: ReactNode;
+    children: ReactNode;
+}) {
+    const classes = useStyle();
+    if (badge) {
+        return (
+            <span className={classes.badged}>
+                {children}
+                <span className={classes.badgedIcon}>{badge}</span>
+            </span>
+        );
+    }
+    return <>{children}</>;
+}
 function TargetView({ targetType }: { targetType: TargetType }) {
     const isUnit =
         (targetType &
             (TargetType.Model | TargetType.Mount | TargetType.Weapon)) ==
         0;
     return (
-        <Badge
-            badgeContent={(targetType & TargetType.Enemy) > 0 && <SkullIcon />}
+        <BadgedIcon
+            badge={(targetType & TargetType.Enemy) > 0 && <SkullIcon />}
         >
             {isUnit && <GroupIcon />}
             {(targetType & TargetType.Model) > 0 && <PersonIcon />}
-        </Badge>
+        </BadgedIcon>
     );
 }
 
 export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
+    if (2 === 1 + 1) return <></>;
     return (
         <>
             <Chip
+                size="medium"
                 label={
                     <>
                         <TargetView targetType={effect.targetType} />
@@ -147,6 +210,12 @@ export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
                     color="primary"
                     label={
                         <>
+                            {effect.defenseAura.phase === Phase.Shooting && (
+                                <BullseyeArrowIcon />
+                            )}
+                            {effect.defenseAura.phase === Phase.Combat && (
+                                <SwordIcon />
+                            )}
                             {effect.defenseAura.rerollSavesOn1 && (
                                 <>
                                     <SaveIcon />
@@ -191,12 +260,12 @@ function AbilityInfo({
         <div>
             <i className={classes.abilityName}>{ability.name}</i> :{" "}
             {ability.description}
-            {/* {ability.effects &&
+            {ability.effects &&
                 ability.effects
                     .filter(x => isEffectInPhase(x, phase, unit, side))
                     .map((x, index) => (
                         <AbilityEffectView key={index} effect={x} />
-                    ))} */}
+                    ))}
         </div>
     );
 }
@@ -276,26 +345,36 @@ function SubPhaseInfo({
     phase: Phase;
     side?: PhaseSide;
 }) {
+    const classes = useStyle();
     return (
         <section>
             {(side === PhaseSide.Defense) === true && <h2>Defense</h2>}
             {side === PhaseSide.Attack && <h2>Attack</h2>}
-            <ul>
-                {warscroll.abilities
-                    .filter(x => isAbilityInPhase(x, phase, undefined, side))
-                    .map(x => (
-                        <AbilityInfo
+            <div className={classes.subSectionContent}>
+                <div>
+                    {warscroll.abilities
+                        .filter(x =>
+                            isAbilityInPhase(x, phase, undefined, side)
+                        )
+                        .map(x => (
+                            <AbilityInfo
+                                key={x.id}
+                                side={side}
+                                ability={x}
+                                phase={phase}
+                            />
+                        ))}
+                </div>
+                <div>
+                    {getPhaseUnits(warscroll.items, phase, side).map(x => (
+                        <UnitInfo
                             key={x.id}
-                            side={side}
-                            ability={x}
+                            unit={x}
                             phase={phase}
+                            side={side}
                         />
                     ))}
-            </ul>
-            <div>
-                {getPhaseUnits(warscroll.items, phase, side).map(x => (
-                    <UnitInfo key={x.id} unit={x} phase={phase} side={side} />
-                ))}
+                </div>
             </div>
         </section>
     );
@@ -322,6 +401,7 @@ function PhaseInfo({
     phase: Phase;
     warscroll: Warscroll;
 }) {
+    const classes = useStyle();
     if (phase !== Phase.Setup) {
         if (phase === Phase.Shooting || phase === Phase.Combat) {
             if (
@@ -334,12 +414,11 @@ function PhaseInfo({
         }
     }
     return (
-        <section key={phase}>
+        <section className={classes.section}>
             <h1>{getPhaseName(phase)}</h1>
             {phase === Phase.Setup && <div>{warscroll.description}</div>}
             {(phase === Phase.Shooting || phase === Phase.Combat) && (
                 <>
-                    {" "}
                     <SubPhaseInfo
                         warscroll={warscroll}
                         phase={phase}
@@ -381,7 +460,9 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: Warscroll }) {
                 )
                 .map((x, i) => (
                     <div key={i}>
-                        <i>{x[0].definition.name}</i>
+                        <i>
+                            {x[0].definition.name} {x[0].definition.subName}
+                        </i>{" "}
                         <strong>{x[1].name}</strong> {x[1].description}
                     </div>
                 ))}

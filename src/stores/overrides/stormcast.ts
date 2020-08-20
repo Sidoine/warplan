@@ -5,7 +5,7 @@ import {
     Phase,
     SubPhase,
     TargetType,
-    conditionValue,
+    targetConditionValue,
     Allegiance,
     Ability,
     ArmyOption,
@@ -394,7 +394,9 @@ function fixUnits(data: DataStoreImpl): void {
         );
         addAbilityEffect(data.abilities.liberatorsLayLowTheTyrants, {
             targetType: TargetType.Unit,
-            attackAura: { bonusHitRoll: conditionValue({ minWounds: 5 }, 1) }
+            attackAura: {
+                bonusHitRoll: targetConditionValue({ minWounds: 5 }, 1)
+            }
         });
         addAbilityEffect(data.abilities.liberatorsLiberatorPrime, {
             targetType: TargetType.Model,
@@ -504,7 +506,7 @@ function fixUnits(data: DataStoreImpl): void {
             targetCondition: { rangedWeapon: true },
             attackAura: {
                 phase: Phase.Shooting,
-                rerollHitsOn1: conditionValue({ keyword: "CHAOS" }, 1)
+                rerollHitsOn1: targetConditionValue({ keyword: "CHAOS" }, 1)
             }
         });
         addAbilityEffect(data.abilities.judicatorsThunderboltCrossbow, {
@@ -1171,7 +1173,9 @@ function fixUnits(data: DataStoreImpl): void {
         });
         addAbilityEffect(data.abilities.neaveBlacktalonNemesis, {
             targetType: TargetType.Model,
-            attackAura: { bonusDamage: conditionValue({ keyword: "HERO" }, 1) }
+            attackAura: {
+                bonusDamage: targetConditionValue({ keyword: "HERO" }, 1)
+            }
         });
         addAbilityEffect(data.abilities.neaveBlacktalonWindrider, {
             targetType: TargetType.Model,
@@ -1466,7 +1470,7 @@ function fixUnits(data: DataStoreImpl): void {
                 phase: Phase.Combat,
                 targetType: TargetType.Friend,
                 attackAura: {
-                    rerollFailedHits: true
+                    rerollFailedHits: 1
                 },
                 targetCondition: {
                     anyKeyword: ["DRACOTH", "STARDRAKE"]
@@ -1514,7 +1518,7 @@ function fixUnits(data: DataStoreImpl): void {
         addAbilityEffect(data.abilities.drakeswornTemplarStormlance, {
             targetType: TargetType.Weapon,
             attackAura: {
-                mortalWoundsOnHitUnmodified6: conditionValue(
+                mortalWoundsOnHitUnmodified6: targetConditionValue(
                     { keyword: "MONSTER" },
                     "D6"
                 )
@@ -2085,7 +2089,7 @@ function fixUnits(data: DataStoreImpl): void {
             targetType: TargetType.Unit,
             phase: Phase.Combat,
             choice: "Weapons",
-            attackAura: { rerollFailedHits: true }
+            attackAura: { rerollFailedHits: 1 }
         });
         addAbilityEffect(data.abilities.sequitorsSequitorAethericChannelling, {
             targetType: TargetType.Unit,
@@ -2274,7 +2278,7 @@ function fixUnits(data: DataStoreImpl): void {
             targetType: TargetType.Unit,
             attackAura: {
                 phase: Phase.Shooting,
-                numberOfHitsOnUnmodified6: conditionValue(
+                numberOfHitsOnUnmodified6: targetConditionValue(
                     { anyKeyword: ["DAEMON", "NIGHTHAUNT"] },
                     "D3"
                 )
@@ -3401,7 +3405,7 @@ function overrideAethericAspects(data: DataStoreImpl) {
                     targetType: TargetType.Enemy,
                     phase: Phase.Setup,
                     attackAura: {
-                        rerollFailedHits: true,
+                        rerollFailedHits: 1,
                         rerollFailedWounds: true
                     }
                 }

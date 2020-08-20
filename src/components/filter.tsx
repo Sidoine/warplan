@@ -57,7 +57,6 @@ export class Filter extends React.Component<FilterProps> {
         return (
             <Card>
                 <CardContent>
-                    {" "}
                     <Grid container wrap="wrap" spacing={2}>
                         <Grid item>Filter</Grid>
                         <Grid item>

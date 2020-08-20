@@ -5,9 +5,17 @@ import {
     Allegiance,
     TargetType,
     Phase,
-    SubPhase
+    SubPhase,
+    targetConditionValue,
+    orValue,
+    conditionValue
 } from "../units";
-import { override, overrideAbility, setAttackAsUpgrade } from "./tools";
+import {
+    override,
+    overrideAbility,
+    setAttackAsUpgrade,
+    addAbilityEffect
+} from "./tools";
 
 function addBattleTraits(data: DataStoreImpl) {
     const auraOfDread: Ability = {
@@ -17,7 +25,13 @@ function addBattleTraits(data: DataStoreImpl) {
         description:
             'Subtract 1 from the Bravery characteristic of enemy units while they are within 6" of any friendly NIGHTHAUNT units.',
         name: "Aura of Dread",
-        category: AbilityCategory.BattleTrait
+        category: AbilityCategory.BattleTrait,
+        effects: [
+            {
+                targetType: TargetType.Enemy,
+                battleShockAura: { bonusBravery: -1 }
+            }
+        ]
     };
     const deathlessSprits: Ability = {
         id: "nighthaunt_deathlessspritis",
@@ -26,7 +40,13 @@ function addBattleTraits(data: DataStoreImpl) {
             "The spirit forms of Nighthaunt warriors are made more formidable by the presence of their lords and masters.",
         description:
             'Roll a dice each time you allocate a wound or mortal wound to a friendly NIGHTHAUNT model from a unit wholly within 12" of your general or a friendly NIGHTHAUNT HERO. On a 6+, that wound or mortal wound is negated.',
-        category: AbilityCategory.BattleTrait
+        category: AbilityCategory.BattleTrait,
+        effects: [
+            {
+                targetType: TargetType.Friend,
+                defenseAura: { negateWoundsOrMortalWoundsOn6: true }
+            }
+        ]
     };
     const fromTheUnderworldsTheyCome: Ability = {
         id: "nighthaunt_fromtheunderworldstheycome",
@@ -35,7 +55,14 @@ function addBattleTraits(data: DataStoreImpl) {
             "None is safe from Nagash’s vengeance, for the Nighthaunts can be summoned forth from the underworlds by their spectral overseers, appearing as if from nowhere to assail their prey.",
         description:
             'Instead of setting up a NIGHTHAUNT unit on the battlefield, you can place it to one side and say that it is set up in the underworlds as a reserve unit. You can set up one unit in the underworlds for each unit you set up on the battlefield. At the end of your movement phase you can set up any of these units more than 9" from any enemy models. This counts as their move for that turn. Any units which are not set up on the battlefield before the start of the fourth battle round are slain.',
-        category: AbilityCategory.BattleTrait
+        category: AbilityCategory.BattleTrait,
+        effects: [
+            {
+                targetType: TargetType.Friend,
+                phase: Phase.Movement,
+                subPhase: SubPhase.After
+            }
+        ]
     };
     const feedOnTerror: Ability = {
         id: "nighthaunt_feedonterror",
@@ -44,7 +71,13 @@ function addBattleTraits(data: DataStoreImpl) {
             "The lords of the Nighthaunts are strengthened by the fear they sow, and can drink deep of this uncontrolled emotion and siphon fresh strength.",
         description:
             'Each time an enemy unit fails a battleshock test, pick one friendly NIGHTHAUNT HERO within 6" of that enemy unit. Heal 1 wound that has been allocated to that HERO.',
-        category: AbilityCategory.BattleTrait
+        category: AbilityCategory.BattleTrait,
+        effects: [
+            {
+                targetType: TargetType.Friend,
+                phase: Phase.Battleshock
+            }
+        ]
     };
     const waveOfTerror: Ability = {
         id: "nighthaunt_waveofterror",
@@ -53,7 +86,13 @@ function addBattleTraits(data: DataStoreImpl) {
             "On many occasions, entire battlelines have been overrun by a swarming Nighthaunt host without even raising a blade in their own defence.",
         description:
             "If you make an unmodified charge roll of 10+ for a friendly NIGHTHAUNT unit, it can fight immediately after you complete the charge move. This does not stop the unit from being picked to fight in the combat phase of the same turn.",
-        category: AbilityCategory.BattleTrait
+        category: AbilityCategory.BattleTrait,
+        effects: [
+            {
+                targetType: TargetType.Friend,
+                phase: Phase.Charge
+            }
+        ]
     };
 
     const spectralSummons: Ability = {
@@ -63,7 +102,13 @@ function addBattleTraits(data: DataStoreImpl) {
             "Nighthaunt commander can call his ghostly minions to his side in an instant, wherever they may be.",
         description:
             'You can use this command ability at the start of your movement phase. If you do so, pick a friendly NIGHTHAUNT unit that is on the battlefield. Remove that unit from the battlefield, and then set it up wholly within 12" of your general and more than 9" from any enemy models. This counts as their move for that movement phase.',
-        category: AbilityCategory.Command
+        category: AbilityCategory.Command,
+        effects: [
+            {
+                targetType: TargetType.Friend,
+                phase: Phase.Movement
+            }
+        ]
     };
 
     override<Allegiance>(
@@ -133,6 +178,17 @@ function overrideAbilities(data: DataStoreImpl) {
                 "The dark will and deathly power of this spirit are like a siren call, an unseen signal that beckons to others from beyond the grave.";
             x.description =
                 'At the start of your hero phase, you can pick a friendly SUMMONABLE NIGHTHAUNT unit within 9" of this general and return D3 slain models to that unit. The returning models must be set up within 9" of this general.';
+            x.effects = [
+                {
+                    phase: Phase.Hero,
+                    subPhase: SubPhase.Before,
+                    targetType: TargetType.Friend,
+                    targetCondition: {
+                        allKeywords: ["NIGHTHAUNT", "SUMMONABLE"]
+                    },
+                    targetRange: 9
+                }
+            ];
         }
     );
 
@@ -189,6 +245,15 @@ function overrideAbilities(data: DataStoreImpl) {
                 "The correct sorcerous incantations can create a temporary link between a powerful Nighthaunt and the underworlds, where it can be restored by drawing upon the amethyst energies of Shyish.";
             x.description =
                 'Spectral Tether has a casting value of 6. If successfully cast, pick a friendly NIGHTHAUNT HERO within 12" of the caster. Heal D3 wounds that have been allocated to that unit.';
+            x.effects = [
+                {
+                    spellCastingValue: 6,
+                    targetType: TargetType.Friend,
+                    targetCondition: { allKeywords: ["NIGHTHAUNT", "HERO"] },
+                    targetRange: 12,
+                    heal: "D3"
+                }
+            ];
         }
     );
 
@@ -266,6 +331,16 @@ function overrideAbilities(data: DataStoreImpl) {
                 "A chill gale blows ever behind the wearer of this dark trinket, carrying them into battle on gusts of suffocating air.";
             x.description =
                 'You can add 3" to normal moves made by friendly NIGHTHAUNT units that are wholly within 12" of the bearer at the start of that normal move.';
+            x.effects = [
+                {
+                    targetType: TargetType.Friend,
+                    movementAura: {
+                        bonusMove: 3
+                    },
+                    targetRadius: 12,
+                    whollyWithin: true
+                }
+            ];
         }
     );
     override<Ability>(
@@ -335,24 +410,92 @@ function overrideAbilities(data: DataStoreImpl) {
                 "The malignant light of Nagashizzar burns within this fell lantern with even greater intensity.";
             x.description =
                 "If the bearer successfully casts the Spectral Lure spell and it is not unbound, instead of the normal effects of the spell, you can either heal D6+3 wounds that have been allocated to the target unit or, if no wounds have been allocated to that unit, you can return a number of slain models to it that have a combined Wounds characteristic equal to or less than D6+3.";
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    phase: Phase.Hero
+                }
+            ];
         }
     );
 }
 
 function overrideUnits(data: DataStoreImpl) {
-    // Knight of Shrouds
-    override<Ability>(
-        data.abilities.knightOfShroudsEthereal,
-        x => (x.effects = [{ defenseAura: {}, targetType: TargetType.Model }])
-    );
-    override<Ability>(
-        data.abilities.knightOfShroudsStolenHours,
-        x => (x.effects = [{ attackAura: {}, targetType: TargetType.Model }])
-    );
+    overrideKnightOfShroudsOnEtherealSteed(data);
+    overrideKnightOfShrouds(data);
+    overrideChainrasps(data);
+    overrideSpiritTorment(data);
+    overrideGuardianOfSoulsWithNightmareLantern(data);
+    overrideBladegheist(data);
+    overrideGrimghastReapers(data);
+    overrideGlaivewraithStalkers(data);
+}
 
-    // Chainrasps
+function overrideGlaivewraithStalkers(data: DataStoreImpl) {
+    addAbilityEffect(data.abilities.glaivewraithStalkersEthereal, {
+        targetType: TargetType.Unit,
+        defenseAura: { ignoreRend: true }
+    });
+    addAbilityEffect(data.abilities.glaivewraithStalkersFly, {
+        targetType: TargetType.Unit,
+        movementAura: { fly: true }
+    });
+    addAbilityEffect(data.abilities.glaivewraithStalkersThePointOfDeath, {
+        targetType: TargetType.Unit,
+        attackAura: {
+            rerollFailedHits: orValue(
+                targetConditionValue({ hasCharged: true }, 1),
+                conditionValue({ hasCharged: true }, 1)
+            )
+        }
+    });
+}
+
+function overrideKnightOfShroudsOnEtherealSteed(data: DataStoreImpl) {
+    addAbilityEffect(data.abilities.knightOfShroudsOnEtherealSteedEthereal, {
+        targetType: TargetType.Unit,
+        defenseAura: { ignoreRend: true }
+    });
+    addAbilityEffect(data.abilities.knightOfShroudsOnEtherealSteedStolenHours, {
+        targetType: TargetType.Model,
+        attackAura: {}
+    });
+    addAbilityEffect(data.abilities.knightOfShroudsOnEtherealSteedMount, {
+        targetType: TargetType.Model,
+        phase: Phase.Setup
+    });
+    addAbilityEffect(data.abilities.knightOfShroudsOnEtherealSteedFly, {
+        targetType: TargetType.Model,
+        movementAura: { fly: true }
+    });
+    addAbilityEffect(
+        data.abilities.knightOfShroudsOnEtherealSteedLordOfGheists,
+        {
+            targetType: TargetType.Unit,
+            targetRange: 18,
+            whollyWithin: true,
+            phase: Phase.Combat,
+            attackAura: {
+                bonusAttacks: 1,
+                phase: Phase.Combat
+            }
+        }
+    );
+}
+
+function overrideGrimghastReapers(data: DataStoreImpl) {
+    setAttackAsUpgrade(
+        data.units.grimghastReapers,
+        data.attacks.grimghastReapersDeathKnell,
+        data.attacks.grimghastReapersSlasherScythe,
+        undefined,
+        [data.abilities.grimghastReapersForWhomTheBellTolls]
+    );
+}
+
+function overrideBladegheist(data: DataStoreImpl) {
     overrideAbility(
-        data.abilities.chainraspHordeEthereal,
+        data.abilities.bladegheistRevenantsEthereal,
         x =>
             (x.effects = [
                 {
@@ -362,35 +505,85 @@ function overrideUnits(data: DataStoreImpl) {
             ])
     );
     overrideAbility(
-        data.abilities.chainraspHordeChillingHorde,
-        x =>
-            (x.effects = [
-                {
-                    targetType: TargetType.Model,
-                    attackAura: { rerollWoundsOn1: 1 }
-                }
-            ])
-    );
-    overrideAbility(
-        data.abilities.chainraspHordeDreadwarden,
-        x =>
-            (x.effects = [
-                {
-                    targetType: TargetType.Model,
-                    attackAura: { bonusAttacks: 1 },
-                    battleShockAura: { bonusBravery: 4 }
-                }
-            ])
-    );
-    overrideAbility(
-        data.abilities.chainraspHordeFly,
+        data.abilities.bladegheistRevenantsFly,
         x =>
             (x.effects = [
                 { targetType: TargetType.Model, movementAura: { fly: true } }
             ])
     );
+    overrideAbility(
+        data.abilities.bladegheistRevenantsFearfulFrenzy,
+        x =>
+            (x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    condition: {
+                        inRangeOf: {
+                            friendly: true,
+                            range: 12,
+                            keyword: ["CHAINGHAST", "SPIRIT TORMENT"]
+                        }
+                    },
+                    attackAura: { rerollFailedHits: 1 }
+                }
+            ])
+    );
+    overrideAbility(
+        data.abilities.bladegheistRevenantsWhirlingDeath,
+        x =>
+            (x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    movementAura: { allowChargeAfterRunOrRetreat: true }
+                },
+                {
+                    targetType: TargetType.Unit,
+                    attackAura: { bonusAttacks: 1 },
+                    condition: { hasCharged: true }
+                }
+            ])
+    );
+}
 
-    // Spirit Torment
+function overrideGuardianOfSoulsWithNightmareLantern(data: DataStoreImpl) {
+    overrideAbility(
+        data.abilities.guardianOfSoulsWithNightmareLanternEthereal,
+        x =>
+            (x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    defenseAura: { ignoreRend: true }
+                }
+            ])
+    );
+    overrideAbility(
+        data.abilities.guardianOfSoulsWithNightmareLanternFly,
+        x =>
+            (x.effects = [
+                { targetType: TargetType.Model, movementAura: { fly: true } }
+            ])
+    );
+    overrideAbility(
+        data.abilities.guardianOfSoulsWithNightmareLanternNightmareLantern,
+        x =>
+            (x.effects = [
+                {
+                    targetType: TargetType.Friend,
+                    attackAura: { bonusWoundRoll: 1 }
+                }
+            ])
+    );
+    overrideAbility(
+        data.abilities.guardianOfSoulsWithNightmareLanternSpectralLure,
+        x => {
+            x.category = AbilityCategory.Spell;
+            x.spellCastingValue = 6;
+            x.effects = [{ targetType: TargetType.Friend, phase: Phase.Hero }];
+        }
+    );
+}
+
+function overrideSpiritTorment(data: DataStoreImpl) {
     overrideAbility(
         data.abilities.spiritTormentEthereal,
         x =>
@@ -429,10 +622,11 @@ function overrideUnits(data: DataStoreImpl) {
                 }
             ])
     );
+}
 
-    // Guardian of souls with nightmare lanter
+function overrideChainrasps(data: DataStoreImpl) {
     overrideAbility(
-        data.abilities.guardianOfSoulsWithNightmareLanternEthereal,
+        data.abilities.chainraspHordeEthereal,
         x =>
             (x.effects = [
                 {
@@ -442,90 +636,57 @@ function overrideUnits(data: DataStoreImpl) {
             ])
     );
     overrideAbility(
-        data.abilities.guardianOfSoulsWithNightmareLanternFly,
-        x =>
-            (x.effects = [
-                { targetType: TargetType.Model, movementAura: { fly: true } }
-            ])
-    );
-    overrideAbility(
-        data.abilities.guardianOfSoulsWithNightmareLanternNightmareLantern,
-        x =>
-            (x.effects = [
-                {
-                    targetType: TargetType.Friend,
-                    attackAura: { bonusWoundRoll: 1 }
-                }
-            ])
-    );
-    overrideAbility(
-        data.abilities.guardianOfSoulsWithNightmareLanternSpectralLure,
-        x => {
-            x.category = AbilityCategory.Spell;
-            x.spellCastingValue = 6;
-            x.effects = [{ targetType: TargetType.Friend, phase: Phase.Hero }];
-        }
-    );
-
-    // Bladegheist Revenants
-    overrideAbility(
-        data.abilities.bladegheistRevenantsEthereal,
+        data.abilities.chainraspHordeChillingHorde,
         x =>
             (x.effects = [
                 {
                     targetType: TargetType.Model,
-                    defenseAura: { ignoreRend: true }
+                    attackAura: { rerollWoundsOn1: 1 }
                 }
             ])
     );
     overrideAbility(
-        data.abilities.bladegheistRevenantsFly,
-        x =>
-            (x.effects = [
-                { targetType: TargetType.Model, movementAura: { fly: true } }
-            ])
-    );
-    overrideAbility(
-        data.abilities.bladegheistRevenantsFearfulFrenzy,
+        data.abilities.chainraspHordeDreadwarden,
         x =>
             (x.effects = [
                 {
-                    targetType: TargetType.Unit,
-                    condition: {
-                        inRangeOf: {
-                            friendly: true,
-                            range: 12,
-                            keyword: ["CHAINGHAST", "SPIRIT TORMENT"]
-                        }
-                    },
-                    attackAura: { rerollFailedHits: true }
-                }
-            ])
-    );
-    overrideAbility(
-        data.abilities.bladegheistRevenantsWhirlingDeath,
-        x =>
-            (x.effects = [
-                {
-                    targetType: TargetType.Unit,
-                    movementAura: { allowChargeAfterRunOrRetreat: true }
-                },
-                {
-                    targetType: TargetType.Unit,
+                    targetType: TargetType.Model,
                     attackAura: { bonusAttacks: 1 },
-                    condition: { hasCharged: true }
+                    battleShockAura: { bonusBravery: 4 }
                 }
             ])
     );
-
-    // Grimghast Reapers
-    setAttackAsUpgrade(
-        data.units.grimghastReapers,
-        data.attacks.grimghastReapersDeathKnell,
-        data.attacks.grimghastReapersSlasherScythe,
-        undefined,
-        [data.abilities.grimghastReapersForWhomTheBellTolls]
+    overrideAbility(
+        data.abilities.chainraspHordeFly,
+        x =>
+            (x.effects = [
+                { targetType: TargetType.Model, movementAura: { fly: true } }
+            ])
     );
+}
+
+function overrideKnightOfShrouds(data: DataStoreImpl) {
+    override<Ability>(
+        data.abilities.knightOfShroudsEthereal,
+        x => (x.effects = [{ defenseAura: {}, targetType: TargetType.Model }])
+    );
+    override<Ability>(
+        data.abilities.knightOfShroudsStolenHours,
+        x => (x.effects = [{ attackAura: {}, targetType: TargetType.Model }])
+    );
+    addAbilityEffect(data.abilities.knightOfShroudsFly, {
+        targetType: TargetType.Unit,
+        movementAura: { fly: true }
+    });
+    addAbilityEffect(data.abilities.knightOfShroudsSpectralOverseer, {
+        castMode: "command",
+        targetType: TargetType.Friend,
+        targetRadius: 12,
+        whollyWithin: true,
+        attackAura: {
+            bonusHitRoll: 1
+        }
+    });
 }
 
 export function overrideNighthaunt(data: DataStoreImpl): void {

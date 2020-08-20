@@ -233,7 +233,7 @@ test("numberOfHitsOnHit", testattackaura({ numberOfHitsOnHit: 2 }, 250 / 900));
 // 900 attacks: 300 hits et 600 non-hits qui rerollés donnent 200 hits, soit un total de 500 hits, donc 250 wounds, donc 5/6*250 MW
 test(
     "rerollFailedHits",
-    testattackaura({ rerollFailedHits: true }, ((5 / 6) * 250) / 900)
+    testattackaura({ rerollFailedHits: 1 }, ((5 / 6) * 250) / 900)
 );
 
 // 900 attacks: 300 hits, 150 wounds donc 150 wounds, 150 MW

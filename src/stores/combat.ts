@@ -4,6 +4,8 @@ import {
     AbilityEffect,
     isRatioValue,
     isSumValue,
+    isTargetConditionValue,
+    isOrValue,
     isConditionValue
 } from "./units";
 import { targetEnemy, checkCondition } from "./stats";
@@ -21,7 +23,11 @@ export function rolls(faces: number, rolls: number) {
     return result;
 }
 
-export function getValue(formula: Value, target?: UnitState): number {
+export function getValue(
+    formula: Value,
+    target?: UnitState,
+    unit?: UnitState
+): number {
     if (
         formula === undefined ||
         formula === "-" ||
@@ -62,9 +68,17 @@ export function getValue(formula: Value, target?: UnitState): number {
         return (
             getValue(formula.value1, target) + getValue(formula.value2, target)
         );
-    } else if (isConditionValue(formula)) {
+    } else if (isTargetConditionValue(formula)) {
         if (target && checkCondition(formula.targetCondition, target))
             return getValue(formula.value, target);
+        return 0;
+    } else if (isOrValue(formula)) {
+        const left = getValue(formula.left, target);
+        if (left) return left;
+        return getValue(formula.right, target);
+    } else if (isConditionValue(formula)) {
+        if (unit && checkCondition(formula.condition, unit))
+            return getValue(formula.value, unit);
         return 0;
     }
 
@@ -101,6 +115,14 @@ export function rollValue(formula: Value, howMany: number): number {
             rollValue(formula.value1, howMany) +
             rollValue(formula.value2, howMany)
         );
+    } else if (isTargetConditionValue(formula)) {
+        return rollValue(formula.value, howMany);
+    } else if (isOrValue(formula)) {
+        const left = rollValue(formula.left, howMany);
+        if (!left) {
+            return rollValue(formula.right, howMany);
+        }
+        return left;
     } else if (isConditionValue(formula)) {
         return rollValue(formula.value, howMany);
     }

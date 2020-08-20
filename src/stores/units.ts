@@ -103,6 +103,7 @@ export interface MovementAura {
     allowChargeAfterRunOrRetreat?: boolean;
     changeRunRoll?: boolean;
     windrider?: boolean;
+    bonusMove?: Value;
 }
 
 export interface ChargeAura {
@@ -118,6 +119,7 @@ export interface TargetCondition {
     minModels?: Value;
     keyword?: string;
     anyKeyword?: string[];
+    allKeywords?: string[];
     hasCharged?: boolean;
     hasNotCharged?: boolean;
     hasMoved?: boolean;
@@ -148,10 +150,10 @@ export interface AttackAuraValues {
     rerollWoundsOn1?: Value;
     bonusRendOnWound6OrMore?: Value;
     rangeBonus?: Value;
+    rerollFailedHits?: Value;
 }
 
 export interface AttackAuraBooleans {
-    rerollFailedHits?: boolean;
     rerollFailedWounds?: boolean;
     changeHitRoll?: boolean;
     changeWoundRoll?: boolean;
@@ -299,7 +301,9 @@ export type Value =
     | undefined
     | RatioValue
     | SumValue
-    | ConditionValue;
+    | TargetConditionValue
+    | ConditionValue
+    | OrValue;
 
 export function getValueRatio(value: Value, ratio?: number): Value {
     if (ratio !== undefined && value !== undefined) {
@@ -330,6 +334,8 @@ export const enum ValueType {
     DamageColumn,
     SumValue,
     RatioValue,
+    TargetCondition,
+    Or,
     Condition
 }
 
@@ -351,10 +357,22 @@ export interface RatioValue {
     ratio: number;
 }
 
+export interface TargetConditionValue {
+    type: ValueType.TargetCondition;
+    value: Value;
+    targetCondition: TargetCondition;
+}
+
 export interface ConditionValue {
     type: ValueType.Condition;
     value: Value;
-    targetCondition: TargetCondition;
+    condition: TargetCondition;
+}
+
+export interface OrValue {
+    type: ValueType.Or;
+    left: Value;
+    right: Value;
 }
 
 export function isRatioValue(v: Value): v is RatioValue {
@@ -373,17 +391,44 @@ export function isDamageColumn(v: Value): v is DamageColumn {
 }
 
 export function isConditionValue(v: Value): v is ConditionValue {
+    return typeof v === "object" && v.type === ValueType.TargetCondition;
+}
+
+export function isTargetConditionValue(v: Value): v is TargetConditionValue {
     return typeof v === "object" && v.type === ValueType.Condition;
 }
 
-export function conditionValue(
+export function isOrValue(v: Value): v is OrValue {
+    return typeof v === "object" && v.type === ValueType.Or;
+}
+
+export function targetConditionValue(
     targetCondition: TargetCondition,
+    value: Value
+): TargetConditionValue {
+    return {
+        type: ValueType.TargetCondition,
+        value: value,
+        targetCondition: targetCondition
+    };
+}
+
+export function conditionValue(
+    condition: TargetCondition,
     value: Value
 ): ConditionValue {
     return {
         type: ValueType.Condition,
-        value: value,
-        targetCondition: targetCondition
+        value,
+        condition
+    };
+}
+
+export function orValue(left: Value, right: Value): OrValue {
+    return {
+        type: ValueType.Or,
+        left,
+        right
     };
 }
 

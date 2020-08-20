@@ -10,7 +10,7 @@ export function overrideOrder(data: DataStoreImpl) {
     addAbilityEffect(data.abilities.gotrekGurnissonKragBlackhammerSMasterRune, {
         targetType: TargetType.Model,
         attackAura: {
-            rerollFailedHits: true,
+            rerollFailedHits: 1,
             rerollFailedWounds: true,
             mortalWoundsOnHitUnmodified6: "D6"
         }

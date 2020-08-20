@@ -97,6 +97,11 @@ export function updateGhb2020(data: DataStoreImpl) {
     data.battalions.stormcastEternalsTheSkyborneSlayers.points = 180;
     data.sceneries.celestianVortex.points = 30;
 
+    // Lumineths
+    // Warden 120
+    // Light of Eltharion 220
+    // Dawnriders 130
+
     // Endless spells
     data.sceneries.soulscreamBridge.points = 100;
 

@@ -38,12 +38,22 @@ const theme = createMuiTheme({
                         fontWeight: "bold",
                         src: `url(${pompeiBold}) format('woff2')`
                     }
-                ]
+                ],
+                html: {
+                    "@media print": {
+                        fontSize: "12px"
+                    }
+                }
             }
         },
         MuiCardHeader: {
             root: {
                 paddingBottom: 0
+            }
+        },
+        MuiSvgIcon: {
+            root: {
+                fontSize: "inherit"
             }
         }
     }
