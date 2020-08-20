@@ -273,7 +273,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     get attacks() {
         const attacks = this.definition.attacks
             ? this.definition.attacks.map(x => ({
-                  count: this.definition.size,
+                  count: this.modelCount,
                   attack: x
               }))
             : [];
