@@ -540,6 +540,10 @@ function overrideGrimghastReapers(data: DataStoreImpl) {
         targetType: TargetType.Unit,
         movementAura: { fly: true }
     });
+    addAbilityEffect(data.abilities.grimghastReapersForWhomTheBellTolls, {
+        targetType: TargetType.Weapon,
+        phase: Phase.Combat
+    });
 }
 
 function overrideBladegheist(data: DataStoreImpl) {
