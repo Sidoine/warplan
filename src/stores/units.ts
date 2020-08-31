@@ -547,6 +547,7 @@ export interface WarscrollUnitInterface {
     modelCount: number;
     keywords: string[];
     contingent: Contingent;
+    warscroll: WarscrollInterface;
 }
 
 export interface WarscrollModelInterface {
@@ -563,6 +564,7 @@ export interface WarscrollInterface {
     maxArtifacts: number;
     numberOfArtifacts: number;
     armyOption: ArmyOption | null;
+    getUnitsWithKeywords(keywords: string[][]): WarscrollUnitInterface[];
 }
 
 export interface DataStore {

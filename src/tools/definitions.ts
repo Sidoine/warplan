@@ -231,9 +231,11 @@ export interface UnitWarscroll {
     overriddenRoles: string[];
     overrideAllegiances: string[];
     overrideGeneralKeywords: CompoundKeyword[];
+    overrideCountDependantKeywords: CompoundKeyword[];
     nonGeneralCommonOverrideKeyword: string | null;
     overrideUnitSizeMin: number;
     maxCount: number;
+    maxUnitSizeSlots: number | null;
     maxAppliesToKeyword: string | null;
     requiredIncludedKeyword: string | null;
     legacyID: string | null;

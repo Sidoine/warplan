@@ -125,7 +125,7 @@ async function load() {
         fs.writeFileSync("src/tools/definitions.ts", definitions.join("\n"));
 
         let result = `import { DataStore, GrandAlliance, WarscrollInterface, Box, AbilityCategory } from "./units";
-import { hasKeywords } from "./conditions";
+import { hasKeywords, hasKeywordInArmy } from "./conditions";
 
 export class DataStoreImpl implements DataStore {
 `;
@@ -968,6 +968,18 @@ ${
                         )})`
                     );
                 }
+
+                if (
+                    unit.overrideCountDependantKeywords &&
+                    unit.overrideCountDependantKeywords.length
+                ) {
+                    conditions.push(
+                        `hasKeywordInArmy(ws, ${compoundKeywordsToString(
+                            unit.overrideCountDependantKeywords
+                        )})`
+                    );
+                }
+
                 result += `           is${role}: (ws: WarscrollInterface) => ${conditions.join(
                     " && "
                 )},

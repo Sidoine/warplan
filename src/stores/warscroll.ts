@@ -318,7 +318,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         return abilities;
     }
 
-    constructor(protected warscroll: Warscroll, public definition: Unit) {
+    constructor(public warscroll: Warscroll, public definition: Unit) {
         this.id = (warscroll.serial++).toString();
     }
 }
@@ -766,6 +766,10 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
             }
         }
         return result;
+    }
+
+    getUnitsWithKeywords(keywords: string[][]) {
+        return this.units.filter(x => hasKeywords(x, keywords));
     }
 }
 

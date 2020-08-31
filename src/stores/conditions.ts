@@ -16,6 +16,10 @@ export function hasKeywords(
     );
 }
 
+export function hasKeywordInArmy(ws: WarscrollInterface, keywords: string[][]) {
+    return ws.getUnitsWithKeywords(keywords).length > 0;
+}
+
 export function hasKeyword(unit: Unit, keyword: string) {
     return unit.keywords.indexOf(keyword) >= 0;
 }
