@@ -3118,6 +3118,15 @@ function fixExtraAbilities(data: DataStoreImpl): void {
                 "Calling to Sigmar’s storm above, the priest summons bolts of lightning to transport nearby warriors across the field of battle.";
             x.description =
                 'In your hero phase, pick a friendly STORMCAST ETERNAL unit wholly within 9" of this PRIEST and roll a dice. On a 3+ the prayer is successful. If the prayer is successful, remove that unit from the battlefield and then set it up again anywhere on the battlefield more than 9" from any enemy units. It may not move in the subsequent movement phase.';
+            x.effects = [
+                {
+                    phase: Phase.Hero,
+                    targetType: TargetType.Friend,
+                    targetRange: 9,
+                    whollyWithin: true,
+                    prayerValue: 3
+                }
+            ];
         }
     );
     overrideMounts(data);
