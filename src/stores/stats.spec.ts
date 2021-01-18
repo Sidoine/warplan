@@ -1,4 +1,4 @@
-import { default as test, ExecutionContext } from "ava";
+import { test, expect } from "@jest/globals";
 import { Unit, Attack, Ability, AttackAura, TargetType, Phase } from "./units";
 import { RandomCombat } from "./combat";
 import { UnitState } from "./unit-state";
@@ -52,16 +52,9 @@ async function computeUnitDamage(unit: Unit, melee?: boolean) {
     return result / tries;
 }
 
-function near(
-    t: ExecutionContext,
-    expected: number,
-    value: number,
-    text: string
-) {
-    return t.true(
-        Math.abs(value - expected) < 0.01,
-        `${text}=${value} - expected=${expected} > 0.01`
-    );
+function near(expected: number, value: number, text: string) {
+    if (!(Math.abs(value - expected) < 0.01))
+        expect("").toBe(`${text}=${value} - expected=${expected} > 0.01`);
 }
 
 function createFakeUnit(attacks?: Attack[], abilities?: Ability[]): Unit {
@@ -100,7 +93,7 @@ function createFakeEnemy(): Enemy {
     };
 }
 
-test("stat of simple unit without damage", t => {
+test("stat of simple unit without damage", () => {
     // Arrange
     const unit = createFakeUnit();
     const enemy = createFakeEnemy();
@@ -109,12 +102,12 @@ test("stat of simple unit without damage", t => {
     const unitStats = getUnitStats(unit, enemy);
 
     // Assert
-    t.is(unitStats.length, 1);
-    t.is(unitStats[0].meleeDamage, 0);
-    t.is(unitStats[0].rangedDamage, 0);
+    expect(unitStats.length).toEqual(1);
+    expect(unitStats[0].meleeDamage).toEqual(0);
+    expect(unitStats[0].rangedDamage).toEqual(0);
 });
 
-test("stat of simple unit without any ability", async t => {
+test("stat of simple unit without any ability", async () => {
     // Arrange
     const unit = createFakeUnit([createFakeAttack()]);
     const enemy = createFakeEnemy();
@@ -123,18 +116,17 @@ test("stat of simple unit without any ability", async t => {
     const unitStats = getUnitStats(unit, enemy);
 
     // Assert
-    t.is(unitStats.length, 1);
+    expect(unitStats.length).toEqual(1);
     near(
-        t,
         unitStats[0].meleeDamage,
         await computeUnitDamage(unit, true),
         "melee"
     );
-    near(t, unitStats[0].rangedDamage, await computeUnitDamage(unit), "ranged");
+    near(unitStats[0].rangedDamage, await computeUnitDamage(unit), "ranged");
 });
 
 function testattackaura(attackAura: AttackAura, expected?: number) {
-    return async (t: ExecutionContext) => {
+    return async () => {
         // Arrange
         const unit = createFakeUnit(
             [createFakeAttack()],
@@ -154,13 +146,12 @@ function testattackaura(attackAura: AttackAura, expected?: number) {
         const unitStats = getUnitStats(unit, enemy);
 
         // Assert
-        t.is(unitStats.length, 1);
+        expect(unitStats.length).toBe(1);
         if (expected) {
-            near(t, expected, unitStats[0].meleeDamage, "stats");
-            near(t, expected, await computeUnitDamage(unit, true), "combat");
+            expect(expected).toBeCloseTo(unitStats[0].meleeDamage, 2.5); //, "stats");
+            near(expected, await computeUnitDamage(unit, true), "combat");
         } else {
             near(
-                t,
                 unitStats[0].meleeDamage,
                 await computeUnitDamage(unit, true),
                 "combat"
@@ -242,7 +233,7 @@ test("bonusRend", testattackaura({ bonusRend: -1 }, 150 / 900));
 // 900 attacks: 300 hits, 150 wounds donc 450 wounds, 375 MW
 test("bonusDamage", testattackaura({ bonusDamage: 2 }, 375 / 900));
 
-test("condition on weapon id", t => {
+test("condition on weapon id", () => {
     // Arrange
     const unit = createFakeUnit(
         [createFakeAttack("first"), createFakeAttack("second")],
@@ -266,5 +257,5 @@ test("condition on weapon id", t => {
     const unitStats = getUnitStats(unit, enemy);
 
     // Assert
-    near(t, 125 / 900 + (125 / 900) * 3, unitStats[0].meleeDamage, "stats");
+    near(125 / 900 + (125 / 900) * 3, unitStats[0].meleeDamage, "stats");
 });

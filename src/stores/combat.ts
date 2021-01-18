@@ -139,7 +139,7 @@ function countLowerOrEqual(array: number[], max: number) {
 }
 
 export abstract class Combat {
-    abstract async valueRoller(value: Value, howMany: number): Promise<number>;
+    abstract valueRoller(value: Value, howMany: number): Promise<number>;
 
     /** Roll dices
      * @param dices The number of dices
@@ -148,10 +148,7 @@ export abstract class Combat {
      * [5] create two groups, one with the values from 1 to 4, and one with the values 5 and 6
      * @returns The list of dices values
      */
-    abstract async diceRoller(
-        dices: number,
-        groups: number[]
-    ): Promise<number[]>;
+    abstract diceRoller(dices: number, groups: number[]): Promise<number[]>;
 
     async executeAttack(caster: UnitState, target: UnitState, attack: Attack) {
         let attacks = await this.valueRoller(attack.attacks, 1);

@@ -324,7 +324,6 @@ export class Stats extends React.Component<StatsProps> {
                     <IconButton
                         onClick={() => this.props.warscrollStore!.addUnit(unit)}
                     >
-                        {" "}
                         <AddIcon />
                     </IconButton>
                     <IconButton onClick={() => this.handleOpenWarscroll(unit)}>

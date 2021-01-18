@@ -1,5 +1,5 @@
-import test from "ava";
-import { AttackAuraValues, AttackAura } from "./units";
+import { test, expect } from "@jest/globals";
+import { AttackAuraValues } from "./units";
 import { sumAttackAura } from "./unit-state";
 type Complete<T> = {
     [P in keyof Required<T>]: Pick<T, P> extends Required<Pick<T, P>>
@@ -8,7 +8,7 @@ type Complete<T> = {
 };
 type AttackAuraValuesMandatory = Complete<AttackAuraValues>;
 
-test("sumAttackAura sums all the stats", t => {
+test("sumAttackAura sums all the stats", () => {
     const attackAura: AttackAuraValuesMandatory = {
         bonusAttacks: 1,
         bonusDamage: 1,
@@ -35,8 +35,6 @@ test("sumAttackAura sums all the stats", t => {
 
     const result = sumAttackAura(sum, attackAura);
 
-    t.is(result, sum);
-    for (const [key, value] of Object.entries(attackAura)) {
-        t.is(result[key as keyof AttackAura], value, key);
-    }
+    expect(result).toBe(sum);
+    expect(result).toEqual(attackAura);
 });

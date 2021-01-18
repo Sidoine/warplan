@@ -36,11 +36,13 @@ export class DropdownObjects<T extends HasId> extends React.Component<
     private handleChange = (
         event: React.ChangeEvent<{ name?: string; value: unknown }>
     ) => {
-        const item =
-            event.target.value &&
-            this.props.options.find(x => x.id === event.target.value);
-        if (item) this.props.onChange(item);
-        else this.props.onChange(null);
+        if (event.target.value) {
+            const item = this.props.options.find(
+                x => x.id === event.target.value
+            );
+            if (item) this.props.onChange(item);
+            else this.props.onChange(null);
+        }
     };
 
     render() {

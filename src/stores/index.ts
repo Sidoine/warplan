@@ -46,5 +46,5 @@ export function newStores(): Stores {
 }
 
 export function useStores(): Stores {
-    return React.useContext(MobXProviderContext);
+    return React.useContext(MobXProviderContext) as Stores;
 }

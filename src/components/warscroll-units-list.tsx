@@ -178,7 +178,7 @@ const RenderExtras = observer(({ unit }: { unit: WarscrollUnit }) => {
             {join(
                 unit.extraAbilities.map(x => (
                     <span key={x.id}>
-                        <Tooltip title={x.ability.description}>
+                        <Tooltip title={x.ability.description || ""}>
                             <span>{x.ability.name}</span>
                         </Tooltip>
                         <IconButton
