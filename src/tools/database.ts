@@ -889,7 +889,9 @@ ${
             maxSize: ${unit.unitSizeMax},
             points: ${unit.points},
             maxPoints: ${unit.pointsMax},
-            keywords: [${unit.keywords.map(x => `"${x}"`).join(", ")}],
+            keywords: [${unit.keywords
+                .map(x => `"${x.toUpperCase()}"`)
+                .join(", ")}],
             wounds: ${getValue(unit.wounds, "Wounds", unit, id)},
             move: ${getValue(unit.move, "Move", unit, id)},
             save: ${getValue(unit.save, "Save", unit, id)},
