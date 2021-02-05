@@ -17,7 +17,7 @@ async function computeUnitDamage(unit: Unit, melee?: boolean) {
         wounds: 2,
         factions: [],
         keywords: [],
-        save: 5
+        save: 5,
     };
     const tries = 50000;
     if (unit.attacks) {
@@ -53,8 +53,7 @@ async function computeUnitDamage(unit: Unit, melee?: boolean) {
 }
 
 function near(expected: number, value: number, text: string) {
-    if (!(Math.abs(value - expected) < 0.01))
-        expect("").toBe(`${text}=${value} - expected=${expected} > 0.01`);
+    expect(expected).toBeCloseTo(value, 2);
 }
 
 function createFakeUnit(attacks?: Attack[], abilities?: Ability[]): Unit {
@@ -67,7 +66,7 @@ function createFakeUnit(attacks?: Attack[], abilities?: Ability[]): Unit {
         size: 1,
         points: 100,
         attacks: attacks,
-        abilities: abilities
+        abilities: abilities,
     };
 }
 
@@ -81,7 +80,7 @@ function createFakeAttack(id = "fakeAttack"): Attack {
         range: 1,
         rend: -1,
         toHit: 5,
-        toWound: 4
+        toWound: 4,
     };
 }
 
@@ -89,7 +88,7 @@ function createFakeEnemy(): Enemy {
     return {
         keywords: "",
         save: 5,
-        charged: false
+        charged: false,
     };
 }
 
@@ -133,11 +132,11 @@ function testattackaura(attackAura: AttackAura, expected?: number) {
             [
                 {
                     effects: [
-                        { targetType: TargetType.Unit, attackAura: attackAura }
+                        { targetType: TargetType.Unit, attackAura: attackAura },
                     ],
                     name: "Fake ability",
-                    id: "fakeAbility"
-                }
+                    id: "fakeAbility",
+                },
             ]
         );
         const enemy = createFakeEnemy();
@@ -183,9 +182,9 @@ test(
                 {
                     targetType: TargetType.Enemy,
                     mortalWounds: 1,
-                    phase: Phase.Combat
-                }
-            ]
+                    phase: Phase.Combat,
+                },
+            ],
         },
         275 / 900
     )
@@ -243,12 +242,12 @@ test("condition on weapon id", () => {
                     {
                         targetType: TargetType.Weapon,
                         attackAura: { bonusDamage: 2 },
-                        targetCondition: { weaponId: "second" }
-                    }
+                        targetCondition: { weaponId: "second" },
+                    },
                 ],
                 name: "Fake ability",
-                id: "fakeAbility"
-            }
+                id: "fakeAbility",
+            },
         ]
     );
     const enemy = createFakeEnemy();

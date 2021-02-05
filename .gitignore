@@ -1,9 +1,15 @@
 /node_modules
-wwwroot/bundle.*
 dist
+/wwwroot/bundle.*
 /wwwroot/main.*
 /wwwroot/files
 *.orig
 /yarn-error.log
 en.realm*
 /.vscode/settings.json
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

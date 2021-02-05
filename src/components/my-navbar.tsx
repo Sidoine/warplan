@@ -12,7 +12,7 @@ import { BattleStore, getPhaseName } from "../stores/battle";
 export interface MyNavbarProps {
     unitsStore?: UnitsStore;
     basketStore?: BasketStore;
-    route: RouteComponentProps<any>;
+    route: RouteComponentProps<{}>;
     warscrollStore?: WarscrollStore;
     battleStore?: BattleStore;
 }
@@ -32,12 +32,12 @@ export class MyNavbar extends React.Component<MyNavbarProps, {}> {
             {
                 title: "Warscroll Builder",
                 badge: this.props.warscrollStore!.warscroll.totalPoints,
-                path: ""
+                path: "",
             },
             { title: "Warscrolls", path: "warscroll" },
             {
                 title: getPhaseName(this.props.battleStore!.phase),
-                path: "battle"
+                path: "battle",
             },
             { title: "List", path: "list" },
             { title: "Cards", path: "cards" },
@@ -49,14 +49,14 @@ export class MyNavbar extends React.Component<MyNavbarProps, {}> {
                 title: "Missing",
                 path: "missing",
                 badge: this.props.basketStore!.missingModels.filter(
-                    x => x.inBasket < x.count
-                ).length
+                    (x) => x.inBasket < x.count
+                ).length,
             },
             {
                 title: "Basket",
                 path: "basket",
-                badge: this.props.basketStore!.basket.length
-            }
+                badge: this.props.basketStore!.basket.length,
+            },
         ];
     }
 
@@ -64,7 +64,7 @@ export class MyNavbar extends React.Component<MyNavbarProps, {}> {
         const pathname = this.props.route.location.pathname;
         return (
             <List>
-                {this.columns.map(x => (
+                {this.columns.map((x) => (
                     <ListItem
                         key={x.path}
                         component="a"
@@ -91,7 +91,7 @@ export class MyNavbar extends React.Component<MyNavbarProps, {}> {
     render() {
         const pathname = this.props.route.location.pathname;
         const title =
-            this.columns.find(x => `/${x.path}` === pathname)?.title ??
+            this.columns.find((x) => `/${x.path}` === pathname)?.title ??
             "Warplan";
         return (
             <ResponsiveDrawer title={title} menu={this.renderDrawer()}>
