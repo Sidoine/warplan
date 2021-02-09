@@ -1,46 +1,39 @@
 import * as React from "react";
-import { observer, inject } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { OwnedModelEdit } from "./owned-model-edit";
-import { ModelsList } from "./models-list";
-import { OwnedStore } from "../stores/owned";
+import ModelsList from "./models-list";
 import {
     Table,
     TableCell,
     TableRow,
     TableHead,
-    TableBody
+    TableBody,
 } from "@material-ui/core";
+import { useStores } from "../stores";
 
-export interface OwnedModelsListProps {
-    ownedStore?: OwnedStore;
+function OwnedModelsList() {
+    const { ownedStore } = useStores();
+    return (
+        <>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Count</TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {ownedStore.ownedModels
+                        .sort((a, b) => (a.model.name > b.model.name ? 1 : -1))
+                        .map((x) => (
+                            <OwnedModelEdit key={x.id} model={x} />
+                        ))}
+                </TableBody>
+            </Table>
+            <ModelsList title="Add..." />
+        </>
+    );
 }
 
-@inject("ownedStore")
-@observer
-export class OwnedModelsList extends React.Component<OwnedModelsListProps, {}> {
-    render() {
-        return (
-            <>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Count</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {this.props
-                            .ownedStore!.ownedModels.sort((a, b) =>
-                                a.model.name > b.model.name ? 1 : -1
-                            )
-                            .map(x => (
-                                <OwnedModelEdit key={x.id} model={x} />
-                            ))}
-                    </TableBody>
-                </Table>
-                <ModelsList title="Add..." />
-            </>
-        );
-    }
-}
+export default observer(OwnedModelsList);

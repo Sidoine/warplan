@@ -1,31 +1,31 @@
 import * as React from "react";
-import { UnitsStore, Model } from "../stores/units";
-import { observer, inject } from "mobx-react";
-import { OwnedStore } from "../stores/owned";
-import { AddButton, TableColumn } from "../atoms/dropdown-list";
+import { Model } from "../stores/units";
+import { observer } from "mobx-react-lite";
+import AddButton, { TableColumn } from "../atoms/add-button";
+import { useStores } from "../stores";
 
 export interface ModelsListProps {
-    unitsStore?: UnitsStore;
     title: string;
-    ownedStore?: OwnedStore;
 }
-const columns: TableColumn<Model>[] = [{ name: "Name", text: x => x.name }];
+const columns: TableColumn<Model>[] = [{ name: "Name", text: (x) => x.name }];
 
-@inject("unitsStore", "ownedStore")
-@observer
-export class ModelsList extends React.Component<ModelsListProps, {}> {
-    render() {
-        return (
-            <AddButton
-                columns={columns}
-                placeholder={this.props.title}
-                options={this.props.unitsStore!.modelsList}
-                onChange={this.onChange}
-            />
-        );
-    }
+function ModelsList({ title }: ModelsListProps) {
+    const { ownedStore, unitsStore } = useStores();
+    const onChange = React.useCallback(
+        (model: Model) => {
+            ownedStore.addOwned(model);
+        },
+        [ownedStore]
+    );
 
-    private onChange = (model: Model) => {
-        this.props.ownedStore!.addOwned(model);
-    };
+    return (
+        <AddButton
+            columns={columns}
+            placeholder={title}
+            options={unitsStore.modelsList}
+            onChange={onChange}
+        />
+    );
 }
+
+export default observer(ModelsList);

@@ -1,4 +1,4 @@
-import { action, computed, observable } from "mobx";
+import { action, computed, observable, makeObservable } from "mobx";
 import { WarscrollStore } from "./warscroll";
 import {
     AbilityCategory,
@@ -365,7 +365,9 @@ export class MarkersStore {
     constructor(
         private warscrollStore: WarscrollStore,
         private unitStore: UnitsStore
-    ) {}
+    ) {
+        makeObservable(this);
+    }
 
     @action
     setText(marker: Marker, text: string) {

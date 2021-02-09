@@ -1,37 +1,35 @@
 import * as React from "react";
-import { UnitsStore, EndlessSpell } from "../stores/units";
-import { observer, inject } from "mobx-react";
-import { WarscrollStore } from "../stores/warscroll";
-import { UiStore } from "../stores/ui";
-import { AddButton, TableColumn } from "../atoms/dropdown-list";
+import { EndlessSpell } from "../stores/units";
+import { observer } from "mobx-react-lite";
+import AddButton, { TableColumn } from "../atoms/add-button";
+import { useStores } from "../stores";
 
 export interface SceneriesListProps {
-    unitsStore?: UnitsStore;
     title: string;
-    warscrollStore?: WarscrollStore;
-    uiStore?: UiStore;
 }
 const columns: TableColumn<EndlessSpell>[] = [
-    { name: "Name", text: x => x.name },
-    { name: "Description", text: x => x.description },
-    { name: "Points", text: x => x.points }
+    { name: "Name", text: (x) => x.name },
+    { name: "Description", text: (x) => x.description },
+    { name: "Points", text: (x) => x.points },
 ];
 
-@inject("unitsStore", "warscrollStore", "uiStore")
-@observer
-export class SceneriesList extends React.Component<SceneriesListProps, {}> {
-    render() {
-        return (
-            <AddButton
-                columns={columns}
-                placeholder={this.props.title}
-                options={this.props.unitsStore!.sceneryList}
-                onChange={this.onChange}
-            />
-        );
-    }
+function SceneriesList({ title }: SceneriesListProps) {
+    const { warscrollStore, unitsStore } = useStores();
+    const onChange = React.useCallback(
+        (scenery: EndlessSpell) => {
+            warscrollStore.addScenery(scenery);
+        },
+        [warscrollStore]
+    );
 
-    private onChange = (scenery: EndlessSpell) => {
-        this.props.warscrollStore!.addScenery(scenery);
-    };
+    return (
+        <AddButton
+            columns={columns}
+            placeholder={title}
+            options={unitsStore.sceneryList}
+            onChange={onChange}
+        />
+    );
 }
+
+export default observer(SceneriesList);

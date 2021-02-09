@@ -1,4 +1,4 @@
-import { observable, action } from "mobx";
+import { observable, action, makeObservable } from "mobx";
 
 interface CardsSerialized {
     names: string[];
@@ -12,6 +12,7 @@ export class CardsStore {
     }
 
     constructor() {
+        makeObservable(this);
         this.deserialize();
     }
 

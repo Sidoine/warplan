@@ -1,4 +1,4 @@
-import { action, observable } from "mobx";
+import { action, observable, makeObservable } from "mobx";
 import { Model, UnitsStore } from "./units";
 
 interface SerializedOwned {
@@ -15,7 +15,7 @@ export interface OwnedModel {
 }
 
 export class OwnedStore {
-    serial: number = 0;
+    serial = 0;
 
     @observable
     ownedModels: OwnedModel[] = [];
@@ -25,7 +25,7 @@ export class OwnedStore {
         this.ownedModels.push({
             model: model,
             count: 1,
-            id: this.serial++
+            id: this.serial++,
         });
         this.saveOwned();
     }
@@ -52,30 +52,31 @@ export class OwnedStore {
         const owned: SerializedOwned = JSON.parse(serialized);
         for (const model of owned.models) {
             const m = this.unitsStore.modelsList.find(
-                x => x.id === model.modelId
+                (x) => x.id === model.modelId
             );
             if (m === undefined) continue;
             this.ownedModels.push({
                 id: this.serial++,
                 count: model.count,
-                model: m
+                model: m,
             });
         }
     }
 
     saveOwned() {
         const serialized: SerializedOwned = {
-            models: this.ownedModels.map(x => {
+            models: this.ownedModels.map((x) => {
                 return {
                     modelId: x.model.id,
-                    count: x.count
+                    count: x.count,
                 };
-            })
+            }),
         };
         localStorage.setItem("owned", JSON.stringify(serialized));
     }
 
     constructor(private unitsStore: UnitsStore) {
+        makeObservable(this);
         this.loadOwned();
     }
 }

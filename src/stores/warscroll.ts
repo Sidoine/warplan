@@ -1,4 +1,4 @@
-import { action, computed, observable, toJS } from "mobx";
+import { action, computed, observable, toJS, makeObservable } from "mobx";
 import {
     Battalion,
     Unit,
@@ -38,6 +38,7 @@ export class WarscrollModel implements WarscrollModelInterface {
     count = 1;
 
     constructor(private warscrollUnit: WarscrollUnit, warscroll: Warscroll) {
+        makeObservable(this);
         this.id = warscroll.serial++;
     }
 
@@ -319,6 +320,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     }
 
     constructor(public warscroll: Warscroll, public definition: Unit) {
+        makeObservable(this);
         this.id = (warscroll.serial++).toString();
     }
 }
@@ -343,6 +345,7 @@ export class WarscrollBattalion implements WarscrollBattalionInterface {
     }
 
     constructor(public warscroll: Warscroll, public definition: Battalion) {
+        makeObservable(this);
         this.id = (warscroll.serial++).toString();
     }
 
@@ -372,7 +375,9 @@ export interface WarscrollLimits {
 }
 
 export class WarscrollContingent implements WarscrollLimits {
-    constructor(private warscroll: Warscroll, public contingent: Contingent) {}
+    constructor(private warscroll: Warscroll, public contingent: Contingent) {
+        makeObservable(this);
+    }
 
     @computed get totalNumberOfUnits() {
         return this.warscroll.units.reduce(
@@ -460,7 +465,9 @@ export class WarscrollContingent implements WarscrollLimits {
 export class Warscroll implements WarscrollInterface, WarscrollLimits {
     serial = 0;
 
-    constructor(public unitsStore: UnitsStore) {}
+    constructor(public unitsStore: UnitsStore) {
+        makeObservable(this);
+    }
 
     @computed
     get extraAbilities() {
@@ -1087,6 +1094,7 @@ export class WarscrollStore {
     }
 
     constructor(private unitsStore: UnitsStore, private uiStore: UiStore) {
+        makeObservable(this);
         const warscrolls = localStorage.getItem("warscrolls");
         if (warscrolls !== null) {
             this.warscrolls = JSON.parse(warscrolls);

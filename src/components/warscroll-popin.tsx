@@ -1,88 +1,80 @@
-import * as React from "react";
-import { UiStore } from "../stores/ui";
-import { inject, observer } from "mobx-react";
-import { UnitsStore } from "../stores/units";
-import { observable } from "mobx";
-import { WarscrollStore } from "../stores/warscroll";
+import React, { ChangeEvent, useCallback, useState } from "react";
+import { observer } from "mobx-react-lite";
 import {
     Button,
     Dialog,
     DialogTitle,
     DialogContentText,
     DialogActions,
-    Input
+    Input,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { useStores } from "../stores";
 
-export interface WarscrollPopinProps {
-    uiStore?: UiStore;
-    unitsStore?: UnitsStore;
-    warscrollStore?: WarscrollStore;
+function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
+    const { warscrollStore } = useStores();
+    const handleUpdate = useCallback(() => warscrollStore.saveWarscroll(x), [
+        warscrollStore,
+        x,
+    ]);
+    const handleLoad = useCallback(() => {
+        warscrollStore.loadWarscroll(x);
+        onClose();
+    }, [onClose, warscrollStore, x]);
+    const handleDelete = useCallback(() => warscrollStore.removeWarscroll(x), [
+        warscrollStore,
+        x,
+    ]);
+    return (
+        <div key={x}>
+            {x}
+            <Button onClick={handleUpdate}>Update</Button>
+            <Button onClick={handleLoad}>Load</Button>
+            <Button onClick={handleDelete}>
+                <DeleteIcon />
+            </Button>
+        </div>
+    );
 }
 
-@inject("uiStore", "unitsStore", "warscrollStore")
-@observer
-export class WarscrollPopin extends React.Component<WarscrollPopinProps, {}> {
-    @observable
-    warscrollName: string = this.props.warscrollStore!.warscroll.description;
+function WarscrollPopin() {
+    const { warscrollStore, uiStore } = useStores();
+    const [warscrollName, setWarscrollName] = useState(
+        warscrollStore.warscroll.name
+    );
+    const handleClose = useCallback(() => uiStore.closeWarscrollPopin(), [
+        uiStore,
+    ]);
+    const handleInputChange = useCallback(
+        (x: ChangeEvent<HTMLInputElement>) => setWarscrollName(x.target.value),
+        []
+    );
 
-    render() {
-        return (
-            <Dialog onClose={this.handleClose} open={true}>
-                <DialogTitle>Warscolls</DialogTitle>
+    return (
+        <Dialog onClose={handleClose} open={true}>
+            <DialogTitle>Warscolls</DialogTitle>
 
-                <DialogContentText>
-                    {this.props.warscrollStore!.warscrolls.map(x => (
-                        <div key={x}>
-                            {x}
-                            <Button
-                                onClick={() =>
-                                    this.props.warscrollStore!.saveWarscroll(x)
-                                }
-                            >
-                                Update
-                            </Button>
-                            <Button
-                                onClick={() => {
-                                    this.props.warscrollStore!.loadWarscroll(x);
-                                    this.handleClose();
-                                }}
-                            >
-                                Load
-                            </Button>
-                            <Button
-                                onClick={() =>
-                                    this.props.warscrollStore!.removeWarscroll(
-                                        x
-                                    )
-                                }
-                            >
-                                <DeleteIcon />
-                            </Button>
-                        </div>
-                    ))}
-                    <Input
-                        type="text"
-                        value={this.warscrollName}
-                        onChange={x => (this.warscrollName = x.target.value)}
-                    />
-                    <Button
-                        onClick={() =>
-                            this.props.warscrollStore!.saveWarscroll(
-                                this.warscrollName
-                            )
-                        }
-                    >
-                        Add
-                    </Button>
-                </DialogContentText>
+            <DialogContentText>
+                {warscrollStore.warscrolls.map((x) => (
+                    <WarscrollLine x={x} onClose={handleClose} key={x} />
+                ))}
+                <Input
+                    type="text"
+                    value={warscrollName}
+                    onChange={handleInputChange}
+                />
+                <Button
+                    onClick={() => warscrollStore.saveWarscroll(warscrollName)}
+                >
+                    Add
+                </Button>
+            </DialogContentText>
 
-                <DialogActions>
-                    <Button onClick={this.handleClose}>Close</Button>
-                </DialogActions>
-            </Dialog>
-        );
-    }
-
-    private handleClose = () => this.props.uiStore!.closeWarscrollPopin();
+            <DialogActions>
+                <Button onClick={handleClose}>Close</Button>
+            </DialogActions>
+        </Dialog>
+    );
 }
+
+export default observer(WarscrollPopin);

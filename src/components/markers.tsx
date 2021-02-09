@@ -6,14 +6,14 @@ import {
     Card,
     CardContent,
     Switch,
-    FormControlLabel
+    FormControlLabel,
 } from "@material-ui/core";
 import terrainImage from "../assets/objective.png";
 import spellImage from "../assets/gambitspell.png";
 import commandImage from "../assets/ploy.png";
 import { CSSProperties } from "@material-ui/core/styles/withStyles";
-import { NumberControl } from "../atoms/number-control";
-import { observer } from "mobx-react";
+import NumberControl from "../atoms/number-control";
+import { observer } from "mobx-react-lite";
 
 export interface MarkersProps {
     markersStore?: MarkersStore;
@@ -24,17 +24,17 @@ const textContent: CSSProperties = {
     textAlign: "center",
     textShadow:
         "0px 0px 4px white, 0px 0px 8px white, 0px 0px 4px white, 0px 0px 4px white, 0px 0px 10px white",
-    fontWeight: "bold"
+    fontWeight: "bold",
 };
 
 const useStyle = makeStyles({
     filter: {
         "@media print": {
-            display: "none"
-        }
+            display: "none",
+        },
     },
     markers: {
-        display: "block"
+        display: "block",
     },
     wrapper: {
         display: "inline-block",
@@ -43,7 +43,7 @@ const useStyle = makeStyles({
         position: "relative",
         borderRadius: "50px",
         backgroundColor: "gray",
-        margin: "10px"
+        margin: "10px",
     },
     marker: {
         top: 0,
@@ -61,23 +61,23 @@ const useStyle = makeStyles({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        breakInside: "avoid"
+        breakInside: "avoid",
     },
     terrain: {
-        backgroundImage: `url(${terrainImage})`
+        backgroundImage: `url(${terrainImage})`,
     },
     spell: {
-        backgroundImage: `url(${spellImage})`
+        backgroundImage: `url(${spellImage})`,
     },
     command: {
-        backgroundImage: `url(${commandImage})`
+        backgroundImage: `url(${commandImage})`,
     },
     custom: {},
     text: Object.assign(
         {
             textTransform: "uppercase",
             fontWeight: "bold",
-            fontSize: "12px"
+            fontSize: "12px",
         },
         textContent
     ),
@@ -85,7 +85,7 @@ const useStyle = makeStyles({
         {
             fontWeight: "bold",
             fontSize: "10px",
-            fontStyle: "italic"
+            fontStyle: "italic",
         },
         textContent
     ),
@@ -93,16 +93,16 @@ const useStyle = makeStyles({
     hiddenMarker: {
         opacity: 0.5,
         "@media print": {
-            display: "none"
-        }
+            display: "none",
+        },
     },
     background: {
         position: "absolute",
         left: "5px",
         top: "5px",
         width: "90px",
-        height: "90px"
-    }
+        height: "90px",
+    },
 });
 
 const MarkerView = observer(({ marker }: { marker: Marker }) => {
@@ -125,9 +125,10 @@ const MarkerView = observer(({ marker }: { marker: Marker }) => {
     }
     return (
         <div
-            className={`${classes.wrapper} ${markersStore.hiddenMarkers.get(
-                marker.id
-            ) && classes.hiddenMarker}`}
+            className={`${classes.wrapper} ${
+                markersStore.hiddenMarkers.get(marker.id) &&
+                classes.hiddenMarker
+            }`}
             onClick={() => markersStore.toggleMarker(marker)}
         >
             {marker.image && (
@@ -175,7 +176,7 @@ export function Markers() {
                         control={
                             <Switch
                                 checked={terrain}
-                                onChange={x =>
+                                onChange={(x) =>
                                     setTerrain(x.currentTarget.checked)
                                 }
                             />
@@ -186,7 +187,7 @@ export function Markers() {
                         control={
                             <Switch
                                 checked={generic}
-                                onChange={x =>
+                                onChange={(x) =>
                                     setGeneric(x.currentTarget.checked)
                                 }
                             />
@@ -197,7 +198,7 @@ export function Markers() {
                         control={
                             <Switch
                                 checked={warscroll}
-                                onChange={x =>
+                                onChange={(x) =>
                                     setWarscroll(x.currentTarget.checked)
                                 }
                             />
@@ -209,19 +210,19 @@ export function Markers() {
 
             <div className={classes.markers}>
                 {terrain &&
-                    markersStore.terrainMarkers.map(x => (
+                    markersStore.terrainMarkers.map((x) => (
                         <Repeat key={x.id} count={repeat}>
                             <MarkerView marker={x} />
                         </Repeat>
                     ))}
                 {generic &&
-                    markersStore.genericMarkers.map(x => (
+                    markersStore.genericMarkers.map((x) => (
                         <Repeat key={x.id} count={repeat}>
                             <MarkerView marker={x} />
                         </Repeat>
                     ))}
                 {warscroll &&
-                    markersStore.markers.map(x => (
+                    markersStore.markers.map((x) => (
                         <Repeat key={x.id} count={repeat}>
                             <MarkerView marker={x} />
                         </Repeat>

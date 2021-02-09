@@ -9,69 +9,69 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         "@media print": {
-            display: "block"
-        }
+            display: "block",
+        },
     },
     drawer: {
         [theme.breakpoints.up("sm")]: {
             width: drawerWidth,
-            flexShrink: 0
+            flexShrink: 0,
         },
         "@media print": {
-            display: "none"
-        }
+            display: "none",
+        },
     },
     appBar: {
         [theme.breakpoints.up("sm")]: {
             width: `calc(100% - ${drawerWidth}px)`,
-            marginLeft: drawerWidth
+            marginLeft: drawerWidth,
         },
         "@media print": {
-            display: "none"
-        }
+            display: "none",
+        },
     },
     menuButton: {
         marginRight: theme.spacing(2),
         [theme.breakpoints.up("sm")]: {
-            display: "none"
-        }
+            display: "none",
+        },
     },
     toolbar: Object.assign(Object.assign({}, theme.mixins.toolbar), {
         "@media print": {
-            minHeight: 0
-        }
+            minHeight: 0,
+        },
     }),
     drawerPaper: {
-        width: drawerWidth
+        width: drawerWidth,
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
         [theme.breakpoints.down("sm")]: {
-            width: "100%"
+            width: "100%",
         },
         [theme.breakpoints.up("sm")]: {
-            width: `calc(100% - ${drawerWidth}px)`
+            width: `calc(100% - ${drawerWidth}px)`,
         },
         "@media print": {
-            width: "100%"
-        }
-    }
+            width: "100%",
+        },
+    },
 }));
 
 export const ResponsiveDrawer = observer(
     ({
         children,
         menu,
-        title
+        title,
     }: {
         children: React.ReactNode;
         menu: JSX.Element;
@@ -123,10 +123,10 @@ export const ResponsiveDrawer = observer(
                             open={mobileOpen}
                             onClose={handleDrawerToggle}
                             classes={{
-                                paper: classes.drawerPaper
+                                paper: classes.drawerPaper,
                             }}
                             ModalProps={{
-                                keepMounted: true // Better open performance on mobile.
+                                keepMounted: true, // Better open performance on mobile.
                             }}
                         >
                             {drawer}
@@ -135,7 +135,7 @@ export const ResponsiveDrawer = observer(
                     <Hidden xsDown implementation="css">
                         <Drawer
                             classes={{
-                                paper: classes.drawerPaper
+                                paper: classes.drawerPaper,
                             }}
                             variant="permanent"
                             open

@@ -1,4 +1,4 @@
-import { observable, action, computed } from "mobx";
+import { observable, action, computed, makeObservable } from "mobx";
 import { Warscroll, WarscrollItem } from "./warscroll";
 import {
     Phase,
@@ -221,7 +221,9 @@ export class BattleStore {
 
     @observable player: Player | null = null;
 
-    constructor(private unitsStore: UnitsStore) {}
+    constructor(private unitsStore: UnitsStore) {
+        makeObservable(this);
+    }
 
     @computed get abilities() {
         let result: Ability[] = this.unitsStore.baseAbilities;

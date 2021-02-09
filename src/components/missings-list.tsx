@@ -1,43 +1,37 @@
 import * as React from "react";
-import { UnitsStore } from "../stores/units";
-import { observer, inject } from "mobx-react";
-import { BoxesList } from "./boxes-list";
-import { BasketStore, Missing } from "../stores/basket";
-import {
+import { observer } from "mobx-react-lite";
+import BoxesList from "./boxes-list";
+import { Missing } from "../stores/basket";
+import ResponsiveTable, {
     ResponsiveTableColumn,
-    ResponsiveTable
 } from "../atoms/responsive-table";
-
-export interface MissingsListProps {
-    unitsStore?: UnitsStore;
-    basketStore?: BasketStore;
-}
+import { useStores } from "../stores";
 
 const columns: ResponsiveTableColumn<Missing>[] = [
     {
         name: "Name",
-        text: x => x.model.name
+        text: (x) => x.model.name,
     },
     {
         name: "Count",
-        text: x => x.count
+        text: (x) => x.count,
     },
     {
         name: "In basket",
-        text: x => x.inBasket
+        text: (x) => x.inBasket,
     },
     {
         name: "Buy",
-        text: x => <BoxesList model={x.model} title="Buy" />
-    }
+        // eslint-disable-next-line react/display-name
+        text: (x) => <BoxesList model={x.model} title="Buy" />,
+    },
 ];
 
-@inject("unitsStore", "basketStore")
-@observer
-export class MissingsList extends React.Component<MissingsListProps, {}> {
-    render() {
-        const neededModels = this.props.basketStore!.missingModels;
+function MissingsList() {
+    const { basketStore } = useStores();
+    const neededModels = basketStore.missingModels;
 
-        return <ResponsiveTable columns={columns} rows={neededModels} />;
-    }
+    return <ResponsiveTable columns={columns} rows={neededModels} />;
 }
+
+export default observer(MissingsList);

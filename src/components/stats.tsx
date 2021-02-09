@@ -1,10 +1,10 @@
-import React, { useCallback, ChangeEvent } from "react";
+import React, { useCallback, ChangeEvent, useState, useMemo } from "react";
 import { UiStore } from "../stores/ui";
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { UnitStats } from "../stores/stats";
-import { observable, action, computed } from "mobx";
+import { computed } from "mobx";
 import { join, value } from "../helpers/react";
-import { Filter } from "./filter";
+import Filter from "./filter";
 import { WarscrollStore } from "../stores/warscroll";
 import { getValue } from "../stores/combat";
 import { UnitWarscroll } from "./unit-warscroll";
@@ -24,7 +24,7 @@ import {
     TableContainer,
     IconButton,
     Checkbox,
-    FormControlLabel
+    FormControlLabel,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
@@ -102,269 +102,308 @@ const enum Columns {
     SavedWounds,
     MeleeDamage,
     RangedDamage,
-    TotalDamage
+    TotalDamage,
 }
 
-@inject("uiStore", "warscrollStore")
-@observer
-export class Stats extends React.Component<StatsProps> {
-    @observable
-    sorted = Columns.Name;
-
-    @observable
-    direction: "asc" | "desc" = "asc";
-    @observable private warscrollOpen: Unit | null = null;
-    @action private handleOpenWarscroll = (unit: Unit) =>
-        (this.warscrollOpen = unit);
-    @action private handleCloseWarscroll = () => (this.warscrollOpen = null);
-
-    @action
-    handleSort(column: Columns) {
-        return () => {
-            this.setColumn(column);
-        };
-    }
-
-    @action
-    setColumn(column: Columns) {
-        if (column !== this.sorted) {
-            this.sorted = column;
-            this.direction = "asc";
-        } else {
-            this.direction = this.direction === "asc" ? "desc" : "asc";
-        }
-    }
-
-    @computed
-    get sortedData() {
-        let data = this.props.uiStore!.unitStats;
-        const one = this.direction === "asc" ? 1 : -1;
-        const min = this.direction === "asc" ? -1 : 1;
-        switch (this.sorted) {
-            case Columns.Name:
-                data = data.sort((a, b) =>
-                    a.unit.model.name > b.unit.model.name ? one : min
-                );
-                break;
-            case Columns.Points:
-                data = data.sort((a, b) =>
-                    a.unit.points > b.unit.points ? one : min
-                );
-                break;
-            case Columns.Move:
-                data = data.sort((a, b) =>
-                    (a.unit.move || 0) > (b.unit.move || 0) ? one : min
-                );
-                break;
-            case Columns.Bravery:
-                data = data.sort((a, b) =>
-                    (a.unit.bravery || 0) > (b.unit.bravery || 0) ? one : min
-                );
-                break;
-            case Columns.Wounds:
-                data = data.sort((a, b) =>
-                    (a.unit.wounds || 0) > (b.unit.wounds || 0) ? one : min
-                );
-                break;
-            case Columns.Save:
-                data = data.sort((a, b) =>
-                    (a.save || 0) > (b.save || 0) ? one : min
-                );
-                break;
-            case Columns.SavedWounds:
-                data = data.sort((a, b) =>
-                    a.savedWounds / a.unit.points >
-                    b.savedWounds / b.unit.points
-                        ? one
-                        : min
-                );
-                break;
-            case Columns.MeleeDamage:
-                data = data.sort((a, b) =>
-                    a.meleeDamage / a.unit.points >
-                    b.meleeDamage / b.unit.points
-                        ? one
-                        : min
-                );
-                break;
-            case Columns.RangedDamage:
-                data = data.sort((a, b) =>
-                    a.rangedDamage / a.unit.points >
-                    b.rangedDamage / b.unit.points
-                        ? one
-                        : min
-                );
-                break;
-            case Columns.TotalDamage:
-                data = data.sort((a, b) =>
-                    a.totalDamage / a.unit.points >
-                    b.totalDamage / b.unit.points
-                        ? one
-                        : min
-                );
-                break;
-        }
-        return data;
-    }
-
-    renderTableHeaderCell(column: Columns, title: string) {
-        return (
-            <TableCell
-                onClick={this.handleSort(column)}
-                sortDirection={
-                    this.sorted === column ? this.direction : undefined
-                }
+function StatsTableHeaderCell({
+    column,
+    title,
+    onClick,
+    sorted,
+    direction,
+}: {
+    direction: "asc" | "desc";
+    sorted: Columns;
+    column: Columns;
+    title: string;
+    onClick: (column: Columns) => void;
+}) {
+    const handleClick = useCallback(() => {
+        onClick(column);
+    }, [column, onClick]);
+    return (
+        <TableCell
+            onClick={handleClick}
+            sortDirection={sorted === column ? direction : undefined}
+        >
+            <TableSortLabel
+                active={sorted === column}
+                direction={sorted === column ? direction : undefined}
             >
-                <TableSortLabel
-                    active={this.sorted === column}
-                    direction={
-                        this.sorted === column ? this.direction : undefined
-                    }
-                >
-                    {title}
-                </TableSortLabel>
-            </TableCell>
-        );
-    }
-
-    render() {
-        return (
-            <Grid container spacing={2} direction="column" wrap="nowrap">
-                <Grid item>
-                    {" "}
-                    <Filter />
-                </Grid>
-                <Grid item>
-                    <EnemyConfiguration />
-                </Grid>
-                {
-                    <Dialog
-                        open={this.warscrollOpen !== null}
-                        onClose={this.handleCloseWarscroll}
-                    >
-                        {this.warscrollOpen && (
-                            <UnitWarscroll unit={this.warscrollOpen} />
-                        )}
-                        {!this.warscrollOpen && <></>}
-                    </Dialog>
-                }
-                <Grid item>
-                    <TableContainer>
-                        <Table style={{ minWidth: 650 }}>
-                            <TableHead>
-                                <TableRow>
-                                    {this.renderTableHeaderCell(
-                                        Columns.Name,
-                                        "Name"
-                                    )}
-                                    <TableCell>Option</TableCell>
-                                    {this.renderTableHeaderCell(
-                                        Columns.Points,
-                                        "Points"
-                                    )}
-                                    {this.renderTableHeaderCell(
-                                        Columns.Move,
-                                        "Move"
-                                    )}
-                                    {this.renderTableHeaderCell(
-                                        Columns.Bravery,
-                                        "Bravery"
-                                    )}
-                                    {this.renderTableHeaderCell(
-                                        Columns.Wounds,
-                                        "Wounds"
-                                    )}
-                                    {this.renderTableHeaderCell(
-                                        Columns.Save,
-                                        "Save"
-                                    )}
-                                    {this.renderTableHeaderCell(
-                                        Columns.SavedWounds,
-                                        "Saved wounds"
-                                    )}
-                                    {this.renderTableHeaderCell(
-                                        Columns.MeleeDamage,
-                                        "Melee Damage"
-                                    )}
-                                    {this.renderTableHeaderCell(
-                                        Columns.RangedDamage,
-                                        "Ranged Damage"
-                                    )}
-                                    {this.renderTableHeaderCell(
-                                        Columns.TotalDamage,
-                                        "Melee x 1.5 + Ranged"
-                                    )}
-                                    <TableCell>Other abilities</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {this.sortedData.map(x =>
-                                    this.renderCombination(x)
-                                )}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Grid>
-            </Grid>
-        );
-    }
-
-    renderCombination(unitStats: UnitStats) {
-        const unit = unitStats.unit;
-        const wounds = getValue(unit.wounds) * unit.size;
-        const points = unit.points / 100;
-        const count = this.props.warscrollStore!.warscroll.units.reduce(
-            (c, x) => (x.definition.id === unit.id ? x.count + c : c),
-            0
-        );
-        return (
-            <TableRow key={unit.id + unitStats.name}>
-                <TableCell>
-                    {unit.model.name} {count > 0 && `(${count})`}
-                    <IconButton
-                        onClick={() => this.props.warscrollStore!.addUnit(unit)}
-                    >
-                        <AddIcon />
-                    </IconButton>
-                    <IconButton onClick={() => this.handleOpenWarscroll(unit)}>
-                        <HelpOutlineIcon />
-                    </IconButton>
-                </TableCell>
-                <TableCell>{unitStats.name}</TableCell>
-                <TableCell>{unit.points}</TableCell>
-                <TableCell>{value(unit.move)}</TableCell>
-                <TableCell>{unit.bravery}</TableCell>
-                <TableCell>
-                    {wounds} ({(wounds / points).toFixed(2)}){" "}
-                </TableCell>
-                <TableCell>{unitStats.save}</TableCell>
-                <TableCell>
-                    {unitStats.savedWounds.toFixed()} (
-                    {(unitStats.savedWounds / points).toFixed(2)})
-                </TableCell>
-                <TableCell>
-                    {unitStats.meleeDamage.toFixed(2)} (
-                    {(unitStats.meleeDamage / points).toFixed(2)}){" "}
-                </TableCell>
-                <TableCell>
-                    {unitStats.rangedDamage.toFixed(2)} (
-                    {(unitStats.rangedDamage / points).toFixed(2)}){" "}
-                </TableCell>
-                <TableCell>
-                    {unitStats.totalDamage.toFixed(2)} (
-                    {(unitStats.totalDamage / points).toFixed(2)}){" "}
-                </TableCell>
-                <TableCell>
-                    {join(
-                        unitStats.ignoredAbilities.map(x => (
-                            <span key={x.name} title={x.description}>
-                                {x.name}
-                            </span>
-                        )),
-                        ", "
-                    )}
-                </TableCell>
-            </TableRow>
-        );
-    }
+                {title}
+            </TableSortLabel>
+        </TableCell>
+    );
 }
+
+function Combination({
+    unitStats,
+    onOpenWarscroll,
+}: {
+    unitStats: UnitStats;
+    onOpenWarscroll: (unit: Unit) => void;
+}) {
+    const { warscrollStore } = useStores();
+    const unit = unitStats.unit;
+    const wounds = getValue(unit.wounds) * unit.size;
+    const points = unit.points / 100;
+    const count = warscrollStore.warscroll.units.reduce(
+        (c, x) => (x.definition.id === unit.id ? x.count + c : c),
+        0
+    );
+    const handleClick = useCallback(() => warscrollStore.addUnit(unit), [
+        unit,
+        warscrollStore,
+    ]);
+    const handleEyeClick = useCallback(() => onOpenWarscroll(unit), [
+        onOpenWarscroll,
+        unit,
+    ]);
+    return (
+        <TableRow key={unit.id + unitStats.name}>
+            <TableCell>
+                {unit.model.name} {count > 0 && `(${count})`}
+                <IconButton onClick={handleClick}>
+                    <AddIcon />
+                </IconButton>
+                <IconButton onClick={handleEyeClick}>
+                    <HelpOutlineIcon />
+                </IconButton>
+            </TableCell>
+            <TableCell>{unitStats.name}</TableCell>
+            <TableCell>{unit.points}</TableCell>
+            <TableCell>{value(unit.move)}</TableCell>
+            <TableCell>{unit.bravery}</TableCell>
+            <TableCell>
+                {wounds} ({(wounds / points).toFixed(2)}){" "}
+            </TableCell>
+            <TableCell>{unitStats.save}</TableCell>
+            <TableCell>
+                {unitStats.savedWounds.toFixed()} (
+                {(unitStats.savedWounds / points).toFixed(2)})
+            </TableCell>
+            <TableCell>
+                {unitStats.meleeDamage.toFixed(2)} (
+                {(unitStats.meleeDamage / points).toFixed(2)}){" "}
+            </TableCell>
+            <TableCell>
+                {unitStats.rangedDamage.toFixed(2)} (
+                {(unitStats.rangedDamage / points).toFixed(2)}){" "}
+            </TableCell>
+            <TableCell>
+                {unitStats.totalDamage.toFixed(2)} (
+                {(unitStats.totalDamage / points).toFixed(2)}){" "}
+            </TableCell>
+            <TableCell>
+                {join(
+                    unitStats.ignoredAbilities.map((x) => (
+                        <span key={x.name} title={x.description}>
+                            {x.name}
+                        </span>
+                    )),
+                    ", "
+                )}
+            </TableCell>
+        </TableRow>
+    );
+}
+
+function Stats() {
+    const { uiStore } = useStores();
+    const [sorted, setSorted] = useState(Columns.Name);
+    const [direction, setDirection] = useState<"asc" | "desc">("asc");
+    const [warscrollOpen, setWarcrollOpen] = useState<Unit | null>(null);
+    const handleOpenWarscroll = useCallback(
+        (unit: Unit) => setWarcrollOpen(unit),
+        []
+    );
+    const handleCloseWarscroll = useCallback(() => setWarcrollOpen(null), []);
+
+    const handleSort = useCallback(
+        (column: Columns) => {
+            if (column !== sorted) {
+                setSorted(column);
+                setDirection("asc");
+            } else {
+                setDirection((direction) =>
+                    direction === "asc" ? "desc" : "asc"
+                );
+            }
+        },
+        [sorted]
+    );
+
+    const sortedData = useMemo(
+        () =>
+            computed(() => {
+                let data = uiStore.unitStats;
+                const one = direction === "asc" ? 1 : -1;
+                const min = direction === "asc" ? -1 : 1;
+                switch (sorted) {
+                    case Columns.Name:
+                        data = data.sort((a, b) =>
+                            a.unit.model.name > b.unit.model.name ? one : min
+                        );
+                        break;
+                    case Columns.Points:
+                        data = data.sort((a, b) =>
+                            a.unit.points > b.unit.points ? one : min
+                        );
+                        break;
+                    case Columns.Move:
+                        data = data.sort((a, b) =>
+                            (a.unit.move || 0) > (b.unit.move || 0) ? one : min
+                        );
+                        break;
+                    case Columns.Bravery:
+                        data = data.sort((a, b) =>
+                            (a.unit.bravery || 0) > (b.unit.bravery || 0)
+                                ? one
+                                : min
+                        );
+                        break;
+                    case Columns.Wounds:
+                        data = data.sort((a, b) =>
+                            (a.unit.wounds || 0) > (b.unit.wounds || 0)
+                                ? one
+                                : min
+                        );
+                        break;
+                    case Columns.Save:
+                        data = data.sort((a, b) =>
+                            (a.save || 0) > (b.save || 0) ? one : min
+                        );
+                        break;
+                    case Columns.SavedWounds:
+                        data = data.sort((a, b) =>
+                            a.savedWounds / a.unit.points >
+                            b.savedWounds / b.unit.points
+                                ? one
+                                : min
+                        );
+                        break;
+                    case Columns.MeleeDamage:
+                        data = data.sort((a, b) =>
+                            a.meleeDamage / a.unit.points >
+                            b.meleeDamage / b.unit.points
+                                ? one
+                                : min
+                        );
+                        break;
+                    case Columns.RangedDamage:
+                        data = data.sort((a, b) =>
+                            a.rangedDamage / a.unit.points >
+                            b.rangedDamage / b.unit.points
+                                ? one
+                                : min
+                        );
+                        break;
+                    case Columns.TotalDamage:
+                        data = data.sort((a, b) =>
+                            a.totalDamage / a.unit.points >
+                            b.totalDamage / b.unit.points
+                                ? one
+                                : min
+                        );
+                        break;
+                }
+                return data;
+            }).get(),
+        [direction, sorted, uiStore.unitStats]
+    );
+
+    const sortOptions = { sorted, direction, onClick: handleSort };
+    return (
+        <Grid container spacing={2} direction="column" wrap="nowrap">
+            <Grid item>
+                {" "}
+                <Filter />
+            </Grid>
+            <Grid item>
+                <EnemyConfiguration />
+            </Grid>
+            {
+                <Dialog
+                    open={warscrollOpen !== null}
+                    onClose={handleCloseWarscroll}
+                >
+                    {warscrollOpen && <UnitWarscroll unit={warscrollOpen} />}
+                    {!warscrollOpen && <></>}
+                </Dialog>
+            }
+            <Grid item>
+                <TableContainer>
+                    <Table style={{ minWidth: 650 }}>
+                        <TableHead>
+                            <TableRow>
+                                <StatsTableHeaderCell
+                                    column={Columns.Name}
+                                    title="Name"
+                                    {...sortOptions}
+                                />
+                                <TableCell>Option</TableCell>
+                                <StatsTableHeaderCell
+                                    column={Columns.Points}
+                                    title="Points"
+                                    {...sortOptions}
+                                />
+                                <StatsTableHeaderCell
+                                    column={Columns.Move}
+                                    title="Move"
+                                    {...sortOptions}
+                                />
+                                <StatsTableHeaderCell
+                                    column={Columns.Bravery}
+                                    title="Bravery"
+                                    {...sortOptions}
+                                />
+                                <StatsTableHeaderCell
+                                    column={Columns.Wounds}
+                                    title="Wounds"
+                                    {...sortOptions}
+                                />
+                                <StatsTableHeaderCell
+                                    column={Columns.Save}
+                                    title="Save"
+                                    {...sortOptions}
+                                />
+                                <StatsTableHeaderCell
+                                    column={Columns.SavedWounds}
+                                    title="Saved Wounds"
+                                    {...sortOptions}
+                                />
+                                <StatsTableHeaderCell
+                                    column={Columns.MeleeDamage}
+                                    title="Melee Damage"
+                                    {...sortOptions}
+                                />{" "}
+                                <StatsTableHeaderCell
+                                    column={Columns.RangedDamage}
+                                    title="Ranged Damage"
+                                    {...sortOptions}
+                                />
+                                <StatsTableHeaderCell
+                                    column={Columns.TotalDamage}
+                                    title="Melee x 1.5 + Ranged"
+                                    {...sortOptions}
+                                />
+                                <TableCell>Other abilities</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {sortedData.map((x, index) => (
+                                <Combination
+                                    key={index}
+                                    onOpenWarscroll={handleOpenWarscroll}
+                                    unitStats={x}
+                                />
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Grid>
+        </Grid>
+    );
+}
+
+export default observer(Stats);

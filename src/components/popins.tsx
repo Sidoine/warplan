@@ -1,24 +1,19 @@
-import { UiStore } from "../stores/ui";
-import React = require("react");
-import { inject, observer } from "mobx-react";
-import { BasketPopin } from "./basket-popin";
-import { WarscrollPopin } from "./warscroll-popin";
-import { ExportPopin } from "./export-popin";
+import React from "react";
+import { observer } from "mobx-react-lite";
+import BasketPopin from "./basket-popin";
+import WarscrollPopin from "./warscroll-popin";
+import ExportPopin from "./export-popin";
+import { useStores } from "../stores";
 
-export interface PopinsProps {
-    uiStore?: UiStore;
+function Popins() {
+    const { uiStore } = useStores();
+    return (
+        <>
+            {uiStore.basketPopin && <BasketPopin />}
+            {uiStore.warscrollPopin && <WarscrollPopin />}
+            {uiStore.exportPopin && <ExportPopin />}
+        </>
+    );
 }
 
-@inject("uiStore")
-@observer
-export class Popins extends React.Component<PopinsProps, {}> {
-    render() {
-        return (
-            <>
-                {this.props.uiStore!.basketPopin && <BasketPopin />}
-                {this.props.uiStore!.warscrollPopin && <WarscrollPopin />}
-                {this.props.uiStore!.exportPopin && <ExportPopin />}
-            </>
-        );
-    }
-}
+export default observer(Popins);

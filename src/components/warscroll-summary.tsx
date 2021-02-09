@@ -1,27 +1,28 @@
 import * as React from "react";
-import { observer, useLocalStore } from "mobx-react";
+import { observer, useLocalStore } from "mobx-react-lite";
 import {
     PointMode,
     WarscrollLimits,
-    WarscrollContingent
+    WarscrollContingent,
 } from "../stores/warscroll";
 import {
     ArmyOption,
     Allegiance,
     contingentName,
-    AbilityCategory
+    AbilityCategory,
 } from "../stores/units";
-import { DropdownValues, DropdownObjects } from "../atoms/dropdown-list";
+import DropdownValues from "../atoms/dropdown-values";
+import DropdownObjects from "../atoms/dropdown-objects";
 import {
     Grid,
     FormControl,
     InputLabel,
     Card,
     CardContent,
-    CardActions
+    CardActions,
 } from "@material-ui/core";
 import WarningIcon from "@material-ui/icons/Warning";
-import { NumberControl } from "../atoms/number-control";
+import NumberControl from "../atoms/number-control";
 import { Warning } from "../atoms/warning";
 import { useStores } from "../stores";
 
@@ -40,7 +41,7 @@ const WarscrollLimitView = observer(
         name,
         prop,
         min,
-        max
+        max,
     }: {
         limits: WarscrollLimits;
         name: string;
@@ -72,6 +73,10 @@ const WarscrollLimitView = observer(
         );
     }
 );
+
+function getName(x: { name: string }) {
+    return x.name;
+}
 
 const WarscrollContingentView = observer(
     ({ contingent }: { contingent: WarscrollContingent }) => {
@@ -140,14 +145,14 @@ export const WarscrollSummary = observer(() => {
         },
         setArmyOption(x: ArmyOption | null) {
             warscrollStore.setArmyOption(x);
-        }
+        },
     }));
 
     const warscroll = warscrollStore.warscroll;
     const totalPoints = warscroll.totalPoints;
     const alliedPoints = warscroll.alliedPoints;
     const allegianceOptions = unitsStore.allegianceList.filter(
-        x => x.grandAlliance === uiStore.grandAlliance
+        (x) => x.grandAlliance === uiStore.grandAlliance
     );
     const armyOptions = warscrollStore.armyOptions;
 
@@ -159,7 +164,7 @@ export const WarscrollSummary = observer(() => {
                         <FormControl>
                             <InputLabel> Allegiance</InputLabel>
                             <DropdownObjects
-                                getText={x => x.name}
+                                getText={(x) => x.name}
                                 options={allegianceOptions}
                                 value={warscroll.allegiance}
                                 onChange={store.setAllegiance}
@@ -180,7 +185,7 @@ export const WarscrollSummary = observer(() => {
                                 warscroll.armyOption.requiredCommandTrait &&
                                 warscroll.general &&
                                 warscroll.general.extraAbilities.some(
-                                    x =>
+                                    (x) =>
                                         x.ability.category ===
                                         AbilityCategory.CommandTrait
                                 ) &&
@@ -192,7 +197,7 @@ export const WarscrollSummary = observer(() => {
                             <FormControl>
                                 <InputLabel> {armyOptions.name}</InputLabel>
                                 <DropdownObjects<ArmyOption>
-                                    getText={x => x.name}
+                                    getText={getName}
                                     options={armyOptions.values}
                                     value={warscroll.armyOption}
                                     onChange={store.setArmyOption}
@@ -209,9 +214,9 @@ export const WarscrollSummary = observer(() => {
                                 options={[
                                     PointMode.MatchedPlay,
                                     PointMode.OpenPlay,
-                                    PointMode.MeetingEngagements
+                                    PointMode.MeetingEngagements,
                                 ]}
-                                getText={v =>
+                                getText={(v) =>
                                     v === PointMode.MatchedPlay
                                         ? "Matched play"
                                         : v === PointMode.OpenPlay
@@ -228,7 +233,7 @@ export const WarscrollSummary = observer(() => {
                             <DropdownObjects
                                 value={warscroll.realm}
                                 options={unitsStore.realms}
-                                getText={x => x.name}
+                                getText={(x) => x.name}
                                 onChange={warscrollStore.setRealm}
                                 clearable
                             />
@@ -311,7 +316,7 @@ export const WarscrollSummary = observer(() => {
                         </Grid>
                     </Grid>
                     {warscroll.pointMode === PointMode.MeetingEngagements &&
-                        warscroll.contingents.map(x => (
+                        warscroll.contingents.map((x) => (
                             <WarscrollContingentView
                                 key={x.contingent}
                                 contingent={x}

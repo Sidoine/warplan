@@ -1,12 +1,10 @@
 import * as React from "react";
-import { observer, useLocalStore } from "mobx-react";
+import { observer, useLocalStore } from "mobx-react-lite";
 import { AbilityCard, CardContent, CardColor } from "./ability-card";
 import { HiddenCard } from "./hidden-card";
 import { ExtraAbility, ArmyOption, Ability } from "../stores/units";
 import { useStores } from "../stores";
 import { makeStyles } from "@material-ui/core";
-
-export interface CardsProps {}
 
 function mapAbility(
     x: Ability,
@@ -19,7 +17,7 @@ function mapAbility(
         flavor: x.flavor,
         description: x.description,
         color,
-        keywords
+        keywords,
     };
 }
 
@@ -34,7 +32,7 @@ function mapExtraAbility(x: ExtraAbility): CardContent {
             x.category === "CommandTrait" || x.category === "Artefact"
                 ? undefined
                 : x.category,
-        color: x.armyOptionKeyword ? "armyOption" : "allegiance"
+        color: x.armyOptionKeyword ? "armyOption" : "allegiance",
     };
 }
 
@@ -45,22 +43,22 @@ function mapArmyOption(x: Ability, o: ArmyOption): CardContent {
         flavor: x.flavor,
         description: x.description,
         keywords: [[o.name]],
-        color: "armyOption"
+        color: "armyOption",
     };
 }
 
 const useStyles = makeStyles({
     root: {
-        display: "block"
-    }
+        display: "block",
+    },
 });
 
-export const Cards = observer((props: CardsProps) => {
+export const Cards = observer(() => {
     const { warscrollStore, unitsStore, cardsStore } = useStores();
     const classes = useStyles();
     const store = useLocalStore(() => ({
         get abilities() {
-            let result: CardContent[] = unitsStore.baseAbilities.map(x =>
+            let result: CardContent[] = unitsStore.baseAbilities.map((x) =>
                 mapAbility(x, "common")
             );
             const w = warscrollStore.warscroll;
@@ -68,7 +66,7 @@ export const Cards = observer((props: CardsProps) => {
                 for (const armyOption of w.allegiance.armyOptions.values) {
                     if (armyOption.abilities)
                         result = result.concat(
-                            armyOption.abilities.map(x =>
+                            armyOption.abilities.map((x) =>
                                 mapArmyOption(x, armyOption)
                             )
                         );
@@ -76,13 +74,13 @@ export const Cards = observer((props: CardsProps) => {
             }
             if (w.allegiance.battleTraits)
                 result = result.concat(
-                    w.allegiance.battleTraits.map(x =>
+                    w.allegiance.battleTraits.map((x) =>
                         mapAbility(x, "allegiance")
                     )
                 );
 
             result = result.concat(
-                w.availableExtraAbilities.map(x => mapExtraAbility(x))
+                w.availableExtraAbilities.map((x) => mapExtraAbility(x))
             );
             return result;
         },
@@ -93,14 +91,14 @@ export const Cards = observer((props: CardsProps) => {
 
         handleHiddenAbilityClick(name: string) {
             cardsStore.setAbilityHidden(name, false);
-        }
+        },
     }));
 
     return (
         <div>
             <div className={classes.root}>
                 {store.abilities
-                    .filter(x => !cardsStore.isHidden(x.group || x.name))
+                    .filter((x) => !cardsStore.isHidden(x.group || x.name))
                     .map((x, i) => (
                         <AbilityCard
                             key={i}
@@ -111,7 +109,7 @@ export const Cards = observer((props: CardsProps) => {
             </div>
             <div>
                 {Array.from(cardsStore.names)
-                    .filter(x => x[1])
+                    .filter((x) => x[1])
                     .map(([name]) => (
                         <HiddenCard
                             key={name}

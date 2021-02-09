@@ -1,42 +1,41 @@
-import * as React from "react";
-import { UnitsStore, Battalion } from "../stores/units";
-import { observer, inject } from "mobx-react";
-import { WarscrollStore } from "../stores/warscroll";
-import { AddButton, TableColumn } from "../atoms/dropdown-list";
+import React, { useCallback } from "react";
+import { Battalion } from "../stores/units";
+import { observer } from "mobx-react-lite";
+import AddButton, { TableColumn } from "../atoms/add-button";
+import { useStores } from "../stores";
 
 export interface BattalionsListProps {
-    unitsStore?: UnitsStore;
     title: string;
-    warscrollStore?: WarscrollStore;
 }
 
 const columns: TableColumn<Battalion>[] = [
-    { name: "Name", text: x => x.name },
+    { name: "Name", text: (x) => x.name },
     {
         name: "Description",
-        text: b =>
+        text: (b) =>
             b.units
-                .map(y => y.units.map(x => x.join("-")).join("/"))
-                .join(" ― ")
-    }
+                .map((y) => y.units.map((x) => x.join("-")).join("/"))
+                .join(" ― "),
+    },
 ];
 
-@inject("unitsStore", "warscrollStore")
-@observer
-export class BattalionsList extends React.Component<BattalionsListProps, {}> {
-    render() {
-        const items = this.props.warscrollStore!.availableBattalions;
-        return (
-            <AddButton
-                placeholder={this.props.title}
-                columns={columns}
-                options={items}
-                onChange={this.onChange}
-            />
-        );
-    }
-
-    private onChange = (model: Battalion) => {
-        this.props.warscrollStore!.addBattalion(model);
-    };
+function BattalionsList({ title }: BattalionsListProps) {
+    const { warscrollStore } = useStores();
+    const items = warscrollStore.availableBattalions;
+    const onChange = useCallback(
+        (model: Battalion) => {
+            warscrollStore.addBattalion(model);
+        },
+        [warscrollStore]
+    );
+    return (
+        <AddButton
+            placeholder={title}
+            columns={columns}
+            options={items}
+            onChange={onChange}
+        />
+    );
 }
+
+export default observer(BattalionsList);

@@ -1,5 +1,4 @@
-import { MobXProviderContext } from "mobx-react";
-import React from "react";
+import React, { useContext } from "react";
 import { DataStore, UnitsStore } from "./units";
 import { UiStore } from "./ui";
 import { WarscrollStore } from "./warscroll";
@@ -41,10 +40,12 @@ export function newStores(): Stores {
         basketStore,
         markersStore,
         cardsStore,
-        battleStore
+        battleStore,
     };
 }
 
+export const StoreContext = React.createContext<Stores>(newStores());
+
 export function useStores(): Stores {
-    return React.useContext(MobXProviderContext) as Stores;
+    return useContext(StoreContext);
 }

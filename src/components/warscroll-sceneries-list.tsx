@@ -1,9 +1,7 @@
-import * as React from "react";
-import { UnitsStore } from "../stores/units";
-import { observer, inject } from "mobx-react";
-import { WarscrollStore } from "../stores/warscroll";
-import { WarscrollSceneryEdit } from "./warscroll-scenery-edit";
-import { SceneriesList } from "./sceneries-list";
+import React from "react";
+import { observer } from "mobx-react-lite";
+import WarscrollSceneryEdit from "./warscroll-scenery-edit";
+import SceneriesList from "./sceneries-list";
 import {
     Table,
     TableHead,
@@ -13,46 +11,38 @@ import {
     CardContent,
     CardActions,
     Card,
-    CardHeader
+    CardHeader,
 } from "@material-ui/core";
+import { useStores } from "../stores";
 
-export interface WarscrollSceneriesListProps {
-    unitsStore?: UnitsStore;
-    warscrollStore?: WarscrollStore;
+function WarscrollSceneriesList() {
+    const { warscrollStore } = useStores();
+    const warscroll = warscrollStore.warscroll;
+    return (
+        <Card>
+            <CardHeader title="Endless spells" />
+            <CardContent>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Points</TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {warscroll.endlessSpells.map((x) => (
+                            <WarscrollSceneryEdit key={x.id} scenery={x} />
+                        ))}
+                    </TableBody>
+                </Table>
+            </CardContent>
+            <CardActions>
+                <span>{warscroll.sceneryPoints} points</span>
+                <SceneriesList title="Add..." />
+            </CardActions>
+        </Card>
+    );
 }
 
-@inject("unitsStore", "warscrollStore")
-@observer
-export class WarscrollSceneriesList extends React.Component<
-    WarscrollSceneriesListProps,
-    {}
-> {
-    render() {
-        const warscroll = this.props.warscrollStore!.warscroll;
-        return (
-            <Card>
-                <CardHeader title="Endless spells" />
-                <CardContent>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Points</TableCell>
-                                <TableCell></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {warscroll.endlessSpells.map(x => (
-                                <WarscrollSceneryEdit key={x.id} scenery={x} />
-                            ))}
-                        </TableBody>
-                    </Table>
-                </CardContent>
-                <CardActions>
-                    <span>{warscroll.sceneryPoints} points</span>
-                    <SceneriesList title="Add..." />
-                </CardActions>
-            </Card>
-        );
-    }
-}
+export default observer(WarscrollSceneriesList);

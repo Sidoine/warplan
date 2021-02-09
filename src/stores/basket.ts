@@ -1,4 +1,4 @@
-import { action, observable, toJS, computed } from "mobx";
+import { action, observable, toJS, computed, makeObservable } from "mobx";
 import { Box, UnitsStore, Model } from "./units";
 import { WarscrollStore } from "./warscroll";
 import { OwnedStore } from "./owned";
@@ -174,6 +174,7 @@ export class BasketStore {
         private warscrollStore: WarscrollStore,
         private ownedStore: OwnedStore
     ) {
+        makeObservable(this);
         const baskets = localStorage.getItem("baskets");
         if (baskets !== null) {
             this.baskets = JSON.parse(baskets);

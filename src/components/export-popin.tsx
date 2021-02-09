@@ -1,81 +1,66 @@
 import * as React from "react";
-import { UiStore } from "../stores/ui";
-import { inject, observer } from "mobx-react";
-import { UnitsStore } from "../stores/units";
-import { WarscrollStore } from "../stores/warscroll";
+import { observer } from "mobx-react-lite";
 import {
     Dialog,
     DialogActions,
     Button,
     DialogContent,
     DialogTitle,
-    Input
+    Input,
 } from "@material-ui/core";
+import { useStores } from "../stores";
 
-export interface ExportPopinProps {
-    uiStore?: UiStore;
-    unitsStore?: UnitsStore;
-    warscrollStore?: WarscrollStore;
-}
+function ExportPopin() {
+    const { warscrollStore, uiStore } = useStores();
 
-@inject("uiStore", "unitsStore", "warscrollStore")
-@observer
-export class ExportPopin extends React.Component<ExportPopinProps, {}> {
-    render() {
-        const warscroll = this.props.warscrollStore!.warscroll;
-        return (
-            <Dialog onClose={this.handleClose} open={true}>
-                <DialogTitle>Warscolls</DialogTitle>
+    const handleClose = React.useCallback(() => uiStore.closeExportPopin(), [
+        uiStore,
+    ]);
+    const warscroll = warscrollStore.warscroll;
+    return (
+        <Dialog onClose={handleClose} open={true}>
+            <DialogTitle>Warscolls</DialogTitle>
 
-                <DialogContent>
-                    <div>
-                        <b>Allegiance: {warscroll.allegiance.name}</b>
+            <DialogContent>
+                <div>
+                    <b>Allegiance: {warscroll.allegiance.name}</b>
+                </div>
+                {warscroll.units.map((x) => (
+                    <div key={x.id}>
+                        <b>
+                            {x.modelCount > 1 ? <>{x.modelCount} x</> : <></>}{" "}
+                            {x.definition.model.name}
+                        </b>
+                        ({x.points})
+                        {x.isGeneral && (
+                            <div>
+                                <i>- General</i>
+                            </div>
+                        )}
+                        {x.models.map((y) => (
+                            <div key={y.id}>
+                                <i>
+                                    - {y.count && <>{y.count} x </>} {y.name}{" "}
+                                </i>
+                            </div>
+                        ))}
                     </div>
-                    {warscroll.units.map(x => (
-                        <div key={x.id}>
-                            <b>
-                                {x.modelCount > 1 ? (
-                                    <>{x.modelCount} x</>
-                                ) : (
-                                    <></>
-                                )}{" "}
-                                {x.definition.model.name}
-                            </b>
-                            ({x.points})
-                            {x.isGeneral && (
-                                <div>
-                                    <i>- General</i>
-                                </div>
-                            )}
-                            {x.models.map(y => (
-                                <div key={y.id}>
-                                    <i>
-                                        - {y.count && <>{y.count} x </>}{" "}
-                                        {y.name}{" "}
-                                    </i>
-                                </div>
-                            ))}
-                        </div>
-                    ))}
+                ))}
 
-                    {warscroll.battalions.map(x => (
-                        <div key={x.id}>
-                            <b>{x.definition.name}</b>
-                        </div>
-                    ))}
+                {warscroll.battalions.map((x) => (
+                    <div key={x.id}>
+                        <b>{x.definition.name}</b>
+                    </div>
+                ))}
 
-                    <Input
-                        type="text"
-                        value={this.props.warscrollStore!.link}
-                    />
-                </DialogContent>
+                <Input type="text" value={warscrollStore.link} />
+            </DialogContent>
 
-                <DialogActions>
-                    <Button onClick={this.handleClose}>Close</Button>
-                </DialogActions>
-            </Dialog>
-        );
-    }
-
-    private handleClose = () => this.props.uiStore!.closeExportPopin();
+            <DialogActions>
+                <Button onClick={handleClose}>Close</Button>
+            </DialogActions>
+        </Dialog>
+    );
 }
+
+export default observer(ExportPopin);

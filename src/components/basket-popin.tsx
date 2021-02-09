@@ -1,9 +1,4 @@
-import * as React from "react";
-import { UiStore } from "../stores/ui";
-import { inject, observer } from "mobx-react";
-import { UnitsStore } from "../stores/units";
-import { observable } from "mobx";
-import { BasketStore } from "../stores/basket";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import {
     Dialog,
     DialogTitle,
@@ -11,74 +6,71 @@ import {
     DialogActions,
     Button,
     Input,
-    IconButton
+    IconButton,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { useStores } from "../stores";
 
-export interface BasketPopinProps {
-    uiStore?: UiStore;
-    unitsStore?: UnitsStore;
-    basketStore?: BasketStore;
+function BasketItem({ x }: { x: string }) {
+    const { basketStore } = useStores();
+    const handleUpdate = useCallback(() => {
+        basketStore.saveBasket(x);
+    }, [basketStore, x]);
+
+    const handleLoad = useCallback(() => basketStore.loadBasket(x), [
+        basketStore,
+        x,
+    ]);
+    const handleDelete = useCallback(() => basketStore.removeBasket(x), [
+        basketStore,
+        x,
+    ]);
+    return (
+        <div>
+            {x}
+            <Button onClick={handleUpdate}>Update</Button>
+            <Button onClick={handleLoad}>Load</Button>
+            <IconButton onClick={handleDelete}>
+                <DeleteIcon />
+            </IconButton>
+        </div>
+    );
 }
 
-@inject("uiStore", "unitsStore", "basketStore")
-@observer
-export class BasketPopin extends React.Component<BasketPopinProps, {}> {
-    @observable
-    basketName: string = "New basket";
+function BasketPopin() {
+    const { uiStore, basketStore } = useStores();
+    const [basketName, setBasketName] = useState("New basket");
+    const handleClose = useCallback(() => uiStore.closeBasketPopin(), [
+        uiStore,
+    ]);
+    const handleChange = useCallback(
+        (x: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            setBasketName(x.target.value);
+        },
+        []
+    );
+    const handleAdd = useCallback(() => basketStore.saveBasket(basketName), [
+        basketName,
+        basketStore,
+    ]);
 
-    render() {
-        return (
-            <Dialog onClose={this.handleClose} open={true}>
-                <DialogTitle>Baskets</DialogTitle>
+    return (
+        <Dialog onClose={handleClose} open={true}>
+            <DialogTitle>Baskets</DialogTitle>
 
-                <DialogContent>
-                    {this.props.basketStore!.baskets.map(x => (
-                        <div>
-                            {x}
-                            <Button
-                                onClick={() =>
-                                    this.props.basketStore!.saveBasket(x)
-                                }
-                            >
-                                Update
-                            </Button>
-                            <Button
-                                onClick={() =>
-                                    this.props.basketStore!.loadBasket(x)
-                                }
-                            >
-                                Load
-                            </Button>
-                            <IconButton
-                                onClick={() =>
-                                    this.props.basketStore!.removeBasket(x)
-                                }
-                            >
-                                <DeleteIcon />
-                            </IconButton>
-                        </div>
-                    ))}
-                    <Input
-                        type="text"
-                        value={this.basketName}
-                        onChange={x => (this.basketName = x.target.value)}
-                    />
-                    <Button
-                        onClick={() =>
-                            this.props.basketStore!.saveBasket(this.basketName)
-                        }
-                    >
-                        Add
-                    </Button>
-                </DialogContent>
+            <DialogContent>
+                {basketStore.baskets.map((x) => (
+                    <BasketItem key={x} x={x} />
+                ))}
+                <Input type="text" value={basketName} onChange={handleChange} />
+                <Button onClick={handleAdd}>Add</Button>
+            </DialogContent>
 
-                <DialogActions>
-                    <Button onClick={this.handleClose}>Close</Button>
-                </DialogActions>
-            </Dialog>
-        );
-    }
-
-    private handleClose = () => this.props.uiStore!.closeBasketPopin();
+            <DialogActions>
+                <Button onClick={handleClose}>Close</Button>
+            </DialogActions>
+        </Dialog>
+    );
 }
+
+export default BasketPopin;

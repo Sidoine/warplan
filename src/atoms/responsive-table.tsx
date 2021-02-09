@@ -9,13 +9,13 @@ import {
     List,
     Collapse,
     ListItem,
-    ListItemText
+    ListItemText,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { HasId } from "./dropdown-list";
+import { HasId } from "./add-button";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 
 export interface ResponsiveTableColumn<T> {
     text: (x: T) => JSX.Element | JSX.Element[] | string | number | undefined;
@@ -29,7 +29,7 @@ export interface ResponsiveTableProps<T> {
 
 function ResponsiveTableInnner<T extends HasId>({
     columns,
-    rows
+    rows,
 }: ResponsiveTableProps<T>) {
     const [open, setOpen] = useState("");
     const firstColumn = columns[0];
@@ -49,9 +49,9 @@ function ResponsiveTableInnner<T extends HasId>({
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map(x => (
+                            {rows.map((x) => (
                                 <TableRow key={x.id}>
-                                    {columns.map(y => (
+                                    {columns.map((y) => (
                                         <TableCell key={y.name}>
                                             {y.text(x)}
                                         </TableCell>
@@ -64,7 +64,7 @@ function ResponsiveTableInnner<T extends HasId>({
             </Hidden>
             <Hidden implementation="js" smUp>
                 <List>
-                    {rows.map(x => (
+                    {rows.map((x) => (
                         <React.Fragment key={x.id}>
                             <ListItem
                                 button
@@ -84,7 +84,7 @@ function ResponsiveTableInnner<T extends HasId>({
                             <Collapse in={x.id === open}>
                                 <Table>
                                     <TableBody>
-                                        {otherColumns.map(y => (
+                                        {otherColumns.map((y) => (
                                             <TableRow key={y.name}>
                                                 <TableCell variant="head">
                                                     {y.name}
@@ -105,4 +105,4 @@ function ResponsiveTableInnner<T extends HasId>({
     );
 }
 
-export const ResponsiveTable = observer(ResponsiveTableInnner);
+export default observer(ResponsiveTableInnner);

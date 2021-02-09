@@ -1,4 +1,4 @@
-import { observable, action, computed } from "mobx";
+import { observable, action, computed, makeObservable } from "mobx";
 import { GrandAlliance, UnitsStore } from "./units";
 import { UnitStats, getUnitStats } from "./stats";
 
@@ -42,14 +42,14 @@ export class UiStore {
         if (keywordFilter.length > 2) {
             const grandAlliance = this.grandAlliance;
             return this.unitsStore.unitList.filter(
-                x =>
-                    x.factions.some(x => x.grandAlliance === grandAlliance) &&
+                (x) =>
+                    x.factions.some((x) => x.grandAlliance === grandAlliance) &&
                     (x.model.name.toUpperCase().indexOf(keywordFilter) >= 0 ||
-                        x.keywords.some(x => x.indexOf(keywordFilter) >= 0))
+                        x.keywords.some((x) => x.indexOf(keywordFilter) >= 0))
             );
         }
-        return this.unitsStore.unitList.filter(x =>
-            x.factions.some(x => x.id === this.faction.id)
+        return this.unitsStore.unitList.filter((x) =>
+            x.factions.some((x) => x.id === this.faction.id)
         );
     }
 
@@ -74,6 +74,7 @@ export class UiStore {
     }
 
     constructor(private unitsStore: UnitsStore) {
+        makeObservable(this);
         const ui: string | null = localStorage.getItem("ui");
         if (ui) {
             const serialized: SerializedUi = JSON.parse(ui);
@@ -112,9 +113,9 @@ export class UiStore {
     }
 
     @action
-    showBasketPopin() {
+    showBasketPopin = () => {
         this.basketPopin = true;
-    }
+    };
 
     @action
     closeBasketPopin() {
@@ -150,7 +151,7 @@ export class UiStore {
             keywordFilter: this.keywordFilter,
             enemyKeywords: this.enemy.keywords,
             enemySave: this.enemy.save,
-            enemyCharged: this.enemy.charged
+            enemyCharged: this.enemy.charged,
         };
         localStorage.setItem("ui", JSON.stringify(serialized));
     }

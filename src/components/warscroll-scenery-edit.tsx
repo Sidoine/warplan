@@ -1,68 +1,61 @@
-import * as React from "react";
-import { observer, inject } from "mobx-react";
-import { WarscrollStore, WarscrollEndlessSpell } from "../stores/warscroll";
+import React, { useCallback, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { WarscrollEndlessSpell } from "../stores/warscroll";
 import {
     TableRow,
     TableCell,
     Button,
     IconButton,
-    Modal
+    Modal,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { observable, action } from "mobx";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { EndlessSpellWarscroll } from "./endless-spell-warscroll";
+import { useStores } from "../stores";
 
 export interface WarscrollSceneryEditProps {
     scenery: WarscrollEndlessSpell;
-    warscrollStore?: WarscrollStore;
 }
 
-@inject("warscrollStore")
-@observer
-export class WarscrollSceneryEdit extends React.Component<
-    WarscrollSceneryEditProps,
-    {}
-> {
-    @observable private warscrollOpen: WarscrollEndlessSpell | null = null;
-    @action private handleOpenWarscroll = (unit: WarscrollEndlessSpell) =>
-        (this.warscrollOpen = unit);
-    @action private handleCloseWarscroll = () => (this.warscrollOpen = null);
+function WarscrollSceneryEdit({ scenery }: WarscrollSceneryEditProps) {
+    const { warscrollStore } = useStores();
+    const [
+        warscrollOpen,
+        setWarscrollOpen,
+    ] = useState<WarscrollEndlessSpell | null>(null);
+    const handleOpenWarscroll = useCallback(
+        (unit: WarscrollEndlessSpell) => setWarscrollOpen(unit),
+        []
+    );
+    const handleCloseWarscroll = useCallback(() => setWarscrollOpen(null), []);
 
-    render() {
-        const scenery = this.props.scenery;
-        return (
-            <TableRow>
-                <TableCell>
-                    {scenery.definition.name}
-                    <IconButton
-                        onClick={() => this.handleOpenWarscroll(scenery)}
-                        size="small"
-                    >
-                        <VisibilityIcon />
-                    </IconButton>
-                    <Modal
-                        open={this.warscrollOpen !== null}
-                        onClose={this.handleCloseWarscroll}
-                    >
-                        <>
-                            <EndlessSpellWarscroll wes={this.warscrollOpen} />
-                        </>
-                    </Modal>
-                </TableCell>
-                <TableCell>{scenery.definition.points}</TableCell>
-                <TableCell>
-                    <Button
-                        onClick={() =>
-                            this.props.warscrollStore!.removeScenery(
-                                this.props.scenery
-                            )
-                        }
-                    >
-                        <DeleteIcon />
-                    </Button>
-                </TableCell>
-            </TableRow>
-        );
-    }
+    return (
+        <TableRow>
+            <TableCell>
+                {scenery.definition.name}
+                <IconButton
+                    onClick={() => handleOpenWarscroll(scenery)}
+                    size="small"
+                >
+                    <VisibilityIcon />
+                </IconButton>
+                <Modal
+                    open={warscrollOpen !== null}
+                    onClose={handleCloseWarscroll}
+                >
+                    <>
+                        <EndlessSpellWarscroll wes={warscrollOpen} />
+                    </>
+                </Modal>
+            </TableCell>
+            <TableCell>{scenery.definition.points}</TableCell>
+            <TableCell>
+                <Button onClick={() => warscrollStore.removeScenery(scenery)}>
+                    <DeleteIcon />
+                </Button>
+            </TableCell>
+        </TableRow>
+    );
 }
+
+export default observer(WarscrollSceneryEdit);

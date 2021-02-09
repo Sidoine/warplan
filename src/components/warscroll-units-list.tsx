@@ -1,20 +1,15 @@
-import React from "react";
+/* eslint-disable react/display-name */
+import React, { useMemo, useState } from "react";
 import {
-    UnitsStore,
     Model,
     ExtraAbility,
     ModelOption,
     Contingent,
-    contingentName
+    contingentName,
 } from "../stores/units";
-import { observer, inject } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { UnitsList } from "./units-list";
-import {
-    WarscrollStore,
-    WarscrollUnit,
-    WarscrollModel,
-    PointMode
-} from "../stores/warscroll";
+import { WarscrollUnit, WarscrollModel, PointMode } from "../stores/warscroll";
 import {
     Card,
     CardContent,
@@ -23,37 +18,31 @@ import {
     IconButton,
     Tooltip,
     Checkbox,
-    Modal
+    Modal,
 } from "@material-ui/core";
-import { computed, observable, action } from "mobx";
-import {
+import ResponsiveTable, {
     ResponsiveTableColumn,
-    ResponsiveTable
 } from "../atoms/responsive-table";
+import DropdownValues from "../atoms/dropdown-values";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import PeopleIcon from "@material-ui/icons/People";
 import ClearIcon from "@material-ui/icons/Clear";
 import { UnitWarscroll } from "./unit-warscroll";
 import WarningIcon from "@material-ui/icons/Warning";
-import { AddButton, TableColumn, DropdownValues } from "../atoms/dropdown-list";
-import { NumberControl } from "../atoms/number-control";
+import AddButton, { TableColumn } from "../atoms/add-button";
+import NumberControl from "../atoms/number-control";
 import { join } from "../helpers/react";
 import { useStores } from "../stores";
 import { Warning } from "../atoms/warning";
 import { useCallback } from "react";
 
-export interface WarscrollUnitsListProps {
-    unitsStore?: UnitsStore;
-    warscrollStore?: WarscrollStore;
-}
-
 const modelColumns: TableColumn<Model>[] = [
-    { name: "Name", text: x => x.name }
+    { name: "Name", text: (x) => x.name },
 ];
 
 const extraAbilityColumns: TableColumn<ExtraAbility>[] = [
-    { name: "Name", text: x => x.ability.name },
-    { name: "Description", text: x => x.ability.description }
+    { name: "Name", text: (x) => x.ability.name },
+    { name: "Description", text: (x) => x.ability.description },
 ];
 
 const ContingentList = observer(({ unit }: { unit: WarscrollUnit }) => {
@@ -63,10 +52,10 @@ const ContingentList = observer(({ unit }: { unit: WarscrollUnit }) => {
             options={[
                 Contingent.Rearguard,
                 Contingent.Main,
-                Contingent.Spearhead
+                Contingent.Spearhead,
             ]}
             getText={contingentName}
-            onChange={x => warscrollStore.setContingent(unit, x)}
+            onChange={(x) => warscrollStore.setContingent(unit, x)}
             value={unit.contingent}
         />
     );
@@ -75,7 +64,7 @@ const ContingentList = observer(({ unit }: { unit: WarscrollUnit }) => {
 const ExtraAbilitiesView = observer(
     ({
         unit,
-        onChange
+        onChange,
     }: {
         unit: WarscrollUnit;
         onChange: (unit: WarscrollUnit, t: ExtraAbility) => void;
@@ -84,7 +73,7 @@ const ExtraAbilitiesView = observer(
             <AddButton
                 columns={extraAbilityColumns}
                 options={unit.availableExtraAbilities}
-                onChange={t => onChange(unit, t)}
+                onChange={(t) => onChange(unit, t)}
             />
         ) : (
             <></>
@@ -109,7 +98,7 @@ const ModelCount = observer(({ unit }: { unit: WarscrollUnit }) => {
 const ModelName = observer(
     ({
         unit,
-        onOpenWarscroll
+        onOpenWarscroll,
     }: {
         unit: WarscrollUnit;
         onOpenWarscroll: (unit: WarscrollUnit) => void;
@@ -176,7 +165,7 @@ const RenderExtras = observer(({ unit }: { unit: WarscrollUnit }) => {
     return (
         <>
             {join(
-                unit.extraAbilities.map(x => (
+                unit.extraAbilities.map((x) => (
                     <span key={x.id}>
                         <Tooltip title={x.ability.description || ""}>
                             <span>{x.ability.name}</span>
@@ -200,170 +189,187 @@ const RenderExtras = observer(({ unit }: { unit: WarscrollUnit }) => {
     );
 });
 
-@inject("unitsStore", "warscrollStore")
-@observer
-export class WarscrollUnitsList extends React.Component<
-    WarscrollUnitsListProps,
-    {}
-> {
-    @action private handleOpenWarscroll = (unit: WarscrollUnit) =>
-        (this.warscrollOpen = unit);
+function RenderModelOption({
+    model,
+    option,
+}: {
+    model: WarscrollModel;
+    option: ModelOption;
+}) {
+    const { warscrollStore } = useStores();
+    const handleRemoveModelOption = useCallback(() => {
+        warscrollStore.removeModelOption(model, option);
+    }, [model, option, warscrollStore]);
 
-    @observable private warscrollOpen: WarscrollUnit | null = null;
-    @action private handleCloseWarscroll = () => (this.warscrollOpen = null);
+    return (
+        <span key={option.id}>
+            {model.isOptionValid(option) || <WarningIcon />} {option.name}{" "}
+            <IconButton onClick={handleRemoveModelOption}>
+                <ClearIcon />
+            </IconButton>
+        </span>
+    );
+}
 
-    @computed get columns(): ResponsiveTableColumn<WarscrollUnit>[] {
+function RenderModel({
+    unit,
+    model,
+}: {
+    unit: WarscrollUnit;
+    model: WarscrollModel;
+}) {
+    const { warscrollStore } = useStores();
+
+    const handleAddModelOption = useCallback(
+        (model: WarscrollModel) => {
+            return (option: ModelOption) => {
+                warscrollStore!.addModelOption(model, option);
+            };
+        },
+        [warscrollStore]
+    );
+
+    const handleModelCountChange = useCallback(
+        (unit: WarscrollUnit, model: WarscrollModel) => {
+            return (value: number) => {
+                if (value === 0) {
+                    warscrollStore!.removeModel(unit, model);
+                } else {
+                    warscrollStore!.setModelCount(model, value);
+                }
+            };
+        },
+        [warscrollStore]
+    );
+    return (
+        <div key={model.id}>
+            <NumberControl
+                value={model.count}
+                onChange={handleModelCountChange(unit, model)}
+            />
+            {join(
+                model.options.map((x) => (
+                    <RenderModelOption key={x.id} option={x} model={model} />
+                )),
+                ", "
+            )}
+            {model.availableOptions.length > 0 && (
+                <AddButton
+                    columns={modelColumns}
+                    options={model.availableOptions}
+                    onChange={handleAddModelOption(model)}
+                />
+            )}
+        </div>
+    );
+}
+
+function ModelOptions({ unit }: { unit: WarscrollUnit }) {
+    const { warscrollStore } = useStores();
+
+    const handleAddModel = useCallback(
+        (unit: WarscrollUnit) => {
+            return (option: ModelOption) => {
+                warscrollStore.addModel(unit, option);
+            };
+        },
+        [warscrollStore]
+    );
+
+    return (
+        <>
+            {unit.models.map((x) => (
+                <RenderModel key={x.id} unit={unit} model={x} />
+            ))}
+            {unit.availableOptions.length > 0 && (
+                <AddButton
+                    columns={modelColumns}
+                    options={unit.availableOptions}
+                    onChange={handleAddModel(unit)}
+                />
+            )}
+        </>
+    );
+}
+
+function WarscrollUnitsList() {
+    const [warscrollOpen, setWarscrollOpen] = useState<WarscrollUnit | null>(
+        null
+    );
+    const handleOpenWarscroll = useCallback(
+        (unit: WarscrollUnit) => setWarscrollOpen(unit),
+        []
+    );
+    const { warscrollStore } = useStores();
+
+    const handleCloseWarscroll = useCallback(() => setWarscrollOpen(null), []);
+
+    const columns = useMemo<ResponsiveTableColumn<WarscrollUnit>[]>(() => {
         const columns: ResponsiveTableColumn<WarscrollUnit>[] = [
             {
                 name: "Name",
-                text: x => (
-                    <ModelName
-                        unit={x}
-                        onOpenWarscroll={this.handleOpenWarscroll}
-                    />
-                )
+                text: (x) => (
+                    <ModelName unit={x} onOpenWarscroll={handleOpenWarscroll} />
+                ),
             },
             {
                 name: "Count",
-                text: unit => <ModelCount unit={unit} />
+                text: (unit) => <ModelCount unit={unit} />,
             },
             {
                 name: "Models",
-                text: this.renderModelOptions
+                text: (unit) => <ModelOptions unit={unit} />,
             },
             {
                 name: "Extras",
-                text: unit => <RenderExtras unit={unit} />
+                text: (unit) => <RenderExtras unit={unit} />,
             },
             {
                 name: "Points",
-                text: unit => unit.points
-            }
+                text: (unit) => unit.points,
+            },
         ];
         if (
-            this.props.warscrollStore!.warscroll.pointMode ===
-            PointMode.MeetingEngagements
+            warscrollStore.warscroll.pointMode === PointMode.MeetingEngagements
         ) {
             columns.push({
                 name: "Contingent",
-                text: unit => <ContingentList unit={unit} />
+                text: (unit) => <ContingentList unit={unit} />,
             });
         }
         columns.push({
             name: "Actions",
-            text: unit => (
-                <IconButton
-                    onClick={() => this.props.warscrollStore!.removeUnit(unit)}
-                >
+            text: (unit) => (
+                <IconButton onClick={() => warscrollStore.removeUnit(unit)}>
                     <ClearIcon />
                 </IconButton>
-            )
+            ),
         });
         return columns;
-    }
+    }, [handleOpenWarscroll, warscrollStore]);
 
-    private renderModelOptions = (unit: WarscrollUnit) => {
-        return (
-            <>
-                {unit.models.map(x => this.renderModel(unit, x))}
-                {unit.availableOptions.length > 0 && (
-                    <AddButton
-                        columns={modelColumns}
-                        options={unit.availableOptions}
-                        onChange={this.handleAddModel(unit)}
-                    />
-                )}
-            </>
-        );
-    };
+    const warscroll = warscrollStore.warscroll;
+    return (
+        <Card>
+            <CardHeader title="Units" />
+            <CardContent>
+                <Modal
+                    open={warscrollOpen !== null}
+                    onClose={handleCloseWarscroll}
+                >
+                    <>
+                        <UnitWarscroll wu={warscrollOpen} />
+                    </>
+                </Modal>
 
-    private renderModel(unit: WarscrollUnit, model: WarscrollModel) {
-        return (
-            <div key={model.id}>
-                <NumberControl
-                    value={model.count}
-                    onChange={this.handleModelCountChange(unit, model)}
-                />
-                {join(
-                    model.options.map(x => (
-                        <span key={x.id}>
-                            {model.isOptionValid(x) || <WarningIcon />} {x.name}{" "}
-                            <IconButton
-                                onClick={this.handleRemoveModelOption(model, x)}
-                            >
-                                <ClearIcon />
-                            </IconButton>
-                        </span>
-                    )),
-                    ", "
-                )}
-                {model.availableOptions.length > 0 && (
-                    <AddButton
-                        columns={modelColumns}
-                        options={model.availableOptions}
-                        onChange={this.handleAddModelOption(model)}
-                    />
-                )}
-            </div>
-        );
-    }
-
-    private handleModelCountChange(unit: WarscrollUnit, model: WarscrollModel) {
-        return (value: number) => {
-            if (value === 0) {
-                this.props.warscrollStore!.removeModel(unit, model);
-            } else {
-                this.props.warscrollStore!.setModelCount(model, value);
-            }
-        };
-    }
-
-    private handleAddModelOption(model: WarscrollModel) {
-        return (option: ModelOption) => {
-            this.props.warscrollStore!.addModelOption(model, option);
-        };
-    }
-
-    private handleRemoveModelOption(
-        model: WarscrollModel,
-        option: ModelOption
-    ) {
-        return () => {
-            this.props.warscrollStore!.removeModelOption(model, option);
-        };
-    }
-
-    private handleAddModel(unit: WarscrollUnit) {
-        return (option: ModelOption) => {
-            this.props.warscrollStore!.addModel(unit, option);
-        };
-    }
-
-    render() {
-        const warscroll = this.props.warscrollStore!.warscroll;
-        return (
-            <Card>
-                <CardHeader title="Units" />
-                <CardContent>
-                    <Modal
-                        open={this.warscrollOpen !== null}
-                        onClose={this.handleCloseWarscroll}
-                    >
-                        <>
-                            <UnitWarscroll wu={this.warscrollOpen} />
-                        </>
-                    </Modal>
-
-                    <ResponsiveTable
-                        columns={this.columns}
-                        rows={warscroll.units}
-                    />
-                </CardContent>
-                <CardActions>
-                    <span>{warscroll.unitsPoints} points</span>
-                    <UnitsList />
-                </CardActions>
-            </Card>
-        );
-    }
+                <ResponsiveTable columns={columns} rows={warscroll.units} />
+            </CardContent>
+            <CardActions>
+                <span>{warscroll.unitsPoints} points</span>
+                <UnitsList />
+            </CardActions>
+        </Card>
+    );
 }
+
+export default observer(WarscrollUnitsList);

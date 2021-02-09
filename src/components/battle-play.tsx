@@ -1,5 +1,5 @@
 import React, { useState, MouseEvent } from "react";
-import { observer, useLocalStore } from "mobx-react";
+import { observer, useLocalStore } from "mobx-react-lite";
 import { useStores } from "../stores";
 import {
     Button,
@@ -20,7 +20,7 @@ import {
     BottomNavigation,
     makeStyles,
     BottomNavigationAction,
-    Modal
+    Modal,
 } from "@material-ui/core";
 import { Ability, Attack, Value, Phase } from "../stores/units";
 import {
@@ -28,7 +28,7 @@ import {
     isUnitInPhase,
     isAttackInPhase,
     PhaseSide,
-    getPhaseName
+    getPhaseName,
 } from "../stores/battle";
 import { WarscrollUnit } from "../stores/warscroll";
 import { value } from "../helpers/react";
@@ -38,16 +38,16 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { SwordIcon, SaveIcon } from "../atoms/icons";
 import { UnitWarscroll } from "./unit-warscroll";
 
-const useStyles = makeStyles(x => ({
+const useStyles = makeStyles((x) => ({
     navigation: {
         position: "fixed",
         bottom: x.spacing(1),
         left: "50%",
-        transform: "translatex(-50%)"
+        transform: "translatex(-50%)",
     },
     root: {
-        marginBottom: x.spacing(6)
-    }
+        marginBottom: x.spacing(6),
+    },
 }));
 
 export const BattleStart = observer(() => {
@@ -131,7 +131,7 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
     const { battleStore } = useStores();
     const store = useLocalStore(() => ({
         get abilities() {
-            return wu.abilities.filter(x =>
+            return wu.abilities.filter((x) =>
                 isAbilityInPhase(x, battleStore.phase, wu, battleStore.side)
             );
         },
@@ -140,7 +140,7 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
             store.used = !store.used;
         },
         get attacks() {
-            return wu.attacks.filter(x =>
+            return wu.attacks.filter((x) =>
                 isAttackInPhase(x.attack, battleStore.phase)
             );
         },
@@ -150,7 +150,7 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
         },
         handleClose() {
             store.anchorEl = null;
-        }
+        },
     }));
     return (
         <Card>
@@ -193,14 +193,14 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
                             </Stats>
                         )}
                         {battleStore.side === PhaseSide.Attack &&
-                            store.attacks.map(x => (
+                            store.attacks.map((x) => (
                                 <AttackTable
                                     key={x.attack.id}
                                     attack={x.attack}
                                     count={x.count}
                                 />
                             ))}
-                        {store.abilities.map(x => (
+                        {store.abilities.map((x) => (
                             <AbilityButton key={x.id} ability={x} />
                         ))}
                     </List>
@@ -214,30 +214,30 @@ const PhasePage = observer(() => {
     const { battleStore } = useStores();
     const store = useLocalStore(() => ({
         get abilities() {
-            return battleStore.abilities.filter(x =>
+            return battleStore.abilities.filter((x) =>
                 isAbilityInPhase(x, battleStore.phase)
             );
         },
         get units() {
             return (
-                battleStore.player?.warscroll.units.filter(x =>
+                battleStore.player?.warscroll.units.filter((x) =>
                     isUnitInPhase(x, battleStore.phase, battleStore.side)
                 ) || []
             );
-        }
+        },
     }));
     return (
         <Grid container direction="column" spacing={2}>
             <Grid item>
                 <Paper>
                     <List>
-                        {store.abilities.map(x => (
+                        {store.abilities.map((x) => (
                             <AbilityButton key={x.id} ability={x} />
                         ))}
                     </List>
                 </Paper>
             </Grid>
-            {store.units.map(x => (
+            {store.units.map((x) => (
                 <Grid key={x.id} item>
                     <UnitCard wu={x} />
                 </Grid>
