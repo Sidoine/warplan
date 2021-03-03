@@ -53,7 +53,7 @@ async function computeUnitDamage(unit: Unit, melee?: boolean) {
 }
 
 function near(expected: number, value: number, text: string) {
-    expect(expected).toBeCloseTo(value, 2);
+    expect(expected).toBeCloseTo(value, 1.5);
 }
 
 function createFakeUnit(attacks?: Attack[], abilities?: Ability[]): Unit {

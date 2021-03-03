@@ -1,5 +1,5 @@
-import React, { useState, MouseEvent } from "react";
-import { observer, useLocalStore } from "mobx-react-lite";
+import React, { useState, MouseEvent, useCallback } from "react";
+import { observer, useLocalObservable } from "mobx-react-lite";
 import { useStores } from "../stores";
 import {
     Button,
@@ -129,50 +129,52 @@ function AttackTable({ attack, count }: { attack: Attack; count: number }) {
 const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
     const unit = wu.definition;
     const { battleStore } = useStores();
-    const store = useLocalStore(() => ({
+    const [anchorEl, setAnchorEl] = useState<Element | null>(null);
+    const [used, setUsed] = useState(false);
+
+    const store = useLocalObservable(() => ({
         get abilities() {
             return wu.abilities.filter((x) =>
                 isAbilityInPhase(x, battleStore.phase, wu, battleStore.side)
             );
-        },
-        used: false,
-        toggleUsed() {
-            store.used = !store.used;
         },
         get attacks() {
             return wu.attacks.filter((x) =>
                 isAttackInPhase(x.attack, battleStore.phase)
             );
         },
-        anchorEl: null as null | Element,
-        handleShowKeywords(event: MouseEvent) {
-            store.anchorEl = event.currentTarget;
-        },
-        handleClose() {
-            store.anchorEl = null;
-        },
     }));
+
+    const toggleUsed = useCallback(() => {
+        setUsed((x) => !x);
+    }, []);
+
+    const handleClose = useCallback(() => {
+        setAnchorEl(null);
+    }, []);
+
+    const handleShowKeywords = useCallback((event: MouseEvent) => {
+        setAnchorEl(event.currentTarget);
+    }, []);
+
     return (
         <Card>
-            <Modal open={store.anchorEl !== null} onClose={store.handleClose}>
+            <Modal open={anchorEl !== null} onClose={handleClose}>
                 <UnitWarscroll noFlavor wu={wu} />
             </Modal>
             <CardHeader
                 title={unit.model.name}
                 action={
                     <>
-                        <IconButton onClick={store.handleShowKeywords}>
+                        <IconButton onClick={handleShowKeywords}>
                             <VisibilityIcon />
                         </IconButton>{" "}
-                        <Checkbox
-                            checked={store.used}
-                            onClick={store.toggleUsed}
-                        />
+                        <Checkbox checked={used} onClick={toggleUsed} />
                     </>
                 }
             />
             <CardContent>
-                {!store.used && (
+                {!used && (
                     <List>
                         {(battleStore.phase === Phase.Movement ||
                             battleStore.side === PhaseSide.Defense ||
@@ -212,7 +214,7 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
 
 const PhasePage = observer(() => {
     const { battleStore } = useStores();
-    const store = useLocalStore(() => ({
+    const store = useLocalObservable(() => ({
         get abilities() {
             return battleStore.abilities.filter((x) =>
                 isAbilityInPhase(x, battleStore.phase)

@@ -19,7 +19,7 @@ function ExportPopin() {
     const warscroll = warscrollStore.warscroll;
     return (
         <Dialog onClose={handleClose} open={true}>
-            <DialogTitle>Warscolls</DialogTitle>
+            <DialogTitle>Warscrolls</DialogTitle>
 
             <DialogContent>
                 <div>

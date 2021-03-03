@@ -5,35 +5,39 @@ import WarscrollBattalionsList from "./warscroll-battalions-list";
 import { WarscrollSummary } from "./warscroll-summary";
 import Filter from "./filter";
 import WarscrollSceneriesList from "./warscroll-sceneries-list";
-import { Button, Grid } from "@material-ui/core";
-import { useStores } from "../stores";
+import { Grid } from "@material-ui/core";
+import WarscrollsList from "./warscrolls-list";
 
 function WarscrollBuilder() {
-    const { uiStore } = useStores();
     return (
-        <Grid container direction="column" spacing={2} wrap="nowrap">
-            <Grid item>
-                <Filter />
+        <Grid container direction="row" spacing={2}>
+            <Grid
+                container
+                item
+                direction="column"
+                spacing={2}
+                wrap="nowrap"
+                xs={12}
+                md={9}
+            >
+                <Grid item>
+                    <Filter />
+                </Grid>
+                <Grid item>
+                    <WarscrollSummary />
+                </Grid>
+                <Grid item>
+                    <WarscrollBattalionsList />
+                </Grid>
+                <Grid item>
+                    <WarscrollUnitsList />
+                </Grid>
+                <Grid item>
+                    <WarscrollSceneriesList />
+                </Grid>
             </Grid>
-            <Grid item>
-                <WarscrollSummary />
-            </Grid>
-            <Grid item>
-                <WarscrollBattalionsList />
-            </Grid>
-            <Grid item>
-                <WarscrollUnitsList />
-            </Grid>
-            <Grid item>
-                <WarscrollSceneriesList />
-            </Grid>
-            <Grid item>
-                <Button onClick={() => uiStore.showWarscrollPopin()}>
-                    Manage warscrolls
-                </Button>
-                <Button onClick={() => uiStore.showExportPopin()}>
-                    Export
-                </Button>
+            <Grid item xs={12} md={3}>
+                <WarscrollsList />
             </Grid>
         </Grid>
     );

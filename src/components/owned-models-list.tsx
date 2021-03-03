@@ -20,11 +20,13 @@ function OwnedModelsList() {
                     <TableRow>
                         <TableCell>Name</TableCell>
                         <TableCell>Count</TableCell>
+                        <TableCell>Created</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {ownedStore.ownedModels
+                        .slice()
                         .sort((a, b) => (a.model.name > b.model.name ? 1 : -1))
                         .map((x) => (
                             <OwnedModelEdit key={x.id} model={x} />

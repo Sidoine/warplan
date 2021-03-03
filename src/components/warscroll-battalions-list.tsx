@@ -16,6 +16,7 @@ import ResponsiveTable, {
 } from "../atoms/responsive-table";
 import ClearIcon from "@material-ui/icons/Clear";
 import { useStores } from "../stores";
+import WarscrollButton from "../atoms/warscroll-button";
 
 function RenderUnit({
     bu,
@@ -47,6 +48,14 @@ function RenderUnit({
     );
 }
 
+function BattalionName({ x }: { x: WarscrollBattalion }) {
+    return (
+        <>
+            {x.definition.name} <WarscrollButton item={x} />
+        </>
+    );
+}
+
 function WarscrollBattalionsList() {
     const { warscrollStore } = useStores();
     const columns = useMemo<ResponsiveTableColumn<WarscrollBattalion>[]>(() => {
@@ -54,7 +63,7 @@ function WarscrollBattalionsList() {
         return [
             {
                 name: "Name",
-                text: (x) => x.definition.name,
+                text: (x) => <BattalionName key={x.id} x={x} />,
             },
             {
                 name: "Units",

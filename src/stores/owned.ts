@@ -1,16 +1,26 @@
 import { action, observable, makeObservable } from "mobx";
-import { Model, UnitsStore } from "./units";
+import { Model, ModelOption, Unit, UnitsStore } from "./units";
 
 interface SerializedOwned {
     models: {
         modelId: string;
+        configuration?: {
+            unitId: string;
+            options?: string[];
+        };
         count: number;
     }[];
+}
+
+export interface OwnedModelConfiguration {
+    unit?: Unit;
+    options?: ModelOption[];
 }
 
 export interface OwnedModel {
     id: number;
     model: Model;
+    configuration: OwnedModelConfiguration;
     count: number;
 }
 
@@ -26,6 +36,7 @@ export class OwnedStore {
             model: model,
             count: 1,
             id: this.serial++,
+            configuration: {},
         });
         this.saveOwned();
     }
@@ -55,10 +66,28 @@ export class OwnedStore {
                 (x) => x.id === model.modelId
             );
             if (m === undefined) continue;
+            const configuration = model.configuration;
+            let u;
+            let options: ModelOption[] | undefined;
+            if (configuration) {
+                u = this.unitsStore.unitList.find(
+                    (x) => x.id === configuration.unitId
+                );
+                if (u && u.options && configuration.options) {
+                    options = [];
+                    for (const option of configuration.options) {
+                        const o = u.options.find((x) => x.id === option);
+                        if (o) {
+                            options.push(o);
+                        }
+                    }
+                }
+            }
             this.ownedModels.push({
                 id: this.serial++,
                 count: model.count,
                 model: m,
+                configuration: { options, unit: u },
             });
         }
     }

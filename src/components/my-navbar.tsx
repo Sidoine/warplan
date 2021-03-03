@@ -57,7 +57,7 @@ function MyNavbar({ route, children }: MyNavbarProps) {
         get columns(): MenuItem[] {
             return [
                 {
-                    title: "Warscroll Builder",
+                    title: "List Builder",
                     badge: warscrollStore.warscroll.totalPoints,
                     path: "",
                 },

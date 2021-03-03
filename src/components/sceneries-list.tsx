@@ -9,25 +9,19 @@ export interface SceneriesListProps {
 }
 const columns: TableColumn<EndlessSpell>[] = [
     { name: "Name", text: (x) => x.name },
-    { name: "Description", text: (x) => x.description },
+    { name: "Flavor", text: (x) => x.flavor },
     { name: "Points", text: (x) => x.points },
 ];
 
 function SceneriesList({ title }: SceneriesListProps) {
-    const { warscrollStore, unitsStore } = useStores();
-    const onChange = React.useCallback(
-        (scenery: EndlessSpell) => {
-            warscrollStore.addScenery(scenery);
-        },
-        [warscrollStore]
-    );
+    const { warscrollStore } = useStores();
 
     return (
         <AddButton
             columns={columns}
             placeholder={title}
-            options={unitsStore.sceneryList}
-            onChange={onChange}
+            options={warscrollStore.availableEndlessSpells}
+            onChange={warscrollStore.addScenery}
         />
     );
 }

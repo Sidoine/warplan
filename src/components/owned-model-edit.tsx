@@ -30,6 +30,7 @@ export const OwnedModelEdit = observer(({ model }: OwnedModelEditProps) => {
                     onChange={handleNumberChange}
                 />
             </td>
+            <td>{model.model.publicationYear}</td>
             <td>
                 <IconButton onClick={handleRemove}>
                     <DeleteIcon />

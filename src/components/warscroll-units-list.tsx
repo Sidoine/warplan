@@ -211,60 +211,60 @@ function RenderModelOption({
     );
 }
 
-function RenderModel({
-    unit,
-    model,
-}: {
-    unit: WarscrollUnit;
-    model: WarscrollModel;
-}) {
-    const { warscrollStore } = useStores();
+const RenderModel = observer(
+    ({ unit, model }: { unit: WarscrollUnit; model: WarscrollModel }) => {
+        const { warscrollStore } = useStores();
 
-    const handleAddModelOption = useCallback(
-        (model: WarscrollModel) => {
-            return (option: ModelOption) => {
-                warscrollStore!.addModelOption(model, option);
-            };
-        },
-        [warscrollStore]
-    );
+        const handleAddModelOption = useCallback(
+            (model: WarscrollModel) => {
+                return (option: ModelOption) => {
+                    warscrollStore!.addModelOption(model, option);
+                };
+            },
+            [warscrollStore]
+        );
 
-    const handleModelCountChange = useCallback(
-        (unit: WarscrollUnit, model: WarscrollModel) => {
-            return (value: number) => {
-                if (value === 0) {
-                    warscrollStore!.removeModel(unit, model);
-                } else {
-                    warscrollStore!.setModelCount(model, value);
-                }
-            };
-        },
-        [warscrollStore]
-    );
-    return (
-        <div key={model.id}>
-            <NumberControl
-                value={model.count}
-                onChange={handleModelCountChange(unit, model)}
-            />
-            {join(
-                model.options.map((x) => (
-                    <RenderModelOption key={x.id} option={x} model={model} />
-                )),
-                ", "
-            )}
-            {model.availableOptions.length > 0 && (
-                <AddButton
-                    columns={modelColumns}
-                    options={model.availableOptions}
-                    onChange={handleAddModelOption(model)}
+        const handleModelCountChange = useCallback(
+            (unit: WarscrollUnit, model: WarscrollModel) => {
+                return (value: number) => {
+                    if (value === 0) {
+                        warscrollStore!.removeModel(unit, model);
+                    } else {
+                        warscrollStore!.setModelCount(model, value);
+                    }
+                };
+            },
+            [warscrollStore]
+        );
+        return (
+            <div key={model.id}>
+                <NumberControl
+                    value={model.count}
+                    onChange={handleModelCountChange(unit, model)}
                 />
-            )}
-        </div>
-    );
-}
+                {join(
+                    model.options.map((x) => (
+                        <RenderModelOption
+                            key={x.id}
+                            option={x}
+                            model={model}
+                        />
+                    )),
+                    ", "
+                )}
+                {model.availableOptions.length > 0 && (
+                    <AddButton
+                        columns={modelColumns}
+                        options={model.availableOptions}
+                        onChange={handleAddModelOption(model)}
+                    />
+                )}
+            </div>
+        );
+    }
+);
 
-function ModelOptions({ unit }: { unit: WarscrollUnit }) {
+const ModelOptions = observer(({ unit }: { unit: WarscrollUnit }) => {
     const { warscrollStore } = useStores();
 
     const handleAddModel = useCallback(
@@ -290,7 +290,7 @@ function ModelOptions({ unit }: { unit: WarscrollUnit }) {
             )}
         </>
     );
-}
+});
 
 function WarscrollUnitsList() {
     const [warscrollOpen, setWarscrollOpen] = useState<WarscrollUnit | null>(

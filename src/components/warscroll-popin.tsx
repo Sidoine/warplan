@@ -52,7 +52,7 @@ function WarscrollPopin() {
 
     return (
         <Dialog onClose={handleClose} open={true}>
-            <DialogTitle>Warscolls</DialogTitle>
+            <DialogTitle>Warscrolls</DialogTitle>
 
             <DialogContentText>
                 {warscrollStore.warscrolls.map((x) => (

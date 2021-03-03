@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GrandAlliance, Faction } from "../stores/units";
 import { observer } from "mobx-react-lite";
-import { Grid, Input, CardContent, Card } from "@material-ui/core";
+import { Grid, Input, CardContent, Card, makeStyles } from "@material-ui/core";
 import { HasId } from "../atoms/add-button";
 import { useStores } from "../stores";
 import DropdownObjects from "../atoms/dropdown-objects";
@@ -34,6 +34,12 @@ const grandAlliances: GrandAllianceInfo[] = [
     },
 ];
 
+const useStyles = makeStyles((theme) => ({
+    card: {
+        backgroundColor: theme.palette.grey[100],
+    },
+}));
+
 function Filter() {
     const { uiStore, unitsStore } = useStores();
     const grandAlliance =
@@ -60,9 +66,10 @@ function Filter() {
     const factionOptions = unitsStore.factionsList.filter(
         (x) => x.grandAlliance === uiStore.grandAlliance
     );
+    const classes = useStyles();
 
     return (
-        <Card>
+        <Card className={classes.card}>
             <CardContent>
                 <Grid container wrap="wrap" spacing={2}>
                     <Grid item>Filter</Grid>

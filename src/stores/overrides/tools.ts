@@ -8,7 +8,7 @@ import {
     WarscrollModelInterface,
     ModelOption,
     WarscrollUnitInterface,
-    AbilityEffect
+    AbilityEffect,
 } from "../units";
 
 export const ModelCategoryWeapon = "weapon";
@@ -29,7 +29,7 @@ export function setAbilityAsOption(
         id: ability.name,
         name: ability.name,
         abilities: [ability],
-        unitCategory: unitCategory
+        unitCategory: unitCategory,
     };
     if (condition) option.isOptionValid = condition(option);
     return addOption(unit, option);
@@ -86,7 +86,7 @@ export function setAttackAsOption(
         attacks: [attack],
         modelCategory: "weapon",
         abilities: abilities,
-        unitCategory: unitCategory
+        unitCategory: unitCategory,
     });
     if (condition) option.isOptionValid = condition(option);
     return option;
@@ -144,8 +144,25 @@ export function overrideModel(model: Model, year: number, material: Material) {
     model.publicationYear = year;
 }
 
+export function mergeModels(
+    models: Record<string, Model>,
+    name: string,
+    year: number,
+    material: Material,
+    ...units: Unit[]
+) {
+    const model = units[0].model;
+    model.material = material;
+    model.publicationYear = year;
+    model.name = name;
+    for (const unit of units) {
+        if (model.id !== unit.model.id) delete models[unit.model.id];
+        unit.model = model;
+    }
+}
+
 export function getBaseModelOption(id: string, options: ModelOption[]) {
-    return options.find(x => x.id === id);
+    return options.find((x) => x.id === id);
 }
 
 export function setBaseModelOption(
@@ -164,8 +181,8 @@ export function setBaseModelOption(
 
 export const artifactAvailable: ExtraAbilityTest = (unit, ws) =>
     !!unit.definition.isLeader &&
-    unit.extraAbilities.every(x => x.category !== "artifact") &&
-    ws.extraAbilities.filter(x => x.category === "artifact").length <
+    unit.extraAbilities.every((x) => x.category !== "artifact") &&
+    ws.extraAbilities.filter((x) => x.category === "artifact").length <
         1 + ws.battalions.length;
 
 export function artifactWithKeywordAvailable(
@@ -176,7 +193,7 @@ export function artifactWithKeywordAvailable(
         artifactAvailable(unit, ws) &&
         unit.definition.keywords.indexOf(keyword) >= 0 &&
         alts.some(
-            x =>
+            (x) =>
                 x === "ALL" ||
                 unit.definition.model.name.toUpperCase() === x ||
                 unit.definition.keywords.indexOf(x) >= 0
@@ -184,7 +201,7 @@ export function artifactWithKeywordAvailable(
 }
 
 export function hasOption(model: WarscrollModelInterface, option: ModelOption) {
-    return !model || model.options.some(x => x.id === option.id);
+    return !model || model.options.some((x) => x.id === option.id);
 }
 
 export function getUnitModelsWithOptionCount(

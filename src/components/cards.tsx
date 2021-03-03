@@ -1,5 +1,5 @@
 import * as React from "react";
-import { observer, useLocalStore } from "mobx-react-lite";
+import { observer, useLocalObservable } from "mobx-react-lite";
 import { AbilityCard, CardContent, CardColor } from "./ability-card";
 import { HiddenCard } from "./hidden-card";
 import { ExtraAbility, ArmyOption, Ability } from "../stores/units";
@@ -56,7 +56,7 @@ const useStyles = makeStyles({
 export const Cards = observer(() => {
     const { warscrollStore, unitsStore, cardsStore } = useStores();
     const classes = useStyles();
-    const store = useLocalStore(() => ({
+    const store = useLocalObservable(() => ({
         get abilities() {
             let result: CardContent[] = unitsStore.baseAbilities.map((x) =>
                 mapAbility(x, "common")

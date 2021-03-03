@@ -1,5 +1,4 @@
-import * as React from "react";
-import { observer, useLocalStore } from "mobx-react-lite";
+import { observer, useLocalObservable } from "mobx-react-lite";
 import {
     PointMode,
     WarscrollLimits,
@@ -20,11 +19,14 @@ import {
     Card,
     CardContent,
     CardActions,
+    Input,
+    Button,
 } from "@material-ui/core";
 import WarningIcon from "@material-ui/icons/Warning";
 import NumberControl from "../atoms/number-control";
 import { Warning } from "../atoms/warning";
 import { useStores } from "../stores";
+import React, { ChangeEvent, useCallback } from "react";
 
 type LimitValues = {
     [K in keyof WarscrollLimits]: WarscrollLimits[K] extends number ? K : never;
@@ -130,7 +132,7 @@ const WarscrollContingentView = observer(
 
 export const WarscrollSummary = observer(() => {
     const { warscrollStore, unitsStore, uiStore } = useStores();
-    const store = useLocalStore(() => ({
+    const store = useLocalObservable(() => ({
         handlePointsModeChange(value: PointMode) {
             warscrollStore.setPointMode(value);
         },
@@ -155,174 +157,197 @@ export const WarscrollSummary = observer(() => {
         (x) => x.grandAlliance === uiStore.grandAlliance
     );
     const armyOptions = warscrollStore.armyOptions;
+    const handleNameChange = useCallback(
+        (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+            warscrollStore.setName(event.currentTarget.value);
+        },
+        [warscrollStore]
+    );
 
     return (
         <Card>
             <CardContent>
-                <Grid container spacing={2} wrap="wrap">
-                    <Grid item>
-                        <FormControl>
-                            <InputLabel> Allegiance</InputLabel>
-                            <DropdownObjects
-                                getText={(x) => x.name}
-                                options={allegianceOptions}
-                                value={warscroll.allegiance}
-                                onChange={store.setAllegiance}
-                            />
-                        </FormControl>
-                    </Grid>
-                    {armyOptions && (
+                <Grid container direction="column" spacing={2}>
+                    <Grid item container spacing={2} wrap="wrap">
                         <Grid item>
-                            {warscroll.armyOption &&
-                                warscroll.armyOption.requiredArtifact &&
-                                warscroll.numberOfArtifacts > 0 &&
-                                !warscroll.hasRequiredArtifact && (
-                                    <Warning
-                                        label={`${warscroll.armyOption.requiredArtifact.ability.name} must be the first artifact`}
-                                    />
-                                )}
-                            {warscroll.armyOption &&
-                                warscroll.armyOption.requiredCommandTrait &&
-                                warscroll.general &&
-                                warscroll.general.extraAbilities.some(
-                                    (x) =>
-                                        x.ability.category ===
-                                        AbilityCategory.CommandTrait
-                                ) &&
-                                !warscroll.hasRequiredCommandTrait && (
-                                    <Warning
-                                        label={`${warscroll.armyOption.requiredCommandTrait.ability.name} must be the command trait of your general`}
-                                    />
-                                )}
                             <FormControl>
-                                <InputLabel> {armyOptions.name}</InputLabel>
-                                <DropdownObjects<ArmyOption>
-                                    getText={getName}
-                                    options={armyOptions.values}
-                                    value={warscroll.armyOption}
-                                    onChange={store.setArmyOption}
+                                <InputLabel>Name</InputLabel>
+                                <Input
+                                    value={warscroll.name}
+                                    onChange={handleNameChange}
+                                />
+                            </FormControl>
+                        </Grid>
+                        <Grid item>
+                            <FormControl>
+                                <InputLabel>Allegiance</InputLabel>
+                                <DropdownObjects
+                                    getText={(x) => x.name}
+                                    options={allegianceOptions}
+                                    value={warscroll.allegiance}
+                                    onChange={store.setAllegiance}
+                                />
+                            </FormControl>
+                        </Grid>
+                        {armyOptions && (
+                            <Grid item>
+                                {warscroll.armyOption &&
+                                    warscroll.armyOption.requiredArtifact &&
+                                    warscroll.numberOfArtifacts > 0 &&
+                                    !warscroll.hasRequiredArtifact && (
+                                        <Warning
+                                            label={`${warscroll.armyOption.requiredArtifact.ability.name} must be the first artifact`}
+                                        />
+                                    )}
+                                {warscroll.armyOption &&
+                                    warscroll.armyOption.requiredCommandTrait &&
+                                    warscroll.general &&
+                                    warscroll.general.extraAbilities.some(
+                                        (x) =>
+                                            x.ability.category ===
+                                            AbilityCategory.CommandTrait
+                                    ) &&
+                                    !warscroll.hasRequiredCommandTrait && (
+                                        <Warning
+                                            label={`${warscroll.armyOption.requiredCommandTrait.ability.name} must be the command trait of your general`}
+                                        />
+                                    )}
+                                <FormControl>
+                                    <InputLabel> {armyOptions.name}</InputLabel>
+                                    <DropdownObjects<ArmyOption>
+                                        getText={getName}
+                                        options={armyOptions.values}
+                                        value={warscroll.armyOption}
+                                        onChange={store.setArmyOption}
+                                        clearable
+                                    />
+                                </FormControl>
+                            </Grid>
+                        )}
+                        <Grid item>
+                            <FormControl>
+                                <InputLabel>Mode</InputLabel>
+                                <DropdownValues
+                                    value={warscroll.pointMode}
+                                    options={[
+                                        PointMode.MatchedPlay,
+                                        PointMode.OpenPlay,
+                                        PointMode.MeetingEngagements,
+                                    ]}
+                                    getText={(v) =>
+                                        v === PointMode.MatchedPlay
+                                            ? "Matched play"
+                                            : v === PointMode.OpenPlay
+                                            ? "Open play"
+                                            : "Meeting engagements"
+                                    }
+                                    onChange={store.handlePointsModeChange}
+                                />
+                            </FormControl>
+                        </Grid>
+                        <Grid item>
+                            <FormControl>
+                                <InputLabel>Realm</InputLabel>
+                                <DropdownObjects
+                                    value={warscroll.realm}
+                                    options={unitsStore.realms}
+                                    getText={(x) => x.name}
+                                    onChange={warscrollStore.setRealm}
                                     clearable
                                 />
                             </FormControl>
                         </Grid>
-                    )}
-                    <Grid item>
-                        <FormControl>
-                            <InputLabel>Mode</InputLabel>
-                            <DropdownValues
-                                value={warscroll.pointMode}
-                                options={[
-                                    PointMode.MatchedPlay,
-                                    PointMode.OpenPlay,
-                                    PointMode.MeetingEngagements,
-                                ]}
-                                getText={(v) =>
-                                    v === PointMode.MatchedPlay
-                                        ? "Matched play"
-                                        : v === PointMode.OpenPlay
-                                        ? "Open play"
-                                        : "Meeting engagements"
-                                }
-                                onChange={store.handlePointsModeChange}
+                        <Grid item>
+                            <NumberControl
+                                label="Command points"
+                                min={0}
+                                max={warscroll.maxCommandPoints}
+                                value={warscroll.commandPoints}
+                                onChange={store.setCommandPoints}
                             />
-                        </FormControl>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        <FormControl>
-                            <InputLabel>Realm</InputLabel>
-                            <DropdownObjects
-                                value={warscroll.realm}
-                                options={unitsStore.realms}
-                                getText={(x) => x.name}
-                                onChange={warscrollStore.setRealm}
-                                clearable
-                            />
-                        </FormControl>
-                    </Grid>
-                    <Grid item>
-                        <NumberControl
-                            label="Command points"
-                            min={0}
-                            max={warscroll.maxCommandPoints}
-                            value={warscroll.commandPoints}
-                            onChange={store.setCommandPoints}
-                        />
+                    <Grid item container spacing={2} direction="column">
+                        <Grid item container spacing={2}>
+                            <Grid item>
+                                {warscroll.totalPoints >
+                                    warscroll.maxPoints && (
+                                    <Warning
+                                        label={`Maximum is ${warscroll.maxPoints}`}
+                                    />
+                                )}{" "}
+                                {totalPoints} points{" "}
+                                {alliedPoints > 0 && (
+                                    <>
+                                        (
+                                        {!warscroll.isAlliedValid && (
+                                            <WarningIcon fontSize="small" />
+                                        )}{" "}
+                                        {alliedPoints} allied)
+                                    </>
+                                )}{" "}
+                            </Grid>
+                            {warscroll.pointMode !==
+                                PointMode.MeetingEngagements && (
+                                <>
+                                    <Grid item>
+                                        {!warscroll.isLeadersValid && (
+                                            <Warning label="Wrong number of leaders" />
+                                        )}{" "}
+                                        {warscroll.numberOfLeaders} leaders (
+                                        {warscroll.minLeaders} -{" "}
+                                        {warscroll.maxLeaders})
+                                    </Grid>
+                                    <Grid item>
+                                        {!warscroll.isBattelinesValid && (
+                                            <WarningIcon fontSize="small" />
+                                        )}
+                                        {warscroll.numberOfBattlelines}{" "}
+                                        battlelines ({warscroll.minBattlelines}{" "}
+                                        - {warscroll.maxBattlelines})
+                                    </Grid>
+                                    <Grid item>
+                                        {!warscroll.isBehemotsValid && (
+                                            <WarningIcon fontSize="small" />
+                                        )}
+                                        {warscroll.numberOfBehemots} behemoths
+                                        (0 - {warscroll.maxBehemots})
+                                    </Grid>
+                                    <Grid item>
+                                        {!warscroll.isArtilleryValid && (
+                                            <WarningIcon fontSize="small" />
+                                        )}
+                                        {warscroll.numberOfArtilleries}{" "}
+                                        artillery (0 -{" "}
+                                        {warscroll.maxArtilleries})
+                                    </Grid>
+                                </>
+                            )}
+                            <Grid item>
+                                {!warscroll.isEndlessSpellsValid && (
+                                    <Warning label="Wrong number of endless spells" />
+                                )}
+                                {warscroll.endlessSpells.length} endless spells{" "}
+                                {warscroll.maxEndlessSpells && (
+                                    <>(0 - {warscroll.maxEndlessSpells})</>
+                                )}
+                            </Grid>
+                        </Grid>
+                        {warscroll.pointMode === PointMode.MeetingEngagements &&
+                            warscroll.contingents.map((x) => (
+                                <WarscrollContingentView
+                                    key={x.contingent}
+                                    contingent={x}
+                                />
+                            ))}
                     </Grid>
                 </Grid>
             </CardContent>
             <CardActions>
-                <Grid container spacing={2} direction="column">
-                    <Grid item container spacing={2}>
-                        <Grid item>
-                            {warscroll.totalPoints > warscroll.maxPoints && (
-                                <Warning
-                                    label={`Maximum is ${warscroll.maxPoints}`}
-                                />
-                            )}{" "}
-                            {totalPoints} points{" "}
-                            {alliedPoints > 0 && (
-                                <>
-                                    (
-                                    {!warscroll.isAlliedValid && (
-                                        <WarningIcon fontSize="small" />
-                                    )}{" "}
-                                    {alliedPoints} allied)
-                                </>
-                            )}{" "}
-                        </Grid>
-                        {warscroll.pointMode !==
-                            PointMode.MeetingEngagements && (
-                            <>
-                                <Grid item>
-                                    {!warscroll.isLeadersValid && (
-                                        <Warning label="Wrong number of leaders" />
-                                    )}{" "}
-                                    {warscroll.numberOfLeaders} leaders (
-                                    {warscroll.minLeaders} -{" "}
-                                    {warscroll.maxLeaders})
-                                </Grid>
-                                <Grid item>
-                                    {!warscroll.isBattelinesValid && (
-                                        <WarningIcon fontSize="small" />
-                                    )}
-                                    {warscroll.numberOfBattlelines} battlelines
-                                    ({warscroll.minBattlelines} -{" "}
-                                    {warscroll.maxBattlelines})
-                                </Grid>
-                                <Grid item>
-                                    {!warscroll.isBehemotsValid && (
-                                        <WarningIcon fontSize="small" />
-                                    )}
-                                    {warscroll.numberOfBehemots} behemoths (0 -{" "}
-                                    {warscroll.maxBehemots})
-                                </Grid>
-                                <Grid item>
-                                    {!warscroll.isArtilleryValid && (
-                                        <WarningIcon fontSize="small" />
-                                    )}
-                                    {warscroll.numberOfArtilleries} artillery (0
-                                    - {warscroll.maxArtilleries})
-                                </Grid>
-                            </>
-                        )}
-                        <Grid item>
-                            {!warscroll.isEndlessSpellsValid && (
-                                <Warning label="Wrong number of endless spells" />
-                            )}
-                            {warscroll.endlessSpells.length} endless spells{" "}
-                            {warscroll.maxEndlessSpells && (
-                                <>(0 - {warscroll.maxEndlessSpells})</>
-                            )}
-                        </Grid>
-                    </Grid>
-                    {warscroll.pointMode === PointMode.MeetingEngagements &&
-                        warscroll.contingents.map((x) => (
-                            <WarscrollContingentView
-                                key={x.contingent}
-                                contingent={x}
-                            />
-                        ))}
-                </Grid>
+                <Button onClick={uiStore.showExportPopin}>Export</Button>
+                <Button onClick={warscrollStore.saveCurrentWarscroll}>
+                    Save
+                </Button>
             </CardActions>
         </Card>
     );

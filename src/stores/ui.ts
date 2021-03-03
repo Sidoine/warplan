@@ -93,9 +93,9 @@ export class UiStore {
     }
 
     @action
-    showWarscrollPopin() {
+    showWarscrollPopin = () => {
         this.warscrollPopin = true;
-    }
+    };
 
     @action
     closeWarscrollPopin() {
@@ -103,9 +103,9 @@ export class UiStore {
     }
 
     @action
-    showExportPopin() {
+    showExportPopin = () => {
         this.exportPopin = true;
-    }
+    };
 
     @action
     closeExportPopin() {
