@@ -31,7 +31,7 @@ jobs:
               run: yarn test
 
             - name: Push to dokku
-              uses: dokku/github-action@v1
+              uses: dokku/github-action@master
               with:
                   git_remote_url: "ssh://dokku@sidoine.net:22/warplan"
                   ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
