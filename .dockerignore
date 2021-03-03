@@ -1,0 +1,14 @@
+dist
+/wwwroot/bundle.*
+/wwwroot/main.*
+/wwwroot/files
+*.orig
+yarn-error.log
+en.realm*
+.vscode
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

@@ -48,7 +48,7 @@
         "tools": "tsc -p tsconfig.tools.json",
         "database": "node dist/tools/database.js",
         "test": "jest",
-        "start": "node index.js",
+        "start": "yarn node index.js",
         "prettier": "prettier --write \"src/**/*.{ts,tsx}\""
     }
 }
