@@ -35,3 +35,4 @@ jobs:
               with:
                   git_remote_url: "ssh://dokku@sidoine.net:22/warplan"
                   ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  git_push_flags: "--force"
