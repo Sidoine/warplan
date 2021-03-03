@@ -21,6 +21,8 @@ jobs:
         steps:
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
 
             # Runs a single command using the runners shell
             - name: Install
@@ -35,4 +37,4 @@ jobs:
               with:
                   git_remote_url: "ssh://dokku@sidoine.net:22/warplan"
                   ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-                  git_push_flags: "--force"
+                  # git_push_flags: "--force"
