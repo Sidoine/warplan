@@ -1079,7 +1079,7 @@ export class WarscrollStore {
             this.loadSerializedWarscroll(
                 JSON.parse(inflate(atob(ws), { to: "string" }))
             );
-            location.hash = "/wb";
+            location.hash = "/";
         }
     }
 
