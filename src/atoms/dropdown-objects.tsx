@@ -25,6 +25,8 @@ function DropdownObjects<T extends HasId>({
                 const item = options.find((x) => x.id === event.target.value);
                 if (item) onChange(item);
                 else onChange(null);
+            } else {
+                onChange(null);
             }
         },
         [onChange, options]

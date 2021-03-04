@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { observer } from "mobx-react-lite";
 import BoxesList from "./boxes-list";
 import { Missing } from "../stores/basket";
@@ -6,6 +6,16 @@ import ResponsiveTable, {
     ResponsiveTableColumn,
 } from "../atoms/responsive-table";
 import { useStores } from "../stores";
+import { Button } from "@material-ui/core";
+import { useCallback } from "react";
+
+function AddToOwned({ missing }: { missing: Missing }) {
+    const { ownedStore } = useStores();
+    const handleClick = useCallback(() => {
+        ownedStore.addOwned(missing.model, missing.count);
+    }, []);
+    return <Button onClick={handleClick}>Add</Button>;
+}
 
 const columns: ResponsiveTableColumn<Missing>[] = [
     {
@@ -24,6 +34,10 @@ const columns: ResponsiveTableColumn<Missing>[] = [
         name: "Buy",
         // eslint-disable-next-line react/display-name
         text: (x) => <BoxesList model={x.model} title="Buy" />,
+    },
+    {
+        name: "Add to owned",
+        text: (x) => <AddToOwned missing={x} />,
     },
 ];
 

@@ -25,23 +25,44 @@ function ExportPopin() {
                 <div>
                     <b>Allegiance: {warscroll.allegiance.name}</b>
                 </div>
+                {warscroll.armyOption && warscroll.allegiance.armyOptions && (
+                    <div>
+                        <b>
+                            {warscroll.allegiance.armyOptions.name}:{" "}
+                            {warscroll.armyOption.name}
+                        </b>
+                    </div>
+                )}
+                {warscroll.realm && (
+                    <div>
+                        <b>Realm: {warscroll.realm.name}</b>
+                    </div>
+                )}
                 {warscroll.units.map((x) => (
                     <div key={x.id}>
                         <b>
                             {x.modelCount > 1 ? <>{x.modelCount} x</> : <></>}{" "}
-                            {x.definition.model.name}
-                        </b>
+                            {x.definition.name}
+                        </b>{" "}
                         ({x.points})
                         {x.isGeneral && (
                             <div>
                                 <i>- General</i>
                             </div>
                         )}
-                        {x.models.map((y) => (
+                        {x.models
+                            .filter((y) => y.options.length > 0)
+                            .map((y) => (
+                                <div key={y.id}>
+                                    <i>
+                                        - {y.count && <>{y.count} x </>}{" "}
+                                        {y.name}
+                                    </i>
+                                </div>
+                            ))}
+                        {x.extraAbilities.map((y) => (
                             <div key={y.id}>
-                                <i>
-                                    - {y.count && <>{y.count} x </>} {y.name}{" "}
-                                </i>
+                                <i>- {y.ability.name}</i>
                             </div>
                         ))}
                     </div>
@@ -52,6 +73,14 @@ function ExportPopin() {
                         <b>{x.definition.name}</b>
                     </div>
                 ))}
+                {warscroll.commandPoints > 0 && (
+                    <div>
+                        <b>
+                            {warscroll.commandPoints} command point
+                            {warscroll.commandPoints > 0 ? "s" : ""}
+                        </b>
+                    </div>
+                )}
 
                 <Input type="text" value={warscrollStore.link} />
             </DialogContent>

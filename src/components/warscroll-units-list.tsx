@@ -111,7 +111,7 @@ const ModelName = observer(
         return (
             <>
                 <div>
-                    {unit.definition.model.name}
+                    {unit.definition.name}
                     <IconButton
                         onClick={() => onOpenWarscroll(unit)}
                         size="small"

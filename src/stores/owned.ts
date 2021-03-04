@@ -31,10 +31,10 @@ export class OwnedStore {
     ownedModels: OwnedModel[] = [];
 
     @action
-    addOwned(model: Model) {
+    addOwned(model: Model, count = 1) {
         this.ownedModels.push({
             model: model,
-            count: 1,
+            count,
             id: this.serial++,
             configuration: {},
         });
