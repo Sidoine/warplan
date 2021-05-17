@@ -6,26 +6,26 @@ import {
     AbilityCategory,
     TargetType,
     Phase,
-    SubPhase
-} from "../units";
+    SubPhase,
+} from "../unit";
 
 export function overrideLegionOfGrief(data: DataStoreImpl) {
     // Command traits
     overrideAbility(
         data.extraAbilities.legionOfGriefAspectsOfGriefAmethystGlow.ability,
-        x => {
+        (x) => {
             x.flavor = "Shyishan magic suffuses this general";
             x.description =
                 "This general is a WIZARD. They can attempt to cast one spell in your hero phase, and attempt to unbind one spell in the enemy hero phase. They know the Arcane Bolt and Mystic Shield spells. If this general is already a WIZARD, they know one extra spell from the Lore of Sorrows.";
             x.effects = [
-                { targetType: TargetType.Unit, spellAura: { bonusUnbind: 1 } }
+                { targetType: TargetType.Unit, spellAura: { bonusUnbind: 1 } },
             ];
         }
     );
     overrideAbility(
         data.extraAbilities.legionOfGriefAspectsOfGriefVassalOfTheCravenKing
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "The general is one of Kurdoss Valentian's trusted lords.";
             x.description =
@@ -35,15 +35,15 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
     );
     overrideAbility(
         data.extraAbilities.legionOfGriefAspectsOfGriefTragicEmanations.ability,
-        x => {
+        (x) => {
             x.flavor = "This leader radiates an aura of crippling sorrow.";
             x.description =
                 'Subtract 2 from the Bravery characteristic of enemy units while they are within 12" of this general';
             x.effects = [
                 {
                     targetType: TargetType.Enemy,
-                    battleShockAura: { bonusBravery: -2 }
-                }
+                    battleShockAura: { bonusBravery: -2 },
+                },
             ];
         }
     );
@@ -51,7 +51,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
     // Artefacts of power
     overrideAbility(
         data.extraAbilities.legionOfGriefRelicsOfAnguishGraveSandGem.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "This gem has the power to unmake flesh or stitch it together.";
             x.description =
@@ -61,21 +61,21 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
                     targetType: TargetType.Enemy,
                     mortalWounds: 1,
                     phase: Phase.Hero,
-                    choice: "damage"
+                    choice: "damage",
                 },
                 {
                     targetType: TargetType.Friend,
                     heal: 1,
                     phase: Phase.Hero,
-                    choice: "heal"
-                }
+                    choice: "heal",
+                },
             ];
         }
     );
     overrideAbility(
         data.extraAbilities.legionOfGriefRelicsOfAnguishGothizzariMortuaryCandle
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "This cursed candle of Gothizzar radiates sickening corps-light.";
             x.description =
@@ -85,7 +85,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
     overrideAbility(
         data.extraAbilities.legionOfGriefRelicsOfAnguishSouldrainPendant
             .ability,
-        x => {
+        (x) => {
             x.flavor = "This pendant hungers for the animus of living beings.";
             x.description =
                 'At the end of the combat phase, roll a dice for each enemy unit within 3" of the bearer. On a 4+ that unit suffers 1 mortal wound.';
@@ -95,7 +95,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
     // Spell lores
     overrideAbility(
         data.extraAbilities.legionOfGriefLoreOfSorrowsDreadWithering.ability,
-        x => {
+        (x) => {
             x.flavor = "Black roses bloom before instantly withering away.";
             x.description =
                 'Dread Withering has a casting value of 5. If successfuly cast, pick 1 enemy unit within 18" of the caster that is visible to them. Subtract 1 from save rolls for attacks that target that unit until the start of your next hero phase.';
@@ -103,7 +103,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
     );
     overrideAbility(
         data.extraAbilities.legionOfGriefLoreOfSorrowsWailOfDoom.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "A piercing shriek borne on Shyishan winds races across the battlefield.";
             x.description =
@@ -112,7 +112,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
     );
     overrideAbility(
         data.extraAbilities.legionOfGriefLoreOfSorrowsShroudOfTerror.ability,
-        x => {
+        (x) => {
             x.flavor = "A wave of palpable fear floods those nearby.";
             x.description =
                 'Shroud of Terror has a casting value of 8. If successfuly cast, pick 1 enemy unit within 12" of the caster that is visible to them. Subtract D3 from the Bravery characteristic of that unit until your next hero phase.';
@@ -128,7 +128,7 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
         description:
             'After territories have been determined, but before any units have been set up, you can pick up to 2 points in your territory and up to 2 points anywhere on the battlefield to be gravesites. You may wish to place suitable markers on these points. Then, instead of setting up a SUMMONABLE unit from your army on the battlefield, you can place it to one side and say that it is set up in the grave. You can do this with as many of your SUMMONABLE units as you wish. At the end of your movement phase, for each friendly DEATH HERO within 9" of a gravesite, you can pick a single friendly unitin the grave and set it up wholly within 9" of the gravesite and more than 9" from any enemy models. Any model that is unable to be set up in this way is slain. If a unit is still in the grave at the end of the battle, it is considered to be slain.',
         category: AbilityCategory.BattleTrait,
-        effects: [{ targetType: TargetType.Friend, phase: Phase.Setup }]
+        effects: [{ targetType: TargetType.Friend, phase: Phase.Setup }],
     };
 
     const invigoratingAura: Ability = {
@@ -143,9 +143,9 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
             {
                 targetType: TargetType.Friend,
                 phase: Phase.Hero,
-                subPhase: SubPhase.Before
-            }
-        ]
+                subPhase: SubPhase.Before,
+            },
+        ],
     };
     const deathlessMinions: Ability = {
         id: "legionofgrief_deathlessminions",
@@ -158,9 +158,9 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
         effects: [
             {
                 targetType: TargetType.Friend,
-                defenseAura: { negateWoundsOrMortalWoundsOn6: true }
-            }
-        ]
+                defenseAura: { negateWoundsOrMortalWoundsOn6: true },
+            },
+        ],
     };
     const auraOfGrief: Ability = {
         id: "legionofgrief_auraofgrief",
@@ -173,9 +173,9 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
         effects: [
             {
                 targetType: TargetType.Enemy,
-                battleShockAura: { bonusBravery: -1 }
-            }
-        ]
+                battleShockAura: { bonusBravery: -1 },
+            },
+        ],
     };
     const endlessLegions: Ability = {
         id: "legionofgrief_endlesslegions",
@@ -189,20 +189,20 @@ export function overrideLegionOfGrief(data: DataStoreImpl) {
             {
                 targetType: TargetType.Friend,
                 phase: Phase.Movement,
-                subPhase: SubPhase.After
-            }
-        ]
+                subPhase: SubPhase.After,
+            },
+        ],
     };
 
     override<Allegiance>(
         data.allegiances.legionOfGrief,
-        x =>
+        (x) =>
             (x.battleTraits = [
                 theUnquietDead,
                 invigoratingAura,
                 deathlessMinions,
                 auraOfGrief,
-                endlessLegions
+                endlessLegions,
             ])
     );
 }

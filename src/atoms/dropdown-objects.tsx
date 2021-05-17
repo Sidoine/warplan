@@ -1,13 +1,13 @@
 import { MenuItem, Select } from "@material-ui/core";
 import { observer } from "mobx-react-lite";
-import React, { useCallback } from "react";
+import React, { ReactNode, useCallback } from "react";
 import { HasId } from "./add-button";
 
 export interface DropdownObjectsProps<T extends HasId> {
     value: T | null;
     options: T[];
     onChange: (value: T | null) => void;
-    getText: (value: T) => string;
+    getText: (value: T) => ReactNode;
     placeholder?: string;
     clearable?: boolean;
 }

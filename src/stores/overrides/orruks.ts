@@ -5,8 +5,8 @@ import {
     Battalion,
     TargetType,
     Phase,
-    SubPhase
-} from "../units";
+    SubPhase,
+} from "../unit";
 import { override, overrideAbility, addAbilityEffect } from "./tools";
 
 type ExtraAbilities = { [key: string]: ExtraAbility };
@@ -34,11 +34,11 @@ function addWarbeats(data: DataStoreImpl) {
             instead of 12". Roll 3D6
             instead of 2D6 when making
             the charge roll for that unit.`,
-            category: AbilityCategory.Mount
+            category: AbilityCategory.Mount,
         },
         keywords: [["WARCHANTER"]],
         category: "Warchanter Warbeats",
-        allegianceKeyword: "IRONJAWZ"
+        allegianceKeyword: "IRONJAWZ",
     };
     extraAbilities[getEmBeat.id] = getEmBeat;
     const fixinBeat: ExtraAbility = {
@@ -57,11 +57,11 @@ function addWarbeats(data: DataStoreImpl) {
             a dice. On a 4+, you can heal
             up to D3 wounds allocated
             to that model.`,
-            category: AbilityCategory.Mount
+            category: AbilityCategory.Mount,
         },
         keywords: [["WARCHANTER"]],
         category: "Warchanter Warbeats",
-        allegianceKeyword: "IRONJAWZ"
+        allegianceKeyword: "IRONJAWZ",
     };
     extraAbilities[fixinBeat.id] = fixinBeat;
     const killaBeat: ExtraAbility = {
@@ -87,19 +87,19 @@ function addWarbeats(data: DataStoreImpl) {
                 {
                     targetType: TargetType.Enemy,
                     phase: Phase.Combat,
-                    subPhase: SubPhase.Before
-                }
-            ]
+                    subPhase: SubPhase.Before,
+                },
+            ],
         },
         keywords: [["WARCHANTER"]],
         category: "Warchanter Warbeats",
-        allegianceKeyword: "IRONJAWZ"
+        allegianceKeyword: "IRONJAWZ",
     };
     extraAbilities[killaBeat.id] = killaBeat;
 }
 
 function fixBattalion(data: DataStoreImpl) {
-    override<Battalion>(data.battalions.ironjawzBrawl, x => {
+    override<Battalion>(data.battalions.ironjawzBrawl, (x) => {
         x.abilities = [
             {
                 id: "bossWaagh",
@@ -111,11 +111,11 @@ function fixBattalion(data: DataStoreImpl) {
                 This does not stop the general from using the Ironjawz Waaagh! command ability, but 
                 you cannot use the command ability more than once in the same combat phase.`,
                 category: AbilityCategory.Command,
-                effects: [{ targetType: TargetType.Friend, phase: Phase.Hero }]
-            }
+                effects: [{ targetType: TargetType.Friend, phase: Phase.Hero }],
+            },
         ];
     });
-    override<Battalion>(data.battalions.ironjawzArdfist, x => {
+    override<Battalion>(data.battalions.ironjawzArdfist, (x) => {
         x.abilities = [
             {
                 id: "drawnToTheWaagh",
@@ -130,11 +130,11 @@ function fixBattalion(data: DataStoreImpl) {
             wholly within 6" of the edge of the battlefield and more
             than 9" from any enemy units.`,
                 category: AbilityCategory.Command,
-                effects: [{ targetType: TargetType.Friend, defenseAura: {} }]
-            }
+                effects: [{ targetType: TargetType.Friend, defenseAura: {} }],
+            },
         ];
     });
-    override<Battalion>(data.battalions.ironjawzBrutefist, x => {
+    override<Battalion>(data.battalions.ironjawzBrutefist, (x) => {
         x.abilities = [
             {
                 id: "greenSkinnedBatteringRam",
@@ -146,11 +146,11 @@ function fixBattalion(data: DataStoreImpl) {
                 each time a model from that unit completes its charge move, but do not allocate the mortal wounds
                 until all of the models in that unit have moved.`,
                 category: AbilityCategory.BattleTrait,
-                effects: [{ targetType: TargetType.Unit, phase: Phase.Charge }]
-            }
+                effects: [{ targetType: TargetType.Unit, phase: Phase.Charge }],
+            },
         ];
     });
-    override<Battalion>(data.battalions.ironjawzGorefist, x => {
+    override<Battalion>(data.battalions.ironjawzGorefist, (x) => {
         x.abilities = [
             {
                 id: "daBosssBigIdea",
@@ -165,11 +165,11 @@ function fixBattalion(data: DataStoreImpl) {
                 battalion at the start of that hero phase can make a
                 normal move, but cannot run.`,
                 category: AbilityCategory.BattleTrait,
-                effects: [{ targetType: TargetType.Friend, phase: Phase.Hero }]
-            }
+                effects: [{ targetType: TargetType.Friend, phase: Phase.Hero }],
+            },
         ];
     });
-    override<Battalion>(data.battalions.ironjawzIronfist, x => {
+    override<Battalion>(data.battalions.ironjawzIronfist, (x) => {
         x.abilities = [
             {
                 id: "upAndAtEm",
@@ -182,11 +182,11 @@ function fixBattalion(data: DataStoreImpl) {
                 ability as if they were a MEGABOSS and without
                 spending 1 command point.`,
                 category: AbilityCategory.Command,
-                effects: [{ targetType: TargetType.Friend, phase: Phase.Hero }]
-            }
+                effects: [{ targetType: TargetType.Friend, phase: Phase.Hero }],
+            },
         ];
     });
-    override<Battalion>(data.battalions.ironjawzWeirdfist, x => {
+    override<Battalion>(data.battalions.ironjawzWeirdfist, (x) => {
         x.abilities = [
             {
                 id: "weirdEnergy",
@@ -200,8 +200,8 @@ function fixBattalion(data: DataStoreImpl) {
                 ability to attempt to cast Green Puke twice, in addition to
                 any other spells it can cast, instead of only once.`,
                 category: AbilityCategory.Spell,
-                effects: [{ targetType: TargetType.Friend, phase: Phase.Hero }]
-            }
+                effects: [{ targetType: TargetType.Friend, phase: Phase.Hero }],
+            },
         ];
     });
 }
@@ -212,128 +212,128 @@ function overrideUnits(data: DataStoreImpl) {
         data.abilities.gordrakkTheFistOfGorkMassivelyDestructiveBulk,
         {
             targetType: TargetType.Enemy,
-            phase: Phase.Charge
+            phase: Phase.Charge,
         }
     );
 
     addAbilityEffect(data.abilities.gordrakkTheFistOfGorkKunnin, {
         targetType: TargetType.Enemy,
-        attackAura: { phase: Phase.Combat }
+        attackAura: { phase: Phase.Combat },
     });
 
     addAbilityEffect(data.abilities.gordrakkTheFistOfGorkSmasha, {
         targetType: TargetType.Enemy,
-        attackAura: { phase: Phase.Combat }
+        attackAura: { phase: Phase.Combat },
     });
 
     addAbilityEffect(data.abilities.gordrakkTheFistOfGorkStrengthFromVictory, {
         targetType: TargetType.Model,
-        phase: Phase.Combat
+        phase: Phase.Combat,
     });
 
     addAbilityEffect(data.abilities.gordrakkTheFistOfGorkVoiceOfGork, {
         targetType: TargetType.Friend,
         phase: Phase.Combat,
-        attackAura: { bonusHitRoll: 1 }
+        attackAura: { bonusHitRoll: 1 },
     });
 
     // Megaboss on Maw-Krusha
     addAbilityEffect(data.abilities.megabossOnMawKrushaDestructiveBulk, {
         targetType: TargetType.Enemy,
-        phase: Phase.Charge
+        phase: Phase.Charge,
     });
 
     addAbilityEffect(data.abilities.megabossOnMawKrushaRipToofFist, {
         targetType: TargetType.Model,
-        defenseAura: { phase: Phase.Combat }
+        defenseAura: { phase: Phase.Combat },
     });
 
     addAbilityEffect(data.abilities.megabossOnMawKrushaStrengthFromVictory, {
         targetType: TargetType.Model,
-        phase: Phase.Combat
+        phase: Phase.Combat,
     });
 
     addAbilityEffect(data.abilities.megabossOnMawKrushaGoOnLadzGetStuckIn, {
         targetType: TargetType.Friend,
         phase: Phase.Combat,
         subPhase: SubPhase.Before,
-        attackAura: { bonusHitRoll: 1 }
+        attackAura: { bonusHitRoll: 1 },
     });
 
     // Megaboss
     addAbilityEffect(data.abilities.orrukMegabossRipToofFist, {
         targetType: TargetType.Model,
-        defenseAura: { phase: Phase.Combat }
+        defenseAura: { phase: Phase.Combat },
     });
     addAbilityEffect(data.abilities.orrukMegabossStrengthFromVictory, {
         targetType: TargetType.Model,
         phase: Phase.Combat,
         subPhase: SubPhase.After,
-        attackAura: {}
+        attackAura: {},
     });
     addAbilityEffect(data.abilities.orrukMegabossGoOnLadzGetStuckIn, {
         targetType: TargetType.Friend,
         phase: Phase.Combat,
         subPhase: SubPhase.Before,
-        attackAura: { bonusHitRoll: 1 }
+        attackAura: { bonusHitRoll: 1 },
     });
 
     // Ardboyz
     addAbilityEffect(data.abilities.orrukArdboysOrrukForgedShields, {
         targetType: TargetType.Unit,
-        defenseAura: {}
+        defenseAura: {},
     });
 
     // Ironskull's Boyz
     addAbilityEffect(data.abilities.ironskullSBoyzDeadArd, {
         targetType: TargetType.Unit,
-        defenseAura: {}
+        defenseAura: {},
     });
     addAbilityEffect(data.abilities.ironskullSBoyzPairedChoppas, {
         targetType: TargetType.Unit,
-        attackAura: { bonusHitRoll: 1 }
+        attackAura: { bonusHitRoll: 1 },
     });
     addAbilityEffect(data.abilities.ironskullSBoyzGurzagIronskull, {
         targetType: TargetType.Model,
-        attackAura: { bonusAttacks: 1 }
+        attackAura: { bonusAttacks: 1 },
     });
 
     // Brutes
     addAbilityEffect(data.abilities.orrukBrutesDuffUpDaBigThing, {
         targetType: TargetType.Model,
-        attackAura: {}
+        attackAura: {},
     });
 
     // Gore-gruntas
     addAbilityEffect(data.abilities.orrukGoreGruntasGoreGruntaCharge, {
         targetType: TargetType.Model,
-        phase: Phase.Charge
+        phase: Phase.Charge,
     });
     addAbilityEffect(data.abilities.orrukGoreGruntasMount, {
-        targetType: TargetType.Mount
+        targetType: TargetType.Mount,
     });
 
     // Warchanter
     addAbilityEffect(data.abilities.orrukWarchanterRhythmOfDestruction, {
         targetType: TargetType.Model,
-        attackAura: {}
+        attackAura: {},
     });
     addAbilityEffect(data.abilities.orrukWarchanterViolentFury, {
         targetType: TargetType.Friend,
         phase: Phase.Hero,
-        attackAura: {}
+        attackAura: {},
     });
 
     // Weirdnob Shaman
     addAbilityEffect(data.abilities.orrukWeirdnobShamanBrutalPower, {
         targetType: TargetType.Model,
         phase: Phase.Hero,
-        spellAura: {}
+        spellAura: {},
     });
     addAbilityEffect(data.abilities.orrukWeirdnobShamanGreenPuke, {
         targetType: TargetType.Enemy,
         phase: Phase.Hero,
-        spellCastingValue: 6
+        spellCastingValue: 6,
     });
 }
 
@@ -342,7 +342,7 @@ function overrideExtraAbilities(data: DataStoreImpl) {
     overrideAbility(
         data.extraAbilities.ironjawzIroncladWarlordsHulkingMuscleBoundBrute
             .ability,
-        x => {
+        (x) => {
             x.flavor = `Even by orruk
         standards, this boss is huge, and he is ever eager
         to throw his immense weight around in battle.`;
@@ -351,13 +351,13 @@ function overrideExtraAbilities(data: DataStoreImpl) {
         roll a dice. On a 2+, that enemy unit suffers D3
         mortal wounds.`;
             x.effects = [
-                { targetType: TargetType.Friend, phase: Phase.Charge }
+                { targetType: TargetType.Friend, phase: Phase.Charge },
             ];
         }
     );
     overrideAbility(
         data.extraAbilities.ironjawzDaBossSHoardArmourOfGork.ability,
-        x => {
+        (x) => {
             x.flavor = `This bashed-together armour
             is thick and heavy, and when it was blessed by
             Gork, it gained its own fierce fighting spirit.`;
@@ -368,14 +368,14 @@ function overrideExtraAbilities(data: DataStoreImpl) {
             x.effects = [
                 {
                     targetType: TargetType.Model,
-                    defenseAura: { phase: Phase.Combat }
-                }
+                    defenseAura: { phase: Phase.Combat },
+                },
             ];
         }
     );
     overrideAbility(
         data.extraAbilities.ironjawzIroncladWarlordsLiveToFight.ability,
-        x => {
+        (x) => {
             x.flavor = `The only time this warrior is not
             in combat is when they are charging headlong
             into a fresh set of enemies.`;
@@ -385,14 +385,14 @@ function overrideExtraAbilities(data: DataStoreImpl) {
             x.effects = [
                 {
                     targetType: TargetType.Model,
-                    phase: Phase.Hero
-                }
+                    phase: Phase.Hero,
+                },
             ];
         }
     );
     overrideAbility(
         data.extraAbilities.ironjawzIroncladWarlordsBrutishCunning.ability,
-        x => {
+        (x) => {
             x.flavor = `After countless battles, this
             general has learnt how to get his boys stuck into
             the enemy as quickly as possible`;
@@ -402,14 +402,14 @@ function overrideExtraAbilities(data: DataStoreImpl) {
             x.effects = [
                 {
                     targetType: TargetType.Model,
-                    attackAura: { phase: Phase.Combat }
-                }
+                    attackAura: { phase: Phase.Combat },
+                },
             ];
         }
     );
     overrideAbility(
         data.extraAbilities.ironjawzIroncladWarlordsIronclad.ability,
-        x => {
+        (x) => {
             x.flavor = `Incoming blows bounce harmlessly off
             this general’s impressively robust armour.`;
             x.description = `Add 1 to save rolls for attacks that target
@@ -418,15 +418,15 @@ function overrideExtraAbilities(data: DataStoreImpl) {
                 {
                     targetType: TargetType.Model,
                     defenseAura: {
-                        bonusSave: 1
-                    }
-                }
+                        bonusSave: 1,
+                    },
+                },
             ];
         }
     );
     overrideAbility(
         data.extraAbilities.ironjawzIroncladWarlordsBestialCharisma.ability,
-        x => {
+        (x) => {
             x.flavor = `With a deafening bellow, this
             greenskin lets every orruk around know that no
             one leaves the fight until it’s over`;
@@ -435,14 +435,14 @@ function overrideExtraAbilities(data: DataStoreImpl) {
             spending 1 command point`;
             x.effects = [
                 {
-                    targetType: TargetType.Model
-                }
+                    targetType: TargetType.Model,
+                },
             ];
         }
     );
     overrideAbility(
         data.extraAbilities.ironjawzIroncladWarlordsMightyWaaagh.ability,
-        x => {
+        (x) => {
             x.flavor = `Waves of greenskins flock to
             the call of this bellicose orruk, knowing that they
             will be led to a mighty fight.`;
@@ -453,15 +453,15 @@ function overrideExtraAbilities(data: DataStoreImpl) {
             units within 24" of this general instead of 18".`;
             x.effects = [
                 {
-                    targetType: TargetType.Model
-                }
+                    targetType: TargetType.Model,
+                },
             ];
         }
     );
 
     overrideAbility(
         data.extraAbilities.ironjawzLoreOfTheWeirdBashEmLadz.ability,
-        x => {
+        (x) => {
             x.flavor = `The shaman leaks fighty energy
             that boosts the prowess of nearby Ironjawz mobs.`;
             x.description = `Bash ’Em, Ladz! has a casting value of 8. If
@@ -473,8 +473,8 @@ function overrideExtraAbilities(data: DataStoreImpl) {
                 {
                     targetType: TargetType.Friend,
                     phase: Phase.Hero,
-                    spellCastingValue: 8
-                }
+                    spellCastingValue: 8,
+                },
             ];
         }
     );

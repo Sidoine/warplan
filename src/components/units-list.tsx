@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
-import { Unit } from "../stores/units";
+import { Unit } from "../stores/unit";
 import AddButton, { TableColumn } from "../atoms/add-button";
 import { useStores } from "../stores";
 import { observer } from "mobx-react-lite";
 
 const columns: TableColumn<Unit>[] = [
-    { name: "Name", text: (x) => x.model.name },
+    { name: "Name", text: (x) => x.name },
     { name: "Points", text: (x) => x.points },
 ];
 

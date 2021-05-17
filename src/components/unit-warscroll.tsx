@@ -1,14 +1,14 @@
 import { WarscrollUnit } from "../stores/warscroll";
 import * as React from "react";
 import { toJS } from "mobx";
-import { ModelOption, AbilityCategory, Unit } from "../stores/units";
+import { ModelOption, AbilityCategory, Unit } from "../stores/unit";
 import { value } from "../helpers/react";
 import {
     AttackWithCount,
     AllAttacks,
     WoundEffects,
     AllAbilities,
-    useWarscrollStyles
+    useWarscrollStyles,
 } from "../atoms/warscroll-components";
 import StarIcon from "@material-ui/icons/Star";
 import { distinct } from "../helpers/algo";
@@ -16,7 +16,7 @@ import { distinct } from "../helpers/algo";
 export function UnitWarscroll({
     wu,
     unit,
-    noFlavor
+    noFlavor,
 }: {
     wu?: WarscrollUnit | null;
     unit?: Unit;
@@ -28,7 +28,7 @@ export function UnitWarscroll({
     if (!u) return <div></div>;
     const attacks: AttackWithCount[] =
         (u.attacks &&
-            u.attacks.map(x => {
+            u.attacks.map((x) => {
                 return { count: undefined, attack: x, id: x.id };
             })) ||
         [];
@@ -58,7 +58,8 @@ export function UnitWarscroll({
         }
         if (option.abilities) {
             for (const a of option.abilities) {
-                if (!abilities.some(x => x.name === a.name)) abilities.push(a);
+                if (!abilities.some((x) => x.name === a.name))
+                    abilities.push(a);
             }
         }
     }
@@ -68,12 +69,12 @@ export function UnitWarscroll({
             abilities.push(ability.ability);
         }
     }
-    const normalAbilities = abilities.filter(x => x.category === undefined);
+    const normalAbilities = abilities.filter((x) => x.category === undefined);
     const specialRules = abilities.filter(
-        x => x.category === AbilityCategory.SpecialRule
+        (x) => x.category === AbilityCategory.SpecialRule
     );
     const magicAbilites = abilities.filter(
-        x => x.category === AbilityCategory.Spell
+        (x) => x.category === AbilityCategory.Spell
     );
     const keywords = wu?.keywords || u.keywords;
 

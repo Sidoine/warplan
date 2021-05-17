@@ -1,4 +1,4 @@
-import { Attack, DamageTable, Ability } from "../stores/units";
+import { Attack, DamageTable, Ability } from "../stores/unit";
 import * as React from "react";
 import { value } from "../helpers/react";
 import { makeStyles } from "@material-ui/core";
@@ -10,7 +10,7 @@ import warscrollSeparator from "../assets/ws-separator.png";
 
 export const useWarscrollStyles = makeStyles({
     wounds: {
-        whiteSpace: "nowrap"
+        whiteSpace: "nowrap",
     },
     warscroll: {
         pageBreakInside: "avoid",
@@ -24,11 +24,11 @@ export const useWarscrollStyles = makeStyles({
 
         "@media (max-width: 600px)": {
             maxHeight: "95vh",
-            overflow: "auto"
+            overflow: "auto",
         },
         "@media print": {
-            maxWidth: "15cm"
-        }
+            maxWidth: "15cm",
+        },
     },
     type: {
         textTransform: "uppercase",
@@ -42,7 +42,7 @@ export const useWarscrollStyles = makeStyles({
             height: "6px",
             display: "inline-block",
             marginRight: "5px",
-            marginBottom: "1px"
+            marginBottom: "1px",
         },
         "&::after": {
             content: "' '",
@@ -52,21 +52,21 @@ export const useWarscrollStyles = makeStyles({
             height: "6px",
             display: "inline-block",
             marginLeft: "5px",
-            marginBottom: "1px"
-        }
+            marginBottom: "1px",
+        },
     },
     count: {
-        fontSize: "1rem"
+        fontSize: "1rem",
     },
     flavor: {
         fontWeight: "bold",
         lineHeight: "0.9rem",
         textAlign: "center",
-        marginBottom: "8px"
+        marginBottom: "8px",
     },
     title: {
         flex: 1,
-        paddingTop: "20px"
+        paddingTop: "20px",
     },
     name: {
         backgroundImage: `url(${warscrollMiddle})`,
@@ -84,16 +84,16 @@ export const useWarscrollStyles = makeStyles({
         fontVariant: "small-caps",
         "@media (max-width: 600px)": {
             marginLeft: 0,
-            marginRight: 0
-        }
+            marginRight: 0,
+        },
     },
     subName: {
         fontSize: "1rem",
-        marginTop: "-0.5rem"
+        marginTop: "-0.5rem",
     },
     option: {
         fontSize: "1.1rem",
-        fontStyle: "italic"
+        fontStyle: "italic",
     },
     battalion: {
         minHeight: "80px",
@@ -102,13 +102,13 @@ export const useWarscrollStyles = makeStyles({
         paddingTop: "20px",
         "& > $name": {
             marginLeft: 0,
-            marginRight: 0
-        }
+            marginRight: 0,
+        },
     },
     endlessSpell: {
         "& $name": {
-            marginLeft: 0
-        }
+            marginLeft: 0,
+        },
     },
     stats: {
         backgroundImage: `url(${warscrollLeft})`,
@@ -124,38 +124,38 @@ export const useWarscrollStyles = makeStyles({
             display: "float",
             transform: "scale(0.75)",
             margin: "-40px",
-            marginTop: "-30px"
-        }
+            marginTop: "-30px",
+        },
     },
     woundsStat: {
         position: "absolute",
         left: "36px",
-        top: "56px"
+        top: "56px",
     },
     moveStat: {
         position: "absolute",
         left: "64px",
         top: "28px",
-        transform: "translate(-50%)"
+        transform: "translate(-50%)",
     },
     saveStat: {
         position: "absolute",
         left: "80px",
-        top: "56px"
+        top: "56px",
     },
     braveryStat: {
         position: "absolute",
         left: "64px",
         top: "80px",
-        transform: "translate(-50%)"
+        transform: "translate(-50%)",
     },
     header: {
         display: "flex",
         flexDirection: "row",
         "@media (max-width: 600px)": {
             flexDirection: "column",
-            alignItems: "center"
-        }
+            alignItems: "center",
+        },
     },
     image: {
         width: "128px",
@@ -170,35 +170,35 @@ export const useWarscrollStyles = makeStyles({
             top: "22px",
             width: "96px",
             height: "96px",
-            borderRadius: "96px"
+            borderRadius: "96px",
         },
         "@media (max-width: 600px)": {
-            display: "none"
-        }
+            display: "none",
+        },
     },
     sectionHeader: {
         fontVariant: "small-caps",
         fontSize: "1rem",
         ["& + &"]: {
-            marginTop: "1rem"
+            marginTop: "1rem",
         },
-        breakAfter: "avoid-column"
+        breakAfter: "avoid-column",
     },
     abilities: {
         columnCount: 3,
         ["& > header"]: {
-            fontWeight: "bold"
+            fontWeight: "bold",
         },
         "@media (max-width: 600px)": {
-            columnCount: 1
+            columnCount: 1,
         },
-        fontSize: "0.75rem"
+        fontSize: "0.75rem",
     },
     abilityName: {
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
     abilityFlavor: {
-        fontStyle: "italic"
+        fontStyle: "italic",
     },
     attack: {
         margin: "8px",
@@ -210,11 +210,11 @@ export const useWarscrollStyles = makeStyles({
         ["& > thead"]: {
             backgroundColor: "#e6dccb",
             borderTop: "2px solid #b5ad82",
-            borderBottom: "2px solid #b5ad82"
-        }
+            borderBottom: "2px solid #b5ad82",
+        },
     },
     attackName: {
-        textTransform: "uppercase"
+        textTransform: "uppercase",
     },
     keywords: {
         display: "flex",
@@ -222,18 +222,18 @@ export const useWarscrollStyles = makeStyles({
         marginTop: "5px",
         fontSize: "0.75rem",
         ["& > div"]: {
-            padding: "5px"
-        }
+            padding: "5px",
+        },
     },
     keywordsHeader: {
         backgroundColor: "#8a7c32",
         textTransform: "uppercase",
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
     woundTable: {
         textTransform: "uppercase",
-        backgroundColor: "#d0c89a"
-    }
+        backgroundColor: "#d0c89a",
+    },
 });
 
 export interface AttackWithCount {
@@ -245,15 +245,15 @@ export interface AttackWithCount {
 export function AllAttacks({ attacks }: { attacks: AttackWithCount[] }) {
     return (
         <>
-            {attacks.some(x => x.attack.melee) && (
+            {attacks.some((x) => x.attack.melee) && (
                 <Attacks
-                    attacks={attacks.filter(x => x.attack.melee)}
+                    attacks={attacks.filter((x) => x.attack.melee)}
                     name="Melee Weapons"
                 />
             )}
-            {attacks.some(x => !x.attack.melee) && (
+            {attacks.some((x) => !x.attack.melee) && (
                 <Attacks
-                    attacks={attacks.filter(x => !x.attack.melee)}
+                    attacks={attacks.filter((x) => !x.attack.melee)}
                     name="Missile Weapons"
                 />
             )}
@@ -263,7 +263,7 @@ export function AllAttacks({ attacks }: { attacks: AttackWithCount[] }) {
 
 export function Attacks({
     attacks,
-    name
+    name,
 }: {
     attacks: AttackWithCount[];
     name: string;
@@ -306,7 +306,7 @@ export function AllAbilities({
     title,
     abilities,
     description,
-    noFlavor
+    noFlavor,
 }: {
     title: string;
     abilities: Ability[];
@@ -350,7 +350,7 @@ export function WoundEffects({ damageTable }: { damageTable: DamageTable }) {
                 </tr>
                 <tr>
                     <th>Wounds Suffered</th>
-                    {damageTable.columns.map(x => (
+                    {damageTable.columns.map((x) => (
                         <th key={x.name}>{x.name}</th>
                     ))}
                 </tr>
@@ -359,7 +359,7 @@ export function WoundEffects({ damageTable }: { damageTable: DamageTable }) {
                 {ranges.map((x, index) => (
                     <tr key={x}>
                         <td>{x}</td>
-                        {damageTable.columns.map(x => (
+                        {damageTable.columns.map((x) => (
                             <td key={x.name}>{x.values[index]} </td>
                         ))}
                     </tr>

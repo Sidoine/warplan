@@ -8,8 +8,8 @@ import {
     AttackAuraAbilityEffects,
     getSumValues,
     getValueRatio,
-    Attack
-} from "./units";
+    Attack,
+} from "./unit";
 
 type AttackAuraValueKey = keyof AttackAuraValues;
 const attackAuraValueKeys: AttackAuraValueKey[] = [
@@ -32,12 +32,12 @@ const attackAuraValueKeys: AttackAuraValueKey[] = [
     "bonusRendOnWound6OrMore",
     "rangeBonus",
     "rerollFailedHits",
-    "bonusDamageOnWoundUnmodified6"
+    "bonusDamageOnWoundUnmodified6",
 ];
 // const attackAuraNumberKeys: (keyof AttackAuraNumbers)[] = [];
 const attackAuraBooleanKeys: (keyof AttackAuraBooleans)[] = [];
 const attackAuraAbilityEffectKeys: (keyof AttackAuraAbilityEffects)[] = [
-    "effectsOnHitUnmodified6"
+    "effectsOnHitUnmodified6",
 ];
 
 export interface AuraState<T> {

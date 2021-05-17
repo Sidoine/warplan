@@ -8,13 +8,13 @@ import {
     SubPhase,
     targetConditionValue,
     orValue,
-    conditionValue
-} from "../units";
+    conditionValue,
+} from "../unit";
 import {
     override,
     overrideAbility,
     setAttackAsUpgrade,
-    addAbilityEffect
+    addAbilityEffect,
 } from "./tools";
 
 function addBattleTraits(data: DataStoreImpl) {
@@ -29,9 +29,9 @@ function addBattleTraits(data: DataStoreImpl) {
         effects: [
             {
                 targetType: TargetType.Enemy,
-                battleShockAura: { bonusBravery: -1 }
-            }
-        ]
+                battleShockAura: { bonusBravery: -1 },
+            },
+        ],
     };
     const deathlessSprits: Ability = {
         id: "nighthaunt_deathlessspritis",
@@ -44,9 +44,9 @@ function addBattleTraits(data: DataStoreImpl) {
         effects: [
             {
                 targetType: TargetType.Friend,
-                defenseAura: { negateWoundsOrMortalWoundsOn6: true }
-            }
-        ]
+                defenseAura: { negateWoundsOrMortalWoundsOn6: true },
+            },
+        ],
     };
     const fromTheUnderworldsTheyCome: Ability = {
         id: "nighthaunt_fromtheunderworldstheycome",
@@ -60,9 +60,9 @@ function addBattleTraits(data: DataStoreImpl) {
             {
                 targetType: TargetType.Friend,
                 phase: Phase.Movement,
-                subPhase: SubPhase.After
-            }
-        ]
+                subPhase: SubPhase.After,
+            },
+        ],
     };
     const feedOnTerror: Ability = {
         id: "nighthaunt_feedonterror",
@@ -75,9 +75,9 @@ function addBattleTraits(data: DataStoreImpl) {
         effects: [
             {
                 targetType: TargetType.Friend,
-                phase: Phase.Battleshock
-            }
-        ]
+                phase: Phase.Battleshock,
+            },
+        ],
     };
     const waveOfTerror: Ability = {
         id: "nighthaunt_waveofterror",
@@ -90,9 +90,9 @@ function addBattleTraits(data: DataStoreImpl) {
         effects: [
             {
                 targetType: TargetType.Friend,
-                phase: Phase.Charge
-            }
-        ]
+                phase: Phase.Charge,
+            },
+        ],
     };
 
     const spectralSummons: Ability = {
@@ -106,21 +106,21 @@ function addBattleTraits(data: DataStoreImpl) {
         effects: [
             {
                 targetType: TargetType.Friend,
-                phase: Phase.Movement
-            }
-        ]
+                phase: Phase.Movement,
+            },
+        ],
     };
 
     override<Allegiance>(
         data.allegiances.nighthaunt,
-        x =>
+        (x) =>
             (x.battleTraits = [
                 auraOfDread,
                 deathlessSprits,
                 fromTheUnderworldsTheyCome,
                 feedOnTerror,
                 waveOfTerror,
-                spectralSummons
+                spectralSummons,
             ])
     );
 }
@@ -128,7 +128,7 @@ function addBattleTraits(data: DataStoreImpl) {
 function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities.nighthauntShadesOfDeathHatredOfTheLiving.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "It is easy to stoke the deep loathing the spirits of the Nighthaunts feel for those who still live.";
             x.description =
@@ -137,7 +137,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntShadesOfDeathTerrifyingEntity.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "Some powerful spirits take a gruesome appearance or an overwhelming aura of horror to entire new heights.";
             x.description =
@@ -146,7 +146,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntShadesOfDeathLingeringSpirit.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "So much amethyst magic exists within this spirit that its ethereal form is more resilient than most.";
             x.description = "Add 1 to this general’s Wounds characteristic.";
@@ -154,7 +154,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntShadesOfDeathSpitefulSpirit.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "This gheist’s bitter resentment of its cruel existence is palpable, and can bt channelled into a vengeful curse to punish thost who would do it harm.";
             x.description =
@@ -163,7 +163,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntShadesOfDeathCloakedInShadow.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "Eerily intangible, this spirit’s ethereal form fades in and out of existence like some wispy cloud of supernatural mist.";
             x.description =
@@ -173,7 +173,7 @@ function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities.nighthauntShadesOfDeathRulerOfTheSpiritHosts
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "The dark will and deathly power of this spirit are like a siren call, an unseen signal that beckons to others from beyond the grave.";
             x.description =
@@ -184,17 +184,17 @@ function overrideAbilities(data: DataStoreImpl) {
                     subPhase: SubPhase.Before,
                     targetType: TargetType.Friend,
                     targetCondition: {
-                        allKeywords: ["NIGHTHAUNT", "SUMMONABLE"]
+                        allKeywords: ["NIGHTHAUNT", "SUMMONABLE"],
                     },
-                    targetRange: 9
-                }
+                    targetRange: 9,
+                },
             ];
         }
     );
 
     override<Ability>(
         data.extraAbilities.nighthauntLoreOfTheUnderworldsSoulCage.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "This supernatural cage of phantasmal energies pins opponents in place so that the reaping might begin.";
             x.description =
@@ -203,7 +203,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntLoreOfTheUnderworldsSpiritDrain.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "With but a series of fell words of power the caster can whittle away a mortal’s lifeforce, causing their very spirit to seep out of their physical form.";
             x.description =
@@ -212,7 +212,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntLoreOfTheUnderworldsLifestealer.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "Life hangs upon but a slender thread; this incantation can sever that cord, causing healthy foes to drop like puppets shorn of their strings. Each such death increases the caster’s own vitality.";
             x.description =
@@ -221,14 +221,14 @@ function overrideAbilities(data: DataStoreImpl) {
                 {
                     spellCastingValue: 7,
                     targetType: TargetType.Enemy,
-                    mortalWounds: "D3"
-                }
+                    mortalWounds: "D3",
+                },
             ];
         }
     );
     override<Ability>(
         data.extraAbilities.nighthauntLoreOfTheUnderworldsReapingScythe.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "The caster’s weapon extends into a phantasmal scythe, gleaming with fell purpose and honed to razor sharpness.";
             x.description =
@@ -237,7 +237,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntLoreOfTheUnderworldsShademist.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "A supernatural mist envelops the targeted unit, causing them to glimmer as they fade in and out of reality, becoming more baleful and intangible.";
             x.description =
@@ -247,7 +247,7 @@ function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities.nighthauntLoreOfTheUnderworldsSpectralTether
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "The correct sorcerous incantations can create a temporary link between a powerful Nighthaunt and the underworlds, where it can be restored by drawing upon the amethyst energies of Shyish.";
             x.description =
@@ -258,15 +258,15 @@ function overrideAbilities(data: DataStoreImpl) {
                     targetType: TargetType.Friend,
                     targetCondition: { allKeywords: ["NIGHTHAUNT", "HERO"] },
                     targetRange: 12,
-                    heal: "D3"
-                }
+                    heal: "D3",
+                },
             ];
         }
     );
 
     override<Ability>(
         data.extraAbilities.nighthauntWeaponsOfTheDamnedShadowSEdge.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "It is impossible to tell if this ebon blade is corporeal or mere shadow, yet its touch tears through flesh and bone with ease.";
             x.description =
@@ -275,7 +275,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntWeaponsOfTheDamnedReaperOfSorrows.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "This phantasmal blade harvests emotions, hewing life-force but leaving its victims unmarked save for a horrified rictus.";
             x.description =
@@ -284,7 +284,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntWeaponsOfTheDamnedBalefireBlade.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "This blade is alight with the burning souls of sacrificed prophets and seers who dared to challenge the wielder’s authority.";
             x.description =
@@ -293,7 +293,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntWeaponsOfTheDamnedSlitter.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "Forged from the shivs and cut-throat razors of a thousand serial killers, this dagger is murder made manifest.";
             x.description =
@@ -302,15 +302,15 @@ function overrideAbilities(data: DataStoreImpl) {
                 {
                     targetType: TargetType.Enemy,
                     targetRange: 1,
-                    phase: Phase.Combat
-                }
+                    phase: Phase.Combat,
+                },
             ];
         }
     );
     override<Ability>(
         data.extraAbilities.nighthauntWeaponsOfTheDamnedHeadsmanSJudgement
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "This weapon has gained in power for the innumerable condemned souls it has sent screaming into the afterlife.";
             x.description =
@@ -319,7 +319,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntWeaponsOfTheDamnedShriekingBlade.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "This blade emits an unnerving, mournful howl that only exacerbates the horrifying nature of its wielder.";
             x.description =
@@ -330,7 +330,7 @@ function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities.nighthauntRelicsOfTheUnderworldsCloakOfTheWaxingMoon
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "Each blade that passes through the wispy folds of this dark garment begins to lose its substance as it too becomes ethereal.";
             x.description =
@@ -340,7 +340,7 @@ function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities.nighthauntRelicsOfTheUnderworldsPendantOfTheFellWind
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "A chill gale blows ever behind the wearer of this dark trinket, carrying them into battle on gusts of suffocating air.";
             x.description =
@@ -349,18 +349,18 @@ function overrideAbilities(data: DataStoreImpl) {
                 {
                     targetType: TargetType.Friend,
                     movementAura: {
-                        bonusMove: 3
+                        bonusMove: 3,
                     },
                     targetRadius: 12,
-                    whollyWithin: true
-                }
+                    whollyWithin: true,
+                },
             ];
         }
     );
     override<Ability>(
         data.extraAbilities.nighthauntRelicsOfTheUnderworldsDreadboltRing
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "Gouts of lashing green flames leap forth from this ring as it devours the souls of those slain by the wearer.";
             x.description =
@@ -370,7 +370,7 @@ function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities
             .nighthauntRelicsOfTheUnderworldsMirrorOfScreamingSouls.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "A mirror of polished shadeglass, this looking-glass houses the wailing souls of those that stared too long at their own reflection.";
             x.description =
@@ -380,7 +380,7 @@ function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities.nighthauntRelicsOfTheUnderworldsMidnightTome
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "Only the lifeless can read the spells and incantations inscribed upon the pitchblack pages of this cursed grimoire.";
             x.description =
@@ -390,7 +390,7 @@ function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities.nighthauntRelicsOfTheUnderworldsCovetousFamiliar
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "This spiteful poltergeist swirls around its master’s essence, lashing out at any other soul that draws too close.";
             x.description =
@@ -401,7 +401,7 @@ function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities.nighthauntInfernalLanternsLightshardOfTheHarvestMoon
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "Once released, the baleful light of this lantern fills the battlefield with an eerie glow, readying the enemy for the reaping.";
             x.description =
@@ -410,7 +410,7 @@ function overrideAbilities(data: DataStoreImpl) {
     );
     override<Ability>(
         data.extraAbilities.nighthauntInfernalLanternsWychlightLantern.ability,
-        x => {
+        (x) => {
             x.flavor =
                 "The otherworldly incense that billows from this lantern merges with the bearer’s spectral form, lending them great power.";
             x.description = "Add 1 to casting rolls for the bearer.";
@@ -419,7 +419,7 @@ function overrideAbilities(data: DataStoreImpl) {
     override<Ability>(
         data.extraAbilities.nighthauntInfernalLanternsBeaconOfNagashizzar
             .ability,
-        x => {
+        (x) => {
             x.flavor =
                 "The malignant light of Nagashizzar burns within this fell lantern with even greater intensity.";
             x.description =
@@ -427,8 +427,8 @@ function overrideAbilities(data: DataStoreImpl) {
             x.effects = [
                 {
                     targetType: TargetType.Unit,
-                    phase: Phase.Hero
-                }
+                    phase: Phase.Hero,
+                },
             ];
         }
     );
@@ -449,27 +449,27 @@ function overrideUnits(data: DataStoreImpl) {
 function overrideMyrmournBanshees(data: DataStoreImpl) {
     addAbilityEffect(data.abilities.myrmournBansheesEthereal, {
         targetType: TargetType.Unit,
-        defenseAura: { ignoreRend: true }
+        defenseAura: { ignoreRend: true },
     });
     addAbilityEffect(data.abilities.myrmournBansheesSpellEaters, {
         targetType: TargetType.Unit,
         phase: Phase.Hero,
-        spellAura: {}
+        spellAura: {},
     });
     addAbilityEffect(data.abilities.myrmournBansheesFly, {
         targetType: TargetType.Unit,
-        movementAura: { fly: true }
+        movementAura: { fly: true },
     });
 }
 
 function overrideGlaivewraithStalkers(data: DataStoreImpl) {
     addAbilityEffect(data.abilities.glaivewraithStalkersEthereal, {
         targetType: TargetType.Unit,
-        defenseAura: { ignoreRend: true }
+        defenseAura: { ignoreRend: true },
     });
     addAbilityEffect(data.abilities.glaivewraithStalkersFly, {
         targetType: TargetType.Unit,
-        movementAura: { fly: true }
+        movementAura: { fly: true },
     });
     addAbilityEffect(data.abilities.glaivewraithStalkersThePointOfDeath, {
         targetType: TargetType.Unit,
@@ -477,27 +477,27 @@ function overrideGlaivewraithStalkers(data: DataStoreImpl) {
             rerollFailedHits: orValue(
                 targetConditionValue({ hasCharged: true }, 1),
                 conditionValue({ hasCharged: true }, 1)
-            )
-        }
+            ),
+        },
     });
 }
 
 function overrideKnightOfShroudsOnEtherealSteed(data: DataStoreImpl) {
     addAbilityEffect(data.abilities.knightOfShroudsOnEtherealSteedEthereal, {
         targetType: TargetType.Unit,
-        defenseAura: { ignoreRend: true }
+        defenseAura: { ignoreRend: true },
     });
     addAbilityEffect(data.abilities.knightOfShroudsOnEtherealSteedStolenHours, {
         targetType: TargetType.Model,
-        attackAura: {}
+        attackAura: {},
     });
     addAbilityEffect(data.abilities.knightOfShroudsOnEtherealSteedMount, {
         targetType: TargetType.Model,
-        phase: Phase.Setup
+        phase: Phase.Setup,
     });
     addAbilityEffect(data.abilities.knightOfShroudsOnEtherealSteedFly, {
         targetType: TargetType.Model,
-        movementAura: { fly: true }
+        movementAura: { fly: true },
     });
     addAbilityEffect(
         data.abilities.knightOfShroudsOnEtherealSteedLordOfGheists,
@@ -508,8 +508,8 @@ function overrideKnightOfShroudsOnEtherealSteed(data: DataStoreImpl) {
             phase: Phase.Combat,
             attackAura: {
                 bonusAttacks: 1,
-                phase: Phase.Combat
-            }
+                phase: Phase.Combat,
+            },
         }
     );
 }
@@ -524,49 +524,49 @@ function overrideGrimghastReapers(data: DataStoreImpl) {
     );
     addAbilityEffect(data.abilities.grimghastReapersEthereal, {
         defenseAura: { ignoreRend: true },
-        targetType: TargetType.Unit
+        targetType: TargetType.Unit,
     });
     addAbilityEffect(data.abilities.grimghastReapersReapedLikeCorn, {
         targetType: TargetType.Unit,
         attackAura: {
-            rerollFailedHits: targetConditionValue({ minModels: 5 }, 1)
-        }
+            rerollFailedHits: targetConditionValue({ minModels: 5 }, 1),
+        },
     });
     addAbilityEffect(data.abilities.grimghastReapersExtollerOfShyish, {
         targetType: TargetType.Unit,
-        phase: Phase.Setup
+        phase: Phase.Setup,
     });
     addAbilityEffect(data.abilities.grimghastReapersFly, {
         targetType: TargetType.Unit,
-        movementAura: { fly: true }
+        movementAura: { fly: true },
     });
     addAbilityEffect(data.abilities.grimghastReapersForWhomTheBellTolls, {
         targetType: TargetType.Weapon,
-        phase: Phase.Combat
+        phase: Phase.Combat,
     });
 }
 
 function overrideBladegheist(data: DataStoreImpl) {
     overrideAbility(
         data.abilities.bladegheistRevenantsEthereal,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Model,
-                    defenseAura: { ignoreRend: true }
-                }
+                    defenseAura: { ignoreRend: true },
+                },
             ])
     );
     overrideAbility(
         data.abilities.bladegheistRevenantsFly,
-        x =>
+        (x) =>
             (x.effects = [
-                { targetType: TargetType.Model, movementAura: { fly: true } }
+                { targetType: TargetType.Model, movementAura: { fly: true } },
             ])
     );
     overrideAbility(
         data.abilities.bladegheistRevenantsFearfulFrenzy,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Unit,
@@ -574,26 +574,26 @@ function overrideBladegheist(data: DataStoreImpl) {
                         inRangeOf: {
                             friendly: true,
                             range: 12,
-                            keyword: ["CHAINGHAST", "SPIRIT TORMENT"]
-                        }
+                            keyword: ["CHAINGHAST", "SPIRIT TORMENT"],
+                        },
                     },
-                    attackAura: { rerollFailedHits: 1 }
-                }
+                    attackAura: { rerollFailedHits: 1 },
+                },
             ])
     );
     overrideAbility(
         data.abilities.bladegheistRevenantsWhirlingDeath,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Unit,
-                    movementAura: { allowChargeAfterRunOrRetreat: true }
+                    movementAura: { allowChargeAfterRunOrRetreat: true },
                 },
                 {
                     targetType: TargetType.Unit,
                     attackAura: { bonusAttacks: 1 },
-                    condition: { hasCharged: true }
-                }
+                    condition: { hasCharged: true },
+                },
             ])
     );
 }
@@ -601,34 +601,34 @@ function overrideBladegheist(data: DataStoreImpl) {
 function overrideGuardianOfSoulsWithNightmareLantern(data: DataStoreImpl) {
     overrideAbility(
         data.abilities.guardianOfSoulsWithNightmareLanternEthereal,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Model,
-                    defenseAura: { ignoreRend: true }
-                }
+                    defenseAura: { ignoreRend: true },
+                },
             ])
     );
     overrideAbility(
         data.abilities.guardianOfSoulsWithNightmareLanternFly,
-        x =>
+        (x) =>
             (x.effects = [
-                { targetType: TargetType.Model, movementAura: { fly: true } }
+                { targetType: TargetType.Model, movementAura: { fly: true } },
             ])
     );
     overrideAbility(
         data.abilities.guardianOfSoulsWithNightmareLanternNightmareLantern,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Friend,
-                    attackAura: { bonusWoundRoll: 1 }
-                }
+                    attackAura: { bonusWoundRoll: 1 },
+                },
             ])
     );
     overrideAbility(
         data.abilities.guardianOfSoulsWithNightmareLanternSpectralLure,
-        x => {
+        (x) => {
             x.category = AbilityCategory.Spell;
             x.spellCastingValue = 6;
             x.effects = [{ targetType: TargetType.Friend, phase: Phase.Hero }];
@@ -639,40 +639,40 @@ function overrideGuardianOfSoulsWithNightmareLantern(data: DataStoreImpl) {
 function overrideSpiritTorment(data: DataStoreImpl) {
     overrideAbility(
         data.abilities.spiritTormentEthereal,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Model,
-                    defenseAura: { ignoreRend: true }
-                }
+                    defenseAura: { ignoreRend: true },
+                },
             ])
     );
     overrideAbility(
         data.abilities.spiritTormentFly,
-        x =>
+        (x) =>
             (x.effects = [
-                { targetType: TargetType.Model, movementAura: { fly: true } }
+                { targetType: TargetType.Model, movementAura: { fly: true } },
             ])
     );
     overrideAbility(
         data.abilities.spiritTormentNagashSBidding,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Friend,
-                    attackAura: { rerollHitsOn1: 1 }
-                }
+                    attackAura: { rerollHitsOn1: 1 },
+                },
             ])
     );
     overrideAbility(
         data.abilities.spiritTormentCapturedSoulEnergy,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Friend,
                     phase: Phase.Battleshock,
-                    subPhase: SubPhase.Before
-                }
+                    subPhase: SubPhase.Before,
+                },
             ])
     );
 }
@@ -680,40 +680,40 @@ function overrideSpiritTorment(data: DataStoreImpl) {
 function overrideChainrasps(data: DataStoreImpl) {
     overrideAbility(
         data.abilities.chainraspHordeEthereal,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Model,
-                    defenseAura: { ignoreRend: true }
-                }
+                    defenseAura: { ignoreRend: true },
+                },
             ])
     );
     overrideAbility(
         data.abilities.chainraspHordeChillingHorde,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Model,
-                    attackAura: { rerollWoundsOn1: 1 }
-                }
+                    attackAura: { rerollWoundsOn1: 1 },
+                },
             ])
     );
     overrideAbility(
         data.abilities.chainraspHordeDreadwarden,
-        x =>
+        (x) =>
             (x.effects = [
                 {
                     targetType: TargetType.Model,
                     attackAura: { bonusAttacks: 1 },
-                    battleShockAura: { bonusBravery: 4 }
-                }
+                    battleShockAura: { bonusBravery: 4 },
+                },
             ])
     );
     overrideAbility(
         data.abilities.chainraspHordeFly,
-        x =>
+        (x) =>
             (x.effects = [
-                { targetType: TargetType.Model, movementAura: { fly: true } }
+                { targetType: TargetType.Model, movementAura: { fly: true } },
             ])
     );
 }
@@ -721,15 +721,15 @@ function overrideChainrasps(data: DataStoreImpl) {
 function overrideKnightOfShrouds(data: DataStoreImpl) {
     override<Ability>(
         data.abilities.knightOfShroudsEthereal,
-        x => (x.effects = [{ defenseAura: {}, targetType: TargetType.Model }])
+        (x) => (x.effects = [{ defenseAura: {}, targetType: TargetType.Model }])
     );
     override<Ability>(
         data.abilities.knightOfShroudsStolenHours,
-        x => (x.effects = [{ attackAura: {}, targetType: TargetType.Model }])
+        (x) => (x.effects = [{ attackAura: {}, targetType: TargetType.Model }])
     );
     addAbilityEffect(data.abilities.knightOfShroudsFly, {
         targetType: TargetType.Unit,
-        movementAura: { fly: true }
+        movementAura: { fly: true },
     });
     addAbilityEffect(data.abilities.knightOfShroudsSpectralOverseer, {
         castMode: "command",
@@ -737,8 +737,8 @@ function overrideKnightOfShrouds(data: DataStoreImpl) {
         targetRadius: 12,
         whollyWithin: true,
         attackAura: {
-            bonusHitRoll: 1
-        }
+            bonusHitRoll: 1,
+        },
     });
 }
 
@@ -748,13 +748,13 @@ function overrideBatallion(data: DataStoreImpl) {
         targetRadius: 12,
         whollyWithin: true,
         defenseAura: {
-            negateWoundsOrMortalWoundsOn5: true
-        }
+            negateWoundsOrMortalWoundsOn5: true,
+        },
     });
 
     addAbilityEffect(data.abilities.chainguardHeartOfTheHorde, {
         targetType: TargetType.Friend,
-        phase: Phase.Hero
+        phase: Phase.Hero,
     });
 }
 

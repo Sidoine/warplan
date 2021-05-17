@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AbilityCategory } from "../stores/units";
+import { AbilityCategory } from "../stores/unit";
 import { makeStyles } from "@material-ui/core";
 import background from "../assets/ws-background.png";
 import header from "../assets/ws-header.png";
@@ -42,21 +42,21 @@ const useStyle = makeStyles({
         padding: "2mm",
         fontSize: "3mm",
         overflow: "hidden",
-        fontFamily: "Pompei"
+        fontFamily: "Pompei",
     },
     image: {
         position: "absolute",
         zIndex: -1,
         width: "100%",
         top: 0,
-        left: 0
+        left: 0,
     },
     header: {
         // borderRadius: "0.3rem",
         padding: "0.2rem",
         marginLeft: "0.1rem",
         marginRight: "0.1rem",
-        marginBottom: "0.4rem"
+        marginBottom: "0.4rem",
     },
     title: {
         border: "2px solid #8a7c32",
@@ -65,18 +65,18 @@ const useStyle = makeStyles({
         fontSize: "5mm",
         fontWeight: "bold",
         textAlign: "center",
-        fontVariant: "small-caps"
+        fontVariant: "small-caps",
     },
     description: {
         padding: "2mm",
         // backgroundColor: "rgba(220, 200, 120, 0.7)",
         lineHeight: "100%",
-        textAlign: "justify"
+        textAlign: "justify",
         // borderRadius: "0.2rem"
     },
     group: {
         textAlign: "center",
-        fontStyle: "italic"
+        fontStyle: "italic",
     },
     flavor: {
         // borderRadius: "0.2rem",
@@ -86,7 +86,7 @@ const useStyle = makeStyles({
         // color: "white",
         padding: "2mm",
         marginTop: "2mm",
-        textAlign: "center"
+        textAlign: "center",
         // backgroundColor: "rgba(0, 0, 0, 0.8)"
     },
     category: {
@@ -103,7 +103,7 @@ const useStyle = makeStyles({
             height: "6px",
             display: "inline-block",
             marginRight: "5px",
-            marginBottom: "1px"
+            marginBottom: "1px",
         },
         "&::after": {
             content: "' '",
@@ -113,8 +113,8 @@ const useStyle = makeStyles({
             height: "6px",
             display: "inline-block",
             marginLeft: "5px",
-            marginBottom: "1px"
-        }
+            marginBottom: "1px",
+        },
     },
     keywords: {
         position: "absolute",
@@ -125,7 +125,7 @@ const useStyle = makeStyles({
         fontWeight: "bold",
         color: "#555",
         backgroundColor: "rgba(255, 255, 255, 0.6)",
-        textAlign: "center"
+        textAlign: "center",
     },
     values: {
         position: "absolute",
@@ -134,15 +134,15 @@ const useStyle = makeStyles({
         borderRight: "2px solid #b5ad82",
         top: 0,
         div: {
-            paddingLeft: "1mm"
+            paddingLeft: "1mm",
         },
         ["div:nth-child(even)"]: {
-            backgroundColor: "#b5ad82"
+            backgroundColor: "#b5ad82",
         },
         ["div:nth-child(odd)"]: {
-            backgroundColor: "white"
-        }
-    }
+            backgroundColor: "white",
+        },
+    },
 });
 
 function getAbilityCategory(type: AbilityCategory | undefined) {
@@ -211,7 +211,7 @@ export function AbilityCard({ ability, onClick }: AbilityCardProps) {
             </div>
             {ability.values && (
                 <div className={classes.values}>
-                    {ability.values.map(x => (
+                    {ability.values.map((x) => (
                         <React.Fragment key={x.key}>
                             <div>{x.key}</div>
                             <div>{x.value}</div>
@@ -227,7 +227,7 @@ export function AbilityCard({ ability, onClick }: AbilityCardProps) {
             )}
             {ability.keywords && ability.keywords.length > 0 && (
                 <div className={classes.keywords}>
-                    {ability.keywords.map(x => x.join(", ")).join(" or ")}
+                    {ability.keywords.map((x) => x.join(", ")).join(" or ")}
                 </div>
             )}
         </div>

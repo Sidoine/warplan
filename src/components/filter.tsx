@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GrandAlliance, Faction } from "../stores/units";
+import { GrandAlliance, Faction } from "../stores/unit";
 import { observer } from "mobx-react-lite";
 import { Grid, Input, CardContent, Card, makeStyles } from "@material-ui/core";
 import { HasId } from "../atoms/add-button";

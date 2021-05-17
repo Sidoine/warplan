@@ -8,7 +8,7 @@ import Filter from "./filter";
 import { WarscrollStore } from "../stores/warscroll";
 import { getValue } from "../stores/combat";
 import { UnitWarscroll } from "./unit-warscroll";
-import { Unit } from "../stores/units";
+import { Unit } from "../stores/unit";
 import {
     Table,
     TableHead,
@@ -29,6 +29,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { useStores } from "../stores";
+import NumberControl from "../atoms/number-control";
 
 export interface StatsProps {
     uiStore?: UiStore;
@@ -39,51 +40,80 @@ const EnemyConfiguration = observer(({}) => {
     const { uiStore } = useStores();
     const handleSave = useCallback(
         (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-            uiStore.setEnemy("save", parseInt(e.target.value));
+            uiStore.setEnemy("enemySave", parseInt(e.target.value));
         },
         [uiStore]
     );
     const handleKeywords = useCallback(
         (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-            uiStore.setEnemy("keywords", e.target.value);
+            uiStore.setEnemy("enemyKeywords", e.target.value);
         },
         [uiStore]
     );
     const handleCharged = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
-            uiStore.setEnemy("charged", e.target.checked);
+            uiStore.setEnemy("hasCharged", e.target.checked);
         },
         [uiStore]
     );
-
+    const handleMoved = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            uiStore.setEnemy("hasMoved", e.target.checked);
+        },
+        [uiStore]
+    );
+    const handleCount = useCallback(
+        (value: number) => {
+            uiStore.setEnemy("enemyCount", value);
+        },
+        [uiStore]
+    );
     return (
         <Card>
             <CardContent>
                 <Grid container spacing={2}>
-                    <Grid item>Enemy</Grid>
+                    <Grid item>Settings</Grid>
                     <Grid item>
                         <TextField
-                            label="Save"
-                            value={uiStore.enemy.save}
+                            label="Target Save"
+                            value={uiStore.combatSettings.enemySave}
                             onChange={handleSave}
                         />
                     </Grid>
                     <Grid item>
                         <TextField
-                            label="Keywords"
-                            value={uiStore.enemy.keywords}
+                            label="Target Keywords"
+                            value={uiStore.combatSettings.enemyKeywords}
                             onChange={handleKeywords}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <NumberControl
+                            label="Target count"
+                            value={uiStore.combatSettings.enemyCount}
+                            onChange={handleCount}
                         />
                     </Grid>
                     <Grid item>
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                    checked={uiStore.enemy.charged}
+                                    checked={uiStore.combatSettings.hasCharged}
                                     onChange={handleCharged}
                                 />
                             }
                             label="Charged"
+                        />
+                    </Grid>
+                    <Grid item>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={uiStore.combatSettings.hasMoved}
+                                    onChange={handleMoved}
+                                />
+                            }
+                            label="Moved"
                         />
                     </Grid>
                 </Grid>
@@ -162,7 +192,7 @@ function Combination({
     return (
         <TableRow key={unit.id + unitStats.name}>
             <TableCell>
-                {unit.model.name} {count > 0 && `(${count})`}
+                {unit.name} {unit.subName} {count > 0 && `(${count})`}
                 <IconButton onClick={handleClick}>
                     <AddIcon />
                 </IconButton>

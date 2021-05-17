@@ -9,7 +9,7 @@ import {
     ModelOption,
     WarscrollUnitInterface,
     AbilityEffect,
-} from "../units";
+} from "../unit";
 
 export const ModelCategoryWeapon = "weapon";
 export const UnitCategoryMain = "main";

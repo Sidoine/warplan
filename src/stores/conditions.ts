@@ -3,7 +3,7 @@ import {
     AbilityCategory,
     WarscrollUnitInterface,
     WarscrollInterface
-} from "./units";
+} from "./unit";
 
 export function hasKeywords(
     unit: { keywords: string[] },

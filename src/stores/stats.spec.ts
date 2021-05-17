@@ -1,12 +1,24 @@
 import { test, expect } from "@jest/globals";
-import { Unit, Attack, Ability, AttackAura, TargetType, Phase } from "./units";
+import {
+    Unit,
+    Attack,
+    Ability,
+    AttackAura,
+    TargetType,
+    Phase,
+    targetConditionValue,
+} from "./unit";
 import { RandomCombat } from "./combat";
 import { UnitState } from "./unit-state";
 import { getUnitStats } from "./stats";
-import { Enemy } from "./ui";
+import { CombatSettings } from "./ui";
 const randomCombat = new RandomCombat();
 
-async function computeUnitDamage(unit: Unit, melee?: boolean) {
+async function computeUnitDamage(
+    unit: Unit,
+    melee?: boolean,
+    enemyOptions?: Partial<CombatSettings>
+) {
     let result = 0;
     const enemyUnit: Unit = {
         id: "enemy",
@@ -16,7 +28,9 @@ async function computeUnitDamage(unit: Unit, melee?: boolean) {
         points: 0,
         wounds: 2,
         factions: [],
-        keywords: [],
+        keywords: enemyOptions?.enemyKeywords
+            ? enemyOptions.enemyKeywords.split(" ")
+            : [],
         save: 5,
     };
     const tries = 50000;
@@ -53,7 +67,7 @@ async function computeUnitDamage(unit: Unit, melee?: boolean) {
 }
 
 function near(expected: number, value: number, text: string) {
-    expect(expected).toBeCloseTo(value, 1.5);
+    expect(value).toBeCloseTo(expected, 1.5);
 }
 
 function createFakeUnit(attacks?: Attack[], abilities?: Ability[]): Unit {
@@ -84,12 +98,17 @@ function createFakeAttack(id = "fakeAttack"): Attack {
     };
 }
 
-function createFakeEnemy(): Enemy {
-    return {
-        keywords: "",
-        save: 5,
-        charged: false,
-    };
+function createFakeEnemy(enemy?: Partial<CombatSettings>): CombatSettings {
+    return Object.assign(
+        {
+            enemyKeywords: "",
+            enemySave: 5,
+            hasCharged: false,
+            hasMoved: true,
+            enemyCount: 5,
+        },
+        enemy
+    );
 }
 
 test("stat of simple unit without damage", () => {
@@ -124,7 +143,11 @@ test("stat of simple unit without any ability", async () => {
     near(unitStats[0].rangedDamage, await computeUnitDamage(unit), "ranged");
 });
 
-function testattackaura(attackAura: AttackAura, expected?: number) {
+function testattackaura(
+    attackAura: AttackAura,
+    expected?: number,
+    enemyOptions?: Partial<CombatSettings>
+) {
     return async () => {
         // Arrange
         const unit = createFakeUnit(
@@ -139,7 +162,7 @@ function testattackaura(attackAura: AttackAura, expected?: number) {
                 },
             ]
         );
-        const enemy = createFakeEnemy();
+        const enemy = createFakeEnemy(enemyOptions);
 
         // Act
         const unitStats = getUnitStats(unit, enemy);
@@ -147,12 +170,16 @@ function testattackaura(attackAura: AttackAura, expected?: number) {
         // Assert
         expect(unitStats.length).toBe(1);
         if (expected) {
-            expect(expected).toBeCloseTo(unitStats[0].meleeDamage, 2.5); //, "stats");
-            near(expected, await computeUnitDamage(unit, true), "combat");
+            expect(unitStats[0].meleeDamage).toBeCloseTo(expected, 2.5);
+            near(
+                expected,
+                await computeUnitDamage(unit, true, enemyOptions),
+                "combat"
+            );
         } else {
             near(
                 unitStats[0].meleeDamage,
-                await computeUnitDamage(unit, true),
+                await computeUnitDamage(unit, true, enemyOptions),
                 "combat"
             );
         }
@@ -258,3 +285,24 @@ test("condition on weapon id", () => {
     // Assert
     near(125 / 900 + (125 / 900) * 3, unitStats[0].meleeDamage, "stats");
 });
+
+test(
+    "condition on enemy keyword but enemy has not the keyword",
+    testattackaura(
+        {
+            bonusDamage: targetConditionValue({ anyKeyword: ["TEST"] }, 2),
+        },
+        125 / 900
+    )
+);
+
+test(
+    "condition on enemy keyword and the enemy has the keyword",
+    testattackaura(
+        {
+            bonusDamage: targetConditionValue({ anyKeyword: ["TEST"] }, 2),
+        },
+        375 / 900,
+        { enemyKeywords: "TEST" }
+    )
+);

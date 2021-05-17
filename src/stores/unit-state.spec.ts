@@ -1,5 +1,5 @@
 import { test, expect } from "@jest/globals";
-import { AttackAuraValues } from "./units";
+import { AttackAuraValues } from "./unit";
 import { sumAttackAura } from "./unit-state";
 type Complete<T> = {
     [P in keyof Required<T>]: Pick<T, P> extends Required<Pick<T, P>>
@@ -29,7 +29,7 @@ test("sumAttackAura sums all the stats", () => {
         rerollWoundsOn1: 1,
         retreatAfterAttack: 1,
         rerollFailedHits: 1,
-        bonusDamageOnWoundUnmodified6: 1
+        bonusDamageOnWoundUnmodified6: 1,
     };
     const sum: AttackAuraValues = {};
 

@@ -1,15 +1,15 @@
 import { WarscrollEndlessSpell } from "../stores/warscroll";
 import * as React from "react";
 import { toJS } from "mobx";
-import { AbilityCategory, EndlessSpell } from "../stores/units";
+import { AbilityCategory, EndlessSpell } from "../stores/unit";
 import {
     AllAbilities,
-    useWarscrollStyles
+    useWarscrollStyles,
 } from "../atoms/warscroll-components";
 
 export function EndlessSpellWarscroll({
     wes,
-    endlessSpell
+    endlessSpell,
 }: {
     wes?: WarscrollEndlessSpell | null;
     endlessSpell?: EndlessSpell;
@@ -19,12 +19,12 @@ export function EndlessSpellWarscroll({
     if (!u) return <div></div>;
     const abilities = toJS(u.abilities || []);
 
-    const normalAbilities = abilities.filter(x => x.category === undefined);
+    const normalAbilities = abilities.filter((x) => x.category === undefined);
     const specialRules = abilities.filter(
-        x => x.category === AbilityCategory.SpecialRule
+        (x) => x.category === AbilityCategory.SpecialRule
     );
     const magicAbilites = abilities.filter(
-        x => x.category === AbilityCategory.Spell
+        (x) => x.category === AbilityCategory.Spell
     );
     const keywords = u.keywords;
 

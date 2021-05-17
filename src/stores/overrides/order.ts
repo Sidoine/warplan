@@ -1,29 +1,29 @@
 import { DataStoreImpl } from "../imported-data";
 import { addAbilityEffect } from "./tools";
-import { TargetType, Phase, SubPhase } from "../units";
+import { TargetType, Phase, SubPhase } from "../unit";
 
 export function overrideOrder(data: DataStoreImpl) {
     addAbilityEffect(data.abilities.gotrekGurnissonAvatarOfGrimnir, {
         targetType: TargetType.Model,
-        defenseAura: {}
+        defenseAura: {},
     });
     addAbilityEffect(data.abilities.gotrekGurnissonKragBlackhammerSMasterRune, {
         targetType: TargetType.Model,
         attackAura: {
             rerollFailedHits: 1,
             rerollFailedWounds: true,
-            mortalWoundsOnHitUnmodified6: "D6"
-        }
+            mortalWoundsOnHitUnmodified6: "D6",
+        },
     });
     addAbilityEffect(data.abilities.gotrekGurnissonUnstoppableBattleFury, {
         targetType: TargetType.Model,
         phase: Phase.Combat,
         subPhase: SubPhase.After,
-        attackAura: {}
+        attackAura: {},
     });
     addAbilityEffect(data.abilities.gotrekGurnissonShoulderPlateOfEdassa, {
         targetType: TargetType.Model,
-        defenseAura: { negateWoundsOrMortalWoundsOn3: true }
+        defenseAura: { negateWoundsOrMortalWoundsOn3: true },
     });
     const temp = data.abilities.gotrekGurnissonShoulderPlateOfEdassa.flavor;
     data.abilities.gotrekGurnissonShoulderPlateOfEdassa.flavor =

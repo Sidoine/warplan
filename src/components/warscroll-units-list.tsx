@@ -6,7 +6,7 @@ import {
     ModelOption,
     Contingent,
     contingentName,
-} from "../stores/units";
+} from "../stores/unit";
 import { observer } from "mobx-react-lite";
 import { UnitsList } from "./units-list";
 import { WarscrollUnit, WarscrollModel, PointMode } from "../stores/warscroll";
@@ -111,7 +111,7 @@ const ModelName = observer(
         return (
             <>
                 <div>
-                    {unit.definition.name}
+                    {unit.definition.name} {unit.definition.subName}
                     <IconButton
                         onClick={() => onOpenWarscroll(unit)}
                         size="small"

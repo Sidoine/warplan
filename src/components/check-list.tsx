@@ -3,17 +3,19 @@ import {
     WarscrollStore,
     WarscrollUnit,
     Warscroll,
-    WarscrollItem
+    WarscrollItem,
+    AbilityModel,
 } from "../stores/warscroll";
 import {
     Phase,
     Ability,
     Attack,
     AbilityEffect,
-    UnitsStore,
     Value,
-    TargetType
-} from "../stores/units";
+    TargetType,
+    SubPhase,
+    EffectDuration,
+} from "../stores/unit";
 import {
     getPhaseName,
     phases,
@@ -21,9 +23,9 @@ import {
     isUnitInPhase,
     isAttackInPhase,
     isAbilityInPhase,
-    isEffectInPhase
+    isEffectInPhase,
 } from "../stores/battle";
-import { value } from "../helpers/react";
+import { join, value } from "../helpers/react";
 import { Chip, makeStyles } from "@material-ui/core";
 import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
 import PersonIcon from "@material-ui/icons/Person";
@@ -37,20 +39,21 @@ import {
     SpellIcon,
     SaveIcon,
     BullseyeArrowIcon,
-    SwordIcon
+    SwordIcon,
 } from "../atoms/icons";
 import warscrollSeparator from "../assets/ws-separator.png";
+import { UnitsStore } from "../stores/units";
 
 const useStyle = makeStyles({
     section: {
         breakBefore: "right",
         ["&:first-of-type"]: {
-            breakBefore: "avoid"
-        }
+            breakBefore: "avoid",
+        },
     },
     subSectionContent: {
         columnCount: 2,
-        fontSize: "1rem"
+        fontSize: "1rem",
     },
     unitTitle: {
         fontWeight: "bold",
@@ -63,34 +66,34 @@ const useStyle = makeStyles({
             height: "6px",
             display: "inline-block",
             marginRight: "5px",
-            marginBottom: "1px"
-        }
+            marginBottom: "1px",
+        },
     },
     unit: {
-        marginBottom: "0.5rem"
+        marginBottom: "0.5rem",
     },
     abilityName: {
-        color: "darkblue"
+        color: "darkblue",
     },
     out: {},
     "@media print": {
         out: {
-            display: "none"
-        }
+            display: "none",
+        },
     },
     stats: {
         display: "flex",
         flexWrap: "wrap",
         "&:odd": {
-            backgroundColor: "#d0c89a"
-        }
+            backgroundColor: "#d0c89a",
+        },
     },
     statsTitle: {
         width: "6rem",
         backgroundColor: "#e6dccb",
         padding: "0.05rem",
         textAlign: "right",
-        fontVariant: "small-caps"
+        fontVariant: "small-caps",
     },
     statKey: {
         backgroundColor: "#e6dccb",
@@ -98,22 +101,22 @@ const useStyle = makeStyles({
         border: "1px solid #e6dccb",
         padding: "0.05rem",
         textAlign: "center",
-        fontSize: "0.8rem"
+        fontSize: "0.8rem",
     },
     statValue: {
         width: "1.5rem",
         border: "1px solid #e6dccb",
         padding: "0.05rem",
-        textAlign: "center"
+        textAlign: "center",
     },
     badgedIcon: {
         fontSize: "75%",
         verticalAlign: "baseline",
-        display: "inline-block"
+        display: "inline-block",
     },
     badged: {
-        fontSize: "1rem"
-    }
+        fontSize: "1rem",
+    },
 });
 
 export interface CheckListProps {
@@ -145,7 +148,7 @@ function Stat(props: { name: string; value: Value }) {
 
 function BadgedIcon({
     badge,
-    children
+    children,
 }: {
     badge: ReactNode;
     children: ReactNode;
@@ -176,36 +179,100 @@ function TargetView({ targetType }: { targetType: TargetType }) {
     );
 }
 
-export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
-    if (2 === 1 + 1) return <></>;
+function getTargetType(effect: AbilityEffect) {
+    switch (effect.targetType) {
+        case TargetType.Enemy:
+            return "enemy";
+        case TargetType.Friend:
+            return "friendly unit";
+        case TargetType.Model:
+            return "self";
+        case TargetType.Unit:
+            return "this unit";
+        case TargetType.Weapon:
+            if (effect.targetCondition && effect.targetCondition.weaponId)
+                return effect.targetCondition.weaponId;
+            return "all weapons";
+    }
+    return "unknown";
+}
+
+function getEffectDuration(effect: AbilityEffect) {
+    switch (effect.duration) {
+        case EffectDuration.Phase:
+            return "phase";
+        case EffectDuration.Permanent:
+            return "permanent";
+        case EffectDuration.Turn:
+            return "turn";
+        case EffectDuration.Round:
+            return "round";
+    }
+    if (effect.phase) return "phase";
+    return "permanent";
+}
+
+function hasAura(effect: AbilityEffect) {
     return (
-        <>
-            <Chip
-                size="medium"
-                label={
-                    <>
-                        <TargetView targetType={effect.targetType} />
-                        {effect.targetRange && (
-                            <>
-                                <VerticalAlignTopIcon />
-                                {effect.targetRange}&quot;
-                            </>
-                        )}
-                        {effect.targetRadius && (
-                            <>
-                                <SignalWifi2BarIcon /> {effect.targetRadius}
-                                &quot;
-                            </>
-                        )}
-                        {effect.spellCastingValue && (
-                            <>
-                                <SpellIcon /> {effect.spellCastingValue}+
-                            </>
-                        )}
-                    </>
-                }
-            />
-            {effect.defenseAura && (
+        effect.attackAura ||
+        effect.battleShockAura ||
+        effect.chargeAura ||
+        effect.commandAura ||
+        effect.defenseAura ||
+        effect.movementAura ||
+        effect.spellAura
+    );
+}
+
+export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
+    return (
+        <i>
+            {effect.phase !== undefined && (
+                <>
+                    Cast{" "}
+                    {effect.subPhase === SubPhase.After && "at the end of "}
+                    {effect.subPhase === SubPhase.Before && "at the start of "}
+                    {effect.subPhase === SubPhase.While ||
+                        (effect.subPhase === undefined && "during")}
+                    {effect.subPhase === SubPhase.WhileAfter && "during"}{" "}
+                    {getPhaseName(effect.phase)}
+                    {effect.subPhase === SubPhase.WhileAfter &&
+                        " after all attacks "}
+                    {effect.targetRange && (
+                        <>Target range {effect.targetRange}"</>
+                    )}
+                </>
+            )}{" "}
+            - Target: {getTargetType(effect)}
+            {hasAura(effect) && <>- Duration : {getEffectDuration(effect)}</>}
+            {1 == 1 + 1 && (
+                <Chip
+                    size="medium"
+                    label={
+                        <>
+                            <TargetView targetType={effect.targetType} />
+                            {effect.targetRange && (
+                                <>
+                                    <VerticalAlignTopIcon />
+                                    {effect.targetRange}&quot;
+                                </>
+                            )}
+                            {effect.targetRadius && (
+                                <>
+                                    <SignalWifi2BarIcon /> {effect.targetRadius}
+                                    &quot;
+                                </>
+                            )}
+                            {effect.spellCastingValue && (
+                                <>
+                                    <SpellIcon /> {effect.spellCastingValue}+
+                                </>
+                            )}
+                        </>
+                    }
+                />
+            )}
+            {1 == 1 + 1 && effect.defenseAura && (
                 <Chip
                     color="primary"
                     label={
@@ -226,7 +293,7 @@ export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
                     }
                 />
             )}
-        </>
+        </i>
     );
 }
 
@@ -245,27 +312,40 @@ function AttackStats({ attack, count }: { attack: Attack; count: number }) {
 }
 
 function AbilityInfo({
-    ability,
+    abilityModel: abilityModel,
     phase,
     unit,
-    side
+    side,
 }: {
-    ability: Ability;
+    abilityModel: AbilityModel;
     phase: Phase;
     unit?: WarscrollUnit;
     side?: PhaseSide;
 }) {
     const classes = useStyle();
+    const ability = abilityModel.ability;
     return (
         <div>
             <i className={classes.abilityName}>{ability.name}</i> :{" "}
+            {abilityModel.warscrollModel && (
+                <>
+                    (
+                    {abilityModel.warscrollModel
+                        .map((x) => x.options.map((y) => y.name).join("-"))
+                        .join(", ")}
+                    )
+                </>
+            )}
             {ability.description}
             {ability.effects &&
-                ability.effects
-                    .filter(x => isEffectInPhase(x, phase, unit, side))
-                    .map((x, index) => (
-                        <AbilityEffectView key={index} effect={x} />
-                    ))}
+                join(
+                    ability.effects
+                        .filter((x) => isEffectInPhase(x, phase, unit, side))
+                        .map((x, index) => (
+                            <AbilityEffectView key={index} effect={x} />
+                        )),
+                    ", "
+                )}
         </div>
     );
 }
@@ -273,7 +353,7 @@ function AbilityInfo({
 function UnitInfo({
     unit,
     phase,
-    side
+    side,
 }: {
     unit: WarscrollItem;
     phase: Phase;
@@ -311,8 +391,8 @@ function UnitInfo({
             {unit.type === "unit" &&
                 side === PhaseSide.Attack &&
                 unit.attacks
-                    .filter(x => isAttackInPhase(x.attack, phase))
-                    .map(x => (
+                    .filter((x) => isAttackInPhase(x.attack, phase))
+                    .map((x) => (
                         <AttackStats
                             key={x.attack.id}
                             attack={x.attack}
@@ -320,11 +400,16 @@ function UnitInfo({
                         />
                     ))}
             {distinct(
-                unit.abilities.filter(x =>
-                    isAbilityInPhase(x, phase, unit, side)
+                unit.abilities.filter((x) =>
+                    isAbilityInPhase(x.ability, phase, unit, side)
                 )
-            ).map(x => (
-                <AbilityInfo key={x.id} phase={phase} ability={x} side={side} />
+            ).map((x) => (
+                <AbilityInfo
+                    key={x.id}
+                    phase={phase}
+                    abilityModel={x}
+                    side={side}
+                />
             ))}
         </div>
     );
@@ -332,14 +417,14 @@ function UnitInfo({
 
 function getPhaseUnits(units: WarscrollItem[], phase: Phase, side?: PhaseSide) {
     return units
-        .filter(x => isUnitInPhase(x, phase, side))
+        .filter((x) => isUnitInPhase(x, phase, side))
         .sort((a, b) => (a.definition.name > b.definition.name ? 1 : -1));
 }
 
 function SubPhaseInfo({
     warscroll,
     phase,
-    side
+    side,
 }: {
     warscroll: Warscroll;
     phase: Phase;
@@ -353,20 +438,20 @@ function SubPhaseInfo({
             <div className={classes.subSectionContent}>
                 <div>
                     {warscroll.abilities
-                        .filter(x =>
-                            isAbilityInPhase(x, phase, undefined, side)
+                        .filter((x) =>
+                            isAbilityInPhase(x.ability, phase, undefined, side)
                         )
-                        .map(x => (
+                        .map((x) => (
                             <AbilityInfo
                                 key={x.id}
                                 side={side}
-                                ability={x}
+                                abilityModel={x}
                                 phase={phase}
                             />
                         ))}
                 </div>
                 <div>
-                    {getPhaseUnits(warscroll.items, phase, side).map(x => (
+                    {getPhaseUnits(warscroll.items, phase, side).map((x) => (
                         <UnitInfo
                             key={x.id}
                             unit={x}
@@ -386,8 +471,8 @@ function hasSomethingIsSubPhase(
     side?: PhaseSide
 ) {
     return (
-        warscroll.abilities.some(x =>
-            isAbilityInPhase(x, phase, undefined, side)
+        warscroll.abilities.some((x) =>
+            isAbilityInPhase(x.ability, phase, undefined, side)
         ) ||
         getPhaseUnits(warscroll.units, phase, side).length > 0 ||
         (phase === Phase.Hero && warscroll.endlessSpells.length > 0)
@@ -396,7 +481,7 @@ function hasSomethingIsSubPhase(
 
 function PhaseInfo({
     phase,
-    warscroll
+    warscroll,
 }: {
     phase: Phase;
     warscroll: Warscroll;
@@ -444,17 +529,20 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: Warscroll }) {
         <section className={classes.out}>
             <h1>Abilities without effect</h1>
             {warscroll.abilities
-                .filter(x => !x.effects)
+                .filter((x) => !x.ability.effects)
                 .map((x, i) => (
                     <div key={i}>
-                        <strong>{x.name}</strong> {x.description}
+                        <strong>{x.ability.name}</strong>{" "}
+                        {x.ability.description}
                     </div>
                 ))}
             {warscroll.items
                 .reduce(
                     (prev, x) =>
                         prev.concat(
-                            x.abilities.filter(y => !y.effects).map(y => [x, y])
+                            x.abilities
+                                .filter((y) => !y.ability.effects)
+                                .map((y) => [x, y.ability])
                         ),
                     new Array<[WarscrollItem, Ability]>()
                 )
@@ -474,7 +562,7 @@ export function CheckList() {
     const { warscrollStore } = useStores();
     return (
         <div>
-            {phases.map(x => (
+            {phases.map((x) => (
                 <PhaseInfo
                     warscroll={warscrollStore.warscroll}
                     phase={x}

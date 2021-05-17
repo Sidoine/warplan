@@ -6,9 +6,9 @@ import {
     TargetType,
     Ability,
     Attack,
-    UnitsStore,
-    AbilityCategory
-} from "./units";
+    AbilityCategory,
+} from "./unit";
+import { UnitsStore } from "./units";
 
 export interface Player {
     name: string;
@@ -23,7 +23,7 @@ export const phases = [
     Phase.Shooting,
     Phase.Charge,
     Phase.Combat,
-    Phase.Battleshock
+    Phase.Battleshock,
 ];
 
 export function getPhaseName(phase: Phase) {
@@ -51,7 +51,7 @@ export function getPhaseName(phase: Phase) {
 export const enum PhaseSide {
     Attack,
     Defense,
-    None
+    None,
 }
 export function getEffectPhases(effect: AbilityEffect) {
     let phase = 0;
@@ -116,12 +116,12 @@ export function isEffectInPhase(
             if (!unit || unit.type !== "unit") return true;
             if (
                 phase === Phase.Combat &&
-                unit.attacks.some(x => x.attack.melee)
+                unit.attacks.some((x) => x.attack.melee)
             )
                 return true;
             if (
                 phase === Phase.Shooting &&
-                unit.attacks.some(x => !x.attack.melee)
+                unit.attacks.some((x) => !x.attack.melee)
             )
                 return true;
         }
@@ -197,18 +197,22 @@ export function isUnitInPhase(
     if (
         phase === Phase.Shooting &&
         unit.type === "unit" &&
-        unit.attacks.some(x => !x.attack.melee)
+        unit.attacks.some((x) => !x.attack.melee)
     ) {
         return true;
     }
     if (
         phase === Phase.Combat &&
         unit.type === "unit" &&
-        unit.attacks.some(x => x.attack.melee)
+        unit.attacks.some((x) => x.attack.melee)
     ) {
         return true;
     }
-    if (unit.abilities.some(x => isAbilityInPhase(x, phase, unit, side)))
+    if (
+        unit.abilities.some((x) =>
+            isAbilityInPhase(x.ability, phase, unit, side)
+        )
+    )
         return true;
     return false;
 }
@@ -242,7 +246,7 @@ export class BattleStore {
     start(warscroll: Warscroll) {
         this.player = {
             name: "Player",
-            warscroll: warscroll
+            warscroll: warscroll,
         };
         this.phase = Phase.Setup;
         this.side = PhaseSide.Attack;

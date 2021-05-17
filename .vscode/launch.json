@@ -5,29 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "vscode-jest-tests",
+            "request": "launch",
+            "runtimeArgs": ["test"],
+            "runtimeExecutable": "yarn",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "pwa-node"
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}",
             "skipFiles": ["node_modules/**/*.js"]
-        },
-
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Lancer database",
-            "program": "${workspaceFolder}\\dist\\tools\\database.js",
-            "outFiles": ["${workspaceFolder}/**/*.js"]
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Debug tests",
-            "program": "${workspaceRoot}/node_modules/ava/profile.js",
-            "args": ["${workspaceRoot}/dist/stores/stats.spec.js"],
-            "outFiles": ["${workspaceRoot}/dist/**/*.js"],
-            "protocol": "inspector"
         }
     ]
 }

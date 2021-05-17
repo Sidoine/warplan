@@ -10,7 +10,8 @@ import {
     Ability,
     ArmyOption,
     AbilityCategory,
-} from "../units";
+    conditionValue,
+} from "../unit";
 import {
     overrideModel,
     setAbilityAsOption,
@@ -31,6 +32,7 @@ import {
     overrideAbilities,
     mergeModels,
 } from "./tools";
+import icon from "../../assets/factions/stormcast_eternals_warrior.svg";
 
 function addBoxes(data: DataStoreImpl): void {
     data.boxes.push({
@@ -487,7 +489,7 @@ function fixUnits(data: DataStoreImpl): void {
         );
         addAbilityEffect(data.abilities.judicatorsChainedLightning, {
             phase: Phase.Shooting,
-            targetType: TargetType.Model,
+            targetType: TargetType.Weapon,
             attackAura: { numberOfHitsOnHit: "D6" },
             targetCondition: {
                 weaponId: data.attacks.judicatorsShockboltBow.id,
@@ -495,7 +497,7 @@ function fixUnits(data: DataStoreImpl): void {
         });
         addAbilityEffect(data.abilities.judicatorsRapidFire, {
             phase: Phase.Shooting,
-            targetType: TargetType.Model,
+            targetType: TargetType.Weapon,
             targetCondition: {
                 hasNotMoved: true,
                 weaponId: data.attacks.judicatorsBoltstormCrossbow.id,
@@ -513,15 +515,17 @@ function fixUnits(data: DataStoreImpl): void {
         addAbilityEffect(data.abilities.judicatorsThunderboltCrossbow, {
             phase: Phase.Shooting,
             targetType: TargetType.Enemy,
-            targetCondition: { keyword: "MONSTER", minModels: "D6-1" },
-            mortalWounds: "D3",
+            mortalWounds: targetConditionValue(
+                {
+                    minModels: targetConditionValue(
+                        { keyword: "MONSTER" },
+                        "D6-1",
+                        "D6"
+                    ),
+                },
+                "D3"
+            ),
             ignoreOtherEffects: true,
-        });
-        addAbilityEffect(data.abilities.judicatorsThunderboltCrossbow, {
-            phase: Phase.Shooting,
-            targetType: TargetType.Enemy,
-            targetCondition: { minModels: "D6" },
-            mortalWounds: "D3",
         });
         addAbilityEffect(data.abilities.judicatorsJudicatorPrime, {
             phase: Phase.Shooting | Phase.Combat,
@@ -538,13 +542,36 @@ function fixUnits(data: DataStoreImpl): void {
                 ],
             },
             {
-                name: "Boltstorm Crossbows and prime with Thunderbolt Crossbow",
+                name: "Boltstorm Crossbows and prime with Shockbolt Bow",
                 models: [
                     { count: 4, options: [boltstormCrossbow] },
+                    { count: 1, options: [shockboltBow, judicatorPrime] },
+                ],
+            },
+            {
+                name:
+                    "Boltstorm Crossbows (incl. Prime) and Thunderbolt Crossbow",
+                models: [
+                    { count: 3, options: [boltstormCrossbow] },
                     {
                         count: 1,
-                        options: [thunderboltCrossbow, judicatorPrime],
+                        options: [thunderboltCrossbow],
                     },
+                    {
+                        count: 1,
+                        options: [boltstormCrossbow, judicatorPrime],
+                    },
+                ],
+            },
+            {
+                name: "Skybolt Bows (incl. Prime) and Thunderbolt Crossbow",
+                models: [
+                    { count: 3, options: [skyboltBow] },
+                    {
+                        count: 1,
+                        options: [thunderboltCrossbow],
+                    },
+                    { count: 1, options: [skyboltBow, judicatorPrime] },
                 ],
             },
         ];
@@ -1139,30 +1166,51 @@ function fixUnits(data: DataStoreImpl): void {
     }
 
     {
-        // const unit: Unit = data.units.vanguardRaptorsWithHurricaneCrossbows;
-        // unit.warscroll = "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-Vanguard-Raptors-with-Longstrike-Crossbows-en.pdf";
-        // unit.keywords.push("CELESTIAL", "HUMAN", "JUSTICAR", "VANGUARD-RAPTORS");
-        // unit.move = 5;
-        // unit.save = "4+";
-        // unit.bravery = 7;
-        // unit.wounds = 2;
-        // const hurricaneCrossbow: Attack = { melee: false, name: "Hurricane Crossbow", range: "18", attacks: "6", toHit: "4+", toWound: "4+", damage: "1" };
-        // const heavyStock: Attack = { melee: true, name: "Heavy Stock", range: "1", attacks: "1", toHit: "4+", toWound: "4+", damage: "1" };
-        // const raptorPrime: Ability = {
-        //     name: "Raptor-Prime",
-        //     description: "The leader of this unit is the Raptor-Prime. A Raptor-Prime’s weapons have a To Hit characteristic of 3+.",
-        //     getWounds: (models, melee, attack) => attack !== undefined ? getAttackDamageEx(attack, { toHit: "3+" }) - getAttackDamage(attack) : 0
-        // };
-        // const rapidFire: Ability = {
-        //     name: "Rapid Fire",
-        //     description: "If a unit of Vanguard-Raptors does not move in the movement phase, then you can add 3 to the Attacks characteristic of any Hurricane Crossbows the unit uses in the shooting phase of the same turn."
-        // };
-        // const suppressingFire: Ability = {
-        //     name: "Suppressing Fire",
-        //     description: "If a unit of Vanguard-Raptors with Hurricane Crossbows directs all of its shooting attacks at a single unit in the shooting phase, that unit must subtract 2 from any charge move they make until your next hero phase."
-        // };
-        // unit.abilities = [rapidFire, raptorPrime, suppressingFire];
-        // unit.attacks = [hurricaneCrossbow, heavyStock];
+        const unit: Unit = data.units.vanguardRaptorsWithHurricaneCrossbows;
+        const prime = setAbilityAsOption(
+            unit,
+            data.abilities.vanguardRaptorsWithHurricaneCrossbowsRaptorPrime,
+            oneModelOption
+        );
+        addAbilityEffect(
+            data.abilities.vanguardRaptorsWithHurricaneCrossbowsSuppressingFire,
+            {
+                targetType: TargetType.Enemy,
+                chargeAura: { bonus: -1 },
+                targetRadius: 12,
+            }
+        );
+        addAbilityEffect(
+            data.abilities.vanguardRaptorsWithHurricaneCrossbowsRaptorPrime,
+            {
+                targetType: TargetType.Weapon,
+                attackAura: { bonusHitRoll: 1 },
+            }
+        );
+        addAbilityEffect(
+            data.abilities.vanguardRaptorsWithHurricaneCrossbowsRapidFire,
+            {
+                targetType: TargetType.Weapon,
+                targetCondition: {
+                    weaponId:
+                        data.attacks
+                            .vanguardRaptorsWithHurricaneCrossbowsHurricaneCrossbow
+                            .id,
+                },
+                attackAura: {
+                    bonusAttacks: conditionValue({ hasNotMoved: true }, 3),
+                },
+            }
+        );
+        unit.optionStats = [
+            {
+                name: "With one Prime",
+                models: [
+                    { count: 1, options: [prime] },
+                    { count: 2, options: [] },
+                ],
+            },
+        ];
     }
 
     {
@@ -4066,10 +4114,10 @@ function fixAllegiance(data: DataStoreImpl) {
             },
         ],
     };
-    override<Allegiance>(
-        data.allegiances.stormcastEternals,
-        (x) => (x.battleTraits = [scionsOfTheStorm, shockAndAwe])
-    );
+    override<Allegiance>(data.allegiances.stormcastEternals, (x) => {
+        x.battleTraits = [scionsOfTheStorm, shockAndAwe];
+        x.icon = icon;
+    });
 }
 
 export function overrideStormcast(data: DataStoreImpl): void {

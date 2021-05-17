@@ -1,6 +1,7 @@
 import { observable, action, computed, makeObservable } from "mobx";
-import { GrandAlliance, UnitsStore } from "./units";
+import { GrandAlliance } from "./unit";
 import { UnitStats, getUnitStats } from "./stats";
+import { UnitsStore } from "./units";
 
 interface SerializedUi {
     grandAlliance: GrandAlliance;
@@ -8,13 +9,17 @@ interface SerializedUi {
     keywordFilter?: string;
     enemySave?: number;
     enemyKeywords?: string;
-    enemyCharged?: boolean;
+    hasCharged?: boolean;
+    hasMoved?: boolean;
+    enemyCount?: number;
 }
 
-export interface Enemy {
-    save: number;
-    keywords: string;
-    charged: boolean;
+export interface CombatSettings {
+    enemySave: number;
+    enemyKeywords: string;
+    hasCharged: boolean;
+    hasMoved: boolean;
+    enemyCount: number;
 }
 
 export class UiStore {
@@ -53,13 +58,19 @@ export class UiStore {
         );
     }
 
-    @observable enemy: Enemy = { save: 5, keywords: "", charged: false };
+    @observable combatSettings: CombatSettings = {
+        enemySave: 5,
+        enemyKeywords: "",
+        hasCharged: false,
+        hasMoved: true,
+        enemyCount: 5,
+    };
 
     @computed
     get unitStats() {
         const result: UnitStats[] = [];
         for (const unit of this.units) {
-            const stats = getUnitStats(unit, this.enemy);
+            const stats = getUnitStats(unit, this.combatSettings);
             for (const stat of stats) {
                 result.push(stat);
             }
@@ -68,8 +79,8 @@ export class UiStore {
     }
 
     @action
-    setEnemy<T extends keyof Enemy>(key: T, value: Enemy[T]) {
-        this.enemy[key] = value;
+    setEnemy<T extends keyof CombatSettings>(key: T, value: CombatSettings[T]) {
+        this.combatSettings[key] = value;
         this.saveUi();
     }
 
@@ -84,11 +95,16 @@ export class UiStore {
                 this.faction = faction;
             }
             this.keywordFilter = serialized.keywordFilter || "";
-            if (serialized.enemySave) this.enemy.save = serialized.enemySave;
+            if (serialized.enemySave)
+                this.combatSettings.enemySave = serialized.enemySave;
             if (serialized.enemyKeywords)
-                this.enemy.keywords = serialized.enemyKeywords;
-            if (serialized.enemyCharged)
-                this.enemy.charged = serialized.enemyCharged;
+                this.combatSettings.enemyKeywords = serialized.enemyKeywords;
+            if (serialized.hasCharged !== undefined)
+                this.combatSettings.hasCharged = serialized.hasCharged;
+            if (serialized.hasMoved !== undefined) {
+                this.combatSettings.hasMoved = serialized.hasMoved;
+            }
+            this.combatSettings.enemyCount = serialized.enemyCount ?? 5;
         }
     }
 
@@ -149,9 +165,11 @@ export class UiStore {
             faction: this.faction.id,
             grandAlliance: this.grandAlliance,
             keywordFilter: this.keywordFilter,
-            enemyKeywords: this.enemy.keywords,
-            enemySave: this.enemy.save,
-            enemyCharged: this.enemy.charged,
+            enemyKeywords: this.combatSettings.enemyKeywords,
+            enemySave: this.combatSettings.enemySave,
+            hasCharged: this.combatSettings.hasCharged,
+            hasMoved: this.combatSettings.hasMoved,
+            enemyCount: this.combatSettings.enemyCount,
         };
         localStorage.setItem("ui", JSON.stringify(serialized));
     }

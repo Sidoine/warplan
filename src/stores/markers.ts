@@ -1,12 +1,7 @@
 import { action, computed, observable, makeObservable } from "mobx";
 import { WarscrollStore } from "./warscroll";
-import {
-    AbilityCategory,
-    Phase,
-    UnitsStore,
-    Ability,
-    AbilityEffect
-} from "./units";
+import { AbilityCategory, Phase, Ability, AbilityEffect } from "./unit";
+import { UnitsStore } from "./units";
 import { getAbilityPhases, getEffectPhases } from "./battle";
 import { getValue } from "./combat";
 import elite from "../assets/elite.svg";
@@ -14,7 +9,7 @@ import elite from "../assets/elite.svg";
 export const enum MarkerType {
     Terrain,
     Spell,
-    Command
+    Command,
 }
 
 export interface Marker {
@@ -131,7 +126,7 @@ function getMarker(
             ability.category === AbilityCategory.Command
                 ? MarkerType.Command
                 : MarkerType.Spell,
-        tooltip: ability.description
+        tooltip: ability.description,
     };
 }
 
@@ -162,72 +157,72 @@ export class MarkersStore {
             text: "Damned",
             condition: "Sacrifice",
             description: "D3 MW/RR1 hit",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "arcane",
             text: "Arcane",
             description: "+1 casting",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "inspiring",
             text: "Inspiring",
             description: "+1 bravery",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "deadly",
             text: "Deadly",
             condition: "Move",
             description: "1: D3 MW",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "mystical",
             text: "Mystical",
             condition: "W/MW",
             description: "6+: negated",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "overgrown",
             text: "Overgrown",
             condition: "On ground",
             description: "Cut visibility",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "entangling",
             text: "Entangling",
             description: "-2 run/charge",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "volcanic",
             text: "Volcalnic",
             description: "6: D3 MW",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "commanding",
             text: "Commanding",
             description: "+1 CP",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "healing",
             text: "Healing",
             description: "6: D3 heal",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "nullification",
             text: "Nullification",
             condition: "HEROES",
             description: "+1 unbind",
-            type: MarkerType.Terrain
-        }
+            type: MarkerType.Terrain,
+        },
     ];
 
     genericMarkers: Marker[] = [
@@ -235,57 +230,57 @@ export class MarkersStore {
             id: "Mystic shield",
             text: "Mystic shield",
             description: "RR1 Save",
-            type: MarkerType.Spell
+            type: MarkerType.Spell,
         },
         {
             id: "All-out Attack",
             text: "All-out Attack",
             description: "RR1 Hit",
-            type: MarkerType.Command
+            type: MarkerType.Command,
         },
         {
             id: "All-out Defence",
             text: "All-out Defence",
             description: "RR1 Save",
-            type: MarkerType.Command
+            type: MarkerType.Command,
         },
         {
             id: "Volley Fire",
             text: "Volley Fire",
             description: "RR1 Hit",
-            type: MarkerType.Command
+            type: MarkerType.Command,
         },
         {
             id: "Command Point 1",
             text: "Command Point",
             description: "",
-            image: elite
+            image: elite,
         },
         {
             id: "Command Point 2",
             text: "Command Point",
             description: "",
-            image: elite
+            image: elite,
         },
         {
             id: "Command Point 3",
             text: "Command Point",
             description: "",
-            image: elite
+            image: elite,
         },
         {
             id: "Command Point 4",
             text: "Command Point",
             description: "",
-            image: elite
-        }
+            image: elite,
+        },
     ];
 
     @computed
     get unitAbilities() {
         const allegiance = this.warscrollStore.warscroll.allegiance;
         const allegianceKeyword = allegiance.keywords[0];
-        const units = this.unitStore.unitList.filter(x =>
+        const units = this.unitStore.unitList.filter((x) =>
             x.keywords.includes(allegianceKeyword)
         );
         const abilities: Ability[] = [];
@@ -302,7 +297,7 @@ export class MarkersStore {
             }
         }
         const extraAbilities = this.unitStore.extraAbilities.filter(
-            x => x.allegianceKeyword === allegianceKeyword
+            (x) => x.allegianceKeyword === allegianceKeyword
         );
         for (const extraAbility of extraAbilities) {
             abilities.push(extraAbility.ability);
@@ -390,8 +385,8 @@ export class MarkersStore {
     save() {
         const serialized: SerializedMarkers = {
             hiddenMarkers: Array.from(this.hiddenMarkers)
-                .filter(x => x[1])
-                .map(x => x[0])
+                .filter((x) => x[1])
+                .map((x) => x[0]),
         };
         localStorage.setItem("markers", JSON.stringify(serialized));
     }

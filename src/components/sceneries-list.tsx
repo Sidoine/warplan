@@ -1,5 +1,5 @@
 import * as React from "react";
-import { EndlessSpell } from "../stores/units";
+import { EndlessSpell } from "../stores/unit";
 import { observer } from "mobx-react-lite";
 import AddButton, { TableColumn } from "../atoms/add-button";
 import { useStores } from "../stores";

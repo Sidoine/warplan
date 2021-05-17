@@ -4,7 +4,7 @@ import {
     AllAbilities,
     useWarscrollStyles,
 } from "../atoms/warscroll-components";
-import { WarscrollBattalionInterface } from "../stores/units";
+import { WarscrollBattalionInterface } from "../stores/unit";
 
 function BattalionWarscroll({
     battalion,

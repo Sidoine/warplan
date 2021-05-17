@@ -9,7 +9,7 @@ import {
     Allegiance,
     contingentName,
     AbilityCategory,
-} from "../stores/units";
+} from "../stores/unit";
 import DropdownValues from "../atoms/dropdown-values";
 import DropdownObjects from "../atoms/dropdown-objects";
 import {
@@ -21,6 +21,7 @@ import {
     CardActions,
     Input,
     Button,
+    makeStyles,
 } from "@material-ui/core";
 import WarningIcon from "@material-ui/icons/Warning";
 import NumberControl from "../atoms/number-control";
@@ -36,6 +37,17 @@ type LimitLimits = {
         ? K
         : never;
 }[keyof WarscrollLimits];
+
+const useStyles = makeStyles((theme) => ({
+    allegianceIcon: {
+        backgroundColor: theme.palette.grey[500],
+        height: "1em",
+        borderRadius: "1em",
+        padding: theme.spacing(0.1),
+        marginRight: theme.spacing(1),
+        marginLeft: theme.spacing(0.5),
+    },
+}));
 
 const WarscrollLimitView = observer(
     ({
@@ -163,6 +175,7 @@ export const WarscrollSummary = observer(() => {
         },
         [warscrollStore]
     );
+    const classes = useStyles();
 
     return (
         <Card>
@@ -182,7 +195,20 @@ export const WarscrollSummary = observer(() => {
                             <FormControl>
                                 <InputLabel>Allegiance</InputLabel>
                                 <DropdownObjects
-                                    getText={(x) => x.name}
+                                    getText={(x) => (
+                                        <>
+                                            {x.icon && (
+                                                <img
+                                                    src={x.icon}
+                                                    className={
+                                                        classes.allegianceIcon
+                                                    }
+                                                    alt={x.name}
+                                                />
+                                            )}{" "}
+                                            {x.name}
+                                        </>
+                                    )}
                                     options={allegianceOptions}
                                     value={warscroll.allegiance}
                                     onChange={store.setAllegiance}

@@ -22,7 +22,7 @@ import {
     BottomNavigationAction,
     Modal,
 } from "@material-ui/core";
-import { Ability, Attack, Value, Phase } from "../stores/units";
+import { Ability, Attack, Value, Phase } from "../stores/unit";
 import {
     isAbilityInPhase,
     isUnitInPhase,
@@ -135,7 +135,12 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
     const store = useLocalObservable(() => ({
         get abilities() {
             return wu.abilities.filter((x) =>
-                isAbilityInPhase(x, battleStore.phase, wu, battleStore.side)
+                isAbilityInPhase(
+                    x.ability,
+                    battleStore.phase,
+                    wu,
+                    battleStore.side
+                )
             );
         },
         get attacks() {
@@ -203,7 +208,7 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
                                 />
                             ))}
                         {store.abilities.map((x) => (
-                            <AbilityButton key={x.id} ability={x} />
+                            <AbilityButton key={x.id} ability={x.ability} />
                         ))}
                     </List>
                 )}

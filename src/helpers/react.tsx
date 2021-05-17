@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Value } from "../stores/units";
+import { Value } from "../stores/unit";
 
 export function join(e: JSX.Element[], separator: string) {
     const ret: JSX.Element[] = [];
@@ -25,7 +25,7 @@ export function value(val: Value, defaut?: string) {
 
 export function groupBy<TKey, T>(list: T[], keyGetter: (value: T) => TKey) {
     const map = new Map<TKey, T[]>();
-    list.forEach(item => {
+    list.forEach((item) => {
         const key = keyGetter(item);
         const collection = map.get(key);
         if (!collection) {

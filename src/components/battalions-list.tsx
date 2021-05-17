@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Battalion } from "../stores/units";
+import { Battalion } from "../stores/unit";
 import { observer } from "mobx-react-lite";
 import AddButton, { TableColumn } from "../atoms/add-button";
 import { useStores } from "../stores";

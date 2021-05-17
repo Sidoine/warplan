@@ -2,7 +2,6 @@ import { action, computed, observable, toJS, makeObservable } from "mobx";
 import {
     Battalion,
     Unit,
-    UnitsStore,
     Contingent,
     WarscrollUnitInterface,
     WarscrollInterface,
@@ -16,7 +15,9 @@ import {
     AbilityCategory,
     Ability,
     RealmOfBattle,
-} from "./units";
+} from "./unit";
+import { UnitsStore } from "./units";
+
 import { deflate, inflate } from "pako";
 import { groupBy } from "../helpers/react";
 import { UiStore } from "./ui";
@@ -97,6 +98,12 @@ export class WarscrollModel implements WarscrollModelInterface {
     get name() {
         return this.options.map((x) => x.name).join(", ");
     }
+}
+
+export interface AbilityModel {
+    id: string;
+    ability: Ability;
+    warscrollModel?: WarscrollModelInterface[];
 }
 
 export type WarscrollItem =
@@ -300,7 +307,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         return attacks;
     }
 
-    @computed get abilities() {
+    @computed get abilities(): AbilityModel[] {
         let abilities = this.definition.abilities || [];
         if (this.definition.commandAbilities)
             abilities = abilities.concat(this.definition.commandAbilities);
@@ -309,14 +316,36 @@ export class WarscrollUnit implements WarscrollUnitInterface {
                 this.extraAbilities.map((x) => x.ability)
             );
         }
+
+        const modelAbilities: AbilityModel[] = abilities.map((x) => ({
+            id: x.id,
+            ability: x,
+        }));
+
         for (const model of this.models) {
             for (const option of model.options) {
                 if (option.abilities) {
+                    for (const ability of option.abilities) {
+                        const existing = modelAbilities.find(
+                            (x) => x.id === ability.id
+                        );
+                        if (existing) {
+                            if (!existing.warscrollModel)
+                                existing.warscrollModel = [];
+                            existing.warscrollModel.push(model);
+                        } else {
+                            modelAbilities.push({
+                                ability,
+                                warscrollModel: [model],
+                                id: ability.id,
+                            });
+                        }
+                    }
                     abilities = abilities.concat(option.abilities);
                 }
             }
         }
-        return abilities;
+        return modelAbilities;
     }
 
     constructor(public warscroll: Warscroll, public definition: Unit) {
@@ -328,11 +357,18 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 export class WarscrollEndlessSpell {
     id: number;
     type: "endless" = "endless";
-    abilities: Ability[];
+
+    @computed get abilities(): AbilityModel[] {
+        return (
+            this.definition.abilities?.map((ability) => ({
+                ability,
+                id: ability.id,
+            })) || []
+        );
+    }
 
     constructor(public warscroll: Warscroll, public definition: EndlessSpell) {
         this.id = warscroll.serial++;
-        this.abilities = definition.abilities || [];
     }
 }
 
@@ -341,7 +377,12 @@ export class WarscrollBattalion implements WarscrollBattalionInterface {
     type: "battalion" = "battalion";
 
     @computed get abilities() {
-        return this.definition.abilities || [];
+        return (
+            this.definition.abilities?.map((ability) => ({
+                ability,
+                id: ability.id,
+            })) || []
+        );
     }
 
     constructor(public warscroll: Warscroll, public definition: Battalion) {
@@ -747,8 +788,10 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     }
 
     @computed
-    get abilities() {
-        return this.unitsStore.baseAbilities.concat(this.allegianceAbilities);
+    get abilities(): AbilityModel[] {
+        return this.unitsStore.baseAbilities
+            .concat(this.allegianceAbilities)
+            .map((ability) => ({ ability, id: ability.id }));
     }
 
     @computed
@@ -763,17 +806,17 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
         return result;
     }
 
-    @computed
-    get unitAbilities() {
-        const result: Ability[] = [];
-        for (const unit of this.items) {
-            for (const ability of unit.abilities) {
-                if (!result.find((x) => x.id === ability.id))
-                    result.push(ability);
-            }
-        }
-        return result;
-    }
+    // @computed
+    // get unitAbilities() {
+    //     const result: Ability[] = [];
+    //     for (const unit of this.items) {
+    //         for (const ability of unit.abilities) {
+    //             if (!result.find((x) => x.id === ability..id))
+    //                 result.push(ability);
+    //         }
+    //     }
+    //     return result;
+    // }
 
     getUnitsWithKeywords(keywords: string[][]) {
         return this.units.filter((x) => hasKeywords(x, keywords));
