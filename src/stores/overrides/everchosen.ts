@@ -1,4 +1,6 @@
 import { DataStoreImpl } from "../imported-data";
+import { Ability, AbilityCategory, ArmyOption, Phase, TargetType } from "../unit";
+import { override, setAttackAsOption } from "./tools";
 
 function addBoxes(data: DataStoreImpl): void {
     data.boxes.push({
@@ -10,40 +12,303 @@ function addBoxes(data: DataStoreImpl): void {
 }
 
 function fixUnits(data: DataStoreImpl): void {
-    // {
-    //     const archaon: Unit = data.units.archaon;
-    //     const moveEffect: DamageColumn = { name: "Move", values: ["12", "10", "8", "7", "6"]};
-    //     const monstruousClawEffect: DamageColumn = { name: "Monstruous Claws", values: ["2+", "3+", "4+", "4+", "5+"]};
-    //     const threeHeadsEffect: DamageColumn = { name: "Three Heads", values: ["6", "5", "4", "3", "2"]};
-    //     archaon.damageTable = {
-    //         ranges: [0, 5, 9, 13, 17],
-    //         columns: [moveEffect, monstruousClawEffect, threeHeadsEffect]
-    //     }
-    //     archaon.move = moveEffect;
-    //     archaon.wounds = 20;
-    //     archaon.bravery = 10;
-    //     archaon.save = "3+";
-    //     const fly: Ability = { name: "Fly", description: "Dorghar's great wings allow Archaon to fly." };
-    //     const eyeOfSheerian: Ability = { name: "The Eye of Sheerian", description: "In your hero phase, roll a dice and note the result. Until your next hero phase, whenever an enemy scores a hit on Archaon and the result of the hit roll is the number you rolled, the Eye of Sheerian has forewarned him of the attack and you can make your opponent re-roll the dice." };
-    //     const slayerOfKings: Ability = { name: "The Slayer of Kings", description: "If Archaon directs all of his attacks with the Slayer of Kings at the same HERO or MONSTER, and two or more of the wound rolls are 6 or more, the daemon bound in the blade is roused and the target is slain instantly!" };
-    //     const armourOfMorkar: Ability = { name: "The Armour of Morkar", description: "Archaon's ancient armour is inscribed with runes of warding and malice. If a save roll made for Archaon is a 6 (before modifying the roll in any way), the attacking model's unit suffers a mortal wound." };
-    //     const chaosRuneshield: Ability = { name: "Chaos Runeshield", description: "Roll a dice each time Archaon suffers a mortal wound. On a 5 or a 6 that mortal wound is ignored." };
-    //     const crownOfDomination: Ability = { name: "The Crown of Domination", description: "This forbidding helm exudes an aura of menace. When a battleshock test is made for a unit within 10\" of Archaon, you can adjust the result of the dice roll up or down by 2." };
-    //     const tripleHead: Ability = { name: "Triple-headed Monstrosity", description: "After attacking with Dorghar's Three Heads, you can pick one of the following effects if at least one model was slain by those attacks: \n Filth-spewer: Inflict D3 mortal wounds on an enemy unit within 7\" as Dorghar's Nurglesque head vomits up a cascade of half-digested warriors and bile. \n Skull-gorger: If any of the slain models were HEROES, Dorghar's Khornate head devours their skulls and Archaon heals D3 wounds. \n Spell-eater: If any of the slain models were WIZARDS, Dorghar's Tzeentchian head devours them, learning any spells they knew and passing them on to Archaon." };
-    //     const theEverchosen: Ability = { name: "The Everchosen", description: "Roll a dice if Archaon is affected by a spell cast by an enemy WIZARD. If the result is 4 or higher, he is protected by the power of the Dark Gods and the spell has no effect on him (it will still affect other units as normal)." };
-    //     const magic: Ability = { name: "MAGIC", description: "Archaon is a wizard. He can attempt to cast two different spells in each of your own hero phases, and attempt to unbind two spells in each enemy hero phase. He knows the Arcane Bolt and Mystic Shield spells, as well as any learned by Dorghar's Tzeentchian head during the battle." };
-    //     archaon.abilities = [fly, eyeOfSheerian, slayerOfKings, armourOfMorkar, chaosRuneshield, crownOfDomination, tripleHead, theEverchosen, magic];
-    //     const theSlayerOfKings: Attack = { name: "The Slayer of Kings", range: "1", melee: true, attacks: "4", toHit: "2+", toWound: "3+", rend: "-1", damage: "3" };
-    //     const claws: Attack = { name: "Dorghar's Monstruous Claws", range: "1", melee: true, attacks: "2", toHit: monstruousClawEffect, toWound: "3+", rend: "-1", damage: "D6" };
-    //     const tail: Attack = { name: "Dorghar's Lashing Tails", range: "3", melee: true, attacks: "2D6", toHit: "4+", toWound: "3+", damage: "1" };
-    //     const heads: Attack = { name: "Dorghar's Three Heads", range: "3", melee: true, attacks: threeHeadsEffect, toHit: "4+", toWound: "3+", rend: "-1", damage: "1" };
-    //     const warlord: Ability = { name: "Warlord Without Equal", description: "Archaon's command over his armies is peerless. If Archaon uses this ability, all other CHAOS units in your army that have command abilities on their warscroll can immediately use them, in an order of your choice." };
-    //     archaon.commandAbilities = [warlord];
-    //     archaon.attacks = [theSlayerOfKings, claws, tail, heads];
-    // }
+    override<Ability>(
+        data.abilities.archaonTheEverchosenTheArmourOfMorkar,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    defenseAura: {phase: Phase.Combat}
+                },
+                {
+                    targetType: TargetType.Unit,
+                    defenseAura: {phase: Phase.Shooting}
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.archaonTheEverchosenTheCrownOfDomination,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    phase: Phase.Battleshock
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.archaonTheEverchosenTheEyeOfSheerian,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    defenseAura: {phase: Phase.Combat}
+                },
+                {
+                    targetType: TargetType.Unit,
+                    defenseAura: {phase: Phase.Shooting}
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.archaonTheEverchosenTheEverchosen,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    phase: Phase.Hero
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.archaonTheEverchosenTheSlayerOfKings,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    phase: Phase.Combat
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.archaonTheEverchosenThreeHeadedTitan,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    phase: Phase.Hero
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.archaonTheEverchosenWarlordWithoutEqual,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    phase: Phase.Hero
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.archaonTheEverchosenAllSeeingDominion,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    phase: Phase.Hero,
+                    defenseAura: {phase: Phase.Hero}
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.archaonTheEverchosenByMyWill,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Model,
+                    phase: Phase.Hero
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.varanguardDaemonbound,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    phase: Phase.Combat
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.varanguardFavouredOfTheEverchosen,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    phase: Phase.Combat
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.varanguardImpalingCharge,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    phase: Phase.Combat
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.varanguardMarkOfChaos,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    phase: Phase.Setup
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.varanguardWarpsteelShields,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    phase: Phase.Hero,
+                    defenseAura: {phase: Phase.Hero}
+                },
+            ];
+        }
+    );
+
+    override<Ability>(
+        data.abilities.varanguardRelentlessKillers,
+        (x) => {
+            x.effects = [
+                {
+                    targetType: TargetType.Unit,
+                    phase: Phase.Combat
+                },
+            ];
+        }
+    );
+
+    setAttackAsOption(
+        data.units.varanguard,
+        data.attacks.varanguardDaemonforgedBlade,
+        undefined,
+        [data.abilities.varanguardDaemonbound],
+        "main"
+    );
+
+    setAttackAsOption(
+        data.units.varanguard,
+        data.attacks.varanguardFellspear,
+        undefined,
+        [data.abilities.varanguardImpalingCharge],
+        "main"
+    );
+
+    setAttackAsOption(
+        data.units.varanguard,
+        data.attacks.varanguardEnsorcelledWeapon,
+        undefined,
+        [],
+        "main"
+    );
+}
+
+function fixAllegiance(data: DataStoreImpl): void {
+    const tirelessConquerors: Ability = {
+        id: "khorne_tirelessconquerors",
+        name: "Tireless Conquerors",
+        flavor:
+            "Entire empires have crumbled beneath the relentless campaigns of the Goretide.",
+        description:
+            'You can re-roll wound rolls of 1 for attacks made with melee weapons by friendly GORETIDE MORTAL units wholly within 12" of an objective marker',
+        category: AbilityCategory.BattleTrait,
+        effects: [{ targetType: TargetType.Friend, phase: Phase.Combat }],
+    };
+    const everOnwards: Ability = {
+        id: "khorne_everonwards",
+        name: "Ever Onwards",
+        flavor:
+            "At a barked command, the Goretide’s battle line advances with startling rapidity to spill the blood of the foe.",
+        description:
+            'You can use this command ability before you make a run roll for 1 friendly GORETIDE BLOODREAVERS or GORETIDE BLOOD WARRIORS unit wholly within 16" of a friendly model with this command ability. If you do so, that run roll is treated as being 6. In addition, that unit can run and still charge later in the same turn.',
+        category: AbilityCategory.Command,
+        effects: [
+            {
+                phase: Phase.Movement,
+                targetType: TargetType.Friend
+            },
+        ],
+    };
+    override<ArmyOption>(
+        data.armyOptions.khorneGoretide,
+        (x) => (x.abilities = [tirelessConquerors, everOnwards])
+    );
+}
+
+function fixArtefacts(data: DataStoreImpl): void {
+    override<Ability>(
+        data.extraAbilities.khorneGoretideThronebreakerSTorc.ability,
+        x => {
+            x.description = 'Ignore modifiers (positive and negative) when making save rolls for attacks that target this model.',
+            x.effects = [{defenseAura: {phase: Phase.Combat}, targetType: TargetType.Model}, {defenseAura: {phase: Phase.Shooting}, targetType: TargetType.Model}]
+        }
+    );
+
+    override<Ability>(
+        data.extraAbilities.khorneTrophiesOfWarTheBloodForgedArmour.ability,
+        x => {
+            x.description = 'Roll a dice each time you allocate a mortal wound to the bearer. On a 5+ that mortal wound is negated.',
+            x.effects = [{defenseAura: {phase: Phase.Combat}, targetType: TargetType.Model}, {defenseAura: {phase: Phase.Shooting}, targetType: TargetType.Model}]
+        }
+    );
+}
+
+function fixCommandTraits(data: DataStoreImpl): void {
+    override<Ability>(
+        data.extraAbilities.khorneGoretideHewTheFoe.ability,
+        x => {
+            x.description = 'Add 1 to the Damage characteristic of this general’s melee weapons',
+            x.effects = [{phase: Phase.Combat, targetType: TargetType.Model}]
+        }
+    );
+}
+
+function fixBlessings(data: DataStoreImpl): void {
+    override<Ability>(
+        data.extraAbilities.khorneBloodBlessingsOfKhorneBronzedFlesh.ability,
+        x => {
+            x.description = 'On a 4+ the prayer is answered. If this prayer is answered, pick 1 friendly KHORNE unit wholly within 16" of the model chanting this prayer and visible to them. Add 1 to save rolls for that unit until the start of your next hero phase.',
+            x.effects = [{targetType: TargetType.Unit, defenseAura: {phase: Phase.Combat}}]
+        }
+    );
+    override<Ability>(
+        data.extraAbilities.khorneBloodBlessingsOfKhorneBrazenFury.ability,
+        x => {
+            x.description = 'On a 4+ the prayer is answered. If this prayer is answered, pick a friendly KHORNE unit wholly within 16" of the model chanting this prayer and visible to them. Do not take battleshock tests for that unit until your next hero phase.',
+            x.effects = [{targetType: TargetType.Unit, phase: Phase.Combat}]
+        }
+    );
 }
 
 export function overrideEverchosen(data: DataStoreImpl): void {
     addBoxes(data);
     fixUnits(data);
+    fixAllegiance(data);
+    fixArtefacts(data);
+    fixCommandTraits(data);
+    fixBlessings(data);
 }

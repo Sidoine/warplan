@@ -54,7 +54,7 @@ export const enum Phase {
 }
 
 export interface DefenseAura {
-    phase?: Phase.Combat | Phase.Shooting;
+    phase?: Phase.Combat | Phase.Shooting | Phase.Hero;
     rerollSavesOn1?: boolean;
     bonusWoundRoll?: Value;
     mortalWoundsOnSucessfulSaveReroll?: Value; // In a 3" radius
