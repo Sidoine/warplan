@@ -272,7 +272,7 @@ function Stats() {
                 switch (sorted) {
                     case Columns.Name:
                         data = data.sort((a, b) =>
-                            a.unit.model.name > b.unit.model.name ? one : min
+                            a.unit.name > b.unit.name ? one : min
                         );
                         break;
                     case Columns.Points:

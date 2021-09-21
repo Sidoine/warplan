@@ -1,11 +1,11 @@
 import { observable, action, computed, makeObservable } from "mobx";
-import { GrandAlliance } from "./unit";
 import { UnitStats, getUnitStats } from "./stats";
 import { UnitsStore } from "./units";
+import { Faction } from "./unit";
 
 interface SerializedUi {
-    grandAlliance: GrandAlliance;
-    faction: string;
+    grandAlliance?: string;
+    faction?: string;
     keywordFilter?: string;
     enemySave?: number;
     enemyKeywords?: string;
@@ -36,25 +36,25 @@ export class UiStore {
     exportPopin = false;
 
     @observable
-    grandAlliance: GrandAlliance = GrandAlliance.order;
+    grandAlliance: Faction | null = null;
 
-    @observable
-    faction = this.unitsStore.factionsList[0];
+    @observable.shallow
+    faction: Faction | null = this.unitsStore.factionsList[0] || null;
 
     @computed
     get units() {
         const keywordFilter = this.keywordFilter.toUpperCase();
         if (keywordFilter.length > 2) {
-            const grandAlliance = this.grandAlliance;
+            // const grandAlliance = this.grandAlliance;
             return this.unitsStore.unitList.filter(
-                (x) =>
-                    x.factions.some((x) => x.grandAlliance === grandAlliance) &&
-                    (x.model.name.toUpperCase().indexOf(keywordFilter) >= 0 ||
-                        x.keywords.some((x) => x.indexOf(keywordFilter) >= 0))
+                x =>
+                    // x.factions.some((x) => x.grandAlliance === grandAlliance) &&
+                    x.name.toUpperCase().indexOf(keywordFilter) >= 0 ||
+                    x.keywords.some(x => x.indexOf(keywordFilter) >= 0)
             );
         }
-        return this.unitsStore.unitList.filter((x) =>
-            x.factions.some((x) => x.id === this.faction.id)
+        return this.unitsStore.unitList.filter(x =>
+            x.factions.some(x => x.id === this.faction?.id)
         );
     }
 
@@ -63,7 +63,7 @@ export class UiStore {
         enemyKeywords: "",
         hasCharged: false,
         hasMoved: true,
-        enemyCount: 5,
+        enemyCount: 5
     };
 
     @computed
@@ -89,8 +89,15 @@ export class UiStore {
         const ui: string | null = localStorage.getItem("ui");
         if (ui) {
             const serialized: SerializedUi = JSON.parse(ui);
-            this.grandAlliance = serialized.grandAlliance;
-            const faction = this.unitsStore.factions[serialized.faction];
+            const grandAlliance =
+                serialized.grandAlliance &&
+                this.unitsStore.factions[serialized.grandAlliance];
+            if (grandAlliance) {
+                this.grandAlliance = grandAlliance;
+            }
+            const faction =
+                serialized.faction &&
+                this.unitsStore.factions[serialized.faction];
             if (faction) {
                 this.faction = faction;
             }
@@ -145,31 +152,28 @@ export class UiStore {
     }
 
     @action
-    setFaction(factionId: string) {
-        const faction = this.unitsStore!.factions[factionId];
-        if (faction) {
-            this.faction = faction;
-            this.keywordFilter = "";
-            this.saveUi();
-        }
+    setFaction(faction: Faction) {
+        this.faction = faction;
+        this.keywordFilter = "";
+        this.saveUi();
     }
 
     @action
-    setGrandAlliance(grandAlliance: GrandAlliance) {
+    setGrandAlliance(grandAlliance: Faction) {
         this.grandAlliance = grandAlliance;
         this.saveUi();
     }
 
     private saveUi() {
         const serialized: SerializedUi = {
-            faction: this.faction.id,
-            grandAlliance: this.grandAlliance,
+            faction: this.faction?.id,
+            // grandAlliance: this.grandAlliance?.id,
             keywordFilter: this.keywordFilter,
             enemyKeywords: this.combatSettings.enemyKeywords,
             enemySave: this.combatSettings.enemySave,
             hasCharged: this.combatSettings.hasCharged,
             hasMoved: this.combatSettings.hasMoved,
-            enemyCount: this.combatSettings.enemyCount,
+            enemyCount: this.combatSettings.enemyCount
         };
         localStorage.setItem("ui", JSON.stringify(serialized));
     }

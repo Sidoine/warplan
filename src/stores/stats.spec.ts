@@ -12,6 +12,7 @@ import { RandomCombat } from "./combat";
 import { UnitState } from "./unit-state";
 import { getUnitStats } from "./stats";
 import { CombatSettings } from "./ui";
+import { Role } from "../tools/definitions2";
 const randomCombat = new RandomCombat();
 
 async function computeUnitDamage(
@@ -23,6 +24,7 @@ async function computeUnitDamage(
     const enemyUnit: Unit = {
         id: "enemy",
         name: "Enemy",
+        role: Role.Other,
         model: { id: "enemy", name: "Enemy" },
         size: 1,
         points: 0,
@@ -75,6 +77,7 @@ function createFakeUnit(attacks?: Attack[], abilities?: Ability[]): Unit {
         id: "fake",
         name: "Fake",
         keywords: [],
+        role: Role.Other,
         model: { id: "fake", name: "Fake" },
         factions: [],
         size: 1,

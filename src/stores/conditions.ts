@@ -31,19 +31,14 @@ export function canUseAbilityCategory(
 ): boolean {
     switch (ability) {
         case AbilityCategory.Artefact:
-            return (
-                (unit.definition.isLeader
-                    ? unit.definition.isLeader(ws)
-                    : false) &&
+            return                 (unit.isLeader &&
                 unit.definition.maxCount !== 1 &&
                 ws.numberOfArtifacts < ws.maxArtifacts
             );
         case AbilityCategory.CommandTrait:
             return unit.isGeneral && unit.definition.maxCount !== 1;
         case AbilityCategory.Command:
-            return unit.definition.isLeader
-                ? unit.definition.isLeader(ws)
-                : false;
+            return unit.isLeader;
         case AbilityCategory.Mount:
             return hasKeyword(unit.definition, "HERO");
         case AbilityCategory.Prayer:

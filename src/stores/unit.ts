@@ -1,8 +1,10 @@
+import { KeywordCategory, Role } from "../tools/definitions2";
+
 export const enum Material {
     Metal,
     Resin,
     Plastic,
-    Mixed,
+    Mixed
 }
 
 export interface Model {
@@ -12,18 +14,16 @@ export interface Model {
     material?: Material;
 }
 
-export const enum GrandAlliance {
-    chaos,
-    order,
-    death,
-    destruction,
-}
-
 export interface Faction {
     id: string;
-    grandAlliance: GrandAlliance;
     name: string;
     allied?: string[];
+    category: KeywordCategory;
+    parent?: Faction;
+    children: Faction[];
+    icon?: string;
+    abilities?: Ability[];
+    battleTraits?: Ability[];
 }
 
 export const enum AbilityCategory {
@@ -40,6 +40,7 @@ export const enum AbilityCategory {
     MeleeAttack,
     RangedAttack,
     BattleTrait,
+    Champion
 }
 
 export const enum Phase {
@@ -50,7 +51,7 @@ export const enum Phase {
     Charge = 16,
     Combat = 32,
     Battleshock = 64,
-    Any = 127,
+    Any = 127
 }
 
 export interface DefenseAura {
@@ -164,7 +165,7 @@ export const enum SubPhase {
     Before,
     While,
     WhileAfter,
-    After,
+    After
 }
 
 export interface SpellAura {
@@ -181,14 +182,14 @@ export const enum TargetType {
     Weapon = 2,
     Mount = 4,
     Enemy = 8,
-    NotUnit = Model | Weapon | Mount,
+    NotUnit = Model | Weapon | Mount
 }
 
 export const enum EffectDuration {
     Phase,
     Turn,
     Round,
-    Permanent,
+    Permanent
 }
 
 export interface AbilityEffect {
@@ -321,6 +322,7 @@ export function getSumValues(value1: Value, value2: Value): Value {
 }
 
 export interface DamageTable {
+    id: string;
     ranges: string[];
     columns: DamageColumn[];
 }
@@ -331,7 +333,7 @@ export const enum ValueType {
     RatioValue,
     TargetCondition,
     Or,
-    Condition,
+    Condition
 }
 
 export interface DamageColumn {
@@ -407,7 +409,7 @@ export function targetConditionValue(
         type: ValueType.TargetCondition,
         value,
         targetCondition,
-        defaultValue,
+        defaultValue
     };
 }
 
@@ -418,7 +420,7 @@ export function conditionValue(
     return {
         type: ValueType.Condition,
         value,
-        condition,
+        condition
     };
 }
 
@@ -426,7 +428,7 @@ export function orValue(left: Value, right: Value): OrValue {
     return {
         type: ValueType.Or,
         left,
-        right,
+        right
     };
 }
 
@@ -471,13 +473,9 @@ export interface Unit extends UnitInfos {
     magicDescription?: string;
     options?: ModelOption[];
     pictureUrl?: string;
+    role?: Role;
 
     optionStats?: UnitStatModels[];
-
-    isLeader?: (warscroll: WarscrollInterface) => boolean;
-    isBattleline?: (warscroll: WarscrollInterface) => boolean | undefined;
-    isBehemot?: (warscroll: WarscrollInterface) => boolean;
-    isArtillery?: (warscroll: WarscrollInterface) => boolean;
 }
 
 export interface BoxedModel {
@@ -508,8 +506,9 @@ export interface Battalion {
     subName?: string;
     units: BattalionUnit[];
     description?: string;
+    pictureUrl?: string;
     points: number;
-    allegiances: Allegiance[];
+    allegiances: Faction[];
     abilities?: Ability[];
 }
 
@@ -521,7 +520,7 @@ export interface WarscrollBattalionInterface {
 export enum Contingent {
     Spearhead,
     Main,
-    Rearguard,
+    Rearguard
 }
 
 export const contingentName = (contingent: Contingent) => {
@@ -537,6 +536,7 @@ export const contingentName = (contingent: Contingent) => {
 export interface WarscrollUnitInterface {
     definition: Unit;
     isGeneral: boolean;
+    isLeader: boolean;
     extraAbilities: ExtraAbility[];
     models: WarscrollModelInterface[];
     modelCount: number;
@@ -555,28 +555,27 @@ export interface WarscrollInterface {
     battalions: WarscrollBattalionInterface[];
     general: WarscrollUnitInterface | undefined;
     extraAbilities: ExtraAbility[];
-    allegiance: Allegiance;
+    allegiance: Faction | null;
     maxArtifacts: number;
     numberOfArtifacts: number;
-    armyOption: ArmyOption | null;
+    armyType: Faction | null;
+    subFaction: Faction | null;
     getUnitsWithKeywords(keywords: string[][]): WarscrollUnitInterface[];
 }
 
 export interface DataStore {
-    models: { [key: string]: Model };
-    units: { [key: string]: Unit };
-    factions: { [key: string]: Faction };
-}
-
-export interface Allegiance {
-    id: string;
-    grandAlliance: GrandAlliance;
-    name: string;
-    keywords: string[];
-    armyOptions?: ArmyOptions;
-    battleTraits?: Ability[];
-    alliesKeywords?: string[][];
-    icon?: string;
+    models: Record<string, Model>;
+    factions: Record<string, Faction>;
+    abilities: Record<string, Ability>;
+    damageTables: Record<string, DamageTable>;
+    options: Record<string, ModelOption>;
+    attacks: Record<string, Attack>;
+    units: Record<string, Unit>;
+    extraAbilities: Record<string, ExtraAbility>;
+    armyOptions: Record<string, ArmyOption>;
+    battalions: Record<string, Battalion>;
+    sceneries: Record<string, EndlessSpell>;
+    realms: Record<string, RealmOfBattle>;
 }
 
 export type ExtraAbilityTest = (

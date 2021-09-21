@@ -5,16 +5,15 @@ import {
     Contingent,
     WarscrollUnitInterface,
     WarscrollInterface,
-    Allegiance,
+    Faction,
     ExtraAbility,
     WarscrollBattalionInterface,
     WarscrollModelInterface,
     EndlessSpell,
     ModelOption,
-    ArmyOption,
     AbilityCategory,
     Ability,
-    RealmOfBattle,
+    RealmOfBattle
 } from "./unit";
 import { UnitsStore } from "./units";
 
@@ -22,11 +21,12 @@ import { deflate, inflate } from "pako";
 import { groupBy } from "../helpers/react";
 import { UiStore } from "./ui";
 import { canUseAbilityCategory, hasKeywords } from "./conditions";
+import { KeywordCategory } from "../tools/definitions2";
 
 export const enum PointMode {
     MatchedPlay,
     OpenPlay,
-    MeetingEngagements,
+    MeetingEngagements
 }
 
 export class WarscrollModel implements WarscrollModelInterface {
@@ -47,11 +47,11 @@ export class WarscrollModel implements WarscrollModelInterface {
     get availableOptions() {
         const options = this.warscrollUnit.definition.options;
         if (!options) return [];
-        return options.filter((x) => this.isOptionAvailable(x));
+        return options.filter(x => this.isOptionAvailable(x));
     }
 
     isOptionAvailable(option: ModelOption) {
-        if (this.options.some((x) => x.id === option.id)) return false;
+        if (this.options.some(x => x.id === option.id)) return false;
         if (option.isOptionValid) {
             if (!option.isOptionValid(this.warscrollUnit, this)) return false;
         }
@@ -70,7 +70,7 @@ export class WarscrollModel implements WarscrollModelInterface {
         if (option.modelCategory) {
             if (
                 this.options.some(
-                    (x) =>
+                    x =>
                         x.modelCategory === option.modelCategory &&
                         x.id !== option.id
                 )
@@ -80,9 +80,9 @@ export class WarscrollModel implements WarscrollModelInterface {
 
         if (option.unitCategory) {
             if (
-                this.warscrollUnit.models.some((x) =>
+                this.warscrollUnit.models.some(x =>
                     x.options.some(
-                        (y) =>
+                        y =>
                             y.unitCategory === option.unitCategory &&
                             option.id !== y.id
                     )
@@ -96,7 +96,7 @@ export class WarscrollModel implements WarscrollModelInterface {
 
     @computed
     get name() {
-        return this.options.map((x) => x.name).join(", ");
+        return this.options.map(x => x.name).join(", ");
     }
 }
 
@@ -123,32 +123,32 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     contingent = Contingent.Main;
 
     @computed get keywords() {
-        if (!this.isAllied) {
-            const addAllegianceKeyword =
-                this.definition.keywords.indexOf(
-                    this.warscroll.allegiance.keywords[0]
-                ) < 0;
-            const addHostKeyword =
-                this.warscroll.armyOption !== null &&
-                this.warscroll.allegiance.armyOptions &&
-                this.warscroll.allegiance.armyOptions.values.every(
-                    (x) =>
-                        !x.keyword ||
-                        this.definition.keywords.indexOf(x.keyword) < 0
-                );
-            if (addAllegianceKeyword || addHostKeyword) {
-                const keywords = this.definition.keywords.concat();
-                if (addAllegianceKeyword)
-                    keywords.push(this.warscroll.allegiance.keywords[0]);
-                if (
-                    addHostKeyword &&
-                    this.warscroll.armyOption &&
-                    this.warscroll.armyOption.keyword
-                )
-                    keywords.push(this.warscroll.armyOption.keyword);
-                return keywords;
-            }
-        }
+        // if (!this.isAllied) {
+        //     const addAllegianceKeyword = this.warscroll.allegiance !== null &&
+        //         this.definition.keywords.indexOf(
+        //             this.warscroll.allegiance.keywords[0]
+        //         ) < 0;
+        //     const addHostKeyword =
+        //         this.warscroll.armyOption !== null &&
+        //         this.warscroll.allegiance.armyOptions &&
+        //         this.warscroll.allegiance.armyOptions.values.every(
+        //             (x) =>
+        //                 !x.keyword ||
+        //                 this.definition.keywords.indexOf(x.keyword) < 0
+        //         );
+        //     if (addAllegianceKeyword || addHostKeyword) {
+        //         const keywords = this.definition.keywords.concat();
+        //         if (addAllegianceKeyword)
+        //             keywords.push(this.warscroll.allegiance.keywords[0]);
+        //         if (
+        //             addHostKeyword &&
+        //             this.warscroll.armyOption &&
+        //             this.warscroll.armyOption.keyword
+        //         )
+        //             keywords.push(this.warscroll.armyOption.keyword);
+        //         return keywords;
+        //     }
+        // }
         return this.definition.keywords;
     }
 
@@ -167,49 +167,40 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed
     get isAllied() {
-        return (
-            !this.definition.keywords ||
-            this.warscroll.allegiance.keywords.every(
-                (x) => this.definition.keywords.indexOf(x) < 0
-            )
-        );
+        // return (
+        //     !this.definition.keywords ||
+        //     this.warscroll.allegiance.keywords.every(
+        //         (x) => this.definition.keywords.indexOf(x) < 0
+        //     )
+        // );
+        return false;
     }
 
     get canBeAllied() {
-        return (
-            this.definition.keywords &&
-            this.warscroll.allegiance.alliesKeywords &&
-            this.warscroll.allegiance.alliesKeywords.some((x) =>
-                x.every((y) => this.definition.keywords.includes(y))
-            )
-        );
+        // return (
+        //     this.definition.keywords &&
+        //     this.warscroll.allegiance.alliesKeywords &&
+        //     this.warscroll.allegiance.alliesKeywords.some((x) =>
+        //         x.every((y) => this.definition.keywords.includes(y))
+        //     )
+        // );
+        return false;
     }
 
     get isArtillery() {
-        return (
-            this.definition.isArtillery &&
-            this.definition.isArtillery(this.warscroll)
-        );
+        return this.definition.role === "artillery";
     }
 
     get isLeader() {
-        return (
-            this.definition.isLeader && this.definition.isLeader(this.warscroll)
-        );
+        return this.definition.role === "leader";
     }
 
     get isBehemot() {
-        return (
-            this.definition.isBehemot &&
-            this.definition.isBehemot(this.warscroll)
-        );
+        return this.definition.role === "behemoth";
     }
 
     get isBattleline() {
-        return (
-            this.definition.isBattleline &&
-            this.definition.isBattleline(this.warscroll)
-        );
+        return this.definition.role === "battleline";
     }
 
     get isOther() {
@@ -228,14 +219,14 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     @computed
     get availableExtraAbilities() {
         return this.warscroll.unitsStore.extraAbilities
-            .filter((x) => this.isAvailableExtraAbility(x))
+            .filter(x => this.isAvailableExtraAbility(x))
             .sort((a, b) => (a.ability.name > b.ability.name ? 1 : -1));
     }
 
     private isAvailableExtraAbility(extraAbility: ExtraAbility) {
         return (
             this.extraAbilities.every(
-                (x) => x.ability.category !== extraAbility.ability.category
+                x => x.ability.category !== extraAbility.ability.category
             ) &&
             !this.warscroll.hasAnyUnitExtraAbility(extraAbility) &&
             canUseAbilityCategory(
@@ -243,10 +234,10 @@ export class WarscrollUnit implements WarscrollUnitInterface {
                 this.warscroll,
                 extraAbility.ability.category
             ) &&
-            (!extraAbility.allegianceKeyword ||
-                this.warscroll.allegiance.keywords.indexOf(
-                    extraAbility.allegianceKeyword
-                ) >= 0) &&
+            // (!extraAbility.allegianceKeyword ||
+            //     this.warscroll.allegiance.keywords.indexOf(
+            //         extraAbility.allegianceKeyword
+            //     ) >= 0) &&
             (!extraAbility.armyOptionKeyword ||
                 this.keywords.indexOf(extraAbility.armyOptionKeyword) >= 0) &&
             (!extraAbility.keywords ||
@@ -280,9 +271,9 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     @computed
     get attacks() {
         const attacks = this.definition.attacks
-            ? this.definition.attacks.map((x) => ({
+            ? this.definition.attacks.map(x => ({
                   count: this.modelCount,
-                  attack: x,
+                  attack: x
               }))
             : [];
         for (const model of this.models) {
@@ -290,14 +281,14 @@ export class WarscrollUnit implements WarscrollUnitInterface {
                 if (option.attacks) {
                     for (const attack of option.attacks) {
                         const exisiting = attacks.find(
-                            (x) => x.attack.id === attack.id
+                            x => x.attack.id === attack.id
                         );
                         if (exisiting) {
                             exisiting.count += model.count;
                         } else {
                             attacks.push({
                                 count: model.count,
-                                attack: attack,
+                                attack: attack
                             });
                         }
                     }
@@ -313,13 +304,13 @@ export class WarscrollUnit implements WarscrollUnitInterface {
             abilities = abilities.concat(this.definition.commandAbilities);
         if (this.extraAbilities) {
             abilities = abilities.concat(
-                this.extraAbilities.map((x) => x.ability)
+                this.extraAbilities.map(x => x.ability)
             );
         }
 
-        const modelAbilities: AbilityModel[] = abilities.map((x) => ({
+        const modelAbilities: AbilityModel[] = abilities.map(x => ({
             id: x.id,
-            ability: x,
+            ability: x
         }));
 
         for (const model of this.models) {
@@ -327,7 +318,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
                 if (option.abilities) {
                     for (const ability of option.abilities) {
                         const existing = modelAbilities.find(
-                            (x) => x.id === ability.id
+                            x => x.id === ability.id
                         );
                         if (existing) {
                             if (!existing.warscrollModel)
@@ -337,7 +328,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
                             modelAbilities.push({
                                 ability,
                                 warscrollModel: [model],
-                                id: ability.id,
+                                id: ability.id
                             });
                         }
                     }
@@ -360,9 +351,9 @@ export class WarscrollEndlessSpell {
 
     @computed get abilities(): AbilityModel[] {
         return (
-            this.definition.abilities?.map((ability) => ({
+            this.definition.abilities?.map(ability => ({
                 ability,
-                id: ability.id,
+                id: ability.id
             })) || []
         );
     }
@@ -378,9 +369,9 @@ export class WarscrollBattalion implements WarscrollBattalionInterface {
 
     @computed get abilities() {
         return (
-            this.definition.abilities?.map((ability) => ({
+            this.definition.abilities?.map(ability => ({
                 ability,
-                id: ability.id,
+                id: ability.id
             })) || []
         );
     }
@@ -392,7 +383,7 @@ export class WarscrollBattalion implements WarscrollBattalionInterface {
 
     @computed get units() {
         return this.warscroll.units.filter(
-            (x) => x.battalion !== null && x.battalion.id === this.id
+            x => x.battalion !== null && x.battalion.id === this.id
         );
     }
 }
@@ -521,13 +512,16 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
         return result;
     }
 
-    @observable
-    allegiance: Allegiance = this.unitsStore.allegianceList[0];
+    @observable.shallow
+    allegiance: Faction | null = null;
 
-    @observable
-    armyOption: ArmyOption | null = null;
+    @observable.shallow
+    armyType: Faction | null = null;
 
-    @observable
+    @observable.shallow
+    subFaction: Faction | null = null;
+
+    @observable.shallow
     realm: RealmOfBattle | null = null;
 
     @observable
@@ -548,17 +542,17 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     contingents = [
         new WarscrollContingent(this, Contingent.Spearhead),
         new WarscrollContingent(this, Contingent.Main),
-        new WarscrollContingent(this, Contingent.Rearguard),
+        new WarscrollContingent(this, Contingent.Rearguard)
     ];
 
     @computed
     get description() {
-        return Array.from(groupBy(this.units, (x) => x.definition.model.name))
+        return Array.from(groupBy(this.units, x => x.definition.name))
             .map(
                 ([key, values]) =>
                     `${values.reduce((p, v) => p + 1, 0)}x${key} ${
-                        values.some((x) => x.modelCount > 1)
-                            ? ` [${values.map((x) => x.modelCount).join(", ")}]`
+                        values.some(x => x.modelCount > 1)
+                            ? ` [${values.map(x => x.modelCount).join(", ")}]`
                             : ""
                     }`
             )
@@ -605,7 +599,7 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     @computed
     get alliedPoints() {
         return this.units
-            .filter((x) => x.isAllied)
+            .filter(x => x.isAllied)
             .reduce((p, x) => x.count * x.definition.points + p, 0);
     }
 
@@ -757,33 +751,34 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     }
 
     hasAnyUnitExtraAbility(extraAbility: ExtraAbility) {
-        return this.units.some((x) =>
-            x.extraAbilities.some((y) => y.id === extraAbility.id)
+        return this.units.some(x =>
+            x.extraAbilities.some(y => y.id === extraAbility.id)
         );
     }
 
     @computed get hasRequiredArtifact() {
-        return (
-            !this.armyOption ||
-            !this.armyOption.requiredArtifact ||
-            this.hasAnyUnitExtraAbility(this.armyOption.requiredArtifact)
-        );
+        // return (
+        //     !this.armyOption ||
+        //     !this.armyOption.requiredArtifact ||
+        //     this.hasAnyUnitExtraAbility(this.armyOption.requiredArtifact)
+        // );
+        return false;
     }
 
     @computed get hasRequiredCommandTrait() {
-        return (
-            !this.armyOption ||
-            !this.armyOption.requiredCommandTrait ||
-            this.hasAnyUnitExtraAbility(this.armyOption.requiredCommandTrait)
-        );
+        // return (
+        //     !this.armyOption ||
+        //     !this.armyOption.requiredCommandTrait ||
+        //     this.hasAnyUnitExtraAbility(this.armyOption.requiredCommandTrait)
+        // );
+        return false;
     }
 
     @computed
     get availableExtraAbilities() {
         return this.unitsStore.extraAbilities.filter(
-            (x) =>
-                x.allegianceKeyword === undefined ||
-                this.allegiance.keywords.indexOf(x.allegianceKeyword) >= 0
+            x => x.allegianceKeyword === undefined
+            // ||this.allegiance.keywords.indexOf(x.allegianceKeyword) >= 0
         );
     }
 
@@ -791,17 +786,21 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     get abilities(): AbilityModel[] {
         return this.unitsStore.baseAbilities
             .concat(this.allegianceAbilities)
-            .map((ability) => ({ ability, id: ability.id }));
+            .map(ability => ({ ability, id: ability.id }));
     }
 
     @computed
     get allegianceAbilities() {
         let result: Ability[] = [];
-        if (this.armyOption) {
-            if (this.armyOption.abilities)
-                result = result.concat(this.armyOption.abilities);
+        if (this.armyType) {
+            if (this.armyType.battleTraits)
+                result = result.concat(this.armyType.battleTraits);
         }
-        if (this.allegiance.battleTraits)
+        if (this.subFaction) {
+            if (this.subFaction.battleTraits)
+                result = result.concat(this.subFaction.battleTraits);
+        }
+        if (this.allegiance && this.allegiance.battleTraits)
             result = result.concat(this.allegiance.battleTraits);
         return result;
     }
@@ -819,7 +818,7 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     // }
 
     getUnitsWithKeywords(keywords: string[][]) {
-        return this.units.filter((x) => hasKeywords(x, keywords));
+        return this.units.filter(x => hasKeywords(x, keywords));
     }
 }
 
@@ -837,7 +836,8 @@ interface SerializedWarscroll {
         battalionId: string;
     }[];
     allegiance?: string;
-    armyOption?: string;
+    armyType?: string;
+    subFaction?: string;
     sceneries?: string[];
     pointMode?: PointMode;
     commandPoints?: number;
@@ -850,15 +850,16 @@ export class WarscrollStore {
 
     @computed
     get availableBattalions() {
-        return this.unitsStore.battalions.filter((x) =>
-            x.allegiances.some((y) => y.id === this.warscroll.allegiance.id)
-        );
+        return this.unitsStore.battalions;
+        // .filter((x) => this.warscroll.allegiance
+        //     x.allegiances.some((y) => y.id === this.warscroll.allegiance?.id)
+        // );
     }
 
     @computed
     get availableUnits() {
         return this.uiStore.units.filter(
-            (x) =>
+            x =>
                 x.maxCount === undefined ||
                 this.warscroll.units.reduce(
                     (p, y) => (y.definition.id === x.id ? p + 1 : p),
@@ -919,7 +920,7 @@ export class WarscrollStore {
     removeBattalion(battalion: WarscrollBattalionInterface) {
         const battalions = this.warscroll.battalions;
         battalions.splice(
-            battalions.findIndex((x) => x.id === battalion.id),
+            battalions.findIndex(x => x.id === battalion.id),
             1
         );
         this.saveWarscroll();
@@ -944,15 +945,30 @@ export class WarscrollStore {
     }
 
     @computed
-    get armyOptions() {
-        return this.warscroll.allegiance.armyOptions;
+    get armyTypes() {
+        return this.warscroll.allegiance?.children.filter(
+            x => x.category === KeywordCategory.ArmyType
+        );
+    }
+
+    @computed
+    get subFactions() {
+        return this.warscroll.allegiance?.children.filter(
+            x => x.category === KeywordCategory.Subfaction
+        );
     }
 
     @action
-    setArmyOption(option: ArmyOption | null) {
-        this.warscroll.armyOption = option;
+    setArmyType = (option: Faction | null) => {
+        this.warscroll.armyType = option;
         this.saveWarscroll();
-    }
+    };
+
+    @action
+    setSubFaction = (option: Faction | null) => {
+        this.warscroll.subFaction = option;
+        this.saveWarscroll();
+    };
 
     @action
     setPointMode(pointMode: PointMode) {
@@ -978,21 +994,23 @@ export class WarscrollStore {
         this.warscroll.battalions.splice(0);
         this.warscroll.endlessSpells.splice(0);
         this.warscroll.allegiance =
-            this.unitsStore.allegianceList.find(
-                (x) => x.id === warscroll.allegiance
-            ) || this.unitsStore.allegianceList[0];
-        const armyOptions = this.warscroll.allegiance.armyOptions;
-        if (armyOptions)
-            this.warscroll.armyOption =
-                armyOptions.values.find(
-                    (x) => x.name == warscroll.armyOption
-                ) || null;
+            this.unitsStore.factionsList.find(
+                x => x.id === warscroll.allegiance
+            ) || null;
+        this.warscroll.armyType =
+            this.unitsStore.factionsList.find(
+                x => x.id == warscroll.armyType
+            ) || null;
+        this.warscroll.subFaction =
+            this.unitsStore.factionsList.find(
+                x => x.id == warscroll.subFaction
+            ) || null;
         this.warscroll.pointMode = warscroll.pointMode || PointMode.MatchedPlay;
         this.warscroll.commandPoints = warscroll.commandPoints || 0;
 
         for (const ba of warscroll.battalions) {
             const battalion = this.unitsStore.battalions.find(
-                (x) => x.id === ba.battalionId
+                x => x.id === ba.battalionId
             );
             if (battalion === undefined) continue;
             this.warscroll.battalions.push(
@@ -1003,7 +1021,7 @@ export class WarscrollStore {
         if (warscroll.sceneries) {
             for (const id of warscroll.sceneries) {
                 const scenery = this.unitsStore.sceneryList.find(
-                    (x) => x.id === id
+                    x => x.id === id
                 );
                 if (scenery === undefined) continue;
                 this.warscroll.endlessSpells.push(
@@ -1034,7 +1052,7 @@ export class WarscrollStore {
                     for (const loadedOption of loadedModel.options) {
                         if (unit.options) {
                             const option = unit.options.find(
-                                (x) => x.id === loadedOption
+                                x => x.id === loadedOption
                             );
                             if (option) {
                                 model.options.push(option);
@@ -1057,7 +1075,7 @@ export class WarscrollStore {
             this.warscroll.realm =
                 (warscroll.realm &&
                     this.unitsStore.realms.find(
-                        (x) => x.id === warscroll.realm
+                        x => x.id === warscroll.realm
                     )) ||
                 null;
         }
@@ -1067,40 +1085,43 @@ export class WarscrollStore {
         return {
             name: this.warscroll.name,
             realm: this.warscroll.realm?.id ?? undefined,
-            units: this.warscroll.units.map((x) => {
+            units: this.warscroll.units.map(x => {
                 return {
                     unitId: x.definition.id,
                     isGeneral: x === this.warscroll.general,
-                    extraAbilities: x.extraAbilities.map((x) => x.id),
-                    models: x.models.map((x) => {
+                    extraAbilities: x.extraAbilities.map(x => x.id),
+                    models: x.models.map(x => {
                         return {
                             count: x.count,
-                            options: x.options.map((y) => y.id),
+                            options: x.options.map(y => y.id)
                         };
                     }),
                     battalionIndex:
                         x.battalion === null
                             ? undefined
                             : this.warscroll.battalions.findIndex(
-                                  (y) =>
+                                  y =>
                                       x.battalion !== null &&
                                       y.id === x.battalion.id
                               ),
-                    contingent: x.contingent,
+                    contingent: x.contingent
                 };
             }),
-            battalions: this.warscroll.battalions.map((x) => {
+            battalions: this.warscroll.battalions.map(x => {
                 return {
-                    battalionId: x.definition.id,
+                    battalionId: x.definition.id
                 };
             }),
-            allegiance: this.warscroll.allegiance.id,
-            armyOption:
-                (this.warscroll.armyOption && this.warscroll.armyOption.name) ||
-                undefined,
-            sceneries: this.warscroll.endlessSpells.map((x) => x.definition.id),
+            allegiance: this.warscroll.allegiance?.id,
+            armyType: this.warscroll.armyType
+                ? this.warscroll.armyType.id
+                : undefined,
+            subFaction: this.warscroll.subFaction
+                ? this.warscroll.subFaction.id
+                : undefined,
+            sceneries: this.warscroll.endlessSpells.map(x => x.definition.id),
             pointMode: this.warscroll.pointMode,
-            commandPoints: this.warscroll.commandPoints,
+            commandPoints: this.warscroll.commandPoints
         };
     }
 
@@ -1108,7 +1129,7 @@ export class WarscrollStore {
     get link() {
         const ws = btoa(
             deflate(JSON.stringify(this.getSerializedWarscroll()), {
-                to: "string",
+                to: "string"
             })
         );
         return `${document.location.protocol}//${document.location.host}${document.location.pathname}#?ws=${ws}`;
@@ -1149,7 +1170,7 @@ export class WarscrollStore {
         this.loadSerializedWarscroll({
             name: "New",
             units: [],
-            battalions: [],
+            battalions: []
         });
     };
 

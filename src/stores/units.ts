@@ -8,7 +8,6 @@ import { overrideIdonethDeepkins } from "./overrides/idoneth-deepkins";
 import { overrideEverchosen } from "./overrides/everchosen";
 import { overrideSylvaneth } from "./overrides/sylvaneth";
 import { overrideNighthaunt } from "./overrides/nighthaunt";
-import { overrideLegionOfGrief } from "./overrides/legion-of-grief";
 import { overrideOrder } from "./overrides/order";
 import { overrideCommon } from "./overrides/common";
 import { overrideOrruks } from "./overrides/orruks";
@@ -23,11 +22,12 @@ import {
     Unit,
     Battalion,
     Faction,
-    Allegiance,
     AbilityCategory,
     TargetType,
-    Phase,
+    Phase
 } from "./unit";
+import { computed, makeObservable } from "mobx";
+import { KeywordCategory } from "../tools/definitions2";
 
 export class UnitsStore {
     serial = 100;
@@ -39,12 +39,32 @@ export class UnitsStore {
     boxes: Box[];
     factions: { [key: string]: Faction };
     factionsList: Faction[] = [];
-    allegianceList: Allegiance[] = [];
     sceneryList: EndlessSpell[] = [];
     baseAbilities: Ability[] = [];
 
     realms: RealmOfBattle[] = [];
+
+    get factionOptions() {
+        return this.factionsList
+            .filter(
+                x =>
+                    x.category === KeywordCategory.Generic ||
+                    x.category === KeywordCategory.RosterLevel
+            )
+            .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    get allegiances() {
+        return this.factionsList.filter(
+            x => x.category === KeywordCategory.RosterLevel
+        );
+    }
+
     constructor(data: DataStoreImpl) {
+        makeObservable(this, {
+            factionOptions: computed,
+            allegiances: computed
+        });
         overrideStormcast(data);
         overrideNurgle(data);
         overrideSylvaneth(data);
@@ -54,7 +74,6 @@ export class UnitsStore {
         overrideWanderers(data);
         overrideIdonethDeepkins(data);
         overrideNighthaunt(data);
-        overrideLegionOfGrief(data);
         overrideOrder(data);
         overrideCommon(data);
         overrideOrruks(data);
@@ -73,7 +92,7 @@ export class UnitsStore {
             this.unitList.push(units[key]);
         }
         this.unitList = this.unitList.sort((a, b) =>
-            a.model.name > b.model.name ? 1 : -1
+            a.name > b.name ? 1 : -1
         );
 
         const battalions: { [key: string]: Battalion } = data.battalions;
@@ -93,13 +112,13 @@ export class UnitsStore {
             this.factionsList.push(this.factions[key]);
         }
 
-        const allegiances: { [key: string]: Allegiance } = data.allegiances;
-        for (const key in allegiances) {
-            this.allegianceList.push(allegiances[key]);
-        }
-        this.allegianceList = this.allegianceList.sort((a, b) =>
-            a.name > b.name ? 1 : -1
-        );
+        // const allegiances: { [key: string]: Allegiance } = data.allegiances;
+        // for (const key in allegiances) {
+        //     this.allegianceList.push(allegiances[key]);
+        // }
+        // this.allegianceList = this.allegianceList.sort((a, b) =>
+        //     a.name > b.name ? 1 : -1
+        // );
 
         const extraAbilities: { [key: string]: ExtraAbility } =
             data.extraAbilities;
@@ -123,7 +142,7 @@ export class UnitsStore {
             category: AbilityCategory.Command,
             description:
                 'You can use this command ability after you make a run roll for a friendly unit that is within 6" of a friendly Hero, or 12" of a friendly Hero that is a general. If you do so, the run roll is treated as being a 6.',
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Movement }],
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Movement }]
         });
         this.baseAbilities.push({
             id: "forward_to_victory",
@@ -131,7 +150,7 @@ export class UnitsStore {
             category: AbilityCategory.Command,
             description:
                 'You can use this command ability after you make a charge roll for a friendly unit that is within 6" of a friendly Hero, or 12" of a friendly Hero that is a general. If you do so, re-roll the charge roll.',
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Charge }],
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Charge }]
         });
         this.baseAbilities.push({
             id: "inspiring_presence",
@@ -140,8 +159,8 @@ export class UnitsStore {
             description:
                 'You can use this command ability at the start of the battleshock phase. If you do so, pick a friendly unit that is within 6" of friendly Hero, or 12" of a friendly Hero that is a general. That unit does not have to take battleshock tests in that phase.',
             effects: [
-                { targetType: TargetType.Friend, phase: Phase.Battleshock },
-            ],
+                { targetType: TargetType.Friend, phase: Phase.Battleshock }
+            ]
         });
         this.baseAbilities.push({
             id: "allout_attack",
@@ -149,7 +168,7 @@ export class UnitsStore {
             category: AbilityCategory.Command,
             description:
                 'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.',
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat }],
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat }]
         });
         this.baseAbilities.push({
             id: "allout_defence",
@@ -157,7 +176,7 @@ export class UnitsStore {
             category: AbilityCategory.Command,
             description:
                 'You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll save rolls of 1 for attacks that target that unit until the end of that phase.',
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat }],
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Combat }]
         });
         this.baseAbilities.push({
             id: "volleyfire",
@@ -165,7 +184,7 @@ export class UnitsStore {
             category: AbilityCategory.Command,
             description:
                 'You can use this command ability at the start of your shooting phase. If you do so, pick 1 friendly unit that is wholly within 12" of a friendly HERO, or wholly within 18" of a friendly HERO that is a general. You can re-roll hit rolls of 1 for attacks made by that unit until the end of that phase.',
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Shooting }],
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Shooting }]
         });
         this.baseAbilities.push({
             id: "lookoutsir",
@@ -173,7 +192,7 @@ export class UnitsStore {
             category: AbilityCategory.Army,
             description:
                 'You must subtract 1 from hit rolls made for missile weapons if the target of the attack is an enemy Hero that is within 3" of an enemy unit that has 3 or more models. The Look Out, Sir! rule does not apply if the target Hero is a Monster.',
-            effects: [{ targetType: TargetType.Friend, phase: Phase.Shooting }],
+            effects: [{ targetType: TargetType.Friend, phase: Phase.Shooting }]
         });
         this.baseAbilities.push({
             id: "cover",
@@ -184,9 +203,9 @@ export class UnitsStore {
             effects: [
                 {
                     targetType: TargetType.Friend,
-                    phase: Phase.Shooting | Phase.Combat,
-                },
-            ],
+                    phase: Phase.Shooting | Phase.Combat
+                }
+            ]
         });
         this.baseAbilities.push({
             id: "arcanebolt",
@@ -199,9 +218,9 @@ export class UnitsStore {
                     spellCastingValue: 5,
                     targetRange: 18,
                     targetType: TargetType.Enemy,
-                    phase: Phase.Hero,
-                },
-            ],
+                    phase: Phase.Hero
+                }
+            ]
         });
         this.baseAbilities.push({
             id: "mysticshield",
@@ -215,14 +234,14 @@ export class UnitsStore {
                     spellCastingValue: 6,
                     targetRange: 18,
                     phase: Phase.Hero,
-                    defenseAura: { rerollSavesOn1: true },
-                },
-            ],
+                    defenseAura: { rerollSavesOn1: true }
+                }
+            ]
         });
     }
 
     findUnit(id: string) {
-        return this.unitList.find((x) => x.id === id);
+        return this.unitList.find(x => x.id === id);
     }
 
     getUnit(id: string) {
@@ -231,13 +250,7 @@ export class UnitsStore {
         return unit;
     }
 
-    getAllegiance(id: string) {
-        const allegiance = this.allegianceList.find((x) => x.id === id);
-        if (!allegiance) throw Error(`Allegiance ${id} does not exist`);
-        return allegiance;
-    }
-
     getExtraAbility(id: string) {
-        return this.extraAbilities.find((x) => x.id === id);
+        return this.extraAbilities.find(x => x.id === id);
     }
 }

@@ -6,7 +6,7 @@ import {
     TargetType,
     Ability,
     Attack,
-    AbilityCategory,
+    AbilityCategory
 } from "./unit";
 import { UnitsStore } from "./units";
 
@@ -23,7 +23,7 @@ export const phases = [
     Phase.Shooting,
     Phase.Charge,
     Phase.Combat,
-    Phase.Battleshock,
+    Phase.Battleshock
 ];
 
 export function getPhaseName(phase: Phase) {
@@ -51,7 +51,7 @@ export function getPhaseName(phase: Phase) {
 export const enum PhaseSide {
     Attack,
     Defense,
-    None,
+    None
 }
 export function getEffectPhases(effect: AbilityEffect) {
     let phase = 0;
@@ -116,12 +116,12 @@ export function isEffectInPhase(
             if (!unit || unit.type !== "unit") return true;
             if (
                 phase === Phase.Combat &&
-                unit.attacks.some((x) => x.attack.melee)
+                unit.attacks.some(x => x.attack.melee)
             )
                 return true;
             if (
                 phase === Phase.Shooting &&
-                unit.attacks.some((x) => !x.attack.melee)
+                unit.attacks.some(x => !x.attack.melee)
             )
                 return true;
         }
@@ -197,21 +197,19 @@ export function isUnitInPhase(
     if (
         phase === Phase.Shooting &&
         unit.type === "unit" &&
-        unit.attacks.some((x) => !x.attack.melee)
+        unit.attacks.some(x => !x.attack.melee)
     ) {
         return true;
     }
     if (
         phase === Phase.Combat &&
         unit.type === "unit" &&
-        unit.attacks.some((x) => x.attack.melee)
+        unit.attacks.some(x => x.attack.melee)
     ) {
         return true;
     }
     if (
-        unit.abilities.some((x) =>
-            isAbilityInPhase(x.ability, phase, unit, side)
-        )
+        unit.abilities.some(x => isAbilityInPhase(x.ability, phase, unit, side))
     )
         return true;
     return false;
@@ -233,11 +231,11 @@ export class BattleStore {
         let result: Ability[] = this.unitsStore.baseAbilities;
         if (!this.player) return result;
         const w = this.player.warscroll;
-        if (w.armyOption) {
-            if (w.armyOption.abilities)
-                result = result.concat(w.armyOption.abilities);
+        if (w.armyType) {
+            if (w.armyType.abilities)
+                result = result.concat(w.armyType.abilities);
         }
-        if (w.allegiance.battleTraits)
+        if (w.allegiance?.battleTraits)
             result = result.concat(w.allegiance.battleTraits);
         return result;
     }
@@ -246,7 +244,7 @@ export class BattleStore {
     start(warscroll: Warscroll) {
         this.player = {
             name: "Player",
-            warscroll: warscroll,
+            warscroll: warscroll
         };
         this.phase = Phase.Setup;
         this.side = PhaseSide.Attack;

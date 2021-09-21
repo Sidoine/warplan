@@ -5,10 +5,8 @@ import {
     WarscrollContingent,
 } from "../stores/warscroll";
 import {
-    ArmyOption,
-    Allegiance,
     contingentName,
-    AbilityCategory,
+    Faction,
 } from "../stores/unit";
 import DropdownValues from "../atoms/dropdown-values";
 import DropdownObjects from "../atoms/dropdown-objects";
@@ -151,24 +149,18 @@ export const WarscrollSummary = observer(() => {
         setCommandPoints(value: number) {
             warscrollStore.setCommandPoints(value);
         },
-        setAllegiance(allegiance: Allegiance | null) {
+        setAllegiance(allegiance: Faction | null) {
             if (allegiance) {
                 warscrollStore.warscroll.allegiance = allegiance;
                 warscrollStore.saveWarscroll();
             }
-        },
-        setArmyOption(x: ArmyOption | null) {
-            warscrollStore.setArmyOption(x);
         },
     }));
 
     const warscroll = warscrollStore.warscroll;
     const totalPoints = warscroll.totalPoints;
     const alliedPoints = warscroll.alliedPoints;
-    const allegianceOptions = unitsStore.allegianceList.filter(
-        (x) => x.grandAlliance === uiStore.grandAlliance
-    );
-    const armyOptions = warscrollStore.armyOptions;
+    const allegianceOptions = unitsStore.allegiances;
     const handleNameChange = useCallback(
         (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
             warscrollStore.setName(event.currentTarget.value);
@@ -215,9 +207,23 @@ export const WarscrollSummary = observer(() => {
                                 />
                             </FormControl>
                         </Grid>
-                        {armyOptions && (
+                        {warscrollStore.armyTypes && (
                             <Grid item>
-                                {warscroll.armyOption &&
+                                <FormControl>
+                                    <InputLabel>Army Type</InputLabel>
+                                    <DropdownObjects<Faction>
+                                        getText={getName}
+                                        options={warscrollStore.armyTypes}
+                                        value={warscroll.armyType}
+                                        onChange={warscrollStore.setArmyType}
+                                        clearable
+                                    />
+                                </FormControl>
+                            </Grid>
+                        )}
+                        {warscrollStore.subFactions && (
+                            <Grid item>
+                                {/* {warscroll.armyOption &&
                                     warscroll.armyOption.requiredArtifact &&
                                     warscroll.numberOfArtifacts > 0 &&
                                     !warscroll.hasRequiredArtifact && (
@@ -237,14 +243,14 @@ export const WarscrollSummary = observer(() => {
                                         <Warning
                                             label={`${warscroll.armyOption.requiredCommandTrait.ability.name} must be the command trait of your general`}
                                         />
-                                    )}
+                                    )} */}
                                 <FormControl>
-                                    <InputLabel> {armyOptions.name}</InputLabel>
-                                    <DropdownObjects<ArmyOption>
+                                    <InputLabel>Sub-faction</InputLabel>
+                                    <DropdownObjects<Faction>
                                         getText={getName}
-                                        options={armyOptions.values}
-                                        value={warscroll.armyOption}
-                                        onChange={store.setArmyOption}
+                                        options={warscrollStore.subFactions}
+                                        value={warscroll.subFaction}
+                                        onChange={warscrollStore.setSubFaction}
                                         clearable
                                     />
                                 </FormControl>

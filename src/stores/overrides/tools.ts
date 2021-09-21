@@ -180,7 +180,7 @@ export function setBaseModelOption(
 }
 
 export const artifactAvailable: ExtraAbilityTest = (unit, ws) =>
-    !!unit.definition.isLeader &&
+    unit.isLeader &&
     unit.extraAbilities.every((x) => x.category !== "artifact") &&
     ws.extraAbilities.filter((x) => x.category === "artifact").length <
         1 + ws.battalions.length;

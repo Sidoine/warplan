@@ -17,10 +17,10 @@ import { CheckList } from "./components/check-list";
 import { BattlePlay } from "./components/battle-play";
 import pompeiRegular from "./assets/PompeiStd-Regular.woff2";
 import pompeiBold from "./assets/PompeiStd-Bold.woff2";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@material-ui/core";
 const root = document.getElementById("root");
 
-const theme = createMuiTheme({
+const theme = createTheme({
     overrides: {
         MuiCssBaseline: {
             "@global": {

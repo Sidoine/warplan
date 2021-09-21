@@ -22,14 +22,22 @@ function ExportPopin() {
             <DialogTitle>Warscrolls</DialogTitle>
 
             <DialogContent>
-                <div>
+                { warscroll.allegiance && <div>
                     <b>Allegiance: {warscroll.allegiance.name}</b>
-                </div>
-                {warscroll.armyOption && warscroll.allegiance.armyOptions && (
+                </div>}
+                {warscroll.armyType && (
                     <div>
                         <b>
-                            {warscroll.allegiance.armyOptions.name}:{" "}
-                            {warscroll.armyOption.name}
+                            Army Type :{" "}
+                            {warscroll.armyType.name}
+                        </b>
+                    </div>
+                )}
+                {warscroll.subFaction && (
+                    <div>
+                        <b>
+                            Sub-faction :{" "}
+                            {warscroll.subFaction.name}
                         </b>
                     </div>
                 )}

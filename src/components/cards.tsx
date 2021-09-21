@@ -62,8 +62,8 @@ export const Cards = observer(() => {
                 mapAbility(x, "common")
             );
             const w = warscrollStore.warscroll;
-            if (w.allegiance.armyOptions) {
-                for (const armyOption of w.allegiance.armyOptions.values) {
+            if (w.allegiance?.children) {
+                for (const armyOption of w.allegiance.children) {
                     if (armyOption.abilities)
                         result = result.concat(
                             armyOption.abilities.map((x) =>
@@ -72,7 +72,7 @@ export const Cards = observer(() => {
                         );
                 }
             }
-            if (w.allegiance.battleTraits)
+            if (w.allegiance?.battleTraits)
                 result = result.concat(
                     w.allegiance.battleTraits.map((x) =>
                         mapAbility(x, "allegiance")

@@ -278,30 +278,30 @@ export class MarkersStore {
 
     @computed
     get unitAbilities() {
-        const allegiance = this.warscrollStore.warscroll.allegiance;
-        const allegianceKeyword = allegiance.keywords[0];
-        const units = this.unitStore.unitList.filter((x) =>
-            x.keywords.includes(allegianceKeyword)
-        );
+        // const allegiance = this.warscrollStore.warscroll.allegiance;
+        // const allegianceKeyword = allegiance.keywords[0];
+        // const units = this.unitStore.unitList.filter((x) =>
+        //     x.keywords.includes(allegianceKeyword)
+        // );
         const abilities: Ability[] = [];
-        for (const unit of units) {
-            if (unit.abilities) {
-                for (const ability of unit.abilities) {
-                    abilities.push(ability);
-                }
-            }
-            if (unit.commandAbilities) {
-                for (const ability of unit.commandAbilities) {
-                    abilities.push(ability);
-                }
-            }
-        }
-        const extraAbilities = this.unitStore.extraAbilities.filter(
-            (x) => x.allegianceKeyword === allegianceKeyword
-        );
-        for (const extraAbility of extraAbilities) {
-            abilities.push(extraAbility.ability);
-        }
+        // for (const unit of units) {
+        //     if (unit.abilities) {
+        //         for (const ability of unit.abilities) {
+        //             abilities.push(ability);
+        //         }
+        //     }
+        //     if (unit.commandAbilities) {
+        //         for (const ability of unit.commandAbilities) {
+        //             abilities.push(ability);
+        //         }
+        //     }
+        // }
+        // const extraAbilities = this.unitStore.extraAbilities.filter(
+        //     (x) => x.allegianceKeyword === allegianceKeyword
+        // );
+        // for (const extraAbility of extraAbilities) {
+        //     abilities.push(extraAbility.ability);
+        // }
         return abilities;
     }
 
@@ -359,7 +359,7 @@ export class MarkersStore {
 
     constructor(
         private warscrollStore: WarscrollStore,
-        private unitStore: UnitsStore
+        public unitStore: UnitsStore // TODO
     ) {
         makeObservable(this);
     }

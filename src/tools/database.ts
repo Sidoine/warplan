@@ -1,152 +1,49 @@
-import realm from "realm";
 import * as fs from "fs";
-import * as def from "./definitions";
-import { modelNames } from "./definitions";
-import {
-    AbilityEffect,
-    TargetType,
-    Phase,
-    targetConditionValue,
-    Value,
-    SubPhase,
-} from "../stores/unit";
-
-//const schemaVersion = 54;
-
-function toCamelCase(name: string) {
-    return name
-        .toLowerCase()
-        .replace(/[^\w]+(\w)/g, (p, x) => x.toUpperCase())
-        .replace(/^(.)/, (p, x) => x.toLowerCase())
-        .replace(/[^A-Za-z0-9]/g, "")
-        .replace(/^[0-9]/g, "_");
-}
+import { Value, DataStore, isDamageColumn, Ability } from "../stores/unit";
+import { Dump } from "./definitions2";
+import { importData } from "./import";
 
 function toPascalCase(name: string) {
-    return name
-        .toLowerCase()
-        .replace(/[^\w]+(\w)/g, (p, x) => x.toUpperCase())
-        .replace(/^(.)/, (p, x) => x.toUpperCase())
-        .replace(/[^A-Za-z0-9]/g, "")
-        .replace(/^[0-9]/g, "_");
+    return name[0].toUpperCase() + name.substr(1);
 }
 
 function escapeString(text: string) {
-    return text.replace(/[\n"]/g, (s) => `\\${s}`);
+    return text.replace(/[\n"]/g, s => `\\${s}`);
 }
 
 function escapeQuotedString(text: string | null | undefined) {
     if (!text) return "undefined";
-    return '"' + text.replace(/[\n"]/g, (s) => `\\${s}`) + '"';
+    return '"' + text.replace(/[\n"]/g, s => `\\${s}`) + '"';
 }
 
 const tab = "    ";
-const allegianceIdByKeyword = new Map<string, string>();
 async function load() {
     try {
-        const db = await realm.open({
-            path: "src/tools/en.realm",
-        });
-        const models = db.schema;
-        const definitions: string[] = [];
-        const modelNames: string[] = [];
-        for (const model of models) {
-            modelNames.push(model.name);
-            definitions.push(`export interface ${model.name} {`);
-            for (const propertyName in model.properties) {
-                let propertyType = model.properties[propertyName];
-                if (typeof propertyType === "string") {
-                    const optional = propertyType.endsWith("?");
-                    if (optional) {
-                        propertyType = propertyType.slice(
-                            0,
-                            propertyType.length - 1
-                        );
-                    }
-                    const orNull = optional ? " | null" : "";
-                    if (propertyType === "string") {
-                        definitions.push(
-                            `${tab}${propertyName}: string${orNull};`
-                        );
-                    } else if (
-                        propertyType === "number" ||
-                        propertyType === "int" ||
-                        propertyType === "double"
-                    ) {
-                        definitions.push(
-                            `${tab}${propertyName}: number${orNull};`
-                        );
-                    } else if (propertyType === "bool") {
-                        definitions.push(
-                            `${tab}${propertyName}: boolean${orNull};`
-                        );
-                    } else if (propertyType === "string[]") {
-                        definitions.push(`${tab}${propertyName}: string[];`);
-                    } else {
-                        definitions.push(
-                            `${tab}${propertyName}: ${propertyType}${orNull};`
-                        );
-                    }
-                } else {
-                    const orNull = propertyType.optional ? " | null" : "";
-                    const itemType =
-                        propertyType.type === "list" ||
-                        propertyType.type === "object"
-                            ? propertyType.objectType
-                            : propertyType.type;
-                    let type: string;
-                    if (itemType === "string") {
-                        type = "string";
-                    } else if (
-                        itemType === "number" ||
-                        itemType === "int" ||
-                        itemType === "double"
-                    ) {
-                        type = "number";
-                    } else if (itemType === "bool") {
-                        type = "boolean";
-                    } else {
-                        type = itemType || "any";
-                    }
-                    const array = propertyType.type === "list" ? "[]" : "";
-                    definitions.push(
-                        `${tab}${propertyName}: ${type}${array}${orNull};`
-                    );
-                }
-            }
-            definitions.push("}");
-            definitions.push("");
-        }
-        definitions.push(
-            `export const modelNames = { ${modelNames
-                .map((x) => `${x}: "${x}"`)
-                .join(", ")} };`
-        );
-        fs.writeFileSync("src/tools/definitions.ts", definitions.join("\n"));
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const db: Dump = require("../../dump.json");
 
-        let result = `import { DataStore, GrandAlliance, WarscrollInterface, Box, AbilityCategory } from "./unit";
-import { hasKeywords, hasKeywordInArmy } from "./conditions";
+        let result = `import { DataStore, Faction } from "./unit";
+import { Role, KeywordCategory } from "../tools/definitions2";
 
 export class DataStoreImpl implements DataStore {
 `;
-        fixIds(db);
+        const dataStore = importData(db);
 
-        result += getModels(db);
-        result += getFactions(db);
-        result += getAbilities(db);
-        result += getDamageTables(db);
-        result += getOptions(db);
-        result += getAttacks(db);
-        result += getUnits(db);
-        result += getExtraAbilities(db);
-        result += getArmyOptions(db);
-        result += getAllegiance(db);
-        result += getBattalions(db);
-        result += getEndlessSpells(db);
-        result += getRealms(db);
+        result += writeModels(dataStore);
+        result += writeFactions(dataStore);
+        result += writeAbilities(dataStore);
+        result += writeDamageTables(dataStore);
+        result += writeOptions(dataStore);
+        result += writeAttacks(dataStore);
+        result += writeUnits(dataStore);
+        result += writeExtraAbilities(dataStore);
+        result += writeArmyOptions(dataStore);
+        result += writeBattalions(dataStore);
+        result += writeRealms(dataStore);
+        result += writeConstructor(dataStore);
         result += `
-
-        boxes: Box[] = [];
+        sceneries = {};
+        boxes = [];
 }`;
         fs.writeFileSync("src/stores/imported-data.ts", result);
     } catch (error) {
@@ -157,321 +54,15 @@ export class DataStoreImpl implements DataStore {
 
 load();
 
-function toAllegianceId(allegianceId: string) {
-    const id = toCamelCase(allegianceId);
-    if (id === "stormcastEternal") return "stormcastEternals";
-    if (id === "wanderer") return "wanderers";
-    if (id === "gitmob") return "gitmobGrots";
-    if (id === "darklingCoven") return "darklingCovens";
-    return id;
-}
-
-const idMap = new Map<string, string>();
-
-function objectId(o: { id: string }) {
-    return idMap.get(o.id) || o.id;
-}
-
-function itemId(o: { id: string }, index: number) {
-    return idMap.get(`${o.id} ${index}`) || "???";
-}
-
-function propertyId<T extends { id: string }>(o: T, prop: keyof T) {
-    return idMap.get(`${o.id} ${prop}`) || "???";
-}
-
-// Create readable ids
-function fixIds(db: Realm) {
-    const ids = new Map<string, boolean>();
-
-    function fixId(oldId: string, name: string, alt: string | undefined) {
-        let id = toCamelCase(name);
-        if (ids.get(id)) {
-            if (ids.get(id) && alt) id += toPascalCase(alt);
-            while (ids.get(id)) id += "x";
-        }
-        ids.set(id, true);
-        idMap.set(oldId, id);
-    }
-
-    function fixObjectId(
-        o: { id: string; name: string },
-        parent?: { id: string; name: string },
-        alt?: string
-    ) {
-        if (parent) {
-            fixId(o.id, `${parent.name} ${o.name}`, alt);
-        } else {
-            fixId(o.id, o.name, alt);
-        }
-    }
-
-    function fixItemId(
-        o: { id: string; groupTitle: string },
-        name: string,
-        index: number,
-        parent?: { name: string },
-        alt?: string
-    ) {
-        if (parent) {
-            fixId(
-                `${o.id} ${index}`,
-                `${parent.name} ${o.groupTitle} ${name}`,
-                alt
-            );
-        } else {
-            fixId(`${o.id} ${index}`, `${o.groupTitle} ${name}`, alt);
-        }
-    }
-
-    function fixPropertyId<T extends { id: string; name: string }>(
-        o: T,
-        prop: keyof T,
-        parent?: { name: string },
-        alt?: string
-    ) {
-        const name = o[prop];
-        if (parent) {
-            fixId(`${o.id} ${prop}`, `${parent.name} ${o.name} ${name}`, alt);
-        } else {
-            fixId(`${o.id} ${prop}`, `${o.name} ${name}`, alt);
-        }
-    }
-
-    function fixArrayId(
-        objects: ReadonlyArray<{ id: string; name: string }>,
-        parent?: { name: string },
-        alt?: string,
-        subName?: string | null
-    ) {
-        for (const o of objects) {
-            fixId(
-                o.id,
-                parent ? `${parent.name} ${subName || ""} ${o.name}` : o.name,
-                alt
-            );
-        }
-    }
-
-    function fixGroupId(
-        objects: ReadonlyArray<{ id: string; groupTitle: string }>,
-        parent?: { name: string },
-        alt?: string
-    ) {
-        for (const o of objects) {
-            fixId(
-                o.id,
-                parent ? `${parent.name} ${o.groupTitle}` : o.groupTitle,
-                alt
-            );
-        }
-    }
-
-    function fixNames(
-        objects: ReadonlyArray<string>,
-        parent: { id: string; groupTitle: string },
-        parentParent?: { name: string },
-        alt?: string
-    ) {
-        for (let i = 0; i < objects.length; i++) {
-            fixItemId(parent, objects[i], i, parentParent, alt);
-        }
-    }
-
-    function fixGroups<T extends { id: string; groupTitle: string }>(
-        groups: T[],
-        collection: (x: T) => string[],
-        parent: { name: string },
-        alt?: string
-    ) {
-        fixGroupId(groups, parent, alt);
-        for (const group of groups) {
-            fixNames(collection(group), group, parent, alt);
-        }
-    }
-
-    for (const battalionWarscroll of db.objects<def.BattalionWarscroll>(
-        modelNames.BattalionWarscroll
-    )) {
-        fixId(
-            battalionWarscroll.id,
-            `${battalionWarscroll.faction} ${battalionWarscroll.name}`,
-            undefined
-        );
-        fixArrayId(battalionWarscroll.abilities, battalionWarscroll, "Ability");
-        fixArrayId(
-            battalionWarscroll.commandAbilities,
-            battalionWarscroll,
-            "Command"
-        );
-        fixArrayId(
-            battalionWarscroll.commandTraits,
-            battalionWarscroll,
-            "CommandTrait"
-        );
-    }
-
-    fixArrayId(
-        db.objects<def.Division>(modelNames.Division),
-        undefined,
-        "Division"
-    );
-
-    for (const endlessSpell of db.objects<def.EndlessSpell>(
-        modelNames.EndlessSpell
-    )) {
-        fixId(endlessSpell.id, endlessSpell.name, "EndlessSpell");
-        fixArrayId(endlessSpell.abilities, endlessSpell, "Ability");
-        fixArrayId(endlessSpell.magicAbilities, endlessSpell, "Magic");
-        fixArrayId(endlessSpell.commandAbilities, endlessSpell, "Command");
-        fixArrayId(endlessSpell.specialRules, endlessSpell, "SpecialRule");
-    }
-
-    for (const realmAllegiance of db.objects<def.RealmAllegiance>(
-        modelNames.RealmAllegiance
-    )) {
-        fixId(realmAllegiance.id, realmAllegiance.name, "Allegiance");
-        fixGroups(
-            realmAllegiance.commandTraitGroups,
-            (x) => x.commandTraits,
-            realmAllegiance,
-            "CommandTrait"
-        );
-        fixGroups(
-            realmAllegiance.artefactGroups,
-            (x) => x.artefacts,
-            realmAllegiance,
-            "Artefact"
-        );
-        fixGroups(
-            realmAllegiance.mountTraitGroups,
-            (x) => x.traits,
-            realmAllegiance,
-            "Mount"
-        );
-        fixGroups(
-            realmAllegiance.prayerGroups,
-            (x) => x.traits,
-            realmAllegiance,
-            "Prayer"
-        );
-        fixGroups(
-            realmAllegiance.spellGroups,
-            (x) => x.traits,
-            realmAllegiance,
-            "Spell"
-        );
-        fixArrayId(realmAllegiance.divisions, realmAllegiance, "Division");
-        for (const division of realmAllegiance.divisions) {
-            if (division.requiredArtefact)
-                fixPropertyId(
-                    division,
-                    "requiredArtefact",
-                    realmAllegiance,
-                    "Artefact"
-                );
-
-            if (division.requiredCommandTrait)
-                fixPropertyId(
-                    division,
-                    "requiredCommandTrait",
-                    realmAllegiance,
-                    "CommandTrait"
-                );
-        }
-    }
-
-    for (const unitWarscroll of db.objects<def.UnitWarscroll>(
-        modelNames.UnitWarscroll
-    )) {
-        const name = unitWarscroll.subName
-            ? `${unitWarscroll.name} ${unitWarscroll.subName}`
-            : unitWarscroll.name;
-        fixId(unitWarscroll.id, name, unitWarscroll.factions[0]);
-        fixArrayId(
-            unitWarscroll.specialRules,
-            unitWarscroll,
-            "Rule",
-            unitWarscroll.subName
-        );
-        fixArrayId(
-            unitWarscroll.upgrades,
-            unitWarscroll,
-            "Upgrade",
-            unitWarscroll.subName
-        );
-        fixArrayId(
-            unitWarscroll.abilities,
-            unitWarscroll,
-            "Ability",
-            unitWarscroll.subName
-        );
-        fixArrayId(
-            unitWarscroll.minionAbilities,
-            unitWarscroll,
-            "MinionAbility",
-            unitWarscroll.subName
-        );
-        fixArrayId(
-            unitWarscroll.commandAbilities,
-            unitWarscroll,
-            "Command",
-            unitWarscroll.subName
-        );
-        fixArrayId(
-            unitWarscroll.magicAbilities,
-            unitWarscroll,
-            "Spell",
-            unitWarscroll.subName
-        );
-        for (const weapon of unitWarscroll.weapons) {
-            fixId(
-                weapon.id,
-                `${name} ${weapon.name}`,
-                weapon.missile ? "Ranged" : "Melee"
-            );
-        }
-    }
-
-    for (const realmOfBattle of db.objects<def.RealmOfBattle>(
-        modelNames.RealmOfBattle
-    )) {
-        fixObjectId(realmOfBattle, undefined, "Realm");
-        // fixGroups(
-        //     realmOfBattle.artefactGroups,
-        //     x => x.artefacts,
-        //     realmOfBattle,
-        //     "Artefact"
-        // );
-        if (realmOfBattle.magic)
-            fixObjectId(realmOfBattle.magic, realmOfBattle, "Magic");
-        fixArrayId(realmOfBattle.commands, realmOfBattle, "Command");
-    }
-}
-
-function getFactions(db: realm) {
-    const factions: { id: string; grandAlliance: string; name: string }[] = [];
-    for (const unit of db.objects<def.UnitWarscroll>(
-        modelNames.UnitWarscroll
-    )) {
-        for (const faction of unit.factions) {
-            if (factions.every((x) => x.name !== faction)) {
-                factions.push({
-                    id: toCamelCase(faction),
-                    name: faction,
-                    grandAlliance: unit.grandAlliance,
-                });
-            }
-        }
-    }
-
-    let result = `${tab}factions = {
+function writeFactions(db: DataStore) {
+    let result = `${tab}factions: Record<string, Faction> = {
 `;
-    for (const faction of factions) {
+    for (const faction of Object.values(db.factions)) {
         result += `       ${faction.id}: {
             id: "${faction.id}",
-            grandAlliance: GrandAlliance.${faction.grandAlliance.toLowerCase()},
-            name: "${escapeString(faction.name)}"
+            category: KeywordCategory.${toPascalCase(faction.category)},
+            name: "${escapeString(faction.name)}",
+            children: [],
         },
 `;
     }
@@ -480,17 +71,13 @@ function getFactions(db: realm) {
     return result;
 }
 
-function getModels(db: realm) {
+function writeModels(db: DataStore) {
     let result = `   models = {
 `;
-    for (const unit of db.objects<def.UnitWarscroll>(
-        modelNames.UnitWarscroll
-    )) {
-        const name = unit.subName ? `${unit.name} ${unit.subName}` : unit.name;
-        const id = objectId(unit);
-        result += `       ${id}: {
-            id: "${id}",
-            name: "${escapeString(name)}"
+    for (const model of Object.values(db.models)) {
+        result += `       ${model.id}: {
+            id: "${escapeString(model.id)}",
+            name: "${escapeString(model.name)}",
         },
 `;
     }
@@ -499,334 +86,77 @@ function getModels(db: realm) {
     return result;
 }
 
-function getAllegiance(db: realm) {
-    let result = `   allegiances = {
-    `;
-    for (const allegiance of db.objects<def.RealmAllegiance>(
-        modelNames.RealmAllegiance
-    )) {
-        const id = objectId(allegiance);
-        const keywords = allegiance.keywords;
-        allegianceIdByKeyword.set(keywords[0].toUpperCase(), id);
-        result += `           ${id}: {
-            id: "${id}",
-            name: "${escapeString(allegiance.name)}",
-            keywords: ["${keywords.map((x) => x.toUpperCase()).join('", "')}"],
-            alliesKeywords: ${compoundKeywordsToString(allegiance.allies)},
-`;
-        if (allegiance.grandAlliance) {
-            result += `${tab}${tab}${tab}grandAlliance: GrandAlliance.${allegiance.grandAlliance.toLowerCase()},
-`;
-        }
-        if (allegiance.divisions.length > 0) {
-            result += `${tab}${tab}${tab}armyOptions: {
-                name: ${escapeQuotedString(allegiance.divisionName)},
-                values: [${allegiance.divisions
-                    .map((x) => `this.armyOptions.${objectId(x)}`)
-                    .join(", ")}]
-            },`;
-        }
-
-        result += `       },
-`;
-    }
-    result += `    };
-`;
-    return result;
-}
-
-function getOptions(db: realm) {
+function writeOptions(db: DataStore) {
     let result = `   options = {
 `;
-    for (const unit of db.objects<def.UnitWarscroll>(
-        modelNames.UnitWarscroll
-    )) {
-        for (const option of unit.upgrades) {
-            const id = objectId(option);
-            result += `
+    for (const option of Object.values(db.options)) {
+        const id = option.id;
+        result += `
         ${id}: {
             id: "${id}",
             name: "${option.name}",
-            description: ${escapeQuotedString(option.blurb)},
         },
 `;
-        }
     }
     result += `   };
 `;
     return result;
 }
 
-function getTargetCondition(blurb: string, value: Value) {
-    const match = blurb.match(/if the target unit has (\d+) or more models/);
-    if (match) {
-        return targetConditionValue({ minModels: parseInt(match[1]) }, value);
-    }
-    return value;
-}
-
-function getAbilityEffects(ability: def.Ability | def.Rule) {
-    const blurb = ability.blurb.toLowerCase();
-    let effect: AbilityEffect | undefined = undefined;
-
-    // Phase
-    if (blurb.indexOf("in your hero phase") >= 0) {
-        effect = effect || { targetType: TargetType.Unit };
-        effect.phase = Phase.Hero;
-    }
-    if (blurb.indexOf("at the start of a combat phase") >= 0) {
-        effect = effect || { targetType: TargetType.Unit };
-        effect.phase = Phase.Combat;
-        effect.subPhase = SubPhase.Before;
-    }
-
-    // Spells
-    let match = blurb.match(/has a casting value of (\d+)/);
-    if (match) {
-        effect = effect || { targetType: TargetType.Unit };
-        effect.spellCastingValue = parseInt(match[1]);
-        effect.phase = Phase.Hero;
-    }
-
-    //Target
-    match = blurb.match(
-        /you can pick an enemy Hero within (\d+)" of this model/i
-    );
-    if (match) {
-        effect = effect || { targetType: TargetType.Enemy };
-        effect.targetType = TargetType.Enemy;
-        effect.targetCondition = effect.targetCondition || {};
-        effect.targetCondition.keyword = "HERO";
-        effect.targetRange = parseInt(match[1]);
-    }
-
-    // Defense
-    if (blurb.indexOf("subtract 1 from hit rolls for attacks made by") >= 0) {
-        effect = effect || { targetType: TargetType.Enemy };
-        effect.attackAura = { malusHitRoll: 1 };
-    }
-
-    if (
-        blurb.indexOf(
-            "roll a d6 each time you allocate a mortal wound to this model. on a 5+, the wound is negated."
-        ) >= 0
-    ) {
-        effect = effect || { targetType: TargetType.Model };
-        effect.defenseAura = { negateWoundsOn5: true };
-    }
-
-    if (
-        blurb.indexOf(
-            "ignore modifiers (positive or negative) when making save rolls for attacks that target this model"
-        ) >= 0
-    ) {
-        effect = effect || { targetType: TargetType.Model };
-        effect.defenseAura = effect.defenseAura || {};
-        effect.defenseAura.ignoreRend = true;
-    }
-    if (
-        blurb.indexOf(
-            "ignore modifiers (positive or negative) when making save rolls for attacks that target this unit"
-        ) >= 0
-    ) {
-        effect = effect || { targetType: TargetType.Unit };
-        effect.defenseAura = effect.defenseAura || {};
-        effect.defenseAura.ignoreRend = true;
-    }
-    if (
-        blurb.indexOf(
-            "roll a D6 each time you allocate a mortal wound to this model. on a 5+, the wound is negated."
-        ) >= 0
-    ) {
-        effect = effect || { targetType: TargetType.Model };
-        effect.defenseAura = effect.defenseAura || {};
-        effect.defenseAura.negateWoundsOrMortalWoundsOn5 = true;
-    }
-
-    // Movement
-    if (ability.name === "Mount") {
-        effect = effect || { targetType: TargetType.Mount };
-    }
-    if (blurb.indexOf("this model can fly") >= 0) {
-        effect = effect || { targetType: TargetType.Model };
-        effect.movementAura = effect.movementAura || {};
-        effect.movementAura = { fly: true };
-    }
-
-    // Attack
-    match = blurb.match(
-        /If the unmodified hit roll for an attack made with (.*) is 6, that attack inflicts (\d+) mortal wounds and the attack sequence ends \(do not make a wound or save roll\)/i
-    );
-    if (match) {
-        effect = effect || { targetType: TargetType.Weapon };
-        effect.targetCondition = { weaponId: match[1] };
-        effect.attackAura = { mortalWoundsOnHitUnmodified6: match[2] };
-    }
-    match = blurb.match(
-        /You can re-roll failed hit rolls for attacks made with (\w+)/i
-    );
-    if (match) {
-        effect = effect || { targetType: TargetType.Weapon };
-        effect.targetCondition = { weaponId: match[1] };
-        effect.attackAura = { rerollFailedHits: getTargetCondition(blurb, 1) };
-    }
-    match = blurb.match(
-        /If the unmodified wound roll for an attack made with a (.*) is 6, add (\d) to the Damage characteristic of that weapon for that attack/i
-    );
-    if (match) {
-        effect = effect || { targetType: TargetType.Weapon };
-        effect.targetCondition = { weaponId: match[1] };
-        effect.attackAura = {
-            bonusDamageOnWoundUnmodified6: parseInt(match[2]),
-        };
-    }
-
-    if (effect) {
-        return `            effects: [${JSON.stringify(effect)}],
-`;
-    }
-    return "";
-}
-
-function getUnitAbilities(
-    abilities: def.Ability[],
-    category?: AbilityCategories
-) {
-    let result = "";
-    for (const ability of abilities) {
-        const id = objectId(ability);
-        result += `
-    ${id}: {
-        id: "${id}",
-        name: "${ability.name}",
-        description: ${escapeQuotedString(ability.blurb)},
-`;
-        if (ability.lore) {
-            result += `           flavor: ${escapeQuotedString(ability.lore)},
-`;
-        }
-        if (category) {
-            result += `        category: AbilityCategory.${category},
-`;
-        }
-
-        result += `${getAbilityEffects(ability)}        },
-`;
-    }
-    return result;
-}
-
-function getAbilities(db: realm) {
+function writeAbilities(db: DataStore) {
     let result = `   abilities = {
 `;
-    for (const unit of db.objects<def.UnitWarscroll>(
-        modelNames.UnitWarscroll
-    )) {
-        result += getUnitAbilities(unit.abilities);
-        result += getUnitAbilities(unit.magicAbilities, "Spell");
-        result += getUnitAbilities(unit.commandAbilities, "Command");
-        for (const ability of unit.specialRules) {
-            const id = objectId(ability);
-            result += `
-        ${id}: {
-            id: "${id}",
+    for (const ability of Object.values(db.abilities)) {
+        result += `
+        ${ability.id}: {
+            id: "${ability.id}",
             name: "${ability.name}",
-            description: ${escapeQuotedString(ability.blurb)},
-            category: AbilityCategory.SpecialRule,            
-${getAbilityEffects(ability)}        },
-`;
-        }
-    }
-
-    for (const endlessSpell of db.objects<def.EndlessSpell>(
-        modelNames.EndlessSpell
-    )) {
-        result += getUnitAbilities(endlessSpell.abilities);
-        result += getUnitAbilities(endlessSpell.magicAbilities, "Spell");
-        result += getUnitAbilities(endlessSpell.commandAbilities, "Command");
-        for (const ability of endlessSpell.specialRules) {
-            const id = objectId(ability);
-            result += `
-        ${id}: {
-            id: "${id}",
-            name: "${ability.name}",
-            description: ${escapeQuotedString(ability.blurb)},
-            category: AbilityCategory.SpecialRule,
-${getAbilityEffects(ability)}        },
-`;
-        }
-    }
-
-    for (const battalion of db.objects<def.BattalionWarscroll>(
-        modelNames.BattalionWarscroll
-    )) {
-        result += getUnitAbilities(battalion.abilities);
-        result += getUnitAbilities(battalion.commandAbilities, "Command");
-    }
-
-    for (const realmOfBattle of db.objects<def.RealmOfBattle>(
-        modelNames.RealmOfBattle
-    )) {
-        result += getUnitAbilities(realmOfBattle.commands, "Command");
-        if (realmOfBattle.magic)
-            result += getUnitAbilities([realmOfBattle.magic], "Spell");
-    }
-
-    result += `   };
-`;
-    return result;
-}
-
-function getAttacks(db: realm) {
-    let result = `   attacks = {
-`;
-    for (const unit of db.objects<def.UnitWarscroll>(
-        modelNames.UnitWarscroll
-    )) {
-        const unitId = objectId(unit);
-        for (const weapon of unit.weapons) {
-            const id = objectId(weapon);
-            result += `
-        ${id}: {
-            id: "${id}",
-            name: "${weapon.name}",
-            attacks: ${getValue(weapon.attacks, weapon.name, unit, unitId)},
-            damage: ${getValue(weapon.damage, weapon.name, unit, unitId)},
-            toHit: ${getValue(weapon.hit, weapon.name, unit, unitId)},
-            toWound: ${getValue(weapon.wound, weapon.name, unit, unitId)},
-            melee: ${!weapon.missile},
-            range: ${getValue(weapon.range, weapon.name, unit, unitId)},
-            rend: ${getValue(weapon.rend, weapon.name, unit, unitId)},
+            description: ${JSON.stringify(ability.description)},
+            category: ${JSON.stringify(ability.category)},
+            effects: ${JSON.stringify(ability.effects)},
+            flavor: ${JSON.stringify(ability.flavor)},
         },
 `;
-        }
+    }
+
+    result += `   };
+`;
+    return result;
+}
+
+function writeAttacks(db: DataStore) {
+    let result = `   attacks = {
+`;
+    for (const weapon of Object.values(db.attacks)) {
+        result += `
+        ${weapon.id}: {
+            id: "${weapon.id}",
+            name: "${weapon.name}",
+            attacks: ${writeValue(weapon.attacks, db)},
+            damage: ${writeValue(weapon.damage, db)},
+            toHit: ${writeValue(weapon.toHit, db)},
+            toWound: ${writeValue(weapon.toWound, db)},
+            melee: ${weapon.melee},
+            range: ${writeValue(weapon.range, db)},
+            rend: ${writeValue(weapon.rend, db)},
+        },
+`;
     }
     result += `   };
 `;
     return result;
 }
 
-function getDamageTables(db: realm) {
+function writeDamageTables(db: DataStore) {
     let result = `   damageTables = {
 `;
-    for (const unit of db.objects<def.UnitWarscroll>(
-        modelNames.UnitWarscroll
-    )) {
-        const id = objectId(unit);
-        if (unit.damageTable.length === 0) continue;
-        const damageTable = unit.damageTable;
+    for (const damageTable of Object.values(db.damageTables)) {
+        const id = damageTable.id;
         result += `
     ${id}: {
         id: "${id}",
-        ranges: [${damageTable[0].values
-            .map((x) => `"${x.wounds}"`)
-            .join(", ")}],
-        columns: [${damageTable.map(
-            (x) =>
-                `{ name: "${x.name}", values: [${x.values
-                    .map((y) => `${escapeQuotedString(y.value)}`)
-                    .join(", ")}] }`
-        )}],
+        ranges: ${JSON.stringify(damageTable.ranges)},
+        columns: ${JSON.stringify(damageTable.columns)},
     },
 `;
     }
@@ -835,48 +165,25 @@ function getDamageTables(db: realm) {
     return result;
 }
 
-function getValue(
-    value: string | undefined,
-    name: string,
-    unit: def.UnitWarscroll,
-    id: string
-) {
-    if (value === "-" || value === undefined) return "undefined";
-    if (value === "✹") {
-        const damagePairs = unit.damageTable.findIndex(
-            (x) => name.indexOf(x.name) >= 0
+function writeValue(value: Value, data: DataStore) {
+    if (value === undefined) return "undefined";
+    if (isDamageColumn(value)) {
+        const damageTable = Object.values(data.damageTables).find(x =>
+            x.columns.includes(value)
         );
-        if (damagePairs >= 0) {
-            return `this.damageTables.${id}.columns[${damagePairs}]`;
-        } else if (name !== "Move" && name !== "Wounds") {
-            console.error(
-                `Warning: Unable to find damage ${name} for ${
-                    unit.name
-                } (available: ${unit.damageTable
-                    .map((x) => x.name)
-                    .join(", ")})`
-            );
+        if (damageTable) {
+            const index = damageTable.columns.indexOf(value);
+            return `this.damageTables.${damageTable.id}.columns[${index}]`;
         }
     }
-    return `"${value}"`;
+    return JSON.stringify(value);
 }
 
-function compoundKeywordsToString(keywords: def.CompoundKeyword[]) {
-    return `[${keywords
-        .map(
-            (y) =>
-                `[${y.keywords.map((z) => `"${z.toUpperCase()}"`).join(", ")}]`
-        )
-        .join(", ")}]`;
-}
-
-function getUnits(db: realm) {
+function writeUnits(db: DataStore) {
     let result = `   units = {
 `;
-    for (const unit of db.objects<def.UnitWarscroll>(
-        modelNames.UnitWarscroll
-    )) {
-        const id = objectId(unit);
+    for (const unit of Object.values(db.units)) {
+        const id = unit.id;
         if (!id) continue;
         result += `       ${id}: {
             id: "${id}",
@@ -887,124 +194,109 @@ ${
             `
         : ""
 }           model: this.models.${id},
-            description: ${escapeQuotedString(unit.blurb)},
-            flavor: ${escapeQuotedString(unit.about)},
+            description: ${escapeQuotedString(unit.description)},
+            flavor: ${escapeQuotedString(unit.flavor)},
             factions: [${unit.factions
-                .map((x) => `this.factions.${toCamelCase(x)}`)
+                .map(x => `this.factions.${x.id}`)
                 .join(", ")}],
-            size: ${unit.unitSizeMin},
-            maxSize: ${unit.unitSizeMax},
+            size: ${unit.size},
             points: ${unit.points},
-            maxPoints: ${unit.pointsMax},
-            keywords: [${unit.keywords
-                .map((x) => `"${x.toUpperCase()}"`)
-                .join(", ")}],
-            wounds: ${getValue(unit.wounds, "Wounds", unit, id)},
-            move: ${getValue(unit.move, "Move", unit, id)},
-            save: ${getValue(unit.save, "Save", unit, id)},
+            keywords: ${JSON.stringify(unit.keywords)},
+            wounds: ${writeValue(unit.wounds, db)},
+            move: ${writeValue(unit.move, db)},
+            save: ${writeValue(unit.save, db)},
             bravery: "${unit.bravery}",
-            pictureUrl: ${escapeQuotedString(unit.imageUrl)},
+            pictureUrl: ${escapeQuotedString(unit.pictureUrl)},
 `;
-        if (unit.upgrades) {
-            result += `           options: [${unit.upgrades
-                .map((x) => `this.options.${objectId(x)}`)
+        if (unit.options) {
+            result += `           options: [${unit.options
+                .map(x => `this.options.${x.id}`)
                 .join(", ")}],
 `;
         }
-        if (
-            unit.abilities.length > 0 ||
-            unit.specialRules.length > 0 ||
-            unit.magicAbilities.length > 0
-        ) {
-            const abilityIds = unit.abilities
-                .map((x) => objectId(x))
-                .concat(unit.specialRules.map((x) => objectId(x)))
-                .concat(unit.magicAbilities.map((x) => objectId(x)));
+        if (unit.abilities) {
+            const abilityIds = unit.abilities;
             result += `           abilities: [${abilityIds
-                .map((x) => `this.abilities.${x}`)
+                .map(x => `this.abilities.${x.id}`)
                 .join(", ")}],
 `;
         }
-        if (unit.commandAbilities.length > 0) {
-            const abilityIds = unit.commandAbilities.map((x) => objectId(x));
+        if (unit.commandAbilities) {
+            const abilityIds = unit.commandAbilities.map(x => x.id);
             result += `           commandAbilities: [${abilityIds
-                .map((x) => `this.abilities.${x}`)
+                .map(x => `this.abilities.${x}`)
                 .join(", ")}],
 `;
         }
-        if (unit.weapons) {
-            result += `           attacks: [${unit.weapons
-                .map((x) => `this.attacks.${objectId(x)}`)
+        if (unit.attacks) {
+            result += `           attacks: [${unit.attacks
+                .map(x => `this.attacks.${x.id}`)
                 .join(", ")}],
 `;
         }
         if (unit.maxCount) {
             result += `           maxCount: ${unit.maxCount},\n`;
         }
-        if (unit.battlefieldRoles) {
-            for (const role of unit.battlefieldRoles) {
-                if (role === "Other") continue;
-                result += `           is${role}: (ws: WarscrollInterface) => true,
-`;
-            }
+        if (unit.role) {
+            result += `           role: Role.${toPascalCase(unit.role)},\n`;
         }
-        if (unit.overriddenRoles) {
-            for (const role of unit.overriddenRoles) {
-                if (unit.battlefieldRoles.some((x) => x === role)) continue;
-                const conditions: string[] = [];
-                if (
-                    unit.overrideAllegiances &&
-                    unit.overrideAllegiances.length > 0
-                ) {
-                    conditions.push(
-                        unit.overrideAllegiances
-                            .map(
-                                (x) =>
-                                    `ws.allegiance.id === ${escapeQuotedString(
-                                        toAllegianceId(x)
-                                    )}`
-                            )
-                            .join(" || ")
-                    );
-                }
-                if (
-                    unit.overrideGeneralKeywords &&
-                    unit.overrideGeneralKeywords.length
-                ) {
-                    conditions.push(
-                        `ws.general && hasKeywords(ws.general.definition, ${compoundKeywordsToString(
-                            unit.overrideGeneralKeywords
-                        )})`
-                    );
-                }
+        //         if (unit.overriddenRoles) {
+        //             for (const role of unit.overriddenRoles) {
+        //                 if (unit.battlefieldRoles.some((x) => x === role)) continue;
+        //                 const conditions: string[] = [];
+        //                 if (
+        //                     unit.overrideAllegiances &&
+        //                     unit.overrideAllegiances.length > 0
+        //                 ) {
+        //                     conditions.push(
+        //                         unit.overrideAllegiances
+        //                             .map(
+        //                                 (x) =>
+        //                                     `ws.allegiance.id === ${escapeQuotedString(
+        //                                         toAllegianceId(x)
+        //                                     )}`
+        //                             )
+        //                             .join(" || ")
+        //                     );
+        //                 }
+        //                 if (
+        //                     unit.overrideGeneralKeywords &&
+        //                     unit.overrideGeneralKeywords.length
+        //                 ) {
+        //                     conditions.push(
+        //                         `ws.general && hasKeywords(ws.general.definition, ${compoundKeywordsToString(
+        //                             unit.overrideGeneralKeywords
+        //                         )})`
+        //                     );
+        //                 }
 
-                if (
-                    unit.overrideCountDependantKeywords &&
-                    unit.overrideCountDependantKeywords.length
-                ) {
-                    conditions.push(
-                        `hasKeywordInArmy(ws, ${compoundKeywordsToString(
-                            unit.overrideCountDependantKeywords
-                        )})`
-                    );
-                }
+        //                 if (
+        //                     unit.overrideCountDependantKeywords &&
+        //                     unit.overrideCountDependantKeywords.length
+        //                 ) {
+        //                     conditions.push(
+        //                         `hasKeywordInArmy(ws, ${compoundKeywordsToString(
+        //                             unit.overrideCountDependantKeywords
+        //                         )})`
+        //                     );
+        //                 }
 
-                result += `           is${role}: (ws: WarscrollInterface) => ${conditions.join(
-                    " && "
-                )},
-`;
-            }
-        }
+        //                 result += `           is${role}: (ws: WarscrollInterface) => ${conditions.join(
+        //                     " && "
+        //                 )},
+        // `;
+        //             }
+        //         }
 
-        if (unit.magicBlurb) {
+        if (unit.magicDescription) {
             result += `           magicDescription: ${escapeQuotedString(
-                unit.magicBlurb
+                unit.magicDescription
             )},
 `;
         }
 
-        if (unit.damageTable.length > 0) {
-            result += `           damageTable: this.damageTables.${id},
+        if (unit.damageTable) {
+            result += `           damageTable: this.damageTables.${unit.damageTable.id},
 `;
         }
 
@@ -1016,160 +308,18 @@ ${
     return result;
 }
 
-interface AbilityGroup {
-    groupTitle: string;
-    id: string;
-    keywords: def.CompoundKeyword[];
-}
-
-type AbilityCategories =
-    | "Spell"
-    | "CommandTrait"
-    | "Mount"
-    | "Prayer"
-    | "Artefact"
-    | "Command";
-
-function getArtefactGroup<T extends AbilityGroup>(
-    groups: T[],
-    traits: (t: T) => string[],
-    category: AbilityCategories,
-    allegianceKeyword?: string,
-    realm?: string
-) {
-    let result = "";
-    for (const artefactGroup of groups) {
-        const groupTitle = artefactGroup.groupTitle.toLowerCase();
-        let i = 0;
-        for (const trait of traits(artefactGroup)) {
-            const id = itemId(artefactGroup, i++);
-            result += `               ${id}: {
-                id: "${id}",
-                ${
-                    allegianceKeyword
-                        ? `allegianceKeyword: ${escapeQuotedString(
-                              allegianceKeyword
-                          )},
-`
-                        : ""
-                }${
-                realm
-                    ? `realmId: ${escapeQuotedString(realm)},
-`
-                    : ""
-            }                category: "${groupTitle}",
-                keywords: ${compoundKeywordsToString(artefactGroup.keywords)}, 
-                ability: { id: "${id}", name: "${trait}", description: "", category: AbilityCategory.${category} },
-               },
-`;
-        }
-    }
-    return result;
-}
-
-function getExtraAbilitiesWithDivision(
-    allegiance: def.RealmAllegiance,
-    division: def.Division,
-    ability: string,
-    category: AbilityCategories,
-    keywords: string | null
-) {
-    const id = propertyId(
-        division,
-        category === "Artefact" ? "requiredArtefact" : "requiredCommandTrait"
-    );
-    const allegianceKeyword = allegiance.keywords[0];
-    const result = `
-    ${id}: {
-        id: "${id}",
-        ability: { id: "${id}", name: "${ability}", category: AbilityCategory.${category} },
-        allegianceKeyword: ${escapeQuotedString(
-            allegianceKeyword.toUpperCase()
-        )},
-        category: "${category}",
-        requiredByArmyOption: true,
-${
-    keywords
-        ? `keywords: [[${escapeQuotedString(keywords)}]],
-`
-        : ""
-}        armyOptionKeyword: ${escapeQuotedString(division.name.toUpperCase())}
-        },
-`;
-    return result;
-}
-
-function getExtraAbilities(db: realm) {
+function writeExtraAbilities(db: DataStore) {
     let result = `   extraAbilities = {
         `;
 
-    for (const allegiance of db.objects<def.RealmAllegiance>(
-        modelNames.RealmAllegiance
-    )) {
-        const allegianceKeyword = allegiance.keywords[0].toUpperCase();
-        result += getArtefactGroup(
-            allegiance.commandTraitGroups,
-            (x) => x.commandTraits,
-            "CommandTrait",
-            allegianceKeyword
-        );
-        result += getArtefactGroup(
-            allegiance.artefactGroups,
-            (x) => x.artefacts,
-            "Artefact",
-            allegianceKeyword
-        );
-
-        for (const division of allegiance.divisions) {
-            if (division.requiredCommandTrait)
-                result += getExtraAbilitiesWithDivision(
-                    allegiance,
-                    division,
-                    division.requiredCommandTrait,
-                    "CommandTrait",
-                    division.requiredCommandTraitKeyword
-                );
-            if (division.requiredArtefact)
-                result += getExtraAbilitiesWithDivision(
-                    allegiance,
-                    division,
-                    division.requiredArtefact,
-                    "Artefact",
-                    division.requiredArtefactKeyword
-                );
-        }
-
-        result += getArtefactGroup(
-            allegiance.mountTraitGroups,
-            (x) => x.traits,
-            "Mount",
-            allegianceKeyword
-        );
-        result += getArtefactGroup(
-            allegiance.prayerGroups,
-            (x) => x.traits,
-            "Prayer",
-            allegianceKeyword
-        );
-        result += getArtefactGroup(
-            allegiance.spellGroups,
-            (x) => x.traits,
-            "Spell",
-            allegianceKeyword
-        );
+    for (const extraAbility of Object.values(db.extraAbilities)) {
+        result += `
+        ${extraAbility.id}: {
+            id: "${extraAbility.id}",
+            ability: ${ability(extraAbility.ability)},
+        },
+`;
     }
-
-    // for (const realmOfBattle of db.objects<def.RealmOfBattle>(
-    //     modelNames.RealmOfBattle
-    // )) {
-    //     result += getArtefactGroup(
-    //         realmOfBattle.artefactGroups,
-    //         (x) => x.artefacts,
-    //         "Artefact",
-    //         undefined,
-    //         objectId(realmOfBattle)
-    //     );
-    // }
 
     result += `
     };
@@ -1177,49 +327,47 @@ function getExtraAbilities(db: realm) {
     return result;
 }
 
-function getBattalions(db: realm) {
+function writeBattalions(db: DataStore) {
     let result = `   battalions = {
 `;
-    for (const battalion of db.objects<def.BattalionWarscroll>(
-        modelNames.BattalionWarscroll
-    )) {
-        const id = objectId(battalion);
+    for (const battalion of Object.values(db.battalions)) {
+        const id = battalion.id;
         result += `       ${id}: {
             id: "${id}",
             name: ${escapeQuotedString(battalion.name)},
-            allegiances: [${battalion.allegiance
-                .map((x) => allegianceIdByKeyword.get(x.toUpperCase()))
-                .filter((x) => x !== undefined)
-                .map((x) => `this.allegiances.${x}`)}],
-            description: ${escapeQuotedString(battalion.about)},
-            pictureUrl: ${escapeQuotedString(battalion.imageUrl)},
+            allegiances: [${battalion.allegiances.map(
+                x => `this.allegiances.${x}`
+            )}],
+            description: ${escapeQuotedString(battalion.description)},
+            pictureUrl: ${escapeQuotedString(battalion.pictureUrl)},
             points: ${battalion.points},
-            units: [${battalion.organisation
-                .map(
-                    (x) =>
-                        `{ id: "${objectId(x)}", countMin: ${
-                            x.min
-                        }, countMax: ${x.max}, required: ${
-                            x.required
-                        }, units: [${x.compoundKeywords
-                            .map(
-                                (y) =>
-                                    `[${y.keywords
-                                        .map((z) => `"${z}"`)
-                                        .join(", ")}]`
-                            )
-                            .join(", ")}] }`
-                )
-                .join(", ")}],
-            abilities: [${battalion.abilities
-                .map((x) => `this.abilities.${objectId(x)}`)
-                .join(", ")}],
 `;
-        if (battalion.organisationFootnote) {
-            result += `           organisationFootnote: ${escapeQuotedString(
-                battalion.organisationFootnote
-            )},`;
-        }
+        // units: [${battalion.units
+        //     .map(
+        //         (x) =>
+        //             `{ id: "${objectId(x)}", countMin: ${
+        //                 x.min
+        //             }, countMax: ${x.max}, required: ${
+        //                 x.required
+        //             }, units: [${x.compoundKeywords
+        //                 .map(
+        //                     (y) =>
+        //                         `[${y.keywords
+        //                             .map((z) => `"${z}"`)
+        //                             .join(", ")}]`
+        //                 )
+        //                 .join(", ")}] }`
+        //     )
+        //     .join(", ")}],
+        // abilities: [${battalion.abilities
+        //     .map((x) => `this.abilities.${objectId(x)}`)
+        //     .join(", ")}],
+        // `;
+        // if (battalion.organisationFootnote) {
+        //     result += `           organisationFootnote: ${escapeQuotedString(
+        //         battalion.organisationFootnote
+        //     )},`;
+        // }
         result += `
         },
 `;
@@ -1229,125 +377,136 @@ function getBattalions(db: realm) {
     return result;
 }
 
-function getEndlessSpells(db: realm) {
-    let result = `   sceneries = {
-    `;
-    for (const endlessSpell of db.objects<def.EndlessSpell>(
-        modelNames.EndlessSpell
-    )) {
-        const id = objectId(endlessSpell);
-        result += `${tab}${tab}${id}: {
-            id: "${id}",
-            name: ${escapeQuotedString(endlessSpell.name)},
-            points: ${endlessSpell.points},
-            description: ${escapeQuotedString(endlessSpell.blurb)},
-            flavor: ${escapeQuotedString(endlessSpell.about)},
-            keywords: [${endlessSpell.keywords
-                .map((x) => `"${x}"`)
-                .join(", ")}],
-            pictureUrl: ${escapeQuotedString(endlessSpell.imageUrl)},
-`;
-        if (
-            endlessSpell.abilities.length > 0 ||
-            endlessSpell.specialRules.length > 0 ||
-            endlessSpell.magicAbilities.length > 0
-        ) {
-            const abilityIds = endlessSpell.abilities
-                .map((x) => objectId(x))
-                .concat(endlessSpell.specialRules.map((x) => objectId(x)))
-                .concat(endlessSpell.magicAbilities.map((x) => objectId(x)));
-            result += `           abilities: [${abilityIds
-                .map((x) => `this.abilities.${x}`)
-                .join(", ")}],
-`;
-        }
-        if (endlessSpell.commandAbilities.length > 0) {
-            const abilityIds = endlessSpell.commandAbilities.map((x) =>
-                objectId(x)
-            );
-            result += `           commandAbilities: [${abilityIds
-                .map((x) => `this.abilities.${x}`)
-                .join(", ")}],
-`;
-        }
-        result += `
-    },`;
-    }
-    result += `${tab}}
-`;
-    return result;
-}
+// function writeEndlessSpells(db: realm) {
+//     let result = `   sceneries = {
+//     `;
+//     for (const endlessSpell of db.objects<def.EndlessSpell>(
+//         modelNames.EndlessSpell
+//     )) {
+//         const id = objectId(endlessSpell);
+//         result += `${tab}${tab}${id}: {
+//             id: "${id}",
+//             name: ${escapeQuotedString(endlessSpell.name)},
+//             points: ${endlessSpell.points},
+//             description: ${escapeQuotedString(endlessSpell.blurb)},
+//             flavor: ${escapeQuotedString(endlessSpell.about)},
+//             keywords: [${endlessSpell.keywords
+//                 .map((x) => `"${x}"`)
+//                 .join(", ")}],
+//             pictureUrl: ${escapeQuotedString(endlessSpell.imageUrl)},
+// `;
+//         if (
+//             endlessSpell.abilities.length > 0 ||
+//             endlessSpell.specialRules.length > 0 ||
+//             endlessSpell.magicAbilities.length > 0
+//         ) {
+//             const abilityIds = endlessSpell.abilities
+//                 .map((x) => objectId(x))
+//                 .concat(endlessSpell.specialRules.map((x) => objectId(x)))
+//                 .concat(endlessSpell.magicAbilities.map((x) => objectId(x)));
+//             result += `           abilities: [${abilityIds
+//                 .map((x) => `this.abilities.${x}`)
+//                 .join(", ")}],
+// `;
+//         }
+//         if (endlessSpell.commandAbilities.length > 0) {
+//             const abilityIds = endlessSpell.commandAbilities.map((x) =>
+//                 objectId(x)
+//             );
+//             result += `           commandAbilities: [${abilityIds
+//                 .map((x) => `this.abilities.${x}`)
+//                 .join(", ")}],
+// `;
+//         }
+//         result += `
+//     },`;
+//     }
+//     result += `${tab}}
+// `;
+//     return result;
+// }
 
-function getArmyOptions(db: realm) {
+function writeArmyOptions(db: DataStore) {
     let result = `   armyOptions = {
     `;
-    for (const allegiance of db.objects<def.RealmAllegiance>(
-        modelNames.RealmAllegiance
-    )) {
-        if (allegiance.divisionName && allegiance.divisions.length > 0) {
-            for (const division of allegiance.divisions) {
-                const id = objectId(division);
-                result += `${tab}${tab}${id}: {
+    for (const division of Object.values(db.armyOptions)) {
+        const id = division.id;
+        result += `${tab}${tab}${id}: {
             id: "${id}",
             name: ${escapeQuotedString(division.name)},
             keyword: ${escapeQuotedString(division.name.toUpperCase())},
             requiredArtifactKeyword: ${escapeQuotedString(
-                division.requiredArtefactKeyword
+                division.requiredArtifactKeyword
             )},
             requiredCommandTraitKeyword: ${escapeQuotedString(
                 division.requiredCommandTraitKeyword
             )},
 `;
-                if (division.requiredArtefact) {
-                    result += `${tab}${tab}requiredArtifact: this.extraAbilities.${propertyId(
-                        division,
-                        "requiredArtefact"
-                    )},
+        if (division.requiredArtifact) {
+            result += `${tab}${tab}requiredArtifact: this.extraAbilities.${division.requiredArtifact.id},
 `;
-                }
-                if (division.requiredCommandTrait) {
-                    result += `${tab}${tab}requiredCommandTrait: this.extraAbilities.${propertyId(
-                        division,
-                        "requiredCommandTrait"
-                    )},
+        }
+        if (division.requiredCommandTrait) {
+            result += `${tab}${tab}requiredCommandTrait: this.extraAbilities.${division.requiredCommandTrait.id},
                 `;
-                }
+        }
 
-                result += `
+        result += `
         },                   
 `;
-            }
-        }
     }
-    result += `   };
-`;
+    result += "};\n";
     return result;
 }
 
-function ability(ability?: def.Ability | null) {
+function ability(ability?: Ability) {
     if (!ability) return "undefined";
-    return `this.abilities.${objectId(ability)}`;
+    return `this.abilities.${ability.id}`;
 }
 
-function abilities(abilities: def.Ability[]) {
+function abilities(abilities: Ability[]) {
     return `[${abilities.map(ability).join(", ")}]`;
 }
 
-function getRealms(db: realm) {
+function writeRealms(db: DataStore) {
     let result = `${tab}realms = {\n`;
-    for (const realm of db.objects<def.RealmOfBattle>(
-        modelNames.RealmOfBattle
-    )) {
-        const id = objectId(realm);
-        result += `${tab}${tab}${id}: {
-            id: "${id}",
+    for (const realm of Object.values(db.realms)) {
+        result += `${tab}${tab}${realm.id}: {
+            id: "${realm.id}",
             name: ${escapeQuotedString(realm.name)},
             realmName: ${escapeQuotedString(realm.realmName)},
             magic: ${ability(realm.magic)},
-            commands: ${abilities(realm.commands || [])}
+            commands: ${abilities(realm.commands)}
         },
 `;
     }
     result += `${tab}}`;
+    return result;
+}
+
+function writeConstructor(db: DataStore) {
+    let result = `${tab}constructor() {\n`;
+    for (const faction of Object.values(db.factions)) {
+        if (faction.parent) {
+            result += `${tab}this.factions.${faction.id}.parent = this.factions.${faction.parent.id};
+${tab}this.factions.${faction.parent.id}.children.push(this.factions.${faction.id});
+`;
+        }
+        if (faction.battleTraits) {
+            result += `${tab}this.factions.${
+                faction.id
+            }.battleTraits = [${faction.battleTraits
+                .map(x => `this.abilities.${x.id}`)
+                .join(", ")}];\n`;
+        }
+        if (faction.abilities) {
+            result += `${tab}this.factions.${
+                faction.id
+            }.abilities = [${faction.abilities
+                .map(x => `this.abilities.${x.id}`)
+                .join(", ")}];\n`;
+        }
+    }
+    result += `}\n`;
     return result;
 }

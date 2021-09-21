@@ -17,7 +17,7 @@ function UnitView({
     return (
         <li>
             {includeCount && <>{unit.modelCount} × </>}{" "}
-            {unit.definition.model.name} ({unit.points})
+            {unit.definition.name} ({unit.points})
             {unit.isGeneral && (
                 <>
                     <br />- <em>General</em>
@@ -37,7 +37,7 @@ function WarscrollView() {
     const warscroll = warscrollStore.warscroll;
     return (
         <div>
-            <div>Allegiance: {warscroll.allegiance.name}</div>
+            <div>Allegiance: {warscroll.allegiance?.name}</div>
             <h3>Leaders</h3>
             <ul>
                 {warscroll.units

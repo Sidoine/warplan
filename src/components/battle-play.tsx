@@ -168,7 +168,7 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
                 <UnitWarscroll noFlavor wu={wu} />
             </Modal>
             <CardHeader
-                title={unit.model.name}
+                title={unit.name}
                 action={
                     <>
                         <IconButton onClick={handleShowKeywords}>

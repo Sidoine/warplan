@@ -71,7 +71,7 @@ export function UnitWarscroll({
     }
     const normalAbilities = abilities.filter((x) => x.category === undefined);
     const specialRules = abilities.filter(
-        (x) => x.category === AbilityCategory.SpecialRule
+        (x) => x.category === AbilityCategory.SpecialRule || x.category === AbilityCategory.Champion
     );
     const magicAbilites = abilities.filter(
         (x) => x.category === AbilityCategory.Spell

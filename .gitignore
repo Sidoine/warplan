@@ -13,3 +13,4 @@ en.realm*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+/dump.json
