@@ -1,6 +1,6 @@
 module.exports = {
     mode: "development",
-    entry: "./src/index.tsx",
+    entry: "./packages/web/index.tsx",
     output: {
         filename: "bundle.js",
         path: __dirname + "/wwwroot"
@@ -17,7 +17,11 @@ module.exports = {
     module: {
         rules: [
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: require.resolve("ts-loader") },
+            {
+                test: /\.tsx?$/,
+                loader: require.resolve("ts-loader"),
+                options: { projectReferences: true }
+            },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             {

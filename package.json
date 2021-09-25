@@ -46,7 +46,7 @@
         "build": "webpack",
         "watch": "webpack -w",
         "debug": "webpack-dev-server --static wwwroot/",
-        "tools": "tsc -p tsconfig.tools.json",
+        "tools": "tsc -b packages/tools",
         "database": "node dist/tools/database.js",
         "test": "jest",
         "start": "yarn node index.js",

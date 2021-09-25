@@ -5,7 +5,6 @@ dist
 /wwwroot/files
 *.orig
 /yarn-error.log
-en.realm*
 /.vscode/settings.json
 .yarn/*
 !.yarn/releases
@@ -13,4 +12,4 @@ en.realm*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
-/dump.json
+/assets
