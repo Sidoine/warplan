@@ -235,10 +235,27 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         if (!group.allowUniqueUnits && this.definition.unique) {
             return false;
         }
+        if (
+            group.keywords &&
+            !group.keywords.some(x => this.keywords.includes(x))
+        ) {
+            return false;
+        }
         return canAddAbilityCategory(this, this.warscroll, group.category);
     }
 
     private isAvailableExtraAbility(extraAbility: Ability) {
+        if (extraAbility.restrictions) {
+            if (extraAbility.restrictions.keywords) {
+                if (
+                    extraAbility.restrictions.keywords.every(
+                        x => !this.keywords.includes(x)
+                    )
+                ) {
+                    return false;
+                }
+            }
+        }
         return (
             this.extraAbilities.every(
                 x => x.category !== extraAbility.category

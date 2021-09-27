@@ -154,7 +154,10 @@ export function getAbilityEffects(name: string, blurb: string) {
 }
 
 type DataStoreProperty = keyof DataStore;
-const idMaps = new Map<DataStoreProperty, Map<string, string>>();
+const idMaps = new Map<
+    DataStoreProperty,
+    { idToName: Map<string, string>; nameToId: Map<string, string> }
+>();
 
 function toCamelCase(name: string) {
     return name
@@ -168,23 +171,30 @@ function toCamelCase(name: string) {
 function getId(id: string, name: string, property: DataStoreProperty) {
     let idMap = idMaps.get(property);
     if (idMap === undefined) {
-        idMap = new Map<string, string>();
+        idMap = {
+            idToName: new Map<string, string>(),
+            nameToId: new Map<string, string>()
+        };
         idMaps.set(property, idMap);
     }
-    let newId = idMap.get(id);
-    if (newId) return newId;
+    let nameId = idMap.idToName.get(id);
+    if (nameId) return nameId;
 
-    newId = toCamelCase(name);
-    if (idMap.has(newId)) {
+    nameId = toCamelCase(name);
+    if (idMap.nameToId.has(nameId)) {
         let i = 1;
         let composed;
         do {
-            composed = `${newId}_${i++}`;
-        } while (idMap.has(composed));
-        newId = composed;
+            composed = `${nameId}_${i++}`;
+        } while (idMap.nameToId.has(composed));
+        nameId = composed;
     }
-    idMap.set(id, newId);
-    return newId;
+    idMap.idToName.set(id, nameId);
+    idMap.nameToId.set(nameId, id);
+    if (name === "Daemonic Weapons") {
+        console.log(`${id} ${nameId} ${property}`);
+    }
+    return nameId;
 }
 
 function getItem<T extends keyof DataStore>(
@@ -192,7 +202,7 @@ function getItem<T extends keyof DataStore>(
     property: T,
     id: string
 ): DataStore[T][string] {
-    const newId = idMaps.get(property)?.get(id);
+    const newId = idMaps.get(property)?.idToName.get(id);
     if (newId) {
         return dataStore[property][newId] as DataStore[T][string];
     }
@@ -213,12 +223,14 @@ type Abilities = KeysOfType<
 function importExtraAbilities<
     T extends Abilities,
     G extends AbilityGroups,
+    K extends KeysOfType<Dump, { keywordId: string }[]>,
     U extends KeysOfType<ArrayElement<Dump[T]>, string>
 >(
     db: Dump,
     dataStore: DataStore,
     groups: G,
     abilities: T,
+    keywords: K | undefined,
     category: AbilityCategory,
     groupId: U
 ) {
@@ -229,7 +241,8 @@ function importExtraAbilities<
             category,
             id: groupId,
             name: group.name,
-            allowUniqueUnits: group.allowUniqueUnits
+            allowUniqueUnits: group.allowUniqueUnits,
+            restrictions: group.restrictions
         };
         dataStore.abilityGroups[groupId] = entity;
         if (group.factionId) {
@@ -256,6 +269,44 @@ function importExtraAbilities<
         };
         dataStore.abilities[abilityId] = entity;
         group.abilities.push(entity);
+    }
+
+    if (keywords) {
+        for (const groupKeyword of db[keywords]) {
+            const group = getItem(
+                dataStore,
+                "abilityGroups",
+                groupKeyword[groupId as keyof typeof groupKeyword]
+            );
+            const keyword = db.keyword.find(
+                k => k.id === groupKeyword.keywordId
+            );
+            if (keyword) {
+                if (!group.keywords) group.keywords = [];
+                group.keywords.push(keyword.name.toUpperCase());
+            }
+        }
+    }
+}
+
+function importAbilityKeywords<
+    T extends Abilities,
+    K extends KeysOfType<Dump, { keywordId: string }[]>,
+    U extends KeysOfType<ArrayElement<Dump[K]>, string>
+>(db: Dump, dataStore: DataStore, abilities: T, keywords: K, groupId: U) {
+    for (const abilityKeyword of db[keywords]) {
+        const ability = getItem(
+            dataStore,
+            "abilities",
+            abilityKeyword[groupId as keyof typeof abilityKeyword]
+        );
+        const keyword = db.keyword.find(k => k.id === abilityKeyword.keywordId);
+        if (keyword) {
+            if (!ability.restrictions) ability.restrictions = {};
+            if (!ability.restrictions.keywords)
+                ability.restrictions.keywords = [];
+            ability.restrictions.keywords.push(keyword.name.toUpperCase());
+        }
     }
 }
 
@@ -485,6 +536,7 @@ export function importData(db: Dump): DataStore {
         dataStore,
         "artefact_of_power_group",
         "artefact_of_power",
+        "artefact_of_power_group_keywords_keyword",
         AbilityCategory.Artefact,
         "artefactOfPowerGroupId"
     );
@@ -494,6 +546,7 @@ export function importData(db: Dump): DataStore {
         dataStore,
         "battle_trait_group",
         "battle_trait",
+        undefined,
         AbilityCategory.BattleTrait,
         "battleTraitGroupId"
     );
@@ -503,8 +556,17 @@ export function importData(db: Dump): DataStore {
         dataStore,
         "mount_trait_group",
         "mount_trait",
+        "mount_trait_group_keywords_keyword",
         AbilityCategory.Mount,
         "mountTraitGroupId"
+    );
+
+    importAbilityKeywords(
+        db,
+        dataStore,
+        "mount_trait",
+        "mount_trait_keywords_keyword",
+        "mountTraitId"
     );
 
     importExtraAbilities(
@@ -512,6 +574,7 @@ export function importData(db: Dump): DataStore {
         dataStore,
         "prayer_group",
         "prayer",
+        undefined,
         AbilityCategory.Prayer,
         "prayerGroupId"
     );
@@ -521,6 +584,7 @@ export function importData(db: Dump): DataStore {
         dataStore,
         "spell_lore_group",
         "spell_lore",
+        "spell_lore_group_required_keywords_keyword",
         AbilityCategory.Spell,
         "spellLoreGroupId"
     );
@@ -530,6 +594,7 @@ export function importData(db: Dump): DataStore {
         dataStore,
         "triumph_group",
         "triumph",
+        undefined,
         AbilityCategory.Triumph,
         "triumphGroupId"
     );

@@ -114,7 +114,14 @@ function writeAbilities(db: DataStore) {
             category: ${JSON.stringify(ability.category)},
             effects: ${JSON.stringify(ability.effects)},
             flavor: ${JSON.stringify(ability.flavor)},
-        },
+`;
+        if (ability.restrictions) {
+            result += `            restrictions: ${JSON.stringify(
+                ability.restrictions
+            )},
+`;
+        }
+        result += `        },
 `;
     }
 
@@ -247,53 +254,6 @@ ${
         if (unit.role) {
             result += `           role: Role.${toPascalCase(unit.role)},\n`;
         }
-        //         if (unit.overriddenRoles) {
-        //             for (const role of unit.overriddenRoles) {
-        //                 if (unit.battlefieldRoles.some((x) => x === role)) continue;
-        //                 const conditions: string[] = [];
-        //                 if (
-        //                     unit.overrideAllegiances &&
-        //                     unit.overrideAllegiances.length > 0
-        //                 ) {
-        //                     conditions.push(
-        //                         unit.overrideAllegiances
-        //                             .map(
-        //                                 (x) =>
-        //                                     `ws.allegiance.id === ${escapeQuotedString(
-        //                                         toAllegianceId(x)
-        //                                     )}`
-        //                             )
-        //                             .join(" || ")
-        //                     );
-        //                 }
-        //                 if (
-        //                     unit.overrideGeneralKeywords &&
-        //                     unit.overrideGeneralKeywords.length
-        //                 ) {
-        //                     conditions.push(
-        //                         `ws.general && hasKeywords(ws.general.definition, ${compoundKeywordsToString(
-        //                             unit.overrideGeneralKeywords
-        //                         )})`
-        //                     );
-        //                 }
-
-        //                 if (
-        //                     unit.overrideCountDependantKeywords &&
-        //                     unit.overrideCountDependantKeywords.length
-        //                 ) {
-        //                     conditions.push(
-        //                         `hasKeywordInArmy(ws, ${compoundKeywordsToString(
-        //                             unit.overrideCountDependantKeywords
-        //                         )})`
-        //                     );
-        //                 }
-
-        //                 result += `           is${role}: (ws: WarscrollInterface) => ${conditions.join(
-        //                     " && "
-        //                 )},
-        // `;
-        //             }
-        //         }
 
         if (unit.magicDescription) {
             result += `           magicDescription: ${escapeQuotedString(
@@ -329,32 +289,7 @@ function writeBattalions(db: DataStore) {
             pictureUrl: ${escapeQuotedString(battalion.pictureUrl)},
             points: ${battalion.points},
 `;
-        // units: [${battalion.units
-        //     .map(
-        //         (x) =>
-        //             `{ id: "${objectId(x)}", countMin: ${
-        //                 x.min
-        //             }, countMax: ${x.max}, required: ${
-        //                 x.required
-        //             }, units: [${x.compoundKeywords
-        //                 .map(
-        //                     (y) =>
-        //                         `[${y.keywords
-        //                             .map((z) => `"${z}"`)
-        //                             .join(", ")}]`
-        //                 )
-        //                 .join(", ")}] }`
-        //     )
-        //     .join(", ")}],
-        // abilities: [${battalion.abilities
-        //     .map((x) => `this.abilities.${objectId(x)}`)
-        //     .join(", ")}],
-        // `;
-        // if (battalion.organisationFootnote) {
-        //     result += `           organisationFootnote: ${escapeQuotedString(
-        //         battalion.organisationFootnote
-        //     )},`;
-        // }
+
         result += `
         },
 `;
@@ -363,55 +298,6 @@ function writeBattalions(db: DataStore) {
 `;
     return result;
 }
-
-// function writeEndlessSpells(db: realm) {
-//     let result = `   sceneries = {
-//     `;
-//     for (const endlessSpell of db.objects<def.EndlessSpell>(
-//         modelNames.EndlessSpell
-//     )) {
-//         const id = objectId(endlessSpell);
-//         result += `${tab}${tab}${id}: {
-//             id: "${id}",
-//             name: ${escapeQuotedString(endlessSpell.name)},
-//             points: ${endlessSpell.points},
-//             description: ${escapeQuotedString(endlessSpell.blurb)},
-//             flavor: ${escapeQuotedString(endlessSpell.about)},
-//             keywords: [${endlessSpell.keywords
-//                 .map((x) => `"${x}"`)
-//                 .join(", ")}],
-//             pictureUrl: ${escapeQuotedString(endlessSpell.imageUrl)},
-// `;
-//         if (
-//             endlessSpell.abilities.length > 0 ||
-//             endlessSpell.specialRules.length > 0 ||
-//             endlessSpell.magicAbilities.length > 0
-//         ) {
-//             const abilityIds = endlessSpell.abilities
-//                 .map((x) => objectId(x))
-//                 .concat(endlessSpell.specialRules.map((x) => objectId(x)))
-//                 .concat(endlessSpell.magicAbilities.map((x) => objectId(x)));
-//             result += `           abilities: [${abilityIds
-//                 .map((x) => `this.abilities.${x}`)
-//                 .join(", ")}],
-// `;
-//         }
-//         if (endlessSpell.commandAbilities.length > 0) {
-//             const abilityIds = endlessSpell.commandAbilities.map((x) =>
-//                 objectId(x)
-//             );
-//             result += `           commandAbilities: [${abilityIds
-//                 .map((x) => `this.abilities.${x}`)
-//                 .join(", ")}],
-// `;
-//         }
-//         result += `
-//     },`;
-//     }
-//     result += `${tab}}
-// `;
-//     return result;
-// }
 
 function ability(ability?: Ability) {
     if (!ability) return "undefined";
@@ -447,8 +333,20 @@ function writeAbilityGroups(db: DataStore) {
             abilities: ${abilities(group.abilities)},
             category: ${JSON.stringify(group.category)},
 `;
+        if (group.restrictions) {
+            result += `            restrictions: ${JSON.stringify(
+                group.restrictions
+            )},
+`;
+        }
         if (group.allowUniqueUnits) {
-            result += `${tab}${tab}allowUniqueUnits: true,
+            result += `${tab}${tab}${tab}allowUniqueUnits: true,
+`;
+        }
+        if (group.keywords) {
+            result += `${tab}${tab}${tab}keywords: ${JSON.stringify(
+                group.keywords
+            )},
 `;
         }
         result += `        },

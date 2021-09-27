@@ -237,6 +237,9 @@ export interface Ability {
     spellCastingValue?: Value;
     effects?: AbilityEffect[];
     randomEffectDices?: string;
+    restrictions?: {
+        keywords?: string[];
+    };
 }
 
 export interface Attack {
@@ -585,6 +588,8 @@ export interface AbilityGroup {
     name: string;
     category: AbilityCategory;
     allowUniqueUnits?: boolean;
+    keywords?: string[];
+    restrictions?: string;
 }
 
 export interface RealmOfBattle {
