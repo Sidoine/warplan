@@ -9,23 +9,23 @@ export interface WarscrollViewProps {
 
 function UnitView({
     unit,
-    includeCount,
+    includeCount
 }: {
     unit: WarscrollUnit;
     includeCount: boolean;
 }) {
     return (
         <li>
-            {includeCount && <>{unit.modelCount} × </>}{" "}
-            {unit.definition.name} ({unit.points})
+            {includeCount && <>{unit.modelCount} × </>} {unit.definition.name} (
+            {unit.points})
             {unit.isGeneral && (
                 <>
                     <br />- <em>General</em>
                 </>
             )}
-            {unit.extraAbilities.map((x) => (
+            {unit.extraAbilities.map(x => (
                 <React.Fragment key={x.id}>
-                    <br />- <em>{x.ability.name}</em>
+                    <br />- <em>{x.name}</em>
                 </React.Fragment>
             ))}
         </li>
@@ -41,16 +41,16 @@ function WarscrollView() {
             <h3>Leaders</h3>
             <ul>
                 {warscroll.units
-                    .filter((x) => x.isLeader)
-                    .map((x) => (
+                    .filter(x => x.isLeader)
+                    .map(x => (
                         <UnitView key={x.id} unit={x} includeCount={false} />
                     ))}
             </ul>
             <h3>Battleline</h3>
             <ul>
                 {warscroll.units
-                    .filter((x) => x.isBattleline)
-                    .map((x) => (
+                    .filter(x => x.isBattleline)
+                    .map(x => (
                         <UnitView key={x.id} includeCount unit={x} />
                     ))}
             </ul>
@@ -59,8 +59,8 @@ function WarscrollView() {
                     <h3>Artillery</h3>
                     <ul>
                         {warscroll.units
-                            .filter((x) => x.isArtillery)
-                            .map((x) => (
+                            .filter(x => x.isArtillery)
+                            .map(x => (
                                 <UnitView key={x.id} includeCount unit={x} />
                             ))}
                     </ul>
@@ -71,8 +71,8 @@ function WarscrollView() {
                     <h3>Behemots</h3>
                     <ul>
                         {warscroll.units
-                            .filter((x) => x.isBehemot)
-                            .map((x) => (
+                            .filter(x => x.isBehemot)
+                            .map(x => (
                                 <UnitView
                                     key={x.id}
                                     unit={x}
@@ -86,13 +86,13 @@ function WarscrollView() {
             <ul>
                 {warscroll.units
                     .filter(
-                        (x) =>
+                        x =>
                             !x.isLeader &&
                             !x.isBattleline &&
                             !x.isBehemot &&
                             !x.isArtillery
                     )
-                    .map((x) => (
+                    .map(x => (
                         <UnitView key={x.id} includeCount unit={x} />
                     ))}
             </ul>

@@ -2,7 +2,6 @@ import {
     Attack,
     Ability,
     Unit,
-    ExtraAbilityTest,
     Model,
     Material,
     WarscrollModelInterface,
@@ -179,26 +178,27 @@ export function setBaseModelOption(
     return option || {};
 }
 
-export const artifactAvailable: ExtraAbilityTest = (unit, ws) =>
-    unit.isLeader &&
-    unit.extraAbilities.every(x => x.category !== "artifact") &&
-    ws.extraAbilities.filter(x => x.category === "artifact").length <
-        1 + ws.battalions.length;
+// export const artifactAvailable: ExtraAbilityTest = (unit, ws) =>
+//     unit.isLeader &&
+//     unit.extraAbilities.every(x => x.category !== AbilityCategory.Artefact) &&
+//     ws.selectedExtraAbilities.filter(
+//         x => x.category === AbilityCategory.Artefact
+//     ).length < ws.maxArtifacts;
 
-export function artifactWithKeywordAvailable(
-    keyword: string,
-    alts: string[]
-): ExtraAbilityTest {
-    return (unit, ws) =>
-        artifactAvailable(unit, ws) &&
-        unit.definition.keywords.indexOf(keyword) >= 0 &&
-        alts.some(
-            x =>
-                x === "ALL" ||
-                unit.definition.model.name.toUpperCase() === x ||
-                unit.definition.keywords.indexOf(x) >= 0
-        );
-}
+// export function artifactWithKeywordAvailable(
+//     keyword: string,
+//     alts: string[]
+// ): ExtraAbilityTest {
+//     return (unit, ws) =>
+//         artifactAvailable(unit, ws) &&
+//         unit.definition.keywords.indexOf(keyword) >= 0 &&
+//         alts.some(
+//             x =>
+//                 x === "ALL" ||
+//                 unit.definition.model.name.toUpperCase() === x ||
+//                 unit.definition.keywords.indexOf(x) >= 0
+//         );
+// }
 
 export function hasOption(model: WarscrollModelInterface, option: ModelOption) {
     return !model || model.options.some(x => x.id === option.id);

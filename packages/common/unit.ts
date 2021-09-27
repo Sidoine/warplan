@@ -22,8 +22,7 @@ export interface Faction {
     parent?: Faction;
     children: Faction[];
     icon?: string;
-    abilities?: Ability[];
-    battleTraits?: Ability[];
+    abilityGroups?: AbilityGroup[];
 }
 
 export const enum AbilityCategory {
@@ -40,7 +39,8 @@ export const enum AbilityCategory {
     MeleeAttack,
     RangedAttack,
     BattleTrait,
-    Champion
+    Champion,
+    Triumph
 }
 
 export const enum Phase {
@@ -474,6 +474,8 @@ export interface Unit extends UnitInfos {
     options?: ModelOption[];
     pictureUrl?: string;
     role?: Role;
+    unique?: boolean;
+    single?: boolean;
 
     optionStats?: UnitStatModels[];
 }
@@ -537,7 +539,7 @@ export interface WarscrollUnitInterface {
     definition: Unit;
     isGeneral: boolean;
     isLeader: boolean;
-    extraAbilities: ExtraAbility[];
+    extraAbilities: Ability[];
     models: WarscrollModelInterface[];
     modelCount: number;
     keywords: string[];
@@ -554,7 +556,7 @@ export interface WarscrollModelInterface {
 export interface WarscrollInterface {
     battalions: WarscrollBattalionInterface[];
     general: WarscrollUnitInterface | undefined;
-    extraAbilities: ExtraAbility[];
+    selectedExtraAbilities: Ability[];
     allegiance: Faction | null;
     maxArtifacts: number;
     numberOfArtifacts: number;
@@ -571,26 +573,18 @@ export interface DataStore {
     options: Record<string, ModelOption>;
     attacks: Record<string, Attack>;
     units: Record<string, Unit>;
-    extraAbilities: Record<string, ExtraAbility>;
-    armyOptions: Record<string, ArmyOption>;
     battalions: Record<string, Battalion>;
     sceneries: Record<string, EndlessSpell>;
     realms: Record<string, RealmOfBattle>;
+    abilityGroups: Record<string, AbilityGroup>;
 }
 
-export type ExtraAbilityTest = (
-    unit: WarscrollUnitInterface,
-    warscroll: WarscrollInterface
-) => boolean;
-
-export interface ExtraAbility {
+export interface AbilityGroup {
     id: string;
-    ability: Ability;
-    allegianceKeyword?: string;
-    category: string;
-    armyOptionKeyword?: string;
-    realmId?: string;
-    keywords?: string[][];
+    abilities: Ability[];
+    name: string;
+    category: AbilityCategory;
+    allowUniqueUnits?: boolean;
 }
 
 export interface RealmOfBattle {
@@ -599,21 +593,4 @@ export interface RealmOfBattle {
     realmName: string;
     magic: Ability;
     commands: Ability[];
-}
-
-export interface ArmyOption {
-    id: string;
-    name: string;
-    keyword?: string;
-    requiredArtifact?: ExtraAbility;
-    requiredArtifactKeyword?: string;
-    requiredCommandTrait?: ExtraAbility;
-    requiredCommandTraitKeyword?: string;
-    abilities?: Ability[];
-    commandAbilities?: Ability[];
-}
-
-export interface ArmyOptions {
-    name: string;
-    values: ArmyOption[];
 }

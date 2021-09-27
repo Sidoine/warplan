@@ -24,7 +24,7 @@ export function hasKeyword(unit: Unit, keyword: string) {
     return unit.keywords.indexOf(keyword) >= 0;
 }
 
-export function canUseAbilityCategory(
+export function canAddAbilityCategory(
     unit: WarscrollUnitInterface,
     ws: WarscrollInterface,
     ability: AbilityCategory | undefined
@@ -46,6 +46,9 @@ export function canUseAbilityCategory(
             return hasKeyword(unit.definition, "PRIEST");
         case AbilityCategory.Spell:
             return hasKeyword(unit.definition, "WIZARD");
+        case AbilityCategory.BattleTrait:
+        case AbilityCategory.Triumph:
+            return false;
         default:
             return true;
     }

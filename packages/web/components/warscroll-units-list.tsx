@@ -2,10 +2,10 @@
 import React, { useMemo, useState } from "react";
 import {
     Model,
-    ExtraAbility,
     ModelOption,
     Contingent,
-    contingentName
+    contingentName,
+    Ability
 } from "../../common/unit";
 import { observer } from "mobx-react-lite";
 import { UnitsList } from "./units-list";
@@ -40,9 +40,9 @@ const modelColumns: TableColumn<Model>[] = [
     { name: "Name", text: x => x.name }
 ];
 
-const extraAbilityColumns: TableColumn<ExtraAbility>[] = [
-    { name: "Name", text: x => x.ability.name },
-    { name: "Description", text: x => x.ability.description }
+const extraAbilityColumns: TableColumn<Ability>[] = [
+    { name: "Name", text: x => x.name },
+    { name: "Description", text: x => x.description }
 ];
 
 const ContingentList = observer(({ unit }: { unit: WarscrollUnit }) => {
@@ -67,7 +67,7 @@ const ExtraAbilitiesView = observer(
         onChange
     }: {
         unit: WarscrollUnit;
-        onChange: (unit: WarscrollUnit, t: ExtraAbility) => void;
+        onChange: (unit: WarscrollUnit, t: Ability) => void;
     }) => {
         return unit.availableExtraAbilities.length > 0 ? (
             <AddButton
@@ -156,7 +156,7 @@ const RenderExtras = observer(({ unit }: { unit: WarscrollUnit }) => {
     const { warscrollStore } = useStores();
 
     const handleExtraAbilityChange = useCallback(
-        (unit: WarscrollUnit, extraAbility: ExtraAbility) => {
+        (unit: WarscrollUnit, extraAbility: Ability) => {
             warscrollStore.addExtraAbility(unit, extraAbility);
         },
         [warscrollStore]
@@ -167,8 +167,8 @@ const RenderExtras = observer(({ unit }: { unit: WarscrollUnit }) => {
             {join(
                 unit.extraAbilities.map(x => (
                     <span key={x.id}>
-                        <Tooltip title={x.ability.description || ""}>
-                            <span>{x.ability.name}</span>
+                        <Tooltip title={x.description || ""}>
+                            <span>{x.name}</span>
                         </Tooltip>
                         <IconButton
                             onClick={() =>
@@ -218,7 +218,7 @@ const RenderModel = observer(
         const handleAddModelOption = useCallback(
             (model: WarscrollModel) => {
                 return (option: ModelOption) => {
-                    warscrollStore!.addModelOption(model, option);
+                    warscrollStore.addModelOption(model, option);
                 };
             },
             [warscrollStore]
@@ -228,9 +228,9 @@ const RenderModel = observer(
             (unit: WarscrollUnit, model: WarscrollModel) => {
                 return (value: number) => {
                     if (value === 0) {
-                        warscrollStore!.removeModel(unit, model);
+                        warscrollStore.removeModel(unit, model);
                     } else {
-                        warscrollStore!.setModelCount(model, value);
+                        warscrollStore.setModelCount(model, value);
                     }
                 };
             },

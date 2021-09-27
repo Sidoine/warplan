@@ -2,7 +2,7 @@ import * as React from "react";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import { AbilityCard, CardContent, CardColor } from "./ability-card";
 import { HiddenCard } from "./hidden-card";
-import { ExtraAbility, ArmyOption, Ability } from "../../common/unit";
+import { Ability, Faction } from "../../common/unit";
 import { useStores } from "../stores";
 import { makeStyles } from "@material-ui/core";
 
@@ -21,22 +21,7 @@ function mapAbility(
     };
 }
 
-function mapExtraAbility(x: ExtraAbility): CardContent {
-    return {
-        name: x.ability.name,
-        category: x.ability.category,
-        flavor: x.ability.flavor,
-        description: x.ability.description,
-        keywords: x.keywords,
-        group:
-            x.category === "CommandTrait" || x.category === "Artefact"
-                ? undefined
-                : x.category,
-        color: x.armyOptionKeyword ? "armyOption" : "allegiance"
-    };
-}
-
-function mapArmyOption(x: Ability, o: ArmyOption): CardContent {
+function mapArmyOption(x: Ability, o: Faction): CardContent {
     return {
         name: x.name,
         category: x.category,
@@ -64,24 +49,23 @@ export const Cards = observer(() => {
             const w = warscrollStore.warscroll;
             if (w.allegiance?.children) {
                 for (const armyOption of w.allegiance.children) {
-                    if (armyOption.abilities)
-                        result = result.concat(
-                            armyOption.abilities.map(x =>
-                                mapArmyOption(x, armyOption)
-                            )
-                        );
+                    if (armyOption.abilityGroups)
+                        for (const group of armyOption.abilityGroups) {
+                            result = result.concat(
+                                group.abilities.map(x =>
+                                    mapArmyOption(x, armyOption)
+                                )
+                            );
+                        }
                 }
             }
-            if (w.allegiance?.battleTraits)
-                result = result.concat(
-                    w.allegiance.battleTraits.map(x =>
-                        mapAbility(x, "allegiance")
-                    )
-                );
+            if (w.allegiance?.abilityGroups)
+                for (const group of w.allegiance.abilityGroups) {
+                    result = result.concat(
+                        group.abilities.map(x => mapAbility(x, "allegiance"))
+                    );
+                }
 
-            result = result.concat(
-                w.availableExtraAbilities.map(x => mapExtraAbility(x))
-            );
             return result;
         },
 

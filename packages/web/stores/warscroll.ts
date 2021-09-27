@@ -6,21 +6,21 @@ import {
     WarscrollUnitInterface,
     WarscrollInterface,
     Faction,
-    ExtraAbility,
     WarscrollBattalionInterface,
     WarscrollModelInterface,
     EndlessSpell,
     ModelOption,
     AbilityCategory,
     Ability,
-    RealmOfBattle
+    RealmOfBattle,
+    AbilityGroup
 } from "../../common/unit";
 import { UnitsStore } from "./units";
 
 import { deflate, inflate } from "pako";
 import { groupBy } from "../helpers/react";
 import { UiStore } from "./ui";
-import { canUseAbilityCategory, hasKeywords } from "./conditions";
+import { canAddAbilityCategory, hasKeywords } from "./conditions";
 import { KeywordCategory } from "../../common/definitions";
 
 export const enum PointMode {
@@ -163,7 +163,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
     }
 
     @observable
-    extraAbilities: ExtraAbility[] = [];
+    extraAbilities: Ability[] = [];
 
     @computed
     get isAllied() {
@@ -218,33 +218,44 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @computed
     get availableExtraAbilities() {
-        return this.warscroll.unitsStore.extraAbilities
+        return this.availableAbilityGroups
+            .reduce((p, c) => p.concat(c.abilities), new Array<Ability>())
             .filter(x => this.isAvailableExtraAbility(x))
-            .sort((a, b) => (a.ability.name > b.ability.name ? 1 : -1));
+            .sort((a, b) => (a.name > b.name ? 1 : -1));
     }
 
-    private isAvailableExtraAbility(extraAbility: ExtraAbility) {
+    @computed
+    get availableAbilityGroups() {
+        return this.warscroll.abilityGroups.filter(x =>
+            this.isAvailableAbilityGroup(x)
+        );
+    }
+
+    private isAvailableAbilityGroup(group: AbilityGroup) {
+        if (!group.allowUniqueUnits && this.definition.unique) {
+            return false;
+        }
+        return canAddAbilityCategory(this, this.warscroll, group.category);
+    }
+
+    private isAvailableExtraAbility(extraAbility: Ability) {
         return (
             this.extraAbilities.every(
-                x => x.ability.category !== extraAbility.ability.category
+                x => x.category !== extraAbility.category
             ) &&
             !this.warscroll.hasAnyUnitExtraAbility(extraAbility) &&
-            canUseAbilityCategory(
-                this,
-                this.warscroll,
-                extraAbility.ability.category
-            ) &&
+            canAddAbilityCategory(this, this.warscroll, extraAbility.category)
             // (!extraAbility.allegianceKeyword ||
             //     this.warscroll.allegiance.keywords.indexOf(
             //         extraAbility.allegianceKeyword
             //     ) >= 0) &&
-            (!extraAbility.armyOptionKeyword ||
-                this.keywords.indexOf(extraAbility.armyOptionKeyword) >= 0) &&
-            (!extraAbility.keywords ||
-                hasKeywords(this, extraAbility.keywords)) &&
-            (!extraAbility.realmId ||
-                (this.warscroll.realm &&
-                    this.warscroll.realm.id === extraAbility.realmId))
+            // (!extraAbility.armyOptionKeyword ||
+            //     this.keywords.indexOf(extraAbility.armyOptionKeyword) >= 0) &&
+            // (!extraAbility.keywords ||
+            //     hasKeywords(this, extraAbility.keywords)) &&
+            // (!extraAbility.realmId ||
+            //     (this.warscroll.realm &&
+            //         this.warscroll.realm.id === extraAbility.realmId))
         );
     }
 
@@ -303,9 +314,7 @@ export class WarscrollUnit implements WarscrollUnitInterface {
         if (this.definition.commandAbilities)
             abilities = abilities.concat(this.definition.commandAbilities);
         if (this.extraAbilities) {
-            abilities = abilities.concat(
-                this.extraAbilities.map(x => x.ability)
-            );
+            abilities = abilities.concat(this.extraAbilities);
         }
 
         const modelAbilities: AbilityModel[] = abilities.map(x => ({
@@ -502,13 +511,45 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     }
 
     @computed
-    get extraAbilities() {
-        const result: ExtraAbility[] = [];
+    get selectedExtraAbilities() {
+        const result: Ability[] = [];
         for (const unit of this.units) {
             for (const ability of unit.extraAbilities) {
                 result.push(ability);
             }
         }
+        return result;
+    }
+
+    @computed
+    get extraAbilities() {
+        return this.allegianceAbilities;
+        // let extraAbilities: Ability[] = [];
+        // if (this.allegiance && this.allegiance.artefacts) {
+        //     extraAbilities = extraAbilities.concat(this.allegiance.artefacts);
+        // }
+        // if (this.armyType && this.armyType.artefacts) {
+        //     extraAbilities = extraAbilities.concat(this.armyType.artefacts);
+        // }
+        // if (this.subFaction && this.subFaction.artefacts) {
+        //     extraAbilities = extraAbilities.concat(this.subFaction.artefacts);
+        // }
+        // return extraAbilities;
+    }
+
+    @computed
+    get abilityGroups() {
+        const result: AbilityGroup[] = [];
+        if (this.allegiance?.abilityGroups) {
+            result.push(...this.allegiance.abilityGroups);
+        }
+        if (this.armyType?.abilityGroups) {
+            result.push(...this.armyType.abilityGroups);
+        }
+        if (this.subFaction?.abilityGroups) {
+            result.push(...this.subFaction.abilityGroups);
+        }
+
         return result;
     }
 
@@ -743,14 +784,13 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
 
     @computed
     get numberOfArtifacts() {
-        return this.extraAbilities.reduce(
-            (x, a) =>
-                x + (a.ability.category === AbilityCategory.Artefact ? 1 : 0),
+        return this.selectedExtraAbilities.reduce(
+            (x, a) => x + (a.category === AbilityCategory.Artefact ? 1 : 0),
             0
         );
     }
 
-    hasAnyUnitExtraAbility(extraAbility: ExtraAbility) {
+    hasAnyUnitExtraAbility(extraAbility: Ability) {
         return this.units.some(x =>
             x.extraAbilities.some(y => y.id === extraAbility.id)
         );
@@ -775,14 +815,6 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     }
 
     @computed
-    get availableExtraAbilities() {
-        return this.unitsStore.extraAbilities.filter(
-            x => x.allegianceKeyword === undefined
-            // ||this.allegiance.keywords.indexOf(x.allegianceKeyword) >= 0
-        );
-    }
-
-    @computed
     get abilities(): AbilityModel[] {
         return this.unitsStore.baseAbilities
             .concat(this.allegianceAbilities)
@@ -792,16 +824,21 @@ export class Warscroll implements WarscrollInterface, WarscrollLimits {
     @computed
     get allegianceAbilities() {
         let result: Ability[] = [];
-        if (this.armyType) {
-            if (this.armyType.battleTraits)
-                result = result.concat(this.armyType.battleTraits);
+        if (this.armyType && this.armyType.abilityGroups) {
+            for (const group of this.armyType.abilityGroups) {
+                result = result.concat(group.abilities);
+            }
         }
-        if (this.subFaction) {
-            if (this.subFaction.battleTraits)
-                result = result.concat(this.subFaction.battleTraits);
+        if (this.subFaction && this.subFaction.abilityGroups) {
+            for (const group of this.subFaction.abilityGroups) {
+                result = result.concat(group.abilities);
+            }
         }
-        if (this.allegiance && this.allegiance.battleTraits)
-            result = result.concat(this.allegiance.battleTraits);
+        if (this.allegiance && this.allegiance.abilityGroups) {
+            for (const group of this.allegiance.abilityGroups) {
+                result = result.concat(group.abilities);
+            }
+        }
         return result;
     }
 
@@ -933,13 +970,13 @@ export class WarscrollStore {
     }
 
     @action
-    addExtraAbility(unit: WarscrollUnit, ability: ExtraAbility) {
+    addExtraAbility(unit: WarscrollUnit, ability: Ability) {
         unit.extraAbilities.push(ability);
         this.saveWarscroll();
     }
 
     @action
-    removeExtraAbility(unit: WarscrollUnit, ability: ExtraAbility) {
+    removeExtraAbility(unit: WarscrollUnit, ability: Ability) {
         unit.extraAbilities.splice(unit.extraAbilities.indexOf(ability), 1);
         this.saveWarscroll();
     }
@@ -1040,7 +1077,7 @@ export class WarscrollStore {
             if (wu.contingent !== undefined) newUnit.contingent = wu.contingent;
             if (wu.extraAbilities) {
                 for (const e of wu.extraAbilities) {
-                    const ability = this.unitsStore.getExtraAbility(e);
+                    const ability = this.unitsStore.getAbility(e);
                     if (ability) {
                         newUnit.extraAbilities.push(ability);
                     }

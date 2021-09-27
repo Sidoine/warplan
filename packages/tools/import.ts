@@ -2,6 +2,7 @@ import {
     Ability,
     AbilityCategory,
     AbilityEffect,
+    AbilityGroup,
     Attack,
     DamageColumn,
     DamageTable,
@@ -16,6 +17,7 @@ import {
     ValueType
 } from "../common/unit";
 import {
+    CoreBattalionGroupElement,
     DamageCell,
     DamageRow,
     Dump,
@@ -197,20 +199,79 @@ function getItem<T extends keyof DataStore>(
     throw Error(`Could not find ${property} with id ${id}`);
 }
 
+type KeysOfType<T, U> = { [K in keyof T]: T[K] extends U ? K : never }[keyof T];
+type ArrayElement<T> = T extends (infer U)[] ? U : never;
+type AbilityGroups = Exclude<
+    KeysOfType<Dump, PurpleGroup[]>,
+    KeysOfType<Dump, CoreBattalionGroupElement[]>
+>;
+type Abilities = KeysOfType<
+    Dump,
+    { id: string; name: string; lore: string | null; rules: string }[]
+>;
+
+function importExtraAbilities<
+    T extends Abilities,
+    G extends AbilityGroups,
+    U extends KeysOfType<ArrayElement<Dump[T]>, string>
+>(
+    db: Dump,
+    dataStore: DataStore,
+    groups: G,
+    abilities: T,
+    category: AbilityCategory,
+    groupId: U
+) {
+    for (const group of db[groups]) {
+        const groupId = getId(group.id, group.name, "abilityGroups");
+        const entity: AbilityGroup = {
+            abilities: [],
+            category,
+            id: groupId,
+            name: group.name,
+            allowUniqueUnits: group.allowUniqueUnits
+        };
+        dataStore.abilityGroups[groupId] = entity;
+        if (group.factionId) {
+            const faction = getItem(dataStore, "factions", group.factionId);
+            if (!faction.abilityGroups) faction.abilityGroups = [];
+            faction.abilityGroups.push(entity);
+        }
+    }
+
+    for (const ability of db[abilities]) {
+        const abilityId = getId(ability.id, ability.name, "abilities");
+        const group = getItem(
+            dataStore,
+            "abilityGroups",
+            ability[groupId as keyof typeof ability] as string
+        );
+        const entity: Ability = {
+            id: abilityId,
+            name: ability.name,
+            flavor: ability.lore || undefined,
+            description: ability.rules,
+            effects: getAbilityEffects(ability.name, ability.rules),
+            category
+        };
+        dataStore.abilities[abilityId] = entity;
+        group.abilities.push(entity);
+    }
+}
+
 export function importData(db: Dump): DataStore {
     const dataStore: DataStore = {
         abilities: {},
-        armyOptions: {},
         attacks: {},
         battalions: {},
         damageTables: {},
-        extraAbilities: {},
         factions: {},
         models: {},
         options: {},
         realms: {},
         sceneries: {},
-        units: {}
+        units: {},
+        abilityGroups: {}
     };
 
     for (const faction of db.faction) {
@@ -244,19 +305,21 @@ export function importData(db: Dump): DataStore {
             id: getId(warscroll.id, warscroll.name, "units"),
             name: warscroll.name,
             description: warscroll.basicDescription || undefined,
-            flavor: warscroll.lore,
+            flavor: warscroll.lore || undefined,
             subName: warscroll.subname || undefined,
             size: warscroll.unitSize || 0,
             points: warscroll.points,
             model: getItem(dataStore, "models", warscroll.id),
             factions: [],
-            keywords: warscroll.referenceKeywords.split(", "),
+            keywords: warscroll.referenceKeywords.toUpperCase().split(", "),
             role: Role.Other,
             bravery: warscroll.bravery ?? undefined,
             wounds: warscroll.wounds ?? undefined,
             move: warscroll.move ?? undefined,
             save: warscroll.save ?? undefined,
-            pictureUrl: warscroll.imageUrl ?? undefined
+            pictureUrl: warscroll.imageUrl ?? undefined,
+            unique: warscroll.unique,
+            single: warscroll.single
         };
         dataStore.units[unit.id] = unit;
     }
@@ -376,7 +439,7 @@ export function importData(db: Dump): DataStore {
         const ability: Ability = {
             id: getId(warscrollAbility.id, warscrollAbility.name, "abilities"),
             name: warscrollAbility.name,
-            flavor: warscrollAbility.lore,
+            flavor: warscrollAbility.lore || undefined,
             description: warscrollAbility.rules,
             effects: getAbilityEffects(
                 warscrollAbility.name,
@@ -417,36 +480,59 @@ export function importData(db: Dump): DataStore {
         unit.factions.push(faction);
     }
 
-    const battleTraitGroups = new Map<string, PurpleGroup>();
+    importExtraAbilities(
+        db,
+        dataStore,
+        "artefact_of_power_group",
+        "artefact_of_power",
+        AbilityCategory.Artefact,
+        "artefactOfPowerGroupId"
+    );
 
-    for (const battleTraitGroup of db.battle_trait_group) {
-        battleTraitGroups.set(battleTraitGroup.id, battleTraitGroup);
-    }
+    importExtraAbilities(
+        db,
+        dataStore,
+        "battle_trait_group",
+        "battle_trait",
+        AbilityCategory.BattleTrait,
+        "battleTraitGroupId"
+    );
 
-    for (const battleTrait of db.battle_trait) {
-        const battleTraitGroup = battleTraitGroups.get(
-            battleTrait.battleTraitGroupId
-        );
-        const ability: Ability = {
-            id: getId(battleTrait.id, battleTrait.name, "abilities"),
-            name: battleTrait.name,
-            category: AbilityCategory.BattleTrait,
-            description: battleTrait.rules,
-            effects: getAbilityEffects(battleTrait.name, battleTrait.rules)
-        };
-        dataStore.abilities[ability.id] = ability;
-        if (battleTraitGroup) {
-            if (battleTraitGroup.factionId) {
-                const faction = getItem(
-                    dataStore,
-                    "factions",
-                    battleTraitGroup.factionId
-                );
-                if (!faction.battleTraits) faction.battleTraits = [];
-                faction.battleTraits.push(ability);
-            }
-        }
-    }
+    importExtraAbilities(
+        db,
+        dataStore,
+        "mount_trait_group",
+        "mount_trait",
+        AbilityCategory.Mount,
+        "mountTraitGroupId"
+    );
+
+    importExtraAbilities(
+        db,
+        dataStore,
+        "prayer_group",
+        "prayer",
+        AbilityCategory.Prayer,
+        "prayerGroupId"
+    );
+
+    importExtraAbilities(
+        db,
+        dataStore,
+        "spell_lore_group",
+        "spell_lore",
+        AbilityCategory.Spell,
+        "spellLoreGroupId"
+    );
+
+    importExtraAbilities(
+        db,
+        dataStore,
+        "triumph_group",
+        "triumph",
+        AbilityCategory.Triumph,
+        "triumphGroupId"
+    );
 
     return dataStore;
 }

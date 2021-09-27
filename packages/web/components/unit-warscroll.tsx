@@ -65,7 +65,7 @@ export function UnitWarscroll({
 
     if (wu) {
         for (const ability of wu.extraAbilities) {
-            abilities.push(ability.ability);
+            abilities.push(ability);
         }
     }
     const normalAbilities = abilities.filter(x => x.category === undefined);

@@ -19,7 +19,7 @@ export interface Dump {
     conditional_role_required_warscroll_keywords_keyword: ConditionalRoleLKeywordsKeyword[];
     conditional_role_battlefield_role: ConditionalRoleBattlefieldRole[];
     artefact_of_power_group: PurpleGroup[];
-    battle_trait_subtrait: { [key: string]: null | string }[];
+    battle_trait_subtrait: BattleTraitSubtrait[];
     artefact_of_power: ArtefactOfPower[];
     command_trait_group: PurpleGroup[];
     enhancement_bonus_requires_keywords_keyword: EnhancementBonusEsKeywordsKeyword[];
@@ -33,19 +33,19 @@ export interface Dump {
     mount_trait_group_keywords_keyword: MountTraitGroupKeywordsKeyword[];
     grand_strategy_army_must_contain_keywords_keyword: GrandStrategyArmyMustContainKeywordsKeyword[];
     grand_strategy_keywords_keyword: {}[];
-    mount_trait: { [key: string]: null | string }[];
+    mount_trait: MountTrait[];
     grand_strategy_group: CoreBattalionGroupElement[];
     keyword: Keyword[];
     enhancement_bonus: EnhancementBonus[];
     grand_strategy_general_must_have_factions_faction: GrandStrategyGeneralMustHaveFactionsFaction[];
-    command_trait: { [key: string]: null | string }[];
+    command_trait: CommandTrait[];
     enhancement_bonus_excludes_keywords_keyword: EnhancementBonusEsKeywordsKeyword[];
     battle_trait: BattleTrait[];
     role_modifier: RoleModifier[];
     triumph_group: PurpleGroup[];
     unique_enhancement_group: CoreBattalionGroupElement[];
     unit_type_excluded_battlefield_role: UnitTypeEdBattlefieldRole[];
-    prayer: { [key: string]: null | string }[];
+    prayer: Prayer[];
     unit_type_required_battlefield_role: UnitTypeEdBattlefieldRole[];
     unique_enhancement_group_keywords_keyword: UniqueEnhancementGroupKeywordsKeyword[];
     warscroll: Warscroll[];
@@ -56,9 +56,9 @@ export interface Dump {
     version_info: VersionInfo[];
     unit_type: UnitType[];
     publication: Publication[];
-    spell_lore: { [key: string]: null | string }[];
+    spell_lore: SpellLore[];
     spell_lore_group: PurpleGroup[];
-    triumph: { [key: string]: null | string }[];
+    triumph: Triumph[];
     description_subsection: DescriptionSubsection[];
     warscroll_keywords_keyword: WarscrollKeywordsKeyword[];
     damage_cell: DamageCell[];
@@ -71,10 +71,66 @@ export interface Dump {
     warscroll_ability: WarscrollAbility[];
 }
 
+export interface UniqueEnhancement {
+    id: string;
+    name: string;
+    lore: string | null;
+    rules: string;
+    uniqueEnhancementGroupId: string;
+}
+
+export interface BattleTraitSubtrait {
+    id: string;
+    name: string;
+    lore: string | null;
+    rules: string;
+    battleTraitId: string;
+}
+
+export interface Triumph {
+    id: string;
+    name: string;
+    lore: string | null;
+    rules: string;
+    triumphGroupId: string;
+}
+
+export interface MountTrait {
+    id: string;
+    name: string;
+    lore: string | null;
+    rules: string;
+    mountTraitGroupId: string;
+}
+
+export interface Prayer {
+    id: string;
+    name: string;
+    lore: string | null;
+    rules: string;
+    prayerGroupId: string;
+}
+
+export interface SpellLore {
+    id: string;
+    name: string;
+    lore: string | null;
+    rules: string;
+    spellLoreGroupId: string;
+}
+
+export interface CommandTrait {
+    id: string;
+    name: string;
+    lore: string | null;
+    rules: string;
+    commandTraitGroupId: string;
+}
+
 export interface WarscrollAbility {
     id: string;
     name: string;
-    lore: string;
+    lore: string | null;
     rules: string;
     warscrollId: string;
 }
@@ -82,7 +138,7 @@ export interface WarscrollAbility {
 export interface ArtefactOfPower {
     id: string;
     name: string;
-    lore: string;
+    lore: string | null;
     rules: string;
     requiresMeleeWeapon: boolean;
     requiresMissileWeapon: boolean;
@@ -115,7 +171,7 @@ export interface BattalionAbility {
 export interface BattleTrait {
     id: string;
     name: string;
-    lore: string;
+    lore: string | null;
     rules: string;
     additionalArtefacts: number;
     battleTraitGroupId: string;
@@ -363,7 +419,7 @@ export interface Warscroll {
     id: string;
     name: string;
     subname: null | string;
-    lore: string;
+    lore: string | null;
     points: number;
     unique: boolean;
     single: boolean;

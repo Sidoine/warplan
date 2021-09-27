@@ -36,10 +36,9 @@ export class DataStoreImpl implements DataStore {
         result += writeOptions(dataStore);
         result += writeAttacks(dataStore);
         result += writeUnits(dataStore);
-        result += writeExtraAbilities(dataStore);
-        result += writeArmyOptions(dataStore);
         result += writeBattalions(dataStore);
         result += writeRealms(dataStore);
+        result += writeAbilityGroups(dataStore);
         result += writeConstructor(dataStore);
         result += `
         sceneries = {};
@@ -208,6 +207,14 @@ ${
             bravery: "${unit.bravery}",
             pictureUrl: ${escapeQuotedString(unit.pictureUrl)},
 `;
+        if (unit.single) {
+            result += `            single: true,
+`;
+        }
+        if (unit.unique) {
+            result += `            unique: true,
+`;
+        }
         if (unit.options) {
             result += `           options: [${unit.options
                 .map(x => `this.options.${x.id}`)
@@ -307,26 +314,6 @@ ${
 `;
     return result;
 }
-
-function writeExtraAbilities(db: DataStore) {
-    let result = `   extraAbilities = {
-        `;
-
-    for (const extraAbility of Object.values(db.extraAbilities)) {
-        result += `
-        ${extraAbility.id}: {
-            id: "${extraAbility.id}",
-            ability: ${ability(extraAbility.ability)},
-        },
-`;
-    }
-
-    result += `
-    };
-`;
-    return result;
-}
-
 function writeBattalions(db: DataStore) {
     let result = `   battalions = {
 `;
@@ -426,39 +413,6 @@ function writeBattalions(db: DataStore) {
 //     return result;
 // }
 
-function writeArmyOptions(db: DataStore) {
-    let result = `   armyOptions = {
-    `;
-    for (const division of Object.values(db.armyOptions)) {
-        const id = division.id;
-        result += `${tab}${tab}${id}: {
-            id: "${id}",
-            name: ${escapeQuotedString(division.name)},
-            keyword: ${escapeQuotedString(division.name.toUpperCase())},
-            requiredArtifactKeyword: ${escapeQuotedString(
-                division.requiredArtifactKeyword
-            )},
-            requiredCommandTraitKeyword: ${escapeQuotedString(
-                division.requiredCommandTraitKeyword
-            )},
-`;
-        if (division.requiredArtifact) {
-            result += `${tab}${tab}requiredArtifact: this.extraAbilities.${division.requiredArtifact.id},
-`;
-        }
-        if (division.requiredCommandTrait) {
-            result += `${tab}${tab}requiredCommandTrait: this.extraAbilities.${division.requiredCommandTrait.id},
-                `;
-        }
-
-        result += `
-        },                   
-`;
-    }
-    result += "};\n";
-    return result;
-}
-
 function ability(ability?: Ability) {
     if (!ability) return "undefined";
     return `this.abilities.${ability.id}`;
@@ -484,6 +438,26 @@ function writeRealms(db: DataStore) {
     return result;
 }
 
+function writeAbilityGroups(db: DataStore) {
+    let result = `${tab}abilityGroups = {\n`;
+    for (const group of Object.values(db.abilityGroups)) {
+        result += `${tab}${tab}${group.id}: {
+            id: "${group.id}",
+            name: ${escapeQuotedString(group.name)},
+            abilities: ${abilities(group.abilities)},
+            category: ${JSON.stringify(group.category)},
+`;
+        if (group.allowUniqueUnits) {
+            result += `${tab}${tab}allowUniqueUnits: true,
+`;
+        }
+        result += `        },
+`;
+    }
+    result += `${tab}}`;
+    return result;
+}
+
 function writeConstructor(db: DataStore) {
     let result = `${tab}constructor() {\n`;
     for (const faction of Object.values(db.factions)) {
@@ -492,19 +466,13 @@ function writeConstructor(db: DataStore) {
 ${tab}this.factions.${faction.parent.id}.children.push(this.factions.${faction.id});
 `;
         }
-        if (faction.battleTraits) {
+        if (faction.abilityGroups) {
             result += `${tab}this.factions.${
                 faction.id
-            }.battleTraits = [${faction.battleTraits
-                .map(x => `this.abilities.${x.id}`)
-                .join(", ")}];\n`;
-        }
-        if (faction.abilities) {
-            result += `${tab}this.factions.${
-                faction.id
-            }.abilities = [${faction.abilities
-                .map(x => `this.abilities.${x.id}`)
-                .join(", ")}];\n`;
+            }.abilityGroups = [${faction.abilityGroups
+                .map(x => `this.abilityGroups.${x.id}`)
+                .join(", ")}];
+`;
         }
     }
     result += `}\n`;

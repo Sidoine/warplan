@@ -17,7 +17,6 @@ import {
     EndlessSpell,
     Ability,
     RealmOfBattle,
-    ExtraAbility,
     Model,
     Unit,
     Battalion,
@@ -32,7 +31,6 @@ import { KeywordCategory } from "../../common/definitions";
 export class UnitsStore {
     serial = 100;
 
-    extraAbilities: ExtraAbility[] = [];
     modelsList: Model[] = [];
     unitList: Unit[] = [];
     battalions: Battalion[] = [];
@@ -41,6 +39,7 @@ export class UnitsStore {
     factionsList: Faction[] = [];
     sceneryList: EndlessSpell[] = [];
     baseAbilities: Ability[] = [];
+    abilities: Record<string, Ability> = {};
 
     realms: RealmOfBattle[] = [];
 
@@ -112,22 +111,9 @@ export class UnitsStore {
             this.factionsList.push(this.factions[key]);
         }
 
-        // const allegiances: { [key: string]: Allegiance } = data.allegiances;
-        // for (const key in allegiances) {
-        //     this.allegianceList.push(allegiances[key]);
-        // }
-        // this.allegianceList = this.allegianceList.sort((a, b) =>
-        //     a.name > b.name ? 1 : -1
-        // );
-
-        const extraAbilities: { [key: string]: ExtraAbility } =
-            data.extraAbilities;
-        for (const key in extraAbilities) {
-            this.extraAbilities.push(extraAbilities[key]);
-        }
+        this.abilities = data.abilities;
 
         this.fillBaseAbilities();
-        // this.armyOptions = data.armyOptions;
 
         const sceneries: { [key: string]: EndlessSpell } = data.sceneries;
         for (const key in sceneries) {
@@ -250,7 +236,7 @@ export class UnitsStore {
         return unit;
     }
 
-    getExtraAbility(id: string) {
-        return this.extraAbilities.find(x => x.id === id);
+    getAbility(id: string) {
+        return this.abilities[id];
     }
 }

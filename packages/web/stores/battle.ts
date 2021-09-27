@@ -232,11 +232,17 @@ export class BattleStore {
         if (!this.player) return result;
         const w = this.player.warscroll;
         if (w.armyType) {
-            if (w.armyType.abilities)
-                result = result.concat(w.armyType.abilities);
+            if (w.armyType.abilityGroups) {
+                for (const group of w.armyType.abilityGroups) {
+                    result = result.concat(group.abilities);
+                }
+            }
         }
-        if (w.allegiance?.battleTraits)
-            result = result.concat(w.allegiance.battleTraits);
+        if (w.allegiance?.abilityGroups) {
+            for (const group of w.allegiance.abilityGroups) {
+                result = result.concat(group.abilities);
+            }
+        }
         return result;
     }
 

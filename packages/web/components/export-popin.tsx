@@ -6,7 +6,7 @@ import {
     Button,
     DialogContent,
     DialogTitle,
-    Input,
+    Input
 } from "@material-ui/core";
 import { useStores } from "../stores";
 
@@ -14,7 +14,7 @@ function ExportPopin() {
     const { warscrollStore, uiStore } = useStores();
 
     const handleClose = React.useCallback(() => uiStore.closeExportPopin(), [
-        uiStore,
+        uiStore
     ]);
     const warscroll = warscrollStore.warscroll;
     return (
@@ -22,23 +22,19 @@ function ExportPopin() {
             <DialogTitle>Warscrolls</DialogTitle>
 
             <DialogContent>
-                { warscroll.allegiance && <div>
-                    <b>Allegiance: {warscroll.allegiance.name}</b>
-                </div>}
+                {warscroll.allegiance && (
+                    <div>
+                        <b>Allegiance: {warscroll.allegiance.name}</b>
+                    </div>
+                )}
                 {warscroll.armyType && (
                     <div>
-                        <b>
-                            Army Type :{" "}
-                            {warscroll.armyType.name}
-                        </b>
+                        <b>Army Type : {warscroll.armyType.name}</b>
                     </div>
                 )}
                 {warscroll.subFaction && (
                     <div>
-                        <b>
-                            Sub-faction :{" "}
-                            {warscroll.subFaction.name}
-                        </b>
+                        <b>Sub-faction : {warscroll.subFaction.name}</b>
                     </div>
                 )}
                 {warscroll.realm && (
@@ -46,7 +42,7 @@ function ExportPopin() {
                         <b>Realm: {warscroll.realm.name}</b>
                     </div>
                 )}
-                {warscroll.units.map((x) => (
+                {warscroll.units.map(x => (
                     <div key={x.id}>
                         <b>
                             {x.modelCount > 1 ? <>{x.modelCount} x</> : <></>}{" "}
@@ -59,8 +55,8 @@ function ExportPopin() {
                             </div>
                         )}
                         {x.models
-                            .filter((y) => y.options.length > 0)
-                            .map((y) => (
+                            .filter(y => y.options.length > 0)
+                            .map(y => (
                                 <div key={y.id}>
                                     <i>
                                         - {y.count && <>{y.count} x </>}{" "}
@@ -68,15 +64,15 @@ function ExportPopin() {
                                     </i>
                                 </div>
                             ))}
-                        {x.extraAbilities.map((y) => (
+                        {x.extraAbilities.map(y => (
                             <div key={y.id}>
-                                <i>- {y.ability.name}</i>
+                                <i>- {y.name}</i>
                             </div>
                         ))}
                     </div>
                 ))}
 
-                {warscroll.battalions.map((x) => (
+                {warscroll.battalions.map(x => (
                     <div key={x.id}>
                         <b>{x.definition.name}</b>
                     </div>
