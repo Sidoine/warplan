@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 import {
-    WarscrollStore,
     WarscrollUnit,
-    Warscroll,
     WarscrollItem,
     AbilityModel
 } from "../stores/warscroll";
@@ -42,7 +40,8 @@ import {
     SwordIcon
 } from "../atoms/icons";
 import warscrollSeparator from "../assets/ws-separator.png";
-import { UnitsStore } from "../stores/units";
+import { DataStore } from "../stores/data";
+import { ArmyList, ArmyListStore } from "../stores/army-list";
 
 const useStyle = makeStyles({
     section: {
@@ -120,8 +119,8 @@ const useStyle = makeStyles({
 });
 
 export interface CheckListProps {
-    warscrollStore?: WarscrollStore;
-    unitsStore?: UnitsStore;
+    warscrollStore?: ArmyListStore;
+    unitsStore?: DataStore;
 }
 
 function Stats(props: { name?: string; children: React.ReactNode }) {
@@ -220,7 +219,8 @@ function hasAura(effect: AbilityEffect) {
         effect.commandAura ||
         effect.defenseAura ||
         effect.movementAura ||
-        effect.spellAura
+        effect.spellAura ||
+        effect.prayerAura
     );
 }
 
@@ -426,7 +426,7 @@ function SubPhaseInfo({
     phase,
     side
 }: {
-    warscroll: Warscroll;
+    warscroll: ArmyList;
     phase: Phase;
     side?: PhaseSide;
 }) {
@@ -466,7 +466,7 @@ function SubPhaseInfo({
 }
 
 function hasSomethingIsSubPhase(
-    warscroll: Warscroll,
+    warscroll: ArmyList,
     phase: Phase,
     side?: PhaseSide
 ) {
@@ -484,7 +484,7 @@ function PhaseInfo({
     warscroll
 }: {
     phase: Phase;
-    warscroll: Warscroll;
+    warscroll: ArmyList;
 }) {
     const classes = useStyle();
     if (phase !== Phase.Setup) {
@@ -523,7 +523,7 @@ function PhaseInfo({
     );
 }
 
-function OutOfPhaseAbilities({ warscroll }: { warscroll: Warscroll }) {
+function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
     const classes = useStyle();
     return (
         <section className={classes.out}>
@@ -559,7 +559,7 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: Warscroll }) {
 }
 
 export function CheckList() {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     return (
         <div>
             {phases.map(x => (

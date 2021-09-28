@@ -2,7 +2,7 @@ import {
     Unit,
     AbilityCategory,
     WarscrollUnitInterface,
-    WarscrollInterface
+    ArmyListInterface
 } from "../../common/unit";
 
 export function hasKeywords(
@@ -16,7 +16,7 @@ export function hasKeywords(
     );
 }
 
-export function hasKeywordInArmy(ws: WarscrollInterface, keywords: string[][]) {
+export function hasKeywordInArmy(ws: ArmyListInterface, keywords: string[][]) {
     return ws.getUnitsWithKeywords(keywords).length > 0;
 }
 
@@ -26,7 +26,7 @@ export function hasKeyword(unit: Unit, keyword: string) {
 
 export function canAddAbilityCategory(
     unit: WarscrollUnitInterface,
-    ws: WarscrollInterface,
+    ws: ArmyListInterface,
     ability: AbilityCategory | undefined
 ): boolean {
     switch (ability) {

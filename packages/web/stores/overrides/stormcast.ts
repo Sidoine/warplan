@@ -1,4 +1,4 @@
- import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 // import {
 //     Unit,
 //     Material,
@@ -34,7 +34,7 @@
 // } from "./tools";
 // import icon from "../../assets/factions/stormcast_eternals_warrior.svg";
 
-// function addBoxes(data: DataStoreImpl): void {
+// function addBoxes(data: ImportedDataStoreImpl): void {
 //     data.boxes.push({
 //         id: "startCollectingStormcastVanguard",
 //         name: "Start Collecting! Stormcast Vanguard",
@@ -301,7 +301,7 @@
 //     });
 // }
 
-// function fixBattalions(data: DataStoreImpl): void {
+// function fixBattalions(data: ImportedDataStoreImpl): void {
 //     // const aetherstrike: Battalion = data.battalions.aetherstrikeForce;
 //     // aetherstrike.units.push({ unit: [data.units.knightVenator], count: 1, id: data.serial++ });
 //     // aetherstrike.units.push({ unit: [data.units.knightAzyros], count: 1, id: data.serial++ });
@@ -339,7 +339,7 @@
 //     // ];
 // }
 
-// function fixUnits(data: DataStoreImpl): void {
+// function fixUnits(data: ImportedDataStoreImpl): void {
 //     {
 //         const liberator: Unit = data.units.liberators;
 //         const shield = removeAbility(
@@ -2654,7 +2654,7 @@
 //     }
 // }
 
-// function fixExtraAbilities(data: DataStoreImpl): void {
+// function fixExtraAbilities(data: ImportedDataStoreImpl): void {
 //     // Command traits
 //     overrideAbility(
 //         data.extraAbilities.stormcastEternalsAspectsOfAzyrShieldedByFaith
@@ -3191,7 +3191,7 @@
 //     overrideSpells(data);
 // }
 
-// function overrideMounts(data: DataStoreImpl) {
+// function overrideMounts(data: ImportedDataStoreImpl) {
 //     overrideTraitsOfTheNobleBeast(data);
 //     overrideCelestialLineages(data);
 //     overrideAncientPowers(data);
@@ -3200,7 +3200,7 @@
 //     overrideSavageTemperaments(data);
 // }
 
-// function overrideSpells(data: DataStoreImpl) {
+// function overrideSpells(data: ImportedDataStoreImpl) {
 //     // spells
 //     overrideAbility(
 //         data.extraAbilities.stormcastEternalsLoreOfTheStormLightningBlast
@@ -3326,7 +3326,7 @@
 //     );
 // }
 
-// function overrideTraitsOfTheNobleBeast(data: DataStoreImpl) {
+// function overrideTraitsOfTheNobleBeast(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.extraAbilities.stormcastEternalsTraitsOfTheNobleBeastLitheLimbed
 //             .ability,
@@ -3371,7 +3371,7 @@
 //     );
 // }
 
-// function overrideCelestialLineages(data: DataStoreImpl) {
+// function overrideCelestialLineages(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.extraAbilities.stormcastEternalsCelestialLineagesDrakeKin.ability,
 //         (x) => {
@@ -3415,7 +3415,7 @@
 //     );
 // }
 
-// function overrideAncientPowers(data: DataStoreImpl) {
+// function overrideAncientPowers(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.extraAbilities.stormcastEternalsAncientPowersStormWinged.ability,
 //         (x) => {
@@ -3451,7 +3451,7 @@
 //     );
 // }
 
-// function overrideAethericAspects(data: DataStoreImpl) {
+// function overrideAethericAspects(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.extraAbilities.stormcastEternalsAethericAspectsWindRunner.ability,
 //         (x) => {
@@ -3494,7 +3494,7 @@
 //     );
 // }
 
-// function overrideStarchaser(data: DataStoreImpl) {
+// function overrideStarchaser(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.extraAbilities.stormcastEternalsStarchaserFormsSwiftwing.ability,
 //         (x) => {
@@ -3533,7 +3533,7 @@
 //     );
 // }
 
-// function overrideSavageTemperaments(data: DataStoreImpl) {
+// function overrideSavageTemperaments(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.extraAbilities.stormcastEternalsSavageTemperamentsBoundingLeap
 //             .ability,
@@ -3580,7 +3580,7 @@
 //     );
 // }
 
-// function fixStormhosts(data: DataStoreImpl) {
+// function fixStormhosts(data: ImportedDataStoreImpl) {
 //     const abilities = data.extraAbilities;
 
 //     // Hammers of Sigmar
@@ -4011,7 +4011,7 @@
 //     );
 // }
 
-// function fixModels(data: DataStoreImpl) {
+// function fixModels(data: ImportedDataStoreImpl) {
 //     const models = data.models;
 //     overrideModel(models.aetherwings, 2017, Material.Plastic);
 //     overrideModel(models.celestantPrimeHammerOfSigmar, 2014, Material.Plastic);
@@ -4087,7 +4087,7 @@
 //     overrideModel(models.knightIncantor, 2018, Material.Plastic);
 // }
 
-// function fixAllegiance(data: DataStoreImpl) {
+// function fixAllegiance(data: ImportedDataStoreImpl) {
 //     const scionsOfTheStorm: Ability = {
 //         id: "stormcast_scionsOfTheStorm",
 //         name: "Scions of the Storm",
@@ -4120,7 +4120,7 @@
 //     });
 // }
 
-export function overrideStormcast(data: DataStoreImpl): void {
+export function overrideStormcast(data: ImportedDataStoreImpl): void {
     // fixAllegiance(data);
     // addBoxes(data);
     // fixBattalions(data);

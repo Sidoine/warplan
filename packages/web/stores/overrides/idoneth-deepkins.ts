@@ -1,10 +1,10 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 
-function addBoxes(data: DataStoreImpl) {}
+function addBoxes(data: ImportedDataStoreImpl) {}
 
-function fixBattalions(data: DataStoreImpl) {}
+function fixBattalions(data: ImportedDataStoreImpl) {}
 
-function fixUnits(data: DataStoreImpl) {
+function fixUnits(data: ImportedDataStoreImpl) {
     {
         // const unit: Unit = data.units.akhelianAllopexes;
         // unit.move = 12;
@@ -29,9 +29,9 @@ function fixUnits(data: DataStoreImpl) {
     }
 }
 
-function addExtraAbilities(data: DataStoreImpl) {}
+function addExtraAbilities(data: ImportedDataStoreImpl) {}
 
-export function overrideIdonethDeepkins(data: DataStoreImpl): void {
+export function overrideIdonethDeepkins(data: ImportedDataStoreImpl): void {
     addBoxes(data);
     fixBattalions(data);
     fixUnits(data);

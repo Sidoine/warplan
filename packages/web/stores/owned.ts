@@ -1,6 +1,6 @@
 import { action, observable, makeObservable } from "mobx";
 import { Model, ModelOption, Unit } from "../../common/unit";
-import { UnitsStore } from "./units";
+import { DataStore } from "./data";
 
 interface SerializedOwned {
     models: {
@@ -105,7 +105,7 @@ export class OwnedStore {
         localStorage.setItem("owned", JSON.stringify(serialized));
     }
 
-    constructor(private unitsStore: UnitsStore) {
+    constructor(private unitsStore: DataStore) {
         makeObservable(this);
         this.loadOwned();
     }

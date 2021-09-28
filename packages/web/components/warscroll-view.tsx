@@ -1,10 +1,11 @@
 import { observer } from "mobx-react-lite";
 import * as React from "react";
 import { useStores } from "../stores";
-import { WarscrollStore, WarscrollUnit } from "../stores/warscroll";
+import { ArmyListStore } from "../stores/army-list";
+import { WarscrollUnit } from "../stores/warscroll";
 
 export interface WarscrollViewProps {
-    warscrollStore?: WarscrollStore;
+    warscrollStore?: ArmyListStore;
 }
 
 function UnitView({
@@ -33,7 +34,7 @@ function UnitView({
 }
 
 function WarscrollView() {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const warscroll = warscrollStore.warscroll;
     return (
         <div>

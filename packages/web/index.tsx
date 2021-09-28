@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import WarscrollBuilder from "./components/warscroll-builder";
+import ArmyListBuilder from "./components/army-list-builder";
 import OwnedModelsList from "./components/owned-models-list";
 import MissingsList from "./components/missings-list";
 import Basket from "./components/basket";
@@ -8,7 +8,7 @@ import { HashRouter, Switch } from "react-router-dom";
 import { Route } from "react-router";
 import MyNavbar from "./components/my-navbar";
 import Popins from "./components/popins";
-import { Warscroll } from "./components/warscroll";
+import { ArmyListView } from "./components/army-list-view";
 import { Markers } from "./components/markers";
 import Stats from "./components/stats";
 import WarscrollView from "./components/warscroll-view";
@@ -72,7 +72,7 @@ ReactDOM.render(
                             <Route
                                 exact
                                 path="/"
-                                component={WarscrollBuilder}
+                                component={ArmyListBuilder}
                             />
                             <Route
                                 exact
@@ -83,7 +83,7 @@ ReactDOM.render(
                             <Route
                                 exact
                                 path="/warscroll"
-                                component={Warscroll}
+                                component={ArmyListView}
                             />
                             <Route exact path="/markers" component={Markers} />
                             <Route exact path="/stats" component={Stats} />

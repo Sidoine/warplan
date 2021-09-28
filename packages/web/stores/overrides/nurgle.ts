@@ -1,4 +1,4 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 // import {
 //     Ability,
 //     EndlessSpell,
@@ -9,7 +9,7 @@ import { DataStoreImpl } from "../imported-data";
 // } from "../unit";
 // import { override, overrideAbility, addAbilityEffect } from "./tools";
 
-// function addEndlessSpells(data: DataStoreImpl): void {
+// function addEndlessSpells(data: ImportedDataStoreImpl): void {
 //     const burningHeaad: EndlessSpell = data.sceneries.theBurningHead;
 
 //     const summon: Ability = {
@@ -46,7 +46,7 @@ import { DataStoreImpl } from "../imported-data";
 //     burningHeaad.abilities = [summon, fiery, flaming, aura, aqshy];
 // }
 
-// function addCommandAbilities(data: DataStoreImpl): void {
+// function addCommandAbilities(data: ImportedDataStoreImpl): void {
 //     overrideAbility(
 //         data.extraAbilities.nurgleCommandTraitsPestilentBreath.ability,
 //         (x) => {
@@ -67,7 +67,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function addSpells(data: DataStoreImpl): void {
+// function addSpells(data: ImportedDataStoreImpl): void {
 //     overrideAbility(
 //         data.extraAbilities.nurgleLoreOfFoulnessPlagueSquall.ability,
 //         (x) => {
@@ -107,7 +107,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function addArtefact(data: DataStoreImpl): void {
+// function addArtefact(data: ImportedDataStoreImpl): void {
 //     override(data.extraAbilities.nurgleDaemonicBoonsNoxiousNexus, (x) => {
 //         x.category = "artifact";
 //         x.ability.description =
@@ -243,7 +243,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function addBoxes(data: DataStoreImpl): void {
+// function addBoxes(data: ImportedDataStoreImpl): void {
 //     data.boxes.push({
 //         id: "startCollectingNurgleDaemons",
 //         name: "Start Collecting! Nurgle Daemons",
@@ -407,9 +407,9 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function fixBattalions(data: DataStoreImpl): void {}
+// function fixBattalions(data: ImportedDataStoreImpl): void {}
 
-// function fixUnits(data: DataStoreImpl): void {
+// function fixUnits(data: ImportedDataStoreImpl): void {
 //     addAbilityEffect(data.abilities.harbingerOfDecaySoulboundShield, {
 //         targetType: TargetType.Model,
 //         phase: Phase.Combat,
@@ -522,7 +522,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-export function overrideNurgle(data: DataStoreImpl): void {
+export function overrideNurgle(data: ImportedDataStoreImpl): void {
     // addBoxes(data);
     // fixUnits(data);
     // fixBattalions(data);

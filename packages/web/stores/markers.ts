@@ -1,15 +1,15 @@
 import { action, computed, observable, makeObservable } from "mobx";
-import { WarscrollStore } from "./warscroll";
 import {
     AbilityCategory,
     Phase,
     Ability,
     AbilityEffect
 } from "../../common/unit";
-import { UnitsStore } from "./units";
+import { DataStore } from "./data";
 import { getAbilityPhases, getEffectPhases } from "./battle";
 import { getValue } from "./combat";
 import elite from "../assets/elite.svg";
+import { ArmyListStore } from "./army-list";
 
 export const enum MarkerType {
     Terrain,
@@ -363,8 +363,8 @@ export class MarkersStore {
     }
 
     constructor(
-        private warscrollStore: WarscrollStore,
-        public unitStore: UnitsStore // TODO
+        private warscrollStore: ArmyListStore,
+        public unitStore: DataStore // TODO
     ) {
         makeObservable(this);
     }

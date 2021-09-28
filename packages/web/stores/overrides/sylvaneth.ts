@@ -1,10 +1,10 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 
-function fixUnits(data: DataStoreImpl): void {
+function fixUnits(data: ImportedDataStoreImpl): void {
     {
     }
 }
 
-export function overrideSylvaneth(data: DataStoreImpl): void {
+export function overrideSylvaneth(data: ImportedDataStoreImpl): void {
     fixUnits(data);
 }

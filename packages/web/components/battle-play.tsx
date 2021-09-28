@@ -51,7 +51,7 @@ const useStyles = makeStyles(x => ({
 }));
 
 export const BattleStart = observer(() => {
-    const { battleStore, warscrollStore } = useStores();
+    const { battleStore, armyListStore: warscrollStore } = useStores();
     return (
         <Button
             color="primary"

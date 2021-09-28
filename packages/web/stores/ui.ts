@@ -1,6 +1,6 @@
 import { observable, action, computed, makeObservable } from "mobx";
 import { UnitStats, getUnitStats } from "./stats";
-import { UnitsStore } from "./units";
+import { DataStore } from "./data";
 import { Faction } from "../../common/unit";
 
 interface SerializedUi {
@@ -84,7 +84,7 @@ export class UiStore {
         this.saveUi();
     }
 
-    constructor(private unitsStore: UnitsStore) {
+    constructor(private unitsStore: DataStore) {
         makeObservable(this);
         const ui: string | null = localStorage.getItem("ui");
         if (ui) {

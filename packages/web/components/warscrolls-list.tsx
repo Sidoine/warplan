@@ -11,7 +11,7 @@ import React, { useCallback } from "react";
 import { useStores } from "../stores";
 
 const WarscrollLine = observer(({ x }: { x: string }) => {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const handleLoad = useCallback(() => {
         warscrollStore.saveWarscroll(warscrollStore.warscroll.name);
         warscrollStore.loadWarscroll(x);
@@ -29,7 +29,7 @@ const WarscrollLine = observer(({ x }: { x: string }) => {
 });
 
 function WarscrollsList() {
-    const { warscrollStore, uiStore } = useStores();
+    const { armyListStore: warscrollStore, uiStore } = useStores();
     return (
         <Card>
             <CardContent>

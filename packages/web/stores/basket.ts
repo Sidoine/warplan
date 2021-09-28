@@ -1,7 +1,7 @@
 import { action, observable, toJS, computed, makeObservable } from "mobx";
 import { Box, Model } from "../../common/unit";
-import { UnitsStore } from "./units";
-import { WarscrollStore } from "./warscroll";
+import { ArmyListStore } from "./army-list";
+import { DataStore } from "./data";
 import { OwnedStore } from "./owned";
 
 export interface BasketElement {
@@ -171,8 +171,8 @@ export class BasketStore {
     }
 
     constructor(
-        private unitsStore: UnitsStore,
-        private warscrollStore: WarscrollStore,
+        private unitsStore: DataStore,
+        private warscrollStore: ArmyListStore,
         private ownedStore: OwnedStore
     ) {
         makeObservable(this);

@@ -12,7 +12,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { useStores } from "../stores";
 
 function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const handleUpdate = useCallback(() => warscrollStore.saveWarscroll(x), [
         warscrollStore,
         x,
@@ -38,7 +38,7 @@ function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
 }
 
 function WarscrollPopin() {
-    const { warscrollStore, uiStore } = useStores();
+    const { armyListStore: warscrollStore, uiStore } = useStores();
     const [warscrollName, setWarscrollName] = useState(
         warscrollStore.warscroll.name
     );

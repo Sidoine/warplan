@@ -1,20 +1,20 @@
 import React, { useContext } from "react";
-import { DataStore } from "../../common/unit";
-import { UnitsStore } from "./units";
+import { ImportedDataStore } from "../../common/unit";
+import { DataStore } from "./data";
 import { UiStore } from "./ui";
-import { WarscrollStore } from "./warscroll";
 import { OwnedStore } from "./owned";
 import { BasketStore } from "./basket";
 import { MarkersStore } from "./markers";
 import { CardsStore } from "./cards";
 import { BattleStore } from "./battle";
-import { DataStoreImpl } from "./imported-data";
+import { ImportedDataStoreImpl } from "./imported-data";
+import { ArmyListStore } from "./army-list";
 
 interface Stores {
-    dataStore: DataStore;
-    unitsStore: UnitsStore;
+    dataStore: ImportedDataStore;
+    unitsStore: DataStore;
     uiStore: UiStore;
-    warscrollStore: WarscrollStore;
+    armyListStore: ArmyListStore;
     ownedStore: OwnedStore;
     basketStore: BasketStore;
     markersStore: MarkersStore;
@@ -23,20 +23,20 @@ interface Stores {
 }
 
 export function newStores(): Stores {
-    const dataStore = new DataStoreImpl();
-    const unitsStore = new UnitsStore(dataStore);
+    const dataStore = new ImportedDataStoreImpl();
+    const unitsStore = new DataStore(dataStore);
     const uiStore = new UiStore(unitsStore);
-    const warscrollStore = new WarscrollStore(unitsStore, uiStore);
+    const armyListStore = new ArmyListStore(unitsStore, uiStore);
     const ownedStore = new OwnedStore(unitsStore);
-    const basketStore = new BasketStore(unitsStore, warscrollStore, ownedStore);
-    const markersStore = new MarkersStore(warscrollStore, unitsStore);
+    const basketStore = new BasketStore(unitsStore, armyListStore, ownedStore);
+    const markersStore = new MarkersStore(armyListStore, unitsStore);
     const cardsStore = new CardsStore();
     const battleStore = new BattleStore(unitsStore);
     return {
         dataStore,
         unitsStore,
         uiStore,
-        warscrollStore,
+        armyListStore,
         ownedStore,
         basketStore,
         markersStore,

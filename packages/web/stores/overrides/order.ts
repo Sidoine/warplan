@@ -1,8 +1,8 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 // import { addAbilityEffect } from "./tools";
 // import { TargetType, Phase, SubPhase } from "../unit";
 
-export function overrideOrder(data: DataStoreImpl) {
+export function overrideOrder(data: ImportedDataStoreImpl) {
     // addAbilityEffect(data.abilities.gotrekGurnissonAvatarOfGrimnir, {
     //     targetType: TargetType.Model,
     //     defenseAura: {},

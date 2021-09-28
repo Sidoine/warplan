@@ -1,5 +1,5 @@
 import { observable, action, computed, makeObservable } from "mobx";
-import { Warscroll, WarscrollItem } from "./warscroll";
+import { WarscrollItem } from "./warscroll";
 import {
     Phase,
     AbilityEffect,
@@ -8,11 +8,12 @@ import {
     Attack,
     AbilityCategory
 } from "../../common/unit";
-import { UnitsStore } from "./units";
+import { DataStore } from "./data";
+import { ArmyList } from "./army-list";
 
 export interface Player {
     name: string;
-    warscroll: Warscroll;
+    warscroll: ArmyList;
 }
 
 export const phases = [
@@ -63,7 +64,8 @@ export function getEffectPhases(effect: AbilityEffect) {
         if (effect.attackAura.phase) phase |= effect.attackAura.phase;
         else phase |= Phase.Combat | Phase.Shooting;
     }
-    if (effect.commandAura || effect.spellAura) phase |= Phase.Hero;
+    if (effect.commandAura || effect.spellAura || effect.prayerAura)
+        phase |= Phase.Hero;
     if (effect.movementAura) phase |= Phase.Movement;
     if (effect.chargeAura) phase |= Phase.Charge;
     if (effect.battleShockAura) phase |= Phase.Battleshock;
@@ -152,6 +154,7 @@ export function isEffectInPhase(
     if (phase & Phase.Movement && effect.movementAura) return true;
     if (phase & Phase.Charge && effect.chargeAura) return true;
     if (phase & Phase.Hero && effect.spellAura) return true;
+    if (phase & Phase.Hero && effect.prayerAura) return true;
     if (phase & Phase.Any && effect.commandAura) return true;
 
     return false;
@@ -223,14 +226,17 @@ export class BattleStore {
 
     @observable player: Player | null = null;
 
-    constructor(private unitsStore: UnitsStore) {
+    constructor(private unitsStore: DataStore) {
         makeObservable(this);
     }
 
     @computed get abilities() {
-        let result: Ability[] = this.unitsStore.baseAbilities;
+        let result: Ability[] = [];
         if (!this.player) return result;
         const w = this.player.warscroll;
+        for (const group of this.unitsStore.baseAbilities) {
+            result = result.concat(group.abilities);
+        }
         if (w.armyType) {
             if (w.armyType.abilityGroups) {
                 for (const group of w.armyType.abilityGroups) {
@@ -247,7 +253,7 @@ export class BattleStore {
     }
 
     @action
-    start(warscroll: Warscroll) {
+    start(warscroll: ArmyList) {
         this.player = {
             name: "Player",
             warscroll: warscroll

@@ -16,7 +16,7 @@ import {
 import { useStores } from "../stores";
 
 function WarscrollSceneriesList() {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const warscroll = warscrollStore.warscroll;
     return (
         <Card>

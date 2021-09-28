@@ -18,7 +18,7 @@ export interface WarscrollSceneryEditProps {
 }
 
 function WarscrollSceneryEdit({ scenery }: WarscrollSceneryEditProps) {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const [
         warscrollOpen,
         setWarscrollOpen,

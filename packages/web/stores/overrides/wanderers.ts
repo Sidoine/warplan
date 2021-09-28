@@ -1,10 +1,10 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 
-function addBoxes(data: DataStoreImpl) {}
+function addBoxes(data: ImportedDataStoreImpl) {}
 
-function fixBattalions(data: DataStoreImpl) {}
+function fixBattalions(data: ImportedDataStoreImpl) {}
 
-function fixUnits(data: DataStoreImpl) {
+function fixUnits(data: ImportedDataStoreImpl) {
     {
         // const unit: Unit = data.units.sistersOfTheThorn;
         // unit.warscroll = "https://www.games-workshop.com/resources/PDF/AoS_Warscrolls/aos-warscroll-sisters-of-the-thorn-en.pdf";
@@ -40,9 +40,9 @@ function fixUnits(data: DataStoreImpl) {
     }
 }
 
-function addExtraAbilities(data: DataStoreImpl) {}
+function addExtraAbilities(data: ImportedDataStoreImpl) {}
 
-export function overrideWanderers(data: DataStoreImpl): void {
+export function overrideWanderers(data: ImportedDataStoreImpl): void {
     addBoxes(data);
     fixBattalions(data);
     fixUnits(data);

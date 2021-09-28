@@ -10,7 +10,7 @@ const columns: TableColumn<Unit>[] = [
 ];
 
 export const UnitsList = observer(() => {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const handleChange = useCallback(
         (unit: Unit) => warscrollStore.addUnit(unit),
         [warscrollStore]

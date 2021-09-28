@@ -67,7 +67,7 @@ export interface DefenseAura {
     negateWoundsOrMortalWoundsOn6?: boolean;
     negateWoundsOn5?: boolean;
     changeSaveRoll?: boolean;
-    ignoreRend?: boolean;
+    ethereal?: boolean;
     ignoreRendOfMinus1?: boolean;
     healOnSave7?: number;
     bonusHitRoll?: number;
@@ -175,6 +175,10 @@ export interface SpellAura {
     noCast?: boolean;
 }
 
+export interface PrayerAura {
+    bonusToChant?: Value;
+}
+
 export const enum TargetType {
     Unit = 0,
     Friend = 0,
@@ -217,6 +221,7 @@ export interface AbilityEffect {
     ignoreOtherEffects?: boolean;
     choice?: string;
     spellCastingValue?: number;
+    prayerAura?: PrayerAura;
     prayerValue?: number;
     mortalWounds?: Value;
     heal?: Value;
@@ -547,7 +552,7 @@ export interface WarscrollUnitInterface {
     modelCount: number;
     keywords: string[];
     contingent: Contingent;
-    warscroll: WarscrollInterface;
+    warscroll: ArmyListInterface;
 }
 
 export interface WarscrollModelInterface {
@@ -556,7 +561,7 @@ export interface WarscrollModelInterface {
     count: number;
 }
 
-export interface WarscrollInterface {
+export interface ArmyListInterface {
     battalions: WarscrollBattalionInterface[];
     general: WarscrollUnitInterface | undefined;
     selectedExtraAbilities: Ability[];
@@ -568,7 +573,7 @@ export interface WarscrollInterface {
     getUnitsWithKeywords(keywords: string[][]): WarscrollUnitInterface[];
 }
 
-export interface DataStore {
+export interface ImportedDataStore {
     models: Record<string, Model>;
     factions: Record<string, Faction>;
     abilities: Record<string, Ability>;
@@ -580,6 +585,7 @@ export interface DataStore {
     sceneries: Record<string, EndlessSpell>;
     realms: Record<string, RealmOfBattle>;
     abilityGroups: Record<string, AbilityGroup>;
+    genericAbilityGroups: AbilityGroup[];
 }
 
 export interface AbilityGroup {

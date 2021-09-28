@@ -1,4 +1,4 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 // import {
 //     ExtraAbility,
 //     AbilityCategory,
@@ -11,7 +11,7 @@ import { DataStoreImpl } from "../imported-data";
 
 // type ExtraAbilities = { [key: string]: ExtraAbility };
 
-// function addWarbeats(data: DataStoreImpl) {
+// function addWarbeats(data: ImportedDataStoreImpl) {
 //     const extraAbilities: ExtraAbilities = data.extraAbilities;
 //     const getEmBeat: ExtraAbility = {
 //         id: "orruksWarchanterWarbeatsGetEmBeat",
@@ -98,7 +98,7 @@ import { DataStoreImpl } from "../imported-data";
 //     extraAbilities[killaBeat.id] = killaBeat;
 // }
 
-// function fixBattalion(data: DataStoreImpl) {
+// function fixBattalion(data: ImportedDataStoreImpl) {
 //     override<Battalion>(data.battalions.ironjawzBrawl, (x) => {
 //         x.abilities = [
 //             {
@@ -108,7 +108,7 @@ import { DataStoreImpl } from "../imported-data";
 //                 by the orruks under his command through his subordinate war leaders.`,
 //                 description: `Once per battle, if your general is from this battalion and is on the battlefield,
 //                 another ORRUK HERO from this battalion can use the Ironjawz Waaagh! command ability.
-//                 This does not stop the general from using the Ironjawz Waaagh! command ability, but 
+//                 This does not stop the general from using the Ironjawz Waaagh! command ability, but
 //                 you cannot use the command ability more than once in the same combat phase.`,
 //                 category: AbilityCategory.Command,
 //                 effects: [{ targetType: TargetType.Friend, phase: Phase.Hero }],
@@ -140,7 +140,7 @@ import { DataStoreImpl } from "../imported-data";
 //                 id: "greenSkinnedBatteringRam",
 //                 name: "Green-skinned Battering Ram",
 //                 flavor: `A Brutefist is a tide of destruction that can pulverise even the toughest of foes.`,
-//                 description: `After a model from a unit in this battalion makes a charge move, you can pick 1 
+//                 description: `After a model from a unit in this battalion makes a charge move, you can pick 1
 //                 enemy unit within 1" of that model and roll a dice. On a 4+, that enemy unit suffers 1 mortal wound.
 //                 If that model’s unit has more than 1 model, roll to determine if a mortal wound is inflicted
 //                 each time a model from that unit completes its charge move, but do not allocate the mortal wounds
@@ -206,7 +206,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function overrideUnits(data: DataStoreImpl) {
+// function overrideUnits(data: ImportedDataStoreImpl) {
 //     // Gordrakk
 //     addAbilityEffect(
 //         data.abilities.gordrakkTheFistOfGorkMassivelyDestructiveBulk,
@@ -337,7 +337,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function overrideExtraAbilities(data: DataStoreImpl) {
+// function overrideExtraAbilities(data: ImportedDataStoreImpl) {
 //     // Megaboss
 //     overrideAbility(
 //         data.extraAbilities.ironjawzIroncladWarlordsHulkingMuscleBoundBrute
@@ -480,7 +480,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-export function overrideOrruks(data: DataStoreImpl) {
+export function overrideOrruks(data: ImportedDataStoreImpl) {
     // addWarbeats(data);
     // fixBattalion(data);
     // overrideUnits(data);

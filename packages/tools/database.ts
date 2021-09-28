@@ -1,5 +1,10 @@
 import * as fs from "fs";
-import { Value, DataStore, isDamageColumn, Ability } from "../common/unit";
+import {
+    Value,
+    ImportedDataStore,
+    isDamageColumn,
+    Ability
+} from "../common/unit";
 import { Dump } from "../common/definitions";
 import { importData } from "./import";
 
@@ -22,10 +27,10 @@ async function load() {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const db: Dump = require("../../assets/dump.json");
 
-        let result = `import { DataStore, Faction } from "../../common/unit";
+        let result = `import { ImportedDataStore, Faction } from "../../common/unit";
 import { Role, KeywordCategory } from "../../common/definitions";
 
-export class DataStoreImpl implements DataStore {
+export class ImportedDataStoreImpl implements ImportedDataStore {
 `;
         const dataStore = importData(db);
 
@@ -39,6 +44,7 @@ export class DataStoreImpl implements DataStore {
         result += writeBattalions(dataStore);
         result += writeRealms(dataStore);
         result += writeAbilityGroups(dataStore);
+        result += writeGenericAbilityGroups(dataStore);
         result += writeConstructor(dataStore);
         result += `
         sceneries = {};
@@ -53,7 +59,7 @@ export class DataStoreImpl implements DataStore {
 
 load();
 
-function writeFactions(db: DataStore) {
+function writeFactions(db: ImportedDataStore) {
     let result = `${tab}factions: Record<string, Faction> = {
 `;
     for (const faction of Object.values(db.factions)) {
@@ -70,7 +76,7 @@ function writeFactions(db: DataStore) {
     return result;
 }
 
-function writeModels(db: DataStore) {
+function writeModels(db: ImportedDataStore) {
     let result = `   models = {
 `;
     for (const model of Object.values(db.models)) {
@@ -85,7 +91,7 @@ function writeModels(db: DataStore) {
     return result;
 }
 
-function writeOptions(db: DataStore) {
+function writeOptions(db: ImportedDataStore) {
     let result = `   options = {
 `;
     for (const option of Object.values(db.options)) {
@@ -102,7 +108,7 @@ function writeOptions(db: DataStore) {
     return result;
 }
 
-function writeAbilities(db: DataStore) {
+function writeAbilities(db: ImportedDataStore) {
     let result = `   abilities = {
 `;
     for (const ability of Object.values(db.abilities)) {
@@ -130,7 +136,7 @@ function writeAbilities(db: DataStore) {
     return result;
 }
 
-function writeAttacks(db: DataStore) {
+function writeAttacks(db: ImportedDataStore) {
     let result = `   attacks = {
 `;
     for (const weapon of Object.values(db.attacks)) {
@@ -153,7 +159,7 @@ function writeAttacks(db: DataStore) {
     return result;
 }
 
-function writeDamageTables(db: DataStore) {
+function writeDamageTables(db: ImportedDataStore) {
     let result = `   damageTables = {
 `;
     for (const damageTable of Object.values(db.damageTables)) {
@@ -171,7 +177,7 @@ function writeDamageTables(db: DataStore) {
     return result;
 }
 
-function writeValue(value: Value, data: DataStore) {
+function writeValue(value: Value, data: ImportedDataStore) {
     if (value === undefined) return "undefined";
     if (isDamageColumn(value)) {
         const damageTable = Object.values(data.damageTables).find(x =>
@@ -185,7 +191,7 @@ function writeValue(value: Value, data: DataStore) {
     return JSON.stringify(value);
 }
 
-function writeUnits(db: DataStore) {
+function writeUnits(db: ImportedDataStore) {
     let result = `   units = {
 `;
     for (const unit of Object.values(db.units)) {
@@ -274,7 +280,7 @@ ${
 `;
     return result;
 }
-function writeBattalions(db: DataStore) {
+function writeBattalions(db: ImportedDataStore) {
     let result = `   battalions = {
 `;
     for (const battalion of Object.values(db.battalions)) {
@@ -308,7 +314,7 @@ function abilities(abilities: Ability[]) {
     return `[${abilities.map(ability).join(", ")}]`;
 }
 
-function writeRealms(db: DataStore) {
+function writeRealms(db: ImportedDataStore) {
     let result = `${tab}realms = {\n`;
     for (const realm of Object.values(db.realms)) {
         result += `${tab}${tab}${realm.id}: {
@@ -324,7 +330,7 @@ function writeRealms(db: DataStore) {
     return result;
 }
 
-function writeAbilityGroups(db: DataStore) {
+function writeAbilityGroups(db: ImportedDataStore) {
     let result = `${tab}abilityGroups = {\n`;
     for (const group of Object.values(db.abilityGroups)) {
         result += `${tab}${tab}${group.id}: {
@@ -352,11 +358,19 @@ function writeAbilityGroups(db: DataStore) {
         result += `        },
 `;
     }
-    result += `${tab}}`;
+    result += `${tab}}
+`;
     return result;
 }
 
-function writeConstructor(db: DataStore) {
+function writeGenericAbilityGroups(db: ImportedDataStore) {
+    return `${tab}genericAbilityGroups = [${db.genericAbilityGroups.map(
+        x => `this.abilityGroups.${x.id}`
+    )}];
+`;
+}
+
+function writeConstructor(db: ImportedDataStore) {
     let result = `${tab}constructor() {\n`;
     for (const faction of Object.values(db.factions)) {
         if (faction.parent) {

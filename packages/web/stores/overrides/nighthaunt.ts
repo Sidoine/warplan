@@ -1,4 +1,4 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 // import {
 //     Ability,
 //     AbilityCategory,
@@ -17,7 +17,7 @@ import { DataStoreImpl } from "../imported-data";
 //     addAbilityEffect,
 // } from "./tools";
 
-// function addBattleTraits(data: DataStoreImpl) {
+// function addBattleTraits(data: ImportedDataStoreImpl) {
 //     const auraOfDread: Ability = {
 //         id: "nighthaunt_auraofdead",
 //         flavor:
@@ -125,7 +125,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function overrideAbilities(data: DataStoreImpl) {
+// function overrideAbilities(data: ImportedDataStoreImpl) {
 //     override<Ability>(
 //         data.extraAbilities.nighthauntShadesOfDeathHatredOfTheLiving.ability,
 //         (x) => {
@@ -434,7 +434,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function overrideUnits(data: DataStoreImpl) {
+// function overrideUnits(data: ImportedDataStoreImpl) {
 //     overrideKnightOfShroudsOnEtherealSteed(data);
 //     overrideKnightOfShrouds(data);
 //     overrideChainrasps(data);
@@ -446,7 +446,7 @@ import { DataStoreImpl } from "../imported-data";
 //     overrideMyrmournBanshees(data);
 // }
 
-// function overrideMyrmournBanshees(data: DataStoreImpl) {
+// function overrideMyrmournBanshees(data: ImportedDataStoreImpl) {
 //     addAbilityEffect(data.abilities.myrmournBansheesEthereal, {
 //         targetType: TargetType.Unit,
 //         defenseAura: { ignoreRend: true },
@@ -462,7 +462,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function overrideGlaivewraithStalkers(data: DataStoreImpl) {
+// function overrideGlaivewraithStalkers(data: ImportedDataStoreImpl) {
 //     addAbilityEffect(data.abilities.glaivewraithStalkersEthereal, {
 //         targetType: TargetType.Unit,
 //         defenseAura: { ignoreRend: true },
@@ -482,7 +482,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function overrideKnightOfShroudsOnEtherealSteed(data: DataStoreImpl) {
+// function overrideKnightOfShroudsOnEtherealSteed(data: ImportedDataStoreImpl) {
 //     addAbilityEffect(data.abilities.knightOfShroudsOnEtherealSteedEthereal, {
 //         targetType: TargetType.Unit,
 //         defenseAura: { ignoreRend: true },
@@ -514,7 +514,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function overrideGrimghastReapers(data: DataStoreImpl) {
+// function overrideGrimghastReapers(data: ImportedDataStoreImpl) {
 //     setAttackAsUpgrade(
 //         data.units.grimghastReapers,
 //         data.attacks.grimghastReapersDeathKnell,
@@ -546,7 +546,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function overrideBladegheist(data: DataStoreImpl) {
+// function overrideBladegheist(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.abilities.bladegheistRevenantsEthereal,
 //         (x) =>
@@ -598,7 +598,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function overrideGuardianOfSoulsWithNightmareLantern(data: DataStoreImpl) {
+// function overrideGuardianOfSoulsWithNightmareLantern(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.abilities.guardianOfSoulsWithNightmareLanternEthereal,
 //         (x) =>
@@ -636,7 +636,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function overrideSpiritTorment(data: DataStoreImpl) {
+// function overrideSpiritTorment(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.abilities.spiritTormentEthereal,
 //         (x) =>
@@ -677,7 +677,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function overrideChainrasps(data: DataStoreImpl) {
+// function overrideChainrasps(data: ImportedDataStoreImpl) {
 //     overrideAbility(
 //         data.abilities.chainraspHordeEthereal,
 //         (x) =>
@@ -718,7 +718,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function overrideKnightOfShrouds(data: DataStoreImpl) {
+// function overrideKnightOfShrouds(data: ImportedDataStoreImpl) {
 //     override<Ability>(
 //         data.abilities.knightOfShroudsEthereal,
 //         (x) => (x.effects = [{ defenseAura: {}, targetType: TargetType.Model }])
@@ -742,7 +742,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function overrideBatallion(data: DataStoreImpl) {
+// function overrideBatallion(data: ImportedDataStoreImpl) {
 //     addAbilityEffect(data.abilities.shroudguardFrenziedFervour, {
 //         targetType: TargetType.Friend,
 //         targetRadius: 12,
@@ -758,7 +758,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-export function overrideNighthaunt(data: DataStoreImpl): void {
+export function overrideNighthaunt(data: ImportedDataStoreImpl): void {
     // addBattleTraits(data);
     // overrideAbilities(data);
     // overrideUnits(data);

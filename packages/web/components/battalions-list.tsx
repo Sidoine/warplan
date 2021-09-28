@@ -21,7 +21,7 @@ const columns: TableColumn<Battalion>[] = [
 ];
 
 function BattalionsList({ title }: BattalionsListProps) {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const items = warscrollStore.availableBattalions;
     const onChange = useCallback(
         (model: Battalion) => {

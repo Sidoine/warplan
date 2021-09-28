@@ -14,7 +14,7 @@ const columns: TableColumn<EndlessSpell>[] = [
 ];
 
 function SceneriesList({ title }: SceneriesListProps) {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
 
     return (
         <AddButton

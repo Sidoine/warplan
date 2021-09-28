@@ -11,7 +11,7 @@ import {
 import { useStores } from "../stores";
 
 function ExportPopin() {
-    const { warscrollStore, uiStore } = useStores();
+    const { armyListStore: warscrollStore, uiStore } = useStores();
 
     const handleClose = React.useCallback(() => uiStore.closeExportPopin(), [
         uiStore

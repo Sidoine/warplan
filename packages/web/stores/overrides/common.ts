@@ -1,8 +1,8 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 // import { overrideAbility } from "./tools";
 // import { Phase, TargetType } from "../unit";
 
-// function overrideEndlessSpells(data: DataStoreImpl) {
+// function overrideEndlessSpells(data: ImportedDataStoreImpl) {
 //     overrideAbility(data.abilities.suffocatingGravetideNecroticTide, (x) => {
 //         x.effects = [{ phase: Phase.Hero, targetType: TargetType.Model }];
 //     });
@@ -37,9 +37,9 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function overrideRealms(data: DataStoreImpl) {}
+// function overrideRealms(data: ImportedDataStoreImpl) {}
 
-export function overrideCommon(data: DataStoreImpl) {
+export function overrideCommon(data: ImportedDataStoreImpl) {
     // overrideEndlessSpells(data);
     // overrideRealms(data);
 }

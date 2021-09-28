@@ -1,8 +1,8 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 // import { Ability, AbilityCategory, ArmyOption, Phase, TargetType } from "../unit";
 // import { override, setAttackAsOption } from "./tools";
 
-// function addBoxes(data: DataStoreImpl): void {
+// function addBoxes(data: ImportedDataStoreImpl): void {
 //     data.boxes.push({
 //         id: "archaon",
 //         name: "Archaon Everchosen",
@@ -11,7 +11,7 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-// function fixUnits(data: DataStoreImpl): void {
+// function fixUnits(data: ImportedDataStoreImpl): void {
 //     override<Ability>(
 //         data.abilities.archaonTheEverchosenTheArmourOfMorkar,
 //         (x) => {
@@ -227,7 +227,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function fixAllegiance(data: DataStoreImpl): void {
+// function fixAllegiance(data: ImportedDataStoreImpl): void {
 //     const tirelessConquerors: Ability = {
 //         id: "khorne_tirelessconquerors",
 //         name: "Tireless Conquerors",
@@ -259,7 +259,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function fixArtefacts(data: DataStoreImpl): void {
+// function fixArtefacts(data: ImportedDataStoreImpl): void {
 //     override<Ability>(
 //         data.extraAbilities.khorneGoretideThronebreakerSTorc.ability,
 //         x => {
@@ -277,7 +277,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function fixCommandTraits(data: DataStoreImpl): void {
+// function fixCommandTraits(data: ImportedDataStoreImpl): void {
 //     override<Ability>(
 //         data.extraAbilities.khorneGoretideHewTheFoe.ability,
 //         x => {
@@ -287,7 +287,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-// function fixBlessings(data: DataStoreImpl): void {
+// function fixBlessings(data: ImportedDataStoreImpl): void {
 //     override<Ability>(
 //         data.extraAbilities.khorneBloodBlessingsOfKhorneBronzedFlesh.ability,
 //         x => {
@@ -304,7 +304,7 @@ import { DataStoreImpl } from "../imported-data";
 //     );
 // }
 
-export function overrideEverchosen(data: DataStoreImpl): void {
+export function overrideEverchosen(data: ImportedDataStoreImpl): void {
     // addBoxes(data);
     // fixUnits(data);
     // fixAllegiance(data);

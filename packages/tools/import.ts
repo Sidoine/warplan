@@ -6,7 +6,7 @@ import {
     Attack,
     DamageColumn,
     DamageTable,
-    DataStore,
+    ImportedDataStore,
     Model,
     Phase,
     SubPhase,
@@ -56,6 +56,13 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.phase = Phase.Hero;
     }
 
+    // Chants
+    match = blurb.match(/add (\d) to chanting rolls for this unit/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.prayerAura = { bonusToChant: parseInt(match[1]) };
+    }
+
     //Target
     match = blurb.match(
         /you can pick an enemy Hero within (\d+)" of this model/i
@@ -90,7 +97,7 @@ export function getAbilityEffects(name: string, blurb: string) {
     ) {
         effect = effect || { targetType: TargetType.Model };
         effect.defenseAura = effect.defenseAura || {};
-        effect.defenseAura.ignoreRend = true;
+        effect.defenseAura.ethereal = true;
     }
     if (
         blurb.indexOf(
@@ -99,7 +106,7 @@ export function getAbilityEffects(name: string, blurb: string) {
     ) {
         effect = effect || { targetType: TargetType.Unit };
         effect.defenseAura = effect.defenseAura || {};
-        effect.defenseAura.ignoreRend = true;
+        effect.defenseAura.ethereal = true;
     }
     if (
         blurb.indexOf(
@@ -115,8 +122,17 @@ export function getAbilityEffects(name: string, blurb: string) {
     if (name === "Mount") {
         effect = effect || { targetType: TargetType.Mount };
     }
-    if (blurb.indexOf("this model can fly") >= 0) {
+
+    match = blurb.match(/this model can fly/i);
+    if (match) {
         effect = effect || { targetType: TargetType.Model };
+        effect.movementAura = effect.movementAura || {};
+        effect.movementAura = { fly: true };
+    }
+
+    match = blurb.match(/this unit can fly/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
         effect.movementAura = effect.movementAura || {};
         effect.movementAura = { fly: true };
     }
@@ -153,7 +169,7 @@ export function getAbilityEffects(name: string, blurb: string) {
     return [effect];
 }
 
-type DataStoreProperty = keyof DataStore;
+type DataStoreProperty = keyof ImportedDataStore;
 const idMaps = new Map<
     DataStoreProperty,
     { idToName: Map<string, string>; nameToId: Map<string, string> }
@@ -191,20 +207,19 @@ function getId(id: string, name: string, property: DataStoreProperty) {
     }
     idMap.idToName.set(id, nameId);
     idMap.nameToId.set(nameId, id);
-    if (name === "Daemonic Weapons") {
-        console.log(`${id} ${nameId} ${property}`);
-    }
     return nameId;
 }
 
-function getItem<T extends keyof DataStore>(
-    dataStore: DataStore,
+function getItem<
+    T extends KeysOfType<ImportedDataStore, Record<string, unknown>>
+>(
+    dataStore: ImportedDataStore,
     property: T,
     id: string
-): DataStore[T][string] {
+): ImportedDataStore[T][string] {
     const newId = idMaps.get(property)?.idToName.get(id);
     if (newId) {
-        return dataStore[property][newId] as DataStore[T][string];
+        return dataStore[property][newId] as ImportedDataStore[T][string];
     }
     throw Error(`Could not find ${property} with id ${id}`);
 }
@@ -227,7 +242,7 @@ function importExtraAbilities<
     U extends KeysOfType<ArrayElement<Dump[T]>, string>
 >(
     db: Dump,
-    dataStore: DataStore,
+    dataStore: ImportedDataStore,
     groups: G,
     abilities: T,
     keywords: K | undefined,
@@ -249,6 +264,8 @@ function importExtraAbilities<
             const faction = getItem(dataStore, "factions", group.factionId);
             if (!faction.abilityGroups) faction.abilityGroups = [];
             faction.abilityGroups.push(entity);
+        } else {
+            dataStore.genericAbilityGroups.push(entity);
         }
     }
 
@@ -293,7 +310,13 @@ function importAbilityKeywords<
     T extends Abilities,
     K extends KeysOfType<Dump, { keywordId: string }[]>,
     U extends KeysOfType<ArrayElement<Dump[K]>, string>
->(db: Dump, dataStore: DataStore, abilities: T, keywords: K, groupId: U) {
+>(
+    db: Dump,
+    dataStore: ImportedDataStore,
+    abilities: T,
+    keywords: K,
+    groupId: U
+) {
     for (const abilityKeyword of db[keywords]) {
         const ability = getItem(
             dataStore,
@@ -310,8 +333,8 @@ function importAbilityKeywords<
     }
 }
 
-export function importData(db: Dump): DataStore {
-    const dataStore: DataStore = {
+export function importData(db: Dump): ImportedDataStore {
+    const dataStore: ImportedDataStore = {
         abilities: {},
         attacks: {},
         battalions: {},
@@ -322,7 +345,8 @@ export function importData(db: Dump): DataStore {
         realms: {},
         sceneries: {},
         units: {},
-        abilityGroups: {}
+        abilityGroups: {},
+        genericAbilityGroups: []
     };
 
     for (const faction of db.faction) {
@@ -398,7 +422,11 @@ export function importData(db: Dump): DataStore {
             ),
             name: descriptionSubsection.header,
             description: descriptionSubsection.rules,
-            category: AbilityCategory.SpecialRule
+            category: AbilityCategory.SpecialRule,
+            effects: getAbilityEffects(
+                descriptionSubsection.header,
+                descriptionSubsection.rules
+            )
         };
         switch (descriptionSubsection.header) {
             case "Champion":

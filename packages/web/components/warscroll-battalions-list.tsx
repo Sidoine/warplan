@@ -57,7 +57,7 @@ function BattalionName({ x }: { x: WarscrollBattalion }) {
 }
 
 function WarscrollBattalionsList() {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const columns = useMemo<ResponsiveTableColumn<WarscrollBattalion>[]>(() => {
         const counts = new Map<string, { count: number }>();
         return [

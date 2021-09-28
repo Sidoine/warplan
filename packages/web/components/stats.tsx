@@ -5,7 +5,6 @@ import { UnitStats } from "../stores/stats";
 import { computed } from "mobx";
 import { join, value } from "../helpers/react";
 import Filter from "./filter";
-import { WarscrollStore } from "../stores/warscroll";
 import { getValue } from "../stores/combat";
 import { UnitWarscroll } from "./unit-warscroll";
 import { Unit } from "../../common/unit";
@@ -30,10 +29,11 @@ import AddIcon from "@material-ui/icons/Add";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { useStores } from "../stores";
 import NumberControl from "../atoms/number-control";
+import { ArmyListStore } from "../stores/army-list";
 
 export interface StatsProps {
     uiStore?: UiStore;
-    warscrollStore?: WarscrollStore;
+    warscrollStore?: ArmyListStore;
 }
 
 const EnemyConfiguration = observer(({}) => {
@@ -173,7 +173,7 @@ function Combination({
     unitStats: UnitStats;
     onOpenWarscroll: (unit: Unit) => void;
 }) {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const unit = unitStats.unit;
     const wounds = getValue(unit.wounds) * unit.size;
     const points = unit.points / 100;

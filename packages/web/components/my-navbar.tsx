@@ -52,7 +52,7 @@ function MyDrawer({
 
 function MyNavbar({ route, children }: MyNavbarProps) {
     const pathname = route.location.pathname;
-    const { warscrollStore, battleStore, basketStore } = useStores();
+    const { armyListStore: warscrollStore, battleStore, basketStore } = useStores();
     const state = useLocalObservable(() => ({
         get columns(): MenuItem[] {
             return [

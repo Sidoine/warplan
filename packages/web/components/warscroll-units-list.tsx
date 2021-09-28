@@ -3,13 +3,11 @@ import React, { useMemo, useState } from "react";
 import {
     Model,
     ModelOption,
-    Contingent,
-    contingentName,
     Ability
 } from "../../common/unit";
 import { observer } from "mobx-react-lite";
 import { UnitsList } from "./units-list";
-import { WarscrollUnit, WarscrollModel, PointMode } from "../stores/warscroll";
+import { WarscrollUnit, WarscrollModel } from "../stores/warscroll";
 import {
     Card,
     CardContent,
@@ -23,7 +21,7 @@ import {
 import ResponsiveTable, {
     ResponsiveTableColumn
 } from "../atoms/responsive-table";
-import DropdownValues from "../atoms/dropdown-values";
+
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import PeopleIcon from "@material-ui/icons/People";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -44,22 +42,6 @@ const extraAbilityColumns: TableColumn<Ability>[] = [
     { name: "Name", text: x => x.name },
     { name: "Description", text: x => x.description }
 ];
-
-const ContingentList = observer(({ unit }: { unit: WarscrollUnit }) => {
-    const { warscrollStore } = useStores();
-    return (
-        <DropdownValues
-            options={[
-                Contingent.Rearguard,
-                Contingent.Main,
-                Contingent.Spearhead
-            ]}
-            getText={contingentName}
-            onChange={x => warscrollStore.setContingent(unit, x)}
-            value={unit.contingent}
-        />
-    );
-});
 
 const ExtraAbilitiesView = observer(
     ({
@@ -103,7 +85,7 @@ const ModelName = observer(
         unit: WarscrollUnit;
         onOpenWarscroll: (unit: WarscrollUnit) => void;
     }) => {
-        const { warscrollStore } = useStores();
+        const { armyListStore: warscrollStore } = useStores();
         const toggleGeneral = (checked: boolean) => {
             warscrollStore.setGeneral(checked ? unit : undefined);
         };
@@ -153,7 +135,7 @@ const ModelName = observer(
 );
 
 const RenderExtras = observer(({ unit }: { unit: WarscrollUnit }) => {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
 
     const handleExtraAbilityChange = useCallback(
         (unit: WarscrollUnit, extraAbility: Ability) => {
@@ -196,7 +178,7 @@ function RenderModelOption({
     model: WarscrollModel;
     option: ModelOption;
 }) {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
     const handleRemoveModelOption = useCallback(() => {
         warscrollStore.removeModelOption(model, option);
     }, [model, option, warscrollStore]);
@@ -213,7 +195,7 @@ function RenderModelOption({
 
 const RenderModel = observer(
     ({ unit, model }: { unit: WarscrollUnit; model: WarscrollModel }) => {
-        const { warscrollStore } = useStores();
+        const { armyListStore: warscrollStore } = useStores();
 
         const handleAddModelOption = useCallback(
             (model: WarscrollModel) => {
@@ -265,7 +247,7 @@ const RenderModel = observer(
 );
 
 const ModelOptions = observer(({ unit }: { unit: WarscrollUnit }) => {
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
 
     const handleAddModel = useCallback(
         (unit: WarscrollUnit) => {
@@ -300,7 +282,7 @@ function WarscrollUnitsList() {
         (unit: WarscrollUnit) => setWarscrollOpen(unit),
         []
     );
-    const { warscrollStore } = useStores();
+    const { armyListStore: warscrollStore } = useStores();
 
     const handleCloseWarscroll = useCallback(() => setWarscrollOpen(null), []);
 
@@ -329,14 +311,7 @@ function WarscrollUnitsList() {
                 text: unit => unit.points
             }
         ];
-        if (
-            warscrollStore.warscroll.pointMode === PointMode.MeetingEngagements
-        ) {
-            columns.push({
-                name: "Contingent",
-                text: unit => <ContingentList unit={unit} />
-            });
-        }
+        
         columns.push({
             name: "Actions",
             text: unit => (

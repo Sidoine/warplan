@@ -1,9 +1,9 @@
-import { DataStoreImpl } from "../imported-data";
+import { ImportedDataStoreImpl } from "../imported-data";
 // import { Ability, ArmyOption, Phase, TargetType } from "../unit";
 // import { override, ratioModelOption, setAttackAsOption, setAbilityAsOption, oneModelOption } from "./tools";
 
-// function fixUnits(data: DataStoreImpl): void {
-    
+// function fixUnits(data: ImportedDataStoreImpl): void {
+
 //     override<Ability>(
 //         data.abilities.bloodsecratorLoathsomeSorcery,
 //         (x) => {
@@ -157,13 +157,13 @@ import { DataStoreImpl } from "../imported-data";
 //     setAbilityAsOption(
 //         data.units.bloodWarriors,
 //         data.abilities.bloodWarriorsGoreaxes,
-//         undefined, 
+//         undefined,
 //         "main"
 //     );
 //     setAbilityAsOption(
 //         data.units.bloodWarriors,
 //         data.abilities.bloodWarriorsGorefists,
-//         undefined, 
+//         undefined,
 //         "main"
 //     );
 
@@ -304,40 +304,40 @@ import { DataStoreImpl } from "../imported-data";
 //         effects: [{phase: Phase.Charge, targetType: TargetType.Unit}]
 //     };
 
-//     override<ArmyOption>(data.options.skullreapersIconBearer, 
+//     override<ArmyOption>(data.options.skullreapersIconBearer,
 //         x => {
 //             x.abilities = [skullreapersIconBearer]
 //     });
 
-//     override<ArmyOption>(data.options.bloodWarriorsIconBearer, 
+//     override<ArmyOption>(data.options.bloodWarriorsIconBearer,
 //         x => {
 //             x.abilities = [bloodWarriorsIconBearer]
 //     });
-//     override<ArmyOption>(data.options.bloodreaversIconBearer, 
+//     override<ArmyOption>(data.options.bloodreaversIconBearer,
 //         x => {
 //             x.abilities = [bloodReaversIconBearer]
 //     });
-//     override<ArmyOption>(data.options.bloodreaversHornblower, 
+//     override<ArmyOption>(data.options.bloodreaversHornblower,
 //         x => {
 //             x.abilities = [bloodReaversHornBlower]
 //     });
-//     override<ArmyOption>(data.options.bloodWarriorsChaosChampion, 
+//     override<ArmyOption>(data.options.bloodWarriorsChaosChampion,
 //         x => {
 //             x.abilities = [bloodWarriorsChaosChampion]
 //     });
-//     override<ArmyOption>(data.options.bloodreaversChieftain, 
+//     override<ArmyOption>(data.options.bloodreaversChieftain,
 //         x => {
 //             x.abilities = [bloodReaversChieftain]
 //     });
-//     override<ArmyOption>(data.options.mightySkullcrushersSkullhunter, 
+//     override<ArmyOption>(data.options.mightySkullcrushersSkullhunter,
 //         x => {
 //             x.abilities = [mightySkullcrushersSkullHunter]
 //     });
-//     override<ArmyOption>(data.options.mightySkullcrushersStandardBearer, 
+//     override<ArmyOption>(data.options.mightySkullcrushersStandardBearer,
 //         x => {
 //             x.abilities = [mightySkullcrushersStandardBearer]
 //     });
-//     override<ArmyOption>(data.options.mightySkullcrushersHornblower, 
+//     override<ArmyOption>(data.options.mightySkullcrushersHornblower,
 //         x => {
 //             x.abilities = [mightySkullcrushersHornBlower]
 //     });
@@ -356,6 +356,6 @@ import { DataStoreImpl } from "../imported-data";
 //     });
 // }
 
-export function overrideKhorne(data: DataStoreImpl): void {
+export function overrideKhorne(data: ImportedDataStoreImpl): void {
     // fixUnits(data);
 }
