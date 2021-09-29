@@ -77,14 +77,6 @@ function ExportPopin() {
                         <b>{x.definition.name}</b>
                     </div>
                 ))}
-                {warscroll.commandPoints > 0 && (
-                    <div>
-                        <b>
-                            {warscroll.commandPoints} command point
-                            {warscroll.commandPoints > 0 ? "s" : ""}
-                        </b>
-                    </div>
-                )}
 
                 <Input type="text" value={warscrollStore.link} />
             </DialogContent>

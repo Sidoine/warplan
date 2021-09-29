@@ -14,6 +14,14 @@ export interface Model {
     material?: Material;
 }
 
+export interface BattalionGroup {
+    id: string;
+    name: string;
+    battalions: Battalion[];
+    description: string;
+    restrictions?: string;
+}
+
 export interface Faction {
     id: string;
     name: string;
@@ -23,6 +31,7 @@ export interface Faction {
     children: Faction[];
     icon?: string;
     abilityGroups?: AbilityGroup[];
+    battalionGroups?: BattalionGroup[];
 }
 
 export const enum AbilityCategory {
@@ -516,10 +525,14 @@ export interface Box {
 
 export interface BattalionUnit {
     id: string;
-    // Outer is and, inner is or (keywords)
-    units: string[][];
-    countMin: number;
-    countMax: number;
+    name: string;
+    restrictions: string;
+    imageName: string;
+    min: number;
+    max: number;
+    eitherOr: boolean;
+    woundsLimit: number | null;
+    order: number;
 }
 
 export interface Battalion {
@@ -528,9 +541,6 @@ export interface Battalion {
     subName?: string;
     units: BattalionUnit[];
     description?: string;
-    pictureUrl?: string;
-    points: number;
-    allegiances: Faction[];
     abilities?: Ability[];
 }
 
@@ -581,6 +591,9 @@ export interface ImportedDataStore {
     realms: Record<string, RealmOfBattle>;
     abilityGroups: Record<string, AbilityGroup>;
     genericAbilityGroups: AbilityGroup[];
+    battalionUnits: Record<string, BattalionUnit>;
+    battalionGroups: Record<string, BattalionGroup>;
+    genericBattalionGroups: BattalionGroup[];
 }
 
 export interface AbilityGroup {

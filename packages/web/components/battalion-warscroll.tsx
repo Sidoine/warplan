@@ -21,9 +21,6 @@ function BattalionWarscroll({
                     <div className={classes.name}>
                         {battalion.definition.name}
                     </div>
-                    {/* <div className={classes.count}>
-                        {battalion.definition.points} points
-                    </div> */}
                 </div>
             </div>
             {battalion.definition.description && (
@@ -45,11 +42,11 @@ function BattalionWarscroll({
                     {battalion.definition.units
                         .map(
                             x =>
-                                `${x.countMin}${
-                                    x.countMax > x.countMin
-                                        ? `-${x.countMax}`
+                                `${x.min}${
+                                    x.max > x.min
+                                        ? `-${x.max}`
                                         : ""
-                                } ${x.units.map(y => y.join(" - ")).join("/")}`
+                                } ${x.name}`
                         )
                         .join(", ")}
                 </div>

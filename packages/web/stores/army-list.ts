@@ -146,9 +146,6 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @observable
     endlessSpells: WarscrollEndlessSpell[] = [];
 
-    @observable
-    commandPoints = 0;
-
     @computed
     get unitsPoints() {
         return this.units.reduce((p, x) => x.points + p, 0);
@@ -160,18 +157,8 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     @computed
-    get battalionsPoints() {
-        return this.battalions.reduce((p, x) => x.definition.points + p, 0);
-    }
-
-    @computed
     get totalPoints() {
-        return (
-            this.unitsPoints +
-            this.battalionsPoints +
-            this.sceneryPoints +
-            50 * this.commandPoints
-        );
+        return this.unitsPoints + this.sceneryPoints;
     }
 
     @computed
@@ -412,7 +399,6 @@ interface SerializedArmyList {
     subFaction?: string;
     sceneries?: string[];
     pointMode?: PointMode;
-    commandPoints?: number;
     realm?: string;
 }
 
@@ -578,7 +564,6 @@ export class ArmyListStore {
                 x => x.id == warscroll.subFaction
             ) || null;
         this.warscroll.pointMode = warscroll.pointMode || PointMode.MatchedPlay;
-        this.warscroll.commandPoints = warscroll.commandPoints || 0;
 
         for (const ba of warscroll.battalions) {
             const battalion = this.unitsStore.battalions.find(
@@ -690,8 +675,7 @@ export class ArmyListStore {
                 ? this.warscroll.subFaction.id
                 : undefined,
             sceneries: this.warscroll.endlessSpells.map(x => x.definition.id),
-            pointMode: this.warscroll.pointMode,
-            commandPoints: this.warscroll.commandPoints
+            pointMode: this.warscroll.pointMode
         };
     }
 
@@ -805,12 +789,6 @@ export class ArmyListStore {
     @action
     removeModel(unit: UnitWarscroll, model: WarscrollModel) {
         unit.models.splice(unit.models.indexOf(model), 1);
-        this.saveWarscroll();
-    }
-
-    @action
-    setCommandPoints(commandPoints: number) {
-        this.warscroll.commandPoints = commandPoints;
         this.saveWarscroll();
     }
 

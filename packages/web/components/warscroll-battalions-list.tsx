@@ -32,9 +32,9 @@ function RenderUnit({
             //  return <span style={{ color:  'red' } } key={bu.id}>{ bu.count} { join(bu.units.map(x => <a key={x.id} href="" onClick={e => addUnit(x, e, count)}>{x.model.name}</a>), "/") } </span>;
             return (
                 <span style={{ color: "red" }} key={bu.id}>
-                    {bu.countMin}{" "}
-                    {bu.countMax !== bu.countMin && ` - ${bu.countMax} `}{" "}
-                    {bu.units.map(x => x.join(", ")).join("/")}{" "}
+                    {bu.min}{" "}
+                    {bu.max !== bu.min && ` - ${bu.max} `}{" "}
+                    {bu.name}{" "}
                 </span>
             );
         }
@@ -42,8 +42,8 @@ function RenderUnit({
 
     return (
         <span key={bu.id}>
-            {bu.countMin} {bu.countMax !== bu.countMin && ` - ${bu.countMax} `}{" "}
-            {bu.units.map(x => x.join("/")).join(" or ")}{" "}
+            {bu.min} {bu.max !== bu.min && ` - ${bu.max} `}{" "}
+            {bu.name}{" "}
         </span>
     );
 }
@@ -76,10 +76,6 @@ function WarscrollBattalionsList() {
                     )
             },
             {
-                name: "Points",
-                text: x => x.definition.points
-            },
-            {
                 name: "Actions",
                 // eslint-disable-next-line react/display-name
                 text: x => (
@@ -103,7 +99,6 @@ function WarscrollBattalionsList() {
                 ></ResponsiveTable>
             </CardContent>
             <CardActions>
-                <span>{warscroll.battalionsPoints} points</span>
                 <BattalionsList title="Add..." />
             </CardActions>
         </Card>

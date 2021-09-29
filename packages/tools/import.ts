@@ -4,6 +4,9 @@ import {
     AbilityEffect,
     AbilityGroup,
     Attack,
+    Battalion,
+    BattalionGroup,
+    BattalionUnit,
     DamageColumn,
     DamageTable,
     ImportedDataStore,
@@ -510,7 +513,10 @@ export function importData(db: Dump): ImportedDataStore {
         sceneries: {},
         units: {},
         abilityGroups: {},
-        genericAbilityGroups: []
+        genericAbilityGroups: [],
+        battalionUnits: {},
+        battalionGroups: {},
+        genericBattalionGroups: []
     };
 
     for (const faction of db.faction) {
@@ -810,6 +816,68 @@ export function importData(db: Dump): ImportedDataStore {
                 dataStore.options[option.id] = option;
             }
         }
+    }
+
+    for (const battalionGroup of db.core_battalion_group) {
+        const entity: BattalionGroup = {
+            id: getId(
+                battalionGroup.id,
+                battalionGroup.name,
+                "battalionGroups"
+            ),
+            battalions: [],
+            name: battalionGroup.name,
+            description: battalionGroup.rules,
+            restrictions: battalionGroup.restrictions
+        };
+        dataStore.battalionGroups[entity.id] = entity;
+        if (battalionGroup.factionId) {
+            const faction = getItem(
+                dataStore,
+                "factions",
+                battalionGroup.factionId
+            );
+            faction.battalionGroups = faction.battalionGroups || [];
+            faction.battalionGroups.push(entity);
+        } else {
+            dataStore.genericBattalionGroups.push(entity);
+        }
+    }
+
+    for (const battalion of db.core_battalion) {
+        const battalionData: Battalion = {
+            id: getId(battalion.id, battalion.name, "battalions"),
+            name: battalion.name,
+            units: []
+        };
+        dataStore.battalions[battalionData.id] = battalionData;
+        const battalionGroup = getItem(
+            dataStore,
+            "battalionGroups",
+            battalion.coreBattalionGroupId
+        );
+        battalionGroup.battalions.push(battalionData);
+    }
+
+    for (const unitType of db.unit_type) {
+        const battalion = getItem(
+            dataStore,
+            "battalions",
+            unitType.coreBattalionId
+        );
+        const entity: BattalionUnit = {
+            id: getId(unitType.id, unitType.name, "battalionUnits"),
+            name: unitType.name,
+            max: unitType.max,
+            min: unitType.min,
+            eitherOr: unitType.eitherOr,
+            imageName: unitType.imageName,
+            order: unitType.order,
+            restrictions: unitType.restrictions,
+            woundsLimit: unitType.woundsLimit
+        };
+        dataStore.battalionUnits[entity.id] = entity;
+        battalion.units.push(entity);
     }
 
     return dataStore;

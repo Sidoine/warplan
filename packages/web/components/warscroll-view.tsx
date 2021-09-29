@@ -104,10 +104,6 @@ function WarscrollView() {
                         {warscroll.totalPoints} / {warscroll.maxPoints}
                     </dd>
                 </dl>
-                <dl>
-                    <dt>Extra Command Points</dt>
-                    <dd>{warscroll.commandPoints}</dd>
-                </dl>
             </div>
         </div>
     );

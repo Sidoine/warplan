@@ -9,13 +9,12 @@ export interface BattalionsListProps {
 }
 
 const columns: TableColumn<Battalion>[] = [
-    { name: "Points", text: x => x.points },
     { name: "Name", text: x => x.name },
     {
         name: "Description",
         text: b =>
             b.units
-                .map(y => y.units.map(x => x.join("-")).join("/"))
+                .map(y => y.name)
                 .join(" ― ")
     }
 ];

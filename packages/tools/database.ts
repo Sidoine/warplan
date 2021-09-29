@@ -40,7 +40,10 @@ export class ImportedDataStoreImpl implements ImportedDataStore {
         result += writeAttacks(dataStore);
         result += writeOptions(dataStore);
         result += writeUnits(dataStore);
+        result += writeBattalionUnits(dataStore);
         result += writeBattalions(dataStore);
+        result += writeBattalionGroups(dataStore);
+        result += writeGenericBattalionGroups(dataStore);
         result += writeRealms(dataStore);
         result += writeAbilityGroups(dataStore);
         result += writeGenericAbilityGroups(dataStore);
@@ -308,6 +311,21 @@ ${
 `;
     return result;
 }
+
+function writeBattalionUnits(db: ImportedDataStore) {
+    let result = `   battalionUnits = {
+`;
+    for (const battalionUnit of Object.values(db.battalionUnits)) {
+        const id = battalionUnit.id;
+        if (!id) continue;
+        result += `       ${id}: ${JSON.stringify(battalionUnit)},
+`;
+    }
+    result += `   };
+`;
+    return result;
+}
+
 function writeBattalions(db: ImportedDataStore) {
     let result = `   battalions = {
 `;
@@ -316,12 +334,10 @@ function writeBattalions(db: ImportedDataStore) {
         result += `       ${id}: {
             id: "${id}",
             name: ${escapeQuotedString(battalion.name)},
-            allegiances: [${battalion.allegiances.map(
-                x => `this.allegiances.${x}`
-            )}],
             description: ${escapeQuotedString(battalion.description)},
-            pictureUrl: ${escapeQuotedString(battalion.pictureUrl)},
-            points: ${battalion.points},
+            units: [${battalion.units
+                .map(x => `this.battalionUnits.${x.id}`)
+                .join(", ")}],
 `;
 
         result += `
@@ -331,6 +347,37 @@ function writeBattalions(db: ImportedDataStore) {
     result += `${tab}}
 `;
     return result;
+}
+
+function writeBattalionGroups(db: ImportedDataStore) {
+    let result = `   battalionGroups = {
+`;
+    for (const battalionGroup of Object.values(db.battalionGroups)) {
+        const id = battalionGroup.id;
+        result += `       ${id}: {
+            id: "${id}",
+            name: ${escapeQuotedString(battalionGroup.name)},
+            description: ${escapeQuotedString(battalionGroup.description)},
+            battalions: [${battalionGroup.battalions
+                .map(x => `this.battalions.${x.id}`)
+                .join(", ")}],
+`;
+        if (battalionGroup.restrictions) {
+            result += `            restrictions: ${battalionGroup.restrictions},\n`;
+        }
+        result += `
+        },
+`;
+    }
+    result += `${tab}}
+`;
+    return result;
+}
+
+function writeGenericBattalionGroups(db: ImportedDataStore) {
+    return `   genericBattalionGroups = [${db.genericBattalionGroups.map(
+        x => `this.battalionGroups.${x.id}`
+    )}]\n`;
 }
 
 function ability(ability?: Ability) {

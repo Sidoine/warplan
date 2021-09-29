@@ -17,7 +17,6 @@ import {
     makeStyles
 } from "@material-ui/core";
 import WarningIcon from "@material-ui/icons/Warning";
-import NumberControl from "../atoms/number-control";
 import { Warning } from "../atoms/warning";
 import { useStores } from "../stores";
 import React, { ChangeEvent, useCallback } from "react";
@@ -42,9 +41,6 @@ export const ArmyListSummary = observer(() => {
     const store = useLocalObservable(() => ({
         handlePointsModeChange(value: PointMode) {
             warscrollStore.setPointMode(value);
-        },
-        setCommandPoints(value: number) {
-            warscrollStore.setCommandPoints(value);
         },
         setAllegiance(allegiance: Faction | null) {
             if (allegiance) {
@@ -182,15 +178,6 @@ export const ArmyListSummary = observer(() => {
                                     clearable
                                 />
                             </FormControl>
-                        </Grid>
-                        <Grid item>
-                            <NumberControl
-                                label="Command points"
-                                min={0}
-                                max={warscroll.maxCommandPoints}
-                                value={warscroll.commandPoints}
-                                onChange={store.setCommandPoints}
-                            />
                         </Grid>
                     </Grid>
                     <Grid item container spacing={2} direction="column">
