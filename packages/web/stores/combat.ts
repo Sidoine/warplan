@@ -7,7 +7,7 @@ import {
     isTargetConditionValue,
     isOrValue,
     isConditionValue
-} from "../../common/unit";
+} from "../../common/data";
 import { targetEnemy, checkCondition } from "./stats";
 import { UnitState, addAttackAura } from "./unit-state";
 

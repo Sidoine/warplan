@@ -7,7 +7,7 @@ import {
     TargetType,
     Phase,
     targetConditionValue
-} from "../../common/unit";
+} from "../../common/data";
 import { RandomCombat } from "./combat";
 import { UnitState } from "./unit-state";
 import { getUnitStats } from "./stats";
@@ -33,7 +33,8 @@ async function computeUnitDamage(
         keywords: enemyOptions?.enemyKeywords
             ? enemyOptions.enemyKeywords.split(" ")
             : [],
-        save: 5
+        save: 5,
+        description: "fake description"
     };
     const tries = 50000;
     if (unit.attacks) {
@@ -83,7 +84,8 @@ function createFakeUnit(attacks?: Attack[], abilities?: Ability[]): Unit {
         size: 1,
         points: 100,
         attacks: attacks,
-        abilities: abilities
+        abilities: abilities,
+        description: "fake description"
     };
 }
 

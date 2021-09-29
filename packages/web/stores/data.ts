@@ -22,7 +22,7 @@ import {
     Battalion,
     Faction,
     AbilityGroup
-} from "../../common/unit";
+} from "../../common/data";
 import { computed, makeObservable } from "mobx";
 import { KeywordCategory } from "../../common/definitions";
 

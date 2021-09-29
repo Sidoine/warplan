@@ -2,18 +2,18 @@ import { computed, observable, makeObservable } from "mobx";
 import {
     Battalion,
     Unit,
-    Contingent,
-    WarscrollUnitInterface,
+    UnitWarscrollInterface,
     WarscrollBattalionInterface,
     WarscrollModelInterface,
     EndlessSpell,
     ModelOption,
     Ability,
     AbilityGroup
-} from "../../common/unit";
+} from "../../common/data";
 
 import { canAddAbilityCategory } from "./conditions";
 import { ArmyList } from "./army-list";
+import { getUnitModelsWithOptionCount } from "./overrides/tools";
 
 export const enum PointMode {
     MatchedPlay,
@@ -29,36 +29,47 @@ export class WarscrollModel implements WarscrollModelInterface {
     @observable
     count = 1;
 
-    constructor(private warscrollUnit: WarscrollUnit, warscroll: ArmyList) {
+    constructor(private unitWarscroll: UnitWarscroll, warscroll: ArmyList) {
         makeObservable(this);
         this.id = warscroll.serial++;
     }
 
     @computed
     get availableOptions() {
-        const options = this.warscrollUnit.definition.options;
+        const options = this.unitWarscroll.definition.options;
         if (!options) return [];
         return options.filter(x => this.isOptionAvailable(x));
     }
 
-    isOptionAvailable(option: ModelOption) {
+    private isOptionAvailable(option: ModelOption) {
         if (this.options.some(x => x.id === option.id)) return false;
-        if (option.isOptionValid) {
-            if (!option.isOptionValid(this.warscrollUnit, this)) return false;
-        }
-        return this.checkOptionAvailable(option);
+        return this.isOptionValid(option);
     }
 
     isOptionValid(option: ModelOption) {
-        if (!this.checkOptionAvailable(option)) return false;
         if (option.isOptionValid) {
-            if (!option.isOptionValid(this.warscrollUnit, this)) return false;
+            if (!option.isOptionValid(this.unitWarscroll, this)) return false;
         }
-        return true;
-    }
+        if (option.ratio) {
+            const count = getUnitModelsWithOptionCount(
+                this.unitWarscroll,
+                option
+            );
+            const totalCount = this.unitWarscroll.modelCount;
+            if (count > (totalCount / option.ratio.every) * option.ratio.count)
+                return false;
+        }
+        if (option.champion) {
+            if (
+                this.unitWarscroll.models.some(
+                    x => x.id !== this.id && x.options.some(y => y.champion)
+                )
+            )
+                return false;
+            if (this.count > 1) return false;
+        }
 
-    private checkOptionAvailable(option: ModelOption) {
-        if (option.modelCategory) {
+        if (option.modelCategory !== undefined) {
             if (
                 this.options.some(
                     x =>
@@ -69,9 +80,9 @@ export class WarscrollModel implements WarscrollModelInterface {
                 return false;
         }
 
-        if (option.unitCategory) {
+        if (option.unitCategory !== undefined) {
             if (
-                this.warscrollUnit.models.some(x =>
+                this.unitWarscroll.models.some(x =>
                     x.options.some(
                         y =>
                             y.unitCategory === option.unitCategory &&
@@ -98,10 +109,11 @@ export interface AbilityModel {
 }
 
 export type WarscrollItem =
-    | WarscrollUnit
+    | UnitWarscroll
     | WarscrollEndlessSpell
     | WarscrollBattalion;
-export class WarscrollUnit implements WarscrollUnitInterface {
+
+export class UnitWarscroll implements UnitWarscrollInterface {
     type: "unit" = "unit";
     id: string;
 
@@ -110,8 +122,6 @@ export class WarscrollUnit implements WarscrollUnitInterface {
 
     @observable
     battalion: WarscrollBattalionInterface | null = null;
-    @observable
-    contingent = Contingent.Main;
 
     @computed get keywords() {
         // if (!this.isAllied) {
@@ -253,17 +263,6 @@ export class WarscrollUnit implements WarscrollUnitInterface {
             ) &&
             !this.warscroll.hasAnyUnitExtraAbility(extraAbility) &&
             canAddAbilityCategory(this, this.warscroll, extraAbility.category)
-            // (!extraAbility.allegianceKeyword ||
-            //     this.warscroll.allegiance.keywords.indexOf(
-            //         extraAbility.allegianceKeyword
-            //     ) >= 0) &&
-            // (!extraAbility.armyOptionKeyword ||
-            //     this.keywords.indexOf(extraAbility.armyOptionKeyword) >= 0) &&
-            // (!extraAbility.keywords ||
-            //     hasKeywords(this, extraAbility.keywords)) &&
-            // (!extraAbility.realmId ||
-            //     (this.warscroll.realm &&
-            //         this.warscroll.realm.id === extraAbility.realmId))
         );
     }
 

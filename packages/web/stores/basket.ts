@@ -1,5 +1,5 @@
 import { action, observable, toJS, computed, makeObservable } from "mobx";
-import { Box, Model } from "../../common/unit";
+import { Box, Model } from "../../common/data";
 import { ArmyListStore } from "./army-list";
 import { DataStore } from "./data";
 import { OwnedStore } from "./owned";

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Faction } from "../../common/unit";
+import { Faction } from "../../common/data";
 import { observer } from "mobx-react-lite";
 import { Grid, Input, CardContent, Card, makeStyles } from "@material-ui/core";
 import { useStores } from "../stores";

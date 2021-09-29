@@ -9,7 +9,7 @@ import {
     getSumValues,
     getValueRatio,
     Attack
-} from "../../common/unit";
+} from "../../common/data";
 
 type AttackAuraValueKey = keyof AttackAuraValues;
 const attackAuraValueKeys: AttackAuraValueKey[] = [

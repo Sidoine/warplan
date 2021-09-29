@@ -8,14 +8,17 @@ import {
     DamageTable,
     ImportedDataStore,
     Model,
+    ModelOption,
+    ModelOptionCategory,
     Phase,
     SubPhase,
     targetConditionValue,
     TargetType,
     Unit,
+    UnitOptionCategory,
     Value,
     ValueType
-} from "../common/unit";
+} from "../common/data";
 import {
     CoreBattalionGroupElement,
     DamageCell,
@@ -25,6 +28,63 @@ import {
     Role,
     Type
 } from "../common/definitions";
+
+function toCamelCase(name: string) {
+    return name
+        .toLowerCase()
+        .replace(/[^\w]+(\w)/g, (p, x) => x.toUpperCase())
+        .replace(/^(.)/, (p, x) => x.toLowerCase())
+        .replace(/[^A-Za-z0-9]/g, "")
+        .replace(/^[0-9]/g, "_");
+}
+
+function generatedId(name: string, property: DataStoreProperty) {
+    let idMap = idMaps.get(property);
+    if (idMap === undefined) {
+        idMap = {
+            idToName: new Map<string, string>(),
+            nameToId: new Map<string, string>()
+        };
+        idMaps.set(property, idMap);
+    }
+    let nameId = toCamelCase(name);
+    if (idMap.nameToId.has(nameId)) {
+        let i = 1;
+        let composed;
+        do {
+            composed = `${nameId}${i++}`;
+        } while (idMap.nameToId.has(composed));
+        nameId = composed;
+    }
+    idMap.nameToId.set(nameId, name);
+    return nameId;
+}
+
+function getId(id: string, name: string, property: DataStoreProperty) {
+    let idMap = idMaps.get(property);
+    if (idMap === undefined) {
+        idMap = {
+            idToName: new Map<string, string>(),
+            nameToId: new Map<string, string>()
+        };
+        idMaps.set(property, idMap);
+    }
+    let nameId = idMap.idToName.get(id);
+    if (nameId) return nameId;
+
+    nameId = toCamelCase(name);
+    if (idMap.nameToId.has(nameId)) {
+        let i = 1;
+        let composed;
+        do {
+            composed = `${nameId}${i++}`;
+        } while (idMap.nameToId.has(composed));
+        nameId = composed;
+    }
+    idMap.idToName.set(id, nameId);
+    idMap.nameToId.set(nameId, id);
+    return nameId;
+}
 
 function getTargetCondition(blurb: string, value: Value) {
     const match = blurb.match(/if the target unit has (\d+) or more models/);
@@ -61,6 +121,11 @@ export function getAbilityEffects(name: string, blurb: string) {
     if (match) {
         effect = effect || { targetType: TargetType.Unit };
         effect.prayerAura = { bonusToChant: parseInt(match[1]) };
+    }
+    match = blurb.match(/is a prayer that has an answer value of (\d)/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.prayerValue = parseInt(match[1]);
     }
 
     //Target
@@ -169,46 +234,145 @@ export function getAbilityEffects(name: string, blurb: string) {
     return [effect];
 }
 
+function getProximity(a: string, b: string): number {
+    if (a.length > b.length) return getProximity(b, a);
+    if (a.length / b.length < 0.75) return 0;
+    let value = 0;
+    for (let i = 0; i < a.length; i++) {
+        if (b.indexOf(a[i], i) >= 0) value++;
+    }
+    return value / a.length;
+}
+
+function findElement<T extends { name: string }>(elements: T[], name: string) {
+    for (const element of elements) {
+        if (element.name === name) {
+            return element;
+        }
+    }
+
+    for (const element of elements) {
+        if (getProximity(element.name, name) > 0.95) {
+            return element;
+        }
+    }
+
+    return undefined;
+}
+
+function getModelOptions(unit: Unit) {
+    const options: ModelOption[] = [];
+    let match = unit.description.match(
+        /(\d) of the following weapon options: (.*?)\./
+    );
+    if (match) {
+        // const count = parseInt(match[1]);
+        const weaponOptions = match[2].split("; ");
+        for (const weaponOption of weaponOptions) {
+            const text = weaponOption.replace("or ", "");
+            const parts = text.split(" and ");
+            const option: ModelOption = {
+                id: generatedId(
+                    `${unit.name} ${unit.subName || ""} ${text}`,
+                    "options"
+                ),
+                name: text,
+                modelCategory: ModelOptionCategory.Weapon,
+                unitCategory: UnitOptionCategory.Main
+            };
+            for (const part of parts) {
+                if (unit.attacks) {
+                    const attack = findElement(unit.attacks, part);
+                    if (attack) {
+                        if (!option.attacks) {
+                            option.attacks = [];
+                        }
+                        option.attacks.push(attack);
+                        unit.attacks = unit.attacks.filter(x => x !== attack);
+                    }
+                }
+                if (unit.abilities) {
+                    const ability = findElement(unit.abilities, part);
+                    if (ability) {
+                        if (!option.abilities) {
+                            option.abilities = [];
+                        }
+                        option.abilities.push(ability);
+                        unit.abilities = unit.abilities.filter(
+                            x => x !== ability
+                        );
+                    }
+                }
+            }
+            options.push(option);
+        }
+    }
+
+    match = unit.description.match(
+        /(\d) in every (\d) models can replace their weapon option with a (.*?)\./
+    );
+    if (match) {
+        const count = parseInt(match[1]);
+        const every = parseInt(match[2]);
+        const weaponOption = match[3];
+        const option: ModelOption = {
+            id: generatedId(
+                `${unit.name} ${unit.subName || ""} ${weaponOption}`,
+                "options"
+            ),
+            name: weaponOption,
+            modelCategory: ModelOptionCategory.Weapon,
+            ratio: { count, every }
+        };
+        if (unit.attacks) {
+            const attack = unit.attacks.find(x => x.name === weaponOption);
+            if (attack) {
+                if (!option.attacks) {
+                    option.attacks = [];
+                }
+                option.attacks.push(attack);
+                unit.attacks = unit.attacks.filter(x => x !== attack);
+            }
+        }
+
+        options.push(option);
+    }
+
+    if (unit.abilities) {
+        const champion = unit.abilities.find(
+            x => x.category === AbilityCategory.Champion
+        );
+        if (champion && champion.description) {
+            const match = champion.description.match(
+                /1 model in this unit can be an? (.*?)\./
+            );
+            if (match) {
+                const championName = match[1];
+                const option: ModelOption = {
+                    id: generatedId(
+                        `${unit.name} ${unit.subName || ""} ${championName}`,
+                        "options"
+                    ),
+                    name: championName,
+                    modelCategory: ModelOptionCategory.Champion,
+                    champion: true,
+                    abilities: [champion]
+                };
+                options.push(option);
+                unit.abilities = unit.abilities.filter(x => x !== champion);
+            }
+        }
+    }
+
+    if (options.length === 0) return undefined;
+    return options;
+}
+
 type DataStoreProperty = keyof ImportedDataStore;
 const idMaps = new Map<
     DataStoreProperty,
     { idToName: Map<string, string>; nameToId: Map<string, string> }
 >();
-
-function toCamelCase(name: string) {
-    return name
-        .toLowerCase()
-        .replace(/[^\w]+(\w)/g, (p, x) => x.toUpperCase())
-        .replace(/^(.)/, (p, x) => x.toLowerCase())
-        .replace(/[^A-Za-z0-9]/g, "")
-        .replace(/^[0-9]/g, "_");
-}
-
-function getId(id: string, name: string, property: DataStoreProperty) {
-    let idMap = idMaps.get(property);
-    if (idMap === undefined) {
-        idMap = {
-            idToName: new Map<string, string>(),
-            nameToId: new Map<string, string>()
-        };
-        idMaps.set(property, idMap);
-    }
-    let nameId = idMap.idToName.get(id);
-    if (nameId) return nameId;
-
-    nameId = toCamelCase(name);
-    if (idMap.nameToId.has(nameId)) {
-        let i = 1;
-        let composed;
-        do {
-            composed = `${nameId}_${i++}`;
-        } while (idMap.nameToId.has(composed));
-        nameId = composed;
-    }
-    idMap.idToName.set(id, nameId);
-    idMap.nameToId.set(nameId, id);
-    return nameId;
-}
 
 function getItem<
     T extends KeysOfType<ImportedDataStore, Record<string, unknown>>
@@ -377,9 +541,13 @@ export function importData(db: Dump): ImportedDataStore {
 
     for (const warscroll of db.warscroll) {
         const unit: Unit = {
-            id: getId(warscroll.id, warscroll.name, "units"),
+            id: getId(
+                warscroll.id,
+                `${warscroll.name} ${warscroll.subname || ""}`,
+                "units"
+            ),
             name: warscroll.name,
-            description: warscroll.basicDescription || undefined,
+            description: warscroll.basicDescription || "",
             flavor: warscroll.lore || undefined,
             subName: warscroll.subname || undefined,
             size: warscroll.unitSize || 0,
@@ -515,8 +683,13 @@ export function importData(db: Dump): ImportedDataStore {
     }
 
     for (const warscrollAbility of db.warscroll_ability) {
+        const unit = getItem(dataStore, "units", warscrollAbility.warscrollId);
         const ability: Ability = {
-            id: getId(warscrollAbility.id, warscrollAbility.name, "abilities"),
+            id: getId(
+                warscrollAbility.id,
+                `${unit.name} ${unit.subName || ""} ${warscrollAbility.name}`,
+                "abilities"
+            ),
             name: warscrollAbility.name,
             flavor: warscrollAbility.lore || undefined,
             description: warscrollAbility.rules,
@@ -526,14 +699,18 @@ export function importData(db: Dump): ImportedDataStore {
             )
         };
         dataStore.abilities[ability.id] = ability;
-        const unit = getItem(dataStore, "units", warscrollAbility.warscrollId);
         if (!unit.abilities) unit.abilities = [];
         unit.abilities.push(ability);
     }
 
     for (const weapon of db.weapon) {
+        const unit = getItem(dataStore, "units", weapon.warscrollId);
         const attack: Attack = {
-            id: getId(weapon.id, weapon.name, "attacks"),
+            id: getId(
+                weapon.id,
+                `${unit.name} ${unit.subName || ""} ${weapon.name}`,
+                "attacks"
+            ),
             name: weapon.name,
             melee: weapon.type === Type.Melee,
             range: weapon.range,
@@ -544,7 +721,6 @@ export function importData(db: Dump): ImportedDataStore {
             toWound: weapon.wound
         };
         dataStore.attacks[attack.id] = attack;
-        const unit = getItem(dataStore, "units", weapon.warscrollId);
         if (!unit.attacks) unit.attacks = [];
         unit.attacks.push(attack);
     }
@@ -626,6 +802,15 @@ export function importData(db: Dump): ImportedDataStore {
         AbilityCategory.Triumph,
         "triumphGroupId"
     );
+
+    for (const unit of Object.values(dataStore.units)) {
+        unit.options = getModelOptions(unit);
+        if (unit.options) {
+            for (const option of unit.options) {
+                dataStore.options[option.id] = option;
+            }
+        }
+    }
 
     return dataStore;
 }

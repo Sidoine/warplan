@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import {
-    WarscrollUnit,
+    UnitWarscroll,
     WarscrollItem,
     AbilityModel
 } from "../stores/warscroll";
@@ -13,7 +13,7 @@ import {
     TargetType,
     SubPhase,
     EffectDuration
-} from "../../common/unit";
+} from "../../common/data";
 import {
     getPhaseName,
     phases,
@@ -319,7 +319,7 @@ function AbilityInfo({
 }: {
     abilityModel: AbilityModel;
     phase: Phase;
-    unit?: WarscrollUnit;
+    unit?: UnitWarscroll;
     side?: PhaseSide;
 }) {
     const classes = useStyle();

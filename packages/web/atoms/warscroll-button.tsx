@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
 import { EndlessSpellWarscroll } from "../components/endless-spell-warscroll";
-import { UnitWarscroll } from "../components/unit-warscroll";
+import { UnitWarscrollView } from "../components/unit-warscroll";
 import BattalionWarscroll from "../components/battalion-warscroll";
 import { WarscrollItem } from "../stores/warscroll";
 
@@ -28,7 +28,7 @@ function WarscrollButton({ item: item }: { item: WarscrollItem }) {
                         <EndlessSpellWarscroll wes={warscrollOpen} />
                     )}
                     {warscrollOpen && warscrollOpen.type === "unit" && (
-                        <UnitWarscroll wu={warscrollOpen} />
+                        <UnitWarscrollView wu={warscrollOpen} />
                     )}
                     {warscrollOpen && warscrollOpen.type === "battalion" && (
                         <BattalionWarscroll battalion={warscrollOpen} />

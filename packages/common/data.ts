@@ -281,6 +281,15 @@ export interface EndlessSpell {
     flavor?: string;
 }
 
+export const enum ModelOptionCategory {
+    Weapon,
+    Champion
+}
+
+export const enum UnitOptionCategory {
+    Main
+}
+
 export interface ModelOption {
     id: string;
     name: string;
@@ -288,12 +297,15 @@ export interface ModelOption {
     attacks?: Attack[];
 
     // A model can only have one option of this category
-    modelCategory?: string;
+    modelCategory?: ModelOptionCategory;
 
     // An unit can't select another option of this category
-    unitCategory?: string;
+    unitCategory?: UnitOptionCategory;
+    ratio?: { count: number; every: number };
+    champion?: boolean;
+
     isOptionValid?: (
-        unit: WarscrollUnitInterface,
+        unit: UnitWarscrollInterface,
         model: WarscrollModelInterface
     ) => boolean;
 }
@@ -476,7 +488,7 @@ export interface Unit extends UnitInfos {
     bravery?: Value;
     keywords: string[];
     damageTable?: DamageTable;
-    description?: string;
+    description: string;
     flavor?: string;
     magicDescription?: string;
     options?: ModelOption[];
@@ -527,23 +539,7 @@ export interface WarscrollBattalionInterface {
     definition: Battalion;
 }
 
-export enum Contingent {
-    Spearhead,
-    Main,
-    Rearguard
-}
-
-export const contingentName = (contingent: Contingent) => {
-    switch (contingent) {
-        case Contingent.Spearhead:
-            return "Spearhead";
-        case Contingent.Rearguard:
-            return "Rearguard";
-    }
-    return "Main body";
-};
-
-export interface WarscrollUnitInterface {
+export interface UnitWarscrollInterface {
     definition: Unit;
     isGeneral: boolean;
     isLeader: boolean;
@@ -551,7 +547,6 @@ export interface WarscrollUnitInterface {
     models: WarscrollModelInterface[];
     modelCount: number;
     keywords: string[];
-    contingent: Contingent;
     warscroll: ArmyListInterface;
 }
 
@@ -563,14 +558,14 @@ export interface WarscrollModelInterface {
 
 export interface ArmyListInterface {
     battalions: WarscrollBattalionInterface[];
-    general: WarscrollUnitInterface | undefined;
+    general: UnitWarscrollInterface | undefined;
     selectedExtraAbilities: Ability[];
     allegiance: Faction | null;
     maxArtifacts: number;
     numberOfArtifacts: number;
     armyType: Faction | null;
     subFaction: Faction | null;
-    getUnitsWithKeywords(keywords: string[][]): WarscrollUnitInterface[];
+    getUnitsWithKeywords(keywords: string[][]): UnitWarscrollInterface[];
 }
 
 export interface ImportedDataStore {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Value } from "../../common/unit";
+import { Value } from "../../common/data";
 
 export function join(e: JSX.Element[], separator: string) {
     const ret: JSX.Element[] = [];

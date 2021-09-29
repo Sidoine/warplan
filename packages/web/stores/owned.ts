@@ -1,5 +1,5 @@
 import { action, observable, makeObservable } from "mobx";
-import { Model, ModelOption, Unit } from "../../common/unit";
+import { Model, ModelOption, Unit } from "../../common/data";
 import { DataStore } from "./data";
 
 interface SerializedOwned {

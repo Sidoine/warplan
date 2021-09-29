@@ -1,5 +1,5 @@
 import * as React from "react";
-import { UnitWarscroll } from "./unit-warscroll";
+import { UnitWarscrollView } from "./unit-warscroll";
 import { useStores } from "../stores";
 import { EndlessSpellWarscroll } from "./endless-spell-warscroll";
 import { distinct } from "../helpers/algo";
@@ -13,7 +13,7 @@ export function ArmyListView() {
             {distinct(w.units.map((x) => x.definition))
                 .sort((a, b) => (a.name > b.name ? 1 : -1))
                 .map((x) => (
-                    <UnitWarscroll unit={x} key={x.id} />
+                    <UnitWarscrollView unit={x} key={x.id} />
                 ))}
 
             {w.battalions.length > 0 &&

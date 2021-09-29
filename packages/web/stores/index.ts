@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ImportedDataStore } from "../../common/unit";
+import { ImportedDataStore } from "../../common/data";
 import { DataStore } from "./data";
 import { UiStore } from "./ui";
 import { OwnedStore } from "./owned";

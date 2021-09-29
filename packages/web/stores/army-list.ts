@@ -6,7 +6,6 @@ import {
     AbilityCategory,
     AbilityGroup,
     Battalion,
-    Contingent,
     EndlessSpell,
     Faction,
     ModelOption,
@@ -14,7 +13,7 @@ import {
     Unit,
     WarscrollBattalionInterface,
     ArmyListInterface
-} from "../../common/unit";
+} from "../../common/data";
 import { groupBy } from "../helpers/react";
 import { hasKeywords } from "./conditions";
 import { DataStore } from "./data";
@@ -26,7 +25,7 @@ import {
     WarscrollEndlessSpell,
     WarscrollItem,
     WarscrollModel,
-    WarscrollUnit
+    UnitWarscroll
 } from "./warscroll";
 
 export interface ArmyListLimits {
@@ -113,7 +112,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     name = "New Warscroll";
 
     @observable
-    units: WarscrollUnit[] = [];
+    units: UnitWarscroll[] = [];
 
     @computed
     get items(): WarscrollItem[] {
@@ -142,7 +141,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     battalions: WarscrollBattalion[] = [];
 
     @observable
-    general: WarscrollUnit | undefined = undefined;
+    general: UnitWarscroll | undefined = undefined;
 
     @observable
     endlessSpells: WarscrollEndlessSpell[] = [];
@@ -404,7 +403,6 @@ interface SerializedArmyList {
         extraAbilities?: string[];
         models?: { count: number; options: string[] }[];
         battalionIndex?: number;
-        contingent?: Contingent;
     }[];
     battalions: {
         battalionId: string;
@@ -452,7 +450,7 @@ export class ArmyListStore {
     @action
     addUnit(unit: Unit) {
         const warscroll = this.warscroll;
-        const warscrollUnit = new WarscrollUnit(warscroll, unit);
+        const warscrollUnit = new UnitWarscroll(warscroll, unit);
         const model = new WarscrollModel(warscrollUnit, warscroll);
         model.count = unit.size;
         warscrollUnit.models.push(model);
@@ -476,7 +474,7 @@ export class ArmyListStore {
     }
 
     @action
-    removeUnit(unit: WarscrollUnit) {
+    removeUnit(unit: UnitWarscroll) {
         const units = this.warscroll.units;
         units.splice(units.indexOf(unit), 1);
         this.saveWarscroll();
@@ -501,19 +499,19 @@ export class ArmyListStore {
     }
 
     @action
-    setGeneral(unit: WarscrollUnit | undefined) {
+    setGeneral(unit: UnitWarscroll | undefined) {
         this.warscroll.general = unit;
         this.saveWarscroll();
     }
 
     @action
-    addExtraAbility(unit: WarscrollUnit, ability: Ability) {
+    addExtraAbility(unit: UnitWarscroll, ability: Ability) {
         unit.extraAbilities.push(ability);
         this.saveWarscroll();
     }
 
     @action
-    removeExtraAbility(unit: WarscrollUnit, ability: Ability) {
+    removeExtraAbility(unit: UnitWarscroll, ability: Ability) {
         unit.extraAbilities.splice(unit.extraAbilities.indexOf(ability), 1);
         this.saveWarscroll();
     }
@@ -607,11 +605,10 @@ export class ArmyListStore {
         for (const wu of warscroll.units) {
             const unit = this.unitsStore.findUnit(wu.unitId);
             if (unit === undefined) continue;
-            const newUnit = new WarscrollUnit(this.warscroll, unit);
+            const newUnit = new UnitWarscroll(this.warscroll, unit);
             if (wu.isGeneral) {
                 this.warscroll.general = newUnit;
             }
-            if (wu.contingent !== undefined) newUnit.contingent = wu.contingent;
             if (wu.extraAbilities) {
                 for (const e of wu.extraAbilities) {
                     const ability = this.unitsStore.getAbility(e);
@@ -677,8 +674,7 @@ export class ArmyListStore {
                                   y =>
                                       x.battalion !== null &&
                                       y.id === x.battalion.id
-                              ),
-                    contingent: x.contingent
+                              )
                 };
             }),
             battalions: this.warscroll.battalions.map(x => {
@@ -799,7 +795,7 @@ export class ArmyListStore {
     }
 
     @action
-    addModel(unit: WarscrollUnit, option: ModelOption | undefined) {
+    addModel(unit: UnitWarscroll, option: ModelOption | undefined) {
         const model = new WarscrollModel(unit, this.warscroll);
         unit.models.push(model);
         if (option) model.options.push(option);
@@ -807,7 +803,7 @@ export class ArmyListStore {
     }
 
     @action
-    removeModel(unit: WarscrollUnit, model: WarscrollModel) {
+    removeModel(unit: UnitWarscroll, model: WarscrollModel) {
         unit.models.splice(unit.models.indexOf(model), 1);
         this.saveWarscroll();
     }
@@ -822,12 +818,6 @@ export class ArmyListStore {
         this.warscroll.realm = realm;
         this.saveWarscroll();
     };
-
-    @action
-    setContingent(unit: WarscrollUnit, x: Contingent): void {
-        unit.contingent = x;
-        this.saveWarscroll();
-    }
 
     @action setName = (value: string) => {
         this.warscroll.name = value;

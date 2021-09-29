@@ -1,7 +1,7 @@
 import { observable, action, computed, makeObservable } from "mobx";
 import { UnitStats, getUnitStats } from "./stats";
 import { DataStore } from "./data";
-import { Faction } from "../../common/unit";
+import { Faction } from "../../common/data";
 
 interface SerializedUi {
     grandAlliance?: string;

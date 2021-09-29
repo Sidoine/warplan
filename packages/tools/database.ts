@@ -4,7 +4,7 @@ import {
     ImportedDataStore,
     isDamageColumn,
     Ability
-} from "../common/unit";
+} from "../common/data";
 import { Dump } from "../common/definitions";
 import { importData } from "./import";
 
@@ -17,8 +17,7 @@ function escapeString(text: string) {
 }
 
 function escapeQuotedString(text: string | null | undefined) {
-    if (!text) return "undefined";
-    return '"' + text.replace(/[\n"]/g, s => `\\${s}`) + '"';
+    return JSON.stringify(text);
 }
 
 const tab = "    ";
@@ -27,7 +26,7 @@ async function load() {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const db: Dump = require("../../assets/dump.json");
 
-        let result = `import { ImportedDataStore, Faction } from "../../common/unit";
+        let result = `import { ImportedDataStore, Faction } from "../../common/data";
 import { Role, KeywordCategory } from "../../common/definitions";
 
 export class ImportedDataStoreImpl implements ImportedDataStore {
@@ -38,8 +37,8 @@ export class ImportedDataStoreImpl implements ImportedDataStore {
         result += writeFactions(dataStore);
         result += writeAbilities(dataStore);
         result += writeDamageTables(dataStore);
-        result += writeOptions(dataStore);
         result += writeAttacks(dataStore);
+        result += writeOptions(dataStore);
         result += writeUnits(dataStore);
         result += writeBattalions(dataStore);
         result += writeRealms(dataStore);
@@ -100,7 +99,36 @@ function writeOptions(db: ImportedDataStore) {
         ${id}: {
             id: "${id}",
             name: "${option.name}",
-        },
+`;
+        if (option.attacks) {
+            result += `            attacks: [${option.attacks
+                .map(x => `this.attacks.${x.id}`)
+                .join(", ")}],\n`;
+        }
+        if (option.abilities) {
+            result += `            abilities: [${option.abilities
+                .map(x => `this.abilities.${x.id}`)
+                .join(", ")}],\n`;
+        }
+        if (option.unitCategory !== undefined) {
+            result += `            unitCategory: ${JSON.stringify(
+                option.unitCategory
+            )},\n`;
+        }
+        if (option.modelCategory !== undefined) {
+            result += `            modelCategory: ${JSON.stringify(
+                option.modelCategory
+            )},\n`;
+        }
+        if (option.champion) {
+            result += `            champion: ${JSON.stringify(
+                option.champion
+            )},\n`;
+        }
+        if (option.ratio) {
+            result += `            ratio: ${JSON.stringify(option.ratio)},\n`;
+        }
+        result += `        },
 `;
     }
     result += `   };
@@ -205,7 +233,7 @@ ${
         ? `subName: ${escapeQuotedString(unit.subName)},
             `
         : ""
-}           model: this.models.${id},
+}           model: this.models.${unit.model.id},
             description: ${escapeQuotedString(unit.description)},
             flavor: ${escapeQuotedString(unit.flavor)},
             factions: [${unit.factions

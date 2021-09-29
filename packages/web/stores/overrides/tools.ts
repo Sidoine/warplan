@@ -6,22 +6,21 @@ import {
     Material,
     WarscrollModelInterface,
     ModelOption,
-    WarscrollUnitInterface,
-    AbilityEffect
-} from "../../../common/unit";
-
-export const ModelCategoryWeapon = "weapon";
-export const UnitCategoryMain = "main";
+    UnitWarscrollInterface,
+    AbilityEffect,
+    ModelOptionCategory,
+    UnitOptionCategory
+} from "../../../common/data";
 
 type ModelCondition = (
-    unit: WarscrollUnitInterface,
+    unit: UnitWarscrollInterface,
     model: WarscrollModelInterface
 ) => boolean;
 export function setAbilityAsOption(
     unit: Unit,
     ability: Ability,
     condition?: (option: ModelOption) => ModelCondition,
-    unitCategory?: string
+    unitCategory?: UnitOptionCategory
 ) {
     removeAbility(unit, ability);
     const option: ModelOption = {
@@ -69,7 +68,7 @@ export function setAttackAsOption(
     attack: Attack,
     condition?: (option: ModelOption) => ModelCondition,
     abilities?: Ability[],
-    unitCategory?: string
+    unitCategory?: UnitOptionCategory
 ) {
     if (unit.attacks) {
         unit.attacks.splice(unit.attacks.indexOf(attack), 1);
@@ -83,7 +82,7 @@ export function setAttackAsOption(
         id: attack.name,
         name: attack.name,
         attacks: [attack],
-        modelCategory: "weapon",
+        modelCategory: ModelOptionCategory.Weapon,
         abilities: abilities,
         unitCategory: unitCategory
     });
@@ -97,9 +96,15 @@ export function setAttackAsUpgrade(
     upgradeTo: Attack,
     condition?: (option: ModelOption) => ModelCondition,
     abilities?: Ability[],
-    unitCategory?: string
+    unitCategory?: UnitOptionCategory
 ) {
-    setAttackAsOption(unit, upgradeTo, undefined, undefined, UnitCategoryMain);
+    setAttackAsOption(
+        unit,
+        upgradeTo,
+        undefined,
+        undefined,
+        UnitOptionCategory.Main
+    );
     setAttackAsOption(unit, attack, condition, abilities, unitCategory);
 }
 
@@ -205,7 +210,7 @@ export function hasOption(model: WarscrollModelInterface, option: ModelOption) {
 }
 
 export function getUnitModelsWithOptionCount(
-    unit: WarscrollUnitInterface,
+    unit: UnitWarscrollInterface,
     option: ModelOption
 ) {
     return unit.models.reduce(
@@ -215,7 +220,7 @@ export function getUnitModelsWithOptionCount(
 }
 
 export function getUnitModelsWithOptionsCount(
-    unit: WarscrollUnitInterface,
+    unit: UnitWarscrollInterface,
     option1: ModelOption,
     option2: ModelOption
 ) {
@@ -227,7 +232,7 @@ export function getUnitModelsWithOptionsCount(
 }
 
 export function isRatioCorrect(
-    unit: WarscrollUnitInterface,
+    unit: UnitWarscrollInterface,
     option: ModelOption,
     howMany: number,
     forHowMany: number
@@ -239,13 +244,13 @@ export function isRatioCorrect(
 }
 
 export function oneModelOption(option: ModelOption) {
-    return (unit: WarscrollUnitInterface, model: WarscrollModelInterface) =>
+    return (unit: UnitWarscrollInterface, model: WarscrollModelInterface) =>
         getUnitModelsWithOptionCount(unit, option) <= 1;
 }
 
 export function ratioModelOption(howMany: number, forHowMany: number) {
     return (option: ModelOption) => {
-        return (unit: WarscrollUnitInterface, model: WarscrollModelInterface) =>
+        return (unit: UnitWarscrollInterface, model: WarscrollModelInterface) =>
             isRatioCorrect(unit, option, howMany, forHowMany);
     };
 }

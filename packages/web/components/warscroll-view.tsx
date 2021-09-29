@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import * as React from "react";
 import { useStores } from "../stores";
 import { ArmyListStore } from "../stores/army-list";
-import { WarscrollUnit } from "../stores/warscroll";
+import { UnitWarscroll } from "../stores/warscroll";
 
 export interface WarscrollViewProps {
     warscrollStore?: ArmyListStore;
@@ -12,7 +12,7 @@ function UnitView({
     unit,
     includeCount
 }: {
-    unit: WarscrollUnit;
+    unit: UnitWarscroll;
     includeCount: boolean;
 }) {
     return (

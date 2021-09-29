@@ -1,7 +1,7 @@
 import { WarscrollEndlessSpell } from "../stores/warscroll";
 import * as React from "react";
 import { toJS } from "mobx";
-import { AbilityCategory, EndlessSpell } from "../../common/unit";
+import { AbilityCategory, EndlessSpell } from "../../common/data";
 import {
     AllAbilities,
     useWarscrollStyles

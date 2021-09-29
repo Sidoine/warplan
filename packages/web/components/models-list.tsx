@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Model } from "../../common/unit";
+import { Model } from "../../common/data";
 import { observer } from "mobx-react-lite";
 import AddButton, { TableColumn } from "../atoms/add-button";
 import { useStores } from "../stores";

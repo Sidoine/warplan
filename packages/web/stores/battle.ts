@@ -7,7 +7,7 @@ import {
     Ability,
     Attack,
     AbilityCategory
-} from "../../common/unit";
+} from "../../common/data";
 import { DataStore } from "./data";
 import { ArmyList } from "./army-list";
 

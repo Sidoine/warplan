@@ -4,7 +4,7 @@ import {
     Phase,
     Ability,
     AbilityEffect
-} from "../../common/unit";
+} from "../../common/data";
 import { DataStore } from "./data";
 import { getAbilityPhases, getEffectPhases } from "./battle";
 import { getValue } from "./combat";

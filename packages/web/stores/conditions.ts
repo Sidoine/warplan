@@ -1,9 +1,9 @@
 import {
     Unit,
     AbilityCategory,
-    WarscrollUnitInterface,
+    UnitWarscrollInterface,
     ArmyListInterface
-} from "../../common/unit";
+} from "../../common/data";
 
 export function hasKeywords(
     unit: { keywords: string[] },
@@ -25,7 +25,7 @@ export function hasKeyword(unit: Unit, keyword: string) {
 }
 
 export function canAddAbilityCategory(
-    unit: WarscrollUnitInterface,
+    unit: UnitWarscrollInterface,
     ws: ArmyListInterface,
     ability: AbilityCategory | undefined
 ): boolean {

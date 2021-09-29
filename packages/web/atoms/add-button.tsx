@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, ReactNode } from "react";
 import { observer } from "mobx-react-lite";
 import AddIcon from "@material-ui/icons/Add";
 import {
@@ -18,7 +18,7 @@ export interface HasId {
 }
 
 export interface TableColumn<T> {
-    text: (x: T) => string | undefined | null | number;
+    text: (x: T) => ReactNode;
     name: string;
 }
 

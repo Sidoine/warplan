@@ -22,7 +22,7 @@ import {
     BottomNavigationAction,
     Modal
 } from "@material-ui/core";
-import { Ability, Attack, Value, Phase } from "../../common/unit";
+import { Ability, Attack, Value, Phase } from "../../common/data";
 import {
     isAbilityInPhase,
     isUnitInPhase,
@@ -30,13 +30,13 @@ import {
     PhaseSide,
     getPhaseName
 } from "../stores/battle";
-import { WarscrollUnit } from "../stores/warscroll";
+import { UnitWarscroll } from "../stores/warscroll";
 import { value } from "../helpers/react";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { SwordIcon, SaveIcon } from "../atoms/icons";
-import { UnitWarscroll } from "./unit-warscroll";
+import { UnitWarscrollView } from "./unit-warscroll";
 
 const useStyles = makeStyles(x => ({
     navigation: {
@@ -126,7 +126,7 @@ function AttackTable({ attack, count }: { attack: Attack; count: number }) {
     );
 }
 
-const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
+const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
     const unit = wu.definition;
     const { battleStore } = useStores();
     const [anchorEl, setAnchorEl] = useState<Element | null>(null);
@@ -165,7 +165,7 @@ const UnitCard = observer(({ wu }: { wu: WarscrollUnit }) => {
     return (
         <Card>
             <Modal open={anchorEl !== null} onClose={handleClose}>
-                <UnitWarscroll noFlavor wu={wu} />
+                <UnitWarscrollView noFlavor wu={wu} />
             </Modal>
             <CardHeader
                 title={unit.name}

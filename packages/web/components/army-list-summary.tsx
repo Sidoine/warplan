@@ -2,7 +2,7 @@ import { observer, useLocalObservable } from "mobx-react-lite";
 import {
     PointMode,
 } from "../stores/warscroll";
-import { Faction } from "../../common/unit";
+import { Faction } from "../../common/data";
 import DropdownValues from "../atoms/dropdown-values";
 import DropdownObjects from "../atoms/dropdown-objects";
 import {

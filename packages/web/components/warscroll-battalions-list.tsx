@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { observer } from "mobx-react-lite";
 import BattalionsList from "./battalions-list";
 import { WarscrollBattalion } from "../stores/warscroll";
-import { BattalionUnit } from "../../common/unit";
+import { BattalionUnit } from "../../common/data";
 import { join } from "../helpers/react";
 import {
     Button,

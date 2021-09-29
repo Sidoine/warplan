@@ -2,7 +2,7 @@ import * as React from "react";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import { AbilityCard, CardContent, CardColor } from "./ability-card";
 import { HiddenCard } from "./hidden-card";
-import { Ability, Faction } from "../../common/unit";
+import { Ability, Faction } from "../../common/data";
 import { useStores } from "../stores";
 import { makeStyles } from "@material-ui/core";
 

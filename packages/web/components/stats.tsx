@@ -6,8 +6,8 @@ import { computed } from "mobx";
 import { join, value } from "../helpers/react";
 import Filter from "./filter";
 import { getValue } from "../stores/combat";
-import { UnitWarscroll } from "./unit-warscroll";
-import { Unit } from "../../common/unit";
+import { UnitWarscrollView } from "./unit-warscroll";
+import { Unit } from "../../common/data";
 import {
     Table,
     TableHead,
@@ -357,7 +357,7 @@ function Stats() {
                     open={warscrollOpen !== null}
                     onClose={handleCloseWarscroll}
                 >
-                    {warscrollOpen && <UnitWarscroll unit={warscrollOpen} />}
+                    {warscrollOpen && <UnitWarscrollView unit={warscrollOpen} />}
                     {!warscrollOpen && <></>}
                 </Dialog>
             }

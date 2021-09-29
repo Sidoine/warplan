@@ -6,8 +6,9 @@ import {
     AbilityEffect,
     Ability,
     TargetType,
-    Phase
-} from "../../common/unit";
+    Phase,
+    UnitOptionCategory
+} from "../../common/data";
 import { getValue } from "./combat";
 import {
     States,
@@ -373,7 +374,8 @@ function getUnitOptionStats(
         wounds: 2,
         factions: [],
         keywords: settings.enemyKeywords.split(" "),
-        save: settings.enemySave
+        save: settings.enemySave,
+        description: "An enemy"
     });
     enemyState.models.push(new ModelState([], enemyState, settings.enemyCount));
     if (settings.hasCharged) {
@@ -445,7 +447,7 @@ export function getUnitStats(unit: Unit, enemy: CombatSettings): UnitStats[] {
     if (!optionStats) {
         if (unit.options && unit.options.length > 0) {
             optionStats = unit.options
-                .filter(x => x.unitCategory === "main")
+                .filter(x => x.unitCategory === UnitOptionCategory.Main)
                 .map<UnitStatModels>(x => {
                     return {
                         name: x.name,

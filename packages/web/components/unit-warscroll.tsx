@@ -1,10 +1,10 @@
-import { WarscrollUnit } from "../stores/warscroll";
+import { UnitWarscroll } from "../stores/warscroll";
 import * as React from "react";
 import { toJS } from "mobx";
-import { ModelOption, AbilityCategory, Unit } from "../../common/unit";
+import { ModelOption, AbilityCategory, Unit, UnitOptionCategory } from "../../common/data";
 import { value } from "../helpers/react";
 import {
-    AttackWithCount,
+    
     AllAttacks,
     WoundEffects,
     AllAbilities,
@@ -13,12 +13,12 @@ import {
 import StarIcon from "@material-ui/icons/Star";
 import { distinct } from "../helpers/algo";
 
-export function UnitWarscroll({
+export function UnitWarscrollView({
     wu,
     unit,
     noFlavor
 }: {
-    wu?: WarscrollUnit | null;
+    wu?: UnitWarscroll | null;
     unit?: Unit;
     noFlavor?: boolean;
 }) {
@@ -26,11 +26,7 @@ export function UnitWarscroll({
     const u = unit || wu?.definition;
     const models = wu?.models;
     if (!u) return <div></div>;
-    const attacks: AttackWithCount[] =
-        (u.attacks &&
-            u.attacks.map(x => {
-                return { count: undefined, attack: x, id: x.id };
-            })) ||
+    const attacks = u.attacks ||
         [];
     const abilities = toJS(u.abilities || []).concat();
     let mainOption: ModelOption | undefined;
@@ -48,12 +44,12 @@ export function UnitWarscroll({
         }
     }
     for (const [option, count] of modelOptions) {
-        if (option.unitCategory === "main") mainOption = option;
+        if (option.unitCategory === UnitOptionCategory.Main) mainOption = option;
 
         if (option.attacks) {
             for (const a of option.attacks) {
                 if (count !== 0)
-                    attacks.push({ count: count, attack: a, id: a.id });
+                    attacks.push(a);
             }
         }
         if (option.abilities) {

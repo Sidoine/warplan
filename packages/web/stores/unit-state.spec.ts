@@ -1,5 +1,5 @@
 import { test, expect } from "@jest/globals";
-import { AttackAuraValues } from "../../common/unit";
+import { AttackAuraValues } from "../../common/data";
 import { sumAttackAura } from "./unit-state";
 type Complete<T> = {
     [P in keyof Required<T>]: Pick<T, P> extends Required<Pick<T, P>>
