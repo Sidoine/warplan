@@ -21,7 +21,8 @@ import {
     Unit,
     Battalion,
     Faction,
-    AbilityGroup
+    AbilityGroup,
+    BattalionGroup
 } from "../../common/data";
 import { computed, makeObservable } from "mobx";
 import { KeywordCategory } from "../../common/definitions";
@@ -38,6 +39,7 @@ export class DataStore {
     sceneryList: EndlessSpell[] = [];
     baseAbilities: AbilityGroup[] = [];
     abilities: Record<string, Ability> = {};
+    genericBattalionGroups: BattalionGroup[] = [];
 
     realms: RealmOfBattle[] = [];
 
@@ -112,6 +114,7 @@ export class DataStore {
         this.abilities = data.abilities;
 
         this.baseAbilities = data.genericAbilityGroups;
+        this.genericBattalionGroups = data.genericBattalionGroups;
 
         const sceneries: { [key: string]: EndlessSpell } = data.sceneries;
         for (const key in sceneries) {

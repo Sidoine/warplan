@@ -23,11 +23,6 @@ function BattalionWarscroll({
                     </div>
                 </div>
             </div>
-            {battalion.definition.description && (
-                <div className={classes.flavor}>
-                    {battalion.definition.description}
-                </div>
-            )}
             <div className={classes.abilities}>
                 {battalion.definition.abilities && (
                     <AllAbilities

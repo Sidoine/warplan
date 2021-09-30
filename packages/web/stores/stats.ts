@@ -375,7 +375,8 @@ function getUnitOptionStats(
         factions: [],
         keywords: settings.enemyKeywords.split(" "),
         save: settings.enemySave,
-        description: "An enemy"
+        description: "An enemy",
+        roles: []
     });
     enemyState.models.push(new ModelState([], enemyState, settings.enemyCount));
     if (settings.hasCharged) {

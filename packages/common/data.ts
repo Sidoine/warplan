@@ -502,7 +502,7 @@ export interface Unit extends UnitInfos {
     magicDescription?: string;
     options?: ModelOption[];
     pictureUrl?: string;
-    role?: Role;
+    roles: Role[];
     unique?: boolean;
     single?: boolean;
 
@@ -533,15 +533,23 @@ export interface BattalionUnit {
     eitherOr: boolean;
     woundsLimit: number | null;
     order: number;
+    requiredRoles?: Role[];
+    excludedRoles?: Role[];
+    keywords?: string[];
 }
 
 export interface Battalion {
     id: string;
     name: string;
-    subName?: string;
+    onePerArmy: boolean;
     units: BattalionUnit[];
-    description?: string;
-    abilities?: Ability[];
+    abilities: BattalionAbility[];
+    // Only for warscroll
+    subName?: string;
+}
+
+export interface BattalionAbility extends Ability {
+    grantsExtraEnhancement: boolean;
 }
 
 export interface WarscrollBattalionInterface {
@@ -557,7 +565,7 @@ export interface UnitWarscrollInterface {
     models: WarscrollModelInterface[];
     modelCount: number;
     keywords: string[];
-    warscroll: ArmyListInterface;
+    armyList: ArmyListInterface;
 }
 
 export interface WarscrollModelInterface {
@@ -594,6 +602,7 @@ export interface ImportedDataStore {
     battalionUnits: Record<string, BattalionUnit>;
     battalionGroups: Record<string, BattalionGroup>;
     genericBattalionGroups: BattalionGroup[];
+    battalionAbilities: Record<string, BattalionAbility>;
 }
 
 export interface AbilityGroup {

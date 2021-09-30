@@ -1,15 +1,18 @@
 import React, { useMemo } from "react";
 import { observer } from "mobx-react-lite";
 import BattalionsList from "./battalions-list";
-import { WarscrollBattalion } from "../stores/warscroll";
-import { BattalionUnit } from "../../common/data";
+import {
+    WarscrollBattalion,
+    WarscrollBattalionUnit
+} from "../stores/warscroll";
 import { join } from "../helpers/react";
 import {
     Button,
     Card,
     CardHeader,
     CardContent,
-    CardActions
+    CardActions,
+    Tooltip
 } from "@material-ui/core";
 import ResponsiveTable, {
     ResponsiveTableColumn
@@ -18,35 +21,32 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { useStores } from "../stores";
 import WarscrollButton from "../atoms/warscroll-button";
 
-function RenderUnit({
-    bu,
-    counts
+const UnitTypeView = observer(function UnitTypeView({
+    battalionUnit
 }: {
-    bu: BattalionUnit;
-    counts: Map<string, { count: number }>;
+    battalionUnit: WarscrollBattalionUnit;
 }) {
-    const countsBu = counts.get(bu.id);
-    if (countsBu !== undefined) {
-        const count = countsBu.count;
-        if (count > 0) {
-            //  return <span style={{ color:  'red' } } key={bu.id}>{ bu.count} { join(bu.units.map(x => <a key={x.id} href="" onClick={e => addUnit(x, e, count)}>{x.model.name}</a>), "/") } </span>;
-            return (
-                <span style={{ color: "red" }} key={bu.id}>
-                    {bu.min}{" "}
-                    {bu.max !== bu.min && ` - ${bu.max} `}{" "}
-                    {bu.name}{" "}
-                </span>
-            );
-        }
-    }
+    const definition = battalionUnit.definition;
 
     return (
-        <span key={bu.id}>
-            {bu.min} {bu.max !== bu.min && ` - ${bu.max} `}{" "}
-            {bu.name}{" "}
-        </span>
+        <Tooltip title={definition.restrictions}>
+            <span>
+                {definition.min}{" "}
+                {definition.max !== definition.min && ` - ${definition.max} `}{" "}
+                {definition.name}{" "}
+                {battalionUnit.units.length > 0 && (
+                    <>
+                        (
+                        {battalionUnit.units
+                            .map(x => x.definition.name)
+                            .join(", ")}
+                        )
+                    </>
+                )}
+            </span>
+        </Tooltip>
     );
-}
+});
 
 function BattalionName({ x }: { x: WarscrollBattalion }) {
     return (
@@ -59,7 +59,6 @@ function BattalionName({ x }: { x: WarscrollBattalion }) {
 function WarscrollBattalionsList() {
     const { armyListStore: warscrollStore } = useStores();
     const columns = useMemo<ResponsiveTableColumn<WarscrollBattalion>[]>(() => {
-        const counts = new Map<string, { count: number }>();
         return [
             {
                 name: "Name",
@@ -69,15 +68,14 @@ function WarscrollBattalionsList() {
                 name: "Units",
                 text: x =>
                     join(
-                        x.definition.units.map(y => (
-                            <RenderUnit key={y.id} bu={y} counts={counts} />
+                        x.unitTypes.map(y => (
+                            <UnitTypeView key={y.id} battalionUnit={y} />
                         )),
                         ", "
                     )
             },
             {
                 name: "Actions",
-                // eslint-disable-next-line react/display-name
                 text: x => (
                     <Button onClick={() => warscrollStore.removeBattalion(x)}>
                         <ClearIcon />

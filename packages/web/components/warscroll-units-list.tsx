@@ -1,9 +1,6 @@
 /* eslint-disable react/display-name */
 import React, { useMemo, useState } from "react";
-import {
-    ModelOption,
-    Ability
-} from "../../common/data";
+import { ModelOption, Ability } from "../../common/data";
 import { observer } from "mobx-react-lite";
 import { UnitsList } from "./units-list";
 import { UnitWarscroll, WarscrollModel } from "../stores/warscroll";
@@ -33,11 +30,18 @@ import { useStores } from "../stores";
 import { Warning } from "../atoms/warning";
 import { useCallback } from "react";
 import { AllAbilities, AllAttacks } from "../atoms/warscroll-components";
+import DropdownObjects from "../atoms/dropdown-objects";
 
 const modelColumns: TableColumn<ModelOption>[] = [
     { name: "Name", text: x => x.name },
-    { name: "Attacks", text: x => x.attacks && <AllAttacks attacks={x.attacks}/>},
-    { name: "Abilities", text: x => x.abilities && <AllAbilities abilities={x.abilities} /> },
+    {
+        name: "Attacks",
+        text: x => x.attacks && <AllAttacks attacks={x.attacks} />
+    },
+    {
+        name: "Abilities",
+        text: x => x.abilities && <AllAbilities abilities={x.abilities} />
+    }
 ];
 
 const extraAbilityColumns: TableColumn<Ability>[] = [
@@ -222,10 +226,12 @@ const RenderModel = observer(
         );
         return (
             <div key={model.id}>
-                {!unit.definition.single && <NumberControl
-                    value={model.count}
-                    onChange={handleModelCountChange(unit, model)}
-                />}
+                {!unit.definition.single && (
+                    <NumberControl
+                        value={model.count}
+                        onChange={handleModelCountChange(unit, model)}
+                    />
+                )}
                 {join(
                     model.options.map(x => (
                         <RenderModelOption
@@ -276,6 +282,21 @@ const ModelOptions = observer(({ unit }: { unit: UnitWarscroll }) => {
     );
 });
 
+const UnitBattaillon = observer(function UnitBattaillon({
+    unit
+}: {
+    unit: UnitWarscroll;
+}) {
+    return (
+        <DropdownObjects
+            onChange={unit.setBattalionUnit}
+            value={unit.battalionUnit}
+            options={unit.availableBattalionUnits}
+            getText={x => x.name}
+        ></DropdownObjects>
+    );
+});
+
 function WarscrollUnitsList() {
     const [warscrollOpen, setWarscrollOpen] = useState<UnitWarscroll | null>(
         null
@@ -311,9 +332,13 @@ function WarscrollUnitsList() {
             {
                 name: "Points",
                 text: unit => unit.points
+            },
+            {
+                name: "Battaillon",
+                text: unit => <UnitBattaillon unit={unit} />
             }
         ];
-        
+
         columns.push({
             name: "Actions",
             text: unit => (

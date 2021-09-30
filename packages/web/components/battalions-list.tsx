@@ -3,6 +3,7 @@ import { Battalion } from "../../common/data";
 import { observer } from "mobx-react-lite";
 import AddButton, { TableColumn } from "../atoms/add-button";
 import { useStores } from "../stores";
+import { AllAbilities } from "../atoms/warscroll-components";
 
 export interface BattalionsListProps {
     title: string;
@@ -16,17 +17,21 @@ const columns: TableColumn<Battalion>[] = [
             b.units
                 .map(y => y.name)
                 .join(" ― ")
+    },
+    {
+        name: "Abilities",
+        text: x => <AllAbilities abilities={x.abilities} />
     }
 ];
 
 function BattalionsList({ title }: BattalionsListProps) {
-    const { armyListStore: warscrollStore } = useStores();
-    const items = warscrollStore.availableBattalions;
+    const { armyListStore } = useStores();
+    const items = armyListStore.availableBattalions;
     const onChange = useCallback(
         (model: Battalion) => {
-            warscrollStore.addBattalion(model);
+            armyListStore.addBattalion(model);
         },
-        [warscrollStore]
+        [armyListStore]
     );
     return (
         <AddButton

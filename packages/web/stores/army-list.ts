@@ -46,6 +46,10 @@ export interface ArmyListLimits {
     maxOtherUnits: number | undefined;
 }
 
+function getWarscrollItem(name?: string) {
+    return name ? `warscroll/${name}` : "warscroll";
+}
+
 export class ArmyList implements ArmyListInterface, ArmyListLimits {
     serial = 0;
 
@@ -380,6 +384,53 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     getUnitsWithKeywords(keywords: string[][]) {
         return this.units.filter(x => hasKeywords(x, keywords));
     }
+
+    getSerializedWarscroll(): SerializedArmyList {
+        return {
+            name: this.name,
+            realm: this.realm?.id ?? undefined,
+            units: this.units.map(x => {
+                return {
+                    unitId: x.definition.id,
+                    isGeneral: x === this.general,
+                    extraAbilities: x.extraAbilities.map(x => x.id),
+                    models: x.models.map(x => {
+                        return {
+                            count: x.count,
+                            options: x.options.map(y => y.id)
+                        };
+                    }),
+                    battalionIndex:
+                        x.battalionUnit === null
+                            ? undefined
+                            : this.battalions.findIndex(
+                                  y => y.id === x.battalionUnit?.battalion.id
+                              ),
+                    battalionUnitIndex:
+                        x.battalionUnit === null
+                            ? undefined
+                            : x.battalionUnit.battalion.unitTypes.findIndex(
+                                  y => y.id === x.battalionUnit?.id
+                              )
+                };
+            }),
+            battalions: this.battalions.map(x => {
+                return {
+                    battalionId: x.definition.id
+                };
+            }),
+            allegiance: this.allegiance?.id,
+            armyType: this.armyType ? this.armyType.id : undefined,
+            subFaction: this.subFaction ? this.subFaction.id : undefined,
+            sceneries: this.endlessSpells.map(x => x.definition.id),
+            pointMode: this.pointMode
+        };
+    }
+
+    save(name?: string) {
+        const warscroll = this.getSerializedWarscroll();
+        localStorage.setItem(getWarscrollItem(name), JSON.stringify(warscroll));
+    }
 }
 
 interface SerializedArmyList {
@@ -390,6 +441,7 @@ interface SerializedArmyList {
         extraAbilities?: string[];
         models?: { count: number; options: string[] }[];
         battalionIndex?: number;
+        battalionUnitIndex?: number;
     }[];
     battalions: {
         battalionId: string;
@@ -407,11 +459,23 @@ export class ArmyListStore {
     warscrolls: string[] = [];
 
     @computed
+    get availableBattalionGroups() {
+        const result = this.dataStore.genericBattalionGroups;
+        if (this.warscroll.allegiance?.battalionGroups) {
+            result.push(...this.warscroll.allegiance.battalionGroups);
+        }
+        if (this.warscroll.subFaction?.battalionGroups) {
+            result.push(...this.warscroll.subFaction.battalionGroups);
+        }
+        if (this.warscroll.armyType?.battalionGroups) {
+            result.push(...this.warscroll.armyType.battalionGroups);
+        }
+        return result;
+    }
+
+    @computed
     get availableBattalions() {
-        return this.unitsStore.battalions;
-        // .filter((x) => this.warscroll.allegiance
-        //     x.allegiances.some((y) => y.id === this.warscroll.allegiance?.id)
-        // );
+        return this.availableBattalionGroups.flatMap(x => x.battalions);
     }
 
     @computed
@@ -428,7 +492,7 @@ export class ArmyListStore {
 
     @computed
     get availableEndlessSpells() {
-        return this.unitsStore.sceneryList.sort((a, b) =>
+        return this.dataStore.sceneryList.sort((a, b) =>
             a.name.localeCompare(b.name)
         );
     }
@@ -536,7 +600,7 @@ export class ArmyListStore {
 
     loadWarscroll(name?: string) {
         const serializedWarscroll = localStorage.getItem(
-            this.getWarscrollItem(name)
+            getWarscrollItem(name)
         );
         if (serializedWarscroll === null) return;
         const warscroll: SerializedArmyList = JSON.parse(serializedWarscroll);
@@ -552,21 +616,20 @@ export class ArmyListStore {
         this.warscroll.battalions.splice(0);
         this.warscroll.endlessSpells.splice(0);
         this.warscroll.allegiance =
-            this.unitsStore.factionsList.find(
+            this.dataStore.factionsList.find(
                 x => x.id === warscroll.allegiance
             ) || null;
         this.warscroll.armyType =
-            this.unitsStore.factionsList.find(
-                x => x.id == warscroll.armyType
-            ) || null;
+            this.dataStore.factionsList.find(x => x.id == warscroll.armyType) ||
+            null;
         this.warscroll.subFaction =
-            this.unitsStore.factionsList.find(
+            this.dataStore.factionsList.find(
                 x => x.id == warscroll.subFaction
             ) || null;
         this.warscroll.pointMode = warscroll.pointMode || PointMode.MatchedPlay;
 
         for (const ba of warscroll.battalions) {
-            const battalion = this.unitsStore.battalions.find(
+            const battalion = this.dataStore.battalions.find(
                 x => x.id === ba.battalionId
             );
             if (battalion === undefined) continue;
@@ -577,7 +640,7 @@ export class ArmyListStore {
 
         if (warscroll.sceneries) {
             for (const id of warscroll.sceneries) {
-                const scenery = this.unitsStore.sceneryList.find(
+                const scenery = this.dataStore.sceneryList.find(
                     x => x.id === id
                 );
                 if (scenery === undefined) continue;
@@ -588,7 +651,7 @@ export class ArmyListStore {
         }
 
         for (const wu of warscroll.units) {
-            const unit = this.unitsStore.findUnit(wu.unitId);
+            const unit = this.dataStore.findUnit(wu.unitId);
             if (unit === undefined) continue;
             const newUnit = new UnitWarscroll(this.warscroll, unit);
             if (wu.isGeneral) {
@@ -596,7 +659,7 @@ export class ArmyListStore {
             }
             if (wu.extraAbilities) {
                 for (const e of wu.extraAbilities) {
-                    const ability = this.unitsStore.getAbility(e);
+                    const ability = this.dataStore.getAbility(e);
                     if (ability) {
                         newUnit.extraAbilities.push(ability);
                     }
@@ -620,69 +683,29 @@ export class ArmyListStore {
                 }
             }
             if (
-                wu.battalionIndex &&
+                wu.battalionIndex !== undefined &&
+                wu.battalionUnitIndex !== undefined &&
                 this.warscroll.battalions[wu.battalionIndex]
             ) {
-                newUnit.battalion = this.warscroll.battalions[
-                    wu.battalionIndex
-                ];
+                const battalion = this.warscroll.battalions[wu.battalionIndex];
+                if (battalion)
+                    newUnit.battalionUnit =
+                        battalion.unitTypes[wu.battalionUnitIndex];
             }
             this.warscroll.units.push(newUnit);
             this.warscroll.realm =
                 (warscroll.realm &&
-                    this.unitsStore.realms.find(
+                    this.dataStore.realms.find(
                         x => x.id === warscroll.realm
                     )) ||
                 null;
         }
     }
 
-    getSerializedWarscroll(): SerializedArmyList {
-        return {
-            name: this.warscroll.name,
-            realm: this.warscroll.realm?.id ?? undefined,
-            units: this.warscroll.units.map(x => {
-                return {
-                    unitId: x.definition.id,
-                    isGeneral: x === this.warscroll.general,
-                    extraAbilities: x.extraAbilities.map(x => x.id),
-                    models: x.models.map(x => {
-                        return {
-                            count: x.count,
-                            options: x.options.map(y => y.id)
-                        };
-                    }),
-                    battalionIndex:
-                        x.battalion === null
-                            ? undefined
-                            : this.warscroll.battalions.findIndex(
-                                  y =>
-                                      x.battalion !== null &&
-                                      y.id === x.battalion.id
-                              )
-                };
-            }),
-            battalions: this.warscroll.battalions.map(x => {
-                return {
-                    battalionId: x.definition.id
-                };
-            }),
-            allegiance: this.warscroll.allegiance?.id,
-            armyType: this.warscroll.armyType
-                ? this.warscroll.armyType.id
-                : undefined,
-            subFaction: this.warscroll.subFaction
-                ? this.warscroll.subFaction.id
-                : undefined,
-            sceneries: this.warscroll.endlessSpells.map(x => x.definition.id),
-            pointMode: this.warscroll.pointMode
-        };
-    }
-
     @computed
     get link() {
         const ws = btoa(
-            deflate(JSON.stringify(this.getSerializedWarscroll()), {
+            deflate(JSON.stringify(this.warscroll.getSerializedWarscroll()), {
                 to: "string"
             })
         );
@@ -707,11 +730,7 @@ export class ArmyListStore {
     saveWarscroll(name?: string) {
         if (name && this.warscrolls.indexOf(name) < 0)
             this.warscrolls.push(name);
-        const warscroll = this.getSerializedWarscroll();
-        localStorage.setItem(
-            this.getWarscrollItem(name),
-            JSON.stringify(warscroll)
-        );
+        this.warscroll.save(name);
         this.saveWarscrolls();
     }
 
@@ -730,12 +749,12 @@ export class ArmyListStore {
 
     @action
     removeWarscroll(name: string) {
-        localStorage.removeItem(this.getWarscrollItem(name));
+        localStorage.removeItem(getWarscrollItem(name));
         this.warscrolls.splice(this.warscrolls.indexOf(name), 1);
         this.saveWarscrolls();
     }
 
-    constructor(private unitsStore: DataStore, private uiStore: UiStore) {
+    constructor(private dataStore: DataStore, private uiStore: UiStore) {
         makeObservable(this);
         const warscrolls = localStorage.getItem("warscrolls");
         if (warscrolls !== null) {
@@ -754,11 +773,7 @@ export class ArmyListStore {
     }
 
     @observable
-    warscroll = new ArmyList(this.unitsStore);
-
-    private getWarscrollItem(name?: string) {
-        return name ? `warscroll/${name}` : "warscroll";
-    }
+    warscroll = new ArmyList(this.dataStore);
 
     @action
     setModelCount(altModel: WarscrollModel, count: number) {

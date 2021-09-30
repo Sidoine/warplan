@@ -20,7 +20,8 @@ import {
     Unit,
     UnitOptionCategory,
     Value,
-    ValueType
+    ValueType,
+    BattalionAbility
 } from "../common/data";
 import {
     CoreBattalionGroupElement,
@@ -28,7 +29,6 @@ import {
     DamageRow,
     Dump,
     PurpleGroup,
-    Role,
     Type
 } from "../common/definitions";
 
@@ -516,7 +516,8 @@ export function importData(db: Dump): ImportedDataStore {
         genericAbilityGroups: [],
         battalionUnits: {},
         battalionGroups: {},
-        genericBattalionGroups: []
+        genericBattalionGroups: [],
+        battalionAbilities: {}
     };
 
     for (const faction of db.faction) {
@@ -561,7 +562,7 @@ export function importData(db: Dump): ImportedDataStore {
             model: getItem(dataStore, "models", warscroll.id),
             factions: [],
             keywords: warscroll.referenceKeywords.toUpperCase().split(", "),
-            role: Role.Other,
+            roles: [],
             bravery: warscroll.bravery ?? undefined,
             wounds: warscroll.wounds ?? undefined,
             move: warscroll.move ?? undefined,
@@ -579,7 +580,8 @@ export function importData(db: Dump): ImportedDataStore {
             "units",
             warscrollBattlefieldRole.warscrollId
         );
-        unit.role = warscrollBattlefieldRole.role;
+        unit.roles = unit.roles || [];
+        unit.roles.push(warscrollBattlefieldRole.role);
     }
 
     for (const descriptionSubsection of db.description_subsection) {
@@ -848,7 +850,9 @@ export function importData(db: Dump): ImportedDataStore {
         const battalionData: Battalion = {
             id: getId(battalion.id, battalion.name, "battalions"),
             name: battalion.name,
-            units: []
+            onePerArmy: battalion.onePerArmy,
+            units: [],
+            abilities: []
         };
         dataStore.battalions[battalionData.id] = battalionData;
         const battalionGroup = getItem(
@@ -859,6 +863,26 @@ export function importData(db: Dump): ImportedDataStore {
         battalionGroup.battalions.push(battalionData);
     }
 
+    for (const ability of db.battalion_ability) {
+        const battalion = getItem(
+            dataStore,
+            "battalions",
+            ability.coreBattalionId
+        );
+        const entity: BattalionAbility = {
+            id: getId(
+                ability.id,
+                `${battalion.name} ${ability.header}`,
+                "battalionAbilities"
+            ),
+            grantsExtraEnhancement: ability.grantsExtraEnhancement,
+            name: ability.header,
+            description: ability.rules
+        };
+        dataStore.battalionAbilities[entity.id] = entity;
+        battalion.abilities.push(entity);
+    }
+
     for (const unitType of db.unit_type) {
         const battalion = getItem(
             dataStore,
@@ -866,7 +890,11 @@ export function importData(db: Dump): ImportedDataStore {
             unitType.coreBattalionId
         );
         const entity: BattalionUnit = {
-            id: getId(unitType.id, unitType.name, "battalionUnits"),
+            id: getId(
+                unitType.id,
+                `${battalion.name} ${unitType.name}`,
+                "battalionUnits"
+            ),
             name: unitType.name,
             max: unitType.max,
             min: unitType.min,
@@ -878,6 +906,39 @@ export function importData(db: Dump): ImportedDataStore {
         };
         dataStore.battalionUnits[entity.id] = entity;
         battalion.units.push(entity);
+    }
+
+    for (const unitTypeBattleFieldRole of db.unit_type_required_battlefield_role) {
+        const unitType = getItem(
+            dataStore,
+            "battalionUnits",
+            unitTypeBattleFieldRole.unitTypeId
+        );
+        unitType.requiredRoles = unitType.requiredRoles || [];
+        unitType.requiredRoles.push(unitTypeBattleFieldRole.role);
+    }
+
+    for (const unitTypeExcludedRole of db.unit_type_excluded_battlefield_role) {
+        const unitType = getItem(
+            dataStore,
+            "battalionUnits",
+            unitTypeExcludedRole.unitTypeId
+        );
+        unitType.excludedRoles = unitType.excludedRoles || [];
+        unitType.excludedRoles.push(unitTypeExcludedRole.role);
+    }
+
+    for (const unitTypeKeyword of db.unit_type_required_keywords_keyword) {
+        const unitType = getItem(
+            dataStore,
+            "battalionUnits",
+            unitTypeKeyword.unitTypeId
+        );
+        unitType.keywords = unitType.keywords || [];
+        const keyword = db.keyword.find(
+            k => k.id === unitTypeKeyword.keywordId
+        );
+        if (keyword) unitType.keywords.push(keyword.name.toUpperCase());
     }
 
     return dataStore;

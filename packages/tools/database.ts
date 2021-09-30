@@ -40,6 +40,7 @@ export class ImportedDataStoreImpl implements ImportedDataStore {
         result += writeAttacks(dataStore);
         result += writeOptions(dataStore);
         result += writeUnits(dataStore);
+        result += writeBattalionAbilities(dataStore);
         result += writeBattalionUnits(dataStore);
         result += writeBattalions(dataStore);
         result += writeBattalionGroups(dataStore);
@@ -288,8 +289,10 @@ ${
         if (unit.maxCount) {
             result += `           maxCount: ${unit.maxCount},\n`;
         }
-        if (unit.role) {
-            result += `           role: Role.${toPascalCase(unit.role)},\n`;
+        if (unit.roles) {
+            result += `           roles: [${unit.roles
+                .map(x => `Role.${toPascalCase(x)}`)
+                .join(", ")}],\n`;
         }
 
         if (unit.magicDescription) {
@@ -312,13 +315,62 @@ ${
     return result;
 }
 
+function writeBattalionAbilities(db: ImportedDataStore) {
+    let result = `   battalionAbilities = {
+`;
+    for (const ability of Object.values(db.battalionAbilities)) {
+        const id = ability.id;
+        if (!id) continue;
+        result += `       ${id}: {
+            id: "${id}",
+            name: ${escapeQuotedString(ability.name)},
+            description: ${escapeQuotedString(ability.description)},
+            grantsExtraEnhancement: ${JSON.stringify(
+                ability.grantsExtraEnhancement
+            )},
+        },
+`;
+    }
+    result += `   };
+`;
+    return result;
+}
+
 function writeBattalionUnits(db: ImportedDataStore) {
     let result = `   battalionUnits = {
 `;
     for (const battalionUnit of Object.values(db.battalionUnits)) {
         const id = battalionUnit.id;
         if (!id) continue;
-        result += `       ${id}: ${JSON.stringify(battalionUnit)},
+        result += `       ${id}: {
+            id: ${JSON.stringify(battalionUnit.id)},
+            name: ${JSON.stringify(battalionUnit.name)},
+            restrictions: ${JSON.stringify(battalionUnit.restrictions)},
+            imageName: ${JSON.stringify(battalionUnit.imageName)},
+            min: ${JSON.stringify(battalionUnit.min)},
+            max: ${JSON.stringify(battalionUnit.max)},
+            eitherOr: ${JSON.stringify(battalionUnit.eitherOr)},
+            woundsLimit: ${JSON.stringify(battalionUnit.woundsLimit)},
+            order: ${JSON.stringify(battalionUnit.order)},
+`;
+        if (battalionUnit.requiredRoles) {
+            result += `            requiredRoles: [${battalionUnit.requiredRoles
+                .map(x => `Role.${toPascalCase(x)}`)
+                .join(", ")}],
+`;
+        }
+        if (battalionUnit.excludedRoles) {
+            result += `            excludedRoles: [${battalionUnit.excludedRoles
+                .map(x => `Role.${toPascalCase(x)}`)
+                .join(", ")}],
+`;
+        }
+        if (battalionUnit.keywords) {
+            result += `            keywords: ${JSON.stringify(
+                battalionUnit.keywords
+            )},\n`;
+        }
+        result += `${tab}},
 `;
     }
     result += `   };
@@ -334,9 +386,12 @@ function writeBattalions(db: ImportedDataStore) {
         result += `       ${id}: {
             id: "${id}",
             name: ${escapeQuotedString(battalion.name)},
-            description: ${escapeQuotedString(battalion.description)},
+            onePerArmy: ${JSON.stringify(battalion.onePerArmy)},
             units: [${battalion.units
                 .map(x => `this.battalionUnits.${x.id}`)
+                .join(", ")}],
+            abilities: [${battalion.abilities
+                .map(x => `this.battalionAbilities.${x.id}`)
                 .join(", ")}],
 `;
 
@@ -458,6 +513,14 @@ ${tab}this.factions.${faction.parent.id}.children.push(this.factions.${faction.i
                 faction.id
             }.abilityGroups = [${faction.abilityGroups
                 .map(x => `this.abilityGroups.${x.id}`)
+                .join(", ")}];
+`;
+        }
+        if (faction.battalionGroups) {
+            result += `${tab}this.factions.${
+                faction.id
+            }.battalionGroups = [${faction.battalionGroups
+                .map(x => `this.battalionGroups.${x.id}`)
                 .join(", ")}];
 `;
         }
