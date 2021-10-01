@@ -8,7 +8,8 @@ import {
     ModelOption,
     Ability,
     AbilityGroup,
-    BattalionUnit
+    BattalionUnit,
+    AbilityCategory
 } from "../../common/data";
 
 import { canAddAbilityCategory } from "./conditions";
@@ -262,10 +263,17 @@ export class UnitWarscroll implements UnitWarscrollInterface {
                 }
             }
         }
+        const maxCount = extraAbility.category
+            ? this.armyList.getNumberOfEnhancements(extraAbility.category)
+            : 0;
+        const count = extraAbility.category
+            ? this.extraAbilities.reduce(
+                  (p, c) => p + (c.category === extraAbility.category ? 1 : 0),
+                  0
+              )
+            : 0;
         return (
-            this.extraAbilities.every(
-                x => x.category !== extraAbility.category
-            ) &&
+            count <= maxCount &&
             !this.armyList.hasAnyUnitExtraAbility(extraAbility) &&
             canAddAbilityCategory(this, this.armyList, extraAbility.category)
         );
@@ -445,6 +453,9 @@ export class WarscrollBattalion implements WarscrollBattalionInterface {
 
     unitTypes: WarscrollBattalionUnit[];
 
+    @observable
+    enhancement: AbilityCategory | null = null;
+
     @computed get abilities(): AbilityModel[] {
         return (
             this.definition.abilities.map(ability => ({
@@ -461,4 +472,10 @@ export class WarscrollBattalion implements WarscrollBattalionInterface {
             x => new WarscrollBattalionUnit(this, x)
         );
     }
+
+    @action
+    setEnhancementType = (type: AbilityCategory | null) => {
+        this.enhancement = type;
+        this.armyList.save();
+    };
 }

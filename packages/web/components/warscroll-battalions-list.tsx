@@ -20,6 +20,8 @@ import ResponsiveTable, {
 import ClearIcon from "@material-ui/icons/Clear";
 import { useStores } from "../stores";
 import WarscrollButton from "../atoms/warscroll-button";
+import DropdownValues from "../atoms/dropdown-values";
+import { AbilityCategory } from "../../common/data";
 
 const UnitTypeView = observer(function UnitTypeView({
     battalionUnit
@@ -56,13 +58,29 @@ function BattalionName({ x }: { x: WarscrollBattalion }) {
     );
 }
 
+const allEnhancementTypes: AbilityCategory[] = [
+    AbilityCategory.Artefact,
+    AbilityCategory.Mount,
+    AbilityCategory.Prayer,
+    AbilityCategory.Spell,
+    AbilityCategory.Triumph
+];
+
+const enhancementName = new Map<AbilityCategory, string>([
+    [AbilityCategory.Spell, "Spell"],
+    [AbilityCategory.Prayer, "Prayer"],
+    [AbilityCategory.Artefact, "Artefact of Power"],
+    [AbilityCategory.Mount, "Mount Trait"],
+    [AbilityCategory.Triumph, "Triumph"]
+]);
+
 function WarscrollBattalionsList() {
     const { armyListStore: warscrollStore } = useStores();
     const columns = useMemo<ResponsiveTableColumn<WarscrollBattalion>[]>(() => {
         return [
             {
                 name: "Name",
-                text: x => <BattalionName key={x.id} x={x} />
+                text: x => <BattalionName x={x} />
             },
             {
                 name: "Units",
@@ -72,6 +90,22 @@ function WarscrollBattalionsList() {
                             <UnitTypeView key={y.id} battalionUnit={y} />
                         )),
                         ", "
+                    )
+            },
+            {
+                name: "Enhancement",
+                text: x =>
+                    x.definition.abilities.some(
+                        y => y.grantsExtraEnhancement
+                    ) ? (
+                        <DropdownValues
+                            getText={x => enhancementName.get(x) || "Unknown"}
+                            value={x.enhancement}
+                            options={allEnhancementTypes}
+                            onChange={x.setEnhancementType}
+                        />
+                    ) : (
+                        ""
                     )
             },
             {

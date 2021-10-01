@@ -48,6 +48,7 @@ export function canAddAbilityCategory(
             return hasKeyword(unit.definition, "WIZARD");
         case AbilityCategory.BattleTrait:
         case AbilityCategory.Triumph:
+        case AbilityCategory.GrandStrategy:
             return false;
         default:
             return true;

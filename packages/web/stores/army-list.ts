@@ -56,6 +56,7 @@ interface SerializedArmyList {
     }[];
     battalions: {
         battalionId: string;
+        enhancement?: AbilityCategory;
     }[];
     allegiance?: string;
     armyType?: string;
@@ -377,20 +378,15 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         return result;
     }
 
-    // @computed
-    // get unitAbilities() {
-    //     const result: Ability[] = [];
-    //     for (const unit of this.items) {
-    //         for (const ability of unit.abilities) {
-    //             if (!result.find((x) => x.id === ability..id))
-    //                 result.push(ability);
-    //         }
-    //     }
-    //     return result;
-    // }
-
     getUnitsWithKeywords(keywords: string[][]) {
         return this.units.filter(x => hasKeywords(x, keywords));
+    }
+
+    getNumberOfEnhancements(category: AbilityCategory) {
+        return this.battalions.reduce(
+            (p, c) => p + (c.enhancement === category ? 1 : 0),
+            0
+        );
     }
 
     getSerializedWarscroll(): SerializedArmyList {
@@ -424,7 +420,8 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
             }),
             battalions: this.battalions.map(x => {
                 return {
-                    battalionId: x.definition.id
+                    battalionId: x.definition.id,
+                    enhancement: x.enhancement ?? undefined
                 };
             }),
             allegiance: this.allegiance?.id,
@@ -465,7 +462,10 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
                 x => x.id === ba.battalionId
             );
             if (battalion === undefined) continue;
-            this.battalions.push(new WarscrollBattalion(this, battalion));
+            const b = new WarscrollBattalion(this, battalion);
+            if (ba.enhancement !== undefined)
+                b.setEnhancementType(ba.enhancement);
+            this.battalions.push(b);
         }
 
         for (const wu of serialized.units) {
