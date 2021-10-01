@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import WarscrollSceneryEdit from "./warscroll-scenery-edit";
-import SceneriesList from "./sceneries-list";
+import EndlessSpellsList from "./endless-spells-list";
 import {
     Table,
     TableHead,
@@ -11,16 +11,23 @@ import {
     CardContent,
     CardActions,
     Card,
-    CardHeader,
+    CardHeader
 } from "@material-ui/core";
 import { useStores } from "../stores";
+import { Role } from "../../common/definitions";
 
-function WarscrollSceneriesList() {
+function WarscrollSceneriesList({
+    role,
+    title
+}: {
+    role: Role;
+    title: string;
+}) {
     const { armyListStore: warscrollStore } = useStores();
     const warscroll = warscrollStore.warscroll;
     return (
         <Card>
-            <CardHeader title="Endless spells" />
+            <CardHeader title={title} />
             <CardContent>
                 <Table>
                     <TableHead>
@@ -31,15 +38,16 @@ function WarscrollSceneriesList() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {warscroll.endlessSpells.map((x) => (
-                            <WarscrollSceneryEdit key={x.id} scenery={x} />
-                        ))}
+                        {warscroll.units
+                            .filter(x => x.definition.roles.includes(role))
+                            .map(x => (
+                                <WarscrollSceneryEdit key={x.id} scenery={x} />
+                            ))}
                     </TableBody>
                 </Table>
             </CardContent>
             <CardActions>
-                <span>{warscroll.sceneryPoints} points</span>
-                <SceneriesList title="Add..." />
+                <EndlessSpellsList role={role} title="Add..." />
             </CardActions>
         </Card>
     );

@@ -5,7 +5,6 @@ import {
     UnitWarscrollInterface,
     WarscrollBattalionInterface,
     WarscrollModelInterface,
-    EndlessSpell,
     ModelOption,
     Ability,
     AbilityGroup,
@@ -111,10 +110,7 @@ export interface AbilityModel {
     warscrollModel?: WarscrollModelInterface[];
 }
 
-export type WarscrollItem =
-    | UnitWarscroll
-    | WarscrollEndlessSpell
-    | WarscrollBattalion;
+export type WarscrollItem = UnitWarscroll | WarscrollBattalion;
 
 export class UnitWarscroll implements UnitWarscrollInterface {
     type: "unit" = "unit";
@@ -158,11 +154,13 @@ export class UnitWarscroll implements UnitWarscrollInterface {
 
     @computed
     get count() {
+        if (!this.definition.size) return 1;
         return Math.ceil(this.modelCount / this.definition.size);
     }
 
     @computed
     get modelCount() {
+        if (this.models.length === 0) return 1;
         return this.models.reduce((p, x) => p + x.count, 0);
     }
 
@@ -205,6 +203,10 @@ export class UnitWarscroll implements UnitWarscrollInterface {
 
     get isBattleline() {
         return this.definition.roles.includes(Role.Battleline);
+    }
+
+    get isEndlessSpell() {
+        return this.definition.roles.includes(Role.EndlessSpell);
     }
 
     get isOther() {
@@ -376,24 +378,6 @@ export class UnitWarscroll implements UnitWarscrollInterface {
     constructor(public armyList: ArmyList, public definition: Unit) {
         makeObservable(this);
         this.id = (armyList.serial++).toString();
-    }
-}
-
-export class WarscrollEndlessSpell {
-    id: number;
-    type: "endless" = "endless";
-
-    @computed get abilities(): AbilityModel[] {
-        return (
-            this.definition.abilities?.map(ability => ({
-                ability,
-                id: ability.id
-            })) || []
-        );
-    }
-
-    constructor(public warscroll: ArmyList, public definition: EndlessSpell) {
-        this.id = warscroll.serial++;
     }
 }
 

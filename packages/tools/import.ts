@@ -24,7 +24,6 @@ import {
     BattalionAbility
 } from "../common/data";
 import {
-    CoreBattalionGroupElement,
     DamageCell,
     DamageRow,
     Dump,
@@ -393,13 +392,10 @@ function getItem<
 
 type KeysOfType<T, U> = { [K in keyof T]: T[K] extends U ? K : never }[keyof T];
 type ArrayElement<T> = T extends (infer U)[] ? U : never;
-type AbilityGroups = Exclude<
-    KeysOfType<Dump, PurpleGroup[]>,
-    KeysOfType<Dump, CoreBattalionGroupElement[]>
->;
+type AbilityGroups = KeysOfType<Dump, PurpleGroup[]>;
 type Abilities = KeysOfType<
     Dump,
-    { id: string; name: string; lore: string | null; rules: string }[]
+    { id: string; name: string; lore?: string | null; rules: string }[]
 >;
 
 function importExtraAbilities<
@@ -510,7 +506,6 @@ export function importData(db: Dump): ImportedDataStore {
         models: {},
         options: {},
         realms: {},
-        sceneries: {},
         units: {},
         abilityGroups: {},
         genericAbilityGroups: [],
@@ -811,6 +806,16 @@ export function importData(db: Dump): ImportedDataStore {
         "triumphGroupId"
     );
 
+    importExtraAbilities(
+        db,
+        dataStore,
+        "grand_strategy_group",
+        "grand_strategy",
+        undefined,
+        AbilityCategory.GrandStrategy,
+        "grandStrategyGroupId"
+    );
+
     for (const unit of Object.values(dataStore.units)) {
         unit.options = getModelOptions(unit);
         if (unit.options) {
@@ -829,7 +834,7 @@ export function importData(db: Dump): ImportedDataStore {
             ),
             battalions: [],
             name: battalionGroup.name,
-            description: battalionGroup.rules,
+            description: battalionGroup.rules || "",
             restrictions: battalionGroup.restrictions
         };
         dataStore.battalionGroups[entity.id] = entity;

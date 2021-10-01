@@ -49,7 +49,8 @@ export const enum AbilityCategory {
     RangedAttack,
     BattleTrait,
     Champion,
-    Triumph
+    Triumph,
+    GrandStrategy
 }
 
 export const enum Phase {
@@ -277,19 +278,6 @@ export interface WeaponOption {
     attacks?: Attack[];
 }
 
-export interface EndlessSpell {
-    id: string;
-    name: string;
-    subName?: string;
-    points: number;
-    description?: string;
-    abilities?: Ability[];
-    commandAbilities?: Ability[];
-    keywords?: string[];
-    pictureUrl?: string;
-    flavor?: string;
-}
-
 export const enum ModelOptionCategory {
     Weapon,
     Champion
@@ -477,6 +465,12 @@ export interface UnitStatModels {
     models: UnitStatModel[];
     choice?: string;
 }
+export interface GrandStrategy {
+    id: string;
+    name: string;
+    rules: string;
+    grandStrategyGroupId: string;
+}
 
 export interface Unit extends UnitInfos {
     id: string;
@@ -486,7 +480,6 @@ export interface Unit extends UnitInfos {
     size: number;
     maxSize?: number;
     maxPoints?: number;
-    maxCount?: number;
     points: number;
     factions: Faction[];
     subType?: string;
@@ -595,7 +588,6 @@ export interface ImportedDataStore {
     attacks: Record<string, Attack>;
     units: Record<string, Unit>;
     battalions: Record<string, Battalion>;
-    sceneries: Record<string, EndlessSpell>;
     realms: Record<string, RealmOfBattle>;
     abilityGroups: Record<string, AbilityGroup>;
     genericAbilityGroups: AbilityGroup[];

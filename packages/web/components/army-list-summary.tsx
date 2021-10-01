@@ -1,7 +1,5 @@
 import { observer, useLocalObservable } from "mobx-react-lite";
-import {
-    PointMode,
-} from "../stores/warscroll";
+import { PointMode } from "../stores/warscroll";
 import { Faction } from "../../common/data";
 import DropdownValues from "../atoms/dropdown-values";
 import DropdownObjects from "../atoms/dropdown-objects";
@@ -156,7 +154,7 @@ export const ArmyListSummary = observer(() => {
                                     value={warscroll.pointMode}
                                     options={[
                                         PointMode.MatchedPlay,
-                                        PointMode.OpenPlay,
+                                        PointMode.OpenPlay
                                     ]}
                                     getText={v =>
                                         v === PointMode.MatchedPlay
@@ -176,6 +174,17 @@ export const ArmyListSummary = observer(() => {
                                     getText={x => x.name}
                                     onChange={warscrollStore.setRealm}
                                     clearable
+                                />
+                            </FormControl>
+                        </Grid>
+                        <Grid item>
+                            <FormControl>
+                                <InputLabel>Grand strategy</InputLabel>
+                                <DropdownObjects
+                                    value={warscroll.grandStrategy}
+                                    options={warscroll.grandStrategies}
+                                    getText={x => x.name}
+                                    onChange={warscroll.setGrandStrategy}
                                 />
                             </FormControl>
                         </Grid>
@@ -200,7 +209,7 @@ export const ArmyListSummary = observer(() => {
                                     </>
                                 )}{" "}
                             </Grid>
-                            { (
+                            {
                                 <>
                                     <Grid item>
                                         {!warscroll.isLeadersValid && (
@@ -234,7 +243,7 @@ export const ArmyListSummary = observer(() => {
                                         {warscroll.maxArtilleries})
                                     </Grid>
                                 </>
-                            )}
+                            }
                             <Grid item>
                                 {!warscroll.isEndlessSpellsValid && (
                                     <Warning label="Wrong number of endless spells" />

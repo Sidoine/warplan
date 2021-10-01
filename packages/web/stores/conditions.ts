@@ -33,11 +33,11 @@ export function canAddAbilityCategory(
         case AbilityCategory.Artefact:
             return (
                 unit.isLeader &&
-                unit.definition.maxCount !== 1 &&
+                !unit.definition.unique &&
                 ws.numberOfArtifacts < ws.maxArtifacts
             );
         case AbilityCategory.CommandTrait:
-            return unit.isGeneral && unit.definition.maxCount !== 1;
+            return unit.isGeneral && !unit.definition.unique;
         case AbilityCategory.Command:
             return unit.isLeader;
         case AbilityCategory.Mount:

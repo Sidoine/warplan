@@ -14,7 +14,6 @@ import { overrideOrruks } from "./overrides/orruks";
 import { overrideGitz } from "./overrides/gitz";
 import {
     Box,
-    EndlessSpell,
     Ability,
     RealmOfBattle,
     Model,
@@ -36,7 +35,6 @@ export class DataStore {
     boxes: Box[];
     factions: { [key: string]: Faction };
     factionsList: Faction[] = [];
-    sceneryList: EndlessSpell[] = [];
     baseAbilities: AbilityGroup[] = [];
     abilities: Record<string, Ability> = {};
     genericBattalionGroups: BattalionGroup[] = [];
@@ -115,11 +113,6 @@ export class DataStore {
 
         this.baseAbilities = data.genericAbilityGroups;
         this.genericBattalionGroups = data.genericBattalionGroups;
-
-        const sceneries: { [key: string]: EndlessSpell } = data.sceneries;
-        for (const key in sceneries) {
-            this.sceneryList.push(sceneries[key]);
-        }
     }
 
     findUnit(id: string) {

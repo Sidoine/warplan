@@ -2,9 +2,9 @@ import { observable, action, computed, makeObservable } from "mobx";
 import { UnitStats, getUnitStats } from "./stats";
 import { DataStore } from "./data";
 import { Faction } from "../../common/data";
+import { Role } from "../../common/definitions";
 
 interface SerializedUi {
-    grandAlliance?: string;
     faction?: string;
     keywordFilter?: string;
     enemySave?: number;
@@ -12,6 +12,8 @@ interface SerializedUi {
     hasCharged?: boolean;
     hasMoved?: boolean;
     enemyCount?: number;
+    includeFactionLess?: boolean;
+    includeAllies?: boolean;
 }
 
 export interface CombatSettings {
@@ -35,27 +37,35 @@ export class UiStore {
     @observable
     exportPopin = false;
 
-    @observable
-    grandAlliance: Faction | null = null;
-
     @observable.shallow
     faction: Faction | null = this.unitsStore.factionsList[0] || null;
 
+    @observable
+    includeAllies = false;
+
+    @observable
+    includeFactionLess = false;
+
     @computed
-    get units() {
+    get warscrolls() {
         const keywordFilter = this.keywordFilter.toUpperCase();
         if (keywordFilter.length > 2) {
-            // const grandAlliance = this.grandAlliance;
             return this.unitsStore.unitList.filter(
                 x =>
-                    // x.factions.some((x) => x.grandAlliance === grandAlliance) &&
                     x.name.toUpperCase().indexOf(keywordFilter) >= 0 ||
                     x.keywords.some(x => x.indexOf(keywordFilter) >= 0)
             );
         }
-        return this.unitsStore.unitList.filter(x =>
-            x.factions.some(x => x.id === this.faction?.id)
+        return this.unitsStore.unitList.filter(
+            x =>
+                x.factions.some(x => x.id === this.faction?.id) ||
+                (this.includeFactionLess && x.factions.length === 0)
         );
+    }
+
+    @computed
+    get endlessSpells() {
+        return this.warscrolls.filter(x => x.roles.includes(Role.EndlessSpell));
     }
 
     @observable combatSettings: CombatSettings = {
@@ -69,7 +79,7 @@ export class UiStore {
     @computed
     get unitStats() {
         const result: UnitStats[] = [];
-        for (const unit of this.units) {
+        for (const unit of this.warscrolls) {
             const stats = getUnitStats(unit, this.combatSettings);
             for (const stat of stats) {
                 result.push(stat);
@@ -89,12 +99,6 @@ export class UiStore {
         const ui: string | null = localStorage.getItem("ui");
         if (ui) {
             const serialized: SerializedUi = JSON.parse(ui);
-            const grandAlliance =
-                serialized.grandAlliance &&
-                this.unitsStore.factions[serialized.grandAlliance];
-            if (grandAlliance) {
-                this.grandAlliance = grandAlliance;
-            }
             const faction =
                 serialized.faction &&
                 this.unitsStore.factions[serialized.faction];
@@ -110,6 +114,12 @@ export class UiStore {
                 this.combatSettings.hasCharged = serialized.hasCharged;
             if (serialized.hasMoved !== undefined) {
                 this.combatSettings.hasMoved = serialized.hasMoved;
+            }
+            if (serialized.includeAllies !== undefined) {
+                this.includeAllies = serialized.includeAllies;
+            }
+            if (serialized.includeFactionLess !== undefined) {
+                this.includeFactionLess = serialized.includeFactionLess;
             }
             this.combatSettings.enemyCount = serialized.enemyCount ?? 5;
         }
@@ -159,10 +169,16 @@ export class UiStore {
     }
 
     @action
-    setGrandAlliance(grandAlliance: Faction) {
-        this.grandAlliance = grandAlliance;
+    toggleIncludeAllies = () => {
+        this.includeAllies = !this.includeAllies;
         this.saveUi();
-    }
+    };
+
+    @action
+    toggleIncludeFactionLess = () => {
+        this.includeFactionLess = !this.includeFactionLess;
+        this.saveUi();
+    };
 
     private saveUi() {
         const serialized: SerializedUi = {
@@ -173,7 +189,9 @@ export class UiStore {
             enemySave: this.combatSettings.enemySave,
             hasCharged: this.combatSettings.hasCharged,
             hasMoved: this.combatSettings.hasMoved,
-            enemyCount: this.combatSettings.enemyCount
+            enemyCount: this.combatSettings.enemyCount,
+            includeAllies: this.includeAllies,
+            includeFactionLess: this.includeFactionLess
         };
         localStorage.setItem("ui", JSON.stringify(serialized));
     }

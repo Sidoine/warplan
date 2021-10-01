@@ -2,7 +2,6 @@ import { IconButton, Modal } from "@material-ui/core";
 import React, { useCallback, useState } from "react";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
-import { EndlessSpellWarscroll } from "../components/endless-spell-warscroll";
 import { UnitWarscrollView } from "../components/unit-warscroll";
 import BattalionWarscroll from "../components/battalion-warscroll";
 import { WarscrollItem } from "../stores/warscroll";
@@ -24,9 +23,6 @@ function WarscrollButton({ item: item }: { item: WarscrollItem }) {
             </IconButton>
             <Modal open={warscrollOpen !== null} onClose={handleCloseWarscroll}>
                 <>
-                    {warscrollOpen && warscrollOpen.type === "endless" && (
-                        <EndlessSpellWarscroll wes={warscrollOpen} />
-                    )}
                     {warscrollOpen && warscrollOpen.type === "unit" && (
                         <UnitWarscrollView wu={warscrollOpen} />
                     )}

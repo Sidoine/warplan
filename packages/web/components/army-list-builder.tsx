@@ -7,6 +7,7 @@ import Filter from "./filter";
 import WarscrollSceneriesList from "./warscroll-sceneries-list";
 import { Grid } from "@material-ui/core";
 import WarscrollsList from "./warscrolls-list";
+import { Role } from "../../common/definitions";
 
 function ArmyListBuilder() {
     return (
@@ -30,10 +31,37 @@ function ArmyListBuilder() {
                     <WarscrollBattalionsList />
                 </Grid>
                 <Grid item>
-                    <WarscrollUnitsList />
+                    <WarscrollUnitsList role={Role.Leader} title="Leaders" />
                 </Grid>
                 <Grid item>
-                    <WarscrollSceneriesList />
+                    <WarscrollUnitsList
+                        role={Role.Battleline}
+                        title="Battlelines"
+                    />
+                </Grid>
+                <Grid item>
+                    <WarscrollUnitsList role={Role.Other} title="Other units" />
+                </Grid>
+                <Grid item>
+                    <WarscrollUnitsList role={Role.Behemoth} title="Behemots" />
+                </Grid>
+                <Grid item>
+                    <WarscrollUnitsList
+                        role={Role.Artillery}
+                        title="Artilleries"
+                    />
+                </Grid>
+                <Grid item>
+                    <WarscrollSceneriesList
+                        role={Role.EndlessSpell}
+                        title="Endless spells"
+                    />
+                </Grid>
+                <Grid item>
+                    <WarscrollSceneriesList
+                        role={Role.Terrain}
+                        title="Terrains"
+                    />
                 </Grid>
             </Grid>
             <Grid item xs={12} md={3}>

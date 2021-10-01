@@ -3,13 +3,14 @@ import { Unit } from "../../common/data";
 import AddButton, { TableColumn } from "../atoms/add-button";
 import { useStores } from "../stores";
 import { observer } from "mobx-react-lite";
+import { Role } from "../../common/definitions";
 
 const columns: TableColumn<Unit>[] = [
     { name: "Name", text: x => x.name },
     { name: "Points", text: x => x.points }
 ];
 
-export const UnitsList = observer(() => {
+export const UnitsList = observer(({ role }: { role: Role }) => {
     const { armyListStore: warscrollStore } = useStores();
     const handleChange = useCallback(
         (unit: Unit) => warscrollStore.addUnit(unit),
@@ -19,7 +20,7 @@ export const UnitsList = observer(() => {
     return (
         <AddButton
             columns={columns}
-            options={warscrollStore.availableUnits}
+            options={warscrollStore.getAvailableUnitsOfRole(role)}
             onChange={handleChange}
         />
     );

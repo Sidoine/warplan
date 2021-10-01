@@ -1,42 +1,37 @@
 import React, { useCallback, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { WarscrollEndlessSpell } from "../stores/warscroll";
+import { UnitWarscroll } from "../stores/warscroll";
 import {
     TableRow,
     TableCell,
     Button,
     IconButton,
-    Modal,
+    Modal
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import { EndlessSpellWarscroll } from "./endless-spell-warscroll";
 import { useStores } from "../stores";
+import { UnitWarscrollView } from "./unit-warscroll";
 
 export interface WarscrollSceneryEditProps {
-    scenery: WarscrollEndlessSpell;
+    scenery: UnitWarscroll;
 }
 
 function WarscrollSceneryEdit({ scenery }: WarscrollSceneryEditProps) {
     const { armyListStore: warscrollStore } = useStores();
-    const [
-        warscrollOpen,
-        setWarscrollOpen,
-    ] = useState<WarscrollEndlessSpell | null>(null);
-    const handleOpenWarscroll = useCallback(
-        (unit: WarscrollEndlessSpell) => setWarscrollOpen(unit),
-        []
+    const [warscrollOpen, setWarscrollOpen] = useState<UnitWarscroll | null>(
+        null
     );
+    const handleOpenWarscroll = useCallback(() => setWarscrollOpen(scenery), [
+        scenery
+    ]);
     const handleCloseWarscroll = useCallback(() => setWarscrollOpen(null), []);
 
     return (
         <TableRow>
             <TableCell>
                 {scenery.definition.name}
-                <IconButton
-                    onClick={() => handleOpenWarscroll(scenery)}
-                    size="small"
-                >
+                <IconButton onClick={handleOpenWarscroll} size="small">
                     <VisibilityIcon />
                 </IconButton>
                 <Modal
@@ -44,13 +39,13 @@ function WarscrollSceneryEdit({ scenery }: WarscrollSceneryEditProps) {
                     onClose={handleCloseWarscroll}
                 >
                     <>
-                        <EndlessSpellWarscroll wes={warscrollOpen} />
+                        <UnitWarscrollView wu={warscrollOpen} />
                     </>
                 </Modal>
             </TableCell>
             <TableCell>{scenery.definition.points}</TableCell>
             <TableCell>
-                <Button onClick={() => warscrollStore.removeScenery(scenery)}>
+                <Button onClick={() => warscrollStore.removeUnit(scenery)}>
                     <DeleteIcon />
                 </Button>
             </TableCell>

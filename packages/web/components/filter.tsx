@@ -1,7 +1,15 @@
 import * as React from "react";
 import { Faction } from "../../common/data";
 import { observer } from "mobx-react-lite";
-import { Grid, Input, CardContent, Card, makeStyles } from "@material-ui/core";
+import {
+    Grid,
+    Input,
+    CardContent,
+    Card,
+    makeStyles,
+    Checkbox,
+    FormControlLabel
+} from "@material-ui/core";
 import { useStores } from "../stores";
 import DropdownObjects from "../atoms/dropdown-objects";
 
@@ -41,20 +49,34 @@ function Filter() {
             <CardContent>
                 <Grid container wrap="wrap" spacing={2}>
                     <Grid item>Filter</Grid>
-                    {/* <Grid item>
-                        <DropdownObjects
-                            getText={(x) => x.name}
-                            options={unitsStore.grandAlliances}
-                            value={grandAlliance}
-                            onChange={setGrandAlliance}
-                        />
-                    </Grid> */}
                     <Grid item>
                         <DropdownObjects
                             getText={x => x.name}
                             options={factionOptions}
                             value={uiStore.faction}
                             onChange={setFaction}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={uiStore.includeAllies}
+                                    onChange={uiStore.toggleIncludeAllies}
+                                />
+                            }
+                            label="Allies"
+                        />
+                    </Grid>
+                    <Grid item>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={uiStore.includeFactionLess}
+                                    onChange={uiStore.toggleIncludeFactionLess}
+                                />
+                            }
+                            label="Faction less"
                         />
                     </Grid>
                     <Grid item>

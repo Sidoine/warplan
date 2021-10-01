@@ -12,7 +12,7 @@ export interface Dump {
     spell_lore_group_required_keywords_keyword: SpellLoreGroupRequiredKeywordsKeyword[];
     mount_trait_keywords_keyword: MountTraitKeywordsKeyword[];
     coalition_ally_option: CoalitionAllyOption[];
-    core_battalion_group: CoreBattalionGroupElement[];
+    core_battalion_group: PurpleGroup[];
     core_battalion: CoreBattalion[];
     battle_trait_excludes_sub_factions_faction: BattleTraitExcludesSubFactionsFaction[];
     command_trait_group_keywords_keyword: CommandTraitGroupKeywordsKeyword[];
@@ -34,7 +34,7 @@ export interface Dump {
     grand_strategy_army_must_contain_keywords_keyword: GrandStrategyArmyMustContainKeywordsKeyword[];
     grand_strategy_keywords_keyword: {}[];
     mount_trait: MountTrait[];
-    grand_strategy_group: CoreBattalionGroupElement[];
+    grand_strategy_group: PurpleGroup[];
     keyword: Keyword[];
     enhancement_bonus: EnhancementBonus[];
     grand_strategy_general_must_have_factions_faction: GrandStrategyGeneralMustHaveFactionsFaction[];
@@ -43,7 +43,7 @@ export interface Dump {
     battle_trait: BattleTrait[];
     role_modifier: RoleModifier[];
     triumph_group: PurpleGroup[];
-    unique_enhancement_group: CoreBattalionGroupElement[];
+    unique_enhancement_group: PurpleGroup[];
     unit_type_excluded_battlefield_role: UnitTypeEdBattlefieldRole[];
     prayer: Prayer[];
     unit_type_required_battlefield_role: UnitTypeEdBattlefieldRole[];
@@ -153,6 +153,8 @@ export interface PurpleGroup {
     publicationId: string;
     factionId: null | string;
     allowUniqueUnits?: boolean;
+    rules?: string;
+    domain?: string;
 }
 
 export interface ArtefactOfPowerGroupKeywordsKeyword {
@@ -235,17 +237,6 @@ export interface CoreBattalion {
     coreBattalionGroupId: string;
 }
 
-export interface CoreBattalionGroupElement {
-    id: string;
-    name: string;
-    rules: string;
-    requiresBattlepack?: null | string;
-    factionId: null | string;
-    publicationId: string;
-    restrictions?: string;
-    domain?: string;
-}
-
 export interface DamageCell {
     id: string;
     order: number;
@@ -324,6 +315,7 @@ export interface GrandStrategy {
     rules: string;
     grandStrategyGroupId: string;
     factionId: null | string;
+    lore?: string;
 }
 
 export interface GrandStrategyArmyMustContainKeywordsKeyword {

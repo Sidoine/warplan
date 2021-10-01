@@ -1,12 +1,11 @@
 import { action, computed, makeObservable, observable, toJS } from "mobx";
 import { deflate, inflate } from "pako";
-import { KeywordCategory } from "../../common/definitions";
+import { KeywordCategory, Role } from "../../common/definitions";
 import {
     Ability,
     AbilityCategory,
     AbilityGroup,
     Battalion,
-    EndlessSpell,
     Faction,
     ModelOption,
     RealmOfBattle,
@@ -22,7 +21,6 @@ import {
     AbilityModel,
     PointMode,
     WarscrollBattalion,
-    WarscrollEndlessSpell,
     WarscrollItem,
     WarscrollModel,
     UnitWarscroll
@@ -70,18 +68,9 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
     @computed
     get extraAbilities() {
-        return this.allegianceAbilities;
-        // let extraAbilities: Ability[] = [];
-        // if (this.allegiance && this.allegiance.artefacts) {
-        //     extraAbilities = extraAbilities.concat(this.allegiance.artefacts);
-        // }
-        // if (this.armyType && this.armyType.artefacts) {
-        //     extraAbilities = extraAbilities.concat(this.armyType.artefacts);
-        // }
-        // if (this.subFaction && this.subFaction.artefacts) {
-        //     extraAbilities = extraAbilities.concat(this.subFaction.artefacts);
-        // }
-        // return extraAbilities;
+        return this.allegianceAbilities.concat(
+            this.dataStore.baseAbilities.flatMap(x => x.abilities)
+        );
     }
 
     @computed
@@ -112,6 +101,9 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @observable.shallow
     realm: RealmOfBattle | null = null;
 
+    @observable.shallow
+    grandStrategy: Ability | null = null;
+
     @observable
     name = "New Warscroll";
 
@@ -121,10 +113,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @computed
     get items(): WarscrollItem[] {
         const result: WarscrollItem[] = [];
-        return result
-            .concat(this.units)
-            .concat(this.endlessSpells)
-            .concat(this.battalions);
+        return result.concat(this.units).concat(this.battalions);
     }
 
     @computed
@@ -147,22 +136,14 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @observable
     general: UnitWarscroll | undefined = undefined;
 
-    @observable
-    endlessSpells: WarscrollEndlessSpell[] = [];
-
     @computed
     get unitsPoints() {
         return this.units.reduce((p, x) => x.points + p, 0);
     }
 
     @computed
-    get sceneryPoints() {
-        return this.endlessSpells.reduce((p, x) => x.definition.points + p, 0);
-    }
-
-    @computed
     get totalPoints() {
-        return this.unitsPoints + this.sceneryPoints;
+        return this.unitsPoints;
     }
 
     @computed
@@ -301,6 +282,11 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         );
     }
 
+    @computed
+    get endlessSpells() {
+        return this.units.filter(x => x.isEndlessSpell);
+    }
+
     @observable pointMode = PointMode.MatchedPlay;
 
     @computed
@@ -431,6 +417,18 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         const warscroll = this.getSerializedWarscroll();
         localStorage.setItem(getWarscrollItem(name), JSON.stringify(warscroll));
     }
+
+    @computed
+    get grandStrategies() {
+        return this.extraAbilities.filter(
+            x => x.category === AbilityCategory.GrandStrategy
+        );
+    }
+
+    @action setGrandStrategy = (grandStrategy: Ability | null) => {
+        this.grandStrategy = grandStrategy;
+        this.save();
+    };
 }
 
 interface SerializedArmyList {
@@ -480,48 +478,48 @@ export class ArmyListStore {
 
     @computed
     get availableUnits() {
-        return this.uiStore.units.filter(
+        return this.uiStore.warscrolls.filter(
             x =>
-                x.maxCount === undefined ||
-                this.warscroll.units.reduce(
-                    (p, y) => (y.definition.id === x.id ? p + 1 : p),
-                    0
-                ) < x.maxCount
+                !x.single ||
+                this.warscroll.units.find(x => x.definition.id === x.id) ===
+                    undefined
+        );
+    }
+
+    getAvailableUnitsOfRole(role: Role) {
+        return this.availableUnits.filter(
+            x =>
+                x.roles.includes(role) &&
+                (role === Role.Leader || !x.roles.includes(Role.Leader))
         );
     }
 
     @computed
     get availableEndlessSpells() {
-        return this.dataStore.sceneryList.sort((a, b) =>
+        return this.dataStore.unitList.sort((a, b) =>
             a.name.localeCompare(b.name)
         );
     }
 
     @action
-    addUnit(unit: Unit) {
+    addUnit = (unit: Unit) => {
         const warscroll = this.warscroll;
         const warscrollUnit = new UnitWarscroll(warscroll, unit);
-        const model = new WarscrollModel(warscrollUnit, warscroll);
-        model.count = unit.size;
-        warscrollUnit.models.push(model);
+        if (
+            unit.roles.every(
+                x =>
+                    x !== Role.Terrain &&
+                    x !== Role.EndlessSpell &&
+                    x !== Role.Invocation
+            )
+        ) {
+            const model = new WarscrollModel(warscrollUnit, warscroll);
+            model.count = unit.size;
+            warscrollUnit.models.push(model);
+        }
         warscroll.units.push(warscrollUnit);
         this.saveWarscroll();
-    }
-
-    @action
-    addScenery = (scenery: EndlessSpell) => {
-        this.warscroll.endlessSpells.push(
-            new WarscrollEndlessSpell(this.warscroll, scenery)
-        );
-        this.saveWarscroll();
     };
-
-    @action
-    removeScenery(scenery: WarscrollEndlessSpell) {
-        const sceneries = this.warscroll.endlessSpells;
-        sceneries.splice(sceneries.indexOf(scenery), 1);
-        this.saveWarscroll();
-    }
 
     @action
     removeUnit(unit: UnitWarscroll) {
@@ -636,18 +634,6 @@ export class ArmyListStore {
             this.warscroll.battalions.push(
                 new WarscrollBattalion(this.warscroll, battalion)
             );
-        }
-
-        if (warscroll.sceneries) {
-            for (const id of warscroll.sceneries) {
-                const scenery = this.dataStore.sceneryList.find(
-                    x => x.id === id
-                );
-                if (scenery === undefined) continue;
-                this.warscroll.endlessSpells.push(
-                    new WarscrollEndlessSpell(this.warscroll, scenery)
-                );
-            }
         }
 
         for (const wu of warscroll.units) {

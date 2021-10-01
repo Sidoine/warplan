@@ -31,6 +31,7 @@ import { Warning } from "../atoms/warning";
 import { useCallback } from "react";
 import { AllAbilities, AllAttacks } from "../atoms/warscroll-components";
 import DropdownObjects from "../atoms/dropdown-objects";
+import { Role } from "../../common/definitions";
 
 const modelColumns: TableColumn<ModelOption>[] = [
     { name: "Name", text: x => x.name },
@@ -297,7 +298,7 @@ const UnitBattaillon = observer(function UnitBattaillon({
     );
 });
 
-function WarscrollUnitsList() {
+function WarscrollUnitsList({ role, title }: { role: Role; title: string }) {
     const [warscrollOpen, setWarscrollOpen] = useState<UnitWarscroll | null>(
         null
     );
@@ -353,7 +354,7 @@ function WarscrollUnitsList() {
     const warscroll = warscrollStore.warscroll;
     return (
         <Card>
-            <CardHeader title="Units" />
+            <CardHeader title={title} />
             <CardContent>
                 <Modal
                     open={warscrollOpen !== null}
@@ -364,11 +365,18 @@ function WarscrollUnitsList() {
                     </>
                 </Modal>
 
-                <ResponsiveTable columns={columns} rows={warscroll.units} />
+                <ResponsiveTable
+                    columns={columns}
+                    rows={warscroll.units.filter(
+                        x =>
+                            x.definition.roles.includes(role) &&
+                            (role === Role.Leader ||
+                                !x.definition.roles.includes(Role.Leader))
+                    )}
+                />
             </CardContent>
             <CardActions>
-                <span>{warscroll.unitsPoints} points</span>
-                <UnitsList />
+                <UnitsList role={role} />
             </CardActions>
         </Card>
     );

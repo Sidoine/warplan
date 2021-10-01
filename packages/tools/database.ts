@@ -286,9 +286,6 @@ ${
                 .join(", ")}],
 `;
         }
-        if (unit.maxCount) {
-            result += `           maxCount: ${unit.maxCount},\n`;
-        }
         if (unit.roles) {
             result += `           roles: [${unit.roles
                 .map(x => `Role.${toPascalCase(x)}`)
