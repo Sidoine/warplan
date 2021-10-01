@@ -1,4 +1,4 @@
-import { MenuItem, Select } from "@material-ui/core";
+import { MenuItem, Select, Tooltip, Typography } from "@material-ui/core";
 import { observer } from "mobx-react-lite";
 import React, { ReactNode, useCallback } from "react";
 import { HasId } from "./add-button";
@@ -8,6 +8,7 @@ export interface DropdownObjectsProps<T extends HasId> {
     options: T[];
     onChange: (value: T | null) => void;
     getText: (value: T) => ReactNode;
+    getTooltip?: (value: T) => string | undefined;
     placeholder?: string;
     clearable?: boolean;
 }
@@ -18,11 +19,12 @@ function DropdownObjects<T extends HasId>({
     value,
     onChange,
     getText,
+    getTooltip
 }: DropdownObjectsProps<T>) {
     const handleChange = useCallback(
         (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
             if (event.target.value) {
-                const item = options.find((x) => x.id === event.target.value);
+                const item = options.find(x => x.id === event.target.value);
                 if (item) onChange(item);
                 else onChange(null);
             } else {
@@ -35,9 +37,14 @@ function DropdownObjects<T extends HasId>({
     return (
         <Select value={(value && value.id) || ""} onChange={handleChange}>
             {clearable && <MenuItem value="">None</MenuItem>}
-            {options.map((x) => (
+            {options.map(x => (
                 <MenuItem value={x.id} key={x.id}>
-                    {getText(x)}
+                    {getTooltip && (
+                        <Tooltip title={getTooltip(x) || ""}>
+                            <Typography>{getText(x)}</Typography>
+                        </Tooltip>
+                    )}
+                    {!getTooltip && getText(x)}
                 </MenuItem>
             ))}
         </Select>

@@ -185,6 +185,7 @@ export const ArmyListSummary = observer(() => {
                                     options={warscroll.grandStrategies}
                                     getText={x => x.name}
                                     onChange={warscroll.setGrandStrategy}
+                                    getTooltip={x => x.description}
                                 />
                             </FormControl>
                         </Grid>

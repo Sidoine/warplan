@@ -44,6 +44,28 @@ export interface ArmyListLimits {
     maxOtherUnits: number | undefined;
 }
 
+interface SerializedArmyList {
+    name: string;
+    units: {
+        unitId: string;
+        isGeneral?: boolean;
+        extraAbilities?: string[];
+        models?: { count: number; options: string[] }[];
+        battalionIndex?: number;
+        battalionUnitIndex?: number;
+    }[];
+    battalions: {
+        battalionId: string;
+    }[];
+    allegiance?: string;
+    armyType?: string;
+    subFaction?: string;
+    sceneries?: string[];
+    pointMode?: PointMode;
+    realm?: string;
+    grandStrategy?: string;
+}
+
 function getWarscrollItem(name?: string) {
     return name ? `warscroll/${name}` : "warscroll";
 }
@@ -409,8 +431,93 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
             armyType: this.armyType ? this.armyType.id : undefined,
             subFaction: this.subFaction ? this.subFaction.id : undefined,
             sceneries: this.endlessSpells.map(x => x.definition.id),
-            pointMode: this.pointMode
+            pointMode: this.pointMode,
+            grandStrategy: this.grandStrategy?.id
         };
+    }
+
+    @action
+    loadSerializedWarscroll(serialized: SerializedArmyList) {
+        this.name = serialized.name;
+        this.general = undefined;
+        this.units.splice(0);
+        this.battalions.splice(0);
+        this.endlessSpells.splice(0);
+        this.allegiance =
+            this.dataStore.factionsList.find(
+                x => x.id === serialized.allegiance
+            ) || null;
+        this.armyType =
+            this.dataStore.factionsList.find(
+                x => x.id == serialized.armyType
+            ) || null;
+        this.subFaction =
+            this.dataStore.factionsList.find(
+                x => x.id == serialized.subFaction
+            ) || null;
+        this.pointMode = serialized.pointMode || PointMode.MatchedPlay;
+        if (serialized.grandStrategy) {
+            this.grandStrategy =
+                this.dataStore.abilities[serialized.grandStrategy] || null;
+        }
+        for (const ba of serialized.battalions) {
+            const battalion = this.dataStore.battalions.find(
+                x => x.id === ba.battalionId
+            );
+            if (battalion === undefined) continue;
+            this.battalions.push(new WarscrollBattalion(this, battalion));
+        }
+
+        for (const wu of serialized.units) {
+            const unit = this.dataStore.findUnit(wu.unitId);
+            if (unit === undefined) continue;
+            const newUnit = new UnitWarscroll(this, unit);
+            if (wu.isGeneral) {
+                this.general = newUnit;
+            }
+            if (wu.extraAbilities) {
+                for (const e of wu.extraAbilities) {
+                    const ability = this.dataStore.getAbility(e);
+                    if (ability) {
+                        newUnit.extraAbilities.push(ability);
+                    }
+                }
+            }
+            if (wu.models) {
+                for (const loadedModel of wu.models) {
+                    const model = new WarscrollModel(newUnit, this);
+                    for (const loadedOption of loadedModel.options) {
+                        if (unit.options) {
+                            const option = unit.options.find(
+                                x => x.id === loadedOption
+                            );
+                            if (option) {
+                                model.options.push(option);
+                            }
+                        }
+                    }
+                    model.count = loadedModel.count;
+                    newUnit.models.push(model);
+                }
+            }
+            if (
+                wu.battalionIndex !== undefined &&
+                wu.battalionUnitIndex !== undefined &&
+                this.battalions[wu.battalionIndex]
+            ) {
+                const battalion = this.battalions[wu.battalionIndex];
+                if (battalion)
+                    newUnit.battalionUnit =
+                        battalion.unitTypes[wu.battalionUnitIndex];
+            }
+            this.units.push(newUnit);
+            this.realm =
+                (serialized.realm &&
+                    this.dataStore.realms.find(
+                        x => x.id === serialized.realm
+                    )) ||
+                null;
+        }
     }
 
     save(name?: string) {
@@ -429,27 +536,6 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         this.grandStrategy = grandStrategy;
         this.save();
     };
-}
-
-interface SerializedArmyList {
-    name: string;
-    units: {
-        unitId: string;
-        isGeneral?: boolean;
-        extraAbilities?: string[];
-        models?: { count: number; options: string[] }[];
-        battalionIndex?: number;
-        battalionUnitIndex?: number;
-    }[];
-    battalions: {
-        battalionId: string;
-    }[];
-    allegiance?: string;
-    armyType?: string;
-    subFaction?: string;
-    sceneries?: string[];
-    pointMode?: PointMode;
-    realm?: string;
 }
 
 export class ArmyListStore {
@@ -602,90 +688,8 @@ export class ArmyListStore {
         );
         if (serializedWarscroll === null) return;
         const warscroll: SerializedArmyList = JSON.parse(serializedWarscroll);
-        this.loadSerializedWarscroll(warscroll);
+        this.warscroll.loadSerializedWarscroll(warscroll);
         if (name) this.saveWarscroll();
-    }
-
-    @action
-    loadSerializedWarscroll(warscroll: SerializedArmyList) {
-        this.warscroll.name = warscroll.name;
-        this.warscroll.general = undefined;
-        this.warscroll.units.splice(0);
-        this.warscroll.battalions.splice(0);
-        this.warscroll.endlessSpells.splice(0);
-        this.warscroll.allegiance =
-            this.dataStore.factionsList.find(
-                x => x.id === warscroll.allegiance
-            ) || null;
-        this.warscroll.armyType =
-            this.dataStore.factionsList.find(x => x.id == warscroll.armyType) ||
-            null;
-        this.warscroll.subFaction =
-            this.dataStore.factionsList.find(
-                x => x.id == warscroll.subFaction
-            ) || null;
-        this.warscroll.pointMode = warscroll.pointMode || PointMode.MatchedPlay;
-
-        for (const ba of warscroll.battalions) {
-            const battalion = this.dataStore.battalions.find(
-                x => x.id === ba.battalionId
-            );
-            if (battalion === undefined) continue;
-            this.warscroll.battalions.push(
-                new WarscrollBattalion(this.warscroll, battalion)
-            );
-        }
-
-        for (const wu of warscroll.units) {
-            const unit = this.dataStore.findUnit(wu.unitId);
-            if (unit === undefined) continue;
-            const newUnit = new UnitWarscroll(this.warscroll, unit);
-            if (wu.isGeneral) {
-                this.warscroll.general = newUnit;
-            }
-            if (wu.extraAbilities) {
-                for (const e of wu.extraAbilities) {
-                    const ability = this.dataStore.getAbility(e);
-                    if (ability) {
-                        newUnit.extraAbilities.push(ability);
-                    }
-                }
-            }
-            if (wu.models) {
-                for (const loadedModel of wu.models) {
-                    const model = new WarscrollModel(newUnit, this.warscroll);
-                    for (const loadedOption of loadedModel.options) {
-                        if (unit.options) {
-                            const option = unit.options.find(
-                                x => x.id === loadedOption
-                            );
-                            if (option) {
-                                model.options.push(option);
-                            }
-                        }
-                    }
-                    model.count = loadedModel.count;
-                    newUnit.models.push(model);
-                }
-            }
-            if (
-                wu.battalionIndex !== undefined &&
-                wu.battalionUnitIndex !== undefined &&
-                this.warscroll.battalions[wu.battalionIndex]
-            ) {
-                const battalion = this.warscroll.battalions[wu.battalionIndex];
-                if (battalion)
-                    newUnit.battalionUnit =
-                        battalion.unitTypes[wu.battalionUnitIndex];
-            }
-            this.warscroll.units.push(newUnit);
-            this.warscroll.realm =
-                (warscroll.realm &&
-                    this.dataStore.realms.find(
-                        x => x.id === warscroll.realm
-                    )) ||
-                null;
-        }
     }
 
     @computed
@@ -703,7 +707,7 @@ export class ArmyListStore {
         const hash = location.hash.match(/ws=(.*)/);
         if (hash) {
             const ws = hash[1];
-            this.loadSerializedWarscroll(
+            this.warscroll.loadSerializedWarscroll(
                 JSON.parse(inflate(atob(ws), { to: "string" }))
             );
             location.hash = "/";
@@ -726,7 +730,7 @@ export class ArmyListStore {
 
     create = () => {
         this.saveCurrentWarscroll();
-        this.loadSerializedWarscroll({
+        this.warscroll.loadSerializedWarscroll({
             name: "New",
             units: [],
             battalions: []
