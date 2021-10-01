@@ -61,7 +61,8 @@ export const enum Phase {
     Charge = 16,
     Combat = 32,
     Battleshock = 64,
-    Any = 127
+    Any = 127,
+    ArmyList = 128
 }
 
 export interface DefenseAura {

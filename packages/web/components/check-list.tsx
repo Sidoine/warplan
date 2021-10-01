@@ -422,11 +422,11 @@ function getPhaseUnits(units: WarscrollItem[], phase: Phase, side?: PhaseSide) {
 }
 
 function SubPhaseInfo({
-    warscroll,
+    armyList,
     phase,
     side
 }: {
-    warscroll: ArmyList;
+    armyList: ArmyList;
     phase: Phase;
     side?: PhaseSide;
 }) {
@@ -437,7 +437,7 @@ function SubPhaseInfo({
             {side === PhaseSide.Attack && <h2>Attack</h2>}
             <div className={classes.subSectionContent}>
                 <div>
-                    {warscroll.abilities
+                    {armyList.abilities
                         .filter(x =>
                             isAbilityInPhase(x.ability, phase, undefined, side)
                         )
@@ -451,7 +451,7 @@ function SubPhaseInfo({
                         ))}
                 </div>
                 <div>
-                    {getPhaseUnits(warscroll.items, phase, side).map(x => (
+                    {getPhaseUnits(armyList.items, phase, side).map(x => (
                         <UnitInfo
                             key={x.id}
                             unit={x}
@@ -479,45 +479,39 @@ function hasSomethingIsSubPhase(
     );
 }
 
-function PhaseInfo({
-    phase,
-    warscroll
-}: {
-    phase: Phase;
-    warscroll: ArmyList;
-}) {
+function PhaseInfo({ phase, armyList }: { phase: Phase; armyList: ArmyList }) {
     const classes = useStyle();
     if (phase !== Phase.Setup) {
         if (phase === Phase.Shooting || phase === Phase.Combat) {
             if (
-                !hasSomethingIsSubPhase(warscroll, phase, PhaseSide.Attack) &&
-                !hasSomethingIsSubPhase(warscroll, phase, PhaseSide.Defense)
+                !hasSomethingIsSubPhase(armyList, phase, PhaseSide.Attack) &&
+                !hasSomethingIsSubPhase(armyList, phase, PhaseSide.Defense)
             )
                 return <></>;
         } else {
-            if (!hasSomethingIsSubPhase(warscroll, phase)) return <></>;
+            if (!hasSomethingIsSubPhase(armyList, phase)) return <></>;
         }
     }
     return (
         <section className={classes.section}>
             <h1>{getPhaseName(phase)}</h1>
-            {phase === Phase.Setup && <div>{warscroll.description}</div>}
+            {phase === Phase.Setup && <div>{armyList.description}</div>}
             {(phase === Phase.Shooting || phase === Phase.Combat) && (
                 <>
                     <SubPhaseInfo
-                        warscroll={warscroll}
+                        armyList={armyList}
                         phase={phase}
                         side={PhaseSide.Attack}
                     />
                     <SubPhaseInfo
-                        warscroll={warscroll}
+                        armyList={armyList}
                         phase={phase}
                         side={PhaseSide.Defense}
                     />
                 </>
             )}
             {phase !== Phase.Shooting && phase !== Phase.Combat && (
-                <SubPhaseInfo warscroll={warscroll} phase={phase} />
+                <SubPhaseInfo armyList={armyList} phase={phase} />
             )}
         </section>
     );
@@ -559,17 +553,17 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
 }
 
 export function CheckList() {
-    const { armyListStore: warscrollStore } = useStores();
+    const { armyListStore } = useStores();
     return (
         <div>
             {phases.map(x => (
                 <PhaseInfo
-                    warscroll={warscrollStore.warscroll}
+                    armyList={armyListStore.armyList}
                     phase={x}
                     key={x}
                 />
             ))}
-            <OutOfPhaseAbilities warscroll={warscrollStore.warscroll} />
+            <OutOfPhaseAbilities warscroll={armyListStore.armyList} />
         </div>
     );
 }

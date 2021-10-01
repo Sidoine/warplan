@@ -16,7 +16,7 @@ function ExportPopin() {
     const handleClose = React.useCallback(() => uiStore.closeExportPopin(), [
         uiStore
     ]);
-    const warscroll = warscrollStore.warscroll;
+    const warscroll = warscrollStore.armyList;
     return (
         <Dialog onClose={handleClose} open={true}>
             <DialogTitle>Warscrolls</DialogTitle>

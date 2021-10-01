@@ -35,7 +35,7 @@ function UnitView({
 
 function WarscrollView() {
     const { armyListStore: warscrollStore } = useStores();
-    const warscroll = warscrollStore.warscroll;
+    const warscroll = warscrollStore.armyList;
     return (
         <div>
             <div>Allegiance: {warscroll.allegiance?.name}</div>

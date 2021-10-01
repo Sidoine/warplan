@@ -6,7 +6,7 @@ import BattalionWarscroll from "./battalion-warscroll";
 
 export function ArmyListView() {
     const { armyListStore: warscrollStore } = useStores();
-    const w = warscrollStore.warscroll;
+    const w = warscrollStore.armyList;
     return (
         <>
             {distinct(w.units.map(x => x.definition))

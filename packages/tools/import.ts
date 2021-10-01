@@ -100,6 +100,18 @@ export function getAbilityEffects(name: string, blurb: string) {
     let effect: AbilityEffect | undefined = undefined;
 
     // Phase
+    let match = blurb.match(/when you choose an? .*? army/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.ArmyList;
+    }
+
+    match = blurb.match(/once per phase,/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Any;
+    }
+
     if (blurb.indexOf("in your hero phase") >= 0) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Hero;
@@ -111,7 +123,7 @@ export function getAbilityEffects(name: string, blurb: string) {
     }
 
     // Spells
-    let match = blurb.match(/has a casting value of (\d+)/);
+    match = blurb.match(/has a casting value of (\d+)/);
     if (match) {
         effect = effect || { targetType: TargetType.Unit };
         effect.spellCastingValue = parseInt(match[1]);

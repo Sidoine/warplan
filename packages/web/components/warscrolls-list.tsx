@@ -4,7 +4,7 @@ import {
     CardActions,
     CardContent,
     List,
-    ListItem,
+    ListItem
 } from "@material-ui/core";
 import { observer } from "mobx-react-lite";
 import React, { useCallback } from "react";
@@ -13,12 +13,12 @@ import { useStores } from "../stores";
 const WarscrollLine = observer(({ x }: { x: string }) => {
     const { armyListStore: warscrollStore } = useStores();
     const handleLoad = useCallback(() => {
-        warscrollStore.saveWarscroll(warscrollStore.warscroll.name);
+        warscrollStore.saveWarscroll(warscrollStore.armyList.name);
         warscrollStore.loadWarscroll(x);
     }, [warscrollStore, x]);
     return (
         <ListItem
-            selected={x === warscrollStore.warscroll.name}
+            selected={x === warscrollStore.armyList.name}
             button
             key={x}
             onClick={handleLoad}
@@ -34,7 +34,7 @@ function WarscrollsList() {
         <Card>
             <CardContent>
                 <List>
-                    {warscrollStore.warscrolls.map((x) => (
+                    {warscrollStore.warscrolls.map(x => (
                         <WarscrollLine key={x} x={x} />
                     ))}
                 </List>

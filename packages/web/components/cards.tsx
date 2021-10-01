@@ -39,15 +39,21 @@ const useStyles = makeStyles({
 });
 
 export const Cards = observer(() => {
-    const { armyListStore: warscrollStore, unitsStore, cardsStore } = useStores();
+    const {
+        armyListStore: warscrollStore,
+        unitsStore,
+        cardsStore
+    } = useStores();
     const classes = useStyles();
     const store = useLocalObservable(() => ({
         get abilities() {
             let result: CardContent[] = [];
             for (const group of unitsStore.baseAbilities) {
-                result = result.concat(group.abilities.map(x => mapAbility(x, "common")));
+                result = result.concat(
+                    group.abilities.map(x => mapAbility(x, "common"))
+                );
             }
-            const w = warscrollStore.warscroll;
+            const w = warscrollStore.armyList;
             if (w.allegiance?.children) {
                 for (const armyOption of w.allegiance.children) {
                     if (armyOption.abilityGroups)

@@ -6,7 +6,7 @@ import {
     DialogTitle,
     DialogContentText,
     DialogActions,
-    Input,
+    Input
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useStores } from "../stores";
@@ -15,7 +15,7 @@ function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
     const { armyListStore: warscrollStore } = useStores();
     const handleUpdate = useCallback(() => warscrollStore.saveWarscroll(x), [
         warscrollStore,
-        x,
+        x
     ]);
     const handleLoad = useCallback(() => {
         warscrollStore.loadWarscroll(x);
@@ -23,7 +23,7 @@ function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
     }, [onClose, warscrollStore, x]);
     const handleDelete = useCallback(() => warscrollStore.removeWarscroll(x), [
         warscrollStore,
-        x,
+        x
     ]);
     return (
         <div key={x}>
@@ -40,10 +40,10 @@ function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
 function WarscrollPopin() {
     const { armyListStore: warscrollStore, uiStore } = useStores();
     const [warscrollName, setWarscrollName] = useState(
-        warscrollStore.warscroll.name
+        warscrollStore.armyList.name
     );
     const handleClose = useCallback(() => uiStore.closeWarscrollPopin(), [
-        uiStore,
+        uiStore
     ]);
     const handleInputChange = useCallback(
         (x: ChangeEvent<HTMLInputElement>) => setWarscrollName(x.target.value),
@@ -55,7 +55,7 @@ function WarscrollPopin() {
             <DialogTitle>Warscrolls</DialogTitle>
 
             <DialogContentText>
-                {warscrollStore.warscrolls.map((x) => (
+                {warscrollStore.warscrolls.map(x => (
                     <WarscrollLine x={x} onClose={handleClose} key={x} />
                 ))}
                 <Input

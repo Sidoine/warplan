@@ -119,7 +119,7 @@ function WarscrollBattalionsList() {
         ];
     }, [warscrollStore]);
 
-    const warscroll = warscrollStore.warscroll;
+    const warscroll = warscrollStore.armyList;
 
     return (
         <Card>

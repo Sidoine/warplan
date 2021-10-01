@@ -17,6 +17,7 @@ export interface Player {
 }
 
 export const phases = [
+    Phase.ArmyList,
     Phase.Any,
     Phase.Setup,
     Phase.Hero,
@@ -29,6 +30,8 @@ export const phases = [
 
 export function getPhaseName(phase: Phase) {
     switch (phase) {
+        case Phase.ArmyList:
+            return "Choose army";
         case Phase.Any:
             return "Any";
         case Phase.Setup:

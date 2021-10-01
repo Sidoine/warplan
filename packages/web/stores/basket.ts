@@ -131,7 +131,7 @@ export class BasketStore {
             }
         }
 
-        for (const unit of this.warscrollStore.warscroll.units) {
+        for (const unit of this.warscrollStore.armyList.units) {
             const count = unit.definition.size * unit.count;
             const basket = modelsInBasket.get(unit.definition.model.id);
             let basketCount = 0;

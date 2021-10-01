@@ -177,7 +177,7 @@ function Combination({
     const unit = unitStats.unit;
     const wounds = getValue(unit.wounds) * unit.size;
     const points = unit.points / 100;
-    const count = warscrollStore.warscroll.units.reduce(
+    const count = warscrollStore.armyList.units.reduce(
         (c, x) => (x.definition.id === unit.id ? x.count + c : c),
         0
     );
@@ -357,7 +357,9 @@ function Stats() {
                     open={warscrollOpen !== null}
                     onClose={handleCloseWarscroll}
                 >
-                    {warscrollOpen && <UnitWarscrollView unit={warscrollOpen} />}
+                    {warscrollOpen && (
+                        <UnitWarscrollView unit={warscrollOpen} />
+                    )}
                     {!warscrollOpen && <></>}
                 </Dialog>
             }

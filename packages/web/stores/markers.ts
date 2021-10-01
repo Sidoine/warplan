@@ -312,7 +312,7 @@ export class MarkersStore {
 
     @computed
     get markers(): Marker[] {
-        const warscroll = this.warscrollStore.warscroll;
+        const warscroll = this.warscrollStore.armyList;
         const abilities = warscroll.allegianceAbilities.concat(
             this.unitAbilities
         );

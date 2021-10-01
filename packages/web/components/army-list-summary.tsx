@@ -42,13 +42,13 @@ export const ArmyListSummary = observer(() => {
         },
         setAllegiance(allegiance: Faction | null) {
             if (allegiance) {
-                warscrollStore.warscroll.allegiance = allegiance;
+                warscrollStore.armyList.allegiance = allegiance;
                 warscrollStore.saveWarscroll();
             }
         }
     }));
 
-    const warscroll = warscrollStore.warscroll;
+    const warscroll = warscrollStore.armyList;
     const totalPoints = warscroll.totalPoints;
     const alliedPoints = warscroll.alliedPoints;
     const allegianceOptions = unitsStore.allegiances;

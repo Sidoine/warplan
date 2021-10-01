@@ -19,14 +19,14 @@ interface MenuItem {
 
 function MyDrawer({
     pathName,
-    columns,
+    columns
 }: {
     pathName: string;
     columns: MenuItem[];
 }) {
     return (
         <List>
-            {columns.map((x) => (
+            {columns.map(x => (
                 <ListItem
                     key={x.path}
                     component="a"
@@ -52,19 +52,23 @@ function MyDrawer({
 
 function MyNavbar({ route, children }: MyNavbarProps) {
     const pathname = route.location.pathname;
-    const { armyListStore: warscrollStore, battleStore, basketStore } = useStores();
+    const {
+        armyListStore: warscrollStore,
+        battleStore,
+        basketStore
+    } = useStores();
     const state = useLocalObservable(() => ({
         get columns(): MenuItem[] {
             return [
                 {
                     title: "List Builder",
-                    badge: warscrollStore.warscroll.totalPoints,
-                    path: "",
+                    badge: warscrollStore.armyList.totalPoints,
+                    path: ""
                 },
                 { title: "Warscrolls", path: "warscroll" },
                 {
                     title: getPhaseName(battleStore.phase),
-                    path: "battle",
+                    path: "battle"
                 },
                 { title: "List", path: "list" },
                 { title: "Cards", path: "cards" },
@@ -76,20 +80,19 @@ function MyNavbar({ route, children }: MyNavbarProps) {
                     title: "Missing",
                     path: "missing",
                     badge: basketStore.missingModels.filter(
-                        (x) => x.inBasket < x.count
-                    ).length,
+                        x => x.inBasket < x.count
+                    ).length
                 },
                 {
                     title: "Basket",
                     path: "basket",
-                    badge: basketStore.basket.length,
-                },
+                    badge: basketStore.basket.length
+                }
             ];
-        },
+        }
     }));
     const title =
-        state.columns.find((x) => `/${x.path}` === pathname)?.title ??
-        "Warplan";
+        state.columns.find(x => `/${x.path}` === pathname)?.title ?? "Warplan";
     return (
         <ResponsiveDrawer
             title={title}

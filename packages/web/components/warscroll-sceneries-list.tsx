@@ -24,7 +24,7 @@ function WarscrollSceneriesList({
     title: string;
 }) {
     const { armyListStore: warscrollStore } = useStores();
-    const warscroll = warscrollStore.warscroll;
+    const warscroll = warscrollStore.armyList;
     return (
         <Card>
             <CardHeader title={title} />
