@@ -207,6 +207,12 @@ export const enum EffectDuration {
     Permanent
 }
 
+export const enum PhaseSide {
+    Attack,
+    Defense,
+    None
+}
+
 export interface AbilityEffect {
     name?: string;
     castMode?: "passive" | "skill" | "prayer" | "spell" | "command"; // default is passive
@@ -227,6 +233,7 @@ export interface AbilityEffect {
     spellAura?: SpellAura;
     commandAura?: {};
     subPhase?: SubPhase;
+    side?: PhaseSide;
     condition?: TargetCondition;
     timesPerBattle?: number;
     ignoreOtherEffects?: boolean;

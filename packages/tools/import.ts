@@ -21,7 +21,8 @@ import {
     UnitOptionCategory,
     Value,
     ValueType,
-    BattalionAbility
+    BattalionAbility,
+    PhaseSide
 } from "../common/data";
 import {
     DamageCell,
@@ -115,10 +116,63 @@ export function getAbilityEffects(name: string, blurb: string) {
     if (blurb.indexOf("in your hero phase") >= 0) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.While;
+        effect.side = PhaseSide.Attack;
     }
     if (blurb.indexOf("at the start of a combat phase") >= 0) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.Before;
+    }
+    match = blurb.match(/at the start of your hero phase,/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.Before;
+        effect.side = PhaseSide.Attack;
+    }
+
+    match = blurb.match(/at the start of the combat phase,/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.Before;
+    }
+
+    match = blurb.match(/during the combat phase,/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.While;
+    }
+
+    match = blurb.match(
+        /after armies have been set up but before the first battle round/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Setup;
+        effect.subPhase = SubPhase.After;
+    }
+
+    match = blurb.match(/at the end of each combat phase,/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.After;
+    }
+
+    match = blurb.match(/when you make a pile-in move/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.While;
+    }
+
+    match = blurb.match(/at the start of the battleshock phase,/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Battleshock;
         effect.subPhase = SubPhase.Before;
     }
 
@@ -218,7 +272,7 @@ export function getAbilityEffects(name: string, blurb: string) {
 
     // Attack
     match = blurb.match(
-        /If the unmodified hit roll for an attack made with (.*) is 6, that attack inflicts (\d+) mortal wounds and the attack sequence ends \(do not make a wound or save roll\)/i
+        /if the unmodified hit roll for an attack made with (?:an?)?(.*) is 6, that attack inflicts (\d+) mortal wounds? (on the target )?and the attack sequence ends \(do not make a wound or save roll\)/i
     );
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };

@@ -65,6 +65,7 @@ interface SerializedArmyList {
     pointMode?: PointMode;
     realm?: string;
     grandStrategy?: string;
+    triumph?: string;
 }
 
 function getWarscrollItem(name?: string) {
@@ -126,6 +127,9 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
     @observable.shallow
     grandStrategy: Ability | null = null;
+
+    @observable.shallow
+    triumph: Ability | null = null;
 
     @observable
     name = "New Warscroll";
@@ -431,7 +435,8 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
             subFaction: this.subFaction ? this.subFaction.id : undefined,
             sceneries: this.endlessSpells.map(x => x.definition.id),
             pointMode: this.pointMode,
-            grandStrategy: this.grandStrategy?.id
+            grandStrategy: this.grandStrategy?.id,
+            triumph: this.triumph?.id
         };
     }
 
@@ -458,6 +463,9 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         if (serialized.grandStrategy) {
             this.grandStrategy =
                 this.dataStore.abilities[serialized.grandStrategy] || null;
+        }
+        if (serialized.triumph) {
+            this.triumph = this.dataStore.abilities[serialized.triumph] || null;
         }
         for (const ba of serialized.battalions) {
             const battalion = this.dataStore.battalions.find(
@@ -534,8 +542,20 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         );
     }
 
+    @computed
+    get triumphs() {
+        return this.extraAbilities.filter(
+            x => x.category === AbilityCategory.Triumph
+        );
+    }
+
     @action setGrandStrategy = (grandStrategy: Ability | null) => {
         this.grandStrategy = grandStrategy;
+        this.save();
+    };
+
+    @action setTriumph = (triumph: Ability | null) => {
+        this.triumph = triumph;
         this.save();
     };
 }

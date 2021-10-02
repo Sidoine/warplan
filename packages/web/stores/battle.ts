@@ -6,7 +6,8 @@ import {
     TargetType,
     Ability,
     Attack,
-    AbilityCategory
+    AbilityCategory,
+    PhaseSide
 } from "../../common/data";
 import { DataStore } from "./data";
 import { ArmyList } from "./army-list";
@@ -52,11 +53,6 @@ export function getPhaseName(phase: Phase) {
     return "Battle";
 }
 
-export const enum PhaseSide {
-    Attack,
-    Defense,
-    None
-}
 export function getEffectPhases(effect: AbilityEffect) {
     let phase = 0;
     if (effect.defenseAura) {

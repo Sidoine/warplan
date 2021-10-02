@@ -22,12 +22,11 @@ import {
     BottomNavigationAction,
     Modal
 } from "@material-ui/core";
-import { Ability, Attack, Value, Phase } from "../../common/data";
+import { Ability, Attack, Value, Phase, PhaseSide } from "../../common/data";
 import {
     isAbilityInPhase,
     isUnitInPhase,
     isAttackInPhase,
-    PhaseSide,
     getPhaseName
 } from "../stores/battle";
 import { UnitWarscroll } from "../stores/warscroll";

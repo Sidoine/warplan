@@ -12,12 +12,12 @@ import {
     Value,
     TargetType,
     SubPhase,
-    EffectDuration
+    EffectDuration,
+    PhaseSide
 } from "../../common/data";
 import {
     getPhaseName,
     phases,
-    PhaseSide,
     isUnitInPhase,
     isAttackInPhase,
     isAbilityInPhase,

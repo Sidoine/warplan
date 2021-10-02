@@ -189,6 +189,18 @@ export const ArmyListSummary = observer(() => {
                                 />
                             </FormControl>
                         </Grid>
+                        <Grid item>
+                            <FormControl>
+                                <InputLabel>Triumph</InputLabel>
+                                <DropdownObjects
+                                    value={warscroll.triumph}
+                                    options={warscroll.triumphs}
+                                    getText={x => x.name}
+                                    onChange={warscroll.setTriumph}
+                                    getTooltip={x => x.description}
+                                />
+                            </FormControl>
+                        </Grid>
                     </Grid>
                     <Grid item container spacing={2} direction="column">
                         <Grid item container spacing={2}>
