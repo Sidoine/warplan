@@ -265,7 +265,11 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         if (this.isGeneral) categories.push(AbilityCategory.CommandTrait);
         if (this.keywords.includes("PRIEST"))
             categories.push(AbilityCategory.Prayer);
-        if (this.keywords.includes("WIZARD"))
+        if (
+            this.definition.abilities?.some(
+                x => x.category === AbilityCategory.Spell
+            )
+        )
             categories.push(AbilityCategory.Spell);
         return categories;
     }
@@ -319,7 +323,7 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         return this.abilityCategories.includes(group.category);
     }
 
-    private isAvailableExtraAbility(extraAbility: Ability) {
+    public isAvailableExtraAbility(extraAbility: Ability) {
         if (extraAbility.restrictions) {
             if (extraAbility.restrictions.keywords) {
                 if (

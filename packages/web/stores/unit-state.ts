@@ -32,7 +32,8 @@ const attackAuraValueKeys: AttackAuraValueKey[] = [
     "bonusRendOnWound6OrMore",
     "rangeBonus",
     "rerollFailedHits",
-    "bonusDamageOnWoundUnmodified6"
+    "bonusDamageOnWoundUnmodified6",
+    "bonusMortalWoundsOnHitUnmodified6"
 ];
 // const attackAuraNumberKeys: (keyof AttackAuraNumbers)[] = [];
 const attackAuraBooleanKeys: (keyof AttackAuraBooleans)[] = [];

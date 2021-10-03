@@ -177,6 +177,71 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.subPhase = SubPhase.Before;
     }
 
+    match = blurb.match(/at the end of your hero phase,/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.After;
+        effect.side = PhaseSide.Attack;
+    }
+
+    match = blurb.match(/at the start of the combat phase/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.Before;
+    }
+
+    match = blurb.match(/1 model in this unit can be a/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.phase = Phase.ArmyList;
+    }
+
+    match = blurb.match(/(\d) in every (\d) models in this unit can be a/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.phase = Phase.ArmyList;
+    }
+
+    match = blurb.match(/at the start of your shooting phase/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Shooting;
+        effect.subPhase = SubPhase.Before;
+        effect.side = PhaseSide.Attack;
+    }
+
+    match = blurb.match(/at the end of the shooting phase/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Shooting;
+        effect.subPhase = SubPhase.After;
+    }
+
+    match = blurb.match(/before fighting with this unit/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.While;
+    }
+
+    match = blurb.match(/after this model makes a charge move/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.phase = Phase.Charge;
+        effect.subPhase = SubPhase.While;
+        effect.side = PhaseSide.Attack;
+    }
+
+    match = blurb.match(/in your hero phase,/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.While;
+        effect.side = PhaseSide.Attack;
+    }
+
     // Spells
     match = blurb.match(/has a casting value of (\d+)/);
     if (match) {
@@ -210,6 +275,21 @@ export function getAbilityEffects(name: string, blurb: string) {
     }
 
     // Defense
+    match = blurb.match(
+        /Roll a dice each time you allocate a wound or mortal wound to this model\. On a (\d)\+, that wound or mortal wound is negated/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.targetType = TargetType.Model;
+        effect.defenseAura = effect.defenseAura || {};
+        if (match[1] === "5") {
+            effect.defenseAura.negateWoundsOrMortalWoundsOn5 = true;
+        }
+        if (match[1] === "6") {
+            effect.defenseAura.negateWoundsOrMortalWoundsOn6 = true;
+        }
+    }
+
     if (blurb.indexOf("subtract 1 from hit rolls for attacks made by") >= 0) {
         effect = effect || { targetType: TargetType.Enemy };
         effect.attackAura = { malusHitRoll: 1 };
@@ -252,6 +332,33 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.defenseAura.negateWoundsOrMortalWoundsOn5 = true;
     }
 
+    match = blurb.match(
+        /subtract (\d) from hit rolls for attacks that target/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.malusHitRoll = parseInt(match[1]);
+    }
+
+    match = blurb.match(
+        /subtract (\d) from hit rolls for attacks made by enemy models/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Friend };
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.malusHitRoll = parseInt(match[1]);
+    }
+
+    match = blurb.match(
+        /you can add 1 to save rolls for attacks that target this model/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.bonusSave = 1;
+    }
+
     // Movement
     if (name === "Mount") {
         effect = effect || { targetType: TargetType.Mount };
@@ -278,7 +385,8 @@ export function getAbilityEffects(name: string, blurb: string) {
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };
         effect.targetCondition = { weaponId: match[1] };
-        effect.attackAura = { mortalWoundsOnHitUnmodified6: match[2] };
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.mortalWoundsOnHitUnmodified6 = match[2];
     }
     match = blurb.match(
         /You can re-roll failed hit rolls for attacks made with (\w+)/i
@@ -286,18 +394,74 @@ export function getAbilityEffects(name: string, blurb: string) {
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };
         effect.targetCondition = { weaponId: match[1] };
-        effect.attackAura = { rerollFailedHits: getTargetCondition(blurb, 1) };
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.rerollFailedHits = getTargetCondition(blurb, 1);
     }
     match = blurb.match(
         /If the unmodified wound roll for an attack made with a (.*) is 6, add (\d) to the Damage characteristic of that weapon for that attack/i
     );
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };
-        effect.targetCondition = { weaponId: match[1] };
-        effect.attackAura = {
-            bonusDamageOnWoundUnmodified6: parseInt(match[2])
-        };
+        effect.targetCondition = effect.targetCondition || {};
+        effect.targetCondition.weaponId = match[1];
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.bonusDamageOnWoundUnmodified6 = parseInt(match[2]);
     }
+    match = blurb.match(
+        /add 1 to the Attacks characteristic of this model’s melee weapons/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetType = TargetType.Weapon;
+        effect.targetCondition = effect.targetCondition || {};
+        effect.targetCondition.meleeWeapon = true;
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.bonusAttacks = 1;
+    }
+    match = blurb.match(
+        /if the unmodified hit roll for an attack made with (.*?) is 6, that attack inflicts (\d) mortal wound on the target in addition to any normal damage/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetType = TargetType.Weapon;
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.bonusMortalWoundsOnHitUnmodified6 = match[2];
+    }
+
+    match = blurb.match(
+        /add 1 to wound rolls for attacks made with this unit’s /i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetType = TargetType.Weapon;
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.bonusWoundRoll = 1;
+    }
+
+    match = blurb.match(/improve the Rend characteristic of that weapon by 1/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetType = TargetType.Weapon;
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.bonusRend = 1;
+    }
+    match = blurb.match(
+        /if the unmodified hit roll for an attack made with (.*?) is 6, add (\d) to the damage inflicted if that attack is successful/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetType = TargetType.Weapon;
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.bonusDamageOnHitUnmodified6 = match[2];
+    }
+    match = blurb.match(/you can re-roll hit rolls for /i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetType = TargetType.Weapon;
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.rerollHits = true;
+    }
+
     if (!effect) return undefined;
 
     return [effect];
@@ -675,6 +839,15 @@ export function importData(db: Dump): ImportedDataStore {
             case "Wizard":
                 ability.category = AbilityCategory.Spell;
                 break;
+            default:
+                if (
+                    ability.description &&
+                    ability.description.indexOf(
+                        "1 model in this unit can be a"
+                    ) >= 0
+                ) {
+                    ability.category = AbilityCategory.Champion;
+                }
         }
         dataStore.abilities[ability.id] = ability;
         if (!unit.abilities) unit.abilities = [];

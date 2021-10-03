@@ -48,7 +48,9 @@ const ExtraAbility = observer(
                 columns={extraAbilityColumns}
                 getGroupLabel={x => x.name}
                 getText={x => x.name}
-                getValues={x => x.abilities}
+                getValues={x =>
+                    x.abilities.filter(x => unit.isAvailableExtraAbility(x))
+                }
                 label={abilityCategoryName.get(category) ?? "?"}
                 onChange={handleChange}
                 value={oldAbility ?? null}

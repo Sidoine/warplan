@@ -1,10 +1,14 @@
 import { UnitWarscroll } from "../stores/warscroll";
 import * as React from "react";
 import { toJS } from "mobx";
-import { ModelOption, AbilityCategory, Unit, UnitOptionCategory } from "../../common/data";
+import {
+    ModelOption,
+    AbilityCategory,
+    Unit,
+    UnitOptionCategory
+} from "../../common/data";
 import { value } from "../helpers/react";
 import {
-    
     AllAttacks,
     WoundEffects,
     AllAbilities,
@@ -26,8 +30,7 @@ export function UnitWarscrollView({
     const u = unit || wu?.definition;
     const models = wu?.models;
     if (!u) return <div></div>;
-    const attacks = u.attacks ||
-        [];
+    const attacks = u.attacks || [];
     const abilities = toJS(u.abilities || []).concat();
     let mainOption: ModelOption | undefined;
     const modelOptions: [ModelOption, number?][] = [];
@@ -44,12 +47,12 @@ export function UnitWarscrollView({
         }
     }
     for (const [option, count] of modelOptions) {
-        if (option.unitCategory === UnitOptionCategory.Main) mainOption = option;
+        if (option.unitCategory === UnitOptionCategory.Main)
+            mainOption = option;
 
         if (option.attacks) {
             for (const a of option.attacks) {
-                if (count !== 0)
-                    attacks.push(a);
+                if (count !== 0) attacks.push(a);
             }
         }
         if (option.abilities) {
@@ -147,7 +150,7 @@ export function UnitWarscrollView({
                         noFlavor={noFlavor}
                     />
                 )}
-                {u.magicDescription && (
+                {magicAbilites.length > 0 && (
                     <AllAbilities
                         title="Magic"
                         abilities={magicAbilites}

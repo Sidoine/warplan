@@ -148,6 +148,7 @@ export interface AttackAuraValues {
     numberOfHitsOnUnmodified6?: Value;
     numberOfHitsOnHit?: Value;
     mortalWoundsOnHitUnmodified6?: Value;
+    bonusMortalWoundsOnHitUnmodified6?: Value;
     mortalWounds?: Value;
     damageOnWoundUnmodified6?: Value;
     mortalWoundsOnHit?: Value;
@@ -168,6 +169,7 @@ export interface AttackAuraBooleans {
     shootAfterRun?: boolean;
     noPileIn?: boolean;
     changeHitWoundSaveOrDamageRoll?: boolean;
+    rerollHits?: boolean;
 }
 
 export interface AttackAuraAbilityEffects {
