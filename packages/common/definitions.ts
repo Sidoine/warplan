@@ -52,7 +52,7 @@ export interface Dump {
     damage_row: DamageRow[];
     unit_type_required_keywords_keyword: UnitTypeRequiredKeywordsKeyword[];
     unique_enhancement_keywords_keyword: UniqueEnhancementKeywordsKeyword[];
-    unique_enhancement: { [key: string]: null | string }[];
+    unique_enhancement: UniqueEnhancement[];
     version_info: VersionInfo[];
     unit_type: UnitType[];
     publication: Publication[];
@@ -154,8 +154,10 @@ export interface PurpleGroup {
     factionId: null | string;
     allowUniqueUnits?: boolean;
     rules?: string;
-    domain?: string;
+    domain?: AbilityGroupDomain;
 }
+
+export type AbilityGroupDomain = "armyLevel" | "unitLevel";
 
 export interface ArtefactOfPowerGroupKeywordsKeyword {
     artefactOfPowerGroupId: string;

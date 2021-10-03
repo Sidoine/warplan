@@ -66,6 +66,7 @@ interface SerializedArmyList {
     realm?: string;
     grandStrategy?: string;
     triumph?: string;
+    uniqueEnhancement?: string;
 }
 
 function getWarscrollItem(name?: string) {
@@ -91,7 +92,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     @computed
-    get extraAbilities() {
+    get allExtraAbilities() {
         return this.allegianceAbilities.concat(
             this.dataStore.baseAbilities.flatMap(x => x.abilities)
         );
@@ -127,6 +128,9 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
     @observable.shallow
     grandStrategy: Ability | null = null;
+
+    @observable.shallow
+    extraAbilities: Ability[] = [];
 
     @observable.shallow
     triumph: Ability | null = null;
@@ -364,24 +368,23 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     @computed
-    get allegianceAbilities() {
-        let result: Ability[] = [];
+    get allegianceAbilityGroups() {
+        let result: AbilityGroup[] = [];
+        if (this.allegiance && this.allegiance.abilityGroups) {
+            result = result.concat(this.allegiance.abilityGroups);
+        }
         if (this.armyType && this.armyType.abilityGroups) {
-            for (const group of this.armyType.abilityGroups) {
-                result = result.concat(group.abilities);
-            }
+            result = result.concat(this.armyType.abilityGroups);
         }
         if (this.subFaction && this.subFaction.abilityGroups) {
-            for (const group of this.subFaction.abilityGroups) {
-                result = result.concat(group.abilities);
-            }
-        }
-        if (this.allegiance && this.allegiance.abilityGroups) {
-            for (const group of this.allegiance.abilityGroups) {
-                result = result.concat(group.abilities);
-            }
+            result = result.concat(this.subFaction.abilityGroups);
         }
         return result;
+    }
+
+    @computed
+    get allegianceAbilities() {
+        return this.allegianceAbilityGroups.flatMap(x => x.abilities);
     }
 
     getUnitsWithKeywords(keywords: string[][]) {
@@ -473,8 +476,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
             );
             if (battalion === undefined) continue;
             const b = new WarscrollBattalion(this, battalion);
-            if (ba.enhancement !== undefined)
-                b.setEnhancementType(ba.enhancement);
+            if (ba.enhancement !== undefined) b.enhancement = ba.enhancement;
             this.battalions.push(b);
         }
 
@@ -512,11 +514,17 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
             }
             if (
                 wu.battalionIndex !== undefined &&
+                wu.battalionIndex >= 0 &&
+                wu.battalionIndex < this.battalions.length &&
                 wu.battalionUnitIndex !== undefined &&
                 this.battalions[wu.battalionIndex]
             ) {
                 const battalion = this.battalions[wu.battalionIndex];
-                if (battalion)
+                if (
+                    battalion &&
+                    wu.battalionUnitIndex >= 0 &&
+                    wu.battalionUnitIndex < battalion.unitTypes.length
+                )
                     newUnit.battalionUnit =
                         battalion.unitTypes[wu.battalionUnitIndex];
             }
@@ -537,15 +545,22 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
     @computed
     get grandStrategies() {
-        return this.extraAbilities.filter(
+        return this.allExtraAbilities.filter(
             x => x.category === AbilityCategory.GrandStrategy
         );
     }
 
     @computed
     get triumphs() {
-        return this.extraAbilities.filter(
+        return this.allExtraAbilities.filter(
             x => x.category === AbilityCategory.Triumph
+        );
+    }
+
+    @computed
+    get armyLevelAbilityGroups() {
+        return this.allegianceAbilityGroups.filter(
+            x => x.domain === "armyLevel"
         );
     }
 
@@ -562,7 +577,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
 export class ArmyListStore {
     @observable
-    warscrolls: string[] = [];
+    armyLists: string[] = [];
 
     @computed
     get availableBattalionGroups() {
@@ -660,18 +675,6 @@ export class ArmyListStore {
         this.saveWarscroll();
     }
 
-    @action
-    addExtraAbility(unit: UnitWarscroll, ability: Ability) {
-        unit.extraAbilities.push(ability);
-        this.saveWarscroll();
-    }
-
-    @action
-    removeExtraAbility(unit: UnitWarscroll, ability: Ability) {
-        unit.extraAbilities.splice(unit.extraAbilities.indexOf(ability), 1);
-        this.saveWarscroll();
-    }
-
     @computed
     get armyTypes() {
         return this.armyList.allegiance?.children.filter(
@@ -740,8 +743,7 @@ export class ArmyListStore {
 
     @action
     saveWarscroll(name?: string) {
-        if (name && this.warscrolls.indexOf(name) < 0)
-            this.warscrolls.push(name);
+        if (name && this.armyLists.indexOf(name) < 0) this.armyLists.push(name);
         this.armyList.save(name);
         this.saveWarscrolls();
     }
@@ -762,7 +764,7 @@ export class ArmyListStore {
     @action
     removeWarscroll(name: string) {
         localStorage.removeItem(getWarscrollItem(name));
-        this.warscrolls.splice(this.warscrolls.indexOf(name), 1);
+        this.armyLists.splice(this.armyLists.indexOf(name), 1);
         this.saveWarscrolls();
     }
 
@@ -770,7 +772,7 @@ export class ArmyListStore {
         makeObservable(this);
         const warscrolls = localStorage.getItem("warscrolls");
         if (warscrolls !== null) {
-            this.warscrolls = JSON.parse(warscrolls);
+            this.armyLists = JSON.parse(warscrolls);
         }
 
         this.loadWarscroll();
@@ -780,7 +782,7 @@ export class ArmyListStore {
     private saveWarscrolls() {
         localStorage.setItem(
             "warscrolls",
-            JSON.stringify(toJS(this.warscrolls))
+            JSON.stringify(toJS(this.armyLists))
         );
     }
 

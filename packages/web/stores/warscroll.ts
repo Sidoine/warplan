@@ -12,7 +12,6 @@ import {
     AbilityCategory
 } from "../../common/data";
 
-import { canAddAbilityCategory } from "./conditions";
 import { ArmyList } from "./army-list";
 import { getUnitModelsWithOptionCount } from "./overrides/tools";
 import { HasId } from "../atoms/add-button";
@@ -223,10 +222,30 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         return this.armyList.general === this;
     }
 
+    @action
+    addExtraAbility = (ability: Ability) => {
+        this.extraAbilities.push(ability);
+        this.armyList.save();
+    };
+
+    @action
+    removeExtraAbility = (ability: Ability) => {
+        this.extraAbilities.splice(this.extraAbilities.indexOf(ability), 1);
+        this.armyList.save();
+    };
+
+    @action
+    replaceExtraAbility = (oldAbility: Ability, newAbility: Ability) => {
+        this.extraAbilities[
+            this.extraAbilities.indexOf(oldAbility)
+        ] = newAbility;
+        this.armyList.save();
+    };
+
     @computed
     get availableExtraAbilities() {
         return this.availableAbilityGroups
-            .reduce((p, c) => p.concat(c.abilities), new Array<Ability>())
+            .flatMap(x => x.abilities)
             .filter(x => this.isAvailableExtraAbility(x))
             .sort((a, b) => (a.name > b.name ? 1 : -1));
     }
@@ -236,6 +255,45 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         return this.armyList.abilityGroups.filter(x =>
             this.isAvailableAbilityGroup(x)
         );
+    }
+
+    @computed
+    get abilityCategories() {
+        const categories: AbilityCategory[] = [AbilityCategory.Mount];
+        if (this.isLeader)
+            categories.push(AbilityCategory.Artefact, AbilityCategory.Command);
+        if (this.isGeneral) categories.push(AbilityCategory.CommandTrait);
+        if (this.keywords.includes("PRIEST"))
+            categories.push(AbilityCategory.Prayer);
+        if (this.keywords.includes("WIZARD"))
+            categories.push(AbilityCategory.Spell);
+        return categories;
+    }
+
+    getNumberOfEnhancements(abilityCategory: AbilityCategory) {
+        return this.extraAbilities.reduce(
+            (c, p) => c + (p.category === abilityCategory ? 1 : 0),
+            0
+        );
+    }
+
+    getMaxNumberOfEnhancements(abilityCategory: AbilityCategory) {
+        const number =
+            1 + this.armyList.getNumberOfEnhancements(abilityCategory);
+        if (abilityCategory === AbilityCategory.Artefact) {
+            return (
+                number -
+                this.armyList.units.reduce(
+                    (p, x) =>
+                        p +
+                        (x.id !== this.id
+                            ? x.getNumberOfEnhancements(abilityCategory)
+                            : 0),
+                    0
+                )
+            );
+        }
+        return number;
     }
 
     private isAvailableAbilityGroup(group: AbilityGroup) {
@@ -248,7 +306,17 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         ) {
             return false;
         }
-        return canAddAbilityCategory(this, this.armyList, group.category);
+        // const maxCount = group.category
+        //     ? this.armyList.getNumberOfEnhancements(group.category)
+        //     : 0;
+        // const count = group.category
+        //     ? this.extraAbilities.reduce(
+        //           (p, c) => p + (c.category === group.category ? 1 : 0),
+        //           0
+        //       )
+        //     : 0;
+        // if (count > maxCount) return false;
+        return this.abilityCategories.includes(group.category);
     }
 
     private isAvailableExtraAbility(extraAbility: Ability) {
@@ -263,20 +331,7 @@ export class UnitWarscroll implements UnitWarscrollInterface {
                 }
             }
         }
-        const maxCount = extraAbility.category
-            ? this.armyList.getNumberOfEnhancements(extraAbility.category)
-            : 0;
-        const count = extraAbility.category
-            ? this.extraAbilities.reduce(
-                  (p, c) => p + (c.category === extraAbility.category ? 1 : 0),
-                  0
-              )
-            : 0;
-        return (
-            count <= maxCount &&
-            !this.armyList.hasAnyUnitExtraAbility(extraAbility) &&
-            canAddAbilityCategory(this, this.armyList, extraAbility.category)
-        );
+        return !this.armyList.hasAnyUnitExtraAbility(extraAbility);
     }
 
     @computed

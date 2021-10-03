@@ -25,6 +25,7 @@ import {
     PhaseSide
 } from "../common/data";
 import {
+    AbilityGroupDomain,
     DamageCell,
     DamageRow,
     Dump,
@@ -476,7 +477,8 @@ function importExtraAbilities<
     abilities: T,
     keywords: K | undefined,
     category: AbilityCategory,
-    groupId: U
+    groupId: U,
+    defaultDomain?: AbilityGroupDomain
 ) {
     for (const group of db[groups]) {
         const groupId = getId(group.id, group.name, "abilityGroups");
@@ -486,7 +488,8 @@ function importExtraAbilities<
             id: groupId,
             name: group.name,
             allowUniqueUnits: group.allowUniqueUnits,
-            restrictions: group.restrictions
+            restrictions: group.restrictions,
+            domain: group.domain ?? defaultDomain
         };
         dataStore.abilityGroups[groupId] = entity;
         if (group.factionId) {
@@ -811,7 +814,8 @@ export function importData(db: Dump): ImportedDataStore {
         "artefact_of_power",
         "artefact_of_power_group_keywords_keyword",
         AbilityCategory.Artefact,
-        "artefactOfPowerGroupId"
+        "artefactOfPowerGroupId",
+        "unitLevel"
     );
 
     importExtraAbilities(
@@ -821,7 +825,8 @@ export function importData(db: Dump): ImportedDataStore {
         "battle_trait",
         undefined,
         AbilityCategory.BattleTrait,
-        "battleTraitGroupId"
+        "battleTraitGroupId",
+        "armyLevel"
     );
 
     importExtraAbilities(
@@ -831,7 +836,8 @@ export function importData(db: Dump): ImportedDataStore {
         "mount_trait",
         "mount_trait_group_keywords_keyword",
         AbilityCategory.Mount,
-        "mountTraitGroupId"
+        "mountTraitGroupId",
+        "unitLevel"
     );
 
     importAbilityKeywords(
@@ -849,7 +855,8 @@ export function importData(db: Dump): ImportedDataStore {
         "prayer",
         undefined,
         AbilityCategory.Prayer,
-        "prayerGroupId"
+        "prayerGroupId",
+        "unitLevel"
     );
 
     importExtraAbilities(
@@ -859,7 +866,8 @@ export function importData(db: Dump): ImportedDataStore {
         "spell_lore",
         "spell_lore_group_required_keywords_keyword",
         AbilityCategory.Spell,
-        "spellLoreGroupId"
+        "spellLoreGroupId",
+        "unitLevel"
     );
 
     importExtraAbilities(
@@ -869,7 +877,8 @@ export function importData(db: Dump): ImportedDataStore {
         "triumph",
         undefined,
         AbilityCategory.Triumph,
-        "triumphGroupId"
+        "triumphGroupId",
+        "armyLevel"
     );
 
     importExtraAbilities(
@@ -879,7 +888,18 @@ export function importData(db: Dump): ImportedDataStore {
         "grand_strategy",
         undefined,
         AbilityCategory.GrandStrategy,
-        "grandStrategyGroupId"
+        "grandStrategyGroupId",
+        "armyLevel"
+    );
+
+    importExtraAbilities(
+        db,
+        dataStore,
+        "unique_enhancement_group",
+        "unique_enhancement",
+        "unique_enhancement_group_keywords_keyword",
+        AbilityCategory.UniqueEnhancement,
+        "uniqueEnhancementGroupId"
     );
 
     for (const unit of Object.values(dataStore.units)) {

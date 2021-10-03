@@ -10,7 +10,7 @@ import {
     TableCell,
     TableHead,
     DialogContent,
-    DialogTitle,
+    DialogTitle
 } from "@material-ui/core";
 
 export interface HasId {
@@ -29,10 +29,10 @@ export interface AddButtonProps<T extends HasId> {
     columns: TableColumn<T>[];
 }
 
-function OptionRow<T extends HasId>({
+export function OptionRow<T extends HasId>({
     value,
     onClick,
-    columns,
+    columns
 }: {
     onClick: (option: T) => void;
     value: T;
@@ -43,7 +43,7 @@ function OptionRow<T extends HasId>({
     }, [onClick, value]);
     return (
         <TableRow hover onClick={handleClick}>
-            {columns.map((y) => (
+            {columns.map(y => (
                 <TableCell key={y.name}>{y.text(value)}</TableCell>
             ))}
         </TableRow>
@@ -54,7 +54,7 @@ function AddButton<T extends HasId>({
     placeholder,
     columns,
     options,
-    onChange,
+    onChange
 }: AddButtonProps<T>) {
     const [open, setOpen] = useState(false);
 
@@ -82,13 +82,13 @@ function AddButton<T extends HasId>({
                     <Table>
                         <TableHead>
                             <TableRow>
-                                {columns.map((x) => (
+                                {columns.map(x => (
                                     <TableCell key={x.name}>{x.name}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {options.map((x) => (
+                            {options.map(x => (
                                 <OptionRow
                                     columns={columns}
                                     onClick={handleClick}

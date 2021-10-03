@@ -1,4 +1,4 @@
-import { KeywordCategory, Role } from "./definitions";
+import { AbilityGroupDomain, KeywordCategory, Role } from "./definitions";
 
 export const enum Material {
     Metal,
@@ -50,8 +50,17 @@ export const enum AbilityCategory {
     BattleTrait,
     Champion,
     Triumph,
-    GrandStrategy
+    GrandStrategy,
+    UniqueEnhancement
 }
+
+export const abilityCategoryName = new Map<AbilityCategory, string>([
+    [AbilityCategory.Spell, "Spell"],
+    [AbilityCategory.Prayer, "Prayer"],
+    [AbilityCategory.Artefact, "Artefact of Power"],
+    [AbilityCategory.Mount, "Mount Trait"],
+    [AbilityCategory.Triumph, "Triumph"]
+]);
 
 export const enum Phase {
     Setup = 1,
@@ -613,6 +622,7 @@ export interface AbilityGroup {
     allowUniqueUnits?: boolean;
     keywords?: string[];
     restrictions?: string;
+    domain?: AbilityGroupDomain;
 }
 
 export interface RealmOfBattle {

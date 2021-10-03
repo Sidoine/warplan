@@ -1,12 +1,12 @@
 import * as React from "react";
 import { observer } from "mobx-react-lite";
-import WarscrollUnitsList from "./warscroll-units-list";
-import WarscrollBattalionsList from "./warscroll-battalions-list";
+import UnitWarscrollsList from "./unit-warscrolls-list";
+import WarscrollBattalionsList from "./battalion-warscrolls-list";
 import { ArmyListSummary } from "./army-list-summary";
 import Filter from "./filter";
-import WarscrollSceneriesList from "./warscroll-sceneries-list";
+import WarscrollSceneriesList from "./scenery-warscrolls-list";
 import { Grid } from "@material-ui/core";
-import WarscrollsList from "./warscrolls-list";
+import ArmyLists from "./army-lists";
 import { Role } from "../../common/definitions";
 
 function ArmyListBuilder() {
@@ -31,22 +31,22 @@ function ArmyListBuilder() {
                     <WarscrollBattalionsList />
                 </Grid>
                 <Grid item>
-                    <WarscrollUnitsList role={Role.Leader} title="Leaders" />
+                    <UnitWarscrollsList role={Role.Leader} title="Leaders" />
                 </Grid>
                 <Grid item>
-                    <WarscrollUnitsList
+                    <UnitWarscrollsList
                         role={Role.Battleline}
                         title="Battlelines"
                     />
                 </Grid>
                 <Grid item>
-                    <WarscrollUnitsList role={Role.Other} title="Other units" />
+                    <UnitWarscrollsList role={Role.Other} title="Other units" />
                 </Grid>
                 <Grid item>
-                    <WarscrollUnitsList role={Role.Behemoth} title="Behemots" />
+                    <UnitWarscrollsList role={Role.Behemoth} title="Behemots" />
                 </Grid>
                 <Grid item>
-                    <WarscrollUnitsList
+                    <UnitWarscrollsList
                         role={Role.Artillery}
                         title="Artilleries"
                     />
@@ -65,7 +65,7 @@ function ArmyListBuilder() {
                 </Grid>
             </Grid>
             <Grid item xs={12} md={3}>
-                <WarscrollsList />
+                <ArmyLists />
             </Grid>
         </Grid>
     );

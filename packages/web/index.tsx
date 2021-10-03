@@ -8,10 +8,10 @@ import { HashRouter, Switch } from "react-router-dom";
 import { Route } from "react-router";
 import MyNavbar from "./components/my-navbar";
 import Popins from "./components/popins";
-import { ArmyListView } from "./components/army-list-view";
+import { ArmyListWarscrolls } from "./components/army-list-warscrolls";
 import { Markers } from "./components/markers";
 import Stats from "./components/stats";
-import WarscrollView from "./components/warscroll-view";
+import ArmyListText from "./components/army-list-text";
 import { Cards } from "./components/cards";
 import { CheckList } from "./components/check-list";
 import { BattlePlay } from "./components/battle-play";
@@ -28,32 +28,32 @@ const theme = createTheme({
                     {
                         fontFamily: "Pompei",
                         fontWeight: "normal",
-                        src: `url(${pompeiRegular}) format('woff2')`,
+                        src: `url(${pompeiRegular}) format('woff2')`
                     },
                     {
                         fontFamily: "Pompei",
                         fontWeight: "bold",
-                        src: `url(${pompeiBold}) format('woff2')`,
-                    },
+                        src: `url(${pompeiBold}) format('woff2')`
+                    }
                 ],
                 html: {
                     "@media print": {
-                        fontSize: "12px",
-                    },
-                },
-            },
+                        fontSize: "12px"
+                    }
+                }
+            }
         },
         MuiCardHeader: {
             root: {
-                paddingBottom: 0,
-            },
+                paddingBottom: 0
+            }
         },
         MuiSvgIcon: {
             root: {
-                fontSize: "inherit",
-            },
-        },
-    },
+                fontSize: "inherit"
+            }
+        }
+    }
 });
 
 ReactDOM.render(
@@ -61,7 +61,7 @@ ReactDOM.render(
         <HashRouter>
             <Popins />
             <Route
-                render={(x) => (
+                render={x => (
                     <MyNavbar route={x}>
                         <Switch>
                             <Route
@@ -69,11 +69,7 @@ ReactDOM.render(
                                 path="/owned"
                                 component={OwnedModelsList}
                             />
-                            <Route
-                                exact
-                                path="/"
-                                component={ArmyListBuilder}
-                            />
+                            <Route exact path="/" component={ArmyListBuilder} />
                             <Route
                                 exact
                                 path="/missing"
@@ -83,14 +79,14 @@ ReactDOM.render(
                             <Route
                                 exact
                                 path="/warscroll"
-                                component={ArmyListView}
+                                component={ArmyListWarscrolls}
                             />
                             <Route exact path="/markers" component={Markers} />
                             <Route exact path="/stats" component={Stats} />
                             <Route
                                 exact
                                 path="/list"
-                                component={WarscrollView}
+                                component={ArmyListText}
                             />
                             <Route exact path="/cards" component={Cards} />
                             <Route exact path="/cl" component={CheckList} />

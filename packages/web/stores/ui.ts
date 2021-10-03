@@ -126,7 +126,7 @@ export class UiStore {
     }
 
     @action
-    showWarscrollPopin = () => {
+    showArmyListManager = () => {
         this.warscrollPopin = true;
     };
 
