@@ -71,7 +71,7 @@ function ArmyListBuilder() {
                     <Grid item>
                         <WarscrollSceneriesList
                             role={Role.Terrain}
-                            title="Terrains"
+                            title="Sceneries"
                         />
                     </Grid>
                 </Grid>

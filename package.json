@@ -24,11 +24,11 @@
     "devDependencies": {
         "@jest/globals": "^26.6.2",
         "@types/node": "^15",
-        "@typescript-eslint/eslint-plugin": "^2.25.0",
-        "@typescript-eslint/parser": "^2.25.0",
-        "eslint": "^6.8.0",
-        "eslint-plugin-react": "^7.19.0",
-        "eslint-plugin-react-hooks": "^3.0.0",
+        "@typescript-eslint/eslint-plugin": "^4.33.0",
+        "@typescript-eslint/parser": "^4.33.0",
+        "eslint": "^7.32.0",
+        "eslint-plugin-react": "^7.26.1",
+        "eslint-plugin-react-hooks": "^4.2.0",
         "file-loader": "^5.0.2",
         "jest": "^27.2.1",
         "prettier": "^1.19.1",
@@ -41,13 +41,14 @@
         "webpack-dev-server": "^4.2.1"
     },
     "scripts": {
-        "build": "webpack",
+        "build": "webpack --mode=production",
         "watch": "webpack -w",
-        "debug": "webpack-dev-server --static wwwroot/",
+        "debug": "webpack-dev-server --static wwwroot/ --mode=development --hot",
         "tools": "tsc -b packages/tools",
         "database": "node dist/tools/database.js",
         "test": "jest",
         "start": "yarn node index.js",
-        "prettier": "prettier --write \"src/**/*.{ts,tsx}\""
+        "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
+        "lint": "eslint --ext .ts,.tsx packages"
     }
 }

@@ -242,7 +242,7 @@ export interface AbilityEffect {
     /** At which phase the ability is *used* to add the effect */
     phase?: Phase;
     spellAura?: SpellAura;
-    commandAura?: {};
+    commandAura?: Record<string, never>;
     subPhase?: SubPhase;
     side?: PhaseSide;
     condition?: TargetCondition;

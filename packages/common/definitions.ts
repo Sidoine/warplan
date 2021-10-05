@@ -32,7 +32,7 @@ export interface Dump {
     migrations: Migration[];
     mount_trait_group_keywords_keyword: MountTraitGroupKeywordsKeyword[];
     grand_strategy_army_must_contain_keywords_keyword: GrandStrategyArmyMustContainKeywordsKeyword[];
-    grand_strategy_keywords_keyword: {}[];
+    grand_strategy_keywords_keyword: Record<string, never>[];
     mount_trait: MountTrait[];
     grand_strategy_group: PurpleGroup[];
     keyword: Keyword[];

@@ -7,7 +7,7 @@ import { getPhaseName } from "../stores/battle";
 import { useStores } from "../stores";
 
 export interface MyNavbarProps {
-    route: RouteComponentProps<{}>;
+    route: RouteComponentProps<Record<string, string | undefined>>;
     children: React.ReactNode;
 }
 

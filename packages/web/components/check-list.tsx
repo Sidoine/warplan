@@ -239,7 +239,7 @@ export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
                     {effect.subPhase === SubPhase.WhileAfter &&
                         " after all attacks "}
                     {effect.targetRange && (
-                        <>Target range {effect.targetRange}"</>
+                        <>Target range {effect.targetRange}</>
                     )}
                 </>
             )}{" "}

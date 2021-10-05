@@ -2,8 +2,6 @@ import { ImportedDataStoreImpl } from "./imported-data";
 import { overrideStormcast } from "./overrides/stormcast";
 import { overrideNurgle } from "./overrides/nurgle";
 import { overrideKhorne } from "./overrides/khorne";
-import { overrideDevotedOfSigmar } from "./overrides/devoted-of-sigmar";
-import { overrideWanderers } from "./overrides/wanderers";
 import { overrideIdonethDeepkins } from "./overrides/idoneth-deepkins";
 import { overrideEverchosen } from "./overrides/everchosen";
 import { overrideSylvaneth } from "./overrides/sylvaneth";
@@ -67,8 +65,6 @@ export class DataStore {
         overrideSylvaneth(data);
         overrideEverchosen(data);
         overrideKhorne(data);
-        overrideDevotedOfSigmar(data);
-        overrideWanderers(data);
         overrideIdonethDeepkins(data);
         overrideNighthaunt(data);
         overrideOrder(data);

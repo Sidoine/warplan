@@ -1,5 +1,4 @@
 module.exports = {
-    mode: "development",
     entry: "./packages/web/index.tsx",
     output: {
         filename: "bundle.js",
@@ -36,5 +35,8 @@ module.exports = {
                 options: { name: "files/[name].[hash].[ext]" }
             }
         ]
+    },
+    devServer: {
+        hot: true
     }
 };
