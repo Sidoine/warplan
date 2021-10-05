@@ -185,7 +185,7 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.side = PhaseSide.Attack;
     }
 
-    match = blurb.match(/at the start of the combat phase/i);
+    match = blurb.match(/at the start of the hero phase/i);
     if (match) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Hero;

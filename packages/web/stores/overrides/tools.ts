@@ -124,6 +124,12 @@ export function removeAbility(unit: Unit, ability: Ability) {
     return ability;
 }
 
+export function addEffect(ability: Ability, effect: AbilityEffect) {
+    if (!ability.effects) ability.effects = [];
+    ability.effects.push(effect);
+    return effect;
+}
+
 export function overrideAbility(ability: Ability, f: (x: Ability) => void) {
     override(ability, f);
 }

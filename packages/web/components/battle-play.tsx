@@ -134,12 +134,7 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
     const store = useLocalObservable(() => ({
         get abilities() {
             return wu.abilities.filter(x =>
-                isAbilityInPhase(
-                    x.ability,
-                    battleStore.phase,
-                    wu,
-                    battleStore.side
-                )
+                isAbilityInPhase(x, battleStore.phase, wu, battleStore.side)
             );
         },
         get attacks() {
@@ -207,7 +202,7 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
                                 />
                             ))}
                         {store.abilities.map(x => (
-                            <AbilityButton key={x.id} ability={x.ability} />
+                            <AbilityButton key={x.id} ability={x} />
                         ))}
                     </List>
                 )}
@@ -217,11 +212,11 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
 });
 
 const PhasePage = observer(() => {
-    const { battleStore } = useStores();
+    const { battleStore, armyListStore } = useStores();
     const store = useLocalObservable(() => ({
         get abilities() {
             return battleStore.abilities.filter(x =>
-                isAbilityInPhase(x, battleStore.phase)
+                isAbilityInPhase(x, battleStore.phase, armyListStore.armyList)
             );
         },
         get units() {

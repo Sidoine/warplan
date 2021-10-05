@@ -1,45 +1,10 @@
+import { Phase, SubPhase, TargetType } from "../../../common/data";
 import { ImportedDataStoreImpl } from "../imported-data";
-// import { overrideAbility } from "./tools";
-// import { Phase, TargetType } from "../unit";
-
-// function overrideEndlessSpells(data: ImportedDataStoreImpl) {
-//     overrideAbility(data.abilities.suffocatingGravetideNecroticTide, (x) => {
-//         x.effects = [{ phase: Phase.Hero, targetType: TargetType.Model }];
-//     });
-//     overrideAbility(
-//         data.abilities.suffocatingGravetidePulledToTheGrave,
-//         (x) => {
-//             x.effects = [{ phase: Phase.Hero, targetType: TargetType.Unit }];
-//         }
-//     );
-//     overrideAbility(
-//         data.abilities.suffocatingGravetideRoilingBarricade,
-//         (x) => {
-//             x.effects = [
-//                 { phase: Phase.Shooting, targetType: TargetType.Unit },
-//             ];
-//         }
-//     );
-//     overrideAbility(
-//         data.abilities.suffocatingGravetideEmpoweredByShyish,
-//         (x) => {
-//             x.effects = [{ phase: Phase.Hero, targetType: TargetType.Model }];
-//         }
-//     );
-//     overrideAbility(data.abilities.suffocatingGravetidePredatory, (x) => {
-//         x.effects = [{ phase: Phase.Hero, targetType: TargetType.Model }];
-//     });
-//     overrideAbility(
-//         data.abilities.suffocatingGravetideSummonSuffocatingGravetide,
-//         (x) => {
-//             x.effects = [{ phase: Phase.Hero, targetType: TargetType.Model }];
-//         }
-//     );
-// }
-
-// function overrideRealms(data: ImportedDataStoreImpl) {}
-
+import { addEffect } from "./tools";
 export function overrideCommon(data: ImportedDataStoreImpl) {
-    // overrideEndlessSpells(data);
-    // overrideRealms(data);
+    addEffect(data.battalionAbilities.huntersOfTheHeartlandsExpertUnderdogs, {
+        targetType: TargetType.Unit,
+        phase: Phase.Hero,
+        subPhase: SubPhase.Before
+    });
 }

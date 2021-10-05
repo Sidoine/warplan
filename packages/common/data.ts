@@ -54,6 +54,18 @@ export const enum AbilityCategory {
     UniqueEnhancement
 }
 
+export interface AttackWithCount {
+    attack: Attack;
+    count: number;
+}
+
+export interface ItemWithAbilities {
+    abilities: Ability[];
+    id: string;
+    name: string;
+    attacks?: AttackWithCount[];
+}
+
 export const abilityCategoryName = new Map<AbilityCategory, string>([
     [AbilityCategory.Spell, "Spell"],
     [AbilityCategory.Prayer, "Prayer"],

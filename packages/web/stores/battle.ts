@@ -7,7 +7,8 @@ import {
     Ability,
     Attack,
     AbilityCategory,
-    PhaseSide
+    PhaseSide,
+    ItemWithAbilities
 } from "../../common/data";
 import { DataStore } from "./data";
 import { ArmyList } from "./army-list";
@@ -88,7 +89,7 @@ export function getAbilityPhases(ability: Ability) {
 export function isEffectInPhase(
     effect: AbilityEffect,
     phase: Phase,
-    unit?: WarscrollItem,
+    unit: ItemWithAbilities,
     side?: PhaseSide
 ) {
     if (
@@ -114,15 +115,15 @@ export function isEffectInPhase(
                 effect.attackAura.phase !== phase
             )
                 return false;
-            if (!unit || unit.type !== "unit") return true;
             if (
                 phase === Phase.Combat &&
+                unit.attacks &&
                 unit.attacks.some(x => x.attack.melee)
             )
                 return true;
             if (
                 phase === Phase.Shooting &&
-                unit.attacks.some(x => !x.attack.melee)
+                unit.attacks?.some(x => !x.attack.melee)
             )
                 return true;
         }
@@ -162,7 +163,7 @@ export function isEffectInPhase(
 export function isAbilityInPhase(
     ability: Ability,
     phase: Phase,
-    unit?: WarscrollItem,
+    unit: ItemWithAbilities,
     side?: PhaseSide
 ) {
     if (
@@ -210,9 +211,7 @@ export function isUnitInPhase(
     ) {
         return true;
     }
-    if (
-        unit.abilities.some(x => isAbilityInPhase(x.ability, phase, unit, side))
-    )
+    if (unit.abilities.some(x => isAbilityInPhase(x, phase, unit, side)))
         return true;
     return false;
 }

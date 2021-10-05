@@ -11,14 +11,14 @@ import {
     RealmOfBattle,
     Unit,
     WarscrollBattalionInterface,
-    ArmyListInterface
+    ArmyListInterface,
+    ItemWithAbilities
 } from "../../common/data";
 import { groupBy } from "../helpers/react";
 import { hasKeywords } from "./conditions";
 import { DataStore } from "./data";
 import { UiStore } from "./ui";
 import {
-    AbilityModel,
     PointMode,
     WarscrollBattalion,
     WarscrollItem,
@@ -75,9 +75,11 @@ function getWarscrollItem(name?: string) {
 
 export class ArmyList implements ArmyListInterface, ArmyListLimits {
     serial = 0;
+    id: string;
 
     constructor(public dataStore: DataStore) {
         makeObservable(this);
+        this.id = (this.serial++).toString();
     }
 
     @computed
@@ -358,13 +360,10 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     @computed
-    get abilities(): AbilityModel[] {
-        return this.allegianceAbilities
-            .filter(x => x.category === AbilityCategory.BattleTrait)
-            .map(ability => ({
-                ability,
-                id: ability.id
-            }));
+    get abilities(): Ability[] {
+        return this.allegianceAbilities.filter(
+            x => x.category === AbilityCategory.BattleTrait
+        );
     }
 
     @computed
@@ -573,6 +572,10 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         this.triumph = triumph;
         this.save();
     };
+
+    @computed get itemsWithAbilities(): ItemWithAbilities[] {
+        return new Array<ItemWithAbilities>(this).concat(this.units);
+    }
 }
 
 export class ArmyListStore {

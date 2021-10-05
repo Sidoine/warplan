@@ -1,9 +1,5 @@
 import React, { ReactNode } from "react";
-import {
-    UnitWarscroll,
-    WarscrollItem,
-    AbilityModel
-} from "../stores/warscroll";
+import { WarscrollItem } from "../stores/warscroll";
 import {
     Phase,
     Ability,
@@ -13,12 +9,12 @@ import {
     TargetType,
     SubPhase,
     EffectDuration,
-    PhaseSide
+    PhaseSide,
+    ItemWithAbilities
 } from "../../common/data";
 import {
     getPhaseName,
     phases,
-    isUnitInPhase,
     isAttackInPhase,
     isAbilityInPhase,
     isEffectInPhase
@@ -121,6 +117,34 @@ const useStyle = makeStyles({
 export interface CheckListProps {
     warscrollStore?: ArmyListStore;
     unitsStore?: DataStore;
+}
+
+interface ItemWithAbilityInPhase {
+    item: ItemWithAbilities;
+    abilities: Ability[];
+}
+
+function getWithAbilitiesInPhase(
+    item: ItemWithAbilities,
+    phase: Phase
+): ItemWithAbilityInPhase {
+    return {
+        item,
+        abilities: item.abilities.filter(a => isAbilityInPhase(a, phase, item))
+    };
+}
+
+function mapPhaseSide(
+    item: ItemWithAbilityInPhase,
+    phase: Phase,
+    side: PhaseSide
+): ItemWithAbilityInPhase {
+    return {
+        item: item.item,
+        abilities: item.abilities.filter(a =>
+            isAbilityInPhase(a, phase, item.item, side)
+        )
+    };
 }
 
 function Stats(props: { name?: string; children: React.ReactNode }) {
@@ -317,17 +341,17 @@ function AbilityInfo({
     unit,
     side
 }: {
-    abilityModel: AbilityModel;
+    abilityModel: Ability;
     phase: Phase;
-    unit?: UnitWarscroll;
+    unit: ItemWithAbilities;
     side?: PhaseSide;
 }) {
     const classes = useStyle();
-    const ability = abilityModel.ability;
+    const ability = abilityModel;
     return (
         <div>
             <i className={classes.abilityName}>{ability.name}</i> :{" "}
-            {abilityModel.warscrollModel && (
+            {/* {abilityModel.warscrollModel && (
                 <>
                     (
                     {abilityModel.warscrollModel
@@ -335,7 +359,7 @@ function AbilityInfo({
                         .join(", ")}
                     )
                 </>
-            )}
+            )} */}
             {ability.description}
             {ability.effects &&
                 join(
@@ -351,21 +375,20 @@ function AbilityInfo({
 }
 
 function UnitInfo({
-    unit,
+    unit: item,
     phase,
     side
 }: {
-    unit: WarscrollItem;
+    unit: ItemWithAbilityInPhase;
     phase: Phase;
     side?: PhaseSide;
 }) {
     const classes = useStyle();
+    const unit = item.item;
     return (
         <div className={classes.unit}>
-            <div className={classes.unitTitle}>
-                {unit.definition.name} {unit.definition.subName}
-            </div>
-            {unit.type === "unit" && (
+            <div className={classes.unitTitle}>{unit.name}</div>
+            {/* {unit.type === "unit" && (
                 <Stats>
                     {phase === Phase.Movement && (
                         <Stat name="Mv" value={unit.definition.move} />
@@ -380,15 +403,15 @@ function UnitInfo({
                         <Stat name="Bv" value={unit.definition.bravery} />
                     )}
                 </Stats>
-            )}
+            )} */}
 
-            {unit.type === "unit" &&
+            {/* {unit.type === "unit" &&
                 phase === Phase.Hero &&
                 unit.definition.magicDescription && (
                     <div>{unit.definition.magicDescription}</div>
-                )}
+                )} */}
 
-            {unit.type === "unit" &&
+            {unit.attacks &&
                 side === PhaseSide.Attack &&
                 unit.attacks
                     .filter(x => isAttackInPhase(x.attack, phase))
@@ -399,61 +422,39 @@ function UnitInfo({
                             count={x.count}
                         />
                     ))}
-            {distinct(
-                unit.abilities.filter(x =>
-                    isAbilityInPhase(x.ability, phase, unit, side)
-                )
-            ).map(x => (
+            {distinct(item.abilities).map(x => (
                 <AbilityInfo
                     key={x.id}
                     phase={phase}
                     abilityModel={x}
                     side={side}
+                    unit={unit}
                 />
             ))}
         </div>
     );
 }
 
-function getPhaseUnits(units: WarscrollItem[], phase: Phase, side?: PhaseSide) {
-    return units
-        .filter(x => isUnitInPhase(x, phase, side))
-        .sort((a, b) => (a.definition.name > b.definition.name ? 1 : -1));
-}
-
-function SubPhaseInfo({
-    armyList,
+function PhaseSideInfo({
+    items,
     phase,
     side
 }: {
-    armyList: ArmyList;
+    items: ItemWithAbilityInPhase[];
     phase: Phase;
     side?: PhaseSide;
 }) {
     const classes = useStyle();
+    if (items.length === 0) return <></>;
     return (
         <section>
-            {(side === PhaseSide.Defense) === true && <h2>Defense</h2>}
-            {side === PhaseSide.Attack && <h2>Attack</h2>}
+            {(side === PhaseSide.Defense) === true && <h2>Enemy turn</h2>}
+            {side === PhaseSide.Attack && <h2>Your turn</h2>}
             <div className={classes.subSectionContent}>
                 <div>
-                    {armyList.abilities
-                        .filter(x =>
-                            isAbilityInPhase(x.ability, phase, undefined, side)
-                        )
-                        .map(x => (
-                            <AbilityInfo
-                                key={x.id}
-                                side={side}
-                                abilityModel={x}
-                                phase={phase}
-                            />
-                        ))}
-                </div>
-                <div>
-                    {getPhaseUnits(armyList.items, phase, side).map(x => (
+                    {items.map(x => (
                         <UnitInfo
-                            key={x.id}
+                            key={x.item.id}
                             unit={x}
                             phase={phase}
                             side={side}
@@ -465,56 +466,68 @@ function SubPhaseInfo({
     );
 }
 
-function hasSomethingIsSubPhase(
-    warscroll: ArmyList,
-    phase: Phase,
-    side?: PhaseSide
-) {
-    return (
-        warscroll.abilities.some(x =>
-            isAbilityInPhase(x.ability, phase, undefined, side)
-        ) ||
-        getPhaseUnits(warscroll.units, phase, side).length > 0 ||
-        (phase === Phase.Hero && warscroll.endlessSpells.length > 0)
-    );
-}
-
-function PhaseInfo({ phase, armyList }: { phase: Phase; armyList: ArmyList }) {
+function PhaseInfo({
+    phase,
+    items
+}: {
+    phase: Phase;
+    items: ItemWithAbilityInPhase[];
+}) {
     const classes = useStyle();
-    if (phase !== Phase.Setup) {
-        if (phase === Phase.Shooting || phase === Phase.Combat) {
-            if (
-                !hasSomethingIsSubPhase(armyList, phase, PhaseSide.Attack) &&
-                !hasSomethingIsSubPhase(armyList, phase, PhaseSide.Defense)
-            )
-                return <></>;
-        } else {
-            if (!hasSomethingIsSubPhase(armyList, phase)) return <></>;
-        }
-    }
+    if (items.length === 0) return <></>;
     return (
         <section className={classes.section}>
             <h1>{getPhaseName(phase)}</h1>
-            {phase === Phase.Setup && <div>{armyList.description}</div>}
-            {(phase === Phase.Shooting || phase === Phase.Combat) && (
-                <>
-                    <SubPhaseInfo
-                        armyList={armyList}
-                        phase={phase}
-                        side={PhaseSide.Attack}
-                    />
-                    <SubPhaseInfo
-                        armyList={armyList}
-                        phase={phase}
-                        side={PhaseSide.Defense}
-                    />
-                </>
-            )}
-            {phase !== Phase.Shooting && phase !== Phase.Combat && (
-                <SubPhaseInfo armyList={armyList} phase={phase} />
-            )}
+            <PhaseSideInfo
+                items={items
+                    .map(x => mapPhaseSide(x, phase, PhaseSide.Attack))
+                    .filter(x => x.abilities.length > 0)}
+                phase={phase}
+                side={PhaseSide.Attack}
+            />
+            <PhaseSideInfo
+                items={items
+                    .map(x => mapPhaseSide(x, phase, PhaseSide.Defense))
+                    .filter(x => x.abilities.length > 0)}
+                phase={phase}
+                side={PhaseSide.Attack}
+            />
         </section>
     );
+    // if (phase !== Phase.Setup) {
+    //     if (phase === Phase.Shooting || phase === Phase.Combat) {
+    //         if (
+    //             !hasSomethingInPhaseSide(armyList, phase, PhaseSide.Attack) &&
+    //             !hasSomethingInPhaseSide(armyList, phase, PhaseSide.Defense)
+    //         )
+    //             return <></>;
+    //     } else {
+    //         if (!hasSomethingInPhaseSide(armyList, phase)) return <></>;
+    //     }
+    // }
+    // return (
+    //     <section className={classes.section}>
+    //         <h1>{getPhaseName(phase)}</h1>
+    //         {phase === Phase.Setup && <div>{armyList.description}</div>}
+    //         {(phase === Phase.Shooting || phase === Phase.Combat) && (
+    //             <>
+    //                 <SubPhaseInfo
+    //                     armyList={armyList}
+    //                     phase={phase}
+    //                     side={PhaseSide.Attack}
+    //                 />
+    //                 <SubPhaseInfo
+    //                     armyList={armyList}
+    //                     phase={phase}
+    //                     side={PhaseSide.Defense}
+    //                 />
+    //             </>
+    //         )}
+    //         {phase !== Phase.Shooting && phase !== Phase.Combat && (
+    //             <SubPhaseInfo armyList={armyList} phase={phase} />
+    //         )}
+    //     </section>
+    // );
 }
 
 function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
@@ -523,29 +536,24 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
         <section className={classes.out}>
             <h1>Abilities without effect</h1>
             {warscroll.abilities
-                .filter(x => !x.ability.effects)
+                .filter(x => !x.effects)
                 .map((x, i) => (
                     <div key={i}>
-                        <strong>{x.ability.name}</strong>{" "}
-                        {x.ability.description}
+                        <strong>{x.name}</strong> {x.description}
                     </div>
                 ))}
             {warscroll.items
                 .reduce(
                     (prev, x) =>
                         prev.concat(
-                            x.abilities
-                                .filter(y => !y.ability.effects)
-                                .map(y => [x, y.ability])
+                            x.abilities.filter(y => !y.effects).map(y => [x, y])
                         ),
                     new Array<[WarscrollItem, Ability]>()
                 )
-                .map((x, i) => (
+                .map(([item, ability], i) => (
                     <div key={i}>
-                        <i>
-                            {x[0].definition.name} {x[0].definition.subName}
-                        </i>{" "}
-                        <strong>{x[1].name}</strong> {x[1].description}
+                        <i>{item.name}</i> <strong>{ability.name}</strong>{" "}
+                        {ability.description}
                     </div>
                 ))}
         </section>
@@ -554,11 +562,14 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
 
 export function CheckList() {
     const { armyListStore } = useStores();
+    const armyList = armyListStore.armyList;
     return (
         <div>
             {phases.map(x => (
                 <PhaseInfo
-                    armyList={armyListStore.armyList}
+                    items={armyList.itemsWithAbilities
+                        .map(y => getWithAbilitiesInPhase(y, x))
+                        .filter(y => y.abilities.length > 0)}
                     phase={x}
                     key={x}
                 />

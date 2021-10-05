@@ -122,6 +122,13 @@ export class UnitWarscroll implements UnitWarscrollInterface {
     @observable.shallow
     battalionUnit: WarscrollBattalionUnit | null = null;
 
+    @computed
+    get name() {
+        if (this.definition.subName)
+            return `${this.definition.name} ${this.definition.subName}`;
+        return this.definition.name;
+    }
+
     @computed get keywords() {
         // if (!this.isAllied) {
         //     const addAllegianceKeyword = this.warscroll.allegiance !== null &&
@@ -388,7 +395,7 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         return attacks;
     }
 
-    @computed get abilities(): AbilityModel[] {
+    @computed get abilities(): Ability[] {
         let abilities = this.definition.abilities || [];
         if (this.definition.commandAbilities)
             abilities = abilities.concat(this.definition.commandAbilities);
@@ -396,35 +403,14 @@ export class UnitWarscroll implements UnitWarscrollInterface {
             abilities = abilities.concat(this.extraAbilities);
         }
 
-        const modelAbilities: AbilityModel[] = abilities.map(x => ({
-            id: x.id,
-            ability: x
-        }));
-
         for (const model of this.models) {
             for (const option of model.options) {
                 if (option.abilities) {
-                    for (const ability of option.abilities) {
-                        const existing = modelAbilities.find(
-                            x => x.id === ability.id
-                        );
-                        if (existing) {
-                            if (!existing.warscrollModel)
-                                existing.warscrollModel = [];
-                            existing.warscrollModel.push(model);
-                        } else {
-                            modelAbilities.push({
-                                ability,
-                                warscrollModel: [model],
-                                id: ability.id
-                            });
-                        }
-                    }
                     abilities = abilities.concat(option.abilities);
                 }
             }
         }
-        return modelAbilities;
+        return abilities;
     }
 
     @computed
@@ -515,13 +501,12 @@ export class WarscrollBattalion implements WarscrollBattalionInterface {
     @observable
     enhancement: AbilityCategory | null = null;
 
-    @computed get abilities(): AbilityModel[] {
-        return (
-            this.definition.abilities.map(ability => ({
-                ability,
-                id: ability.id
-            })) || []
-        );
+    @computed get name() {
+        return this.definition.name;
+    }
+
+    @computed get abilities(): Ability[] {
+        return this.definition.abilities;
     }
 
     constructor(public armyList: ArmyList, public definition: Battalion) {
