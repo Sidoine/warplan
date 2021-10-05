@@ -19,6 +19,7 @@ export const UnitWarscrollAdd = observer(({ role }: { role: Role }) => {
 
     return (
         <AddButton
+            variant="add"
             columns={columns}
             options={warscrollStore.getAvailableUnitsOfRole(role)}
             onChange={handleChange}

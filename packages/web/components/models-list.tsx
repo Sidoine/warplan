@@ -11,19 +11,13 @@ const columns: TableColumn<Model>[] = [{ name: "Name", text: x => x.name }];
 
 function ModelsList({ title }: ModelsListProps) {
     const { ownedStore, unitsStore } = useStores();
-    const onChange = React.useCallback(
-        (model: Model) => {
-            ownedStore.addOwned(model);
-        },
-        [ownedStore]
-    );
-
     return (
         <AddButton
+            variant="add"
             columns={columns}
             placeholder={title}
             options={unitsStore.modelsList}
-            onChange={onChange}
+            onChange={ownedStore.addOwned}
         />
     );
 }

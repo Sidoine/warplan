@@ -32,7 +32,7 @@ export class OwnedStore {
     ownedModels: OwnedModel[] = [];
 
     @action
-    addOwned(model: Model, count = 1) {
+    addOwned = (model: Model, count = 1) => {
         this.ownedModels.push({
             model: model,
             count,
@@ -40,7 +40,7 @@ export class OwnedStore {
             configuration: {}
         });
         this.saveOwned();
-    }
+    };
 
     @action
     removeOwned(ownedModel: OwnedModel) {

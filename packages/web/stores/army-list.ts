@@ -625,7 +625,8 @@ export class ArmyListStore {
     }
 
     @action
-    addUnit = (unit: Unit) => {
+    addUnit = (unit: Unit | null) => {
+        if (unit === null) return;
         const warscroll = this.armyList;
         const warscrollUnit = new UnitWarscroll(warscroll, unit);
         if (

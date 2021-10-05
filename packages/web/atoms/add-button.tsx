@@ -10,8 +10,11 @@ import {
     TableCell,
     TableHead,
     DialogContent,
-    DialogTitle
+    DialogTitle,
+    ButtonGroup,
+    Button
 } from "@material-ui/core";
+import ClearIcon from "@material-ui/icons/Clear";
 
 export interface HasId {
     id: string;
@@ -22,11 +25,22 @@ export interface TableColumn<T> {
     name: string;
 }
 
-export interface AddButtonProps<T extends HasId> {
+interface AddButtonBaseProps<T extends HasId> {
     options: T[];
-    onChange: (t: T) => void;
     placeholder?: string;
     columns: TableColumn<T>[];
+}
+
+export interface AddButtonProps<T extends HasId> extends AddButtonBaseProps<T> {
+    variant: "add";
+    onChange: (t: T) => void;
+}
+
+export interface ClearableButtonProps<T extends HasId>
+    extends AddButtonBaseProps<T> {
+    variant: "clearable";
+    value: T | null;
+    onChange: (t: T | null) => void;
 }
 
 export function OptionRow<T extends HasId>({
@@ -50,12 +64,9 @@ export function OptionRow<T extends HasId>({
     );
 }
 
-function AddButton<T extends HasId>({
-    placeholder,
-    columns,
-    options,
-    onChange
-}: AddButtonProps<T>) {
+function AddButton<T extends HasId>(
+    props: AddButtonProps<T> | ClearableButtonProps<T>
+) {
     const [open, setOpen] = useState(false);
 
     const handleOpen = useCallback((e: React.MouseEvent) => {
@@ -64,6 +75,8 @@ function AddButton<T extends HasId>({
 
     const handleClose = useCallback(() => setOpen(false), []);
 
+    const { onChange, variant, placeholder, columns, options } = props;
+
     const handleClick = useCallback(
         (option: T) => {
             onChange(option);
@@ -71,11 +84,32 @@ function AddButton<T extends HasId>({
         },
         [onChange]
     );
+    const handleClear = useCallback(() => {
+        if (variant === "clearable") onChange((null as unknown) as T);
+    }, [variant, onChange]);
+
     return (
         <>
-            <IconButton color="primary" onClick={handleOpen}>
-                <AddIcon />
-            </IconButton>
+            {props.variant === "add" && (
+                <IconButton color="primary" onClick={handleOpen}>
+                    <AddIcon />
+                </IconButton>
+            )}
+            {props.variant === "clearable" && props.value && (
+                <ButtonGroup variant="outlined">
+                    <Button onClick={handleOpen}>
+                        {columns[0].text(props.value)}
+                    </Button>
+                    <Button onClick={handleClear}>
+                        <ClearIcon />
+                    </Button>
+                </ButtonGroup>
+            )}
+            {props.variant === "clearable" && !props.value && (
+                <Button variant="outlined" onClick={handleOpen}>
+                    {placeholder}
+                </Button>
+            )}
             <Dialog open={open} onClose={handleClose}>
                 {placeholder && <DialogTitle>{placeholder}</DialogTitle>}
                 <DialogContent>

@@ -1,4 +1,4 @@
-import { Attack, DamageTable, Ability } from "../../common/data";
+import { Attack, DamageTable, Ability, AbilityGroup } from "../../common/data";
 import * as React from "react";
 import { value } from "../helpers/react";
 import { makeStyles } from "@material-ui/core";
@@ -279,9 +279,7 @@ export function Attacks({
             <tbody>
                 {attacks.map((x, index) => (
                     <tr key={index}>
-                        <td>
-                            {x.name}
-                        </td>
+                        <td>{x.name}</td>
                         <td>{value(x.range)}&quot; </td>
                         <td>{value(x.attacks)} </td>
                         <td>{value(x.toHit)} </td>
@@ -309,7 +307,9 @@ export function AllAbilities({
     const classes = useWarscrollStyles();
     return (
         <div>
-            {title && <header className={classes.sectionHeader}>{title}</header>}
+            {title && (
+                <header className={classes.sectionHeader}>{title}</header>
+            )}
             {description && <div>{description}</div>}
             {abilities.map((x, index) => (
                 <div key={index}>
@@ -322,6 +322,24 @@ export function AllAbilities({
                     )}
                     <div>{x.description}</div>
                 </div>
+            ))}
+        </div>
+    );
+}
+
+export function AllAbilityGroups({
+    abilityGroups
+}: {
+    abilityGroups: AbilityGroup[];
+}) {
+    return (
+        <div>
+            {abilityGroups.map(x => (
+                <AllAbilities
+                    key={x.id}
+                    title={x.name}
+                    abilities={x.abilities}
+                />
             ))}
         </div>
     );

@@ -13,10 +13,7 @@ const columns: TableColumn<Battalion>[] = [
     { name: "Name", text: x => x.name },
     {
         name: "Description",
-        text: b =>
-            b.units
-                .map(y => y.name)
-                .join(" ― ")
+        text: b => b.units.map(y => y.name).join(" ― ")
     },
     {
         name: "Abilities",
@@ -35,6 +32,7 @@ function BattalionsList({ title }: BattalionsListProps) {
     );
     return (
         <AddButton
+            variant="add"
             placeholder={title}
             columns={columns}
             options={items}

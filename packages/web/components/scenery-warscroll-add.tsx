@@ -24,6 +24,7 @@ function SceneryWarscrollAdd({ title, role }: SceneriesListProps) {
 
     return (
         <AddButton
+            variant="add"
             columns={columns}
             placeholder={title}
             options={uiStore.warscrolls.filter(x => x.roles.includes(role))}

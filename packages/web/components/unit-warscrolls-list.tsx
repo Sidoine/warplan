@@ -183,6 +183,7 @@ const RenderModel = observer(
                 )}
                 {model.availableOptions.length > 0 && (
                     <AddButton
+                        variant="add"
                         columns={modelColumns}
                         options={model.availableOptions}
                         onChange={handleAddModelOption(model)}
@@ -212,6 +213,7 @@ const ModelOptions = observer(({ unit }: { unit: UnitWarscroll }) => {
             ))}
             {!unit.definition.single && unit.availableOptions.length > 0 && (
                 <AddButton
+                    variant="add"
                     columns={modelColumns}
                     options={unit.availableOptions}
                     onChange={handleAddModel(unit)}

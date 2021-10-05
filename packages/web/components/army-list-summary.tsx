@@ -11,28 +11,29 @@ import {
     CardContent,
     CardActions,
     Input,
-    Button,
-    makeStyles
+    Button
 } from "@material-ui/core";
 import WarningIcon from "@material-ui/icons/Warning";
 import { Warning } from "../atoms/warning";
 import { useStores } from "../stores";
 import React, { ChangeEvent, useCallback } from "react";
-
-const useStyles = makeStyles(theme => ({
-    allegianceIcon: {
-        backgroundColor: theme.palette.grey[500],
-        height: "1em",
-        borderRadius: "1em",
-        padding: theme.spacing(0.1),
-        marginRight: theme.spacing(1),
-        marginLeft: theme.spacing(0.5)
-    }
-}));
+import AddButton, { TableColumn } from "../atoms/add-button";
+import { AllAbilityGroups } from "../atoms/warscroll-components";
 
 function getName(x: { name: string }) {
     return x.name;
 }
+
+const allegianceColumns: TableColumn<Faction>[] = [
+    { name: "Name", text: (x: Faction) => x.name },
+    {
+        name: "Abilities",
+        text: x =>
+            x.abilityGroups && (
+                <AllAbilityGroups abilityGroups={x.abilityGroups} />
+            )
+    }
+];
 
 export const ArmyListSummary = observer(() => {
     const { armyListStore: warscrollStore, unitsStore, uiStore } = useStores();
@@ -58,7 +59,6 @@ export const ArmyListSummary = observer(() => {
         },
         [warscrollStore]
     );
-    const classes = useStyles();
 
     return (
         <Card>
@@ -77,21 +77,8 @@ export const ArmyListSummary = observer(() => {
                         <Grid item>
                             <FormControl>
                                 <InputLabel>Allegiance</InputLabel>
-                                <DropdownObjects
-                                    getText={x => (
-                                        <>
-                                            {x.icon && (
-                                                <img
-                                                    src={x.icon}
-                                                    className={
-                                                        classes.allegianceIcon
-                                                    }
-                                                    alt={x.name}
-                                                />
-                                            )}{" "}
-                                            {x.name}
-                                        </>
-                                    )}
+                                <DropdownObjects<Faction>
+                                    getText={getName}
                                     options={allegianceOptions}
                                     value={warscroll.allegiance}
                                     onChange={store.setAllegiance}
@@ -100,16 +87,14 @@ export const ArmyListSummary = observer(() => {
                         </Grid>
                         {warscrollStore.armyTypes && (
                             <Grid item>
-                                <FormControl>
-                                    <InputLabel>Army Type</InputLabel>
-                                    <DropdownObjects<Faction>
-                                        getText={getName}
-                                        options={warscrollStore.armyTypes}
-                                        value={warscroll.armyType}
-                                        onChange={warscrollStore.setArmyType}
-                                        clearable
-                                    />
-                                </FormControl>
+                                <AddButton<Faction>
+                                    variant="clearable"
+                                    columns={allegianceColumns}
+                                    options={warscrollStore.armyTypes}
+                                    value={warscroll.armyType}
+                                    onChange={warscrollStore.setArmyType}
+                                    placeholder="Army Type"
+                                />
                             </Grid>
                         )}
                         {warscrollStore.subFactions && (
@@ -135,16 +120,14 @@ export const ArmyListSummary = observer(() => {
                                             label={`${warscroll.armyOption.requiredCommandTrait.ability.name} must be the command trait of your general`}
                                         />
                                     )} */}
-                                <FormControl>
-                                    <InputLabel>Sub-faction</InputLabel>
-                                    <DropdownObjects<Faction>
-                                        getText={getName}
-                                        options={warscrollStore.subFactions}
-                                        value={warscroll.subFaction}
-                                        onChange={warscrollStore.setSubFaction}
-                                        clearable
-                                    />
-                                </FormControl>
+                                <AddButton<Faction>
+                                    variant="clearable"
+                                    columns={allegianceColumns}
+                                    options={warscrollStore.subFactions}
+                                    value={warscroll.subFaction}
+                                    onChange={warscrollStore.setSubFaction}
+                                    placeholder="Sub Faction"
+                                />
                             </Grid>
                         )}
                         <Grid item>
