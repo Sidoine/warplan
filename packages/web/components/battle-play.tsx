@@ -20,7 +20,8 @@ import {
     BottomNavigation,
     makeStyles,
     BottomNavigationAction,
-    Modal
+    Modal,
+    Fab
 } from "@material-ui/core";
 import { Ability, Attack, Value, Phase, PhaseSide } from "../../common/data";
 import {
@@ -46,6 +47,11 @@ const useStyles = makeStyles(x => ({
     },
     root: {
         marginBottom: x.spacing(6)
+    },
+    remaining: {
+        position: "fixed",
+        bottom: x.spacing(2),
+        right: x.spacing(2)
     }
 }));
 
@@ -221,7 +227,7 @@ const PhasePage = observer(() => {
         },
         get units() {
             return (
-                battleStore.player?.warscroll.units.filter(x =>
+                battleStore.player?.armyList.units.filter(x =>
                     isUnitInPhase(x, battleStore.phase, battleStore.side)
                 ) || []
             );
@@ -268,8 +274,8 @@ export const BattlePlay = observer(() => {
                 <BottomNavigationAction
                     label={
                         battleStore.side === PhaseSide.Attack
-                            ? "Attack"
-                            : "Defense"
+                            ? "Your turn"
+                            : "Enemy turn"
                     }
                     icon={
                         battleStore.side === PhaseSide.Attack ? (
@@ -281,6 +287,9 @@ export const BattlePlay = observer(() => {
                     onClick={battleStore.toggleSide}
                 />
             </BottomNavigation>
+            <Fab variant="extended" className={classes.remaining}>
+                {getPhaseName(battleStore.phase)}
+            </Fab>
         </div>
     );
 });

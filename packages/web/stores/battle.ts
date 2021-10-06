@@ -8,14 +8,15 @@ import {
     Attack,
     AbilityCategory,
     PhaseSide,
-    ItemWithAbilities
+    ItemWithAbilities,
+    SubPhase
 } from "../../common/data";
 import { DataStore } from "./data";
-import { ArmyList } from "./army-list";
+import { ArmyList, ArmyListStore } from "./army-list";
 
 export interface Player {
     name: string;
-    warscroll: ArmyList;
+    armyList: ArmyList;
 }
 
 export const phases = [
@@ -216,37 +217,68 @@ export function isUnitInPhase(
     return false;
 }
 
+interface BattleSerialized {
+    phase: Phase;
+    side: PhaseSide;
+    subPhase: SubPhase;
+    armyListId?: string;
+}
+
 export class BattleStore {
     @observable turn = 0;
 
     @observable phase: Phase = 0;
     @observable side: PhaseSide = PhaseSide.None;
+    @observable subPhase: SubPhase = SubPhase.Before;
 
     @observable player: Player | null = null;
 
-    constructor(private unitsStore: DataStore) {
+    constructor(
+        private unitsStore: DataStore,
+        private armyListStore: ArmyListStore
+    ) {
         makeObservable(this);
+        const serialized = localStorage.getItem("battle");
+        if (serialized) {
+            this.deserialize(JSON.parse(serialized) as BattleSerialized);
+        }
+    }
+
+    private serialize(): BattleSerialized {
+        return {
+            phase: this.phase,
+            side: this.side,
+            subPhase: this.subPhase,
+            armyListId: this.player?.armyList.id
+        };
+    }
+
+    private save() {
+        localStorage.setItem("battle", JSON.stringify(this.serialize()));
+    }
+
+    @action
+    private deserialize(serialized: BattleSerialized) {
+        if (serialized.armyListId) {
+            this.phase = serialized.phase;
+            this.side = serialized.side;
+            this.subPhase = serialized.subPhase;
+            const armyList = this.armyListStore.armyList;
+            this.player = {
+                name: armyList.name,
+                armyList
+            };
+        }
     }
 
     @computed get abilities() {
         let result: Ability[] = [];
         if (!this.player) return result;
-        const w = this.player.warscroll;
+        const w = this.player.armyList;
         for (const group of this.unitsStore.baseAbilities) {
             result = result.concat(group.abilities);
         }
-        if (w.armyType) {
-            if (w.armyType.abilityGroups) {
-                for (const group of w.armyType.abilityGroups) {
-                    result = result.concat(group.abilities);
-                }
-            }
-        }
-        if (w.allegiance?.abilityGroups) {
-            for (const group of w.allegiance.abilityGroups) {
-                result = result.concat(group.abilities);
-            }
-        }
+        result = result.concat(w.abilities);
         return result;
     }
 
@@ -254,10 +286,11 @@ export class BattleStore {
     start(warscroll: ArmyList) {
         this.player = {
             name: "Player",
-            warscroll: warscroll
+            armyList: warscroll
         };
         this.phase = Phase.Setup;
         this.side = PhaseSide.Attack;
+        this.save();
     }
 
     @action
@@ -266,6 +299,7 @@ export class BattleStore {
             this.side === PhaseSide.Attack
                 ? PhaseSide.Defense
                 : PhaseSide.Attack;
+        this.save();
     };
 
     @computed
@@ -292,11 +326,13 @@ export class BattleStore {
     @action
     next = () => {
         this.phase = this.nextPhase;
+        this.save();
     };
 
     @action
     previous = () => {
         this.phase = this.previousPhase;
+        this.save();
     };
 
     @computed
