@@ -65,7 +65,7 @@ load();
 function writeFactions(db: ImportedDataStore) {
     let result = `${tab}factions: Record<string, Faction> = {
 `;
-    for (const faction of Object.values(db.factions)) {
+    for (const faction of Object.values(db.factions).sort(compareId)) {
         result += `       ${faction.id}: {
             id: "${faction.id}",
             category: KeywordCategory.${toPascalCase(faction.category)},
@@ -79,10 +79,14 @@ function writeFactions(db: ImportedDataStore) {
     return result;
 }
 
+function compareId(a: { id: string }, b: { id: string }) {
+    return a.id.localeCompare(b.id);
+}
+
 function writeModels(db: ImportedDataStore) {
     let result = `   models = {
 `;
-    for (const model of Object.values(db.models)) {
+    for (const model of Object.values(db.models).sort(compareId)) {
         result += `       ${model.id}: {
             id: "${escapeString(model.id)}",
             name: "${escapeString(model.name)}",
@@ -97,7 +101,7 @@ function writeModels(db: ImportedDataStore) {
 function writeOptions(db: ImportedDataStore) {
     let result = `   options = {
 `;
-    for (const option of Object.values(db.options)) {
+    for (const option of Object.values(db.options).sort(compareId)) {
         const id = option.id;
         result += `
         ${id}: {
@@ -106,11 +110,13 @@ function writeOptions(db: ImportedDataStore) {
 `;
         if (option.attacks) {
             result += `            attacks: [${option.attacks
+                .sort(compareId)
                 .map(x => `this.attacks.${x.id}`)
                 .join(", ")}],\n`;
         }
         if (option.abilities) {
             result += `            abilities: [${option.abilities
+                .sort(compareId)
                 .map(x => `this.abilities.${x.id}`)
                 .join(", ")}],\n`;
         }
@@ -143,7 +149,7 @@ function writeOptions(db: ImportedDataStore) {
 function writeAbilities(db: ImportedDataStore) {
     let result = `   abilities = {
 `;
-    for (const ability of Object.values(db.abilities)) {
+    for (const ability of Object.values(db.abilities).sort(compareId)) {
         result += `
         ${ability.id}: {
             id: "${ability.id}",
@@ -171,7 +177,7 @@ function writeAbilities(db: ImportedDataStore) {
 function writeAttacks(db: ImportedDataStore) {
     let result = `   attacks = {
 `;
-    for (const weapon of Object.values(db.attacks)) {
+    for (const weapon of Object.values(db.attacks).sort(compareId)) {
         result += `
         ${weapon.id}: {
             id: "${weapon.id}",
@@ -194,7 +200,7 @@ function writeAttacks(db: ImportedDataStore) {
 function writeDamageTables(db: ImportedDataStore) {
     let result = `   damageTables = {
 `;
-    for (const damageTable of Object.values(db.damageTables)) {
+    for (const damageTable of Object.values(db.damageTables).sort(compareId)) {
         const id = damageTable.id;
         result += `
     ${id}: {
@@ -226,7 +232,7 @@ function writeValue(value: Value, data: ImportedDataStore) {
 function writeUnits(db: ImportedDataStore) {
     let result = `   units = {
 `;
-    for (const unit of Object.values(db.units)) {
+    for (const unit of Object.values(db.units).sort(compareId)) {
         const id = unit.id;
         if (!id) continue;
         result += `       ${id}: {
@@ -315,7 +321,9 @@ ${
 function writeBattalionAbilities(db: ImportedDataStore) {
     let result = `   battalionAbilities = {
 `;
-    for (const ability of Object.values(db.battalionAbilities)) {
+    for (const ability of Object.values(db.battalionAbilities).sort(
+        compareId
+    )) {
         const id = ability.id;
         if (!id) continue;
         result += `       ${id}: {
@@ -336,7 +344,9 @@ function writeBattalionAbilities(db: ImportedDataStore) {
 function writeBattalionUnits(db: ImportedDataStore) {
     let result = `   battalionUnits = {
 `;
-    for (const battalionUnit of Object.values(db.battalionUnits)) {
+    for (const battalionUnit of Object.values(db.battalionUnits).sort(
+        compareId
+    )) {
         const id = battalionUnit.id;
         if (!id) continue;
         result += `       ${id}: {
@@ -378,7 +388,7 @@ function writeBattalionUnits(db: ImportedDataStore) {
 function writeBattalions(db: ImportedDataStore) {
     let result = `   battalions = {
 `;
-    for (const battalion of Object.values(db.battalions)) {
+    for (const battalion of Object.values(db.battalions).sort(compareId)) {
         const id = battalion.id;
         result += `       ${id}: {
             id: "${id}",
@@ -404,13 +414,16 @@ function writeBattalions(db: ImportedDataStore) {
 function writeBattalionGroups(db: ImportedDataStore) {
     let result = `   battalionGroups = {
 `;
-    for (const battalionGroup of Object.values(db.battalionGroups)) {
+    for (const battalionGroup of Object.values(db.battalionGroups).sort(
+        compareId
+    )) {
         const id = battalionGroup.id;
         result += `       ${id}: {
             id: "${id}",
             name: ${escapeQuotedString(battalionGroup.name)},
             description: ${escapeQuotedString(battalionGroup.description)},
             battalions: [${battalionGroup.battalions
+                .sort(compareId)
                 .map(x => `this.battalions.${x.id}`)
                 .join(", ")}],
 `;
@@ -427,9 +440,9 @@ function writeBattalionGroups(db: ImportedDataStore) {
 }
 
 function writeGenericBattalionGroups(db: ImportedDataStore) {
-    return `   genericBattalionGroups = [${db.genericBattalionGroups.map(
-        x => `this.battalionGroups.${x.id}`
-    )}]\n`;
+    return `   genericBattalionGroups = [${db.genericBattalionGroups
+        .sort(compareId)
+        .map(x => `this.battalionGroups.${x.id}`)}]\n`;
 }
 
 function ability(ability?: Ability) {
@@ -438,12 +451,15 @@ function ability(ability?: Ability) {
 }
 
 function abilities(abilities: Ability[]) {
-    return `[${abilities.map(ability).join(", ")}]`;
+    return `[${abilities
+        .sort(compareId)
+        .map(ability)
+        .join(", ")}]`;
 }
 
 function writeRealms(db: ImportedDataStore) {
     let result = `${tab}realms = {\n`;
-    for (const realm of Object.values(db.realms)) {
+    for (const realm of Object.values(db.realms).sort(compareId)) {
         result += `${tab}${tab}${realm.id}: {
             id: "${realm.id}",
             name: ${escapeQuotedString(realm.name)},
@@ -459,7 +475,7 @@ function writeRealms(db: ImportedDataStore) {
 
 function writeAbilityGroups(db: ImportedDataStore) {
     let result = `${tab}abilityGroups = {\n`;
-    for (const group of Object.values(db.abilityGroups)) {
+    for (const group of Object.values(db.abilityGroups).sort(compareId)) {
         result += `${tab}${tab}${group.id}: {
             id: "${group.id}",
             name: ${escapeQuotedString(group.name)},
@@ -491,15 +507,15 @@ function writeAbilityGroups(db: ImportedDataStore) {
 }
 
 function writeGenericAbilityGroups(db: ImportedDataStore) {
-    return `${tab}genericAbilityGroups = [${db.genericAbilityGroups.map(
-        x => `this.abilityGroups.${x.id}`
-    )}];
+    return `${tab}genericAbilityGroups = [${db.genericAbilityGroups
+        .sort(compareId)
+        .map(x => `this.abilityGroups.${x.id}`)}];
 `;
 }
 
 function writeConstructor(db: ImportedDataStore) {
     let result = `${tab}constructor() {\n`;
-    for (const faction of Object.values(db.factions)) {
+    for (const faction of Object.values(db.factions).sort(compareId)) {
         if (faction.parent) {
             result += `${tab}this.factions.${faction.id}.parent = this.factions.${faction.parent.id};
 ${tab}this.factions.${faction.parent.id}.children.push(this.factions.${faction.id});
@@ -509,6 +525,7 @@ ${tab}this.factions.${faction.parent.id}.children.push(this.factions.${faction.i
             result += `${tab}this.factions.${
                 faction.id
             }.abilityGroups = [${faction.abilityGroups
+                .sort(compareId)
                 .map(x => `this.abilityGroups.${x.id}`)
                 .join(", ")}];
 `;
@@ -517,6 +534,7 @@ ${tab}this.factions.${faction.parent.id}.children.push(this.factions.${faction.i
             result += `${tab}this.factions.${
                 faction.id
             }.battalionGroups = [${faction.battalionGroups
+                .sort(compareId)
                 .map(x => `this.battalionGroups.${x.id}`)
                 .join(", ")}];
 `;
