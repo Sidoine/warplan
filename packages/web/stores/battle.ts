@@ -1,5 +1,5 @@
 import { observable, action, computed, makeObservable } from "mobx";
-import { WarscrollItem } from "./warscroll";
+import { UnitWarscroll, WarscrollItem } from "./warscroll";
 import {
     Phase,
     AbilityEffect,
@@ -233,8 +233,12 @@ export class BattleStore {
 
     @observable player: Player | null = null;
 
+    @observable checkedArmyAbilityIds: string[] = [];
+    @observable checkedAbilities = new Map<string, string[]>();
+    @observable skippedUnits = new Map<string, boolean>();
+
     constructor(
-        private unitsStore: DataStore,
+        public dataStore: DataStore,
         private armyListStore: ArmyListStore
     ) {
         makeObservable(this);
@@ -271,15 +275,45 @@ export class BattleStore {
         }
     }
 
-    @computed get abilities() {
-        let result: Ability[] = [];
-        if (!this.player) return result;
-        const w = this.player.armyList;
-        for (const group of this.unitsStore.baseAbilities) {
-            result = result.concat(group.abilities);
-        }
-        result = result.concat(w.abilities);
-        return result;
+    @computed
+    get units() {
+        return (
+            this.player?.armyList.units.filter(x =>
+                isUnitInPhase(x, this.phase, this.side)
+            ) || []
+        );
+    }
+
+    @computed private get allArmyAbilities() {
+        if (!this.player) return [];
+        // const w = this.player.armyList;
+        // for (const group of this.dataStore.baseAbilities) {
+        //     result = result.concat(group.abilities);
+        // }
+        // result = result.concat(w.abilities);
+        // return result;
+        return this.player.armyList.abilities;
+    }
+
+    @computed get armyAbilities() {
+        return this.allArmyAbilities.filter(x =>
+            isAbilityInPhase(x, this.phase, this.armyListStore.armyList)
+        );
+    }
+
+    @computed get uncheckedArmyAbilities() {
+        return this.armyAbilities.filter(x => !this.isArmyAbilityChecked(x));
+    }
+    @computed get checkedArmyAbilities() {
+        return this.armyAbilities.filter(x => this.isArmyAbilityChecked(x));
+    }
+
+    @computed get numberOfUncheckedUnitsOrArmyAbilities() {
+        return (
+            this.armyAbilities.length -
+            this.checkedArmyAbilities.length +
+            this.units.reduce((p, c) => p + (this.isUnitHidden(c) ? 0 : 1), 0)
+        );
     }
 
     @action
@@ -290,6 +324,7 @@ export class BattleStore {
         };
         this.phase = Phase.Setup;
         this.side = PhaseSide.Attack;
+        this.checkedAbilities.clear();
         this.save();
     }
 
@@ -323,17 +358,74 @@ export class BattleStore {
         return Phase.Setup;
     }
 
-    @action
     next = () => {
-        this.phase = this.nextPhase;
-        this.save();
+        this.goToPhase(this.nextPhase);
     };
 
-    @action
     previous = () => {
-        this.phase = this.previousPhase;
-        this.save();
+        this.goToPhase(this.previousPhase);
     };
+
+    @action private goToPhase(phase: Phase) {
+        this.checkedAbilities.clear();
+        this.skippedUnits.clear();
+        this.checkedArmyAbilityIds.splice(0);
+        this.phase = phase;
+        this.save();
+    }
+
+    @action
+    toggleArmyAbility(ability: Ability) {
+        const checked = this.checkedArmyAbilityIds;
+        const index = checked.indexOf(ability.id);
+        if (index < 0) checked.push(ability.id);
+        else checked.splice(index, 1);
+    }
+
+    @action
+    toggleUnitAbility(unit: UnitWarscroll, ability: Ability) {
+        const checked = this.checkedAbilities.get(unit.id) || [];
+        const index = checked.indexOf(ability.id);
+        if (index < 0) checked.push(ability.id);
+        else checked.splice(index, 1);
+        this.checkedAbilities.set(unit.id, checked);
+    }
+
+    @action
+    toggleSkippedUnit(unit: UnitWarscroll) {
+        this.skippedUnits.set(
+            unit.id,
+            !(this.skippedUnits.get(unit.id) || false)
+        );
+    }
+
+    private isUnitChecked(unit: UnitWarscroll) {
+        const unitAbilities = this.checkedAbilities.get(unit.id);
+        if (!unitAbilities) return false;
+        return unit.abilities.every(
+            x =>
+                unitAbilities.includes(x.id) ||
+                !isAbilityInPhase(x, this.phase, unit, this.side)
+        );
+    }
+
+    isUnitSkipped(unit: UnitWarscroll) {
+        return this.skippedUnits.get(unit.id) || false;
+    }
+
+    isUnitHidden(unit: UnitWarscroll) {
+        return this.isUnitSkipped(unit) || this.isUnitChecked(unit);
+    }
+
+    isArmyAbilityChecked(ability: Ability) {
+        return this.checkedArmyAbilityIds.includes(ability.id);
+    }
+
+    isUnitAbilityChecked(unit: UnitWarscroll, ability: Ability) {
+        return (
+            this.checkedAbilities.get(unit.id)?.includes(ability.id) ?? false
+        );
+    }
 
     @computed
     get previousPhase() {

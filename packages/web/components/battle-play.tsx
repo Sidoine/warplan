@@ -8,7 +8,6 @@ import {
     List,
     Paper,
     Checkbox,
-    ListItemSecondaryAction,
     Card,
     CardHeader,
     Grid,
@@ -21,12 +20,12 @@ import {
     makeStyles,
     BottomNavigationAction,
     Modal,
-    Fab
+    Fab,
+    ListItemSecondaryAction
 } from "@material-ui/core";
 import { Ability, Attack, Value, Phase, PhaseSide } from "../../common/data";
 import {
     isAbilityInPhase,
-    isUnitInPhase,
     isAttackInPhase,
     getPhaseName
 } from "../stores/battle";
@@ -68,24 +67,33 @@ export const BattleStart = observer(() => {
     );
 });
 
-function AbilityButton({ ability }: { ability: Ability }) {
-    const [used, setUsed] = useState(false);
+const AbilityButton = observer(function AbilityButton({
+    ability,
+    wu
+}: {
+    ability: Ability;
+    wu?: UnitWarscroll;
+}) {
+    const { battleStore } = useStores();
+    const handleClick = useCallback(() => {
+        if (wu) battleStore.toggleUnitAbility(wu, ability);
+        else battleStore.toggleArmyAbility(ability);
+    }, [ability, battleStore, wu]);
+    const used = wu
+        ? battleStore.isUnitAbilityChecked(wu, ability)
+        : battleStore.isArmyAbilityChecked(ability);
     return (
-        <ListItem button onClick={() => setUsed(!used)}>
+        <ListItem button onClick={handleClick}>
             <ListItemText
                 primary={ability.name}
                 secondary={!used && ability.description}
             ></ListItemText>
             <ListItemSecondaryAction>
-                <Checkbox
-                    edge="start"
-                    checked={used}
-                    onClick={() => setUsed(!used)}
-                />
+                <Checkbox edge="start" checked={used} onClick={handleClick} />
             </ListItemSecondaryAction>
         </ListItem>
     );
-}
+});
 
 function Stats(props: {
     name?: string;
@@ -135,7 +143,6 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
     const unit = wu.definition;
     const { battleStore } = useStores();
     const [anchorEl, setAnchorEl] = useState<Element | null>(null);
-    const [used, setUsed] = useState(false);
 
     const store = useLocalObservable(() => ({
         get abilities() {
@@ -151,8 +158,8 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
     }));
 
     const toggleUsed = useCallback(() => {
-        setUsed(x => !x);
-    }, []);
+        battleStore.toggleSkippedUnit(wu);
+    }, [battleStore, wu]);
 
     const handleClose = useCallback(() => {
         setAnchorEl(null);
@@ -174,12 +181,15 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
                         <IconButton onClick={handleShowKeywords}>
                             <VisibilityIcon />
                         </IconButton>{" "}
-                        <Checkbox checked={used} onClick={toggleUsed} />
+                        <Checkbox
+                            checked={battleStore.isUnitSkipped(wu)}
+                            onClick={toggleUsed}
+                        />
                     </>
                 }
             />
             <CardContent>
-                {!used && (
+                {!battleStore.isUnitHidden(wu) && (
                     <List>
                         {(battleStore.phase === Phase.Movement ||
                             battleStore.side === PhaseSide.Defense ||
@@ -208,7 +218,7 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
                                 />
                             ))}
                         {store.abilities.map(x => (
-                            <AbilityButton key={x.id} ability={x} />
+                            <AbilityButton key={x.id} ability={x} wu={wu} />
                         ))}
                     </List>
                 )}
@@ -218,37 +228,46 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
 });
 
 const PhasePage = observer(() => {
-    const { battleStore, armyListStore } = useStores();
-    const store = useLocalObservable(() => ({
-        get abilities() {
-            return battleStore.abilities.filter(x =>
-                isAbilityInPhase(x, battleStore.phase, armyListStore.armyList)
-            );
-        },
-        get units() {
-            return (
-                battleStore.player?.armyList.units.filter(x =>
-                    isUnitInPhase(x, battleStore.phase, battleStore.side)
-                ) || []
-            );
+    const { battleStore } = useStores();
+    const compareUnits = (a: UnitWarscroll, b: UnitWarscroll) => {
+        const aHidden = battleStore.isUnitHidden(a);
+        const bHidden = battleStore.isUnitHidden(b);
+        if (aHidden && !bHidden) {
+            return 1;
+        } else if (!aHidden && bHidden) {
+            return -1;
         }
-    }));
+        return a.name.localeCompare(b.name);
+    };
     return (
         <Grid container direction="column" spacing={2}>
-            <Grid item>
-                <Paper>
-                    <List>
-                        {store.abilities.map(x => (
-                            <AbilityButton key={x.id} ability={x} />
-                        ))}
-                    </List>
-                </Paper>
-            </Grid>
-            {store.units.map(x => (
+            {battleStore.uncheckedArmyAbilities.length > 0 && (
+                <Grid item>
+                    <Paper>
+                        <List>
+                            {battleStore.uncheckedArmyAbilities.map(x => (
+                                <AbilityButton key={x.id} ability={x} />
+                            ))}
+                        </List>
+                    </Paper>
+                </Grid>
+            )}
+            {battleStore.units.sort(compareUnits).map(x => (
                 <Grid key={x.id} item>
                     <UnitCard wu={x} />
                 </Grid>
             ))}
+            {battleStore.checkedArmyAbilities.length > 0 && (
+                <Grid item>
+                    <Paper>
+                        <List>
+                            {battleStore.checkedArmyAbilities.map(x => (
+                                <AbilityButton key={x.id} ability={x} />
+                            ))}
+                        </List>
+                    </Paper>
+                </Grid>
+            )}
         </Grid>
     );
 });
@@ -287,7 +306,17 @@ export const BattlePlay = observer(() => {
                     onClick={battleStore.toggleSide}
                 />
             </BottomNavigation>
-            <Fab variant="extended" className={classes.remaining}>
+            <Fab
+                variant="extended"
+                color={
+                    battleStore.numberOfUncheckedUnitsOrArmyAbilities === 0
+                        ? "primary"
+                        : "default"
+                }
+                className={classes.remaining}
+                onClick={battleStore.next}
+            >
+                {battleStore.numberOfUncheckedUnitsOrArmyAbilities}{" "}
                 {getPhaseName(battleStore.phase)}
             </Fab>
         </div>
