@@ -55,6 +55,26 @@ export function getPhaseName(phase: Phase) {
     return "Battle";
 }
 
+export function getPhaseSideName(side: PhaseSide) {
+    switch (side) {
+        case PhaseSide.Attack:
+            return "Your turn";
+        case PhaseSide.Defense:
+            return "Enemy's turn";
+    }
+    return "";
+}
+
+export function getSubPhaseName(subPhase: SubPhase) {
+    switch (subPhase) {
+        case SubPhase.After:
+            return "end of ";
+        case SubPhase.Before:
+            return "start of ";
+    }
+    return "";
+}
+
 export function getEffectPhases(effect: AbilityEffect) {
     let phase = 0;
     if (effect.defenseAura) {
@@ -88,20 +108,22 @@ export function getAbilityPhases(ability: Ability) {
     return phase;
 }
 export function isEffectInPhase(
-    effect: AbilityEffect,
-    phase: Phase,
     unit: ItemWithAbilities,
-    side?: PhaseSide
+    effect: AbilityEffect,
+    side: PhaseSide,
+    phase: Phase,
+    subPhase?: SubPhase
 ) {
     if (
-        effect.phase !== undefined &&
+        (effect.side === undefined || effect.side === side) &&
         effect.phase === phase &&
-        side !== PhaseSide.Defense
-    )
+        (subPhase === undefined || effect.subPhase === subPhase)
+    ) {
         return true;
+    }
 
-    if (phase & Phase.Combat || phase & Phase.Shooting) {
-        if (effect.defenseAura && side === PhaseSide.Defense) {
+    if (phase === Phase.Combat || phase === Phase.Shooting) {
+        if (effect.defenseAura) {
             if (effect.defenseAura.phase !== undefined)
                 return effect.defenseAura.phase === phase;
             return true;
@@ -109,7 +131,7 @@ export function isEffectInPhase(
         if (
             effect.attackAura &&
             effect.targetType !== TargetType.Enemy &&
-            side === PhaseSide.Attack
+            (side === PhaseSide.Attack || phase === Phase.Combat)
         ) {
             if (
                 effect.attackAura.phase !== undefined &&
@@ -128,19 +150,11 @@ export function isEffectInPhase(
             )
                 return true;
         }
-        if (
-            effect.defenseAura &&
-            effect.targetType === TargetType.Enemy &&
-            side === PhaseSide.Attack
-        ) {
+        if (effect.defenseAura && effect.targetType === TargetType.Enemy) {
             if (!unit) return false;
             return true;
         }
-        if (
-            effect.attackAura &&
-            effect.targetType === TargetType.Enemy &&
-            side === PhaseSide.Defense
-        ) {
+        if (effect.attackAura && effect.targetType === TargetType.Enemy) {
             if (!unit) return false;
             return true;
         }
@@ -152,46 +166,69 @@ export function isEffectInPhase(
         return false;
     }
     if (phase & Phase.Battleshock && effect.battleShockAura) return true;
-    if (phase & Phase.Movement && effect.movementAura) return true;
-    if (phase & Phase.Charge && effect.chargeAura) return true;
-    if (phase & Phase.Hero && effect.spellAura) return true;
-    if (phase & Phase.Hero && effect.prayerAura) return true;
+    if (
+        phase & Phase.Movement &&
+        side === PhaseSide.Attack &&
+        effect.movementAura
+    )
+        return true;
+    if (phase & Phase.Charge && side === PhaseSide.Attack && effect.chargeAura)
+        return true;
+    if (phase & Phase.Hero && side === PhaseSide.Attack && effect.spellAura)
+        return true;
+    if (phase & Phase.Hero && side === PhaseSide.Attack && effect.prayerAura)
+        return true;
     if (phase & Phase.Any && effect.commandAura) return true;
 
     return false;
 }
 
 export function isAbilityInPhase(
-    ability: Ability,
-    phase: Phase,
     unit: ItemWithAbilities,
-    side?: PhaseSide
+    ability: Ability,
+    side: PhaseSide,
+    phase: Phase,
+    subPhase?: SubPhase
 ) {
     if (
         (ability.category === AbilityCategory.Spell ||
             ability.category === AbilityCategory.Prayer) &&
-        phase === Phase.Hero
+        (phase === Phase.Hero || phase === undefined) &&
+        side === PhaseSide.Attack &&
+        (subPhase === SubPhase.While || subPhase === undefined)
     )
         return true;
 
     if (ability.effects) {
         for (const effect of ability.effects) {
-            if (isEffectInPhase(effect, phase, unit, side)) return true;
+            if (isEffectInPhase(unit, effect, side, phase, subPhase))
+                return true;
         }
     }
     return false;
 }
 
-export function isAttackInPhase(attack: Attack, phase: Phase) {
-    if (phase === Phase.Shooting && !attack.melee) return true;
-    if (phase === Phase.Combat && attack.melee) return true;
+export function isAttackInPhase(
+    attack: Attack,
+    phase: Phase,
+    subPhase: SubPhase
+) {
+    if (
+        phase === Phase.Shooting &&
+        subPhase === SubPhase.While &&
+        !attack.melee
+    )
+        return true;
+    if (phase === Phase.Combat && subPhase === SubPhase.While && attack.melee)
+        return true;
     return false;
 }
 
 export function isUnitInPhase(
     unit: WarscrollItem,
+    side: PhaseSide,
     phase: Phase,
-    side?: PhaseSide
+    subPhase: SubPhase
 ) {
     if (
         (phase === Phase.Movement || phase === Phase.Battleshock) &&
@@ -212,7 +249,11 @@ export function isUnitInPhase(
     ) {
         return true;
     }
-    if (unit.abilities.some(x => isAbilityInPhase(x, phase, unit, side)))
+    if (
+        unit.abilities.some(x =>
+            isAbilityInPhase(unit, x, side, phase, subPhase)
+        )
+    )
         return true;
     return false;
 }
@@ -279,7 +320,7 @@ export class BattleStore {
     get units() {
         return (
             this.player?.armyList.units.filter(x =>
-                isUnitInPhase(x, this.phase, this.side)
+                isUnitInPhase(x, this.side, this.phase, this.subPhase)
             ) || []
         );
     }
@@ -297,7 +338,13 @@ export class BattleStore {
 
     @computed get armyAbilities() {
         return this.allArmyAbilities.filter(x =>
-            isAbilityInPhase(x, this.phase, this.armyListStore.armyList)
+            isAbilityInPhase(
+                this.armyListStore.armyList,
+                x,
+                this.side,
+                this.phase,
+                this.subPhase
+            )
         );
     }
 
@@ -359,18 +406,67 @@ export class BattleStore {
     }
 
     next = () => {
-        this.goToPhase(this.nextPhase);
+        switch (this.subPhase) {
+            case SubPhase.Before:
+                this.goToPhase(this.side, this.phase, SubPhase.While);
+                break;
+            case SubPhase.While:
+                this.goToPhase(this.side, this.phase, SubPhase.After);
+                break;
+            case SubPhase.After:
+                if (this.phase === Phase.Battleshock) {
+                    this.goToPhase(
+                        this.side === PhaseSide.Attack
+                            ? PhaseSide.Defense
+                            : PhaseSide.Attack,
+                        Phase.Hero,
+                        SubPhase.Before
+                    );
+                } else {
+                    this.goToPhase(this.side, this.nextPhase, SubPhase.Before);
+                }
+                break;
+        }
     };
 
     previous = () => {
-        this.goToPhase(this.previousPhase);
+        switch (this.subPhase) {
+            case SubPhase.Before:
+                if (this.phase === Phase.Hero)
+                    this.goToPhase(
+                        this.side === PhaseSide.Attack
+                            ? PhaseSide.Defense
+                            : PhaseSide.Attack,
+                        Phase.Battleshock,
+                        SubPhase.After
+                    );
+                else
+                    this.goToPhase(
+                        this.side,
+                        this.previousPhase,
+                        SubPhase.After
+                    );
+                break;
+            case SubPhase.While:
+                this.goToPhase(this.side, this.phase, SubPhase.Before);
+                break;
+            case SubPhase.After:
+                this.goToPhase(this.side, this.phase, SubPhase.While);
+                break;
+        }
     };
 
-    @action private goToPhase(phase: Phase) {
+    @action private goToPhase(
+        side: PhaseSide,
+        phase: Phase,
+        subPhase: SubPhase
+    ) {
         this.checkedAbilities.clear();
         this.skippedUnits.clear();
         this.checkedArmyAbilityIds.splice(0);
         this.phase = phase;
+        this.subPhase = subPhase;
+        this.side = side;
         this.save();
     }
 
@@ -405,7 +501,7 @@ export class BattleStore {
         return unit.abilities.every(
             x =>
                 unitAbilities.includes(x.id) ||
-                !isAbilityInPhase(x, this.phase, unit, this.side)
+                !isAbilityInPhase(unit, x, this.side, this.phase, this.subPhase)
         );
     }
 

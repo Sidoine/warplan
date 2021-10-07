@@ -17,7 +17,9 @@ import {
     phases,
     isAttackInPhase,
     isAbilityInPhase,
-    isEffectInPhase
+    isEffectInPhase,
+    getSubPhaseName,
+    getPhaseSideName
 } from "../stores/battle";
 import { join, value } from "../helpers/react";
 import { Chip, makeStyles } from "@material-ui/core";
@@ -126,23 +128,27 @@ interface ItemWithAbilityInPhase {
 
 function getWithAbilitiesInPhase(
     item: ItemWithAbilities,
+    side: PhaseSide,
     phase: Phase
 ): ItemWithAbilityInPhase {
     return {
         item,
-        abilities: item.abilities.filter(a => isAbilityInPhase(a, phase, item))
+        abilities: item.abilities.filter(a =>
+            isAbilityInPhase(item, a, side, phase)
+        )
     };
 }
 
 function mapPhaseSide(
     item: ItemWithAbilityInPhase,
+    side: PhaseSide,
     phase: Phase,
-    side: PhaseSide
+    subPhase: SubPhase
 ): ItemWithAbilityInPhase {
     return {
         item: item.item,
         abilities: item.abilities.filter(a =>
-            isAbilityInPhase(a, phase, item.item, side)
+            isAbilityInPhase(item.item, a, side, phase, subPhase)
         )
     };
 }
@@ -339,12 +345,14 @@ function AbilityInfo({
     abilityModel: abilityModel,
     phase,
     unit,
-    side
+    side,
+    subPhase
 }: {
     abilityModel: Ability;
     phase: Phase;
     unit: ItemWithAbilities;
-    side?: PhaseSide;
+    side: PhaseSide;
+    subPhase: SubPhase;
 }) {
     const classes = useStyle();
     const ability = abilityModel;
@@ -364,7 +372,9 @@ function AbilityInfo({
             {ability.effects &&
                 join(
                     ability.effects
-                        .filter(x => isEffectInPhase(x, phase, unit, side))
+                        .filter(x =>
+                            isEffectInPhase(unit, x, side, phase, subPhase)
+                        )
                         .map((x, index) => (
                             <AbilityEffectView key={index} effect={x} />
                         )),
@@ -377,11 +387,13 @@ function AbilityInfo({
 function UnitInfo({
     unit: item,
     phase,
-    side
+    side,
+    subPhase
 }: {
     unit: ItemWithAbilityInPhase;
     phase: Phase;
-    side?: PhaseSide;
+    subPhase: SubPhase;
+    side: PhaseSide;
 }) {
     const classes = useStyle();
     const unit = item.item;
@@ -414,7 +426,7 @@ function UnitInfo({
             {unit.attacks &&
                 side === PhaseSide.Attack &&
                 unit.attacks
-                    .filter(x => isAttackInPhase(x.attack, phase))
+                    .filter(x => isAttackInPhase(x.attack, phase, subPhase))
                     .map(x => (
                         <AttackStats
                             key={x.attack.id}
@@ -429,27 +441,29 @@ function UnitInfo({
                     abilityModel={x}
                     side={side}
                     unit={unit}
+                    subPhase={subPhase}
                 />
             ))}
         </div>
     );
 }
 
-function PhaseSideInfo({
+function SubPhaseInfo({
     items,
+    side,
     phase,
-    side
+    subPhase
 }: {
     items: ItemWithAbilityInPhase[];
+    side: PhaseSide;
     phase: Phase;
-    side?: PhaseSide;
+    subPhase: SubPhase;
 }) {
     const classes = useStyle();
     if (items.length === 0) return <></>;
     return (
         <section>
-            {(side === PhaseSide.Defense) === true && <h2>Enemy turn</h2>}
-            {side === PhaseSide.Attack && <h2>Your turn</h2>}
+            <h3>{getSubPhaseName(subPhase)}</h3>
             <div className={classes.subSectionContent}>
                 <div>
                     {items.map(x => (
@@ -458,6 +472,7 @@ function PhaseSideInfo({
                             unit={x}
                             phase={phase}
                             side={side}
+                            subPhase={subPhase}
                         />
                     ))}
                 </div>
@@ -466,11 +481,15 @@ function PhaseSideInfo({
     );
 }
 
+const subPhases = [SubPhase.Before, SubPhase.While, SubPhase.After];
+
 function PhaseInfo({
     phase,
-    items
+    items,
+    phaseSide
 }: {
     phase: Phase;
+    phaseSide: PhaseSide;
     items: ItemWithAbilityInPhase[];
 }) {
     const classes = useStyle();
@@ -478,20 +497,17 @@ function PhaseInfo({
     return (
         <section className={classes.section}>
             <h1>{getPhaseName(phase)}</h1>
-            <PhaseSideInfo
-                items={items
-                    .map(x => mapPhaseSide(x, phase, PhaseSide.Attack))
-                    .filter(x => x.abilities.length > 0)}
-                phase={phase}
-                side={PhaseSide.Attack}
-            />
-            <PhaseSideInfo
-                items={items
-                    .map(x => mapPhaseSide(x, phase, PhaseSide.Defense))
-                    .filter(x => x.abilities.length > 0)}
-                phase={phase}
-                side={PhaseSide.Attack}
-            />
+            {subPhases.map(subPhase => (
+                <SubPhaseInfo
+                    items={items
+                        .map(x => mapPhaseSide(x, phaseSide, phase, subPhase))
+                        .filter(x => x.abilities.length > 0)}
+                    phase={phase}
+                    side={phaseSide}
+                    subPhase={subPhase}
+                    key={subPhase}
+                />
+            ))}
         </section>
     );
     // if (phase !== Phase.Setup) {
@@ -560,20 +576,32 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
     );
 }
 
-export function CheckList() {
+function PhaseSideInfo({ phaseSide }: { phaseSide: PhaseSide }) {
     const { armyListStore } = useStores();
     const armyList = armyListStore.armyList;
     return (
         <div>
+            <h1>{getPhaseSideName(phaseSide)}</h1>
             {phases.map(x => (
                 <PhaseInfo
                     items={armyList.itemsWithAbilities
-                        .map(y => getWithAbilitiesInPhase(y, x))
+                        .map(y => getWithAbilitiesInPhase(y, phaseSide, x))
                         .filter(y => y.abilities.length > 0)}
                     phase={x}
+                    phaseSide={phaseSide}
                     key={x}
                 />
             ))}
+        </div>
+    );
+}
+
+export function CheckList() {
+    const { armyListStore } = useStores();
+    return (
+        <div>
+            <PhaseSideInfo phaseSide={PhaseSide.Attack} />
+            <PhaseSideInfo phaseSide={PhaseSide.Defense} />
             <OutOfPhaseAbilities warscroll={armyListStore.armyList} />
         </div>
     );

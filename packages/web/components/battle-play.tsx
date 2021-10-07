@@ -27,7 +27,9 @@ import { Ability, Attack, Value, Phase, PhaseSide } from "../../common/data";
 import {
     isAbilityInPhase,
     isAttackInPhase,
-    getPhaseName
+    getPhaseName,
+    getPhaseSideName,
+    getSubPhaseName
 } from "../stores/battle";
 import { UnitWarscroll } from "../stores/warscroll";
 import { value } from "../helpers/react";
@@ -147,12 +149,22 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
     const store = useLocalObservable(() => ({
         get abilities() {
             return wu.abilities.filter(x =>
-                isAbilityInPhase(x, battleStore.phase, wu, battleStore.side)
+                isAbilityInPhase(
+                    wu,
+                    x,
+                    battleStore.side,
+                    battleStore.phase,
+                    battleStore.subPhase
+                )
             );
         },
         get attacks() {
             return wu.attacks.filter(x =>
-                isAttackInPhase(x.attack, battleStore.phase)
+                isAttackInPhase(
+                    x.attack,
+                    battleStore.phase,
+                    battleStore.subPhase
+                )
             );
         }
     }));
@@ -316,8 +328,17 @@ export const BattlePlay = observer(() => {
                 className={classes.remaining}
                 onClick={battleStore.next}
             >
-                {battleStore.numberOfUncheckedUnitsOrArmyAbilities}{" "}
-                {getPhaseName(battleStore.phase)}
+                <Badge
+                    badgeContent={
+                        battleStore.numberOfUncheckedUnitsOrArmyAbilities
+                    }
+                    color="secondary"
+                >
+                    {getPhaseSideName(battleStore.side)}
+                    {" - "}
+                    {getSubPhaseName(battleStore.subPhase)}{" "}
+                    {getPhaseName(battleStore.phase)} phase
+                </Badge>
             </Fab>
         </div>
     );
