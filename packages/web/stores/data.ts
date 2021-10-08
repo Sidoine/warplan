@@ -23,6 +23,7 @@ import {
 } from "../../common/data";
 import { computed, makeObservable } from "mobx";
 import { KeywordCategory } from "../../common/definitions";
+import { overrideLumineths } from "./overrides/lumineths";
 
 export class DataStore {
     serial = 100;
@@ -71,6 +72,7 @@ export class DataStore {
         overrideCommon(data);
         overrideOrruks(data);
         overrideGitz(data);
+        overrideLumineths(data);
 
         const models: { [key: string]: Model } = data.models;
         for (const key in models) {

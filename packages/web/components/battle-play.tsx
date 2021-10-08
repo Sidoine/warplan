@@ -293,12 +293,12 @@ export const BattlePlay = observer(() => {
             <PhasePage />
             <BottomNavigation showLabels className={classes.navigation}>
                 <BottomNavigationAction
-                    label={getPhaseName(battleStore.previousPhase)}
+                    label="Previous"
                     icon={<ArrowBackIcon />}
                     onClick={battleStore.previous}
                 />
                 <BottomNavigationAction
-                    label={getPhaseName(battleStore.nextPhase)}
+                    label="Next"
                     icon={<ArrowForwardIcon />}
                     onClick={battleStore.next}
                 />

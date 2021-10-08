@@ -75,15 +75,16 @@ export const abilityCategoryName = new Map<AbilityCategory, string>([
 ]);
 
 export const enum Phase {
-    Setup = 1,
-    Hero = 2,
-    Movement = 4,
-    Shooting = 8,
-    Charge = 16,
-    Combat = 32,
-    Battleshock = 64,
-    Any = 127,
-    ArmyList = 128
+    Hero = 1,
+    Movement = 2,
+    Shooting = 4,
+    Charge = 8,
+    Combat = 16,
+    Battleshock = 32,
+    AnyInGame = 63,
+    Setup = 64,
+    ArmyList = 128,
+    Any = 255
 }
 
 export interface DefenseAura {
@@ -107,6 +108,7 @@ export interface DefenseAura {
     rerollHitOn1?: boolean;
     rerollHitOn6?: boolean;
     malusEnemyPileIn?: Value;
+    ignoreSpellOn4?: boolean;
 }
 
 export interface BattleshockAura {
@@ -118,6 +120,7 @@ export interface BattleshockAura {
 export interface MovementAura {
     rideTheWindDistance?: Value;
     fly?: boolean;
+    doubleMove?: boolean;
     allowChargeAfterRunOrRetreat?: boolean;
     changeRunRoll?: boolean;
     windrider?: boolean;
@@ -130,6 +133,7 @@ export interface ChargeAura {
     chargeDistance?: Value;
     chargeDices?: Value;
     bonus?: Value;
+    canChargeAfterRetreat?: boolean;
 }
 
 export interface TargetCondition {
@@ -213,9 +217,13 @@ export interface PrayerAura {
     bonusToChant?: Value;
 }
 
+export interface ValueAura {
+    ignoreWounds?: boolean;
+}
+
 export const enum TargetType {
     Unit = 0,
-    Friend = 0,
+    Friend = 16,
     Model = 1,
     Weapon = 2,
     Mount = 4,
@@ -244,6 +252,7 @@ export interface AbilityEffect {
     battleShockAura?: BattleshockAura;
     movementAura?: MovementAura;
     chargeAura?: ChargeAura;
+    valueAura?: ValueAura;
     targetRange?: Value;
     targetRadius?: Value;
     whollyWithin?: boolean;

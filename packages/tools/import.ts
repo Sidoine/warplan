@@ -98,7 +98,44 @@ function getTargetCondition(blurb: string, value: Value) {
     return value;
 }
 
-export function getAbilityEffects(name: string, blurb: string) {
+function getTargetType(name: string) {
+    return name === "unit" ? TargetType.Unit : TargetType.Model;
+}
+
+function parseWeaponCondition(
+    unit: Unit | undefined,
+    weapon: string,
+    effect: AbilityEffect
+) {
+    if (unit && unit.attacks) {
+        if (weapon.startsWith("missile")) {
+            effect.targetCondition = effect.targetCondition || {};
+            effect.targetCondition.rangedWeapon = true;
+            return;
+        }
+        if (weapon.startsWith("melee")) {
+            effect.targetCondition = effect.targetCondition || {};
+            effect.targetCondition.meleeWeapon = true;
+            return;
+        }
+
+        if (weapon.startsWith("a ")) {
+            weapon = weapon.substring(2);
+        } else if (weapon.startsWith("an ")) {
+            weapon = weapon.substring(3);
+        }
+        const attack = findElement(unit.attacks, weapon);
+        if (attack) {
+            effect.targetCondition = { weaponId: attack.name };
+            effect.attackAura = effect.attackAura || {};
+            effect.attackAura.phase = attack.melee
+                ? Phase.Combat
+                : Phase.Shooting;
+        }
+    }
+}
+
+export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
     let effect: AbilityEffect | undefined = undefined;
 
     // Phase
@@ -120,7 +157,8 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.subPhase = SubPhase.While;
         effect.side = PhaseSide.Attack;
     }
-    if (blurb.indexOf("at the start of a combat phase") >= 0) {
+    match = blurb.match(/at the start of (a|the) combat phase/);
+    if (match) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Combat;
         effect.subPhase = SubPhase.Before;
@@ -131,13 +169,6 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.phase = Phase.Hero;
         effect.subPhase = SubPhase.Before;
         effect.side = PhaseSide.Attack;
-    }
-
-    match = blurb.match(/at the start of the combat phase,/i);
-    if (match) {
-        effect = effect || { targetType: TargetType.Unit };
-        effect.phase = Phase.Combat;
-        effect.subPhase = SubPhase.Before;
     }
 
     match = blurb.match(/during the combat phase,/i);
@@ -359,34 +390,61 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.defenseAura.bonusSave = 1;
     }
 
+    match = blurb.match(
+        /Each time this (unit|model) is affected by a spell or endless spell, you can roll a dice\. If you do so, on a 4\+, ignore the effects of that spell or endless spell on this unit/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.ignoreSpellOn4 = true;
+        effect.defenseAura.phase = Phase.Hero;
+    }
+
+    match = blurb.match(/On a 5\+, that wound or mortal wound is negated/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.negateWoundsOrMortalWoundsOn5 = true;
+    }
+
     // Movement
     if (name === "Mount") {
         effect = effect || { targetType: TargetType.Mount };
     }
 
-    match = blurb.match(/this model can fly/i);
+    match = blurb.match(/this (model|unit) can fly/i);
     if (match) {
-        effect = effect || { targetType: TargetType.Model };
+        effect = effect || { targetType: getTargetType(match[1]) };
         effect.movementAura = effect.movementAura || {};
-        effect.movementAura = { fly: true };
+        effect.movementAura.fly = true;
     }
 
-    match = blurb.match(/this unit can fly/i);
+    match = blurb.match(/double the Move characteristic of that unit/i);
     if (match) {
         effect = effect || { targetType: TargetType.Unit };
         effect.movementAura = effect.movementAura || {};
-        effect.movementAura = { fly: true };
+        effect.movementAura.doubleMove = true;
+    }
+
+    // Charge
+    match = blurb.match(
+        / this model can retreat and still charge later in the same turn/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.chargeAura = effect.chargeAura || {};
+        effect.chargeAura.canChargeAfterRetreat = true;
     }
 
     // Attack
     match = blurb.match(
-        /if the unmodified hit roll for an attack made with (?:an?)?(.*) is 6, that attack inflicts (\d+) mortal wounds? (on the target )?and the attack sequence ends \(do not make a wound or save roll\)/i
+        /if the unmodified hit roll for an attack made with (?:an?|this model's )?(.*) is 6, that attack inflicts (\d+) mortal wounds? (on the target )?and the attack sequence ends \(do not make a wound or save roll\)/i
     );
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };
-        effect.targetCondition = { weaponId: match[1] };
         effect.attackAura = effect.attackAura || {};
         effect.attackAura.mortalWoundsOnHitUnmodified6 = match[2];
+        parseWeaponCondition(unit, match[1], effect);
     }
     match = blurb.match(
         /You can re-roll failed hit rolls for attacks made with (\w+)/i
@@ -396,6 +454,7 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.targetCondition = { weaponId: match[1] };
         effect.attackAura = effect.attackAura || {};
         effect.attackAura.rerollFailedHits = getTargetCondition(blurb, 1);
+        parseWeaponCondition(unit, match[1], effect);
     }
     match = blurb.match(
         /If the unmodified wound roll for an attack made with a (.*) is 6, add (\d) to the Damage characteristic of that weapon for that attack/i
@@ -408,15 +467,18 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.attackAura.bonusDamageOnWoundUnmodified6 = parseInt(match[2]);
     }
     match = blurb.match(
-        /add 1 to the Attacks characteristic of this model’s melee weapons/i
+        /add 1 to the Attacks characteristic of (.*?)(?:’s|s') (.*?)(\.| until| in that)/i
     );
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };
         effect.targetType = TargetType.Weapon;
         effect.targetCondition = effect.targetCondition || {};
-        effect.targetCondition.meleeWeapon = true;
+        if (match[2] === "melee weapons") {
+            effect.targetCondition.meleeWeapon = true;
+        }
         effect.attackAura = effect.attackAura || {};
         effect.attackAura.bonusAttacks = 1;
+        effect.attackAura.phase = Phase.Combat;
     }
     match = blurb.match(
         /if the unmodified hit roll for an attack made with (.*?) is 6, that attack inflicts (\d) mortal wound on the target in addition to any normal damage/i
@@ -426,6 +488,7 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.targetType = TargetType.Weapon;
         effect.attackAura = effect.attackAura || {};
         effect.attackAura.bonusMortalWoundsOnHitUnmodified6 = match[2];
+        parseWeaponCondition(unit, match[1], effect);
     }
 
     match = blurb.match(
@@ -453,13 +516,34 @@ export function getAbilityEffects(name: string, blurb: string) {
         effect.targetType = TargetType.Weapon;
         effect.attackAura = effect.attackAura || {};
         effect.attackAura.bonusDamageOnHitUnmodified6 = match[2];
+        parseWeaponCondition(unit, match[1], effect);
     }
-    match = blurb.match(/you can re-roll hit rolls for /i);
+    match = blurb.match(
+        /you can re-roll hit rolls for attacks made (?:with (.*?) that)?/i
+    );
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };
         effect.targetType = TargetType.Weapon;
         effect.attackAura = effect.attackAura || {};
         effect.attackAura.rerollHits = true;
+        if (match[1]) parseWeaponCondition(unit, match[1], effect);
+    } else {
+        match = blurb.match(/you can re-roll hit rolls for (.*?)./i);
+        if (match) {
+            effect = effect || { targetType: TargetType.Weapon };
+            effect.targetType = TargetType.Weapon;
+            effect.attackAura = effect.attackAura || {};
+            effect.attackAura.rerollHits = true;
+            if (match[1]) parseWeaponCondition(unit, match[1], effect);
+        }
+    }
+
+    // Battleshock
+    match = blurb.match(/You can re-roll battleshock tests for units/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.battleShockAura = effect.battleShockAura || {};
+        effect.battleShockAura.rerollFails = true;
     }
 
     if (!effect) return undefined;
@@ -482,11 +566,19 @@ function findElement<T extends { name: string }>(elements: T[], name: string) {
         if (element.name === name) {
             return element;
         }
+        if (element.name.includes(" or ")) {
+            const names = element.name.split(" or ");
+            if (names.includes(name)) return element;
+        }
     }
 
     for (const element of elements) {
         if (getProximity(element.name, name) > 0.95) {
             return element;
+        }
+        if (element.name.includes(" or ")) {
+            const names = element.name.split(" or ");
+            if (names.some(x => getProximity(x, name) > 0.95)) return element;
         }
     }
 
@@ -812,6 +904,28 @@ export function importData(db: Dump): ImportedDataStore {
         unit.roles.push(warscrollBattlefieldRole.role);
     }
 
+    for (const weapon of db.weapon) {
+        const unit = getItem(dataStore, "units", weapon.warscrollId);
+        const attack: Attack = {
+            id: getId(
+                weapon.id,
+                `${unit.name} ${unit.subName || ""} ${weapon.name}`,
+                "attacks"
+            ),
+            name: weapon.name,
+            melee: weapon.type === Type.Melee,
+            range: weapon.range,
+            attacks: weapon.attacks,
+            damage: weapon.damage,
+            rend: weapon.rend,
+            toHit: weapon.hit,
+            toWound: weapon.wound
+        };
+        dataStore.attacks[attack.id] = attack;
+        if (!unit.attacks) unit.attacks = [];
+        unit.attacks.push(attack);
+    }
+
     for (const descriptionSubsection of db.description_subsection) {
         const unit = getItem(
             dataStore,
@@ -829,7 +943,8 @@ export function importData(db: Dump): ImportedDataStore {
             category: AbilityCategory.SpecialRule,
             effects: getAbilityEffects(
                 descriptionSubsection.header,
-                descriptionSubsection.rules
+                descriptionSubsection.rules,
+                unit
             )
         };
         switch (descriptionSubsection.header) {
@@ -940,34 +1055,13 @@ export function importData(db: Dump): ImportedDataStore {
             description: warscrollAbility.rules,
             effects: getAbilityEffects(
                 warscrollAbility.name,
-                warscrollAbility.rules
+                warscrollAbility.rules,
+                unit
             )
         };
         dataStore.abilities[ability.id] = ability;
         if (!unit.abilities) unit.abilities = [];
         unit.abilities.push(ability);
-    }
-
-    for (const weapon of db.weapon) {
-        const unit = getItem(dataStore, "units", weapon.warscrollId);
-        const attack: Attack = {
-            id: getId(
-                weapon.id,
-                `${unit.name} ${unit.subName || ""} ${weapon.name}`,
-                "attacks"
-            ),
-            name: weapon.name,
-            melee: weapon.type === Type.Melee,
-            range: weapon.range,
-            attacks: weapon.attacks,
-            damage: weapon.damage,
-            rend: weapon.rend,
-            toHit: weapon.hit,
-            toWound: weapon.wound
-        };
-        dataStore.attacks[attack.id] = attack;
-        if (!unit.attacks) unit.attacks = [];
-        unit.attacks.push(attack);
     }
 
     for (const warscrollFaction of db.warscroll_factions_faction) {

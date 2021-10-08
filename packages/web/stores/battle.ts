@@ -3,7 +3,6 @@ import { UnitWarscroll, WarscrollItem } from "./warscroll";
 import {
     Phase,
     AbilityEffect,
-    TargetType,
     Ability,
     Attack,
     AbilityCategory,
@@ -85,6 +84,7 @@ export function getEffectPhases(effect: AbilityEffect) {
         if (effect.attackAura.phase) phase |= effect.attackAura.phase;
         else phase |= Phase.Combat | Phase.Shooting;
     }
+    if (effect.valueAura) phase |= Phase.AnyInGame;
     if (effect.commandAura || effect.spellAura || effect.prayerAura)
         phase |= Phase.Hero;
     if (effect.movementAura) phase |= Phase.Movement;
@@ -107,6 +107,7 @@ export function getAbilityPhases(ability: Ability) {
     }
     return phase;
 }
+
 export function isEffectInPhase(
     unit: ItemWithAbilities,
     effect: AbilityEffect,
@@ -122,65 +123,9 @@ export function isEffectInPhase(
         return true;
     }
 
-    if (phase === Phase.Combat || phase === Phase.Shooting) {
-        if (effect.defenseAura) {
-            if (effect.defenseAura.phase !== undefined)
-                return effect.defenseAura.phase === phase;
-            return true;
-        }
-        if (
-            effect.attackAura &&
-            effect.targetType !== TargetType.Enemy &&
-            (side === PhaseSide.Attack || phase === Phase.Combat)
-        ) {
-            if (
-                effect.attackAura.phase !== undefined &&
-                effect.attackAura.phase !== phase
-            )
-                return false;
-            if (
-                phase === Phase.Combat &&
-                unit.attacks &&
-                unit.attacks.some(x => x.attack.melee)
-            )
-                return true;
-            if (
-                phase === Phase.Shooting &&
-                unit.attacks?.some(x => !x.attack.melee)
-            )
-                return true;
-        }
-        if (effect.defenseAura && effect.targetType === TargetType.Enemy) {
-            if (!unit) return false;
-            return true;
-        }
-        if (effect.attackAura && effect.targetType === TargetType.Enemy) {
-            if (!unit) return false;
-            return true;
-        }
-        // if (
-        //     (effect.mortalWounds || effect.mortalWoundsPerModel) &&
-        //     side === PhaseSide.Attack
-        // )
-        //     return true;
-        return false;
-    }
-    if (phase & Phase.Battleshock && effect.battleShockAura) return true;
-    if (
-        phase & Phase.Movement &&
-        side === PhaseSide.Attack &&
-        effect.movementAura
-    )
-        return true;
-    if (phase & Phase.Charge && side === PhaseSide.Attack && effect.chargeAura)
-        return true;
-    if (phase & Phase.Hero && side === PhaseSide.Attack && effect.spellAura)
-        return true;
-    if (phase & Phase.Hero && side === PhaseSide.Attack && effect.prayerAura)
-        return true;
-    if (phase & Phase.Any && effect.commandAura) return true;
+    if (subPhase !== undefined && subPhase !== SubPhase.While) return false;
 
-    return false;
+    return (getEffectPhases(effect) & phase) > 0;
 }
 
 export function isAbilityInPhase(
@@ -230,24 +175,26 @@ export function isUnitInPhase(
     phase: Phase,
     subPhase: SubPhase
 ) {
-    if (
-        (phase === Phase.Movement || phase === Phase.Battleshock) &&
-        unit.type === "unit"
-    )
-        return true;
-    if (
-        phase === Phase.Shooting &&
-        unit.type === "unit" &&
-        unit.attacks.some(x => !x.attack.melee)
-    ) {
-        return true;
-    }
-    if (
-        phase === Phase.Combat &&
-        unit.type === "unit" &&
-        unit.attacks.some(x => x.attack.melee)
-    ) {
-        return true;
+    if (subPhase === SubPhase.While) {
+        if (
+            (phase === Phase.Movement || phase === Phase.Battleshock) &&
+            unit.type === "unit"
+        )
+            return true;
+        if (
+            phase === Phase.Shooting &&
+            unit.type === "unit" &&
+            unit.attacks.some(x => !x.attack.melee)
+        ) {
+            return true;
+        }
+        if (
+            phase === Phase.Combat &&
+            unit.type === "unit" &&
+            unit.attacks.some(x => x.attack.melee)
+        ) {
+            return true;
+        }
     }
     if (
         unit.abilities.some(x =>

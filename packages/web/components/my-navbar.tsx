@@ -87,7 +87,8 @@ function MyNavbar({ route, children }: MyNavbarProps) {
                     title: "Basket",
                     path: "basket",
                     badge: basketStore.basket.length
-                }
+                },
+                { title: "Abilities", path: "abilities" }
             ];
         }
     }));

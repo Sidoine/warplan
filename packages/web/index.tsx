@@ -18,6 +18,7 @@ import { BattlePlay } from "./components/battle-play";
 import pompeiRegular from "./assets/PompeiStd-Regular.woff2";
 import pompeiBold from "./assets/PompeiStd-Bold.woff2";
 import { createTheme, ThemeProvider } from "@material-ui/core";
+import { AbilityList } from "./components/ability-list";
 const root = document.getElementById("root");
 
 const theme = createTheme({
@@ -94,6 +95,11 @@ ReactDOM.render(
                                 exact
                                 path="/battle"
                                 component={BattlePlay}
+                            />
+                            <Route
+                                exact
+                                path="/abilities"
+                                component={AbilityList}
                             />
                         </Switch>
                     </MyNavbar>

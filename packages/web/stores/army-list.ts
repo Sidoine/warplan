@@ -367,6 +367,15 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     @computed
+    get armyAndUnitsAbilities(): Ability[] {
+        return this.abilities
+            .concat(
+                this.units.flatMap(x => x.extraAbilities.concat(x.abilities))
+            )
+            .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    @computed
     get allegianceAbilityGroups() {
         let result: AbilityGroup[] = [];
         if (this.allegiance && this.allegiance.abilityGroups) {

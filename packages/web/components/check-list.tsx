@@ -1,14 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { WarscrollItem } from "../stores/warscroll";
 import {
     Phase,
     Ability,
     Attack,
-    AbilityEffect,
     Value,
-    TargetType,
     SubPhase,
-    EffectDuration,
     PhaseSide,
     ItemWithAbilities
 } from "../../common/data";
@@ -22,24 +19,15 @@ import {
     getPhaseSideName
 } from "../stores/battle";
 import { join, value } from "../helpers/react";
-import { Chip, makeStyles } from "@material-ui/core";
-import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
-import PersonIcon from "@material-ui/icons/Person";
-import GroupIcon from "@material-ui/icons/Group";
-import ReplayIcon from "@material-ui/icons/Replay";
+import { makeStyles } from "@material-ui/core";
+
 import { useStores } from "../stores";
-import VerticalAlignTopIcon from "@material-ui/icons/VerticalAlignTop";
 import { distinct } from "../helpers/algo";
-import {
-    SkullIcon,
-    SpellIcon,
-    SaveIcon,
-    BullseyeArrowIcon,
-    SwordIcon
-} from "../atoms/icons";
+
 import warscrollSeparator from "../assets/ws-separator.png";
 import { DataStore } from "../stores/data";
 import { ArmyList, ArmyListStore } from "../stores/army-list";
+import { AbilityEffectView } from "./ability-effect-view";
 
 const useStyle = makeStyles({
     section: {
@@ -105,14 +93,6 @@ const useStyle = makeStyles({
         border: "1px solid #e6dccb",
         padding: "0.05rem",
         textAlign: "center"
-    },
-    badgedIcon: {
-        fontSize: "75%",
-        verticalAlign: "baseline",
-        display: "inline-block"
-    },
-    badged: {
-        fontSize: "1rem"
     }
 });
 
@@ -172,158 +152,6 @@ function Stat(props: { name: string; value: Value }) {
             <div className={classes.statKey}>{props.name}</div>
             <div className={classes.statValue}>{value(props.value, "-")}</div>
         </>
-    );
-}
-
-function BadgedIcon({
-    badge,
-    children
-}: {
-    badge: ReactNode;
-    children: ReactNode;
-}) {
-    const classes = useStyle();
-    if (badge) {
-        return (
-            <span className={classes.badged}>
-                {children}
-                <span className={classes.badgedIcon}>{badge}</span>
-            </span>
-        );
-    }
-    return <>{children}</>;
-}
-function TargetView({ targetType }: { targetType: TargetType }) {
-    const isUnit =
-        (targetType &
-            (TargetType.Model | TargetType.Mount | TargetType.Weapon)) ==
-        0;
-    return (
-        <BadgedIcon
-            badge={(targetType & TargetType.Enemy) > 0 && <SkullIcon />}
-        >
-            {isUnit && <GroupIcon />}
-            {(targetType & TargetType.Model) > 0 && <PersonIcon />}
-        </BadgedIcon>
-    );
-}
-
-function getTargetType(effect: AbilityEffect) {
-    switch (effect.targetType) {
-        case TargetType.Enemy:
-            return "enemy";
-        case TargetType.Friend:
-            return "friendly unit";
-        case TargetType.Model:
-            return "self";
-        case TargetType.Unit:
-            return "this unit";
-        case TargetType.Weapon:
-            if (effect.targetCondition && effect.targetCondition.weaponId)
-                return effect.targetCondition.weaponId;
-            return "all weapons";
-    }
-    return "unknown";
-}
-
-function getEffectDuration(effect: AbilityEffect) {
-    switch (effect.duration) {
-        case EffectDuration.Phase:
-            return "phase";
-        case EffectDuration.Permanent:
-            return "permanent";
-        case EffectDuration.Turn:
-            return "turn";
-        case EffectDuration.Round:
-            return "round";
-    }
-    if (effect.phase) return "phase";
-    return "permanent";
-}
-
-function hasAura(effect: AbilityEffect) {
-    return (
-        effect.attackAura ||
-        effect.battleShockAura ||
-        effect.chargeAura ||
-        effect.commandAura ||
-        effect.defenseAura ||
-        effect.movementAura ||
-        effect.spellAura ||
-        effect.prayerAura
-    );
-}
-
-export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
-    return (
-        <i>
-            {effect.phase !== undefined && (
-                <>
-                    Cast{" "}
-                    {effect.subPhase === SubPhase.After && "at the end of "}
-                    {effect.subPhase === SubPhase.Before && "at the start of "}
-                    {effect.subPhase === SubPhase.While ||
-                        (effect.subPhase === undefined && "during")}
-                    {effect.subPhase === SubPhase.WhileAfter && "during"}{" "}
-                    {getPhaseName(effect.phase)}
-                    {effect.subPhase === SubPhase.WhileAfter &&
-                        " after all attacks "}
-                    {effect.targetRange && (
-                        <>Target range {effect.targetRange}</>
-                    )}
-                </>
-            )}{" "}
-            - Target: {getTargetType(effect)}
-            {hasAura(effect) && <>- Duration : {getEffectDuration(effect)}</>}
-            {1 == 1 + 1 && (
-                <Chip
-                    size="medium"
-                    label={
-                        <>
-                            <TargetView targetType={effect.targetType} />
-                            {effect.targetRange && (
-                                <>
-                                    <VerticalAlignTopIcon />
-                                    {effect.targetRange}&quot;
-                                </>
-                            )}
-                            {effect.targetRadius && (
-                                <>
-                                    <SignalWifi2BarIcon /> {effect.targetRadius}
-                                    &quot;
-                                </>
-                            )}
-                            {effect.spellCastingValue && (
-                                <>
-                                    <SpellIcon /> {effect.spellCastingValue}+
-                                </>
-                            )}
-                        </>
-                    }
-                />
-            )}
-            {1 == 1 + 1 && effect.defenseAura && (
-                <Chip
-                    color="primary"
-                    label={
-                        <>
-                            {effect.defenseAura.phase === Phase.Shooting && (
-                                <BullseyeArrowIcon />
-                            )}
-                            {effect.defenseAura.phase === Phase.Combat && (
-                                <SwordIcon />
-                            )}
-                            {effect.defenseAura.rerollSavesOn1 && (
-                                <>
-                                    <SaveIcon />
-                                    <ReplayIcon />1
-                                </>
-                            )}
-                        </>
-                    }
-                />
-            )}
-        </i>
     );
 }
 

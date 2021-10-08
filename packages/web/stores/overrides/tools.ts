@@ -130,6 +130,10 @@ export function addEffect(ability: Ability, effect: AbilityEffect) {
     return effect;
 }
 
+export function updateEffect(ability: Ability, effect: Partial<AbilityEffect>) {
+    if (ability.effects) Object.assign(ability.effects[0], effect);
+}
+
 export function overrideAbility(ability: Ability, f: (x: Ability) => void) {
     override(ability, f);
 }
