@@ -2,17 +2,11 @@ import React, { ReactNode } from "react";
 import {
     AbilityEffect,
     EffectDuration,
-    Phase,
     SubPhase,
-    TargetType
+    TargetType,
 } from "../../common/data";
-import { getPhaseName } from "../stores/battle";
-import {
-    SkullIcon,
-    SpellIcon,
-    BullseyeArrowIcon,
-    SwordIcon
-} from "../atoms/icons";
+import { EffectType, getEffectText, getPhaseName } from "../stores/battle";
+import { SkullIcon, SpellIcon } from "../atoms/icons";
 import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
 import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from "@material-ui/icons/Group";
@@ -24,16 +18,16 @@ const useStyle = makeStyles({
     badgedIcon: {
         fontSize: "75%",
         verticalAlign: "baseline",
-        display: "inline-block"
+        display: "inline-block",
     },
     badged: {
-        fontSize: "1rem"
-    }
+        fontSize: "1rem",
+    },
 });
 
 function BadgedIcon({
     badge,
-    children
+    children,
 }: {
     badge: ReactNode;
     children: ReactNode;
@@ -127,8 +121,17 @@ export function getTargetType(effect: AbilityEffect) {
         case TargetType.Unit:
             return "this unit";
         case TargetType.Weapon:
-            if (effect.targetCondition && effect.targetCondition.weaponId)
-                return effect.targetCondition.weaponId;
+            if (effect.targetCondition) {
+                if (effect.targetCondition.weaponId)
+                    return effect.targetCondition.weaponId;
+                if (effect.targetCondition.meleeWeapon) {
+                    return "melee weapons";
+                }
+                if (effect.targetCondition.rangedWeapon) {
+                    return "missile weapons";
+                }
+            }
+
             return "all weapons";
     }
     return "unknown";
@@ -168,43 +171,15 @@ export function AbilityEffectTarget({ effect }: { effect: AbilityEffect }) {
 }
 
 export function AbilityEffectAuraView({ effect }: { effect: AbilityEffect }) {
+    const [condition, descriptions, type] = getEffectText(effect);
     return (
         <>
-            {effect.defenseAura && (
-                <Chip
-                    color="primary"
-                    label={
-                        <>
-                            {effect.defenseAura.phase === Phase.Shooting && (
-                                <BullseyeArrowIcon />
-                            )}
-                            {effect.defenseAura.phase === Phase.Combat && (
-                                <SwordIcon />
-                            )}
-                            {effect.defenseAura.rerollSavesOn1 && "Rr save 1"}
-                            {effect.defenseAura.bonusHitRoll &&
-                                `+${effect.defenseAura.bonusHitRoll} hit from enemy`}
-                            {effect.defenseAura.bonusSave &&
-                                `+${effect.defenseAura.bonusSave} save`}
-                            {effect.defenseAura.malusHitRoll &&
-                                `-${effect.defenseAura.malusHitRoll} hit from enemy`}
-                            {effect.defenseAura.negateWoundsOrMortalWoundsOn5 &&
-                                "5+ ward"}
-                        </>
-                    }
-                />
-            )}
-            {effect.attackAura && (
-                <Chip
-                    color="secondary"
-                    label={
-                        <>
-                            {effect.attackAura.mortalWoundsOnHitUnmodified6 &&
-                                `6 on hit ${effect.attackAura.mortalWoundsOnHitUnmodified6} MW and ends`}
-                        </>
-                    }
-                />
-            )}
+            <i>{condition}</i>
+
+            <Chip
+                color={type === EffectType.Immediate ? "default" : "primary"}
+                label={<>{descriptions.join(" - ")}</>}
+            />
         </>
     );
 }

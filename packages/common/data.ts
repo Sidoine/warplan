@@ -4,7 +4,7 @@ export const enum Material {
     Metal,
     Resin,
     Plastic,
-    Mixed
+    Mixed,
 }
 
 export interface Model {
@@ -51,7 +51,7 @@ export const enum AbilityCategory {
     Champion,
     Triumph,
     GrandStrategy,
-    UniqueEnhancement
+    UniqueEnhancement,
 }
 
 export interface AttackWithCount {
@@ -71,7 +71,7 @@ export const abilityCategoryName = new Map<AbilityCategory, string>([
     [AbilityCategory.Prayer, "Prayer"],
     [AbilityCategory.Artefact, "Artefact of Power"],
     [AbilityCategory.Mount, "Mount Trait"],
-    [AbilityCategory.Triumph, "Triumph"]
+    [AbilityCategory.Triumph, "Triumph"],
 ]);
 
 export const enum Phase {
@@ -84,7 +84,7 @@ export const enum Phase {
     AnyInGame = 63,
     Setup = 64,
     ArmyList = 128,
-    Any = 255
+    Any = 255,
 }
 
 export interface DefenseAura {
@@ -109,12 +109,17 @@ export interface DefenseAura {
     rerollHitOn6?: boolean;
     malusEnemyPileIn?: Value;
     ignoreSpellOn4?: boolean;
+    rerollHits?: boolean;
+    garrisoned?: boolean;
+    guardianOn2?: boolean;
 }
 
 export interface BattleshockAura {
     bonusBravery?: Value;
+    malusBravery?: Value;
     immune?: boolean;
     rerollFails?: boolean;
+    emotionalTransference?: boolean;
 }
 
 export interface MovementAura {
@@ -203,7 +208,7 @@ export const enum SubPhase {
     Before,
     While,
     WhileAfter,
-    After
+    After,
 }
 
 export interface SpellAura {
@@ -211,6 +216,10 @@ export interface SpellAura {
     bonusToUnbind?: Value;
     autoUnbinds?: number;
     noCast?: boolean;
+    rerollCast?: boolean;
+    rerollDispell?: boolean;
+    rerollUnbind?: boolean;
+    autoCast?: Value;
 }
 
 export interface PrayerAura {
@@ -228,59 +237,90 @@ export const enum TargetType {
     Weapon = 2,
     Mount = 4,
     Enemy = 8,
-    NotUnit = Model | Weapon | Mount
+    NotUnit = Model | Weapon | Mount,
 }
 
 export const enum EffectDuration {
     Phase,
     Turn,
     Round,
-    Permanent
+    Permanent,
 }
 
 export const enum PhaseSide {
     Attack,
     Defense,
-    None
+    None,
+}
+
+interface SpecialAura {
+    absorbDespair?: boolean;
+    darknessOfSoul?: boolean;
+    pickTwoUnitsInCombat?: boolean;
+}
+
+interface CommandAura {
+    free?: boolean;
 }
 
 export interface AbilityEffect {
     name?: string;
+
+    // Cast
     castMode?: "passive" | "skill" | "prayer" | "spell" | "command"; // default is passive
+    /** At which phase the ability is *used* to add the effect */
+    phase?: Phase;
+    subPhase?: SubPhase;
+    side?: PhaseSide;
+    timesPerBattle?: number;
+
+    // Cast range
+    /** The range to the target. If undefined, only the unit itself can be targeted */
+    targetRange?: Value;
+    /** If the effect targets multiple units, the range around the target.  */
+    targetRadius?: Value;
+    whollyWithin?: boolean;
+    /** If a point of the battlefield is targeted, instead of an unit, the range to this
+     * point.
+     */
+    effectRange?: number;
+
+    // Conditions
+    targetType: TargetType;
+    targetArea?: boolean;
+    targetCondition?: TargetCondition;
+    condition?: TargetCondition;
+    spellCastingValue?: number;
+
+    // Aura
     attackAura?: AttackAura;
     defenseAura?: DefenseAura;
     battleShockAura?: BattleshockAura;
     movementAura?: MovementAura;
     chargeAura?: ChargeAura;
     valueAura?: ValueAura;
-    targetRange?: Value;
-    targetRadius?: Value;
-    whollyWithin?: boolean;
-    targetType: TargetType;
-    targetArea?: boolean;
-    targetCondition?: TargetCondition;
-    effectRange?: number;
-    /** At which phase the ability is *used* to add the effect */
-    phase?: Phase;
+    specialAura?: SpecialAura;
     spellAura?: SpellAura;
-    commandAura?: Record<string, never>;
-    subPhase?: SubPhase;
-    side?: PhaseSide;
-    condition?: TargetCondition;
-    timesPerBattle?: number;
+    commandAura?: CommandAura;
+    prayerAura?: PrayerAura;
+
+    // Aura duration
+    duration?: EffectDuration;
+
+    // Combination with other effects
     ignoreOtherEffects?: boolean;
     choice?: string;
-    spellCastingValue?: number;
-    prayerAura?: PrayerAura;
     prayerValue?: number;
+    /** In case of random effects, the dice value must be in this range  */
+    randomEffectRange?: { min: number; max: number };
+
+    // Immediate effects
     mortalWounds?: Value;
     heal?: Value;
     setUpAwayFromEnemy?: Value; // The distance to the enemy
     mortalWoundsPerModel?: Value;
-    duration?: EffectDuration;
-
-    /** In case of random effects, the dice value must be in this range  */
-    randomEffectRange?: { min: number; max: number };
+    allowInclusion?: boolean;
+    gainCommandPoints?: Value;
 }
 
 export interface Ability {
@@ -320,11 +360,11 @@ export interface WeaponOption {
 
 export const enum ModelOptionCategory {
     Weapon,
-    Champion
+    Champion,
 }
 
 export const enum UnitOptionCategory {
-    Main
+    Main,
 }
 
 export interface ModelOption {
@@ -390,7 +430,7 @@ export const enum ValueType {
     RatioValue,
     TargetCondition,
     Or,
-    Condition
+    Condition,
 }
 
 export interface DamageColumn {
@@ -466,7 +506,7 @@ export function targetConditionValue(
         type: ValueType.TargetCondition,
         value,
         targetCondition,
-        defaultValue
+        defaultValue,
     };
 }
 
@@ -477,7 +517,7 @@ export function conditionValue(
     return {
         type: ValueType.Condition,
         value,
-        condition
+        condition,
     };
 }
 
@@ -485,7 +525,7 @@ export function orValue(left: Value, right: Value): OrValue {
     return {
         type: ValueType.Or,
         left,
-        right
+        right,
     };
 }
 

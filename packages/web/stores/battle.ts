@@ -8,10 +8,11 @@ import {
     AbilityCategory,
     PhaseSide,
     ItemWithAbilities,
-    SubPhase
+    SubPhase,
 } from "../../common/data";
 import { DataStore } from "./data";
 import { ArmyList, ArmyListStore } from "./army-list";
+import { getValue } from "./combat";
 
 export interface Player {
     name: string;
@@ -27,8 +28,248 @@ export const phases = [
     Phase.Shooting,
     Phase.Charge,
     Phase.Combat,
-    Phase.Battleshock
+    Phase.Battleshock,
 ];
+
+export const enum EffectType {
+    Buff,
+    Debuff,
+    Immediate,
+}
+
+export function getEffectText(
+    effect: AbilityEffect
+): [
+    condition: string | undefined,
+    description: string[],
+    effectType: EffectType
+] {
+    const description: string[] = [];
+    let condition: string | undefined;
+    let effectType: EffectType = EffectType.Buff;
+    if (effect.attackAura) {
+        if (effect.attackAura.phase) {
+            condition =
+                effect.attackAura.phase === Phase.Shooting
+                    ? "Shooting"
+                    : "Combat";
+        }
+        if (effect.attackAura.rerollHitsOn1) {
+            description.push("RR1 hit");
+        }
+        if (effect.attackAura.bonusRend) {
+            description.push(`${effect.attackAura.bonusRend} Rend`);
+        }
+        if (effect.attackAura.rerollFailedWounds) {
+            description.push("RR Wound");
+        }
+        if (effect.attackAura.bonusWoundRoll) {
+            description.push(
+                `+${getValue(effect.attackAura.bonusWoundRoll)} Wound`
+            );
+        }
+        if (effect.attackAura.rerollFailedHits) {
+            description.push("RR failed Hit");
+        }
+        if (effect.attackAura.malusHitRoll) {
+            description.push(
+                `-${getValue(effect.attackAura.malusHitRoll)} Hit`
+            );
+        }
+        if (effect.attackAura.noPileIn) {
+            description.push("No pile-in");
+        }
+        if (effect.attackAura.bonusAttacks) {
+            description.push(`+${effect.attackAura.bonusAttacks} Atk`);
+        }
+        if (effect.attackAura.rerollHits) {
+            description.push("RR Hit");
+        }
+        if (effect.attackAura.bonusDamageOnHitUnmodified6) {
+            description.push(
+                `+${effect.attackAura.bonusDamageOnHitUnmodified6} Dmg on 6 Hit`
+            );
+        }
+        if (effect.attackAura.mortalWoundsOnHitUnmodified6) {
+            description.push(
+                `${effect.attackAura.mortalWoundsOnHitUnmodified6} MW on 6 Hit`
+            );
+        }
+        if (effect.attackAura.bonusMortalWoundsOnHitUnmodified6) {
+            description.push(
+                `+${effect.attackAura.bonusMortalWoundsOnHitUnmodified6} MW on 6 Hit`
+            );
+        }
+        if (description.length === 0) {
+            description.push(
+                `attackAura: ${JSON.stringify(effect.attackAura)}`
+            );
+        }
+    }
+    if (effect.commandAura) {
+        if (effect.commandAura.free) {
+            description.push("Free command");
+        }
+        if (description.length === 0) {
+            description.push(
+                `commandAura: ${JSON.stringify(effect.commandAura)}`
+            );
+        }
+    }
+    if (effect.defenseAura) {
+        if (effect.defenseAura.rerollFailedSaves) {
+            description.push("RR Save");
+        }
+        if (effect.defenseAura.bonusSave) {
+            description.push(`+${effect.defenseAura.bonusSave} Save`);
+        }
+        if (effect.defenseAura.rerollSavesOn1) {
+            description.push("RR1 Save");
+        }
+        if (effect.defenseAura.rerollHitOn1) {
+            description.push("RR1 Enemy Hit");
+        }
+        if (effect.defenseAura.rerollHitOn6) {
+            description.push("RR6 Enemy Hit");
+        }
+        if (effect.defenseAura.healOnSave7) {
+            description.push(`Save 7+: ${effect.defenseAura.healOnSave7} heal`);
+        }
+        if (effect.defenseAura.bonusHitRoll) {
+            description.push(`+${effect.defenseAura.bonusHitRoll} Enemy Hit`);
+        }
+        if (effect.defenseAura.bonusWoundRoll) {
+            description.push(
+                `+${effect.defenseAura.bonusWoundRoll} Enemy Wound`
+            );
+        }
+        if (effect.defenseAura.malusHitRoll) {
+            description.push(`-${effect.defenseAura.malusHitRoll} Enemy Hit`);
+        }
+        if (effect.defenseAura.negateWoundsOrMortalWoundsOn5) {
+            description.push("5+ ward");
+        }
+        if (effect.defenseAura.phase) {
+            condition =
+                effect.defenseAura.phase === Phase.Shooting
+                    ? "Shooting"
+                    : "Combat";
+        }
+        if (effect.defenseAura.garrisoned) {
+            description.push("Garrisoned");
+        }
+        if (effect.defenseAura.ignoreRendOfMinus1) {
+            description.push("Ignore -1 Rend");
+        }
+        if (effect.defenseAura.guardianOn2) {
+            description.push("2+ Guardian");
+        }
+        if (description.length === 0) {
+            description.push(
+                `defenseAura: ${JSON.stringify(effect.defenseAura)}`
+            );
+        }
+    }
+    if (effect.movementAura) {
+        if (effect.movementAura.allowChargeAfterRunOrRetreat) {
+            description.push("Charge after Run/Retreat");
+        }
+        if (effect.movementAura.doubleMove) {
+            description.push("Move ×2");
+        }
+        if (effect.movementAura.fly) {
+            description.push("Fly");
+        }
+        if (description.length === 0) {
+            description.push(
+                `movementAura: ${JSON.stringify(effect.movementAura)}`
+            );
+        }
+    }
+    if (effect.chargeAura) {
+        if (effect.chargeAura.bonus) {
+            description.push(`+${effect.chargeAura.bonus} Charge`);
+        }
+        if (description.length === 0) {
+            description.push(
+                `ChargeAura: ${JSON.stringify(effect.chargeAura)}`
+            );
+        }
+    }
+    if (effect.spellAura) {
+        if (effect.spellAura.noCast) {
+            description.push("No cast");
+        }
+        if (effect.spellAura.rerollCast) {
+            description.push("RR cast");
+        }
+        if (effect.spellAura.rerollDispell) {
+            description.push("RR dispell");
+        }
+        if (effect.spellAura.rerollUnbind) {
+            description.push("RR unbind");
+        }
+        if (effect.spellAura.autoCast) {
+            description.push("Auto-cast 9");
+        }
+        if (description.length === 0) {
+            description.push(`SpellAura: ${JSON.stringify(effect.spellAura)}`);
+        }
+    }
+    if (effect.specialAura) {
+        if (effect.specialAura.absorbDespair) {
+            description.push("Brav -1 transfered to enemy");
+        }
+        if (effect.specialAura.darknessOfSoul) {
+            description.push("No action on 2D6>Brv");
+        }
+        if (effect.specialAura.pickTwoUnitsInCombat) {
+            description.push("Pick 2 units (excl. strike 1st/last)");
+        }
+        if (description.length === 0) {
+            description.push(
+                `specialAura: ${JSON.stringify(effect.specialAura)}`
+            );
+        }
+    }
+    if (effect.battleShockAura) {
+        if (effect.battleShockAura.malusBravery) {
+            description.push(`${effect.battleShockAura.malusBravery} Brav`);
+        }
+        if (effect.battleShockAura.emotionalTransference) {
+            description.push("Transfered losses");
+        }
+        if (effect.battleShockAura.immune) {
+            description.push(`Battleshock immune`);
+        }
+        if (description.length === 0) {
+            description.push(
+                `battleShockAura: ${JSON.stringify(effect.battleShockAura)}`
+            );
+        }
+    }
+
+    if (effect.mortalWounds) {
+        effectType = EffectType.Immediate;
+        description.push(`${effect.mortalWounds} MW`);
+    }
+    if (effect.mortalWoundsPerModel) {
+        effectType = EffectType.Immediate;
+        description.push(`${effect.mortalWoundsPerModel} MW/model`);
+    }
+    if (effect.allowInclusion) {
+        effectType = EffectType.Immediate;
+        description.push("Include");
+    }
+    if (effect.gainCommandPoints) {
+        effectType = EffectType.Immediate;
+        description.push(`${effect.gainCommandPoints} CP`);
+    }
+    if (description.length === 0) {
+        description.push(JSON.stringify(effect));
+    }
+    return [condition, description, effectType];
+}
 
 export function getPhaseName(phase: Phase) {
     switch (phase) {
@@ -84,7 +325,7 @@ export function getEffectPhases(effect: AbilityEffect) {
         if (effect.attackAura.phase) phase |= effect.attackAura.phase;
         else phase |= Phase.Combat | Phase.Shooting;
     }
-    if (effect.valueAura) phase |= Phase.AnyInGame;
+    if (effect.valueAura || effect.specialAura) phase |= Phase.AnyInGame;
     if (effect.commandAura || effect.spellAura || effect.prayerAura)
         phase |= Phase.Hero;
     if (effect.movementAura) phase |= Phase.Movement;
@@ -184,20 +425,20 @@ export function isUnitInPhase(
         if (
             phase === Phase.Shooting &&
             unit.type === "unit" &&
-            unit.attacks.some(x => !x.attack.melee)
+            unit.attacks.some((x) => !x.attack.melee)
         ) {
             return true;
         }
         if (
             phase === Phase.Combat &&
             unit.type === "unit" &&
-            unit.attacks.some(x => x.attack.melee)
+            unit.attacks.some((x) => x.attack.melee)
         ) {
             return true;
         }
     }
     if (
-        unit.abilities.some(x =>
+        unit.abilities.some((x) =>
             isAbilityInPhase(unit, x, side, phase, subPhase)
         )
     )
@@ -241,7 +482,7 @@ export class BattleStore {
             phase: this.phase,
             side: this.side,
             subPhase: this.subPhase,
-            armyListId: this.player?.armyList.id
+            armyListId: this.player?.armyList.id,
         };
     }
 
@@ -258,7 +499,7 @@ export class BattleStore {
             const armyList = this.armyListStore.armyList;
             this.player = {
                 name: armyList.name,
-                armyList
+                armyList,
             };
         }
     }
@@ -266,7 +507,7 @@ export class BattleStore {
     @computed
     get units() {
         return (
-            this.player?.armyList.units.filter(x =>
+            this.player?.armyList.units.filter((x) =>
                 isUnitInPhase(x, this.side, this.phase, this.subPhase)
             ) || []
         );
@@ -284,7 +525,7 @@ export class BattleStore {
     }
 
     @computed get armyAbilities() {
-        return this.allArmyAbilities.filter(x =>
+        return this.allArmyAbilities.filter((x) =>
             isAbilityInPhase(
                 this.armyListStore.armyList,
                 x,
@@ -296,10 +537,10 @@ export class BattleStore {
     }
 
     @computed get uncheckedArmyAbilities() {
-        return this.armyAbilities.filter(x => !this.isArmyAbilityChecked(x));
+        return this.armyAbilities.filter((x) => !this.isArmyAbilityChecked(x));
     }
     @computed get checkedArmyAbilities() {
-        return this.armyAbilities.filter(x => this.isArmyAbilityChecked(x));
+        return this.armyAbilities.filter((x) => this.isArmyAbilityChecked(x));
     }
 
     @computed get numberOfUncheckedUnitsOrArmyAbilities() {
@@ -314,7 +555,7 @@ export class BattleStore {
     start(warscroll: ArmyList) {
         this.player = {
             name: "Player",
-            armyList: warscroll
+            armyList: warscroll,
         };
         this.phase = Phase.Setup;
         this.side = PhaseSide.Attack;
@@ -446,7 +687,7 @@ export class BattleStore {
         const unitAbilities = this.checkedAbilities.get(unit.id);
         if (!unitAbilities) return false;
         return unit.abilities.every(
-            x =>
+            (x) =>
                 unitAbilities.includes(x.id) ||
                 !isAbilityInPhase(unit, x, this.side, this.phase, this.subPhase)
         );

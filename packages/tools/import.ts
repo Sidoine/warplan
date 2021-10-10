@@ -22,7 +22,7 @@ import {
     Value,
     ValueType,
     BattalionAbility,
-    PhaseSide
+    PhaseSide,
 } from "../common/data";
 import {
     AbilityGroupDomain,
@@ -30,7 +30,7 @@ import {
     DamageRow,
     Dump,
     PurpleGroup,
-    Type
+    Type,
 } from "../common/definitions";
 
 function toCamelCase(name: string) {
@@ -47,7 +47,7 @@ function generatedId(name: string, property: DataStoreProperty) {
     if (idMap === undefined) {
         idMap = {
             idToName: new Map<string, string>(),
-            nameToId: new Map<string, string>()
+            nameToId: new Map<string, string>(),
         };
         idMaps.set(property, idMap);
     }
@@ -69,7 +69,7 @@ function getId(id: string, name: string, property: DataStoreProperty) {
     if (idMap === undefined) {
         idMap = {
             idToName: new Map<string, string>(),
-            nameToId: new Map<string, string>()
+            nameToId: new Map<string, string>(),
         };
         idMaps.set(property, idMap);
     }
@@ -400,6 +400,15 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect.defenseAura.phase = Phase.Hero;
     }
 
+    match = blurb.match(
+        /has a Rend characteristic of -1, change the Rend characteristic for that attack to ‘-’/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.ignoreRendOfMinus1 = true;
+    }
+
     match = blurb.match(/On a 5\+, that wound or mortal wound is negated/i);
     if (match) {
         effect = effect || { targetType: TargetType.Unit };
@@ -480,6 +489,13 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect.attackAura.bonusAttacks = 1;
         effect.attackAura.phase = Phase.Combat;
     }
+    match = blurb.match(/Add 1 to Damage characteristic of that weapon/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Weapon };
+        effect.targetType = TargetType.Weapon;
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.bonusAttacks = 1;
+    }
     match = blurb.match(
         /if the unmodified hit roll for an attack made with (.*?) is 6, that attack inflicts (\d) mortal wound on the target in addition to any normal damage/i
     );
@@ -546,6 +562,16 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect.battleShockAura.rerollFails = true;
     }
 
+    // Immediate
+    match = blurb.match(
+        /On a (\d)+, that enemy unit suffers ([D\d]+) mortal wounds/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Enemy };
+        effect.targetType = TargetType.Unit;
+        effect.mortalWounds = `${match[2]}(${match[1]}+)`;
+    }
+
     if (!effect) return undefined;
 
     return [effect];
@@ -578,7 +604,7 @@ function findElement<T extends { name: string }>(elements: T[], name: string) {
         }
         if (element.name.includes(" or ")) {
             const names = element.name.split(" or ");
-            if (names.some(x => getProximity(x, name) > 0.95)) return element;
+            if (names.some((x) => getProximity(x, name) > 0.95)) return element;
         }
     }
 
@@ -603,7 +629,7 @@ function getModelOptions(unit: Unit) {
                 ),
                 name: text,
                 modelCategory: ModelOptionCategory.Weapon,
-                unitCategory: UnitOptionCategory.Main
+                unitCategory: UnitOptionCategory.Main,
             };
             for (const part of parts) {
                 if (unit.attacks) {
@@ -613,7 +639,7 @@ function getModelOptions(unit: Unit) {
                             option.attacks = [];
                         }
                         option.attacks.push(attack);
-                        unit.attacks = unit.attacks.filter(x => x !== attack);
+                        unit.attacks = unit.attacks.filter((x) => x !== attack);
                     }
                 }
                 if (unit.abilities) {
@@ -624,7 +650,7 @@ function getModelOptions(unit: Unit) {
                         }
                         option.abilities.push(ability);
                         unit.abilities = unit.abilities.filter(
-                            x => x !== ability
+                            (x) => x !== ability
                         );
                     }
                 }
@@ -647,16 +673,16 @@ function getModelOptions(unit: Unit) {
             ),
             name: weaponOption,
             modelCategory: ModelOptionCategory.Weapon,
-            ratio: { count, every }
+            ratio: { count, every },
         };
         if (unit.attacks) {
-            const attack = unit.attacks.find(x => x.name === weaponOption);
+            const attack = unit.attacks.find((x) => x.name === weaponOption);
             if (attack) {
                 if (!option.attacks) {
                     option.attacks = [];
                 }
                 option.attacks.push(attack);
-                unit.attacks = unit.attacks.filter(x => x !== attack);
+                unit.attacks = unit.attacks.filter((x) => x !== attack);
             }
         }
 
@@ -665,7 +691,7 @@ function getModelOptions(unit: Unit) {
 
     if (unit.abilities) {
         const champion = unit.abilities.find(
-            x => x.category === AbilityCategory.Champion
+            (x) => x.category === AbilityCategory.Champion
         );
         if (champion && champion.description) {
             const match = champion.description.match(
@@ -681,10 +707,10 @@ function getModelOptions(unit: Unit) {
                     name: championName,
                     modelCategory: ModelOptionCategory.Champion,
                     champion: true,
-                    abilities: [champion]
+                    abilities: [champion],
                 };
                 options.push(option);
-                unit.abilities = unit.abilities.filter(x => x !== champion);
+                unit.abilities = unit.abilities.filter((x) => x !== champion);
             }
         }
     }
@@ -745,7 +771,7 @@ function importExtraAbilities<
             name: group.name,
             allowUniqueUnits: group.allowUniqueUnits,
             restrictions: group.restrictions,
-            domain: group.domain ?? defaultDomain
+            domain: group.domain ?? defaultDomain,
         };
         dataStore.abilityGroups[groupId] = entity;
         if (group.factionId) {
@@ -770,7 +796,7 @@ function importExtraAbilities<
             flavor: ability.lore || undefined,
             description: ability.rules,
             effects: getAbilityEffects(ability.name, ability.rules),
-            category
+            category,
         };
         dataStore.abilities[abilityId] = entity;
         group.abilities.push(entity);
@@ -784,7 +810,7 @@ function importExtraAbilities<
                 groupKeyword[groupId as keyof typeof groupKeyword]
             );
             const keyword = db.keyword.find(
-                k => k.id === groupKeyword.keywordId
+                (k) => k.id === groupKeyword.keywordId
             );
             if (keyword) {
                 if (!group.keywords) group.keywords = [];
@@ -811,7 +837,9 @@ function importAbilityKeywords<
             "abilities",
             abilityKeyword[groupId as keyof typeof abilityKeyword]
         );
-        const keyword = db.keyword.find(k => k.id === abilityKeyword.keywordId);
+        const keyword = db.keyword.find(
+            (k) => k.id === abilityKeyword.keywordId
+        );
         if (keyword) {
             if (!ability.restrictions) ability.restrictions = {};
             if (!ability.restrictions.keywords)
@@ -837,7 +865,7 @@ export function importData(db: Dump): ImportedDataStore {
         battalionUnits: {},
         battalionGroups: {},
         genericBattalionGroups: [],
-        battalionAbilities: {}
+        battalionAbilities: {},
     };
 
     for (const faction of db.faction) {
@@ -846,7 +874,7 @@ export function importData(db: Dump): ImportedDataStore {
             id: newId,
             name: faction.name,
             category: faction.keywordCategory,
-            children: []
+            children: [],
         };
     }
 
@@ -861,7 +889,7 @@ export function importData(db: Dump): ImportedDataStore {
     for (const warscroll of db.warscroll) {
         const model: Model = {
             id: getId(warscroll.id, warscroll.name, "models"),
-            name: warscroll.name
+            name: warscroll.name,
         };
         dataStore.models[model.id] = model;
     }
@@ -889,7 +917,7 @@ export function importData(db: Dump): ImportedDataStore {
             save: warscroll.save ?? undefined,
             pictureUrl: warscroll.imageUrl ?? undefined,
             unique: warscroll.unique,
-            single: warscroll.single
+            single: warscroll.single,
         };
         dataStore.units[unit.id] = unit;
     }
@@ -919,7 +947,7 @@ export function importData(db: Dump): ImportedDataStore {
             damage: weapon.damage,
             rend: weapon.rend,
             toHit: weapon.hit,
-            toWound: weapon.wound
+            toWound: weapon.wound,
         };
         dataStore.attacks[attack.id] = attack;
         if (!unit.attacks) unit.attacks = [];
@@ -945,7 +973,7 @@ export function importData(db: Dump): ImportedDataStore {
                 descriptionSubsection.header,
                 descriptionSubsection.rules,
                 unit
-            )
+            ),
         };
         switch (descriptionSubsection.header) {
             case "Champion":
@@ -1007,7 +1035,7 @@ export function importData(db: Dump): ImportedDataStore {
             columns.push({
                 name: "",
                 values: [],
-                type: ValueType.DamageColumn
+                type: ValueType.DamageColumn,
             });
         }
         const ranges: string[] = [];
@@ -1036,7 +1064,7 @@ export function importData(db: Dump): ImportedDataStore {
                 "damageTables"
             ),
             columns,
-            ranges
+            ranges,
         };
         dataStore.damageTables[table.id] = table;
         unit.damageTable = table;
@@ -1057,7 +1085,7 @@ export function importData(db: Dump): ImportedDataStore {
                 warscrollAbility.name,
                 warscrollAbility.rules,
                 unit
-            )
+            ),
         };
         dataStore.abilities[ability.id] = ability;
         if (!unit.abilities) unit.abilities = [];
@@ -1188,7 +1216,7 @@ export function importData(db: Dump): ImportedDataStore {
             battalions: [],
             name: battalionGroup.name,
             description: battalionGroup.rules || "",
-            restrictions: battalionGroup.restrictions
+            restrictions: battalionGroup.restrictions,
         };
         dataStore.battalionGroups[entity.id] = entity;
         if (battalionGroup.factionId) {
@@ -1210,7 +1238,7 @@ export function importData(db: Dump): ImportedDataStore {
             name: battalion.name,
             onePerArmy: battalion.onePerArmy,
             units: [],
-            abilities: []
+            abilities: [],
         };
         dataStore.battalions[battalionData.id] = battalionData;
         const battalionGroup = getItem(
@@ -1235,7 +1263,7 @@ export function importData(db: Dump): ImportedDataStore {
             ),
             grantsExtraEnhancement: ability.grantsExtraEnhancement,
             name: ability.header,
-            description: ability.rules
+            description: ability.rules,
         };
         dataStore.battalionAbilities[entity.id] = entity;
         battalion.abilities.push(entity);
@@ -1260,7 +1288,7 @@ export function importData(db: Dump): ImportedDataStore {
             imageName: unitType.imageName,
             order: unitType.order,
             restrictions: unitType.restrictions,
-            woundsLimit: unitType.woundsLimit
+            woundsLimit: unitType.woundsLimit,
         };
         dataStore.battalionUnits[entity.id] = entity;
         battalion.units.push(entity);
@@ -1294,7 +1322,7 @@ export function importData(db: Dump): ImportedDataStore {
         );
         unitType.keywords = unitType.keywords || [];
         const keyword = db.keyword.find(
-            k => k.id === unitTypeKeyword.keywordId
+            (k) => k.id === unitTypeKeyword.keywordId
         );
         if (keyword) unitType.keywords.push(keyword.name.toUpperCase());
     }

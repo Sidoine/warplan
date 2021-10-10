@@ -6,7 +6,7 @@ import {
     Card,
     CardContent,
     Switch,
-    FormControlLabel,
+    FormControlLabel
 } from "@material-ui/core";
 import terrainImage from "../assets/objective.png";
 import spellImage from "../assets/gambitspell.png";
@@ -24,17 +24,17 @@ const textContent: CSSProperties = {
     textAlign: "center",
     textShadow:
         "0px 0px 4px white, 0px 0px 8px white, 0px 0px 4px white, 0px 0px 4px white, 0px 0px 10px white",
-    fontWeight: "bold",
+    fontWeight: "bold"
 };
 
 const useStyle = makeStyles({
     filter: {
         "@media print": {
-            display: "none",
-        },
+            display: "none"
+        }
     },
     markers: {
-        display: "block",
+        display: "block"
     },
     wrapper: {
         display: "inline-block",
@@ -43,7 +43,7 @@ const useStyle = makeStyles({
         position: "relative",
         borderRadius: "50px",
         backgroundColor: "gray",
-        margin: "10px",
+        margin: "10px"
     },
     marker: {
         top: 0,
@@ -61,23 +61,23 @@ const useStyle = makeStyles({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        breakInside: "avoid",
+        breakInside: "avoid"
     },
     terrain: {
-        backgroundImage: `url(${terrainImage})`,
+        backgroundImage: `url(${terrainImage})`
     },
     spell: {
-        backgroundImage: `url(${spellImage})`,
+        backgroundImage: `url(${spellImage})`
     },
     command: {
-        backgroundImage: `url(${commandImage})`,
+        backgroundImage: `url(${commandImage})`
     },
     custom: {},
     text: Object.assign(
         {
             textTransform: "uppercase",
             fontWeight: "bold",
-            fontSize: "12px",
+            fontSize: "12px"
         },
         textContent
     ),
@@ -85,7 +85,7 @@ const useStyle = makeStyles({
         {
             fontWeight: "bold",
             fontSize: "10px",
-            fontStyle: "italic",
+            fontStyle: "italic"
         },
         textContent
     ),
@@ -93,16 +93,16 @@ const useStyle = makeStyles({
     hiddenMarker: {
         opacity: 0.5,
         "@media print": {
-            display: "none",
-        },
+            display: "none"
+        }
     },
     background: {
         position: "absolute",
         left: "5px",
         top: "5px",
         width: "90px",
-        height: "90px",
-    },
+        height: "90px"
+    }
 });
 
 const MarkerView = observer(({ marker }: { marker: Marker }) => {
@@ -125,10 +125,9 @@ const MarkerView = observer(({ marker }: { marker: Marker }) => {
     }
     return (
         <div
-            className={`${classes.wrapper} ${
-                markersStore.hiddenMarkers.get(marker.id) &&
-                classes.hiddenMarker
-            }`}
+            className={`${classes.wrapper} ${markersStore.hiddenMarkers.get(
+                marker.id
+            ) && classes.hiddenMarker}`}
             onClick={() => markersStore.toggleMarker(marker)}
         >
             {marker.image && (
@@ -156,13 +155,10 @@ function Repeat({ children, count }: { children: ReactNode; count: number }) {
     return <>{result}</>;
 }
 
-export function Markers() {
+export const Markers = observer(function Markers() {
     const { markersStore } = useStores();
     const classes = useStyle();
     const [repeat, setRepeat] = useState(1);
-    const [terrain, setTerrain] = useState(true);
-    const [generic, setGeneric] = useState(true);
-    const [warscroll, setWarscroll] = useState(true);
     return (
         <>
             <Card className={classes.filter}>
@@ -175,10 +171,8 @@ export function Markers() {
                     <FormControlLabel
                         control={
                             <Switch
-                                checked={terrain}
-                                onChange={(x) =>
-                                    setTerrain(x.currentTarget.checked)
-                                }
+                                checked={markersStore.showTerrains}
+                                onChange={markersStore.toggleShowTerrains}
                             />
                         }
                         label="Terrains"
@@ -186,10 +180,8 @@ export function Markers() {
                     <FormControlLabel
                         control={
                             <Switch
-                                checked={generic}
-                                onChange={(x) =>
-                                    setGeneric(x.currentTarget.checked)
-                                }
+                                checked={markersStore.showGenerics}
+                                onChange={markersStore.toggleShowGenerics}
                             />
                         }
                         label="Generic abilities"
@@ -197,10 +189,8 @@ export function Markers() {
                     <FormControlLabel
                         control={
                             <Switch
-                                checked={warscroll}
-                                onChange={(x) =>
-                                    setWarscroll(x.currentTarget.checked)
-                                }
+                                checked={markersStore.showWarscrolls}
+                                onChange={markersStore.toggleShowWarscrolls}
                             />
                         }
                         label="Warscroll abilities"
@@ -209,20 +199,20 @@ export function Markers() {
             </Card>
 
             <div className={classes.markers}>
-                {terrain &&
-                    markersStore.terrainMarkers.map((x) => (
+                {markersStore.showTerrains &&
+                    markersStore.terrainMarkers.map(x => (
                         <Repeat key={x.id} count={repeat}>
                             <MarkerView marker={x} />
                         </Repeat>
                     ))}
-                {generic &&
-                    markersStore.genericMarkers.map((x) => (
+                {markersStore.showGenerics &&
+                    markersStore.genericMarkers.map(x => (
                         <Repeat key={x.id} count={repeat}>
                             <MarkerView marker={x} />
                         </Repeat>
                     ))}
-                {warscroll &&
-                    markersStore.markers.map((x) => (
+                {markersStore.showWarscrolls &&
+                    markersStore.markers.map(x => (
                         <Repeat key={x.id} count={repeat}>
                             <MarkerView marker={x} />
                         </Repeat>
@@ -230,4 +220,4 @@ export function Markers() {
             </div>
         </>
     );
-}
+});

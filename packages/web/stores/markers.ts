@@ -1,13 +1,7 @@
 import { action, computed, observable, makeObservable } from "mobx";
-import {
-    AbilityCategory,
-    Phase,
-    Ability,
-    AbilityEffect
-} from "../../common/data";
+import { AbilityCategory, Ability, AbilityEffect } from "../../common/data";
 import { DataStore } from "./data";
-import { getAbilityPhases, getEffectPhases } from "./battle";
-import { getValue } from "./combat";
+import { getAbilityPhases, getEffectPhases, getEffectText } from "./battle";
 import elite from "../assets/elite.svg";
 import { ArmyListStore } from "./army-list";
 
@@ -32,96 +26,7 @@ function getMarker(
     ability: Ability,
     effectIndex: number
 ): Marker {
-    const description: string[] = [];
-    let condition: string | undefined;
-    if (effect.attackAura) {
-        if (effect.attackAura.phase) {
-            condition =
-                effect.attackAura.phase === Phase.Shooting
-                    ? "Shooting"
-                    : "Combat";
-        }
-        if (effect.attackAura.rerollHitsOn1) {
-            description.push("RR1 hit");
-        }
-        if (effect.attackAura.bonusRend) {
-            description.push(`${effect.attackAura.bonusRend} Rend`);
-        }
-        if (effect.attackAura.rerollFailedWounds) {
-            description.push("RR Wound");
-        }
-        if (effect.attackAura.bonusWoundRoll) {
-            description.push(
-                `+${getValue(effect.attackAura.bonusWoundRoll)} Wound`
-            );
-        }
-        if (effect.attackAura.rerollFailedHits) {
-            description.push("RR Hit");
-        }
-        if (effect.attackAura.malusHitRoll) {
-            description.push(
-                `-${getValue(effect.attackAura.malusHitRoll)} Hit`
-            );
-        }
-        if (effect.attackAura.noPileIn) {
-            description.push("No pile-in");
-        }
-        if (effect.attackAura.bonusAttacks) {
-            description.push(`+${effect.attackAura.bonusAttacks} Atk`);
-        }
-    }
-    if (effect.defenseAura) {
-        if (effect.defenseAura.rerollFailedSaves) {
-            description.push("RR Save");
-        }
-        if (effect.defenseAura.bonusSave) {
-            description.push(`+${effect.defenseAura.bonusSave} Save`);
-        }
-        if (effect.defenseAura.rerollSavesOn1) {
-            description.push("RR1 Save");
-        }
-        if (effect.defenseAura.rerollHitOn1) {
-            description.push("RR1 Enemy Hit");
-        }
-        if (effect.defenseAura.rerollHitOn6) {
-            description.push("RR6 Enemy Hit");
-        }
-        if (effect.defenseAura.healOnSave7) {
-            description.push(`Save 7+: ${effect.defenseAura.healOnSave7} heal`);
-        }
-        if (effect.defenseAura.bonusHitRoll) {
-            description.push(`+${effect.defenseAura.bonusHitRoll} Enemy Hit`);
-        }
-        if (effect.defenseAura.bonusWoundRoll) {
-            description.push(
-                `+${effect.defenseAura.bonusWoundRoll} Enemy Wound`
-            );
-        }
-        if (effect.defenseAura.malusHitRoll) {
-            description.push(`-${effect.defenseAura.malusHitRoll} Enemy Hit`);
-        }
-        if (effect.defenseAura.phase) {
-            condition =
-                effect.defenseAura.phase === Phase.Shooting
-                    ? "Shooting"
-                    : "Combat";
-        }
-    }
-    if (effect.movementAura) {
-        if (effect.movementAura.allowChargeAfterRunOrRetreat) {
-            description.push("Charge after Run/Retreat");
-        }
-    }
-    if (effect.chargeAura) {
-        if (effect.chargeAura.bonus) {
-            description.push(`+${effect.chargeAura.bonus} Charge`);
-        }
-    }
-    if (effect.spellAura) {
-        if (effect.spellAura.noCast) {
-            description.push("No cast");
-        }
-    }
+    const [condition, description] = getEffectText(effect);
     return {
         id: ability.id + effectIndex,
         description: description.join(" - "),
@@ -148,13 +53,33 @@ function hasMarker(
 
 interface SerializedMarkers {
     hiddenMarkers: string[];
+    terrains?: boolean;
+    generics?: boolean;
+    warscrolls?: boolean;
 }
 
 export class MarkersStore {
     serial = 1;
 
+    @observable showTerrains = true;
+    @observable showGenerics = true;
+    @observable showWarscrolls = true;
+
     @observable
     hiddenMarkers = new Map<string, boolean>();
+
+    @action toggleShowTerrains = () => {
+        this.showTerrains = !this.showTerrains;
+        this.save();
+    };
+    @action toggleShowGenerics = () => {
+        this.showGenerics = !this.showGenerics;
+        this.save();
+    };
+    @action toggleShowWarscrolls = () => {
+        this.showWarscrolls = !this.showWarscrolls;
+        this.save();
+    };
 
     terrainMarkers: Marker[] = [
         {
@@ -367,6 +292,7 @@ export class MarkersStore {
         public unitStore: DataStore // TODO
     ) {
         makeObservable(this);
+        this.load();
     }
 
     @action
@@ -385,6 +311,9 @@ export class MarkersStore {
         for (const marker of markers.hiddenMarkers) {
             this.hiddenMarkers.set(marker, true);
         }
+        this.showGenerics = markers.generics || false;
+        this.showTerrains = markers.terrains || false;
+        this.showWarscrolls = markers.warscrolls || false;
     }
 
     save() {
@@ -393,6 +322,9 @@ export class MarkersStore {
                 .filter(x => x[1])
                 .map(x => x[0])
         };
+        serialized.generics = this.showGenerics;
+        serialized.terrains = this.showTerrains;
+        serialized.warscrolls = this.showWarscrolls;
         localStorage.setItem("markers", JSON.stringify(serialized));
     }
 
