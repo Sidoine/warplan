@@ -35,10 +35,12 @@ export const enum EffectType {
     Buff,
     Debuff,
     Immediate,
+    Unknown,
 }
 
 export function getEffectText(
-    effect: AbilityEffect
+    effect: AbilityEffect,
+    unit: ItemWithAbilities
 ): [
     condition: string | undefined,
     description: string[],
@@ -90,6 +92,11 @@ export function getEffectText(
                 `+${effect.attackAura.bonusDamageOnHitUnmodified6} Dmg on 6 Hit`
             );
         }
+        if (effect.attackAura.mortalWoundsOnHitUnmodified5) {
+            description.push(
+                `${effect.attackAura.mortalWoundsOnHitUnmodified5} MW on 5+ Hit`
+            );
+        }
         if (effect.attackAura.mortalWoundsOnHitUnmodified6) {
             description.push(
                 `${effect.attackAura.mortalWoundsOnHitUnmodified6} MW on 6 Hit`
@@ -99,6 +106,25 @@ export function getEffectText(
             description.push(
                 `+${effect.attackAura.bonusMortalWoundsOnHitUnmodified6} MW on 6 Hit`
             );
+        }
+        if (effect.attackAura.attackId) {
+            const attack = unit.attacks?.find(
+                (x) => x.attack.id === effect.attackAura?.attackId
+            );
+            if (attack) {
+                description.push(`Choose ${attack.attack.name}`);
+            }
+        }
+        if (effect.attackAura.pileInEverywhere) {
+            description.push("Pile-in everywhere");
+        }
+        if (effect.attackAura.bonusPileInDistance) {
+            description.push(
+                `+${getValue(effect.attackAura.bonusPileInDistance)} Pile-in`
+            );
+        }
+        if (effect.attackAura.pileInWithFly) {
+            description.push("Pile-in with Fly");
         }
         if (description.length === 0) {
             description.push(
@@ -164,6 +190,9 @@ export function getEffectText(
         if (effect.defenseAura.guardianOn2) {
             description.push("2+ Guardian");
         }
+        if (effect.defenseAura.visibleToCasterUnit) {
+            description.push("Visible to caster unit");
+        }
         if (description.length === 0) {
             description.push(
                 `defenseAura: ${JSON.stringify(effect.defenseAura)}`
@@ -189,6 +218,9 @@ export function getEffectText(
     if (effect.chargeAura) {
         if (effect.chargeAura.bonus) {
             description.push(`+${effect.chargeAura.bonus} Charge`);
+        }
+        if (effect.chargeAura.canChargeAfterRetreat) {
+            description.push("Charge after Retreat");
         }
         if (description.length === 0) {
             description.push(
@@ -226,10 +258,21 @@ export function getEffectText(
         if (effect.specialAura.pickTwoUnitsInCombat) {
             description.push("Pick 2 units (excl. strike 1st/last)");
         }
+        if (effect.specialAura.blockVisibility) {
+            description.push("Block visibility");
+        }
         if (description.length === 0) {
             description.push(
                 `specialAura: ${JSON.stringify(effect.specialAura)}`
             );
+        }
+    }
+    if (effect.valueAura) {
+        if (effect.valueAura.ignoreWounds) {
+            description.push("Wds table: use 0 Wd");
+        }
+        if (description.length === 0) {
+            description.push(`valueAura: ${JSON.stringify(effect.valueAura)}`);
         }
     }
     if (effect.battleShockAura) {
@@ -241,6 +284,12 @@ export function getEffectText(
         }
         if (effect.battleShockAura.immune) {
             description.push(`Battleshock immune`);
+        }
+        if (effect.battleShockAura.bonusBravery) {
+            description.push(`+${effect.battleShockAura.bonusBravery} Brav`);
+        }
+        if (effect.battleShockAura.rerollFails) {
+            description.push("RR battleshocks");
         }
         if (description.length === 0) {
             description.push(
@@ -265,8 +314,13 @@ export function getEffectText(
         effectType = EffectType.Immediate;
         description.push(`${effect.gainCommandPoints} CP`);
     }
+    if (effect.setup) {
+        effectType = EffectType.Immediate;
+        description.push("Setup");
+    }
     if (description.length === 0) {
         description.push(JSON.stringify(effect));
+        effectType = EffectType.Unknown;
     }
     return [condition, description, effectType];
 }

@@ -7,7 +7,7 @@ import {
     Value,
     SubPhase,
     PhaseSide,
-    ItemWithAbilities
+    ItemWithAbilities,
 } from "../../common/data";
 import {
     getPhaseName,
@@ -16,7 +16,7 @@ import {
     isAbilityInPhase,
     isEffectInPhase,
     getSubPhaseName,
-    getPhaseSideName
+    getPhaseSideName,
 } from "../stores/battle";
 import { join, value } from "../helpers/react";
 import { makeStyles } from "@material-ui/core";
@@ -33,12 +33,12 @@ const useStyle = makeStyles({
     section: {
         breakBefore: "right",
         ["&:first-of-type"]: {
-            breakBefore: "avoid"
-        }
+            breakBefore: "avoid",
+        },
     },
     subSectionContent: {
         columnCount: 2,
-        fontSize: "1rem"
+        fontSize: "1rem",
     },
     unitTitle: {
         fontWeight: "bold",
@@ -51,34 +51,34 @@ const useStyle = makeStyles({
             height: "6px",
             display: "inline-block",
             marginRight: "5px",
-            marginBottom: "1px"
-        }
+            marginBottom: "1px",
+        },
     },
     unit: {
-        marginBottom: "0.5rem"
+        marginBottom: "0.5rem",
     },
     abilityName: {
-        color: "darkblue"
+        color: "darkblue",
     },
     out: {},
     "@media print": {
         out: {
-            display: "none"
-        }
+            display: "none",
+        },
     },
     stats: {
         display: "flex",
         flexWrap: "wrap",
         "&:odd": {
-            backgroundColor: "#d0c89a"
-        }
+            backgroundColor: "#d0c89a",
+        },
     },
     statsTitle: {
         width: "6rem",
         backgroundColor: "#e6dccb",
         padding: "0.05rem",
         textAlign: "right",
-        fontVariant: "small-caps"
+        fontVariant: "small-caps",
     },
     statKey: {
         backgroundColor: "#e6dccb",
@@ -86,14 +86,14 @@ const useStyle = makeStyles({
         border: "1px solid #e6dccb",
         padding: "0.05rem",
         textAlign: "center",
-        fontSize: "0.8rem"
+        fontSize: "0.8rem",
     },
     statValue: {
         width: "1.5rem",
         border: "1px solid #e6dccb",
         padding: "0.05rem",
-        textAlign: "center"
-    }
+        textAlign: "center",
+    },
 });
 
 export interface CheckListProps {
@@ -113,9 +113,9 @@ function getWithAbilitiesInPhase(
 ): ItemWithAbilityInPhase {
     return {
         item,
-        abilities: item.abilities.filter(a =>
+        abilities: item.abilities.filter((a) =>
             isAbilityInPhase(item, a, side, phase)
-        )
+        ),
     };
 }
 
@@ -127,9 +127,9 @@ function mapPhaseSide(
 ): ItemWithAbilityInPhase {
     return {
         item: item.item,
-        abilities: item.abilities.filter(a =>
+        abilities: item.abilities.filter((a) =>
             isAbilityInPhase(item.item, a, side, phase, subPhase)
-        )
+        ),
     };
 }
 
@@ -174,7 +174,7 @@ function AbilityInfo({
     phase,
     unit,
     side,
-    subPhase
+    subPhase,
 }: {
     abilityModel: Ability;
     phase: Phase;
@@ -200,11 +200,15 @@ function AbilityInfo({
             {ability.effects &&
                 join(
                     ability.effects
-                        .filter(x =>
+                        .filter((x) =>
                             isEffectInPhase(unit, x, side, phase, subPhase)
                         )
                         .map((x, index) => (
-                            <AbilityEffectView key={index} effect={x} />
+                            <AbilityEffectView
+                                key={index}
+                                unit={unit}
+                                effect={x}
+                            />
                         )),
                     ", "
                 )}
@@ -216,7 +220,7 @@ function UnitInfo({
     unit: item,
     phase,
     side,
-    subPhase
+    subPhase,
 }: {
     unit: ItemWithAbilityInPhase;
     phase: Phase;
@@ -254,15 +258,15 @@ function UnitInfo({
             {unit.attacks &&
                 side === PhaseSide.Attack &&
                 unit.attacks
-                    .filter(x => isAttackInPhase(x.attack, phase, subPhase))
-                    .map(x => (
+                    .filter((x) => isAttackInPhase(x.attack, phase, subPhase))
+                    .map((x) => (
                         <AttackStats
                             key={x.attack.id}
                             attack={x.attack}
                             count={x.count}
                         />
                     ))}
-            {distinct(item.abilities).map(x => (
+            {distinct(item.abilities).map((x) => (
                 <AbilityInfo
                     key={x.id}
                     phase={phase}
@@ -280,7 +284,7 @@ function SubPhaseInfo({
     items,
     side,
     phase,
-    subPhase
+    subPhase,
 }: {
     items: ItemWithAbilityInPhase[];
     side: PhaseSide;
@@ -294,7 +298,7 @@ function SubPhaseInfo({
             <h3>{getSubPhaseName(subPhase)}</h3>
             <div className={classes.subSectionContent}>
                 <div>
-                    {items.map(x => (
+                    {items.map((x) => (
                         <UnitInfo
                             key={x.item.id}
                             unit={x}
@@ -314,7 +318,7 @@ const subPhases = [SubPhase.Before, SubPhase.While, SubPhase.After];
 function PhaseInfo({
     phase,
     items,
-    phaseSide
+    phaseSide,
 }: {
     phase: Phase;
     phaseSide: PhaseSide;
@@ -325,11 +329,11 @@ function PhaseInfo({
     return (
         <section className={classes.section}>
             <h1>{getPhaseName(phase)}</h1>
-            {subPhases.map(subPhase => (
+            {subPhases.map((subPhase) => (
                 <SubPhaseInfo
                     items={items
-                        .map(x => mapPhaseSide(x, phaseSide, phase, subPhase))
-                        .filter(x => x.abilities.length > 0)}
+                        .map((x) => mapPhaseSide(x, phaseSide, phase, subPhase))
+                        .filter((x) => x.abilities.length > 0)}
                     phase={phase}
                     side={phaseSide}
                     subPhase={subPhase}
@@ -380,7 +384,7 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
         <section className={classes.out}>
             <h1>Abilities without effect</h1>
             {warscroll.abilities
-                .filter(x => !x.effects)
+                .filter((x) => !x.effects)
                 .map((x, i) => (
                     <div key={i}>
                         <strong>{x.name}</strong> {x.description}
@@ -390,7 +394,9 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
                 .reduce(
                     (prev, x) =>
                         prev.concat(
-                            x.abilities.filter(y => !y.effects).map(y => [x, y])
+                            x.abilities
+                                .filter((y) => !y.effects)
+                                .map((y) => [x, y])
                         ),
                     new Array<[WarscrollItem, Ability]>()
                 )
@@ -410,11 +416,11 @@ function PhaseSideInfo({ phaseSide }: { phaseSide: PhaseSide }) {
     return (
         <div>
             <h1>{getPhaseSideName(phaseSide)}</h1>
-            {phases.map(x => (
+            {phases.map((x) => (
                 <PhaseInfo
                     items={armyList.itemsWithAbilities
-                        .map(y => getWithAbilitiesInPhase(y, phaseSide, x))
-                        .filter(y => y.abilities.length > 0)}
+                        .map((y) => getWithAbilitiesInPhase(y, phaseSide, x))
+                        .filter((y) => y.abilities.length > 0)}
                     phase={x}
                     phaseSide={phaseSide}
                     key={x}

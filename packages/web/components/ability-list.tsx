@@ -6,21 +6,21 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Typography
+    Typography,
 } from "@material-ui/core";
 import { observer } from "mobx-react-lite";
 import { useStores } from "../stores";
-import { Ability, Phase } from "../../common/data";
+import { Ability, ItemWithAbilities, Phase } from "../../common/data";
 import {
     getEffectPhases,
     getPhaseName,
     getPhaseSideName,
     getSubPhaseName,
-    phases
+    phases,
 } from "../stores/battle";
 import {
     AbilityEffectAuraView,
-    AbilityEffectTarget
+    AbilityEffectTarget,
 } from "./ability-effect-view";
 import { Warning } from "../atoms/warning";
 
@@ -34,7 +34,13 @@ function getEffectPhaseNames(phaseBits: number) {
     return phaseNames;
 }
 
-function AbilityRows({ ability }: { ability: Ability }) {
+function AbilityRows({
+    ability,
+    unit,
+}: {
+    ability: Ability;
+    unit: ItemWithAbilities;
+}) {
     if (!ability.effects) {
         return (
             <TableRow>
@@ -75,7 +81,7 @@ function AbilityRows({ ability }: { ability: Ability }) {
                             getPhaseName(effect.phase)}
                     </TableCell>
                     <TableCell>
-                        <AbilityEffectAuraView effect={effect} />
+                        <AbilityEffectAuraView effect={effect} unit={unit} />
                     </TableCell>
                     <TableCell>
                         {getEffectPhaseNames(getEffectPhases(effect)).join(
@@ -83,7 +89,7 @@ function AbilityRows({ ability }: { ability: Ability }) {
                         )}
                     </TableCell>
                     <TableCell>
-                        <AbilityEffectTarget effect={effect} />
+                        <AbilityEffectTarget unit={unit} effect={effect} />
                     </TableCell>
                 </TableRow>
             ))}
@@ -107,8 +113,12 @@ export const AbilityList = observer(function AbilityList() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {armyList.armyAndUnitsAbilities.map(ability => (
-                        <AbilityRows key={ability.id} ability={ability} />
+                    {armyList.armyAndUnitsAbilities.map(({ item, ability }) => (
+                        <AbilityRows
+                            unit={item}
+                            key={ability.id}
+                            ability={ability}
+                        />
                     ))}
                 </TableBody>
             </Table>

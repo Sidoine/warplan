@@ -112,6 +112,7 @@ export interface DefenseAura {
     rerollHits?: boolean;
     garrisoned?: boolean;
     guardianOn2?: boolean;
+    visibleToCasterUnit?: boolean;
 }
 
 export interface BattleshockAura {
@@ -157,6 +158,7 @@ export interface TargetCondition {
     meleeWeapon?: boolean;
     rangedWeapon?: boolean;
     inRangeOf?: { friendly: boolean; keyword: string[]; range: number };
+    abilityId?: string;
 }
 
 export interface AttackAuraValues {
@@ -169,6 +171,7 @@ export interface AttackAuraValues {
     numberOfHitsOnUnmodified6?: Value;
     numberOfHitsOnHit?: Value;
     mortalWoundsOnHitUnmodified6?: Value;
+    mortalWoundsOnHitUnmodified5?: Value;
     bonusMortalWoundsOnHitUnmodified6?: Value;
     mortalWounds?: Value;
     damageOnWoundUnmodified6?: Value;
@@ -181,6 +184,7 @@ export interface AttackAuraValues {
     bonusRendOnWound6OrMore?: Value;
     rangeBonus?: Value;
     rerollFailedHits?: Value;
+    bonusPileInDistance?: Value;
 }
 
 export interface AttackAuraBooleans {
@@ -191,6 +195,8 @@ export interface AttackAuraBooleans {
     noPileIn?: boolean;
     changeHitWoundSaveOrDamageRoll?: boolean;
     rerollHits?: boolean;
+    pileInEverywhere?: boolean;
+    pileInWithFly?: boolean;
 }
 
 export interface AttackAuraAbilityEffects {
@@ -202,6 +208,7 @@ export interface AttackAura
         AttackAuraAbilityEffects,
         AttackAuraBooleans {
     phase?: Phase.Combat | Phase.Shooting;
+    attackId?: string;
 }
 
 export const enum SubPhase {
@@ -232,12 +239,14 @@ export interface ValueAura {
 
 export const enum TargetType {
     Unit = 0,
-    Friend = 16,
     Model = 1,
     Weapon = 2,
     Mount = 4,
     Enemy = 8,
-    NotUnit = Model | Weapon | Mount,
+    Friend = 16,
+    Ability = 32,
+    Terrain = 64,
+    NotUnit = Model | Weapon | Mount | Ability,
 }
 
 export const enum EffectDuration {
@@ -257,6 +266,7 @@ interface SpecialAura {
     absorbDespair?: boolean;
     darknessOfSoul?: boolean;
     pickTwoUnitsInCombat?: boolean;
+    blockVisibility?: boolean;
 }
 
 interface CommandAura {
@@ -321,6 +331,7 @@ export interface AbilityEffect {
     mortalWoundsPerModel?: Value;
     allowInclusion?: boolean;
     gainCommandPoints?: Value;
+    setup?: boolean;
 }
 
 export interface Ability {

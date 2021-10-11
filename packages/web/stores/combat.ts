@@ -6,7 +6,7 @@ import {
     isSumValue,
     isTargetConditionValue,
     isOrValue,
-    isConditionValue
+    isConditionValue,
 } from "../../common/data";
 import { targetEnemy, checkCondition } from "./stats";
 import { UnitState, addAttackAura } from "./unit-state";
@@ -52,6 +52,17 @@ export function getValue(
             const numberOfDices = someDices[1] ? parseInt(someDices[1]) : 1;
             const minValue = someDices[2] ? parseInt(someDices[2]) : 6;
             return (numberOfDices * 3.5 * (minValue - 1)) / 6;
+        }
+        const randomValueOnChance = formula.match(/^D(\d+)\((\d)\+\)$/);
+        if (randomValueOnChance) {
+            const numberOfSides = randomValueOnChance[1]
+                ? parseInt(randomValueOnChance[1])
+                : 1;
+            const valueToReturn = (numberOfSides + 1) / 2;
+            const minValue = randomValueOnChance[2]
+                ? parseInt(randomValueOnChance[2])
+                : 6;
+            return (valueToReturn * (minValue - 1)) / 6;
         }
         const valueOnChance = formula.match(/^(\d+)\((\d)\+\)$/);
         if (valueOnChance) {
@@ -209,7 +220,7 @@ export abstract class Combat {
         if (attackAura.mortalWoundsOnHitUnmodified6) {
             const numberOf6 = count(hitRolls, 6);
             if (numberOf6 > 0) {
-                hitRolls = hitRolls.filter(x => x !== 6);
+                hitRolls = hitRolls.filter((x) => x !== 6);
                 target.wounds += await this.valueRoller(
                     attackAura.mortalWoundsOnHitUnmodified6,
                     numberOf6,
@@ -219,8 +230,9 @@ export abstract class Combat {
             }
         }
 
-        let hits = hitRolls.filter(x => x + bonusHit >= toHit && x !== 1)
-            .length;
+        let hits = hitRolls.filter(
+            (x) => x + bonusHit >= toHit && x !== 1
+        ).length;
 
         if (hits === 0) return;
         if (attackAura.numberOfHitsOnUnmodified6) {
@@ -258,7 +270,7 @@ export abstract class Combat {
         }
 
         const woundRolls = await this.diceRoller(hits, [toWound]);
-        let wounds = woundRolls.filter(x => x >= toWound).length;
+        let wounds = woundRolls.filter((x) => x >= toWound).length;
         if (wounds === 0) return;
         if (attackAura.damageOnWoundUnmodified6) {
             const sixes = count(woundRolls, 6);
@@ -281,14 +293,14 @@ export abstract class Combat {
         const numberOfRerolls = count(dice, rerollOn);
         if (numberOfRerolls === 0) return dice;
         const newRolls = await this.diceRoller(numberOfRerolls, groups);
-        return dice.filter(x => x !== rerollOn).concat(newRolls);
+        return dice.filter((x) => x !== rerollOn).concat(newRolls);
     }
 
     async rerollLowerOrEqual(dice: number[], max: number, groups: number[]) {
         const numberOfRerolls = countLowerOrEqual(dice, max);
         if (numberOfRerolls === 0) return dice;
         const newRolls = await this.diceRoller(numberOfRerolls, groups);
-        return dice.filter(x => x > max).concat(newRolls);
+        return dice.filter((x) => x > max).concat(newRolls);
     }
 
     async executeDamage(
@@ -313,8 +325,9 @@ export abstract class Combat {
             caster
         );
         const mortalWoundRolls = await this.diceRoller(wounds, [save - rend]);
-        const mortalWounds = mortalWoundRolls.filter(x => x < save - rend)
-            .length;
+        const mortalWounds = mortalWoundRolls.filter(
+            (x) => x < save - rend
+        ).length;
         if (mortalWounds === 0) return 0;
         let damage = await this.valueRoller(
             attackDamage || attack.damage,

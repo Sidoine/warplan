@@ -49,6 +49,21 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     updateEffect(data.abilities.luminethGreatNations, {
         allowInclusion: true,
     });
+    updateEffect(data.abilities.moveLikeTheWind, {
+        attackAura: {
+            pileInEverywhere: true,
+        },
+    });
+    addEffect(data.abilities.moveLikeTheWind, {
+        targetType: TargetType.Unit,
+        condition: {
+            hasCharged: true,
+        },
+        attackAura: {
+            pileInWithFly: true,
+            bonusPileInDistance: 3,
+        },
+    });
 
     // Avalenor
     addEffect(data.abilities.avalenorTheStoneheartKingStonemageSymbiosis, {
@@ -115,10 +130,14 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         targetType: TargetType.Unit,
         phase: Phase.Setup,
         subPhase: SubPhase.Before,
+        setup: true,
     });
     addEffect(data.abilities.shrineLuminorShrineGuardian, {
         targetType: TargetType.Unit,
         phase: Phase.Any,
+        commandAura: {
+            free: true,
+        },
     });
 
     // Scinari Cathallar
@@ -155,9 +174,6 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     });
 
     // Vanari Dawnriders
-    updateEffect(data.abilities.vanariDawnridersPowerOfHysh, {
-        attackAura: {},
-    });
     addEffect(data.abilities.vanariDawnridersDeathlyFurrows, {
         targetType: TargetType.Weapon,
         targetCondition: {
@@ -174,12 +190,25 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         phase: Phase.Shooting,
         subPhase: SubPhase.While,
     });
+    updateEffect(data.abilities.vanariAuralanSentinelsManyStringedWeapon, {
+        choice: "aimed",
+        attackAura: {
+            attackId: data.attacks.vanariAuralanSentinelsAuralanBowAimed.id,
+        },
+    });
+    addEffect(data.abilities.vanariAuralanSentinelsManyStringedWeapon, {
+        choice: "lofted",
+        targetType: TargetType.Unit,
+        attackAura: {
+            attackId: data.attacks.vanariAuralanSentinelsAuralanBowLofted.id,
+        },
+    });
+
+    updateEffect(data.abilities.vanariAuralanSentinelsScryhawkLantern, {
+        defenseAura: {
+            visibleToCasterUnit: true,
+        },
+    });
 
     // Vanari Auralan Wardens
-    updateEffect(data.abilities.vanariAuralanWardensPowerOfHysh, {
-        attackAura: {},
-    });
-    updateEffect(data.abilities.vanariAuralanSentinelsPowerOfHysh, {
-        attackAura: {},
-    });
 }

@@ -12,7 +12,7 @@ import {
     Unit,
     WarscrollBattalionInterface,
     ArmyListInterface,
-    ItemWithAbilities
+    ItemWithAbilities,
 } from "../../common/data";
 import { groupBy } from "../helpers/react";
 import { hasKeywords } from "./conditions";
@@ -23,7 +23,7 @@ import {
     WarscrollBattalion,
     WarscrollItem,
     WarscrollModel,
-    UnitWarscroll
+    UnitWarscroll,
 } from "./warscroll";
 
 export interface ArmyListLimits {
@@ -96,7 +96,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @computed
     get allExtraAbilities() {
         return this.allegianceAbilities.concat(
-            this.dataStore.baseAbilities.flatMap(x => x.abilities)
+            this.dataStore.baseAbilities.flatMap((x) => x.abilities)
         );
     }
 
@@ -151,12 +151,12 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
     @computed
     get description() {
-        return Array.from(groupBy(this.units, x => x.definition.name))
+        return Array.from(groupBy(this.units, (x) => x.definition.name))
             .map(
                 ([key, values]) =>
                     `${values.reduce((p, v) => p + 1, 0)}x${key} ${
-                        values.some(x => x.modelCount > 1)
-                            ? ` [${values.map(x => x.modelCount).join(", ")}]`
+                        values.some((x) => x.modelCount > 1)
+                            ? ` [${values.map((x) => x.modelCount).join(", ")}]`
                             : ""
                     }`
             )
@@ -182,7 +182,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @computed
     get alliedPoints() {
         return this.units
-            .filter(x => x.isAllied)
+            .filter((x) => x.isAllied)
             .reduce((p, x) => x.count * x.definition.points + p, 0);
     }
 
@@ -317,7 +317,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
     @computed
     get endlessSpells() {
-        return this.units.filter(x => x.isEndlessSpell);
+        return this.units.filter((x) => x.isEndlessSpell);
     }
 
     @observable pointMode = PointMode.MatchedPlay;
@@ -336,8 +336,8 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     hasAnyUnitExtraAbility(extraAbility: Ability) {
-        return this.units.some(x =>
-            x.extraAbilities.some(y => y.id === extraAbility.id)
+        return this.units.some((x) =>
+            x.extraAbilities.some((y) => y.id === extraAbility.id)
         );
     }
 
@@ -362,17 +362,34 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @computed
     get abilities(): Ability[] {
         return this.allegianceAbilities.filter(
-            x => x.category === AbilityCategory.BattleTrait
+            (x) => x.category === AbilityCategory.BattleTrait
         );
     }
 
     @computed
-    get armyAndUnitsAbilities(): Ability[] {
+    get armyAndUnitsAbilities(): {
+        item: ItemWithAbilities;
+        ability: Ability;
+    }[] {
         return this.abilities
-            .concat(
-                this.units.flatMap(x => x.extraAbilities.concat(x.abilities))
+            .map(
+                (
+                    ability
+                ): {
+                    item: ItemWithAbilities;
+                    ability: Ability;
+                } => ({ ability, item: this })
             )
-            .sort((a, b) => a.name.localeCompare(b.name));
+            .concat(
+                this.units.flatMap((item) =>
+                    item.extraAbilities
+                        .map((ability) => ({ ability, item }))
+                        .concat(
+                            item.abilities.map((ability) => ({ ability, item }))
+                        )
+                )
+            )
+            .sort((a, b) => a.ability.name.localeCompare(b.ability.name));
     }
 
     @computed
@@ -392,11 +409,11 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
     @computed
     get allegianceAbilities() {
-        return this.allegianceAbilityGroups.flatMap(x => x.abilities);
+        return this.allegianceAbilityGroups.flatMap((x) => x.abilities);
     }
 
     getUnitsWithKeywords(keywords: string[][]) {
-        return this.units.filter(x => hasKeywords(x, keywords));
+        return this.units.filter((x) => hasKeywords(x, keywords));
     }
 
     getNumberOfEnhancements(category: AbilityCategory) {
@@ -410,44 +427,44 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         return {
             name: this.name,
             realm: this.realm?.id ?? undefined,
-            units: this.units.map(x => {
+            units: this.units.map((x) => {
                 return {
                     unitId: x.definition.id,
                     isGeneral: x === this.general,
-                    extraAbilities: x.extraAbilities.map(x => x.id),
-                    models: x.models.map(x => {
+                    extraAbilities: x.extraAbilities.map((x) => x.id),
+                    models: x.models.map((x) => {
                         return {
                             count: x.count,
-                            options: x.options.map(y => y.id)
+                            options: x.options.map((y) => y.id),
                         };
                     }),
                     battalionIndex:
                         x.battalionUnit === null
                             ? undefined
                             : this.battalions.findIndex(
-                                  y => y.id === x.battalionUnit?.battalion.id
+                                  (y) => y.id === x.battalionUnit?.battalion.id
                               ),
                     battalionUnitIndex:
                         x.battalionUnit === null
                             ? undefined
                             : x.battalionUnit.battalion.unitTypes.findIndex(
-                                  y => y.id === x.battalionUnit?.id
-                              )
+                                  (y) => y.id === x.battalionUnit?.id
+                              ),
                 };
             }),
-            battalions: this.battalions.map(x => {
+            battalions: this.battalions.map((x) => {
                 return {
                     battalionId: x.definition.id,
-                    enhancement: x.enhancement ?? undefined
+                    enhancement: x.enhancement ?? undefined,
                 };
             }),
             allegiance: this.allegiance?.id,
             armyType: this.armyType ? this.armyType.id : undefined,
             subFaction: this.subFaction ? this.subFaction.id : undefined,
-            sceneries: this.endlessSpells.map(x => x.definition.id),
+            sceneries: this.endlessSpells.map((x) => x.definition.id),
             pointMode: this.pointMode,
             grandStrategy: this.grandStrategy?.id,
-            triumph: this.triumph?.id
+            triumph: this.triumph?.id,
         };
     }
 
@@ -460,15 +477,15 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         this.endlessSpells.splice(0);
         this.allegiance =
             this.dataStore.factionsList.find(
-                x => x.id === serialized.allegiance
+                (x) => x.id === serialized.allegiance
             ) || null;
         this.armyType =
             this.dataStore.factionsList.find(
-                x => x.id == serialized.armyType
+                (x) => x.id == serialized.armyType
             ) || null;
         this.subFaction =
             this.dataStore.factionsList.find(
-                x => x.id == serialized.subFaction
+                (x) => x.id == serialized.subFaction
             ) || null;
         this.pointMode = serialized.pointMode || PointMode.MatchedPlay;
         if (serialized.grandStrategy) {
@@ -480,7 +497,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         }
         for (const ba of serialized.battalions) {
             const battalion = this.dataStore.battalions.find(
-                x => x.id === ba.battalionId
+                (x) => x.id === ba.battalionId
             );
             if (battalion === undefined) continue;
             const b = new WarscrollBattalion(this, battalion);
@@ -509,7 +526,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
                     for (const loadedOption of loadedModel.options) {
                         if (unit.options) {
                             const option = unit.options.find(
-                                x => x.id === loadedOption
+                                (x) => x.id === loadedOption
                             );
                             if (option) {
                                 model.options.push(option);
@@ -540,7 +557,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
             this.realm =
                 (serialized.realm &&
                     this.dataStore.realms.find(
-                        x => x.id === serialized.realm
+                        (x) => x.id === serialized.realm
                     )) ||
                 null;
         }
@@ -554,21 +571,21 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @computed
     get grandStrategies() {
         return this.allExtraAbilities.filter(
-            x => x.category === AbilityCategory.GrandStrategy
+            (x) => x.category === AbilityCategory.GrandStrategy
         );
     }
 
     @computed
     get triumphs() {
         return this.allExtraAbilities.filter(
-            x => x.category === AbilityCategory.Triumph
+            (x) => x.category === AbilityCategory.Triumph
         );
     }
 
     @computed
     get armyLevelAbilityGroups() {
         return this.allegianceAbilityGroups.filter(
-            x => x.domain === "armyLevel"
+            (x) => x.domain === "armyLevel"
         );
     }
 
@@ -608,22 +625,22 @@ export class ArmyListStore {
 
     @computed
     get availableBattalions() {
-        return this.availableBattalionGroups.flatMap(x => x.battalions);
+        return this.availableBattalionGroups.flatMap((x) => x.battalions);
     }
 
     @computed
     get availableUnits() {
         return this.uiStore.warscrolls.filter(
-            x =>
+            (x) =>
                 !x.single ||
-                this.armyList.units.find(x => x.definition.id === x.id) ===
+                this.armyList.units.find((x) => x.definition.id === x.id) ===
                     undefined
         );
     }
 
     getAvailableUnitsOfRole(role: Role) {
         return this.availableUnits.filter(
-            x =>
+            (x) =>
                 x.roles.includes(role) &&
                 (role === Role.Leader || !x.roles.includes(Role.Leader))
         );
@@ -643,7 +660,7 @@ export class ArmyListStore {
         const warscrollUnit = new UnitWarscroll(warscroll, unit);
         if (
             unit.roles.every(
-                x =>
+                (x) =>
                     x !== Role.Terrain &&
                     x !== Role.EndlessSpell &&
                     x !== Role.Invocation
@@ -676,7 +693,7 @@ export class ArmyListStore {
     removeBattalion(battalion: WarscrollBattalionInterface) {
         const battalions = this.armyList.battalions;
         battalions.splice(
-            battalions.findIndex(x => x.id === battalion.id),
+            battalions.findIndex((x) => x.id === battalion.id),
             1
         );
         this.saveWarscroll();
@@ -691,14 +708,14 @@ export class ArmyListStore {
     @computed
     get armyTypes() {
         return this.armyList.allegiance?.children.filter(
-            x => x.category === KeywordCategory.ArmyType
+            (x) => x.category === KeywordCategory.ArmyType
         );
     }
 
     @computed
     get subFactions() {
         return this.armyList.allegiance?.children.filter(
-            x => x.category === KeywordCategory.Subfaction
+            (x) => x.category === KeywordCategory.Subfaction
         );
     }
 
@@ -734,7 +751,7 @@ export class ArmyListStore {
     get link() {
         const ws = btoa(
             deflate(JSON.stringify(this.armyList.getSerializedWarscroll()), {
-                to: "string"
+                to: "string",
             })
         );
         return `${document.location.protocol}//${document.location.host}${document.location.pathname}#?ws=${ws}`;
@@ -770,7 +787,7 @@ export class ArmyListStore {
         this.armyList.loadSerializedWarscroll({
             name: "New",
             units: [],
-            battalions: []
+            battalions: [],
         });
     };
 

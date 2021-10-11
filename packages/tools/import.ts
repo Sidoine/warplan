@@ -42,6 +42,18 @@ function toCamelCase(name: string) {
         .replace(/^[0-9]/g, "_");
 }
 
+function parseValue(value: string, name: string, unit: Unit): Value {
+    if (value.match(/^\d+$/)) {
+        return Number.parseInt(value);
+    }
+
+    if (value === "✹" && unit.damageTable) {
+        return unit.damageTable.columns.find((x) => x.name === name) ?? value;
+    }
+
+    return value;
+}
+
 function generatedId(name: string, property: DataStoreProperty) {
     let idMap = idMaps.get(property);
     if (idMap === undefined) {
@@ -554,6 +566,20 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         }
     }
 
+    match = blurb.match(
+        /the Sunmetal Weapons ability for the caster and\/or the unit they are part of causes mortal wounds to be inflicted on an unmodified hit roll of 5\+ instead of 6/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Ability };
+        effect.targetType = TargetType.Ability;
+        effect.targetCondition = effect.targetCondition || {};
+        effect.targetCondition.abilityId = unit?.abilities?.find(
+            (a) => a.name === "Sunmetal Weapons"
+        )?.id;
+        effect.attackAura = effect.attackAura || {};
+        effect.attackAura.mortalWoundsOnHitUnmodified5 = 1;
+    }
+
     // Battleshock
     match = blurb.match(/You can re-roll battleshock tests for units/i);
     if (match) {
@@ -564,12 +590,27 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
 
     // Immediate
     match = blurb.match(
-        /On a (\d)+, that enemy unit suffers ([D\d]+) mortal wounds/i
+        /on a (\d)\+, that enemy unit suffers ([D\d]+) mortal wounds/i
     );
     if (match) {
         effect = effect || { targetType: TargetType.Enemy };
         effect.targetType = TargetType.Unit;
         effect.mortalWounds = `${match[2]}(${match[1]}+)`;
+    }
+
+    // List building
+    match = blurb.match(/1 model in this unit can be/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.allowInclusion = true;
+    }
+
+    // Special
+    match = blurb.match(/visibility between 2 models is blocked/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Terrain };
+        effect.specialAura = effect.specialAura || {};
+        effect.specialAura.blockVisibility = true;
     }
 
     if (!effect) return undefined;
@@ -932,71 +973,6 @@ export function importData(db: Dump): ImportedDataStore {
         unit.roles.push(warscrollBattlefieldRole.role);
     }
 
-    for (const weapon of db.weapon) {
-        const unit = getItem(dataStore, "units", weapon.warscrollId);
-        const attack: Attack = {
-            id: getId(
-                weapon.id,
-                `${unit.name} ${unit.subName || ""} ${weapon.name}`,
-                "attacks"
-            ),
-            name: weapon.name,
-            melee: weapon.type === Type.Melee,
-            range: weapon.range,
-            attacks: weapon.attacks,
-            damage: weapon.damage,
-            rend: weapon.rend,
-            toHit: weapon.hit,
-            toWound: weapon.wound,
-        };
-        dataStore.attacks[attack.id] = attack;
-        if (!unit.attacks) unit.attacks = [];
-        unit.attacks.push(attack);
-    }
-
-    for (const descriptionSubsection of db.description_subsection) {
-        const unit = getItem(
-            dataStore,
-            "units",
-            descriptionSubsection.warscrollId
-        );
-        const ability: Ability = {
-            id: getId(
-                descriptionSubsection.id,
-                `${unit.name} ${descriptionSubsection.header}`,
-                "abilities"
-            ),
-            name: descriptionSubsection.header,
-            description: descriptionSubsection.rules,
-            category: AbilityCategory.SpecialRule,
-            effects: getAbilityEffects(
-                descriptionSubsection.header,
-                descriptionSubsection.rules,
-                unit
-            ),
-        };
-        switch (descriptionSubsection.header) {
-            case "Champion":
-                ability.category = AbilityCategory.Champion;
-                break;
-            case "Wizard":
-                ability.category = AbilityCategory.Spell;
-                break;
-            default:
-                if (
-                    ability.description &&
-                    ability.description.indexOf(
-                        "1 model in this unit can be a"
-                    ) >= 0
-                ) {
-                    ability.category = AbilityCategory.Champion;
-                }
-        }
-        dataStore.abilities[ability.id] = ability;
-        if (!unit.abilities) unit.abilities = [];
-        unit.abilities.push(ability);
-    }
-
     const damageTables = new Map<
         string,
         { row: DamageRow; cells: DamageCell[] }[]
@@ -1068,6 +1044,71 @@ export function importData(db: Dump): ImportedDataStore {
         };
         dataStore.damageTables[table.id] = table;
         unit.damageTable = table;
+    }
+
+    for (const weapon of db.weapon) {
+        const unit = getItem(dataStore, "units", weapon.warscrollId);
+        const attack: Attack = {
+            id: getId(
+                weapon.id,
+                `${unit.name} ${unit.subName || ""} ${weapon.name}`,
+                "attacks"
+            ),
+            name: weapon.name,
+            melee: weapon.type === Type.Melee,
+            range: parseValue(weapon.range, weapon.name, unit),
+            attacks: parseValue(weapon.attacks, weapon.name, unit),
+            damage: parseValue(weapon.damage, weapon.name, unit),
+            rend: parseValue(weapon.rend, weapon.name, unit),
+            toHit: parseValue(weapon.hit, weapon.name, unit),
+            toWound: parseValue(weapon.wound, weapon.name, unit),
+        };
+        dataStore.attacks[attack.id] = attack;
+        if (!unit.attacks) unit.attacks = [];
+        unit.attacks.push(attack);
+    }
+
+    for (const descriptionSubsection of db.description_subsection) {
+        const unit = getItem(
+            dataStore,
+            "units",
+            descriptionSubsection.warscrollId
+        );
+        const ability: Ability = {
+            id: getId(
+                descriptionSubsection.id,
+                `${unit.name} ${descriptionSubsection.header}`,
+                "abilities"
+            ),
+            name: descriptionSubsection.header,
+            description: descriptionSubsection.rules,
+            category: AbilityCategory.SpecialRule,
+            effects: getAbilityEffects(
+                descriptionSubsection.header,
+                descriptionSubsection.rules,
+                unit
+            ),
+        };
+        switch (descriptionSubsection.header) {
+            case "Champion":
+                ability.category = AbilityCategory.Champion;
+                break;
+            case "Wizard":
+                ability.category = AbilityCategory.Spell;
+                break;
+            default:
+                if (
+                    ability.description &&
+                    ability.description.indexOf(
+                        "1 model in this unit can be a"
+                    ) >= 0
+                ) {
+                    ability.category = AbilityCategory.Champion;
+                }
+        }
+        dataStore.abilities[ability.id] = ability;
+        if (!unit.abilities) unit.abilities = [];
+        unit.abilities.push(ability);
     }
 
     for (const warscrollAbility of db.warscroll_ability) {

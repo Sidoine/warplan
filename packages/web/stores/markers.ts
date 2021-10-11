@@ -1,5 +1,10 @@
 import { action, computed, observable, makeObservable } from "mobx";
-import { AbilityCategory, Ability, AbilityEffect } from "../../common/data";
+import {
+    AbilityCategory,
+    Ability,
+    AbilityEffect,
+    ItemWithAbilities,
+} from "../../common/data";
 import { DataStore } from "./data";
 import { getAbilityPhases, getEffectPhases, getEffectText } from "./battle";
 import elite from "../assets/elite.svg";
@@ -8,7 +13,7 @@ import { ArmyListStore } from "./army-list";
 export const enum MarkerType {
     Terrain,
     Spell,
-    Command
+    Command,
 }
 
 export interface Marker {
@@ -24,9 +29,10 @@ export interface Marker {
 function getMarker(
     effect: AbilityEffect,
     ability: Ability,
-    effectIndex: number
+    effectIndex: number,
+    unit: ItemWithAbilities
 ): Marker {
-    const [condition, description] = getEffectText(effect);
+    const [condition, description] = getEffectText(effect, unit);
     return {
         id: ability.id + effectIndex,
         description: description.join(" - "),
@@ -36,7 +42,7 @@ function getMarker(
             ability.category === AbilityCategory.Command
                 ? MarkerType.Command
                 : MarkerType.Spell,
-        tooltip: ability.description
+        tooltip: ability.description,
     };
 }
 
@@ -87,72 +93,72 @@ export class MarkersStore {
             text: "Damned",
             condition: "Sacrifice",
             description: "D3 MW/RR1 hit",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "arcane",
             text: "Arcane",
             description: "+1 casting",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "inspiring",
             text: "Inspiring",
             description: "+1 bravery",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "deadly",
             text: "Deadly",
             condition: "Move",
             description: "1: D3 MW",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "mystical",
             text: "Mystical",
             condition: "W/MW",
             description: "6+: negated",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "overgrown",
             text: "Overgrown",
             condition: "On ground",
             description: "Cut visibility",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "entangling",
             text: "Entangling",
             description: "-2 run/charge",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "volcanic",
             text: "Volcalnic",
             description: "6: D3 MW",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "commanding",
             text: "Commanding",
             description: "+1 CP",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "healing",
             text: "Healing",
             description: "6: D3 heal",
-            type: MarkerType.Terrain
+            type: MarkerType.Terrain,
         },
         {
             id: "nullification",
             text: "Nullification",
             condition: "HEROES",
             description: "+1 unbind",
-            type: MarkerType.Terrain
-        }
+            type: MarkerType.Terrain,
+        },
     ];
 
     genericMarkers: Marker[] = [
@@ -160,50 +166,50 @@ export class MarkersStore {
             id: "Mystic shield",
             text: "Mystic shield",
             description: "RR1 Save",
-            type: MarkerType.Spell
+            type: MarkerType.Spell,
         },
         {
             id: "All-out Attack",
             text: "All-out Attack",
             description: "RR1 Hit",
-            type: MarkerType.Command
+            type: MarkerType.Command,
         },
         {
             id: "All-out Defence",
             text: "All-out Defence",
             description: "RR1 Save",
-            type: MarkerType.Command
+            type: MarkerType.Command,
         },
         {
             id: "Volley Fire",
             text: "Volley Fire",
             description: "RR1 Hit",
-            type: MarkerType.Command
+            type: MarkerType.Command,
         },
         {
             id: "Command Point 1",
             text: "Command Point",
             description: "",
-            image: elite
+            image: elite,
         },
         {
             id: "Command Point 2",
             text: "Command Point",
             description: "",
-            image: elite
+            image: elite,
         },
         {
             id: "Command Point 3",
             text: "Command Point",
             description: "",
-            image: elite
+            image: elite,
         },
         {
             id: "Command Point 4",
             text: "Command Point",
             description: "",
-            image: elite
-        }
+            image: elite,
+        },
     ];
 
     @computed
@@ -238,11 +244,9 @@ export class MarkersStore {
     @computed
     get markers(): Marker[] {
         const warscroll = this.warscrollStore.armyList;
-        const abilities = warscroll.allegianceAbilities.concat(
-            this.unitAbilities
-        );
+        const abilities = warscroll.armyAndUnitsAbilities;
         const markers: Marker[] = [];
-        for (const ability of abilities) {
+        for (const { ability, item } of abilities) {
             if (ability.effects) {
                 const abilityPhases = getAbilityPhases(ability);
                 let index = 0;
@@ -252,7 +256,7 @@ export class MarkersStore {
                         abilityPhases > 0 &&
                         hasMarker(effect, effectPhases, abilityPhases)
                     ) {
-                        markers.push(getMarker(effect, ability, index));
+                        markers.push(getMarker(effect, ability, index, item));
                     }
                     if (
                         effect.attackAura &&
@@ -260,9 +264,8 @@ export class MarkersStore {
                     ) {
                         for (const triggeredEffect of effect.attackAura
                             .effectsOnHitUnmodified6) {
-                            const triggeredEffectPhases = getEffectPhases(
-                                triggeredEffect
-                            );
+                            const triggeredEffectPhases =
+                                getEffectPhases(triggeredEffect);
                             if (
                                 hasMarker(
                                     triggeredEffect,
@@ -274,7 +277,8 @@ export class MarkersStore {
                                     getMarker(
                                         triggeredEffect,
                                         ability,
-                                        this.serial++
+                                        this.serial++,
+                                        item
                                     )
                                 );
                             }
@@ -319,8 +323,8 @@ export class MarkersStore {
     save() {
         const serialized: SerializedMarkers = {
             hiddenMarkers: Array.from(this.hiddenMarkers)
-                .filter(x => x[1])
-                .map(x => x[0])
+                .filter((x) => x[1])
+                .map((x) => x[0]),
         };
         serialized.generics = this.showGenerics;
         serialized.terrains = this.showTerrains;

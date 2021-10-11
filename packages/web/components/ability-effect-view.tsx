@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import {
     AbilityEffect,
     EffectDuration,
+    ItemWithAbilities,
     SubPhase,
     TargetType,
 } from "../../common/data";
@@ -14,7 +15,7 @@ import VerticalAlignTopIcon from "@material-ui/icons/VerticalAlignTop";
 import Chip from "@material-ui/core/Chip";
 import { makeStyles } from "@material-ui/core";
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
     badgedIcon: {
         fontSize: "75%",
         verticalAlign: "baseline",
@@ -23,7 +24,11 @@ const useStyle = makeStyles({
     badged: {
         fontSize: "1rem",
     },
-});
+    error: {
+        backgroundColor: theme.palette.error.main,
+        color: theme.palette.error.contrastText,
+    },
+}));
 
 function BadgedIcon({
     badge,
@@ -110,7 +115,7 @@ function TargetView({ targetType }: { targetType: TargetType }) {
     );
 }
 
-export function getTargetType(effect: AbilityEffect) {
+export function getTargetType(effect: AbilityEffect, unit: ItemWithAbilities) {
     switch (effect.targetType) {
         case TargetType.Enemy:
             return "enemy";
@@ -122,8 +127,13 @@ export function getTargetType(effect: AbilityEffect) {
             return "this unit";
         case TargetType.Weapon:
             if (effect.targetCondition) {
-                if (effect.targetCondition.weaponId)
-                    return effect.targetCondition.weaponId;
+                if (effect.targetCondition.weaponId) {
+                    const targetWeapon = unit.attacks?.find(
+                        (x) => x.attack.id === effect.targetCondition?.weaponId
+                    );
+                    if (targetWeapon) return targetWeapon.attack.name;
+                    return `unknown ${effect.targetCondition.weaponId}`;
+                }
                 if (effect.targetCondition.meleeWeapon) {
                     return "melee weapons";
                 }
@@ -133,14 +143,30 @@ export function getTargetType(effect: AbilityEffect) {
             }
 
             return "all weapons";
+        case TargetType.Ability:
+            if (effect.targetCondition) {
+                const targetAbility = unit.abilities?.find(
+                    (x) => x.id === effect.targetCondition?.abilityId
+                );
+                if (targetAbility) {
+                    return targetAbility.name;
+                }
+            }
+            return "ability";
     }
     return "unknown";
 }
 
-export function AbilityEffectTarget({ effect }: { effect: AbilityEffect }) {
+export function AbilityEffectTarget({
+    effect,
+    unit,
+}: {
+    effect: AbilityEffect;
+    unit: ItemWithAbilities;
+}) {
     return (
         <>
-            {getTargetType(effect)}
+            {getTargetType(effect, unit)}
             <Chip
                 size="medium"
                 label={
@@ -170,13 +196,23 @@ export function AbilityEffectTarget({ effect }: { effect: AbilityEffect }) {
     );
 }
 
-export function AbilityEffectAuraView({ effect }: { effect: AbilityEffect }) {
-    const [condition, descriptions, type] = getEffectText(effect);
+export function AbilityEffectAuraView({
+    effect,
+    unit,
+}: {
+    effect: AbilityEffect;
+    unit: ItemWithAbilities;
+}) {
+    const [condition, descriptions, type] = getEffectText(effect, unit);
+    const classes = useStyle();
     return (
         <>
             <i>{condition}</i>
 
             <Chip
+                className={
+                    type === EffectType.Unknown ? classes.error : undefined
+                }
                 color={type === EffectType.Immediate ? "default" : "primary"}
                 label={<>{descriptions.join(" - ")}</>}
             />
@@ -184,12 +220,18 @@ export function AbilityEffectAuraView({ effect }: { effect: AbilityEffect }) {
     );
 }
 
-export function AbilityEffectView({ effect }: { effect: AbilityEffect }) {
+export function AbilityEffectView({
+    effect,
+    unit,
+}: {
+    effect: AbilityEffect;
+    unit: ItemWithAbilities;
+}) {
     return (
         <i>
             <AbilityEffectPhaseView effect={effect} /> - Target:{" "}
             {hasAura(effect) && <>- Duration : {getEffectDuration(effect)}</>}{" "}
-            {getTargetType(effect)}
+            {getTargetType(effect, unit)}
         </i>
     );
 }

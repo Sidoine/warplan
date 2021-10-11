@@ -23,7 +23,7 @@ import {
     TableContainer,
     IconButton,
     Checkbox,
-    FormControlLabel
+    FormControlLabel,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
@@ -132,7 +132,7 @@ const enum Columns {
     SavedWounds,
     MeleeDamage,
     RangedDamage,
-    TotalDamage
+    TotalDamage,
 }
 
 function StatsTableHeaderCell({
@@ -140,7 +140,7 @@ function StatsTableHeaderCell({
     title,
     onClick,
     sorted,
-    direction
+    direction,
 }: {
     direction: "asc" | "desc";
     sorted: Columns;
@@ -168,7 +168,7 @@ function StatsTableHeaderCell({
 
 function Combination({
     unitStats,
-    onOpenWarscroll
+    onOpenWarscroll,
 }: {
     unitStats: UnitStats;
     onOpenWarscroll: (unit: Unit) => void;
@@ -181,16 +181,16 @@ function Combination({
         (c, x) => (x.definition.id === unit.id ? x.count + c : c),
         0
     );
-    const handleClick = useCallback(() => warscrollStore.addUnit(unit), [
-        unit,
-        warscrollStore
-    ]);
-    const handleEyeClick = useCallback(() => onOpenWarscroll(unit), [
-        onOpenWarscroll,
-        unit
-    ]);
+    const handleClick = useCallback(
+        () => warscrollStore.addUnit(unit),
+        [unit, warscrollStore]
+    );
+    const handleEyeClick = useCallback(
+        () => onOpenWarscroll(unit),
+        [onOpenWarscroll, unit]
+    );
     return (
-        <TableRow key={unit.id + unitStats.name}>
+        <TableRow>
             <TableCell>
                 {unit.name} {unit.subName} {count > 0 && `(${count})`}
                 <IconButton onClick={handleClick}>
@@ -205,7 +205,7 @@ function Combination({
             <TableCell>{value(unit.move)}</TableCell>
             <TableCell>{unit.bravery}</TableCell>
             <TableCell>
-                {wounds} ({(wounds / points).toFixed(2)}){" "}
+                {wounds} ({(wounds / points).toFixed(2)})
             </TableCell>
             <TableCell>{unitStats.save}</TableCell>
             <TableCell>
@@ -214,19 +214,19 @@ function Combination({
             </TableCell>
             <TableCell>
                 {unitStats.meleeDamage.toFixed(2)} (
-                {(unitStats.meleeDamage / points).toFixed(2)}){" "}
+                {(unitStats.meleeDamage / points).toFixed(2)})
             </TableCell>
             <TableCell>
                 {unitStats.rangedDamage.toFixed(2)} (
-                {(unitStats.rangedDamage / points).toFixed(2)}){" "}
+                {(unitStats.rangedDamage / points).toFixed(2)})
             </TableCell>
             <TableCell>
                 {unitStats.totalDamage.toFixed(2)} (
-                {(unitStats.totalDamage / points).toFixed(2)}){" "}
+                {(unitStats.totalDamage / points).toFixed(2)})
             </TableCell>
             <TableCell>
                 {join(
-                    unitStats.ignoredAbilities.map(x => (
+                    unitStats.ignoredAbilities.map((x) => (
                         <span key={x.name} title={x.description}>
                             {x.name}
                         </span>
@@ -255,7 +255,7 @@ function Stats() {
                 setSorted(column);
                 setDirection("asc");
             } else {
-                setDirection(direction =>
+                setDirection((direction) =>
                     direction === "asc" ? "desc" : "asc"
                 );
             }
@@ -346,7 +346,6 @@ function Stats() {
     return (
         <Grid container spacing={2} direction="column" wrap="nowrap">
             <Grid item>
-                {" "}
                 <Filter />
             </Grid>
             <Grid item>
@@ -408,7 +407,7 @@ function Stats() {
                                     column={Columns.MeleeDamage}
                                     title="Melee Damage"
                                     {...sortOptions}
-                                />{" "}
+                                />
                                 <StatsTableHeaderCell
                                     column={Columns.RangedDamage}
                                     title="Ranged Damage"
