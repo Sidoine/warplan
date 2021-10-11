@@ -7,7 +7,7 @@ import {
     Ability,
     TargetType,
     Phase,
-    UnitOptionCategory
+    UnitOptionCategory,
 } from "../../common/data";
 import { getValue } from "./combat";
 import {
@@ -16,7 +16,7 @@ import {
     ModelState,
     WeaponState,
     sumAttackAura,
-    addAttackAura
+    addAttackAura,
 } from "./unit-state";
 import { CombatSettings } from "./ui";
 
@@ -124,7 +124,7 @@ export function checkCondition(
         return false;
     if (
         condition.anyKeyword &&
-        condition.anyKeyword.every(x => target.unit.keywords.indexOf(x) < 0)
+        condition.anyKeyword.every((x) => target.unit.keywords.indexOf(x) < 0)
     )
         return false;
     if (
@@ -294,7 +294,7 @@ function applyUnitAbility(
         }
     } else {
         if (
-            stats.ignoredAbilities.find(x => x.name === ability.name) ===
+            stats.ignoredAbilities.find((x) => x.name === ability.name) ===
             undefined
         ) {
             stats.ignoredAbilities.push(ability);
@@ -337,7 +337,7 @@ function applyModelAbility(
         }
     } else {
         if (
-            stats.ignoredAbilities.find(x => x.name === ability.name) ===
+            stats.ignoredAbilities.find((x) => x.name === ability.name) ===
             undefined
         ) {
             stats.ignoredAbilities.push(ability);
@@ -376,7 +376,7 @@ function getUnitOptionStats(
         keywords: settings.enemyKeywords.split(" "),
         save: settings.enemySave,
         description: "An enemy",
-        roles: []
+        roles: [],
     });
     enemyState.models.push(new ModelState([], enemyState, settings.enemyCount));
     if (settings.hasCharged) {
@@ -446,23 +446,26 @@ function getUnitOptionStats(
 export function getUnitStats(unit: Unit, enemy: CombatSettings): UnitStats[] {
     let optionStats = unit.optionStats;
     if (!optionStats) {
-        if (unit.options && unit.options.length > 0) {
+        if (
+            unit.options &&
+            unit.options.some((x) => x.unitCategory === UnitOptionCategory.Main)
+        ) {
             optionStats = unit.options
-                .filter(x => x.unitCategory === UnitOptionCategory.Main)
-                .map<UnitStatModels>(x => {
+                .filter((x) => x.unitCategory === UnitOptionCategory.Main)
+                .map<UnitStatModels>((x) => {
                     return {
                         name: x.name,
-                        models: [{ count: unit.size, options: [x] }]
+                        models: [{ count: unit.size, options: [x] }],
                     };
                 });
         } else {
             optionStats = [
-                { name: "Main", models: [{ count: unit.size, options: [] }] }
+                { name: "Main", models: [{ count: unit.size, options: [] }] },
             ];
         }
     }
 
-    return optionStats.map(x => {
+    return optionStats.map((x) => {
         const result: UnitStats = {
             name: x.name,
             meleeDamage: 0,
@@ -471,7 +474,7 @@ export function getUnitStats(unit: Unit, enemy: CombatSettings): UnitStats[] {
             savedWounds: 0,
             unit: unit,
             totalDamage: 0,
-            ignoredAbilities: []
+            ignoredAbilities: [],
         };
         getUnitOptionStats(result, unit, x.models, x.choice, enemy);
         result.totalDamage = result.meleeDamage * 1.5 + result.rangedDamage;
