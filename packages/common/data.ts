@@ -72,6 +72,7 @@ export const abilityCategoryName = new Map<AbilityCategory, string>([
     [AbilityCategory.Artefact, "Artefact of Power"],
     [AbilityCategory.Mount, "Mount Trait"],
     [AbilityCategory.Triumph, "Triumph"],
+    [AbilityCategory.CommandTrait, "Command Trait"],
 ]);
 
 export const enum Phase {

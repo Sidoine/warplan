@@ -652,6 +652,38 @@ function findElement<T extends { name: string }>(elements: T[], name: string) {
     return undefined;
 }
 
+function getModelOption(option: ModelOption, optionName: string, unit: Unit) {
+    let found = false;
+    if (unit.attacks) {
+        for (;;) {
+            const attack: Attack | undefined = findElement(
+                unit.attacks,
+                optionName
+            );
+            if (attack) {
+                if (!option.attacks) {
+                    option.attacks = [];
+                }
+                option.attacks.push(attack);
+                unit.attacks = unit.attacks.filter((x) => x !== attack);
+                found = true;
+            } else break;
+        }
+    }
+    if (unit.abilities) {
+        const ability = findElement(unit.abilities, optionName);
+        if (ability) {
+            if (!option.abilities) {
+                option.abilities = [];
+            }
+            option.abilities.push(ability);
+            unit.abilities = unit.abilities.filter((x) => x !== ability);
+            found = true;
+        }
+    }
+    return found;
+}
+
 function getModelOptions(unit: Unit) {
     const options: ModelOption[] = [];
     let match = unit.description.match(
@@ -662,7 +694,6 @@ function getModelOptions(unit: Unit) {
         const weaponOptions = match[2].split("; ");
         for (const weaponOption of weaponOptions) {
             const text = weaponOption.replace("or ", "");
-            const parts = text.split(" and ");
             const option: ModelOption = {
                 id: generatedId(
                     `${unit.name} ${unit.subName || ""} ${text}`,
@@ -672,28 +703,11 @@ function getModelOptions(unit: Unit) {
                 modelCategory: ModelOptionCategory.Weapon,
                 unitCategory: UnitOptionCategory.Main,
             };
-            for (const part of parts) {
-                if (unit.attacks) {
-                    const attack = findElement(unit.attacks, part);
-                    if (attack) {
-                        if (!option.attacks) {
-                            option.attacks = [];
-                        }
-                        option.attacks.push(attack);
-                        unit.attacks = unit.attacks.filter((x) => x !== attack);
-                    }
-                }
-                if (unit.abilities) {
-                    const ability = findElement(unit.abilities, part);
-                    if (ability) {
-                        if (!option.abilities) {
-                            option.abilities = [];
-                        }
-                        option.abilities.push(ability);
-                        unit.abilities = unit.abilities.filter(
-                            (x) => x !== ability
-                        );
-                    }
+
+            if (!getModelOption(option, text, unit) && text.includes(" and ")) {
+                const parts = text.split(" and ");
+                for (const part of parts) {
+                    getModelOption(option, part, unit);
                 }
             }
             options.push(option);
@@ -701,12 +715,12 @@ function getModelOptions(unit: Unit) {
     }
 
     match = unit.description.match(
-        /(\d) in every (\d) models can replace their weapon option with a (.*?)\./
+        /(\d) in every (\d) models can replace (?:their|the unit’s) ([\w\s]+) with a (.*?)\./
     );
     if (match) {
         const count = parseInt(match[1]);
         const every = parseInt(match[2]);
-        const weaponOption = match[3];
+        const weaponOption = match[4];
         const option: ModelOption = {
             id: generatedId(
                 `${unit.name} ${unit.subName || ""} ${weaponOption}`,
@@ -862,16 +876,9 @@ function importExtraAbilities<
 }
 
 function importAbilityKeywords<
-    T extends Abilities,
     K extends KeysOfType<Dump, { keywordId: string }[]>,
     U extends KeysOfType<ArrayElement<Dump[K]>, string>
->(
-    db: Dump,
-    dataStore: ImportedDataStore,
-    abilities: T,
-    keywords: K,
-    groupId: U
-) {
+>(db: Dump, dataStore: ImportedDataStore, keywords: K, groupId: U) {
     for (const abilityKeyword of db[keywords]) {
         const ability = getItem(
             dataStore,
@@ -883,6 +890,7 @@ function importAbilityKeywords<
         );
         if (keyword) {
             if (!ability.restrictions) ability.restrictions = {};
+
             if (!ability.restrictions.keywords)
                 ability.restrictions.keywords = [];
             ability.restrictions.keywords.push(keyword.name.toUpperCase());
@@ -1179,7 +1187,6 @@ export function importData(db: Dump): ImportedDataStore {
     importAbilityKeywords(
         db,
         dataStore,
-        "mount_trait",
         "mount_trait_keywords_keyword",
         "mountTraitId"
     );
@@ -1236,6 +1243,31 @@ export function importData(db: Dump): ImportedDataStore {
         "unique_enhancement_group_keywords_keyword",
         AbilityCategory.UniqueEnhancement,
         "uniqueEnhancementGroupId"
+    );
+
+    // importAbilityKeywords(
+    //     db,
+    //     dataStore,
+    //     "enhancement_bonus_requires_keywords_keyword",
+    //     "enhancementBonusId"
+    // );
+
+    // importAbilityKeywords(
+    //     db,
+    //     dataStore,
+    //     "enhancement_bonus_excludes_keywords_keyword",
+    //     "enhancementBonusId",
+    //     true
+    // );
+
+    importExtraAbilities(
+        db,
+        dataStore,
+        "command_trait_group",
+        "command_trait",
+        "command_trait_group_keywords_keyword",
+        AbilityCategory.CommandTrait,
+        "commandTraitGroupId"
     );
 
     for (const unit of Object.values(dataStore.units)) {

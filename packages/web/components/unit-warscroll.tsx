@@ -5,14 +5,14 @@ import {
     ModelOption,
     AbilityCategory,
     Unit,
-    UnitOptionCategory
+    UnitOptionCategory,
 } from "../../common/data";
 import { value } from "../helpers/react";
 import {
     AllAttacks,
     WoundEffects,
     AllAbilities,
-    useWarscrollStyles
+    useWarscrollStyles,
 } from "../atoms/warscroll-components";
 import StarIcon from "@material-ui/icons/Star";
 import { distinct } from "../helpers/algo";
@@ -20,7 +20,7 @@ import { distinct } from "../helpers/algo";
 export function UnitWarscrollView({
     wu,
     unit,
-    noFlavor
+    noFlavor,
 }: {
     wu?: UnitWarscroll | null;
     unit?: Unit;
@@ -57,7 +57,8 @@ export function UnitWarscrollView({
         }
         if (option.abilities) {
             for (const a of option.abilities) {
-                if (!abilities.some(x => x.name === a.name)) abilities.push(a);
+                if (!abilities.some((x) => x.name === a.name))
+                    abilities.push(a);
             }
         }
     }
@@ -67,14 +68,14 @@ export function UnitWarscrollView({
             abilities.push(ability);
         }
     }
-    const normalAbilities = abilities.filter(x => x.category === undefined);
+    const normalAbilities = abilities.filter((x) => x.category === undefined);
     const specialRules = abilities.filter(
-        x =>
+        (x) =>
             x.category === AbilityCategory.SpecialRule ||
             x.category === AbilityCategory.Champion
     );
     const magicAbilites = abilities.filter(
-        x => x.category === AbilityCategory.Spell
+        (x) => x.category === AbilityCategory.Spell
     );
     const keywords = wu?.keywords || u.keywords;
 
@@ -108,7 +109,6 @@ export function UnitWarscrollView({
                     </div>{" "}
                     {models && models.length > 0 && (
                         <div className={classes.option}>
-                            {" "}
                             {mainOption && mainOption.name}
                         </div>
                     )}
