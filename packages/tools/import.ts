@@ -293,11 +293,38 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect.phase = Phase.Hero;
     }
 
+    match = blurb.match(
+        /subtract (\d) from casting, dispelling and unbinding rolls for Wizards/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Enemy };
+        effect.spellAura = effect.spellAura || {};
+        effect.spellAura.malusToAll = match[1];
+    }
+
+    match = blurb.match(/you can re-roll 1 failed casting roll/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.spellAura = effect.spellAura || {};
+        effect.spellAura.rerollFailedCast = true;
+    }
+
+    match = blurb.match(
+        /can attempt to cast (\d) spells? in your hero phase and attempt to unbind (\d) spells? in the enemy hero phase/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.spellAura = effect.spellAura || {};
+        effect.spellAura.casts = parseInt(match[1]);
+        effect.spellAura.unbinds = parseInt(match[2]);
+    }
+
     // Chants
     match = blurb.match(/add (\d) to chanting rolls for this unit/i);
     if (match) {
         effect = effect || { targetType: TargetType.Unit };
-        effect.prayerAura = { bonusToChant: parseInt(match[1]) };
+        effect.prayerAura = effect.prayerAura || {};
+        effect.prayerAura.bonusToChant = parseInt(match[1]);
     }
     match = blurb.match(/is a prayer that has an answer value of (\d)/i);
     if (match) {
@@ -431,6 +458,7 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
     // Movement
     if (name === "Mount") {
         effect = effect || { targetType: TargetType.Mount };
+        effect.noEffect = true;
     }
 
     match = blurb.match(/this (model|unit) can fly/i);
@@ -488,7 +516,7 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect.attackAura.bonusDamageOnWoundUnmodified6 = parseInt(match[2]);
     }
     match = blurb.match(
-        /add 1 to the Attacks characteristic of (.*?)(?:’s|s') (.*?)(\.| until| in that)/i
+        /add 1 to the Attacks characteristic of (.*?)(?:’s|s’) (.*?)(\.| until| in that)/i
     );
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };
@@ -595,14 +623,43 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
     if (match) {
         effect = effect || { targetType: TargetType.Enemy };
         effect.targetType = TargetType.Unit;
-        effect.mortalWounds = `${match[2]}(${match[1]}+)`;
+        effect.immediate = effect.immediate || {};
+        effect.immediate.mortalWounds = `${match[2]}(${match[1]}+)`;
+    }
+
+    match = blurb.match(
+        /roll a number of dice equal to the number of models in that unit. For each (\d)\+, that unit suffers (\d) mortal wound./i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Enemy };
+        effect.immediate = effect.immediate || {};
+        effect.immediate.mortalWoundsPerModel = `${match[2]}(${match[1]}+)`;
+    }
+
+    match = blurb.match(
+        /you can heal up to (\d?D?\d?) wounds allocated to this model/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.immediate = effect.immediate || {};
+        effect.immediate.heal = match[1];
+    }
+    // Command
+    match = blurb.match(
+        /your opponent must spend 2 command points to use a command ability instead of 1/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.EnemyArmy };
+        effect.commandAura = effect.commandAura || {};
+        effect.commandAura.doublePrice = true;
     }
 
     // List building
     match = blurb.match(/1 model in this unit can be/i);
     if (match) {
         effect = effect || { targetType: TargetType.Unit };
-        effect.allowInclusion = true;
+        effect.immediate = effect.immediate || {};
+        effect.immediate.allowInclusion = true;
     }
 
     // Special

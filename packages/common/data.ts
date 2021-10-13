@@ -224,10 +224,13 @@ export interface SpellAura {
     bonusToUnbind?: Value;
     autoUnbinds?: number;
     noCast?: boolean;
-    rerollCast?: boolean;
+    rerollFailedCast?: boolean;
     rerollDispell?: boolean;
     rerollUnbind?: boolean;
     autoCast?: Value;
+    malusToAll?: Value;
+    casts?: Value;
+    unbinds?: Value;
 }
 
 export interface PrayerAura {
@@ -247,7 +250,8 @@ export const enum TargetType {
     Friend = 16,
     Ability = 32,
     Terrain = 64,
-    NotUnit = Model | Weapon | Mount | Ability,
+    EnemyArmy = 128,
+    NotUnit = Model | Weapon | Mount | Ability | EnemyArmy,
 }
 
 export const enum EffectDuration {
@@ -268,10 +272,24 @@ interface SpecialAura {
     darknessOfSoul?: boolean;
     pickTwoUnitsInCombat?: boolean;
     blockVisibility?: boolean;
+    tectonicForce?: boolean;
 }
 
 interface CommandAura {
     free?: boolean;
+    doublePrice?: boolean;
+    copyCommand?: boolean;
+}
+
+interface ImmediateEffect {
+    mortalWounds?: Value;
+    heal?: Value;
+    setUpAwayFromEnemy?: Value; // The distance to the enemy
+    mortalWoundsPerModel?: Value;
+    allowInclusion?: boolean;
+    gainCommandPoints?: Value;
+    setup?: boolean;
+    pileInMove?: Value;
 }
 
 export interface AbilityEffect {
@@ -325,14 +343,8 @@ export interface AbilityEffect {
     /** In case of random effects, the dice value must be in this range  */
     randomEffectRange?: { min: number; max: number };
 
-    // Immediate effects
-    mortalWounds?: Value;
-    heal?: Value;
-    setUpAwayFromEnemy?: Value; // The distance to the enemy
-    mortalWoundsPerModel?: Value;
-    allowInclusion?: boolean;
-    gainCommandPoints?: Value;
-    setup?: boolean;
+    noEffect?: boolean;
+    immediate?: ImmediateEffect;
 }
 
 export interface Ability {
@@ -407,6 +419,7 @@ export type Value =
     | RatioValue
     | SumValue
     | TargetConditionValue
+    | TargetPropertyValue
     | ConditionValue
     | OrValue;
 
@@ -443,6 +456,7 @@ export const enum ValueType {
     TargetCondition,
     Or,
     Condition,
+    TargetProperty,
 }
 
 export interface DamageColumn {
@@ -468,6 +482,11 @@ export interface TargetConditionValue {
     value: Value;
     defaultValue?: Value;
     targetCondition: TargetCondition;
+}
+
+export interface TargetPropertyValue {
+    type: ValueType.TargetProperty;
+    numberOfModelsWithin?: number;
 }
 
 export interface ConditionValue {
@@ -509,6 +528,10 @@ export function isOrValue(v: Value): v is OrValue {
     return typeof v === "object" && v.type === ValueType.Or;
 }
 
+export function isTargetPropertyValue(v: Value): v is TargetPropertyValue {
+    return typeof v === "object" && v.type === ValueType.TargetProperty;
+}
+
 export function targetConditionValue(
     targetCondition: TargetCondition,
     value: Value,
@@ -530,6 +553,15 @@ export function conditionValue(
         type: ValueType.Condition,
         value,
         condition,
+    };
+}
+
+export function targetPropertyValue(
+    props: Omit<TargetPropertyValue, "type">
+): TargetPropertyValue {
+    return {
+        type: ValueType.TargetProperty,
+        ...props,
     };
 }
 

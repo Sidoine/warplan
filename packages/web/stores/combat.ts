@@ -7,6 +7,7 @@ import {
     isTargetConditionValue,
     isOrValue,
     isConditionValue,
+    isTargetPropertyValue,
 } from "../../common/data";
 import { targetEnemy, checkCondition } from "./stats";
 import { UnitState, addAttackAura } from "./unit-state";
@@ -93,6 +94,11 @@ export function getValue(
         if (unit && checkCondition(formula.condition, unit))
             return getValue(formula.value, unit);
         return 0;
+    } else if (isTargetPropertyValue(formula)) {
+        if (target) {
+            if (formula.numberOfModelsWithin) return 2;
+        }
+        return 0;
     }
 
     return getValue(formula.values[0], target);
@@ -146,6 +152,11 @@ export function rollValue(
     } else if (isConditionValue(formula)) {
         if (checkCondition(formula.condition, unit))
             return rollValue(formula.value, howMany, target, unit);
+        return 0;
+    } else if (isTargetPropertyValue(formula)) {
+        if (target) {
+            if (formula.numberOfModelsWithin) return 2;
+        }
         return 0;
     }
 
@@ -364,9 +375,9 @@ export abstract class Combat {
         if (effect.attackAura) {
             addAttackAura(target, { aura: effect.attackAura });
         }
-        if (effect.mortalWounds) {
+        if (effect.immediate?.mortalWounds) {
             const mortalWounds = await this.valueRoller(
-                effect.mortalWounds,
+                effect.immediate.mortalWounds,
                 multiplier,
                 target,
                 caster

@@ -6,7 +6,7 @@ import {
     AttackAura,
     TargetType,
     Phase,
-    targetConditionValue
+    targetConditionValue,
 } from "../../common/data";
 import { RandomCombat } from "./combat";
 import { UnitState } from "./unit-state";
@@ -33,7 +33,7 @@ async function computeUnitDamage(
             ? enemyOptions.enemyKeywords.split(" ")
             : [],
         save: 5,
-        description: "fake description"
+        description: "fake description",
     };
     const tries = 50000;
     if (unit.attacks) {
@@ -84,7 +84,7 @@ function createFakeUnit(attacks?: Attack[], abilities?: Ability[]): Unit {
         points: 100,
         attacks: attacks,
         abilities: abilities,
-        description: "fake description"
+        description: "fake description",
     };
 }
 
@@ -98,7 +98,7 @@ function createFakeAttack(id = "fakeAttack"): Attack {
         range: 1,
         rend: -1,
         toHit: 5,
-        toWound: 4
+        toWound: 4,
     };
 }
 
@@ -109,7 +109,7 @@ function createFakeEnemy(enemy?: Partial<CombatSettings>): CombatSettings {
             enemySave: 5,
             hasCharged: false,
             hasMoved: true,
-            enemyCount: 5
+            enemyCount: 5,
         },
         enemy
     );
@@ -159,11 +159,11 @@ function testattackaura(
             [
                 {
                     effects: [
-                        { targetType: TargetType.Unit, attackAura: attackAura }
+                        { targetType: TargetType.Unit, attackAura: attackAura },
                     ],
                     name: "Fake ability",
-                    id: "fakeAbility"
-                }
+                    id: "fakeAbility",
+                },
             ]
         );
         const enemy = createFakeEnemy(enemyOptions);
@@ -212,10 +212,12 @@ test(
             effectsOnHitUnmodified6: [
                 {
                     targetType: TargetType.Enemy,
-                    mortalWounds: 1,
-                    phase: Phase.Combat
-                }
-            ]
+                    phase: Phase.Combat,
+                    immediate: {
+                        mortalWounds: 1,
+                    },
+                },
+            ],
         },
         275 / 900
     )
@@ -273,12 +275,12 @@ test("condition on weapon id", () => {
                     {
                         targetType: TargetType.Weapon,
                         attackAura: { bonusDamage: 2 },
-                        targetCondition: { weaponId: "second" }
-                    }
+                        targetCondition: { weaponId: "second" },
+                    },
                 ],
                 name: "Fake ability",
-                id: "fakeAbility"
-            }
+                id: "fakeAbility",
+            },
         ]
     );
     const enemy = createFakeEnemy();
@@ -294,7 +296,7 @@ test(
     "condition on enemy keyword but enemy has not the keyword",
     testattackaura(
         {
-            bonusDamage: targetConditionValue({ anyKeyword: ["TEST"] }, 2)
+            bonusDamage: targetConditionValue({ anyKeyword: ["TEST"] }, 2),
         },
         125 / 900
     )
@@ -304,7 +306,7 @@ test(
     "condition on enemy keyword and the enemy has the keyword",
     testattackaura(
         {
-            bonusDamage: targetConditionValue({ anyKeyword: ["TEST"] }, 2)
+            bonusDamage: targetConditionValue({ anyKeyword: ["TEST"] }, 2),
         },
         375 / 900,
         { enemyKeywords: "TEST" }

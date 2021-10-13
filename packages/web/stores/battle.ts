@@ -38,17 +38,20 @@ export const enum EffectType {
     Unknown,
 }
 
+export interface EffectDescription {
+    text: string;
+    type: EffectType;
+}
+
 export function getEffectText(
     effect: AbilityEffect,
     unit: ItemWithAbilities
-): [
-    condition: string | undefined,
-    description: string[],
-    effectType: EffectType
-] {
-    const description: string[] = [];
+): [condition: string | undefined, descriptions: EffectDescription[]] {
+    if (effect.noEffect) {
+        return ["", []];
+    }
+    const descriptions: EffectDescription[] = [];
     let condition: string | undefined;
-    let effectType: EffectType = EffectType.Buff;
     if (effect.attackAura) {
         if (effect.attackAura.phase) {
             condition =
@@ -57,123 +60,217 @@ export function getEffectText(
                     : "Combat";
         }
         if (effect.attackAura.rerollHitsOn1) {
-            description.push("RR1 hit");
+            descriptions.push({ text: "RR1 hit", type: EffectType.Buff });
         }
         if (effect.attackAura.bonusRend) {
-            description.push(`${effect.attackAura.bonusRend} Rend`);
+            descriptions.push({
+                text: `+${effect.attackAura.bonusRend} Rend`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.attackAura.rerollFailedWounds) {
-            description.push("RR Wound");
+            descriptions.push({ text: "RR Wound", type: EffectType.Buff });
         }
         if (effect.attackAura.bonusWoundRoll) {
-            description.push(
-                `+${getValue(effect.attackAura.bonusWoundRoll)} Wound`
-            );
+            descriptions.push({
+                text: `+${getValue(effect.attackAura.bonusWoundRoll)} Wound`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.attackAura.rerollFailedHits) {
-            description.push("RR failed Hit");
+            descriptions.push({ text: "RR failed Hit", type: EffectType.Buff });
         }
         if (effect.attackAura.malusHitRoll) {
-            description.push(
-                `-${getValue(effect.attackAura.malusHitRoll)} Hit`
-            );
+            descriptions.push({
+                text: `-${getValue(effect.attackAura.malusHitRoll)} Hit`,
+                type: EffectType.Debuff,
+            });
         }
         if (effect.attackAura.noPileIn) {
-            description.push("No pile-in");
+            descriptions.push({ text: "No pile-in", type: EffectType.Debuff });
         }
         if (effect.attackAura.bonusAttacks) {
-            description.push(`+${effect.attackAura.bonusAttacks} Atk`);
+            descriptions.push({
+                text: `+${effect.attackAura.bonusAttacks} Atk`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.attackAura.rerollHits) {
-            description.push("RR Hit");
+            descriptions.push({ text: "RR Hit", type: EffectType.Buff });
         }
         if (effect.attackAura.bonusDamageOnHitUnmodified6) {
-            description.push(
-                `+${effect.attackAura.bonusDamageOnHitUnmodified6} Dmg on 6 Hit`
-            );
+            descriptions.push({
+                text: `+${effect.attackAura.bonusDamageOnHitUnmodified6} Dmg on 6 Hit`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.attackAura.mortalWoundsOnHitUnmodified5) {
-            description.push(
-                `${effect.attackAura.mortalWoundsOnHitUnmodified5} MW on 5+ Hit`
-            );
+            descriptions.push({
+                text: `${effect.attackAura.mortalWoundsOnHitUnmodified5} MW on 5+ Hit`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.attackAura.mortalWoundsOnHitUnmodified6) {
-            description.push(
-                `${effect.attackAura.mortalWoundsOnHitUnmodified6} MW on 6 Hit`
-            );
+            descriptions.push({
+                text: `${effect.attackAura.mortalWoundsOnHitUnmodified6} MW on 6 Hit`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.attackAura.bonusMortalWoundsOnHitUnmodified6) {
-            description.push(
-                `+${effect.attackAura.bonusMortalWoundsOnHitUnmodified6} MW on 6 Hit`
-            );
+            descriptions.push({
+                text: `+${effect.attackAura.bonusMortalWoundsOnHitUnmodified6} MW on 6 Hit`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.attackAura.attackId) {
             const attack = unit.attacks?.find(
                 (x) => x.attack.id === effect.attackAura?.attackId
             );
             if (attack) {
-                description.push(`Choose ${attack.attack.name}`);
+                descriptions.push({
+                    text: `Choose ${attack.attack.name}`,
+                    type: EffectType.Buff,
+                });
             }
         }
         if (effect.attackAura.pileInEverywhere) {
-            description.push("Pile-in everywhere");
+            descriptions.push({
+                text: "Pile-in everywhere",
+                type: EffectType.Buff,
+            });
         }
         if (effect.attackAura.bonusPileInDistance) {
-            description.push(
-                `+${getValue(effect.attackAura.bonusPileInDistance)} Pile-in`
-            );
+            descriptions.push({
+                text: `+${getValue(
+                    effect.attackAura.bonusPileInDistance
+                )} Pile-in`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.attackAura.pileInWithFly) {
-            description.push("Pile-in with Fly");
+            descriptions.push({
+                text: "Pile-in with Fly",
+                type: EffectType.Buff,
+            });
         }
-        if (description.length === 0) {
-            description.push(
-                `attackAura: ${JSON.stringify(effect.attackAura)}`
-            );
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: `attackAura: ${JSON.stringify(effect.attackAura)}`,
+                type: EffectType.Unknown,
+            });
+        }
+    }
+    if (effect.battleShockAura) {
+        if (effect.battleShockAura.malusBravery) {
+            descriptions.push({
+                text: `${effect.battleShockAura.malusBravery} Brav`,
+                type: EffectType.Debuff,
+            });
+        }
+        if (effect.battleShockAura.emotionalTransference) {
+            descriptions.push({
+                text: "Transfered losses",
+                type: EffectType.Debuff,
+            });
+        }
+        if (effect.battleShockAura.immune) {
+            descriptions.push({
+                text: `Battleshock immune`,
+                type: EffectType.Buff,
+            });
+        }
+        if (effect.battleShockAura.bonusBravery) {
+            descriptions.push({
+                text: `+${effect.battleShockAura.bonusBravery} Brav`,
+                type: EffectType.Buff,
+            });
+        }
+        if (effect.battleShockAura.rerollFails) {
+            descriptions.push({
+                text: "RR battleshocks",
+                type: EffectType.Buff,
+            });
+        }
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: `battleShockAura: ${JSON.stringify(
+                    effect.battleShockAura
+                )}`,
+                type: EffectType.Unknown,
+            });
         }
     }
     if (effect.commandAura) {
         if (effect.commandAura.free) {
-            description.push("Free command");
+            descriptions.push({ text: "Free command", type: EffectType.Buff });
         }
-        if (description.length === 0) {
-            description.push(
-                `commandAura: ${JSON.stringify(effect.commandAura)}`
-            );
+        if (effect.commandAura.doublePrice) {
+            descriptions.push({
+                text: "CP cost ×2",
+                type: EffectType.Debuff,
+            });
+        }
+        if (effect.commandAura.copyCommand) {
+            descriptions.push({
+                text: "Copy command",
+                type: EffectType.Buff,
+            });
+        }
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: `commandAura: ${JSON.stringify(effect.commandAura)}`,
+                type: EffectType.Unknown,
+            });
         }
     }
     if (effect.defenseAura) {
         if (effect.defenseAura.rerollFailedSaves) {
-            description.push("RR Save");
+            descriptions.push({ text: "RR Save", type: EffectType.Buff });
         }
         if (effect.defenseAura.bonusSave) {
-            description.push(`+${effect.defenseAura.bonusSave} Save`);
+            descriptions.push({
+                text: `+${effect.defenseAura.bonusSave} Save`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.defenseAura.rerollSavesOn1) {
-            description.push("RR1 Save");
+            descriptions.push({ text: "RR1 Save", type: EffectType.Buff });
         }
         if (effect.defenseAura.rerollHitOn1) {
-            description.push("RR1 Enemy Hit");
+            descriptions.push({
+                text: "RR1 Enemy Hit",
+                type: EffectType.Debuff,
+            });
         }
         if (effect.defenseAura.rerollHitOn6) {
-            description.push("RR6 Enemy Hit");
+            descriptions.push({ text: "RR6 Enemy Hit", type: EffectType.Buff });
         }
         if (effect.defenseAura.healOnSave7) {
-            description.push(`Save 7+: ${effect.defenseAura.healOnSave7} heal`);
+            descriptions.push({
+                text: `Save 7+: ${effect.defenseAura.healOnSave7} heal`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.defenseAura.bonusHitRoll) {
-            description.push(`+${effect.defenseAura.bonusHitRoll} Enemy Hit`);
+            descriptions.push({
+                text: `+${effect.defenseAura.bonusHitRoll} Enemy Hit`,
+                type: EffectType.Debuff,
+            });
         }
         if (effect.defenseAura.bonusWoundRoll) {
-            description.push(
-                `+${effect.defenseAura.bonusWoundRoll} Enemy Wound`
-            );
+            descriptions.push({
+                text: `+${effect.defenseAura.bonusWoundRoll} Enemy Wound`,
+                type: EffectType.Debuff,
+            });
         }
         if (effect.defenseAura.malusHitRoll) {
-            description.push(`-${effect.defenseAura.malusHitRoll} Enemy Hit`);
+            descriptions.push({
+                text: `-${effect.defenseAura.malusHitRoll} Enemy Hit`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.defenseAura.negateWoundsOrMortalWoundsOn5) {
-            description.push("5+ ward");
+            descriptions.push({ text: "5+ ward", type: EffectType.Buff });
         }
         if (effect.defenseAura.phase) {
             condition =
@@ -182,147 +279,226 @@ export function getEffectText(
                     : "Combat";
         }
         if (effect.defenseAura.garrisoned) {
-            description.push("Garrisoned");
+            descriptions.push({ text: "Garrisoned", type: EffectType.Buff });
         }
         if (effect.defenseAura.ignoreRendOfMinus1) {
-            description.push("Ignore -1 Rend");
+            descriptions.push({
+                text: "Ignore -1 Rend",
+                type: EffectType.Buff,
+            });
         }
         if (effect.defenseAura.guardianOn2) {
-            description.push("2+ Guardian");
+            descriptions.push({ text: "2+ Guardian", type: EffectType.Buff });
         }
         if (effect.defenseAura.visibleToCasterUnit) {
-            description.push("Visible to caster unit");
+            descriptions.push({
+                text: "Visible to caster unit",
+                type: EffectType.Debuff,
+            });
         }
-        if (description.length === 0) {
-            description.push(
-                `defenseAura: ${JSON.stringify(effect.defenseAura)}`
-            );
+        if (effect.defenseAura.ignoreSpellOn4) {
+            descriptions.push({
+                text: "4+ Ignore Spell",
+                type: EffectType.Buff,
+            });
+        }
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: `defenseAura: ${JSON.stringify(effect.defenseAura)}`,
+                type: EffectType.Unknown,
+            });
         }
     }
     if (effect.movementAura) {
         if (effect.movementAura.allowChargeAfterRunOrRetreat) {
-            description.push("Charge after Run/Retreat");
+            descriptions.push({
+                text: "Charge after Run/Retreat",
+                type: EffectType.Buff,
+            });
         }
         if (effect.movementAura.doubleMove) {
-            description.push("Move ×2");
+            descriptions.push({ text: "Move ×2", type: EffectType.Buff });
         }
         if (effect.movementAura.fly) {
-            description.push("Fly");
+            descriptions.push({ text: "Fly", type: EffectType.Buff });
         }
-        if (description.length === 0) {
-            description.push(
-                `movementAura: ${JSON.stringify(effect.movementAura)}`
-            );
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: `movementAura: ${JSON.stringify(effect.movementAura)}`,
+                type: EffectType.Unknown,
+            });
         }
     }
     if (effect.chargeAura) {
         if (effect.chargeAura.bonus) {
-            description.push(`+${effect.chargeAura.bonus} Charge`);
+            descriptions.push({
+                text: `+${effect.chargeAura.bonus} Charge`,
+                type: EffectType.Buff,
+            });
         }
         if (effect.chargeAura.canChargeAfterRetreat) {
-            description.push("Charge after Retreat");
+            descriptions.push({
+                text: "Charge after Retreat",
+                type: EffectType.Buff,
+            });
         }
-        if (description.length === 0) {
-            description.push(
-                `ChargeAura: ${JSON.stringify(effect.chargeAura)}`
-            );
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: `ChargeAura: ${JSON.stringify(effect.chargeAura)}`,
+                type: EffectType.Unknown,
+            });
         }
     }
     if (effect.spellAura) {
         if (effect.spellAura.noCast) {
-            description.push("No cast");
+            descriptions.push({ text: "No cast", type: EffectType.Debuff });
         }
-        if (effect.spellAura.rerollCast) {
-            description.push("RR cast");
+        if (effect.spellAura.rerollFailedCast) {
+            descriptions.push({
+                text: "RR failed cast",
+                type: EffectType.Buff,
+            });
         }
         if (effect.spellAura.rerollDispell) {
-            description.push("RR dispell");
+            descriptions.push({ text: "RR dispell", type: EffectType.Buff });
         }
         if (effect.spellAura.rerollUnbind) {
-            description.push("RR unbind");
+            descriptions.push({ text: "RR unbind", type: EffectType.Buff });
         }
         if (effect.spellAura.autoCast) {
-            description.push("Auto-cast 9");
+            descriptions.push({ text: "Auto-cast 9", type: EffectType.Buff });
         }
-        if (description.length === 0) {
-            description.push(`SpellAura: ${JSON.stringify(effect.spellAura)}`);
+        if (effect.spellAura.malusToAll) {
+            descriptions.push({
+                text: `-${effect.spellAura.malusToAll} to spell/unbind/dispell`,
+                type: EffectType.Debuff,
+            });
+        }
+        if (effect.spellAura.casts) {
+            descriptions.push({
+                text: `${effect.spellAura.casts} casts`,
+                type: EffectType.Buff,
+            });
+        }
+        if (effect.spellAura.unbinds) {
+            descriptions.push({
+                text: `${effect.spellAura.unbinds} unbinds`,
+                type: EffectType.Buff,
+            });
+        }
+
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: `SpellAura: ${JSON.stringify(effect.spellAura)}`,
+                type: EffectType.Unknown,
+            });
         }
     }
     if (effect.specialAura) {
         if (effect.specialAura.absorbDespair) {
-            description.push("Brav -1 transfered to enemy");
+            descriptions.push({
+                text: "Brav -1 transfered to enemy",
+                type: EffectType.Buff,
+            });
         }
         if (effect.specialAura.darknessOfSoul) {
-            description.push("No action on 2D6>Brv");
+            descriptions.push({
+                text: "No action on 2D6>Brv",
+                type: EffectType.Buff,
+            });
         }
         if (effect.specialAura.pickTwoUnitsInCombat) {
-            description.push("Pick 2 units (excl. strike 1st/last)");
+            descriptions.push({
+                text: "Pick 2 units (excl. strike 1st/last)",
+                type: EffectType.Buff,
+            });
         }
         if (effect.specialAura.blockVisibility) {
-            description.push("Block visibility");
+            descriptions.push({
+                text: "Block visibility",
+                type: EffectType.Buff,
+            });
         }
-        if (description.length === 0) {
-            description.push(
-                `specialAura: ${JSON.stringify(effect.specialAura)}`
-            );
+        if (effect.specialAura.tectonicForce) {
+            descriptions.push({
+                text: 'Must move 2", >1" away',
+                type: EffectType.Debuff,
+            });
+        }
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: `specialAura: ${JSON.stringify(effect.specialAura)}`,
+                type: EffectType.Unknown,
+            });
         }
     }
     if (effect.valueAura) {
         if (effect.valueAura.ignoreWounds) {
-            description.push("Wds table: use 0 Wd");
+            descriptions.push({
+                text: "Wds table: use 0 Wd",
+                type: EffectType.Buff,
+            });
         }
-        if (description.length === 0) {
-            description.push(`valueAura: ${JSON.stringify(effect.valueAura)}`);
-        }
-    }
-    if (effect.battleShockAura) {
-        if (effect.battleShockAura.malusBravery) {
-            description.push(`${effect.battleShockAura.malusBravery} Brav`);
-        }
-        if (effect.battleShockAura.emotionalTransference) {
-            description.push("Transfered losses");
-        }
-        if (effect.battleShockAura.immune) {
-            description.push(`Battleshock immune`);
-        }
-        if (effect.battleShockAura.bonusBravery) {
-            description.push(`+${effect.battleShockAura.bonusBravery} Brav`);
-        }
-        if (effect.battleShockAura.rerollFails) {
-            description.push("RR battleshocks");
-        }
-        if (description.length === 0) {
-            description.push(
-                `battleShockAura: ${JSON.stringify(effect.battleShockAura)}`
-            );
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: `valueAura: ${JSON.stringify(effect.valueAura)}`,
+                type: EffectType.Unknown,
+            });
         }
     }
 
-    if (effect.mortalWounds) {
-        effectType = EffectType.Immediate;
-        description.push(`${effect.mortalWounds} MW`);
+    if (effect.immediate) {
+        if (effect.immediate.mortalWounds) {
+            descriptions.push({
+                text: `${effect.immediate.mortalWounds} MW`,
+                type: EffectType.Immediate,
+            });
+        }
+        if (effect.immediate.mortalWoundsPerModel) {
+            descriptions.push({
+                text: `${effect.immediate.mortalWoundsPerModel} MW/model`,
+                type: EffectType.Immediate,
+            });
+        }
+        if (effect.immediate.allowInclusion) {
+            descriptions.push({ text: "Include", type: EffectType.Immediate });
+        }
+        if (effect.immediate.gainCommandPoints) {
+            descriptions.push({
+                text: `${effect.immediate.gainCommandPoints} CP`,
+                type: EffectType.Immediate,
+            });
+        }
+        if (effect.immediate.setup) {
+            descriptions.push({ text: "Setup", type: EffectType.Immediate });
+        }
+        if (effect.immediate.pileInMove) {
+            descriptions.push({
+                text: `${effect.immediate.pileInMove}" Pile-in move`,
+                type: EffectType.Immediate,
+            });
+        }
+        if (effect.immediate.heal) {
+            descriptions.push({
+                text: `Heal ${effect.immediate.heal} Wd`,
+                type: EffectType.Immediate,
+            });
+        }
+        if (descriptions.length === 0) {
+            descriptions.push({
+                text: JSON.stringify(effect),
+                type: EffectType.Unknown,
+            });
+        }
     }
-    if (effect.mortalWoundsPerModel) {
-        effectType = EffectType.Immediate;
-        description.push(`${effect.mortalWoundsPerModel} MW/model`);
+
+    if (descriptions.length === 0) {
+        descriptions.push({
+            text: JSON.stringify(effect),
+            type: EffectType.Unknown,
+        });
     }
-    if (effect.allowInclusion) {
-        effectType = EffectType.Immediate;
-        description.push("Include");
-    }
-    if (effect.gainCommandPoints) {
-        effectType = EffectType.Immediate;
-        description.push(`${effect.gainCommandPoints} CP`);
-    }
-    if (effect.setup) {
-        effectType = EffectType.Immediate;
-        description.push("Setup");
-    }
-    if (description.length === 0) {
-        description.push(JSON.stringify(effect));
-        effectType = EffectType.Unknown;
-    }
-    return [condition, description, effectType];
+    return [condition, descriptions];
 }
 
 export function getPhaseName(phase: Phase) {

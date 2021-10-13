@@ -62,26 +62,33 @@ function applyEffect(
     if (effect.timesPerBattle) {
         ratio = ((ratio || 1) * effect.timesPerBattle) / 5;
     }
-    if (effect.mortalWounds) {
-        const mortalWounds =
-            getValue(effect.mortalWounds, target.unitState) * (ratio || 1);
-        if (effect.phase !== Phase.Combat) {
-            stats.rangedDamage += mortalWounds;
-        } else {
-            stats.meleeDamage += mortalWounds;
+    if (effect.immediate) {
+        if (effect.immediate.mortalWounds) {
+            const mortalWounds =
+                getValue(effect.immediate.mortalWounds, target.unitState) *
+                (ratio || 1);
+            if (effect.phase !== Phase.Combat) {
+                stats.rangedDamage += mortalWounds;
+            } else {
+                stats.meleeDamage += mortalWounds;
+            }
+        }
+        if (effect.immediate.mortalWoundsPerModel) {
+            const mortalWounds =
+                getValue(
+                    effect.immediate.mortalWoundsPerModel,
+                    target.unitState
+                ) *
+                (ratio || 1) *
+                caster.unitState.unit.size;
+            if (effect.phase !== Phase.Combat) {
+                stats.rangedDamage += mortalWounds;
+            } else {
+                stats.meleeDamage += mortalWounds;
+            }
         }
     }
-    if (effect.mortalWoundsPerModel) {
-        const mortalWounds =
-            getValue(effect.mortalWoundsPerModel, target.unitState) *
-            (ratio || 1) *
-            caster.unitState.unit.size;
-        if (effect.phase !== Phase.Combat) {
-            stats.rangedDamage += mortalWounds;
-        } else {
-            stats.meleeDamage += mortalWounds;
-        }
-    }
+
     if (effect.attackAura) {
         addAttackAura(target, { aura: effect.attackAura, effectRatio: ratio });
     }

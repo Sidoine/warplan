@@ -153,6 +153,8 @@ export function getTargetType(effect: AbilityEffect, unit: ItemWithAbilities) {
                 }
             }
             return "ability";
+        case TargetType.EnemyArmy:
+            return "enemy army";
     }
     return "unknown";
 }
@@ -203,19 +205,26 @@ export function AbilityEffectAuraView({
     effect: AbilityEffect;
     unit: ItemWithAbilities;
 }) {
-    const [condition, descriptions, type] = getEffectText(effect, unit);
+    const [condition, descriptions] = getEffectText(effect, unit);
     const classes = useStyle();
     return (
         <>
             <i>{condition}</i>
 
-            <Chip
-                className={
-                    type === EffectType.Unknown ? classes.error : undefined
-                }
-                color={type === EffectType.Immediate ? "default" : "primary"}
-                label={<>{descriptions.join(" - ")}</>}
-            />
+            {descriptions.map((x, index) => (
+                <Chip
+                    key={index}
+                    className={
+                        x.type === EffectType.Unknown
+                            ? classes.error
+                            : undefined
+                    }
+                    color={
+                        x.type === EffectType.Immediate ? "default" : "primary"
+                    }
+                    label={x.text}
+                />
+            ))}
         </>
     );
 }

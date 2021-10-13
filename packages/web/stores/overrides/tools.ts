@@ -9,7 +9,7 @@ import {
     UnitWarscrollInterface,
     AbilityEffect,
     ModelOptionCategory,
-    UnitOptionCategory
+    UnitOptionCategory,
 } from "../../../common/data";
 
 type ModelCondition = (
@@ -27,7 +27,7 @@ export function setAbilityAsOption(
         id: ability.name,
         name: ability.name,
         abilities: [ability],
-        unitCategory: unitCategory
+        unitCategory: unitCategory,
     };
     if (condition) option.isOptionValid = condition(option);
     return addOption(unit, option);
@@ -84,7 +84,7 @@ export function setAttackAsOption(
         attacks: [attack],
         modelCategory: ModelOptionCategory.Weapon,
         abilities: abilities,
-        unitCategory: unitCategory
+        unitCategory: unitCategory,
     });
     if (condition) option.isOptionValid = condition(option);
     return option;
@@ -134,6 +134,11 @@ export function updateEffect(ability: Ability, effect: Partial<AbilityEffect>) {
     if (ability.effects) Object.assign(ability.effects[0], effect);
 }
 
+export function updateAttack(attack: Attack, update: Partial<Attack>) {
+    Object.assign(attack, update);
+    return attack;
+}
+
 export function overrideAbility(ability: Ability, f: (x: Ability) => void) {
     override(ability, f);
 }
@@ -176,7 +181,7 @@ export function mergeModels(
 }
 
 export function getBaseModelOption(id: string, options: ModelOption[]) {
-    return options.find(x => x.id === id);
+    return options.find((x) => x.id === id);
 }
 
 export function setBaseModelOption(
@@ -216,7 +221,7 @@ export function setBaseModelOption(
 // }
 
 export function hasOption(model: WarscrollModelInterface, option: ModelOption) {
-    return !model || model.options.some(x => x.id === option.id);
+    return !model || model.options.some((x) => x.id === option.id);
 }
 
 export function getUnitModelsWithOptionCount(

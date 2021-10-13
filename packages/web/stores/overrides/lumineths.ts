@@ -1,6 +1,11 @@
-import { Phase, SubPhase, TargetType } from "../../../common/data";
+import {
+    Phase,
+    SubPhase,
+    targetPropertyValue,
+    TargetType,
+} from "../../../common/data";
 import { ImportedDataStoreImpl } from "../imported-data";
-import { addEffect, updateEffect } from "./tools";
+import { addEffect, updateAttack, updateEffect } from "./tools";
 
 export function overrideLumineths(data: ImportedDataStoreImpl) {
     // Generic abilities
@@ -47,7 +52,9 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         },
     });
     updateEffect(data.abilities.luminethGreatNations, {
-        allowInclusion: true,
+        immediate: {
+            allowInclusion: true,
+        },
     });
     updateEffect(data.abilities.moveLikeTheWind, {
         attackAura: {
@@ -62,6 +69,24 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         attackAura: {
             pileInWithFly: true,
             bonusPileInDistance: 3,
+        },
+    });
+    updateEffect(data.abilities.tectonicForce, {
+        specialAura: {
+            tectonicForce: true,
+        },
+    });
+    addEffect(data.abilities.tectonicForce, {
+        targetType: TargetType.Unit,
+        phase: Phase.Combat,
+        subPhase: SubPhase.After,
+        immediate: {
+            pileInMove: 1,
+        },
+    });
+    updateEffect(data.abilities.unityOfPurpose, {
+        commandAura: {
+            copyCommand: true,
         },
     });
 
@@ -80,8 +105,10 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
 
     // Hurukan Spirit of the Wind
     updateEffect(data.abilities.hurakanSpiritOfTheWindLivingCyclone, {
-        mortalWounds: 1,
         targetRadius: 3,
+        immediate: {
+            mortalWounds: 1,
+        },
     });
     addEffect(data.abilities.hurakanSpiritOfTheWindLivingCyclone, {
         targetType: TargetType.Enemy,
@@ -96,7 +123,7 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         targetType: TargetType.Friend,
         choice: "reroll casting",
         spellAura: {
-            rerollCast: true,
+            rerollFailedCast: true,
         },
     });
     addEffect(data.abilities.shrineLuminorCleansingRituals, {
@@ -124,13 +151,18 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     addEffect(data.abilities.shrineLuminorFactionTerrain, {
         targetType: TargetType.Unit,
         phase: Phase.ArmyList,
-        allowInclusion: true,
+        immediate: {
+            allowInclusion: true,
+        },
     });
     addEffect(data.abilities.shrineLuminorSetUp, {
         targetType: TargetType.Unit,
         phase: Phase.Setup,
         subPhase: SubPhase.Before,
-        setup: true,
+        immediate: {
+            allowInclusion: true,
+            setup: true,
+        },
     });
     addEffect(data.abilities.shrineLuminorShrineGuardian, {
         targetType: TargetType.Unit,
@@ -162,7 +194,9 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     addEffect(data.abilities.scinariLoreseekerLoreseeker, {
         targetType: TargetType.Unit,
         phase: Phase.Any,
-        gainCommandPoints: 1,
+        immediate: {
+            gainCommandPoints: 1,
+        },
     });
 
     // Vanari Bladelords
@@ -170,6 +204,31 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         targetType: TargetType.Unit,
         defenseAura: {
             guardianOn2: true,
+        },
+    });
+    updateAttack(data.attacks.vanariBladelordsSunmetalGreatbladeFlurryOfBlows, {
+        choice: "Flurry of Blows",
+        attacks: targetPropertyValue({ numberOfModelsWithin: 2 }),
+    });
+    updateAttack(data.attacks.vanariBladelordsSunmetalGreatbladePerfectStrike, {
+        choice: "Perfect Strike",
+        // toHit: 0,
+    });
+    updateEffect(data.abilities.vanariBladelordsSwordmasters, {
+        targetType: TargetType.Unit,
+        choice: "Furry of Blows",
+        attackAura: {
+            attackId:
+                data.attacks.vanariBladelordsSunmetalGreatbladeFlurryOfBlows.id,
+        },
+    });
+    addEffect(data.abilities.vanariBladelordsSwordmasters, {
+        targetType: TargetType.Unit,
+        phase: Phase.Combat,
+        choice: "Perfect Strike",
+        attackAura: {
+            attackId:
+                data.attacks.vanariBladelordsSunmetalGreatbladePerfectStrike.id,
         },
     });
 
