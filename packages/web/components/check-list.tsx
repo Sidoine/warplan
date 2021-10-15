@@ -6,7 +6,7 @@ import {
     Attack,
     Value,
     SubPhase,
-    PhaseSide,
+    Turn,
     ItemWithAbilities,
 } from "../../common/data";
 import {
@@ -108,7 +108,7 @@ interface ItemWithAbilityInPhase {
 
 function getWithAbilitiesInPhase(
     item: ItemWithAbilities,
-    side: PhaseSide,
+    side: Turn,
     phase: Phase
 ): ItemWithAbilityInPhase {
     return {
@@ -121,7 +121,7 @@ function getWithAbilitiesInPhase(
 
 function mapPhaseSide(
     item: ItemWithAbilityInPhase,
-    side: PhaseSide,
+    side: Turn,
     phase: Phase,
     subPhase: SubPhase
 ): ItemWithAbilityInPhase {
@@ -179,7 +179,7 @@ function AbilityInfo({
     abilityModel: Ability;
     phase: Phase;
     unit: ItemWithAbilities;
-    side: PhaseSide;
+    side: Turn;
     subPhase: SubPhase;
 }) {
     const classes = useStyle();
@@ -225,7 +225,7 @@ function UnitInfo({
     unit: ItemWithAbilityInPhase;
     phase: Phase;
     subPhase: SubPhase;
-    side: PhaseSide;
+    side: Turn;
 }) {
     const classes = useStyle();
     const unit = item.item;
@@ -256,7 +256,7 @@ function UnitInfo({
                 )} */}
 
             {unit.attacks &&
-                side === PhaseSide.Attack &&
+                side === Turn.Your &&
                 unit.attacks
                     .filter((x) => isAttackInPhase(x.attack, phase, subPhase))
                     .map((x) => (
@@ -287,7 +287,7 @@ function SubPhaseInfo({
     subPhase,
 }: {
     items: ItemWithAbilityInPhase[];
-    side: PhaseSide;
+    side: Turn;
     phase: Phase;
     subPhase: SubPhase;
 }) {
@@ -321,7 +321,7 @@ function PhaseInfo({
     phaseSide,
 }: {
     phase: Phase;
-    phaseSide: PhaseSide;
+    phaseSide: Turn;
     items: ItemWithAbilityInPhase[];
 }) {
     const classes = useStyle();
@@ -410,7 +410,7 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
     );
 }
 
-function PhaseSideInfo({ phaseSide }: { phaseSide: PhaseSide }) {
+function PhaseSideInfo({ phaseSide }: { phaseSide: Turn }) {
     const { armyListStore } = useStores();
     const armyList = armyListStore.armyList;
     return (
@@ -434,8 +434,8 @@ export function CheckList() {
     const { armyListStore } = useStores();
     return (
         <div>
-            <PhaseSideInfo phaseSide={PhaseSide.Attack} />
-            <PhaseSideInfo phaseSide={PhaseSide.Defense} />
+            <PhaseSideInfo phaseSide={Turn.Your} />
+            <PhaseSideInfo phaseSide={Turn.Opponent} />
             <OutOfPhaseAbilities warscroll={armyListStore.armyList} />
         </div>
     );

@@ -6,9 +6,11 @@ import {
     Ability,
     Attack,
     AbilityCategory,
-    PhaseSide,
+    Turn,
     ItemWithAbilities,
     SubPhase,
+    TargetCondition,
+    Faction,
 } from "../../common/data";
 import { DataStore } from "./data";
 import { ArmyList, ArmyListStore } from "./army-list";
@@ -43,6 +45,92 @@ export interface EffectDescription {
     type: EffectType;
 }
 
+export function getTokenName(faction: Faction | null | undefined) {
+    if (faction?.tokenName) return faction.tokenName;
+    return "token";
+}
+
+export function getEffectCondition(
+    condition: TargetCondition,
+    unit: ItemWithAbilities
+): string[] {
+    const descriptions: string[] = [];
+    if (condition.abilityId) {
+        const ability = unit.abilities.find(
+            (a) => a.id === condition.abilityId
+        );
+        if (ability) {
+            descriptions.push(ability.name);
+        } else {
+            descriptions.push(condition.abilityId);
+        }
+    }
+    if (condition.allKeywords) {
+        descriptions.push(condition.allKeywords.join(" and "));
+    }
+    if (condition.anyKeyword) {
+        descriptions.push(condition.anyKeyword.join(" or "));
+    }
+    if (condition.hasCharged) {
+        descriptions.push("has charged");
+    }
+    if (condition.hasMoved) {
+        descriptions.push("has moved");
+    }
+    if (condition.hasNotCharged) {
+        descriptions.push("has not charged");
+    }
+    if (condition.hasNotMoved) {
+        descriptions.push("has not moved");
+    }
+    if (condition.inCover) {
+        descriptions.push("in cover");
+    }
+    if (condition.inRangeOf) {
+        descriptions.push(
+            `${condition.inRangeOf.range}" of ${
+                condition.inRangeOf.friendly ? "friendly" : "enemy"
+            } ${
+                condition.inRangeOf.keyword
+                    ? condition.inRangeOf.keyword.join(" and ")
+                    : ""
+            } `
+        );
+    }
+    if (condition.keyword) {
+        descriptions.push(condition.keyword);
+    }
+    if (condition.meleeWeapon) {
+        descriptions.push("melee");
+    }
+    if (condition.minModels) {
+        descriptions.push(`≥ ${getValue(condition.minModels)} models `);
+    }
+    if (condition.minWounds) {
+        descriptions.push(`≥ ${condition.minWounds} Wd `);
+    }
+    if (condition.noKeyword) {
+        descriptions.push(`not ${condition.noKeyword}`);
+    }
+    if (condition.rangedWeapon) {
+        descriptions.push("missile");
+    }
+    if (condition.weaponId) {
+        const attack = unit.attacks?.find(
+            (x) => x.attack.id === condition.weaponId
+        );
+        if (attack?.attack.name) {
+            descriptions.push(attack.attack.name);
+        } else {
+            descriptions.push(condition.weaponId);
+        }
+    }
+    if (descriptions.length === 0) {
+        return [`⚠️ ${JSON.stringify(condition)}`];
+    }
+    return descriptions;
+}
+
 export function getEffectText(
     effect: AbilityEffect,
     unit: ItemWithAbilities
@@ -53,12 +141,12 @@ export function getEffectText(
     const descriptions: EffectDescription[] = [];
     let condition: string | undefined;
     if (effect.attackAura) {
-        if (effect.attackAura.phase) {
-            condition =
-                effect.attackAura.phase === Phase.Shooting
-                    ? "Shooting"
-                    : "Combat";
-        }
+        // if (effect.attackAura.phase) {
+        //     condition =
+        //         effect.attackAura.phase === Phase.Shooting
+        //             ? "Shooting"
+        //             : "Combat";
+        // }
         if (effect.attackAura.rerollHitsOn1) {
             descriptions.push({ text: "RR1 hit", type: EffectType.Buff });
         }
@@ -92,6 +180,12 @@ export function getEffectText(
         if (effect.attackAura.bonusAttacks) {
             descriptions.push({
                 text: `+${effect.attackAura.bonusAttacks} Atk`,
+                type: EffectType.Buff,
+            });
+        }
+        if (effect.attackAura.bonusHitRoll) {
+            descriptions.push({
+                text: `+${getValue(effect.attackAura.bonusHitRoll)} Hit`,
                 type: EffectType.Buff,
             });
         }
@@ -243,7 +337,10 @@ export function getEffectText(
             });
         }
         if (effect.defenseAura.rerollHitOn6) {
-            descriptions.push({ text: "RR6 Enemy Hit", type: EffectType.Buff });
+            descriptions.push({
+                text: "RR6 Enemy Hit",
+                type: EffectType.Debuff,
+            });
         }
         if (effect.defenseAura.healOnSave7) {
             descriptions.push({
@@ -300,6 +397,12 @@ export function getEffectText(
             descriptions.push({
                 text: "4+ Ignore Spell",
                 type: EffectType.Buff,
+            });
+        }
+        if (effect.defenseAura.rerollHits) {
+            descriptions.push({
+                text: "RR Enemy Hits",
+                type: EffectType.Debuff,
             });
         }
         if (descriptions.length === 0) {
@@ -386,6 +489,12 @@ export function getEffectText(
                 type: EffectType.Buff,
             });
         }
+        if (effect.spellAura.extraCast) {
+            descriptions.push({
+                text: `+${effect.spellAura.extraCast} extra cast`,
+                type: EffectType.Buff,
+            });
+        }
 
         if (descriptions.length === 0) {
             descriptions.push({
@@ -397,8 +506,8 @@ export function getEffectText(
     if (effect.specialAura) {
         if (effect.specialAura.absorbDespair) {
             descriptions.push({
-                text: "Brav -1 transfered to enemy",
-                type: EffectType.Buff,
+                text: "-1 Brav transfered to enemy",
+                type: EffectType.Immediate,
             });
         }
         if (effect.specialAura.darknessOfSoul) {
@@ -484,6 +593,18 @@ export function getEffectText(
                 type: EffectType.Immediate,
             });
         }
+        if (effect.immediate.rerollSpellcast) {
+            descriptions.push({
+                text: "RR cast",
+                type: EffectType.Immediate,
+            });
+        }
+        if (effect.immediate.bonusSpellcast) {
+            descriptions.push({
+                text: `+${effect.immediate.bonusSpellcast} cast`,
+                type: EffectType.Immediate,
+            });
+        }
         if (descriptions.length === 0) {
             descriptions.push({
                 text: JSON.stringify(effect),
@@ -525,11 +646,11 @@ export function getPhaseName(phase: Phase) {
     return "Battle";
 }
 
-export function getPhaseSideName(side: PhaseSide) {
+export function getPhaseSideName(side: Turn) {
     switch (side) {
-        case PhaseSide.Attack:
+        case Turn.Your:
             return "Your turn";
-        case PhaseSide.Defense:
+        case Turn.Opponent:
             return "Enemy's turn";
     }
     return "";
@@ -582,7 +703,7 @@ export function getAbilityPhases(ability: Ability) {
 export function isEffectInPhase(
     unit: ItemWithAbilities,
     effect: AbilityEffect,
-    side: PhaseSide,
+    side: Turn,
     phase: Phase,
     subPhase?: SubPhase
 ) {
@@ -602,7 +723,7 @@ export function isEffectInPhase(
 export function isAbilityInPhase(
     unit: ItemWithAbilities,
     ability: Ability,
-    side: PhaseSide,
+    side: Turn,
     phase: Phase,
     subPhase?: SubPhase
 ) {
@@ -610,7 +731,7 @@ export function isAbilityInPhase(
         (ability.category === AbilityCategory.Spell ||
             ability.category === AbilityCategory.Prayer) &&
         (phase === Phase.Hero || phase === undefined) &&
-        side === PhaseSide.Attack &&
+        side === Turn.Your &&
         (subPhase === SubPhase.While || subPhase === undefined)
     )
         return true;
@@ -642,7 +763,7 @@ export function isAttackInPhase(
 
 export function isUnitInPhase(
     unit: WarscrollItem,
-    side: PhaseSide,
+    side: Turn,
     phase: Phase,
     subPhase: SubPhase
 ) {
@@ -678,7 +799,7 @@ export function isUnitInPhase(
 
 interface BattleSerialized {
     phase: Phase;
-    side: PhaseSide;
+    side: Turn;
     subPhase: SubPhase;
     armyListId?: string;
 }
@@ -687,7 +808,7 @@ export class BattleStore {
     @observable turn = 0;
 
     @observable phase: Phase = 0;
-    @observable side: PhaseSide = PhaseSide.None;
+    @observable side: Turn = Turn.None;
     @observable subPhase: SubPhase = SubPhase.Before;
 
     @observable player: Player | null = null;
@@ -788,17 +909,14 @@ export class BattleStore {
             armyList: warscroll,
         };
         this.phase = Phase.Setup;
-        this.side = PhaseSide.Attack;
+        this.side = Turn.Your;
         this.checkedAbilities.clear();
         this.save();
     }
 
     @action
     toggleSide = () => {
-        this.side =
-            this.side === PhaseSide.Attack
-                ? PhaseSide.Defense
-                : PhaseSide.Attack;
+        this.side = this.side === Turn.Your ? Turn.Opponent : Turn.Your;
         this.save();
     };
 
@@ -834,9 +952,7 @@ export class BattleStore {
             case SubPhase.After:
                 if (this.phase === Phase.Battleshock) {
                     this.goToPhase(
-                        this.side === PhaseSide.Attack
-                            ? PhaseSide.Defense
-                            : PhaseSide.Attack,
+                        this.side === Turn.Your ? Turn.Opponent : Turn.Your,
                         Phase.Hero,
                         SubPhase.Before
                     );
@@ -852,9 +968,7 @@ export class BattleStore {
             case SubPhase.Before:
                 if (this.phase === Phase.Hero)
                     this.goToPhase(
-                        this.side === PhaseSide.Attack
-                            ? PhaseSide.Defense
-                            : PhaseSide.Attack,
+                        this.side === Turn.Your ? Turn.Opponent : Turn.Your,
                         Phase.Battleshock,
                         SubPhase.After
                     );
@@ -874,11 +988,7 @@ export class BattleStore {
         }
     };
 
-    @action private goToPhase(
-        side: PhaseSide,
-        phase: Phase,
-        subPhase: SubPhase
-    ) {
+    @action private goToPhase(side: Turn, phase: Phase, subPhase: SubPhase) {
         this.checkedAbilities.clear();
         this.skippedUnits.clear();
         this.checkedArmyAbilityIds.splice(0);

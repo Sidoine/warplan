@@ -22,7 +22,7 @@ import {
     Value,
     ValueType,
     BattalionAbility,
-    PhaseSide,
+    Turn,
 } from "../common/data";
 import {
     AbilityGroupDomain,
@@ -167,7 +167,7 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Hero;
         effect.subPhase = SubPhase.While;
-        effect.side = PhaseSide.Attack;
+        effect.side = Turn.Your;
     }
     match = blurb.match(/at the start of (a|the) combat phase/);
     if (match) {
@@ -180,7 +180,7 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Hero;
         effect.subPhase = SubPhase.Before;
-        effect.side = PhaseSide.Attack;
+        effect.side = Turn.Your;
     }
 
     match = blurb.match(/during the combat phase,/i);
@@ -225,7 +225,7 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Hero;
         effect.subPhase = SubPhase.After;
-        effect.side = PhaseSide.Attack;
+        effect.side = Turn.Your;
     }
 
     match = blurb.match(/at the start of the hero phase/i);
@@ -252,7 +252,7 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Shooting;
         effect.subPhase = SubPhase.Before;
-        effect.side = PhaseSide.Attack;
+        effect.side = Turn.Your;
     }
 
     match = blurb.match(/at the end of the shooting phase/i);
@@ -274,7 +274,7 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect = effect || { targetType: TargetType.Model };
         effect.phase = Phase.Charge;
         effect.subPhase = SubPhase.While;
-        effect.side = PhaseSide.Attack;
+        effect.side = Turn.Your;
     }
 
     match = blurb.match(/in your hero phase,/i);
@@ -282,7 +282,17 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect = effect || { targetType: TargetType.Unit };
         effect.phase = Phase.Hero;
         effect.subPhase = SubPhase.While;
-        effect.side = PhaseSide.Attack;
+        effect.side = Turn.Your;
+    }
+
+    // Conditions
+    match = blurb.match(
+        /if this model does not make a charge move in your charge phase/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Model };
+        effect.condition = effect.condition || {};
+        effect.condition.hasNotCharged = true;
     }
 
     // Spells
@@ -575,13 +585,13 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         parseWeaponCondition(unit, match[1], effect);
     }
     match = blurb.match(
-        /you can re-roll hit rolls for attacks made (?:with (.*?) that)?/i
+        /you can re-roll hit rolls for attacks made with (.*?) that target that unit/i
     );
     if (match) {
-        effect = effect || { targetType: TargetType.Weapon };
-        effect.targetType = TargetType.Weapon;
-        effect.attackAura = effect.attackAura || {};
-        effect.attackAura.rerollHits = true;
+        effect = effect || { targetType: TargetType.Enemy };
+        effect.targetType = TargetType.Enemy;
+        effect.defenseAura = effect.defenseAura || {};
+        effect.defenseAura.rerollHits = true;
         if (match[1]) parseWeaponCondition(unit, match[1], effect);
     } else {
         match = blurb.match(/you can re-roll hit rolls for (.*?)./i);

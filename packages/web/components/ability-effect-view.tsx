@@ -1,19 +1,28 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
     AbilityEffect,
     EffectDuration,
     ItemWithAbilities,
     SubPhase,
+    TargetCondition,
     TargetType,
 } from "../../common/data";
-import { EffectType, getEffectText, getPhaseName } from "../stores/battle";
-import { SkullIcon, SpellIcon } from "../atoms/icons";
+import {
+    EffectType,
+    getEffectCondition,
+    getEffectText,
+    getPhaseName,
+    getTokenName,
+} from "../stores/battle";
+import { SkullIcon, SpellIcon, SwordIcon } from "../atoms/icons";
 import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
 import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from "@material-ui/icons/Group";
 import VerticalAlignTopIcon from "@material-ui/icons/VerticalAlignTop";
 import Chip from "@material-ui/core/Chip";
 import { makeStyles } from "@material-ui/core";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { getValueText } from "../stores/combat";
 
 const useStyle = makeStyles((theme) => ({
     badgedIcon: {
@@ -29,25 +38,6 @@ const useStyle = makeStyles((theme) => ({
         color: theme.palette.error.contrastText,
     },
 }));
-
-function BadgedIcon({
-    badge,
-    children,
-}: {
-    badge: ReactNode;
-    children: ReactNode;
-}) {
-    const classes = useStyle();
-    if (badge) {
-        return (
-            <span className={classes.badged}>
-                {children}
-                <span className={classes.badgedIcon}>{badge}</span>
-            </span>
-        );
-    }
-    return <>{children}</>;
-}
 
 function getEffectDuration(effect: AbilityEffect) {
     switch (effect.duration) {
@@ -100,18 +90,16 @@ export function AbilityEffectPhaseView({ effect }: { effect: AbilityEffect }) {
     );
 }
 
-function TargetView({ targetType }: { targetType: TargetType }) {
-    const isUnit =
-        (targetType &
-            (TargetType.Model | TargetType.Mount | TargetType.Weapon)) ==
-        0;
+function TargetView({ effect }: { effect: AbilityEffect }) {
+    const targetType = effect.targetType;
     return (
-        <BadgedIcon
-            badge={(targetType & TargetType.Enemy) > 0 && <SkullIcon />}
-        >
-            {isUnit && <GroupIcon />}
-            {(targetType & TargetType.Model) > 0 && <PersonIcon />}
-        </BadgedIcon>
+        <>
+            {targetType === TargetType.Friend && <FavoriteIcon />}
+            {targetType === TargetType.Model && <PersonIcon />}
+            {targetType === TargetType.Unit && <GroupIcon />}
+            {targetType === TargetType.Enemy && <SkullIcon />}
+            {targetType === TargetType.Weapon && <SwordIcon />}
+        </>
     );
 }
 
@@ -159,6 +147,39 @@ export function getTargetType(effect: AbilityEffect, unit: ItemWithAbilities) {
     return "unknown";
 }
 
+export function AbilityEffectCondition({
+    condition,
+    unit,
+}: {
+    condition: TargetCondition;
+    unit: ItemWithAbilities;
+}) {
+    return <>{getEffectCondition(condition, unit)}</>;
+}
+
+export function AbilityEffectCost({
+    effect,
+    unit,
+}: {
+    effect: AbilityEffect;
+    unit: ItemWithAbilities;
+}) {
+    return (
+        <>
+            {effect.tokensCost && (
+                <>
+                    {effect.tokensCost} {getTokenName(unit.allegiance)}
+                </>
+            )}
+            {effect.spellCastingValue && (
+                <>
+                    <SpellIcon /> {effect.spellCastingValue}+
+                </>
+            )}
+        </>
+    );
+}
+
 export function AbilityEffectTarget({
     effect,
     unit,
@@ -168,32 +189,27 @@ export function AbilityEffectTarget({
 }) {
     return (
         <>
-            {getTargetType(effect, unit)}
             <Chip
                 size="medium"
                 label={
                     <>
-                        <TargetView targetType={effect.targetType} />
+                        <TargetView effect={effect} />
                         {effect.targetRange && (
                             <>
                                 <VerticalAlignTopIcon />
-                                {effect.targetRange}&quot;
+                                {getValueText(effect.targetRange)}&quot;
                             </>
                         )}
                         {effect.targetRadius && (
                             <>
-                                <SignalWifi2BarIcon /> {effect.targetRadius}
+                                <SignalWifi2BarIcon />{" "}
+                                {getValueText(effect.targetRadius)}
                                 &quot;
                             </>
                         )}
                     </>
                 }
             />
-            {effect.spellCastingValue && (
-                <>
-                    <SpellIcon /> {effect.spellCastingValue}+
-                </>
-            )}
         </>
     );
 }
@@ -220,7 +236,11 @@ export function AbilityEffectAuraView({
                             : undefined
                     }
                     color={
-                        x.type === EffectType.Immediate ? "default" : "primary"
+                        x.type === EffectType.Immediate
+                            ? "default"
+                            : x.type === EffectType.Debuff
+                            ? "secondary"
+                            : "primary"
                     }
                     label={x.text}
                 />

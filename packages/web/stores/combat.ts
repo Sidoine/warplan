@@ -8,6 +8,7 @@ import {
     isOrValue,
     isConditionValue,
     isTargetPropertyValue,
+    ItemWithAbilities,
 } from "../../common/data";
 import { targetEnemy, checkCondition } from "./stats";
 import { UnitState, addAttackAura } from "./unit-state";
@@ -22,6 +23,14 @@ export function rolls(faces: number, rolls: number) {
         result += roll(faces);
     }
     return result;
+}
+
+export function getValueText(formula: Value, unit?: ItemWithAbilities) {
+    if (typeof formula === "string" || typeof formula === "number") {
+        return formula;
+    }
+
+    return "✹";
 }
 
 export function getValue(

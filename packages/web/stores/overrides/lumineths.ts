@@ -1,24 +1,89 @@
 import {
     Phase,
+    Turn,
     SubPhase,
     targetPropertyValue,
     TargetType,
+    EffectDuration,
+    conditionValue,
+    orValue,
 } from "../../../common/data";
 import { ImportedDataStoreImpl } from "../imported-data";
 import { addEffect, updateAttack, updateEffect } from "./tools";
 
 export function overrideLumineths(data: ImportedDataStoreImpl) {
+    data.factions.luminethRealmLords.tokenName = "aetherquartz";
+
     // Generic abilities
     addEffect(data.abilities.absorbDespair, {
-        targetType: TargetType.Friend,
+        targetType: TargetType.Enemy,
         specialAura: {
             absorbDespair: true,
         },
+        condition: {
+            inRangeOf: { friendly: true, keyword: ["CATHALLAR"], range: 18 },
+        },
+        targetRange: 18,
     });
     updateEffect(data.abilities.aetherquartzReserve, {
         battleShockAura: {
             malusBravery: -1,
         },
+    });
+    addEffect(data.abilities.aetherquartzReserve, {
+        targetType: TargetType.Unit,
+        phase: Phase.Hero,
+        subPhase: SubPhase.Before,
+        side: Turn.Your,
+        spellAura: {
+            extraCast: 1,
+        },
+        tokensCost: 1,
+        choice: "Magical Insight",
+    });
+    addEffect(data.abilities.aetherquartzReserve, {
+        targetType: TargetType.Unit,
+        choice: "Magical Boost: reroll",
+        tokensCost: 1,
+        phase: Phase.Hero,
+        subPhase: SubPhase.While,
+        side: Turn.Your,
+        immediate: {
+            rerollSpellcast: true,
+        },
+    });
+    addEffect(data.abilities.aetherquartzReserve, {
+        targetType: TargetType.Unit,
+        choice: "Magical Boost: bonus",
+        tokensCost: 1,
+        phase: Phase.Hero,
+        subPhase: SubPhase.While,
+        side: Turn.Your,
+        immediate: {
+            bonusSpellcast: 1,
+        },
+    });
+    addEffect(data.abilities.aetherquartzReserve, {
+        targetType: TargetType.Unit,
+        choice: "Heightened Senses",
+        tokensCost: 1,
+        phase: Phase.Combat | Phase.Shooting,
+        subPhase: SubPhase.While,
+        side: Turn.Your,
+        attackAura: {
+            bonusHitRoll: 1,
+        },
+    });
+    addEffect(data.abilities.aetherquartzReserve, {
+        targetType: TargetType.Unit,
+        choice: "Heightened Reflexes",
+        tokensCost: 1,
+        phase: Phase.Combat | Phase.Shooting,
+        subPhase: SubPhase.While,
+        defenseAura: {
+            bonusSave: 1,
+        },
+        duration: EffectDuration.Phase,
     });
     updateEffect(data.abilities.deepThinkers, {
         targetType: TargetType.Friend,
@@ -125,6 +190,10 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         spellAura: {
             rerollFailedCast: true,
         },
+        targetRange: orValue(
+            conditionValue({ hasGarrison: true }, 24),
+            conditionValue({ hasGarrison: false }, 12)
+        ),
     });
     addEffect(data.abilities.shrineLuminorCleansingRituals, {
         targetType: TargetType.Friend,

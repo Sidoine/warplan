@@ -32,6 +32,7 @@ export interface Faction {
     icon?: string;
     abilityGroups?: AbilityGroup[];
     battalionGroups?: BattalionGroup[];
+    tokenName?: string;
 }
 
 export const enum AbilityCategory {
@@ -64,6 +65,7 @@ export interface ItemWithAbilities {
     id: string;
     name: string;
     attacks?: AttackWithCount[];
+    allegiance?: Faction | null;
 }
 
 export const abilityCategoryName = new Map<AbilityCategory, string>([
@@ -160,6 +162,7 @@ export interface TargetCondition {
     rangedWeapon?: boolean;
     inRangeOf?: { friendly: boolean; keyword: string[]; range: number };
     abilityId?: string;
+    hasGarrison?: boolean;
 }
 
 export interface AttackAuraValues {
@@ -225,12 +228,14 @@ export interface SpellAura {
     autoUnbinds?: number;
     noCast?: boolean;
     rerollFailedCast?: boolean;
+    rerollCast?: boolean;
     rerollDispell?: boolean;
     rerollUnbind?: boolean;
     autoCast?: Value;
     malusToAll?: Value;
     casts?: Value;
     unbinds?: Value;
+    extraCast?: Value;
 }
 
 export interface PrayerAura {
@@ -261,9 +266,9 @@ export const enum EffectDuration {
     Permanent,
 }
 
-export const enum PhaseSide {
-    Attack,
-    Defense,
+export const enum Turn {
+    Your,
+    Opponent,
     None,
 }
 
@@ -290,6 +295,8 @@ interface ImmediateEffect {
     gainCommandPoints?: Value;
     setup?: boolean;
     pileInMove?: Value;
+    rerollSpellcast?: boolean;
+    bonusSpellcast?: Value;
 }
 
 export interface AbilityEffect {
@@ -300,7 +307,7 @@ export interface AbilityEffect {
     /** At which phase the ability is *used* to add the effect */
     phase?: Phase;
     subPhase?: SubPhase;
-    side?: PhaseSide;
+    side?: Turn;
     timesPerBattle?: number;
 
     // Cast range
@@ -320,6 +327,7 @@ export interface AbilityEffect {
     targetCondition?: TargetCondition;
     condition?: TargetCondition;
     spellCastingValue?: number;
+    tokensCost?: number;
 
     // Aura
     attackAura?: AttackAura;
@@ -674,7 +682,7 @@ export interface WarscrollBattalionInterface {
     definition: Battalion;
 }
 
-export interface UnitWarscrollInterface {
+export interface UnitWarscrollInterface extends ItemWithAbilities {
     definition: Unit;
     isGeneral: boolean;
     isLeader: boolean;

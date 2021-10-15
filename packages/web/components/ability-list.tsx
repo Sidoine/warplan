@@ -6,6 +6,7 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    Tooltip,
     Typography,
 } from "@material-ui/core";
 import { observer } from "mobx-react-lite";
@@ -20,6 +21,8 @@ import {
 } from "../stores/battle";
 import {
     AbilityEffectAuraView,
+    AbilityEffectCondition,
+    AbilityEffectCost,
     AbilityEffectTarget,
 } from "./ability-effect-view";
 import { Warning } from "../atoms/warning";
@@ -62,10 +65,9 @@ function AbilityRows({
                     {index === 0 && (
                         <>
                             <TableCell rowSpan={effects.length}>
-                                <Typography>{ability.name}</Typography>{" "}
-                                <Typography variant="caption">
-                                    {ability.id}
-                                </Typography>
+                                <Tooltip title={ability.id}>
+                                    <Typography>{ability.name}</Typography>
+                                </Tooltip>
                             </TableCell>
                             <TableCell rowSpan={effects.length}>
                                 {ability.description}
@@ -81,15 +83,30 @@ function AbilityRows({
                             getPhaseName(effect.phase)}
                     </TableCell>
                     <TableCell>
+                        <AbilityEffectCost effect={effect} unit={unit} />
+                        {effect.condition && (
+                            <AbilityEffectCondition
+                                condition={effect.condition}
+                                unit={unit}
+                            />
+                        )}
+                    </TableCell>
+                    <TableCell>
+                        <AbilityEffectTarget unit={unit} effect={effect} />
+                        {effect.targetCondition && (
+                            <AbilityEffectCondition
+                                condition={effect.targetCondition}
+                                unit={unit}
+                            />
+                        )}
+                    </TableCell>
+                    <TableCell>
                         <AbilityEffectAuraView effect={effect} unit={unit} />
                     </TableCell>
                     <TableCell>
                         {getEffectPhaseNames(getEffectPhases(effect)).join(
                             ", "
                         )}
-                    </TableCell>
-                    <TableCell>
-                        <AbilityEffectTarget unit={unit} effect={effect} />
                     </TableCell>
                 </TableRow>
             ))}
@@ -107,19 +124,22 @@ export const AbilityList = observer(function AbilityList() {
                         <TableCell>Name</TableCell>
                         <TableCell>Description</TableCell>
                         <TableCell>Cast phase</TableCell>
+                        <TableCell>Condition</TableCell>
+                        <TableCell>Target</TableCell>
                         <TableCell>Effect</TableCell>
                         <TableCell>Effect phase</TableCell>
-                        <TableCell>Target</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {armyList.armyAndUnitsAbilities.map(({ item, ability }) => (
-                        <AbilityRows
-                            unit={item}
-                            key={ability.id}
-                            ability={ability}
-                        />
-                    ))}
+                    {armyList.armyAndUnitsAbilities.map(
+                        ({ item, ability }, index) => (
+                            <AbilityRows
+                                unit={item}
+                                key={index}
+                                ability={ability}
+                            />
+                        )
+                    )}
                 </TableBody>
             </Table>
         </TableContainer>

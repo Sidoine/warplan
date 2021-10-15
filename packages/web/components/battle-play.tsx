@@ -21,15 +21,15 @@ import {
     BottomNavigationAction,
     Modal,
     Fab,
-    ListItemSecondaryAction
+    ListItemSecondaryAction,
 } from "@material-ui/core";
-import { Ability, Attack, Value, Phase, PhaseSide } from "../../common/data";
+import { Ability, Attack, Value, Phase, Turn } from "../../common/data";
 import {
     isAbilityInPhase,
     isAttackInPhase,
     getPhaseName,
     getPhaseSideName,
-    getSubPhaseName
+    getSubPhaseName,
 } from "../stores/battle";
 import { UnitWarscroll } from "../stores/warscroll";
 import { value } from "../helpers/react";
@@ -39,21 +39,21 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { SwordIcon, SaveIcon } from "../atoms/icons";
 import { UnitWarscrollView } from "./unit-warscroll";
 
-const useStyles = makeStyles(x => ({
+const useStyles = makeStyles((x) => ({
     navigation: {
         position: "fixed",
         bottom: x.spacing(1),
         left: "50%",
-        transform: "translatex(-50%)"
+        transform: "translatex(-50%)",
     },
     root: {
-        marginBottom: x.spacing(6)
+        marginBottom: x.spacing(6),
     },
     remaining: {
         position: "fixed",
         bottom: x.spacing(2),
-        right: x.spacing(2)
-    }
+        right: x.spacing(2),
+    },
 }));
 
 export const BattleStart = observer(() => {
@@ -71,7 +71,7 @@ export const BattleStart = observer(() => {
 
 const AbilityButton = observer(function AbilityButton({
     ability,
-    wu
+    wu,
 }: {
     ability: Ability;
     wu?: UnitWarscroll;
@@ -148,7 +148,7 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
 
     const store = useLocalObservable(() => ({
         get abilities() {
-            return wu.abilities.filter(x =>
+            return wu.abilities.filter((x) =>
                 isAbilityInPhase(
                     wu,
                     x,
@@ -159,14 +159,14 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
             );
         },
         get attacks() {
-            return wu.attacks.filter(x =>
+            return wu.attacks.filter((x) =>
                 isAttackInPhase(
                     x.attack,
                     battleStore.phase,
                     battleStore.subPhase
                 )
             );
-        }
+        },
     }));
 
     const toggleUsed = useCallback(() => {
@@ -204,13 +204,13 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
                 {!battleStore.isUnitHidden(wu) && (
                     <List>
                         {(battleStore.phase === Phase.Movement ||
-                            battleStore.side === PhaseSide.Defense ||
+                            battleStore.side === Turn.Opponent ||
                             battleStore.phase === Phase.Battleshock) && (
                             <Stats>
                                 {battleStore.phase === Phase.Movement && (
                                     <Stat name="Mv" value={unit.move} />
                                 )}
-                                {battleStore.side === PhaseSide.Defense && (
+                                {battleStore.side === Turn.Opponent && (
                                     <>
                                         <Stat name="Wd" value={unit.wounds} />
                                         <Stat name="Sv" value={unit.save} />
@@ -221,15 +221,15 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
                                 )}
                             </Stats>
                         )}
-                        {battleStore.side === PhaseSide.Attack &&
-                            store.attacks.map(x => (
+                        {battleStore.side === Turn.Your &&
+                            store.attacks.map((x) => (
                                 <AttackTable
                                     key={x.attack.id}
                                     attack={x.attack}
                                     count={x.count}
                                 />
                             ))}
-                        {store.abilities.map(x => (
+                        {store.abilities.map((x) => (
                             <AbilityButton key={x.id} ability={x} wu={wu} />
                         ))}
                     </List>
@@ -257,14 +257,14 @@ const PhasePage = observer(() => {
                 <Grid item>
                     <Paper>
                         <List>
-                            {battleStore.uncheckedArmyAbilities.map(x => (
+                            {battleStore.uncheckedArmyAbilities.map((x) => (
                                 <AbilityButton key={x.id} ability={x} />
                             ))}
                         </List>
                     </Paper>
                 </Grid>
             )}
-            {battleStore.units.sort(compareUnits).map(x => (
+            {battleStore.units.sort(compareUnits).map((x) => (
                 <Grid key={x.id} item>
                     <UnitCard wu={x} />
                 </Grid>
@@ -273,7 +273,7 @@ const PhasePage = observer(() => {
                 <Grid item>
                     <Paper>
                         <List>
-                            {battleStore.checkedArmyAbilities.map(x => (
+                            {battleStore.checkedArmyAbilities.map((x) => (
                                 <AbilityButton key={x.id} ability={x} />
                             ))}
                         </List>
@@ -304,12 +304,12 @@ export const BattlePlay = observer(() => {
                 />
                 <BottomNavigationAction
                     label={
-                        battleStore.side === PhaseSide.Attack
+                        battleStore.side === Turn.Your
                             ? "Your turn"
                             : "Enemy turn"
                     }
                     icon={
-                        battleStore.side === PhaseSide.Attack ? (
+                        battleStore.side === Turn.Your ? (
                             <SwordIcon />
                         ) : (
                             <SaveIcon />
