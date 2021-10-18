@@ -147,6 +147,7 @@ export interface ChargeAura {
 
 export interface TargetCondition {
     minWounds?: number;
+    maxWounds?: number;
     minModels?: Value;
     keyword?: string;
     noKeyword?: string;
@@ -160,9 +161,10 @@ export interface TargetCondition {
     weaponId?: string;
     meleeWeapon?: boolean;
     rangedWeapon?: boolean;
-    inRangeOf?: { friendly: boolean; keyword: string[]; range: number };
+    inRangeOf?: { friendly: boolean; keyword: string[]; range: Value };
     abilityId?: string;
     hasGarrison?: boolean;
+    visible?: boolean;
 }
 
 export interface AttackAuraValues {

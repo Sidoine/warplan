@@ -344,7 +344,7 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
 
     //Target
     match = blurb.match(
-        /you can pick an enemy Hero within (\d+)" of this model/i
+        /you can pick an enemy Hero within (\d+") of this model/i
     );
     if (match) {
         effect = effect || { targetType: TargetType.Enemy };
@@ -352,6 +352,17 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect.targetCondition = effect.targetCondition || {};
         effect.targetCondition.keyword = "HERO";
         effect.targetRange = parseInt(match[1]);
+    }
+
+    match = blurb.match(
+        /pick 1 enemy unit within (\d+") of the caster and visible to them/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Enemy };
+        effect.targetType = TargetType.Enemy;
+        effect.targetCondition = effect.targetCondition || {};
+        effect.targetCondition.visible = true;
+        effect.targetRange = match[1];
     }
 
     // Defense

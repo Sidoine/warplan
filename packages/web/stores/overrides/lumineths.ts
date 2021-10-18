@@ -7,6 +7,7 @@ import {
     EffectDuration,
     conditionValue,
     orValue,
+    targetConditionValue,
 } from "../../../common/data";
 import { ImportedDataStoreImpl } from "../imported-data";
 import { addEffect, updateAttack, updateEffect } from "./tools";
@@ -21,9 +22,9 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
             absorbDespair: true,
         },
         condition: {
-            inRangeOf: { friendly: true, keyword: ["CATHALLAR"], range: 18 },
+            inRangeOf: { friendly: true, keyword: ["CATHALLAR"], range: '18"' },
         },
-        targetRange: 18,
+        targetRange: '18"',
     });
     updateEffect(data.abilities.aetherquartzReserve, {
         battleShockAura: {
@@ -191,8 +192,8 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
             rerollFailedCast: true,
         },
         targetRange: orValue(
-            conditionValue({ hasGarrison: true }, 24),
-            conditionValue({ hasGarrison: false }, 12)
+            conditionValue({ hasGarrison: true }, '24"'),
+            '12"'
         ),
     });
     addEffect(data.abilities.shrineLuminorCleansingRituals, {
@@ -201,6 +202,10 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         spellAura: {
             rerollDispell: true,
         },
+        targetRange: orValue(
+            conditionValue({ hasGarrison: true }, '24"'),
+            '12"'
+        ),
     });
     addEffect(data.abilities.shrineLuminorCleansingRituals, {
         targetType: TargetType.Friend,
@@ -208,6 +213,10 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         spellAura: {
             rerollUnbind: true,
         },
+        targetRange: orValue(
+            conditionValue({ hasGarrison: true }, '24"'),
+            '12"'
+        ),
     });
     addEffect(data.abilities.shrineLuminorDefensible, {
         targetType: TargetType.Friend,
@@ -302,13 +311,13 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     });
 
     // Vanari Dawnriders
-    addEffect(data.abilities.vanariDawnridersDeathlyFurrows, {
-        targetType: TargetType.Weapon,
-        targetCondition: {
-            meleeWeapon: true,
-        },
+    updateEffect(data.abilities.vanariDawnridersDeathlyFurrows, {
         attackAura: {
-            bonusAttacks: 2,
+            bonusAttacks: targetConditionValue(
+                { maxWounds: 1, noKeyword: "MOUNT" },
+                2,
+                targetConditionValue({ maxWounds: 2, noKeyword: "MOUNT" }, 1)
+            ),
         },
     });
 

@@ -8,6 +8,7 @@ import {
     TargetType,
 } from "../../common/data";
 import {
+    EffectDescription,
     EffectType,
     getEffectCondition,
     getEffectText,
@@ -20,7 +21,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from "@material-ui/icons/Group";
 import VerticalAlignTopIcon from "@material-ui/icons/VerticalAlignTop";
 import Chip from "@material-ui/core/Chip";
-import { makeStyles } from "@material-ui/core";
+import { Badge, makeStyles } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { getValueText } from "../stores/combat";
 
@@ -197,20 +198,39 @@ export function AbilityEffectTarget({
                         {effect.targetRange && (
                             <>
                                 <VerticalAlignTopIcon />
-                                {getValueText(effect.targetRange)}&quot;
+                                {getValueText(effect.targetRange, unit)}
                             </>
                         )}
                         {effect.targetRadius && (
                             <>
                                 <SignalWifi2BarIcon />{" "}
-                                {getValueText(effect.targetRadius)}
-                                &quot;
+                                {getValueText(effect.targetRadius, unit)}
                             </>
                         )}
                     </>
                 }
             />
         </>
+    );
+}
+
+function EffectAuraDescription({ x }: { x: EffectDescription }) {
+    const classes = useStyle();
+
+    return (
+        <Chip
+            className={
+                x.type === EffectType.Unknown ? classes.error : undefined
+            }
+            color={
+                x.type === EffectType.Immediate
+                    ? "default"
+                    : x.type === EffectType.Debuff
+                    ? "secondary"
+                    : "primary"
+            }
+            label={x.text}
+        />
     );
 }
 
@@ -222,29 +242,21 @@ export function AbilityEffectAuraView({
     unit: ItemWithAbilities;
 }) {
     const [condition, descriptions] = getEffectText(effect, unit);
-    const classes = useStyle();
     return (
         <>
-            <i>{condition}</i>
-
-            {descriptions.map((x, index) => (
-                <Chip
-                    key={index}
-                    className={
-                        x.type === EffectType.Unknown
-                            ? classes.error
-                            : undefined
-                    }
-                    color={
-                        x.type === EffectType.Immediate
-                            ? "default"
-                            : x.type === EffectType.Debuff
-                            ? "secondary"
-                            : "primary"
-                    }
-                    label={x.text}
-                />
-            ))}
+            {descriptions.map((x, index) =>
+                condition ? (
+                    <Badge
+                        key={index}
+                        badgeContent={condition}
+                        color="secondary"
+                    >
+                        <EffectAuraDescription x={x} />
+                    </Badge>
+                ) : (
+                    <EffectAuraDescription key={index} x={x} />
+                )
+            )}
         </>
     );
 }

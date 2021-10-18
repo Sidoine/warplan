@@ -10,6 +10,7 @@ import {
     isTargetPropertyValue,
     ItemWithAbilities,
 } from "../../common/data";
+import { getEffectCondition } from "./battle";
 import { targetEnemy, checkCondition } from "./stats";
 import { UnitState, addAttackAura } from "./unit-state";
 
@@ -25,11 +26,25 @@ export function rolls(faces: number, rolls: number) {
     return result;
 }
 
-export function getValueText(formula: Value, unit?: ItemWithAbilities) {
+export function getValueText(
+    formula: Value,
+    unit: ItemWithAbilities
+): string | number {
     if (typeof formula === "string" || typeof formula === "number") {
         return formula;
     }
-
+    if (isConditionValue(formula)) {
+        return `${getValueText(formula.value, unit)} if ${getEffectCondition(
+            formula.condition,
+            unit
+        )}`;
+    }
+    if (isOrValue(formula)) {
+        return `${getValueText(formula.left, unit)} or ${getValueText(
+            formula.right,
+            unit
+        )}`;
+    }
     return "✹";
 }
 

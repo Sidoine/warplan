@@ -14,7 +14,7 @@ import {
 } from "../../common/data";
 import { DataStore } from "./data";
 import { ArmyList, ArmyListStore } from "./army-list";
-import { getValue } from "./combat";
+import { getValue, getValueText } from "./combat";
 
 export interface Player {
     name: string;
@@ -104,7 +104,9 @@ export function getEffectCondition(
         descriptions.push("melee");
     }
     if (condition.minModels) {
-        descriptions.push(`≥ ${getValue(condition.minModels)} models `);
+        descriptions.push(
+            `≥ ${getValueText(condition.minModels, unit)} models `
+        );
     }
     if (condition.minWounds) {
         descriptions.push(`≥ ${condition.minWounds} Wd `);
@@ -125,6 +127,12 @@ export function getEffectCondition(
             descriptions.push(condition.weaponId);
         }
     }
+    if (condition.hasGarrison) {
+        descriptions.push("has garrison");
+    }
+    if (condition.visible) {
+        descriptions.push("visible");
+    }
     if (descriptions.length === 0) {
         return [`⚠️ ${JSON.stringify(condition)}`];
     }
@@ -141,12 +149,12 @@ export function getEffectText(
     const descriptions: EffectDescription[] = [];
     let condition: string | undefined;
     if (effect.attackAura) {
-        // if (effect.attackAura.phase) {
-        //     condition =
-        //         effect.attackAura.phase === Phase.Shooting
-        //             ? "Shooting"
-        //             : "Combat";
-        // }
+        if (effect.attackAura.phase) {
+            condition =
+                effect.attackAura.phase === Phase.Shooting
+                    ? "Missile"
+                    : "Melee";
+        }
         if (effect.attackAura.rerollHitsOn1) {
             descriptions.push({ text: "RR1 hit", type: EffectType.Buff });
         }
@@ -373,7 +381,9 @@ export function getEffectText(
             condition =
                 effect.defenseAura.phase === Phase.Shooting
                     ? "Shooting"
-                    : "Combat";
+                    : effect.defenseAura.phase === Phase.Combat
+                    ? "Melee"
+                    : undefined;
         }
         if (effect.defenseAura.garrisoned) {
             descriptions.push({ text: "Garrisoned", type: EffectType.Buff });
