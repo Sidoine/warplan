@@ -61,10 +61,10 @@ export interface AttackWithCount {
 }
 
 export interface ItemWithAbilities {
-    abilities: Ability[];
+    abilities?: Ability[];
     id: string;
     name: string;
-    attacks?: AttackWithCount[];
+    attacks?: Attack[];
     allegiance?: Faction | null;
 }
 
@@ -411,7 +411,7 @@ export const enum UnitOptionCategory {
     Main,
 }
 
-export interface ModelOption {
+export interface ModelOption extends ItemWithAbilities {
     id: string;
     name: string;
     abilities?: Ability[];
@@ -744,7 +744,7 @@ export interface ImportedDataStore {
     battalionAbilities: Record<string, BattalionAbility>;
 }
 
-export interface AbilityGroup {
+export interface AbilityGroup extends ItemWithAbilities {
     id: string;
     abilities: Ability[];
     name: string;

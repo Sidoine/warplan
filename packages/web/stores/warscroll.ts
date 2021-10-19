@@ -370,6 +370,11 @@ export class UnitWarscroll implements UnitWarscrollInterface {
 
     @computed
     get attacks() {
+        return this.definition.attacks;
+    }
+
+    @computed
+    get attackWithCounts() {
         const attacks = this.definition.attacks
             ? this.definition.attacks.map((x) => ({
                   count: this.modelCount,
@@ -398,8 +403,12 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         return attacks;
     }
 
+    @computed get baseAbilities(): Ability[] {
+        return this.definition.abilities || [];
+    }
+
     @computed get abilities(): Ability[] {
-        let abilities = this.definition.abilities || [];
+        let abilities = this.baseAbilities;
         if (this.definition.commandAbilities)
             abilities = abilities.concat(this.definition.commandAbilities);
         if (this.extraAbilities) {

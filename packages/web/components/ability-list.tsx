@@ -53,6 +53,7 @@ function AbilityRows({
                     </Typography>
                     <Typography variant="caption">{ability.id}</Typography>
                 </TableCell>
+                <TableCell>{unit.name}</TableCell>
                 <TableCell>{ability.description}</TableCell>
             </TableRow>
         );
@@ -68,6 +69,9 @@ function AbilityRows({
                                 <Tooltip title={ability.id}>
                                     <Typography>{ability.name}</Typography>
                                 </Tooltip>
+                            </TableCell>
+                            <TableCell rowSpan={effects.length}>
+                                {unit.name}
                             </TableCell>
                             <TableCell rowSpan={effects.length}>
                                 {ability.description}
@@ -122,6 +126,7 @@ export const AbilityList = observer(function AbilityList() {
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
+                        <TableCell>Caster</TableCell>
                         <TableCell>Description</TableCell>
                         <TableCell>Cast phase</TableCell>
                         <TableCell>Condition</TableCell>

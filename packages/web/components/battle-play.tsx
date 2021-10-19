@@ -159,7 +159,7 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
             );
         },
         get attacks() {
-            return wu.attacks.filter((x) =>
+            return wu.attackWithCounts.filter((x) =>
                 isAttackInPhase(
                     x.attack,
                     battleStore.phase,

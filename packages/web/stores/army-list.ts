@@ -25,6 +25,7 @@ import {
     WarscrollModel,
     UnitWarscroll,
 } from "./warscroll";
+import { distinct } from "../helpers/algo";
 
 export interface ArmyListLimits {
     numberOfLeaders: number;
@@ -71,6 +72,12 @@ interface SerializedArmyList {
 
 function getWarscrollItem(name?: string) {
     return name ? `warscroll/${name}` : "warscroll";
+}
+
+function hasAbilities(
+    item: ItemWithAbilities
+): item is Omit<ItemWithAbilities, "abilities"> & { abilities: Ability[] } {
+    return item.abilities !== undefined;
 }
 
 export class ArmyList implements ArmyListInterface, ArmyListLimits {
@@ -371,25 +378,19 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         item: ItemWithAbilities;
         ability: Ability;
     }[] {
-        return this.abilities
-            .map(
-                (
-                    ability
-                ): {
-                    item: ItemWithAbilities;
-                    ability: Ability;
-                } => ({ ability, item: this })
-            )
-            .concat(
-                this.units.flatMap((item) =>
-                    item.extraAbilities
-                        .map((ability) => ({ ability, item }))
-                        .concat(
-                            item.abilities.map((ability) => ({ ability, item }))
-                        )
-                )
-            )
-            .sort((a, b) => a.ability.name.localeCompare(b.ability.name));
+        const result: ItemWithAbilities[] = this.allegianceAbilityGroups.filter(
+            (x) => x.category === AbilityCategory.BattleTrait
+        );
+        const units = distinct(this.units.map((x) => x.definition));
+        for (const unit of units) {
+            if (unit.options) {
+                result.push(...unit.options);
+            }
+            result.push(unit);
+        }
+        return result
+            .filter(hasAbilities)
+            .flatMap((x) => x.abilities.map((y) => ({ item: x, ability: y })));
     }
 
     @computed

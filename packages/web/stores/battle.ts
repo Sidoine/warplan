@@ -65,7 +65,7 @@ export function getEffectCondition(
 ): string[] {
     const descriptions: string[] = [];
     if (condition.abilityId) {
-        const ability = unit.abilities.find(
+        const ability = unit.abilities?.find(
             (a) => a.id === condition.abilityId
         );
         if (ability) {
@@ -133,11 +133,9 @@ export function getEffectCondition(
         descriptions.push("missile");
     }
     if (condition.weaponId) {
-        const attack = unit.attacks?.find(
-            (x) => x.attack.id === condition.weaponId
-        );
-        if (attack?.attack.name) {
-            descriptions.push(attack.attack.name);
+        const attack = unit.attacks?.find((x) => x.id === condition.weaponId);
+        if (attack?.name) {
+            descriptions.push(attack.name);
         } else {
             descriptions.push(condition.weaponId);
         }
@@ -265,11 +263,11 @@ export function getEffectText(
         }
         if (effect.attackAura.attackId) {
             const attack = unit.attacks?.find(
-                (x) => x.attack.id === effect.attackAura?.attackId
+                (x) => x.id === effect.attackAura?.attackId
             );
             if (attack) {
                 descriptions.push({
-                    text: `Choose ${attack.attack.name}`,
+                    text: `Choose ${attack.name}`,
                     type: EffectType.Buff,
                 });
             }
@@ -848,14 +846,14 @@ export function isUnitInPhase(
         if (
             phase === Phase.Shooting &&
             unit.type === "unit" &&
-            unit.attacks.some((x) => !x.attack.melee)
+            unit.attacks?.some((x) => !x.melee)
         ) {
             return true;
         }
         if (
             phase === Phase.Combat &&
             unit.type === "unit" &&
-            unit.attacks.some((x) => x.attack.melee)
+            unit.attacks?.some((x) => x.melee)
         ) {
             return true;
         }

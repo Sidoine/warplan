@@ -441,6 +441,15 @@ export function getAbilityEffects(
         effect.targetCondition.visible = true;
     }
 
+    match = blurb.match(
+        /you can pick 1 enemy unit within (\d+") of this unit’s (.*?) and/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Enemy };
+        effect.targetType = TargetType.Enemy;
+        effect.targetRange = match[1];
+    }
+
     // Defense
     match = blurb.match(
         /Roll a dice each time you allocate a wound or mortal wound to this model\. On a (\d)\+, that wound or mortal wound is negated/i
@@ -721,7 +730,7 @@ export function getAbilityEffects(
     );
     if (match) {
         effect = effect || { targetType: TargetType.Enemy };
-        effect.targetType = TargetType.Unit;
+        effect.targetType = TargetType.Enemy;
         effect.immediate = effect.immediate || {};
         effect.immediate.mortalWounds = `${match[2]}(${match[1]}+)`;
     }
@@ -846,6 +855,21 @@ function getModelOption(option: ModelOption, optionName: string, unit: Unit) {
     return found;
 }
 
+function getModelOptionAbilities(
+    abilities: Ability[] | undefined,
+    name: string
+) {
+    const result: Ability[] = [];
+    const regex = new RegExp(`within (\\d+") of this unit’s ${name}`, "i");
+    if (!abilities) return result;
+    for (const ability of abilities) {
+        if (ability.description && ability.description.match(regex)) {
+            result.push(ability);
+        }
+    }
+    return result;
+}
+
 function getModelOptions(unit: Unit) {
     const options: ModelOption[] = [];
     let match = unit.description.match(
@@ -916,6 +940,10 @@ function getModelOptions(unit: Unit) {
             );
             if (match) {
                 const championName = match[1];
+                const abilities = getModelOptionAbilities(
+                    unit.abilities,
+                    championName
+                ).concat(champion);
                 const option: ModelOption = {
                     id: generatedId(
                         `${unit.name} ${unit.subName || ""} ${championName}`,
@@ -924,10 +952,12 @@ function getModelOptions(unit: Unit) {
                     name: championName,
                     modelCategory: ModelOptionCategory.Champion,
                     champion: true,
-                    abilities: [champion],
+                    abilities: abilities,
                 };
                 options.push(option);
-                unit.abilities = unit.abilities.filter((x) => x !== champion);
+                unit.abilities = unit.abilities.filter(
+                    (x) => !abilities.includes(x)
+                );
             }
         }
     }

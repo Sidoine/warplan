@@ -135,9 +135,9 @@ export function getTargetType(effect: AbilityEffect, unit: ItemWithAbilities) {
             if (effect.targetCondition) {
                 if (effect.targetCondition.weaponId) {
                     const targetWeapon = unit.attacks?.find(
-                        (x) => x.attack.id === effect.targetCondition?.weaponId
+                        (x) => x.id === effect.targetCondition?.weaponId
                     );
-                    if (targetWeapon) return targetWeapon.attack.name;
+                    if (targetWeapon) return targetWeapon.name;
                     return `unknown ${effect.targetCondition.weaponId}`;
                 }
                 if (effect.targetCondition.meleeWeapon) {

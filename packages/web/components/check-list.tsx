@@ -113,9 +113,10 @@ function getWithAbilitiesInPhase(
 ): ItemWithAbilityInPhase {
     return {
         item,
-        abilities: item.abilities.filter((a) =>
-            isAbilityInPhase(item, a, side, phase)
-        ),
+        abilities:
+            item.abilities?.filter((a) =>
+                isAbilityInPhase(item, a, side, phase)
+            ) ?? [],
     };
 }
 
@@ -155,10 +156,9 @@ function Stat(props: { name: string; value: Value }) {
     );
 }
 
-function AttackStats({ attack, count }: { attack: Attack; count: number }) {
+function AttackStats({ attack }: { attack: Attack }) {
     return (
         <Stats key={attack.id} name={attack.name}>
-            <Stat name="x" value={count} />
             <Stat name="At" value={attack.attacks} />
             <Stat name="Rg" value={`${attack.range}"`} />
             <Stat name="Hit" value={`${attack.toHit}+`} />
@@ -258,14 +258,8 @@ function UnitInfo({
             {unit.attacks &&
                 side === Turn.Your &&
                 unit.attacks
-                    .filter((x) => isAttackInPhase(x.attack, phase, subPhase))
-                    .map((x) => (
-                        <AttackStats
-                            key={x.attack.id}
-                            attack={x.attack}
-                            count={x.count}
-                        />
-                    ))}
+                    .filter((x) => isAttackInPhase(x, phase, subPhase))
+                    .map((x) => <AttackStats key={x.id} attack={x} />)}
             {distinct(item.abilities).map((x) => (
                 <AbilityInfo
                     key={x.id}
