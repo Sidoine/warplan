@@ -14,7 +14,7 @@ import {
 } from "../../common/data";
 import { DataStore } from "./data";
 import { ArmyList, ArmyListStore } from "./army-list";
-import { getValue, getValueText } from "./combat";
+import { getValueText } from "./combat";
 
 export interface Player {
     name: string;
@@ -48,6 +48,15 @@ export interface EffectDescription {
 export function getTokenName(faction: Faction | null | undefined) {
     if (faction?.tokenName) return faction.tokenName;
     return "token";
+}
+
+function rangeDescription(
+    inRangeOf: Exclude<TargetCondition["inRangeOf"], undefined>,
+    unit: ItemWithAbilities
+) {
+    return `${inRangeOf.range} of ${getEffectCondition(inRangeOf, unit).join(
+        " and "
+    )}`;
 }
 
 export function getEffectCondition(
@@ -87,14 +96,11 @@ export function getEffectCondition(
         descriptions.push("in cover");
     }
     if (condition.inRangeOf) {
+        descriptions.push(rangeDescription(condition.inRangeOf, unit));
+    }
+    if (condition.notInRangeOf) {
         descriptions.push(
-            `${condition.inRangeOf.range}" of ${
-                condition.inRangeOf.friendly ? "friendly" : "enemy"
-            } ${
-                condition.inRangeOf.keyword
-                    ? condition.inRangeOf.keyword.join(" and ")
-                    : ""
-            } `
+            `not ${rangeDescription(condition.notInRangeOf, unit)}`
         );
     }
     if (condition.keyword) {
@@ -105,11 +111,20 @@ export function getEffectCondition(
     }
     if (condition.minModels) {
         descriptions.push(
-            `≥ ${getValueText(condition.minModels, unit)} models `
+            `≥ ${getValueText(condition.minModels, unit)} models`
         );
     }
+    if (condition.hasArtefact) {
+        descriptions.push("has artefact");
+    }
+    if (condition.slain) {
+        descriptions.push("slain");
+    }
     if (condition.minWounds) {
-        descriptions.push(`≥ ${condition.minWounds} Wd `);
+        descriptions.push(`≥ ${condition.minWounds} Wd`);
+    }
+    if (condition.maxWounds) {
+        descriptions.push(`≤ ${condition.maxWounds} Wd`);
     }
     if (condition.noKeyword) {
         descriptions.push(`not ${condition.noKeyword}`);
@@ -132,6 +147,18 @@ export function getEffectCondition(
     }
     if (condition.visible) {
         descriptions.push("visible");
+    }
+    if (condition.hasNotMount) {
+        descriptions.push("no mount");
+    }
+    if (condition.needBattleshockTest) {
+        descriptions.push("need battleshock test");
+    }
+    if (condition.friendly) {
+        descriptions.push("friendly");
+    }
+    if (condition.enemy) {
+        descriptions.push("enemy");
     }
     if (descriptions.length === 0) {
         return [`⚠️ ${JSON.stringify(condition)}`];
@@ -169,7 +196,10 @@ export function getEffectText(
         }
         if (effect.attackAura.bonusWoundRoll) {
             descriptions.push({
-                text: `+${getValue(effect.attackAura.bonusWoundRoll)} Wound`,
+                text: `+${getValueText(
+                    effect.attackAura.bonusWoundRoll,
+                    unit
+                )} Wound`,
                 type: EffectType.Buff,
             });
         }
@@ -178,7 +208,10 @@ export function getEffectText(
         }
         if (effect.attackAura.malusHitRoll) {
             descriptions.push({
-                text: `-${getValue(effect.attackAura.malusHitRoll)} Hit`,
+                text: `-${getValueText(
+                    effect.attackAura.malusHitRoll,
+                    unit
+                )} Hit`,
                 type: EffectType.Debuff,
             });
         }
@@ -187,13 +220,19 @@ export function getEffectText(
         }
         if (effect.attackAura.bonusAttacks) {
             descriptions.push({
-                text: `+${effect.attackAura.bonusAttacks} Atk`,
+                text: `+${getValueText(
+                    effect.attackAura.bonusAttacks,
+                    unit
+                )} Atk`,
                 type: EffectType.Buff,
             });
         }
         if (effect.attackAura.bonusHitRoll) {
             descriptions.push({
-                text: `+${getValue(effect.attackAura.bonusHitRoll)} Hit`,
+                text: `+${getValueText(
+                    effect.attackAura.bonusHitRoll,
+                    unit
+                )} Hit`,
                 type: EffectType.Buff,
             });
         }
@@ -243,10 +282,20 @@ export function getEffectText(
         }
         if (effect.attackAura.bonusPileInDistance) {
             descriptions.push({
-                text: `+${getValue(
-                    effect.attackAura.bonusPileInDistance
+                text: `+${getValueText(
+                    effect.attackAura.bonusPileInDistance,
+                    unit
                 )} Pile-in`,
                 type: EffectType.Buff,
+            });
+        }
+        if (effect.attackAura.malusPileInDistance) {
+            descriptions.push({
+                text: `-${getValueText(
+                    effect.attackAura.malusPileInDistance,
+                    unit
+                )} Pile-in`,
+                type: EffectType.Debuff,
             });
         }
         if (effect.attackAura.pileInWithFly) {
@@ -331,7 +380,10 @@ export function getEffectText(
         }
         if (effect.defenseAura.bonusSave) {
             descriptions.push({
-                text: `+${effect.defenseAura.bonusSave} Save`,
+                text: `+${getValueText(
+                    effect.defenseAura.bonusSave,
+                    unit
+                )} Save`,
                 type: EffectType.Buff,
             });
         }
@@ -542,6 +594,16 @@ export function getEffectText(
             descriptions.push({
                 text: 'Must move 2", >1" away',
                 type: EffectType.Debuff,
+            });
+        }
+        if (effect.specialAura.loneAgent) {
+            descriptions.push({
+                text: 'Can be setup before first round, out of your territory, >3" from enemy units',
+                type: EffectType.Immediate,
+            });
+            descriptions.push({
+                text: "Objective taken on setup is kept while on it",
+                type: EffectType.Buff,
             });
         }
         if (descriptions.length === 0) {

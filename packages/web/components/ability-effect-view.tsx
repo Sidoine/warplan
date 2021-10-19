@@ -24,6 +24,7 @@ import Chip from "@material-ui/core/Chip";
 import { Badge, makeStyles } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { getValueText } from "../stores/combat";
+import FilterHdrIcon from "@material-ui/icons/FilterHdr";
 
 const useStyle = makeStyles((theme) => ({
     badgedIcon: {
@@ -37,6 +38,13 @@ const useStyle = makeStyles((theme) => ({
     error: {
         backgroundColor: theme.palette.error.main,
         color: theme.palette.error.contrastText,
+    },
+    secondSkull: {
+        marginLeft: -10,
+        color: theme.palette.background.default,
+    },
+    thirdSkull: {
+        marginLeft: -12,
     },
 }));
 
@@ -93,13 +101,22 @@ export function AbilityEffectPhaseView({ effect }: { effect: AbilityEffect }) {
 
 function TargetView({ effect }: { effect: AbilityEffect }) {
     const targetType = effect.targetType;
+    const classes = useStyle();
     return (
         <>
             {targetType === TargetType.Friend && <FavoriteIcon />}
             {targetType === TargetType.Model && <PersonIcon />}
             {targetType === TargetType.Unit && <GroupIcon />}
-            {targetType === TargetType.Enemy && <SkullIcon />}
+            {targetType === TargetType.Enemy && (
+                <>
+                    <SkullIcon />
+                    <SkullIcon className={classes.secondSkull} />
+                    <SkullIcon className={classes.thirdSkull} />
+                </>
+            )}
+            {targetType === TargetType.EnemyModel && <SkullIcon />}
             {targetType === TargetType.Weapon && <SwordIcon />}
+            {targetType === TargetType.Terrain && <FilterHdrIcon />}
         </>
     );
 }
@@ -155,7 +172,7 @@ export function AbilityEffectCondition({
     condition: TargetCondition;
     unit: ItemWithAbilities;
 }) {
-    return <>{getEffectCondition(condition, unit)}</>;
+    return <>{getEffectCondition(condition, unit).join(", ")}</>;
 }
 
 export function AbilityEffectCost({
@@ -167,6 +184,9 @@ export function AbilityEffectCost({
 }) {
     return (
         <>
+            {effect.timesPerBattle && (
+                <>{effect.timesPerBattle} times per battle </>
+            )}
             {effect.tokensCost && (
                 <>
                     {effect.tokensCost} {getTokenName(unit.allegiance)}
@@ -175,6 +195,19 @@ export function AbilityEffectCost({
             {effect.spellCastingValue && (
                 <>
                     <SpellIcon /> {effect.spellCastingValue}+
+                </>
+            )}
+            {effect.randomEffectRange && (
+                <>
+                    {effect.randomEffectRange.max == 6 && (
+                        <>{effect.randomEffectRange.min}+</>
+                    )}
+                    {effect.randomEffectRange.max < 6 && (
+                        <>
+                            {effect.randomEffectRange.min}-
+                            {effect.randomEffectRange.max}
+                        </>
+                    )}
                 </>
             )}
         </>

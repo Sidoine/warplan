@@ -147,7 +147,42 @@ function parseWeaponCondition(
     }
 }
 
-export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
+function parseKeywords(keywords: string, db: Dump): string[] {
+    keywords = keywords.toUpperCase();
+    if (db.keyword.some((x) => x.name === keywords)) {
+        return [keywords];
+    }
+    const result: string[] = [];
+    const words = keywords.split(/\s+/);
+    let i = 0;
+    for (i = words.length - 1; i >= 0; i--) {
+        const word = words[i];
+        if (db.keyword.some((x) => x.name.toUpperCase() === word)) {
+            result.push(word);
+        } else {
+            break;
+        }
+    }
+    if (i < 0) return result;
+
+    if (i < words.length - 1) {
+        const remaining = words.slice(0, i).join(" ");
+        if (db.faction.some((x) => x.name.toUpperCase() === remaining)) {
+            result.push(remaining);
+            return result;
+        }
+        return result.concat(remaining + "?");
+    }
+
+    return [keywords];
+}
+
+export function getAbilityEffects(
+    name: string,
+    blurb: string,
+    dump: Dump,
+    unit?: Unit
+) {
     let effect: AbilityEffect | undefined = undefined;
 
     // Phase
@@ -295,11 +330,30 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect.condition.hasNotCharged = true;
     }
 
+    match = blurb.match(/if this unit made a charge move in the same turn/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.condition = effect.condition || {};
+        effect.condition.hasCharged = true;
+    }
+
+    // Occurences
+    match = blurb.match(/once per battle/i);
+    if (match) {
+        effect = effect || { targetType: TargetType.Unit };
+        effect.timesPerBattle = 1;
+    }
+
     // Spells
-    match = blurb.match(/has a casting value of (\d+)/);
+    match = blurb.match(
+        /has a casting value of (\d+)(?: and a range of (\d+"))?/
+    );
     if (match) {
         effect = effect || { targetType: TargetType.Unit };
         effect.spellCastingValue = parseInt(match[1]);
+        if (match[2]) {
+            effect.targetRange = match[2];
+        }
         effect.phase = Phase.Hero;
     }
 
@@ -363,6 +417,28 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect.targetCondition = effect.targetCondition || {};
         effect.targetCondition.visible = true;
         effect.targetRange = match[1];
+    }
+
+    match = blurb.match(
+        /pick 1 friendly (.*?) (?:unit )?(?:that is )?(wholly )?within (\d+") of this model/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Friend };
+        effect.targetType = TargetType.Friend;
+        effect.targetCondition = effect.targetCondition || {};
+        effect.targetCondition.allKeywords = parseKeywords(match[1], dump);
+        if (match[2] === "wholly ") effect.whollyWithin = true;
+        effect.targetRange = match[3];
+    }
+
+    match = blurb.match(
+        /pick 1 terrain feature within range and visible to the caster/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Terrain };
+        effect.targetType = TargetType.Terrain;
+        effect.targetCondition = effect.targetCondition || {};
+        effect.targetCondition.visible = true;
     }
 
     // Defense
@@ -542,10 +618,7 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };
         effect.targetType = TargetType.Weapon;
-        effect.targetCondition = effect.targetCondition || {};
-        if (match[2] === "melee weapons") {
-            effect.targetCondition.meleeWeapon = true;
-        }
+        parseWeaponCondition(unit, match[2], effect);
         effect.attackAura = effect.attackAura || {};
         effect.attackAura.bonusAttacks = 1;
         effect.attackAura.phase = Phase.Combat;
@@ -569,13 +642,14 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
     }
 
     match = blurb.match(
-        /add 1 to wound rolls for attacks made with this unit’s /i
+        /add 1 to wound rolls for attacks made with this unit’s (.*?)(\.| and)/i
     );
     if (match) {
         effect = effect || { targetType: TargetType.Weapon };
         effect.targetType = TargetType.Weapon;
         effect.attackAura = effect.attackAura || {};
         effect.attackAura.bonusWoundRoll = 1;
+        parseWeaponCondition(unit, match[1], effect);
     }
 
     match = blurb.match(/improve the Rend characteristic of that weapon by 1/i);
@@ -603,7 +677,11 @@ export function getAbilityEffects(name: string, blurb: string, unit?: Unit) {
         effect.targetType = TargetType.Enemy;
         effect.defenseAura = effect.defenseAura || {};
         effect.defenseAura.rerollHits = true;
-        if (match[1]) parseWeaponCondition(unit, match[1], effect);
+        if (match[1].startsWith("melee")) {
+            effect.defenseAura.phase = Phase.Combat;
+        } else if (match[1].startsWith("missile")) {
+            effect.defenseAura.phase = Phase.Shooting;
+        }
     } else {
         match = blurb.match(/you can re-roll hit rolls for (.*?)./i);
         if (match) {
@@ -721,6 +799,12 @@ function findElement<T extends { name: string }>(elements: T[], name: string) {
         if (getProximity(element.name, name) > 0.95) {
             return element;
         }
+        if (element.name.includes(": ")) {
+            if (getProximity(element.name.split(": ")[0], name) > 0.95) {
+                return element;
+            }
+        }
+
         if (element.name.includes(" or ")) {
             const names = element.name.split(" or ");
             if (names.some((x) => getProximity(x, name) > 0.95)) return element;
@@ -928,7 +1012,7 @@ function importExtraAbilities<
             name: ability.name,
             flavor: ability.lore || undefined,
             description: ability.rules,
-            effects: getAbilityEffects(ability.name, ability.rules),
+            effects: getAbilityEffects(ability.name, ability.rules, db),
             category,
         };
         dataStore.abilities[abilityId] = entity;
@@ -1172,6 +1256,7 @@ export function importData(db: Dump): ImportedDataStore {
             effects: getAbilityEffects(
                 descriptionSubsection.header,
                 descriptionSubsection.rules,
+                db,
                 unit
             ),
         };
@@ -1211,6 +1296,7 @@ export function importData(db: Dump): ImportedDataStore {
             effects: getAbilityEffects(
                 warscrollAbility.name,
                 warscrollAbility.rules,
+                db,
                 unit
             ),
         };

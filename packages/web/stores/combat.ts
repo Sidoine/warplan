@@ -37,7 +37,23 @@ export function getValueText(
         return `${getValueText(formula.value, unit)} if ${getEffectCondition(
             formula.condition,
             unit
-        )}`;
+        ).join(" and ")}${
+            formula.defaultValue
+                ? `, ${getValueText(formula.defaultValue, unit)} otherwise`
+                : ""
+        }`;
+    }
+    if (isTargetConditionValue(formula)) {
+        return `${getValueText(
+            formula.value,
+            unit
+        )} if target ${getEffectCondition(formula.targetCondition, unit).join(
+            " and "
+        )}${
+            formula.defaultValue
+                ? `, ${getValueText(formula.defaultValue, unit)} otherwise`
+                : ""
+        }`;
     }
     if (isOrValue(formula)) {
         return `${getValueText(formula.left, unit)} or ${getValueText(

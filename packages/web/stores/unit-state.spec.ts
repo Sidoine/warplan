@@ -33,6 +33,7 @@ test("sumAttackAura sums all the stats", () => {
         bonusMortalWoundsOnHitUnmodified6: 1,
         mortalWoundsOnHitUnmodified5: 1,
         bonusPileInDistance: 1,
+        malusPileInDistance: 1,
     };
     const sum: AttackAuraValues = {};
 

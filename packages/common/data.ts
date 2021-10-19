@@ -97,7 +97,7 @@ export interface DefenseAura {
     mortalWoundsOnSucessfulSaveReroll?: Value; // In a 3" radius
     mortalWoundsOnWound?: Value;
     rerollFailedSaves?: boolean;
-    bonusSave?: number;
+    bonusSave?: Value;
     negateWoundsOrMortalWoundsOn3?: boolean;
     negateWoundsOrMortalWoundsOn5?: boolean;
     negateWoundsOrMortalWoundsOn6?: boolean;
@@ -161,10 +161,17 @@ export interface TargetCondition {
     weaponId?: string;
     meleeWeapon?: boolean;
     rangedWeapon?: boolean;
-    inRangeOf?: { friendly: boolean; keyword: string[]; range: Value };
+    friendly?: boolean;
+    enemy?: boolean;
+    inRangeOf?: { range: Value } & TargetCondition;
     abilityId?: string;
     hasGarrison?: boolean;
     visible?: boolean;
+    hasNotMount?: boolean;
+    needBattleshockTest?: boolean;
+    notInRangeOf?: { range: Value } & TargetCondition;
+    hasArtefact?: boolean;
+    slain?: boolean;
 }
 
 export interface AttackAuraValues {
@@ -191,6 +198,7 @@ export interface AttackAuraValues {
     rangeBonus?: Value;
     rerollFailedHits?: Value;
     bonusPileInDistance?: Value;
+    malusPileInDistance?: Value;
 }
 
 export interface AttackAuraBooleans {
@@ -258,6 +266,7 @@ export const enum TargetType {
     Ability = 32,
     Terrain = 64,
     EnemyArmy = 128,
+    EnemyModel = 9,
     NotUnit = Model | Weapon | Mount | Ability | EnemyArmy,
 }
 
@@ -280,6 +289,7 @@ interface SpecialAura {
     pickTwoUnitsInCombat?: boolean;
     blockVisibility?: boolean;
     tectonicForce?: boolean;
+    loneAgent?: boolean;
 }
 
 interface CommandAura {
@@ -503,6 +513,7 @@ export interface ConditionValue {
     type: ValueType.Condition;
     value: Value;
     condition: TargetCondition;
+    defaultValue?: Value;
 }
 
 export interface OrValue {
@@ -557,12 +568,14 @@ export function targetConditionValue(
 
 export function conditionValue(
     condition: TargetCondition,
-    value: Value
+    value: Value,
+    defaultValue?: Value
 ): ConditionValue {
     return {
         type: ValueType.Condition,
         value,
         condition,
+        defaultValue,
     };
 }
 

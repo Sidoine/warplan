@@ -16,13 +16,13 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     data.factions.luminethRealmLords.tokenName = "aetherquartz";
 
     // Generic abilities
-    addEffect(data.abilities.absorbDespair, {
+    updateEffect(data.abilities.absorbDespair, {
         targetType: TargetType.Enemy,
         specialAura: {
             absorbDespair: true,
         },
         condition: {
-            inRangeOf: { friendly: true, keyword: ["CATHALLAR"], range: '18"' },
+            inRangeOf: { friendly: true, keyword: "CATHALLAR", range: '18"' },
         },
         targetRange: '18"',
     });
@@ -171,16 +171,26 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
 
     // Hurukan Spirit of the Wind
     updateEffect(data.abilities.hurakanSpiritOfTheWindLivingCyclone, {
+        targetType: TargetType.Enemy,
         targetRadius: 3,
         immediate: {
             mortalWounds: 1,
         },
+        randomEffectRange: { min: 3, max: 6 },
     });
     addEffect(data.abilities.hurakanSpiritOfTheWindLivingCyclone, {
         targetType: TargetType.Enemy,
         targetRadius: 3,
         defenseAura: {
             malusHitRoll: 1,
+        },
+        randomEffectRange: { min: 3, max: 6 },
+    });
+    addEffect(data.abilities.hurakanSpiritOfTheWindIntoTheGale, {
+        targetType: TargetType.EnemyModel,
+        targetRadius: '3"',
+        attackAura: {
+            malusPileInDistance: '2"',
         },
     });
 
@@ -220,6 +230,11 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     });
     addEffect(data.abilities.shrineLuminorDefensible, {
         targetType: TargetType.Friend,
+        targetCondition: {
+            allKeywords: ["HERO", "LUMINETH REALM-LORDS"],
+            noKeyword: "MONSTER",
+            hasNotMount: true,
+        },
         phase: Phase.Movement,
         subPhase: SubPhase.While,
         defenseAura: {
@@ -260,12 +275,16 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         battleShockAura: {
             immune: true,
         },
+        randomEffectRange: { min: 2, max: 6 },
     });
     addEffect(data.abilities.scinariCathallarEmotionalTransference, {
         targetType: TargetType.Enemy,
+        targetRange: '18"',
         battleShockAura: {
             emotionalTransference: true,
         },
+        targetCondition: { needBattleshockTest: true },
+        randomEffectRange: { min: 2, max: 6 },
     });
 
     // Scinari Loreseeker
@@ -275,14 +294,34 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         immediate: {
             gainCommandPoints: 1,
         },
+        condition: {
+            inRangeOf: {
+                range: '3"',
+                slain: true,
+                hasArtefact: true,
+                enemy: true,
+            },
+        },
+    });
+    updateEffect(data.abilities.scinariLoreseekerLoneAgent, {
+        defenseAura: {
+            bonusSave: conditionValue(
+                { notInRangeOf: { range: '9"', friendly: true } },
+                1
+            ),
+        },
+        specialAura: {
+            loneAgent: true,
+        },
     });
 
     // Vanari Bladelords
     addEffect(data.abilities.vanariBladelordsGuardians, {
-        targetType: TargetType.Unit,
+        targetType: TargetType.Friend,
         defenseAura: {
             guardianOn2: true,
         },
+        targetRadius: '3"',
     });
     updateAttack(data.attacks.vanariBladelordsSunmetalGreatbladeFlurryOfBlows, {
         choice: "Flurry of Blows",
@@ -314,9 +353,9 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     updateEffect(data.abilities.vanariDawnridersDeathlyFurrows, {
         attackAura: {
             bonusAttacks: targetConditionValue(
-                { maxWounds: 1, noKeyword: "MOUNT" },
+                { maxWounds: 1, hasNotMount: true },
                 2,
-                targetConditionValue({ maxWounds: 2, noKeyword: "MOUNT" }, 1)
+                targetConditionValue({ maxWounds: 2, hasNotMount: true }, 1)
             ),
         },
     });

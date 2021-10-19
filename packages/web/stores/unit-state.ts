@@ -36,6 +36,7 @@ const attackAuraValueKeys: AttackAuraValueKey[] = [
     "bonusMortalWoundsOnHitUnmodified6",
     "mortalWoundsOnHitUnmodified5",
     "bonusPileInDistance",
+    "malusPileInDistance",
 ];
 // const attackAuraNumberKeys: (keyof AttackAuraNumbers)[] = [];
 const attackAuraBooleanKeys: (keyof AttackAuraBooleans)[] = [];
