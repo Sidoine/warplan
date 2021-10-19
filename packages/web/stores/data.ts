@@ -19,7 +19,8 @@ import {
     Battalion,
     Faction,
     AbilityGroup,
-    BattalionGroup
+    BattalionGroup,
+    Attack,
 } from "../../common/data";
 import { computed, makeObservable } from "mobx";
 import { KeywordCategory } from "../../common/definitions";
@@ -37,13 +38,14 @@ export class DataStore {
     baseAbilities: AbilityGroup[] = [];
     abilities: Record<string, Ability> = {};
     genericBattalionGroups: BattalionGroup[] = [];
+    attacks: Record<string, Attack> = {};
 
     realms: RealmOfBattle[] = [];
 
     get factionOptions() {
         return this.factionsList
             .filter(
-                x =>
+                (x) =>
                     x.category === KeywordCategory.Generic ||
                     x.category === KeywordCategory.RosterLevel
             )
@@ -52,14 +54,14 @@ export class DataStore {
 
     get allegiances() {
         return this.factionsList.filter(
-            x => x.category === KeywordCategory.RosterLevel
+            (x) => x.category === KeywordCategory.RosterLevel
         );
     }
 
     constructor(data: ImportedDataStoreImpl) {
         makeObservable(this, {
             factionOptions: computed,
-            allegiances: computed
+            allegiances: computed,
         });
         overrideStormcast(data);
         overrideNurgle(data);
@@ -111,10 +113,11 @@ export class DataStore {
 
         this.baseAbilities = data.genericAbilityGroups;
         this.genericBattalionGroups = data.genericBattalionGroups;
+        this.attacks = data.attacks;
     }
 
     findUnit(id: string) {
-        return this.unitList.find(x => x.id === id);
+        return this.unitList.find((x) => x.id === id);
     }
 
     getUnit(id: string) {
@@ -125,5 +128,9 @@ export class DataStore {
 
     getAbility(id: string) {
         return this.abilities[id];
+    }
+
+    getAttack(id: string) {
+        return this.attacks[id];
     }
 }

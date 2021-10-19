@@ -30,9 +30,10 @@ function getMarker(
     effect: AbilityEffect,
     ability: Ability,
     effectIndex: number,
-    unit: ItemWithAbilities
+    unit: ItemWithAbilities,
+    dataStore: DataStore
 ): Marker {
-    const [condition, description] = getEffectText(effect, unit);
+    const [condition, description] = getEffectText(effect, unit, dataStore);
     return {
         id: ability.id + effectIndex,
         description: description.join(" - "),
@@ -256,7 +257,15 @@ export class MarkersStore {
                         abilityPhases > 0 &&
                         hasMarker(effect, effectPhases, abilityPhases)
                     ) {
-                        markers.push(getMarker(effect, ability, index, item));
+                        markers.push(
+                            getMarker(
+                                effect,
+                                ability,
+                                index,
+                                item,
+                                this.unitStore
+                            )
+                        );
                     }
                     if (
                         effect.attackAura &&
@@ -278,7 +287,8 @@ export class MarkersStore {
                                         triggeredEffect,
                                         ability,
                                         this.serial++,
-                                        item
+                                        item,
+                                        this.unitStore
                                     )
                                 );
                             }

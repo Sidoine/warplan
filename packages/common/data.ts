@@ -115,7 +115,7 @@ export interface DefenseAura {
     rerollHits?: boolean;
     garrisoned?: boolean;
     guardianOn2?: boolean;
-    visibleToCasterUnit?: boolean;
+    visibleToCasterUnit?: Value;
 }
 
 export interface BattleshockAura {
@@ -134,6 +134,7 @@ export interface MovementAura {
     changeRunRoll?: boolean;
     windrider?: boolean;
     bonusMove?: Value;
+    cannotRun?: boolean;
 }
 
 export interface ChargeAura {
@@ -143,6 +144,7 @@ export interface ChargeAura {
     chargeDices?: Value;
     bonus?: Value;
     canChargeAfterRetreat?: boolean;
+    cannotCharge?: boolean;
 }
 
 export interface TargetCondition {
@@ -172,6 +174,7 @@ export interface TargetCondition {
     notInRangeOf?: { range: Value } & TargetCondition;
     hasArtefact?: boolean;
     slain?: boolean;
+    isInGarrison?: boolean;
 }
 
 export interface AttackAuraValues {
@@ -199,6 +202,7 @@ export interface AttackAuraValues {
     rerollFailedHits?: Value;
     bonusPileInDistance?: Value;
     malusPileInDistance?: Value;
+    pileInDistance?: Value;
 }
 
 export interface AttackAuraBooleans {
@@ -253,7 +257,7 @@ export interface PrayerAura {
 }
 
 export interface ValueAura {
-    ignoreWounds?: boolean;
+    ignoreWounds?: Value;
 }
 
 export const enum TargetType {
@@ -309,6 +313,7 @@ interface ImmediateEffect {
     pileInMove?: Value;
     rerollSpellcast?: boolean;
     bonusSpellcast?: Value;
+    normalMove?: Value;
 }
 
 export interface AbilityEffect {

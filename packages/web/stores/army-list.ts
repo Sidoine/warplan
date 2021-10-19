@@ -390,7 +390,8 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         }
         return result
             .filter(hasAbilities)
-            .flatMap((x) => x.abilities.map((y) => ({ item: x, ability: y })));
+            .flatMap((x) => x.abilities.map((y) => ({ item: x, ability: y })))
+            .sort((x, y) => x.ability.name.localeCompare(y.ability.name));
     }
 
     @computed

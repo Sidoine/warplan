@@ -155,12 +155,32 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
             copyCommand: true,
         },
     });
+    updateEffect(data.abilities.shiningCompany, {
+        chargeAura: {
+            cannotCharge: true,
+        },
+        movementAura: {
+            cannotRun: true,
+        },
+        attackAura: {
+            pileInDistance: '1"',
+        },
+    });
 
     // Avalenor
     addEffect(data.abilities.avalenorTheStoneheartKingStonemageSymbiosis, {
         targetType: TargetType.Unit,
         valueAura: {
-            ignoreWounds: true,
+            ignoreWounds: conditionValue(
+                {
+                    inRangeOf: {
+                        friendly: true,
+                        keyword: "STONEMAGE",
+                        range: '12"',
+                    },
+                },
+                1
+            ),
         },
     });
     updateEffect(data.abilities.avalenorTheStoneheartKingElderWisdom, {
@@ -191,6 +211,11 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         targetRadius: '3"',
         attackAura: {
             malusPileInDistance: '2"',
+        },
+    });
+    updateEffect(data.abilities.hurakanSpiritOfTheWindSpiritOfTheWind, {
+        immediate: {
+            normalMove: '12"',
         },
     });
 
@@ -258,7 +283,10 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         },
     });
     addEffect(data.abilities.shrineLuminorShrineGuardian, {
-        targetType: TargetType.Unit,
+        targetType: TargetType.Friend,
+        targetCondition: {
+            isInGarrison: true,
+        },
         phase: Phase.Any,
         commandAura: {
             free: true,
@@ -382,7 +410,13 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
 
     updateEffect(data.abilities.vanariAuralanSentinelsScryhawkLantern, {
         defenseAura: {
-            visibleToCasterUnit: true,
+            visibleToCasterUnit: conditionValue(
+                {
+                    weaponId:
+                        data.attacks.vanariAuralanSentinelsAuralanBowLofted.id,
+                },
+                1
+            ),
         },
     });
 

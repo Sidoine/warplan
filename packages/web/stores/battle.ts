@@ -11,6 +11,8 @@ import {
     SubPhase,
     TargetCondition,
     Faction,
+    Value,
+    isConditionValue,
 } from "../../common/data";
 import { DataStore } from "./data";
 import { ArmyList, ArmyListStore } from "./army-list";
@@ -52,22 +54,24 @@ export function getTokenName(faction: Faction | null | undefined) {
 
 function rangeDescription(
     inRangeOf: Exclude<TargetCondition["inRangeOf"], undefined>,
-    unit: ItemWithAbilities
+    unit: ItemWithAbilities,
+    dataStore: DataStore
 ) {
-    return `${inRangeOf.range} of ${getEffectCondition(inRangeOf, unit).join(
-        " and "
-    )}`;
+    return `${inRangeOf.range} of ${getEffectCondition(
+        inRangeOf,
+        unit,
+        dataStore
+    ).join(" and ")}`;
 }
 
 export function getEffectCondition(
     condition: TargetCondition,
-    unit: ItemWithAbilities
+    unit: ItemWithAbilities,
+    dataStore: DataStore
 ): string[] {
     const descriptions: string[] = [];
     if (condition.abilityId) {
-        const ability = unit.abilities?.find(
-            (a) => a.id === condition.abilityId
-        );
+        const ability = dataStore.getAbility(condition.abilityId);
         if (ability) {
             descriptions.push(ability.name);
         } else {
@@ -96,11 +100,13 @@ export function getEffectCondition(
         descriptions.push("in cover");
     }
     if (condition.inRangeOf) {
-        descriptions.push(rangeDescription(condition.inRangeOf, unit));
+        descriptions.push(
+            rangeDescription(condition.inRangeOf, unit, dataStore)
+        );
     }
     if (condition.notInRangeOf) {
         descriptions.push(
-            `not ${rangeDescription(condition.notInRangeOf, unit)}`
+            `not ${rangeDescription(condition.notInRangeOf, unit, dataStore)}`
         );
     }
     if (condition.keyword) {
@@ -111,7 +117,7 @@ export function getEffectCondition(
     }
     if (condition.minModels) {
         descriptions.push(
-            `≥ ${getValueText(condition.minModels, unit)} models`
+            `≥ ${getValueText(condition.minModels, unit, dataStore)} models`
         );
     }
     if (condition.hasArtefact) {
@@ -133,11 +139,11 @@ export function getEffectCondition(
         descriptions.push("missile");
     }
     if (condition.weaponId) {
-        const attack = unit.attacks?.find((x) => x.id === condition.weaponId);
+        const attack = dataStore.getAttack(condition.weaponId);
         if (attack?.name) {
             descriptions.push(attack.name);
         } else {
-            descriptions.push(condition.weaponId);
+            descriptions.push(`⚠️ ${condition.weaponId}`);
         }
     }
     if (condition.hasGarrison) {
@@ -158,6 +164,9 @@ export function getEffectCondition(
     if (condition.enemy) {
         descriptions.push("enemy");
     }
+    if (condition.isInGarrison) {
+        descriptions.push("in garrison");
+    }
     if (descriptions.length === 0) {
         return [`⚠️ ${JSON.stringify(condition)}`];
     }
@@ -166,7 +175,8 @@ export function getEffectCondition(
 
 export function getEffectText(
     effect: AbilityEffect,
-    unit: ItemWithAbilities
+    unit: ItemWithAbilities,
+    dataStore: DataStore
 ): [condition: string | undefined, descriptions: EffectDescription[]] {
     if (effect.noEffect) {
         return ["", []];
@@ -196,7 +206,8 @@ export function getEffectText(
             descriptions.push({
                 text: `+${getValueText(
                     effect.attackAura.bonusWoundRoll,
-                    unit
+                    unit,
+                    dataStore
                 )} Wound`,
                 type: EffectType.Buff,
             });
@@ -208,7 +219,8 @@ export function getEffectText(
             descriptions.push({
                 text: `-${getValueText(
                     effect.attackAura.malusHitRoll,
-                    unit
+                    unit,
+                    dataStore
                 )} Hit`,
                 type: EffectType.Debuff,
             });
@@ -220,7 +232,8 @@ export function getEffectText(
             descriptions.push({
                 text: `+${getValueText(
                     effect.attackAura.bonusAttacks,
-                    unit
+                    unit,
+                    dataStore
                 )} Atk`,
                 type: EffectType.Buff,
             });
@@ -229,7 +242,8 @@ export function getEffectText(
             descriptions.push({
                 text: `+${getValueText(
                     effect.attackAura.bonusHitRoll,
-                    unit
+                    unit,
+                    dataStore
                 )} Hit`,
                 type: EffectType.Buff,
             });
@@ -282,7 +296,8 @@ export function getEffectText(
             descriptions.push({
                 text: `+${getValueText(
                     effect.attackAura.bonusPileInDistance,
-                    unit
+                    unit,
+                    dataStore
                 )} Pile-in`,
                 type: EffectType.Buff,
             });
@@ -291,9 +306,20 @@ export function getEffectText(
             descriptions.push({
                 text: `-${getValueText(
                     effect.attackAura.malusPileInDistance,
-                    unit
+                    unit,
+                    dataStore
                 )} Pile-in`,
                 type: EffectType.Debuff,
+            });
+        }
+        if (effect.attackAura.pileInDistance) {
+            descriptions.push({
+                type: EffectType.Buff,
+                text: `Pile-in ${getValueText(
+                    effect.attackAura.pileInDistance,
+                    unit,
+                    dataStore
+                )}`,
             });
         }
         if (effect.attackAura.pileInWithFly) {
@@ -380,7 +406,8 @@ export function getEffectText(
             descriptions.push({
                 text: `+${getValueText(
                     effect.defenseAura.bonusSave,
-                    unit
+                    unit,
+                    dataStore
                 )} Save`,
                 type: EffectType.Buff,
             });
@@ -449,7 +476,12 @@ export function getEffectText(
         }
         if (effect.defenseAura.visibleToCasterUnit) {
             descriptions.push({
-                text: "Visible to caster unit",
+                text: addCondition(
+                    "visible to caster unit",
+                    effect.defenseAura.visibleToCasterUnit,
+                    unit,
+                    dataStore
+                ),
                 type: EffectType.Debuff,
             });
         }
@@ -485,6 +517,9 @@ export function getEffectText(
         if (effect.movementAura.fly) {
             descriptions.push({ text: "Fly", type: EffectType.Buff });
         }
+        if (effect.movementAura.cannotRun) {
+            descriptions.push({ text: "Cannot Run", type: EffectType.Debuff });
+        }
         if (descriptions.length === 0) {
             descriptions.push({
                 text: `movementAura: ${JSON.stringify(effect.movementAura)}`,
@@ -503,6 +538,12 @@ export function getEffectText(
             descriptions.push({
                 text: "Charge after Retreat",
                 type: EffectType.Buff,
+            });
+        }
+        if (effect.chargeAura.cannotCharge) {
+            descriptions.push({
+                text: "Cannot Charge",
+                type: EffectType.Debuff,
             });
         }
         if (descriptions.length === 0) {
@@ -614,7 +655,12 @@ export function getEffectText(
     if (effect.valueAura) {
         if (effect.valueAura.ignoreWounds) {
             descriptions.push({
-                text: "Wds table: use 0 Wd",
+                text: addCondition(
+                    "Wds table: use 0 Wd",
+                    effect.valueAura.ignoreWounds,
+                    unit,
+                    dataStore
+                ),
                 type: EffectType.Buff,
             });
         }
@@ -653,7 +699,7 @@ export function getEffectText(
         }
         if (effect.immediate.pileInMove) {
             descriptions.push({
-                text: `${effect.immediate.pileInMove}" Pile-in move`,
+                text: `${effect.immediate.pileInMove} Pile-in move`,
                 type: EffectType.Immediate,
             });
         }
@@ -672,6 +718,12 @@ export function getEffectText(
         if (effect.immediate.bonusSpellcast) {
             descriptions.push({
                 text: `+${effect.immediate.bonusSpellcast} cast`,
+                type: EffectType.Immediate,
+            });
+        }
+        if (effect.immediate.normalMove) {
+            descriptions.push({
+                text: `${effect.immediate.normalMove} normal move`,
                 type: EffectType.Immediate,
             });
         }
@@ -1139,4 +1191,21 @@ export class BattleStore {
         }
         return Phase.Setup;
     }
+}
+function addCondition(
+    text: string,
+    condition: Value,
+    item: ItemWithAbilities,
+    dataStore: DataStore
+): string {
+    if (condition === 0) return `not ${text}`;
+    if (condition === 1) return text;
+    if (isConditionValue(condition)) {
+        return `${text} if ${getEffectCondition(
+            condition.condition,
+            item,
+            dataStore
+        )}`;
+    }
+    return `${text} ⚠️`;
 }

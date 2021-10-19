@@ -420,6 +420,15 @@ export function getAbilityEffects(
     }
 
     match = blurb.match(
+        /pick 1 enemy unit within (\d+") of this unit’s (.*?) that is not visible to them/i
+    );
+    if (match) {
+        effect = effect || { targetType: TargetType.Enemy };
+        effect.targetType = TargetType.Enemy;
+        effect.targetRange = match[1];
+    }
+
+    match = blurb.match(
         /pick 1 friendly (.*?) (?:unit )?(?:that is )?(wholly )?within (\d+") of this model/i
     );
     if (match) {
@@ -720,6 +729,7 @@ export function getAbilityEffects(
     match = blurb.match(/You can re-roll battleshock tests for units/i);
     if (match) {
         effect = effect || { targetType: TargetType.Unit };
+        effect.targetType = TargetType.Unit;
         effect.battleShockAura = effect.battleShockAura || {};
         effect.battleShockAura.rerollFails = true;
     }

@@ -15,7 +15,7 @@ import {
     getPhaseName,
     getTokenName,
 } from "../stores/battle";
-import { SkullIcon, SpellIcon, SwordIcon } from "../atoms/icons";
+import { BoltIcon, SkullIcon, SpellIcon, SwordIcon } from "../atoms/icons";
 import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
 import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from "@material-ui/icons/Group";
@@ -25,6 +25,7 @@ import { Badge, makeStyles } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { getValueText } from "../stores/combat";
 import FilterHdrIcon from "@material-ui/icons/FilterHdr";
+import { useStores } from "../stores";
 
 const useStyle = makeStyles((theme) => ({
     badgedIcon: {
@@ -117,6 +118,7 @@ function TargetView({ effect }: { effect: AbilityEffect }) {
             {targetType === TargetType.EnemyModel && <SkullIcon />}
             {targetType === TargetType.Weapon && <SwordIcon />}
             {targetType === TargetType.Terrain && <FilterHdrIcon />}
+            {targetType === TargetType.Ability && <BoltIcon />}
         </>
     );
 }
@@ -172,7 +174,8 @@ export function AbilityEffectCondition({
     condition: TargetCondition;
     unit: ItemWithAbilities;
 }) {
-    return <>{getEffectCondition(condition, unit).join(", ")}</>;
+    const { unitsStore } = useStores();
+    return <>{getEffectCondition(condition, unit, unitsStore).join(", ")}</>;
 }
 
 export function AbilityEffectCost({
@@ -221,6 +224,7 @@ export function AbilityEffectTarget({
     effect: AbilityEffect;
     unit: ItemWithAbilities;
 }) {
+    const { unitsStore: dataStore } = useStores();
     return (
         <>
             <Chip
@@ -231,13 +235,21 @@ export function AbilityEffectTarget({
                         {effect.targetRange && (
                             <>
                                 <VerticalAlignTopIcon />
-                                {getValueText(effect.targetRange, unit)}
+                                {getValueText(
+                                    effect.targetRange,
+                                    unit,
+                                    dataStore
+                                )}
                             </>
                         )}
                         {effect.targetRadius && (
                             <>
                                 <SignalWifi2BarIcon />{" "}
-                                {getValueText(effect.targetRadius, unit)}
+                                {getValueText(
+                                    effect.targetRadius,
+                                    unit,
+                                    dataStore
+                                )}
                             </>
                         )}
                     </>
@@ -274,7 +286,8 @@ export function AbilityEffectAuraView({
     effect: AbilityEffect;
     unit: ItemWithAbilities;
 }) {
-    const [condition, descriptions] = getEffectText(effect, unit);
+    const { unitsStore } = useStores();
+    const [condition, descriptions] = getEffectText(effect, unit, unitsStore);
     return (
         <>
             {descriptions.map((x, index) =>

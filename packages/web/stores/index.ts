@@ -41,7 +41,7 @@ export function newStores(): Stores {
         basketStore,
         markersStore,
         cardsStore,
-        battleStore
+        battleStore,
     };
 }
 

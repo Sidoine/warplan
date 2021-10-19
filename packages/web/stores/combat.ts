@@ -11,6 +11,7 @@ import {
     ItemWithAbilities,
 } from "../../common/data";
 import { getEffectCondition } from "./battle";
+import { DataStore } from "./data";
 import { targetEnemy, checkCondition } from "./stats";
 import { UnitState, addAttackAura } from "./unit-state";
 
@@ -28,38 +29,54 @@ export function rolls(faces: number, rolls: number) {
 
 export function getValueText(
     formula: Value,
-    unit: ItemWithAbilities
+    unit: ItemWithAbilities,
+    dataStore: DataStore
 ): string | number {
     if (typeof formula === "string" || typeof formula === "number") {
         return formula;
     }
     if (isConditionValue(formula)) {
-        return `${getValueText(formula.value, unit)} if ${getEffectCondition(
-            formula.condition,
-            unit
-        ).join(" and ")}${
+        return `${getValueText(
+            formula.value,
+            unit,
+            dataStore
+        )} if ${getEffectCondition(formula.condition, unit, dataStore).join(
+            " and "
+        )}${
             formula.defaultValue
-                ? `, ${getValueText(formula.defaultValue, unit)} otherwise`
+                ? `, ${getValueText(
+                      formula.defaultValue,
+                      unit,
+                      dataStore
+                  )} otherwise`
                 : ""
         }`;
     }
     if (isTargetConditionValue(formula)) {
         return `${getValueText(
             formula.value,
-            unit
-        )} if target ${getEffectCondition(formula.targetCondition, unit).join(
-            " and "
-        )}${
+            unit,
+            dataStore
+        )} if target ${getEffectCondition(
+            formula.targetCondition,
+            unit,
+            dataStore
+        ).join(" and ")}${
             formula.defaultValue
-                ? `, ${getValueText(formula.defaultValue, unit)} otherwise`
+                ? `, ${getValueText(
+                      formula.defaultValue,
+                      unit,
+                      dataStore
+                  )} otherwise`
                 : ""
         }`;
     }
     if (isOrValue(formula)) {
-        return `${getValueText(formula.left, unit)} or ${getValueText(
-            formula.right,
-            unit
-        )}`;
+        return `${getValueText(
+            formula.left,
+            unit,
+            dataStore
+        )} or ${getValueText(formula.right, unit, dataStore)}`;
     }
     return "✹";
 }
