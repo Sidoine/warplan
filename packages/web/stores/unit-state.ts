@@ -9,6 +9,7 @@ import {
     getSumValues,
     getValueRatio,
     Attack,
+    AuraType,
 } from "../../common/data";
 
 type AttackAuraValueKey = keyof AttackAuraValues;
@@ -61,7 +62,7 @@ export interface States {
 
 export class WeaponState implements States {
     attackAuras: AuraState<AttackAura>[] = [];
-    attackAura: AttackAura = {};
+    attackAura: AttackAura = { type: AuraType.Attack };
     defenseAura: AuraState<DefenseAura>[] = [];
     unitState: UnitState;
 
@@ -72,7 +73,7 @@ export class WeaponState implements States {
 
 export class ModelState implements States {
     attackAuras: AuraState<AttackAura>[] = [];
-    attackAura: AttackAura = {};
+    attackAura: AttackAura = { type: AuraType.Attack };
     defenseAura: AuraState<DefenseAura>[] = [];
     weaponStates: WeaponState[] = [];
 
@@ -85,7 +86,7 @@ export class ModelState implements States {
 
 export class UnitState implements States {
     attackAuras: AuraState<AttackAura>[] = [];
-    attackAura: AttackAura = {};
+    attackAura: AttackAura = { type: AuraType.Attack };
     defenseAura: AuraState<DefenseAura>[] = [];
     hasCharged = false;
     hasMoved = false;

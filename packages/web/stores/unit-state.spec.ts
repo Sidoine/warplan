@@ -1,5 +1,5 @@
 import { test, expect } from "@jest/globals";
-import { AttackAuraValues } from "../../common/data";
+import { AttackAura, AttackAuraValues, AuraType } from "../../common/data";
 import { sumAttackAura } from "./unit-state";
 type Complete<T> = {
     [P in keyof Required<T>]: Pick<T, P> extends Required<Pick<T, P>>
@@ -9,7 +9,8 @@ type Complete<T> = {
 type AttackAuraValuesMandatory = Complete<AttackAuraValues>;
 
 test("sumAttackAura sums all the stats", () => {
-    const attackAura: AttackAuraValuesMandatory = {
+    const attackAura: AttackAuraValuesMandatory & { type: AuraType.Attack } = {
+        type: AuraType.Attack,
         bonusAttacks: 1,
         bonusDamage: 1,
         bonusDamageOnHitUnmodified6: 1,
@@ -36,7 +37,7 @@ test("sumAttackAura sums all the stats", () => {
         malusPileInDistance: 1,
         pileInDistance: 1,
     };
-    const sum: AttackAuraValues = {};
+    const sum: AttackAura = { type: AuraType.Attack };
 
     const result = sumAttackAura(sum, attackAura);
 

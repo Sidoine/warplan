@@ -90,7 +90,8 @@ export const enum Phase {
     Any = 255,
 }
 
-export interface DefenseAura {
+export interface DefenseAura extends BaseAura {
+    type: AuraType.Defense;
     phase?: Phase.Combat | Phase.Shooting | Phase.Hero;
     rerollSavesOn1?: boolean;
     bonusWoundRoll?: Value;
@@ -107,7 +108,7 @@ export interface DefenseAura {
     ignoreRendOfMinus1?: boolean;
     healOnSave7?: number;
     bonusHitRoll?: number;
-    malusHitRoll?: number;
+    malusHitRoll?: Value;
     rerollHitOn1?: boolean;
     rerollHitOn6?: boolean;
     malusEnemyPileIn?: Value;
@@ -118,7 +119,8 @@ export interface DefenseAura {
     visibleToCasterUnit?: Value;
 }
 
-export interface BattleshockAura {
+export interface BattleshockAura extends BaseAura {
+    type: AuraType.Battleshock;
     bonusBravery?: Value;
     malusBravery?: Value;
     immune?: boolean;
@@ -126,7 +128,8 @@ export interface BattleshockAura {
     emotionalTransference?: boolean;
 }
 
-export interface MovementAura {
+export interface MovementAura extends BaseAura {
+    type: AuraType.Movement;
     rideTheWindDistance?: Value;
     fly?: boolean;
     doubleMove?: boolean;
@@ -137,7 +140,8 @@ export interface MovementAura {
     cannotRun?: boolean;
 }
 
-export interface ChargeAura {
+export interface ChargeAura extends BaseAura {
+    type: AuraType.Charge;
     rerollCharge?: boolean;
     changeChargeRoll?: boolean;
     chargeDistance?: Value;
@@ -221,12 +225,34 @@ export interface AttackAuraAbilityEffects {
     effectsOnHitUnmodified6?: AbilityEffect[];
 }
 
+export const enum AuraType {
+    Attack,
+    Defense,
+    Spell,
+    Prayer,
+    Command,
+    Movement,
+    Charge,
+    Value,
+    Special,
+    Battleshock,
+}
+
+interface BaseAura {
+    // Aura duration
+    duration?: EffectDuration;
+    /** The aura is effective only after this delay */
+    delay?: EffectDuration;
+}
+
 export interface AttackAura
     extends AttackAuraValues,
         AttackAuraAbilityEffects,
-        AttackAuraBooleans {
+        AttackAuraBooleans,
+        BaseAura {
     phase?: Phase.Combat | Phase.Shooting;
     attackId?: string;
+    type: AuraType.Attack;
 }
 
 export const enum SubPhase {
@@ -236,7 +262,8 @@ export const enum SubPhase {
     After,
 }
 
-export interface SpellAura {
+export interface SpellAura extends BaseAura {
+    type: AuraType.Spell;
     bonusUnbind?: Value;
     bonusToUnbind?: Value;
     autoUnbinds?: number;
@@ -252,11 +279,13 @@ export interface SpellAura {
     extraCast?: Value;
 }
 
-export interface PrayerAura {
+export interface PrayerAura extends BaseAura {
+    type: AuraType.Prayer;
     bonusToChant?: Value;
 }
 
-export interface ValueAura {
+export interface ValueAura extends BaseAura {
+    type: AuraType.Value;
     ignoreWounds?: Value;
 }
 
@@ -278,7 +307,6 @@ export const enum EffectDuration {
     Phase,
     Turn,
     Round,
-    Permanent,
 }
 
 export const enum Turn {
@@ -287,7 +315,8 @@ export const enum Turn {
     None,
 }
 
-interface SpecialAura {
+export interface SpecialAura extends BaseAura {
+    type: AuraType.Special;
     absorbDespair?: boolean;
     darknessOfSoul?: boolean;
     pickTwoUnitsInCombat?: boolean;
@@ -296,13 +325,14 @@ interface SpecialAura {
     loneAgent?: boolean;
 }
 
-interface CommandAura {
+export interface CommandAura extends BaseAura {
+    type: AuraType.Command;
     free?: boolean;
     doublePrice?: boolean;
     copyCommand?: boolean;
 }
 
-interface ImmediateEffect {
+export interface ImmediateEffect {
     mortalWounds?: Value;
     heal?: Value;
     setUpAwayFromEnemy?: Value; // The distance to the enemy
@@ -316,11 +346,22 @@ interface ImmediateEffect {
     normalMove?: Value;
 }
 
+export type Aura =
+    | AttackAura
+    | SpellAura
+    | PrayerAura
+    | ValueAura
+    | SpecialAura
+    | CommandAura
+    | DefenseAura
+    | MovementAura
+    | ChargeAura
+    | BattleshockAura;
+
 export interface AbilityEffect {
     name?: string;
 
     // Cast
-    castMode?: "passive" | "skill" | "prayer" | "spell" | "command"; // default is passive
     /** At which phase the ability is *used* to add the effect */
     phase?: Phase;
     subPhase?: SubPhase;
@@ -345,21 +386,10 @@ export interface AbilityEffect {
     condition?: TargetCondition;
     spellCastingValue?: number;
     tokensCost?: number;
+    commandPoints?: number;
 
     // Aura
-    attackAura?: AttackAura;
-    defenseAura?: DefenseAura;
-    battleShockAura?: BattleshockAura;
-    movementAura?: MovementAura;
-    chargeAura?: ChargeAura;
-    valueAura?: ValueAura;
-    specialAura?: SpecialAura;
-    spellAura?: SpellAura;
-    commandAura?: CommandAura;
-    prayerAura?: PrayerAura;
-
-    // Aura duration
-    duration?: EffectDuration;
+    auras?: Aura[];
 
     // Combination with other effects
     ignoreOtherEffects?: boolean;

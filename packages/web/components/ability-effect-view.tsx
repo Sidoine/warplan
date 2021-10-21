@@ -1,14 +1,13 @@
 import React from "react";
 import {
     AbilityEffect,
-    EffectDuration,
     ItemWithAbilities,
     SubPhase,
     TargetCondition,
     TargetType,
 } from "../../common/data";
 import {
-    EffectDescription,
+    AuraEntryDescription,
     EffectType,
     getEffectCondition,
     getEffectText,
@@ -48,34 +47,6 @@ const useStyle = makeStyles((theme) => ({
         marginLeft: -12,
     },
 }));
-
-function getEffectDuration(effect: AbilityEffect) {
-    switch (effect.duration) {
-        case EffectDuration.Phase:
-            return "phase";
-        case EffectDuration.Permanent:
-            return "permanent";
-        case EffectDuration.Turn:
-            return "turn";
-        case EffectDuration.Round:
-            return "round";
-    }
-    if (effect.phase) return "phase";
-    return "permanent";
-}
-
-function hasAura(effect: AbilityEffect) {
-    return (
-        effect.attackAura ||
-        effect.battleShockAura ||
-        effect.chargeAura ||
-        effect.commandAura ||
-        effect.defenseAura ||
-        effect.movementAura ||
-        effect.spellAura ||
-        effect.prayerAura
-    );
-}
 
 export function AbilityEffectPhaseView({ effect }: { effect: AbilityEffect }) {
     return (
@@ -213,6 +184,7 @@ export function AbilityEffectCost({
                     )}
                 </>
             )}
+            {effect.commandPoints && <>{effect.commandPoints} CP</>}
         </>
     );
 }
@@ -259,7 +231,7 @@ export function AbilityEffectTarget({
     );
 }
 
-function EffectAuraDescription({ x }: { x: EffectDescription }) {
+function EffectAuraDescription({ x }: { x: AuraEntryDescription }) {
     const classes = useStyle();
 
     return (
@@ -287,20 +259,24 @@ export function AbilityEffectAuraView({
     unit: ItemWithAbilities;
 }) {
     const { unitsStore } = useStores();
-    const [condition, descriptions] = getEffectText(effect, unit, unitsStore);
+    const descriptions = getEffectText(effect, unit, unitsStore);
     return (
         <>
             {descriptions.map((x, index) =>
-                condition ? (
+                x.condition ? (
                     <Badge
                         key={index}
-                        badgeContent={condition}
+                        badgeContent={x.condition}
                         color="secondary"
                     >
-                        <EffectAuraDescription x={x} />
+                        {x.descriptions.map((y, i) => (
+                            <EffectAuraDescription x={y} key={i} />
+                        ))}
                     </Badge>
                 ) : (
-                    <EffectAuraDescription key={index} x={x} />
+                    x.descriptions.map((y, i) => (
+                        <EffectAuraDescription x={y} key={i} />
+                    ))
                 )
             )}
         </>
@@ -317,7 +293,6 @@ export function AbilityEffectView({
     return (
         <i>
             <AbilityEffectPhaseView effect={effect} /> - Target:{" "}
-            {hasAura(effect) && <>- Duration : {getEffectDuration(effect)}</>}{" "}
             {getTargetType(effect, unit)}
         </i>
     );

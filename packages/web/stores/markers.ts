@@ -4,6 +4,7 @@ import {
     Ability,
     AbilityEffect,
     ItemWithAbilities,
+    AuraType,
 } from "../../common/data";
 import { DataStore } from "./data";
 import { getAbilityPhases, getEffectPhases, getEffectText } from "./battle";
@@ -33,11 +34,16 @@ function getMarker(
     unit: ItemWithAbilities,
     dataStore: DataStore
 ): Marker {
-    const [condition, description] = getEffectText(effect, unit, dataStore);
+    const descriptions = getEffectText(effect, unit, dataStore);
     return {
         id: ability.id + effectIndex,
-        description: description.join(" - "),
-        condition: condition,
+        description: descriptions
+            .map((x) => x.descriptions.join(" - "))
+            .join(" and "),
+        condition: descriptions
+            .filter((x) => x.condition !== undefined)
+            .map((x) => x.condition)
+            .join(" and "),
         text: ability.name,
         type:
             ability.category === AbilityCategory.Command
@@ -267,33 +273,38 @@ export class MarkersStore {
                             )
                         );
                     }
-                    if (
-                        effect.attackAura &&
-                        effect.attackAura.effectsOnHitUnmodified6
-                    ) {
-                        for (const triggeredEffect of effect.attackAura
-                            .effectsOnHitUnmodified6) {
-                            const triggeredEffectPhases =
-                                getEffectPhases(triggeredEffect);
+
+                    if (effect.auras) {
+                        for (const aura of effect.auras) {
                             if (
-                                hasMarker(
-                                    triggeredEffect,
-                                    triggeredEffectPhases,
-                                    effectPhases
-                                )
+                                aura.type === AuraType.Attack &&
+                                aura.effectsOnHitUnmodified6
                             ) {
-                                markers.push(
-                                    getMarker(
-                                        triggeredEffect,
-                                        ability,
-                                        this.serial++,
-                                        item,
-                                        this.unitStore
-                                    )
-                                );
+                                for (const triggeredEffect of aura.effectsOnHitUnmodified6) {
+                                    const triggeredEffectPhases =
+                                        getEffectPhases(triggeredEffect);
+                                    if (
+                                        hasMarker(
+                                            triggeredEffect,
+                                            triggeredEffectPhases,
+                                            effectPhases
+                                        )
+                                    ) {
+                                        markers.push(
+                                            getMarker(
+                                                triggeredEffect,
+                                                ability,
+                                                this.serial++,
+                                                item,
+                                                this.unitStore
+                                            )
+                                        );
+                                    }
+                                }
                             }
                         }
                     }
+
                     index++;
                 }
             }

@@ -7,6 +7,7 @@ import {
     TargetType,
     Phase,
     targetConditionValue,
+    AuraType,
 } from "../../common/data";
 import { RandomCombat } from "./combat";
 import { UnitState } from "./unit-state";
@@ -159,7 +160,7 @@ function testattackaura(
             [
                 {
                     effects: [
-                        { targetType: TargetType.Unit, attackAura: attackAura },
+                        { targetType: TargetType.Unit, auras: [attackAura] },
                     ],
                     name: "Fake ability",
                     id: "fakeAbility",
@@ -196,12 +197,15 @@ function testattackaura(
 
 // 900 attacks: 300 hits, 150 wounds dont 150 wounds, 125 MW
 // Without modifier, the value is 0.1388...
-test("no aura", testattackaura({}, 125 / 900));
+test("no aura", testattackaura({ type: AuraType.Attack }, 125 / 900));
 
 // 900 attacks: 300 hits, 150 wounds dont 50 hits à 10 wounds et 100 hits à 1 wound, soit 600 wounds donc 500 MW
 test(
     "damageOnWoundUnmodified6",
-    testattackaura({ damageOnWoundUnmodified6: "10" }, 500 / 900)
+    testattackaura(
+        { type: AuraType.Attack, damageOnWoundUnmodified6: "10" },
+        500 / 900
+    )
 );
 
 // 900 attacks: 300 hits dont 150 font des MW, en plus des 125 MW habituelles, soit 275 MW
@@ -209,6 +213,7 @@ test(
     "effectsOnHitUnmodified6",
     testattackaura(
         {
+            type: AuraType.Attack,
             effectsOnHitUnmodified6: [
                 {
                     targetType: TargetType.Enemy,
@@ -226,44 +231,71 @@ test(
 // 900 attacks: 300 hits + 150 rerolls qui font 50 hits, soit 350 hits, donc 175 wounds soit 5*176/6 MW
 test(
     "rerollHitsOn1",
-    testattackaura({ rerollHitsOn1: 1 }, (5 * 176) / 6 / 900)
+    testattackaura(
+        { type: AuraType.Attack, rerollHitsOn1: 1 },
+        (5 * 176) / 6 / 900
+    )
 );
 
 // 900 attacks: 300 hits dont 150 font des MW, donc 150 hits touchent => 75 wounds donc 5*75/6 + 150 MW
 test(
     "mortalWoundsOnHitUnmodified6",
     testattackaura(
-        { mortalWoundsOnHitUnmodified6: 1 },
+        { type: AuraType.Attack, mortalWoundsOnHitUnmodified6: 1 },
         ((5 * 75) / 6 + 150) / 900
     )
 );
 
 // Double le nombre d'attaques
-test("bonusAttacks", testattackaura({ bonusAttacks: 1 }, 250 / 900));
+test(
+    "bonusAttacks",
+    testattackaura({ type: AuraType.Attack, bonusAttacks: 1 }, 250 / 900)
+);
 
 // 900 attacks: 450 hits, 225 wounds 5*225/6 MW
-test("bonusHitRoll", testattackaura({ bonusHitRoll: 1 }, (5 * 225) / 6 / 900));
+test(
+    "bonusHitRoll",
+    testattackaura(
+        { type: AuraType.Attack, bonusHitRoll: 1 },
+        (5 * 225) / 6 / 900
+    )
+);
 
 // 900 attacks: 300 hits dont 150 font deux hits, soit 450 hits, donc 225 wounds, donc 5*225/6 MW
 test(
     "numberOfHitsOnUnmodified6",
-    testattackaura({ numberOfHitsOnUnmodified6: 2 }, (5 * 225) / 6 / 900)
+    testattackaura(
+        { type: AuraType.Attack, numberOfHitsOnUnmodified6: 2 },
+        (5 * 225) / 6 / 900
+    )
 );
 
 // 900 attacks: 300 hits soit 600 hits, donc 300 wounds, donc 250 MW
-test("numberOfHitsOnHit", testattackaura({ numberOfHitsOnHit: 2 }, 250 / 900));
+test(
+    "numberOfHitsOnHit",
+    testattackaura({ type: AuraType.Attack, numberOfHitsOnHit: 2 }, 250 / 900)
+);
 
 // 900 attacks: 300 hits et 600 non-hits qui rerollés donnent 200 hits, soit un total de 500 hits, donc 250 wounds, donc 5/6*250 MW
 test(
     "rerollFailedHits",
-    testattackaura({ rerollFailedHits: 1 }, ((5 / 6) * 250) / 900)
+    testattackaura(
+        { type: AuraType.Attack, rerollFailedHits: 1 },
+        ((5 / 6) * 250) / 900
+    )
 );
 
 // 900 attacks: 300 hits, 150 wounds donc 150 wounds, 150 MW
-test("bonusRend", testattackaura({ bonusRend: -1 }, 150 / 900));
+test(
+    "bonusRend",
+    testattackaura({ type: AuraType.Attack, bonusRend: -1 }, 150 / 900)
+);
 
 // 900 attacks: 300 hits, 150 wounds donc 450 wounds, 375 MW
-test("bonusDamage", testattackaura({ bonusDamage: 2 }, 375 / 900));
+test(
+    "bonusDamage",
+    testattackaura({ type: AuraType.Attack, bonusDamage: 2 }, 375 / 900)
+);
 
 test("condition on weapon id", () => {
     // Arrange
@@ -274,7 +306,7 @@ test("condition on weapon id", () => {
                 effects: [
                     {
                         targetType: TargetType.Weapon,
-                        attackAura: { bonusDamage: 2 },
+                        auras: [{ type: AuraType.Attack, bonusDamage: 2 }],
                         targetCondition: { weaponId: "second" },
                     },
                 ],
@@ -296,6 +328,7 @@ test(
     "condition on enemy keyword but enemy has not the keyword",
     testattackaura(
         {
+            type: AuraType.Attack,
             bonusDamage: targetConditionValue({ anyKeyword: ["TEST"] }, 2),
         },
         125 / 900
@@ -306,6 +339,7 @@ test(
     "condition on enemy keyword and the enemy has the keyword",
     testattackaura(
         {
+            type: AuraType.Attack,
             bonusDamage: targetConditionValue({ anyKeyword: ["TEST"] }, 2),
         },
         375 / 900,

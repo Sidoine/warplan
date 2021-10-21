@@ -9,6 +9,7 @@ import {
     isConditionValue,
     isTargetPropertyValue,
     ItemWithAbilities,
+    AuraType,
 } from "../../common/data";
 import { getEffectCondition } from "./battle";
 import { DataStore } from "./data";
@@ -429,8 +430,11 @@ export abstract class Combat {
         )
             return false;
 
-        if (effect.attackAura) {
-            addAttackAura(target, { aura: effect.attackAura });
+        if (effect.auras) {
+            for (const aura of effect.auras) {
+                if (aura.type === AuraType.Attack)
+                    addAttackAura(target, { aura });
+            }
         }
         if (effect.immediate?.mortalWounds) {
             const mortalWounds = await this.valueRoller(

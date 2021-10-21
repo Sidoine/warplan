@@ -8,6 +8,7 @@ import {
     TargetType,
     Phase,
     UnitOptionCategory,
+    AuraType,
 } from "../../common/data";
 import { getValue } from "./combat";
 import {
@@ -89,8 +90,15 @@ function applyEffect(
         }
     }
 
-    if (effect.attackAura) {
-        addAttackAura(target, { aura: effect.attackAura, effectRatio: ratio });
+    if (effect.auras) {
+        for (const aura of effect.auras) {
+            if (aura.type === AuraType.Attack) {
+                addAttackAura(target, {
+                    aura,
+                    effectRatio: ratio,
+                });
+            }
+        }
     }
     return true;
 }
@@ -162,7 +170,7 @@ function applyWeaponAttack(
     if (attack.choice && attack.choice !== choice) return;
     const attackAura = sumAttackAura(
         sumAttackAura(
-            sumAttackAura({}, weaponState.attackAura),
+            sumAttackAura({ type: AuraType.Attack }, weaponState.attackAura),
             weaponState.modelState.attackAura
         ),
         weaponState.modelState.unitState.attackAura

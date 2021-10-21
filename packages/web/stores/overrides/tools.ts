@@ -10,6 +10,7 @@ import {
     AbilityEffect,
     ModelOptionCategory,
     UnitOptionCategory,
+    Aura,
 } from "../../../common/data";
 
 type ModelCondition = (
@@ -130,8 +131,22 @@ export function addEffect(ability: Ability, effect: AbilityEffect) {
     return effect;
 }
 
-export function updateEffect(ability: Ability, effect: Partial<AbilityEffect>) {
-    if (ability.effects) Object.assign(ability.effects[0], effect);
+export function updateEffect(
+    ability: Ability,
+    effect?: Partial<AbilityEffect>,
+    aura?: Aura
+) {
+    if (ability.effects) {
+        if (effect) Object.assign(ability.effects[0], effect);
+        if (aura) {
+            if (!ability.effects[0].auras) ability.effects[0].auras = [];
+            ability.effects[0].auras.push(aura);
+        }
+    }
+}
+
+export function updateAura(ability: Ability, aura: Aura) {
+    updateEffect(ability, undefined, aura);
 }
 
 export function updateAttack(attack: Attack, update: Partial<Attack>) {

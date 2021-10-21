@@ -8,9 +8,10 @@ import {
     conditionValue,
     orValue,
     targetConditionValue,
+    AuraType,
 } from "../../../common/data";
 import { ImportedDataStoreImpl } from "../imported-data";
-import { addEffect, updateAttack, updateEffect } from "./tools";
+import { addEffect, updateAttack, updateAura, updateEffect } from "./tools";
 
 export function overrideLumineths(data: ImportedDataStoreImpl) {
     data.factions.luminethRealmLords.tokenName = "aetherquartz";
@@ -18,27 +19,26 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     // Generic abilities
     updateEffect(data.abilities.absorbDespair, {
         targetType: TargetType.Enemy,
-        specialAura: {
-            absorbDespair: true,
-        },
+        auras: [{ type: AuraType.Special, absorbDespair: true }],
         condition: {
             inRangeOf: { friendly: true, keyword: "CATHALLAR", range: '18"' },
         },
         targetRange: '18"',
     });
     updateEffect(data.abilities.aetherquartzReserve, {
-        battleShockAura: {
-            malusBravery: -1,
-        },
+        auras: [{ type: AuraType.Battleshock, malusBravery: -1 }],
     });
     addEffect(data.abilities.aetherquartzReserve, {
         targetType: TargetType.Unit,
         phase: Phase.Hero,
         subPhase: SubPhase.Before,
         side: Turn.Your,
-        spellAura: {
-            extraCast: 1,
-        },
+        auras: [
+            {
+                type: AuraType.Spell,
+                extraCast: 1,
+            },
+        ],
         tokensCost: 1,
         choice: "Magical Insight",
     });
@@ -71,9 +71,7 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         phase: Phase.Combat | Phase.Shooting,
         subPhase: SubPhase.While,
         side: Turn.Your,
-        attackAura: {
-            bonusHitRoll: 1,
-        },
+        auras: [{ type: AuraType.Attack, bonusHitRoll: 1 }],
     });
     addEffect(data.abilities.aetherquartzReserve, {
         targetType: TargetType.Unit,
@@ -81,41 +79,43 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         tokensCost: 1,
         phase: Phase.Combat | Phase.Shooting,
         subPhase: SubPhase.While,
-        defenseAura: {
-            bonusSave: 1,
-        },
-        duration: EffectDuration.Phase,
+        auras: [
+            {
+                type: AuraType.Defense,
+                bonusSave: 1,
+                duration: EffectDuration.Phase,
+            },
+        ],
     });
     updateEffect(data.abilities.deepThinkers, {
         targetType: TargetType.Friend,
         targetCondition: {
             allKeywords: ["WIZARD", "SCINARI"],
         },
-        spellAura: {
-            autoCast: 9,
-        },
+        auras: [{ type: AuraType.Spell, autoCast: 9 }],
     });
     addEffect(data.abilities.soulBound, {
         targetType: TargetType.Unit,
-        battleShockAura: {
-            bonusBravery: 2,
+        auras: [{ type: AuraType.Battleshock, bonusBravery: 2 }],
+        targetCondition: {
+            anyKeyword: ["VANARI", "AELEMENTIRI"],
+            keyword: "ILIATHA",
         },
     });
-    addEffect(data.abilities.strikeInUnison, {
-        targetType: TargetType.Unit,
-        phase: Phase.Combat | Phase.Shooting,
-        attackAura: {
-            rerollHitsOn1: 1,
+    updateEffect(data.abilities.strikeInUnison, {
+        targetType: TargetType.Friend,
+        targetCondition: {
+            minModels: 2,
         },
+        phase: Phase.Combat | Phase.Shooting,
+        auras: [{ type: AuraType.Attack, rerollHitsOn1: 1 }],
     });
     addEffect(data.abilities.unityOfPurpose, {
         targetType: TargetType.Unit,
         phase: Phase.Any,
     });
     updateEffect(data.abilities.lightningReactions, {
-        specialAura: {
-            pickTwoUnitsInCombat: true,
-        },
+        auras: [{ type: AuraType.Special, pickTwoUnitsInCombat: true }],
     });
     updateEffect(data.abilities.luminethGreatNations, {
         immediate: {
@@ -123,24 +123,23 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         },
     });
     updateEffect(data.abilities.moveLikeTheWind, {
-        attackAura: {
-            pileInEverywhere: true,
-        },
+        auras: [{ type: AuraType.Attack, pileInEverywhere: true }],
     });
     addEffect(data.abilities.moveLikeTheWind, {
         targetType: TargetType.Unit,
         condition: {
             hasCharged: true,
         },
-        attackAura: {
-            pileInWithFly: true,
-            bonusPileInDistance: 3,
-        },
+        auras: [
+            {
+                type: AuraType.Attack,
+                pileInWithFly: true,
+                bonusPileInDistance: 3,
+            },
+        ],
     });
     updateEffect(data.abilities.tectonicForce, {
-        specialAura: {
-            tectonicForce: true,
-        },
+        auras: [{ type: AuraType.Special, tectonicForce: true }],
     });
     addEffect(data.abilities.tectonicForce, {
         targetType: TargetType.Unit,
@@ -151,42 +150,37 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         },
     });
     updateEffect(data.abilities.unityOfPurpose, {
-        commandAura: {
-            copyCommand: true,
-        },
+        auras: [{ type: AuraType.Command, copyCommand: true }],
     });
     updateEffect(data.abilities.shiningCompany, {
-        chargeAura: {
-            cannotCharge: true,
-        },
-        movementAura: {
-            cannotRun: true,
-        },
-        attackAura: {
-            pileInDistance: '1"',
-        },
+        auras: [
+            { type: AuraType.Charge, cannotCharge: true },
+            { type: AuraType.Movement, cannotRun: true },
+            { type: AuraType.Attack, pileInDistance: '1"' },
+        ],
     });
 
     // Avalenor
     addEffect(data.abilities.avalenorTheStoneheartKingStonemageSymbiosis, {
         targetType: TargetType.Unit,
-        valueAura: {
-            ignoreWounds: conditionValue(
-                {
-                    inRangeOf: {
-                        friendly: true,
-                        keyword: "STONEMAGE",
-                        range: '12"',
+        auras: [
+            {
+                type: AuraType.Value,
+                ignoreWounds: conditionValue(
+                    {
+                        inRangeOf: {
+                            friendly: true,
+                            keyword: "STONEMAGE",
+                            range: '12"',
+                        },
                     },
-                },
-                1
-            ),
-        },
+                    1
+                ),
+            },
+        ],
     });
     updateEffect(data.abilities.avalenorTheStoneheartKingElderWisdom, {
-        commandAura: {
-            free: true,
-        },
+        auras: [{ type: AuraType.Command, free: true }],
     });
 
     // Hurukan Spirit of the Wind
@@ -201,17 +195,13 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     addEffect(data.abilities.hurakanSpiritOfTheWindLivingCyclone, {
         targetType: TargetType.Enemy,
         targetRadius: 3,
-        defenseAura: {
-            malusHitRoll: 1,
-        },
+        auras: [{ type: AuraType.Defense, malusHitRoll: 1 }],
         randomEffectRange: { min: 3, max: 6 },
     });
     addEffect(data.abilities.hurakanSpiritOfTheWindIntoTheGale, {
         targetType: TargetType.EnemyModel,
         targetRadius: '3"',
-        attackAura: {
-            malusPileInDistance: '2"',
-        },
+        auras: [{ type: AuraType.Attack, malusPileInDistance: '2"' }],
     });
     updateEffect(data.abilities.hurakanSpiritOfTheWindSpiritOfTheWind, {
         immediate: {
@@ -223,9 +213,7 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     addEffect(data.abilities.shrineLuminorCleansingRituals, {
         targetType: TargetType.Friend,
         choice: "reroll casting",
-        spellAura: {
-            rerollFailedCast: true,
-        },
+        auras: [{ type: AuraType.Spell, rerollFailedCast: true }],
         targetRange: orValue(
             conditionValue({ hasGarrison: true }, '24"'),
             '12"'
@@ -234,9 +222,7 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     addEffect(data.abilities.shrineLuminorCleansingRituals, {
         targetType: TargetType.Friend,
         choice: "reroll dispell",
-        spellAura: {
-            rerollDispell: true,
-        },
+        auras: [{ type: AuraType.Spell, rerollDispell: true }],
         targetRange: orValue(
             conditionValue({ hasGarrison: true }, '24"'),
             '12"'
@@ -245,9 +231,7 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     addEffect(data.abilities.shrineLuminorCleansingRituals, {
         targetType: TargetType.Friend,
         choice: "reroll unbind",
-        spellAura: {
-            rerollUnbind: true,
-        },
+        auras: [{ type: AuraType.Spell, rerollUnbind: true }],
         targetRange: orValue(
             conditionValue({ hasGarrison: true }, '24"'),
             '12"'
@@ -262,9 +246,7 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         },
         phase: Phase.Movement,
         subPhase: SubPhase.While,
-        defenseAura: {
-            garrisoned: true,
-        },
+        auras: [{ type: AuraType.Defense, garrisoned: true }],
     });
     addEffect(data.abilities.shrineLuminorFactionTerrain, {
         targetType: TargetType.Unit,
@@ -288,29 +270,21 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
             isInGarrison: true,
         },
         phase: Phase.Any,
-        commandAura: {
-            free: true,
-        },
+        auras: [{ type: AuraType.Command, free: true }],
     });
 
     // Scinari Cathallar
     updateEffect(data.abilities.scinariCathallarDarknessOfTheSoul, {
-        specialAura: {
-            darknessOfSoul: true,
-        },
+        auras: [{ type: AuraType.Special, darknessOfSoul: true }],
     });
     updateEffect(data.abilities.scinariCathallarEmotionalTransference, {
-        battleShockAura: {
-            immune: true,
-        },
+        auras: [{ type: AuraType.Battleshock, immune: true }],
         randomEffectRange: { min: 2, max: 6 },
     });
     addEffect(data.abilities.scinariCathallarEmotionalTransference, {
         targetType: TargetType.Enemy,
         targetRange: '18"',
-        battleShockAura: {
-            emotionalTransference: true,
-        },
+        auras: [{ type: AuraType.Battleshock, emotionalTransference: true }],
         targetCondition: { needBattleshockTest: true },
         randomEffectRange: { min: 2, max: 6 },
     });
@@ -332,23 +306,22 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         },
     });
     updateEffect(data.abilities.scinariLoreseekerLoneAgent, {
-        defenseAura: {
-            bonusSave: conditionValue(
-                { notInRangeOf: { range: '9"', friendly: true } },
-                1
-            ),
-        },
-        specialAura: {
-            loneAgent: true,
-        },
+        auras: [
+            {
+                type: AuraType.Defense,
+                bonusSave: conditionValue(
+                    { notInRangeOf: { range: '9"', friendly: true } },
+                    1
+                ),
+            },
+            { type: AuraType.Special, loneAgent: true },
+        ],
     });
 
     // Vanari Bladelords
     addEffect(data.abilities.vanariBladelordsGuardians, {
         targetType: TargetType.Friend,
-        defenseAura: {
-            guardianOn2: true,
-        },
+        auras: [{ type: AuraType.Defense, guardianOn2: true }],
         targetRadius: '3"',
     });
     updateAttack(data.attacks.vanariBladelordsSunmetalGreatbladeFlurryOfBlows, {
@@ -362,30 +335,37 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     updateEffect(data.abilities.vanariBladelordsSwordmasters, {
         targetType: TargetType.Unit,
         choice: "Furry of Blows",
-        attackAura: {
-            attackId:
-                data.attacks.vanariBladelordsSunmetalGreatbladeFlurryOfBlows.id,
-        },
+        auras: [
+            {
+                type: AuraType.Attack,
+                attackId:
+                    data.attacks.vanariBladelordsSunmetalGreatbladeFlurryOfBlows
+                        .id,
+            },
+        ],
     });
     addEffect(data.abilities.vanariBladelordsSwordmasters, {
         targetType: TargetType.Unit,
         phase: Phase.Combat,
         choice: "Perfect Strike",
-        attackAura: {
-            attackId:
-                data.attacks.vanariBladelordsSunmetalGreatbladePerfectStrike.id,
-        },
+        auras: [
+            {
+                type: AuraType.Attack,
+                attackId:
+                    data.attacks.vanariBladelordsSunmetalGreatbladePerfectStrike
+                        .id,
+            },
+        ],
     });
 
     // Vanari Dawnriders
-    updateEffect(data.abilities.vanariDawnridersDeathlyFurrows, {
-        attackAura: {
-            bonusAttacks: targetConditionValue(
-                { maxWounds: 1, hasNotMount: true },
-                2,
-                targetConditionValue({ maxWounds: 2, hasNotMount: true }, 1)
-            ),
-        },
+    updateAura(data.abilities.vanariDawnridersDeathlyFurrows, {
+        type: AuraType.Attack,
+        bonusAttacks: targetConditionValue(
+            { maxWounds: 1, hasNotMount: true },
+            2,
+            targetConditionValue({ maxWounds: 2, hasNotMount: true }, 1)
+        ),
     });
 
     // Vanari Auralan Sentinels
@@ -396,28 +376,39 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     });
     updateEffect(data.abilities.vanariAuralanSentinelsManyStringedWeapon, {
         choice: "aimed",
-        attackAura: {
-            attackId: data.attacks.vanariAuralanSentinelsAuralanBowAimed.id,
-        },
+        auras: [
+            {
+                type: AuraType.Attack,
+                attackId: data.attacks.vanariAuralanSentinelsAuralanBowAimed.id,
+            },
+        ],
     });
     addEffect(data.abilities.vanariAuralanSentinelsManyStringedWeapon, {
         choice: "lofted",
         targetType: TargetType.Unit,
-        attackAura: {
-            attackId: data.attacks.vanariAuralanSentinelsAuralanBowLofted.id,
-        },
+        auras: [
+            {
+                type: AuraType.Attack,
+                attackId:
+                    data.attacks.vanariAuralanSentinelsAuralanBowLofted.id,
+            },
+        ],
     });
 
     updateEffect(data.abilities.vanariAuralanSentinelsScryhawkLantern, {
-        defenseAura: {
-            visibleToCasterUnit: conditionValue(
-                {
-                    weaponId:
-                        data.attacks.vanariAuralanSentinelsAuralanBowLofted.id,
-                },
-                1
-            ),
-        },
+        auras: [
+            {
+                type: AuraType.Defense,
+                visibleToCasterUnit: conditionValue(
+                    {
+                        weaponId:
+                            data.attacks.vanariAuralanSentinelsAuralanBowLofted
+                                .id,
+                    },
+                    1
+                ),
+            },
+        ],
     });
 
     // Vanari Auralan Wardens
