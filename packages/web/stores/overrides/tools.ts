@@ -146,7 +146,9 @@ export function updateEffect(
 }
 
 export function updateAura(ability: Ability, aura: Aura) {
-    updateEffect(ability, undefined, aura);
+    if (ability.effects && ability.effects[0].auras) {
+        Object.assign(ability.effects[0].auras[0], aura);
+    }
 }
 
 export function updateAttack(attack: Attack, update: Partial<Attack>) {

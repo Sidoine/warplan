@@ -193,73 +193,6 @@ export function getAbilityEffects(
         effect.phase = Phase.ArmyList;
     }
 
-    match = blurb.match(/once per phase,/i);
-    if (match) {
-        effect.phase = Phase.Any;
-    }
-
-    if (blurb.indexOf("in your hero phase") >= 0) {
-        effect.phase = Phase.Hero;
-        effect.subPhase = SubPhase.While;
-        effect.side = Turn.Your;
-    }
-    match = blurb.match(/at the start of (a|the) combat phase/);
-    if (match) {
-        effect.phase = Phase.Combat;
-        effect.subPhase = SubPhase.Before;
-    }
-    match = blurb.match(/at the start of your hero phase,/i);
-    if (match) {
-        effect.phase = Phase.Hero;
-        effect.subPhase = SubPhase.Before;
-        effect.side = Turn.Your;
-    }
-
-    match = blurb.match(/during the combat phase,/i);
-    if (match) {
-        effect.phase = Phase.Combat;
-        effect.subPhase = SubPhase.While;
-    }
-
-    match = blurb.match(
-        /after armies have been set up but before the first battle round/i
-    );
-    if (match) {
-        effect.phase = Phase.Setup;
-        effect.subPhase = SubPhase.After;
-    }
-
-    match = blurb.match(/at the end of each combat phase,/i);
-    if (match) {
-        effect.phase = Phase.Combat;
-        effect.subPhase = SubPhase.After;
-    }
-
-    match = blurb.match(/when you make a pile-in move/i);
-    if (match) {
-        effect.phase = Phase.Combat;
-        effect.subPhase = SubPhase.While;
-    }
-
-    match = blurb.match(/at the start of the battleshock phase,/i);
-    if (match) {
-        effect.phase = Phase.Battleshock;
-        effect.subPhase = SubPhase.Before;
-    }
-
-    match = blurb.match(/at the end of your hero phase,/i);
-    if (match) {
-        effect.phase = Phase.Hero;
-        effect.subPhase = SubPhase.After;
-        effect.side = Turn.Your;
-    }
-
-    match = blurb.match(/at the start of the hero phase/i);
-    if (match) {
-        effect.phase = Phase.Hero;
-        effect.subPhase = SubPhase.Before;
-    }
-
     match = blurb.match(/1 model in this unit can be a/i);
     if (match) {
         effect.targetType = TargetType.Unit;
@@ -270,6 +203,50 @@ export function getAbilityEffects(
     if (match) {
         effect.targetType = TargetType.Unit;
         effect.phase = Phase.ArmyList;
+    }
+
+    match = blurb.match(/once per phase,/i);
+    if (match) {
+        effect.phase = Phase.Any;
+    }
+
+    match = blurb.match(
+        /after armies have been set up but before the first battle round/i
+    );
+    if (match) {
+        effect.phase = Phase.Setup;
+        effect.subPhase = SubPhase.After;
+    }
+
+    match = blurb.match(/at the start of your hero phase,/i);
+    if (match) {
+        effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.Before;
+        effect.side = Turn.Your;
+    }
+    match = blurb.match(/at the start of the hero phase/i);
+    if (match) {
+        effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.Before;
+    }
+    if (blurb.indexOf("in your hero phase") >= 0) {
+        effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.While;
+        effect.side = Turn.Your;
+    }
+
+    match = blurb.match(/in your hero phase,/i);
+    if (match) {
+        effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.While;
+        effect.side = Turn.Your;
+    }
+
+    match = blurb.match(/at the end of your hero phase,/i);
+    if (match) {
+        effect.phase = Phase.Hero;
+        effect.subPhase = SubPhase.After;
+        effect.side = Turn.Your;
     }
 
     match = blurb.match(/at the start of your shooting phase/i);
@@ -285,12 +262,6 @@ export function getAbilityEffects(
         effect.subPhase = SubPhase.After;
     }
 
-    match = blurb.match(/before fighting with this unit/i);
-    if (match) {
-        effect.phase = Phase.Combat;
-        effect.subPhase = SubPhase.While;
-    }
-
     match = blurb.match(/after this (model|unit) makes a charge move/i);
     if (match) {
         effect.phase = Phase.Charge;
@@ -298,11 +269,33 @@ export function getAbilityEffects(
         effect.side = Turn.Your;
     }
 
-    match = blurb.match(/in your hero phase,/i);
+    match = blurb.match(/at the start of (a|the) combat phase/i);
     if (match) {
-        effect.phase = Phase.Hero;
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.Before;
+    }
+
+    match = blurb.match(/before fighting with this unit/i);
+    if (match) {
+        effect.phase = Phase.Combat;
         effect.subPhase = SubPhase.While;
-        effect.side = Turn.Your;
+    }
+
+    match = blurb.match(/during the combat phase,/i);
+    if (match) {
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.While;
+    }
+    match = blurb.match(/at the end of each combat phase,/i);
+    if (match) {
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.After;
+    }
+
+    match = blurb.match(/at the start of the battleshock phase,/i);
+    if (match) {
+        effect.phase = Phase.Battleshock;
+        effect.subPhase = SubPhase.Before;
     }
 
     // Conditions
@@ -325,8 +318,12 @@ export function getAbilityEffects(
     // Occurences
     match = blurb.match(/once per battle/i);
     if (match) {
-        effect = effect || { targetType: TargetType.Unit };
         effect.timesPerBattle = 1;
+    }
+
+    match = blurb.match(/once per turn/i);
+    if (match) {
+        effect.timesPerTurn = 1;
     }
 
     // Commands
@@ -371,11 +368,10 @@ export function getAbilityEffects(
         /can attempt to cast (\d) spells? in your hero phase and attempt to unbind (\d) spells? in the enemy hero phase/i
     );
     if (match) {
-        auras.push({
-            type: AuraType.Spell,
-            casts: parseInt(match[1]),
-            unbinds: parseInt(match[2]),
-        });
+        effect.phase = Phase.Hero;
+        effect.immediate = effect.immediate || {};
+        effect.immediate.casts = parseInt(match[1]);
+        effect.immediate.unbinds = parseInt(match[2]);
     }
 
     // Chants
@@ -448,6 +444,28 @@ export function getAbilityEffects(
         effect.targetRange = match[1];
     }
 
+    match = blurb.match(
+        /you can pick 1 enemy unit within (\d+") of each friendly (.*?)unit/i
+    );
+    if (match) {
+        effect.targetType = TargetType.Enemy;
+        effect.targetRange = match[1];
+        effect.condition = effect.condition || {};
+        if (match[2]) effect.condition.keyword = match[2];
+    }
+
+    match = blurb.match(
+        /pick up to (D?\d) friendly (.*)?units wholly within (\d+") of a friendly model/i
+    );
+    if (match) {
+        effect.targetType = TargetType.Friend;
+        effect.targetCondition = effect.targetCondition || {};
+        if (match[2])
+            effect.targetCondition.allKeywords = parseKeywords(match[2], dump);
+        effect.targetRange = match[3];
+        effect.targetsCount = match[1];
+    }
+
     // Defense
     match = blurb.match(
         /Roll a dice each time you allocate a wound or mortal wound to this model\. On a (\d)\+, that wound or mortal wound is negated/i
@@ -461,6 +479,14 @@ export function getAbilityEffects(
         if (match[1] === "6") {
             defenseAura.negateWoundsOrMortalWoundsOn6 = true;
         }
+    } else {
+        match = blurb.match(/On a 5\+, that wound or mortal wound is negated/i);
+        if (match) {
+            auras.push({
+                type: AuraType.Defense,
+                negateWoundsOrMortalWoundsOn5: true,
+            });
+        }
     }
 
     if (blurb.indexOf("subtract 1 from hit rolls for attacks made by") >= 0) {
@@ -471,7 +497,7 @@ export function getAbilityEffects(
         /roll a d6 each time you allocate a mortal wound to this model\. on a 5\+, the wound is negated/i
     );
     if (match) {
-        auras.push({ type: AuraType.Defense, negateWoundsOn5: true });
+        auras.push({ type: AuraType.Defense, negateMortalWoundsOn5: true });
     }
 
     match = blurb.match(
@@ -518,14 +544,6 @@ export function getAbilityEffects(
     );
     if (match) {
         auras.push({ type: AuraType.Defense, ignoreRendOfMinus1: true });
-    }
-
-    match = blurb.match(/On a 5\+, that wound or mortal wound is negated/i);
-    if (match) {
-        auras.push({
-            type: AuraType.Defense,
-            negateWoundsOrMortalWoundsOn5: true,
-        });
     }
 
     // Movement
@@ -708,8 +726,45 @@ export function getAbilityEffects(
         });
     }
 
+    // Aura target conditions
+    match = blurb.match(
+        /if the target (model|unit) made a charge move in the same turn/i
+    );
+    if (match) {
+        for (const aura of auras) {
+            aura.targetCondition = aura.targetCondition || {};
+            aura.targetCondition.hasCharged = true;
+        }
+    }
+
+    // Conditions
+    match = blurb.match(
+        /if this model is within (\d+") of any friendly (.*?),/i
+    );
+    if (match) {
+        effect.condition = effect.condition || {};
+        effect.condition.inRangeOf = {
+            allKeywords: parseKeywords(match[2], dump),
+            range: match[1],
+        };
+    }
+
     // Duration
     match = blurb.match(/until the end of that phase/i);
+    if (match) {
+        for (const aura of auras) {
+            aura.duration = EffectDuration.Phase;
+        }
+    }
+
+    match = blurb.match(/until your next (.*?) phase/i);
+    if (match) {
+        for (const aura of auras) {
+            aura.duration = EffectDuration.Round;
+        }
+    }
+
+    match = blurb.match(/in that (combat) phase/i);
     if (match) {
         for (const aura of auras) {
             aura.duration = EffectDuration.Phase;

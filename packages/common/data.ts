@@ -103,6 +103,7 @@ export interface DefenseAura extends BaseAura {
     negateWoundsOrMortalWoundsOn5?: boolean;
     negateWoundsOrMortalWoundsOn6?: boolean;
     negateWoundsOn5?: boolean;
+    negateMortalWoundsOn5?: boolean;
     changeSaveRoll?: boolean;
     ethereal?: boolean;
     ignoreRendOfMinus1?: boolean;
@@ -243,6 +244,7 @@ interface BaseAura {
     duration?: EffectDuration;
     /** The aura is effective only after this delay */
     delay?: EffectDuration;
+    targetCondition?: TargetCondition;
 }
 
 export interface AttackAura
@@ -274,8 +276,6 @@ export interface SpellAura extends BaseAura {
     rerollUnbind?: boolean;
     autoCast?: Value;
     malusToAll?: Value;
-    casts?: Value;
-    unbinds?: Value;
     extraCast?: Value;
 }
 
@@ -333,6 +333,7 @@ export interface CommandAura extends BaseAura {
 }
 
 export interface ImmediateEffect {
+    type?: undefined;
     mortalWounds?: Value;
     heal?: Value;
     setUpAwayFromEnemy?: Value; // The distance to the enemy
@@ -342,8 +343,12 @@ export interface ImmediateEffect {
     setup?: boolean;
     pileInMove?: Value;
     rerollSpellcast?: boolean;
+    rerollDispell?: boolean;
+    rerollUnbind?: boolean;
     bonusSpellcast?: Value;
     normalMove?: Value;
+    casts?: Value;
+    unbinds?: Value;
 }
 
 export type Aura =
@@ -367,10 +372,12 @@ export interface AbilityEffect {
     subPhase?: SubPhase;
     side?: Turn;
     timesPerBattle?: number;
+    timesPerTurn?: number;
 
     // Cast range
     /** The range to the target. If undefined, only the unit itself can be targeted */
     targetRange?: Value;
+    targetsCount?: Value;
     /** If the effect targets multiple units, the range around the target.  */
     targetRadius?: Value;
     whollyWithin?: boolean;

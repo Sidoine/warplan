@@ -20,13 +20,12 @@ import {
     phases,
 } from "../stores/battle";
 import {
-    AbilityEffectAuraView,
+    AbilityEffectAurasView,
     AbilityEffectCondition,
     AbilityEffectCost,
     AbilityEffectTarget,
 } from "./ability-effect-view";
 import { Warning } from "../atoms/warning";
-// import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 
 function getEffectPhaseNames(phaseBits: number) {
     const phaseNames: string[] = [];
@@ -106,7 +105,7 @@ function AbilityRows({
                         )}
                     </TableCell>
                     <TableCell>
-                        <AbilityEffectAuraView effect={effect} unit={unit} />
+                        <AbilityEffectAurasView effect={effect} unit={unit} />
                     </TableCell>
                     <TableCell>
                         {getEffectPhaseNames(getEffectPhases(effect)).join(

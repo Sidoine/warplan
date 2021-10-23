@@ -6,6 +6,9 @@ import {
     AbilityCategory,
     Unit,
     UnitOptionCategory,
+    Ability,
+    ItemWithAbilities,
+    AbilityEffect,
 } from "../../common/data";
 import { value } from "../helpers/react";
 import {
@@ -16,6 +19,133 @@ import {
 } from "../atoms/warscroll-components";
 import StarIcon from "@material-ui/icons/Star";
 import { distinct } from "../helpers/algo";
+import { Card, CardContent, Typography, Grid } from "@material-ui/core";
+import {
+    AbilityEffectAurasView,
+    AbilityEffectCondition,
+    AbilityEffectCost,
+    AbilityEffectTarget,
+} from "./ability-effect-view";
+import {
+    getPhaseSideName,
+    getSubPhaseName,
+    getPhaseName,
+} from "../stores/battle";
+
+function EffectLine({
+    effect,
+    unit,
+}: {
+    effect: AbilityEffect;
+    unit: ItemWithAbilities;
+}) {
+    return (
+        <Grid container direction="row">
+            <Grid item>
+                {effect.side !== undefined && getPhaseSideName(effect.side)}{" "}
+                {effect.subPhase !== undefined &&
+                    getSubPhaseName(effect.subPhase)}{" "}
+                {effect.phase !== undefined && getPhaseName(effect.phase)}
+            </Grid>
+            <Grid item>
+                <AbilityEffectCost effect={effect} unit={unit} />
+                {effect.condition && (
+                    <AbilityEffectCondition
+                        condition={effect.condition}
+                        unit={unit}
+                    />
+                )}
+            </Grid>
+            <Grid item>
+                <AbilityEffectTarget unit={unit} effect={effect} />
+                {effect.targetCondition && (
+                    <AbilityEffectCondition
+                        condition={effect.targetCondition}
+                        unit={unit}
+                    />
+                )}
+            </Grid>
+            <Grid item>
+                <AbilityEffectAurasView effect={effect} unit={unit} />
+            </Grid>
+        </Grid>
+    );
+}
+
+function AbilityLine({
+    unit,
+    ability,
+}: {
+    unit: ItemWithAbilities;
+    ability: Ability;
+}) {
+    return (
+        <Grid container direction="row">
+            <Grid item>{ability.name}</Grid>
+            {ability.effects && (
+                <Grid item>
+                    <Grid container direction="column">
+                        {ability.effects.map((effect, index) => (
+                            <Grid item key={index}>
+                                <EffectLine unit={unit} effect={effect} />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Grid>
+            )}
+        </Grid>
+    );
+}
+
+function Abilities({
+    unit,
+    abilities,
+}: {
+    unit: ItemWithAbilities;
+    abilities: Ability[];
+}) {
+    return (
+        <Grid container direction="column">
+            {abilities.map((x) => (
+                <Grid item key={x.id}>
+                    <AbilityLine unit={unit} ability={x} />
+                </Grid>
+            ))}
+        </Grid>
+    );
+}
+
+function UnitOption({ unit, option }: { unit: Unit; option: ModelOption }) {
+    return (
+        <>
+            <Typography variant="h6" color="textSecondary">
+                {option.name}
+            </Typography>
+            {option.abilities && (
+                <Abilities abilities={option.abilities} unit={option} />
+            )}
+        </>
+    );
+}
+
+export function UnitWarscrollEx({ unit }: { unit: Unit }) {
+    return (
+        <Card>
+            <CardContent>
+                <Typography variant="h5" color="textPrimary">
+                    {unit.name}
+                </Typography>
+                {unit.abilities && (
+                    <Abilities abilities={unit.abilities} unit={unit} />
+                )}
+                {unit.options &&
+                    unit.options.map((x) => (
+                        <UnitOption unit={unit} option={x} key={x.id} />
+                    ))}
+            </CardContent>
+        </Card>
+    );
+}
 
 export function UnitWarscrollView({
     wu,

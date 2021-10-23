@@ -416,7 +416,7 @@ function getCommandAuraText(
     const descriptions: AuraEntryDescription[] = [];
     let condition: string | undefined;
     if (commandAura.free) {
-        descriptions.push({ text: "Free command", type: EffectType.Buff });
+        descriptions.push({ text: "1 free command", type: EffectType.Buff });
     }
     if (commandAura.doublePrice) {
         descriptions.push({
@@ -649,18 +649,6 @@ function getSpellAuraText(
             type: EffectType.Debuff,
         });
     }
-    if (spellAura.casts) {
-        descriptions.push({
-            text: `${spellAura.casts} casts`,
-            type: EffectType.Buff,
-        });
-    }
-    if (spellAura.unbinds) {
-        descriptions.push({
-            text: `${spellAura.unbinds} unbinds`,
-            type: EffectType.Buff,
-        });
-    }
     if (spellAura.extraCast) {
         descriptions.push({
             text: `+${spellAura.extraCast} extra cast`,
@@ -761,11 +749,13 @@ function getValueAuraText(
 }
 
 export function getAuraText(
-    aura: Aura,
+    aura: Aura | ImmediateEffect,
     unit: ItemWithAbilities,
     dataStore: DataStore
 ): AuraDescription {
     switch (aura.type) {
+        case undefined:
+            return getImmediateText(aura, unit);
         case AuraType.Attack:
             return getAttackAuraText(aura, unit, dataStore);
         case AuraType.Battleshock:
@@ -841,6 +831,18 @@ function getImmediateText(immediate: ImmediateEffect, unit: ItemWithAbilities) {
             type: EffectType.Immediate,
         });
     }
+    if (immediate.rerollDispell) {
+        descriptions.push({
+            text: "RR dispell",
+            type: EffectType.Immediate,
+        });
+    }
+    if (immediate.rerollUnbind) {
+        descriptions.push({
+            text: "RR unbind",
+            type: EffectType.Immediate,
+        });
+    }
     if (immediate.bonusSpellcast) {
         descriptions.push({
             text: `+${immediate.bonusSpellcast} cast`,
@@ -850,6 +852,18 @@ function getImmediateText(immediate: ImmediateEffect, unit: ItemWithAbilities) {
     if (immediate.normalMove) {
         descriptions.push({
             text: `${immediate.normalMove} normal move`,
+            type: EffectType.Immediate,
+        });
+    }
+    if (immediate.casts) {
+        descriptions.push({
+            text: `${immediate.casts} casts`,
+            type: EffectType.Immediate,
+        });
+    }
+    if (immediate.unbinds) {
+        descriptions.push({
+            text: `${immediate.unbinds} unbinds`,
             type: EffectType.Immediate,
         });
     }

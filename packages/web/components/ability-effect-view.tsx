@@ -1,6 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
     AbilityEffect,
+    Aura,
+    ImmediateEffect,
     ItemWithAbilities,
     SubPhase,
     TargetCondition,
@@ -9,8 +11,9 @@ import {
 import {
     AuraEntryDescription,
     EffectType,
+    getAuraText,
     getEffectCondition,
-    getEffectText,
+    getEffectDurationName,
     getPhaseName,
     getTokenName,
 } from "../stores/battle";
@@ -25,6 +28,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import { getValueText } from "../stores/combat";
 import FilterHdrIcon from "@material-ui/icons/FilterHdr";
 import { useStores } from "../stores";
+import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
+import AvTimerIcon from "@material-ui/icons/AvTimer";
 
 const useStyle = makeStyles((theme) => ({
     badgedIcon: {
@@ -76,6 +81,7 @@ function TargetView({ effect }: { effect: AbilityEffect }) {
     const classes = useStyle();
     return (
         <>
+            {effect.targetsCount}
             {targetType === TargetType.Friend && <FavoriteIcon />}
             {targetType === TargetType.Model && <PersonIcon />}
             {targetType === TargetType.Unit && <GroupIcon />}
@@ -158,9 +164,11 @@ export function AbilityEffectCost({
 }) {
     return (
         <>
+            {effect.choice && <>&quot;{effect.choice}&quot; </>}
             {effect.timesPerBattle && (
                 <>{effect.timesPerBattle} times per battle </>
             )}
+            {effect.timesPerTurn && <>{effect.timesPerTurn} times per turn </>}
             {effect.tokensCost && (
                 <>
                     {effect.tokensCost} {getTokenName(unit.allegiance)}
@@ -251,33 +259,97 @@ function EffectAuraDescription({ x }: { x: AuraEntryDescription }) {
     );
 }
 
-export function AbilityEffectAuraView({
+function AbilityEffectAuraCondition({
+    condition,
+    aura,
+    children,
+    unit,
+}: {
+    condition?: string;
+    unit: ItemWithAbilities;
+    aura: Aura | ImmediateEffect;
+    children: ReactNode;
+}) {
+    const { unitsStore } = useStores();
+    if (
+        !condition &&
+        (aura.type === undefined ||
+            (aura.delay === undefined &&
+                aura.duration === undefined &&
+                aura.targetCondition === undefined))
+    )
+        return <>{children}</>;
+    return (
+        <Badge
+            badgeContent={
+                <>
+                    {condition}
+                    {aura.type !== undefined && aura.duration !== undefined && (
+                        <>
+                            <AccessAlarmIcon />{" "}
+                            {getEffectDurationName(aura.duration)}
+                        </>
+                    )}
+                    {aura.type !== undefined && aura.delay !== undefined && (
+                        <>
+                            <AvTimerIcon /> {getEffectDurationName(aura.delay)}
+                        </>
+                    )}
+                    {aura.type !== undefined && aura.targetCondition && (
+                        <>
+                            target{" "}
+                            {getEffectCondition(
+                                aura.targetCondition,
+                                unit,
+                                unitsStore
+                            )}
+                        </>
+                    )}
+                </>
+            }
+            color="secondary"
+        >
+            {children}
+        </Badge>
+    );
+}
+
+function AbilityEffectAuraView({
+    aura,
+    unit,
+}: {
+    aura: Aura | ImmediateEffect;
+    unit: ItemWithAbilities;
+}) {
+    const { unitsStore } = useStores();
+    const { descriptions, condition } = getAuraText(aura, unit, unitsStore);
+    return (
+        <AbilityEffectAuraCondition
+            aura={aura}
+            condition={condition}
+            unit={unit}
+        >
+            {descriptions.map((y, i) => (
+                <EffectAuraDescription x={y} key={i} />
+            ))}
+        </AbilityEffectAuraCondition>
+    );
+}
+
+export function AbilityEffectAurasView({
     effect,
     unit,
 }: {
     effect: AbilityEffect;
     unit: ItemWithAbilities;
 }) {
-    const { unitsStore } = useStores();
-    const descriptions = getEffectText(effect, unit, unitsStore);
     return (
         <>
-            {descriptions.map((x, index) =>
-                x.condition ? (
-                    <Badge
-                        key={index}
-                        badgeContent={x.condition}
-                        color="secondary"
-                    >
-                        {x.descriptions.map((y, i) => (
-                            <EffectAuraDescription x={y} key={i} />
-                        ))}
-                    </Badge>
-                ) : (
-                    x.descriptions.map((y, i) => (
-                        <EffectAuraDescription x={y} key={i} />
-                    ))
-                )
+            {effect.auras?.map((x, i) => (
+                <AbilityEffectAuraView key={i} aura={x} unit={unit} />
+            ))}
+            {effect.immediate && (
+                <AbilityEffectAuraView aura={effect.immediate} unit={unit} />
             )}
         </>
     );
