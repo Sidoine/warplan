@@ -299,6 +299,7 @@ export const enum TargetType {
     Ability = 32,
     Terrain = 64,
     EnemyArmy = 128,
+    Zone = 256,
     EnemyModel = 9,
     NotUnit = Model | Weapon | Mount | Ability | EnemyArmy,
 }

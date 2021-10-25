@@ -256,6 +256,13 @@ export function getAbilityEffects(
         effect.side = Turn.Your;
     }
 
+    match = blurb.match(/in your shooting phase/i);
+    if (match) {
+        effect.phase = Phase.Shooting;
+        effect.subPhase = SubPhase.While;
+        effect.side = Turn.Your;
+    }
+
     match = blurb.match(/at the end of the shooting phase/i);
     if (match) {
         effect.phase = Phase.Shooting;
@@ -466,6 +473,16 @@ export function getAbilityEffects(
         effect.targetsCount = match[1];
     }
 
+    match = blurb.match(
+        /you can pick 1 point on the battlefield within (\d+") of this unit and visible to it/i
+    );
+    if (match) {
+        effect.targetType = TargetType.Zone;
+        effect.targetRange = match[1];
+        effect.targetCondition = effect.targetCondition || {};
+        effect.targetCondition.visible = true;
+    }
+
     // Defense
     match = blurb.match(
         /Roll a dice each time you allocate a wound or mortal wound to this model\. On a (\d)\+, that wound or mortal wound is negated/i
@@ -571,7 +588,7 @@ export function getAbilityEffects(
 
     // Attack
     match = blurb.match(
-        /if the unmodified hit roll for an attack made with (?:an?|this model's )?(.*) is 6, that attack inflicts (\d+) mortal wounds? (on the target )?and the attack sequence ends \(do not make a wound or save roll\)/i
+        /if the unmodified hit roll for an attack made with (?:an?|this model's )?(.*) is 6, (?:the target suffers|that attack inflicts) (\d+) mortal wounds? (on the target )?and the attack sequence ends \(do not make a wound or save roll\)/i
     );
     if (match) {
         auras.push({
@@ -701,6 +718,16 @@ export function getAbilityEffects(
         effect.immediate = effect.immediate || {};
         effect.immediate.heal = match[1];
     }
+
+    match = blurb.match(
+        /each enemy unit within (\d") of that point suffers (D?\d) mortal wounds/i
+    );
+    if (match) {
+        effect.immediate = effect.immediate || {};
+        effect.immediate.mortalWounds = match[2];
+        effect.targetRadius = match[1];
+    }
+
     // Command
     match = blurb.match(
         /your opponent must spend 2 command points to use a command ability instead of 1/i
