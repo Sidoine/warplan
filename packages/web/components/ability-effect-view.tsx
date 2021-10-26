@@ -17,7 +17,13 @@ import {
     getPhaseName,
     getTokenName,
 } from "../stores/battle";
-import { BoltIcon, SkullIcon, SpellIcon, SwordIcon } from "../atoms/icons";
+import {
+    BoltIcon,
+    SkullIcon,
+    SpellIcon,
+    SwordIcon,
+    TargetIcon,
+} from "../atoms/icons";
 import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
 import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from "@material-ui/icons/Group";
@@ -209,6 +215,7 @@ export function AbilityEffectTarget({
         <>
             <Chip
                 size="medium"
+                icon={<TargetIcon />}
                 label={
                     <>
                         <TargetView effect={effect} />

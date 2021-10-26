@@ -9,6 +9,8 @@ import {
     Ability,
     ItemWithAbilities,
     AbilityEffect,
+    Phase,
+    Turn,
 } from "../../common/data";
 import { value } from "../helpers/react";
 import {
@@ -19,18 +21,55 @@ import {
 } from "../atoms/warscroll-components";
 import StarIcon from "@material-ui/icons/Star";
 import { distinct } from "../helpers/algo";
-import { Card, CardContent, Typography, Grid } from "@material-ui/core";
+import {
+    Card,
+    CardContent,
+    Typography,
+    Grid,
+    makeStyles,
+    Chip,
+} from "@material-ui/core";
 import {
     AbilityEffectAurasView,
     AbilityEffectCondition,
     AbilityEffectCost,
     AbilityEffectTarget,
 } from "./ability-effect-view";
-import {
-    getPhaseSideName,
-    getSubPhaseName,
-    getPhaseName,
-} from "../stores/battle";
+import { getSubPhaseName, getPhaseName } from "../stores/battle";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { SkullIcon } from "../atoms/icons";
+const heroColor = "#ffd700";
+const shootColor = "#ff0000";
+const movementColor = "#0000ff";
+const combatColor = "#00ff00";
+const battleShockColor = "#ffa500";
+
+function getPhaseColor(phase: Phase | undefined) {
+    switch (phase) {
+        case Phase.Hero:
+            return heroColor;
+        case Phase.Shooting:
+            return shootColor;
+        case Phase.Movement:
+            return movementColor;
+        case Phase.Combat:
+            return combatColor;
+        case Phase.Battleshock:
+            return battleShockColor;
+        default:
+            return "#000";
+    }
+}
+
+const useStyles = makeStyles((theme) => ({
+    phase: {
+        backgroundColor: ({ phase }: { phase?: Phase }) => getPhaseColor(phase),
+        color: ({ phase }: { phase?: Phase }) =>
+            phase
+                ? theme.palette.getContrastText(getPhaseColor(phase))
+                : "inherit",
+    },
+}));
 
 function EffectLine({
     effect,
@@ -39,14 +78,27 @@ function EffectLine({
     effect: AbilityEffect;
     unit: ItemWithAbilities;
 }) {
+    const classes = useStyles({ phase: effect.phase });
     return (
-        <Grid container direction="row">
-            <Grid item>
-                {effect.side !== undefined && getPhaseSideName(effect.side)}{" "}
-                {effect.subPhase !== undefined &&
-                    getSubPhaseName(effect.subPhase)}{" "}
-                {effect.phase !== undefined && getPhaseName(effect.phase)}
-            </Grid>
+        <Grid container direction="row" spacing={1}>
+            {effect.phase !== undefined && (
+                <Grid item>
+                    <Chip
+                        className={classes.phase}
+                        label={
+                            <>
+                                {effect.side === Turn.Your && <FavoriteIcon />}
+                                {effect.side === Turn.Opponent && (
+                                    <SkullIcon />
+                                )}{" "}
+                                {effect.subPhase !== undefined &&
+                                    getSubPhaseName(effect.subPhase)}{" "}
+                                {getPhaseName(effect.phase)}
+                            </>
+                        }
+                    />
+                </Grid>
+            )}
             <Grid item>
                 <AbilityEffectCost effect={effect} unit={unit} />
                 {effect.condition && (
@@ -80,8 +132,10 @@ function AbilityLine({
     ability: Ability;
 }) {
     return (
-        <Grid container direction="row">
-            <Grid item>{ability.name}</Grid>
+        <Grid container direction="column">
+            <Grid item>
+                <Typography variant="caption">{ability.name}</Typography>
+            </Grid>
             {ability.effects && (
                 <Grid item>
                     <Grid container direction="column">
@@ -115,15 +169,24 @@ function Abilities({
     );
 }
 
+function ItemView({ unit }: { unit: ItemWithAbilities }) {
+    return (
+        <>
+            {unit.attacks && <AllAttacks attacks={unit.attacks} />}
+            {unit.abilities && (
+                <Abilities abilities={unit.abilities} unit={unit} />
+            )}
+        </>
+    );
+}
+
 function UnitOption({ unit, option }: { unit: Unit; option: ModelOption }) {
     return (
         <>
             <Typography variant="h6" color="textSecondary">
                 {option.name}
             </Typography>
-            {option.abilities && (
-                <Abilities abilities={option.abilities} unit={option} />
-            )}
+            <ItemView unit={option} />
         </>
     );
 }
@@ -135,13 +198,14 @@ export function UnitWarscrollEx({ unit }: { unit: Unit }) {
                 <Typography variant="h5" color="textPrimary">
                     {unit.name}
                 </Typography>
-                {unit.abilities && (
-                    <Abilities abilities={unit.abilities} unit={unit} />
-                )}
+                <ItemView unit={unit} />
                 {unit.options &&
                     unit.options.map((x) => (
                         <UnitOption unit={unit} option={x} key={x.id} />
                     ))}
+                {unit.damageTable && (
+                    <WoundEffects damageTable={unit.damageTable} />
+                )}
             </CardContent>
         </Card>
     );

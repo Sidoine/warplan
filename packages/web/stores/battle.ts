@@ -918,17 +918,17 @@ export function getPhaseName(phase: Phase) {
         case Phase.Setup:
             return "Setup";
         case Phase.Hero:
-            return "Hero";
+            return "Hr";
         case Phase.Movement:
-            return "Movement";
+            return "Mv";
         case Phase.Shooting:
-            return "Shooting";
+            return "Sh";
         case Phase.Charge:
-            return "Charge";
+            return "Ch";
         case Phase.Combat:
-            return "Combat";
+            return "Cb";
         case Phase.Battleshock:
-            return "Battleshock";
+            return "Bs";
     }
     return "Battle";
 }
