@@ -201,6 +201,9 @@ export function getEffectCondition(
     if (condition.isInGarrison) {
         descriptions.push("in garrison");
     }
+    if (condition.setup) {
+        descriptions.push("setup");
+    }
     if (descriptions.length === 0) {
         return [`⚠️ ${JSON.stringify(condition)}`];
     }
@@ -609,6 +612,12 @@ export function getChargeAuraText(
             type: EffectType.Debuff,
         });
     }
+    if (chargeAura.rerollCharge) {
+        descriptions.push({
+            text: "RR charge",
+            type: EffectType.Buff,
+        });
+    }
     if (descriptions.length === 0) {
         descriptions.push({
             text: `ChargeAura: ${JSON.stringify(chargeAura)}`,
@@ -730,12 +739,7 @@ function getValueAuraText(
     let condition: string | undefined;
     if (valueAura.ignoreWounds) {
         descriptions.push({
-            text: addCondition(
-                "Wds table: use 0 Wd",
-                valueAura.ignoreWounds,
-                unit,
-                dataStore
-            ),
+            text: "Wds table: use 0 Wd",
             type: EffectType.Buff,
         });
     }
@@ -755,7 +759,7 @@ export function getAuraText(
 ): AuraDescription {
     switch (aura.type) {
         case undefined:
-            return getImmediateText(aura, unit);
+            return getImmediateText(aura, unit, dataStore);
         case AuraType.Attack:
             return getAttackAuraText(aura, unit, dataStore);
         case AuraType.Battleshock:
@@ -786,18 +790,38 @@ export function getAuraText(
     };
 }
 
-function getImmediateText(immediate: ImmediateEffect, unit: ItemWithAbilities) {
+function getImmediateText(
+    immediate: ImmediateEffect,
+    unit: ItemWithAbilities,
+    dataStore: DataStore
+) {
     const descriptions: AuraEntryDescription[] = [];
     let condition: string | undefined;
     if (immediate.mortalWounds) {
         descriptions.push({
-            text: `${immediate.mortalWounds} MW`,
+            text: `${getValueText(immediate.mortalWounds, unit, dataStore)} MW`,
+            type: EffectType.Immediate,
+        });
+    }
+    if (immediate.mortalWoundsPerWound) {
+        descriptions.push({
+            text: `${getValueText(
+                immediate.mortalWoundsPerWound,
+                unit,
+                dataStore
+            )} MW/Wd`,
             type: EffectType.Immediate,
         });
     }
     if (immediate.mortalWoundsPerModel) {
         descriptions.push({
             text: `${immediate.mortalWoundsPerModel} MW/model`,
+            type: EffectType.Immediate,
+        });
+    }
+    if (immediate.mortalWoundsPerChargeRoll) {
+        descriptions.push({
+            text: `${immediate.mortalWoundsPerChargeRoll} MW/charge roll`,
             type: EffectType.Immediate,
         });
     }
@@ -887,7 +911,7 @@ export function getEffectText(
     const descriptions: AuraDescription[] = [];
 
     if (effect.immediate) {
-        descriptions.push(getImmediateText(effect.immediate, unit));
+        descriptions.push(getImmediateText(effect.immediate, unit, dataStore));
     }
 
     if (effect.auras) {

@@ -139,11 +139,7 @@ function parseWeaponCondition(
         }
         const attack = findElement(unit.attacks, weapon);
         if (attack) {
-            effect.targetCondition = { weaponId: attack.name };
-            // effect.attackAura = effect.attackAura || {};
-            // effect.attackAura.phase = attack.melee
-            //     ? Phase.Combat
-            //     : Phase.Shooting;
+            effect.targetCondition = { weaponId: attack.id };
         }
     }
 }
@@ -184,7 +180,7 @@ export function getAbilityEffects(
     dump: Dump,
     unit?: Unit
 ) {
-    let effect: Partial<AbilityEffect> = {};
+    const effect: Partial<AbilityEffect> = {};
     const auras: Aura[] = [];
 
     // Phase
@@ -272,7 +268,7 @@ export function getAbilityEffects(
     match = blurb.match(/after this (model|unit) makes a charge move/i);
     if (match) {
         effect.phase = Phase.Charge;
-        effect.subPhase = SubPhase.While;
+        effect.subPhase = SubPhase.WhileAfter;
         effect.side = Turn.Your;
     }
 
@@ -286,6 +282,14 @@ export function getAbilityEffects(
     if (match) {
         effect.phase = Phase.Combat;
         effect.subPhase = SubPhase.While;
+    }
+
+    match = blurb.match(
+        /After this unit has fought for the first time in a phase and all of its attacks have been resolved/i
+    );
+    if (match) {
+        effect.phase = Phase.Combat;
+        effect.subPhase = SubPhase.WhileAfter;
     }
 
     match = blurb.match(/during the combat phase,/i);
@@ -305,23 +309,6 @@ export function getAbilityEffects(
         effect.subPhase = SubPhase.Before;
     }
 
-    // Conditions
-    match = blurb.match(
-        /if this (model|unit) does not make a charge move in your charge phase/i
-    );
-    if (match) {
-        effect.condition = effect.condition || {};
-        effect.condition.hasNotCharged = true;
-    }
-
-    match = blurb.match(
-        /if this (model|unit) made a charge move in the same turn/i
-    );
-    if (match) {
-        effect.condition = effect.condition || {};
-        effect.condition.hasCharged = true;
-    }
-
     // Occurences
     match = blurb.match(/once per battle/i);
     if (match) {
@@ -336,7 +323,6 @@ export function getAbilityEffects(
     // Commands
     match = blurb.match(/you can use this command ability/i);
     if (match) {
-        effect = effect || { targetType: TargetType.Unit };
         effect.commandPoints = 1;
     }
 
@@ -415,6 +401,12 @@ export function getAbilityEffects(
         effect.targetRange = match[1];
     }
 
+    match = blurb.match(/you can pick 1 enemy unit within (\d") of this unit/i);
+    if (match) {
+        effect.targetType = TargetType.Enemy;
+        effect.targetRange = match[1];
+    }
+
     match = blurb.match(
         /pick 1 enemy unit within (\d+") of this unit’s (.*?) that is not visible to them/i
     );
@@ -446,7 +438,15 @@ export function getAbilityEffects(
     match = blurb.match(
         /you can pick 1 enemy unit within (\d+") of this unit’s (.*?) and/i
     );
-    if (match) {
+    if (match && effect.targetType === undefined) {
+        effect.targetType = TargetType.Enemy;
+        effect.targetRange = match[1];
+    }
+
+    match = blurb.match(
+        /you can pick 1 enemy unit within (\d+") of this unit and/i
+    );
+    if (match && effect.targetType === undefined) {
         effect.targetType = TargetType.Enemy;
         effect.targetRange = match[1];
     }
@@ -712,6 +712,14 @@ export function getAbilityEffects(
     }
 
     match = blurb.match(
+        /roll a number of dice equal to the unmodified charge roll for that charge move\. For each (\d)\+, that unit suffers (\d) mortal wounds?./i
+    );
+    if (match) {
+        effect.immediate = effect.immediate || {};
+        effect.immediate.mortalWoundsPerChargeRoll = `${match[2]}(${match[1]}+)`;
+    }
+
+    match = blurb.match(
         /you can heal up to (\d?D?\d?) wounds allocated to this model/i
     );
     if (match) {
@@ -726,6 +734,14 @@ export function getAbilityEffects(
         effect.immediate = effect.immediate || {};
         effect.immediate.mortalWounds = match[2];
         effect.targetRadius = match[1];
+    }
+
+    match = blurb.match(
+        /Roll (\d) dice for each model in this unit\. For each (\d)\+, that enemy unit suffers (\d) mortal wound/i
+    );
+    if (match) {
+        effect.immediate = effect.immediate || {};
+        effect.immediate.mortalWoundsPerModel = `${match[3]}(${match[1]}D ${match[2]}+)`;
     }
 
     // Command
@@ -766,14 +782,36 @@ export function getAbilityEffects(
 
     // Conditions
     match = blurb.match(
+        /if this (model|unit) does not make a charge move in your charge phase/i
+    );
+    if (match) {
+        for (const aura of auras) {
+            aura.condition = aura.condition || {};
+            aura.condition.hasNotCharged = true;
+        }
+    }
+
+    match = blurb.match(
+        /if this (model|unit) made a charge move in the same turn/i
+    );
+    if (match) {
+        for (const aura of auras) {
+            aura.condition = aura.condition || {};
+            aura.condition.hasCharged = true;
+        }
+    }
+
+    match = blurb.match(
         /if this model is within (\d+") of any friendly (.*?),/i
     );
     if (match) {
-        effect.condition = effect.condition || {};
-        effect.condition.inRangeOf = {
-            allKeywords: parseKeywords(match[2], dump),
-            range: match[1],
-        };
+        for (const aura of auras) {
+            aura.condition = aura.condition || {};
+            aura.condition.inRangeOf = {
+                allKeywords: parseKeywords(match[2], dump),
+                range: match[1],
+            };
+        }
     }
 
     // Duration

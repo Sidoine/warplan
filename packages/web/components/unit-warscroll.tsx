@@ -6,11 +6,7 @@ import {
     AbilityCategory,
     Unit,
     UnitOptionCategory,
-    Ability,
     ItemWithAbilities,
-    AbilityEffect,
-    Phase,
-    Turn,
 } from "../../common/data";
 import { value } from "../helpers/react";
 import {
@@ -18,156 +14,17 @@ import {
     WoundEffects,
     AllAbilities,
     useWarscrollStyles,
+    Warscroll,
+    SubWarscroll,
 } from "../atoms/warscroll-components";
 import StarIcon from "@material-ui/icons/Star";
 import { distinct } from "../helpers/algo";
-import {
-    Card,
-    CardContent,
-    Typography,
-    Grid,
-    makeStyles,
-    Chip,
-} from "@material-ui/core";
-import {
-    AbilityEffectAurasView,
-    AbilityEffectCondition,
-    AbilityEffectCost,
-    AbilityEffectTarget,
-} from "./ability-effect-view";
-import { getSubPhaseName, getPhaseName } from "../stores/battle";
+import { Grid, Chip } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import { SkullIcon } from "../atoms/icons";
-const heroColor = "#ffd700";
-const shootColor = "#ff0000";
-const movementColor = "#0000ff";
-const combatColor = "#00ff00";
-const battleShockColor = "#ffa500";
-
-function getPhaseColor(phase: Phase | undefined) {
-    switch (phase) {
-        case Phase.Hero:
-            return heroColor;
-        case Phase.Shooting:
-            return shootColor;
-        case Phase.Movement:
-            return movementColor;
-        case Phase.Combat:
-            return combatColor;
-        case Phase.Battleshock:
-            return battleShockColor;
-        default:
-            return "#000";
-    }
-}
-
-const useStyles = makeStyles((theme) => ({
-    phase: {
-        backgroundColor: ({ phase }: { phase?: Phase }) => getPhaseColor(phase),
-        color: ({ phase }: { phase?: Phase }) =>
-            phase
-                ? theme.palette.getContrastText(getPhaseColor(phase))
-                : "inherit",
-    },
-}));
-
-function EffectLine({
-    effect,
-    unit,
-}: {
-    effect: AbilityEffect;
-    unit: ItemWithAbilities;
-}) {
-    const classes = useStyles({ phase: effect.phase });
-    return (
-        <Grid container direction="row" spacing={1}>
-            {effect.phase !== undefined && (
-                <Grid item>
-                    <Chip
-                        className={classes.phase}
-                        label={
-                            <>
-                                {effect.side === Turn.Your && <FavoriteIcon />}
-                                {effect.side === Turn.Opponent && (
-                                    <SkullIcon />
-                                )}{" "}
-                                {effect.subPhase !== undefined &&
-                                    getSubPhaseName(effect.subPhase)}{" "}
-                                {getPhaseName(effect.phase)}
-                            </>
-                        }
-                    />
-                </Grid>
-            )}
-            <Grid item>
-                <AbilityEffectCost effect={effect} unit={unit} />
-                {effect.condition && (
-                    <AbilityEffectCondition
-                        condition={effect.condition}
-                        unit={unit}
-                    />
-                )}
-            </Grid>
-            <Grid item>
-                <AbilityEffectTarget unit={unit} effect={effect} />
-                {effect.targetCondition && (
-                    <AbilityEffectCondition
-                        condition={effect.targetCondition}
-                        unit={unit}
-                    />
-                )}
-            </Grid>
-            <Grid item>
-                <AbilityEffectAurasView effect={effect} unit={unit} />
-            </Grid>
-        </Grid>
-    );
-}
-
-function AbilityLine({
-    unit,
-    ability,
-}: {
-    unit: ItemWithAbilities;
-    ability: Ability;
-}) {
-    return (
-        <Grid container direction="column">
-            <Grid item>
-                <Typography variant="caption">{ability.name}</Typography>
-            </Grid>
-            {ability.effects && (
-                <Grid item>
-                    <Grid container direction="column">
-                        {ability.effects.map((effect, index) => (
-                            <Grid item key={index}>
-                                <EffectLine unit={unit} effect={effect} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Grid>
-            )}
-        </Grid>
-    );
-}
-
-function Abilities({
-    unit,
-    abilities,
-}: {
-    unit: ItemWithAbilities;
-    abilities: Ability[];
-}) {
-    return (
-        <Grid container direction="column">
-            {abilities.map((x) => (
-                <Grid item key={x.id}>
-                    <AbilityLine unit={unit} ability={x} />
-                </Grid>
-            ))}
-        </Grid>
-    );
-}
+import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
+import { SaveIcon } from "../atoms/icons";
+import FlagIcon from "@material-ui/icons/Flag";
+import { Abilities } from "./warscroll-abilities";
 
 function ItemView({ unit }: { unit: ItemWithAbilities }) {
     return (
@@ -182,32 +39,47 @@ function ItemView({ unit }: { unit: ItemWithAbilities }) {
 
 function UnitOption({ unit, option }: { unit: Unit; option: ModelOption }) {
     return (
-        <>
-            <Typography variant="h6" color="textSecondary">
-                {option.name}
-            </Typography>
+        <SubWarscroll title={option.name}>
             <ItemView unit={option} />
-        </>
+        </SubWarscroll>
     );
 }
 
 export function UnitWarscrollEx({ unit }: { unit: Unit }) {
+    const classes = useWarscrollStyles();
     return (
-        <Card>
-            <CardContent>
-                <Typography variant="h5" color="textPrimary">
-                    {unit.name}
-                </Typography>
-                <ItemView unit={unit} />
-                {unit.options &&
-                    unit.options.map((x) => (
-                        <UnitOption unit={unit} option={x} key={x.id} />
-                    ))}
-                {unit.damageTable && (
-                    <WoundEffects damageTable={unit.damageTable} />
-                )}
-            </CardContent>
-        </Card>
+        <Warscroll
+            title={unit.name}
+            stats={
+                <>
+                    <Grid item>
+                        <Chip label={unit.wounds} icon={<FavoriteIcon />} />
+                    </Grid>
+                    <Grid item>
+                        <Chip label={unit.move} icon={<DoubleArrowIcon />} />
+                    </Grid>
+                    <Grid item>
+                        <Chip label={unit.save} icon={<SaveIcon />} />
+                    </Grid>
+                    <Grid item>
+                        <Chip label={unit.bravery} icon={<FlagIcon />} />
+                    </Grid>
+                </>
+            }
+        >
+            <ItemView unit={unit} />
+            {unit.options &&
+                unit.options.map((x) => (
+                    <UnitOption unit={unit} option={x} key={x.id} />
+                ))}
+            {unit.damageTable && (
+                <WoundEffects damageTable={unit.damageTable} />
+            )}
+            <div className={classes.keywords}>
+                <div className={classes.keywordsHeader}>Keywords</div>
+                <div>{unit.keywords && unit.keywords.join(", ")}</div>
+            </div>
+        </Warscroll>
     );
 }
 

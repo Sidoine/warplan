@@ -180,6 +180,7 @@ export interface TargetCondition {
     hasArtefact?: boolean;
     slain?: boolean;
     isInGarrison?: boolean;
+    setup?: boolean;
 }
 
 export interface AttackAuraValues {
@@ -245,6 +246,7 @@ interface BaseAura {
     /** The aura is effective only after this delay */
     delay?: EffectDuration;
     targetCondition?: TargetCondition;
+    condition?: TargetCondition;
 }
 
 export interface AttackAura
@@ -259,6 +261,7 @@ export interface AttackAura
 
 export const enum SubPhase {
     Before,
+    WhileBefore,
     While,
     WhileAfter,
     After,
@@ -286,7 +289,7 @@ export interface PrayerAura extends BaseAura {
 
 export interface ValueAura extends BaseAura {
     type: AuraType.Value;
-    ignoreWounds?: Value;
+    ignoreWounds?: boolean;
 }
 
 export const enum TargetType {
@@ -336,9 +339,11 @@ export interface CommandAura extends BaseAura {
 export interface ImmediateEffect {
     type?: undefined;
     mortalWounds?: Value;
+    mortalWoundsPerWound?: Value;
     heal?: Value;
     setUpAwayFromEnemy?: Value; // The distance to the enemy
     mortalWoundsPerModel?: Value;
+    mortalWoundsPerChargeRoll?: Value;
     allowInclusion?: boolean;
     gainCommandPoints?: Value;
     setup?: boolean;

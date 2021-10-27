@@ -209,17 +209,15 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         targetType: TargetType.Unit,
         auras: [
             {
-                type: AuraType.Value,
-                ignoreWounds: conditionValue(
-                    {
-                        inRangeOf: {
-                            friendly: true,
-                            keyword: "STONEMAGE",
-                            range: '12"',
-                        },
+                condition: {
+                    inRangeOf: {
+                        friendly: true,
+                        keyword: "STONEMAGE",
+                        range: '12"',
                     },
-                    1
-                ),
+                },
+                type: AuraType.Value,
+                ignoreWounds: true,
             },
         ],
     });
@@ -377,11 +375,9 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     updateEffect(data.abilities.scinariLoreseekerLoneAgent, {
         auras: [
             {
+                condition: { notInRangeOf: { range: '9"', friendly: true } },
                 type: AuraType.Defense,
-                bonusSave: conditionValue(
-                    { notInRangeOf: { range: '9"', friendly: true } },
-                    1
-                ),
+                bonusSave: 1,
             },
             { type: AuraType.Special, loneAgent: true },
         ],

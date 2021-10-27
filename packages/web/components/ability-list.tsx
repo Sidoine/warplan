@@ -12,17 +12,12 @@ import {
 import { observer } from "mobx-react-lite";
 import { useStores } from "../stores";
 import { Ability, ItemWithAbilities, Phase } from "../../common/data";
-import {
-    getEffectPhases,
-    getPhaseName,
-    getPhaseSideName,
-    getSubPhaseName,
-    phases,
-} from "../stores/battle";
+import { getEffectPhases, getPhaseName, phases } from "../stores/battle";
 import {
     AbilityEffectAurasView,
     AbilityEffectCondition,
     AbilityEffectCost,
+    AbilityEffectPhaseView,
     AbilityEffectTarget,
 } from "./ability-effect-view";
 import { Warning } from "../atoms/warning";
@@ -79,30 +74,28 @@ function AbilityRows({
                         </>
                     )}
                     <TableCell>
-                        {effect.side !== undefined &&
-                            getPhaseSideName(effect.side)}{" "}
-                        {effect.subPhase !== undefined &&
-                            getSubPhaseName(effect.subPhase)}{" "}
-                        {effect.phase !== undefined &&
-                            getPhaseName(effect.phase)}
+                        <AbilityEffectPhaseView effect={effect} />
                     </TableCell>
                     <TableCell>
-                        <AbilityEffectCost effect={effect} unit={unit} />
                         {effect.condition && (
                             <AbilityEffectCondition
                                 condition={effect.condition}
                                 unit={unit}
-                            />
+                            >
+                                <AbilityEffectCost
+                                    effect={effect}
+                                    unit={unit}
+                                />
+                            </AbilityEffectCondition>
                         )}
                     </TableCell>
                     <TableCell>
-                        <AbilityEffectTarget unit={unit} effect={effect} />
-                        {effect.targetCondition && (
-                            <AbilityEffectCondition
-                                condition={effect.targetCondition}
-                                unit={unit}
-                            />
-                        )}
+                        <AbilityEffectCondition
+                            condition={effect.targetCondition}
+                            unit={unit}
+                        >
+                            <AbilityEffectTarget unit={unit} effect={effect} />
+                        </AbilityEffectCondition>
                     </TableCell>
                     <TableCell>
                         <AbilityEffectAurasView effect={effect} unit={unit} />

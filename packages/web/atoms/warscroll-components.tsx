@@ -1,12 +1,20 @@
 import { Attack, DamageTable, Ability, AbilityGroup } from "../../common/data";
 import * as React from "react";
 import { value } from "../helpers/react";
-import { makeStyles } from "@material-ui/core";
+import {
+    Card,
+    CardContent,
+    Divider,
+    Grid,
+    makeStyles,
+    Typography,
+} from "@material-ui/core";
 import warscrollMiddle from "../assets/ws-header.png";
 import warscrollLeft from "../assets/ws-left.png";
 import warscrollRight from "../assets/ws-right.png";
 import warscrollBackground from "../assets/ws-background.png";
 import warscrollSeparator from "../assets/ws-separator.png";
+import { ReactNode } from "react";
 
 export const useWarscrollStyles = makeStyles({
     wounds: {
@@ -377,5 +385,49 @@ export function WoundEffects({ damageTable }: { damageTable: DamageTable }) {
                 ))}
             </tbody>
         </table>
+    );
+}
+
+export function Warscroll({
+    title,
+    children,
+    stats,
+}: {
+    title: ReactNode;
+    children: ReactNode;
+    stats?: ReactNode;
+}) {
+    return (
+        <Card>
+            <CardContent>
+                <Grid container direction="row" spacing={1}>
+                    <Grid item>
+                        <Typography variant="h5" color="textPrimary">
+                            {title}
+                        </Typography>
+                    </Grid>
+                    {stats}
+                </Grid>
+                {children}
+            </CardContent>
+        </Card>
+    );
+}
+
+export function SubWarscroll({
+    title,
+    children,
+}: {
+    title: ReactNode;
+    children: ReactNode;
+}) {
+    return (
+        <>
+            <Divider />
+            <Typography variant="h6" color="textSecondary">
+                {title}
+            </Typography>
+            {children}
+        </>
     );
 }
