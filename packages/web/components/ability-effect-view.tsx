@@ -42,6 +42,7 @@ import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import ControlPointIcon from "@material-ui/icons/ControlPoint";
 const heroColor = "#ffd700";
 const shootColor = "#D08000";
 const movementColor = "#0000ff";
@@ -171,6 +172,7 @@ function TargetView({ effect }: { effect: AbilityEffect }) {
             {targetType === TargetType.Weapon && <SwordIcon />}
             {targetType === TargetType.Terrain && <FilterHdrIcon />}
             {targetType === TargetType.Ability && <BoltIcon />}
+            {targetType === TargetType.Zone && <ControlPointIcon />}
         </>
     );
 }
