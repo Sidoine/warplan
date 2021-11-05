@@ -1,6 +1,5 @@
 import { observer, useLocalObservable } from "mobx-react-lite";
-import { PointMode } from "../stores/warscroll";
-import { Faction } from "../../common/data";
+import { Faction, PointMode } from "../../common/data";
 import DropdownValues from "../atoms/dropdown-values";
 import DropdownObjects from "../atoms/dropdown-objects";
 import {
@@ -11,7 +10,7 @@ import {
     CardContent,
     CardActions,
     Input,
-    Button
+    Button,
 } from "@material-ui/core";
 import WarningIcon from "@material-ui/icons/Warning";
 import { Warning } from "../atoms/warning";
@@ -19,6 +18,7 @@ import { useStores } from "../stores";
 import React, { ChangeEvent, useCallback } from "react";
 import AddButton, { TableColumn } from "../atoms/add-button";
 import { AllAbilityGroups } from "../atoms/warscroll-components";
+import { ExtraAbilitiesEdit } from "./extra-abilities-edit";
 
 function getName(x: { name: string }) {
     return x.name;
@@ -28,11 +28,11 @@ const allegianceColumns: TableColumn<Faction>[] = [
     { name: "Name", text: (x: Faction) => x.name },
     {
         name: "Abilities",
-        text: x =>
+        text: (x) =>
             x.abilityGroups && (
                 <AllAbilityGroups abilityGroups={x.abilityGroups} />
-            )
-    }
+            ),
+    },
 ];
 
 export const ArmyListSummary = observer(() => {
@@ -46,7 +46,7 @@ export const ArmyListSummary = observer(() => {
                 warscrollStore.armyList.allegiance = allegiance;
                 warscrollStore.saveWarscroll();
             }
-        }
+        },
     }));
 
     const warscroll = warscrollStore.armyList;
@@ -137,9 +137,9 @@ export const ArmyListSummary = observer(() => {
                                     value={warscroll.pointMode}
                                     options={[
                                         PointMode.MatchedPlay,
-                                        PointMode.OpenPlay
+                                        PointMode.OpenPlay,
                                     ]}
-                                    getText={v =>
+                                    getText={(v) =>
                                         v === PointMode.MatchedPlay
                                             ? "Matched play"
                                             : "Open play"
@@ -154,35 +154,14 @@ export const ArmyListSummary = observer(() => {
                                 <DropdownObjects
                                     value={warscroll.realm}
                                     options={unitsStore.realms}
-                                    getText={x => x.name}
+                                    getText={(x) => x.name}
                                     onChange={warscrollStore.setRealm}
                                     clearable
                                 />
                             </FormControl>
                         </Grid>
                         <Grid item>
-                            <FormControl>
-                                <InputLabel>Grand strategy</InputLabel>
-                                <DropdownObjects
-                                    value={warscroll.grandStrategy}
-                                    options={warscroll.grandStrategies}
-                                    getText={x => x.name}
-                                    onChange={warscroll.setGrandStrategy}
-                                    getTooltip={x => x.description}
-                                />
-                            </FormControl>
-                        </Grid>
-                        <Grid item>
-                            <FormControl>
-                                <InputLabel>Triumph</InputLabel>
-                                <DropdownObjects
-                                    value={warscroll.triumph}
-                                    options={warscroll.triumphs}
-                                    getText={x => x.name}
-                                    onChange={warscroll.setTriumph}
-                                    getTooltip={x => x.description}
-                                />
-                            </FormControl>
+                            <ExtraAbilitiesEdit unit={warscroll} />
                         </Grid>
                     </Grid>
                     <Grid item container spacing={2} direction="column">

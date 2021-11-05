@@ -75,6 +75,8 @@ export const abilityCategoryName = new Map<AbilityCategory, string>([
     [AbilityCategory.Mount, "Mount Trait"],
     [AbilityCategory.Triumph, "Triumph"],
     [AbilityCategory.CommandTrait, "Command Trait"],
+    [AbilityCategory.GrandStrategy, "Grand Strategy"],
+    [AbilityCategory.UniqueEnhancement, "Unique Enhancement"],
 ]);
 
 export const enum Phase {
@@ -667,6 +669,13 @@ export interface GrandStrategy {
     grandStrategyGroupId: string;
 }
 
+export interface UnitRole {
+    role: Role;
+    faction?: Faction;
+    generalKeyword?: string;
+    enforced?: boolean;
+}
+
 export interface Unit extends UnitInfos {
     id: string;
     name: string;
@@ -690,7 +699,7 @@ export interface Unit extends UnitInfos {
     magicDescription?: string;
     options?: ModelOption[];
     pictureUrl?: string;
-    roles: Role[];
+    roles: UnitRole[];
     unique?: boolean;
     single?: boolean;
 
@@ -740,12 +749,34 @@ export interface BattalionAbility extends Ability {
     grantsExtraEnhancement: boolean;
 }
 
+export interface WarscrollBattalionUnitInterface {
+    id: string;
+    name: string;
+    canAddUnit(unit: UnitWarscrollInterface): boolean;
+    battalion: WarscrollBattalionInterface;
+}
+
 export interface WarscrollBattalionInterface {
     id: string;
     definition: Battalion;
+    unitTypes: WarscrollBattalionUnitInterface[];
 }
 
-export interface UnitWarscrollInterface extends ItemWithAbilities {
+export interface ItemWithExtraAbilities {
+    abilityCategories: AbilityCategory[];
+    availableAbilityGroups: AbilityGroup[];
+    extraAbilities: Ability[];
+    removeExtraAbility(ability: Ability): void;
+    addExtraAbility(ability: Ability): void;
+    replaceExtraAbility(oldAbility: Ability, newAbility: Ability): void;
+    isAvailableExtraAbility(ability: Ability): boolean;
+    getMaxNumberOfEnhancements(category: AbilityCategory): number;
+    getNumberOfEnhancements(category: AbilityCategory): number;
+}
+
+export interface UnitWarscrollInterface
+    extends ItemWithAbilities,
+        ItemWithExtraAbilities {
     definition: Unit;
     isGeneral: boolean;
     isLeader: boolean;
@@ -754,15 +785,20 @@ export interface UnitWarscrollInterface extends ItemWithAbilities {
     modelCount: number;
     keywords: string[];
     armyList: ArmyListInterface;
+    readonly role: Role;
 }
 
+export const enum PointMode {
+    MatchedPlay,
+    OpenPlay,
+}
 export interface WarscrollModelInterface {
     id: number;
     options: ModelOption[];
     count: number;
 }
 
-export interface ArmyListInterface {
+export interface ArmyListInterface extends ItemWithExtraAbilities {
     battalions: WarscrollBattalionInterface[];
     general: UnitWarscrollInterface | undefined;
     selectedExtraAbilities: Ability[];
@@ -772,6 +808,11 @@ export interface ArmyListInterface {
     armyType: Faction | null;
     subFaction: Faction | null;
     getUnitsWithKeywords(keywords: string[][]): UnitWarscrollInterface[];
+    hasAnyUnitExtraAbility(ability: Ability): boolean;
+    pointMode: PointMode;
+    save(): void;
+    units: UnitWarscrollInterface[];
+    isRoleAvailable(role: UnitRole): boolean;
 }
 
 export interface ImportedDataStore {

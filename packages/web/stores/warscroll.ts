@@ -10,17 +10,14 @@ import {
     AbilityGroup,
     BattalionUnit,
     AbilityCategory,
+    ArmyListInterface,
+    PointMode,
+    WarscrollBattalionUnitInterface,
 } from "../../common/data";
 
 import { ArmyList } from "./army-list";
 import { getUnitModelsWithOptionCount } from "./overrides/tools";
-import { HasId } from "../atoms/add-button";
 import { Role } from "../../common/definitions";
-
-export const enum PointMode {
-    MatchedPlay,
-    OpenPlay,
-}
 
 export class WarscrollModel implements WarscrollModelInterface {
     id: number;
@@ -113,6 +110,7 @@ export interface AbilityModel {
 export type WarscrollItem = UnitWarscroll | WarscrollBattalion;
 
 export class UnitWarscroll implements UnitWarscrollInterface {
+    private static serial = 1;
     type: "unit" = "unit";
     id: string;
 
@@ -120,7 +118,10 @@ export class UnitWarscroll implements UnitWarscrollInterface {
     models: WarscrollModel[] = [];
 
     @observable.shallow
-    battalionUnit: WarscrollBattalionUnit | null = null;
+    battalionUnit: WarscrollBattalionUnitInterface | null = null;
+
+    @observable
+    selectedRole: Role | null = null;
 
     @computed
     get name() {
@@ -201,23 +202,23 @@ export class UnitWarscroll implements UnitWarscrollInterface {
     }
 
     get isArtillery() {
-        return this.definition.roles.includes(Role.Artillery);
+        return this.role === Role.Artillery;
     }
 
     get isLeader() {
-        return this.definition.roles.includes(Role.Leader);
+        return this.role === Role.Leader;
     }
 
     get isBehemot() {
-        return this.definition.roles.includes(Role.Behemoth);
+        return this.role === Role.Behemoth;
     }
 
     get isBattleline() {
-        return this.definition.roles.includes(Role.Battleline);
+        return this.role === Role.Battleline;
     }
 
     get isEndlessSpell() {
-        return this.definition.roles.includes(Role.EndlessSpell);
+        return this.role === Role.EndlessSpell;
     }
 
     get isOther() {
@@ -229,7 +230,7 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         );
     }
 
-    get isGeneral() {
+    get isGeneral(): boolean {
         return this.armyList.general === this;
     }
 
@@ -262,7 +263,7 @@ export class UnitWarscroll implements UnitWarscrollInterface {
 
     @computed
     get availableAbilityGroups() {
-        return this.armyList.abilityGroups.filter((x) =>
+        return this.armyList.availableAbilityGroups.filter((x) =>
             this.isAvailableAbilityGroup(x)
         );
     }
@@ -428,25 +429,50 @@ export class UnitWarscroll implements UnitWarscrollInterface {
     @computed
     get availableBattalionUnits() {
         const result = this.armyList.battalions.flatMap((x) =>
-            x.unitTypes.filter((y) => y.canAddUnit(this.definition))
+            x.unitTypes.filter((y) => y.canAddUnit(this))
         );
         if (this.battalionUnit) return result.concat(this.battalionUnit);
         return result;
     }
 
     @action
-    setBattalionUnit = (unit: WarscrollBattalionUnit | null) => {
+    setBattalionUnit = (unit: WarscrollBattalionUnitInterface | null) => {
         this.battalionUnit = unit;
         this.armyList.save();
     };
 
-    constructor(public armyList: ArmyList, public definition: Unit) {
+    @computed
+    get availableRoles() {
+        const result = [];
+        for (const role of this.definition.roles) {
+            if (this.armyList.isRoleAvailable(role)) {
+                if (role.enforced) {
+                    return [role.role];
+                }
+                result.push(role.role);
+            }
+        }
+        return result;
+    }
+
+    @computed
+    get role() {
+        if (this.availableRoles.length === 0) return Role.Other;
+        if (
+            this.selectedRole &&
+            this.availableRoles.includes(this.selectedRole)
+        )
+            return this.selectedRole;
+        return this.availableRoles[0];
+    }
+
+    constructor(public armyList: ArmyListInterface, public definition: Unit) {
         makeObservable(this);
-        this.id = (armyList.serial++).toString();
+        this.id = (UnitWarscroll.serial++).toString();
     }
 }
 
-export class WarscrollBattalionUnit implements HasId {
+export class WarscrollBattalionUnit implements WarscrollBattalionUnitInterface {
     static serial = 0;
     id = (WarscrollBattalionUnit.serial++).toString();
     constructor(
@@ -472,7 +498,7 @@ export class WarscrollBattalionUnit implements HasId {
         return this.units.length >= this.definition.min;
     }
 
-    canAddUnit(unit: Unit) {
+    canAddUnit(unit: UnitWarscrollInterface) {
         if (this.units.length >= this.definition.max) return false;
 
         if (
@@ -482,22 +508,18 @@ export class WarscrollBattalionUnit implements HasId {
             return false;
         if (
             this.definition.requiredRoles &&
-            (!unit.roles ||
-                !this.definition.requiredRoles.some((x) =>
-                    unit.roles.includes(x)
-                ))
+            !this.definition.requiredRoles.includes(unit.role)
         )
             return false;
         if (
             this.definition.excludedRoles &&
-            unit.roles &&
-            this.definition.excludedRoles.some((x) => unit.roles.includes(x))
+            this.definition.excludedRoles.includes(unit.role)
         )
             return false;
         if (
             this.definition.woundsLimit !== null &&
-            unit.wounds &&
-            unit.wounds > this.definition.woundsLimit
+            unit.definition.wounds &&
+            unit.definition.wounds > this.definition.woundsLimit
         )
             return false;
         return true;

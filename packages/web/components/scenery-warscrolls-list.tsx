@@ -11,14 +11,14 @@ import {
     CardContent,
     CardActions,
     Card,
-    CardHeader
+    CardHeader,
 } from "@material-ui/core";
 import { useStores } from "../stores";
 import { Role } from "../../common/definitions";
 
 function WarscrollSceneriesList({
     role,
-    title
+    title,
 }: {
     role: Role;
     title: string;
@@ -39,8 +39,8 @@ function WarscrollSceneriesList({
                     </TableHead>
                     <TableBody>
                         {warscroll.units
-                            .filter(x => x.definition.roles.includes(role))
-                            .map(x => (
+                            .filter((x) => x.role === role)
+                            .map((x) => (
                                 <WarscrollSceneryEdit key={x.id} scenery={x} />
                             ))}
                     </TableBody>

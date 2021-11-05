@@ -13,13 +13,14 @@ import {
     WarscrollBattalionInterface,
     ArmyListInterface,
     ItemWithAbilities,
+    PointMode,
+    UnitRole,
 } from "../../common/data";
 import { groupBy } from "../helpers/react";
 import { hasKeywords } from "./conditions";
 import { DataStore } from "./data";
 import { UiStore } from "./ui";
 import {
-    PointMode,
     WarscrollBattalion,
     WarscrollItem,
     WarscrollModel,
@@ -68,6 +69,7 @@ interface SerializedArmyList {
     grandStrategy?: string;
     triumph?: string;
     uniqueEnhancement?: string;
+    extraAbilities?: string[];
 }
 
 function getWarscrollItem(name?: string) {
@@ -89,6 +91,26 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         this.id = (this.serial++).toString();
     }
 
+    isRoleAvailable(role: UnitRole): boolean {
+        if (role.faction) {
+            return (
+                role.faction.id === this.allegiance?.id ||
+                role.faction.id === this.subFaction?.id
+            );
+        }
+        return true;
+    }
+
+    @computed
+    get abilityCategories() {
+        return [
+            AbilityCategory.Army,
+            AbilityCategory.GrandStrategy,
+            AbilityCategory.Triumph,
+            AbilityCategory.UniqueEnhancement,
+        ];
+    }
+
     @computed
     get selectedExtraAbilities() {
         const result: Ability[] = [];
@@ -108,7 +130,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     @computed
-    get abilityGroups() {
+    get availableAbilityGroups() {
         const result: AbilityGroup[] = this.dataStore.baseAbilities.concat();
         if (this.allegiance?.abilityGroups) {
             result.push(...this.allegiance.abilityGroups);
@@ -136,13 +158,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     realm: RealmOfBattle | null = null;
 
     @observable.shallow
-    grandStrategy: Ability | null = null;
-
-    @observable.shallow
     extraAbilities: Ability[] = [];
-
-    @observable.shallow
-    triumph: Ability | null = null;
 
     @observable
     name = "New Warscroll";
@@ -154,6 +170,32 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     get items(): WarscrollItem[] {
         const result: WarscrollItem[] = [];
         return result.concat(this.units).concat(this.battalions);
+    }
+    @action
+    addExtraAbility = (ability: Ability) => {
+        this.extraAbilities.push(ability);
+        this.save();
+    };
+
+    @action
+    removeExtraAbility = (ability: Ability) => {
+        this.extraAbilities.splice(this.extraAbilities.indexOf(ability), 1);
+        this.save();
+    };
+
+    @action
+    replaceExtraAbility = (oldAbility: Ability, newAbility: Ability) => {
+        this.extraAbilities[this.extraAbilities.indexOf(oldAbility)] =
+            newAbility;
+        this.save();
+    };
+
+    isAvailableExtraAbility(ability: Ability) {
+        return true;
+    }
+
+    getMaxNumberOfEnhancements(category: AbilityCategory) {
+        return 1;
     }
 
     @computed
@@ -465,8 +507,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
             subFaction: this.subFaction ? this.subFaction.id : undefined,
             sceneries: this.endlessSpells.map((x) => x.definition.id),
             pointMode: this.pointMode,
-            grandStrategy: this.grandStrategy?.id,
-            triumph: this.triumph?.id,
+            extraAbilities: this.extraAbilities.map((x) => x.id),
         };
     }
 
@@ -490,12 +531,13 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
                 (x) => x.id == serialized.subFaction
             ) || null;
         this.pointMode = serialized.pointMode || PointMode.MatchedPlay;
-        if (serialized.grandStrategy) {
-            this.grandStrategy =
-                this.dataStore.abilities[serialized.grandStrategy] || null;
-        }
-        if (serialized.triumph) {
-            this.triumph = this.dataStore.abilities[serialized.triumph] || null;
+        if (serialized.extraAbilities) {
+            for (const extraAbility of serialized.extraAbilities) {
+                const ability = this.dataStore.abilities[extraAbility];
+                if (ability) {
+                    this.extraAbilities.push(ability);
+                }
+            }
         }
         for (const ba of serialized.battalions) {
             const battalion = this.dataStore.battalions.find(
@@ -591,16 +633,6 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         );
     }
 
-    @action setGrandStrategy = (grandStrategy: Ability | null) => {
-        this.grandStrategy = grandStrategy;
-        this.save();
-    };
-
-    @action setTriumph = (triumph: Ability | null) => {
-        this.triumph = triumph;
-        this.save();
-    };
-
     @computed get itemsWithAbilities(): ItemWithAbilities[] {
         return new Array<ItemWithAbilities>(this).concat(this.units);
     }
@@ -643,8 +675,9 @@ export class ArmyListStore {
     getAvailableUnitsOfRole(role: Role) {
         return this.availableUnits.filter(
             (x) =>
-                x.roles.includes(role) &&
-                (role === Role.Leader || !x.roles.includes(Role.Leader))
+                x.roles.some((x) => x.role === role) &&
+                (role === Role.Leader ||
+                    !x.roles.some((x) => x.role === Role.Leader))
         );
     }
 
@@ -661,12 +694,9 @@ export class ArmyListStore {
         const warscroll = this.armyList;
         const warscrollUnit = new UnitWarscroll(warscroll, unit);
         if (
-            unit.roles.every(
-                (x) =>
-                    x !== Role.Terrain &&
-                    x !== Role.EndlessSpell &&
-                    x !== Role.Invocation
-            )
+            warscrollUnit.role !== Role.Terrain &&
+            warscrollUnit.role !== Role.EndlessSpell &&
+            warscrollUnit.role !== Role.Invocation
         ) {
             const model = new WarscrollModel(warscrollUnit, warscroll);
             model.count = unit.size;

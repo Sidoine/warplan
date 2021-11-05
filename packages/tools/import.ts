@@ -1232,7 +1232,44 @@ export function importData(db: Dump): ImportedDataStore {
             warscrollBattlefieldRole.warscrollId
         );
         unit.roles = unit.roles || [];
-        unit.roles.push(warscrollBattlefieldRole.role);
+        unit.roles.push({ role: warscrollBattlefieldRole.role });
+    }
+
+    for (const conditionalRole of db.conditional_role) {
+        const role = db.conditional_role_battlefield_role.find(
+            (x) => x.conditionalRoleId === conditionalRole.id
+        );
+        if (role) {
+            const unit = getItem(
+                dataStore,
+                "units",
+                conditionalRole.warscrollId
+            );
+            unit.roles = unit.roles || [];
+            if (conditionalRole.rosterFactionId) {
+                const faction = getItem(
+                    dataStore,
+                    "factions",
+                    conditionalRole.rosterFactionId
+                );
+                unit.roles.push({
+                    role: role.role,
+                    faction,
+                    enforced: conditionalRole.enforced,
+                });
+            } else if (conditionalRole.rosterSubfactionId) {
+                const faction = getItem(
+                    dataStore,
+                    "factions",
+                    conditionalRole.rosterSubfactionId
+                );
+                unit.roles.push({
+                    role: role.role,
+                    faction,
+                    enforced: conditionalRole.enforced,
+                });
+            }
+        }
     }
 
     const damageTables = new Map<
