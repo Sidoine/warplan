@@ -19,7 +19,7 @@ import {
     getPhaseSideName,
 } from "../stores/battle";
 import { join, value } from "../helpers/react";
-import { makeStyles } from "@material-ui/core";
+import makeStyles from '@mui/styles/makeStyles';
 
 import { useStores } from "../stores";
 import { distinct } from "../helpers/algo";

@@ -8,7 +8,7 @@ import {
     TableRow,
     Tooltip,
     Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { useStores } from "../stores";
 import { Ability, ItemWithAbilities, Phase } from "../../common/data";

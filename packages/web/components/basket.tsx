@@ -8,7 +8,7 @@ import {
     TableCell,
     TableBody,
     Button,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useStores } from "../stores";
 
 function Basket() {

@@ -3,7 +3,7 @@ import { UnitWarscrollEx, UnitWarscrollView } from "./unit-warscroll";
 import { useStores } from "../stores";
 import { distinct } from "../helpers/algo";
 import BattalionWarscroll from "./battalion-warscroll";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import { FactionWarscroll } from "./faction-warscroll";
 
 export function ArmyListWarscrolls() {

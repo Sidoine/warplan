@@ -1,6 +1,6 @@
 import React, { useState, useCallback, ReactNode } from "react";
 import { observer } from "mobx-react-lite";
-import AddIcon from "@material-ui/icons/Add";
+import AddIcon from "@mui/icons-material/Add";
 import {
     IconButton,
     Dialog,
@@ -13,8 +13,8 @@ import {
     DialogTitle,
     ButtonGroup,
     Button
-} from "@material-ui/core";
-import ClearIcon from "@material-ui/icons/Clear";
+} from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export interface HasId {
     id: string;
@@ -88,54 +88,52 @@ function AddButton<T extends HasId>(
         if (variant === "clearable") onChange((null as unknown) as T);
     }, [variant, onChange]);
 
-    return (
-        <>
-            {props.variant === "add" && (
-                <IconButton color="primary" onClick={handleOpen}>
-                    <AddIcon />
-                </IconButton>
-            )}
-            {props.variant === "clearable" && props.value && (
-                <ButtonGroup variant="outlined">
-                    <Button onClick={handleOpen}>
-                        {columns[0].text(props.value)}
-                    </Button>
-                    <Button onClick={handleClear}>
-                        <ClearIcon />
-                    </Button>
-                </ButtonGroup>
-            )}
-            {props.variant === "clearable" && !props.value && (
-                <Button variant="outlined" onClick={handleOpen}>
-                    {placeholder}
+    return <>
+        {props.variant === "add" && (
+            <IconButton color="primary" onClick={handleOpen} size="large">
+                <AddIcon />
+            </IconButton>
+        )}
+        {props.variant === "clearable" && props.value && (
+            <ButtonGroup variant="outlined">
+                <Button onClick={handleOpen}>
+                    {columns[0].text(props.value)}
                 </Button>
-            )}
-            <Dialog open={open} onClose={handleClose}>
-                {placeholder && <DialogTitle>{placeholder}</DialogTitle>}
-                <DialogContent>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                {columns.map(x => (
-                                    <TableCell key={x.name}>{x.name}</TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {options.map(x => (
-                                <OptionRow
-                                    columns={columns}
-                                    onClick={handleClick}
-                                    value={x}
-                                    key={x.id}
-                                />
+                <Button onClick={handleClear}>
+                    <ClearIcon />
+                </Button>
+            </ButtonGroup>
+        )}
+        {props.variant === "clearable" && !props.value && (
+            <Button variant="outlined" onClick={handleOpen}>
+                {placeholder}
+            </Button>
+        )}
+        <Dialog open={open} onClose={handleClose}>
+            {placeholder && <DialogTitle>{placeholder}</DialogTitle>}
+            <DialogContent>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            {columns.map(x => (
+                                <TableCell key={x.name}>{x.name}</TableCell>
                             ))}
-                        </TableBody>
-                    </Table>
-                </DialogContent>
-            </Dialog>
-        </>
-    );
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {options.map(x => (
+                            <OptionRow
+                                columns={columns}
+                                onClick={handleClick}
+                                value={x}
+                                key={x.id}
+                            />
+                        ))}
+                    </TableBody>
+                </Table>
+            </DialogContent>
+        </Dialog>
+    </>;
 }
 
 export default observer(AddButton);

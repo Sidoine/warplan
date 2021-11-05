@@ -1,14 +1,8 @@
 import { Attack, DamageTable, Ability, AbilityGroup } from "../../common/data";
 import * as React from "react";
 import { value } from "../helpers/react";
-import {
-    Card,
-    CardContent,
-    Divider,
-    Grid,
-    makeStyles,
-    Typography,
-} from "@material-ui/core";
+import { Card, CardContent, Divider, Grid, Typography } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import warscrollMiddle from "../assets/ws-header.png";
 import warscrollLeft from "../assets/ws-left.png";
 import warscrollRight from "../assets/ws-right.png";

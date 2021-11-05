@@ -5,14 +5,14 @@ import DropdownObjects from "../atoms/dropdown-objects";
 import {
     Grid,
     FormControl,
-    InputLabel,
     Card,
     CardContent,
     CardActions,
     Input,
     Button,
-} from "@material-ui/core";
-import WarningIcon from "@material-ui/icons/Warning";
+    FormHelperText,
+} from "@mui/material";
+import WarningIcon from "@mui/icons-material/Warning";
 import { Warning } from "../atoms/warning";
 import { useStores } from "../stores";
 import React, { ChangeEvent, useCallback } from "react";
@@ -67,7 +67,7 @@ export const ArmyListSummary = observer(() => {
                     <Grid item container spacing={2} wrap="wrap">
                         <Grid item>
                             <FormControl>
-                                <InputLabel>Name</InputLabel>
+                                <FormHelperText>Name</FormHelperText>
                                 <Input
                                     value={warscroll.name}
                                     onChange={handleNameChange}
@@ -76,7 +76,7 @@ export const ArmyListSummary = observer(() => {
                         </Grid>
                         <Grid item>
                             <FormControl>
-                                <InputLabel>Allegiance</InputLabel>
+                                <FormHelperText>Allegiance</FormHelperText>
                                 <DropdownObjects<Faction>
                                     getText={getName}
                                     options={allegianceOptions}
@@ -132,7 +132,7 @@ export const ArmyListSummary = observer(() => {
                         )}
                         <Grid item>
                             <FormControl>
-                                <InputLabel>Mode</InputLabel>
+                                <FormHelperText>Mode</FormHelperText>
                                 <DropdownValues
                                     value={warscroll.pointMode}
                                     options={[
@@ -150,7 +150,7 @@ export const ArmyListSummary = observer(() => {
                         </Grid>
                         <Grid item>
                             <FormControl>
-                                <InputLabel>Realm</InputLabel>
+                                <FormHelperText>Realm</FormHelperText>
                                 <DropdownObjects
                                     value={warscroll.realm}
                                     options={unitsStore.realms}

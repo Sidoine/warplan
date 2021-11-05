@@ -1,7 +1,7 @@
 import * as React from "react";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router";
-import { List, ListItem, Badge } from "@material-ui/core";
+import { List, ListItem, Badge } from "@mui/material";
 import { ResponsiveDrawer } from "./responsive-drawer";
 import { getPhaseName } from "../stores/battle";
 import { useStores } from "../stores";

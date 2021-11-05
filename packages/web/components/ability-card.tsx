@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AbilityCategory } from "../../common/data";
-import { makeStyles } from "@material-ui/core";
+import makeStyles from '@mui/styles/makeStyles';
 import background from "../assets/ws-background.png";
 import header from "../assets/ws-header.png";
 import warscrollSeparator from "../assets/ws-separator.png";

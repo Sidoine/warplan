@@ -17,12 +17,12 @@ import {
     Badge,
     IconButton,
     BottomNavigation,
-    makeStyles,
     BottomNavigationAction,
     Modal,
     Fab,
     ListItemSecondaryAction,
-} from "@material-ui/core";
+} from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { Ability, Attack, Value, Phase, Turn } from "../../common/data";
 import {
     isAbilityInPhase,
@@ -33,9 +33,9 @@ import {
 } from "../stores/battle";
 import { UnitWarscroll } from "../stores/warscroll";
 import { value } from "../helpers/react";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { SwordIcon, SaveIcon } from "../atoms/icons";
 import { UnitWarscrollView } from "./unit-warscroll";
 
@@ -190,7 +190,7 @@ const UnitCard = observer(({ wu }: { wu: UnitWarscroll }) => {
                 title={unit.name}
                 action={
                     <>
-                        <IconButton onClick={handleShowKeywords}>
+                        <IconButton onClick={handleShowKeywords} size="large">
                             <VisibilityIcon />
                         </IconButton>{" "}
                         <Checkbox

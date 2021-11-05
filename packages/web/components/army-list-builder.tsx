@@ -5,7 +5,7 @@ import WarscrollBattalionsList from "./battalion-warscrolls-list";
 import { ArmyListSummary } from "./army-list-summary";
 import Filter from "./filter";
 import WarscrollSceneriesList from "./scenery-warscrolls-list";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import ArmyLists from "./army-lists";
 import { Role } from "../../common/definitions";
 import { ArmyListNavigation } from "./army-list-navigation";

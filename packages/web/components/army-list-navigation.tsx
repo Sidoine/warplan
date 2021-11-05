@@ -1,8 +1,9 @@
-import { Fab, makeStyles } from "@material-ui/core";
+import { Fab } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { useStores } from "../stores";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const useStyles = makeStyles(theme => ({
     root: {

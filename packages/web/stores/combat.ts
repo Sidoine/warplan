@@ -131,6 +131,18 @@ export function getValue(
             const minValue = valueOnChance[2] ? parseInt(valueOnChance[2]) : 6;
             return (valueToReturn * (minValue - 1)) / 6;
         }
+
+        const valueOnDicesChance = formula.match(/^(\d+)\((\d)D (\d)\+\)$/);
+        if (valueOnDicesChance) {
+            const valueToReturn = valueOnDicesChance[1]
+                ? parseInt(valueOnDicesChance[1])
+                : 1;
+            const dices = parseInt(valueOnDicesChance[2]);
+            const minValue = valueOnDicesChance[3]
+                ? parseInt(valueOnDicesChance[3])
+                : 6;
+            return (valueToReturn * (minValue - 1) * dices) / 6;
+        }
         throw Error(`Unable to parse ${formula}`);
     } else if (isRatioValue(formula)) {
         return getValue(formula.value, target) * formula.ratio;

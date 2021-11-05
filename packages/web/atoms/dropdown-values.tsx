@@ -1,4 +1,4 @@
-import { MenuItem, Select } from "@material-ui/core";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import React, { useCallback } from "react";
 
@@ -15,11 +15,11 @@ function DropdownValues<T extends Value>({
     options,
     onChange,
     value,
-    getText
+    getText,
 }: DropdownValuesProps<T>) {
     const handleChange = useCallback(
-        (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
-            const item = options.find(x => x === event.target.value);
+        (event: SelectChangeEvent<Value>) => {
+            const item = options.find((x) => x === event.target.value);
             if (item !== undefined) {
                 onChange(item);
             }
@@ -28,8 +28,8 @@ function DropdownValues<T extends Value>({
     );
 
     return (
-        <Select value={value ?? ""} onChange={handleChange}>
-            {options.map(x => (
+        <Select variant="standard" value={value ?? ""} onChange={handleChange}>
+            {options.map((x) => (
                 <MenuItem key={x} value={x}>
                     {getText(x)}
                 </MenuItem>

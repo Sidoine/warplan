@@ -1,4 +1,4 @@
-import { SvgIconProps, SvgIcon } from "@material-ui/core";
+import { SvgIconProps, SvgIcon } from "@mui/material";
 import React from "react";
 
 export function SaveIcon(props: SvgIconProps) {

@@ -7,8 +7,8 @@ import {
     DialogContentText,
     DialogActions,
     Input
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useStores } from "../stores";
 
 function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {

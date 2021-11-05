@@ -13,11 +13,11 @@ import {
     CardContent,
     CardActions,
     Tooltip
-} from "@material-ui/core";
+} from "@mui/material";
 import ResponsiveTable, {
     ResponsiveTableColumn
 } from "../atoms/responsive-table";
-import ClearIcon from "@material-ui/icons/Clear";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useStores } from "../stores";
 import WarscrollButton from "../atoms/warscroll-button";
 import DropdownValues from "../atoms/dropdown-values";

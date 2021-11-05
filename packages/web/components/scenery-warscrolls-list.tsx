@@ -12,7 +12,7 @@ import {
     CardActions,
     Card,
     CardHeader,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useStores } from "../stores";
 import { Role } from "../../common/definitions";
 

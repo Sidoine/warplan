@@ -13,16 +13,16 @@ import {
     Tooltip,
     Checkbox,
     Modal,
-} from "@material-ui/core";
+} from "@mui/material";
 import ResponsiveTable, {
     ResponsiveTableColumn,
 } from "../atoms/responsive-table";
 
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import PeopleIcon from "@material-ui/icons/People";
-import ClearIcon from "@material-ui/icons/Clear";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import PeopleIcon from "@mui/icons-material/People";
+import ClearIcon from "@mui/icons-material/Clear";
 import { UnitWarscrollView } from "./unit-warscroll";
-import WarningIcon from "@material-ui/icons/Warning";
+import WarningIcon from "@mui/icons-material/Warning";
 import AddButton, { TableColumn } from "../atoms/add-button";
 import NumberControl from "../atoms/number-control";
 import { join } from "../helpers/react";
@@ -131,7 +131,7 @@ function RenderModelOption({
     return (
         <span key={option.id}>
             {model.isOptionValid(option) || <WarningIcon />} {option.name}{" "}
-            <IconButton onClick={handleRemoveModelOption}>
+            <IconButton onClick={handleRemoveModelOption} size="large">
                 <ClearIcon />
             </IconButton>
         </span>
@@ -283,7 +283,7 @@ function UnitWarscrollsList({ role, title }: { role: Role; title: string }) {
         columns.push({
             name: "Actions",
             text: (unit) => (
-                <IconButton onClick={() => warscrollStore.removeUnit(unit)}>
+                <IconButton onClick={() => warscrollStore.removeUnit(unit)} size="large">
                     <ClearIcon />
                 </IconButton>
             ),

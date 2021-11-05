@@ -2,8 +2,8 @@ import React, { useCallback } from "react";
 import { observer } from "mobx-react-lite";
 import NumberControl from "../atoms/number-control";
 import { BasketElement } from "../stores/basket";
-import { IconButton } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useStores } from "../stores";
 
 export interface BasketElementEditProps {
@@ -31,7 +31,7 @@ function BasketElementEdit({ basketElement }: BasketElementEditProps) {
             </td>
             <td>{basketElement.box.price * basketElement.count}</td>
             <td>
-                <IconButton onClick={handleRemove}>
+                <IconButton onClick={handleRemove} size="large">
                     <DeleteIcon />
                 </IconButton>
             </td>

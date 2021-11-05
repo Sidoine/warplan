@@ -9,6 +9,7 @@ import {
 } from "../../common/data";
 import { TableColumn } from "../atoms/add-button";
 import { AddGroupButton } from "../atoms/add-group-button";
+import { Stack } from "@mui/material";
 
 const extraAbilityColumns: TableColumn<Ability>[] = [
     { name: "Name", text: (x) => x.name },
@@ -94,7 +95,7 @@ export const ExtraAbilitiesEdit = observer(function ExtraAbilitiesEdit({
     unit: ItemWithExtraAbilities;
 }) {
     return (
-        <>
+        <Stack direction="row" spacing={1}>
             {unit.abilityCategories.map((category) => (
                 <ExtraAbilityGroup
                     key={category}
@@ -102,6 +103,6 @@ export const ExtraAbilitiesEdit = observer(function ExtraAbilitiesEdit({
                     unit={unit}
                 />
             ))}
-        </>
+        </Stack>
     );
 });
