@@ -851,7 +851,7 @@ function getImmediateText(
         });
     }
     if (immediate.allowInclusion) {
-        descriptions.push({ text: "Include", type: EffectType.Immediate });
+        descriptions.push({ text: "1 per unit", type: EffectType.Immediate });
     }
     if (immediate.gainCommandPoints) {
         descriptions.push({

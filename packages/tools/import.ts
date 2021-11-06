@@ -757,7 +757,7 @@ export function getAbilityEffects(
     match = blurb.match(/1 model in this unit can be/i);
     if (match) {
         effect.immediate = effect.immediate || {};
-        effect.immediate.allowInclusion = true;
+        effect.immediate.allowInclusion = { maxCount: 1 };
     }
 
     // Special

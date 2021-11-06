@@ -346,7 +346,7 @@ export interface ImmediateEffect {
     setUpAwayFromEnemy?: Value; // The distance to the enemy
     mortalWoundsPerModel?: Value;
     mortalWoundsPerChargeRoll?: Value;
-    allowInclusion?: boolean;
+    allowInclusion?: { maxCount?: number; each?: number };
     gainCommandPoints?: Value;
     setup?: boolean;
     pileInMove?: Value;

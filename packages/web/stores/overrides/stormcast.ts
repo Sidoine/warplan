@@ -22,6 +22,9 @@ export function overrideStormcast(data: ImportedDataStoreImpl): void {
     addEffect(
         data.abilities.annihilatorsWithMeteoricGrandhammersBlazingImpact,
         {
+            condition: {
+                setup: true,
+            },
             targetType: TargetType.Enemy,
             targetRadius: '10"',
             immediate: {

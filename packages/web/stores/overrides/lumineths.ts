@@ -148,7 +148,7 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     });
     updateEffect(data.abilities.luminethGreatNations, {
         immediate: {
-            allowInclusion: true,
+            allowInclusion: {},
         },
     });
     updateEffect(data.abilities.moveLikeTheWind, {
@@ -311,7 +311,7 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         targetType: TargetType.Unit,
         phase: Phase.ArmyList,
         immediate: {
-            allowInclusion: true,
+            allowInclusion: {},
         },
     });
     addEffect(data.abilities.shrineLuminorSetUp, {
@@ -319,7 +319,6 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
         phase: Phase.Setup,
         subPhase: SubPhase.Before,
         immediate: {
-            allowInclusion: true,
             setup: true,
         },
     });
