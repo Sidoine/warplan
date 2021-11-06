@@ -6,7 +6,7 @@ import ResponsiveTable, {
     ResponsiveTableColumn
 } from "../atoms/responsive-table";
 import { useStores } from "../stores";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 import { useCallback } from "react";
 
 function AddToOwned({ missing }: { missing: Missing }) {

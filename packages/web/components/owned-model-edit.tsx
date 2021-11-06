@@ -2,8 +2,8 @@ import React, { useCallback } from "react";
 import { observer } from "mobx-react-lite";
 import NumberControl from "../atoms/number-control";
 import { OwnedModel } from "../stores/owned";
-import { IconButton } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useStores } from "../stores";
 
 export interface OwnedModelEditProps {
@@ -32,7 +32,7 @@ export const OwnedModelEdit = observer(({ model }: OwnedModelEditProps) => {
             </td>
             <td>{model.model.publicationYear}</td>
             <td>
-                <IconButton onClick={handleRemove}>
+                <IconButton onClick={handleRemove} size="large">
                     <DeleteIcon />
                 </IconButton>
             </td>

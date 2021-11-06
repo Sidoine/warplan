@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-import { IconButton, TextField, InputAdornment } from "@material-ui/core";
-import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
-import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
+import { IconButton, TextField, InputAdornment } from "@mui/material";
+import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import { observer } from "mobx-react-lite";
 
 export interface NumberControlProps {
@@ -35,6 +35,7 @@ function NumberControl({
     }, [min, onChange, value]);
     return (
         <TextField
+            variant="standard"
             type="text"
             label={label}
             onChange={onCountChange}

@@ -7,9 +7,9 @@ import {
     Button,
     IconButton,
     Modal
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useStores } from "../stores";
 import { UnitWarscrollView } from "./unit-warscroll";
 

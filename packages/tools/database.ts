@@ -3,7 +3,8 @@ import {
     Value,
     ImportedDataStore,
     isDamageColumn,
-    Ability
+    Ability,
+    UnitRole,
 } from "../common/data";
 import { Dump } from "../common/definitions";
 import { importData } from "./import";
@@ -13,7 +14,7 @@ function toPascalCase(name: string) {
 }
 
 function escapeString(text: string) {
-    return text.replace(/[\n"]/g, s => `\\${s}`);
+    return text.replace(/[\n"]/g, (s) => `\\${s}`);
 }
 
 function escapeQuotedString(text: string | null | undefined) {
@@ -111,13 +112,13 @@ function writeOptions(db: ImportedDataStore) {
         if (option.attacks) {
             result += `            attacks: [${option.attacks
                 .sort(compareId)
-                .map(x => `this.attacks.${x.id}`)
+                .map((x) => `this.attacks.${x.id}`)
                 .join(", ")}],\n`;
         }
         if (option.abilities) {
             result += `            abilities: [${option.abilities
                 .sort(compareId)
-                .map(x => `this.abilities.${x.id}`)
+                .map((x) => `this.abilities.${x.id}`)
                 .join(", ")}],\n`;
         }
         if (option.unitCategory !== undefined) {
@@ -218,7 +219,7 @@ function writeDamageTables(db: ImportedDataStore) {
 function writeValue(value: Value, data: ImportedDataStore) {
     if (value === undefined) return "undefined";
     if (isDamageColumn(value)) {
-        const damageTable = Object.values(data.damageTables).find(x =>
+        const damageTable = Object.values(data.damageTables).find((x) =>
             x.columns.includes(value)
         );
         if (damageTable) {
@@ -227,6 +228,18 @@ function writeValue(value: Value, data: ImportedDataStore) {
         }
     }
     return JSON.stringify(value);
+}
+
+function writeUnitRole(role: UnitRole) {
+    let result = `{ role: Role.${toPascalCase(role.role)}`;
+    if (role.faction) {
+        result += `, faction: this.factions.${role.faction.id}`;
+    }
+    if (role.enforced) {
+        result += `, enforced: true`;
+    }
+    result += ` }`;
+    return result;
 }
 
 function writeUnits(db: ImportedDataStore) {
@@ -247,7 +260,7 @@ ${
             description: ${escapeQuotedString(unit.description)},
             flavor: ${escapeQuotedString(unit.flavor)},
             factions: [${unit.factions
-                .map(x => `this.factions.${x.id}`)
+                .map((x) => `this.factions.${x.id}`)
                 .join(", ")}],
             size: ${unit.size},
             points: ${unit.points},
@@ -268,33 +281,33 @@ ${
         }
         if (unit.options) {
             result += `           options: [${unit.options
-                .map(x => `this.options.${x.id}`)
+                .map((x) => `this.options.${x.id}`)
                 .join(", ")}],
 `;
         }
         if (unit.abilities) {
             const abilityIds = unit.abilities;
             result += `           abilities: [${abilityIds
-                .map(x => `this.abilities.${x.id}`)
+                .map((x) => `this.abilities.${x.id}`)
                 .join(", ")}],
 `;
         }
         if (unit.commandAbilities) {
-            const abilityIds = unit.commandAbilities.map(x => x.id);
+            const abilityIds = unit.commandAbilities.map((x) => x.id);
             result += `           commandAbilities: [${abilityIds
-                .map(x => `this.abilities.${x}`)
+                .map((x) => `this.abilities.${x}`)
                 .join(", ")}],
 `;
         }
         if (unit.attacks) {
             result += `           attacks: [${unit.attacks
-                .map(x => `this.attacks.${x.id}`)
+                .map((x) => `this.attacks.${x.id}`)
                 .join(", ")}],
 `;
         }
         if (unit.roles) {
             result += `           roles: [${unit.roles
-                .map(x => `Role.${toPascalCase(x)}`)
+                .map((x) => writeUnitRole(x))
                 .join(", ")}],\n`;
         }
 
@@ -362,13 +375,13 @@ function writeBattalionUnits(db: ImportedDataStore) {
 `;
         if (battalionUnit.requiredRoles) {
             result += `            requiredRoles: [${battalionUnit.requiredRoles
-                .map(x => `Role.${toPascalCase(x)}`)
+                .map((x) => `Role.${toPascalCase(x)}`)
                 .join(", ")}],
 `;
         }
         if (battalionUnit.excludedRoles) {
             result += `            excludedRoles: [${battalionUnit.excludedRoles
-                .map(x => `Role.${toPascalCase(x)}`)
+                .map((x) => `Role.${toPascalCase(x)}`)
                 .join(", ")}],
 `;
         }
@@ -395,10 +408,10 @@ function writeBattalions(db: ImportedDataStore) {
             name: ${escapeQuotedString(battalion.name)},
             onePerArmy: ${JSON.stringify(battalion.onePerArmy)},
             units: [${battalion.units
-                .map(x => `this.battalionUnits.${x.id}`)
+                .map((x) => `this.battalionUnits.${x.id}`)
                 .join(", ")}],
             abilities: [${battalion.abilities
-                .map(x => `this.battalionAbilities.${x.id}`)
+                .map((x) => `this.battalionAbilities.${x.id}`)
                 .join(", ")}],
 `;
 
@@ -424,7 +437,7 @@ function writeBattalionGroups(db: ImportedDataStore) {
             description: ${escapeQuotedString(battalionGroup.description)},
             battalions: [${battalionGroup.battalions
                 .sort(compareId)
-                .map(x => `this.battalions.${x.id}`)
+                .map((x) => `this.battalions.${x.id}`)
                 .join(", ")}],
 `;
         if (battalionGroup.restrictions) {
@@ -442,7 +455,7 @@ function writeBattalionGroups(db: ImportedDataStore) {
 function writeGenericBattalionGroups(db: ImportedDataStore) {
     return `   genericBattalionGroups = [${db.genericBattalionGroups
         .sort(compareId)
-        .map(x => `this.battalionGroups.${x.id}`)}]\n`;
+        .map((x) => `this.battalionGroups.${x.id}`)}]\n`;
 }
 
 function ability(ability?: Ability) {
@@ -451,10 +464,7 @@ function ability(ability?: Ability) {
 }
 
 function abilities(abilities: Ability[]) {
-    return `[${abilities
-        .sort(compareId)
-        .map(ability)
-        .join(", ")}]`;
+    return `[${abilities.sort(compareId).map(ability).join(", ")}]`;
 }
 
 function writeRealms(db: ImportedDataStore) {
@@ -509,7 +519,7 @@ function writeAbilityGroups(db: ImportedDataStore) {
 function writeGenericAbilityGroups(db: ImportedDataStore) {
     return `${tab}genericAbilityGroups = [${db.genericAbilityGroups
         .sort(compareId)
-        .map(x => `this.abilityGroups.${x.id}`)}];
+        .map((x) => `this.abilityGroups.${x.id}`)}];
 `;
 }
 
@@ -526,7 +536,7 @@ ${tab}this.factions.${faction.parent.id}.children.push(this.factions.${faction.i
                 faction.id
             }.abilityGroups = [${faction.abilityGroups
                 .sort(compareId)
-                .map(x => `this.abilityGroups.${x.id}`)
+                .map((x) => `this.abilityGroups.${x.id}`)
                 .join(", ")}];
 `;
         }
@@ -535,7 +545,7 @@ ${tab}this.factions.${faction.parent.id}.children.push(this.factions.${faction.i
                 faction.id
             }.battalionGroups = [${faction.battalionGroups
                 .sort(compareId)
-                .map(x => `this.battalionGroups.${x.id}`)
+                .map((x) => `this.battalionGroups.${x.id}`)
                 .join(", ")}];
 `;
         }

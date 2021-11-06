@@ -1,6 +1,6 @@
 import React from "react";
-import { Tooltip } from "@material-ui/core";
-import WarningIcon from "@material-ui/icons/Warning";
+import { Tooltip } from "@mui/material";
+import WarningIcon from "@mui/icons-material/Warning";
 
 export function Warning({ label }: { label: string }) {
     return (

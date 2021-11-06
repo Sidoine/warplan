@@ -1,32 +1,33 @@
 import React, { useCallback } from "react";
 import { observer } from "mobx-react-lite";
-import { UnitWarscroll } from "../stores/warscroll";
 import {
     Ability,
     AbilityCategory,
     abilityCategoryName,
-    AbilityGroup
+    AbilityGroup,
+    ItemWithExtraAbilities,
 } from "../../common/data";
 import { TableColumn } from "../atoms/add-button";
 import { AddGroupButton } from "../atoms/add-group-button";
+import { Stack } from "@mui/material";
 
 const extraAbilityColumns: TableColumn<Ability>[] = [
-    { name: "Name", text: x => x.name },
-    { name: "Description", text: x => x.description }
+    { name: "Name", text: (x) => x.name },
+    { name: "Description", text: (x) => x.description },
 ];
 
 const ExtraAbility = observer(
     ({
         index,
         category,
-        unit
+        unit,
     }: {
         index: number;
         category: AbilityCategory;
-        unit: UnitWarscroll;
+        unit: ItemWithExtraAbilities;
     }) => {
         const oldAbility = unit.extraAbilities.filter(
-            x => x.category === category
+            (x) => x.category === category
         )[index];
         const handleChange = useCallback(
             (ability: Ability | null) => {
@@ -43,13 +44,13 @@ const ExtraAbility = observer(
         return (
             <AddGroupButton<AbilityGroup, Ability>
                 options={unit.availableAbilityGroups.filter(
-                    x => x.category === category
+                    (x) => x.category === category
                 )}
                 columns={extraAbilityColumns}
-                getGroupLabel={x => x.name}
-                getText={x => x.name}
-                getValues={x =>
-                    x.abilities.filter(x => unit.isAvailableExtraAbility(x))
+                getGroupLabel={(x) => x.name}
+                getText={(x) => x.name}
+                getValues={(x) =>
+                    x.abilities.filter((x) => unit.isAvailableExtraAbility(x))
                 }
                 label={abilityCategoryName.get(category) ?? "?"}
                 onChange={handleChange}
@@ -62,10 +63,10 @@ const ExtraAbility = observer(
 
 const ExtraAbilityGroup = observer(function ExtraAbilityGroup({
     category,
-    unit
+    unit,
 }: {
     category: AbilityCategory;
-    unit: UnitWarscroll;
+    unit: ItemWithExtraAbilities;
 }) {
     return (
         <>
@@ -75,7 +76,7 @@ const ExtraAbilityGroup = observer(function ExtraAbilityGroup({
                         unit.getMaxNumberOfEnhancements(category),
                         unit.getNumberOfEnhancements(category)
                     )
-                )
+                ),
             ].map((_, index) => (
                 <ExtraAbility
                     category={category}
@@ -89,19 +90,19 @@ const ExtraAbilityGroup = observer(function ExtraAbilityGroup({
 });
 
 export const ExtraAbilitiesEdit = observer(function ExtraAbilitiesEdit({
-    unit
+    unit,
 }: {
-    unit: UnitWarscroll;
+    unit: ItemWithExtraAbilities;
 }) {
     return (
-        <>
-            {unit.abilityCategories.map(category => (
+        <Stack direction="row" spacing={1}>
+            {unit.abilityCategories.map((category) => (
                 <ExtraAbilityGroup
                     key={category}
                     category={category}
                     unit={unit}
                 />
             ))}
-        </>
+        </Stack>
     );
 });

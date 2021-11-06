@@ -1,7 +1,7 @@
 import * as React from "react";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router";
-import { List, ListItem, Badge } from "@material-ui/core";
+import { List, ListItem, Badge } from "@mui/material";
 import { ResponsiveDrawer } from "./responsive-drawer";
 import { getPhaseName } from "../stores/battle";
 import { useStores } from "../stores";
@@ -19,14 +19,14 @@ interface MenuItem {
 
 function MyDrawer({
     pathName,
-    columns
+    columns,
 }: {
     pathName: string;
     columns: MenuItem[];
 }) {
     return (
         <List>
-            {columns.map(x => (
+            {columns.map((x) => (
                 <ListItem
                     key={x.path}
                     component="a"
@@ -55,7 +55,7 @@ function MyNavbar({ route, children }: MyNavbarProps) {
     const {
         armyListStore: warscrollStore,
         battleStore,
-        basketStore
+        basketStore,
     } = useStores();
     const state = useLocalObservable(() => ({
         get columns(): MenuItem[] {
@@ -63,12 +63,12 @@ function MyNavbar({ route, children }: MyNavbarProps) {
                 {
                     title: "List Builder",
                     badge: warscrollStore.armyList.totalPoints,
-                    path: ""
+                    path: "",
                 },
                 { title: "Warscrolls", path: "warscroll" },
                 {
                     title: getPhaseName(battleStore.phase),
-                    path: "battle"
+                    path: "battle",
                 },
                 { title: "List", path: "list" },
                 { title: "Cards", path: "cards" },
@@ -80,20 +80,21 @@ function MyNavbar({ route, children }: MyNavbarProps) {
                     title: "Missing",
                     path: "missing",
                     badge: basketStore.missingModels.filter(
-                        x => x.inBasket < x.count
-                    ).length
+                        (x) => x.inBasket < x.count
+                    ).length,
                 },
                 {
                     title: "Basket",
                     path: "basket",
-                    badge: basketStore.basket.length
+                    badge: basketStore.basket.length,
                 },
-                { title: "Abilities", path: "abilities" }
+                { title: "Abilities", path: "abilities" },
             ];
-        }
+        },
     }));
     const title =
-        state.columns.find(x => `/${x.path}` === pathname)?.title ?? "Warplan";
+        state.columns.find((x) => `/${x.path}` === pathname)?.title ??
+        "Warplan";
     return (
         <ResponsiveDrawer
             title={title}

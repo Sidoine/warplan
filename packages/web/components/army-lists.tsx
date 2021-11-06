@@ -5,7 +5,7 @@ import {
     CardContent,
     List,
     ListItem
-} from "@material-ui/core";
+} from "@mui/material";
 import { observer } from "mobx-react-lite";
 import React, { useCallback } from "react";
 import { useStores } from "../stores";

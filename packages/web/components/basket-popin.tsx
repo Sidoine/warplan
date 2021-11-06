@@ -7,8 +7,8 @@ import {
     Button,
     Input,
     IconButton,
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useStores } from "../stores";
 
 function BasketItem({ x }: { x: string }) {
@@ -30,7 +30,7 @@ function BasketItem({ x }: { x: string }) {
             {x}
             <Button onClick={handleUpdate}>Update</Button>
             <Button onClick={handleLoad}>Load</Button>
-            <IconButton onClick={handleDelete}>
+            <IconButton onClick={handleDelete} size="large">
                 <DeleteIcon />
             </IconButton>
         </div>

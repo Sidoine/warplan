@@ -1,15 +1,8 @@
 import * as React from "react";
 import { Faction } from "../../common/data";
 import { observer } from "mobx-react-lite";
-import {
-    Grid,
-    Input,
-    CardContent,
-    Card,
-    makeStyles,
-    Checkbox,
-    FormControlLabel
-} from "@material-ui/core";
+import { Grid, Input, CardContent, Card, Checkbox, FormControlLabel } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { useStores } from "../stores";
 import DropdownObjects from "../atoms/dropdown-objects";
 

@@ -15,11 +15,11 @@ import {
     isAttackInPhase,
     isAbilityInPhase,
     isEffectInPhase,
-    getSubPhaseName,
     getPhaseSideName,
+    getSubPhaseFullName,
 } from "../stores/battle";
 import { join, value } from "../helpers/react";
-import { makeStyles } from "@material-ui/core";
+import makeStyles from "@mui/styles/makeStyles";
 
 import { useStores } from "../stores";
 import { distinct } from "../helpers/algo";
@@ -28,6 +28,7 @@ import warscrollSeparator from "../assets/ws-separator.png";
 import { DataStore } from "../stores/data";
 import { ArmyList, ArmyListStore } from "../stores/army-list";
 import { AbilityEffectView } from "./ability-effect-view";
+import { Card, CardContent, Stack, Typography } from "@mui/material";
 
 const useStyle = makeStyles({
     section: {
@@ -182,21 +183,10 @@ function AbilityInfo({
     side: Turn;
     subPhase: SubPhase;
 }) {
-    const classes = useStyle();
     const ability = abilityModel;
     return (
         <div>
-            <i className={classes.abilityName}>{ability.name}</i> :{" "}
-            {/* {abilityModel.warscrollModel && (
-                <>
-                    (
-                    {abilityModel.warscrollModel
-                        .map(x => x.options.map(y => y.name).join("-"))
-                        .join(", ")}
-                    )
-                </>
-            )} */}
-            {ability.description}
+            <Typography variant="overline">{ability.name}</Typography>
             {ability.effects &&
                 join(
                     ability.effects
@@ -227,12 +217,12 @@ function UnitInfo({
     subPhase: SubPhase;
     side: Turn;
 }) {
-    const classes = useStyle();
     const unit = item.item;
     return (
-        <div className={classes.unit}>
-            <div className={classes.unitTitle}>{unit.name}</div>
-            {/* {unit.type === "unit" && (
+        <Card>
+            <CardContent>
+                <Typography variant="caption">{unit.name}</Typography>
+                {/* {unit.type === "unit" && (
                 <Stats>
                     {phase === Phase.Movement && (
                         <Stat name="Mv" value={unit.definition.move} />
@@ -249,28 +239,29 @@ function UnitInfo({
                 </Stats>
             )} */}
 
-            {/* {unit.type === "unit" &&
+                {/* {unit.type === "unit" &&
                 phase === Phase.Hero &&
                 unit.definition.magicDescription && (
                     <div>{unit.definition.magicDescription}</div>
                 )} */}
 
-            {unit.attacks &&
-                side === Turn.Your &&
-                unit.attacks
-                    .filter((x) => isAttackInPhase(x, phase, subPhase))
-                    .map((x) => <AttackStats key={x.id} attack={x} />)}
-            {distinct(item.abilities).map((x) => (
-                <AbilityInfo
-                    key={x.id}
-                    phase={phase}
-                    abilityModel={x}
-                    side={side}
-                    unit={unit}
-                    subPhase={subPhase}
-                />
-            ))}
-        </div>
+                {unit.attacks &&
+                    side === Turn.Your &&
+                    unit.attacks
+                        .filter((x) => isAttackInPhase(x, phase, subPhase))
+                        .map((x) => <AttackStats key={x.id} attack={x} />)}
+                {distinct(item.abilities).map((x) => (
+                    <AbilityInfo
+                        key={x.id}
+                        phase={phase}
+                        abilityModel={x}
+                        side={side}
+                        unit={unit}
+                        subPhase={subPhase}
+                    />
+                ))}
+            </CardContent>
+        </Card>
     );
 }
 
@@ -289,9 +280,9 @@ function SubPhaseInfo({
     if (items.length === 0) return <></>;
     return (
         <section>
-            <h3>{getSubPhaseName(subPhase)}</h3>
+            <h3>{getSubPhaseFullName(subPhase)}</h3>
             <div className={classes.subSectionContent}>
-                <div>
+                <Stack spacing={1}>
                     {items.map((x) => (
                         <UnitInfo
                             key={x.item.id}
@@ -301,13 +292,19 @@ function SubPhaseInfo({
                             subPhase={subPhase}
                         />
                     ))}
-                </div>
+                </Stack>
             </div>
         </section>
     );
 }
 
-const subPhases = [SubPhase.Before, SubPhase.While, SubPhase.After];
+const subPhases = [
+    SubPhase.Before,
+    SubPhase.While,
+    SubPhase.WhileBefore,
+    SubPhase.WhileAfter,
+    SubPhase.After,
+];
 
 function PhaseInfo({
     phase,

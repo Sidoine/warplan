@@ -26,6 +26,7 @@ import {
     ValueAura,
     SpecialAura,
     DefenseAura,
+    PrayerAura,
 } from "../../common/data";
 import { DataStore } from "./data";
 import { ArmyList, ArmyListStore } from "./army-list";
@@ -752,6 +753,28 @@ function getValueAuraText(
     return { descriptions, condition };
 }
 
+function getPrayerAuraText(
+    prayerAura: PrayerAura,
+    unit: ItemWithAbilities,
+    dataStore: DataStore
+) {
+    const descriptions: AuraEntryDescription[] = [];
+    let condition: string | undefined;
+    if (prayerAura.bonusToChant) {
+        descriptions.push({
+            text: `+${prayerAura.bonusToChant} to Chant`,
+            type: EffectType.Buff,
+        });
+    }
+    if (descriptions.length === 0) {
+        descriptions.push({
+            text: `valueAura: ${JSON.stringify(prayerAura)}`,
+            type: EffectType.Unknown,
+        });
+    }
+    return { descriptions, condition };
+}
+
 export function getAuraText(
     aura: Aura | ImmediateEffect,
     unit: ItemWithAbilities,
@@ -772,6 +795,8 @@ export function getAuraText(
             return getDefenseAuraText(aura, unit, dataStore);
         case AuraType.Movement:
             return getMovementAuraText(aura, unit, dataStore);
+        case AuraType.Prayer:
+            return getPrayerAuraText(aura, unit, dataStore);
         case AuraType.Special:
             return getSpecialAuraText(aura, unit, dataStore);
         case AuraType.Spell:
@@ -782,7 +807,7 @@ export function getAuraText(
     return {
         descriptions: [
             {
-                text: `Unknown aura type ${aura.type}`,
+                text: `Unknown aura type`,
                 type: EffectType.Unknown,
             },
         ],
@@ -826,7 +851,7 @@ function getImmediateText(
         });
     }
     if (immediate.allowInclusion) {
-        descriptions.push({ text: "Include", type: EffectType.Immediate });
+        descriptions.push({ text: "1 per unit", type: EffectType.Immediate });
     }
     if (immediate.gainCommandPoints) {
         descriptions.push({
@@ -942,6 +967,30 @@ export function getPhaseName(phase: Phase) {
         case Phase.Setup:
             return "Setup";
         case Phase.Hero:
+            return "Hero";
+        case Phase.Movement:
+            return "Movement";
+        case Phase.Shooting:
+            return "Shooting";
+        case Phase.Charge:
+            return "Charge";
+        case Phase.Combat:
+            return "Combat";
+        case Phase.Battleshock:
+            return "Battleshock";
+    }
+    return "Battle";
+}
+
+export function getShortPhaseName(phase: Phase) {
+    switch (phase) {
+        case Phase.ArmyList:
+            return "Choose army";
+        case Phase.Any:
+            return "Any";
+        case Phase.Setup:
+            return "Setup";
+        case Phase.Hero:
             return "Hr";
         case Phase.Movement:
             return "Mv";
@@ -973,6 +1022,22 @@ export function getSubPhaseName(subPhase: SubPhase) {
             return "end of ";
         case SubPhase.Before:
             return "start of ";
+    }
+    return "";
+}
+
+export function getSubPhaseFullName(subPhase: SubPhase) {
+    switch (subPhase) {
+        case SubPhase.After:
+            return "End of phase";
+        case SubPhase.Before:
+            return "Start of phase";
+        case SubPhase.While:
+            return "During phase";
+        case SubPhase.WhileAfter:
+            return "After each activation";
+        case SubPhase.WhileBefore:
+            return "Before each activation";
     }
     return "";
 }

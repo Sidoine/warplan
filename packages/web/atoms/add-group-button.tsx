@@ -13,9 +13,9 @@ import {
     Grid,
     Typography,
     ButtonGroup
-} from "@material-ui/core";
+} from "@mui/material";
 import { HasId, TableColumn, OptionRow } from "./add-button";
-import ClearIcon from "@material-ui/icons/Clear";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export const AddGroupButton = observer(function AddGroupButton<
     G extends HasId,

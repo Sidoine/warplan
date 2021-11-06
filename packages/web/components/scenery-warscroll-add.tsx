@@ -11,12 +11,12 @@ export interface SceneriesListProps {
     role: Role;
 }
 const columns: TableColumn<Unit>[] = [
-    { name: "Name", text: x => x.name },
+    { name: "Name", text: (x) => x.name },
     {
         name: "Abilities",
-        text: x => x.abilities && <AllAbilities abilities={x.abilities} />
+        text: (x) => x.abilities && <AllAbilities abilities={x.abilities} />,
     },
-    { name: "Points", text: x => x.points }
+    { name: "Points", text: (x) => x.points },
 ];
 
 function SceneryWarscrollAdd({ title, role }: SceneriesListProps) {
@@ -27,7 +27,9 @@ function SceneryWarscrollAdd({ title, role }: SceneriesListProps) {
             variant="add"
             columns={columns}
             placeholder={title}
-            options={uiStore.warscrolls.filter(x => x.roles.includes(role))}
+            options={uiStore.warscrolls.filter((x) =>
+                x.roles.some((x) => x.role === role)
+            )}
             onChange={armyListStore.addUnit}
         />
     );

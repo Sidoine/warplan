@@ -17,13 +17,13 @@ import {
     Warscroll,
     SubWarscroll,
 } from "../atoms/warscroll-components";
-import StarIcon from "@material-ui/icons/Star";
+import StarIcon from "@mui/icons-material/Star";
 import { distinct } from "../helpers/algo";
-import { Grid, Chip } from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
+import { Grid, Chip } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import { SaveIcon } from "../atoms/icons";
-import FlagIcon from "@material-ui/icons/Flag";
+import FlagIcon from "@mui/icons-material/Flag";
 import { Abilities } from "./warscroll-abilities";
 
 function ItemView({ unit }: { unit: ItemWithAbilities }) {

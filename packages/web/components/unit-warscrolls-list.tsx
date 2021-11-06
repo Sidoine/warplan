@@ -12,17 +12,17 @@ import {
     IconButton,
     Tooltip,
     Checkbox,
-    Modal
-} from "@material-ui/core";
+    Modal,
+} from "@mui/material";
 import ResponsiveTable, {
-    ResponsiveTableColumn
+    ResponsiveTableColumn,
 } from "../atoms/responsive-table";
 
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import PeopleIcon from "@material-ui/icons/People";
-import ClearIcon from "@material-ui/icons/Clear";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import PeopleIcon from "@mui/icons-material/People";
+import ClearIcon from "@mui/icons-material/Clear";
 import { UnitWarscrollView } from "./unit-warscroll";
-import WarningIcon from "@material-ui/icons/Warning";
+import WarningIcon from "@mui/icons-material/Warning";
 import AddButton, { TableColumn } from "../atoms/add-button";
 import NumberControl from "../atoms/number-control";
 import { join } from "../helpers/react";
@@ -35,15 +35,15 @@ import { Role } from "../../common/definitions";
 import { ExtraAbilitiesEdit } from "./extra-abilities-edit";
 
 const modelColumns: TableColumn<ModelOption>[] = [
-    { name: "Name", text: x => x.name },
+    { name: "Name", text: (x) => x.name },
     {
         name: "Attacks",
-        text: x => x.attacks && <AllAttacks attacks={x.attacks} />
+        text: (x) => x.attacks && <AllAttacks attacks={x.attacks} />,
     },
     {
         name: "Abilities",
-        text: x => x.abilities && <AllAbilities abilities={x.abilities} />
-    }
+        text: (x) => x.abilities && <AllAbilities abilities={x.abilities} />,
+    },
 ];
 
 const ModelCount = observer(({ unit }: { unit: UnitWarscroll }) => {
@@ -63,7 +63,7 @@ const ModelCount = observer(({ unit }: { unit: UnitWarscroll }) => {
 const ModelName = observer(
     ({
         unit,
-        onOpenWarscroll
+        onOpenWarscroll,
     }: {
         unit: UnitWarscroll;
         onOpenWarscroll: (unit: UnitWarscroll) => void;
@@ -118,7 +118,7 @@ const ModelName = observer(
 
 function RenderModelOption({
     model,
-    option
+    option,
 }: {
     model: WarscrollModel;
     option: ModelOption;
@@ -131,7 +131,7 @@ function RenderModelOption({
     return (
         <span key={option.id}>
             {model.isOptionValid(option) || <WarningIcon />} {option.name}{" "}
-            <IconButton onClick={handleRemoveModelOption}>
+            <IconButton onClick={handleRemoveModelOption} size="large">
                 <ClearIcon />
             </IconButton>
         </span>
@@ -172,7 +172,7 @@ const RenderModel = observer(
                     />
                 )}
                 {join(
-                    model.options.map(x => (
+                    model.options.map((x) => (
                         <RenderModelOption
                             key={x.id}
                             option={x}
@@ -208,7 +208,7 @@ const ModelOptions = observer(({ unit }: { unit: UnitWarscroll }) => {
 
     return (
         <>
-            {unit.models.map(x => (
+            {unit.models.map((x) => (
                 <RenderModel key={x.id} unit={unit} model={x} />
             ))}
             {!unit.definition.single && unit.availableOptions.length > 0 && (
@@ -224,7 +224,7 @@ const ModelOptions = observer(({ unit }: { unit: UnitWarscroll }) => {
 });
 
 const UnitBattaillon = observer(function UnitBattaillon({
-    unit
+    unit,
 }: {
     unit: UnitWarscroll;
 }) {
@@ -233,7 +233,7 @@ const UnitBattaillon = observer(function UnitBattaillon({
             onChange={unit.setBattalionUnit}
             value={unit.battalionUnit}
             options={unit.availableBattalionUnits}
-            getText={x => x.name}
+            getText={(x) => x.name}
         ></DropdownObjects>
     );
 });
@@ -254,39 +254,39 @@ function UnitWarscrollsList({ role, title }: { role: Role; title: string }) {
         const columns: ResponsiveTableColumn<UnitWarscroll>[] = [
             {
                 name: "Name",
-                text: x => (
+                text: (x) => (
                     <ModelName unit={x} onOpenWarscroll={handleOpenWarscroll} />
-                )
+                ),
             },
             {
                 name: "Count",
-                text: unit => <ModelCount unit={unit} />
+                text: (unit) => <ModelCount unit={unit} />,
             },
             {
                 name: "Models",
-                text: unit => <ModelOptions unit={unit} />
+                text: (unit) => <ModelOptions unit={unit} />,
             },
             {
                 name: "Extras",
-                text: unit => <ExtraAbilitiesEdit unit={unit} />
+                text: (unit) => <ExtraAbilitiesEdit unit={unit} />,
             },
             {
                 name: "Points",
-                text: unit => unit.points
+                text: (unit) => unit.points,
             },
             {
                 name: "Battaillon",
-                text: unit => <UnitBattaillon unit={unit} />
-            }
+                text: (unit) => <UnitBattaillon unit={unit} />,
+            },
         ];
 
         columns.push({
             name: "Actions",
-            text: unit => (
-                <IconButton onClick={() => warscrollStore.removeUnit(unit)}>
+            text: (unit) => (
+                <IconButton onClick={() => warscrollStore.removeUnit(unit)} size="large">
                     <ClearIcon />
                 </IconButton>
-            )
+            ),
         });
         return columns;
     }, [handleOpenWarscroll, warscrollStore]);
@@ -307,12 +307,7 @@ function UnitWarscrollsList({ role, title }: { role: Role; title: string }) {
 
                 <ResponsiveTable
                     columns={columns}
-                    rows={warscroll.units.filter(
-                        x =>
-                            x.definition.roles.includes(role) &&
-                            (role === Role.Leader ||
-                                !x.definition.roles.includes(Role.Leader))
-                    )}
+                    rows={warscroll.units.filter((x) => x.role === role)}
                 />
             </CardContent>
             <CardActions>

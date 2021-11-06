@@ -1,6 +1,6 @@
-import { IconButton, Modal } from "@material-ui/core";
+import { IconButton, Modal } from "@mui/material";
 import React, { useCallback, useState } from "react";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import { UnitWarscrollView } from "../components/unit-warscroll";
 import BattalionWarscroll from "../components/battalion-warscroll";

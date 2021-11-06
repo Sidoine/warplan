@@ -2,7 +2,6 @@ import { observable, action, computed, makeObservable } from "mobx";
 import { UnitStats, getUnitStats } from "./stats";
 import { DataStore } from "./data";
 import { Faction } from "../../common/data";
-import { Role } from "../../common/definitions";
 
 interface SerializedUi {
     faction?: string;
@@ -51,21 +50,16 @@ export class UiStore {
         const keywordFilter = this.keywordFilter.toUpperCase();
         if (keywordFilter.length > 2) {
             return this.unitsStore.unitList.filter(
-                x =>
+                (x) =>
                     x.name.toUpperCase().indexOf(keywordFilter) >= 0 ||
-                    x.keywords.some(x => x.indexOf(keywordFilter) >= 0)
+                    x.keywords.some((x) => x.indexOf(keywordFilter) >= 0)
             );
         }
         return this.unitsStore.unitList.filter(
-            x =>
-                x.factions.some(x => x.id === this.faction?.id) ||
+            (x) =>
+                x.factions.some((x) => x.id === this.faction?.id) ||
                 (this.includeFactionLess && x.factions.length === 0)
         );
-    }
-
-    @computed
-    get endlessSpells() {
-        return this.warscrolls.filter(x => x.roles.includes(Role.EndlessSpell));
     }
 
     @observable combatSettings: CombatSettings = {
@@ -73,7 +67,7 @@ export class UiStore {
         enemyKeywords: "",
         hasCharged: false,
         hasMoved: true,
-        enemyCount: 5
+        enemyCount: 5,
     };
 
     @computed
@@ -191,7 +185,7 @@ export class UiStore {
             hasMoved: this.combatSettings.hasMoved,
             enemyCount: this.combatSettings.enemyCount,
             includeAllies: this.includeAllies,
-            includeFactionLess: this.includeFactionLess
+            includeFactionLess: this.includeFactionLess,
         };
         localStorage.setItem("ui", JSON.stringify(serialized));
     }

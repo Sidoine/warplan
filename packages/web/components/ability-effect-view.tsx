@@ -16,7 +16,7 @@ import {
     getAuraText,
     getEffectCondition,
     getEffectDurationName,
-    getPhaseName,
+    getShortPhaseName,
     getTokenName,
 } from "../stores/battle";
 import {
@@ -26,23 +26,24 @@ import {
     SwordIcon,
     TargetIcon,
 } from "../atoms/icons";
-import SignalWifi2BarIcon from "@material-ui/icons/SignalWifi2Bar";
-import PersonIcon from "@material-ui/icons/Person";
-import GroupIcon from "@material-ui/icons/Group";
-import VerticalAlignTopIcon from "@material-ui/icons/VerticalAlignTop";
-import Chip from "@material-ui/core/Chip";
-import { makeStyles } from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import SignalWifi2BarIcon from "@mui/icons-material/SignalWifi2Bar";
+import PersonIcon from "@mui/icons-material/Person";
+import GroupIcon from "@mui/icons-material/Group";
+import VerticalAlignTopIcon from "@mui/icons-material/VerticalAlignTop";
+import Chip from "@mui/material/Chip";
+import makeStyles from "@mui/styles/makeStyles";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { getValueText } from "../stores/combat";
-import FilterHdrIcon from "@material-ui/icons/FilterHdr";
+import FilterHdrIcon from "@mui/icons-material/FilterHdr";
 import { useStores } from "../stores";
-import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
-import AvTimerIcon from "@material-ui/icons/AvTimer";
-import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import ControlPointIcon from "@material-ui/icons/ControlPoint";
+import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
+import AvTimerIcon from "@mui/icons-material/AvTimer";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import ControlPointIcon from "@mui/icons-material/ControlPoint";
+import { Stack } from "@mui/material";
 const heroColor = "#ffd700";
 const shootColor = "#D08000";
 const movementColor = "#0000ff";
@@ -141,7 +142,7 @@ export function AbilityEffectPhaseView({ effect }: { effect: AbilityEffect }) {
                     {effect.subPhase === SubPhase.WhileBefore && (
                         <NavigateBeforeIcon />
                     )}{" "}
-                    {getPhaseName(effect.phase)}{" "}
+                    {getShortPhaseName(effect.phase)}{" "}
                     {effect.subPhase === SubPhase.After && <SkipNextIcon />}{" "}
                     {effect.subPhase === SubPhase.WhileAfter && (
                         <NavigateNextIcon />
@@ -465,9 +466,18 @@ export function AbilityEffectView({
     unit: ItemWithAbilities;
 }) {
     return (
-        <i>
-            <AbilityEffectPhaseView effect={effect} /> - Target:{" "}
-            {getTargetType(effect, unit)}
-        </i>
+        <Stack direction="row" spacing={1}>
+            <AbilityEffectPhaseView effect={effect} />
+            <AbilityEffectCondition condition={effect.condition} unit={unit}>
+                <AbilityEffectCost effect={effect} unit={unit} />
+            </AbilityEffectCondition>
+            <AbilityEffectCondition
+                condition={effect.targetCondition}
+                unit={unit}
+            >
+                <AbilityEffectTarget unit={unit} effect={effect} />
+            </AbilityEffectCondition>
+            <AbilityEffectAurasView effect={effect} unit={unit} />
+        </Stack>
     );
 }

@@ -4,7 +4,7 @@ import { AbilityCard, CardContent, CardColor } from "./ability-card";
 import { HiddenCard } from "./hidden-card";
 import { Ability, Faction } from "../../common/data";
 import { useStores } from "../stores";
-import { makeStyles } from "@material-ui/core";
+import makeStyles from '@mui/styles/makeStyles';
 
 function mapAbility(
     x: Ability,

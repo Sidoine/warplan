@@ -24,9 +24,9 @@ import {
     IconButton,
     Checkbox,
     FormControlLabel,
-} from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { useStores } from "../stores";
 import NumberControl from "../atoms/number-control";
 import { ArmyListStore } from "../stores/army-list";
@@ -193,10 +193,10 @@ function Combination({
         <TableRow>
             <TableCell>
                 {unit.name} {unit.subName} {count > 0 && `(${count})`}
-                <IconButton onClick={handleClick}>
+                <IconButton onClick={handleClick} size="large">
                     <AddIcon />
                 </IconButton>
-                <IconButton onClick={handleEyeClick}>
+                <IconButton onClick={handleEyeClick} size="large">
                     <HelpOutlineIcon />
                 </IconButton>
             </TableCell>

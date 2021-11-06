@@ -8,7 +8,7 @@ import {
     TableRow,
     TableHead,
     TableBody,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useStores } from "../stores";
 
 function OwnedModelsList() {
