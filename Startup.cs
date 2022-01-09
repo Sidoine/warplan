@@ -8,6 +8,7 @@ namespace Warplan
     using Microsoft.AspNetCore.HttpsPolicy;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI;
+    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -62,7 +63,10 @@ namespace Warplan
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddIdentityServer()
+            services.AddIdentityServer(options =>
+            {
+                options.IssuerUri = Configuration["IdentityServer:IssuerUri"];
+            })
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             services.AddAuthentication()
@@ -77,7 +81,9 @@ namespace Warplan
                 configuration.RootPath = "warplan/wwwroot";
             });
 
+            services.Configure<SendGridOptions>(Configuration.GetSection("SendGrid"));
             services.Configure<WarplanOptions>(Configuration.GetSection("Warplan"));
+            services.AddScoped<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
