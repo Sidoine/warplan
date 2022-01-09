@@ -84,6 +84,7 @@ namespace Warplan
             services.Configure<SendGridOptions>(Configuration.GetSection("SendGrid"));
             services.Configure<WarplanOptions>(Configuration.GetSection("Warplan"));
             services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<SeedingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
