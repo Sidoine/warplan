@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { observer } from "mobx-react-lite";
 import {
     Button,
@@ -6,18 +6,13 @@ import {
     DialogTitle,
     DialogContentText,
     DialogActions,
-    Input,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useArmyListStore } from "../stores/army-list";
 import { useUiStore } from "../stores/ui";
+import { useArmyListsStore } from "../stores/army-lists";
 
 function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
-    const warscrollStore = useArmyListStore();
-    const handleUpdate = useCallback(
-        () => warscrollStore.saveWarscroll(x),
-        [warscrollStore, x]
-    );
+    const warscrollStore = useArmyListsStore();
     const handleLoad = useCallback(() => {
         warscrollStore.loadWarscroll(x);
         onClose();
@@ -29,7 +24,6 @@ function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
     return (
         <div key={x}>
             {x}
-            <Button onClick={handleUpdate}>Update</Button>
             <Button onClick={handleLoad}>Load</Button>
             <Button onClick={handleDelete}>
                 <DeleteIcon />
@@ -40,19 +34,12 @@ function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
 
 function ArmyListsManager() {
     const uiStore = useUiStore();
-    const warscrollStore = useArmyListStore();
-    const [warscrollName, setWarscrollName] = useState(
-        warscrollStore.armyList.name
-    );
-    const handleClose = useCallback(
+    const warscrollStore = useArmyListsStore();
+     const handleClose = useCallback(
         () => uiStore.closeWarscrollPopin(),
         [uiStore]
     );
-    const handleInputChange = useCallback(
-        (x: ChangeEvent<HTMLInputElement>) => setWarscrollName(x.target.value),
-        []
-    );
-
+   
     return (
         <Dialog onClose={handleClose} open={true}>
             <DialogTitle>Warscrolls</DialogTitle>
@@ -60,17 +47,7 @@ function ArmyListsManager() {
             <DialogContentText>
                 {warscrollStore.armyLists.map((x) => (
                     <WarscrollLine x={x} onClose={handleClose} key={x} />
-                ))}
-                <Input
-                    type="text"
-                    value={warscrollName}
-                    onChange={handleInputChange}
-                />
-                <Button
-                    onClick={() => warscrollStore.saveWarscroll(warscrollName)}
-                >
-                    Add
-                </Button>
+                ))}                
             </DialogContentText>
 
             <DialogActions>

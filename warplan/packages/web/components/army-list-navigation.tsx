@@ -14,8 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ArmyListNavigation = observer(function ArmyListNavigation() {
-    const armyListStore = useArmyListStore();
-    const armyList = armyListStore.armyList;
+    const armyList = useArmyListStore();
     const classes = useStyles();
     return (
         <Fab variant="extended" color="primary" className={classes.root}>

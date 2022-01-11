@@ -29,7 +29,7 @@ import {
     PrayerAura,
 } from "../../common/data";
 import { DataStore, useDataStore } from "./data";
-import { ArmyList, ArmyListStore, useArmyListStore } from "./army-list";
+import { ArmyList, useArmyListStore } from "./army-list";
 import { getValueText } from "./combat";
 import { createContext, useState } from "react";
 import React from "react";
@@ -1207,7 +1207,7 @@ export class BattleStore {
 
     constructor(
         public dataStore: DataStore,
-        private armyListStore: ArmyListStore
+        private armyList: ArmyList
     ) {
         makeObservable(this);
         const serialized = localStorage.getItem("battle");
@@ -1235,7 +1235,7 @@ export class BattleStore {
             this.phase = serialized.phase;
             this.side = serialized.side;
             this.subPhase = serialized.subPhase;
-            const armyList = this.armyListStore.armyList;
+            const armyList = this.armyList;
             this.player = {
                 name: armyList.name,
                 armyList,
@@ -1266,7 +1266,7 @@ export class BattleStore {
     @computed get armyAbilities() {
         return this.allArmyAbilities.filter((x) =>
             isAbilityInPhase(
-                this.armyListStore.armyList,
+                this.armyList,
                 x,
                 this.side,
                 this.phase,

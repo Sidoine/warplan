@@ -9,7 +9,7 @@ import {
 import { DataStore, useDataStore } from "./data";
 import { getAbilityPhases, getEffectPhases, getEffectText } from "./battle";
 import elite from "../assets/elite.svg";
-import { ArmyListStore, useArmyListStore } from "./army-list";
+import { ArmyList, useArmyListStore } from "./army-list";
 import { createContext, useState } from "react";
 import React from "react";
 
@@ -252,7 +252,7 @@ export class MarkersStore {
 
     @computed
     get markers(): Marker[] {
-        const warscroll = this.warscrollStore.armyList;
+        const warscroll = this.warscrollStore;
         const abilities = warscroll.armyAndUnitsAbilities;
         const markers: Marker[] = [];
         for (const { ability, item } of abilities) {
@@ -315,7 +315,7 @@ export class MarkersStore {
     }
 
     constructor(
-        private warscrollStore: ArmyListStore,
+        private warscrollStore: ArmyList,
         public unitStore: DataStore // TODO
     ) {
         makeObservable(this);

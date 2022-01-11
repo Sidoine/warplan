@@ -1,11 +1,7 @@
 import { observer } from "mobx-react-lite";
 import * as React from "react";
-import { ArmyListStore, useArmyListStore } from "../stores/army-list";
+import { useArmyListStore } from "../stores/army-list";
 import { UnitWarscroll } from "../stores/warscroll";
-
-export interface WarscrollViewProps {
-    warscrollStore?: ArmyListStore;
-}
 
 function UnitView({
     unit,
@@ -33,8 +29,7 @@ function UnitView({
 }
 
 function ArmyListText() {
-    const warscrollStore = useArmyListStore();
-    const warscroll = warscrollStore.armyList;
+    const warscroll = useArmyListStore();
     return (
         <div>
             <div>Allegiance: {warscroll.allegiance?.name}</div>

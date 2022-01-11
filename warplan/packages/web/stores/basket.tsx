@@ -1,7 +1,7 @@
 import { action, observable, toJS, computed, makeObservable } from "mobx";
 import React, { createContext, useState } from "react";
 import { Box, Model } from "../../common/data";
-import { ArmyListStore, useArmyListStore } from "./army-list";
+import { ArmyList, useArmyListStore } from "./army-list";
 import { DataStore, useDataStore } from "./data";
 import { OwnedStore, useOwnedStore } from "./owned";
 
@@ -132,7 +132,7 @@ export class BasketStore {
             }
         }
 
-        for (const unit of this.warscrollStore.armyList.units) {
+        for (const unit of this.warscrollStore.units) {
             const count = unit.definition.size * unit.count;
             const basket = modelsInBasket.get(unit.definition.model.id);
             let basketCount = 0;
@@ -173,7 +173,7 @@ export class BasketStore {
 
     constructor(
         private unitsStore: DataStore,
-        private warscrollStore: ArmyListStore,
+        private warscrollStore: ArmyList,
         private ownedStore: OwnedStore
     ) {
         makeObservable(this);

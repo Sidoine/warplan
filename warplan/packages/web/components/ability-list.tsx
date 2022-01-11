@@ -112,7 +112,7 @@ function AbilityRows({
 }
 
 export const AbilityList = observer(function AbilityList() {
-    const armyList = useArmyListStore().armyList;
+    const armyList = useArmyListStore();
     return (
         <TableContainer>
             <Table>

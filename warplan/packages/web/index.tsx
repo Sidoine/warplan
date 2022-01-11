@@ -38,6 +38,7 @@ import { CardsStoreProvider } from "./stores/cards";
 import { OwnedStoreProvider } from "./stores/owned";
 import { BasketStoreProvider } from "./stores/basket";
 import { BattleStoreProvider } from "./stores/battle";
+import { ArmyListsStoreProvider } from "./stores/army-lists";
 
 declare module "@mui/styles/defaultTheme" {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -92,6 +93,7 @@ ReactDOM.render(
                     DataStoreProvider,
                     UiStoreProvider,
                     ArmyListStoreProvider,
+                    ArmyListsStoreProvider,
                     MarkersStoreProvider,
                     CardsStoreProvider,
                     OwnedStoreProvider,

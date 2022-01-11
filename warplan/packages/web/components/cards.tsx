@@ -53,7 +53,7 @@ export const Cards = observer(() => {
                     group.abilities.map((x) => mapAbility(x, "common"))
                 );
             }
-            const w = warscrollStore.armyList;
+            const w = warscrollStore;
             if (w.allegiance?.children) {
                 for (const armyOption of w.allegiance.children) {
                     if (armyOption.abilityGroups)

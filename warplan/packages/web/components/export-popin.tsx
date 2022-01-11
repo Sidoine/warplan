@@ -12,14 +12,13 @@ import { useArmyListStore } from "../stores/army-list";
 import { useUiStore } from "../stores/ui";
 
 function ExportPopin() {
-    const warscrollStore = useArmyListStore();
+    const warscroll = useArmyListStore();
     const uiStore = useUiStore();
 
     const handleClose = React.useCallback(
         () => uiStore.closeExportPopin(),
         [uiStore]
     );
-    const warscroll = warscrollStore.armyList;
     return (
         <Dialog onClose={handleClose} open={true}>
             <DialogTitle>Warscrolls</DialogTitle>
@@ -81,7 +80,7 @@ function ExportPopin() {
                     </div>
                 ))}
 
-                <Input type="text" value={warscrollStore.link} />
+                <Input type="text" value={warscroll.link} />
             </DialogContent>
 
             <DialogActions>

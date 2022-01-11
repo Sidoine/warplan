@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable, toJS } from "mobx";
+import { action, computed, makeObservable, observable } from "mobx";
 import { deflate, inflate } from "pako";
 import { KeywordCategory, Role } from "../../common/definitions";
 import {
@@ -48,7 +48,7 @@ export interface ArmyListLimits {
     maxOtherUnits: number | undefined;
 }
 
-interface SerializedArmyList {
+export interface SerializedArmyList {
     name: string;
     units: {
         unitId: string;
@@ -74,10 +74,6 @@ interface SerializedArmyList {
     extraAbilities?: string[];
 }
 
-function getWarscrollItem(name?: string) {
-    return name ? `warscroll/${name}` : "warscroll";
-}
-
 function hasAbilities(
     item: ItemWithAbilities
 ): item is Omit<ItemWithAbilities, "abilities"> & { abilities: Ability[] } {
@@ -88,9 +84,41 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     serial = 0;
     id: string;
 
-    constructor(public dataStore: DataStore) {
+    constructor(public dataStore: DataStore, private uiStore: UiStore) {
         makeObservable(this);
         this.id = (this.serial++).toString();
+
+        const serialized = localStorage.getItem("warscroll");
+        if (serialized) {
+            this.loadSerializedWarscroll(
+                JSON.parse(serialized)
+            );
+        }
+        
+        this.loadLink();
+    }
+
+    
+    @computed
+    get link() {
+        const ws = btoa(
+            deflate(JSON.stringify(this.serialize()), {
+                to: "string",
+            })
+        );
+        return `${document.location.protocol}//${document.location.host}${document.location.pathname}#?ws=${ws}`;
+    }
+
+    @action
+    loadLink() {
+        const hash = location.hash.match(/ws=(.*)/);
+        if (hash) {
+            const ws = hash[1];
+            this.loadSerializedWarscroll(
+                JSON.parse(inflate(atob(ws), { to: "string" }))
+            );
+            location.hash = "/";
+        }
     }
 
     isRoleAvailable(role: UnitRole): boolean {
@@ -469,7 +497,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         );
     }
 
-    getSerializedWarscroll(): SerializedArmyList {
+    serialize(): SerializedArmyList {
         return {
             name: this.name,
             realm: this.realm?.id ?? undefined,
@@ -609,9 +637,9 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         }
     }
 
-    save(name?: string) {
-        const warscroll = this.getSerializedWarscroll();
-        localStorage.setItem(getWarscrollItem(name), JSON.stringify(warscroll));
+    save() {
+        const warscroll = this.serialize();
+        localStorage.setItem("warscroll", JSON.stringify(warscroll));
     }
 
     @computed
@@ -638,23 +666,62 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @computed get itemsWithAbilities(): ItemWithAbilities[] {
         return new Array<ItemWithAbilities>(this).concat(this.units);
     }
-}
 
-export class ArmyListStore {
-    @observable
-    armyLists: string[] = [];
 
+    @action
+    setModelCount(altModel: WarscrollModel, count: number) {
+        altModel.count = count;
+        this.save();
+    }
+
+    @action
+    addModelOption(model: WarscrollModel, option: ModelOption) {
+        model.options.push(option);
+        this.save();
+    }
+
+    @action
+    removeModelOption(model: WarscrollModel, option: ModelOption) {
+        model.options.splice(model.options.indexOf(option), 1);
+        this.save();
+    }
+
+    @action
+    addModel(unit: UnitWarscroll, option: ModelOption | undefined) {
+        const model = new WarscrollModel(unit, this);
+        unit.models.push(model);
+        if (option) model.options.push(option);
+        this.save();
+    }
+
+    @action
+    removeModel(unit: UnitWarscroll, model: WarscrollModel) {
+        unit.models.splice(unit.models.indexOf(model), 1);
+        this.save();
+    }
+
+    @action setRealm = (realm: RealmOfBattle | null) => {
+        this.realm = realm;
+        this.save();
+    };
+
+    @action setName = (value: string) => {
+        this.name = value;
+        this.save();
+    };
+
+    
     @computed
     get availableBattalionGroups() {
         const result = this.dataStore.genericBattalionGroups;
-        if (this.armyList.allegiance?.battalionGroups) {
-            result.push(...this.armyList.allegiance.battalionGroups);
+        if (this.allegiance?.battalionGroups) {
+            result.push(...this.allegiance.battalionGroups);
         }
-        if (this.armyList.subFaction?.battalionGroups) {
-            result.push(...this.armyList.subFaction.battalionGroups);
+        if (this.subFaction?.battalionGroups) {
+            result.push(...this.subFaction.battalionGroups);
         }
-        if (this.armyList.armyType?.battalionGroups) {
-            result.push(...this.armyList.armyType.battalionGroups);
+        if (this.armyType?.battalionGroups) {
+            result.push(...this.armyType.battalionGroups);
         }
         return result;
     }
@@ -669,7 +736,7 @@ export class ArmyListStore {
         return this.uiStore.warscrolls.filter(
             (x) =>
                 !x.single ||
-                this.armyList.units.find((x) => x.definition.id === x.id) ===
+                this.units.find((x) => x.definition.id === x.id) ===
                     undefined
         );
     }
@@ -693,7 +760,7 @@ export class ArmyListStore {
     @action
     addUnit = (unit: Unit | null) => {
         if (unit === null) return;
-        const warscroll = this.armyList;
+        const warscroll = this;
         const warscrollUnit = new UnitWarscroll(warscroll, unit);
         if (
             warscrollUnit.role !== Role.Terrain &&
@@ -705,198 +772,79 @@ export class ArmyListStore {
             warscrollUnit.models.push(model);
         }
         warscroll.units.push(warscrollUnit);
-        this.saveWarscroll();
+        this.save();
     };
 
     @action
     removeUnit(unit: UnitWarscroll) {
-        const units = this.armyList.units;
+        const units = this.units;
         units.splice(units.indexOf(unit), 1);
-        this.saveWarscroll();
+        this.save();
     }
 
     @action
     addBattalion(battalion: Battalion) {
-        this.armyList.battalions.push(
-            new WarscrollBattalion(this.armyList, battalion)
+        this.battalions.push(
+            new WarscrollBattalion(this, battalion)
         );
-        this.saveWarscroll();
+        this.save();
     }
 
     @action
     removeBattalion(battalion: WarscrollBattalionInterface) {
-        const battalions = this.armyList.battalions;
+        const battalions = this.battalions;
         battalions.splice(
             battalions.findIndex((x) => x.id === battalion.id),
             1
         );
-        this.saveWarscroll();
+        this.save();
     }
 
     @action
     setGeneral(unit: UnitWarscroll | undefined) {
-        this.armyList.general = unit;
-        this.saveWarscroll();
+        this.general = unit;
+        this.save();
     }
 
     @computed
     get armyTypes() {
-        return this.armyList.allegiance?.children.filter(
+        return this.allegiance?.children.filter(
             (x) => x.category === KeywordCategory.ArmyType
         );
     }
 
     @computed
     get subFactions() {
-        return this.armyList.allegiance?.children.filter(
+        return this.allegiance?.children.filter(
             (x) => x.category === KeywordCategory.Subfaction
         );
     }
 
     @action
     setArmyType = (option: Faction | null) => {
-        this.armyList.armyType = option;
-        this.saveWarscroll();
+        this.armyType = option;
+        this.save();
     };
 
     @action
     setSubFaction = (option: Faction | null) => {
-        this.armyList.subFaction = option;
-        this.saveWarscroll();
+        this.subFaction = option;
+        this.save();
     };
 
     @action
-    setPointMode(pointMode: PointMode) {
-        this.armyList.pointMode = pointMode;
-        this.saveWarscroll();
+    setPointMode = (pointMode: PointMode) => {
+        this.pointMode = pointMode;
+        this.save();
     }
 
-    loadWarscroll(name?: string) {
-        const serializedWarscroll = localStorage.getItem(
-            getWarscrollItem(name)
-        );
-        if (serializedWarscroll === null) return;
-        const warscroll: SerializedArmyList = JSON.parse(serializedWarscroll);
-        this.armyList.loadSerializedWarscroll(warscroll);
-        if (name) this.saveWarscroll();
+    setAllegiance = (allegiance: Faction | null) => {
+        this.allegiance = allegiance;
+        this.save();
     }
-
-    @computed
-    get link() {
-        const ws = btoa(
-            deflate(JSON.stringify(this.armyList.getSerializedWarscroll()), {
-                to: "string",
-            })
-        );
-        return `${document.location.protocol}//${document.location.host}${document.location.pathname}#?ws=${ws}`;
-    }
-
-    @action
-    loadLink() {
-        const hash = location.hash.match(/ws=(.*)/);
-        if (hash) {
-            const ws = hash[1];
-            this.armyList.loadSerializedWarscroll(
-                JSON.parse(inflate(atob(ws), { to: "string" }))
-            );
-            location.hash = "/";
-        }
-    }
-
-    // http://localhost:8080/#/wb?ws=eJytkTFPxDAMhf8K8twFxm4nDgELsN2AbvClprXkOsVxVKSq/520Q+kAEkJMsZyXz+85Eyj2BDU80Xh1QkvBoghUkJU9Qf06rdVjUyRI3pGNrG0qghCzOtTXFXC6JyVDgfoNJVEFI+EQ9XlwjrpAzhXQhxseLizsTGtvrnbsQELJUf3FuPj5Ae+W/0SXaM3hPXM5/935YDFRyB4tndi72zUIozxg35PtNnXzm3kTxLXeVrKRjrk8WyZvgtZQm2693KWav7dcuhd0R/kKhiLUMmpY/j+VAH3A5HdOpsUczJ8lx78z
-
-    @action
-    saveWarscroll(name?: string) {
-        if (name && this.armyLists.indexOf(name) < 0) this.armyLists.push(name);
-        this.armyList.save(name);
-        this.saveWarscrolls();
-    }
-
-    saveCurrentWarscroll = () => {
-        this.saveWarscroll(this.armyList.name);
-    };
-
-    create = () => {
-        this.saveCurrentWarscroll();
-        this.armyList.loadSerializedWarscroll({
-            name: "New",
-            units: [],
-            battalions: [],
-        });
-    };
-
-    @action
-    removeWarscroll(name: string) {
-        localStorage.removeItem(getWarscrollItem(name));
-        this.armyLists.splice(this.armyLists.indexOf(name), 1);
-        this.saveWarscrolls();
-    }
-
-    constructor(private dataStore: DataStore, private uiStore: UiStore) {
-        makeObservable(this);
-        const warscrolls = localStorage.getItem("warscrolls");
-        if (warscrolls !== null) {
-            this.armyLists = JSON.parse(warscrolls);
-        }
-
-        this.loadWarscroll();
-        this.loadLink();
-    }
-
-    private saveWarscrolls() {
-        localStorage.setItem(
-            "warscrolls",
-            JSON.stringify(toJS(this.armyLists))
-        );
-    }
-
-    @observable
-    armyList = new ArmyList(this.dataStore);
-
-    @action
-    setModelCount(altModel: WarscrollModel, count: number) {
-        altModel.count = count;
-        this.saveWarscroll();
-    }
-
-    @action
-    addModelOption(model: WarscrollModel, option: ModelOption) {
-        model.options.push(option);
-        this.saveWarscroll();
-    }
-
-    @action
-    removeModelOption(model: WarscrollModel, option: ModelOption) {
-        model.options.splice(model.options.indexOf(option), 1);
-        this.saveWarscroll();
-    }
-
-    @action
-    addModel(unit: UnitWarscroll, option: ModelOption | undefined) {
-        const model = new WarscrollModel(unit, this.armyList);
-        unit.models.push(model);
-        if (option) model.options.push(option);
-        this.saveWarscroll();
-    }
-
-    @action
-    removeModel(unit: UnitWarscroll, model: WarscrollModel) {
-        unit.models.splice(unit.models.indexOf(model), 1);
-        this.saveWarscroll();
-    }
-
-    @action setRealm = (realm: RealmOfBattle | null) => {
-        this.armyList.realm = realm;
-        this.saveWarscroll();
-    };
-
-    @action setName = (value: string) => {
-        this.armyList.name = value;
-        this.saveWarscroll();
-    };
 }
 
-const ArmyListStoreContext = createContext<ArmyListStore | null>(null);
+const ArmyListStoreContext = createContext<ArmyList | null>(null);
 
 export function ArmyListStoreProvider({
     children,
@@ -905,7 +853,7 @@ export function ArmyListStoreProvider({
 }) {
     const dataStore = useDataStore();
     const uiStore = useUiStore();
-    const [data] = useState(() => new ArmyListStore(dataStore, uiStore));
+    const [data] = useState(() => new ArmyList(dataStore, uiStore));
     return (
         <ArmyListStoreContext.Provider value={data}>
             {children}
@@ -916,7 +864,7 @@ export function ArmyListStoreProvider({
 export function useArmyListStore() {
     const dataStore = React.useContext(ArmyListStoreContext);
     if (!dataStore) {
-        throw new Error("useDataStore must be used within a DataStoreProvider");
+        throw new Error("useArmyListStore must be used within a ArmyListStoreProvider");
     }
     return dataStore;
 }

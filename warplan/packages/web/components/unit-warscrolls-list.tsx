@@ -101,7 +101,7 @@ const ModelName = observer(
                             <>
                                 <Checkbox
                                     checked={
-                                        unit === warscrollStore.armyList.general
+                                        unit === warscrollStore.general
                                     }
                                     onChange={(_, c) => toggleGeneral(c)}
                                 ></Checkbox>
@@ -295,7 +295,7 @@ function UnitWarscrollsList({ role, title }: { role: Role; title: string }) {
         return columns;
     }, [handleOpenWarscroll, warscrollStore]);
 
-    const warscroll = warscrollStore.armyList;
+    const warscroll = warscrollStore;
     return (
         <Card>
             <CardHeader title={title} />

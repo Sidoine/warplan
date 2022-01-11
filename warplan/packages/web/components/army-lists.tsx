@@ -9,17 +9,19 @@ import {
 import { observer } from "mobx-react-lite";
 import React, { useCallback } from "react";
 import { useArmyListStore } from "../stores/army-list";
+import { useArmyListsStore } from "../stores/army-lists";
 import { useUiStore } from "../stores/ui";
 
 const ArmyList = observer(({ x }: { x: string }) => {
-    const warscrollStore = useArmyListStore();
+    const warscrollStore = useArmyListsStore();
+    const currentArmyList = useArmyListStore();
     const handleLoad = useCallback(() => {
-        warscrollStore.saveWarscroll(warscrollStore.armyList.name);
+        warscrollStore.saveCurrentArmyList();
         warscrollStore.loadWarscroll(x);
     }, [warscrollStore, x]);
     return (
         <ListItem
-            selected={x === warscrollStore.armyList.name}
+            selected={x === currentArmyList.name}
             button
             key={x}
             onClick={handleLoad}
@@ -31,12 +33,12 @@ const ArmyList = observer(({ x }: { x: string }) => {
 
 function ArmyLists() {
     const uiStore = useUiStore();
-    const armyListStore = useArmyListStore();
+    const armyListsStore = useArmyListsStore();
     return (
         <Card>
             <CardContent>
                 <List>
-                    {armyListStore.armyLists.map((x) => (
+                    {armyListsStore.armyLists.map((x) => (
                         <ArmyList key={x} x={x} />
                     ))}
                 </List>
@@ -45,7 +47,7 @@ function ArmyLists() {
                 <Button onClick={uiStore.showArmyListManager}>
                     Manage lists
                 </Button>
-                <Button onClick={armyListStore.create}>New</Button>
+                <Button onClick={armyListsStore.create}>New</Button>
             </CardActions>
         </Card>
     );

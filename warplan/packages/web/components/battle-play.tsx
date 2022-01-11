@@ -64,7 +64,7 @@ export const BattleStart = observer(() => {
         <Button
             color="primary"
             variant="contained"
-            onClick={() => battleStore.start(warscrollStore.armyList)}
+            onClick={() => battleStore.start(warscrollStore)}
         >
             Start
         </Button>

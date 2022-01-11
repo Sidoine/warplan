@@ -59,7 +59,7 @@ function MyNavbar({}: MyNavbarProps) {
             return [
                 {
                     title: "List Builder",
-                    badge: warscrollStore.armyList.totalPoints,
+                    badge: warscrollStore.totalPoints,
                     path: "",
                 },
                 { title: "Warscrolls", path: "warscroll" },

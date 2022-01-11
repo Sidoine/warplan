@@ -1,5 +1,5 @@
 import React, { useCallback, ChangeEvent, useState, useMemo } from "react";
-import { UiStore, useUiStore } from "../stores/ui";
+import { useUiStore } from "../stores/ui";
 import { observer } from "mobx-react-lite";
 import { UnitStats } from "../stores/stats";
 import { computed } from "mobx";
@@ -28,12 +28,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import NumberControl from "../atoms/number-control";
-import { ArmyListStore, useArmyListStore } from "../stores/army-list";
-
-export interface StatsProps {
-    uiStore?: UiStore;
-    warscrollStore?: ArmyListStore;
-}
+import { useArmyListStore } from "../stores/army-list";
 
 const EnemyConfiguration = observer(({}) => {
     const uiStore = useUiStore();
@@ -176,7 +171,7 @@ function Combination({
     const unit = unitStats.unit;
     const wounds = getValue(unit.wounds) * unit.size;
     const points = unit.points / 100;
-    const count = warscrollStore.armyList.units.reduce(
+    const count = warscrollStore.units.reduce(
         (c, x) => (x.definition.id === unit.id ? x.count + c : c),
         0
     );

@@ -7,8 +7,7 @@ import { FactionWarscroll } from "./faction-warscroll";
 import { useArmyListStore } from "../stores/army-list";
 
 export function ArmyListWarscrolls() {
-    const warscrollStore = useArmyListStore();
-    const w = warscrollStore.armyList;
+    const w = useArmyListStore();
     return (
         <>
             <Grid container spacing={1} direction="column">

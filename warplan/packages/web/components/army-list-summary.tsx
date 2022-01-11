@@ -1,4 +1,4 @@
-import { observer, useLocalObservable } from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import { Faction, PointMode } from "../../common/data";
 import DropdownValues from "../atoms/dropdown-values";
 import DropdownObjects from "../atoms/dropdown-objects";
@@ -38,30 +38,19 @@ const allegianceColumns: TableColumn<Faction>[] = [
 ];
 
 export const ArmyListSummary = observer(() => {
-    const warscrollStore = useArmyListStore();
+    const armyList = useArmyListStore();
     const unitsStore = useDataStore();
     const uiStore = useUiStore();
-    const store = useLocalObservable(() => ({
-        handlePointsModeChange(value: PointMode) {
-            warscrollStore.setPointMode(value);
-        },
-        setAllegiance(allegiance: Faction | null) {
-            if (allegiance) {
-                warscrollStore.armyList.allegiance = allegiance;
-                warscrollStore.saveWarscroll();
-            }
-        },
-    }));
 
-    const warscroll = warscrollStore.armyList;
+    const warscroll = armyList;
     const totalPoints = warscroll.totalPoints;
     const alliedPoints = warscroll.alliedPoints;
     const allegianceOptions = unitsStore.allegiances;
     const handleNameChange = useCallback(
         (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-            warscrollStore.setName(event.currentTarget.value);
+            armyList.setName(event.currentTarget.value);
         },
-        [warscrollStore]
+        [armyList]
     );
 
     return (
@@ -85,23 +74,23 @@ export const ArmyListSummary = observer(() => {
                                     getText={getName}
                                     options={allegianceOptions}
                                     value={warscroll.allegiance}
-                                    onChange={store.setAllegiance}
+                                    onChange={armyList.setAllegiance}
                                 />
                             </FormControl>
                         </Grid>
-                        {warscrollStore.armyTypes && (
+                        {armyList.armyTypes && (
                             <Grid item>
                                 <AddButton<Faction>
                                     variant="clearable"
                                     columns={allegianceColumns}
-                                    options={warscrollStore.armyTypes}
+                                    options={armyList.armyTypes}
                                     value={warscroll.armyType}
-                                    onChange={warscrollStore.setArmyType}
+                                    onChange={armyList.setArmyType}
                                     placeholder="Army Type"
                                 />
                             </Grid>
                         )}
-                        {warscrollStore.subFactions && (
+                        {armyList.subFactions && (
                             <Grid item>
                                 {/* {warscroll.armyOption &&
                                     warscroll.armyOption.requiredArtifact &&
@@ -127,9 +116,9 @@ export const ArmyListSummary = observer(() => {
                                 <AddButton<Faction>
                                     variant="clearable"
                                     columns={allegianceColumns}
-                                    options={warscrollStore.subFactions}
+                                    options={armyList.subFactions}
                                     value={warscroll.subFaction}
-                                    onChange={warscrollStore.setSubFaction}
+                                    onChange={armyList.setSubFaction}
                                     placeholder="Sub Faction"
                                 />
                             </Grid>
@@ -148,7 +137,7 @@ export const ArmyListSummary = observer(() => {
                                             ? "Matched play"
                                             : "Open play"
                                     }
-                                    onChange={store.handlePointsModeChange}
+                                    onChange={armyList.setPointMode}
                                 />
                             </FormControl>
                         </Grid>
@@ -159,7 +148,7 @@ export const ArmyListSummary = observer(() => {
                                     value={warscroll.realm}
                                     options={unitsStore.realms}
                                     getText={(x) => x.name}
-                                    onChange={warscrollStore.setRealm}
+                                    onChange={armyList.setRealm}
                                     clearable
                                 />
                             </FormControl>
@@ -238,7 +227,7 @@ export const ArmyListSummary = observer(() => {
             </CardContent>
             <CardActions>
                 <Button onClick={uiStore.showExportPopin}>Export</Button>
-                <Button onClick={warscrollStore.saveCurrentWarscroll}>
+                <Button onClick={armyList.save}>
                     Save
                 </Button>
             </CardActions>

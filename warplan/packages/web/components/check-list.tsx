@@ -24,8 +24,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import { distinct } from "../helpers/algo";
 
 import warscrollSeparator from "../assets/ws-separator.png";
-import { DataStore } from "../stores/data";
-import { ArmyList, ArmyListStore, useArmyListStore } from "../stores/army-list";
+import { ArmyList, useArmyListStore } from "../stores/army-list";
 import { AbilityEffectView } from "./ability-effect-view";
 import { Card, CardContent, Stack, Typography } from "@mui/material";
 
@@ -95,11 +94,6 @@ const useStyle = makeStyles({
         textAlign: "center",
     },
 });
-
-export interface CheckListProps {
-    warscrollStore?: ArmyListStore;
-    unitsStore?: DataStore;
-}
 
 interface ItemWithAbilityInPhase {
     item: ItemWithAbilities;
@@ -401,8 +395,7 @@ function OutOfPhaseAbilities({ warscroll }: { warscroll: ArmyList }) {
 }
 
 function PhaseSideInfo({ phaseSide }: { phaseSide: Turn }) {
-    const armyListStore = useArmyListStore();
-    const armyList = armyListStore.armyList;
+    const armyList = useArmyListStore();
     return (
         <div>
             <h1>{getPhaseSideName(phaseSide)}</h1>
@@ -426,7 +419,7 @@ export function CheckList() {
         <div>
             <PhaseSideInfo phaseSide={Turn.Your} />
             <PhaseSideInfo phaseSide={Turn.Opponent} />
-            <OutOfPhaseAbilities warscroll={armyListStore.armyList} />
+            <OutOfPhaseAbilities warscroll={armyListStore} />
         </div>
     );
 }
