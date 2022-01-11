@@ -30,3 +30,5 @@ yarn-error.log*
 
 /assets
 dist
+wwwroot/files
+wwwroot/bundle.*
