@@ -55,5 +55,5 @@
         "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
         "lint": "eslint --ext .ts,.tsx packages"
     },
-    "packageManager": "yarn@3.1.0"
+    "packageManager": "yarn@3.1.1"
 }
