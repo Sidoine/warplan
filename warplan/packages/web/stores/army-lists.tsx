@@ -1,6 +1,13 @@
-import React, { createContext, useState } from "react"
-import { action, makeObservable, observable, toJS } from "mobx"
-import {  ArmyList, SerializedArmyList, useArmyListStore } from "./army-list";
+import React, { createContext, useState } from "react";
+import { action, makeObservable, observable, toJS } from "mobx";
+import { ArmyList, SerializedArmyList, useArmyListStore } from "./army-list";
+import {
+    useArmyListGetAllCache,
+    useArmyListService,
+} from "../services/armyList-context";
+import { ArmyList as ArmyListData } from "../services/views";
+import { MapLoader } from "folke-service-helpers";
+import { ArmyListController } from "../services/armyList";
 
 function getWarscrollItem(name: string) {
     return `warscroll/${name}`;
@@ -9,6 +16,18 @@ function getWarscrollItem(name: string) {
 export class ArmyListStore {
     @observable
     armyLists: string[] = [];
+
+    constructor(
+        private currentArmyList: ArmyList,
+        private armyListService: ArmyListController,
+        private armyListGetAllCache: MapLoader<ArmyListData[], []>
+    ) {
+        makeObservable(this);
+        const warscrolls = localStorage.getItem("warscrolls");
+        if (warscrolls !== null) {
+            this.armyLists = JSON.parse(warscrolls);
+        }
+    }
 
     loadWarscroll(name: string) {
         const serializedWarscroll = localStorage.getItem(
@@ -23,8 +42,10 @@ export class ArmyListStore {
     @action
     saveCurrentArmyList() {
         const name = this.currentArmyList.name;
-        localStorage.setItem(getWarscrollItem(name), JSON.stringify(this.currentArmyList.serialize()));
+        const data = JSON.stringify(this.currentArmyList.serialize());
+        localStorage.setItem(getWarscrollItem(name), data);
         if (this.armyLists.indexOf(name) < 0) this.armyLists.push(name);
+        this.armyListService.create({ data, name });
         this.saveArmyLists();
     }
 
@@ -43,14 +64,6 @@ export class ArmyListStore {
         this.saveArmyLists();
     }
 
-    constructor(private currentArmyList: ArmyList) {
-        makeObservable(this);
-        const warscrolls = localStorage.getItem("warscrolls");
-        if (warscrolls !== null) {
-            this.armyLists = JSON.parse(warscrolls);
-        }
-    }
-
     private saveArmyLists() {
         localStorage.setItem(
             "warscrolls",
@@ -67,7 +80,12 @@ export function ArmyListsStoreProvider({
     children: React.ReactNode;
 }) {
     const currentArmyList = useArmyListStore();
-    const [data] = useState(() => new ArmyListStore(currentArmyList));
+    const armyListService = useArmyListService();
+    const armyListGetAll = useArmyListGetAllCache();
+    const [data] = useState(
+        () =>
+            new ArmyListStore(currentArmyList, armyListService, armyListGetAll)
+    );
     return (
         <ArmyListStoreContext.Provider value={data}>
             {children}
@@ -78,7 +96,9 @@ export function ArmyListsStoreProvider({
 export function useArmyListsStore() {
     const dataStore = React.useContext(ArmyListStoreContext);
     if (!dataStore) {
-        throw new Error("useArmyListsStore must be used within a ArmyListsStoreProvider");
+        throw new Error(
+            "useArmyListsStore must be used within a ArmyListsStoreProvider"
+        );
     }
     return dataStore;
 }

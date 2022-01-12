@@ -4,8 +4,11 @@ import {
     Button,
     Dialog,
     DialogTitle,
-    DialogContentText,
     DialogActions,
+    Stack,
+    DialogContent,
+    IconButton,
+    Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useUiStore } from "../stores/ui";
@@ -22,36 +25,46 @@ function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
         [warscrollStore, x]
     );
     return (
-        <div key={x}>
-            {x}
-            <Button onClick={handleLoad}>Load</Button>
-            <Button onClick={handleDelete}>
-                <DeleteIcon />
+        <Stack direction="row" spacing={1}>
+            <Typography>{x}</Typography>
+            <Button variant="outlined" onClick={handleLoad}>
+                Load
             </Button>
-        </div>
+            <IconButton onClick={handleDelete}>
+                <DeleteIcon />
+            </IconButton>
+        </Stack>
     );
 }
 
 function ArmyListsManager() {
     const uiStore = useUiStore();
     const warscrollStore = useArmyListsStore();
-     const handleClose = useCallback(
+    const handleClose = useCallback(
         () => uiStore.closeWarscrollPopin(),
         [uiStore]
     );
-   
+
     return (
         <Dialog onClose={handleClose} open={true}>
             <DialogTitle>Warscrolls</DialogTitle>
 
-            <DialogContentText>
-                {warscrollStore.armyLists.map((x) => (
-                    <WarscrollLine x={x} onClose={handleClose} key={x} />
-                ))}                
-            </DialogContentText>
+            <DialogContent>
+                <Stack spacing={1}>
+                    {warscrollStore.armyLists.map((x) => (
+                        <WarscrollLine x={x} onClose={handleClose} key={x} />
+                    ))}
+                </Stack>
+            </DialogContent>
 
             <DialogActions>
-                <Button onClick={handleClose}>Close</Button>
+                <Button
+                    color="primary"
+                    variant="contained"
+                    onClick={handleClose}
+                >
+                    Close
+                </Button>
             </DialogActions>
         </Dialog>
     );

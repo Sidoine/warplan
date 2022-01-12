@@ -15,14 +15,11 @@ import ArmyListText from "./components/army-list-text";
 import { Cards } from "./components/cards";
 import { CheckList } from "./components/check-list";
 import { BattlePlay } from "./components/battle-play";
-import pompeiRegular from "./assets/PompeiStd-Regular.woff2";
-import pompeiBold from "./assets/PompeiStd-Bold.woff2";
 import {
     createTheme,
     ThemeProvider,
     Theme,
     StyledEngineProvider,
-    adaptV4Theme,
 } from "@mui/material";
 import { AbilityList } from "./components/ability-list";
 import {
@@ -47,43 +44,7 @@ declare module "@mui/styles/defaultTheme" {
 
 const root = document.getElementById("root");
 
-const theme = createTheme(
-    adaptV4Theme({
-        overrides: {
-            MuiCssBaseline: {
-                "@global": {
-                    "@font-face": [
-                        {
-                            fontFamily: "Pompei",
-                            fontWeight: "normal",
-                            src: `url(${pompeiRegular}) format('woff2')`,
-                        },
-                        {
-                            fontFamily: "Pompei",
-                            fontWeight: "bold",
-                            src: `url(${pompeiBold}) format('woff2')`,
-                        },
-                    ],
-                    html: {
-                        "@media print": {
-                            fontSize: "12px",
-                        },
-                    },
-                },
-            },
-            MuiCardHeader: {
-                root: {
-                    paddingBottom: 0,
-                },
-            },
-            MuiSvgIcon: {
-                root: {
-                    fontSize: "inherit",
-                },
-            },
-        },
-    })
-);
+const theme = createTheme();
 
 ReactDOM.render(
     <BrowserRouter>

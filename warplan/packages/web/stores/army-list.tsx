@@ -90,15 +90,12 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
         const serialized = localStorage.getItem("warscroll");
         if (serialized) {
-            this.loadSerializedWarscroll(
-                JSON.parse(serialized)
-            );
+            this.loadSerializedWarscroll(JSON.parse(serialized));
         }
-        
+
         this.loadLink();
     }
 
-    
     @computed
     get link() {
         const ws = btoa(
@@ -637,10 +634,10 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         }
     }
 
-    save() {
+    save = () => {
         const warscroll = this.serialize();
         localStorage.setItem("warscroll", JSON.stringify(warscroll));
-    }
+    };
 
     @computed
     get grandStrategies() {
@@ -666,7 +663,6 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @computed get itemsWithAbilities(): ItemWithAbilities[] {
         return new Array<ItemWithAbilities>(this).concat(this.units);
     }
-
 
     @action
     setModelCount(altModel: WarscrollModel, count: number) {
@@ -710,7 +706,6 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         this.save();
     };
 
-    
     @computed
     get availableBattalionGroups() {
         const result = this.dataStore.genericBattalionGroups;
@@ -736,8 +731,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         return this.uiStore.warscrolls.filter(
             (x) =>
                 !x.single ||
-                this.units.find((x) => x.definition.id === x.id) ===
-                    undefined
+                this.units.find((x) => x.definition.id === x.id) === undefined
         );
     }
 
@@ -784,9 +778,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
     @action
     addBattalion(battalion: Battalion) {
-        this.battalions.push(
-            new WarscrollBattalion(this, battalion)
-        );
+        this.battalions.push(new WarscrollBattalion(this, battalion));
         this.save();
     }
 
@@ -836,12 +828,12 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     setPointMode = (pointMode: PointMode) => {
         this.pointMode = pointMode;
         this.save();
-    }
+    };
 
     setAllegiance = (allegiance: Faction | null) => {
         this.allegiance = allegiance;
         this.save();
-    }
+    };
 }
 
 const ArmyListStoreContext = createContext<ArmyList | null>(null);
@@ -864,7 +856,9 @@ export function ArmyListStoreProvider({
 export function useArmyListStore() {
     const dataStore = React.useContext(ArmyListStoreContext);
     if (!dataStore) {
-        throw new Error("useArmyListStore must be used within a ArmyListStoreProvider");
+        throw new Error(
+            "useArmyListStore must be used within a ArmyListStoreProvider"
+        );
     }
     return dataStore;
 }

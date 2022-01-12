@@ -78,7 +78,7 @@ export const ArmyListSummary = observer(() => {
                                 />
                             </FormControl>
                         </Grid>
-                        {armyList.armyTypes && (
+                        {armyList.armyTypes && armyList.armyTypes.length > 0 && (
                             <Grid item>
                                 <AddButton<Faction>
                                     variant="clearable"
@@ -90,39 +90,19 @@ export const ArmyListSummary = observer(() => {
                                 />
                             </Grid>
                         )}
-                        {armyList.subFactions && (
-                            <Grid item>
-                                {/* {warscroll.armyOption &&
-                                    warscroll.armyOption.requiredArtifact &&
-                                    warscroll.numberOfArtifacts > 0 &&
-                                    !warscroll.hasRequiredArtifact && (
-                                        <Warning
-                                            label={`${warscroll.armyOption.requiredArtifact.ability.name} must be the first artifact`}
-                                        />
-                                    )}
-                                {warscroll.armyOption &&
-                                    warscroll.armyOption.requiredCommandTrait &&
-                                    warscroll.general &&
-                                    warscroll.general.extraAbilities.some(
-                                        (x) =>
-                                            x.ability.category ===
-                                            AbilityCategory.CommandTrait
-                                    ) &&
-                                    !warscroll.hasRequiredCommandTrait && (
-                                        <Warning
-                                            label={`${warscroll.armyOption.requiredCommandTrait.ability.name} must be the command trait of your general`}
-                                        />
-                                    )} */}
-                                <AddButton<Faction>
-                                    variant="clearable"
-                                    columns={allegianceColumns}
-                                    options={armyList.subFactions}
-                                    value={warscroll.subFaction}
-                                    onChange={armyList.setSubFaction}
-                                    placeholder="Sub Faction"
-                                />
-                            </Grid>
-                        )}
+                        {armyList.subFactions &&
+                            armyList.subFactions.length > 0 && (
+                                <Grid item>
+                                    <AddButton<Faction>
+                                        variant="clearable"
+                                        columns={allegianceColumns}
+                                        options={armyList.subFactions}
+                                        value={warscroll.subFaction}
+                                        onChange={armyList.setSubFaction}
+                                        placeholder="Sub Faction"
+                                    />
+                                </Grid>
+                            )}
                         <Grid item>
                             <FormControl>
                                 <FormHelperText>Mode</FormHelperText>
@@ -141,18 +121,7 @@ export const ArmyListSummary = observer(() => {
                                 />
                             </FormControl>
                         </Grid>
-                        <Grid item>
-                            <FormControl>
-                                <FormHelperText>Realm</FormHelperText>
-                                <DropdownObjects
-                                    value={warscroll.realm}
-                                    options={unitsStore.realms}
-                                    getText={(x) => x.name}
-                                    onChange={armyList.setRealm}
-                                    clearable
-                                />
-                            </FormControl>
-                        </Grid>
+
                         <Grid item>
                             <ExtraAbilitiesEdit unit={warscroll} />
                         </Grid>
@@ -227,9 +196,7 @@ export const ArmyListSummary = observer(() => {
             </CardContent>
             <CardActions>
                 <Button onClick={uiStore.showExportPopin}>Export</Button>
-                <Button onClick={armyList.save}>
-                    Save
-                </Button>
+                <Button onClick={armyList.save}>Save</Button>
             </CardActions>
         </Card>
     );

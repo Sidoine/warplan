@@ -12,7 +12,9 @@ import {
     TableBody,
     Grid,
     Typography,
-    ButtonGroup
+    ButtonGroup,
+    Tooltip,
+    Stack,
 } from "@mui/material";
 import { HasId, TableColumn, OptionRow } from "./add-button";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -28,7 +30,7 @@ export const AddGroupButton = observer(function AddGroupButton<
     columns,
     options,
     getValues,
-    getGroupLabel
+    getGroupLabel,
 }: {
     label: string;
     value: T | null;
@@ -58,12 +60,24 @@ export const AddGroupButton = observer(function AddGroupButton<
     return (
         <>
             {value && (
-                <ButtonGroup variant="outlined">
-                    <Button onClick={handleOpen}>{getText(value)}</Button>
-                    <Button onClick={handleClear}>
-                        <ClearIcon />
-                    </Button>
-                </ButtonGroup>
+                <Tooltip
+                    title={
+                        <Stack>
+                            {columns.map((column) => (
+                                <Typography key={column.name}>
+                                    {column.text(value)}
+                                </Typography>
+                            ))}
+                        </Stack>
+                    }
+                >
+                    <ButtonGroup variant="outlined">
+                        <Button onClick={handleOpen}>{getText(value)}</Button>
+                        <Button onClick={handleClear}>
+                            <ClearIcon />
+                        </Button>
+                    </ButtonGroup>
+                </Tooltip>
             )}
             {!value && (
                 <Button variant="outlined" onClick={handleOpen}>
@@ -74,7 +88,7 @@ export const AddGroupButton = observer(function AddGroupButton<
                 {label && <DialogTitle>{label}</DialogTitle>}
                 <DialogContent>
                     <Grid container spacing={1}>
-                        {options.map(option => (
+                        {options.map((option) => (
                             <Grid item key={option.id}>
                                 <Typography variant="h6">
                                     {getGroupLabel(option)}
@@ -82,7 +96,7 @@ export const AddGroupButton = observer(function AddGroupButton<
                                 <Table>
                                     <TableHead>
                                         <TableRow>
-                                            {columns.map(x => (
+                                            {columns.map((x) => (
                                                 <TableCell key={x.name}>
                                                     {x.name}
                                                 </TableCell>
@@ -90,7 +104,7 @@ export const AddGroupButton = observer(function AddGroupButton<
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {getValues(option).map(x => (
+                                        {getValues(option).map((x) => (
                                             <OptionRow
                                                 columns={columns}
                                                 onClick={handleClick}
