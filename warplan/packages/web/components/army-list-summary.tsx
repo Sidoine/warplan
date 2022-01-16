@@ -21,6 +21,7 @@ import { ExtraAbilitiesEdit } from "./extra-abilities-edit";
 import { useArmyListStore } from "../stores/army-list";
 import { useDataStore } from "../stores/data";
 import { useUiStore } from "../stores/ui";
+import { useArmyListsStore } from "../stores/army-lists";
 
 function getName(x: { name: string }) {
     return x.name;
@@ -41,6 +42,7 @@ export const ArmyListSummary = observer(() => {
     const armyList = useArmyListStore();
     const unitsStore = useDataStore();
     const uiStore = useUiStore();
+    const armyLists = useArmyListsStore();
 
     const warscroll = armyList;
     const totalPoints = warscroll.totalPoints;
@@ -196,7 +198,7 @@ export const ArmyListSummary = observer(() => {
             </CardContent>
             <CardActions>
                 <Button onClick={uiStore.showExportPopin}>Export</Button>
-                <Button onClick={armyList.save}>Save</Button>
+                <Button onClick={armyLists.saveCurrentArmyList}>Save</Button>
             </CardActions>
         </Card>
     );

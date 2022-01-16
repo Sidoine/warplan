@@ -53,7 +53,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:7.26.1"],
             ["eslint-plugin-react-hooks", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:4.2.0"],
             ["file-loader", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:5.1.0"],
-            ["folke-service-helpers", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.6.0"],
+            ["folke-service-helpers", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.6.3"],
             ["jest", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:27.3.1"],
             ["mobx", "npm:6.3.6"],
             ["mobx-react-lite", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.2.2"],
@@ -5381,17 +5381,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["folke-service-helpers", [
-        ["npm:3.6.0", {
-          "packageLocation": "./.yarn/cache/folke-service-helpers-npm-3.6.0-3e881b8686-683757a323.zip/node_modules/folke-service-helpers/",
+        ["npm:3.6.3", {
+          "packageLocation": "./.yarn/cache/folke-service-helpers-npm-3.6.3-ce967f392e-201f2ff9b8.zip/node_modules/folke-service-helpers/",
           "packageDependencies": [
-            ["folke-service-helpers", "npm:3.6.0"]
+            ["folke-service-helpers", "npm:3.6.3"]
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.6.0", {
-          "packageLocation": "./.yarn/__virtual__/folke-service-helpers-virtual-81cfbcb6ae/0/cache/folke-service-helpers-npm-3.6.0-3e881b8686-683757a323.zip/node_modules/folke-service-helpers/",
+        ["virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.6.3", {
+          "packageLocation": "./.yarn/__virtual__/folke-service-helpers-virtual-66adb10cb1/0/cache/folke-service-helpers-npm-3.6.3-ce967f392e-201f2ff9b8.zip/node_modules/folke-service-helpers/",
           "packageDependencies": [
-            ["folke-service-helpers", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.6.0"],
+            ["folke-service-helpers", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.6.3"],
             ["@microsoft/signalr", "npm:5.0.11"],
             ["@mui/icons-material", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:5.1.1"],
             ["@mui/material", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:5.1.1"],
@@ -10780,7 +10780,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:7.26.1"],
             ["eslint-plugin-react-hooks", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:4.2.0"],
             ["file-loader", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:5.1.0"],
-            ["folke-service-helpers", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.6.0"],
+            ["folke-service-helpers", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.6.3"],
             ["jest", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:27.3.1"],
             ["mobx", "npm:6.3.6"],
             ["mobx-react-lite", "virtual:51c412cdf43f700f9c2377919608e8cbaaf534db234fa300fad67dbab699a8fcf38deefef9535ab2a93935a70bf4369a04ac744227149ca83472c82d01951039#npm:3.2.2"],

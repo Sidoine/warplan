@@ -5,6 +5,8 @@ export interface ArmyList {
     name: string;
 
     data: string;
+
+    modificationDate: string;
 }
 
 export interface ArmyListEdit {

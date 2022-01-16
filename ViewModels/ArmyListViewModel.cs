@@ -1,3 +1,4 @@
+using System;
 using Warplan.Models;
 
 namespace Warplan.ViewModels
@@ -10,11 +11,14 @@ namespace Warplan.ViewModels
 
         public string Data { get; set; }
 
+        public DateTime ModificationDate { get; set; }
+
         public ArmyListViewModel(ArmyList armyList)
         {
             Id = armyList.Id;
             Name = armyList.Name;
             Data = armyList.Data;
+            ModificationDate = armyList.ModificationDate;
         }
     }
 }

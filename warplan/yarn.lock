@@ -4100,9 +4100,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"folke-service-helpers@npm:^3.6.0":
-  version: 3.6.0
-  resolution: "folke-service-helpers@npm:3.6.0"
+"folke-service-helpers@npm:^3.6.3":
+  version: 3.6.3
+  resolution: "folke-service-helpers@npm:3.6.3"
   dependencies:
     "@microsoft/signalr": ^5.0.11
     oidc-client: ^1.11.5
@@ -4115,7 +4115,7 @@ __metadata:
     react-dom: ^17.0.2
     react-router: ^6.0.1
     react-router-dom: ^6.0.1
-  checksum: 683757a32348bd194e0ebea8368eaba12e8e041eaba0bc2b1da4c80f6573f7c7bf8523909874bff9d1bf2feb43c781d46ed2589ea8ad4bec81b2fea4d7431b76
+  checksum: 201f2ff9b8f88633cb8a5693dcc438f04f067de675f9f9b5ea6ab8fd036130b2dbaa491b3b2b7cf156d2fcd72e876ea4a0764348e77d8a6042b45dca7a3ed700
   languageName: node
   linkType: hard
 
@@ -8782,7 +8782,7 @@ __metadata:
     eslint-plugin-react: ^7.26.1
     eslint-plugin-react-hooks: ^4.2.0
     file-loader: ^5.0.2
-    folke-service-helpers: ^3.6.0
+    folke-service-helpers: ^3.6.3
     jest: ^27.2.1
     mobx: ^6.3.3
     mobx-react-lite: ^3.2.1

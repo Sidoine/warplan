@@ -5,15 +5,19 @@ import * as views from "./views";
 export class ArmyListController {
 	constructor(private client: helpers.ApiClient) {}
 
-    create(model: views.ArmyListEdit) {
+    create = (model: views.ArmyListEdit) => {
         return this.client.fetchJson<views.ArmyList>("api/army-list/", "POST", JSON.stringify(model));
     }
 
-    getAll() {
+    delete = (id: number) => {
+        return this.client.fetch(`api/army-list/${id}`, "DELETE", undefined);
+    }
+
+    getAll = () => {
         return this.client.fetchJson<views.ArmyList[]>("api/army-list/", "GET", undefined);
     }
 
-    update(id: number, model: views.ArmyListEdit) {
+    update = (id: number, model: views.ArmyListEdit) => {
         return this.client.fetchJson<views.ArmyList>(`api/army-list/${id}`, "PUT", JSON.stringify(model));
     }
 }

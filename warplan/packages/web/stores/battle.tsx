@@ -1205,10 +1205,7 @@ export class BattleStore {
     @observable checkedAbilities = new Map<string, string[]>();
     @observable skippedUnits = new Map<string, boolean>();
 
-    constructor(
-        public dataStore: DataStore,
-        private armyList: ArmyList
-    ) {
+    constructor(public dataStore: DataStore, private armyList: ArmyList) {
         makeObservable(this);
         const serialized = localStorage.getItem("battle");
         if (serialized) {

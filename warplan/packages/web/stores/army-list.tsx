@@ -86,7 +86,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
 
     constructor(public dataStore: DataStore, private uiStore: UiStore) {
         makeObservable(this);
-        this.id = (this.serial++).toString();
+        this.id = localStorage.getItem("warscrollId") || "";
 
         const serialized = localStorage.getItem("warscroll");
         if (serialized) {
@@ -637,6 +637,7 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     save = () => {
         const warscroll = this.serialize();
         localStorage.setItem("warscroll", JSON.stringify(warscroll));
+        localStorage.setItem("warscrollId", this.id);
     };
 
     @computed

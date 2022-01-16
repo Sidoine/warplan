@@ -26,6 +26,7 @@ import {
     AuthorizeProvider,
     ApiAuthorizationRoutes,
     ProviderList,
+    ApiClientProvider,
 } from "folke-service-helpers";
 import { ArmyListStoreProvider } from "./stores/army-list";
 import { DataStoreProvider } from "./stores/data";
@@ -36,6 +37,10 @@ import { OwnedStoreProvider } from "./stores/owned";
 import { BasketStoreProvider } from "./stores/basket";
 import { BattleStoreProvider } from "./stores/battle";
 import { ArmyListsStoreProvider } from "./stores/army-lists";
+import {
+    ArmyListGetAllCacheProvider,
+    ArmyListServiceProvider,
+} from "./services/armyList-context";
 
 declare module "@mui/styles/defaultTheme" {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -51,8 +56,11 @@ ReactDOM.render(
         <AuthorizeProvider applicationName="warplan">
             <ProviderList
                 providers={[
+                    ApiClientProvider,
                     DataStoreProvider,
                     UiStoreProvider,
+                    ArmyListServiceProvider,
+                    ArmyListGetAllCacheProvider,
                     ArmyListStoreProvider,
                     ArmyListsStoreProvider,
                     MarkersStoreProvider,

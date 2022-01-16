@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { action, makeObservable, observable, toJS } from "mobx";
+import { action, computed, makeObservable } from "mobx";
 import { ArmyList, SerializedArmyList, useArmyListStore } from "./army-list";
 import {
     useArmyListGetAllCache,
@@ -9,47 +9,58 @@ import { ArmyList as ArmyListData } from "../services/views";
 import { MapLoader } from "folke-service-helpers";
 import { ArmyListController } from "../services/armyList";
 
-function getWarscrollItem(name: string) {
-    return `warscroll/${name}`;
-}
-
 export class ArmyListStore {
-    @observable
-    armyLists: string[] = [];
-
     constructor(
         private currentArmyList: ArmyList,
         private armyListService: ArmyListController,
         private armyListGetAllCache: MapLoader<ArmyListData[], []>
     ) {
         makeObservable(this);
-        const warscrolls = localStorage.getItem("warscrolls");
-        if (warscrolls !== null) {
-            this.armyLists = JSON.parse(warscrolls);
-        }
     }
 
-    loadWarscroll(name: string) {
-        const serializedWarscroll = localStorage.getItem(
-            getWarscrollItem(name)
-        );
-        if (serializedWarscroll === null) return;
-        const warscroll: SerializedArmyList = JSON.parse(serializedWarscroll);
+    @computed
+    get armyLists() {
+        return this.armyListGetAllCache.getValue() || [];
+    }
+
+    loadWarscroll(armyList: ArmyListData) {
+        const warscroll: SerializedArmyList = JSON.parse(armyList.data);
         this.currentArmyList.loadSerializedWarscroll(warscroll);
         this.currentArmyList.save();
     }
 
     @action
-    saveCurrentArmyList() {
-        const name = this.currentArmyList.name;
-        const data = JSON.stringify(this.currentArmyList.serialize());
-        localStorage.setItem(getWarscrollItem(name), data);
-        if (this.armyLists.indexOf(name) < 0) this.armyLists.push(name);
-        this.armyListService.create({ data, name });
-        this.saveArmyLists();
-    }
+    saveCurrentArmyList = async () => {
+        if (!this.currentArmyList.id) {
+            const data = JSON.stringify(this.currentArmyList.serialize());
+            const name = this.currentArmyList.name;
+            const result = await this.armyListService.create({ data, name });
+            if (result.ok) {
+                this.armyListGetAllCache.updateCache(
+                    [],
+                    this.armyLists.concat(result.value)
+                );
+                this.currentArmyList.id = result.value.id.toString();
+            }
+        } else {
+            const data = JSON.stringify(this.currentArmyList.serialize());
+            const existing = this.armyLists.find(
+                (x) => x.id.toString() === this.currentArmyList.id
+            );
+            if (existing) {
+                existing.data = data;
+                existing.name = this.currentArmyList.name;
+            }
+            await this.armyListService.update(Number(this.currentArmyList.id), {
+                data,
+                name: this.currentArmyList.name,
+            });
+        }
+        this.currentArmyList.save();
+    };
 
     create = () => {
+        this.currentArmyList.id = "";
         this.currentArmyList.loadSerializedWarscroll({
             name: "New",
             units: [],
@@ -58,17 +69,12 @@ export class ArmyListStore {
     };
 
     @action
-    removeWarscroll(name: string) {
-        localStorage.removeItem(getWarscrollItem(name));
-        this.armyLists.splice(this.armyLists.indexOf(name), 1);
-        this.saveArmyLists();
-    }
-
-    private saveArmyLists() {
-        localStorage.setItem(
-            "warscrolls",
-            JSON.stringify(toJS(this.armyLists))
+    async removeWarscroll(armyList: ArmyListData) {
+        this.armyListGetAllCache.updateCache(
+            [],
+            this.armyLists.filter((x) => x.id !== armyList.id)
         );
+        await this.armyListService.delete(armyList.id);
     }
 }
 

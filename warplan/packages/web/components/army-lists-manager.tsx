@@ -13,8 +13,9 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useUiStore } from "../stores/ui";
 import { useArmyListsStore } from "../stores/army-lists";
+import { ArmyList } from "../services/views";
 
-function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
+function WarscrollLine({ x, onClose }: { x: ArmyList; onClose: () => void }) {
     const warscrollStore = useArmyListsStore();
     const handleLoad = useCallback(() => {
         warscrollStore.loadWarscroll(x);
@@ -26,7 +27,7 @@ function WarscrollLine({ x, onClose }: { x: string; onClose: () => void }) {
     );
     return (
         <Stack direction="row" spacing={1}>
-            <Typography>{x}</Typography>
+            <Typography>{x.name}</Typography>
             <Button variant="outlined" onClick={handleLoad}>
                 Load
             </Button>
@@ -52,7 +53,7 @@ function ArmyListsManager() {
             <DialogContent>
                 <Stack spacing={1}>
                     {warscrollStore.armyLists.map((x) => (
-                        <WarscrollLine x={x} onClose={handleClose} key={x} />
+                        <WarscrollLine x={x} onClose={handleClose} key={x.id} />
                     ))}
                 </Stack>
             </DialogContent>

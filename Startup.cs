@@ -1,6 +1,7 @@
 namespace Warplan
 {
     using System;
+    using System.Security.Claims;
     using System.Text.RegularExpressions;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Builder;
@@ -67,7 +68,11 @@ namespace Warplan
             {
                 options.IssuerUri = Configuration["IdentityServer:IssuerUri"];
             })
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
+                {
+                    var apiResource = options.ApiResources[0];
+                    apiResource.UserClaims.Add(ClaimTypes.NameIdentifier);
+                });
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
@@ -83,6 +88,11 @@ namespace Warplan
 
             services.Configure<SendGridOptions>(Configuration.GetSection("SendGrid"));
             services.Configure<WarplanOptions>(Configuration.GetSection("Warplan"));
+
+            services.AddAuthorization(options =>
+            {
+
+            });
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<SeedingService>();
         }
