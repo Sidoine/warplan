@@ -3,6 +3,7 @@ namespace Warplan
     using System;
     using System.Security.Claims;
     using System.Text.RegularExpressions;
+    using Duende.IdentityServer.Extensions;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -100,6 +101,16 @@ namespace Warplan
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Hack pour IdentityServer https://github.com/IdentityServer/IdentityServer4/issues/4535
+            if (Configuration["IdentityServer:IssuerUri"] != null)
+            {
+                app.Use(async (ctx, next) =>
+                {
+                    ctx.SetIdentityServerOrigin(Configuration["IdentityServer:IssuerUri"]);
+                    await next();
+                });
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
