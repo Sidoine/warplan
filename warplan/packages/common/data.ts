@@ -766,9 +766,7 @@ export interface ItemWithExtraAbilities {
     abilityCategories: AbilityCategory[];
     availableAbilityGroups: AbilityGroup[];
     extraAbilities: Ability[];
-    removeExtraAbility(ability: Ability): void;
-    addExtraAbility(ability: Ability): void;
-    replaceExtraAbility(oldAbility: Ability, newAbility: Ability): void;
+    setExtraAbility(category: AbilityCategory, ability: Ability | null): void;
     isAvailableExtraAbility(ability: Ability): boolean;
     getMaxNumberOfEnhancements(category: AbilityCategory): number;
     getNumberOfEnhancements(category: AbilityCategory): number;

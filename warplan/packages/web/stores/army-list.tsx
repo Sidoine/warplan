@@ -198,22 +198,11 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         const result: WarscrollItem[] = [];
         return result.concat(this.units).concat(this.battalions);
     }
-    @action
-    addExtraAbility = (ability: Ability) => {
-        this.extraAbilities.push(ability);
-        this.save();
-    };
 
     @action
-    removeExtraAbility = (ability: Ability) => {
-        this.extraAbilities.splice(this.extraAbilities.indexOf(ability), 1);
-        this.save();
-    };
-
-    @action
-    replaceExtraAbility = (oldAbility: Ability, newAbility: Ability) => {
-        this.extraAbilities[this.extraAbilities.indexOf(oldAbility)] =
-            newAbility;
+    setExtraAbility = (category: AbilityCategory, ability: Ability | null) => {
+        this.extraAbilities = this.extraAbilities.filter(x => x.category !== category);
+        if (ability) this.extraAbilities.push(ability);
         this.save();
     };
 
