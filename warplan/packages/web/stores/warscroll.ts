@@ -233,10 +233,10 @@ export class UnitWarscroll implements UnitWarscrollInterface {
     get isGeneral(): boolean {
         return this.armyList.general === this;
     }
-    
+
     @action
     setExtraAbility = (category: AbilityCategory, ability: Ability | null) => {
-        this.extraAbilities = this.extraAbilities.filter(x => x.category === category);
+        this.extraAbilities = this.extraAbilities.filter(x => x.category !== category);
         if (ability) this.extraAbilities.push(ability);
         this.armyList.save();
     };
