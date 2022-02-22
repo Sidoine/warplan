@@ -367,6 +367,24 @@ export function getAbilityEffects(
         effect.immediate.unbinds = parseInt(match[2]);
     }
 
+    match = blurb.match(/they can attempt to cast 1 additional spell instead/i);
+    if (match) {
+        auras.push({
+            type: AuraType.Spell,
+            extraCast: 1,
+            condition: { keyword: "WIZARD" },
+        });
+    }
+
+    match = blurb.match(/The bearer (becomes|is) a Wizard/);
+    if (match) {
+        auras.push({
+            type: AuraType.Special,
+            addKeyword: "WIZARD",
+            condition: { noKeyword: "WIZARD" },
+        });
+    }
+
     // Chants
     match = blurb.match(/add (\d) to chanting rolls for this unit/i);
     if (match) {

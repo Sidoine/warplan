@@ -329,6 +329,7 @@ export interface SpecialAura extends BaseAura {
     blockVisibility?: boolean;
     tectonicForce?: boolean;
     loneAgent?: boolean;
+    addKeyword?: string;
 }
 
 export interface CommandAura extends BaseAura {
@@ -766,7 +767,10 @@ export interface ItemWithExtraAbilities {
     abilityCategories: AbilityCategory[];
     availableAbilityGroups: AbilityGroup[];
     extraAbilities: Ability[];
-    setExtraAbility(category: AbilityCategory, ability: Ability | null): void;
+    setExtraAbility(
+        oldAbility: Ability | undefined,
+        ability: Ability | null
+    ): void;
     isAvailableExtraAbility(ability: Ability): boolean;
     getMaxNumberOfEnhancements(category: AbilityCategory): number;
     getNumberOfEnhancements(category: AbilityCategory): number;

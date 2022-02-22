@@ -31,7 +31,7 @@ const ExtraAbility = observer(
         )[index];
         const handleChange = useCallback(
             (ability: Ability | null) => {
-                unit.setExtraAbility(category, ability)
+                unit.setExtraAbility(oldAbility, ability)
             },
             [oldAbility, unit]
         );

@@ -64,6 +64,7 @@ const allEnhancementTypes: AbilityCategory[] = [
     AbilityCategory.Prayer,
     AbilityCategory.Spell,
     AbilityCategory.Triumph,
+    AbilityCategory.UniqueEnhancement,
 ];
 
 function WarscrollBattalionsList() {

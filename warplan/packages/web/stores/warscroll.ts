@@ -13,6 +13,8 @@ import {
     ArmyListInterface,
     PointMode,
     WarscrollBattalionUnitInterface,
+    AuraType,
+    TargetCondition,
 } from "../../common/data";
 
 import { ArmyList } from "./army-list";
@@ -161,7 +163,34 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         //         return keywords;
         //     }
         // }
-        return this.definition.keywords;
+        let keywords = this.definition.keywords;
+        for (const artefact of this.extraAbilities) {
+            if (artefact.effects) {
+                for (const effect of artefact.effects) {
+                    if (effect.auras) {
+                        for (const aura of effect.auras) {
+                            if (
+                                aura.type === AuraType.Special &&
+                                aura.addKeyword &&
+                                this.checkConditions(aura.condition)
+                            ) {
+                                keywords = keywords.concat(aura.addKeyword);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return keywords;
+    }
+
+    private checkConditions(conditions: TargetCondition | undefined) {
+        if (!conditions) return true;
+        if (conditions.noKeyword) {
+            if (this.definition.keywords.includes(conditions.noKeyword))
+                return false;
+        }
+        return true;
     }
 
     @computed
@@ -235,8 +264,14 @@ export class UnitWarscroll implements UnitWarscrollInterface {
     }
 
     @action
-    setExtraAbility = (category: AbilityCategory, ability: Ability | null) => {
-        this.extraAbilities = this.extraAbilities.filter(x => x.category !== category);
+    setExtraAbility = (
+        oldAbility: Ability | undefined,
+        ability: Ability | null
+    ) => {
+        if (oldAbility)
+            this.extraAbilities = this.extraAbilities.filter(
+                (x) => x.id !== oldAbility.id
+            );
         if (ability) this.extraAbilities.push(ability);
         this.armyList.save();
     };
@@ -267,7 +302,8 @@ export class UnitWarscroll implements UnitWarscrollInterface {
         if (
             this.definition.abilities?.some(
                 (x) => x.category === AbilityCategory.Spell
-            )
+            ) ||
+            this.keywords.includes("WIZARD")
         )
             categories.push(AbilityCategory.Spell);
         return categories;

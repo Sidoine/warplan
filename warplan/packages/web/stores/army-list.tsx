@@ -200,8 +200,14 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     @action
-    setExtraAbility = (category: AbilityCategory, ability: Ability | null) => {
-        this.extraAbilities = this.extraAbilities.filter(x => x.category !== category);
+    setExtraAbility = (
+        oldAbility: Ability | undefined,
+        ability: Ability | null
+    ) => {
+        if (oldAbility)
+            this.extraAbilities = this.extraAbilities.filter(
+                (x) => x.id !== oldAbility.id
+            );
         if (ability) this.extraAbilities.push(ability);
         this.save();
     };
@@ -211,6 +217,11 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     getMaxNumberOfEnhancements(category: AbilityCategory) {
+        if (category === AbilityCategory.UniqueEnhancement)
+            return this.battalions.reduce(
+                (p, x) => (x.enhancement === category ? p + 1 : p),
+                1
+            );
         return 1;
     }
 
