@@ -18,7 +18,7 @@ export class ArmyListController {
     }
 
     update = (id: number, model: views.ArmyListEdit) => {
-        return this.client.fetchJson<views.ArmyList>(`api/army-list/${id}`, "PUT", JSON.stringify(model));
+        return this.client.fetch(`api/army-list/${id}`, "PUT", JSON.stringify(model));
     }
 }
 

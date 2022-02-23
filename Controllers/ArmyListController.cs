@@ -42,7 +42,7 @@
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ArmyListViewModel>> Update(int id, ArmyListEditViewModel model)
+        public async Task<ActionResult> Update(int id, ArmyListEditViewModel model)
         {
             var user = await GetClaimedUser();
             if (user == null) return Forbid();

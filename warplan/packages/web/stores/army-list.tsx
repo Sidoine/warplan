@@ -82,15 +82,19 @@ function hasAbilities(
 
 export class ArmyList implements ArmyListInterface, ArmyListLimits {
     serial = 0;
-    id: string;
+
+    @observable
+    id: string = "";
 
     constructor(public dataStore: DataStore, private uiStore: UiStore) {
         makeObservable(this);
-        this.id = localStorage.getItem("warscrollId") || "";
 
         const serialized = localStorage.getItem("warscroll");
         if (serialized) {
-            this.loadSerializedWarscroll(JSON.parse(serialized));
+            this.loadSerializedWarscroll(
+                JSON.parse(serialized),
+                localStorage.getItem("warscrollId") || ""
+            );
         }
 
         this.loadLink();
@@ -112,7 +116,8 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
         if (hash) {
             const ws = hash[1];
             this.loadSerializedWarscroll(
-                JSON.parse(inflate(atob(ws), { to: "string" }))
+                JSON.parse(inflate(atob(ws), { to: "string" })),
+                ""
             );
             location.hash = "/";
         }
@@ -539,7 +544,8 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     }
 
     @action
-    loadSerializedWarscroll(serialized: SerializedArmyList) {
+    loadSerializedWarscroll(serialized: SerializedArmyList, id: string) {
+        this.id = id;
         this.name = serialized.name;
         this.general = undefined;
         this.units.splice(0);

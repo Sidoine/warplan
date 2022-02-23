@@ -25,7 +25,10 @@ export class ArmyListStore {
 
     loadWarscroll(armyList: ArmyListData) {
         const warscroll: SerializedArmyList = JSON.parse(armyList.data);
-        this.currentArmyList.loadSerializedWarscroll(warscroll);
+        this.currentArmyList.loadSerializedWarscroll(
+            warscroll,
+            armyList.id.toString()
+        );
         this.currentArmyList.save();
     }
 
@@ -59,13 +62,16 @@ export class ArmyListStore {
         this.currentArmyList.save();
     };
 
+    @action
     create = () => {
-        this.currentArmyList.id = "";
-        this.currentArmyList.loadSerializedWarscroll({
-            name: "New",
-            units: [],
-            battalions: [],
-        });
+        this.currentArmyList.loadSerializedWarscroll(
+            {
+                name: "New",
+                units: [],
+                battalions: [],
+            },
+            ""
+        );
     };
 
     @action
