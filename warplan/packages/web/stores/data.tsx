@@ -26,6 +26,7 @@ import { computed, makeObservable } from "mobx";
 import { KeywordCategory } from "../../common/definitions";
 import { overrideLumineths } from "./overrides/lumineths";
 import React, { createContext, useState } from "react";
+import { overrideSonsOfBehemat } from "./overrides/behemat";
 
 export class DataStore {
     serial = 100;
@@ -76,6 +77,7 @@ export class DataStore {
         overrideOrruks(data);
         overrideGitz(data);
         overrideLumineths(data);
+        overrideSonsOfBehemat(data);
 
         const models: { [key: string]: Model } = data.models;
         for (const key in models) {

@@ -86,6 +86,7 @@ function MyNavbar({}: MyNavbarProps) {
                     badge: basketStore.basket.length,
                 },
                 { title: "Abilities", path: "abilities" },
+                { title: "Allegiances", path: "allegiances" },
             ];
         },
     }));

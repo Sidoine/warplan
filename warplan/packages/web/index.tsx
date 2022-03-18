@@ -20,6 +20,7 @@ import {
     ThemeProvider,
     Theme,
     StyledEngineProvider,
+    LinearProgress,
 } from "@mui/material";
 import { AbilityList } from "./components/ability-list";
 import {
@@ -41,6 +42,7 @@ import {
     ArmyListGetAllCacheProvider,
     ArmyListServiceProvider,
 } from "./services/armyList-context";
+const Allegiances = React.lazy(() => import("./components/allegiances"));
 
 declare module "@mui/styles/defaultTheme" {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -98,6 +100,16 @@ ReactDOM.render(
                                 <Route
                                     path="abilities"
                                     element={<AbilityList />}
+                                />
+                                <Route
+                                    path="allegiances"
+                                    element={
+                                        <React.Suspense
+                                            fallback={<LinearProgress />}
+                                        >
+                                            <Allegiances />
+                                        </React.Suspense>
+                                    }
                                 />
                                 <Route
                                     path="authentication/*"

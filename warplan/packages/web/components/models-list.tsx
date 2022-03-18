@@ -13,6 +13,7 @@ const columns: TableColumn<Model>[] = [{ name: "Name", text: (x) => x.name }];
 function ModelsList({ title }: ModelsListProps) {
     const ownedStore = useOwnedStore();
     const unitsStore = useDataStore();
+
     return (
         <AddButton
             variant="add"
