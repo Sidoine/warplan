@@ -26,13 +26,15 @@ async function load() {
     try {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const db: Dump = require("../../assets/dump.json");
+        const dataStore = importData(db);
 
         let result = `import { ImportedDataStore, Faction } from "../../common/data";
 import { Role, KeywordCategory } from "../../common/definitions";
 
+${writeTypes(dataStore)}
+
 export class ImportedDataStoreImpl implements ImportedDataStore {
 `;
-        const dataStore = importData(db);
 
         result += writeModels(dataStore);
         result += writeFactions(dataStore);
@@ -63,8 +65,15 @@ export class ImportedDataStoreImpl implements ImportedDataStore {
 
 load();
 
+function writeTypes(db: ImportedDataStore) {
+    let result = `export type FactionId = "${Object.keys(db.factions).join(
+        '" | "'
+    )}";\n`;
+    return result;
+}
+
 function writeFactions(db: ImportedDataStore) {
-    let result = `${tab}factions: Record<string, Faction> = {
+    let result = `${tab}factions: Record<FactionId, Faction> = {
 `;
     for (const faction of Object.values(db.factions).sort(compareId)) {
         result += `       ${faction.id}: {
