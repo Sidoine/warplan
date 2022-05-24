@@ -44,7 +44,8 @@
         "typescript": "^4.4.3",
         "webpack": "^5.53.0",
         "webpack-cli": "^4.8.0",
-        "webpack-dev-server": "^4.2.1"
+        "webpack-dev-server": "^4.2.1",
+        "quicktype": "^15.0.261"
     },
     "scripts": {
         "build": "webpack --mode=production",
@@ -55,7 +56,8 @@
         "test": "jest",
         "start": "yarn node index.js",
         "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
-        "lint": "eslint --ext .ts,.tsx packages"
+        "lint": "eslint --ext .ts,.tsx packages",
+        "definitions": "quicktype ./assets/dump.json -o packages/common/definitions.ts"
     },
     "packageManager": "yarn@3.2.0"
 }

@@ -27,14 +27,15 @@ import {
     Aura,
     AuraType,
     DefenseAura,
+    AbilityGroupDomain,
 } from "../common/data";
 import {
-    AbilityGroupDomain,
-    DamageCell,
-    DamageRow,
+    ArtefactOfPowerGroupElement,
     Dump,
-    PurpleGroup,
+    TableCell,
+    TableRow,
     Type,
+    WarscrollTable,
 } from "../common/definitions";
 
 function toCamelCase(name: string) {
@@ -1068,7 +1069,7 @@ function getItem<
 
 type KeysOfType<T, U> = { [K in keyof T]: T[K] extends U ? K : never }[keyof T];
 type ArrayElement<T> = T extends (infer U)[] ? U : never;
-type AbilityGroups = KeysOfType<Dump, PurpleGroup[]>;
+type AbilityGroups = KeysOfType<Dump, ArtefactOfPowerGroupElement[]>;
 type Abilities = KeysOfType<
     Dump,
     { id: string; name: string; lore?: string | null; rules: string }[]
@@ -1078,7 +1079,7 @@ function importExtraAbilities<
     T extends Abilities,
     G extends AbilityGroups,
     K extends KeysOfType<Dump, { keywordId: string }[]>,
-    U extends KeysOfType<ArrayElement<Dump[T]>, string>
+    U extends KeysOfType<ArrayElement<Dump[T]>, string | undefined>
 >(
     db: Dump,
     dataStore: ImportedDataStore,
@@ -1290,27 +1291,31 @@ export function importData(db: Dump): ImportedDataStore {
         }
     }
 
-    const damageTables = new Map<
-        string,
-        { row: DamageRow; cells: DamageCell[] }[]
-    >();
-    const damageRows = new Map<
-        string,
-        { row: DamageRow; cells: DamageCell[] }
-    >();
-
-    for (const damageRow of db.damage_row) {
-        let table = damageTables.get(damageRow.warscrollId);
-        if (table === undefined) {
-            table = [];
-            damageTables.set(damageRow.warscrollId, table);
-        }
-        const row = { row: damageRow, cells: [] };
-        table[damageRow.order] = row;
-        damageRows.set(damageRow.id, row);
+    interface Row {
+        row: TableRow;
+        cells: TableCell[];
     }
 
-    for (const damageCell of db.damage_cell) {
+    const damageTables = new Map<
+        string,
+        { table: WarscrollTable; rows: Row[] }
+    >();
+    const damageRows = new Map<string, Row>();
+
+    for (const table of db.warscroll_table) {
+        damageTables.set(table.id, { table, rows: [] });
+    }
+
+    for (const damageRow of db.table_row) {
+        const table = damageTables.get(damageRow.tableId);
+        if (table) {
+            const row = { row: damageRow, cells: [] };
+            table.rows[damageRow.order] = row;
+            damageRows.set(damageRow.id, row);
+        }
+    }
+
+    for (const damageCell of db.table_cell) {
         const row = damageRows.get(damageCell.rowId);
         if (row) {
             row.cells[damageCell.order] = damageCell;
@@ -1318,13 +1323,9 @@ export function importData(db: Dump): ImportedDataStore {
     }
 
     for (const damageTable of damageTables.values()) {
-        const unit = getItem(
-            dataStore,
-            "units",
-            damageTable[0].row.warscrollId
-        );
+        const unit = getItem(dataStore, "units", damageTable.table.warscrollId);
         const columns: DamageColumn[] = [];
-        for (let i = 1; i < damageTable[0].cells.length; i++) {
+        for (let i = 1; i < damageTable.rows[0].cells.length; i++) {
             columns.push({
                 name: "",
                 values: [],
@@ -1332,7 +1333,7 @@ export function importData(db: Dump): ImportedDataStore {
             });
         }
         const ranges: string[] = [];
-        for (const row of damageTable) {
+        for (const row of damageTable.rows) {
             if (row.row.order === 0) {
                 for (const cell of row.cells) {
                     if (cell.order > 0) {
@@ -1352,8 +1353,8 @@ export function importData(db: Dump): ImportedDataStore {
         }
         const table: DamageTable = {
             id: getId(
-                damageTable[0].row.warscrollId,
-                `${unit.name} Damage Table`,
+                damageTable.table.warscrollId,
+                `${unit.name} ${damageTable.table.name} Table`,
                 "damageTables"
             ),
             columns,
@@ -1430,6 +1431,7 @@ export function importData(db: Dump): ImportedDataStore {
     }
 
     for (const warscrollAbility of db.warscroll_ability) {
+        if (!warscrollAbility.warscrollId) continue;
         const unit = getItem(dataStore, "units", warscrollAbility.warscrollId);
         const ability: Ability = {
             id: getId(
@@ -1620,7 +1622,7 @@ export function importData(db: Dump): ImportedDataStore {
         const battalionData: Battalion = {
             id: getId(battalion.id, battalion.name, "battalions"),
             name: battalion.name,
-            onePerArmy: battalion.onePerArmy,
+            onePerArmy: battalion.isUnique,
             units: [],
             abilities: [],
         };

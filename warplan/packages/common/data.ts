@@ -1,4 +1,4 @@
-import { AbilityGroupDomain, KeywordCategory, Role } from "./definitions";
+import { KeywordCategory, Role } from "./definitions";
 
 export const enum Material {
     Metal,
@@ -834,6 +834,8 @@ export interface ImportedDataStore {
     genericBattalionGroups: BattalionGroup[];
     battalionAbilities: Record<string, BattalionAbility>;
 }
+
+export type AbilityGroupDomain = "armyLevel" | "unitLevel";
 
 export interface AbilityGroup extends ItemWithAbilities {
     id: string;
