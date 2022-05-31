@@ -3,7 +3,6 @@ import { useDataStore } from "../stores/data";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { count, distinct } from "../helpers/algo";
 import { Material } from "../../common/data";
-import { Box } from "@mui/system";
 
 type KeysOfType<T, U> = { [K in keyof T]: T[K] extends U ? K : never }[keyof T];
 
@@ -18,25 +17,13 @@ interface FactionRow {
     models: number;
     plasticModels: number;
     unknownModels: string;
-    icon: string;
 }
 
 const columns: GridColumnDefinition<FactionRow>[] = [
     {
-        field: "icon",
+        field: "id",
         headerName: "",
-        renderCell: (row: GridRenderCellParams<string>) =>
-            row.value ? (
-                <Box bgcolor="black" p={1}>
-                    <img
-                        style={{ height: "40px" }}
-                        src={row.value}
-                        alt={row.value}
-                    />
-                </Box>
-            ) : (
-                ""
-            ),
+        renderCell: (row: GridRenderCellParams<string>) => <></>,
     },
     {
         field: "name",
@@ -89,7 +76,6 @@ export default function Allegiances() {
                         models: models.length,
                         plasticModels,
                         unknownModels,
-                        icon: allegiance.icon ?? "",
                     };
                 })
                 .filter((x) => x.plasticModels > 0),

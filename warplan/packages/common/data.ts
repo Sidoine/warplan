@@ -29,7 +29,6 @@ export interface Faction {
     category: KeywordCategory;
     parent?: Faction;
     children: Faction[];
-    icon?: string;
     abilityGroups?: AbilityGroup[];
     battalionGroups?: BattalionGroup[];
     tokenName?: string;

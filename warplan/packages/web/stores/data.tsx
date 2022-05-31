@@ -27,29 +27,6 @@ import { KeywordCategory } from "../../common/definitions";
 import { overrideLumineths } from "./overrides/lumineths";
 import React, { createContext, useState } from "react";
 import { overrideSonsOfBehemat } from "./overrides/behemat";
-import beasts_of_chaos from "../assets/factions/beasts_of_chaos.svg";
-import bonesplitterz from "../assets/factions/bonesplitterz.svg";
-import cities_of_sigmar from "../assets/factions/cities_of_sigmar.svg";
-import daughters_of_khaine from "../assets/factions/daughters_of_khaine.svg";
-import flesh_eater_courts from "../assets/factions/flesh_eater_courts.svg";
-import fyreslayers from "../assets/factions/fyreslayers.svg";
-import gloomspite_gitz from "../assets/factions/gloomspite_gitz.svg";
-import hedonites_of_slaanesh from "../assets/factions/hedonites_of_slaanesh.svg";
-import idoneth_deepkin from "../assets/factions/idoneth_deepkin.svg";
-import ironjawz from "../assets/factions/ironjawz.svg";
-import kharadron_overlords from "../assets/factions/kharadron_overlords.svg";
-import khorne_bloodbound from "../assets/factions/khorne_bloodbound.svg";
-import lumineth_realmlords from "../assets/factions/lumineth_realmlords.svg";
-import maggotkin_of_nurgle from "../assets/factions/maggotkin_of_nurgle.svg";
-import nighthaunt from "../assets/factions/nighthaunt.svg";
-import ogor_mawtribes from "../assets/factions/ogor_mawtribes.svg";
-import ossiarch_bonereapers from "../assets/factions/ossiarch_bonereapers.svg";
-import seraphon from "../assets/factions/seraphon.svg";
-import skaven from "../assets/factions/skaven.svg";
-import slaves_to_darkness from "../assets/factions/slaves_to_darkness.svg";
-import stormcast_eternals_warrior from "../assets/factions/stormcast_eternals_warrior.svg";
-import sylvaneth from "../assets/factions/sylvaneth.svg";
-import tzeentch_arcanites from "../assets/factions/tzeentch_arcanites.svg";
 
 export class DataStore {
     serial = 100;
@@ -88,30 +65,6 @@ export class DataStore {
             factionOptions: computed,
             allegiances: computed,
         });
-
-        data.factions.beastsOfChaos.icon = beasts_of_chaos;
-        data.factions.bonesplitterz.icon = bonesplitterz;
-        data.factions.citiesOfSigmar.icon = cities_of_sigmar;
-        data.factions.daughtersOfKhaine.icon = daughters_of_khaine;
-        data.factions.fleshEaterCourts.icon = flesh_eater_courts;
-        data.factions.fyreslayers.icon = fyreslayers;
-        data.factions.gloomspiteGitz.icon = gloomspite_gitz;
-        data.factions.hedonitesOfSlaanesh.icon = hedonites_of_slaanesh;
-        data.factions.idonethDeepkin.icon = idoneth_deepkin;
-        data.factions.ironjawz.icon = ironjawz;
-        data.factions.kharadronOverlords.icon = kharadron_overlords;
-        data.factions.khorne.icon = khorne_bloodbound;
-        data.factions.luminethRealmLords.icon = lumineth_realmlords;
-        data.factions.maggotkinOfNurgle.icon = maggotkin_of_nurgle;
-        data.factions.nighthaunt.icon = nighthaunt;
-        data.factions.ogorMawtribes.icon = ogor_mawtribes;
-        data.factions.ossiarchBonereapers.icon = ossiarch_bonereapers;
-        data.factions.seraphon.icon = seraphon;
-        data.factions.skaven.icon = skaven;
-        data.factions.slavesToDarkness.icon = slaves_to_darkness;
-        data.factions["stormcastEternals"].icon = stormcast_eternals_warrior;
-        data.factions.sylvaneth.icon = sylvaneth;
-        data.factions.tzeentch.icon = tzeentch_arcanites;
 
         overrideStormcast(data);
         overrideNurgle(data);
