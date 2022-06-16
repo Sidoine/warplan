@@ -182,6 +182,7 @@ export interface TargetCondition {
     slain?: boolean;
     isInGarrison?: boolean;
     setup?: boolean;
+    range?: Value;
 }
 
 export interface AttackAuraValues {
@@ -239,6 +240,7 @@ export const enum AuraType {
     Value,
     Special,
     Battleshock,
+    DifferedEffect,
 }
 
 interface BaseAura {
@@ -248,6 +250,13 @@ interface BaseAura {
     delay?: EffectDuration;
     targetCondition?: TargetCondition;
     condition?: TargetCondition;
+}
+
+export interface DifferedEffectAura extends BaseAura {
+    type: AuraType.DifferedEffect;
+    phase: Phase;
+    subPhase: SubPhase;
+    effect: ImmediateEffect;
 }
 
 export interface AttackAura
@@ -369,7 +378,8 @@ export type Aura =
     | DefenseAura
     | MovementAura
     | ChargeAura
-    | BattleshockAura;
+    | BattleshockAura
+    | DifferedEffectAura;
 
 export interface AbilityEffect {
     name?: string;

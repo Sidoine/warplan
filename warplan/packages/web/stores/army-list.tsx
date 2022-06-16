@@ -157,13 +157,13 @@ export class ArmyList implements ArmyListInterface, ArmyListLimits {
     @computed
     get allExtraAbilities() {
         return this.allegianceAbilities.concat(
-            this.dataStore.baseAbilities.flatMap((x) => x.abilities)
+            this.dataStore.genericAbilities.flatMap((x) => x.abilities)
         );
     }
 
     @computed
     get availableAbilityGroups() {
-        const result: AbilityGroup[] = this.dataStore.baseAbilities.concat();
+        const result: AbilityGroup[] = this.dataStore.genericAbilities.concat();
         if (this.allegiance?.abilityGroups) {
             result.push(...this.allegiance.abilityGroups);
         }

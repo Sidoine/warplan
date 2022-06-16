@@ -11,6 +11,7 @@ import { useCardsStore } from "../stores/cards";
 function mapAbility(
     x: Ability,
     color: CardColor,
+    faction?: Faction,
     keywords?: string[][]
 ): CardContent {
     return {
@@ -20,6 +21,7 @@ function mapAbility(
         description: x.description,
         color,
         keywords,
+        faction,
     };
 }
 
@@ -48,7 +50,7 @@ export const Cards = observer(() => {
     const store = useLocalObservable(() => ({
         get abilities() {
             let result: CardContent[] = [];
-            for (const group of unitsStore.baseAbilities) {
+            for (const group of unitsStore.genericAbilities) {
                 result = result.concat(
                     group.abilities.map((x) => mapAbility(x, "common"))
                 );
@@ -69,7 +71,13 @@ export const Cards = observer(() => {
             if (w.allegiance?.abilityGroups)
                 for (const group of w.allegiance.abilityGroups) {
                     result = result.concat(
-                        group.abilities.map((x) => mapAbility(x, "allegiance"))
+                        group.abilities.map((x) =>
+                            mapAbility(
+                                x,
+                                "allegiance",
+                                w.allegiance || undefined
+                            )
+                        )
                     );
                 }
 
