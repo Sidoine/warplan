@@ -1,5 +1,6 @@
 import { Box, BoxProps } from "@mui/system";
 import React from "react";
+import { Faction } from "../../common/data";
 import beasts_of_chaos from "../assets/factions/beasts_of_chaos.svg";
 import bonesplitterz from "../assets/factions/bonesplitterz.svg";
 import cities_of_sigmar from "../assets/factions/cities_of_sigmar.svg";
@@ -78,18 +79,27 @@ function factionIconUrl(faction: FactionId) {
 }
 
 export function FactionIcon({
-    factionId,
-    bgColor,
+    faction,
     color = "black",
     size = "default",
 }: {
-    factionId: FactionId;
+    faction: Faction;
     bgColor?: BoxProps["bgcolor"];
     color?: BoxProps["color"];
     size?: "small" | "default";
 }) {
-    const url = factionIconUrl(factionId);
-    if (!url) return <></>;
+    const url = factionIconUrl(faction.id as FactionId);
+    if (!url) {
+        if (faction.parent)
+            return (
+                <FactionIcon
+                    faction={faction.parent}
+                    color={color}
+                    size={size}
+                />
+            );
+        return <></>;
+    }
     const sizeInPix = size === "default" ? "48px" : "24px";
     return (
         <Box

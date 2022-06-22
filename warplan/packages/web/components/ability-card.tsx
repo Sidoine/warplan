@@ -6,7 +6,6 @@ import header from "../assets/ws-header.png";
 import warscrollSeparator from "../assets/ws-separator.png";
 import { Faction } from "../../common/data";
 import { FactionIcon } from "./faction-icon";
-import { FactionId } from "../stores/imported-data";
 
 export type CardColor = "allegiance" | "common" | "armyOption";
 
@@ -240,7 +239,7 @@ export function AbilityCard({ ability, onClick }: AbilityCardProps) {
                     <div className={classes.keywords}>
                         {ability.faction && (
                             <FactionIcon
-                                factionId={ability.faction.id as FactionId}
+                                faction={ability.faction}
                                 size="small"
                             />
                         )}
