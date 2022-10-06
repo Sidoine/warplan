@@ -35,7 +35,7 @@ ${writeTypes(dataStore)}
 
 export class ImportedDataStoreImpl implements ImportedDataStore {
 `;
-
+        result += writeBattlepacks(dataStore);
         result += writeModels(dataStore);
         result += writeFactions(dataStore);
         result += writeAbilities(dataStore);
@@ -91,6 +91,21 @@ function writeFactions(db: ImportedDataStore) {
 
 function compareId(a: { id: string }, b: { id: string }) {
     return a.id.localeCompare(b.id);
+}
+
+function writeBattlepacks(db: ImportedDataStore) {
+    let result = `   battlepacks = {
+`;
+    for (const battlepack of Object.values(db.battlepacks).sort(compareId)) {
+        result += `       ${battlepack.id}: {
+                    id: "${escapeString(battlepack.id)}",
+                    name: "${escapeString(battlepack.name)}",
+                },
+`;
+    }
+    result += `   };
+`;
+    return result;
 }
 
 function writeModels(db: ImportedDataStore) {
@@ -488,7 +503,8 @@ function writeRealms(db: ImportedDataStore) {
         },
 `;
     }
-    result += `${tab}}`;
+    result += `${tab}};
+`;
     return result;
 }
 
