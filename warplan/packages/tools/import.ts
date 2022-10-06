@@ -1097,10 +1097,24 @@ function importExtraAbilities<
             category,
             id: groupId,
             name: group.name,
-            allowUniqueUnits: group.allowUniqueUnits,
+            allowUniqueUnits:
+                "allowUniqueUnits" in group
+                    ? group.allowUniqueUnits
+                    : undefined,
             restrictions: group.restrictions,
-            domain: group.domain ?? defaultDomain,
+            domain:
+                "domain" in group
+                    ? (group.domain as AbilityGroupDomain) ?? defaultDomain
+                    : undefined,
         };
+        if ("requiresBattlepack" in group) {
+            if (group.requiresBattlepack) {
+                const battlePack =
+                    dataStore.battlepacks[group.requiresBattlepack];
+                    if (!battlePack) console.error(`Could not find battlepack ${group.requiresBattlepack}`);
+                entity.requiresBattlepack = battlePack;
+            }
+        }
         dataStore.abilityGroups[groupId] = entity;
         if (group.factionId) {
             const faction = getItem(dataStore, "factions", group.factionId);
@@ -1121,7 +1135,7 @@ function importExtraAbilities<
         const entity: Ability = {
             id: abilityId,
             name: ability.name,
-            flavor: ability.lore || undefined,
+            flavor: "lore" in ability ? ability.lore ?? undefined : undefined,
             description: ability.rules,
             effects: getAbilityEffects(ability.name, ability.rules, db),
             category,
@@ -1188,6 +1202,16 @@ export function importData(db: Dump): ImportedDataStore {
         battalionGroups: {},
         genericBattalionGroups: [],
         battalionAbilities: {},
+        battlepacks: {
+            contestOfGenerals: {
+                id: "contestOfGenerals",
+                name: "Contest of Generals",
+            },
+            pitchedBattles: {
+                id: "pitchedBattles",
+                name: "Pitched Battles",
+            },
+        },
     };
 
     for (const faction of db.faction) {

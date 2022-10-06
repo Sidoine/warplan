@@ -54,7 +54,7 @@ export interface Dump {
     table_row: TableRow[];
     triumph_group: ArtefactOfPowerGroupElement[];
     triumph: BattleTactic[];
-    typeorm_metadata: any[];
+    // typeorm_metadata: any[];
     unique_enhancement_group_keywords_keyword: UniqueEnhancementGroupKeywordsKeyword[];
     unique_enhancement_group: CoreBattalionGroupElement[];
     unique_enhancement_keywords_keyword: UniqueEnhancementKeywordsKeyword[];

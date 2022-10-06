@@ -1,5 +1,10 @@
 import { KeywordCategory, Role } from "./definitions";
 
+export interface Battlepack {
+    id: string;
+    name: string;
+}
+
 export const enum Material {
     Metal,
     Resin,
@@ -20,6 +25,7 @@ export interface BattalionGroup {
     battalions: Battalion[];
     description: string;
     restrictions?: string;
+    requiresBattlepack?: Battlepack;
 }
 
 export interface Faction {
@@ -842,6 +848,7 @@ export interface ImportedDataStore {
     battalionGroups: Record<string, BattalionGroup>;
     genericBattalionGroups: BattalionGroup[];
     battalionAbilities: Record<string, BattalionAbility>;
+    battlepacks: Record<string, Battlepack>;
 }
 
 export type AbilityGroupDomain = "armyLevel" | "unitLevel";
@@ -855,6 +862,7 @@ export interface AbilityGroup extends ItemWithAbilities {
     keywords?: string[];
     restrictions?: string;
     domain?: AbilityGroupDomain;
+    requiresBattlepack?: Battlepack;
 }
 
 export interface RealmOfBattle {
