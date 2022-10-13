@@ -17,14 +17,14 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
     data.factions.luminethRealmLords.tokenName = "aetherquartz";
 
     // Generic abilities
-    updateEffect(data.abilities.absorbDespair, {
-        targetType: TargetType.Enemy,
-        auras: [{ type: AuraType.Special, absorbDespair: true }],
-        condition: {
-            inRangeOf: { friendly: true, keyword: "CATHALLAR", range: '18"' },
-        },
-        targetRange: '18"',
-    });
+    // updateEffect(data.abilities.absorbDespair, {
+    //     targetType: TargetType.Enemy,
+    //     auras: [{ type: AuraType.Special, absorbDespair: true }],
+    //     condition: {
+    //         inRangeOf: { friendly: true, keyword: "CATHALLAR", range: '18"' },
+    //     },
+    //     targetRange: '18"',
+    // });
     updateEffect(data.abilities.aetherquartzReserve, {
         auras: [{ type: AuraType.Battleshock, malusBravery: -1 }],
     });
@@ -94,115 +94,115 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
             },
         ],
     });
-    updateEffect(data.abilities.deepThinkers, {
-        targetType: TargetType.Friend,
-        targetCondition: {
-            allKeywords: ["WIZARD", "SCINARI"],
-        },
-        auras: [
-            {
-                type: AuraType.Spell,
-                autoCast: 9,
-                delay: EffectDuration.Round,
-                duration: EffectDuration.Phase,
-            },
-            {
-                type: AuraType.Spell,
-                noCast: true,
-                duration: EffectDuration.Phase,
-            },
-        ],
-    });
-    addEffect(data.abilities.soulBound, {
-        targetType: TargetType.Unit,
-        auras: [{ type: AuraType.Battleshock, bonusBravery: 2 }],
-        targetCondition: {
-            anyKeyword: ["VANARI", "AELEMENTIRI"],
-            keyword: "ILIATHA",
-        },
-    });
-    updateEffect(data.abilities.strikeInUnison, {
-        targetType: TargetType.Friend,
-        targetCondition: {
-            minModels: 2,
-        },
-        phase: Phase.Combat | Phase.Shooting,
-        auras: [
-            {
-                type: AuraType.Attack,
-                rerollHitsOn1: 1,
-                duration: EffectDuration.Phase,
-            },
-        ],
-    });
-    addEffect(data.abilities.unityOfPurpose, {
-        targetType: TargetType.Friend,
-        targetCondition: {
-            allKeywords: ["VANARI", "ILIATHA"],
-        },
-        auras: [{ type: AuraType.Command, copyCommand: true }],
-    });
+    // // updateEffect(data.abilities.deepThinkers, {
+    // //     targetType: TargetType.Friend,
+    // //     targetCondition: {
+    // //         allKeywords: ["WIZARD", "SCINARI"],
+    // //     },
+    // //     auras: [
+    // //         {
+    // //             type: AuraType.Spell,
+    // //             autoCast: 9,
+    // //             delay: EffectDuration.Round,
+    // //             duration: EffectDuration.Phase,
+    // //         },
+    // //         {
+    // //             type: AuraType.Spell,
+    // //             noCast: true,
+    // //             duration: EffectDuration.Phase,
+    // //         },
+    // //     ],
+    // // });
+    // // addEffect(data.abilities.soulBound, {
+    // //     targetType: TargetType.Unit,
+    // //     auras: [{ type: AuraType.Battleshock, bonusBravery: 2 }],
+    // //     targetCondition: {
+    // //         anyKeyword: ["VANARI", "AELEMENTIRI"],
+    // //         keyword: "ILIATHA",
+    // //     },
+    // // });
+    // // updateEffect(data.abilities.strikeInUnison, {
+    // //     targetType: TargetType.Friend,
+    // //     targetCondition: {
+    // //         minModels: 2,
+    // //     },
+    // //     phase: Phase.Combat | Phase.Shooting,
+    // //     auras: [
+    // //         {
+    // //             type: AuraType.Attack,
+    // //             rerollHitsOn1: 1,
+    // //             duration: EffectDuration.Phase,
+    // //         },
+    // //     ],
+    // // });
+    // addEffect(data.abilities.unityOfPurpose, {
+    //     targetType: TargetType.Friend,
+    //     targetCondition: {
+    //         allKeywords: ["VANARI", "ILIATHA"],
+    //     },
+    //     auras: [{ type: AuraType.Command, copyCommand: true }],
+    // });
 
-    updateEffect(data.abilities.lightningReactions, {
-        auras: [{ type: AuraType.Special, pickTwoUnitsInCombat: true }],
-    });
-    updateEffect(data.abilities.luminethGreatNations, {
-        immediate: {
-            allowInclusion: {},
-        },
-    });
-    updateEffect(data.abilities.moveLikeTheWind, {
-        auras: [{ type: AuraType.Attack, pileInEverywhere: true }],
-    });
-    addEffect(data.abilities.moveLikeTheWind, {
-        targetType: TargetType.Unit,
-        condition: {
-            hasCharged: true,
-        },
-        auras: [
-            {
-                type: AuraType.Attack,
-                pileInWithFly: true,
-                bonusPileInDistance: 3,
-            },
-        ],
-    });
-    updateEffect(data.abilities.tectonicForce, {
-        auras: [{ type: AuraType.Special, tectonicForce: true }],
-    });
-    addEffect(data.abilities.tectonicForce, {
-        targetType: TargetType.Unit,
-        phase: Phase.Combat,
-        subPhase: SubPhase.After,
-        immediate: {
-            pileInMove: 1,
-        },
-    });
-    updateEffect(data.abilities.shiningCompany, {
-        auras: [
-            { type: AuraType.Charge, cannotCharge: true },
-            { type: AuraType.Movement, cannotRun: true },
-            { type: AuraType.Attack, pileInDistance: '1"' },
-        ],
-    });
-    updateEffect(data.abilities.enduringAsRock, {
-        targetType: TargetType.Friend,
-        targetCondition: { keyword: "ALARITH " },
-    });
-    addEffect(data.abilities.enduringAsRock, {
-        targetType: TargetType.Friend,
-        targetCondition: { keyword: "ALARITH" },
-        phase: Phase.Hero,
-        subPhase: SubPhase.Before,
-        side: Turn.Your,
-        auras: [
-            {
-                type: AuraType.Defense,
-                ignoreRendOfMinus1: true,
-                duration: EffectDuration.Round,
-            },
-        ],
-    });
+    // updateEffect(data.abilities.lightningReactions, {
+    //     auras: [{ type: AuraType.Special, pickTwoUnitsInCombat: true }],
+    // });
+    // updateEffect(data.abilities.luminethGreatNations, {
+    //     immediate: {
+    //         allowInclusion: {},
+    //     },
+    // });
+    // updateEffect(data.abilities.moveLikeTheWind, {
+    //     auras: [{ type: AuraType.Attack, pileInEverywhere: true }],
+    // });
+    // addEffect(data.abilities.moveLikeTheWind, {
+    //     targetType: TargetType.Unit,
+    //     condition: {
+    //         hasCharged: true,
+    //     },
+    //     auras: [
+    //         {
+    //             type: AuraType.Attack,
+    //             pileInWithFly: true,
+    //             bonusPileInDistance: 3,
+    //         },
+    //     ],
+    // });
+    // updateEffect(data.abilities.tectonicForce, {
+    //     auras: [{ type: AuraType.Special, tectonicForce: true }],
+    // });
+    // addEffect(data.abilities.tectonicForce, {
+    //     targetType: TargetType.Unit,
+    //     phase: Phase.Combat,
+    //     subPhase: SubPhase.After,
+    //     immediate: {
+    //         pileInMove: 1,
+    //     },
+    // });
+    // updateEffect(data.abilities.shiningCompany, {
+    //     auras: [
+    //         { type: AuraType.Charge, cannotCharge: true },
+    //         { type: AuraType.Movement, cannotRun: true },
+    //         { type: AuraType.Attack, pileInDistance: '1"' },
+    //     ],
+    // });
+    // updateEffect(data.abilities.enduringAsRock, {
+    //     targetType: TargetType.Friend,
+    //     targetCondition: { keyword: "ALARITH " },
+    // });
+    // addEffect(data.abilities.enduringAsRock, {
+    //     targetType: TargetType.Friend,
+    //     targetCondition: { keyword: "ALARITH" },
+    //     phase: Phase.Hero,
+    //     subPhase: SubPhase.Before,
+    //     side: Turn.Your,
+    //     auras: [
+    //         {
+    //             type: AuraType.Defense,
+    //             ignoreRendOfMinus1: true,
+    //             duration: EffectDuration.Round,
+    //         },
+    //     ],
+    // });
 
     // Avalenor
     addEffect(data.abilities.avalenorTheStoneheartKingStonemageSymbiosis, {
@@ -221,9 +221,9 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
             },
         ],
     });
-    updateEffect(data.abilities.avalenorTheStoneheartKingElderWisdom, {
-        auras: [{ type: AuraType.Command, free: true }],
-    });
+    // updateEffect(data.abilities.avalenorTheStoneheartKingElderWisdom, {
+    //     auras: [{ type: AuraType.Command, free: true }],
+    // });
     updateEffect(data.abilities.avalenorTheStoneheartKingGuardianOfHysh, {
         targetRadius: data.damageTables.avalenorDamageTable.columns[1],
         targetType: TargetType.Enemy,
@@ -341,36 +341,36 @@ export function overrideLumineths(data: ImportedDataStoreImpl) {
             },
         ],
     });
-    updateEffect(data.abilities.scinariCathallarEmotionalTransference, {
-        auras: [{ type: AuraType.Battleshock, immune: true }],
-        randomEffectRange: { min: 2, max: 6 },
-    });
-    addEffect(data.abilities.scinariCathallarEmotionalTransference, {
-        targetType: TargetType.Enemy,
-        targetRange: '18"',
-        phase: Phase.Battleshock,
-        subPhase: SubPhase.Before,
-        auras: [{ type: AuraType.Battleshock, emotionalTransference: true }],
-        targetCondition: { needBattleshockTest: true },
-        randomEffectRange: { min: 2, max: 6 },
-    });
+    // updateEffect(data.abilities.scinariCathallarEmotionalTransference, {
+    //     auras: [{ type: AuraType.Battleshock, immune: true }],
+    //     randomEffectRange: { min: 2, max: 6 },
+    // });
+    // addEffect(data.abilities.scinariCathallarEmotionalTransference, {
+    //     targetType: TargetType.Enemy,
+    //     targetRange: '18"',
+    //     phase: Phase.Battleshock,
+    //     subPhase: SubPhase.Before,
+    //     auras: [{ type: AuraType.Battleshock, emotionalTransference: true }],
+    //     targetCondition: { needBattleshockTest: true },
+    //     randomEffectRange: { min: 2, max: 6 },
+    // });
 
     // Scinari Loreseeker
-    addEffect(data.abilities.scinariLoreseekerLoreseeker, {
-        targetType: TargetType.Unit,
-        phase: Phase.Any,
-        immediate: {
-            gainCommandPoints: 1,
-        },
-        condition: {
-            inRangeOf: {
-                range: '3"',
-                slain: true,
-                hasArtefact: true,
-                enemy: true,
-            },
-        },
-    });
+    // addEffect(data.abilities.scinariLoreseekerLoreseeker, {
+    //     targetType: TargetType.Unit,
+    //     phase: Phase.Any,
+    //     immediate: {
+    //         gainCommandPoints: 1,
+    //     },
+    //     condition: {
+    //         inRangeOf: {
+    //             range: '3"',
+    //             slain: true,
+    //             hasArtefact: true,
+    //             enemy: true,
+    //         },
+    //     },
+    // });
     updateEffect(data.abilities.scinariLoreseekerLoneAgent, {
         auras: [
             {

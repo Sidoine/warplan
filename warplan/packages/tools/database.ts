@@ -60,7 +60,7 @@ export class ImportedDataStoreImpl implements ImportedDataStore {
     } catch (error) {
         console.error(error);
     }
-    process.exit();
+    process.exit(0);
 }
 
 load();
